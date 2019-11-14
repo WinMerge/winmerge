@@ -562,12 +562,11 @@ msgstr "Enregistrer D&roite sous..."
 msgid "&Print..."
 msgstr "&Imprimer..."
 
-msgid "Page Set&up"
-msgstr "&Mise en page"
+msgid "Page Set&up..."
+msgstr "&Mise en page..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&Aperçu avant impression"
+msgid "Print Previe&w..."
+msgstr "&Aperçu avant impression..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -817,13 +816,11 @@ msgstr "Copier depuis la Gauche\tALT+MAJ+Droite"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Copie depuis la Droite\tAlt+Maj+Gauche"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Copier vers la Droite et A&vancer\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Copier vers la Droite et A&vancer\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Copier vers la Gauche et Av&ancer\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Copier vers la Gauche et Av&ancer\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -833,9 +830,8 @@ msgstr "Tout cop&ier vers la Droite"
 msgid "Cop&y All to Left"
 msgstr "Tout copi&er vers la Gauche"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "A&uto merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "A&uto merge\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1761,9 +1757,8 @@ msgstr "Caractères pour distinction de mot :"
 msgid "Filefilters"
 msgstr "Filtre des fichiers"
 
-#, c-format
-msgid "Test"
-msgstr "Test"
+msgid "Test..."
+msgstr "Test..."
 
 #, c-format
 msgid "Install..."
@@ -2087,9 +2082,8 @@ msgstr "Ann&uler"
 msgid "Test Filter"
 msgstr "Filtre de test"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Tester le filtre ..."
+msgid "Testing filter..."
+msgstr "Tester le filtre..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2277,12 +2271,9 @@ msgstr "&Limite de comparaison rapide (Mo) :"
 msgid "&Binary compare limit (MB):"
 msgstr "Limitation de la taille de comparaison des fichiers &binaire :"
 
-#, c-format
-msgid ""
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
-"&Nombre de threads de comparaison (une valeur négative implique "
+"\n&Nombre de threads de comparaison (une valeur négative implique "
 "l'utilisation de tous les cœurs CPU disponibles) :"
 
 msgctxt "Options dialog|Categories"
@@ -2912,20 +2903,14 @@ msgstr ""
 "Continuer quand même ?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Erreur lors de l'enregistrement.\n"
 "%1\n"
 "%2\n"
 "Voulez-vous:\n"
-"\t-utiliser un nom autre nom de fichier (Ok)\n"
-"\t-avorter l'opération en cours (Annuler) ?"
+"\t- utiliser un nom autre nom de fichier (Ok)\n"
+"\t- avorter l'opération en cours (Annuler) ?"
 
 #, c-format
 msgid ""
@@ -3303,9 +3288,8 @@ msgstr "Page de code Droite"
 msgid "Middle Encoding"
 msgstr "Encodage Milieu"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Diff. ignorées"
+msgid "Ignored Diff"
+msgstr "Diff ignorées"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3515,17 +3499,14 @@ msgstr "Attributs du côté Droite."
 msgid "Middle side attributes."
 msgstr "Attributs du Milieu."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Type de fin de ligne du côté Gauche"
+msgid "Left side file EOL type."
+msgstr "Type de fin de ligne du côté Gauche."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Type de fin de ligne du côté Droite"
+msgid "Right side file EOL type."
+msgstr "Type de fin de ligne du côté Droite."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Type de fin de ligne du Milieu"
+msgid "Middle side file EOL type."
+msgstr "Type de fin de ligne du Milieu."
 
 #, c-format
 msgid "Left side encoding."
@@ -3672,15 +3653,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Voulez-vous passer à la page précédente ?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Les fichiers n'ont pas la même page de code à Gauche (cp%d) et à Droite (cp"
-"%d). \n"
+"%d).\n"
 "L'affichage est ainsi meilleurs cependant les copie/fusion seront "
 "dangeureuses.\n"
 "Désirez-vous traiter les deux fichiers avec la page de code windows par "
