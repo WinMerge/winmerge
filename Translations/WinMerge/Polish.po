@@ -121,10 +121,10 @@ msgid "&Overlay"
 msgstr "Nakładka"
 
 msgid "&Alpha Blend"
-msgstr ""
+msgstr "Przenikanie alfa"
 
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Animacja przenikania alfa"
 
 msgid "Dragging &Mode"
 msgstr "Tryb przeciągania"
@@ -2017,7 +2017,7 @@ msgstr "Różnica %1 z %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "Znaleziono %1 różnice"
+msgstr "Znaleziono %1 różnic(e)"
 
 msgid "1 Difference Found"
 msgstr "Znaleziono 1 różnicę"
@@ -2071,7 +2071,7 @@ msgid "All paths are invalid!"
 msgstr "Wszystkie ścieżki są nieprawidłowe!"
 
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Aktywne tylko dla Porównanie plików"
 
 msgid "Cannot compare file and folder!"
 msgstr "Nie można porównać pliku i folderu!"
@@ -2127,7 +2127,7 @@ msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w prawym pliku do '
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-msgstr "Inna aplikacja dokonała zmian w pliku%1\n po tym jak WinMerge go wczytał.\n\nCzy nadpisać zmieniony plik?"
+msgstr "Inna aplikacja dokonała zmian w pliku\n%1\npo tym jak WinMerge go wczytał.\n\nCzy nadpisać zmieniony plik?"
 
 #, c-format
 msgid "%1\nis marked read-only. Would you like to override the read-only item?"
@@ -2135,7 +2135,7 @@ msgstr "%1\nzostał oznaczony jako tylko do odczytu. Czy chcesz zastąpić eleme
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Plik\n%1\nzostał zmodyfikowany przez inną aplikację.\n\nCzy chcesz ponownie wczytać plik?"
 
 msgid "Save Left File As"
 msgstr "Zapisz lewy plik jako"
@@ -2151,7 +2151,7 @@ msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue
 msgstr "Plik\n%1\nzostał usunięty. Proszę zapisać kopię pliku, aby móc kontynuować."
 
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
-msgstr ""
+msgstr "Nie można połączyć różnic, jeśli dokumenty nie są zsynchronizowane.\n\nPrzed kontynuowaniem odśwież dokumenty."
 
 msgid "Break at whitespace"
 msgstr "Zatrzymaj na białym znaku"
@@ -2257,7 +2257,7 @@ msgstr "Czy na pewno chcesz skopiować %d elementów:"
 
 #, c-format
 msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
-msgstr ""
+msgstr "Operacja przerwana!\n\nZawartość folderu na dysku została zmieniona. Ścieżka\n%1\nnie została odnaleziona.\n\nProszę odświeżyć porównanie."
 
 msgid "Are you sure you want to move:"
 msgstr "Czy na pewno chcesz przenieść:"
@@ -2462,7 +2462,7 @@ msgstr "Wybrano 1 element"
 
 #, c-format
 msgid "%1 items selected"
-msgstr "Wybrano %1 elementy"
+msgstr "Wybrano %1 element(y)"
 
 msgid "Filename or folder name."
 msgstr "Nazwa pliku lub nazwa folderu."
@@ -2599,10 +2599,10 @@ msgid "An error occurred while comparing the files."
 msgstr "Wystąpił błąd podczas porównywania plików."
 
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr ""
+msgstr "Nie można utworzyć plików tymczasowych. Sprawdź ustawienie ścieżki tymczasowej."
 
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr ""
+msgstr "Te pliki używają różnych znaków końca linii.\n\nCzy chcesz traktować wszystkie typy znaków końca linii jako równoważne?\n\nUwaga: Jeśli różne znaki końca linii mają być zawsze traktowane jako równoważne, ustaw w opcjach 'Ignoruj znaki końca linii...' (opcja dostępna w menu Edycja/Opcje w zakładce Porównaj)."
 
 msgid "The selected folder is invalid."
 msgstr "Wybrany folder jest nieprawidłowy."
@@ -2612,7 +2612,7 @@ msgstr "Nie można otworzyć w edytorze pliku binarnego."
 
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr ""
+msgstr "Folder istnieje tylko na jednej ze stron i nie może zostać otwarty.\n\nCzy chcesz utworzyć odpowiedni folder:\n%1\npo drugiej stronie i otworzyć te foldery?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Czy chcesz przejść do następnego pliku?"
@@ -2628,7 +2628,7 @@ msgstr "Czy chcesz przejść do poprzedniej strony?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
-msgstr ""
+msgstr "Znaleziono różne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d) stronie.\nWyświetlanie każdego pliku z osobna w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/kopiowanie będzie niebezpieczne.\nCzy chcesz traktować oba pliki jako znajdujące się w domyślnej stronie kodowej systemu Windows (zalecane)?"
 
 msgid "Information lost due to encoding errors: both files"
 msgstr "Utracono informacje z powodu błędów kodowania: oba pliki"
@@ -2650,7 +2650,7 @@ msgstr "Różniące się linie"
 
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "Zastąpiono %1 sekwencji znaków."
+msgstr "Zastąpiono %1 sekwencję(i) znaków."
 
 #, c-format
 msgid "Cannot find string \"%s\""
@@ -2661,7 +2661,7 @@ msgstr ""
 
 #, c-format
 msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
-msgstr ""
+msgstr "Liczba automatycznie scalonych zmian: %1\nLiczba nierozwiązanych konfliktów: %2"
 
 msgid "The change of codepage has been merged"
 msgstr ""
@@ -2695,7 +2695,7 @@ msgstr "Plik łatki już istnieje. Czy napisać plik?"
 
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[Wybrano %1 plików]"
+msgstr "[Wybrano %1 plik(ów)]"
 
 msgid "Normal"
 msgstr "Normalny"
@@ -2724,13 +2724,13 @@ msgid "Cannot create a patch file from directories."
 msgstr "Nie można utworzyć łatki z katalogów."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
-msgstr ""
+msgstr "Proszę najpierw zapisać wszystkie pliki.\n\nTworzenie łatki wymaga zapisania wszystkich zmian w plikach."
 
 msgid "Folder does not exist."
-msgstr ""
+msgstr "Folder nie istnieje."
 
 msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr ""
+msgstr "Obsługa archiwów nie została włączona.\nNie znaleziono wszystkich potrzebnych komponentów (7-zip i/lub Merge7z*.dll) do obsługi archiwów.\nWięcej informacji na temat obsługi archiwów i sposobu jej włączania znajdziesz w podręczniku."
 
 msgid "Select file for export"
 msgstr "Wybierz plik do eksportu"
@@ -2921,4 +2921,4 @@ msgid "Failed to create folder."
 msgstr "Nie udało się utworzyć folderu."
 
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr ""
+msgstr "Możesz podać następujące parametry ścieżki:\n$file: Nazwa ścieżki do bieżącego pliku\n$linenum: Numer linii dla aktualnej pozycji kursora"
