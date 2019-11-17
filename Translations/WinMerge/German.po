@@ -557,11 +557,10 @@ msgstr "&Rechts speichern unter..."
 msgid "&Print..."
 msgstr "&Drucken..."
 
-msgid "Page Set&up"
+msgid "Page Set&up..."
 msgstr "Sei&te einrichten..."
 
-#, c-format
-msgid "Print Previe&w"
+msgid "Print Previe&w..."
 msgstr "Druck&vorschau..."
 
 #, c-format
@@ -812,13 +811,11 @@ msgstr "Von links kopieren\tAlt+Umschalt+Rechts"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Von rechts kopieren\tAlt+Umschalt+Links"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Nach rechts kopieren und &fortschreiten\tStrg+Alt+Rechts"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Nach rechts kopieren und &fortschreiten\tAlt+Strg+Rechts"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Nach links kopieren und f&ortschreiten\tStrg+Alt+Links"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Nach links kopieren und f&ortschreiten\tAlt+Strg+Links"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -828,9 +825,8 @@ msgstr "Alles nach rec&hts kopieren"
 msgid "Cop&y All to Left"
 msgstr "Alles nach lin&ks kopieren"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "A&utomatisch mischen\tStrg+Alt+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "A&utomatisch mischen\tAlt+Strg+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1752,8 +1748,7 @@ msgstr "W&ortumbruchzeichen:"
 msgid "Filefilters"
 msgstr "Dateifilter"
 
-#, c-format
-msgid "Test"
+msgid "Test..."
 msgstr "Testen..."
 
 #, c-format
@@ -2076,8 +2071,7 @@ msgstr "&Abbrechen"
 msgid "Test Filter"
 msgstr "Filter testen"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Filter testen..."
 
 #, c-format
@@ -2260,8 +2254,7 @@ msgstr "&Limit für Schnellvergleich (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "Binärvergleichslimit (MB):"
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nAnzahl der Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
 
 msgctxt "Options dialog|Categories"
@@ -2863,13 +2856,7 @@ msgstr ""
 "Trotzdem fortfahren?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Speichern der Datei fehlgeschlagen.\n"
 "%1\n"
@@ -3249,9 +3236,8 @@ msgstr "Rechte Kodierung"
 msgid "Middle Encoding"
 msgstr "Mittlere Kodierung"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Ignorierte Unter."
+msgid "Ignored Diff"
+msgstr "Ignorierte Unter"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3461,17 +3447,14 @@ msgstr "Rechte Attribute."
 msgid "Middle side attributes."
 msgstr "Mittlere Attribute."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Linker Zeilenende-Typ"
+msgid "Left side file EOL type."
+msgstr "Linker Zeilenende-Typ."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Rechter Zeilenende-Typ"
+msgid "Right side file EOL type."
+msgstr "Rechter Zeilenende-Typ."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Mittlerer Zeilenende-Typ"
+msgid "Middle side file EOL type."
+msgstr "Mittlerer Zeilenende-Typ."
 
 #, c-format
 msgid "Left side encoding."
@@ -3602,10 +3585,7 @@ msgid "Do you want to move to the previous page?"
 msgstr "Möchten Sie zur vorherigen Seite wechseln?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Verschiedene Codeseiten in linker (cp%d) und rechter (cp%d) Datei gefunden.\n"
 "Die Anzeige jeder Datei in ihrer Codeseite verbessert die Anzeige, das Zusammenführen/Kopieren ist jedoch gefährlich.\n"
