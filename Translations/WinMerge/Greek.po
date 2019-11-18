@@ -556,12 +556,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "Εκ&τύπωση..."
 
-msgid "Page Set&up"
-msgstr "Διάταξη &Σελίδας"
+msgid "Page Set&up..."
+msgstr "Διάταξη &Σελίδας..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Προε&πισκόπηση Εκτυπώσεως"
+msgid "Print Previe&w..."
+msgstr "Προε&πισκόπηση Εκτυπώσεως..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -811,13 +810,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Αντιγραφή Δε&ξιά και Μετάβαση σε επομένη\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Αντιγραφή Δε&ξιά και Μετάβαση σε επομένη\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Αντιγραφή Α&ριστερά και Μετάβαση σε επομένη\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Αντιγραφή Α&ριστερά και Μετάβαση σε επομένη\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -827,8 +824,7 @@ msgstr "Αντιγραφή όλων &Δεξιά"
 msgid "Cop&y All to Left"
 msgstr "Αντιγραφή όλων &Αριστερά"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1749,9 +1745,8 @@ msgstr ""
 msgid "Filefilters"
 msgstr "Αρχειοφίλτρα"
 
-#, c-format
-msgid "Test"
-msgstr "Δοκιμή"
+msgid "Test..."
+msgstr "Δοκιμή..."
 
 #, c-format
 msgid "Install..."
@@ -2065,8 +2060,7 @@ msgstr "Ά&κυρο"
 msgid "Test Filter"
 msgstr "Δοκιμή Φίλτρου"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Δοκιμή Φίλτρου..."
 
 #, c-format
@@ -2249,8 +2243,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2826,20 +2819,14 @@ msgstr ""
 "Συνέχεια ως έχει;"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Αποτυχία αποθηκεύσεως αρχείου.\n"
 "%1\n"
 "%2\n"
 "Επιθυμείτε να:\n"
-"\t-χρησιμοποιήσετε ένα διαφορετικό όνομα (Πιέστε ΟΚ)\n"
-"\t-ματαιώσετε την τρέχουσα ενέργεια (Πιέστε Άκυρο);"
+"\t- χρησιμοποιήσετε ένα διαφορετικό όνομα (Πιέστε ΟΚ)\n"
+"\t- ματαιώσετε την τρέχουσα ενέργεια (Πιέστε Άκυρο);"
 
 #, c-format
 msgid ""
@@ -3195,9 +3182,8 @@ msgstr "Κωδικοσελίδα Δεξιού"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Αγνοηθείσα Διαφορά."
+msgid "Ignored Diff"
+msgstr "Αγνοηθείσα Διαφορά"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3407,16 +3393,13 @@ msgstr "Ιδιότητες δεξιάς πλευράς."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Τύπος χαρακτήρα τερματισμού αριστερής πλευράς"
+msgid "Left side file EOL type."
+msgstr "Τύπος χαρακτήρα τερματισμού αριστερής πλευράς."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Τύπος χαρακτήρα τερματισμού δεξιάς πλευράς"
+msgid "Right side file EOL type."
+msgstr "Τύπος χαρακτήρα τερματισμού δεξιάς πλευράς."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3548,12 +3531,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Διαφορετικές κωδικοσελίδες ανιχνεύθηκαν στον αριστερό (cp%d) και στο δεξιό (cp%d) φάκελο. \n"
+"Διαφορετικές κωδικοσελίδες ανιχνεύθηκαν στον αριστερό (cp%d) και στο δεξιό (cp%d) φάκελο.\n"
 "Η εμφάνιση κάθε φακέλου με τη δική του κωδικοσελίδα θα έχει εμφανισιακά καλύτερα αποτελέσματα αλλά η συγχώνευση/αντιγραφή θα είναι επικίνδυνη.\n"
 "Επιθυμείτε να θεωρηθεί ότι αμφότερα τα αρχεία χρησιμοποιούν την προκαθορισμένη κωδικοσελίδα του windows (συνιστάται);"
 
