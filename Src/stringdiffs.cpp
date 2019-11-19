@@ -11,7 +11,6 @@
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
-#include <mbctype.h>	// MBCS (multibyte MBCS character stuff)
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
 #include "Diff3.h"
@@ -209,6 +208,10 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
 , m_matchblock(true) // Change to false to get word to word compare
+, m_iterCharBegin1(UBRK_CHARACTER, "en", nullptr, 0)
+, m_iterCharBegin2(UBRK_CHARACTER, "en", nullptr, 0)
+, m_iterCharEnd1(UBRK_CHARACTER, "en", nullptr, 0)
+, m_iterCharEnd2(UBRK_CHARACTER, "en", nullptr, 0)
 {
 }
 
@@ -365,7 +368,9 @@ std::vector<stringdiffs::word>
 stringdiffs::BuildWordsArray(const String & str)
 {
 	std::vector<word> words;
-	int i=0, begin=0;
+	int i = 0, begin = 0;
+
+	m_iterCharBegin1.setText(reinterpret_cast<const UChar *>(str.c_str()), static_cast<int32_t>(str.length()));
 
 	size_t sLen = str.length();
 	assert(sLen < INT_MAX);
@@ -378,7 +383,7 @@ stringdiffs::BuildWordsArray(const String & str)
 inspace:
 	if (isSafeWhitespace(str[i])) 
 	{
-		++i;
+		i = m_iterCharBegin1.next();
 		goto inspace;
 	}
 	if (begin < i)
@@ -420,13 +425,14 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			words.push_back(word(i, i, dlbreak, Hash(str, i, i, 0)));
-			++i;
+			int inext = m_iterCharBegin1.next();
+			words.push_back(word(i, inext - 1, dlbreak, Hash(str, i, inext - 1, 0)));
+			i = inext;
 			begin = i;
 			goto inword;
 		}
 	}
-	++i;
+	i = m_iterCharBegin1.next();
 	goto inword; // safe even if we're at the end or no longer in a word
 }
 
@@ -641,12 +647,16 @@ stringdiffs::snake(int k, int y, bool exchanged)
  * Caller must not call this for lead bytes
  */
 static inline bool
-matchchar(TCHAR ch1, TCHAR ch2, bool casitive)
+matchchar(const TCHAR *ch1, const TCHAR *ch2, size_t len, bool casitive)
 {
 	if (casitive)
-		return ch1==ch2;
-	else 
-		return _totupper(ch1)==_totupper(ch2);
+		return memcmp(ch1, ch2, len * sizeof(TCHAR)) == 0;
+	for (size_t i = 0; i < len; ++i)
+	{
+		if (_totupper(ch1[i]) != _totupper(ch2[i]))
+			return false;
+	}
+	return true;
 }
 
 
@@ -708,40 +718,12 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 
 
 /**
- * @brief Return pointer to last character of specified string (handle MBCS)
- *
- * If the last byte is a broken multibyte (ie, a solo lead byte), this returns previous char
- */
-static LPCTSTR
-LastChar(LPCTSTR psz, int len)
-{
-	if (!len) return psz;
-
-	if (!_getmbcp()) return psz+len-1;
-
-	LPCTSTR lastValid = psz+len-1;
-
-	LPCTSTR prev=psz;
-	while (psz<lastValid)
-	{
-		prev = psz;
-		psz = CharNext(psz);
-		if (prev == psz)
-			psz++;
-	}
-	if (psz==lastValid && !IsLeadByte(*psz))
-		return psz;
-	else // last character was multibyte or broken multibyte
-		return prev;
-}
-
-/**
  * @brief advance current pointer over whitespace, until not whitespace or beyond end
  * @param pcurrent [in,out] current location (to be advanced)
  * @param end [in] last valid position (only go one beyond this)
  */
 static void
-AdvanceOverWhitespace(LPCTSTR * pcurrent, LPCTSTR end)
+AdvanceOverWhitespace(const TCHAR **pcurrent, const TCHAR *end)
 {
 	// advance over whitespace
 	while (*pcurrent <= end && isSafeWhitespace(**pcurrent))
@@ -760,7 +742,7 @@ AdvanceOverWhitespace(LPCTSTR * pcurrent, LPCTSTR end)
  * Assumes whitespace is never leadbyte or trailbyte!
  */
 void
-ComputeByteDiff(String & str1, String & str2, 
+stringdiffs::ComputeByteDiff(const String & str1, const String & str2, 
 		   bool casitive, int xwhite, 
 		   int begin[2], int end[2], bool equal)
 {
@@ -771,9 +753,14 @@ ComputeByteDiff(String & str1, String & str2,
 	int len1 = static_cast<int>(str1.length());
 	int len2 = static_cast<int>(str2.length());
 
-	LPCTSTR pbeg1 = str1.c_str();
-	LPCTSTR pbeg2 = str2.c_str();
+	const TCHAR *pbeg1 = str1.c_str();
+	const TCHAR *pbeg2 = str2.c_str();
 
+	m_iterCharBegin1.setText(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
+	m_iterCharBegin2.setText(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
+	m_iterCharEnd1.setText(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
+	m_iterCharEnd2.setText(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
+	
 	if (len1 == 0 || len2 == 0)
 	{
 		if (len1 == len2)
@@ -787,12 +774,14 @@ ComputeByteDiff(String & str1, String & str2,
 	}
 
 	// cursors from front, which we advance to beginning of difference
-	LPCTSTR py1 = pbeg1;
-	LPCTSTR py2 = pbeg2;
+	const TCHAR *py1 = pbeg1;
+	const TCHAR *py2 = pbeg2;
 
 	// pen1,pen2 point to the last valid character (broken multibyte lead chars don't count)
-	LPCTSTR pen1 = LastChar(py1, len1);
-	LPCTSTR pen2 = LastChar(py2, len2);
+	const TCHAR *pen1 = pbeg1 + (len1 > 0 ? m_iterCharEnd1.preceding(len1) : 0);
+	const TCHAR *pen2 = pbeg2 + (len2 > 0 ? m_iterCharEnd2.preceding(len2) : 0);
+	size_t glyphlenz1 = pbeg1 + len1 - pen1;
+	size_t glyphlenz2 = pbeg2 + len2 - pen2;
 
 	if (xwhite != WHITESPACE_COMPARE_ALL)
 	{
@@ -800,9 +789,9 @@ ComputeByteDiff(String & str1, String & str2,
 		// by advancing py1 and py2
 		// and retreating pen1 and pen2
 		while (py1 < pen1 && isSafeWhitespace(*py1))
-			++py1; // DBCS safe because of isSafeWhitespace above
+			py1 = pbeg1 + m_iterCharBegin1.next();
 		while (py2 < pen2 && isSafeWhitespace(*py2))
-			++py2; // DBCS safe because of isSafeWhitespace above
+			py2 = pbeg2 + m_iterCharBegin2.next();
 		if ((pen1 < pbeg1 + len1 - 1 || pen2 < pbeg2 + len2 -1)
 			&& (!len1 || !len2 || pbeg1[len1] != pbeg2[len2]))
 		{
@@ -811,9 +800,9 @@ ComputeByteDiff(String & str1, String & str2,
 		else
 		{
 			while (pen1 > py1 && isSafeWhitespace(*pen1))
-				pen1 = CharPrev(py1, pen1);
+				pen1 = pbeg1 + m_iterCharEnd1.previous();
 			while (pen2 > py2 && isSafeWhitespace(*pen2))
-				pen2 = CharPrev(py2, pen2);
+				pen2 = pbeg2 + m_iterCharEnd2.previous();
 		}
 	}
 	//check for excaption of empty string on one side
@@ -875,26 +864,14 @@ ComputeByteDiff(String & str1, String & str2,
 			continue;
 		}
 
-		// Now do real character match
-		if (IsLeadByte(*py1))
-		{
-			if (!IsLeadByte(*py2))
-				break; // done with forward search
-			// DBCS (we assume if a lead byte, then character is 2-byte)
-			if (!(py1[0] == py2[0] && py1[1] == py2[1]))
-				break; // done with forward search
-			py1 += 2; // DBCS specific
-			py2 += 2; // DBCS specific
-		}
-		else
-		{
-			if (IsLeadByte(*py2))
-				break; // done with forward search
-			if (!matchchar(py1[0], py2[0], casitive))
-				break; // done with forward search
-			++py1; // DBCS safe b/c we checked above
-			++py2; // DBCS safe b/c we checked above
-		}
+		const TCHAR* py1next = pbeg1 + m_iterCharBegin1.next();
+		const TCHAR* py2next = pbeg2 + m_iterCharBegin2.next();
+		size_t glyphleny1 = py1next - py1;
+		size_t glyphleny2 = py2next - py2;
+		if (glyphleny1 != glyphleny2 || !matchchar(py1, py2, glyphleny1, casitive))
+			break; // done with forward search
+		py1 = py1next;
+		py2 = py2next;
 	}
 
 	// Potential difference extends from py1 to pen1 and py2 to pen2
@@ -904,8 +881,8 @@ ComputeByteDiff(String & str1, String & str2,
 	begin[0] = static_cast<int>(py1 - pbeg1);
 	begin[1] = static_cast<int>(py2 - pbeg2);
 
-	LPCTSTR pz1 = pen1;
-	LPCTSTR pz2 = pen2;
+	const TCHAR *pz1 = pen1;
+	const TCHAR *pz2 = pen2;
 
 	// Retreat over matching ends of lines
 	// Retreat pz1 & pz2 from end until find difference or beginning
@@ -929,9 +906,9 @@ ComputeByteDiff(String & str1, String & str2,
 				break; // done with reverse search
 			// gobble up all whitespace in current area
 			while (pz1 > py1 && isSafeWhitespace(*pz1))
-				pz1 = CharPrev(py1, pz1);
+				pz1 = pbeg1 + m_iterCharEnd1.previous();
 			while (pz2 > py2 && isSafeWhitespace(*pz2))
-				pz2 = CharPrev(py2, pz2);
+				pz2 = pbeg2 + m_iterCharEnd2.previous();
 			continue;
 
 		}
@@ -940,28 +917,19 @@ ComputeByteDiff(String & str1, String & str2,
 			if (xwhite==1)
 				break; // done with reverse search
 			while (pz2 > py2 && isSafeWhitespace(*pz2))
-				pz2 = CharPrev(py2, pz2);
+				pz2 = pbeg2 + m_iterCharEnd2.previous();
 			continue;
 		}
 
+		if (glyphlenz1 != glyphlenz2 || !matchchar(pz1, pz2, glyphlenz1, casitive))
+			break; // done with forward search
+		const TCHAR* pz1next = pz1;
+		const TCHAR* pz2next = pz2;
+		pz1 = (pz1 > pbeg1) ? pbeg1 + m_iterCharEnd1.preceding(static_cast<int32_t>(pz1 - pbeg1)) : pz1 - 1;
+		pz2 = (pz2 > pbeg2) ? pbeg2 + m_iterCharEnd2.preceding(static_cast<int32_t>(pz2 - pbeg2)) : pz2 - 1;
+		glyphlenz1 = pz1next - pz1;
+		glyphlenz2 = pz2next - pz2;
 		// Now do real character match
-		if (IsLeadByte(*pz1))
-		{
-			if (!IsLeadByte(*pz2))
-				break; // done with forward search
-			// DBCS (we assume if a lead byte, then character is 2-byte)
-			if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
-				break; // done with forward search
-		}
-		else
-		{
-			if (IsLeadByte(*pz2))
-				break; // done with forward search
-			if (!matchchar(pz1[0], pz2[0], casitive))
-				break; // done with forward search
-		}
-		pz1 = (pz1 > pbeg1) ? CharPrev(pbeg1, pz1) : pz1 - 1;
-		pz2 = (pz2 > pbeg2) ? CharPrev(pbeg2, pz2) : pz2 - 1;
     }
 
 /*	if (*pz1 == '\r' && *(pz1+1) == '\n')
@@ -986,8 +954,8 @@ ComputeByteDiff(String & str1, String & str2,
 	}*/
 
 	// Store results of advance into return variables (end[0] & end[1])
-	end[0] = static_cast<int>(pz1 - pbeg1);
-	end[1] = static_cast<int>(pz2 - pbeg2);
+	end[0] = static_cast<int>(pz1 - pbeg1) + glyphlenz1 - 1;
+	end[1] = static_cast<int>(pz2 - pbeg2) + glyphlenz2 - 1;
 
 	// Check if difference region was empty
 	if (begin[0] == end[0] + 1 && begin[1] == end[1] + 1)

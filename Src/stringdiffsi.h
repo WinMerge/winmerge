@@ -7,6 +7,7 @@
 #pragma once
 
 #include <vector>
+#include "icu.hpp"
 
 // Uncomment this to see stringdiff log messages
 // We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge
@@ -68,6 +69,9 @@ private:
 // Implementation methods
 private:
 
+	void ComputeByteDiff(const String& str1, const String& str2,
+			bool casitive, int xwhite, 
+			int begin[2], int end[2], bool equal);
 	std::vector<word> BuildWordsArray(const String & str);
 	unsigned Hash(const String & str, int begin, int end, unsigned h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
@@ -114,6 +118,10 @@ private:
 	std::vector<word> m_words1;
 	std::vector<word> m_words2;
 	std::vector<wdiff> m_wdiffs;
+	ICUBreakIterator m_iterCharBegin1;
+	ICUBreakIterator m_iterCharBegin2;
+	ICUBreakIterator m_iterCharEnd1;
+	ICUBreakIterator m_iterCharEnd2;
 };
 
 }

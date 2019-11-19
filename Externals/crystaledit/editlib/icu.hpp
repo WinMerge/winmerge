@@ -137,6 +137,14 @@ public:
 		return status;
 	}
 
+	int first()
+	{
+		if (m_iter)
+			return ubrk_first(m_iter);
+		m_i = 0;
+		return m_i;
+	}
+
 	int next()
 	{
 		if (m_iter)
@@ -144,7 +152,14 @@ public:
 			int pos = ubrk_next(m_iter);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else return mynext();
+		return mynext();
+	}
+
+	int previous()
+	{
+		if (m_iter)
+			return ubrk_previous(m_iter);
+		return myprevious();
 	}
 
 	int preceding(int32_t offset)
@@ -154,7 +169,7 @@ public:
 			int pos = ubrk_preceding(m_iter, offset);
 			return (pos == UBRK_DONE) ? 0: pos;
 		}
-		else return mypreceding(offset);
+		return mypreceding(offset);
 	}
 
 	int following(int32_t offset)
@@ -164,7 +179,7 @@ public:
 			int pos = ubrk_following(m_iter, offset);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else return myfollowing(offset);
+		return myfollowing(offset);
 	}
 
 private:
@@ -181,11 +196,24 @@ private:
 		return m_i;
 	}
 
+	int myprevious()
+	{
+		m_i = mypreceding(m_i);
+		return m_i;
+	}
+
 	int mypreceding(int32_t offset)
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
+			if (offset <= 1)
+			{
+				m_i = offset - 1;
+				if (m_i < 0)
+					m_i = UBRK_DONE;
+			}
+			else
+				m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
 		}
 		else if (m_type == UBRK_WORD)
 		{
