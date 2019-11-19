@@ -2138,7 +2138,7 @@ msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOv
 msgstr "Kita programa pakeitė failą\n%1\npo to, kai jis buvo įkeltas į „Winmerge“.\n\nPerrašyti pakeistą failą?"
 
 #, c-format
-msgid "%1\n is marked read-only. Would you like to override the read-only item?"
+msgid "%1\nis marked read-only. Would you like to override the read-only item?"
 msgstr "%1\n pažymėtas „Tik skaitymui“. Ar norite perrašyti „Tik skaitymui“ skirtą elementą?"
 
 #, c-format
@@ -2378,7 +2378,7 @@ msgstr "Dešiniojo koduotė"
 msgid "Middle Encoding"
 msgstr "Vidurinio koduotė"
 
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Ignoruoti skirtumai"
 
 msgctxt "DirView|ColumnHeader"
@@ -2544,13 +2544,13 @@ msgstr "Dešiniosios pusės atributai."
 msgid "Middle side attributes."
 msgstr "Vidurinės pusės atributai."
 
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "Kairiojo failo eilučių pabaigos formatas."
 
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "Dešiniojo failo eilučių pabaigos formatas."
 
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr "Vidurinio failo eilučių pabaigos formatas."
 
 msgid "Left side encoding."

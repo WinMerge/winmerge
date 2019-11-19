@@ -2619,7 +2619,7 @@ msgstr "右文字コード"
 msgid "Middle Encoding"
 msgstr "中文字コード"
 
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "無視した差異数"
 
 msgctxt "DirView|ColumnHeader"
@@ -2786,13 +2786,13 @@ msgstr "右側の属性です。"
 msgid "Middle side attributes."
 msgstr "中央の属性です。"
 
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "左側の EOL タイプです。"
 
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "右側の EOL タイプです。"
 
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr "中央の EOL タイプです。"
 
 msgid "Left side encoding."
