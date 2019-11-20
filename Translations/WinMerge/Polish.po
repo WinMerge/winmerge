@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -429,11 +429,11 @@ msgstr "Zapisz prawą jako..."
 msgid "&Print..."
 msgstr "Drukuj..."
 
-msgid "Page Set&up"
-msgstr "Ustawienia strony"
+msgid "Page Set&up..."
+msgstr "Ustawienia strony..."
 
-msgid "Print Previe&w"
-msgstr "Podgląd wydruku"
+msgid "Print Previe&w..."
+msgstr "Podgląd wydruku..."
 
 msgid "&Convert Line Endings to"
 msgstr "Konwertuj końce linii do"
@@ -621,11 +621,11 @@ msgstr "Kopiuj z lewej\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Kopiuj z prawej\tAlt+Shift+Left"
 
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopiuj do prawej i przejdź dalej\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopiuj do prawej i przejdź dalej\tCtrl+Alt+Right"
 
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopiuj do lewej i przejdź dalej\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopiuj do lewej i przejdź dalej\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
 msgstr "Kopiuj wszystko do prawej"
@@ -633,8 +633,8 @@ msgstr "Kopiuj wszystko do prawej"
 msgid "Cop&y All to Left"
 msgstr "Kopiuj wszystko do lewej"
 
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "Automatyczne scalanie\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
 
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr "Dodaj punkt synchronizacji\tAlt+S"
@@ -1728,7 +1728,7 @@ msgstr "Limit szybkiego porównania (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "Limit porównywania binarnego (MB):"
 
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "Liczba porównywanych wątków (wartość ujemna oznacza dodanie liczby dostępnych rdzeni procesora):"
 
 msgctxt "Options dialog|Categories"
@@ -2370,8 +2370,8 @@ msgstr "Prawe kodowanie"
 msgid "Middle Encoding"
 msgstr "Środkowe kodowanie"
 
-msgid "Ignored Diff."
-msgstr "Ignorowane różn."
+msgid "Ignored Diff"
+msgstr "Ignorowane różn"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -2536,14 +2536,14 @@ msgstr "Atrybuty prawej strony."
 msgid "Middle side attributes."
 msgstr "Atrybuty środkowej strony."
 
-msgid "Left side file EOL type"
-msgstr "Typ znaków końca linii z lewej strony"
+msgid "Left side file EOL type."
+msgstr "Typ znaków końca linii z lewej strony."
 
-msgid "Right side file EOL type"
-msgstr "Typ znaków końca linii z prawej strony"
+msgid "Right side file EOL type."
+msgstr "Typ znaków końca linii z prawej strony."
 
-msgid "Middle side file EOL type"
-msgstr "Typ znaków końca linii po środku"
+msgid "Middle side file EOL type."
+msgstr "Typ znaków końca linii po środku."
 
 msgid "Left side encoding."
 msgstr "Kodowanie lewej strony."
@@ -2922,3 +2922,4 @@ msgstr "Nie udało się utworzyć folderu."
 
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "Możesz podać następujące parametry ścieżki:\n$file: Nazwa ścieżki do bieżącego pliku\n$linenum: Numer linii dla aktualnej pozycji kursora"
+
