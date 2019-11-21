@@ -559,12 +559,11 @@ msgstr "Сохранить справа как..."
 msgid "&Print..."
 msgstr "&Печать..."
 
-msgid "Page Set&up"
+msgid "Page Set&up..."
 msgstr "Параметры страницы..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Предварительный просмотр"
+msgid "Print Previe&w..."
+msgstr "Предварительный просмотр..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -814,13 +813,11 @@ msgstr "Копировать слева\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Копировать справа\tAlt+Shift+Left"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Копировать направо и перейти к следующему\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Копировать направо и перейти к следующему\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Копировать налево и перейти к следующему\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Копировать налево и перейти к следующему\tCtrlAlt++Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -830,9 +827,8 @@ msgstr "К&опировать все направо"
 msgid "Cop&y All to Left"
 msgstr "Коп&ировать все налево"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "Авто объединение\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1752,9 +1748,8 @@ msgstr "Символы разрыва слова:"
 msgid "Filefilters"
 msgstr "Фильтры файлов"
 
-#, c-format
-msgid "Test"
-msgstr "Тест"
+msgid "Test..."
+msgstr "Тест..."
 
 #, c-format
 msgid "Install..."
@@ -2072,9 +2067,8 @@ msgstr "&Отмена"
 msgid "Test Filter"
 msgstr "Тест фильтра"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Тестировать фильтр ..."
+msgid "Testing filter..."
+msgstr "Тестировать фильтр..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2256,9 +2250,8 @@ msgstr "Ограничение быстрого сравнения (МБ):"
 msgid "&Binary compare limit (MB):"
 msgstr "Ограничение двоичного сравнения (МБ):"
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "Количество сравниваемых потоков (отрицательное значение подразумевает добавление количества доступных ядер ЦП):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\nКоличество сравниваемых потоков (отрицательное значение подразумевает добавление количества доступных ядер ЦП):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2838,20 +2831,14 @@ msgstr ""
 "Продолжить в любом случае?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Сбой сохранения файла.\n"
 "%1\n"
 "%2\n"
 "Хотите:\n"
-"\t-использовать другое имя файла (Нажмите Ok)\n"
-"\t-отменить текущую операцию (Нажмите Отмена)?"
+"\t- использовать другое имя файла (Нажмите Ok)\n"
+"\t- отменить текущую операцию (Нажмите Отмена)?"
 
 #, c-format
 msgid ""
@@ -3221,8 +3208,7 @@ msgstr "Кодировка справа"
 msgid "Middle Encoding"
 msgstr "Кодировка посередине"
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Игнор. отличия"
 
 msgctxt "DirView|ColumnHeader"
@@ -3433,17 +3419,14 @@ msgstr "Атрибуты справа."
 msgid "Middle side attributes."
 msgstr "Атрибуты посередине."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Маркер конца строки для файла слева"
+msgid "Left side file EOL type."
+msgstr "Маркер конца строки для файла слева."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Маркер конца строки для файла справа"
+msgid "Right side file EOL type."
+msgstr "Маркер конца строки для файла справа."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Маркер конца строки для файла посередине"
+msgid "Middle side file EOL type."
+msgstr "Маркер конца строки для файла посередине."
 
 #, c-format
 msgid "Left side encoding."
@@ -3574,12 +3557,9 @@ msgid "Do you want to move to the previous page?"
 msgstr "Перейти к предыдущей странице?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Различные кодировки: слева - (cp%d), справа - (cp%d). \n"
+"Различные кодировки: слева - (cp%d), справа - (cp%d).\n"
 "Каждый из файлов может быть отображен в своей кодировке, но их объединение или копирование может повредить информацию.\n"
 "Отобразить оба файла в системной кодировке Windows по умолчанию (рекомендуется)?"
 

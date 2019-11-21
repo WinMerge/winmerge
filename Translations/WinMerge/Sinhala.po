@@ -554,12 +554,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "මුද්‍රණය කරන්න..."
 
-msgid "Page Set&up"
-msgstr "පිටු සැකසීම"
+msgid "Page Set&up..."
+msgstr "පිටු සැකසීම..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "මුද්‍රණ පිටපත පුර්වදර්ශනය "
+msgid "Print Previe&w..."
+msgstr "මුද්‍රණ පිටපත පුර්වදර්ශනය ..."
 
 #, fuzzy, c-format
 msgid "&Convert Line Endings to"
@@ -809,13 +808,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "දකුණු පසට කොපිකර ඉදිරියට ‍යන්න\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "දකුණු පසට කොපිකර ඉදිරියට ‍යන්න\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "වම් පසට කොපිකර ඉදිරියට ‍යන්න\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "වම් පසට කොපිකර ඉදිරියට ‍යන්න\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -825,8 +822,7 @@ msgstr "සියල්ල දකුණු පසට කොපිකරන්න
 msgid "Cop&y All to Left"
 msgstr "සියල්ල වම් පසට කොපිකරන්න"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1747,9 +1743,8 @@ msgstr ""
 msgid "Filefilters"
 msgstr "ගොනුපෙරහන්"
 
-#, c-format
-msgid "Test"
-msgstr "පරීක්ෂාව"
+msgid "Test..."
+msgstr "පරීක්ෂාව..."
 
 #, c-format
 msgid "Install..."
@@ -2065,9 +2060,8 @@ msgstr "&අවලංගු කරන්න"
 msgid "Test Filter"
 msgstr "පෙරනය අත්හදා බැලීම"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "පෙරනය පරීක්ෂා කිරීම ..."
+msgid "Testing filter..."
+msgstr "පෙරනය පරීක්ෂා කිරීම..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2249,8 +2243,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2832,20 +2825,14 @@ msgstr ""
 "කෙසේ හෝ කරයිද?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "ගොනුව සුරක්ෂිත කළ නොහැක .\n"
 "%1\n"
 "%2\n"
 "ඔබට අවශ්‍ය:\n"
-"\t-වෙනස් නමක් ගොනුවට භාවිතා කිරීමට(Press Ok)\n"
-"\t-දැන් ක්‍රියත්මක වන ක්‍රියාව නැවත් වීමට?  (Press Cancel)?"
+"\t- වෙනස් නමක් ගොනුවට භාවිතා කිරීමට(Press Ok)\n"
+"\t- දැන් ක්‍රියත්මක වන ක්‍රියාව නැවත් වීමට?  (Press Cancel)?"
 
 #, c-format
 msgid ""
@@ -3217,9 +3204,8 @@ msgstr "දකුණු කේතනය"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "වෙනස්කම් නොසලකා හැරියා."
+msgid "Ignored Diff"
+msgstr "වෙනස්කම් නොසලකා හැරියා"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3429,16 +3415,13 @@ msgstr "Right side attributes."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Left side file EOL type"
+msgid "Left side file EOL type."
+msgstr "Left side file EOL type."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Right side file EOL type"
+msgid "Right side file EOL type."
+msgstr "Right side file EOL type."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3570,12 +3553,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d). \n"
+"Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d).\n"
 "L'affichage est ainsi meilleurs cependant les copie/fusion seront dangeureuses.\n"
 "Désirez-vous traiter les deux fichiers avec la page de code windows par défaut (recommandé)?"
 
