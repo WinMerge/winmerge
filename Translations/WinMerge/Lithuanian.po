@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-11-10 09:16+0000\n"
-"PO-Revision-Date: 2019-11-11 11:11+0300\n"
+"POT-Creation-Date: 2019-11-12 11:12+0000\n"
+"PO-Revision-Date: 2019-11-13 11:13+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2139,7 +2139,7 @@ msgstr "Kita programa pakeitė failą\n%1\npo to, kai jis buvo įkeltas į „Wi
 
 #, c-format
 msgid "%1\nis marked read-only. Would you like to override the read-only item?"
-msgstr "%1\n pažymėtas „Tik skaitymui“. Ar norite perrašyti „Tik skaitymui“ skirtą elementą?"
+msgstr "%1\npažymėtas „Tik skaitymui“. Ar norite perrašyti „Tik skaitymui“ skirtą elementą?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
