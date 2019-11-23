@@ -118,10 +118,6 @@ private:
 	std::vector<word> m_words1;
 	std::vector<word> m_words2;
 	std::vector<wdiff> m_wdiffs;
-	ICUBreakIterator m_iterCharBegin1;
-	ICUBreakIterator m_iterCharBegin2;
-	ICUBreakIterator m_iterCharEnd1;
-	ICUBreakIterator m_iterCharEnd2;
 };
 
 }

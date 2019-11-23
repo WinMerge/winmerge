@@ -208,10 +208,6 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
 , m_matchblock(true) // Change to false to get word to word compare
-, m_iterCharBegin1(UBRK_CHARACTER, "en", nullptr, 0)
-, m_iterCharBegin2(UBRK_CHARACTER, "en", nullptr, 0)
-, m_iterCharEnd1(UBRK_CHARACTER, "en", nullptr, 0)
-, m_iterCharEnd2(UBRK_CHARACTER, "en", nullptr, 0)
 {
 }
 
@@ -369,8 +365,7 @@ stringdiffs::BuildWordsArray(const String & str)
 {
 	std::vector<word> words;
 	int i = 0, begin = 0;
-
-	m_iterCharBegin1.setText(reinterpret_cast<const UChar *>(str.c_str()), static_cast<int32_t>(str.length()));
+	ICUBreakIterator *pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(str.c_str()), static_cast<int32_t>(str.length()));
 
 	size_t sLen = str.length();
 	assert(sLen < INT_MAX);
@@ -383,7 +378,7 @@ stringdiffs::BuildWordsArray(const String & str)
 inspace:
 	if (isSafeWhitespace(str[i])) 
 	{
-		i = m_iterCharBegin1.next();
+		i = pIterChar->next();
 		goto inspace;
 	}
 	if (begin < i)
@@ -425,14 +420,14 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			int inext = m_iterCharBegin1.next();
+			int inext = pIterChar->next();
 			words.push_back(word(i, inext - 1, dlbreak, Hash(str, i, inext - 1, 0)));
 			i = inext;
 			begin = i;
 			goto inword;
 		}
 	}
-	i = m_iterCharBegin1.next();
+	i = pIterChar->next();
 	goto inword; // safe even if we're at the end or no longer in a word
 }
 
@@ -756,10 +751,10 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	const TCHAR *pbeg1 = str1.c_str();
 	const TCHAR *pbeg2 = str2.c_str();
 
-	m_iterCharBegin1.setText(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
-	m_iterCharBegin2.setText(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
-	m_iterCharEnd1.setText(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
-	m_iterCharEnd2.setText(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
+	ICUBreakIterator *pIterCharBegin1 = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
+	ICUBreakIterator *pIterCharBegin2 = ICUBreakIterator::getCharacterBreakIterator<2>(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
+	ICUBreakIterator *pIterCharEnd1 = ICUBreakIterator::getCharacterBreakIterator<3>(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
+	ICUBreakIterator *pIterCharEnd2 = ICUBreakIterator::getCharacterBreakIterator<4>(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
 	
 	if (len1 == 0 || len2 == 0)
 	{
@@ -778,8 +773,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	const TCHAR *py2 = pbeg2;
 
 	// pen1,pen2 point to the last valid character (broken multibyte lead chars don't count)
-	const TCHAR *pen1 = pbeg1 + (len1 > 0 ? m_iterCharEnd1.preceding(len1) : 0);
-	const TCHAR *pen2 = pbeg2 + (len2 > 0 ? m_iterCharEnd2.preceding(len2) : 0);
+	const TCHAR *pen1 = pbeg1 + (len1 > 0 ? pIterCharEnd1->preceding(len1) : 0);
+	const TCHAR *pen2 = pbeg2 + (len2 > 0 ? pIterCharEnd2->preceding(len2) : 0);
 	size_t glyphlenz1 = pbeg1 + len1 - pen1;
 	size_t glyphlenz2 = pbeg2 + len2 - pen2;
 
@@ -789,9 +784,9 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 		// by advancing py1 and py2
 		// and retreating pen1 and pen2
 		while (py1 < pen1 && isSafeWhitespace(*py1))
-			py1 = pbeg1 + m_iterCharBegin1.next();
+			py1 = pbeg1 + pIterCharBegin1->next();
 		while (py2 < pen2 && isSafeWhitespace(*py2))
-			py2 = pbeg2 + m_iterCharBegin2.next();
+			py2 = pbeg2 + pIterCharBegin2->next();
 		if ((pen1 < pbeg1 + len1 - 1 || pen2 < pbeg2 + len2 -1)
 			&& (!len1 || !len2 || pbeg1[len1] != pbeg2[len2]))
 		{
@@ -800,9 +795,9 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 		else
 		{
 			while (pen1 > py1 && isSafeWhitespace(*pen1))
-				pen1 = pbeg1 + m_iterCharEnd1.previous();
+				pen1 = pbeg1 + pIterCharEnd1->previous();
 			while (pen2 > py2 && isSafeWhitespace(*pen2))
-				pen2 = pbeg2 + m_iterCharEnd2.previous();
+				pen2 = pbeg2 + pIterCharEnd2->previous();
 		}
 	}
 	//check for excaption of empty string on one side
@@ -864,8 +859,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 			continue;
 		}
 
-		const TCHAR* py1next = pbeg1 + m_iterCharBegin1.next();
-		const TCHAR* py2next = pbeg2 + m_iterCharBegin2.next();
+		const TCHAR* py1next = pbeg1 + pIterCharBegin1->next();
+		const TCHAR* py2next = pbeg2 + pIterCharBegin2->next();
 		size_t glyphleny1 = py1next - py1;
 		size_t glyphleny2 = py2next - py2;
 		if (glyphleny1 != glyphleny2 || !matchchar(py1, py2, glyphleny1, casitive))
@@ -906,9 +901,9 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 				break; // done with reverse search
 			// gobble up all whitespace in current area
 			while (pz1 > py1 && isSafeWhitespace(*pz1))
-				pz1 = pbeg1 + m_iterCharEnd1.previous();
+				pz1 = pbeg1 + pIterCharEnd1->previous();
 			while (pz2 > py2 && isSafeWhitespace(*pz2))
-				pz2 = pbeg2 + m_iterCharEnd2.previous();
+				pz2 = pbeg2 + pIterCharEnd2->previous();
 			continue;
 
 		}
@@ -917,7 +912,7 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 			if (xwhite==1)
 				break; // done with reverse search
 			while (pz2 > py2 && isSafeWhitespace(*pz2))
-				pz2 = pbeg2 + m_iterCharEnd2.previous();
+				pz2 = pbeg2 + pIterCharEnd2->previous();
 			continue;
 		}
 
@@ -925,8 +920,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 			break; // done with forward search
 		const TCHAR* pz1next = pz1;
 		const TCHAR* pz2next = pz2;
-		pz1 = (pz1 > pbeg1) ? pbeg1 + m_iterCharEnd1.preceding(static_cast<int32_t>(pz1 - pbeg1)) : pz1 - 1;
-		pz2 = (pz2 > pbeg2) ? pbeg2 + m_iterCharEnd2.preceding(static_cast<int32_t>(pz2 - pbeg2)) : pz2 - 1;
+		pz1 = (pz1 > pbeg1) ? pbeg1 + pIterCharEnd1->preceding(static_cast<int32_t>(pz1 - pbeg1)) : pz1 - 1;
+		pz2 = (pz2 > pbeg2) ? pbeg2 + pIterCharEnd2->preceding(static_cast<int32_t>(pz2 - pbeg2)) : pz2 - 1;
 		glyphlenz1 = pz1next - pz1;
 		glyphlenz2 = pz2next - pz2;
 		// Now do real character match
@@ -954,8 +949,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	}*/
 
 	// Store results of advance into return variables (end[0] & end[1])
-	end[0] = static_cast<int>(pz1 - pbeg1) + glyphlenz1 - 1;
-	end[1] = static_cast<int>(pz2 - pbeg2) + glyphlenz2 - 1;
+	end[0] = static_cast<int>(pz1 - pbeg1 + glyphlenz1 - 1);
+	end[1] = static_cast<int>(pz2 - pbeg2 + glyphlenz2 - 1);
 
 	// Check if difference region was empty
 	if (begin[0] == end[0] + 1 && begin[1] == end[1] + 1)
