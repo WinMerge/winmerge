@@ -36,5 +36,6 @@ CRegOptionsMgr m_option;
 COptionsMgr * GetOptionsMgr()
 {
 	m_option.InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
+	m_option.InitOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, _T(""));
 	return &m_option;
 }

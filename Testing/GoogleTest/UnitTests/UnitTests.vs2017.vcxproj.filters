@@ -282,6 +282,12 @@
     <ClCompile Include="..\..\..\Src\DirTravel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\icu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\string_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
@@ -471,6 +477,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\DirTravel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\icu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\string_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

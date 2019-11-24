@@ -557,12 +557,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "Tulosta..."
 
-msgid "Page Set&up"
-msgstr "Sivun asetukset"
+msgid "Page Set&up..."
+msgstr "Sivun asetukset..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Tulostuksen esikatselu"
+msgid "Print Previe&w..."
+msgstr "Tulostuksen esikatselu..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -811,13 +810,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopioi oikealle ja etene\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopioi oikealle ja etene\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopioi vasemmalle ja etene\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopioi vasemmalle ja etene\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -827,8 +824,7 @@ msgstr "Kopioi kaikki oikealle"
 msgid "Cop&y All to Left"
 msgstr "Kopioi kaikki vasemmalle"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1746,13 +1742,15 @@ msgstr "Sanataso:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Tiedostosuodattimet"
 
-#, c-format
-msgid "Test"
-msgstr "Testi"
+msgid "Test..."
+msgstr "Testi..."
 
 #, c-format
 msgid "Install..."
@@ -2066,9 +2064,8 @@ msgstr "Peruuta"
 msgid "Test Filter"
 msgstr "Testaa suodin"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Testataan suodinta ...
+msgid "Testing filter..."
+msgstr "Testataan suodinta...
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2250,8 +2247,7 @@ msgstr "Pikavertailun raja (Mt):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2734,8 +2730,8 @@ msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
 msgstr "Alkuperäisen tiedoston varmuuskopiointi ei onnistu:\n%1\n\nJatketaanko?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
-msgstr "Tiedoston tallentaminen epäonnistui.\n%1\n%2\nHaluatko:\n\t-käyttää eri tiedostonimeä (paina Ok)\n\t-keskeyttää nykyisen työvaiheen (paina Peruuta)"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgstr "Tiedoston tallentaminen epäonnistui.\n%1\n%2\nHaluatko:\n\t- käyttää eri tiedostonimeä (paina Ok)\n\t- keskeyttää nykyisen työvaiheen (paina Peruuta)"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -3031,8 +3027,7 @@ msgstr "Oikea koodaus"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Ohitetut erot"
 
 msgctxt "DirView|ColumnHeader"
@@ -3243,16 +3238,13 @@ msgstr "Oikean puolen määritteet."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Vasemman tiedoston EOL-tyyppi"
+msgid "Left side file EOL type."
+msgstr "Vasemman tiedoston EOL-tyyppi."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Oikean tiedoston EOL-tyyppi"
+msgid "Right side file EOL type."
+msgstr "Oikean tiedoston EOL-tyyppi."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3359,7 +3351,7 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Eri koodisivut vasemman (cp%d) ja oikean (cp%d) puolen tiedostoilla.\nTiedostojen näyttäminen omalla koodivullaan antaa paremman näytön, mutta yhdistäminen/kopiointi on vaarallista.\nHaluatko käsitellä molemmat tiedostot Windowsin oletusmerkistöllä (suositus)?"
 
 #, c-format

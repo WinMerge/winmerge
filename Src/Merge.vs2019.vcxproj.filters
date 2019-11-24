@@ -874,6 +874,12 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\icu.cpp">
       <Filter>EditLib\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>

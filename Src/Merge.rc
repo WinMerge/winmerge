@@ -407,8 +407,8 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Page Set&up",                 ID_FILE_PAGE_SETUP
-        MENUITEM "Print Previe&w",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "Page Set&up...",              ID_FILE_PAGE_SETUP
+        MENUITEM "Print Previe&w...",           ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         POPUP "&Read-only"
         BEGIN
@@ -567,13 +567,13 @@ BEGIN
         MENUITEM "Copy from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT
         MENUITEM "Copy from Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
-        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM "C&opy to Right and Advance\tCtrl+Alt+Right", ID_L2RNEXT
+        MENUITEM "Copy &to Left and Advance\tCtrl+Alt+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "A&uto Merge\tAlt+Ctrl+M",     ID_AUTO_MERGE
+        MENUITEM "A&uto Merge\tCtrl+Alt+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
@@ -1345,6 +1345,8 @@ BEGIN
     COMBOBOX        IDC_BREAK_TYPE,38,162,183,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     LTEXT           "W&ord break characters:",IDC_STATIC,24,180,194,10
     EDITTEXT        IDC_BREAK_CHARS,24,192,198,14,ES_AUTOHSCROLL
+    LTEXT           "&Rendering Mode:",IDC_STATIC,7,220,90,10
+    COMBOBOX        IDC_RENDERING_MODE,100,220,148,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1359,7 +1361,7 @@ CAPTION "Filefilters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Test",IDC_FILTERFILE_TEST_BTN,7,114,50,14
+    PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,7,114,50,14
     PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
     PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,192,114,50,14
     PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,246,114,50,14
@@ -1646,7 +1648,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Test Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,90,10
+    LTEXT           "Testing filter...",IDC_HEADER,7,7,90,10
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,100,6,142,10
     LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,90,10
     EDITTEXT        IDC_TEST_TEXT,100,19,142,12,ES_AUTOHSCROLL
@@ -1762,7 +1764,7 @@ BEGIN
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL
     LTEXT           "&Binary compare limit (MB):",IDC_STATIC,7,126,200,10
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,7,138,30,14,ES_AUTOHSCROLL
-    LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
+    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
     EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,186,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,208,70,14
 END
@@ -2264,7 +2266,7 @@ BEGIN
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_BACKUP_FAILED_PROMPT 
                             "Unable to backup original file:\n%1\n\nContinue anyway?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT 
@@ -2439,7 +2441,7 @@ BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
     IDS_COLHDR_MENCODING    "Middle Encoding"
-    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NIDIFFS      "Ignored Diff"
     IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
 END
@@ -2527,9 +2529,9 @@ BEGIN
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
     IDS_COLDESC_RATTRIBUTES "Right side attributes."
     IDS_COLDESC_MATTRIBUTES "Middle side attributes."
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
-    IDS_COLDESC_MEOL_TYPE   "Middle side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type."
+    IDS_COLDESC_REOL_TYPE   "Right side file EOL type."
+    IDS_COLDESC_MEOL_TYPE   "Middle side file EOL type."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2586,7 +2588,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE 
-                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+                            "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
     IDS_LOSSY_TRANSCODING_BOTH 
                             "Information lost due to encoding errors: both files"
     IDS_LOSSY_TRANSCODING_FIRST 

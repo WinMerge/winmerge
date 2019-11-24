@@ -3047,6 +3047,9 @@ void CMergeEditView::OnUpdateShellMenu(CCmdUI* pCmdUI)
  */
 void CMergeEditView::RefreshOptions()
 { 
+	RENDERING_MODE nRenderingMode = static_cast<RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
+	SetRenderingMode(nRenderingMode);
+
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 
 	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)

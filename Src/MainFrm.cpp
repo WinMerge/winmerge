@@ -818,6 +818,9 @@ void CMainFrame::OnOptions()
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
 
+		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
+		CCrystalTextView::SetRenderingModeDefault(nRenderingMode);
+
 		theApp.UpdateCodepageModule();
 
 		strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());

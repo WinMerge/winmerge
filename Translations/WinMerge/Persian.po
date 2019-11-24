@@ -561,12 +561,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&P چاپ ... "
 
-msgid "Page Set&up"
-msgstr "&u تنظيم صفحه "
+msgid "Page Set&up..."
+msgstr "&u تنظيم صفحه ..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&w پيش نمايش چاپ "
+msgid "Print Previe&w..."
+msgstr "&w پيش نمايش چاپ ..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -816,13 +815,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "&o  به راست رونوشت برداري کرده و ادامه بده \tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "&o  به راست رونوشت برداري کرده و ادامه بده \tCtrl+Alt+Right..."
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "&t  به چپ رونوشت برداري کرده و ادامه بده \tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "&t  به چپ رونوشت برداري کرده و ادامه بده \tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -832,8 +829,7 @@ msgstr "&A رونوشت برداري همه به راست "
 msgid "Cop&y All to Left"
 msgstr "&y رونوشت برداري همه به چپ "
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1756,13 +1752,15 @@ msgstr "&W در سطح کلمه : "
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr " پرونده صافيها "
 
-#, c-format
-msgid "Test"
-msgstr " آزمايش "
+msgid "Test..."
+msgstr " آزمايش ..."
 
 #, c-format
 msgid "Install..."
@@ -2082,9 +2080,8 @@ msgstr "&C لغو "
 msgid "Test Filter"
 msgstr " آزمايش صافي "
 
-#, c-format
-msgid "Testing filter ..."
-msgstr " آزمايش صافي ... "
+msgid "Testing filter..."
+msgstr " آزمايش صافي... "
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2266,8 +2263,7 @@ msgstr "&Q حد همسنجي سريع (مگابايت)"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2866,13 +2862,7 @@ msgstr ""
 " به هر حال کار ادامه يابد؟ "
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 " ذخيره پرونده ناموفق بود \n"
 "%1\n"
@@ -3253,8 +3243,7 @@ msgstr " کدبندي راست "
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr " تفاوت چشم پوشي شده "
 
 msgctxt "DirView|ColumnHeader"
@@ -3465,16 +3454,13 @@ msgstr " خصيصه هاي سمت راست "
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr " نوع انتهاي خط در پرونده سمت چپ"
 
-#, c-format
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr " نوع انتهاي خط در پزونده سمت راست"
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3623,14 +3609,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-" در پرونده هاي راست  و چپ صفحه کدهاي متفاوتي پيدا شد  cp%d و  cp%d  \n"
+" در پرونده هاي راست  و چپ صفحه کدهاي متفاوتي پيدا شد  cp%d و  cp%d \n"
 " نمايش هر پرونده در صفحه کد خودش جلوه بهتري دارد اما رونوشت برداري / پيوند "
 "زني خطرناک خواهد بود \n"
 " آيا مايل هستيد تا با هر دو پرونده به شکلي که در صفحه کد پيش فرض ويندوز مي "

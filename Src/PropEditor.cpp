@@ -31,6 +31,7 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_bViewLineDifferences(false)
 , m_bBreakOnWords(false)
 , m_nBreakType(0)
+, m_nRenderingMode(0)
 {
 }
 
@@ -51,6 +52,7 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
 	DDX_Text(pDX, IDC_BREAK_CHARS, m_breakChars);
+	DDX_CBIndex(pDX, IDC_RENDERING_MODE, m_nRenderingMode);
 	//}}AFX_DATA_MAP
 }
 
@@ -78,6 +80,7 @@ void PropEditor::ReadOptions()
 	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
 	m_breakChars = GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS);
+	m_nRenderingMode = GetOptionsMgr()->GetInt(OPT_RENDERING_MODE) + 1;
 }
 
 /** 
@@ -99,6 +102,7 @@ void PropEditor::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, m_bBreakOnWords);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, String(m_breakChars));
+	GetOptionsMgr()->SaveOption(OPT_RENDERING_MODE, m_nRenderingMode - 1);
 }
 
 /** 
@@ -108,7 +112,7 @@ BOOL PropEditor::OnInitDialog()
 {
 	OptionsPanel::OnInitDialog();
 
-	LoadBreakTypeStrings();
+	LoadComboBoxStrings();
 	UpdateDataToWindow();
 	UpdateLineDiffControls();
 
@@ -119,11 +123,19 @@ BOOL PropEditor::OnInitDialog()
 /**
  * @brief Load strings (from resource) into combobox for break type
  */
-void PropEditor::LoadBreakTypeStrings()
+void PropEditor::LoadComboBoxStrings()
 {
 	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
 	cbo->AddString(_("Break at whitespace").c_str());
 	cbo->AddString(_("Break at whitespace or punctuation").c_str());
+	cbo = (CComboBox *)GetDlgItem(IDC_RENDERING_MODE);
+	cbo->AddString(_("GDI").c_str());
+	cbo->AddString(_("DirectWrite Default").c_str());
+	cbo->AddString(_("DirectWrite Aliased").c_str());
+	cbo->AddString(_("DirectWrite GDI Classic").c_str());
+	cbo->AddString(_("DirectWrite GDI Natural").c_str());
+	cbo->AddString(_("DirectWrite Natural").c_str());
+	cbo->AddString(_("DirectWrite Natural Symmetric").c_str());
 }
 
 /**

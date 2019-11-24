@@ -560,12 +560,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Tlačiť..."
 
-msgid "Page Set&up"
-msgstr "Nastavenie s&tránky"
+msgid "Page Set&up..."
+msgstr "Nastavenie s&tránky..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Náhľad p&red tlačou"
+msgid "Print Previe&w..."
+msgstr "Náhľad p&red tlačou..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -815,13 +814,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopírovať vpravo a ísť ďalej\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopírovať vpravo a ísť ďalej\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopírovať vľavo a ísť ďalej\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopírovať vľavo a ísť ďalej\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -831,8 +828,7 @@ msgstr "Kopírovať všetko vpravo"
 msgid "Cop&y All to Left"
 msgstr "Kopírovať všetko vľavo"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1749,13 +1745,15 @@ msgstr "Úroveň &slova:"
 msgid "W&ord break characters:"
 msgstr "Zalam&ovať slová:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtre súborov"
 
-#, c-format
-msgid "Test"
-msgstr "Testovať"
+msgid "Test..."
+msgstr "Testovať..."
 
 #, c-format
 msgid "Install..."
@@ -2073,9 +2071,8 @@ msgstr "&Zrušiť"
 msgid "Test Filter"
 msgstr "Test filtra"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Testujem filter ..."
+msgid "Testing filter..."
+msgstr "Testujem filter..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2257,8 +2254,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2840,20 +2836,14 @@ msgstr ""
 "Pokračovať napriek tomu?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Nepodarilo sa uložiť súbor.\n"
 "%1\n"
 "%2\n"
 "Želáte si:\n"
-"\t-použiť iný názov súbory (Stlačte Ok)\n"
-"\t-zrušiť prebiehajúcu operáciu (Stlačte Zrušiť)?"
+"\t- použiť iný názov súbory (Stlačte Ok)\n"
+"\t- zrušiť prebiehajúcu operáciu (Stlačte Zrušiť)?"
 
 #, c-format
 msgid ""
@@ -3225,8 +3215,7 @@ msgstr "Kódovanie vpravo"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Ignorovaný rozdiel"
 
 msgctxt "DirView|ColumnHeader"
@@ -3437,16 +3426,13 @@ msgstr "Atribúty na pravej strane."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Typ zakončenia riadka súboru na ľavej strane"
+msgid "Left side file EOL type."
+msgstr "Typ zakončenia riadka súboru na ľavej strane."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Typ zakončenia riadka súboru na pravej strane"
+msgid "Right side file EOL type."
+msgstr "Typ zakončenia riadka súboru na pravej strane."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3578,12 +3564,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Rozličné kódové stránky v ľavol (cp%d) a pravom (cp%d) súbore. \n"
+"Rozličné kódové stránky v ľavol (cp%d) a pravom (cp%d) súbore.\n"
 "Zobrazenie každého súboru v jeho kódovej stránke lepšie zobrazuje, ale zlučovanie/kopírovanie bude nebezpečné.\n"
 "Chcete precovať s oboma stránkami akoby boli v predvolenej kódovej stránke Windows (odporúča sa)?"
 

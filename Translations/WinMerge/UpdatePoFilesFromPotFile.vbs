@@ -30,6 +30,7 @@ oCharsets.Add "CP1252", "Windows-1252"
 oCharsets.Add "CP1253", "Windows-1253"
 oCharsets.Add "CP1254", "Windows-1254"
 oCharsets.Add "CP1256", "Windows-1256"
+oCharsets.Add "CP1257", "Windows-1257"
 oCharsets.Add "UTF-8", "UTF-8"
 
 Call Main

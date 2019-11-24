@@ -561,12 +561,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Natisni ..."
 
-msgid "Page Set&up"
-msgstr "Nastavitev &strani"
+msgid "Page Set&up..."
+msgstr "Nastavitev &strani..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&Predogled tiskanja"
+msgid "Print Previe&w..."
+msgstr "&Predogled tiskanja..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -816,13 +815,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopiraj de&sno in nadaljuj\tAlt+Ctrl+desno"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopiraj de&sno in nadaljuj\tCtrlAlt++desno"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopiraj le&vo in nadaljuj\tAlt+Ctrl+levo"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopiraj le&vo in nadaljuj\tCtrl+Alt+levo"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -832,8 +829,7 @@ msgstr "Kopiraj vse v des&no"
 msgid "Cop&y All to Left"
 msgstr "Kopiraj vse v &lev&o"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1752,13 +1748,15 @@ msgstr "&besednem nivoju"
 msgid "W&ord break characters:"
 msgstr "&Znak za konec besede"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Datotečni filtri"
 
-#, c-format
-msgid "Test"
-msgstr "Test"
+msgid "Test..."
+msgstr "Test..."
 
 #, c-format
 msgid "Install..."
@@ -2076,9 +2074,8 @@ msgstr "&Prekliči"
 msgid "Test Filter"
 msgstr "Testni filter"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Testiranje filtra ..."
+msgid "Testing filter..."
+msgstr "Testiranje filtra..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2260,8 +2257,7 @@ msgstr "Omejitev za &hitro primerjavo (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2844,13 +2840,7 @@ msgstr ""
 "Vseeno nadaljujem?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Shranjevanje datoteke ni uspelo.\n"
 "%1\n"
@@ -3229,9 +3219,8 @@ msgstr "Kodiranje desno"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Zanemarjene razlike."
+msgid "Ignored Diff"
+msgstr "Zanemarjene razlike"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3441,16 +3430,13 @@ msgstr "Atributi desne strani."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Tip znakov za konec vrstice (EOL) na levi datoteki"
+msgid "Left side file EOL type."
+msgstr "Tip znakov za konec vrstice (EOL) na levi datoteki."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Tip znakov za konec vrstice (EOL) na desni datoteki"
+msgid "Right side file EOL type."
+msgstr "Tip znakov za konec vrstice (EOL) na desni datoteki."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3582,12 +3568,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Leva (cp%d) in desna (cp%d) datoteka sta v različnih kodnih tabelah. \n"
+"Leva (cp%d) in desna (cp%d) datoteka sta v različnih kodnih tabelah.\n"
 "Prikaz posamezne datoteke v svoji kodni tabeli bo omogočilo boljši prikaz, a združevanje/kopiranje bo nevarno.\n"
 "Ali želite obravnavati obe datoteki kot da sta v isti privzeti windows kodni tabeli (priporočljivo)?"
 

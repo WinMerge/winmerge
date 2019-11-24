@@ -428,6 +428,15 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\basic.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp" />
@@ -1046,6 +1055,9 @@
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderer.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h" />
