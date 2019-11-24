@@ -1725,6 +1725,9 @@ msgstr "Ранг ре&чи:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Филтер датотека"

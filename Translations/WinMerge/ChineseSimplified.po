@@ -1744,6 +1744,9 @@ msgstr "单词级别(&W):"
 msgid "W&ord break characters:"
 msgstr "单词分隔字符:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "文件过滤器"

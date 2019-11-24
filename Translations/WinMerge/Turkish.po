@@ -1745,6 +1745,9 @@ msgstr "&Sözcük Düzeyinde:"
 msgid "W&ord break characters:"
 msgstr "&Sözcük Kesme Karakterleri:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Dosya Süzgeçleri"

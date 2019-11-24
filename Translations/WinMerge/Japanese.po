@@ -1355,6 +1355,9 @@ msgstr "単語単位(&W):"
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
 
+msgid "&Rendering Mode:"
+msgstr "レンダリングモード(&R):"
+
 msgid "Filefilters"
 msgstr "ファイル フィルタ"
 

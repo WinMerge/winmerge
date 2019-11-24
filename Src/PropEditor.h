@@ -39,11 +39,12 @@ public:
 	bool    m_bBreakOnWords;
 	int     m_nBreakType;
 	String m_breakChars;
+	int     m_nRenderingMode;
 	//}}AFX_DATA
 
 private:
 // Implementation methods
-	void LoadBreakTypeStrings();
+	void LoadComboBoxStrings();
 	void UpdateDataToWindow() { UpdateData(FALSE); }
 	void UpdateDataFromWindow() { UpdateData(TRUE); }
 	void UpdateLineDiffControls();

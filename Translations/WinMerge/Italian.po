@@ -1350,6 +1350,9 @@ msgstr "Livello &parole:"
 msgid "W&ord break characters:"
 msgstr "Caratteri terminatori &parola:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 msgid "Filefilters"
 msgstr "Filtri file"
 

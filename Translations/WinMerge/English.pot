@@ -1340,6 +1340,9 @@ msgstr ""
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 msgid "Filefilters"
 msgstr ""
 

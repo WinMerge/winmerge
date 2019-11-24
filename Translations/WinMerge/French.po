@@ -1753,6 +1753,9 @@ msgstr "Précision au &mot :"
 msgid "W&ord break characters:"
 msgstr "Caractères pour distinction de mot :"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtre des fichiers"

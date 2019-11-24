@@ -1352,6 +1352,9 @@ msgstr "Woordniveau:"
 msgid "W&ord break characters:"
 msgstr "Woordsplitsingstekens:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 msgid "Filefilters"
 msgstr "Bestandsfilters"
 

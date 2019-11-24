@@ -1746,6 +1746,9 @@ msgstr "단어 단위(&W):"
 msgid "W&ord break characters:"
 msgstr "단어 분리 문자(&O):"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "파일 필터"

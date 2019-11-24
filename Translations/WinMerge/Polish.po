@@ -1346,6 +1346,10 @@ msgstr "Poziom słów:"
 msgid "W&ord break characters:"
 msgstr "Znaki łamania wyrazów:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
 msgid "Filefilters"
 msgstr "Filtry plików"
 

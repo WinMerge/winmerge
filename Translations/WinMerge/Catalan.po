@@ -1741,6 +1741,9 @@ msgstr "Nivell de &paraula:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtres de fitxer"

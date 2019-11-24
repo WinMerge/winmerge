@@ -1749,6 +1749,9 @@ msgstr "&W در سطح کلمه : "
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr " پرونده صافيها "

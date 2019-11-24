@@ -1743,6 +1743,9 @@ msgstr "За словами:"
 msgid "W&ord break characters:"
 msgstr "Символи, якимми розбиваються слова"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Фільтри файлів"

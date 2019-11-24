@@ -62,6 +62,7 @@
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
+#define IDR_MARGIN_ICONS_PNG            310
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
 #define IDB_EDIT_PASTE                  318
@@ -490,6 +491,7 @@
 #define IDC_USE_DIR_COMPARE_COLORS      1364
 #define IDC_PLUGIN_FILEFILTERS          1365
 #define IDC_PLUGIN_FILEFILTERS_DEFAULTS 1366
+#define IDC_RENDERING_MODE              1367
 #define IDC_DIFF_IGNORECP               1377
 #define IDC_RESET                       1378
 #define IDC_LEFT1                       1379

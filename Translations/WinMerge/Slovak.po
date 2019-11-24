@@ -1742,6 +1742,9 @@ msgstr "Úroveň &slova:"
 msgid "W&ord break characters:"
 msgstr "Zalam&ovať slová:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtre súborov"

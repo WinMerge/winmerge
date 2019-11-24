@@ -302,6 +302,8 @@ BOOL CMergeApp::InitInstance()
 	if (m_pMarkers != nullptr)
 		m_pMarkers->LoadFromRegistry();
 
+	CCrystalTextView::SetRenderingModeDefault(static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE)));
+
 	if (m_pLineFilters != nullptr)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 

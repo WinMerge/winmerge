@@ -1742,6 +1742,9 @@ msgstr "Ordnivå:"
 msgid "W&ord break characters:"
 msgstr "Ordbrytningstecken:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filfilter"

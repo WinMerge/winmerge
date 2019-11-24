@@ -1745,6 +1745,9 @@ msgstr "&besednem nivoju"
 msgid "W&ord break characters:"
 msgstr "&Znak za konec besede"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Datotečni filtri"

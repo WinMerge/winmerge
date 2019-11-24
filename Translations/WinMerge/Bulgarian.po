@@ -1346,6 +1346,9 @@ msgstr "На ниво &дума:"
 msgid "W&ord break characters:"
 msgstr "Символ за пренасяне на &дума:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 msgid "Filefilters"
 msgstr "Филтри за файлове"
 

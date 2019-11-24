@@ -1744,6 +1744,9 @@ msgstr "A nível da palavra:"
 msgid "W&ord break characters:"
 msgstr "Caracteres da palavra:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtros de ficheiro"

@@ -471,6 +471,8 @@
     <ClCompile Include="..\editlib\basic.cpp" />
     <ClCompile Include="..\editlib\batch.cpp" />
     <ClCompile Include="..\editlib\ccrystaleditview.cpp" />
+    <ClCompile Include="..\editlib\ccrystalrendererdirectdraw.cpp" />
+    <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp" />
     <ClCompile Include="..\editlib\ccrystaltextbuffer.cpp" />
     <ClCompile Include="..\editlib\ccrystaltextmarkers.cpp" />
     <ClCompile Include="..\editlib\ccrystaltextview.cpp" />
@@ -571,6 +573,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\editlib\ccrystaleditview.h" />
+    <ClInclude Include="..\editlib\ccrystalrenderer.h" />
+    <ClInclude Include="..\editlib\ccrystalrendererdirectdraw.h" />
+    <ClInclude Include="..\editlib\ccrystalrenderergdi.h" />
     <ClInclude Include="..\editlib\ccrystaltextbuffer.h" />
     <ClInclude Include="..\editlib\ccrystaltextmarkers.h" />
     <ClInclude Include="..\editlib\ccrystaltextview.h" />

@@ -1744,6 +1744,9 @@ msgstr "&Wort-Ebene:"
 msgid "W&ord break characters:"
 msgstr "W&ortumbruchzeichen:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Dateifilter"

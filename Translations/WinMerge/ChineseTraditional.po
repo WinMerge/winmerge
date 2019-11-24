@@ -1752,6 +1752,9 @@ msgstr "字階層(&W)："
 msgid "W&ord break characters:"
 msgstr "斷句字元(&O)："
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "檔案篩選器"
