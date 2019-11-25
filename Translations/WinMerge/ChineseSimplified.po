@@ -91,7 +91,7 @@ msgid "&with..."
 msgstr "选择程序(&W)..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "外壳菜单(&S)"
 
 #, c-format
 msgid "View &Differences"
@@ -106,17 +106,17 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "忽略颜色差异 (色彩距离阈值) (&I)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "插入/删除 检测(&E)"
 
 #, c-format
 msgid "&None"
 msgstr "无(&N)"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "纵向(&V)"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "横向(&H)"
 
 #, c-format
 msgid "&Previous Page"
@@ -419,13 +419,13 @@ msgid "Show &Right Only Different Items"
 msgstr "显示只在右侧不同的项目(&R)"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "显示只在左侧缺失的项目(&E)"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "显示只在中间缺失的项目(&D)"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "显示只在右侧缺失的项目(&H)"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -855,7 +855,7 @@ msgid "Comp&are"
 msgstr "比较(&A)"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "非横向比较(&I)..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1353,7 +1353,7 @@ msgid "Wh&ole file"
 msgstr "整个文件(&O)"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "查找上一个(&V)"
 
 #, c-format
 msgid "&Replace"
@@ -1460,19 +1460,19 @@ msgid "Defaults"
 msgstr "默认"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "使用文件夹比较颜色(&U)"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "相同的项目:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "不同的项目:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "不在所有处都存在的项目:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "过滤的项目:"
 
 #, c-format
 msgid "System"
@@ -1679,10 +1679,10 @@ msgid "&Match similar lines"
 msgstr "匹配相似的行(&M)"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "对比算法 (实验性) (&A):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "启动启发式缩进(&H)"
 
 #, c-format
 msgid "Comments"
@@ -1745,7 +1745,7 @@ msgid "W&ord break characters:"
 msgstr "单词分隔字符:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "渲染模式(&R)"
 
 #, c-format
 msgid "Filefilters"
@@ -2186,7 +2186,7 @@ msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
 msgid "File filters:"
-msgstr ""
+msgstr "文件过滤器:"
 
 #, c-format
 msgid "Shell Integration"
@@ -2213,10 +2213,10 @@ msgid "&Unregister shell extension"
 msgstr "取消注册到外壳扩展(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "为当前用户注册到外壳扩展(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "为当前用户取消注册到外壳扩展(&L)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2247,7 +2247,7 @@ msgid "&Quick compare limit (MB):"
 msgstr "快速比较限制 (MB) (&Q):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "二进制比较限制 (MB) (&B):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n比较使用的线程数 (负数表示使用所有可用的 CPU 核心数) (&N):"
@@ -2423,7 +2423,7 @@ msgid "Syntax"
 msgstr "语法"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "文件夹比较"
 
 #, c-format
 msgid "Differences"
@@ -2789,13 +2789,7 @@ msgstr ""
 
 #, c-format
 msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
-msgstr ""
-"保存文件失败.\n"
-"%1\n"
-"%2\n"
-"请选择:\n"
-"\t- 使用其它文件名保存 (点击\"确定\")\n"
-"\t- 中止当前操作 (点击\"取消\")?"
+msgstr "保存文件失败.\n%1\n%2\n请选择:\n\t- 使用其它文件名保存 (点击\"确定\")\n\t- 中止当前操作 (点击\"取消\")?"
 
 #, c-format
 msgid ""
@@ -3492,10 +3486,7 @@ msgstr "您是否要移动到上一页?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
-msgstr ""
-"左右两侧为不同代码页的文件 (左侧为 cp%d, 右侧为 cp%d).\n"
-"分别以不同代码页显示将会有较好的效果, 但是合并/复制会有风险.\n"
-"您是否要以 Windows 默认的代码页显示两个文件吗 (推荐)?"
+msgstr "左右两侧为不同代码页的文件 (左侧为 cp%d, 右侧为 cp%d).\n分别以不同代码页显示将会有较好的效果, 但是合并/复制会有风险.\n您是否要以 Windows 默认的代码页显示两个文件吗 (推荐)?"
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
