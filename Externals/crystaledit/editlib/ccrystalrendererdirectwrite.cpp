@@ -21,29 +21,24 @@ struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 	CustomGlyphRun(const DWRITE_GLYPH_RUN& glyphRun, float charWidth = 0, float charHeight = 0)
 		: DWRITE_GLYPH_RUN(glyphRun)
 		, sumCharWidth(0)
+		, ascent(0)
 	{
 		float minScale = 1.0f;
 		glyphAdvances = new float[glyphCount];
-		std::vector<DWRITE_GLYPH_METRICS> glyphMetrics(glyphCount);
-		glyphRun.fontFace->GetDesignGlyphMetrics(glyphIndices, glyphCount, glyphMetrics.data(), isSideways);
 		DWRITE_FONT_METRICS fontFaceMetrics;
 		glyphRun.fontFace->GetMetrics(&fontFaceMetrics);
 		for (unsigned i = 0; i < glyphCount; ++i)
 		{
-			const_cast<float*>(glyphAdvances)[i] = static_cast<int>(charWidth)
+			const_cast<float*>(glyphAdvances)[i] = static_cast<int>(charWidth + 0.9999)
 				* ((charWidth < glyphRun.glyphAdvances[i]) ? 2.0f : 1.0f);
 			sumCharWidth += glyphAdvances[i];
-			float scaleX = glyphAdvances[i] / glyphRun.glyphAdvances[i];
-			if (minScale > scaleX)
-				minScale = scaleX;
-
-			float height = (glyphMetrics[i].advanceHeight - glyphMetrics[i].topSideBearing - glyphMetrics[i].bottomSideBearing)
-				* glyphRun.fontEmSize / fontFaceMetrics.designUnitsPerEm;
-			float scaleY = charHeight / height;
-			if (minScale > scaleY)
-				minScale = scaleY;
 		}
+		float height = (fontFaceMetrics.ascent + fontFaceMetrics.descent) * fontEmSize / fontFaceMetrics.designUnitsPerEm;
+		float scaleY = fontEmSize / height;
+		if (minScale > scaleY)
+			minScale = scaleY;
 		fontEmSize *= minScale;
+		ascent = fontFaceMetrics.ascent * fontEmSize / fontFaceMetrics.designUnitsPerEm;
 	}
 
 	CustomGlyphRun(const CustomGlyphRun& other)
@@ -61,6 +56,7 @@ struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 	}
 
 	float sumCharWidth;
+	float ascent;
 };
 
 struct DrawGlyphRunParams
@@ -244,7 +240,7 @@ STDMETHODIMP CCustomTextRenderer::XCustomTextRenderer::QueryInterface(REFIID iid
 
 
 CCrystalRendererDirectWrite::CCrystalRendererDirectWrite(int nRenderingMode)
-	: m_pCurrentTextFormat{ nullptr }, m_charSize{}, m_lfBaseFont{}, m_fontAscent(0)
+	: m_pCurrentTextFormat{ nullptr }, m_charSize{}, m_lfBaseFont{}
 	, m_pTextBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::Black)))
 	, m_pTempBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::Black)))
 	, m_pBackgroundBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::White)))
@@ -302,29 +298,6 @@ static D2D1_SIZE_F GetCharWidthHeight(IDWriteTextFormat *pTextFormat)
 	return {textMetrics.width, textMetrics.height};
 }
 
-static float GetFontAscent(IDWriteTextFormat* pTextFormat)
-{
-	CComPtr<IDWriteFontCollection> pFontCollection;
-	pTextFormat->GetFontCollection(&pFontCollection);
-	if (pFontCollection)
-	{
-		CComPtr<IDWriteFontFamily> pFontFamily;
-		pFontCollection->GetFontFamily(0, &pFontFamily);
-		if (pFontFamily)
-		{
-			CComPtr<IDWriteFont> pFont;
-			pFontFamily->GetFont(0, &pFont);
-			if (pFont)
-			{
-				DWRITE_FONT_METRICS fontMetrics;
-				pFont->GetMetrics(&fontMetrics);
-				return fontMetrics.ascent * (pTextFormat->GetFontSize() / fontMetrics.designUnitsPerEm);
-			}
-		}
-	}
-	return pTextFormat->GetFontSize() * 0.7f;
-}
-
 void CCrystalRendererDirectWrite::SetFont(const LOGFONT &lf)
 {
 	m_lfBaseFont = lf;
@@ -345,7 +318,6 @@ void CCrystalRendererDirectWrite::SetFont(const LOGFONT &lf)
 	m_pCurrentTextFormat = m_pTextFormat[0].get();
 	m_pFont.reset();
 	m_charSize = ::GetCharWidthHeight(m_pTextFormat[3]->Get());
-	m_fontAscent = ::GetFontAscent(m_pTextFormat[3]->Get());
 }
 
 void CCrystalRendererDirectWrite::SwitchFont(bool italic, bool bold)
@@ -362,7 +334,7 @@ CSize CCrystalRendererDirectWrite::GetCharWidthHeight()
 {
 	if (m_pTextFormat[3] == nullptr)
 		SetFont(m_lfBaseFont);
-	return CSize(static_cast<int>(m_charSize.width), static_cast<int>(m_charSize.height));
+	return CSize(static_cast<int>(m_charSize.width + 0.9999), static_cast<int>(m_charSize.height + 0.9999));
 }
 
 bool CCrystalRendererDirectWrite::GetCharWidth(unsigned start, unsigned end, int * nWidthArray)
@@ -487,11 +459,11 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 			[](const std::pair<size_t, float>& a, const std::pair<size_t, float>& b)
 			{ return a.second < b.second; });
 		float fBaselineOriginX = static_cast<float>(x);
-		float fBaselineOriginY = y + m_fontAscent;
 		for (size_t i = 0; i < orders.size(); ++i)
 		{
 			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[orders[i].first];
 			CustomGlyphRun customGlyphRun2(param.glyphRun, m_charSize.width, m_charSize.height);
+			float fBaselineOriginY = y + customGlyphRun2.ascent;
 			DrawGlyphRun(&drawingContext,
 				(customGlyphRun2.bidiLevel & 1) ? (fBaselineOriginX + customGlyphRun2.sumCharWidth) : fBaselineOriginX,
 				fBaselineOriginY,

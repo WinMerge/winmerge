@@ -65,5 +65,4 @@ private:
 	LOGFONT m_lfBaseFont;
 	std::unique_ptr<CFont> m_pFont;
 	D2D1_SIZE_F m_charSize;
-	float m_fontAscent;
 };
