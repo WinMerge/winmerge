@@ -1587,6 +1587,15 @@
     <ClInclude Include="DirSelectFilesDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderer.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
@@ -1688,7 +1697,6 @@
     <None Include="..\Docs\Users\ChangeLog.txt">
       <Filter>ChangeLogs</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
