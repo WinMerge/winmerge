@@ -731,6 +731,7 @@ public :
     ICUBreakIterator m_iterChar;
     ICUBreakIterator m_iterWord;
 	std::unique_ptr<CCrystalRenderer> m_pCrystalRenderer;
+	CCrystalRenderer *m_pCrystalRendererSaved;
 
     typedef enum
     {
