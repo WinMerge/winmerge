@@ -2975,6 +2975,9 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
   lf.lfWidth = MulDiv (lf.lfWidth, pdc->GetDeviceCaps (LOGPIXELSX), pDisplayDC->GetDeviceCaps (LOGPIXELSX));
   ReleaseDC (pDisplayDC);
 
+  m_pCrystalRendererSaved = m_pCrystalRenderer.release();
+  m_pCrystalRenderer.reset(new CCrystalRendererGDI());
+
   m_pPrintFont = new CFont;
   if (!m_pPrintFont->CreateFontIndirect (&lf))
     {
@@ -2994,6 +2997,8 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
+  m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
+
   if (m_pPrintFont != nullptr)
     {
       delete m_pPrintFont;
@@ -3031,8 +3036,11 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
   TRACE (_T ("Printing page %d of %d, lines %d - %d\n"), 
         pInfo->m_nCurPage, m_nPrintPages, nTopLine, nEndLine);
 
-  pdc->SetTextColor(defaultLineColor);
-  pdc->SetBkColor(defaultBgColor);
+  m_pCrystalRenderer->BindDC(*pdc, m_rcPrintArea);
+  m_pCrystalRenderer->BeginDraw();
+
+  m_pCrystalRenderer->SetTextColor(defaultLineColor);
+  m_pCrystalRenderer->SetBkColor(defaultBgColor);
 
   if (m_bPrintHeader)
     {
@@ -3078,9 +3086,6 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
   {
     rcLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
   }
-
-  m_pCrystalRenderer->BindDC(*pdc, m_rcPrintArea);
-  m_pCrystalRenderer->BeginDraw();
 
   int nLineCount = GetLineCount();
   int nCurrentLine;
