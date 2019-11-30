@@ -18,26 +18,23 @@
 
 struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 {
-	CustomGlyphRun(const DWRITE_GLYPH_RUN& glyphRun, float charWidth = 0, float charHeight = 0)
+	CustomGlyphRun(const DWRITE_GLYPH_RUN& glyphRun, const float *customGlyphAdvances)
 		: DWRITE_GLYPH_RUN(glyphRun)
 		, sumCharWidth(0)
 		, ascent(0)
 	{
-		float minScale = 1.0f;
 		glyphAdvances = new float[glyphCount];
 		DWRITE_FONT_METRICS fontFaceMetrics;
 		glyphRun.fontFace->GetMetrics(&fontFaceMetrics);
 		for (unsigned i = 0; i < glyphCount; ++i)
 		{
-			const_cast<float*>(glyphAdvances)[i] = static_cast<int>(charWidth + 0.9999)
-				* ((charWidth < glyphRun.glyphAdvances[i]) ? 2.0f : 1.0f);
+			const_cast<float*>(glyphAdvances)[i] = customGlyphAdvances[i];
 			sumCharWidth += glyphAdvances[i];
 		}
 		float height = (fontFaceMetrics.ascent + fontFaceMetrics.descent) * fontEmSize / fontFaceMetrics.designUnitsPerEm;
 		float scaleY = fontEmSize / height;
-		if (minScale > scaleY)
-			minScale = scaleY;
-		fontEmSize *= minScale;
+		if (1.0f > scaleY)
+			fontEmSize *= scaleY;
 		ascent = fontFaceMetrics.ascent * fontEmSize / fontFaceMetrics.designUnitsPerEm;
 	}
 
@@ -452,23 +449,34 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 			rcF.right - rcF.left, rcF.bottom - rcF.top, &pTextLayout);
 		pTextLayout->Draw(&drawingContext, m_pTextRenderer->Get(), 0, 0);
 
-		std::vector<std::pair<size_t, float>> orders;
-		for (size_t i = 0; i < drawingContext.m_drawGlyphRunParams.size(); ++i)
-			orders.emplace_back(i, drawingContext.m_drawGlyphRunParams[i].fBaselineOriginX);
-		std::stable_sort(orders.begin(), orders.end(),
-			[](const std::pair<size_t, float>& a, const std::pair<size_t, float>& b)
-			{ return a.second < b.second; });
-		float fBaselineOriginX = static_cast<float>(x);
-		for (size_t i = 0; i < orders.size(); ++i)
+		std::vector<float> customGlyphAdvances(len, m_charSize.width);
+		for (size_t i = 0, j = 0; i < len; ++i)
 		{
-			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[orders[i].first];
-			CustomGlyphRun customGlyphRun2(param.glyphRun, m_charSize.width, m_charSize.height);
-			float fBaselineOriginY = y + customGlyphRun2.ascent;
+			if (nWidths[i] != 0)
+				customGlyphAdvances[j++] = static_cast<float>(nWidths[i]);
+		}
+
+		struct DrawGlyphRunIndex { size_t i; float fBaselineOriginX; size_t glyphPos; };
+		std::vector<DrawGlyphRunIndex> indices;
+		for (size_t i = 0, glyphPos = 0; i < drawingContext.m_drawGlyphRunParams.size(); ++i)
+		{
+			indices.push_back({i, drawingContext.m_drawGlyphRunParams[i].fBaselineOriginX, glyphPos});
+			glyphPos += drawingContext.m_drawGlyphRunParams[i].glyphRun.glyphCount;
+		}
+		std::stable_sort(indices.begin(), indices.end(),
+			[](const DrawGlyphRunIndex & a, const DrawGlyphRunIndex& b) { return a.fBaselineOriginX < b.fBaselineOriginX; });
+
+		float fBaselineOriginX = static_cast<float>(x);
+		for (size_t i = 0; i < indices.size(); ++i)
+		{
+			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[indices[i].i];
+			CustomGlyphRun customGlyphRun(param.glyphRun, &customGlyphAdvances[indices[i].glyphPos]);
+			float fBaselineOriginY = y + customGlyphRun.ascent;
 			DrawGlyphRun(&drawingContext,
-				(customGlyphRun2.bidiLevel & 1) ? (fBaselineOriginX + customGlyphRun2.sumCharWidth) : fBaselineOriginX,
+				(customGlyphRun.bidiLevel & 1) ? (fBaselineOriginX + customGlyphRun.sumCharWidth) : fBaselineOriginX,
 				fBaselineOriginY,
-				param.measuringMode, &customGlyphRun2, nullptr, nullptr);
-			fBaselineOriginX += customGlyphRun2.sumCharWidth;
+				param.measuringMode, &customGlyphRun, nullptr, nullptr);
+			fBaselineOriginX += customGlyphRun.sumCharWidth;
 		}
 	}
 	m_renderTarget.PopAxisAlignedClip();
