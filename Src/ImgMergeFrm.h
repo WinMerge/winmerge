@@ -72,7 +72,7 @@ public:
 	bool GenerateReport(const String& sFileName) const override;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
-	bool IsFileChangedOnDisk(int pane) const;
+	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
 	static bool IsLoadable();

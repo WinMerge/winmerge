@@ -304,25 +304,26 @@ void CImgMergeFrame::SetDirDoc(CDirDoc * pDirDoc)
 	m_pDirDoc = pDirDoc;
 }
 
-bool CImgMergeFrame::IsFileChangedOnDisk(int pane) const
+IMergeDoc::FileChange CImgMergeFrame::IsFileChangedOnDisk(int pane) const
 {
 	DiffFileInfo dfi;
-	dfi.Update(m_filePaths[pane]);
+	if (!dfi.Update(m_filePaths[pane]))
+		return FileRemoved;
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
 	int64_t timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo[pane].size))
-		return true;
-	return false;
+		return FileChanged;
+	return FileNoChange;
 }
 
 void CImgMergeFrame::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 	{
-		if (IsFileChangedOnDisk(pane))
+		if (IsFileChangedOnDisk(pane) == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)

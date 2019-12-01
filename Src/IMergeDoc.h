@@ -6,6 +6,13 @@ class CDirDoc;
 
 struct IMergeDoc
 {
+	enum FileChange
+	{
+		FileNoChange,
+		FileChanged,
+		FileRemoved,
+	};
+
 	virtual void SetDirDoc(CDirDoc *pDirDoc) = 0;
 	virtual bool CloseNow(void) = 0;
 	virtual bool GenerateReport(const String &path) const = 0;
