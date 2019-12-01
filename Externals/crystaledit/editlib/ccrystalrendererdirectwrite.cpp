@@ -18,7 +18,7 @@
 
 struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 {
-	CustomGlyphRun(const DWRITE_GLYPH_RUN& glyphRun, const float *customGlyphAdvances)
+	CustomGlyphRun(const DWRITE_GLYPH_RUN& glyphRun, const float *customGlyphAdvances, float charHeight)
 		: DWRITE_GLYPH_RUN(glyphRun)
 		, sumCharWidth(0)
 		, ascent(0)
@@ -32,7 +32,7 @@ struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 			sumCharWidth += glyphAdvances[i];
 		}
 		float height = (fontFaceMetrics.ascent + fontFaceMetrics.descent) * fontEmSize / fontFaceMetrics.designUnitsPerEm;
-		float scaleY = fontEmSize / height;
+		float scaleY = charHeight / height;
 		if (1.0f > scaleY)
 			fontEmSize *= scaleY;
 		ascent = fontFaceMetrics.ascent * fontEmSize / fontFaceMetrics.designUnitsPerEm;
@@ -470,7 +470,7 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 		for (size_t i = 0; i < indices.size(); ++i)
 		{
 			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[indices[i].i];
-			CustomGlyphRun customGlyphRun(param.glyphRun, &customGlyphAdvances[indices[i].glyphPos]);
+			CustomGlyphRun customGlyphRun(param.glyphRun, &customGlyphAdvances[indices[i].glyphPos], m_charSize.height);
 			float fBaselineOriginY = y + customGlyphRun.ascent;
 			DrawGlyphRun(&drawingContext,
 				(customGlyphRun.bidiLevel & 1) ? (fBaselineOriginX + customGlyphRun.sumCharWidth) : fBaselineOriginX,
