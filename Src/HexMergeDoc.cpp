@@ -550,7 +550,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_nBuffers; ++pane)
 	{
-		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()))
+		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
@@ -732,7 +732,8 @@ void CHexMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 		bRO[pane] = m_pView[pane]->GetReadOnly();
 	}
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
+	if (!OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
+		return;
 	MoveOnLoad(GetActiveMergeView()->m_nThisPane);
 }
 
