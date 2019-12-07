@@ -49,24 +49,85 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.4 Release Notes</h2>
+<h2>WinMerge 2.16.5 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2164">What Is New in 2.16.4?</a></li>
+  <li><a href="#new2165">What Is New in 2.16.5?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>July 2019</p>
+<p>December 2019</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.16.4 stable release. This release replaces earlier WinMerge 
-stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
-Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
+Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2165">What Is New in 2.16.5 Beta?</a></h3>
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)</li>
+  <li>Bugfix: Performance using Unpacker (GitHub #180)</li>
+  <li>Bugfix: WinMerge toolbar appears too small on UHD and should default to the conforming Windows 10 scaling/DPI accessibility setting (GitHub #182)</li>
+  <li>Bugfix: "Recompare as" menu option doesn't follow current choice (GitHub #191)</li>
+  <li>Bugfix: Switching between "Find Next" and "Find Prev" need to click twice (GitHub #202)</li>
+  <li>Bugfix: Program is crashed! (GitHub #229)</li>
+  <li>Switch "Find" buttons in Find dialog (GitHub #201)</li>
+  <li>Improve UNICODE character support using icu.dll usable from Windows 10 Creators Update </li>
+  <li>Add support for color emoji (To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog)</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Changed symbols in Newer/Older column for better visual clarity (GitHub #169)</li>
+  <li>Add "Ignore codepage differences" to quick options (GitHub #197)</li>
+  <li>Limit the window flashing count. (GitHub #206)</li>
+</ul>
+
+<h4>Image compare</h4>
+<ul>
+  <li>Bugfix: Image compare breaks when zoomed too much with large pictures (GitHub #188)</li>
+  <li>Bugfix: [Image compare] Zoom-in focuses on top-left corner instead of cursor position (GitHub #211)</li>
+</ul>
+
+<h4>Shell extension</h4>
+<ul>
+  <li>Bugfix: "Run as Administrator" incompatible with "Shell integration" (ver 2.16.4) (sf.net #2234)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Bugfix: Installer russian translation (#168)</li>
+  <li>Bugfix: Windows 10 shell integration not working (GitHub #176)</li>
+  <li>Installer - Proposal - Separate Inno Setup strings from WinMerge installer strings (GitHub #167)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Italian translation (GitHub #164, #165)</li>
+  <li>Update Russian translation (GitHub #166)</li>
+  <li>Update Bulgarian translation (GitHub #170, #175, #179, #212)</li>
+  <li>Update Portuguese translation (GitHub #185, #199)</li>
+  <li>Update French translation (GitHub #187)</li>
+  <li>Update Lithuanian translation (GitHub #189, #208, #217, #225)</li>
+  <li>Update Swedish translation (GitHub #194, #196)</li>
+  <li>Update German translation (GitHub #204, #205, #215)</li>
+  <li>Update Polish translation (GitHub #218)</li>
+  <li>Update Simplified Chinese translation (GitHub #228)</li>
+  <li>Update Finnish translation (sf.net #3037)</li>
+  <li>Update English.pot (#216)</li>
+  <li>Add Japanese manual (GitHub #183)</li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li>Small Manual tweaks (GitHub #190)</li>
+</ul>
 
 <h3><a name="#new2164">What Is New in 2.16.4?</a></h3>
 <h4>File compare</h4>
