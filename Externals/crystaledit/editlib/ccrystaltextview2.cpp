@@ -100,8 +100,8 @@ MoveLeft (bool bSelect)
         }
       else
         {
-          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-          m_ptCursorPos.x = m_iterChar.preceding(m_ptCursorPos.x);
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+          m_ptCursorPos.x = pIterChar->preceding(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -133,8 +133,8 @@ MoveRight (bool bSelect)
         }
       else
         {
-          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
-          m_ptCursorPos.x = m_iterChar.following(m_ptCursorPos.x);
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
+          m_ptCursorPos.x = pIterChar->following(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
