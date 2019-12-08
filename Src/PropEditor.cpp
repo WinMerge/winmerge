@@ -115,6 +115,9 @@ BOOL PropEditor::OnInitDialog()
 	LoadComboBoxStrings();
 	UpdateDataToWindow();
 	UpdateLineDiffControls();
+#ifndef _WIN64
+	EnableDlgItem(IDC_RENDERING_MODE, false);
+#endif
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
