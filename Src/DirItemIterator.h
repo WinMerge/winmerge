@@ -121,6 +121,10 @@ public:
 					m_pdi = reinterpret_cast<const DIFFITEM *>(m_pList->GetItemData(m_sel));
 				}
 			}
+			else if (m_pdi == nullptr)
+			{
+				m_sel = -1;
+			}
 		}
 	}
 

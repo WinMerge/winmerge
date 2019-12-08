@@ -588,6 +588,9 @@ void CDirView::Redisplay()
 		GetParentFrame()->SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
+
+	m_bNeedSearchLastDiffItem = true;
+	m_bNeedSearchFirstDiffItem = true;
 }
 
 /**
