@@ -13,10 +13,12 @@ WinMerge 2.16.5
   - Switch "Find" buttons in Find dialog (GitHub #201)
   - Improve UNICODE character support using icu.dll usable
       from Windows 10 Creators Update 
-  - Add support for color emoji 
+  - Add support for color emoji (Only available in 64bit version)
       (To enable color emoji support, select DirectWrite* in Rendering
        mode combobox on Editor page in the Options dialog)
   Folder compare:
+  - Bugfix: Crash when clicking Next Difference button after unchecking
+      Show Different Items menu item
   - Changed symbols in Newer/Older column for better visual clarity
       (GitHub #169)
   - Add "Ignore codepage differences" to quick options (GitHub #197)
