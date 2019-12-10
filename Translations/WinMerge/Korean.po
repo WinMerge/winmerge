@@ -4070,3 +4070,36 @@ msgstr ""
 "$file: 현재 파일의 경로명\n"
 "$linenum: 현재 커서 위치의 줄 번호"
 
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+

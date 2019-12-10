@@ -2848,6 +2848,25 @@ BEGIN
     IDC_EXT_EDITOR_PATH     "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_DIFF_ALGORITHM_DEFAULT   "default"
+    IDS_DIFF_ALGORITHM_MINIMAL   "minimal"
+    IDS_DIFF_ALGORITHM_PATIENCE  "patience"
+    IDS_DIFF_ALGORITHM_HISTOGRAM "histogram"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RENDERING_MODE_GDI                           "GDI"
+    IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT           "DirectWrite Default"
+    IDS_RENDERING_MODE_DIRECTWRITE_ALIASED           "DirectWrite Aliased"
+    IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC       "DirectWrite GDI Classic"
+    IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL       "DirectWrite GDI Natural"
+    IDS_RENDERING_MODE_DIRECTWRITE_NATURAL           "DirectWrite Natural"
+    IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC "DirectWrite Natural Symmetric"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

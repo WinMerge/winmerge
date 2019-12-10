@@ -3960,3 +3960,36 @@ msgstr "Не удалось создать папку."
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "Можно указать следующие параметры пути:\n$file: Имя пути текущего файла\n$linenum: Номер строки текущей позиции курсора"
 
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+

@@ -3878,3 +3878,36 @@ msgstr "创建文件夹失败."
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "您可以在路径中指定下列参数:\n$file: 当前文件的路径名\n$linenum: 当前游标位置的行号"
 
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
