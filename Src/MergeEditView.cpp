@@ -1898,7 +1898,7 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		// cursor is inside diff
 		if (IsSelection())
 		{
-			if (m_bCurrentLineIsDiff)
+			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
 			{
 				pCmdUI->Enable(true);
 			}
