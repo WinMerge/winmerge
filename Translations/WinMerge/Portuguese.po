@@ -2,9 +2,9 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Hugo Carvalho <hugokarvalho@hotmail.com>
 # * Nelson Simão
 # * Lippe35
+# * Hugo Carvalho <hugokarvalho@hotmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Portuguese.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-09-12 19:16+0100\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"PO-Revision-Date: 2019-12-11 00:23+0100\n"
+"Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4069,35 +4069,35 @@ msgstr ""
 "$linenum: Número da linha da posição atual do cursor"
 
 msgid "default"
-msgstr ""
+msgstr "padrão"
 
 msgid "minimal"
-msgstr ""
+msgstr "mínimo"
 
 msgid "patience"
-msgstr ""
+msgstr "paciência"
 
 msgid "histogram"
-msgstr ""
+msgstr "histograma"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "Gravação Direta Padrão"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "Gravação Direta Alias"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "Gravação Direta GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "Gravação Direta GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "Gravação Direta Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "Gravação Direta Natural Simétrica"
 
