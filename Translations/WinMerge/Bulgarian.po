@@ -2681,7 +2681,7 @@ msgstr "Текстовите файлове са различни"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Оставащо време: %ld ms"
+msgstr "Изминало време: %ld мс"
 
 msgid "1 item selected"
 msgstr "1 избран обект"
