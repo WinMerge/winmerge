@@ -162,7 +162,7 @@ msgid "Recent F&iles Or Folders"
 msgstr "Последни &файлове и папки"
 
 msgid "< Empty >"
-msgstr "< празно >"
+msgstr "<празно>"
 
 msgid "E&xit"
 msgstr "&Изход"
@@ -306,7 +306,7 @@ msgid "S&how Binary Files"
 msgstr "Показване на &двоичните файлове"
 
 msgid "&3-way Compare"
-msgstr ""
+msgstr "&3-странно сравняване"
 
 msgid "Show &Left Only Different Items"
 msgstr "Показване само на уникалните от&ляво"
@@ -860,10 +860,10 @@ msgid "&Compare method:"
 msgstr "Метод за &сравняване:"
 
 msgid "Full Contents"
-msgstr "На база цялото съдържание"
+msgstr "Цялото съдържание"
 
 msgid "Quick Contents"
-msgstr "На база част от съдържанието"
+msgstr "Част от съдържанието"
 
 msgid "Binary Contents"
 msgstr "Двоично съдържание"
@@ -1296,10 +1296,10 @@ msgid "&Match similar lines"
 msgstr "Съот&ветствие на подобни редове"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "&Алг. за търсене на различия (експ.):"
+msgstr "&Алгоритъм за различия (експер.):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "П&редполагане на отстъпа"
 
 msgid "Comments"
 msgstr "Коментари"
@@ -1347,7 +1347,7 @@ msgid "W&ord break characters:"
 msgstr "Символ за пренасяне на &дума:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "&Режим на изчертаване:"
 
 msgid "Filefilters"
 msgstr "Филтри за файлове"
@@ -1765,7 +1765,7 @@ msgid "Image"
 msgstr "Изображения"
 
 msgid "Image File &Patterns:"
-msgstr ""
+msgstr "Файлови &разширения на изображения:"
 
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
@@ -2516,13 +2516,13 @@ msgid "Comparison result"
 msgstr "Резултати при сравняване"
 
 msgid "Left Date"
-msgstr "Лява дата"
+msgstr "Дата ляво"
 
 msgid "Right Date"
-msgstr "Дясна дата"
+msgstr "Дата дясно"
 
 msgid "Middle Date"
-msgstr ""
+msgstr "Дата средата"
 
 msgid "Extension"
 msgstr "Разширение"
@@ -3200,7 +3200,7 @@ msgid "Private Build: %1"
 msgstr "Вътрешен билд: %1"
 
 msgid "Your software is up to date"
-msgstr ""
+msgstr "Приложението е последно издание"
 
 #, c-format
 msgid ""
@@ -3209,13 +3209,13 @@ msgid ""
 msgstr ""
 
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Грешка при изтегляне на данните за ново издание"
 
 msgid "Plugin Settings"
 msgstr "Настройки на добавките"
 
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH не е намерен - .sct скриптовете са забранени"
+msgstr "WSH не е намерен - скриптовете на .sct са забранени"
 
 msgid "<None>"
 msgstr "<Няма>"
@@ -3258,7 +3258,7 @@ msgid "VHDL"
 msgstr "VHDL"
 
 msgid "Close &Left Tabs"
-msgstr "Затваряне не &левия раздел"
+msgstr "Затваряне на &левия раздел"
 
 msgid "Close R&ight Tabs"
 msgstr "Затваряне на &десния раздел"
@@ -3286,35 +3286,35 @@ msgid ""
 msgstr ""
 
 msgid "default"
-msgstr ""
+msgstr "по подразбиране"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "Стандартен DirectWrite"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "Назъбен DirectWrite"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "Класически DirectWrite GDI"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "Естествен DirectWrite GDI"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "Естествен DirectWrite"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "Естествен симтричен DirectWrite"
 
