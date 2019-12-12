@@ -1439,10 +1439,10 @@ msgid " Categories"
 msgstr " Категории"
 
 msgid "Import..."
-msgstr "Изнасяне…"
+msgstr "Внасяне…"
 
 msgid "Export..."
-msgstr "Внасяне…"
+msgstr "Изнасяне…"
 
 msgid "Dialog"
 msgstr "Диалог"
@@ -2263,8 +2263,8 @@ msgstr ""
 "%1\n"
 "%2\n"
 "Искате ли да:\n"
-"\t- използвате различно име (натиснете Ok)\n"
-"\t- отмените текущата операция (натиснете Отмени)?"
+"\t- използвате различно име (изберете Добре)\n"
+"\t- отмените текущата операция (изберете Отменяне)?"
 
 #, c-format
 msgid ""
@@ -3032,16 +3032,16 @@ msgid "Select file for import"
 msgstr "Изберете файл за импорт"
 
 msgid "Options imported from the file."
-msgstr "Настройките са импортирани от файл."
+msgstr "Настройките са внесени от файла."
 
 msgid "Options exported to the file."
-msgstr "Настройките са експортирани във файл."
+msgstr "Настройките са изнесени във файла."
 
 msgid "Failed to import options from the file."
-msgstr "Не може да се импортират настройките от файл."
+msgstr "Грешка при внасяне на насторйките от файл."
 
 msgid "Failed to write options to the file."
-msgstr "Не може да се експортират настройките във файл."
+msgstr "Грешка при изнасяне на насторйките във файл."
 
 msgid ""
 "You are about to close several compare windows.\n"
@@ -3050,7 +3050,7 @@ msgid ""
 msgstr ""
 "Ще затворите няколко прозореца за сравняване.\n"
 "\n"
-"Искате ли да продължите?"
+"Желаете ли да продължите?"
 
 msgid "Mixed"
 msgstr "Смесен"
