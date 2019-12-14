@@ -558,12 +558,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Друк..."
 
-msgid "Page Set&up"
+msgid "Page Set&up..."
 msgstr "Пара&метри сторінки..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&Попередній перегляд"
+msgid "Print Previe&w..."
+msgstr "&Попередній перегляд..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -813,13 +812,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Скопіювати на праву панель і перейти до наступної\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Скопіювати на праву панель і перейти до наступної\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Скопіювати на ліву панель і перейти до наступної\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Скопіювати на ліву панель і перейти до наступної\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -829,8 +826,7 @@ msgstr "Скопіювати все на праву панел&ь"
 msgid "Cop&y All to Left"
 msgstr "Скопі&ювати все на ліву панель"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -856,6 +852,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "По&рівняти"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1098,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Нехтувати різницею в кінцях рядків (Win/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Враховуючи підтеки"
 
@@ -1313,12 +1316,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Далі"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1347,6 +1350,9 @@ msgstr "В ві&дзначеному"
 #, c-format
 msgid "Wh&ole file"
 msgstr "В всьому &файлі"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1664,10 +1670,6 @@ msgid "Ignore &case"
 msgstr "Нехтувати р&егістр"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
 
@@ -1741,13 +1743,15 @@ msgstr "За словами:"
 msgid "W&ord break characters:"
 msgstr "Символи, якимми розбиваються слова"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Фільтри файлів"
 
-#, c-format
-msgid "Test"
-msgstr "Випробувати"
+msgid "Test..."
+msgstr "Випробувати..."
 
 #, c-format
 msgid "Install..."
@@ -2065,9 +2069,8 @@ msgstr "&Скасувати"
 msgid "Test Filter"
 msgstr "Випробування фільтра"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Випробувати фільтр ..."
+msgid "Testing filter..."
+msgstr "Випробувати фільтр..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2249,8 +2252,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2832,20 +2834,14 @@ msgstr ""
 "Продовжити в будь-якому випадку?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Файл не збережений.\n"
 "%1\n"
 "%2\n"
 " Чи хочете Ви:\n"
-"\t-використати інше ім'я файлу (Натисніть OК)\n"
-"\t-скасувати поточну операцію (Натисніть Скасувати)?"
+"\t- використати інше ім'я файлу (Натисніть OК)\n"
+"\t- скасувати поточну операцію (Натисніть Скасувати)?"
 
 #, c-format
 msgid ""
@@ -3215,8 +3211,7 @@ msgstr "Кодування файлу праворуч"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Знех. відмінності"
 
 msgctxt "DirView|ColumnHeader"
@@ -3427,16 +3422,13 @@ msgstr "Атрибути файлу праворуч"
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Позначка закінчення рядка для лівого файлу"
+msgid "Left side file EOL type."
+msgstr "Позначка закінчення рядка для лівого файлу."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Позначка закінчення рядка для правого файлу"
+msgid "Right side file EOL type."
+msgstr "Позначка закінчення рядка для правого файлу."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3568,12 +3560,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Різні кодування: лівий файл - (cp%d), правий файл - (cp%d). \n"
+"Різні кодування: лівий файл - (cp%d), правий файл - (cp%d).\n"
 "Кожний з файлів може бути показаний в своєму кодуванні, але їхнє злиття або копіювання може пошкодити інформацію.\n"
 "Показати обидва файли в системному кодуванні (рекомендується)?"
 
@@ -3969,5 +3958,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

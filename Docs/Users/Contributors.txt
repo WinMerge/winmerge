@@ -116,6 +116,7 @@ Localization:
   M.T <mtrz@users.sourceforge.net>
   Skiff <skiffatsf@users.sourceforge.net>
   Pawel Wawrzysko <traduc@kki.pl>
+  Mirosław Żylewicz
 
 * Portuguese (Brazilian):
   Wender Firmino <wender@pta.com.br>

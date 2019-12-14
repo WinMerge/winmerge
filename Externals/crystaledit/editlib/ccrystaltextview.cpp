@@ -108,6 +108,8 @@
 #include "string_util.h"
 #include "wcwidth.h"
 #include "icu.hpp"
+#include "ccrystalrendererdirectwrite.h"
+#include "ccrystalrenderergdi.h"
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
@@ -165,6 +167,7 @@ LOGFONT CCrystalTextView::m_LogFont;
 IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = nullptr;
+CCrystalTextView::RENDERING_MODE CCrystalTextView::s_nRenderingModeDefault = RENDERING_MODE_GDI;
 
 static ptrdiff_t FindStringHelper(LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
@@ -521,7 +524,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_pFindTextDlg(nullptr)
 , m_CurSourceDef(nullptr)
 , m_dwLastDblClickTime(0)
-, m_iterChar(UBRK_CHARACTER, "en", nullptr, 0)
 , m_iterWord(UBRK_WORD, "en", nullptr, 0)
 , m_rxnode(nullptr)
 , m_pszMatched(nullptr)
@@ -535,8 +537,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_bRememberLastPos(false)
 , m_pColors(nullptr)
 , m_nLastLineIndexCalculatedSubLineIndex(-1)
-, m_pIcons(nullptr)
-, m_apFonts{}
 , m_hAccel(nullptr)
 , m_pTextBuffer(nullptr)
 , m_pCacheBitmap(nullptr)
@@ -592,7 +592,17 @@ CCrystalTextView::CCrystalTextView ()
 , m_bIncrementalSearchBackward(false)
 , m_bIncrementalFound(false)
 , m_rxmatch{}
+, m_nRenderingMode(s_nRenderingModeDefault)
 {
+#ifdef _WIN64
+  if (m_nRenderingMode == RENDERING_MODE_GDI)
+	  m_pCrystalRenderer.reset(new CCrystalRendererGDI());
+  else
+	  m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(m_nRenderingMode));
+#else
+  m_pCrystalRenderer.reset(new CCrystalRendererGDI());
+#endif
+
   m_panSubLines->SetSize( 0, 4096 );
   m_panSubLineIndexCache->SetSize( 0, 4096 );
 
@@ -652,7 +662,6 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT(m_pnActualLineLength != nullptr);
   delete m_pnActualLineLength;
   m_pnActualLineLength = nullptr;
-  delete m_pIcons;
   if (m_pMarkers != nullptr)
       m_pMarkers->DeleteView(this);
 }
@@ -794,8 +803,8 @@ GetLineActualLength (int nLineIndex)
     {
       LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
-      for (int i = 0; i < nLength; i = m_iterChar.next())
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i = 0; i < nLength; i = pIterChar->next())
         {
           TCHAR c = pszChars[i];
           if (c == _T('\t'))
@@ -978,10 +987,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
-      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
       for (int i = 0, next = 0; i < nLength; i = next)
         {
-          next = m_iterChar.next();
+          next = pIterChar->next();
           if (pszChars[i] == _T('\t'))
             {
               int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
@@ -1039,10 +1048,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
     }
   else
     {
-      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
       for (int i1=0, next=0; i1<nLength; i1 = next)
       {
-        next = m_iterChar.next();
+        next = pIterChar->next();
         nCurPos += GetCharCellCountFromChar(pszChars + i1);
         for (; i1 < next; ++i1)
           line += pszChars[i1];
@@ -1059,8 +1068,9 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
  * @note In ANSI build, this routine is buggy for multibytes or double-width characters
  */
 void CCrystalTextView::
-DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
-                    int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset)
+DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
+ int nColorIndex,
+                    int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset)
 {
   ASSERT (nCount >= 0);
   if (nCount > 0)
@@ -1072,7 +1082,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
-      m_iterChar.setText(reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -1088,7 +1098,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
           const int clipLeft = rcClip.left - nCharWidth * 2;
-          for ( ; i < lineLen; i = m_iterChar.next())
+          for ( ; i < lineLen; i = pIterChar->next())
           {
             int pnWidthsCurrent = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
             ptOrigin.x += pnWidthsCurrent;
@@ -1139,62 +1149,51 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                     line.SetAt(i, ' ');
                     nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
                     // 1st hex digit has normal width.
-                    nSumWidth += nWidths[m_iterChar.next() - ibegin] = nCharWidth;
+                    nSumWidth += nWidths[pIterChar->next() - ibegin] = nCharWidth;
                     // 2nd hex digit is padded by half the width of a character cell.
-                    nSumWidth += nWidths[m_iterChar.next() - ibegin] = nCharWidthWidened;
+                    nSumWidth += nWidths[pIterChar->next() - ibegin] = nCharWidthWidened;
                   }
                   else
                   {
                     nSumWidth += nWidths[i - ibegin] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
                   }
-                   next = m_iterChar.next();
+                   next = pIterChar->next();
                 }
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
                   if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
-                    pdc->SetTextColor(GetColor(nColorIndex));
+                    m_pCrystalRenderer->SetTextColor(GetColor(nColorIndex));
                   else
-                    pdc->SetTextColor(crText);
+                    m_pCrystalRenderer->SetTextColor(crText);
                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
-                    pdc->SetBkColor(GetColor(nBgColorIndex));
+                    m_pCrystalRenderer->SetBkColor(GetColor(nBgColorIndex));
                   else
-                    pdc->SetBkColor(crBkgnd);
+                    m_pCrystalRenderer->SetBkColor(crBkgnd);
 
-                  pdc->SelectObject(GetFont(GetItalic(nColorIndex),
-                      GetBold(nColorIndex)));
+                  m_pCrystalRenderer->SwitchFont(GetItalic(nColorIndex), GetBold(nColorIndex));
                   // we are sure to have less than 4095 characters because all the chars are visible
                   RECT rcIntersect;
                   RECT rcTextBlock = {ptOrigin.x, ptOrigin.y, ptOrigin.x + nSumWidth + 2, ptOrigin.y + nLineHeight};
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
-                  VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED | ETO_OPAQUE,
-                      &rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]));
+				  m_pCrystalRenderer->DrawText(ptOrigin.x, ptOrigin.y, rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]);
                   if (bdisphex)
                     {
                      // Draw rounded rectangles around control characters
-                     pdc->SaveDC();
-                     pdc->IntersectClipRect(&rcClip);
-                     HDC hDC = pdc->m_hDC;
-                     HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
-                     hBrush = ::SelectObject(hDC, hBrush);
-                     HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
-                     hPen = ::SelectObject(hDC, hPen);
+                     m_pCrystalRenderer->PushAxisAlignedClip(rcClip);
                      int x = ptOrigin.x;
                      for (int j = 0 ; j < nCount1 ; ++j)
                      {
                        // Assume narrowed space is converted escape sequence leadin.
                        if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
                        {
-                         ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
+                         m_pCrystalRenderer->DrawRoundRectangle(x + 2, ptOrigin.y + 1,
                            x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
                            nCharWidth / 2, nLineHeight / 2);
                        }
                        x += nWidths[j];
                      }
-                     hPen = ::SelectObject(hDC, hPen);
-                     ::DeleteObject(hPen);
-                     hBrush = ::SelectObject(hDC, hBrush);
-                     pdc->RestoreDC(-1);
+                     m_pCrystalRenderer->PopAxisAlignedClip();
                    }
                 }
 
@@ -1204,7 +1203,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
             }
         }
       // Update the final position after the right clipped characters
-      for ( ; i < lineLen; i = m_iterChar.next())
+      for ( ; i < lineLen; i = pIterChar->next())
         {
           ptOrigin.x += GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
         }
@@ -1212,7 +1211,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
 }
 
 void CCrystalTextView::
-DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
+DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
                 COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos)
 {
   if (nCount > 0)
@@ -1266,24 +1265,28 @@ DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIn
           //  Draw part of the text before selection
           if (nSelBegin > 0)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nSelBegin, nActualOffset);
+              DrawLineHelperImpl (ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nSelBegin, nActualOffset);
             }
           if (nSelBegin < nSelEnd)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip,
-                  nColorIndex & ~COLORINDEX_APPLYFORCE, nBgColorIndex & ~COLORINDEX_APPLYFORCE, 
-                  GetColor (COLORINDEX_SELTEXT),
+              DrawLineHelperImpl (ptOrigin, rcClip,
+ nColorIndex & ~COLORINDEX_APPLYFORCE,
+                  nBgColorIndex & ~COLORINDEX_APPLYFORCE,
+ GetColor (COLORINDEX_SELTEXT),
+ 
                   GetColor (COLORINDEX_SELBKGND),
-                  pszChars, nOffset + nSelBegin, nSelEnd - nSelBegin, nActualOffset);
+
+                  pszChars,
+                  nOffset + nSelBegin, nSelEnd - nSelBegin, nActualOffset);
             }
           if (nSelEnd < nCount)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset + nSelEnd, nCount - nSelEnd, nActualOffset);
+              DrawLineHelperImpl (ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset + nSelEnd, nCount - nSelEnd, nActualOffset);
             }
         }
       else
         {
-          DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset);
+          DrawLineHelperImpl (ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset);
         }
     }
 }
@@ -1466,7 +1469,7 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
     }
 }
 
-void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
+void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
          const std::vector<TEXTBLOCK>& blocks, int &nActualItem, 
          COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
          LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos )
@@ -1505,14 +1508,14 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
           if (blocks[I + 1].m_nCharPos - nOffsetToUse > 0)
             {
               int nOldActualOffset = nActualOffset;
-              DrawLineHelper(pdc, ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex, crText, crBkgnd, pszChars,
+              DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex, crText, crBkgnd, pszChars,
                 (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                 blocks[I + 1].m_nCharPos - nOffsetToUse,
                 nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
               if (bPrevZeroWidthBlock)
                 {
                   CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
-                  DrawLineHelper(pdc, ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, pszChars,
+                  DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, pszChars,
                       (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                       blocks[I + 1].m_nCharPos - nOffsetToUse,
                       nOldActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
@@ -1529,7 +1532,9 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                     clrBkColor = GetColor(nBgColorIndex);
                   else
                     clrBkColor = crBkgnd;
-                  pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
+                  CRect rc(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight());
+				  m_pCrystalRenderer->SetBkColor(clrBkColor);
+				  m_pCrystalRenderer->FillRectangle(rc);
                   ptOriginZeroWidthBlock = ptOrigin;
                   nBgColorIndexZeorWidthBlock = blk.m_nBgColorIndex;
                   bPrevZeroWidthBlock = true;
@@ -1547,14 +1552,14 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       if (nOffset + nCount - blocks[nActualItem].m_nCharPos > 0)
         {
           int nOldActualOffset = nActualOffset;
-          DrawLineHelper(pdc, ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
+          DrawLineHelper(ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
                   crText, crBkgnd, pszChars, blocks[nActualItem].m_nCharPos,
                   nOffset + nCount - blocks[nActualItem].m_nCharPos,
                   nActualOffset, CPoint(blocks[nActualItem].m_nCharPos, ptTextPos.y));
           if (bPrevZeroWidthBlock)
             {
               CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
-              DrawLineHelper(pdc, ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blocks[nActualItem].m_nColorIndex, nBgColorIndexZeorWidthBlock,
+              DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blocks[nActualItem].m_nColorIndex, nBgColorIndexZeorWidthBlock,
                   crText, crBkgnd, pszChars, blocks[nActualItem].m_nCharPos,
                   nOffset + nCount - blocks[nActualItem].m_nCharPos,
                   nOldActualOffset, CPoint(blocks[nActualItem].m_nCharPos, ptTextPos.y));
@@ -1571,7 +1576,9 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                 clrBkColor = GetColor(nBgColorIndex);
               else
                 clrBkColor = crBkgnd;
-              pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
+              CRect rc(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight());
+			  m_pCrystalRenderer->SetBkColor(clrBkColor);
+			  m_pCrystalRenderer->FillRectangle(rc);
               bPrevZeroWidthBlock = true;
             }
         }
@@ -1579,7 +1586,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   else
     {
       DrawLineHelper(
-              pdc, ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
+              ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
               crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset, ptTextPos);
     }
 
@@ -1595,8 +1602,9 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       if (frect.left >= rcClip.left)
         {
           const int nCharWidth = GetCharWidth();
-          pdc->FillSolidRect(frect.left, frect.top, nCharWidth, frect.Height(),
-              GetColor(COLORINDEX_SELBKGND));
+          CRect rc(frect.left, frect.top, frect.left + nCharWidth, frect.bottom);
+          m_pCrystalRenderer->SetBkColor(GetColor(COLORINDEX_SELBKGND));
+          m_pCrystalRenderer->FillRectangle(rc);
           frect.left += nCharWidth;
         }
     }
@@ -1604,8 +1612,10 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
     frect.left = rcClip.left;
 
   if (frect.right > frect.left)
-    pdc->FillSolidRect(frect, bDrawWhitespace ?
-      crBkgnd : GetColor(COLORINDEX_WHITESPACE));
+    {
+      m_pCrystalRenderer->SetBkColor(bDrawWhitespace ? crBkgnd : GetColor(COLORINDEX_WHITESPACE));
+      m_pCrystalRenderer->FillRectangle(frect);
+    }
 
   // set origin to beginning of next screen line
   ptOrigin.x = originalOrigin.x;
@@ -1770,7 +1780,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
 }
 
 void CCrystalTextView::
-DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
+DrawSingleLine (const CRect & rc, int nLineIndex)
 {
   const int nCharWidth = GetCharWidth();
   ASSERT (nLineIndex >= -1 && nLineIndex < GetLineCount ());
@@ -1778,7 +1788,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   if (nLineIndex == -1)
     {
       //  Draw line beyond the text
-      pdc->FillSolidRect (rc, GetColor (COLORINDEX_WHITESPACE));
+      m_pCrystalRenderer->FillSolidRectangle (rc, GetColor (COLORINDEX_WHITESPACE));
       return;
     }
 
@@ -1803,9 +1813,9 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   //  Draw the line text
   CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
   if (crBkgnd != CLR_NONE)
-    pdc->SetBkColor (crBkgnd);
+    m_pCrystalRenderer->SetBkColor (crBkgnd);
   if (crText != CLR_NONE)
-    pdc->SetTextColor (crText);
+    m_pCrystalRenderer->SetTextColor (crText);
 
   if( nBreaks > 0 )
     {
@@ -1814,7 +1824,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 
       // draw start of line to first break
       DrawScreenLine(
-        pdc, origin, rc,
+        origin, rc,
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, anBreaks[0], nActualOffset, CPoint( 0, nLineIndex ) );
@@ -1825,7 +1835,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
         {
           ASSERT( anBreaks[i] >= 0 && anBreaks[i] < nLength );
           DrawScreenLine(
-            pdc, origin, rc,
+            origin, rc,
             blocks, nActualItem,
             crText, crBkgnd, bDrawWhitespace,
             pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
@@ -1834,7 +1844,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 
       // draw from last break till end of line
       DrawScreenLine(
-        pdc, origin, rc,
+        origin, rc,
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, anBreaks[i], nLength - anBreaks[i],
@@ -1842,7 +1852,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     }
   else
       DrawScreenLine(
-        pdc, origin, rc,
+        origin, rc,
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
@@ -1853,7 +1863,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     {
       CRect frect = rc;
       frect.top = frect.bottom - nEmptySubLines * GetLineHeight();
-      pdc->FillSolidRect(frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
+      m_pCrystalRenderer->FillSolidRectangle(frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
     }
 }
 
@@ -2130,24 +2140,18 @@ GetLineFlags (int nLineIndex) const
  * @param [in] nLineNumber Line number to display. if -1, it's not displayed.
  */
 void CCrystalTextView::
-DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
+DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
 {
   if (!m_bSelMargin && !m_bViewLineNumbers)
-    pdc->FillSolidRect (rect, GetColor (COLORINDEX_BKGND));
+    m_pCrystalRenderer->SetBkColor(GetColor (COLORINDEX_BKGND));
   else
-    pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
+    m_pCrystalRenderer->SetBkColor(GetColor (COLORINDEX_SELMARGIN));
+  m_pCrystalRenderer->FillRectangle(rect);
 
   if (m_bViewLineNumbers && nLineNumber > 0)
     {
-      TCHAR szNumbers[32];
-      wsprintf(szNumbers, _T("%d"), nLineNumber);
-      CFont *pOldFont = pdc->SelectObject(GetFont());
-      COLORREF clrOldColor = pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
-      UINT uiOldAlign = pdc->SetTextAlign(TA_RIGHT);
-      pdc->TextOut(rect.right - (pdc->IsPrinting() ? 0 : 4), rect.top, szNumbers, lstrlen(szNumbers));
-      pdc->SetTextAlign(uiOldAlign);
-      pdc->SelectObject(pOldFont);
-      pdc->SetTextColor(clrOldColor);
+      m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+	  m_pCrystalRenderer->DrawMarginLineNumber(rect.right, rect.top, nLineNumber);
     }
 
   // Draw line revision mark (or background) whenever we have valid lineindex
@@ -2166,10 +2170,10 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
     }
 
   // draw line revision marks
-  CRect rc(rect.right - (pdc->IsPrinting () ? 0 : MARGIN_REV_WIDTH), rect.top, rect.right, rect.bottom);
-  pdc->FillSolidRect (rc, clrRevisionMark);
+  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
+  m_pCrystalRenderer->FillSolidRectangle (rc, clrRevisionMark);
 
-  if (!m_bSelMargin || pdc->IsPrinting ())
+  if (!m_bSelMargin)
     return;
 
   int nImageIndex = -1;
@@ -2203,20 +2207,10 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
             }
         }
     }
-  if (m_pIcons == nullptr)
-    {
-      m_pIcons = new CImageList;
-      VERIFY (m_pIcons->Create(MARGIN_ICON_WIDTH, MARGIN_ICON_HEIGHT,
-          ILC_COLOR32 | ILC_MASK, 0, 1));
-      CBitmap bmp;
-      bmp.LoadBitmap(IDR_MARGIN_ICONS);
-      m_pIcons->Add(&bmp, RGB(255, 255, 255));
-    }
   if (nImageIndex >= 0)
     {
-      CPoint pt(rect.left + 2, rect.top + (GetLineHeight() - MARGIN_ICON_HEIGHT) / 2);
-      VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
-      VERIFY (m_pIcons->Draw (pdc, nImageIndex, pt, ILD_TRANSPARENT));
+	  m_pCrystalRenderer->DrawMarginIcon(
+        rect.left + 2, rect.top + (GetLineHeight() - CCrystalRenderer::MARGIN_ICON_HEIGHT) / 2, nImageIndex);
     }
 
   // draw wrapped-line-icon
@@ -2226,36 +2220,11 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       WrapLineCached( nLineIndex, GetScreenChars(), nullptr, nBreaks );
       for (int i = 0; i < nBreaks; i++)
         {
-          CPoint pt(rect.right - MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
-              - MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight());
-          m_pIcons->Draw (pdc, ICON_INDEX_WRAPLINE, pt, ILD_TRANSPARENT);
+	      m_pCrystalRenderer->DrawMarginIcon(
+              rect.right - CCrystalRenderer::MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
+              - CCrystalRenderer::MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE);
         }
     }
-}
-
-void CCrystalTextView::
-DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y)
-{
-  CPen *pOldPen = (CPen *)pdc->SelectStockObject (BLACK_PEN);
-  pdc->MoveTo (nLeft, y);
-  pdc->LineTo (nRight, y);
-  pdc->SelectObject (pOldPen);
-}
-
-void CCrystalTextView::
-DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight)
-{
-  CDC  dcMem;
-  dcMem.CreateCompatibleDC (pdc);
-  CBitmap bitmap;
-  bitmap.CreateCompatibleBitmap (pdc, nRight - nLeft, nHeight);
-  CBitmap *pOldBitmap = dcMem.SelectObject (&bitmap);
-  dcMem.SetBkColor(RGB(0, 255, 0));
-  BLENDFUNCTION blend = {0};
-  blend.BlendOp = AC_SRC_OVER;
-  blend.SourceConstantAlpha = 24;
-  pdc->AlphaBlend (nLeft, y, nRight - nLeft, nHeight, &dcMem, 0, 0, nRight - nLeft, nHeight, blend);
-  dcMem.SelectObject (pOldBitmap);
 }
 
 bool CCrystalTextView::
@@ -2322,7 +2291,11 @@ OnDraw (CDC * pdc)
 
   if (m_pTextBuffer == nullptr)
     {
-      pdc->FillSolidRect(&rcClient, GetSysColor(COLOR_WINDOW));
+	  m_pCrystalRenderer->BindDC(*pdc, rcClient);
+	  m_pCrystalRenderer->BeginDraw();
+	  m_pCrystalRenderer->SetBkColor(GetSysColor(COLOR_WINDOW));
+      m_pCrystalRenderer->FillRectangle(rcClient);
+	  m_pCrystalRenderer->EndDraw();
       return;
     }
 
@@ -2346,71 +2319,58 @@ OnDraw (CDC * pdc)
     }
   CBitmap *pOldBitmap = cacheDC.SelectObject (m_pCacheBitmap);
 
-  CRect rcLine;
-  rcLine = rcClient;
-  rcLine.bottom = rcLine.top + nLineHeight;
-  CRect rcCacheMargin (0, 0, GetMarginWidth (), nLineHeight);
-  CRect rcCacheLine (GetMarginWidth (), 0, rcLine.Width (), nLineHeight);
-  //BEGIN SW
   // initialize rects
-  int		nSubLineOffset = GetSubLineIndex( m_nTopLine ) - m_nTopSubLine;
-  if( nSubLineOffset < 0 )
-  {
-    rcCacheMargin.OffsetRect( 0, nSubLineOffset * nLineHeight );
-    rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
-  }
-
+  int nSubLineOffset = GetSubLineIndex( m_nTopLine ) - m_nTopSubLine;
   int nCursorY = TextToClient (m_ptCursorPos).y;
 
-  //END SW
+  CRect rcLine;
+  rcLine = rcClient;
+  rcLine.top += nSubLineOffset * nLineHeight;
+  CRect rcMargin (rcLine.left, rcLine.top, rcLine.left + GetMarginWidth (), rcLine.top + nLineHeight);
+  rcLine.left = rcMargin.right;
+
+  m_pCrystalRenderer->BindDC(cacheDC, rcClient);
+  m_pCrystalRenderer->BeginDraw();
 
   int nCurrentLine = m_nTopLine;
   while (rcLine.top < rcClient.bottom)
     {
-      //BEGIN SW
       int nSubLines = 1;
       if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
          nSubLines = GetSubLines(nCurrentLine);
 
       rcLine.bottom = rcLine.top + nSubLines * nLineHeight;
-      rcCacheLine.bottom = rcCacheLine.top + rcLine.Height();
-      rcCacheMargin.bottom = rcCacheMargin.top + rcLine.Height();
+	  rcMargin.bottom = rcLine.bottom;
 
-      if( rcCacheLine.top < 0 )
-        rcLine.bottom+= rcCacheLine.top;
-      //END SW
-      if (pdc->RectVisible(rcLine))
+	  CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
+      if (pdc->RectVisible(rcMarginAndLine))
         {
           if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
             {
-              DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine, nCurrentLine + 1);
-              DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
+              DrawMargin (rcMargin, nCurrentLine, nCurrentLine + 1);
+              DrawSingleLine (rcLine, nCurrentLine);
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
-                DrawBoundaryLine (&cacheDC, rcCacheMargin.left, rcCacheLine.right, rcCacheMargin.bottom-1);
+                m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.bottom-1);
               if (nCurrentLine == m_ptCursorPos.y)
-                DrawLineCursor (&cacheDC, rcCacheMargin.left, rcCacheLine.right, 
-                  nCursorY - rcLine.top + nLineHeight - 1, 1);
+                m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
+                  nCursorY + nLineHeight - 1, 1);
             }
           else
             {
-              DrawMargin (&cacheDC, rcCacheMargin, -1, -1);
-              DrawSingleLine (&cacheDC, rcCacheLine, -1);
+              DrawMargin (rcMargin, -1, -1);
+              DrawSingleLine (rcLine, -1);
             }
-
-          VERIFY (pdc->BitBlt (rcLine.left, rcLine.top, rcLine.Width (),
-              rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
         }
 
       nCurrentLine++;
-      //BEGIN SW
       rcLine.top = rcLine.bottom;
-      rcCacheLine.top = 0;
-      rcCacheMargin.top = 0;
-      /*ORIGINAL
-      rcLine.OffsetRect(0, nLineHeight);
-      */
-      //END SW
+      rcMargin.top = rcLine.top;
     }
+
+  m_pCrystalRenderer->EndDraw();
+
+  VERIFY (pdc->BitBlt (rcClient.left, rcClient.top, rcClient.Width (),
+		  rcClient.Height (), &cacheDC, 0, 0, SRCCOPY));
 
   cacheDC.SelectObject (pOldBitmap);
   cacheDC.DeleteDC ();
@@ -2430,19 +2390,6 @@ ResetView ()
   m_nIdealCharPos = -1;
   m_ptAnchor.x = 0;
   m_ptAnchor.y = 0;
-  if (m_pIcons != nullptr)
-    {
-      delete m_pIcons;
-      m_pIcons = nullptr;
-    }
-  for (int I = 0; I < 4; I++)
-    {
-      if (m_apFonts[I] != nullptr)
-        {
-          delete m_apFonts[I];
-          m_apFonts[I] = nullptr;
-        }
-    }
   InvalidateLineCache( 0, -1 );
   m_ParseCookies->clear();
   m_pnActualLineLength->clear();
@@ -2543,56 +2490,14 @@ SetTabSize (int nTabSize)
     }
 }
 
-CFont *CCrystalTextView::
-GetFont (bool bItalic /*= false*/ , bool bBold /*= false*/ )
-{
-  int nIndex = 0;
-  if (bBold)
-    nIndex |= 1;
-  if (bItalic)
-    nIndex |= 2;
-
-  if (m_apFonts[nIndex] == nullptr)
-    {
-      m_apFonts[nIndex] = new CFont;
-      if (!m_lfBaseFont.lfHeight)
-        {
-          CClientDC dc (GetDesktopWindow ());
-          m_lfBaseFont.lfHeight = -MulDiv (11, dc.GetDeviceCaps (LOGPIXELSY), 72);
-        }
-      m_lfBaseFont.lfWeight = bBold ? FW_BOLD : FW_NORMAL;
-      m_lfBaseFont.lfItalic = (BYTE) bItalic;
-      if (!m_apFonts[nIndex]->CreateFontIndirect (&m_lfBaseFont))
-        {
-          delete m_apFonts[nIndex];
-          m_apFonts[nIndex] = nullptr;
-          return CView::GetFont ();
-        }
-    }
-  return m_apFonts[nIndex];
-}
-
 void CCrystalTextView::
 CalcLineCharDim ()
 {
-  CDC *pdc = GetDC ();
-  CFont *pOldFont = pdc->SelectObject (GetFont ());
-  CSize szCharExt = pdc->GetTextExtent (_T ("X"));
+  CSize szCharExt = m_pCrystalRenderer->GetCharWidthHeight();
   m_nLineHeight = szCharExt.cy;
   if (m_nLineHeight < 1)
     m_nLineHeight = 1;
   m_nCharWidth = szCharExt.cx;
-  /*
-     TEXTMETRIC tm;
-     if (pdc->GetTextMetrics(&tm))
-     m_nCharWidth -= tm.tmOverhang;
-   */
-  pdc->SelectObject (GetFont (false, true));
-  szCharExt = pdc->GetTextExtent (_T ("X"));
-  if (m_nLineHeight < szCharExt.cy)
-    m_nLineHeight = szCharExt.cy;
-  pdc->SelectObject (pOldFont);
-  ReleaseDC (pdc);
 }
 
 int CCrystalTextView::
@@ -2686,8 +2591,8 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   const int nTabSize = GetTabSize();
 
   int nIndex=0, nPrevIndex = 0;
-  m_iterChar.setText(reinterpret_cast<const UChar *>(szLine), nLength);
-  for( nIndex = 0; nIndex < nLength; nIndex = m_iterChar.next())
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(szLine), nLength);
+  for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next())
     {
       if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
         {
@@ -3063,14 +2968,14 @@ void CCrystalTextView::
 OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
   ASSERT (m_pPrintFont == nullptr);
-  CFont *pDisplayFont = GetFont ();
-
-  LOGFONT lf;
+  LOGFONT lf = m_lfBaseFont;
   CDC *pDisplayDC = GetDC ();
-  pDisplayFont->GetLogFont (&lf);
   lf.lfHeight = MulDiv (lf.lfHeight, pdc->GetDeviceCaps (LOGPIXELSY), pDisplayDC->GetDeviceCaps (LOGPIXELSY));
   lf.lfWidth = MulDiv (lf.lfWidth, pdc->GetDeviceCaps (LOGPIXELSX), pDisplayDC->GetDeviceCaps (LOGPIXELSX));
   ReleaseDC (pDisplayDC);
+
+  m_pCrystalRendererSaved = m_pCrystalRenderer.release();
+  m_pCrystalRenderer.reset(new CCrystalRendererGDI());
 
   m_pPrintFont = new CFont;
   if (!m_pPrintFont->CreateFontIndirect (&lf))
@@ -3091,6 +2996,8 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
+  m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
+
   if (m_pPrintFont != nullptr)
     {
       delete m_pPrintFont;
@@ -3128,8 +3035,11 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
   TRACE (_T ("Printing page %d of %d, lines %d - %d\n"), 
         pInfo->m_nCurPage, m_nPrintPages, nTopLine, nEndLine);
 
-  pdc->SetTextColor(defaultLineColor);
-  pdc->SetBkColor(defaultBgColor);
+  m_pCrystalRenderer->BindDC(*pdc, m_rcPrintArea);
+  m_pCrystalRenderer->BeginDraw();
+
+  m_pCrystalRenderer->SetTextColor(defaultLineColor);
+  m_pCrystalRenderer->SetBkColor(defaultBgColor);
 
   if (m_bPrintHeader)
     {
@@ -3185,15 +3095,17 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
 
       if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
         {
-          DrawMargin (pdc, rcMargin, nCurrentLine, nCurrentLine + 1);
-          DrawSingleLine (pdc, rcLine, nCurrentLine);
+          DrawMargin (rcMargin, nCurrentLine, nCurrentLine + 1);
+          DrawSingleLine (rcLine, nCurrentLine);
           if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
-            DrawBoundaryLine (pdc, rcMargin.left, rcLine.right, rcMargin.bottom-1);
+            m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.bottom-1);
         }
 
       rcLine.top = rcLine.bottom;
       rcMargin.top = rcLine.bottom;
     }
+
+  m_pCrystalRenderer->EndDraw();
 
   pdc->SelectClipRgn (nullptr);
 }
@@ -3471,20 +3383,11 @@ GetScreenChars ()
 void CCrystalTextView::
 OnDestroy ()
 {
-  GetFont ()->GetLogFont (&m_lfBaseFont);
   DetachFromBuffer ();
   m_hAccel = nullptr;
 
   CView::OnDestroy ();
 
-  for (int I = 0; I < 4; I++)
-    {
-      if (m_apFonts[I] != nullptr)
-        {
-          delete m_apFonts[I];
-          m_apFonts[I] = nullptr;
-        }
-    }
   if (m_pCacheBitmap != nullptr)
     {
       delete m_pCacheBitmap;
@@ -3898,7 +3801,7 @@ ClientToText (const CPoint & point)
   int i = 0;
   const int nTabSize = GetTabSize();
 
-  m_iterChar.setText(reinterpret_cast<const UChar *>(pszLine), nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszLine), nLength);
   while (nIndex < nLength)
     {
       if (nBreaks && nIndex == anBreaks[i])
@@ -3920,7 +3823,7 @@ ClientToText (const CPoint & point)
 
       nPrevIndex = nIndex;
 
-      nIndex = m_iterChar.next();
+      nIndex = pIterChar->next();
     }
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
@@ -3992,8 +3895,8 @@ TextToClient (const CPoint & point)
   //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
-  m_iterChar.setText(reinterpret_cast<const UChar *>(pszLine), point.x);
-  for (int nIndex = 0; nIndex < point.x; nIndex = m_iterChar.next())
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszLine), point.x);
+  for (int nIndex = 0; nIndex < point.x; nIndex = pIterChar->next())
     {
       //BEGIN SW
       if( nIndex == nSubLineStart )
@@ -4123,9 +4026,9 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
     nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
   //END SW
-  m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nCharIndex);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nCharIndex);
   int I=0;
-  for (I = 0; I < nCharIndex; I = m_iterChar.next())
+  for (I = 0; I < nCharIndex; I = pIterChar->next())
     {
       //BEGIN SW
       if( nPreBreak == I && nBreaks )
@@ -4158,8 +4061,8 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nCurrentOffset = 0;
   int nTabSize = GetTabSize ();
-  m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
-  for (int I = 0; I < nLength; I = m_iterChar.next())
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+  for (int I = 0; I < nLength; I = pIterChar->next())
     {
       if (pszChars[I] == _T ('\t'))
         nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
@@ -4171,7 +4074,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
         {
           if (nOffset <= nCurrentOffset - nTabSize / 2)
             return I;
-          return m_iterChar.next();
+          return pIterChar->next();
         }
     }
   return nLength;
@@ -4557,10 +4460,8 @@ void CCrystalTextView::
 UpdateCompositionWindowFont() /* IME */
 {
   HIMC hIMC = ImmGetContext(m_hWnd);
-  LOGFONT logfont;
 
-  GetFont()->GetLogFont(&logfont);
-  ImmSetCompositionFont(hIMC, &logfont);
+  ImmSetCompositionFont(hIMC, &m_lfBaseFont);
 
   ImmReleaseContext(m_hWnd, hIMC);
 }
@@ -4609,14 +4510,7 @@ SetFont (const LOGFONT & lf)
   m_lfBaseFont = lf;
   m_nCharWidth = -1;
   m_nLineHeight = -1;
-  for (int I = 0; I < 4; I++)
-    {
-      if (m_apFonts[I] != nullptr)
-        {
-          delete m_apFonts[I];
-          m_apFonts[I] = nullptr;
-        }
-    }
+  m_pCrystalRenderer->SetFont(lf);
   if (::IsWindow (m_hWnd))
     {
       InvalidateScreenRect();
@@ -5198,12 +5092,30 @@ static void ConvertSearchFlagsToLastSearchInfos(LastSearchInfos *lastSearch, DWO
   lastSearch->m_bNoClose = (dwFlags & FIND_NO_CLOSE) != 0;
 }
 
+CPoint CCrystalTextView::
+GetSearchPos(DWORD dwSearchFlags)
+{
+  CPoint ptSearchPos;
+  if (IsSelection())
+    {
+      CPoint ptStart, ptEnd;
+      GetSelection(ptStart, ptEnd);
+      if( dwSearchFlags & FIND_DIRECTION_UP)
+        ptSearchPos = ptStart;
+      else
+        ptSearchPos = ptEnd;
+    }
+  else
+    ptSearchPos = m_ptCursorPos;
+  return ptSearchPos;
+}
+
 bool CCrystalTextView::
 FindText (const LastSearchInfos * lastSearch)
 {
   CPoint ptTextPos;
   DWORD dwSearchFlags = ConvertSearchInfosToSearchFlags(lastSearch);
-  if (!FindText (lastSearch->m_sText, m_ptCursorPos, dwSearchFlags, !lastSearch->m_bNoWrap,
+  if (!FindText (lastSearch->m_sText, GetSearchPos(dwSearchFlags), dwSearchFlags, !lastSearch->m_bNoWrap,
       &ptTextPos))
     {
       return false;
@@ -5337,14 +5249,7 @@ OnEditRepeat ()
       CPoint ptFoundPos;
       //BEGIN SW
       // for correct backward search we need some changes:
-      CPoint ptSearchPos = m_ptCursorPos;
-      if( m_dwLastSearchFlags & FIND_DIRECTION_UP && IsSelection() )
-        {
-          CPoint ptDummy;
-          GetSelection( ptSearchPos, ptDummy );
-        }
-
-      if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags,
+      if (! FindText(sText, GetSearchPos(m_dwLastSearchFlags), m_dwLastSearchFlags,
             (m_dwLastSearchFlags & FIND_NO_WRAP) == 0, &ptFoundPos))
         {
           CString prompt;
@@ -6081,6 +5986,18 @@ OnToggleColumnSelection ()
   Invalidate ();
 }
 
+void CCrystalTextView::SetRenderingMode(RENDERING_MODE nRenderingMode)
+{
+#ifdef _WIN64
+  if (nRenderingMode == RENDERING_MODE_GDI)
+    m_pCrystalRenderer.reset(new CCrystalRendererGDI());
+  else
+    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(nRenderingMode));
+  m_pCrystalRenderer->SetFont(m_lfBaseFont);
+#endif
+  m_nRenderingMode = nRenderingMode;
+}
+
 //BEGIN SW
 bool CCrystalTextView::GetWordWrapping() const
 {
@@ -6415,9 +6332,7 @@ int CCrystalTextView::GetCharCellCountUnicodeChar(const wchar_t *pch)
           int nWidthArray[256];
           wchar_t nStart = ch/256*256;
           wchar_t nEnd = nStart + 255;
-          CDC *pdc = GetDC();
-          CFont *pOldFont = pdc->SelectObject(GetFont());
-          GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
+          m_pCrystalRenderer->GetCharWidth(nStart, nEnd, nWidthArray);
           int nCharWidth = GetCharWidth();
           for (int i = 0; i < 256; i++) 
             {
@@ -6431,7 +6346,6 @@ int CCrystalTextView::GetCharCellCountUnicodeChar(const wchar_t *pch)
                 }
             }
           m_bChWidthsCalculated[ch / 256] = true;
-          pdc->SelectObject(pOldFont);
         }
     }
   if (m_iChDoubleWidthFlags[ch / 32] & (1 << (ch % 32)))

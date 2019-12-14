@@ -41,6 +41,7 @@ extern const String OPT_SYNTAX_HIGHLIGHT OP("Settings/HiliteSyntax");
 extern const String OPT_VIEW_WHITESPACE OP("Settings/ViewWhitespace");
 extern const String OPT_CONNECT_MOVED_BLOCKS OP("Settings/ConnectMovedBlocks");
 extern const String OPT_SCROLL_TO_FIRST OP("Settings/ScrollToFirst");
+extern const String OPT_RENDERING_MODE OP("Settings/RenderingMode");
 
 // Difference (in-line) highlight
 extern const String OPT_WORDDIFF_HIGHLIGHT OP("Settings/HiliteWordDiff");

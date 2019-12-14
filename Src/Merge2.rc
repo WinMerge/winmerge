@@ -104,6 +104,7 @@ END
 
 IDR_SPLASH              IMAGE                   "res\\splash.jpg"
 IDR_LOGO                IMAGE                   "res\\logo.jpg"
+IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 
 
 /////////////////////////////////////////////////////////////////////////////

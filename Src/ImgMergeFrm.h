@@ -72,7 +72,7 @@ public:
 	bool GenerateReport(const String& sFileName) const override;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
-	bool IsFileChangedOnDisk(int pane) const;
+	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
 	static bool IsLoadable();
@@ -125,6 +125,7 @@ private:
 	bool m_bRO[3];
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
+	int m_nActivePane;
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -218,6 +219,7 @@ private:
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
+	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

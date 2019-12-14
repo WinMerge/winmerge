@@ -558,12 +558,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Udskriv..."
 
-msgid "Page Set&up"
-msgstr "Side op&sætning"
+msgid "Page Set&up..."
+msgstr "Side op&sætning..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Vis udskrif&t"
+msgid "Print Previe&w..."
+msgstr "Vis udskrif&t..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -813,13 +812,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopier til hø&jre og gå til næste\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopier til hø&jre og gå til næste\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopier til v&enstre og gå til næste\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopier til v&enstre og gå til næste\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -829,8 +826,7 @@ msgstr "Kopier alt &til højre"
 msgid "Cop&y All to Left"
 msgstr "Kopier alt til venst&re"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -856,6 +852,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Samm&enlign"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1098,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rer returtegns forskelle (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Inkluder undermapper"
 
@@ -1317,12 +1320,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Find næste"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1351,6 +1354,9 @@ msgstr "&Valgte"
 #, c-format
 msgid "Wh&ole file"
 msgstr "He&le filen"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1668,10 +1674,6 @@ msgid "Ignore &case"
 msgstr "Ignorer store/små &bogstaver"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "&Aktiver detektion af flyttede blokke"
 
@@ -1745,13 +1747,15 @@ msgstr "&Ord niveau:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filfiltre"
 
-#, c-format
-msgid "Test"
-msgstr "Test"
+msgid "Test..."
+msgstr "Test..."
 
 #, c-format
 msgid "Install..."
@@ -2071,8 +2075,7 @@ msgstr "&Annuller"
 msgid "Test Filter"
 msgstr "Test Filter"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Tester filter..."
 
 #, c-format
@@ -2255,8 +2258,7 @@ msgstr "&Grænse for hurtig sammenligning (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2854,20 +2856,14 @@ msgstr ""
 "Fortsæt alligevel?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Gem fil fejlede.\n"
 "%1\n"
 "%2\n"
 "Vil du:\n"
-"\t-bruge et andet filenavn (Tryk Ok)\n"
-"\t-afbryd aktuel operation (Tryk Annuller)?"
+"\t- bruge et andet filenavn (Tryk Ok)\n"
+"\t- afbryd aktuel operation (Tryk Annuller)?"
 
 #, c-format
 msgid ""
@@ -3242,8 +3238,7 @@ msgstr "Højre encoding"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Ignoreret forskel"
 
 msgctxt "DirView|ColumnHeader"
@@ -3454,16 +3449,13 @@ msgstr "Højre side attributter."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Venstre sidefil EOL type"
+msgid "Left side file EOL type."
+msgstr "Venstre sidefil EOL type."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Højre sidefil EOL type"
+msgid "Right side file EOL type."
+msgstr "Højre sidefil EOL type."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3610,14 +3602,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Venstre fil (cp%d) og højre fil (cp%d) har ikke den samme codepage. \n"
+"Venstre fil (cp%d) og højre fil (cp%d) har ikke den samme codepage.\n"
 "Visning af hver fil i sin egen codepage vil give et bedre visuelt resultat "
 "men fletning/kopiering vil være farligt.\n"
 "Vil du behandle begge filer som værende i standard Windows codepage "
@@ -4021,5 +4008,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

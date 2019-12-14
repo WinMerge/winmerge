@@ -25,6 +25,7 @@
 #pragma once
 
 #include "DiffFileInfo.h"
+#include "IMergeDoc.h"
 
 class CHexMergeDoc;
 class IHexEditorWindow;
@@ -55,7 +56,7 @@ public:
 	bool GetReadOnly();
 	void SetReadOnly(bool);
 	void ResizeWindow();
-	bool IsFileChangedOnDisk(LPCTSTR);
+	IMergeDoc::FileChange IsFileChangedOnDisk(LPCTSTR);
 	void ZoomText(int amount);
 	static void CopySel(const CHexMergeView *src, CHexMergeView *dst);
 	static void CopyAll(const CHexMergeView *src, CHexMergeView *dst);

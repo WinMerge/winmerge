@@ -215,6 +215,9 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 {
 	HRESULT hr = E_INVALIDARG;
 
+	for (auto& path: m_strPaths)
+		path.erase();
+
 	// Files/folders selected normally from the explorer
 	if (pDataObj)
 	{
@@ -445,6 +448,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		default:
 			// "Compare..." - user wants to compare this single item and open WinMerge
 			m_strPaths[1].erase();
+			m_strPaths[2].erase();
 			bCompare = TRUE;
 			break;
 		}
@@ -458,11 +462,8 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0)
 		bAlterSubFolders = TRUE;
 
-	String strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
-			m_strPaths[1], bAlterSubFolders);
-
-	if (!m_strPaths[2].empty())
-		strCommandLine += _T(" \"") + m_strPaths[2] + _T("\"");
+	String strCommandLine = FormatCmdLine(strWinMergePath,
+		m_strPaths[0], m_strPaths[1], m_strPaths[2], bAlterSubFolders);
 
 	// Finally start a new WinMerge process
 	BOOL retVal = FALSE;
@@ -474,11 +475,24 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 			&stInfo, &processInfo);
 
-	if (!retVal)
+	if (retVal)
+	{
+		CloseHandle(processInfo.hThread);
+		CloseHandle(processInfo.hProcess);
+	}
+	else if (GetLastError() == ERROR_ELEVATION_REQUIRED)
+	{
+		String strCommandLine = FormatCmdLine(_T(""),
+			m_strPaths[0], m_strPaths[1], m_strPaths[2], bAlterSubFolders);
+		HINSTANCE hInstance = ShellExecute(nullptr, _T("runas"), strWinMergePath.c_str(), strCommandLine.c_str(), 0, SW_SHOWNORMAL);
+		if (reinterpret_cast<intptr_t>(hInstance) < 32)
+			return S_FALSE;
+	}
+	else
+	{
 		return S_FALSE;
+	}
 
-	CloseHandle(processInfo.hThread);
-	CloseHandle(processInfo.hProcess);
 	return S_OK;
 }
 
@@ -644,9 +658,9 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 
 /// Format commandline used to start WinMerge
 String CWinMergeShell::FormatCmdLine(const String &winmergePath,
-		const String &path1, const String &path2, BOOL bAlterSubFolders)
+		const String &path1, const String &path2, const String &path3, BOOL bAlterSubFolders)
 {
-	String strCommandline = _T("\"") + winmergePath + _T("\"");
+	String strCommandline = winmergePath.empty() ? _T("") : _T("\"") + winmergePath + _T("\"");
 
 	// Check if user wants to use context menu
 	BOOL bSubfoldersByDefault = FALSE;
@@ -663,6 +677,9 @@ String CWinMergeShell::FormatCmdLine(const String &winmergePath,
 
 	if (!m_strPaths[1].empty())
 		strCommandline += _T(" \"") + path2 + _T("\"");
+
+	if (!m_strPaths[2].empty())
+		strCommandline += _T(" \"") + path3 + _T("\"");
 
 	return strCommandline;
 }

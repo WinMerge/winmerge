@@ -557,12 +557,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "Ti&părire..."
 
-msgid "Page Set&up"
-msgstr "Aranjare în pa&gină"
+msgid "Page Set&up..."
+msgstr "Aranjare în pa&gină..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Pre&vizualizare tipărire"
+msgid "Print Previe&w..."
+msgstr "Pre&vizualizare tipărire..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -812,13 +811,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "C&opiază la dreapta şi avansează\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "C&opiază la dreapta şi avansează\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Copiază la s&tânga şi avansează\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Copiază la s&tânga şi avansează\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -828,8 +825,7 @@ msgstr "Copiază tot la dre&apta"
 msgid "Cop&y All to Left"
 msgstr "Copia&ză tot la stânga"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -855,6 +851,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Comp&ară"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1097,6 +1096,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ră diferenţele sfârşitului de linie (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Include subdirectoare"
 
@@ -1312,12 +1315,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Găseşte"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1346,6 +1349,9 @@ msgstr "&Selecţie"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Între&gul fişier"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1663,10 +1669,6 @@ msgid "Ignore &case"
 msgstr "Ignoră minus&cule/majuscule"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"
 
@@ -1740,13 +1742,15 @@ msgstr "La nivel de cu&vânt:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtre fişiere"
 
-#, c-format
-msgid "Test"
-msgstr "Testează"
+msgid "Test..."
+msgstr "Testează..."
 
 #, c-format
 msgid "Install..."
@@ -2060,8 +2064,7 @@ msgstr "&Renunţă"
 msgid "Test Filter"
 msgstr "Testează filtru"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Testare filtru..."
 
 #, c-format
@@ -2244,8 +2247,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2821,13 +2823,7 @@ msgstr ""
 "Continuaţi oricum?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Salvarea fişierului a eşuat.\n"
 "%1\n"
@@ -3190,8 +3186,7 @@ msgstr "Set de caractere dreapta"
 msgid "Middle Encoding"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Diferenţe ignorate"
 
 msgctxt "DirView|ColumnHeader"
@@ -3402,16 +3397,13 @@ msgstr "Atribute partea dreaptă."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "Tip SDL fişier partea stângă."
 
-#, c-format
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "Tip SDL fişier partea dreaptă."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3543,12 +3535,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Seturi de caractere diferite s-au găsit în fişierul din partea stângă (cp%d) faţă de partea dreaptă (cp%d). \n"
+"Seturi de caractere diferite s-au găsit în fişierul din partea stângă (cp%d) faţă de partea dreaptă (cp%d).\n"
 "Afişarea în setul de caractere propriu este mai potrivită dar fuziunea/copierea este periculoasă.\n"
 "Doriţi tratarea ambelor fişiere ca şi cum ar fi în setul de caractere implicit din Windows (recomandat)?"
 
@@ -3943,5 +3932,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

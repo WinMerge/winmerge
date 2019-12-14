@@ -560,12 +560,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "I&rarkitu..."
 
-msgid "Page Set&up"
-msgstr "msgstr "Ire&ki Gatazka Agiria..."
+msgid "Page Set&up..."
+msgstr "Ire&ki Gatazka Agiria..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Irarkitu Aurreikus&pena"
+msgid "Print Previe&w..."
+msgstr "Irarkitu Aurreikus&pena..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -815,13 +814,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "K&opiatu Eskuinera eta Aurrera egin\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "K&opiatu Eskuinera eta Aurrera egin\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopiatu Ez&kerrera eta Aurrera egin\tAlt+Ctrl+Right"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopiatu Ez&kerrera eta Aurrera egin\tCtrl+Alt+Right"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -831,8 +828,7 @@ msgstr "Kopiatu &Dena Eskuinera"
 msgid "Cop&y All to Left"
 msgstr "Kopia&tu Dena Ezkerrera"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -858,6 +854,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Alder&atu"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1100,6 +1099,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Az&piagiritegiak Barne"
 
@@ -1315,12 +1318,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "Bilatu &Hurrengoa"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1349,6 +1352,9 @@ msgstr "Hauta&pena"
 #, c-format
 msgid "Wh&ole file"
 msgstr "&Agiri osoa"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1666,10 +1672,6 @@ msgid "Ignore &case"
 msgstr "Ezikusi &kasua"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Gaitu bloke &mugitu atzematea"
 
@@ -1743,13 +1745,15 @@ msgstr "Hit&z maila:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Agiri-iragazkiak"
 
-#, c-format
-msgid "Test"
-msgstr "Azterketa"
+msgid "Test..."
+msgstr "Azterketa..."
 
 #, c-format
 msgid "Install..."
@@ -2067,8 +2071,7 @@ msgstr "E&zeztatu"
 msgid "Test Filter"
 msgstr "Azterketa Iragazkia"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Iragazkia aztertzen..."
 
 #, c-format
@@ -2251,8 +2254,7 @@ msgstr "&Alderaketa azkar muga (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2834,20 +2836,14 @@ msgstr ""
 "Jarraitu horrela ere?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Agiri gordetze hutsegitea.\n"
 "%1\n"
 "%2\n"
 "Nahi duzu:\n"
-"\t-agirizen ezberdin bat erabiltzea (Sakatu Ongi)\n"
-"\t-uneko eragiketa uztea (Sakatu Ezeztatu)?"
+"\t- agirizen ezberdin bat erabiltzea (Sakatu Ongi)\n"
+"\t- uneko eragiketa uztea (Sakatu Ezeztatu)?"
 
 #, c-format
 msgid ""
@@ -3219,9 +3215,8 @@ msgstr "Eskuin Kodeaketa"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Ezikusitako Ezberd."
+msgid "Ignored Diff"
+msgstr "Ezikusitako Ezberd"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3431,16 +3426,13 @@ msgstr "Eskuinaldearen ezaugarriak."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Ezkerraldeko agiria EOL motakoa da"
+msgid "Left side file EOL type."
+msgstr "Ezkerraldeko agiria EOL motakoa da."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Eskuinaldeko agiria EOL motakoa da"
+msgid "Right side file EOL type."
+msgstr "Eskuinaldeko agiria EOL motakoa da."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3572,12 +3564,9 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Kode-orrialde ezberdinak aurkitu dira ezkerreko (cp%d) eta eskuineko (cp%d) agirietan. \n"
+"Kode-orrialde ezberdinak aurkitu dira ezkerreko (cp%d) eta eskuineko (cp%d) agirietan.\n"
 "Erakutsiz agiri bakoitza kode-orrialde horretan erakuspen hobeago bat emango du baina batzea/kopiatzea kaltegarria izango da.\n"
 "Nahi duzu agiri biak tratatzea windowsen kode-orrialde berezkoan (gomendatuta)?"
 
@@ -3972,5 +3961,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

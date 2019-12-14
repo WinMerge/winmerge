@@ -364,6 +364,7 @@ protected:
 	afx_msg void OnMergeCompare();
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();
+	afx_msg void OnMergeCompareNonHorizontally();
 	afx_msg void OnMergeCompareXML();
 	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
@@ -392,6 +393,7 @@ protected:
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
+	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);

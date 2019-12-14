@@ -556,12 +556,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Одштампај..."
 
-msgid "Page Set&up"
-msgstr "Подеси с&траницу"
+msgid "Page Set&up..."
+msgstr "Подеси с&траницу..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Преглед пре штампа&ња"
+msgid "Print Previe&w..."
+msgstr "Преглед пре штампа&ња..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -810,13 +809,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Умножи у десн&о и настави\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Умножи у десн&о и настави\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Ум&ножи у лево и настави\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Ум&ножи у лево и настави\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -826,8 +823,7 @@ msgstr "Умно&жи све у десно"
 msgid "Cop&y All to Left"
 msgstr "Умнож&и све у лево"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -852,6 +848,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Упореди"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1094,6 +1093,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Занемари &разлике ознака завршетка реда (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Укључи и потфасцикле"
 
@@ -1299,12 +1302,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Нађи следеће"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1333,6 +1336,9 @@ msgstr "Изабраним"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Целој дат&отеци"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1646,10 +1652,6 @@ msgid "Ignore &case"
 msgstr "Занемари под&ударност"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
 
@@ -1723,13 +1725,15 @@ msgstr "Ранг ре&чи:"
 msgid "W&ord break characters:"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Филтер датотека"
 
-#, c-format
-msgid "Test"
-msgstr "Провера"
+msgid "Test..."
+msgstr "Провера..."
 
 #, c-format
 msgid "Install..."
@@ -2047,8 +2051,7 @@ msgstr "Откажи"
 msgid "Test Filter"
 msgstr "Провера филтера"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Проверавање филтера..."
 
 #, c-format
@@ -2231,8 +2234,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2805,19 +2807,13 @@ msgstr ""
 "Наставитe?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Чување није успело.\n"
 "%1\n"
 "%2\n"
 "Да ли желите да :\n"
-"\t-je запамтите под другим именом, притисните /У реду/\n"
+"\t- je запамтите под другим именом, притисните /У реду/\n"
 "\t- или притисните /Изађи/за прекид поступка?"
 
 #, c-format
@@ -3190,8 +3186,7 @@ msgstr "Кодирање десне"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Занемари разлике"
 
 msgctxt "DirView|ColumnHeader"
@@ -3402,16 +3397,13 @@ msgstr "Особине десне стране"
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Начин завршетка реда леве датотеке"
+msgid "Left side file EOL type."
+msgstr "Начин завршетка реда леве датотеке."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Начин завршетка реда десне датотеке"
+msgid "Right side file EOL type."
+msgstr "Начин завршетка реда десне датотеке."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3543,7 +3535,7 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 
 #, c-format
@@ -3937,5 +3929,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

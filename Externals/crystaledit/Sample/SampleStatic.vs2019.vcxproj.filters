@@ -237,6 +237,12 @@
     <ClCompile Include="..\editlib\icu.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\ccrystalrendererdirectdraw.cpp">
+      <Filter>editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp">
+      <Filter>editlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">
@@ -359,6 +365,15 @@
       <Filter>editlib\parsers</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\icu.hpp">
+      <Filter>editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\ccrystalrenderer.h">
+      <Filter>editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\ccrystalrendererdirectdraw.h">
+      <Filter>editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
       <Filter>editlib</Filter>
     </ClInclude>
   </ItemGroup>

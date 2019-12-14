@@ -430,11 +430,11 @@ msgstr "名前を付けて右側のファイルを保存(&R)..."
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
-msgid "Page Set&up"
-msgstr "ページ設定(&U)"
+msgid "Page Set&up..."
+msgstr "ページ設定(&U)..."
 
-msgid "Print Previe&w"
-msgstr "印刷プレビュー(&W)"
+msgid "Print Previe&w..."
+msgstr "印刷プレビュー(&W)..."
 
 msgid "&Convert Line Endings to"
 msgstr "改行コードの変換(&C)"
@@ -622,11 +622,11 @@ msgstr "左側からコピー\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "右側からコピー\tAlt+Shift+Left"
 
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "右側にコピーして次に進む(&O)\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "右側にコピーして次に進む(&O)\tCtrl+Alt+Right"
 
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "左側にコピーして次に進む(&T)\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "左側にコピーして次に進む(&T)\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
 msgstr "すべてを右側にコピー(&A)"
@@ -634,8 +634,8 @@ msgstr "すべてを右側にコピー(&A)"
 msgid "Cop&y All to Left"
 msgstr "すべてを左側にコピー(&Y)"
 
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "自動マージ(&U)\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "自動マージ(&U)\tCtrl+Alt+M"
 
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr "同期ポイントの追加(&S)\tAlt+S"
@@ -654,6 +654,9 @@ msgstr "分割(&L)"
 
 msgid "Comp&are"
 msgstr "比較(&A)"
+
+msgid "Compare Non-hor&izontally..."
+msgstr "非水平的に比較する(&I)..."
 
 msgid "Compare Non-hor&izontally"
 msgstr "非水平的に比較する(&I)"
@@ -852,6 +855,9 @@ msgstr "大文字と小文字を区別する(&T)"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "コードページの違いを無視する(&D)"
+
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -1018,11 +1024,11 @@ msgstr "最後まで検索した後ループしない(&O)"
 msgid "&Don't close this dialog box"
 msgstr "このダイアログ ボックスを閉じない(&D)"
 
-msgid "Find &Prev"
-msgstr "前を検索(&P)"
-
 msgid "&Find Next"
 msgstr "次を検索(&F)"
+
+msgid "Find &Prev"
+msgstr "前を検索(&P)"
 
 msgid "&Ok"
 msgstr "&OK"
@@ -1044,6 +1050,9 @@ msgstr "選択範囲(&S)"
 
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
+
+msgid "Find Pre&v"
+msgstr "前を検索(&V)"
 
 msgid "&Replace"
 msgstr "置換して次に(&R)"
@@ -1289,9 +1298,6 @@ msgstr "空行を無視する(&K)"
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
-msgid "Ignore codepage &differences"
-msgstr "コードページの違いを無視する(&D)"
-
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
@@ -1349,11 +1355,14 @@ msgstr "単語単位(&W):"
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
 
+msgid "&Rendering Mode:"
+msgstr "レンダリングモード(&R):"
+
 msgid "Filefilters"
 msgstr "ファイル フィルタ"
 
-msgid "Test"
-msgstr "テスト"
+msgid "Test..."
+msgstr "テスト..."
 
 msgid "Install..."
 msgstr "インストール..."
@@ -1598,8 +1607,8 @@ msgstr "キャンセル(&C)"
 msgid "Test Filter"
 msgstr "フィルタのテスト"
 
-msgid "Testing filter ..."
-msgstr "テストするフィルタ..."
+msgid "Testing filter..."
+msgstr "テストするフィル..."
 
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"
@@ -1740,9 +1749,7 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "&Binary compare limit (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
-msgid ""
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 "比較スレッドの数(&N):\n"
 "負の値を指定した場合、スレッド数は使用可能な CPU コア数を加算した値になりま"
@@ -2274,19 +2281,13 @@ msgstr ""
 "無視して続けますか?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "ファイルの保存に失敗しました。\n"
 "%1\n"
 "%2\n"
-"別名で保存する場合は [OK] を、\n"
-"中止する場合は、[キャンセル] を押してください"
+"- 別名で保存する場合は [OK] を、\n"
+"- 中止する場合は、[キャンセル] を押してください"
 
 #, c-format
 msgid ""
@@ -2621,7 +2622,7 @@ msgstr "右文字コード"
 msgid "Middle Encoding"
 msgstr "中文字コード"
 
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "無視した差異数"
 
 msgctxt "DirView|ColumnHeader"
@@ -2788,13 +2789,13 @@ msgstr "右側の属性です。"
 msgid "Middle side attributes."
 msgstr "中央の属性です。"
 
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "左側の EOL タイプです。"
 
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "右側の EOL タイプです。"
 
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr "中央の EOL タイプです。"
 
 msgid "Left side encoding."
@@ -2916,12 +2917,7 @@ msgid "Do you want to move to the previous page?"
 msgstr "前のページに移動しますか?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n"
 "各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージや"
@@ -3331,4 +3327,37 @@ msgstr ""
 "次のパラメータが指定可能です。\n"
 "$file: 現在のファイルのパス名\n"
 "$linenum: 現在のカーソル位置の行番号"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
 

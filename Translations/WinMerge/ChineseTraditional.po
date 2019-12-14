@@ -561,12 +561,11 @@ msgstr "儲存右邊為(&R)..."
 msgid "&Print..."
 msgstr "列印(&P)..."
 
-msgid "Page Set&up"
-msgstr "設定列印格式(&U)"
+msgid "Page Set&up..."
+msgstr "設定列印格式(&U)..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "預覽列印(&R)"
+msgid "Print Previe&w..."
+msgstr "預覽列印(&R)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -820,13 +819,11 @@ msgstr "從左邊複製\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "從右邊複製\tAlt+Shift+Right"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "複製到右邊後到下一個(&O)\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "複製到右邊後到下一個(&O)\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "複製到左邊後到下一個(&T)\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "複製到左邊後到下一個(&T)\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -836,9 +833,8 @@ msgstr "全部複製到右邊(&A)"
 msgid "Cop&y All to Left"
 msgstr "全部複製到左邊(&Y)"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "自動合併(&U)\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "自動合併(&U)\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -863,6 +859,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "比較(&A)"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1105,6 +1104,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "忽略代碼頁不同(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "包括子資料夾(&I)"
 
@@ -1322,12 +1325,12 @@ msgid "&Don't close this dialog box"
 msgstr "不要關閉此對話盒"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "找上一個(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "找下一個(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "找上一個(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1356,6 +1359,9 @@ msgstr "選取區(&S)"
 #, c-format
 msgid "Wh&ole file"
 msgstr "整個檔案(&O)"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1673,10 +1679,6 @@ msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "忽略代碼頁不同(&D)"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "偵測移位的區塊(&N)"
 
@@ -1750,13 +1752,15 @@ msgstr "字階層(&W)："
 msgid "W&ord break characters:"
 msgstr "斷句字元(&O)："
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "檔案篩選器"
 
-#, c-format
-msgid "Test"
-msgstr "測試"
+msgid "Test..."
+msgstr "測試..."
 
 #, c-format
 msgid "Install..."
@@ -2075,9 +2079,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "測試篩選器"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "測試篩選器 ..."
+msgid "Testing filter..."
+msgstr "測試篩選器..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2259,9 +2262,8 @@ msgstr "快速比較之檔案大小上限 (MB)(&Q)："
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "比較進程數(&N)(負數表示附加可用的CPU內核數量)："
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\n比較進程數(&N)(負數表示附加可用的CPU內核數量)："
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2843,20 +2845,14 @@ msgstr ""
 "仍舊繼續嗎？"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "無法儲存檔案。\n"
 "%1\n"
 "%2\n"
 "要：\n"
-"\t-以不同名稱儲存檔案 (按「確定」)\n"
-"\t-放棄目前操作(按「取消」)？"
+"\t- 以不同名稱儲存檔案 (按「確定」)\n"
+"\t- 放棄目前操作(按「取消」)？"
 
 #, c-format
 msgid ""
@@ -3225,8 +3221,7 @@ msgstr "右邊編碼"
 msgid "Middle Encoding"
 msgstr "中間編碼"
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "忽略的差異"
 
 msgctxt "DirView|ColumnHeader"
@@ -3437,17 +3432,14 @@ msgstr "右邊屬性。"
 msgid "Middle side attributes."
 msgstr "中間屬性。"
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "左邊檔案 EOL 類型"
+msgid "Left side file EOL type."
+msgstr "左邊檔案 EOL 類型."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "右邊檔案 EOL 類型"
+msgid "Right side file EOL type."
+msgstr "右邊檔案 EOL 類型."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "中間檔案 EOL 類型"
+msgid "Middle side file EOL type."
+msgstr "中間檔案 EOL 類型."
 
 #, c-format
 msgid "Left side encoding."
@@ -3578,10 +3570,7 @@ msgid "Do you want to move to the previous page?"
 msgstr "你想要移動到上一頁嗎？"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "左邊 (cp%d) 和右邊 (cp%d) 檔案所用的編碼頁不同。\n"
 "即使維持各別碼頁會分別看到文字，但合併/複製會有危險。\n"
@@ -3985,4 +3974,37 @@ msgstr "建立資料夾失敗"
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "你可以指定下列參數到路徑：\n$file: 現在檔案路徑\n$linenum: 現在游標行號"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
 

@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Göran Håkansson <goran.x.hakansson at telia.com>
@@ -558,12 +558,11 @@ msgstr "Spara Höger som ..."
 msgid "&Print..."
 msgstr "Skriv ut ..."
 
-msgid "Page Set&up"
-msgstr "UtskriftsFormat"
+msgid "Page Set&up..."
+msgstr "UtskriftsFormat..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "Förhandsgranska Utskrift"
+msgid "Print Previe&w..."
+msgstr "Förhandsgranska Utskrift..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -813,13 +812,11 @@ msgstr "Kopiera från Vänster\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Kopiera från Höger\tAlt+Shift+Left"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopiera till Höger och Fortskrid\tAlt+Ctrl+Höger"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopiera till Höger och Fortskrid\tCtrl+Alt+Höger"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopiera till Vänster och Fortskrid\tAlt+Ctrl+Vänster"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopiera till Vänster och Fortskrid\tCtrl+Alt+Vänster"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -829,9 +826,8 @@ msgstr "Kopiera Allt till Höger"
 msgid "Cop&y All to Left"
 msgstr "Kopiera Allt till Vänster"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "Auto SammanFog\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -856,6 +852,9 @@ msgstr "Dela"
 #, c-format
 msgid "Comp&are"
 msgstr "Jämför"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1098,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Åsidosätt TextKodningsSkillnader"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Inkludera UnderMappar"
 
@@ -1312,12 +1315,12 @@ msgid "&Don't close this dialog box"
 msgstr "Stäng inte denna dialogruta"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Sök Föregående"
-
-#, c-format
 msgid "&Find Next"
 msgstr "Sök Nästa"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Sök Föregående"
 
 #, c-format
 msgid "&Ok"
@@ -1346,6 +1349,9 @@ msgstr "Markering"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Hela filen"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1663,10 +1669,6 @@ msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "Åsidosätt TextKodningsSkillnader"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Möjliggör urskiljning av flyttade block"
 
@@ -1740,13 +1742,15 @@ msgstr "Ordnivå:"
 msgid "W&ord break characters:"
 msgstr "Ordbrytningstecken:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filfilter"
 
-#, c-format
-msgid "Test"
-msgstr "Testa"
+msgid "Test..."
+msgstr "Testa..."
 
 #, c-format
 msgid "Install..."
@@ -2067,9 +2071,8 @@ msgstr "Avbryt"
 msgid "Test Filter"
 msgstr "Testa Filter"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Testar filter ..."
+msgid "Testing filter..."
+msgstr "Testar filter..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2251,8 +2254,8 @@ msgstr "Högsta SnabbJämförelseStorlek (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "Högsta Binär JämförelseStorlek (MB):"
 
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "Antal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\nAntal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2851,20 +2854,14 @@ msgstr ""
 "Vill Ni fortsätta i alla fall?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Det gick inte att spara filen.\n"
 "%1\n"
 "%2\n"
 "Vill Ni:\n"
-"\t-använda ett annat filnamn (Tryck OK)\n"
-"\t-avbryta sparande av fil (Tryck Avbryt)?"
+"\t- använda ett annat filnamn (Tryck OK)\n"
+"\t- avbryta sparande av fil (Tryck Avbryt)?"
 
 #, c-format
 msgid ""
@@ -3235,9 +3232,8 @@ msgstr "Höger Kodning"
 msgid "Middle Encoding"
 msgstr "Mitter Kodning"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Åsidosatta Skillnader."
+msgid "Ignored Diff"
+msgstr "Åsidosatta Skillnader"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3447,17 +3443,14 @@ msgstr "Höger sidas egenskaper."
 msgid "Middle side attributes."
 msgstr "Mitters egenskaper."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Vänster sidas Filradslutstyp"
+msgid "Left side file EOL type."
+msgstr "Vänster sidas Filradslutstyp."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Höger sidas Filradslutstyp"
+msgid "Right side file EOL type."
+msgstr "Höger sidas Filradslutstyp."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Mitters Filradslutstyp"
+msgid "Middle side file EOL type."
+msgstr "Mitters Filradslutstyp."
 
 #, c-format
 msgid "Left side encoding."
@@ -3587,12 +3580,9 @@ msgid "Do you want to move to the previous page?"
 msgstr "Vill Ni växla till föregående sida?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Vänster (cp%d) och Höger (cp%d) fil har olika TextKodning. \n"
+"Vänster (cp%d) och Höger (cp%d) fil har olika TextKodning.\n"
 "Att visa  filerna i deras egna Kodning ger en bättre visning men sammanfogning/kopiering blir farligt.\n"
 "Vill Ni att båda filer betraktas som att de är i Windows förvalda Kodning (anrådes)?"
 
@@ -4050,3 +4040,37 @@ msgstr ""
 "Ni kan ange följande parametrar för sökvägen:\n"
 "$file: Sökvägsnamnet för nuvarande fil\n"
 "$linenum: Linjenumret för markörens nuvarande position"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+

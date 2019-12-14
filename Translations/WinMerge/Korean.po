@@ -561,12 +561,11 @@ msgstr "오른쪽 저장(&R)..."
 msgid "&Print..."
 msgstr "인쇄(&P)..."
 
-msgid "Page Set&up"
-msgstr "페이지 설정(&T)"
+msgid "Page Set&up..."
+msgstr "페이지 설정(&T)..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "인쇄 미리보기(&R)"
+msgid "Print Previe&w..."
+msgstr "인쇄 미리보기(&R)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -816,13 +815,11 @@ msgstr "왼쪽에서 복사\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "오른쪽에서 복사\tAlt+Shift+Left"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "오른쪽으로 복사 후 전진(&O)\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "오른쪽으로 복사 후 전진(&O)\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "왼쪽으로 복사 후 전진(&T)\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "왼쪽으로 복사 후 전진(&T)\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -832,9 +829,8 @@ msgstr "전부 오른쪽으로 복사(&A)"
 msgid "Cop&y All to Left"
 msgstr "전부 왼쪽으로 복사(&E)"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "자동 병합(&U)\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "자동 병합(&U)\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -859,6 +855,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "비교(&A)"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1101,6 +1100,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "코드페이지 차이 무시하기(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함하기(&I)"
 
@@ -1316,12 +1319,12 @@ msgid "&Don't close this dialog box"
 msgstr "이 대화 상자를 닫지 않음(&D)"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "이전 찾기(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "다음 찾기(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "이전 찾기(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1350,6 +1353,9 @@ msgstr "선택(&S)"
 #, c-format
 msgid "Wh&ole file"
 msgstr "전체 파일(&O)"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1667,10 +1673,6 @@ msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "코드페이지 차이 무시하기(&D)"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "이동된 블럭 감지 사용하기"
 
@@ -1744,13 +1746,15 @@ msgstr "단어 단위(&W):"
 msgid "W&ord break characters:"
 msgstr "단어 분리 문자(&O):"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "파일 필터"
 
-#, c-format
-msgid "Test"
-msgstr "테스트"
+msgid "Test..."
+msgstr "테스트..."
 
 #, c-format
 msgid "Install..."
@@ -2072,8 +2076,7 @@ msgstr "취소(&C)"
 msgid "Test Filter"
 msgstr "필터 테스트"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "필터 테스트 중..."
 
 #, c-format
@@ -2256,9 +2259,8 @@ msgstr "빠른 비교 제한 (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2859,13 +2861,7 @@ msgstr ""
 "계속 진행할까요?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "파일 저장에 실패했습니다.\n"
 "%1\n"
@@ -3243,8 +3239,7 @@ msgstr "오른쪽 인코딩"
 msgid "Middle Encoding"
 msgstr "가운데 인코딩"
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "무시된 차이점"
 
 msgctxt "DirView|ColumnHeader"
@@ -3455,16 +3450,13 @@ msgstr "오른쪽 속성"
 msgid "Middle side attributes."
 msgstr "가운데 속성"
 
-#, c-format
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "왼쪽 파일 줄끝 형식"
 
-#, c-format
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "오른쪽 파일 줄끝 형식"
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr "가운데 파일 줄끝 형식"
 
 #, c-format
@@ -3596,10 +3588,7 @@ msgid "Do you want to move to the previous page?"
 msgstr "이전 페이지로 이동할까요?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "왼쪽(cp%d)과 오른쪽(cp%d) 파일의 코드페이지가 서로 다릅니다.\n"
 "각 파일의 코드페이지로 출력하는 것이 보기는 좋으나 병합이나 복사할 때 문제가 생길 수 있습니다.\n"
@@ -4080,4 +4069,37 @@ msgstr ""
 "경로에 다음 매개 변수를 지정할 수 있습니다:\n"
 "$file: 현재 파일의 경로명\n"
 "$linenum: 현재 커서 위치의 줄 번호"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
 

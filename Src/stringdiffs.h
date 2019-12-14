@@ -51,8 +51,4 @@ std::vector<wdiff> ComputeWordDiffs(const String& str1, const String& str2,
 std::vector<wdiff> ComputeWordDiffs(int nStrings, const String str[3], 
                    bool case_sensitive, int whitespace, int breakType, bool byte_level);
 
-void ComputeByteDiff(const String& str1, const String& str2,
-			bool casitive, int xwhite, 
-			int begin[2], int end[2], bool equal);
-
 }

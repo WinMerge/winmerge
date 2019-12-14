@@ -557,11 +557,10 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Tisk..."
 
-msgid "Page Set&up"
-msgstr "V&zhled stránky"
+msgid "Page Set&up..."
+msgstr "V&zhled stránky..."
 
-#, c-format
-msgid "Print Previe&w"
+msgid "Print Previe&w..."
 msgstr "Ná&hled..."
 
 #, c-format
@@ -812,13 +811,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Kopírovat dopr&ava a na další\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Kopírovat dopr&ava a na další\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Kopírovat dol&eva a na další\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopírovat dol&eva a na další\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -828,8 +825,7 @@ msgstr "&Kopírovat vše doprava"
 msgid "Cop&y All to Left"
 msgstr "K&opírovat vše doleva"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -855,6 +851,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Porovnat"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1097,6 +1096,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ignorovat rozdíly v &koncích řádků (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Včetně pod&složek"
 
@@ -1314,12 +1317,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Najít další"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1348,6 +1351,9 @@ msgstr "ve vý&běru"
 #, c-format
 msgid "Wh&ole file"
 msgstr "v ce&lém souboru"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1665,10 +1671,6 @@ msgid "Ignore &case"
 msgstr "Ignorovat &malá a velká písmena"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Povolit zjišťování přesunutých &bloků"
 
@@ -1742,13 +1744,15 @@ msgstr "Na úrovni &slov:"
 msgid "W&ord break characters:"
 msgstr "Zn&aky oddělující slova:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Filtrování souborů"
 
-#, c-format
-msgid "Test"
-msgstr "Z&kouška"
+msgid "Test..."
+msgstr "Z&kouška..."
 
 #, c-format
 msgid "Install..."
@@ -2062,9 +2066,8 @@ msgstr "Storno"
 msgid "Test Filter"
 msgstr "Zkouška filtru"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Zkouška filtru ..."
+msgid "Testing filter..."
+msgstr "Zkouška filtru..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2246,8 +2249,7 @@ msgstr "&Omezení pro rychlé porovnání (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2787,13 +2789,7 @@ msgstr ""
 "Chcete pokračovat?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Ukládání souboru selhalo.\n"
 "%1\n"
@@ -3156,8 +3152,7 @@ msgstr "Kódování vpravo"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Ignor. rozdílů"
 
 msgctxt "DirView|ColumnHeader"
@@ -3368,16 +3363,13 @@ msgstr "Atributy souboru na pravé straně"
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Typ konce řádků v souboru na levé straně"
+msgid "Left side file EOL type."
+msgstr "Typ konce řádků v souboru na levé straně."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Typ konce řádků v souboru na pravé straně"
+msgid "Right side file EOL type."
+msgstr "Typ konce řádků v souboru na pravé straně."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format
@@ -3499,10 +3491,7 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "V souborech vlevo (cp%d) a vpravo (cp%d) bylo nalezeno rozdílné kódování.\n"
 "Zobrazení každého souboru v jeho znakové stránce poskytne lepší náhled, ale slučování nebo kopírování bude nebezpečné.\n"
@@ -3900,5 +3889,38 @@ msgstr ""
 
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
 msgstr ""
 

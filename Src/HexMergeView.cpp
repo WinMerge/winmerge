@@ -246,18 +246,19 @@ int CHexMergeView::GetLength()
  * @param [in] path File to check
  * @return `true` if file is changed.
  */
-bool CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
+IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 {
 	DiffFileInfo dfi;
-	dfi.Update(path);
+	if (!dfi.Update(path))
+		return IMergeDoc::FileRemoved;
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
 	int64_t timeDiff = dfi.mtime - m_fileInfo.mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo.size))
-		return true;
-	return false;
+		return IMergeDoc::FileChanged;
+	return IMergeDoc::FileNoChange;
 }
 
 /**
@@ -298,7 +299,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 {
 	// Warn user in case file has been changed by someone else
-	if (IsFileChangedOnDisk(path))
+	if (IsFileChangedOnDisk(path) == IMergeDoc::FileChanged)
 	{
 		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
 		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)

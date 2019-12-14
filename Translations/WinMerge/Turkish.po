@@ -558,12 +558,11 @@ msgstr "Sağı Fa&rklı Kaydet..."
 msgid "&Print..."
 msgstr "&Yazdır..."
 
-msgid "Page Set&up"
-msgstr "&Sayfa Ayarları"
+msgid "Page Set&up..."
+msgstr "&Sayfa Ayarları..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&Baskı Önizleme"
+msgid "Print Previe&w..."
+msgstr "&Baskı Önizleme..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -813,13 +812,11 @@ msgstr "Sol&dan Kopyala\tAlt+Shift+Sağ"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Sağdan &Kopyala\tAlt+Shift+Sol"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Sağa Kopyala &ve İlerle\tAlt+Ctrl+Sağ"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Sağa Kopyala &ve İlerle\tCtrl+Alt+Sağ"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Sola Kopyala ve İle&rle\tAlt+Ctrl+Sol"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Sola Kopyala ve İle&rle\tCtrl+Alt+Sol"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -829,9 +826,8 @@ msgstr "Tü&münü Sağa Kopyala"
 msgid "Cop&y All to Left"
 msgstr "&Tümünü Sola Kopyala"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "Otomatik &Birleştir\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -856,6 +852,9 @@ msgstr "Bö&l"
 #, c-format
 msgid "Comp&are"
 msgstr "K&arşılaştır"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1098,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Satı&r Sonu Farklılıkları Yok Sayılsın (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Ko&d Sayfası Farkları Yok Sayılsın"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "A&lt Klasörler Katılsın"
 
@@ -1315,12 +1318,12 @@ msgid "&Don't close this dialog box"
 msgstr "Bu &Pencere Kapatılmasın"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Ö&ncekini Bul"
-
-#, c-format
 msgid "&Find Next"
 msgstr "S&onrakini Bul"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Ö&ncekini Bul"
 
 #, c-format
 msgid "&Ok"
@@ -1349,6 +1352,9 @@ msgstr "&Seçilmiş Bölümde"
 #, c-format
 msgid "Wh&ole file"
 msgstr "D&osyanın Tümünde"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1666,10 +1672,6 @@ msgid "Ignore &case"
 msgstr "BÜYÜK-Küçük &Harf Ayrımı Yapılmasın"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "Ko&d Sayfası Farkları Yok Sayılsın"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Taşı&nan Blok Algılaması Kullanılsın"
 
@@ -1743,13 +1745,15 @@ msgstr "&Sözcük Düzeyinde:"
 msgid "W&ord break characters:"
 msgstr "&Sözcük Kesme Karakterleri:"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
 #, c-format
 msgid "Filefilters"
 msgstr "Dosya Süzgeçleri"
 
-#, c-format
-msgid "Test"
-msgstr "Sına"
+msgid "Test..."
+msgstr "Sına..."
 
 #, c-format
 msgid "Install..."
@@ -2067,8 +2071,7 @@ msgstr "İ&ptal"
 msgid "Test Filter"
 msgstr "Süzgeci Sına"
 
-#, c-format
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Süzgeç sınanıyor..."
 
 #, c-format
@@ -2251,9 +2254,8 @@ msgstr "&Hızlı Karşılaştırma Sınırı (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "Karşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka işlemci çekirdeklerine eklenir):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\nKarşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka işlemci çekirdeklerine eklenir):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2821,18 +2823,13 @@ msgstr "Özgün dosya yedeklenemedi:\n"
 "Gene de devam edilsin mi?"
 
 #, c-format
-msgid "Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr "Dosya kaydedilemedi.\n"
 "%1\n"
 "%2\n"
 "Ne yapmak istersiniz:\n"
-"\t-Farklı bir ad kullanılsın (Tamam Üzerine Tıklayın)\n"
-"\t-Bu işlem iptal edilsin (İptal Üzerine Tıklayın)"
+"\t- Farklı bir ad kullanılsın (Tamam Üzerine Tıklayın)\n"
+"\t- Bu işlem iptal edilsin (İptal Üzerine Tıklayın)"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3186,9 +3183,8 @@ msgstr "Sağ Dosya Kodlaması"
 msgid "Middle Encoding"
 msgstr "Orta Dosya Kodlaması"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Yok Sayılan Farklılıklar."
+msgid "Ignored Diff"
+msgstr ""
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3398,17 +3394,14 @@ msgstr "Sağdaki dosyanın öznitelikleri."
 msgid "Middle side attributes."
 msgstr "Ortadaki dosyanın öznitelikleri."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Soldaki dosyanın satır sonu türü"
+msgid "Left side file EOL type."
+msgstr ""
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Sağdaki dosyanın satır sonu türü"
+msgid "Right side file EOL type."
+msgstr ""
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Ortadaki dosyanın satır sonu türü"
+msgid "Middle side file EOL type."
+msgstr ""
 
 #, c-format
 msgid "Left side encoding."
@@ -3533,12 +3526,8 @@ msgid "Do you want to move to the previous page?"
 msgstr "Önceki sayfaya geçmek ister misiniz?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
-msgstr "Sol panodaki (cp%d) ve sağ panodaki (cp%d) dosyaların kod sayfaları farklı. \n"
-"Dosyalar kendi kod sayfalarında daha iyi bir görüntülenir ancak birleştirme/kopyalama işlemleri tehlikeli olur.\n"
-"Dosyaların varsayılan Windows kod sayfasını kullanıyormuş gibi işlenmesini ister misiniz (önerilir)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr ""
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
@@ -3968,4 +3957,37 @@ msgid "You can specify the following parameters to the path:\n"
 msgstr "Yolda şu parametreler kullanılabilir:\n"
 "$file: Geçerli dosyasının yol adı\n"
 "$linenum: Geçerli imleç konumunun satır numarası"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
 

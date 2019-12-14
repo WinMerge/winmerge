@@ -20,12 +20,31 @@ typedef int32_t UChar32;
 typedef char16_t UChar;
 typedef struct UBreakIterator UBreakIterator;
 typedef enum UErrorCode { U_ZERO_ERROR = 0 } UErrorCode;
+enum { U_PARSE_CONTEXT_LEN = 16 };
+typedef struct UParseError {
+	int32_t line;
+	int32_t offset;
+	UChar   preContext[U_PARSE_CONTEXT_LEN];
+	UChar   postContext[U_PARSE_CONTEXT_LEN];
+} UParseError;
+
+class ICUBreakIterator;
+
+template<int N>
+extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator;
 
 typedef UBreakIterator* (*ubrk_open_type)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 ICU_EXTERN UBreakIterator* (*g_pubrk_open)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 inline UBreakIterator* ubrk_open(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status)
 {
 	return g_pubrk_open(type, locale, text, textLength, status);
+}
+
+typedef UBreakIterator* (*ubrk_openRules_type)(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status);
+ICU_EXTERN UBreakIterator* (*g_pubrk_openRules)(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status);
+inline UBreakIterator* ubrk_openRules(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status)
+{
+	return g_pubrk_openRules(rules, rulesLength, text, textLength, parseErr, status);
 }
 
 typedef void (*ubrk_setText_type)(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status);
@@ -85,6 +104,7 @@ public:
 		if (!m_hLibrary)
 			return;
 		g_pubrk_open = reinterpret_cast<ubrk_open_type>(GetProcAddress(m_hLibrary, "ubrk_open"));
+		g_pubrk_openRules = reinterpret_cast<ubrk_openRules_type>(GetProcAddress(m_hLibrary, "ubrk_openRules"));
 		g_pubrk_setText = reinterpret_cast<ubrk_setText_type>(GetProcAddress(m_hLibrary, "ubrk_setText"));
 		g_pubrk_close = reinterpret_cast<ubrk_close_type>(GetProcAddress(m_hLibrary, "ubrk_close"));
 		g_pubrk_first = reinterpret_cast<ubrk_first_type>(GetProcAddress(m_hLibrary, "ubrk_first"));
@@ -114,7 +134,15 @@ public:
 		if (ICULoader::IsLoaded())
 		{
 			UErrorCode status = U_ZERO_ERROR;
-			m_iter = ubrk_open(type, locale, reinterpret_cast<const UChar *>(text), textLength, &status);
+			if (type == UBRK_CHARACTER)
+			{
+				UParseError parseError;
+				m_iter = ubrk_openRules(kCustomRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomRules))), text, textLength, &parseError, &status);
+			}
+			else
+			{
+				m_iter = ubrk_open(type, locale, reinterpret_cast<const UChar *>(text), textLength, &status);
+			}
 			if (m_iter)
 				ubrk_first(m_iter);
 		}
@@ -137,6 +165,14 @@ public:
 		return status;
 	}
 
+	int first()
+	{
+		if (m_iter)
+			return ubrk_first(m_iter);
+		m_i = 0;
+		return m_i;
+	}
+
 	int next()
 	{
 		if (m_iter)
@@ -144,7 +180,14 @@ public:
 			int pos = ubrk_next(m_iter);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else return mynext();
+		return mynext();
+	}
+
+	int previous()
+	{
+		if (m_iter)
+			return ubrk_previous(m_iter);
+		return myprevious();
 	}
 
 	int preceding(int32_t offset)
@@ -154,7 +197,7 @@ public:
 			int pos = ubrk_preceding(m_iter, offset);
 			return (pos == UBRK_DONE) ? 0: pos;
 		}
-		else return mypreceding(offset);
+		return mypreceding(offset);
 	}
 
 	int following(int32_t offset)
@@ -164,7 +207,22 @@ public:
 			int pos = ubrk_following(m_iter, offset);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else return myfollowing(offset);
+		return myfollowing(offset);
+	}
+
+	static ICUBreakIterator *getCharacterBreakIterator(const UChar * text, int32_t textLength)
+	{
+		return getCharacterBreakIterator<1>(text, textLength);
+	}
+
+	template<int N>
+	static ICUBreakIterator *getCharacterBreakIterator(const UChar * text, int32_t textLength)
+	{
+		if (!m_pCharaterBreakIterator<N>)
+			m_pCharaterBreakIterator<N>.reset(new ICUBreakIterator(UBRK_CHARACTER, "en", text, textLength));
+		else
+			m_pCharaterBreakIterator<N>->setText(text, textLength);
+		return m_pCharaterBreakIterator<N>.get();
 	}
 
 private:
@@ -181,11 +239,24 @@ private:
 		return m_i;
 	}
 
+	int myprevious()
+	{
+		m_i = mypreceding(m_i);
+		return m_i;
+	}
+
 	int mypreceding(int32_t offset)
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
+			if (offset <= 1)
+			{
+				m_i = offset - 1;
+				if (m_i < 0)
+					m_i = UBRK_DONE;
+			}
+			else
+				m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
 		}
 		else if (m_type == UBRK_WORD)
 		{
@@ -238,11 +309,11 @@ private:
 		}
 		return m_i;
 	}
-
 	UBreakIterator* m_iter;
 	UBreakIteratorType m_type;
 	const UChar *m_text;
 	int m_i;
 	int m_textLength;
+	static const UChar *kCustomRules;
 };
 

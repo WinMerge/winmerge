@@ -140,13 +140,6 @@ class CLocationView;
 class CMergeDoc : public CDocument, public IMergeDoc
 {
 public:
-	enum FileChange
-	{
-		FileNoChange,
-		FileChanged,
-		FileRemoved,
-	};
-
 // Attributes
 public:
 	static int m_nBuffersTemp;

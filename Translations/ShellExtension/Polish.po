@@ -15,10 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: pl\n"
-"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -86,4 +85,4 @@ msgstr "Porównaj z zapisaną ścieżką (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Wybierz pwtórnie"
+msgstr "Wybierz ponownie"

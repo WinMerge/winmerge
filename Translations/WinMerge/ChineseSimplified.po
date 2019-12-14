@@ -91,7 +91,7 @@ msgid "&with..."
 msgstr "选择程序(&W)..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "外壳菜单(&S)"
 
 #, c-format
 msgid "View &Differences"
@@ -106,17 +106,17 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "忽略颜色差异 (色彩距离阈值) (&I)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "插入/删除 检测(&E)"
 
 #, c-format
 msgid "&None"
 msgstr "无(&N)"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "纵向(&V)"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "横向(&H)"
 
 #, c-format
 msgid "&Previous Page"
@@ -419,13 +419,13 @@ msgid "Show &Right Only Different Items"
 msgstr "显示只在右侧不同的项目(&R)"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "显示只在左侧缺失的项目(&E)"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "显示只在中间缺失的项目(&D)"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "显示只在右侧缺失的项目(&H)"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -559,12 +559,11 @@ msgstr "另存为右侧(&R)"
 msgid "&Print..."
 msgstr "打印(&P)..."
 
-msgid "Page Set&up"
-msgstr "页面设置(&U)"
+msgid "Page Set&up..."
+msgstr "页面设置(&U)..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "打印预览(&W)"
+msgid "Print Previe&w..."
+msgstr "打印预览(&W)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -814,13 +813,11 @@ msgstr "从左侧复制\tAlt+Shift+Right"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "从右侧复制\tAlt+Shift+Right"
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "复制到右侧并前进\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "复制到右侧并前进\tCtrl+Alt+Right"
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "复制到左侧并前进\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "复制到左侧并前进\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -830,9 +827,8 @@ msgstr "全部复制到右侧(&A)"
 msgid "Cop&y All to Left"
 msgstr "全部复制到左侧(&Y)"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr "自动合并(&U)"
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "自动合并(&U)\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -857,6 +853,9 @@ msgstr "分隔(&L)"
 #, c-format
 msgid "Comp&are"
 msgstr "比较(&A)"
+
+msgid "Compare Non-hor&izontally..."
+msgstr "非横向比较(&I)..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1099,6 +1098,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "忽略代码页差异(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
 
@@ -1314,12 +1317,12 @@ msgid "&Don't close this dialog box"
 msgstr "不要关闭对话框(&D)"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "查找上一个(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "查找下一个(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "查找上一个(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1348,6 +1351,9 @@ msgstr "选中内容(&S)"
 #, c-format
 msgid "Wh&ole file"
 msgstr "整个文件(&O)"
+
+msgid "Find Pre&v"
+msgstr "查找上一个(&V)"
 
 #, c-format
 msgid "&Replace"
@@ -1454,19 +1460,19 @@ msgid "Defaults"
 msgstr "默认"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "使用文件夹比较颜色(&U)"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "相同的项目:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "不同的项目:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "不在所有处都存在的项目:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "过滤的项目:"
 
 #, c-format
 msgid "System"
@@ -1665,10 +1671,6 @@ msgid "Ignore &case"
 msgstr "忽略大小写(&C)"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "忽略代码页差异(&D)"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "启用检测移动的区块(&N)"
 
@@ -1677,10 +1679,10 @@ msgid "&Match similar lines"
 msgstr "匹配相似的行(&M)"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "对比算法 (实验性) (&A):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "启动启发式缩进(&H)"
 
 #, c-format
 msgid "Comments"
@@ -1742,13 +1744,15 @@ msgstr "单词级别(&W):"
 msgid "W&ord break characters:"
 msgstr "单词分隔字符:"
 
+msgid "&Rendering Mode:"
+msgstr "渲染模式(&R)"
+
 #, c-format
 msgid "Filefilters"
 msgstr "文件过滤器"
 
-#, c-format
-msgid "Test"
-msgstr "测试"
+msgid "Test..."
+msgstr "测试..."
 
 #, c-format
 msgid "Install..."
@@ -2062,9 +2066,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "测试过滤器"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "正在测试 ..."
+msgid "Testing filter..."
+msgstr "正在测试..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2183,7 +2186,7 @@ msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
 msgid "File filters:"
-msgstr ""
+msgstr "文件过滤器:"
 
 #, c-format
 msgid "Shell Integration"
@@ -2210,10 +2213,10 @@ msgid "&Unregister shell extension"
 msgstr "取消注册到外壳扩展(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "为当前用户注册到外壳扩展(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "为当前用户取消注册到外壳扩展(&L)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2244,11 +2247,10 @@ msgid "&Quick compare limit (MB):"
 msgstr "快速比较限制 (MB) (&Q):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "二进制比较限制 (MB) (&B):"
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "比较使用的线程数 (负数表示使用所有可用的 CPU 核心数) (&N):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\n比较使用的线程数 (负数表示使用所有可用的 CPU 核心数) (&N):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2421,7 +2423,7 @@ msgid "Syntax"
 msgstr "语法"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "文件夹比较"
 
 #, c-format
 msgid "Differences"
@@ -2786,20 +2788,8 @@ msgstr ""
 "仍然继续吗?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
-msgstr ""
-"保存文件失败.\n"
-"%1\n"
-"%2\n"
-"请选择:\n"
-"\t-使用其它文件名保存 (点击\"确定\")\n"
-"\t-中止当前操作 (点击\"取消\")?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgstr "保存文件失败.\n%1\n%2\n请选择:\n\t- 使用其它文件名保存 (点击\"确定\")\n\t- 中止当前操作 (点击\"取消\")?"
 
 #, c-format
 msgid ""
@@ -3156,9 +3146,8 @@ msgstr "右侧文件编码"
 msgid "Middle Encoding"
 msgstr "中间文件编码"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "忽略的差异."
+msgid "Ignored Diff"
+msgstr "忽略的差异"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3368,17 +3357,14 @@ msgstr "右侧的属性."
 msgid "Middle side attributes."
 msgstr "中间的属性."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "左侧文件的换行符类型"
+msgid "Left side file EOL type."
+msgstr "左侧文件的换行符类型."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "右侧文件的换行符类型"
+msgid "Right side file EOL type."
+msgstr "右侧文件的换行符类型."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "中间文件的换行符类型"
+msgid "Middle side file EOL type."
+msgstr "中间文件的换行符类型."
 
 #, c-format
 msgid "Left side encoding."
@@ -3499,14 +3485,8 @@ msgid "Do you want to move to the previous page?"
 msgstr "您是否要移动到上一页?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
-msgstr ""
-"左右两侧为不同代码页的文件 (左侧为 cp%d, 右侧为 cp%d).\n"
-"分别以不同代码页显示将会有较好的效果, 但是合并/复制会有风险.\n"
-"您是否要以 Windows 默认的代码页显示两个文件吗 (推荐)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr "左右两侧为不同代码页的文件 (左侧为 cp%d, 右侧为 cp%d).\n分别以不同代码页显示将会有较好的效果, 但是合并/复制会有风险.\n您是否要以 Windows 默认的代码页显示两个文件吗 (推荐)?"
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
@@ -3897,4 +3877,37 @@ msgstr "创建文件夹失败."
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "您可以在路径中指定下列参数:\n$file: 当前文件的路径名\n$linenum: 当前游标位置的行号"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
 

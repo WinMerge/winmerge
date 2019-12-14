@@ -278,12 +278,12 @@ HGLOBAL CGhostTextView::PrepareDragData ()
  * @param [in] nLineIndex  Index of line in view.
  * @param [in] nLineNumber Line number to display. if -1, it's not displayed.
  */
-void CGhostTextView::DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
+void CGhostTextView::DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
 {
 	int nRealLineNumber;
 	if (nLineIndex < 0 || GetLineFlags(nLineIndex) & LF_GHOST)
 		nRealLineNumber = -1;
 	else
 		nRealLineNumber = ComputeRealLine(nLineIndex) + 1;
-	CCrystalTextView::DrawMargin(pdc, rect, nLineIndex, nRealLineNumber);
+	CCrystalTextView::DrawMargin(rect, nLineIndex, nRealLineNumber);
 }

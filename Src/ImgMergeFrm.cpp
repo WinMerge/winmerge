@@ -148,6 +148,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_WM_SETFOCUS ()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -164,6 +165,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_pImgToolWindow(nullptr)
 , m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
 , m_bRO{}
+, m_nActivePane(-1)
 {
 }
 
@@ -302,25 +304,26 @@ void CImgMergeFrame::SetDirDoc(CDirDoc * pDirDoc)
 	m_pDirDoc = pDirDoc;
 }
 
-bool CImgMergeFrame::IsFileChangedOnDisk(int pane) const
+IMergeDoc::FileChange CImgMergeFrame::IsFileChangedOnDisk(int pane) const
 {
 	DiffFileInfo dfi;
-	dfi.Update(m_filePaths[pane]);
+	if (!dfi.Update(m_filePaths[pane]))
+		return FileRemoved;
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
 	int64_t timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo[pane].size))
-		return true;
-	return false;
+		return FileChanged;
+	return FileNoChange;
 }
 
 void CImgMergeFrame::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 	{
-		if (IsFileChangedOnDisk(pane))
+		if (IsFileChangedOnDisk(pane) == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
@@ -1288,6 +1291,10 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		if (m_pImgMergeWindow->GetPaneCount() == 3)
 			colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
 
+		int nActivePane = m_pImgMergeWindow->GetActivePane();
+		if (nActivePane != -1)
+			m_nActivePane = nActivePane;
+
 		UpdateHeaderSizes();
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
@@ -1296,7 +1303,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 			if (m_pImgMergeWindow->IsModified(pane) ? ind[0] != _T('*') : ind[0] == _T('*'))
 				UpdateHeaderPath(pane);
 
-			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
+			m_wndFilePathBar.SetActive(pane, pane == nActivePane);
 			POINT ptReal;
 			String text;
 			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
@@ -2053,4 +2060,10 @@ void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)
 	}
 
 	ChangeFile(pane, files[0]);
+}
+
+void CImgMergeFrame::OnSetFocus(CWnd* pNewWnd)
+{
+	if (m_nActivePane != -1)
+		m_pImgMergeWindow->SetActivePane(m_nActivePane);
 }
