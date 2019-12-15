@@ -88,7 +88,7 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	int x;
 	for (x = 0; x < bm.bmWidth; x++)
 	{
-		double b = 0.70 + (0.20 * sin(acos((double)x/bm.bmWidth*2.0-1.0)));
+		double b = 0.85 + (0.10 * sin(acos((double)x/bm.bmWidth*2.0-1.0)));
 		for (int y = 1; y < bm.bmHeight-1; y++)
 		{
 			int i = x * 4 + y * bm.bmWidth * 4;
@@ -101,12 +101,12 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	{
 		int i = x * 4 + 0 * bm.bmWidth * 4;
 		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.8);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.8);
+		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
+		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
 		i = x * 4 + (bm.bmHeight-1) * bm.bmWidth * 4;
 		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.8);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.8);
+		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
+		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
 	}
 	for (int y = 0; y < bm.bmHeight; y++)
 	{

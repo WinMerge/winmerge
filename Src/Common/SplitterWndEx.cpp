@@ -345,11 +345,11 @@ void CSplitterWndEx::FlipSplit()
 
 }
 
-static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
+static COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio)
 {
-	const int R = (GetRValue(a) - GetRValue(b)) / 2 + GetRValue(b);
-	const int G = (GetGValue(a) - GetGValue(b)) / 2 + GetGValue(b);
-	const int B = (GetBValue(a) - GetBValue(b)) / 2 + GetBValue(b);
+	const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
+	const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
+	const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
 	return RGB(R, G, B);
 }
 
@@ -360,10 +360,10 @@ void CSplitterWndEx::OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rec
 	{
 		COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
 		COLORREF clrFace    = GetSysColor(COLOR_BTNFACE);
-		COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow);
-		COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2);
-		COLORREF clrShadow4 = GetIntermediateColor(clrFace, clrShadow3);
-		COLORREF clrShadow5 = GetIntermediateColor(clrFace, clrShadow4);
+		COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow, 0.9f);
+		COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2, 0.5f);
+		COLORREF clrShadow4 = GetIntermediateColor(clrFace, clrShadow3, 0.5f);
+		COLORREF clrShadow5 = GetIntermediateColor(clrFace, clrShadow4, 0.5f);
 		pDC->Draw3dRect(rect, clrShadow5, clrShadow4);
 		rect.InflateRect(-1, -1);
 		pDC->Draw3dRect(rect, clrShadow3, clrShadow2);
