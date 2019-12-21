@@ -35,6 +35,7 @@
 #include "DiffViewBar.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -178,7 +179,15 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT);
+
+	afxData.cxBorder2 = 0;
+	afxData.cyBorder2 = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
+		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
+	}
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -197,14 +206,15 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
 		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
 	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT);
+	CRect rc{ 0, 0, 0, 0 };
+	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT, &rc);
 
 	// Merge frame also has a dockable bar at the very bottom
 	// created in OnCreateClient 
 	m_wndDetailBar.SetBarStyle(m_wndDetailBar.GetBarStyle() |
 		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_TOP);
 	m_wndDetailBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
-	DockControlBar(&m_wndDetailBar, AFX_IDW_DOCKBAR_BOTTOM);
+	DockControlBar(&m_wndDetailBar, AFX_IDW_DOCKBAR_BOTTOM, &rc);
 
 	// Merge frame also has a status bar at bottom, 
 	// m_wndDetailBar is below, so we create this bar after m_wndDetailBar

@@ -1941,7 +1941,8 @@ BOOL CMainFrame::CreateToolbar()
 		return FALSE;
 	}
 
-	if (!m_wndReBar.Create(this))
+	if (!m_wndReBar.Create(this, RBS_BANDBORDERS,
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_ALIGN_TOP))
 	{
 		return FALSE;
 	}
