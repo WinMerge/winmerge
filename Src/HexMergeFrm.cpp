@@ -209,11 +209,14 @@ BOOL CHexMergeFrame::DestroyWindow()
  * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
-void CHexMergeFrame::SavePosition()
+void CHexMergeFrame::SavePosition(bool bSaveActivePane)
 {
-	if (CWnd *pLeft = m_wndSplitter.GetPane(0,0))
+	if (bSaveActivePane)
 	{
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
+		if (CWnd* pLeft = m_wndSplitter.GetPane(0, 0))
+		{
+			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
+		}
 	}
 }
 
@@ -407,6 +410,6 @@ void CHexMergeFrame::UpdateResources()
  */
 LRESULT CHexMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
-	SavePosition();
+	SavePosition(false);
 	return 0;
 }

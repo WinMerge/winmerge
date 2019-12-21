@@ -600,11 +600,10 @@ void CImgMergeFrame::SaveOptions()
  * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
-void CImgMergeFrame::SavePosition()
+void CImgMergeFrame::SavePosition(bool bSaveActivePane)
 {
 	CRect rc;
 	GetWindowRect(&rc);
-	GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 
 	// save the bars layout
 	// save docking positions and sizes
@@ -613,6 +612,9 @@ void CImgMergeFrame::SavePosition()
 	m_pDockState.SaveState(_T("Settings-ImgMergeFrame"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings-ImgMergeFrame"));
+
+	if (bSaveActivePane)
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 }
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
@@ -1335,7 +1337,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
  */
 LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
-	SavePosition();
+	SavePosition(false);
 	return 0;
 }
 
