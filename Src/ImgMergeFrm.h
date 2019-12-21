@@ -100,7 +100,8 @@ private:
 	bool EnsureValidDockState(CDockState& state);
 	void LoadOptions();
 	void SaveOptions();
-	void SavePosition(bool bSaveActivePane = true);
+	void SavePosition();
+	void SaveActivePane();
 	virtual ~CImgMergeFrame();
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions

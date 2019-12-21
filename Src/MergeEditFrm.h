@@ -78,7 +78,8 @@ public:
 // Implementation
 private:
 	bool EnsureValidDockState(CDockState& state);
-	void SavePosition(bool bSaveActivePane = true);
+	void SavePosition();
+	void SaveActivePane();
 	virtual ~CMergeEditFrame();
 	CSplitterWndEx& GetMergeEditSplitterWnd(int iRow)
 	{ return static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter; }

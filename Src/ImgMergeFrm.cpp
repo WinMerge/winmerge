@@ -557,6 +557,7 @@ bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 BOOL CImgMergeFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveActivePane();
 	SaveOptions();
 	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
@@ -600,7 +601,7 @@ void CImgMergeFrame::SaveOptions()
  * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
-void CImgMergeFrame::SavePosition(bool bSaveActivePane)
+void CImgMergeFrame::SavePosition()
 {
 	CRect rc;
 	GetWindowRect(&rc);
@@ -612,9 +613,11 @@ void CImgMergeFrame::SavePosition(bool bSaveActivePane)
 	m_pDockState.SaveState(_T("Settings-ImgMergeFrame"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings-ImgMergeFrame"));
+}
 
-	if (bSaveActivePane)
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
+void CImgMergeFrame::SaveActivePane()
+{
+	GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 }
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
@@ -1181,6 +1184,7 @@ bool CImgMergeFrame::CloseNow()
 		return false;
 
 	SavePosition(); // Save settings before closing!
+	SaveActivePane();
 	SaveOptions();
 	MDIActivate();
 	MDIDestroy();
@@ -1337,7 +1341,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
  */
 LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
-	SavePosition(false);
+	SavePosition();
 	return 0;
 }
 

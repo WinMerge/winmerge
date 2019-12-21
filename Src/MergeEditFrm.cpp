@@ -276,6 +276,7 @@ void CMergeEditFrame::ActivateFrame(int nCmdShow)
 BOOL CMergeEditFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveActivePane();
 	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
@@ -286,7 +287,7 @@ BOOL CMergeEditFrame::DestroyWindow()
  * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
-void CMergeEditFrame::SavePosition(bool bSaveActivePane)
+void CMergeEditFrame::SavePosition()
 {
 	// save the bars layout
 	// save docking positions and sizes
@@ -296,17 +297,17 @@ void CMergeEditFrame::SavePosition(bool bSaveActivePane)
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
+}
 
-	if (bSaveActivePane)
+void CMergeEditFrame::SaveActivePane()
+{
+	for (int iRowParent = 0; iRowParent < m_wndSplitter.GetRowCount(); ++iRowParent)
 	{
-		for (int iRowParent = 0; iRowParent < m_wndSplitter.GetRowCount(); ++iRowParent)
-		{
-			int iRow, iCol;
-			auto& splitterWnd = static_cast<CMergeEditSplitterView*>(m_wndSplitter.GetPane(iRowParent, 0))->m_wndSplitter;
-			splitterWnd.GetActivePane(&iRow, &iCol);
-			if (iRow >= 0 || iCol >= 0)
-				GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
-		}
+		int iRow, iCol;
+		auto& splitterWnd = static_cast<CMergeEditSplitterView*>(m_wndSplitter.GetPane(iRowParent, 0))->m_wndSplitter;
+		splitterWnd.GetActivePane(&iRow, &iCol);
+		if (iRow >= 0 || iCol >= 0)
+			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
 	}
 }
 
@@ -393,7 +394,7 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == IDT_SAVEPOSITION)
 	{
-		SavePosition(false);
+		SavePosition();
 		KillTimer(IDT_SAVEPOSITION);
 	}
 	else
@@ -441,6 +442,7 @@ void CMergeEditFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI)
 void CMergeEditFrame::CloseNow()
 {
 	SavePosition(); // Save settings before closing!
+	SaveActivePane();
 	MDIActivate();
 	MDIDestroy();
 }

@@ -73,7 +73,8 @@ public:
 
 // Implementation
 private:
-	void SavePosition(bool bSaveActivePane = true);
+	void SavePosition();
+	void SaveActivePane();
 	virtual ~CHexMergeFrame();
 	void CreateHexWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions

@@ -199,6 +199,7 @@ void CHexMergeFrame::ActivateFrame(int nCmdShow)
 BOOL CHexMergeFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveActivePane();
 	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
@@ -209,14 +210,15 @@ BOOL CHexMergeFrame::DestroyWindow()
  * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
-void CHexMergeFrame::SavePosition(bool bSaveActivePane)
+void CHexMergeFrame::SavePosition()
 {
-	if (bSaveActivePane)
+}
+
+void CHexMergeFrame::SaveActivePane()
+{
+	if (CWnd* pLeft = m_wndSplitter.GetPane(0, 0))
 	{
-		if (CWnd* pLeft = m_wndSplitter.GetPane(0, 0))
-		{
-			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
-		}
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
 	}
 }
 
@@ -394,6 +396,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 void CHexMergeFrame::CloseNow()
 {
 	SavePosition(); // Save settings before closing!
+	SaveActivePane();
 	MDIActivate();
 	MDIDestroy();
 }
@@ -410,6 +413,6 @@ void CHexMergeFrame::UpdateResources()
  */
 LRESULT CHexMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
-	SavePosition(false);
+	SavePosition();
 	return 0;
 }
