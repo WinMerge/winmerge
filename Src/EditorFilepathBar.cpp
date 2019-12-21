@@ -62,7 +62,7 @@ CEditorFilePathBar::~CEditorFilePathBar()
 BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 {
 	if (! CDialogBar::Create(pParentWnd, CEditorFilePathBar::IDD, 
-			CBRS_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
+			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
