@@ -297,11 +297,10 @@ void CMergeEditFrame::SavePosition()
 	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
 
-	int iRow, iCol;
-	m_wndSplitter.GetActivePane(&iRow, nullptr);
-	if (iRow >= 0)
+	for (int iRowParent = 0; iRowParent < m_wndSplitter.GetRowCount(); ++iRowParent)
 	{
-		auto& splitterWnd = static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter;
+		int iRow, iCol;
+		auto& splitterWnd = static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRowParent, 0))->m_wndSplitter;
 		splitterWnd.GetActivePane(&iRow, &iCol);
 		if (iRow >= 0 || iCol >= 0)
 			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
