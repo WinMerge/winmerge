@@ -15,6 +15,7 @@ IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 COpenDoc::COpenDoc() :
 	m_bRecurse(false)
 ,	m_dwFlags()
+,	m_infoHandler{}
 {
 }
 
