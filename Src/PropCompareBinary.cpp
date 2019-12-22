@@ -31,6 +31,14 @@ public:
 		get_interface()->get_settings()->bSaveIni = true;
 	}
 
+	~Heksedit()
+	{
+		wnd.DestroyWindow();
+		FreeLibrary(pv);
+	}
+
+	Heksedit(const Heksedit&) = delete;
+
 	IHexEditorWindow *get_interface()
 	{
 		return reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(wnd.m_hWnd, GWLP_USERDATA));
