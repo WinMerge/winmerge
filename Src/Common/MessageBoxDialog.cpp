@@ -876,7 +876,7 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
 	if ( m_nHelp != 0 )
 	{
 		// Simply use the help ID, because we assume, it's unique.
-		strRegistryKey.Format(_T("%d"), m_nHelp);
+		strRegistryKey.Format(_T("%u"), m_nHelp);
 	}
 	else
 	{
