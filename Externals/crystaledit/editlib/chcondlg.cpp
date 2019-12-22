@@ -57,12 +57,12 @@ EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 // CCharConvDlg dialog
 
 CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, nullptr)
+, m_nSource(1)
+, m_nDest(1)
+, m_bAlpha(false)
+, m_sPreview(_T(""))
 {
     //{{AFX_DATA_INIT(CCharConvDlg)
-	m_nSource = 1;
-	m_nDest = 1;
-	m_bAlpha = false;
-	m_sPreview = _T("");
 	//}}AFX_DATA_INIT
 }
 
