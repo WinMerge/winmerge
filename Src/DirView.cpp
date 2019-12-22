@@ -442,6 +442,13 @@ void CDirView::OnInitialUpdate()
 	m_pList->SetExtendedStyle(exstyle);
 }
 
+BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	CListView::PreCreateWindow(cs);
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+	return TRUE;
+}
+
 /**
  * @brief Called before compare is started.
  * CDirDoc calls this function before new compare is started, so this
