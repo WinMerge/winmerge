@@ -56,6 +56,12 @@ struct add_pointer
 
 #endif
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using add_pointer_t = typename add_pointer<T>::type;
+
+#endif
+
 } // namespace boost
 
 #endif // BOOST_TT_ADD_POINTER_HPP_INCLUDED

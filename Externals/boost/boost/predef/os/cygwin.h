@@ -20,6 +20,8 @@ http://www.boost.org/LICENSE_1_0.txt)
     [[__predef_symbol__] [__predef_version__]]
 
     [[`__CYGWIN__`] [__predef_detection__]]
+
+    [[`CYGWIN_VERSION_API_MAJOR`, `CYGWIN_VERSION_API_MINOR`] [V.R.0]]
     ]
  */
 
@@ -28,8 +30,11 @@ http://www.boost.org/LICENSE_1_0.txt)
 #if !defined(BOOST_PREDEF_DETAIL_OS_DETECTED) && ( \
     defined(__CYGWIN__) \
     )
+#   include <cygwin/version.h>
 #   undef BOOST_OS_CYGWIN
-#   define BOOST_OS_CYGWIN BOOST_VERSION_NUMBER_AVAILABLE
+#   define BOOST_OS_CYGWIN \
+        BOOST_VERSION_NUMBER(CYGWIN_VERSION_API_MAJOR,\
+                             CYGWIN_VERSION_API_MINOR, 0)
 #endif
 
 #if BOOST_OS_CYGWIN

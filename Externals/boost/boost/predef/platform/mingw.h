@@ -5,8 +5,8 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#ifndef BOOST_PREDEF_COMPILER_MINGW_H
-#define BOOST_PREDEF_COMPILER_MINGW_H
+#ifndef BOOST_PREDEF_PLAT_MINGW_H
+#define BOOST_PREDEF_PLAT_MINGW_H
 
 #include <boost/predef/version_number.h>
 #include <boost/predef/make.h>
@@ -14,7 +14,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 /*`
 [heading `BOOST_PLAT_MINGW`]
 
-[@http://en.wikipedia.org/wiki/MinGW MinGW] platform.
+[@http://en.wikipedia.org/wiki/MinGW MinGW] platform, either variety.
 Version number available as major, minor, and patch.
 
 [table
@@ -56,7 +56,7 @@ Version number available as major, minor, and patch.
 #   include <boost/predef/detail/platform_detected.h>
 #endif
 
-#define BOOST_PLAT_MINGW_NAME "MinGW"
+#define BOOST_PLAT_MINGW_NAME "MinGW (any variety)"
 
 #endif
 

@@ -9,9 +9,6 @@
 #include <boost/concept_check.hpp>
 #include <boost/iterator/iterator_categories.hpp>
 
-// Use boost::detail::iterator_traits to work around some MSVC/Dinkumware problems.
-#include <boost/detail/iterator.hpp>
-
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/is_integral.hpp>
 
@@ -27,6 +24,7 @@
 #include <boost/config.hpp>
 
 #include <algorithm>
+#include <iterator>
 
 #include <boost/concept/detail/concept_def.hpp>
 
@@ -44,8 +42,8 @@ namespace boost_concepts
     , boost::CopyConstructible<Iterator>
 
   {
-      typedef BOOST_DEDUCED_TYPENAME boost::detail::iterator_traits<Iterator>::value_type value_type;
-      typedef BOOST_DEDUCED_TYPENAME boost::detail::iterator_traits<Iterator>::reference reference;
+      typedef BOOST_DEDUCED_TYPENAME std::iterator_traits<Iterator>::value_type value_type;
+      typedef BOOST_DEDUCED_TYPENAME std::iterator_traits<Iterator>::reference reference;
 
       BOOST_CONCEPT_USAGE(ReadableIterator)
       {
@@ -59,7 +57,7 @@ namespace boost_concepts
 
   template <
       typename Iterator
-    , typename ValueType = BOOST_DEDUCED_TYPENAME boost::detail::iterator_traits<Iterator>::value_type
+    , typename ValueType = BOOST_DEDUCED_TYPENAME std::iterator_traits<Iterator>::value_type
   >
   struct WritableIterator
     : boost::CopyConstructible<Iterator>
@@ -75,7 +73,7 @@ namespace boost_concepts
 
   template <
       typename Iterator
-    , typename ValueType = BOOST_DEDUCED_TYPENAME boost::detail::iterator_traits<Iterator>::value_type
+    , typename ValueType = BOOST_DEDUCED_TYPENAME std::iterator_traits<Iterator>::value_type
   >
   struct WritableIteratorConcept : WritableIterator<Iterator,ValueType> {};
 
@@ -92,7 +90,7 @@ namespace boost_concepts
 
   BOOST_concept(LvalueIterator,(Iterator))
   {
-      typedef typename boost::detail::iterator_traits<Iterator>::value_type value_type;
+      typedef typename std::iterator_traits<Iterator>::value_type value_type;
 
       BOOST_CONCEPT_USAGE(LvalueIterator)
       {
@@ -144,7 +142,7 @@ namespace boost_concepts
     : SinglePassIterator<Iterator>
     , boost::DefaultConstructible<Iterator>
   {
-      typedef typename boost::detail::iterator_traits<Iterator>::difference_type difference_type;
+      typedef typename std::iterator_traits<Iterator>::difference_type difference_type;
 
       BOOST_MPL_ASSERT((boost::is_integral<difference_type>));
       BOOST_MPL_ASSERT_RELATION(std::numeric_limits<difference_type>::is_signed, ==, true);
@@ -221,7 +219,7 @@ namespace boost_concepts
         boost::random_access_traversal_tag, boost::random_access_traversal_tag)
     {
         bool b;
-        typename boost::detail::iterator_traits<Iterator2>::difference_type n;
+        typename std::iterator_traits<Iterator2>::difference_type n;
         b = i1 <  i2;
         b = i1 <= i2;
         b = i1 >  i2;

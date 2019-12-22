@@ -12,7 +12,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <boost/predef/make.h>
 
 /*`
-[heading `BOOST_ARCH_PARISK`]
+[heading `BOOST_ARCH_PARISC`]
 
 [@http://en.wikipedia.org/wiki/PA-RISC_family HP/PA RISC] architecture.
 

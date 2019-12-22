@@ -13,7 +13,6 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #include <boost/predef/os/aix.h>
 #include <boost/predef/os/amigaos.h>
-#include <boost/predef/os/android.h>
 #include <boost/predef/os/beos.h>
 #include <boost/predef/os/bsd.h>
 #include <boost/predef/os/cygwin.h>
@@ -29,5 +28,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <boost/predef/os/unix.h>
 #include <boost/predef/os/vms.h>
 #include <boost/predef/os/windows.h>
+
+#include <boost/predef/os/android.h>
 
 #endif

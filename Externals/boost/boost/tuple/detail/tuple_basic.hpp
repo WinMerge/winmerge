@@ -35,13 +35,13 @@
 
 #include <utility> // needed for the assignment from pair to tuple
 
-#include "boost/type_traits/cv_traits.hpp"
-#include "boost/type_traits/function_traits.hpp"
-#include "boost/utility/swap.hpp"
+#include <boost/type_traits/cv_traits.hpp>
+#include <boost/type_traits/function_traits.hpp>
+#include <boost/utility/swap.hpp>
 
-#include "boost/detail/workaround.hpp" // needed for BOOST_WORKAROUND
+#include <boost/detail/workaround.hpp> // needed for BOOST_WORKAROUND
 
-#if BOOST_GCC >= 40700
+#if defined(BOOST_GCC) && (BOOST_GCC >= 40700)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #endif
@@ -484,7 +484,7 @@ public:
 // access_traits<T>::parameter_type takes non-reference types as const T&
   tuple() {}
 
-  tuple(typename access_traits<T0>::parameter_type t0)
+  explicit tuple(typename access_traits<T0>::parameter_type t0)
     : inherited(t0, detail::cnull(), detail::cnull(), detail::cnull(),
                 detail::cnull(), detail::cnull(), detail::cnull(),
                 detail::cnull(), detail::cnull(), detail::cnull()) {}
@@ -979,11 +979,9 @@ inline void swap(tuple<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>& lhs,
 } // end of namespace boost
 
 
-#if BOOST_GCC >= 40700
+#if defined(BOOST_GCC) && (BOOST_GCC >= 40700)
 #pragma GCC diagnostic pop
 #endif
 
 
 #endif // BOOST_TUPLE_BASIC_HPP
-
-

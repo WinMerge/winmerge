@@ -7,7 +7,6 @@
 #ifndef BOOST_TRANSFORM_ITERATOR_23022003THW_HPP
 #define BOOST_TRANSFORM_ITERATOR_23022003THW_HPP
 
-#include <boost/iterator.hpp>
 #include <boost/iterator/detail/enable_if.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/iterator/iterator_categories.hpp>
@@ -22,11 +21,12 @@
 #include <boost/type_traits/remove_reference.hpp>
 #include <boost/utility/result_of.hpp>
 
+#include <iterator>
 
 #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1310))
 # include <boost/type_traits/is_base_and_derived.hpp>
-
 #endif
+
 #include <boost/iterator/detail/config_def.hpp>
 
 
@@ -47,7 +47,11 @@ namespace iterators {
         // the function.
         typedef typename ia_dflt_help<
             Reference
+#ifdef BOOST_RESULT_OF_USE_TR1
           , result_of<const UnaryFunc(typename std::iterator_traits<Iterator>::reference)>
+#else
+          , result_of<const UnaryFunc&(typename std::iterator_traits<Iterator>::reference)>
+#endif
         >::type reference;
 
         // To get the default for Value: remove any reference on the

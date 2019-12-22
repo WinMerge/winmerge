@@ -8,7 +8,6 @@
 #define BOOST_ITERATOR_FACADE_23022003THW_HPP
 
 #include <boost/config.hpp>
-#include <boost/iterator.hpp>
 #include <boost/iterator/interoperable.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 #include <boost/iterator/iterator_categories.hpp>
@@ -17,7 +16,7 @@
 #include <boost/iterator/detail/enable_if.hpp>
 
 #include <boost/static_assert.hpp>
-#include <boost/utility/addressof.hpp>
+#include <boost/core/addressof.hpp>
 
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/add_const.hpp>
@@ -36,6 +35,8 @@
 #include <boost/mpl/always.hpp>
 #include <boost/mpl/apply.hpp>
 #include <boost/mpl/identity.hpp>
+
+#include <cstddef>
 
 #include <boost/iterator/detail/config_def.hpp> // this goes last
 

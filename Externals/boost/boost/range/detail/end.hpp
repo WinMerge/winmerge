@@ -33,7 +33,7 @@ namespace boost
         struct range_end<std_container_>
         {
             template< typename C >
-            static BOOST_RANGE_DEDUCED_TYPENAME range_iterator<C>::type
+            BOOST_CONSTEXPR static BOOST_RANGE_DEDUCED_TYPENAME range_iterator<C>::type
             fun( C& c )
             {
                 return c.end();
@@ -48,7 +48,7 @@ namespace boost
         struct range_end<std_pair_>
         {
             template< typename P >
-            static BOOST_RANGE_DEDUCED_TYPENAME range_iterator<P>::type
+            BOOST_CONSTEXPR static BOOST_RANGE_DEDUCED_TYPENAME range_iterator<P>::type
             fun( const P& p )
             {
                 return p.second;
@@ -63,7 +63,7 @@ namespace boost
         struct range_end<array_>
         {
             template<typename T>
-            static BOOST_RANGE_DEDUCED_TYPENAME remove_extent<T>::type* fun(T& t)
+            BOOST_CONSTEXPR static BOOST_RANGE_DEDUCED_TYPENAME remove_extent<T>::type* fun(T& t)
             {
                 return t + remove_extent<T>::size;
             }
@@ -74,7 +74,7 @@ namespace boost
     namespace range_adl_barrier
     {
         template< typename C >
-        inline BOOST_RANGE_DEDUCED_TYPENAME range_iterator<C>::type
+        BOOST_CONSTEXPR inline BOOST_RANGE_DEDUCED_TYPENAME range_iterator<C>::type
         end( C& c )
         {
             return range_detail::range_end< BOOST_RANGE_DEDUCED_TYPENAME range_detail::range<C>::type >::fun( c );

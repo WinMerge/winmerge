@@ -34,6 +34,11 @@ template <class T> struct remove_cv<T volatile[]>{ typedef T type[]; };
 #endif
 #endif
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using remove_cv_t = typename remove_cv<T>::type;
+
+#endif
 
 } // namespace boost
 

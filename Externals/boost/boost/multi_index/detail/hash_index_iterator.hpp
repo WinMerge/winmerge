@@ -1,4 +1,4 @@
-/* Copyright 2003-2014 Joaquin M Lopez Munoz.
+/* Copyright 2003-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -39,7 +39,7 @@ class hashed_index_iterator:
   public forward_iterator_helper<
     hashed_index_iterator<Node,BucketArray,Category>,
     typename Node::value_type,
-    std::ptrdiff_t,
+    typename Node::difference_type,
     const typename Node::value_type*,
     const typename Node::value_type&>
 {

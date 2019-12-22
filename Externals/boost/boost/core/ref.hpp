@@ -8,8 +8,8 @@
 #endif
 
 #include <boost/config.hpp>
-#include <boost/utility/addressof.hpp>
-#include <boost/detail/workaround.hpp>
+#include <boost/config/workaround.hpp>
+#include <boost/core/addressof.hpp>
 
 //
 //  ref.hpp - ref/cref, useful helper functions
@@ -19,7 +19,8 @@
 //  Copyright (C) 2002 David Abrahams
 //
 //  Copyright (C) 2014 Glen Joseph Fernandes
-//  glenfe at live dot com
+//  (glenjofe@gmail.com)
+//
 //  Copyright (C) 2014 Agustin Berge
 //
 // Distributed under the Boost Software License, Version 1.0. (See

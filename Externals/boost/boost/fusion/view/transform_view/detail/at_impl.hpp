@@ -1,6 +1,7 @@
 /*=============================================================================
     Copyright (c) 2001-2011 Joel de Guzman
     Copyright (c) 2005-2006 Dan Marsden
+    Copyright (c) 2018 Kohei Takahashi
 
     Distributed under the Boost Software License, Version 1.0. (See accompanying 
     file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -9,9 +10,8 @@
 #define BOOST_FUSION_AT_IMPL_20061029_1946
 
 #include <boost/fusion/support/config.hpp>
-#include <boost/mpl/apply.hpp>
-#include <boost/fusion/view/transform_view/detail/apply_transform_result.hpp>
 #include <boost/fusion/sequence/intrinsic/at.hpp>
+#include <boost/utility/result_of.hpp>
 
 namespace boost { namespace fusion {
     struct transform_view_tag;
@@ -29,9 +29,8 @@ namespace boost { namespace fusion {
             struct apply
             {
                 typedef typename Seq::transform_type F;
-                typedef detail::apply_transform_result<F> transform_type;
-                typedef typename boost::fusion::result_of::at<typename Seq::sequence_type, N>::type value_type;
-                typedef typename mpl::apply<transform_type, value_type>::type type;
+                typedef typename result_of::at<typename Seq::sequence_type, N>::type value_type;
+                typedef typename boost::result_of<F(value_type)>::type type;
 
                 BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
                 static type call(Seq& seq)
@@ -48,10 +47,9 @@ namespace boost { namespace fusion {
             struct apply
             {
                 typedef typename Seq::transform_type F;
-                typedef detail::apply_transform_result<F> transform_type;
-                typedef typename boost::fusion::result_of::at<typename Seq::sequence1_type, N>::type value1_type;
-                typedef typename boost::fusion::result_of::at<typename Seq::sequence2_type, N>::type value2_type;
-                typedef typename mpl::apply<transform_type, value1_type, value2_type>::type type;
+                typedef typename result_of::at<typename Seq::sequence1_type, N>::type value1_type;
+                typedef typename result_of::at<typename Seq::sequence2_type, N>::type value2_type;
+                typedef typename boost::result_of<F(value1_type, value2_type)>::type type;
 
                 BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
                 static type call(Seq& seq)

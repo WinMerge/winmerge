@@ -1,8 +1,11 @@
 //  Boost next_prior.hpp header file  ---------------------------------------//
 
-//  (C) Copyright Dave Abrahams and Daniel Walker 1999-2003. Distributed under the Boost
-//  Software License, Version 1.0. (See accompanying file
-//  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+//  (C) Copyright Dave Abrahams and Daniel Walker 1999-2003.
+//  Copyright (c) Andrey Semashev 2017
+//
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org/libs/utility for documentation.
 
@@ -13,17 +16,14 @@
 #define BOOST_NEXT_PRIOR_HPP_INCLUDED
 
 #include <iterator>
-#if defined(_MSC_VER) && _MSC_VER <= 1310
-#include <boost/mpl/and.hpp>
-#include <boost/type_traits/is_integral.hpp>
-#endif
-#include <boost/type_traits/is_unsigned.hpp>
-#include <boost/type_traits/integral_promotion.hpp>
-#include <boost/type_traits/make_signed.hpp>
+#include <boost/config.hpp>
+#include <boost/core/enable_if.hpp>
 #include <boost/type_traits/has_plus.hpp>
 #include <boost/type_traits/has_plus_assign.hpp>
 #include <boost/type_traits/has_minus.hpp>
 #include <boost/type_traits/has_minus_assign.hpp>
+#include <boost/iterator/advance.hpp>
+#include <boost/iterator/reverse_iterator.hpp>
 
 namespace boost {
 
@@ -39,18 +39,51 @@ namespace boost {
 
 namespace next_prior_detail {
 
-template< typename T, typename Distance, bool HasPlus = has_plus< T, Distance >::value >
-struct next_impl2
+// The trait attempts to detect if the T type is an iterator. Class-type iterators are assumed
+// to have the nested type iterator_category. Strictly speaking, this is not required to be the
+// case (e.g. a user can specialize iterator_traits for T without defining T::iterator_category).
+// Still, this is a good heuristic in practice, and we can't do anything better anyway.
+// Since C++17 we can test for iterator_traits<T>::iterator_category presence instead as it is
+// required to be only present for iterators.
+template< typename T, typename Void = void >
+struct is_iterator_class
 {
-    static T call(T x, Distance n)
-    {
-        std::advance(x, n);
-        return x;
-    }
+    static BOOST_CONSTEXPR_OR_CONST bool value = false;
 };
 
+template< typename T >
+struct is_iterator_class<
+    T,
+    typename enable_if_has_type<
+#if !defined(BOOST_NO_CXX17_ITERATOR_TRAITS)
+        typename std::iterator_traits< T >::iterator_category
+#else
+        typename T::iterator_category
+#endif
+    >::type
+>
+{
+    static BOOST_CONSTEXPR_OR_CONST bool value = true;
+};
+
+template< typename T >
+struct is_iterator :
+    public is_iterator_class< T >
+{
+};
+
+template< typename T >
+struct is_iterator< T* >
+{
+    static BOOST_CONSTEXPR_OR_CONST bool value = true;
+};
+
+
+template< typename T, typename Distance, bool HasPlus = has_plus< T, Distance >::value >
+struct next_plus_impl;
+
 template< typename T, typename Distance >
-struct next_impl2< T, Distance, true >
+struct next_plus_impl< T, Distance, true >
 {
     static T call(T x, Distance n)
     {
@@ -58,15 +91,14 @@ struct next_impl2< T, Distance, true >
     }
 };
 
-
 template< typename T, typename Distance, bool HasPlusAssign = has_plus_assign< T, Distance >::value >
-struct next_impl1 :
-    public next_impl2< T, Distance >
+struct next_plus_assign_impl :
+    public next_plus_impl< T, Distance >
 {
 };
 
 template< typename T, typename Distance >
-struct next_impl1< T, Distance, true >
+struct next_plus_assign_impl< T, Distance, true >
 {
     static T call(T x, Distance n)
     {
@@ -75,47 +107,28 @@ struct next_impl1< T, Distance, true >
     }
 };
 
-
-template<
-    typename T,
-    typename Distance,
-    typename PromotedDistance = typename integral_promotion< Distance >::type,
-#if !defined(_MSC_VER) || _MSC_VER > 1310
-    bool IsUInt = is_unsigned< PromotedDistance >::value
-#else
-    // MSVC 7.1 has problems with applying is_unsigned to non-integral types
-    bool IsUInt = mpl::and_< is_integral< PromotedDistance >, is_unsigned< PromotedDistance > >::value
-#endif
->
-struct prior_impl3
+template< typename T, typename Distance, bool IsIterator = is_iterator< T >::value >
+struct next_advance_impl :
+    public next_plus_assign_impl< T, Distance >
 {
-    static T call(T x, Distance n)
-    {
-        std::advance(x, -n);
-        return x;
-    }
 };
 
-template< typename T, typename Distance, typename PromotedDistance >
-struct prior_impl3< T, Distance, PromotedDistance, true >
+template< typename T, typename Distance >
+struct next_advance_impl< T, Distance, true >
 {
     static T call(T x, Distance n)
     {
-        typedef typename make_signed< PromotedDistance >::type signed_distance;
-        std::advance(x, -static_cast< signed_distance >(static_cast< PromotedDistance >(n)));
+        boost::iterators::advance(x, n);
         return x;
     }
 };
 
 
 template< typename T, typename Distance, bool HasMinus = has_minus< T, Distance >::value >
-struct prior_impl2 :
-    public prior_impl3< T, Distance >
-{
-};
+struct prior_minus_impl;
 
 template< typename T, typename Distance >
-struct prior_impl2< T, Distance, true >
+struct prior_minus_impl< T, Distance, true >
 {
     static T call(T x, Distance n)
     {
@@ -123,20 +136,37 @@ struct prior_impl2< T, Distance, true >
     }
 };
 
-
 template< typename T, typename Distance, bool HasMinusAssign = has_minus_assign< T, Distance >::value >
-struct prior_impl1 :
-    public prior_impl2< T, Distance >
+struct prior_minus_assign_impl :
+    public prior_minus_impl< T, Distance >
 {
 };
 
 template< typename T, typename Distance >
-struct prior_impl1< T, Distance, true >
+struct prior_minus_assign_impl< T, Distance, true >
 {
     static T call(T x, Distance n)
     {
         x -= n;
         return x;
+    }
+};
+
+template< typename T, typename Distance, bool IsIterator = is_iterator< T >::value >
+struct prior_advance_impl :
+    public prior_minus_assign_impl< T, Distance >
+{
+};
+
+template< typename T, typename Distance >
+struct prior_advance_impl< T, Distance, true >
+{
+    static T call(T x, Distance n)
+    {
+        // Avoid negating n to sidestep possible integer overflow
+        boost::iterators::reverse_iterator< T > rx(x);
+        boost::iterators::advance(rx, n);
+        return rx.base();
     }
 };
 
@@ -148,7 +178,7 @@ inline T next(T x) { return ++x; }
 template <class T, class Distance>
 inline T next(T x, Distance n)
 {
-    return next_prior_detail::next_impl1< T, Distance >::call(x, n);
+    return next_prior_detail::next_advance_impl< T, Distance >::call(x, n);
 }
 
 template <class T>
@@ -157,7 +187,7 @@ inline T prior(T x) { return --x; }
 template <class T, class Distance>
 inline T prior(T x, Distance n)
 {
-    return next_prior_detail::prior_impl1< T, Distance >::call(x, n);
+    return next_prior_detail::prior_advance_impl< T, Distance >::call(x, n);
 }
 
 } // namespace boost

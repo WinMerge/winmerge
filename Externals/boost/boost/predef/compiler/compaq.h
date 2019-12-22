@@ -38,7 +38,7 @@ Version number available as major, minor, and patch.
 #       define BOOST_COMP_DEC_DETECTION BOOST_PREDEF_MAKE_10_VVRR0PP00(__DECC_VER)
 #   endif
 #   if !defined(BOOST_COMP_DEC_DETECTION)
-#       define BOOST_COM_DEC_DETECTION BOOST_VERSION_NUMBER_AVAILABLE
+#       define BOOST_COMP_DEC_DETECTION BOOST_VERSION_NUMBER_AVAILABLE
 #   endif
 #endif
 

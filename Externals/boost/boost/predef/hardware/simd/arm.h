@@ -24,6 +24,7 @@ http://www.boost.org/LICENSE_1_0.txt)
      [[`__ARM_NEON__`] [__predef_detection__]]
      [[`__aarch64__`] [__predef_detection__]]
      [[`_M_ARM`] [__predef_detection__]]
+     [[`_M_ARM64`] [__predef_detection__]]
      ]
 
  [table
@@ -32,6 +33,7 @@ http://www.boost.org/LICENSE_1_0.txt)
      [[`__ARM_NEON__`] [BOOST_HW_SIMD_ARM_NEON_VERSION]]
      [[`__aarch64__`] [BOOST_HW_SIMD_ARM_NEON_VERSION]]
      [[`_M_ARM`] [BOOST_HW_SIMD_ARM_NEON_VERSION]]
+     [[`_M_ARM64`] [BOOST_HW_SIMD_ARM_NEON_VERSION]]
      ]
 
  */
@@ -39,7 +41,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #define BOOST_HW_SIMD_ARM BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #undef BOOST_HW_SIMD_ARM
-#if !defined(BOOST_HW_SIMD_ARM) && (defined(__ARM_NEON__) || defined(__aarch64__) || defined (_M_ARM))
+#if !defined(BOOST_HW_SIMD_ARM) && (defined(__ARM_NEON__) || defined(__aarch64__) || defined (_M_ARM) || defined (_M_ARM64))
 #   define BOOST_HW_SIMD_ARM BOOST_HW_SIMD_ARM_NEON_VERSION
 #endif
 

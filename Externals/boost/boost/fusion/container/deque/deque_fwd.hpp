@@ -23,8 +23,7 @@
 # endif
 #endif
 
-// MSVC variadics at this point in time is not ready yet (ICE!)
-#if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1900))
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1910)
 # if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
 #   undef BOOST_FUSION_HAS_VARIADIC_DEQUE
 # endif

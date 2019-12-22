@@ -21,7 +21,13 @@
 #include <boost/predef.h>
 
 #ifdef BOOST_USE_WINDOWS_H
-#  include <windows.h>
+
+#include <windows.h>
+
+#else
+
+struct _RTL_CRITICAL_SECTION;
+
 #endif
 
 namespace boost
@@ -47,17 +53,30 @@ struct critical_section
 };
 
 #if BOOST_PLAT_WINDOWS_RUNTIME
-extern "C" __declspec(dllimport) void __stdcall InitializeCriticalSectionEx(critical_section *, unsigned long, unsigned long);
+extern "C" __declspec(dllimport) void __stdcall InitializeCriticalSectionEx(::_RTL_CRITICAL_SECTION *, unsigned long, unsigned long);
 #else
-extern "C" __declspec(dllimport) void __stdcall InitializeCriticalSection(critical_section *);
+extern "C" __declspec(dllimport) void __stdcall InitializeCriticalSection(::_RTL_CRITICAL_SECTION *);
 #endif
-extern "C" __declspec(dllimport) void __stdcall EnterCriticalSection(critical_section *);
-extern "C" __declspec(dllimport) void __stdcall LeaveCriticalSection(critical_section *);
-extern "C" __declspec(dllimport) void __stdcall DeleteCriticalSection(critical_section *);
+extern "C" __declspec(dllimport) void __stdcall EnterCriticalSection(::_RTL_CRITICAL_SECTION *);
+extern "C" __declspec(dllimport) void __stdcall LeaveCriticalSection(::_RTL_CRITICAL_SECTION *);
+extern "C" __declspec(dllimport) void __stdcall DeleteCriticalSection(::_RTL_CRITICAL_SECTION *);
 
-#else
+typedef ::_RTL_CRITICAL_SECTION rtl_critical_section;
+
+#else // #ifndef BOOST_USE_WINDOWS_H
 
 typedef ::CRITICAL_SECTION critical_section;
+
+#if BOOST_PLAT_WINDOWS_RUNTIME
+using ::InitializeCriticalSectionEx;
+#else
+using ::InitializeCriticalSection;
+#endif
+using ::EnterCriticalSection;
+using ::LeaveCriticalSection;
+using ::DeleteCriticalSection;
+
+typedef ::CRITICAL_SECTION rtl_critical_section;
 
 #endif // #ifndef BOOST_USE_WINDOWS_H
 
@@ -75,15 +94,15 @@ public:
     lightweight_mutex()
     {
 #if BOOST_PLAT_WINDOWS_RUNTIME
-        InitializeCriticalSectionEx(&cs_, 4000, 0);
+        boost::detail::InitializeCriticalSectionEx(reinterpret_cast< rtl_critical_section* >(&cs_), 4000, 0);
 #else
-        InitializeCriticalSection(&cs_);
+        boost::detail::InitializeCriticalSection(reinterpret_cast< rtl_critical_section* >(&cs_));
 #endif
     }
 
     ~lightweight_mutex()
     {
-        DeleteCriticalSection(&cs_);
+        boost::detail::DeleteCriticalSection(reinterpret_cast< rtl_critical_section* >(&cs_));
     }
 
     class scoped_lock;
@@ -102,12 +121,12 @@ public:
 
         explicit scoped_lock(lightweight_mutex & m): m_(m)
         {
-            EnterCriticalSection(&m_.cs_);
+            boost::detail::EnterCriticalSection(reinterpret_cast< rtl_critical_section* >(&m_.cs_));
         }
 
         ~scoped_lock()
         {
-            LeaveCriticalSection(&m_.cs_);
+            boost::detail::LeaveCriticalSection(reinterpret_cast< rtl_critical_section* >(&m_.cs_));
         }
     };
 };

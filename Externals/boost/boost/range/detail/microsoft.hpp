@@ -58,6 +58,7 @@
 #include <boost/type_traits/remove_cv.hpp>
 #include <boost/utility/addressof.hpp>
 #include <boost/utility/enable_if.hpp> // disable_if
+#include <boost/next_prior.hpp>
 
 #if !defined(BOOST_RANGE_DETAIL_MICROSOFT_RANGE_VERSION_1)
     #include <boost/range/mutable_iterator.hpp>

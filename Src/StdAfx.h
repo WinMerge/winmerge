@@ -59,9 +59,6 @@
 #include <ctime>
 #include <tchar.h>
 
-#include "boost/flyweight.hpp"
-#include "boost/range/mfc.hpp"
-
 /**
  * @name User-defined Windows-messages
  */

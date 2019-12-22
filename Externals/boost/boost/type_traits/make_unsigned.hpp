@@ -124,6 +124,12 @@ public:
    >::type type;
 };
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using make_unsigned_t = typename make_unsigned<T>::type;
+
+#endif
+
 } // namespace boost
 
 #endif // BOOST_TT_ADD_REFERENCE_HPP_INCLUDED

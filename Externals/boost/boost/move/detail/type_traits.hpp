@@ -967,14 +967,13 @@ typedef union max_align max_align_t;
 #if !defined(BOOST_NO_ALIGNMENT)
 
 template<std::size_t Len, std::size_t Align>
-struct aligned_storage_impl;
+struct aligned_struct;
 
 #define BOOST_MOVE_ALIGNED_STORAGE_WITH_BOOST_ALIGNMENT(A)\
 template<std::size_t Len>\
-struct BOOST_ALIGNMENT(A) aligned_storage_impl<Len, A>\
+struct BOOST_ALIGNMENT(A) aligned_struct<Len, A>\
 {\
-   char dummy[Len];\
-   typedef aligned_storage_impl<Len, A> type;\
+   unsigned char data[Len];\
 };\
 //
 
@@ -995,13 +994,28 @@ BOOST_MOVE_ALIGNED_STORAGE_WITH_BOOST_ALIGNMENT(0x1000)
 
 #undef BOOST_MOVE_ALIGNED_STORAGE_WITH_BOOST_ALIGNMENT
 
+// Workaround for bogus [-Wignored-attributes] warning on GCC 6.x/7.x: don't use a type that "directly" carries the alignment attribute.
+// See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=82270
+template<std::size_t Len, std::size_t Align>
+union aligned_struct_wrapper
+{
+   aligned_struct<Len, Align> aligner;
+   unsigned char data[sizeof(aligned_struct<Len, Align>)];
+};
+
+template<std::size_t Len, std::size_t Align>
+struct aligned_storage_impl
+{
+   typedef aligned_struct_wrapper<Len, Align> type;
+};
+
 #else //BOOST_NO_ALIGNMENT
 
 template<class T, std::size_t Len>
 union aligned_union
 {   
    T aligner;
-   char dummy[Len];
+   unsigned char data[Len];
 };
 
 template<std::size_t Len, std::size_t Align, class T, bool Ok>
