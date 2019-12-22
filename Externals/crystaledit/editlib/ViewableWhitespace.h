@@ -24,5 +24,5 @@ struct ViewableWhitespaceChars
 	TCHAR c_eol[3]; /**< Visible character for general or CRLF EOL chars. */
 };
 
-const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage);
+const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool directwrite);
 

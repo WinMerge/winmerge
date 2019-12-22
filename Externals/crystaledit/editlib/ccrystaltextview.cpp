@@ -959,7 +959,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
   line.Empty();
   // Request whitespace characters for codepage ACP
   // because that is the codepage used by ExtTextOut
-  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE_GDI);
 
   if (nCount <= 0)
     {
