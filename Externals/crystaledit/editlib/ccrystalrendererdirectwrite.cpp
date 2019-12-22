@@ -41,6 +41,7 @@ struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 	CustomGlyphRun(const CustomGlyphRun& other)
 		: DWRITE_GLYPH_RUN(other)
 		, sumCharWidth(other.sumCharWidth)
+		, ascent(0.0f)
 	{
 		glyphAdvances = new float[other.glyphCount];
 		for (unsigned i = 0; i < other.glyphCount; ++i)

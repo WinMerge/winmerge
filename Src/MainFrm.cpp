@@ -273,6 +273,8 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(true)
 , m_pDropHandler(nullptr)
 , m_bShowErrors(false)
+, m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
+, m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 {
 }
 
@@ -314,9 +316,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
-	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
-	
 	if (!CreateToolbar())
 	{
 		TRACE0("Failed to create toolbar\n");

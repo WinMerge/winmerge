@@ -76,6 +76,7 @@ END_MESSAGE_MAP()
  */
 CMergeEditFrame::CMergeEditFrame()
 : CMergeFrameCommon(IDI_EQUALTEXTFILE, IDI_NOTEQUALTEXTFILE)
+, m_pwndDetailMergeEditSplitterView(nullptr)
 {
 	m_pMergeDoc = 0;
 }
