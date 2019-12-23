@@ -63,7 +63,6 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nLastCharBreakPos = 0;
 	bool		bBreakable = false;
 	TCHAR		ch;
-	int			nCharWidth = m_pTextView->GetCharWidth();
 	WORD		wCharType;
 
 //    m_iterChar.setText(reinterpret_cast<const UChar *>(szLine), nLineLength);

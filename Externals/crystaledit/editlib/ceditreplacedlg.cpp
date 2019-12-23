@@ -286,7 +286,6 @@ FindNextPrev (bool bNext)
   UpdateLastSearch ();
 
   CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
-  CButton *pPrev = (CButton*) GetDlgItem (IDC_EDIT_FINDPREV);
   CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
 
   if (!m_bFound)
