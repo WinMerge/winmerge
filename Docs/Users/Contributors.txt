@@ -82,6 +82,7 @@ Localization:
   Tim Gerundt <tim@gerundt.de>
   Winfried Peter <winfried.peter@omicron.at>
   Joerg Schneider <tonda@users.sourceforge.net>
+  Mr-Update
 
 * Greek:
   Polyvios J. Simopoulos <polyvios.j.simopoulos@gmail.com>
