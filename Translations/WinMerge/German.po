@@ -812,10 +812,10 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Von rechts kopieren\tAlt+Umschalt+Links"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Nach rechts kopieren und &fortschreiten\tAlt+Strg+Rechts"
+msgstr "Nach rechts kopieren und &fortschreiten\tStrg+Alt+Rechts"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Nach links kopieren und f&ortschreiten\tAlt+Strg+Links"
+msgstr "Nach links kopieren und f&ortschreiten\tStrg+Alt+Links"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -826,7 +826,7 @@ msgid "Cop&y All to Left"
 msgstr "Alles nach lin&ks kopieren"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "A&utomatisch mischen\tAlt+Strg+M"
+msgstr "A&utomatisch mischen\tStrg+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1745,7 +1745,7 @@ msgid "W&ord break characters:"
 msgstr "W&ortumbruchzeichen:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "Darstellungsmodus:"
 
 #, c-format
 msgid "Filefilters"
@@ -3240,7 +3240,7 @@ msgid "Middle Encoding"
 msgstr "Mittlere Kodierung"
 
 msgid "Ignored Diff"
-msgstr "Ignorierte Unter"
+msgstr "Ignorierter Unterschied"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -4070,35 +4070,35 @@ msgstr ""
 "$linenum: Zeilennummer der aktuellen Cursorposition"
 
 msgid "default"
-msgstr ""
+msgstr "Standard"
 
 msgid "minimal"
-msgstr ""
+msgstr "Minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "Geduld"
 
 msgid "histogram"
-msgstr ""
+msgstr "Histogramm"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite Standard"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliasing"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI klassisch"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI natürlich"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite natürlich"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite natürlich symmetrisch"
 
