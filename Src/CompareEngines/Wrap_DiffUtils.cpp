@@ -51,16 +51,11 @@ DiffUtils::~DiffUtils()
 /**
  * @brief Set compare options from general compare options.
  * @param [in ]options General compare options.
- * @return true if succeeded, false otherwise.
  */
-bool DiffUtils::SetCompareOptions(const CompareOptions & options)
+void DiffUtils::SetCompareOptions(const CompareOptions & options)
 {
-	m_pOptions.reset(new DiffutilsOptions((DiffutilsOptions&)options));
-	if (m_pOptions.get() == nullptr)
-		return false;
-
+	m_pOptions.reset(new DiffutilsOptions(static_cast<const DiffutilsOptions&>(options)));
 	m_pOptions->SetToDiffUtils();
-	return true;
 }
 
 /**

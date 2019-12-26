@@ -31,7 +31,7 @@ class DiffUtils
 public:
 	DiffUtils();
 	~DiffUtils();
-	bool SetCompareOptions(const CompareOptions & options);
+	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
 	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager);
 	void ClearFilterList();
