@@ -196,23 +196,17 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				if (m_pDiffUtilsEngine == nullptr)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
-				bool success = m_pDiffUtilsEngine->SetCompareOptions(
-						*m_pCtxt->GetCompareOptions(CMP_CONTENT));
-				if (success)
-				{
-					if (m_pCtxt->m_pFilterList != nullptr)
-						m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
-					else
-						m_pDiffUtilsEngine->ClearFilterList();
-					m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
-					m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
-					code = m_pDiffUtilsEngine->diffutils_compare_files();
-					m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
-					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[1]);
-				}
+				m_pDiffUtilsEngine->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_CONTENT));
+				if (m_pCtxt->m_pFilterList != nullptr)
+					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
-					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
+					m_pDiffUtilsEngine->ClearFilterList();
+				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+				m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
+				code = m_pDiffUtilsEngine->diffutils_compare_files();
+				m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
+				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
+				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[1]);
 
 				// If unique item, it was being compared to itself to determine encoding
 				// and the #diffs is invalid
@@ -227,93 +221,87 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				if (m_pDiffUtilsEngine == nullptr)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
-				bool success = m_pDiffUtilsEngine->SetCompareOptions(
-						*m_pCtxt->GetCompareOptions(CMP_CONTENT));
-				if (success)
-				{
-					if (m_pCtxt->m_pFilterList != nullptr)
-						m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
-					else
-						m_pDiffUtilsEngine->ClearFilterList();
-					m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
-
-					bool bRet;
-					int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
-
-					m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, nullptr);
-					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[0]);
-
-					m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, nullptr);
-					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
-
-					m_pDiffUtilsEngine->SetFileData(2, diffdata02.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, nullptr);
-					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
-
-					code = DIFFCODE::FILE;
-
-					CDiffWrapper dw;
-					DiffList diffList;
-					DIFFSTATUS status;
-
-					diffList.Clear();
-					dw.SetCreateDiffList(&diffList);
-					dw.LoadWinMergeDiffsFromDiffUtilsScript3(
-						script10, script12,
-						diffdata10.m_inf, diffdata12.m_inf);
-					m_ndiffs = diffList.GetSignificantDiffs(); 
-					m_ntrivialdiffs = diffList.GetSize() - m_ndiffs;
-				
-					if (m_ndiffs > 0 || bin_flag10 < 0 || bin_flag12 < 0)
-						code |= DIFFCODE::DIFF;
-					else
-						code |= DIFFCODE::SAME;
-					if (bin_flag10 || bin_flag12)
-						code |= DIFFCODE::BIN;
-					else
-						code |= DIFFCODE::TEXT;
-
-					if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
-					{
-						if ((code & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
-						{
-							if (script12 == nullptr)
-								code |= DIFFCODE::DIFF1STONLY;
-							else if (script02 == nullptr)
-								code |= DIFFCODE::DIFF2NDONLY;
-							else if (script10 == nullptr)
-								code |= DIFFCODE::DIFF3RDONLY;
-						}
-						else
-						{
-							if (bin_flag12 > 0)
-								code |= DIFFCODE::DIFF1STONLY;
-							else if (bin_flag02 > 0)
-								code |= DIFFCODE::DIFF2NDONLY;
-							else if (bin_flag10 > 0)
-								code |= DIFFCODE::DIFF3RDONLY;
-						}
-					}
-
-					// If unique item, it was being compared to itself to determine encoding
-					// and the #diffs is invalid
-					if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly() || di.diffcode.isSideThirdOnly())
-					{
-						m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
-						m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
-					}
-
-					dw.FreeDiffUtilsScript(script10);
-					dw.FreeDiffUtilsScript(script12);
-					dw.FreeDiffUtilsScript(script02);
-				}
+				m_pDiffUtilsEngine->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_CONTENT));
+				if (m_pCtxt->m_pFilterList != nullptr)
+					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
-					code = DIFFCODE::FILE | DIFFCODE::CMPERR;
+					m_pDiffUtilsEngine->ClearFilterList();
+				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+
+				bool bRet;
+				int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
+
+				m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_inf);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, nullptr);
+				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[0]);
+
+				m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_inf);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, nullptr);
+				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
+				m_pDiffUtilsEngine->SetFileData(2, diffdata02.m_inf);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, nullptr);
+				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
+				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
+				code = DIFFCODE::FILE;
+
+				CDiffWrapper dw;
+				DiffList diffList;
+				DIFFSTATUS status;
+
+				diffList.Clear();
+				dw.SetCreateDiffList(&diffList);
+				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
+					script10, script12,
+					diffdata10.m_inf, diffdata12.m_inf);
+				m_ndiffs = diffList.GetSignificantDiffs(); 
+				m_ntrivialdiffs = diffList.GetSize() - m_ndiffs;
+				
+				if (m_ndiffs > 0 || bin_flag10 < 0 || bin_flag12 < 0)
+					code |= DIFFCODE::DIFF;
+				else
+					code |= DIFFCODE::SAME;
+				if (bin_flag10 || bin_flag12)
+					code |= DIFFCODE::BIN;
+				else
+					code |= DIFFCODE::TEXT;
+
+				if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+				{
+					if ((code & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
+					{
+						if (script12 == nullptr)
+							code |= DIFFCODE::DIFF1STONLY;
+						else if (script02 == nullptr)
+							code |= DIFFCODE::DIFF2NDONLY;
+						else if (script10 == nullptr)
+							code |= DIFFCODE::DIFF3RDONLY;
+					}
+					else
+					{
+						if (bin_flag12 > 0)
+							code |= DIFFCODE::DIFF1STONLY;
+						else if (bin_flag02 > 0)
+							code |= DIFFCODE::DIFF2NDONLY;
+						else if (bin_flag10 > 0)
+							code |= DIFFCODE::DIFF3RDONLY;
+					}
+				}
+
+				// If unique item, it was being compared to itself to determine encoding
+				// and the #diffs is invalid
+				if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly() || di.diffcode.isSideThirdOnly())
+				{
+					m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
+					m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
+				}
+
+				dw.FreeDiffUtilsScript(script10);
+				dw.FreeDiffUtilsScript(script12);
+				dw.FreeDiffUtilsScript(script02);
 			}
 
 		}
@@ -324,24 +312,18 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			{
 				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
-				bool success = m_pByteCompare->SetCompareOptions(
-					*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
-	
-				if (success)
-				{
-					m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
-					m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
-					m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
-	
-					// use our own byte-by-byte compare
-					code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation);
-	
-					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[1]);
-				}
-				else
-					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
-	
+				m_pByteCompare->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
+
+				m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
+				m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
+				m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
+
+				// use our own byte-by-byte compare
+				code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation);
+
+				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
+				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[1]);
+
 				// Quick contents doesn't know about diff counts
 				// Set to special value to indicate invalid
 				m_ndiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
@@ -351,73 +333,67 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			{
 				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
-				bool success = m_pByteCompare->SetCompareOptions(
-					*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
-	
-				if (success)
-				{
-					/* “r’† */
-					m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
-					m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
+				m_pByteCompare->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
 
-					// 10
-					m_pByteCompare->SetFileData(2, diffdata10.m_inf);
+				/* “r’† */
+				m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
+				m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
 
-					// use our own byte-by-byte compare
-					int code10 = m_pByteCompare->CompareFiles(diffdata10.m_FileLocation);
+				// 10
+				m_pByteCompare->SetFileData(2, diffdata10.m_inf);
 
-					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[0]);
+				// use our own byte-by-byte compare
+				int code10 = m_pByteCompare->CompareFiles(diffdata10.m_FileLocation);
 
-					// 12
-					m_pByteCompare->SetFileData(2, diffdata12.m_inf);
+				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[0]);
 
-					// use our own byte-by-byte compare
-					int code12 = m_pByteCompare->CompareFiles(diffdata12.m_FileLocation);
+				// 12
+				m_pByteCompare->SetFileData(2, diffdata12.m_inf);
 
-					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+				// use our own byte-by-byte compare
+				int code12 = m_pByteCompare->CompareFiles(diffdata12.m_FileLocation);
 
-					// 02
-					m_pByteCompare->SetFileData(2, diffdata02.m_inf);
+				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
-					// use our own byte-by-byte compare
-					int code02 = m_pByteCompare->CompareFiles(diffdata02.m_FileLocation);
+				// 02
+				m_pByteCompare->SetFileData(2, diffdata02.m_inf);
 
-					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+				// use our own byte-by-byte compare
+				int code02 = m_pByteCompare->CompareFiles(diffdata02.m_FileLocation);
 
-					code = DIFFCODE::FILE;
-					if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12) || DIFFCODE::isResultError(code02))
-						code |= DIFFCODE::CMPERR;
-					if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF || (code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
-						code |= DIFFCODE::DIFF;
-					else
-						code |= DIFFCODE::SAME;
-					if ((code10 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT && 
-					    (code12 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
-						code |= DIFFCODE::TEXT;
-					else
-						code |= DIFFCODE::BIN;
-					if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE1))
-						code |= DIFFCODE::BINSIDE2;
-					if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
-						code |= DIFFCODE::BINSIDE1;
-					if ((code12 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
-						code |= DIFFCODE::BINSIDE3;
-					if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
-					{
-						if ((code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
-							code |= DIFFCODE::DIFF1STONLY;
-						else if ((code02 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
-							code |= DIFFCODE::DIFF2NDONLY;
-						else if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
-							code |= DIFFCODE::DIFF3RDONLY;
-					}
-				}
+				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
+				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
+				code = DIFFCODE::FILE;
+				if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12) || DIFFCODE::isResultError(code02))
+					code |= DIFFCODE::CMPERR;
+				if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF || (code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+					code |= DIFFCODE::DIFF;
 				else
-					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
-	
+					code |= DIFFCODE::SAME;
+				if ((code10 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT && 
+					(code12 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
+					code |= DIFFCODE::TEXT;
+				else
+					code |= DIFFCODE::BIN;
+				if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE1))
+					code |= DIFFCODE::BINSIDE2;
+				if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+					code |= DIFFCODE::BINSIDE1;
+				if ((code12 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+					code |= DIFFCODE::BINSIDE3;
+				if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+				{
+					if ((code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+						code |= DIFFCODE::DIFF1STONLY;
+					else if ((code02 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+						code |= DIFFCODE::DIFF2NDONLY;
+					else if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+						code |= DIFFCODE::DIFF3RDONLY;
+				}
+
 				// Quick contents doesn't know about diff counts
 				// Set to special value to indicate invalid
 				m_ndiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
