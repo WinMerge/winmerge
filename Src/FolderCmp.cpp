@@ -191,10 +191,9 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 		if (nCompMethod == CMP_CONTENT)
 		{
-			if (tFiles.GetSize() == 2)
+			if (m_pDiffUtilsEngine == nullptr)
 			{
-				if (m_pDiffUtilsEngine == nullptr)
-					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
+				m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				m_pDiffUtilsEngine->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (m_pCtxt->m_pFilterList != nullptr)
@@ -202,6 +201,9 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
 				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+			}
+			if (tFiles.GetSize() == 2)
+			{
 				m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
 				code = m_pDiffUtilsEngine->diffutils_compare_files();
 				m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
@@ -218,16 +220,6 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 			else
 			{
-				if (m_pDiffUtilsEngine == nullptr)
-					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
-				m_pDiffUtilsEngine->SetCodepage(codepage);
-				m_pDiffUtilsEngine->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_CONTENT));
-				if (m_pCtxt->m_pFilterList != nullptr)
-					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
-				else
-					m_pDiffUtilsEngine->ClearFilterList();
-				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
-
 				bool bRet;
 				int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
@@ -308,14 +300,16 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 		else if (nCompMethod == CMP_QUICK_CONTENT)
 		{
 			// use our own byte-by-byte compare
-			if (tFiles.GetSize() == 2)
+			if (m_pByteCompare == nullptr)
 			{
-				if (m_pByteCompare == nullptr)
-					m_pByteCompare.reset(new ByteCompare());
+				m_pByteCompare.reset(new ByteCompare());
 				m_pByteCompare->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
 
 				m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
 				m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
+			}
+			if (tFiles.GetSize() == 2)
+			{
 				m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
 
 				// use our own byte-by-byte compare
@@ -331,14 +325,6 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 			else
 			{
-				if (m_pByteCompare == nullptr)
-					m_pByteCompare.reset(new ByteCompare());
-				m_pByteCompare->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
-
-				/* “r’† */
-				m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
-				m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
-
 				// 10
 				m_pByteCompare->SetFileData(2, diffdata10.m_inf);
 
