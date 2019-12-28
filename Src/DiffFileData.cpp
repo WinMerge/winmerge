@@ -75,7 +75,7 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
+			_tsopen_s(&m_inf[i].desc, m_FileLocation[i].filepath.c_str(),
 					O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
 		}
 		if (m_inf[i].desc < 0)

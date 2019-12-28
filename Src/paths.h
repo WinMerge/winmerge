@@ -32,7 +32,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 String FindFileName(const String& path);
 String FindExtension(const String& path);
 void normalize(String & sPath);
-String GetLongPath(const String& szPath, bool bExpandEnvs = true);
+String GetLongPath(const String& sPath, bool bExpandEnvs = true);
 bool CreateIfNeeded(const String& szPath);
 PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) = nullptr);
 bool IsDirectory(const String& path);

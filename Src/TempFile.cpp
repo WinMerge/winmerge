@@ -131,7 +131,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	bool bok = true;
 
 	
-	h = FindFirstFile (TFile(pattern).wpath().c_str(), &ff);
+	h = FindFirstFile (pattern.c_str(), &ff);
 	if (h == INVALID_HANDLE_VALUE)
 		bok = false;
 
