@@ -15,6 +15,7 @@ IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CMergeFrameCommon)
 	ON_WM_GETMINMAXINFO()
+	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -97,5 +98,11 @@ void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
 	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
 #endif
+}
+
+void CMergeFrameCommon::OnDestroy()
+{
+	// https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
+	CFrameWnd::OnDestroy();
 }
 

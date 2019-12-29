@@ -153,7 +153,7 @@ HWND execWinMerge(const std::string& args)
 
 const std::set<int> languages()
 {
-	if (wcsstr(GetCommandLineW(), L"--english-only") != nullptr)
+	if (wcsstr(GetCommandLineW(), L"--all-languages") == nullptr)
 		return { MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US) };
 	return {
 MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US),

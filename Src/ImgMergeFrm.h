@@ -86,7 +86,6 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CImgMergeFrame)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 	virtual BOOL DestroyWindow();
 	virtual BOOL PreTranslateMessage(MSG *);
