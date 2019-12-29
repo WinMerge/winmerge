@@ -1,5 +1,5 @@
 /** 
- * @file  OptionsDialog.cpp
+ * @file  OptionsDialogTest.cpp
  *
  * @brief Implementation for OptionsDialog testcase.
  */

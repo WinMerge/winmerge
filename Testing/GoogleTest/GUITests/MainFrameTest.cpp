@@ -1,5 +1,5 @@
 /** 
- * @file  MainFrame.cpp
+ * @file  MainFrameTest.cpp
  *
  * @brief Implementation for MainFrame testcase.
  */
