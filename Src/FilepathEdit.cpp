@@ -306,10 +306,10 @@ void CFilepathEdit::OnNcPaint()
 	GetWindowRect(rect);
 	rect.OffsetRect(-rect.TopLeft());
 	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + margin, rect.bottom), GetDarkenColor(m_crBackGnd, 0.98));
-	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + 1, rect.bottom), GetDarkenColor(m_crBackGnd, 0.90));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + 1, rect.bottom), GetDarkenColor(m_crBackGnd, 0.96));
 	dc.FillSolidRect(CRect(rect.right - margin, rect.top, rect.right, rect.bottom), m_crBackGnd);
 	dc.FillSolidRect(CRect(rect.left + 1, rect.top, rect.right, rect.top + margin), GetDarkenColor(m_crBackGnd, 0.98));
-	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), GetDarkenColor(m_crBackGnd, 0.90));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), GetDarkenColor(m_crBackGnd, 0.96));
 	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), m_crBackGnd);
 }
 

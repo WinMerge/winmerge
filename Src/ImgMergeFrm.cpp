@@ -557,6 +557,7 @@ bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 BOOL CImgMergeFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveActivePane();
 	SaveOptions();
 	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
@@ -604,7 +605,6 @@ void CImgMergeFrame::SavePosition()
 {
 	CRect rc;
 	GetWindowRect(&rc);
-	GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 
 	// save the bars layout
 	// save docking positions and sizes
@@ -613,6 +613,11 @@ void CImgMergeFrame::SavePosition()
 	m_pDockState.SaveState(_T("Settings-ImgMergeFrame"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings-ImgMergeFrame"));
+}
+
+void CImgMergeFrame::SaveActivePane()
+{
+	GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 }
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
@@ -1179,6 +1184,7 @@ bool CImgMergeFrame::CloseNow()
 		return false;
 
 	SavePosition(); // Save settings before closing!
+	SaveActivePane();
 	SaveOptions();
 	MDIActivate();
 	MDIDestroy();

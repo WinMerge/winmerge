@@ -7,12 +7,10 @@
 #ifndef BOOST_INDIRECT_ITERATOR_23022003THW_HPP
 #define BOOST_INDIRECT_ITERATOR_23022003THW_HPP
 
-#include <boost/iterator.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
 
 #include <boost/pointee.hpp>
 #include <boost/indirect_reference.hpp>
-#include <boost/detail/iterator.hpp>
 
 #include <boost/detail/indirect_traits.hpp>
 
@@ -24,6 +22,8 @@
 #include <boost/mpl/eval_if.hpp>
 #include <boost/mpl/not.hpp>
 #include <boost/mpl/has_xxx.hpp>
+
+#include <iterator>
 
 #ifdef BOOST_MPL_CFG_NO_HAS_XXX
 # include <boost/shared_ptr.hpp>
@@ -45,7 +45,7 @@ namespace iterators {
     template <class Iter, class Value, class Category, class Reference, class Difference>
     struct indirect_base
     {
-        typedef typename boost::detail::iterator_traits<Iter>::value_type dereferenceable;
+        typedef typename std::iterator_traits<Iter>::value_type dereferenceable;
 
         typedef iterator_adaptor<
             indirect_iterator<Iter, Value, Category, Reference, Difference>

@@ -23,8 +23,7 @@
 # endif
 #endif
 
-// MSVC variadics at this point in time is not ready yet (ICE!)
-#if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1900))
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1910)
 # if defined(BOOST_FUSION_HAS_VARIADIC_MAP)
 #   undef BOOST_FUSION_HAS_VARIADIC_MAP
 # endif
@@ -36,8 +35,6 @@
 #if !defined(BOOST_FUSION_HAS_VARIADIC_MAP)
 # include <boost/fusion/container/map/detail/cpp03/map_fwd.hpp>
 #else
-
-#include <boost/fusion/container/map/detail/map_impl.hpp>
 
 ///////////////////////////////////////////////////////////////////////////////
 // C++11 interface

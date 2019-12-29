@@ -163,7 +163,7 @@ msgid "Recent F&iles Or Folders"
 msgstr "Последни &файлове и папки"
 
 msgid "< Empty >"
-msgstr "< празно >"
+msgstr "<празно>"
 
 msgid "E&xit"
 msgstr "&Изход"
@@ -310,7 +310,7 @@ msgid "S&how Binary Files"
 msgstr "Показване на &двоичните файлове"
 
 msgid "&3-way Compare"
-msgstr ""
+msgstr "&3-странно сравняване"
 
 msgid "Show &Left Only Different Items"
 msgstr "Показване само на уникалните от&ляво"
@@ -864,10 +864,10 @@ msgid "&Compare method:"
 msgstr "Метод за &сравняване:"
 
 msgid "Full Contents"
-msgstr "На база цялото съдържание"
+msgstr "Цялото съдържание"
 
 msgid "Quick Contents"
-msgstr "На база част от съдържанието"
+msgstr "Част от съдържанието"
 
 msgid "Binary Contents"
 msgstr "Двоично съдържание"
@@ -1300,10 +1300,10 @@ msgid "&Match similar lines"
 msgstr "Съот&ветствие на подобни редове"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "&Алг. за търсене на различия (експ.):"
+msgstr "&Алгоритъм за различия (експер.):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "П&редполагане на отстъпа"
 
 msgid "Comments"
 msgstr "Коментари"
@@ -1351,7 +1351,7 @@ msgid "W&ord break characters:"
 msgstr "Символ за пренасяне на &дума:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "&Режим на изчертаване:"
 
 msgid "Filefilters"
 msgstr "Филтри за файлове"
@@ -1443,10 +1443,10 @@ msgid " Categories"
 msgstr " Категории"
 
 msgid "Import..."
-msgstr "Изнасяне…"
+msgstr "Внасяне…"
 
 msgid "Export..."
-msgstr "Внасяне…"
+msgstr "Изнасяне…"
 
 msgid "Dialog"
 msgstr "Диалог"
@@ -1769,7 +1769,7 @@ msgid "Image"
 msgstr "Изображения"
 
 msgid "Image File &Patterns:"
-msgstr ""
+msgstr "Файлови &разширения на изображения:"
 
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
@@ -2267,8 +2267,8 @@ msgstr ""
 "%1\n"
 "%2\n"
 "Искате ли да:\n"
-"\t- използвате различно име (натиснете Ok)\n"
-"\t- отмените текущата операция (натиснете Отмени)?"
+"\t- използвате различно име (изберете Добре)\n"
+"\t- отмените текущата операция (изберете Отменяне)?"
 
 #, c-format
 msgid ""
@@ -2520,13 +2520,13 @@ msgid "Comparison result"
 msgstr "Резултати при сравняване"
 
 msgid "Left Date"
-msgstr "Лява дата"
+msgstr "Дата ляво"
 
 msgid "Right Date"
-msgstr "Дясна дата"
+msgstr "Дата дясно"
 
 msgid "Middle Date"
-msgstr ""
+msgstr "Дата средата"
 
 msgid "Extension"
 msgstr "Разширение"
@@ -2685,7 +2685,7 @@ msgstr "Текстовите файлове са различни"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Оставащо време: %ld ms"
+msgstr "Изминало време: %ld мс"
 
 msgid "1 item selected"
 msgstr "1 избран обект"
@@ -3036,16 +3036,16 @@ msgid "Select file for import"
 msgstr "Изберете файл за импорт"
 
 msgid "Options imported from the file."
-msgstr "Настройките са импортирани от файл."
+msgstr "Настройките са внесени от файла."
 
 msgid "Options exported to the file."
-msgstr "Настройките са експортирани във файл."
+msgstr "Настройките са изнесени във файла."
 
 msgid "Failed to import options from the file."
-msgstr "Не може да се импортират настройките от файл."
+msgstr "Грешка при внасяне на насторйките от файл."
 
 msgid "Failed to write options to the file."
-msgstr "Не може да се експортират настройките във файл."
+msgstr "Грешка при изнасяне на насторйките във файл."
 
 msgid ""
 "You are about to close several compare windows.\n"
@@ -3054,7 +3054,7 @@ msgid ""
 msgstr ""
 "Ще затворите няколко прозореца за сравняване.\n"
 "\n"
-"Искате ли да продължите?"
+"Желаете ли да продължите?"
 
 msgid "Mixed"
 msgstr "Смесен"
@@ -3204,7 +3204,7 @@ msgid "Private Build: %1"
 msgstr "Вътрешен билд: %1"
 
 msgid "Your software is up to date"
-msgstr ""
+msgstr "Приложението е последно издание"
 
 #, c-format
 msgid ""
@@ -3213,13 +3213,13 @@ msgid ""
 msgstr ""
 
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Грешка при изтегляне на данните за ново издание"
 
 msgid "Plugin Settings"
 msgstr "Настройки на добавките"
 
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH не е намерен - .sct скриптовете са забранени"
+msgstr "WSH не е намерен - скриптовете на .sct са забранени"
 
 msgid "<None>"
 msgstr "<Няма>"
@@ -3262,7 +3262,7 @@ msgid "VHDL"
 msgstr "VHDL"
 
 msgid "Close &Left Tabs"
-msgstr "Затваряне не &левия раздел"
+msgstr "Затваряне на &левия раздел"
 
 msgid "Close R&ight Tabs"
 msgstr "Затваряне на &десния раздел"
@@ -3288,4 +3288,37 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
+
+msgid "default"
+msgstr "по подразбиране"
+
+msgid "minimal"
+msgstr "minimal"
+
+msgid "patience"
+msgstr "patience"
+
+msgid "histogram"
+msgstr "histogram"
+
+msgid "GDI"
+msgstr "GDI"
+
+msgid "DirectWrite Default"
+msgstr "Стандартен DirectWrite"
+
+msgid "DirectWrite Aliased"
+msgstr "Назъбен DirectWrite"
+
+msgid "DirectWrite GDI Classic"
+msgstr "Класически DirectWrite GDI"
+
+msgid "DirectWrite GDI Natural"
+msgstr "Естествен DirectWrite GDI"
+
+msgid "DirectWrite Natural"
+msgstr "Естествен DirectWrite"
+
+msgid "DirectWrite Natural Symmetric"
+msgstr "Естествен симтричен DirectWrite"
 

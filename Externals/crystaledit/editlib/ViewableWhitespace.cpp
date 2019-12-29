@@ -21,13 +21,23 @@ static bool f_initialized = false;
  */
 static struct ViewableWhitespaceChars
 // Do not use L literals, as they involve runtime mbcs expansion, apparently
- f_specialChars = {
+ f_specialChars[2] = {
+{
 	0,
 	L" ", // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
 	L" ", // U+B7: MIDDLE DOT
 	L" ", // U+A7: SECTION SIGN
 	L" ", // U+B6: PILCROW SIGN
 	L" " // U+A4: CURRENCY SIGN
+},
+{
+	0,
+	L" ", // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
+	L" ", // U+B7: MIDDLE DOT
+	L" ", // U+A7: SECTION SIGN
+	L" ", // U+B6: PILCROW SIGN
+	L" " // U+A4: CURRENCY SIGN
+}
 };
 
 /**
@@ -35,12 +45,18 @@ static struct ViewableWhitespaceChars
  */
 static void initialize()
 {
-	f_specialChars.c_tab[0] = 0xBB;
-	f_specialChars.c_space[0] = 0xB7;
-	f_specialChars.c_cr[0] = 0x2190;
-	f_specialChars.c_lf[0] = 0x2193;
-	f_specialChars.c_eol[0] = 0x25C4;
-	f_specialChars.c_eol[1] = 0x2518;
+	f_specialChars[0].c_tab[0] = 0xBB;
+	f_specialChars[0].c_space[0] = 0xB7;
+	f_specialChars[0].c_cr[0] = 0x2190;
+	f_specialChars[0].c_lf[0] = 0x2193;
+	f_specialChars[0].c_eol[0] = 0x25C4;
+	f_specialChars[0].c_eol[1] = 0x2518;
+
+	f_specialChars[1].c_tab[0] = 0xBB;
+	f_specialChars[1].c_space[0] = 0xB7;
+	f_specialChars[1].c_cr[0] = 0x2190;
+	f_specialChars[1].c_lf[0] = 0x2193;
+	f_specialChars[1].c_eol[0] = 0x21b2;
 
 	f_initialized = true;
 }
@@ -109,12 +125,12 @@ static void initialize()
  * @param [in] codepage Used codepage (only efective in ANSI builds).
  * @return Pointer to structure having viewable chars.
  */
-const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage)
+const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool directwrite)
 {
 	if (!f_initialized)
 		initialize();
 #ifdef UNICODE
-	return &f_specialChars;
+	return &f_specialChars[directwrite ? 1 : 0];
 #else
 	// Use the [0] version by default, if lookup fails to find a better one
 	int offset = 0;

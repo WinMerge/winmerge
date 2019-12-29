@@ -101,6 +101,7 @@ private:
 	void LoadOptions();
 	void SaveOptions();
 	void SavePosition();
+	void SaveActivePane();
 	virtual ~CImgMergeFrame();
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions

@@ -26,10 +26,10 @@
 // CGotoDlg dialog
 
 CGotoDlg::CGotoDlg (CCrystalTextView * pBuddy):CDialog (CGotoDlg::IDD, nullptr)
+, m_pBuddy(pBuddy)
+, m_sNumber(_T(""))
 {
-  m_pBuddy = pBuddy;
   //{{AFX_DATA_INIT(CGotoDlg)
-  m_sNumber = _T ("");
   //}}AFX_DATA_INIT
 }
 

@@ -88,40 +88,32 @@ enum BUFFERTYPE
 };
 
 struct WordDiff {
-	int begin[3]; // 0-based, eg, begin[0] is from str1
-	int end[3]; // 0-based, eg, end[1] is from str2
-	int beginline[3];
-	int endline[3];
+	std::array<int, 3> begin; // 0-based, eg, begin[0] is from str1
+	std::array<int, 3> end; // 0-based, eg, end[1] is from str2
+	std::array<int, 3> beginline;
+	std::array<int, 3> endline;
 	int op;
+
 	WordDiff(int s1=0, int e1=0, int bl1=0, int el1=0, int s2=0, int e2=0, int bl2=0, int el2=0, int s3=0, int e3=0, int bl3=0, int el3=0, int op=0)
-		: op(op)
+		: begin{s1, s2, s3}
+		, beginline{bl1, bl2, bl3}
+		, endline{el1, el2, el3}
+		, op(op)
 	{
 		if (s1>e1) e1=s1;
 		if (s2>e2) e2=s2;
 		if (s3>e3) e3=s3;
-		begin[0] = s1;
-		begin[1] = s2;
-		begin[2] = s3;
 		end[0] = e1;
 		end[1] = e2;
 		end[2] = e3;
-		beginline[0] = bl1;
-		beginline[1] = bl2;
-		beginline[2] = bl3;
-		endline[0] = el1;
-		endline[1] = el2;
-		endline[2] = el3;
 	}
 	WordDiff(const WordDiff & src)
+		: begin{src.begin}
+		, end{src.end}
+		, beginline{src.beginline}
+		, endline{src.endline}
+		, op(src.op)
 	{
-		for (int i=0; i<3; ++i)
-		{
-			begin[i] = src.begin[i];
-			end[i] = src.end[i];
-			beginline[i] = src.beginline[i];
-			endline[i] = src.endline[i];
-		}
-		op = src.op;
 	}
 };
 

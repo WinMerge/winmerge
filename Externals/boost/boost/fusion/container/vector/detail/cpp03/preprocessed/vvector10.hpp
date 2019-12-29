@@ -65,7 +65,9 @@ namespace boost { namespace fusion
 # endif
     BOOST_FUSION_GPU_ENABLED
     explicit
-    vector(U0 && arg0)
+    vector(U0 && arg0
+        , typename boost::disable_if_c<boost::is_same<vector, typename boost::remove_cv_ref<U0>::type>::value, detail::enabler_>::type = detail::enabler
+        )
         : vec(std::forward<U0>( arg0)) {}
 # endif
     
@@ -82,7 +84,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1)
+    vector(U0 && arg0 , U1 && arg1
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1)) {}
 # endif
     
@@ -99,7 +102,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2)) {}
 # endif
     
@@ -116,7 +120,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3)) {}
 # endif
     
@@ -133,7 +138,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4)) {}
 # endif
     
@@ -150,7 +156,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5)) {}
 # endif
     
@@ -167,7 +174,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6)) {}
 # endif
     
@@ -184,7 +192,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7)) {}
 # endif
     
@@ -201,7 +210,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7) , std::forward<U8>( arg8)) {}
 # endif
     
@@ -218,7 +228,8 @@ namespace boost { namespace fusion
     BOOST_CXX14_CONSTEXPR
 # endif
     BOOST_FUSION_GPU_ENABLED
-    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9)
+    vector(U0 && arg0 , U1 && arg1 , U2 && arg2 , U3 && arg3 , U4 && arg4 , U5 && arg5 , U6 && arg6 , U7 && arg7 , U8 && arg8 , U9 && arg9
+        )
         : vec(std::forward<U0>( arg0) , std::forward<U1>( arg1) , std::forward<U2>( arg2) , std::forward<U3>( arg3) , std::forward<U4>( arg4) , std::forward<U5>( arg5) , std::forward<U6>( arg6) , std::forward<U7>( arg7) , std::forward<U8>( arg8) , std::forward<U9>( arg9)) {}
 # endif
         template <typename U0 , typename U1 , typename U2 , typename U3 , typename U4 , typename U5 , typename U6 , typename U7 , typename U8 , typename U9>
@@ -257,7 +268,10 @@ namespace boost { namespace fusion
         }
         template <typename T>
         BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        vector&
+        typename boost::disable_if_c<
+            boost::is_same<vector, typename boost::remove_cv_ref<T>::type>::value
+          , vector&
+        >::type
         operator=(T&& rhs)
         {
             vec = std::forward<T>( rhs);

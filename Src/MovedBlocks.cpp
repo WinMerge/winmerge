@@ -85,6 +85,26 @@ public:
 	}
 };
 
+static bool isLineInDiffBlock(int nside, int lineno, change *script)
+{
+	change *p = nullptr;
+	for (change *e = script; e; e = p)
+	{
+		p = e->link;
+		if (nside == 0)
+		{
+			if (e->line0 <= lineno && lineno < e->line0 + e->deleted)
+				return true;
+		}
+		else
+		{
+			if (e->line1 <= lineno && lineno < e->line1 + e->inserted)
+				return true;
+		}
+	}
+	return false;
+}
+
 /*
  WinMerge moved block code
  This is called by diffutils code, by diff_2_files routine (in ANALYZE.C)
@@ -106,9 +126,9 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 	{
 		p = e->link;
 		int i=0;
-		for (i=e->line0; i-(e->line0) < (e->deleted); ++i)
+		for (i = e->line0; i - (e->line0) < (e->deleted); ++i)
 			map.Add(i, fd[0].equivs[i], 0);
-		for (i=e->line1; i-(e->line1) < (e->inserted); ++i)
+		for (i = e->line1; i - (e->line1) < (e->inserted); ++i)
 			map.Add(i, fd[1].equivs[i], 1);
 	}
 
@@ -147,7 +167,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		{
 			EqGroup * pgroup0 = map.find(fd[0].equivs[i1]);
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j1]);
-			if (pgroup0 != pgroup1)
+			if (pgroup0 != pgroup1 || !isLineInDiffBlock(1, j1, script))
 				break;
 //			pgroup0->m_lines0.Remove(i1); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
 //			pgroup1->m_lines1.Remove(j1);
@@ -163,7 +183,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		{
 			EqGroup * pgroup0 = map.find(fd[0].equivs[i2]);
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j2]);
-			if (pgroup0 != pgroup1)
+			if (pgroup0 != pgroup1 || !isLineInDiffBlock(1, j2, script))
 				break;
 //			pgroup0->m_lines0.Remove(i2); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
 //			pgroup1->m_lines1.Remove(j2);
@@ -265,7 +285,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		{
 			EqGroup * pgroup0 = map.find(fd[0].equivs[i1]);
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j1]);
-			if (pgroup0 != pgroup1)
+			if (pgroup0 != pgroup1 || !isLineInDiffBlock(0, i1, script))
 				break;
 //			pgroup0->m_lines0.Remove(i1); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
 //			pgroup1->m_lines1.Remove(j1);
@@ -281,7 +301,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		{
 			EqGroup * pgroup0 = map.find(fd[0].equivs[i2]);
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j2]);
-			if (pgroup0 != pgroup1)
+			if (pgroup0 != pgroup1 || !isLineInDiffBlock(0, i2, script))
 				break;
 //			pgroup0->m_lines0.Remove(i2); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
 //			pgroup1->m_lines1.Remove(j2);

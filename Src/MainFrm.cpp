@@ -275,6 +275,8 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(true)
 , m_pDropHandler(nullptr)
 , m_bShowErrors(false)
+, m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
+, m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 {
 }
 
@@ -316,9 +318,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
-	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
-	
 	if (!CreateToolbar())
 	{
 		TRACE0("Failed to create toolbar\n");
@@ -1943,7 +1942,8 @@ BOOL CMainFrame::CreateToolbar()
 		return FALSE;
 	}
 
-	if (!m_wndReBar.Create(this))
+	if (!m_wndReBar.Create(this, RBS_BANDBORDERS,
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_ALIGN_TOP))
 	{
 		return FALSE;
 	}

@@ -1,4 +1,4 @@
-/* Copyright 2003-2014 Joaquin M Lopez Munoz.
+/* Copyright 2003-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -14,12 +14,13 @@
 #endif
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
-#include <boost/detail/allocator_utilities.hpp>
+#include <boost/core/addressof.hpp>
 #include <boost/detail/no_exceptions_support.hpp>
 #include <boost/detail/workaround.hpp>
 #include <boost/move/core.hpp>
-#include <boost/move/utility.hpp>
+#include <boost/move/utility_core.hpp>
 #include <boost/mpl/vector.hpp>
+#include <boost/multi_index/detail/allocator_traits.hpp>
 #include <boost/multi_index/detail/copy_map.hpp>
 #include <boost/multi_index/detail/do_not_copy_elements_tag.hpp>
 #include <boost/multi_index/detail/node_type.hpp>
@@ -61,10 +62,8 @@ protected:
   typedef multi_index_container<
     Value,IndexSpecifierList,Allocator>       final_type;
   typedef tuples::null_type                   ctor_args_list;
-  typedef typename 
-  boost::detail::allocator::rebind_to<
-    Allocator,
-    typename Allocator::value_type
+  typedef typename rebind_alloc_for<
+    Allocator,typename Allocator::value_type
   >::type                                     final_allocator_type;
   typedef mpl::vector0<>                      index_type_list;
   typedef mpl::vector0<>                      iterator_type_list;
@@ -85,6 +84,8 @@ protected:
 
 private:
   typedef Value                               value_type;
+  typedef allocator_traits<Allocator>         alloc_traits;
+  typedef typename alloc_traits::size_type    size_type;
 
 protected:
   explicit index_base(const ctor_args_list&,const Allocator&){}
@@ -102,7 +103,7 @@ protected:
   {
     x=final().allocate_node();
     BOOST_TRY{
-      boost::detail::allocator::construct(&x->value(),v);
+      final().construct_value(x,v);
     }
     BOOST_CATCH(...){
       final().deallocate_node(x);
@@ -116,14 +117,7 @@ protected:
   {
     x=final().allocate_node();
     BOOST_TRY{
-      /* This shoud have used a modified, T&&-compatible version of
-       * boost::detail::allocator::construct, but 
-       * <boost/detail/allocator_utilities.hpp> is too old and venerable to
-       * mess with; besides, it is a general internal utility and the imperfect
-       * perfect forwarding emulation of Boost.Move might break other libs.
-       */
-
-      new (&x->value()) value_type(boost::move(const_cast<value_type&>(v)));
+      final().construct_value(x,boost::move(const_cast<value_type&>(v)));
     }
     BOOST_CATCH(...){
       final().deallocate_node(x);
@@ -158,12 +152,12 @@ protected:
 
   void erase_(node_type* x)
   {
-    boost::detail::allocator::destroy(&x->value());
+    final().destroy_value(static_cast<final_node_type*>(x));
   }
 
   void delete_node_(node_type* x)
   {
-    boost::detail::allocator::destroy(&x->value());
+    final().destroy_value(static_cast<final_node_type*>(x));
   }
 
   void clear_(){}
@@ -188,6 +182,8 @@ protected:
 
   bool modify_rollback_(node_type*){return true;}
 
+  bool check_rollback_(node_type*)const{return true;}
+
 #if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
   /* serialization */
 
@@ -211,9 +207,9 @@ protected:
 
   final_node_type* final_header()const{return final().header();}
 
-  bool        final_empty_()const{return final().empty_();}
-  std::size_t final_size_()const{return final().size_();}
-  std::size_t final_max_size_()const{return final().max_size_();}
+  bool      final_empty_()const{return final().empty_();}
+  size_type final_size_()const{return final().size_();}
+  size_type final_max_size_()const{return final().max_size_();}
 
   std::pair<final_node_type*,bool> final_insert_(const value_type& x)
     {return final().insert_(x);}

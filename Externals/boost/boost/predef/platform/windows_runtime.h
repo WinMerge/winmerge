@@ -9,25 +9,33 @@ http://www.boost.org/LICENSE_1_0.txt)
 #ifndef BOOST_PREDEF_PLAT_WINDOWS_RUNTIME_H
 #define BOOST_PREDEF_PLAT_WINDOWS_RUNTIME_H
 
-#include <boost/predef/version_number.h>
 #include <boost/predef/make.h>
 #include <boost/predef/os/windows.h>
+#include <boost/predef/platform/windows_phone.h>
+#include <boost/predef/platform/windows_store.h>
+#include <boost/predef/version_number.h>
 
 /*`
 [heading `BOOST_PLAT_WINDOWS_RUNTIME`]
 
+Deprecated.
+
+[@https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide UWP]
+for Windows Phone or Store development.  This does not align to the existing development model for
+UWP and is deprecated.  Use one of the other `BOOST_PLAT_WINDOWS_*`definitions instead.
+
 [table
     [[__predef_symbol__] [__predef_version__]]
 
-    [[`WINAPI_FAMILY == WINAPI_FAMILY_APP`] [__predef_detection__]]
-    [[`WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP`] [__predef_detection__]]
+    [[`BOOST_PLAT_WINDOWS_PHONE`] [__predef_detection__]]
+    [[`BOOST_PLAT_WINDOWS_STORE`] [__predef_detection__]]
     ]
  */
 
 #define BOOST_PLAT_WINDOWS_RUNTIME BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
-#if BOOST_OS_WINDOWS && defined(WINAPI_FAMILY) && \
-    ( WINAPI_FAMILY == WINAPI_FAMILY_APP || WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP )
+#if BOOST_OS_WINDOWS && \
+    (BOOST_PLAT_WINDOWS_STORE || BOOST_PLAT_WINDOWS_PHONE)
 #   undef BOOST_PLAT_WINDOWS_RUNTIME
 #   define BOOST_PLAT_WINDOWS_RUNTIME BOOST_VERSION_NUMBER_AVAILABLE
 #endif

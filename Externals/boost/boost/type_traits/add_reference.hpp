@@ -54,6 +54,13 @@ template <> struct add_reference<const volatile void> { typedef const volatile v
 template <> struct add_reference<volatile void> { typedef volatile void type; };
 #endif
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+template <class T> using add_reference_t = typename add_reference<T>::type;
+
+#endif
+
+
 } // namespace boost
 
 #endif // BOOST_TT_ADD_REFERENCE_HPP_INCLUDED

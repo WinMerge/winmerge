@@ -41,6 +41,7 @@ struct CustomGlyphRun : public DWRITE_GLYPH_RUN
 	CustomGlyphRun(const CustomGlyphRun& other)
 		: DWRITE_GLYPH_RUN(other)
 		, sumCharWidth(other.sumCharWidth)
+		, ascent(0.0f)
 	{
 		glyphAdvances = new float[other.glyphCount];
 		for (unsigned i = 0; i < other.glyphCount; ++i)
@@ -422,7 +423,7 @@ void CCrystalRendererDirectWrite::DrawBoundaryLine(int left, int right, int y)
 void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int height)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(0));
-	m_pTempBrush->SetOpacity(0.5f);
+	m_pTempBrush->SetOpacity(0.1f);
 	m_renderTarget.DrawLine(
 		{ static_cast<float>(left), static_cast<float>(y) },
 		{ static_cast<float>(right), static_cast<float>(y) },

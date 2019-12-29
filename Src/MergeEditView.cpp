@@ -300,6 +300,60 @@ CString CMergeEditView::GetSelectedText()
  * @brief Get diffs inside selection.
  * @param [out] firstDiff First diff inside selection
  * @param [out] lastDiff Last diff inside selection
+ * @note -1 is returned in parameters if diffs cannot be determined
+ * @todo This shouldn't be called when there is no diffs, so replace
+ * first 'if' with ASSERT()?
+ */
+void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
+{
+	firstDiff = -1;
+	lastDiff = -1;
+
+	CMergeDoc *pd = GetDocument();
+	const int nDiffs = pd->m_diffList.GetSignificantDiffs();
+	if (nDiffs == 0)
+		return;
+
+	int firstLine, lastLine;
+	GetFullySelectedLines(firstLine, lastLine);
+	if (lastLine < firstLine)
+		return;
+
+	firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+	lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	if (firstDiff != -1 && lastDiff != -1)
+	{
+		DIFFRANGE di;
+
+		// Check that first selected line is first diff's first line or above it
+		VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
+		if ((int)di.dbegin < firstLine)
+		{
+			if (firstDiff < lastDiff)
+				++firstDiff;
+		}
+
+		// Check that last selected line is last diff's last line or below it
+		VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
+		if ((int)di.dend > lastLine)
+		{
+			if (firstDiff < lastDiff)
+				--lastDiff;
+		}
+
+		// Special case: one-line diff is not selected if cursor is in it
+		if (firstLine == lastLine)
+		{
+			firstDiff = -1;
+			lastDiff = -1;
+		}
+	}
+}
+
+/**
+ * @brief Get diffs inside selection.
+ * @param [out] firstDiff First diff inside selection
+ * @param [out] lastDiff Last diff inside selection
  * @param [out] firstWordDiff First word level diff inside selection
  * @param [out] lastWordDiff Last word level diff inside selection
  * @note -1 is returned in parameters if diffs cannot be determined
@@ -1844,18 +1898,22 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		// cursor is inside diff
 		if (IsSelection())
 		{
-			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
-			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
+			{
+				pCmdUI->Enable(true);
+			}
+			else
+			{
+				int firstDiff, lastDiff;
+				GetFullySelectedDiffs(firstDiff, lastDiff);
 
-			pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
+				pCmdUI->Enable(firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff));
+			}
 		}
 		else
 		{
 			const int currDiff = GetDocument()->GetCurrentDiff();
-			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
-				pCmdUI->Enable(true);
-			else
-				pCmdUI->Enable(m_bCurrentLineIsDiff);
+			pCmdUI->Enable(m_bCurrentLineIsDiff || (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff)));
 		}
 	}
 	else

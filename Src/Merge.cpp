@@ -1307,7 +1307,11 @@ UINT CMergeApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefau
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
 	if (!pOptions->Get(name).IsInt())
-		pOptions->InitOption(name, nDefault);
+	{
+		varprop::VariantValue defaultValue;
+		defaultValue.SetInt(CWinApp::GetProfileInt(lpszSection, lpszEntry, nDefault));
+		pOptions->AddOption(name, defaultValue);
+	}
 	return pOptions->GetInt(name);
 }
 
@@ -1325,7 +1329,11 @@ CString CMergeApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCT
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
 	if (!pOptions->Get(name).IsString())
-		pOptions->InitOption(name, lpszDefault ? lpszDefault : _T(""));
+	{
+		varprop::VariantValue defaultValue;
+		defaultValue.SetString(CWinApp::GetProfileString(lpszSection, lpszEntry, lpszDefault));
+		pOptions->AddOption(name, defaultValue);
+	}
 	return pOptions->GetString(name).c_str();
 }
 

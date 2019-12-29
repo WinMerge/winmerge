@@ -199,6 +199,7 @@ void CHexMergeFrame::ActivateFrame(int nCmdShow)
 BOOL CHexMergeFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveActivePane();
 	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
@@ -211,7 +212,11 @@ BOOL CHexMergeFrame::DestroyWindow()
  */
 void CHexMergeFrame::SavePosition()
 {
-	if (CWnd *pLeft = m_wndSplitter.GetPane(0,0))
+}
+
+void CHexMergeFrame::SaveActivePane()
+{
+	if (CWnd* pLeft = m_wndSplitter.GetPane(0, 0))
 	{
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
 	}
@@ -391,6 +396,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 void CHexMergeFrame::CloseNow()
 {
 	SavePosition(); // Save settings before closing!
+	SaveActivePane();
 	MDIActivate();
 	MDIDestroy();
 }

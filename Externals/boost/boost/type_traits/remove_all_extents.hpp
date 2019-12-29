@@ -30,6 +30,12 @@ template <class T> struct remove_all_extents<T const volatile[]> : public remove
 #endif
 #endif
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using remove_all_extents_t = typename remove_all_extents<T>::type;
+
+#endif
+
 } // namespace boost
 
 #endif // BOOST_TT_REMOVE_BOUNDS_HPP_INCLUDED

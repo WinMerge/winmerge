@@ -108,7 +108,7 @@ msgstr "&Einfügen-/Löschen-Erkennung"
 
 #, c-format
 msgid "&None"
-msgstr "&Keine"
+msgstr "K&eine"
 
 msgid "&Vertical"
 msgstr "&Vertikal"
@@ -198,7 +198,7 @@ msgstr "Pro&jekt öffnen...\tStrg+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Proje&kt speichern..."
+msgstr "P&rojekt speichern..."
 
 #, c-format
 msgid "Recent Projects"
@@ -234,7 +234,7 @@ msgstr "&Symbolleiste"
 
 #, c-format
 msgid "&Small"
-msgstr "K&lein"
+msgstr "&Klein"
 
 #, c-format
 msgid "&Big"
@@ -270,7 +270,7 @@ msgstr "&Plugins"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Plugin-&Einstellungen..."
+msgstr "Plu&gin-Einstellungen..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -353,7 +353,7 @@ msgstr "Ü&ber WinMerge..."
 
 #, c-format
 msgid "&Read-only"
-msgstr "&Schreibgeschützt"
+msgstr "Schreibgesch&ützt"
 
 #, c-format
 msgid "L&eft Read-only"
@@ -373,7 +373,7 @@ msgstr "Dateik&odierung..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Alles &markieren\tStrg+A"
+msgstr "&Alles markieren\tStrg+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -450,7 +450,7 @@ msgstr "Schrift &auswählen..."
 
 #, c-format
 msgid "Use Default F&ont"
-msgstr "Standardschrift &verwenden"
+msgstr "Standardschr&ift verwenden"
 
 #, c-format
 msgid "Sw&ap Panes"
@@ -462,7 +462,7 @@ msgstr "V&ergleichsstatistik"
 
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "&Aktualisieren\tF5"
+msgstr "A&ktualisieren\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -584,7 +584,7 @@ msgstr "Dateik&odierung..."
 
 #, c-format
 msgid "Recompare As"
-msgstr "Erneut vergleichen"
+msgstr "Erneut ver&gleichen"
 
 #, c-format
 msgid "&Text"
@@ -600,7 +600,7 @@ msgstr "&Binär"
 
 #, c-format
 msgid "&Image"
-msgstr "&Bild"
+msgstr "Bil&d"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -672,7 +672,7 @@ msgstr "&Gehe zu...\tStrg+G"
 
 #, c-format
 msgid "Syntax Highlight"
-msgstr "Syntaxhervorhebung"
+msgstr "S&yntaxhervorhebung"
 
 #, fuzzy, c-format
 msgid "&Diff Context"
@@ -752,7 +752,7 @@ msgstr "Nächster &Konflikt\tAlt+Umschalt+Runter"
 
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr "Vorheriger Ko&nflikt\tAlt+Umschalt+Hoch"
+msgstr "Vorheri&ger Konflikt\tAlt+Umschalt+Hoch"
 
 #, c-format
 msgid "A&dvanced"
@@ -815,10 +815,10 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Von rechts kopieren\tAlt+Umschalt+Links"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Nach rechts kopieren und &fortschreiten\tAlt+Strg+Rechts"
+msgstr "Nach rechts kopieren und &fortschreiten\tStrg+Alt+Rechts"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Nach links kopieren und f&ortschreiten\tAlt+Strg+Links"
+msgstr "Nach links kopieren und f&ortschreiten\tStrg+Alt+Links"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -826,10 +826,10 @@ msgstr "Alles nach rec&hts kopieren"
 
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Alles nach lin&ks kopieren"
+msgstr "Alles nach links ko&pieren"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "A&utomatisch mischen\tAlt+Strg+M"
+msgstr "A&utomatisch mischen\tStrg+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -837,7 +837,7 @@ msgstr "&Synchronisationspunkt hinzufügen\tAlt+S"
 
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr "Sync&hronisationspunkt entfernen"
+msgstr "S&ynchronisationspunkt entfernen"
 
 #, c-format
 msgid "&Prediffer"
@@ -845,7 +845,7 @@ msgstr "&Prediffer"
 
 #, c-format
 msgid "&Scripts"
-msgstr "Skri&pte"
+msgstr "&Skripte"
 
 #, c-format
 msgid "Sp&lit"
@@ -1036,11 +1036,11 @@ msgstr "Rechtes Shell-Menü"
 
 #, c-format
 msgid "Copy"
-msgstr "Kopieren"
+msgstr "&Kopieren"
 
 #, c-format
 msgid "&Copy Full Path"
-msgstr "Vollständigen Pfad &kopieren"
+msgstr "&Vollständigen Pfad kopieren"
 
 #, c-format
 msgid "Copy &Filename"
@@ -1072,7 +1072,7 @@ msgstr "&Alle verschobenen Blöcke"
 
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Verschobenen Block für aktuellen &Unterschied"
+msgstr "&Verschobenen Block für aktuellen Unterschied"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1096,7 +1096,7 @@ msgstr "&Groß-/Kleinschreibung beachten"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Zeilen&umbruchunterschiede (Windows/Unix/Mac) ignorieren"
+msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
 
 #, c-format
 msgid "Ignore codepage &differences"
@@ -1104,7 +1104,7 @@ msgstr "&Codeseiten-Unterschiede ignorieren"
 
 #, c-format
 msgid "&Include Subfolders"
-msgstr "Unter&ordner einbeziehen"
+msgstr "&Unterordner einbeziehen"
 
 #, c-format
 msgid "&Compare method:"
@@ -1164,7 +1164,7 @@ msgstr "&1. Datei oder Ordner"
 
 #, c-format
 msgid "Re&ad-only"
-msgstr "Schreibg&eschützt"
+msgstr "Schreibgesch&ützt"
 
 #, c-format
 msgid "Swap 1st | 2nd"
@@ -1180,7 +1180,7 @@ msgstr "&2. Datei oder Ordner"
 
 #, c-format
 msgid "Rea&d-only"
-msgstr "Schreibge&schützt"
+msgstr "Schreibgeschü&tzt"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
@@ -1188,7 +1188,7 @@ msgstr "2. | 3. vertauschen"
 
 #, c-format
 msgid "B&rowse..."
-msgstr "Su&chen..."
+msgstr "S&uchen..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
@@ -1196,15 +1196,15 @@ msgstr "&3. Datei oder Ordner (optional)"
 
 #, c-format
 msgid "Read-o&nly"
-msgstr "Schreibges&chützt"
+msgstr "Schreibgeschüt&zt"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr "Vertausche 1. | 3."
+msgstr "1. | 3. vertauschen"
 
 #, c-format
 msgid "Browse..."
-msgstr "Suchen..."
+msgstr "Su&chen..."
 
 #, c-format
 msgid " Folder: Filter"
@@ -1243,7 +1243,7 @@ msgstr "Allgemein"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "Anzeige automatisch auf den ersten Unterschied &positionieren"
+msgstr "&Anzeige automatisch auf den ersten Unterschied positionieren"
 
 #, c-format
 msgid "Cl&ose windows with ESC"
@@ -1251,11 +1251,11 @@ msgstr "Fenster mit &Esc schließen"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "P&fade im Öffnen-Dialog automatisch überprüfen"
+msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
 
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "&Nur eine Programm-Instanz zulassen"
+msgstr "Nur eine Programm-&Instanz zulassen"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1279,7 +1279,7 @@ msgstr "Öffnen-Dialog Auto&vervollständigung:"
 
 #, c-format
 msgid "Language:"
-msgstr "Sprache:"
+msgstr "&Sprache:"
 
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
@@ -1325,7 +1325,7 @@ msgstr "&Weitersuchen"
 
 #, c-format
 msgid "Find &Prev"
-msgstr "Rück&wärtssuchen"
+msgstr "R&ückwärtssuchen"
 
 #, c-format
 msgid "&Ok"
@@ -1337,7 +1337,7 @@ msgstr "Ersetzen"
 
 #, c-format
 msgid "Re&place with:"
-msgstr "Erse&tzen durch:"
+msgstr "&Ersetzen durch:"
 
 #, c-format
 msgid "&Don't wrap end of file"
@@ -1345,7 +1345,7 @@ msgstr "Am Dateiende nicht von vorn &beginnen"
 
 #, c-format
 msgid "Replace in"
-msgstr "Ersetze in"
+msgstr "Ersetzen in"
 
 #, c-format
 msgid "&Selection"
@@ -1353,10 +1353,10 @@ msgstr "&Auswahl"
 
 #, c-format
 msgid "Wh&ole file"
-msgstr "Ganze &Datei"
+msgstr "Ganzer &Datei"
 
 msgid "Find Pre&v"
-msgstr "Rück&wärtssuchen"
+msgstr "R&ückwärtssuchen"
 
 #, c-format
 msgid "&Replace"
@@ -1372,7 +1372,7 @@ msgstr "Markierungen"
 
 #, c-format
 msgid "Enable &Markers"
-msgstr "Markierungen &aktivieren"
+msgstr "&Markierungen aktivieren"
 
 #, c-format
 msgid "New"
@@ -1463,7 +1463,7 @@ msgid "Defaults"
 msgstr "Vorgaben"
 
 msgid "&Use folder compare colors"
-msgstr "Ordnervergleichsfarben verwenden"
+msgstr "&Ordnervergleichsfarben verwenden"
 
 msgid "Items equal:"
 msgstr "Gleiche Objekte:"
@@ -1483,7 +1483,7 @@ msgstr "System"
 
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "Gelöschte Dateien in den &Papierkorb verschieben"
+msgstr "&Gelöschte Dateien in den Papierkorb verschieben"
 
 #, c-format
 msgid "&External editor:"
@@ -1499,7 +1499,7 @@ msgstr "Temporärer Dateienordner"
 
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "Temporärer Ordner des S&ystems"
+msgstr "&Temporärer Ordner des Systems"
 
 #, c-format
 msgid "C&ustom folder:"
@@ -1507,7 +1507,7 @@ msgstr "&Benutzerdefinierter Ordner:"
 
 #, c-format
 msgid "Br&owse..."
-msgstr "S&uchen..."
+msgstr "Su&chen..."
 
 #, c-format
 msgid "Patch Generator"
@@ -1535,7 +1535,7 @@ msgstr "&Ergebnis:"
 
 #, c-format
 msgid "Bro&wse..."
-msgstr "S&uchen..."
+msgstr "Suc&hen..."
 
 #, c-format
 msgid "&Format"
@@ -1543,7 +1543,7 @@ msgstr "&Format"
 
 #, c-format
 msgid "St&yle:"
-msgstr "Stil:"
+msgstr "Sti&l:"
 
 #, c-format
 msgid "&Context:"
@@ -1551,7 +1551,7 @@ msgstr "&Kontext:"
 
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Leer&zeilen ignorieren"
+msgstr "&Leerzeilen ignorieren"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -1679,10 +1679,10 @@ msgstr "Verschobene &Blöcke erkennen"
 
 #, c-format
 msgid "&Match similar lines"
-msgstr "Ä&hnliche Zeilen angleichen"
+msgstr "&Ähnliche Zeilen angleichen"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Diff-Algorithmus (experimentell):"
+msgstr "&Diff-Algorithmus (experimentell):"
 
 msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
@@ -1693,7 +1693,7 @@ msgstr "Kommentare"
 
 #, c-format
 msgid "Filter Comments"
-msgstr "Kommentare filtern"
+msgstr "&Kommentare filtern"
 
 #, c-format
 msgid "Editor"
@@ -1733,7 +1733,7 @@ msgstr "Zeilenunterschied-Färbung"
 
 #, c-format
 msgid "View line differences"
-msgstr "Zeilenunterschied anzeigen"
+msgstr "Ze&ilenunterschied anzeigen"
 
 #, c-format
 msgid "&Character level"
@@ -1748,7 +1748,7 @@ msgid "W&ord break characters:"
 msgstr "W&ortumbruchzeichen:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "&Darstellungsmodus:"
 
 #, c-format
 msgid "Filefilters"
@@ -1983,7 +1983,7 @@ msgstr "&Archivunterstützung aktivieren"
 
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "&Archivtyp aus der Dateisignatur ermitteln"
+msgstr "Archiv&typ aus der Dateisignatur ermitteln"
 
 #, c-format
 msgid "Compare Statistics"
@@ -2138,7 +2138,7 @@ msgstr "&Ordnervergleich"
 
 #, c-format
 msgid "Fil&e compare"
-msgstr "D&ateivergleich"
+msgstr "&Dateivergleich"
 
 #, c-format
 msgid "Create backup files into:"
@@ -2209,11 +2209,11 @@ msgstr "Explorer"
 
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "Er&weitertes Menü verwenden"
+msgstr "&Erweitertes Menü verwenden"
 
 #, c-format
 msgid "&Add to context menu"
-msgstr "Zum Kontextmenü &hinzufügen"
+msgstr "&Zum Kontextmenü hinzufügen"
 
 #, c-format
 msgid "&Register shell extension"
@@ -2247,21 +2247,21 @@ msgstr "&Eindeutige Unterordner-Inhalte einbeziehen"
 
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr "Automatisch alle Unterordner aufklappen"
+msgstr "&Automatisch alle Unterordner aufklappen"
 
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr "Analysepunkte ignorieren"
+msgstr "Anal&ysepunkte ignorieren"
 
 #, c-format
 msgid "&Quick compare limit (MB):"
 msgstr "&Limit für Schnellvergleich (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr "Binärvergleichslimit (MB):"
+msgstr "&Binärvergleichslimit (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nAnzahl der Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
+msgstr "\nAnzahl der &Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2269,7 +2269,7 @@ msgstr "Binär"
 
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr "Binärdateimuster:"
+msgstr "Binärdatei&muster:"
 
 #, c-format
 msgid "Frhed settings"
@@ -2277,7 +2277,7 @@ msgstr "Frhed-Einstellungen"
 
 #, c-format
 msgid "View &Settings..."
-msgstr "Ein&stellungen..."
+msgstr "&Einstellungen..."
 
 #, c-format
 msgid "&Binary Mode..."
@@ -2285,14 +2285,14 @@ msgstr "&Binärmodus..."
 
 #, c-format
 msgid "&Character Set..."
-msgstr "Zei&chensatz..."
+msgstr "&Zeichensatz..."
 
 msgid "Image"
 msgstr "Bild"
 
 #, c-format
 msgid "Image File &Patterns:"
-msgstr "Bilddateimuster:"
+msgstr "&Bilddateimuster:"
 
 #, c-format
 msgid "&Hex View"
@@ -2843,7 +2843,7 @@ msgstr "Änderungen in %1 speichern?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 ist als Schreibgeschützt markiert. Möchten Sie die schreibgeschützte Datei überschreiben? (Nicht unter neuem Dateinamen speichern.)"
+msgstr "%1 ist als schreibgeschützt markiert. Möchten Sie die schreibgeschützte Datei überschreiben? (Nicht unter neuem Dateinamen speichern.)"
 
 #, c-format
 msgid "Error backing up file"
@@ -3243,7 +3243,7 @@ msgid "Middle Encoding"
 msgstr "Mittlere Kodierung"
 
 msgid "Ignored Diff"
-msgstr "Ignorierte Unter"
+msgstr "Ignorierter Unterschied"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3993,7 +3993,7 @@ msgstr "<Automatisch>"
 
 #, c-format
 msgid "G&oto Line %1"
-msgstr "G&ehe zu Zeile %1"
+msgstr "Gehe zu &Zeile %1"
 
 #, c-format
 msgid "Disabled"
@@ -4040,11 +4040,11 @@ msgstr "&Linke Tabs schließen"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "Rechte Tabs schließen"
+msgstr "&Rechte Tabs schließen"
 
 #, c-format
 msgid "Close &Other Tabs"
-msgstr "Andere Tabs schließen"
+msgstr "&Andere Tabs schließen"
 
 #, c-format
 msgid "Enable &Auto Max Width"
@@ -4071,4 +4071,37 @@ msgstr ""
 "Sie können folgende Parameter für den Pfad angeben:\n"
 "$file: Pfadname der aktuellen Datei\n"
 "$linenum: Zeilennummer der aktuellen Cursorposition"
+
+msgid "default"
+msgstr "Standard"
+
+msgid "minimal"
+msgstr "Minimal"
+
+msgid "patience"
+msgstr "Geduld"
+
+msgid "histogram"
+msgstr "Histogramm"
+
+msgid "GDI"
+msgstr "GDI"
+
+msgid "DirectWrite Default"
+msgstr "DirectWrite Standard"
+
+msgid "DirectWrite Aliased"
+msgstr "DirectWrite Aliasing"
+
+msgid "DirectWrite GDI Classic"
+msgstr "DirectWrite GDI klassisch"
+
+msgid "DirectWrite GDI Natural"
+msgstr "DirectWrite GDI natürlich"
+
+msgid "DirectWrite Natural"
+msgstr "DirectWrite natürlich"
+
+msgid "DirectWrite Natural Symmetric"
+msgstr "DirectWrite natürlich symmetrisch"
 

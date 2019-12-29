@@ -1,3 +1,58 @@
+WinMerge 2.16.5
+  File compare:
+  - Bugfix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)
+  - Bugfix: Performance using Unpacker (GitHub #180)
+  - Bugfix: WinMerge toolbar appears too small on UHD and should default
+      to the conforming Windows 10 scaling/DPI accessibility setting
+      (GitHub #182)
+  - Bugfix: "Recompare as" menu option doesn't follow current choice
+      (GitHub #191)
+  - Bugfix: Switching between "Find Next" and "Find Prev" need to click twice
+      (GitHub #202)
+  - Bugfix: Program is crashed! (GitHub #229)
+  - Switch "Find" buttons in Find dialog (GitHub #201)
+  - Improve UNICODE character support using icu.dll usable
+      from Windows 10 Creators Update 
+  - Add support for color emoji (Only available in 64bit version)
+      (To enable color emoji support, select DirectWrite* in Rendering
+       mode combobox on Editor page in the Options dialog)
+  Folder compare:
+  - Bugfix: Crash when clicking Next Difference button after unchecking
+      Show Different Items menu item
+  - Changed symbols in Newer/Older column for better visual clarity
+      (GitHub #169)
+  - Add "Ignore codepage differences" to quick options (GitHub #197)
+  - Limit the window flashing count. (GitHub #206)
+  Image compare:
+  - Bugfix: Image compare breaks when zoomed too much with large pictures
+      (GitHub #188)
+  - Bugfix: [Image compare] Zoom-in focuses on top-left corner instead of
+      cursor position (GitHub #211)
+  Shell extension:
+  - Bugfix: "Run as Administrator" incompatible with "Shell integration"
+      (ver 2.16.4) (sf.net #2234)
+  Installer:
+  - Bugfix: Installer russian translation (#168)
+  - Bugfix: Windows 10 shell integration not working (GitHub #176)
+  - Installer - Proposal - Separate Inno Setup strings from WinMerge
+      installer strings (GitHub #167)
+  Translations:
+  - Update Italian translation (GitHub #164, #165)
+  - Update Russian translation (GitHub #166)
+  - Update Bulgarian translation (GitHub #170, #175, #179, #212)
+  - Update Portuguese translation (GitHub #185, #199)
+  - Update French translation (GitHub #187)
+  - Update Lithuanian translation (GitHub #189, #208, #217, #225)
+  - Update Swedish translation (GitHub #194, #196)
+  - Update German translation (GitHub #204, #205, #215)
+  - Update Polish translation (GitHub #218)
+  - Update Simplified Chinese translation (GitHub #228)
+  - Update Finnish translation (sf.net #3037)
+  - Update English.pot (#216)
+  - Add Japanese manual (GitHub #183)
+  Manual:
+  - Small Manual tweaks (GitHub #190)
+
 WinMerge 2.16.4
   File compare:
   - Bugfix: coretools.cpp: linelen() should not truncate lines with embedded

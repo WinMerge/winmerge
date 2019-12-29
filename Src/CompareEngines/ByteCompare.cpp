@@ -46,14 +46,10 @@ ByteCompare::~ByteCompare()
 /**
  * @brief Set compare options from general compare options.
  * @param [in ]options General compare options.
- * @return true if succeeded, false otherwise.
  */
-bool ByteCompare::SetCompareOptions(const CompareOptions & options)
+void ByteCompare::SetCompareOptions(const CompareOptions & options)
 {
 	m_pOptions.reset(new QuickCompareOptions(options));
-	if (m_pOptions.get() == nullptr)
-		return false;
-	return true;
 }
 
 /**

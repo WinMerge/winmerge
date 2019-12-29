@@ -1,4 +1,4 @@
-/* Copyright 2006-2014 Joaquin M Lopez Munoz.
+/* Copyright 2006-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -67,7 +67,7 @@ public:
   {
     typedef typename core::lock_type lock_type;
     core::init();
-    lock_type lock(core::mutex());
+    lock_type lock(core::mutex());(void)lock;
     if(chk(h))core::factory().erase(h);
   }
 };
@@ -178,7 +178,7 @@ private:
   {
     init();
     entry_type       e(x);
-    lock_type        lock(mutex());
+    lock_type        lock(mutex());(void)lock;
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
     base_handle_type h(factory().insert(std::move(e)));
 #else
@@ -201,7 +201,7 @@ private:
   {
     init();
     entry_type       e((rep_type(x)));
-    lock_type        lock(mutex());
+    lock_type        lock(mutex());(void)lock;
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
     base_handle_type h(factory().insert(std::move(e)));
@@ -226,7 +226,7 @@ private:
   {
     init();
     entry_type       e(std::move(x));
-    lock_type        lock(mutex());
+    lock_type        lock(mutex());(void)lock;
     base_handle_type h(factory().insert(std::move(e)));
 
     BOOST_TRY{
@@ -245,7 +245,7 @@ private:
   {
     init();
     entry_type       e(rep_type(std::move(x)));
-    lock_type        lock(mutex());
+    lock_type        lock(mutex());(void)lock;
     base_handle_type h(factory().insert(std::move(e)));
     BOOST_TRY{
       ValuePolicy::move_value(

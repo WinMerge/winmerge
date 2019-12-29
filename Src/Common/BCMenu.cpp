@@ -1229,12 +1229,11 @@ BCMenuData *BCMenu::FindMenuItem(UINT_PTR nID)
 BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 									  CArray<UINT,UINT&>&bclocs)
 {
-	int i;
-	INT_PTR j;
 	BCMenu *psubmenu,*pgoodmenu;
 	bool foundflag;
+	int nummenu = GetMenuItemCount();
 	
-	for(i=0;i<GetMenuItemCount();++i){
+	for(int i=0;i<nummenu;++i){
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
@@ -1248,7 +1247,7 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 		else if(nId==(int)GetMenuItemID(i)){
 			INT_PTR numsubs=bcsubs.GetSize();
 			foundflag=true;
-			for(j=0;j<numsubs;++j){
+			for(INT_PTR j=0;j<numsubs;++j){
 				if(bcsubs[j]==this && bclocs[j]==static_cast<UINT>(i)){
 					foundflag=false;
 					break;
@@ -1267,8 +1266,9 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 {
 	BCMenu *psubmenu,*pgoodmenu;
+	int nummenu = GetMenuItemCount();
 	
-	for(int i=0;i<GetMenuItemCount();++i){
+	for(int i=0;i<nummenu;++i){
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
@@ -1290,11 +1290,11 @@ BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 
 BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 {
-	int i,j;
 	BCMenu *psubmenu;
 	BCMenuData *pmenulist;
+	int nummenu = GetMenuItemCount();
 	
-	for(i=0;i<GetMenuItemCount();++i){
+	for(int i=0;i<nummenu;++i){
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
@@ -1306,7 +1306,7 @@ BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 				return pmenulist;
 		}
 		else{
-			for(j=0;j<=m_MenuList.GetUpperBound();++j){     
+			for(int j=0;j<=m_MenuList.GetUpperBound();++j){     
 				const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 				szWide = m_MenuList[j]->GetWideString ();
 				if(szWide != nullptr && wcscmp(lpstrText,szWide)==0)//SK: modified for dynamic allocation
@@ -1421,7 +1421,8 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 		delete[] szCaption;
 	}while(stack.GetUpperBound() != -1);
 	
-	for(int i=0;i<GetMenuItemCount();++i){
+	int nummenu = GetMenuItemCount();
+	for(int i=0;i<nummenu;++i){
 		CString str=m_MenuList[i]->GetString();
 		if(GetSubMenu(i)){
 			m_MenuList[i]->nFlags=MF_POPUP|MF_BYPOSITION;
@@ -1471,9 +1472,10 @@ void BCMenu::RemoveTopLevelOwnerDraw(void)
 	CString str;
 	int i=0,j=0;
 	INT_PTR nummenulist=m_MenuList.GetSize();
+	int nummenu = GetMenuItemCount();
 
 	int menustart=GetMenuStart();
-	for(i=menustart,j=0;i<GetMenuItemCount();++i,++j){
+	for(i=menustart,j=0;i<nummenu;++i,++j){
 		if(j<nummenulist){
 			str=m_MenuList[j]->GetString();
 			if(GetSubMenu(i)){
@@ -2169,13 +2171,13 @@ BCMenu* BCMenu::GetSubBCMenu(wchar_t* lpszSubMenuName)
 // before and after the popup menu can also be removed if they exist.
 int BCMenu::GetMenuPosition(wchar_t* pText)
 {
-	int i,j;
-	for(i=0;i<GetMenuItemCount();++i)
+	int nummenu = GetMenuItemCount();
+	for(int i=0;i<nummenu;++i)
 	{
 		BCMenu* psubmenu=static_cast<BCMenu *>(GetSubMenu(i));
 		if(psubmenu == nullptr)
 		{
-			for(j=0;j<=m_MenuList.GetUpperBound();++j)
+			for(int j=0;j<=m_MenuList.GetUpperBound();++j)
 			{     
 				const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 				szWide = m_MenuList[j]->GetWideString ();

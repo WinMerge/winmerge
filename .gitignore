@@ -30,3 +30,11 @@ Translations/WinMerge/MergeLang.lastbuild
 /ShellExtension/ShellExtension.h
 /ShellExtension/ShellExtension_i.c
 /ShellExtension/ShellExtension_p.c
+*.vspx
+Translations/WinMerge/TranslationsStatus.html
+Translations/WinMerge/TranslationsStatus.wiki
+Translations/WinMerge/TranslationsStatus.xml
+winmerge-cppcheck-build-dir/
+*.vsp
+*.psess
+*.cppcheck

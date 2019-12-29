@@ -196,12 +196,12 @@ inline void ProjectFileItem::SetSubfolders(bool bSubfolder)
 /** 
  * @brief 
  *
- * @param [in] files Files in project
+ * @param [in] paths Files in project
  * @param [in] bSubFolders If true subfolders included (recursive compare)
  */
-inline void ProjectFileItem::SetPaths(const PathContext& files, bool bSubfolders)
+inline void ProjectFileItem::SetPaths(const PathContext& paths, bool bSubfolders)
 {
-	m_paths = files;
+	m_paths = paths;
 	m_subfolders = bSubfolders;
 }
 

@@ -19,11 +19,11 @@ namespace boost { namespace fusion { namespace detail
     struct segmented_for_each_fun
     {
         BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-        explicit segmented_for_each_fun(Fun const& f)
+        explicit segmented_for_each_fun(Fun& f)
           : fun(f)
         {}
 
-        Fun const& fun;
+        Fun& fun;
 
         template <typename Sequence, typename State, typename Context>
         struct apply
@@ -43,7 +43,7 @@ namespace boost { namespace fusion { namespace detail
     template <typename Sequence, typename F>
     BOOST_CXX14_CONSTEXPR BOOST_FUSION_GPU_ENABLED
     inline void
-    for_each(Sequence& seq, F const& f, mpl::true_) // segmented implementation
+    for_each(Sequence& seq, F& f, mpl::true_) // segmented implementation
     {
         fusion::segmented_fold_until(seq, void_(), segmented_for_each_fun<F>(f));
     }

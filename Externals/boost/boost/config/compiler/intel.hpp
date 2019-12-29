@@ -45,10 +45,16 @@
 
 #undef BOOST_GCC_VERSION
 #undef BOOST_GCC_CXX11
+#undef BOOST_GCC
+#undef BOOST_FALLTHROUGH
 
 // Broken in all versions up to 17 (newer versions not tested)
 #if (__INTEL_COMPILER <= 1700) && !defined(BOOST_NO_CXX14_CONSTEXPR)
 #  define BOOST_NO_CXX14_CONSTEXPR
+#endif
+
+#if (__INTEL_COMPILER >= 1800) && (__cplusplus >= 201703)
+#  define BOOST_FALLTHROUGH [[fallthrough]]
 #endif
 
 #endif // defined(_MSC_VER)
@@ -311,6 +317,12 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #  define BOOST_SYMBOL_IMPORT
 #  define BOOST_SYMBOL_VISIBLE __attribute__((visibility("default")))
 #endif
+
+// Type aliasing hint
+#if defined(__GNUC__) && (BOOST_INTEL_CXX_VERSION >= 1300)
+#  define BOOST_MAY_ALIAS __attribute__((__may_alias__))
+#endif
+
 //
 // C++0x features
 // For each feature we need to check both the Intel compiler version, 
@@ -545,13 +557,13 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 // last known and checked version:
 #if (BOOST_INTEL_CXX_VERSION > 1700)
 #  if defined(BOOST_ASSERT_CONFIG)
-#     error "Unknown compiler version - please run the configure tests and report the results"
+#     error "Boost.Config is older than your compiler - please check for an updated Boost release."
 #  elif defined(_MSC_VER)
 //
 //      We don't emit this warning any more, since we have so few
 //      defect macros set anyway (just the one).
 //
-//#     pragma message("Unknown compiler version - please run the configure tests and report the results")
+//#     pragma message("boost: Unknown compiler version - please run the configure tests and report the results")
 #  endif
 #endif
 

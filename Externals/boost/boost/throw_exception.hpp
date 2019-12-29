@@ -1,11 +1,5 @@
 #ifndef UUID_AA15E74A856F11E08B8D93F24824019B
 #define UUID_AA15E74A856F11E08B8D93F24824019B
-#if (__GNUC__*100+__GNUC_MINOR__>301) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
-#pragma GCC system_header
-#endif
-#if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
-#pragma warning(push,1)
-#endif
 
 // MS compatible compilers support #pragma once
 
@@ -26,8 +20,8 @@
 //  http://www.boost.org/libs/utility/throw_exception.html
 //
 
-#include <boost/detail/workaround.hpp>
 #include <boost/config.hpp>
+#include <boost/detail/workaround.hpp>
 #include <exception>
 
 #if !defined( BOOST_EXCEPTION_DISABLE ) && defined( __BORLANDC__ ) && BOOST_WORKAROUND( __BORLANDC__, BOOST_TESTED_AT(0x593) )
@@ -49,11 +43,18 @@
 # define BOOST_THROW_EXCEPTION(x) ::boost::throw_exception(x)
 #endif
 
+#if defined(__GNUC__) && (__GNUC__*100+__GNUC_MINOR__>301) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#pragma GCC system_header
+#endif
+#if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#pragma warning(push,1)
+#endif
+
 namespace boost
 {
 #ifdef BOOST_NO_EXCEPTIONS
 
-void throw_exception( std::exception const & e ); // user defined
+BOOST_NORETURN void throw_exception( std::exception const & e ); // user defined
 
 #else
 
@@ -66,7 +67,7 @@ template<class E> BOOST_NORETURN inline void throw_exception( E const & e )
     throw_exception_assert_compatibility(e);
 
 #ifndef BOOST_EXCEPTION_DISABLE
-    throw enable_current_exception(enable_error_info(e));
+    throw exception_detail::enable_both( e );
 #else
     throw e;
 #endif

@@ -41,6 +41,16 @@ IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
  */
 CGhostTextView::CGhostTextView()
 : m_pGhostTextBuffer(nullptr)
+, m_ptCursorPosPushed{}
+, m_ptSelStartPushed{}
+, m_ptSelEndPushed{}
+, m_ptAnchorPushed{}
+, m_ptDraggedTextBeginPushed{}
+, m_ptDraggedTextEndPushed{}
+, m_ptSavedCaretPosPushed{}
+, m_ptSavedSelStartPushed{}
+, m_ptSavedSelEndPushed{}
+, m_ptLastChangePushed{}
 , m_nTopSubLinePushed(0)
 {
 }

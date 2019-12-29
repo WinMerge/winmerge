@@ -125,6 +125,12 @@ public:
    >::type type;
 };
 
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using make_signed_t = typename make_signed<T>::type;
+
+#endif
+
 } // namespace boost
 
 #endif // BOOST_TT_ADD_REFERENCE_HPP_INCLUDED

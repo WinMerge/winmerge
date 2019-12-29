@@ -7,7 +7,6 @@
 # define BOOST_ITERATOR_CATEGORIES_HPP
 
 # include <boost/config.hpp>
-# include <boost/detail/iterator.hpp>
 # include <boost/iterator/detail/config_def.hpp>
 
 # include <boost/detail/workaround.hpp>
@@ -20,6 +19,8 @@
 # include <boost/type_traits/is_convertible.hpp>
 
 # include <boost/static_assert.hpp>
+
+#include <iterator>
 
 namespace boost {
 namespace iterators {
@@ -116,7 +117,7 @@ struct iterator_category_to_traversal
 template <class Iterator = mpl::_1>
 struct iterator_traversal
   : iterator_category_to_traversal<
-        typename boost::detail::iterator_traits<Iterator>::iterator_category
+        typename std::iterator_traits<Iterator>::iterator_category
     >
 {};
 

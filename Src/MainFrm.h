@@ -161,7 +161,6 @@ protected:
 			{
 			case WM_MDICREATE:
 			case WM_MDIACTIVATE:
-			case WM_MDINEXT:
 				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
 				BOOL bMaximized;
 				if (SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized))

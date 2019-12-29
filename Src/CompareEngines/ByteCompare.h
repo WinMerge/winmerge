@@ -28,7 +28,7 @@ public:
 	ByteCompare();
 	~ByteCompare();
 
-	bool SetCompareOptions(const CompareOptions & options);
+	void SetCompareOptions(const CompareOptions & options);
 	void SetAdditionalOptions(bool stopAfterFirstDiff);
 	void SetAbortable(const IAbortable * piAbortable);
 	void SetFileData(int items, file_data *data);
