@@ -16,6 +16,9 @@ public:
 	void SetLastCompareResult(int nResult);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
+	virtual BOOL IsTabbedMDIChild() {
+		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
+	}
 protected:
 	int m_nLastSplitPos[2];
 private:
@@ -25,6 +28,7 @@ private:
 
 	//{{AFX_MSG(CMergeFrameCommon)
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg void OnDestroy();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

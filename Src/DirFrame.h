@@ -58,7 +58,6 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirFrame)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
 	//}}AFX_VIRTUAL

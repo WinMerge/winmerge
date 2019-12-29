@@ -335,13 +335,6 @@ void CImgMergeFrame::CheckFileChanged(void)
 	}
 }
 
-BOOL CImgMergeFrame::PreCreateWindow(CREATESTRUCT& cs)
-{
-	CMDIChildWnd::PreCreateWindow(cs);
-	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
-	return TRUE;
-}
-	
 /**
  * @brief Create a status bar to be associated with a heksedit control
  */

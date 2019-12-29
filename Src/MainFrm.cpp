@@ -353,6 +353,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 
+	CWnd *pMDIChildWnd = FindWindowExW(m_hWnd, nullptr, _T("MDIClient"), nullptr);
+	if (pMDIChildWnd)
+		pMDIChildWnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+
 	return 0;
 }
 

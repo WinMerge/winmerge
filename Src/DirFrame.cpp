@@ -193,13 +193,6 @@ void CDirFrame::OnClose()
 	CMDIChildWnd::OnClose();
 }
 
-BOOL CDirFrame::PreCreateWindow(CREATESTRUCT& cs)
-{
-	CMDIChildWnd::PreCreateWindow(cs);
-	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
-	return TRUE;
-}
-
 /**
  * @brief Save maximized state before destroying window
  */
