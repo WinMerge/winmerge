@@ -415,43 +415,13 @@ bool CGhostTextBuffer::			/* virtual override */
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
-	if ((GetLineFlags(nEndLine) & LF_GHOST) == 0)
+	int const nLineCount = GetLineCount();
+	while (nEndLine < nLineCount - 1 && GetLineFlags(nEndLine) & LF_GHOST)
+		++nEndLine;
+	if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
+		nEndLine, nEndChar, nAction, bHistory))
 	{
-		if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
-			nEndLine, nEndChar, nAction, bHistory))
-		{
-			return false;
-		}
-	}
-	else
-	{
-		// if the last line in selection to be deleted is a ghost line, 
-		// the EOL of last real line in selection should not be deleted.
-		// Otherwise, a line with no EOL will appear.
-		int nEndLine2 = nEndLine;
-		int nEndChar2 = nEndChar;
-		for (; nEndLine2 >= nStartLine; --nEndLine2)
-		{
-			if ((GetLineFlags(nEndLine2) & LF_GHOST) == 0)
-				break;
-		}
-		if (nStartLine <= nEndLine2)
-		{
-			if(nEndLine2 != nEndLine)
-				nEndChar2 = GetLineLength(nEndLine2);
-			if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
-				nEndLine2, nEndChar2, nAction, bHistory))
-			{
-				return false;
-			}
-			InternalDeleteGhostLine(pSource, nStartLine + 1, nEndLine - (nEndLine2 + 1) + 1);
-		}
-		else
-		{
-			if (bHistory && m_nUndoPosition < static_cast<int>(m_aUndoBuf.size()))
-				m_aUndoBuf.resize(m_nUndoPosition);
-			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1));
-		}
+		return false;
 	}
 
 	if (nStartChar != 0 || nEndChar != 0)
