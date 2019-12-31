@@ -22,6 +22,7 @@ Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages= “»«‰Â« 
+ArabicLanguage=Arabic menus and dialogs
 BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage= ›Â—” Â«Ì «‰ Œ«» Ê Ã⁄»Â Â«Ì „Õ«Ê—Â »·€«—Ì 
 CatalanLanguage= ›Â—” Â«Ì «‰ Œ«» Ê Ã⁄»Â Â«Ì „Õ«Ê—Â ò« «·«‰ 

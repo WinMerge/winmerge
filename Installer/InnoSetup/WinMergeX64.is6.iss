@@ -124,6 +124,7 @@ ArchitecturesInstallIn64BitMode=x64
 Name: English; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\English.isl
 
 ;Localizations:
+Name: Arabic; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Arabic.isl,..\..\Translations\InnoSetup\Arabic.isl
 Name: Basque; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Basque.isl,..\..\Translations\InnoSetup\Basque.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt
 Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Bulgarian.isl,..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt
 Name: Catalan; MessagesFile: compiler:Languages\Catalan.isl,..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
@@ -188,6 +189,9 @@ Name: Patch; Description: {cm:Patch}; Flags: disablenouninstallwarning; Types: f
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
+Name: Languages\Arabic; Description: {cm:ArabicLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Arabic
+Name: Languages\Arabic; Description: {cm:ArabicLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Arabic
+
 Name: Languages\Basque; Description: {cm:BasqueLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Basque
 Name: Languages\Basque; Description: {cm:BasqueLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Basque
 
@@ -425,6 +429,7 @@ Source: ..\..\Build\X64\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifol
 Source: ..\..\Build\X64\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
 ; Language files
+Source: ..\..\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Basque.po; DestDir: {app}\Languages; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt; DestDir: {app}\Docs; Components: Languages\Basque
 Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
@@ -618,7 +623,7 @@ Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; V
 
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
 ;(unless the user already has a startup language specified)
-Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000042d; Flags: deletevalue; Languages: Basque
+Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00001401; Flags: deletevalue; Languages: Arabic
 Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000402; Flags: deletevalue; Languages: Bulgarian
 Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
 Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Simplified

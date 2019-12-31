@@ -22,6 +22,7 @@ Patch=GnuWin32 патч для Windows
 
 ;Localization Components
 Languages=Языки интерфейса (меню и диалоги)
+ArabicLanguage=Арабский
 BasqueLanguage=Баскский
 BulgarianLanguage=Болгарский
 CatalanLanguage=Каталанский

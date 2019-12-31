@@ -22,6 +22,7 @@ Patch=GnuWin32 łatka dla systemu Windows
 
 ;Localization Components
 Languages=Języki
+ArabicLanguage=Arabski
 BasqueLanguage=Baskijski
 BulgarianLanguage=Bułgarski
 CatalanLanguage=Kataloński

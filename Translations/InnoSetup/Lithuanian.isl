@@ -22,6 +22,7 @@ Patch=GnuWin32 pataisa „Windows“
 
 ;Localization Components
 Languages=Kalbos
+ArabicLanguage=Arabu meniu ir dialogai
 BasqueLanguage=Baskø meniu ir dialogai
 BulgarianLanguage=Bulgarø meniu ir dialogai
 CatalanLanguage=Katalonø meniu ir dialogai

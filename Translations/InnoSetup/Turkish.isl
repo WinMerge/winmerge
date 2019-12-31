@@ -22,6 +22,7 @@ Patch=GnuWin32 Windows Yamasý
 
 ;Localization Components
 Languages=Diller
+ArabicLanguage=Arapça menü ve pencereler
 BasqueLanguage=Baskça menü ve pencereler
 BulgarianLanguage=Bulgarca menü ve pencereler
 CatalanLanguage=Katalanca menü ve pencereler

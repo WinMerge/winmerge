@@ -1,7 +1,7 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Optional Features::
+OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software
 
 ;Types
@@ -22,6 +22,7 @@ Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Languages
+ArabicLanguage=Arabic menus and dialogs
 BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
