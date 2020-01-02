@@ -240,12 +240,12 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with TortoiseGIT<indexterm>
-                <primary>TortoiseGIT integration</primary>
+            <term>Integrate with TortoiseGit<indexterm>
+                <primary>TortoiseGit integration</primary>
               </indexterm></term>
 
             <listitem>
-              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
+              <para>Sets WinMerge to be the TortoiseGit diff application.</para>
             </listitem>
           </varlistentry>
 

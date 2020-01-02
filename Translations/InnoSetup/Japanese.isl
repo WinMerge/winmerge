@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
 ;Tasks
 ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
-IntegrateTortoiseGIT=TortoiseGITとの連携(&R)
+IntegrateTortoiseGit=TortoiseGitとの連携(&R)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
 IntegrateClearCase=Rational ClearCaseとの連携(&C)
 AddToPath=システム環境変数PATHへWinMergeのフォルダを追加する(&A)
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3方向マージ
-ThreeWayMergeWizardPageDescription=TortoiseSVN/GITで WinMerge を3方向マージツールとして使用しますか?
+ThreeWayMergeWizardPageDescription=TortoiseSVN/Gitで WinMerge を3方向マージツールとして使用しますか?
 RegisterWinMergeAs3WayMergeTool=WinMerge を3方向マージツールとして登録する
 MergeAtRightPane=右側ペインでマージ
 MergeAtCenterPane=中央ペインでマージ

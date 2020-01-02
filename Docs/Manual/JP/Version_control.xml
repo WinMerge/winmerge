@@ -66,7 +66,7 @@
         <primary>TortoiseSVN の統合</primary>
       </indexterm>
 
-      <para>TortoiseCVS、TortoiseSVN、または、TortoiseGIT でファイル比較する際、
+      <para>TortoiseCVS、TortoiseSVN、または、TortoiseGit でファイル比較する際、
         VCSは、組込みの差分ツールの代わりに、WinMergeを起動することができます。
        この設定は、<link
       linkend="Installing_usinginstaller">WinMergeのインストール</link>の最中のみで可能です。</para>
@@ -75,7 +75,7 @@
         <title>TortoiseSVNとの統合</title>
 
         <para>これは、WinMerge統合を使用した、TortoiseSVNでの比較操作のサンプルです。
-        この統合は、TortoiseCVS と TortoiseGIT
+        この統合は、TortoiseCVS と TortoiseGit
         も同じです。</para>
 
         <orderedlist>

@@ -65,7 +65,7 @@
         <primary>TortoiseSVN integration</primary>
       </indexterm>
 
-      <para>When you compare files in TortoiseCVS, TortoiseSVN, or TortoiseGIT,
+      <para>When you compare files in TortoiseCVS, TortoiseSVN, or TortoiseGit,
       you can have the VCS launch WinMerge instead of its native diff
       utility. You can configure some of these integrations during <link
       linkend="Installing_usinginstaller">WinMerge installation</link>.</para>
@@ -74,7 +74,7 @@
         <title>Tortoise SVN integration</title>
 
         <para>Here is a sample diff operation in TortoiseSVN that uses the
-        WinMerge integration. The integrations with TortoiseCVS and TortoiseGIT
+        WinMerge integration. The integrations with TortoiseCVS and TortoiseGit
         are similar.</para>
 
         <orderedlist>

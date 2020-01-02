@@ -61,14 +61,14 @@ UkrainianLanguage=Меню і діалогові вікна українською мовою
 ;Tasks
 ExplorerContextMenu=&Інтегруватися в контекстне меню оболонки ОС
 IntegrateTortoiseCVS=Інтегруватися в &TortoiseCVS
-IntegrateTortoiseGIT=Інтегруватися в To&rtoiseGIT
+IntegrateTortoiseGit=Інтегруватися в To&rtoiseGit
 IntegrateTortoiseSVN=Інтегруватися в T&ortoiseSVN
 IntegrateClearCase=Інтегруватися в Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
 MergeAtRightPane=Merge at right pane
 MergeAtCenterPane=Merge at center pane

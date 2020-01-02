@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainiera menuak eta elkarrizketak
 ;Tasks
 ExplorerContextMenu=&Gaitu Explorer hitzinguru menu baterapena
 IntegrateTortoiseCVS=Bateratu &TortoiseCVS-rekin
-IntegrateTortoiseGIT=Bateratu To&rtoiseGIT-rekin
+IntegrateTortoiseGit=Bateratu To&rtoiseGit-rekin
 IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
 IntegrateClearCase=Bateratu Rational &ClearCase-rekin
 AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
 MergeAtRightPane=Merge at right pane
 MergeAtCenterPane=Merge at center pane
