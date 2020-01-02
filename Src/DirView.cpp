@@ -683,7 +683,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
-	CDirDoc *pDoc = GetDocument();
+	CDirDoc* pDoc = GetDocument();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
@@ -3694,7 +3694,6 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 	CEdit *pEdit = m_pList->GetEditControl();
 	pCmdUI->Enable(pEdit && pEdit->CanUndo());
 }
-
 /**
  * @brief Returns CShellContextMenu object that owns given HMENU.
  *
