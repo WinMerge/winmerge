@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_ENABLED8BIT         100
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -58,6 +58,7 @@
 #define IDD_EDIT_MARKER                 245
 #define IDD_PROPPAGE_COLORS_DIR         246
 #define IDD_SELECT_FILES_OR_FOLDERS     247
+#define IDD_DIALOG_WINDOWSMANAGER       251
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -551,6 +552,7 @@
 #define IDC_SWAP02_STATIC               8827
 #define IDC_DIFF_ALGORITHM              8828
 #define IDC_INDENT_HEURISTIC            8829
+#define IDC_LIST_FILE                   8830
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -935,7 +937,7 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_EDIT_MARK                    21406 // editcmd.h
+#define ID_EDIT_MARK                    21406
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -1119,7 +1121,7 @@
 #define ID_VIEW_FILEMARGIN              33150
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
-#define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
+#define IDS_COLORSCHEME_PLAIN           33152
 #define IDS_COLORSCHEME_ASP             33153
 #define IDS_COLORSCHEME_BASIC           33154
 #define IDS_COLORSCHEME_BATCH           33155
@@ -1156,7 +1158,7 @@
 #define IDS_COLORSCHEME_VERILOG         33186
 #define IDS_COLORSCHEME_VHDL            33187
 #define IDS_COLORSCHEME_XML             33188
-#define ID_COLORSCHEME_LAST             33188 // = IDS_COLORSCHEME_XML
+#define ID_COLORSCHEME_LAST             33188
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
@@ -1273,16 +1275,19 @@
 #define IDS_CREATE_FOLDER_ERROR         33658
 #define ID_FILE_SHELLMENU               33659
 #define ID_MERGE_COMPARE_NONHORIZONTALLY 33660
+#define ID_ACCEL_QUIT                   33661
+#define ID__OPENCONTAININGFOLDER        33662
+#define ID_OPENCONTAININGFOLDER         33663
 #define IDS_DIFF_ALGORITHM_DEFAULT      33700
-#define IDS_DIFF_ALGORITHM_MINIMAL      33701 
-#define IDS_DIFF_ALGORITHM_PATIENCE     33702 
-#define IDS_DIFF_ALGORITHM_HISTOGRAM    33703 
+#define IDS_DIFF_ALGORITHM_MINIMAL      33701
+#define IDS_DIFF_ALGORITHM_PATIENCE     33702
+#define IDS_DIFF_ALGORITHM_HISTOGRAM    33703
 #define IDS_RENDERING_MODE_GDI          33710
 #define IDS_RENDERING_MODE_DIRECTWRITE_DEFAULT 33711
 #define IDS_RENDERING_MODE_DIRECTWRITE_ALIASED 33712
 #define IDS_RENDERING_MODE_DIRECTWRITE_GDI_CLASSIC 33713
 #define IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL 33714
-#define IDS_RENDERING_MODE_DIRECTWRITE_NATURAL     33715
+#define IDS_RENDERING_MODE_DIRECTWRITE_NATURAL 33715
 #define IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC 33716
 
 // Next default values for new objects
@@ -1290,9 +1295,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        251
-#define _APS_NEXT_COMMAND_VALUE         33661
-#define _APS_NEXT_CONTROL_VALUE         8830
+#define _APS_NEXT_RESOURCE_VALUE        253
+#define _APS_NEXT_COMMAND_VALUE         33664
+#define _APS_NEXT_CONTROL_VALUE         8831
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif
