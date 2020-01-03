@@ -308,7 +308,6 @@ COpenDoc* COpenView::GetDocument() const // non-debug version is inline
 }
 #endif //_DEBUG
 
-
 /////////////////////////////////////////////////////////////////////////////
 // COpenView message handlers
 

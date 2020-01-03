@@ -199,7 +199,7 @@ protected:
 	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
 	CImageList m_imageState;
-	CListCtrl *m_pList;
+	CListCtrl* m_pList;
 	std::unique_ptr<IListCtrl> m_pIList;
 	bool m_bEscCloses; /**< Cached value for option for ESC closing window */
 	bool m_bExpandSubdirs;

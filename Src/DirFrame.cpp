@@ -88,13 +88,11 @@ CDirFrame::~CDirFrame()
 {
 }
 
-
 BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CDirFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-	ON_WM_MDIACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -212,4 +210,3 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
 	
 	m_wndFilePathBar.Resize();
 }
-

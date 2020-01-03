@@ -41,17 +41,17 @@
  * @brief Constructor initialising members.
  */
 PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
-: OptionsPanel(optionsMgr, PropGeneral::IDD)
-, m_bScroll(false)
-, m_bSingleInstance(false)
-, m_bVerifyPaths(false)
-, m_bCloseWindowWithEsc(true)
-, m_bAskMultiWindowClose(false)
-, m_nAutoCompleteSource(0)
-, m_bPreserveFiletime(false)
-, m_bShowSelectFolderOnStartup(false)
-, m_bCloseWithOK(true)
-, m_pLoadLanguagesThread(nullptr)
+	: OptionsPanel(optionsMgr, PropGeneral::IDD)
+	, m_bScroll(false)
+	, m_bSingleInstance(false)
+	, m_bVerifyPaths(false)
+	, m_bCloseWindowWithEsc(false)	// default is false !
+	, m_bAskMultiWindowClose(false)
+	, m_nAutoCompleteSource(0)
+	, m_bPreserveFiletime(false)
+	, m_bShowSelectFolderOnStartup(false)
+	, m_bCloseWithOK(true)
+	, m_pLoadLanguagesThread(nullptr)
 {
 }
 
