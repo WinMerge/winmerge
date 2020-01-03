@@ -429,12 +429,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp" />
@@ -984,6 +979,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
     <ClCompile Include="diffutils\src\analyze.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -1283,6 +1279,7 @@
     <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
+    <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />

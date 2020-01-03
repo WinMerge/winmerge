@@ -883,6 +883,9 @@
     <ClCompile Include="DirSelectFilesDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WindowsManagerDialog.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1595,6 +1598,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.h">
       <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsManagerDialog.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

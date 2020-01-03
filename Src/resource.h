@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED8BIT         100
+#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -937,7 +937,7 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_EDIT_MARK                    21406
+#define ID_EDIT_MARK                    21406 // editcmd.h
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -1121,7 +1121,7 @@
 #define ID_VIEW_FILEMARGIN              33150
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
-#define IDS_COLORSCHEME_PLAIN           33152
+#define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
 #define IDS_COLORSCHEME_ASP             33153
 #define IDS_COLORSCHEME_BASIC           33154
 #define IDS_COLORSCHEME_BATCH           33155
@@ -1158,7 +1158,7 @@
 #define IDS_COLORSCHEME_VERILOG         33186
 #define IDS_COLORSCHEME_VHDL            33187
 #define IDS_COLORSCHEME_XML             33188
-#define ID_COLORSCHEME_LAST             33188
+#define ID_COLORSCHEME_LAST             33188 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
@@ -1276,7 +1276,6 @@
 #define ID_FILE_SHELLMENU               33659
 #define ID_MERGE_COMPARE_NONHORIZONTALLY 33660
 #define ID_ACCEL_QUIT                   33661
-#define ID__OPENCONTAININGFOLDER        33662
 #define ID_OPENCONTAININGFOLDER         33663
 #define IDS_DIFF_ALGORITHM_DEFAULT      33700
 #define IDS_DIFF_ALGORITHM_MINIMAL      33701
