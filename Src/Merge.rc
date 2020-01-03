@@ -852,6 +852,7 @@ BEGIN
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_ACCEL_QUIT,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
     "U",            ID_EDIT_LOWERCASE,      VIRTKEY, CONTROL, NOINVERT
     "U",            ID_EDIT_UPPERCASE,      VIRTKEY, SHIFT, CONTROL, NOINVERT
