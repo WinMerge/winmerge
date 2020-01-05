@@ -126,7 +126,7 @@ CDirView::CDirView()
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
-	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 }
@@ -683,7 +683,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
-	CDirDoc *pDoc = GetDocument();
+	CDirDoc* pDoc = GetDocument();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
@@ -2137,7 +2137,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 					return TRUE;
 				}
 
-				if (m_bEscCloses)
+				if (m_nEscCloses != 0)
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 					return FALSE;
@@ -2898,7 +2898,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
  */
 void CDirView::RefreshOptions()
 {
-	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
@@ -3694,7 +3694,6 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 	CEdit *pEdit = m_pList->GetEditControl();
 	pCmdUI->Enable(pEdit && pEdit->CanUndo());
 }
-
 /**
  * @brief Returns CShellContextMenu object that owns given HMENU.
  *

@@ -640,14 +640,14 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
-        MENUITEM "Compare Non-hor&izontally...",   ID_MERGE_COMPARE_NONHORIZONTALLY
+        MENUITEM "Compare Non-hor&izontally...", ID_MERGE_COMPARE_NONHORIZONTALLY
         POPUP "Compare Non-hor&izontally"
         BEGIN
             MENUITEM "First &left item with second left item", ID_MERGE_COMPARE_LEFT1_LEFT2
             MENUITEM "First &right item with second right item", ID_MERGE_COMPARE_RIGHT1_RIGHT2
             MENUITEM "&First left item with second right item", ID_MERGE_COMPARE_LEFT1_RIGHT2
             MENUITEM "&Second left item with first right item", ID_MERGE_COMPARE_LEFT2_RIGHT1
-            MENUITEM "Compare Non-hor&izontally...",   ID_MERGE_COMPARE_NONHORIZONTALLY
+            MENUITEM "Compare Non-hor&izontally...", ID_MERGE_COMPARE_NONHORIZONTALLY
         END
         POPUP "Co&mpare As"
         BEGIN
@@ -855,6 +855,7 @@ BEGIN
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_ACCEL_QUIT,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
     "U",            ID_EDIT_LOWERCASE,      VIRTKEY, CONTROL, NOINVERT
     "U",            ID_EDIT_UPPERCASE,      VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -979,25 +980,26 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,240,10
-    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,240,10
+    LTEXT           "Cl&ose windows with ESC:",IDC_STATIC,7,16,200,10
+    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,27,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,240,10
-    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,240,10
-    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
+    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,240,10
-    CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
+    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,240,10
-    CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
+    CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,78,240,10
+    CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,90,240,20
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,110,240,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,122,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Language:",IDC_STATIC,7,140,80,10
-    COMBOBOX        IDC_LANGUAGE_LIST,7,152,241,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",IDC_STATIC,7,186,193,40
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,203,205,45,14,NOT WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,102,240,20
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,122,240,10
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,134,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language:",IDC_STATIC,7,152,80,10
+    COMBOBOX        IDC_LANGUAGE_LIST,7,164,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",IDC_STATIC,7,198,193,40
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,203,217,45,14,NOT WS_TABSTOP
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 293, 96
@@ -1152,7 +1154,8 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Use folder compare colors",IDC_USE_DIR_COMPARE_COLORS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,15,152,10
+    CONTROL         "&Use folder compare colors",IDC_USE_DIR_COMPARE_COLORS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,15,152,10
     CTEXT           "Background",IDC_STATIC,154,29,50,10
     CTEXT           "Text",IDC_STATIC,207,29,29,10
     RTEXT           "Items equal:",IDC_STATIC,4,49,152,20
@@ -1826,6 +1829,13 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,204,48,54,14
 END
 
+IDD_DIALOG_WINDOWSMANAGER DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1973,6 +1983,11 @@ BEGIN
     0, 0, 100, 0,
     100, 0, 0, 0,
     100, 0, 0, 0
+END
+
+IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT
+BEGIN
+    0
 END
 
 
@@ -2868,6 +2883,12 @@ BEGIN
     IDS_RENDERING_MODE_DIRECTWRITE_GDI_NATURAL       "DirectWrite GDI Natural"
     IDS_RENDERING_MODE_DIRECTWRITE_NATURAL           "DirectWrite Natural"
     IDS_RENDERING_MODE_DIRECTWRITE_NATURAL_SYMMETRIC "DirectWrite Natural Symmetric"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
+    IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
 END
 
 #endif    // English (United States) resources

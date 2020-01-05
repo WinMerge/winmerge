@@ -25,6 +25,11 @@
  */
 #pragma once
 
+#define WMU_CHILDFRAMEADDED						(WM_APP + 10)
+#define WMU_CHILDFRAMEREMOVED					(WM_APP + 11)
+#define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
+#define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
+
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
 #endif

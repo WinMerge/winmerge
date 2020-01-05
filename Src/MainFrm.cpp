@@ -74,6 +74,8 @@
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
 
+#include "WindowsManagerDialog.h"
+
 using std::vector;
 using boost::begin;
 using boost::end;
@@ -234,7 +236,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
+	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
 	//}}AFX_MSG_MAP
+	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
+	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
+	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
+	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
 END_MESSAGE_MAP()
 
 /**
@@ -284,6 +291,8 @@ CMainFrame::~CMainFrame()
 {
 	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
 	strdiff::Close();
+
+	m_arrChild.RemoveAll();
 }
 
 const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
@@ -1683,12 +1692,21 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-		else if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC) && m_wndTabBar.GetItemCount() == 0)
+		else if (GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) == 1 && m_wndTabBar.GetItemCount() == 0)
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;
 		}
 	}
+
+	if (WM_KEYDOWN == pMsg->message && VK_TAB == pMsg->wParam && GetAsyncKeyState(VK_CONTROL) < 0 && m_arrChild.GetSize() > 1)
+	{
+		CWindowsManagerDialog* pDlg = new CWindowsManagerDialog;
+		pDlg->Create(CWindowsManagerDialog::IDD, this);
+		pDlg->ShowWindow(SW_SHOW);
+		return TRUE;
+	}
+
 	return CMDIFrameWnd::PreTranslateMessage(pMsg);
 }
 
@@ -2582,4 +2600,73 @@ void CMainFrame::UpdateDocTitle()
 			((CFrameWnd*)AfxGetApp()->m_pMainWnd)->OnUpdateFrameTitle(TRUE);
 		}
 	}
+}
+
+void CMainFrame::OnAccelQuit()
+{
+	// TODO: Add your command handler code here
+
+	SendMessage(WM_CLOSE);
+}
+
+LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
+{
+	for (int i = 0; i < m_arrChild.GetSize(); ++i)
+	{
+		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
+		{
+			return 0;
+		}
+	}
+
+	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+
+	return 1;
+}
+
+LRESULT CMainFrame::OnChildFrameRemoved(WPARAM wParam, LPARAM lParam)
+{
+	for (int i = 0; i < m_arrChild.GetSize(); ++i)
+	{
+		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
+		{
+			m_arrChild.RemoveAt(i);
+			break;
+		}
+	}
+
+	return 1;
+}
+
+LRESULT CMainFrame::OnChildFrameActivate(WPARAM wParam, LPARAM lParam)
+{
+	for (int i = 0; i < m_arrChild.GetSize(); ++i)
+	{
+		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
+		{
+			CMDIChildWnd* pMDIChild = m_arrChild.GetAt(i);
+			if (pMDIChild->IsIconic())
+				pMDIChild->ShowWindow(SW_RESTORE);
+			MDIActivate(pMDIChild);
+			break;
+		}
+	}
+
+	return 1;
+}
+// put lParam as index 0 in m_arrChild
+LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
+{
+	for (int i = 0; i < m_arrChild.GetSize(); ++i)
+	{
+		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
+		{
+			m_arrChild.RemoveAt(i);
+			break;
+		}
+	}
+
+	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+
+	return 1;
 }

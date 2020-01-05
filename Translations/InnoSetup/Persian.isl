@@ -22,6 +22,7 @@ Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages= ÒÈÇäåÇ 
+ArabicLanguage=Arabic menus and dialogs
 BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÈáÛÇÑí 
 CatalanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÇÊÇáÇä 
@@ -60,14 +61,14 @@ UkrainianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Ç˜ÑÇíäí
 ;Tasks
 ExplorerContextMenu=&E İÚÇá äãæÏä í˜ÇÑå ÓÇÒí İåÑÓÊ ÌÓÊÌæÑ ãÊä 
 IntegrateTortoiseCVS=&T í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ Óí æí ÇÓ 
-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
+IntegrateTortoiseGit=Integrate with To&rtoiseGit
 IntegrateTortoiseSVN=&o í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ ÇÓ æí Çä 
 IntegrateClearCase=&C í˜ÇÑå ÓÇÒí ÈÇ ÑÔäÇá ˜áÑ˜íÓ 
 AddToPath=&A ÇÖÇİå äãæÏä æÔå æíäãÑÌ Èå ãÓíÑåÇí ÓíÓÊã 
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
 MergeAtRightPane=Merge at right pane
 MergeAtCenterPane=Merge at center pane

@@ -965,8 +965,8 @@ msgstr "Основни"
 msgid "Automatically &scroll to first difference"
 msgstr "Автоматично &плъзване към първото различие"
 
-msgid "Cl&ose windows with ESC"
-msgstr "Затваряне &прозорците при ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "Затваряне &прозорците при ESC:"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Автоматична проверка на пътищата в диалога за отваряне"
@@ -3321,4 +3321,10 @@ msgstr "Естествен DirectWrite"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "Естествен симтричен DirectWrite"
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
+msgstr ""
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-12-10 22:01+0000\n"
+"POT-Creation-Date: 2020-01-05 10:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -962,7 +962,7 @@ msgstr ""
 msgid "Automatically &scroll to first difference"
 msgstr ""
 
-msgid "Cl&ose windows with ESC"
+msgid "Cl&ose windows with ESC:"
 msgstr ""
 
 msgid "&Automatically verify paths in Open-dialog"
@@ -2954,5 +2954,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

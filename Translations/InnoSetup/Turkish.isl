@@ -22,6 +22,7 @@ Patch=GnuWin32 Windows Yamasý
 
 ;Localization Components
 Languages=Diller
+ArabicLanguage=Arapça menü ve pencereler
 BasqueLanguage=Baskça menü ve pencereler
 BulgarianLanguage=Bulgarca menü ve pencereler
 CatalanLanguage=Katalanca menü ve pencereler
@@ -60,14 +61,14 @@ UkrainianLanguage=Ukraynaca menü ve pencereler
 ;Tasks
 ExplorerContextMenu=&Windows gezgini sað týk menü bütünleþtirmesi kullanýlsýn
 IntegrateTortoiseCVS=&TortoiseCVS ile bütünleþtir
-IntegrateTortoiseGIT=To&rtoiseGIT ile bütünleþtir
+IntegrateTortoiseGit=To&rtoiseGit ile bütünleþtir
 IntegrateTortoiseSVN=T&ortoiseSVN ile bütünleþtir
 IntegrateClearCase=Rational &ClearCase ile bütünleþtir
 AddToPath=Win&Merge klasörü sistem yoluna eklensin
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3 Yollu Birleþtirme
-ThreeWayMergeWizardPageDescription=WinMerge uygulamasýný TortoiseSVN/GIT için 3 yollu birleþtirme aracý olarak kullanýyor musunuz?
+ThreeWayMergeWizardPageDescription=WinMerge uygulamasýný TortoiseSVN/Git için 3 yollu birleþtirme aracý olarak kullanýyor musunuz?
 RegisterWinMergeAs3WayMergeTool=WinMerge 3 yollu birleþtirme aracý olarak kaydedilsin
 MergeAtRightPane=Sað panoda birleþtirilsin
 MergeAtCenterPane=Orta panoda birleþtirilsin

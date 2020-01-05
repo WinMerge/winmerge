@@ -969,8 +969,8 @@ msgstr "Algemeen"
 msgid "Automatically &scroll to first difference"
 msgstr "Automatisch naar eerste verschil gaan"
 
-msgid "Cl&ose windows with ESC"
-msgstr "Vensters sluiten met ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "Vensters sluiten met ESC:"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
@@ -3351,5 +3351,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

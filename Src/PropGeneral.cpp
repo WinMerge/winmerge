@@ -41,17 +41,17 @@
  * @brief Constructor initialising members.
  */
 PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
-: OptionsPanel(optionsMgr, PropGeneral::IDD)
-, m_bScroll(false)
-, m_bSingleInstance(false)
-, m_bVerifyPaths(false)
-, m_bCloseWindowWithEsc(true)
-, m_bAskMultiWindowClose(false)
-, m_nAutoCompleteSource(0)
-, m_bPreserveFiletime(false)
-, m_bShowSelectFolderOnStartup(false)
-, m_bCloseWithOK(true)
-, m_pLoadLanguagesThread(nullptr)
+	: OptionsPanel(optionsMgr, PropGeneral::IDD)
+	, m_bScroll(false)
+	, m_bSingleInstance(false)
+	, m_bVerifyPaths(false)
+	, m_nCloseWindowWithEsc(1)
+	, m_bAskMultiWindowClose(false)
+	, m_nAutoCompleteSource(0)
+	, m_bPreserveFiletime(false)
+	, m_bShowSelectFolderOnStartup(false)
+	, m_bCloseWithOK(true)
+	, m_pLoadLanguagesThread(nullptr)
 {
 }
 
@@ -71,6 +71,15 @@ BOOL PropGeneral::OnInitDialog()
 	pWnd->AddString(_("From MRU list").c_str());
 
 	pWnd->SetCurSel(m_nAutoCompleteSource);
+
+	pWnd = (CComboBox*)GetDlgItem(IDC_ESC_CLOSES_WINDOW);
+	ASSERT(pWnd != nullptr);
+
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("MDI child window or main window").c_str());
+	pWnd->AddString(_("MDI child window only").c_str());
+
+	pWnd->SetCurSel(m_nCloseWindowWithEsc);
 
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
@@ -98,7 +107,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
-	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
+	DDX_CBIndex(pDX, IDC_ESC_CLOSES_WINDOW, m_nCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
@@ -125,7 +134,7 @@ void PropGeneral::ReadOptions()
 	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
 	m_bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
-	m_bCloseWindowWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_nCloseWindowWithEsc = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	m_bAskMultiWindowClose = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
 	m_nAutoCompleteSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	m_bPreserveFiletime = GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES);
@@ -141,7 +150,7 @@ void PropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll);
 	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance);
 	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths);
-	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc);
+	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_nCloseWindowWithEsc);
 	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
 	GetOptionsMgr()->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);

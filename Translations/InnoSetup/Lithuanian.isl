@@ -22,6 +22,7 @@ Patch=GnuWin32 pataisa „Windows“
 
 ;Localization Components
 Languages=Kalbos
+ArabicLanguage=Arabu meniu ir dialogai
 BasqueLanguage=Baskø meniu ir dialogai
 BulgarianLanguage=Bulgarø meniu ir dialogai
 CatalanLanguage=Katalonø meniu ir dialogai
@@ -60,14 +61,14 @@ UkrainianLanguage=Ukrainieèiø meniu ir dialogai
 ;Tasks
 ExplorerContextMenu=L&eisti „Explorer“ kontekstinio meniu integracijà
 IntegrateTortoiseCVS=Integruoti su „&TortoiseCVS“
-IntegrateTortoiseGIT=Integruoti su „To&rtoiseGIT“
+IntegrateTortoiseGit=Integruoti su „To&rtoiseGit“
 IntegrateTortoiseSVN=Integruoti su „T&ortoiseSVN“
 IntegrateClearCase=Integruoti su „Rational &ClearCase“
 AddToPath=Átr&aukti „WinMerge“ katalogà á sistemos %PATH% kintamajá
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3 krypèiø suliejimas
-ThreeWayMergeWizardPageDescription=Gal norite naudoti „WinMerge“ kaip 3 krypèiø suliejimo áranká „TortoiseSVN/GIT“ programose?
+ThreeWayMergeWizardPageDescription=Gal norite naudoti „WinMerge“ kaip 3 krypèiø suliejimo áranká „TortoiseSVN/Git“ programose?
 RegisterWinMergeAs3WayMergeTool=Registruoti „WinMerge“ kaip 3 krypèiø suliejimo áranká
 MergeAtRightPane=Sulieti deðiniajame polangyje
 MergeAtCenterPane=Sulieti viduriniame polangyje

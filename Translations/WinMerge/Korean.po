@@ -1250,8 +1250,8 @@ msgid "Automatically &scroll to first difference"
 msgstr "처음 차이점으로 자동 스크롤하기(&S)"
 
 #, c-format
-msgid "Cl&ose windows with ESC"
-msgstr "ESC로 창 닫기(&O)"
+msgid "Cl&ose windows with ESC:"
+msgstr "ESC로 창 닫기(&O):"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -4104,5 +4104,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

@@ -1121,7 +1121,16 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
 			if (!paths::IsPathAbsolute(tFiles[i]))
-				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);
+			{
+				String sProjectDir = paths::GetParentPath(sProject);
+				if (tFiles[i].substr(0, 1) == _T("\\"))
+				{
+					if (sProjectDir.length() > 1 && sProjectDir[1] == ':')
+						tFiles[i] = paths::ConcatPath(sProjectDir.substr(0, 2), tFiles[i]);
+				}
+				else
+					tFiles[i] = paths::ConcatPath(sProjectDir, tFiles[i]);
+			}
 		}
 		bool bLeftReadOnly = projItem.GetLeftReadOnly();
 		bool bMiddleReadOnly = projItem.GetMiddleReadOnly();

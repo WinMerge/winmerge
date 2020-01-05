@@ -26,6 +26,9 @@ Inactive/past developers:
 * Kimmo Varis <kimmov@winmerge.org>
 
 Localization:
+* Arabic:
+  Downzen team <https://downzen.com>
+
 * Basque:
   Xabier Aramendi <Azpidatziak@gmail.com>  
 

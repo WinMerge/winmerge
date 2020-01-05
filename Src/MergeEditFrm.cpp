@@ -279,7 +279,7 @@ BOOL CMergeEditFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	return CMergeFrameCommon::DestroyWindow();
 }
 
 /**
@@ -315,7 +315,7 @@ void CMergeEditFrame::SaveActivePane()
 void CMergeEditFrame::OnClose() 
 {
 	// clean up pointers.
-	CMDIChildWnd::OnClose();
+	CMergeFrameCommon::OnClose();
 
 	GetMainFrame()->ClearStatusbarItemCount();
 }
@@ -388,7 +388,7 @@ void CMergeEditFrame::UpdateSplitter()
 void CMergeEditFrame::OnIdleUpdateCmdUI()
 {
 	UpdateHeaderSizes();
-	CMDIChildWnd::OnIdleUpdateCmdUI();
+	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }
 
 void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent) 
@@ -402,12 +402,12 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 	{
 		UpdateHeaderSizes();
 	}
-	CMDIChildWnd::OnTimer(nIDEvent);
+	CMergeFrameCommon::OnTimer(nIDEvent);
 }
 
 void CMergeEditFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
 {
-	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+	CMergeFrameCommon::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	CMergeDoc *pDoc = GetMergeDoc();
 	if (bActivate && pDoc != nullptr)

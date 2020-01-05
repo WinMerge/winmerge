@@ -971,8 +971,8 @@ msgstr "Bendros"
 msgid "Automatically &scroll to first difference"
 msgstr "Automatiškai pereiti prie pirmo &skirtumo"
 
-msgid "Cl&ose windows with ESC"
-msgstr "Užverti langus „ESC“ klavišu"
+msgid "Cl&ose windows with ESC:"
+msgstr "Užverti langus „ESC“ klavišu:"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automatiškai tikrinti kelius „Atverti“ lange"
@@ -2968,5 +2968,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

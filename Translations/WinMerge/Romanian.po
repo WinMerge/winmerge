@@ -1246,8 +1246,8 @@ msgid "Automatically &scroll to first difference"
 msgstr "De&sfăşoară automat la prima diferenţă"
 
 #, c-format
-msgid "Cl&ose windows with ESC"
-msgstr "Închide ferestrele cu tasta ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "Închide ferestrele cu tasta ESC:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -3968,5 +3968,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

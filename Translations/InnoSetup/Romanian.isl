@@ -22,6 +22,7 @@ Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Languages
+ArabicLanguage=Arabic menus and dialogs
 BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Meniuri si dialoguri în Bulgara
 CatalanLanguage=Meniuri si dialoguri în  Catalana
@@ -60,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
 ;Tasks
 ExplorerContextMenu=&Activeaza integrarea in meniurile contextuale Explorer
 IntegrateTortoiseCVS=Integrare cu &TortoiseCVS
-IntegrateTortoiseGIT=Integrare cu To&rtoiseGIT
+IntegrateTortoiseGit=Integrare cu To&rtoiseGit
 IntegrateTortoiseSVN=Integrare cu T&ortoiseSVN
 IntegrateClearCase=Integrare cu Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
 MergeAtRightPane=Merge at right pane
 MergeAtCenterPane=Merge at center pane
