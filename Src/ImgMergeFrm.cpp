@@ -1251,7 +1251,7 @@ BOOL CImgMergeFrame::PreTranslateMessage(MSG* pMsg)
 		}
 
 		// Close window in response to VK_ESCAPE if user has allowed it from options
-		if (pMsg->wParam == VK_ESCAPE && GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
+		if (pMsg->wParam == VK_ESCAPE && GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) != 0)
 		{
 			PostMessage(WM_CLOSE, 0, 0);
 			return true;

@@ -126,7 +126,7 @@ CDirView::CDirView()
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
-	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 }
@@ -2137,7 +2137,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 					return TRUE;
 				}
 
-				if (m_bEscCloses)
+				if (m_nEscCloses != 0)
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 					return FALSE;
@@ -2898,7 +2898,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
  */
 void CDirView::RefreshOptions()
 {
-	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);

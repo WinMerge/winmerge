@@ -968,8 +968,8 @@ msgstr "عام"
 msgid "Automatically &scroll to first difference"
 msgstr "الانتقال إلى الا&ختلاف الأول تلقائيا"
 
-msgid "Cl&ose windows with ESC"
-msgstr "إغلاق النوافذ باستخدام زر ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "إغلاق النوافذ باستخدام زر ESC:"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&تحقق من المسارات في النافذة المفتوحة"
@@ -3355,5 +3355,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

@@ -965,8 +965,8 @@ msgstr "Ogólne"
 msgid "Automatically &scroll to first difference"
 msgstr "Przewiń automatycznie do pierwszej różnicy"
 
-msgid "Cl&ose windows with ESC"
-msgstr "Zamknij okna klawiszem ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "Zamknij okna klawiszem ESC:"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Zweryfikuj automatycznie ścieżki w oknie otwierania plików"
@@ -2958,5 +2958,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

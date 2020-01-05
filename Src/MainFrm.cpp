@@ -1690,11 +1690,11 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-/*		else if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC) && m_wndTabBar.GetItemCount() == 0)
+		else if (GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) == 1 && m_wndTabBar.GetItemCount() == 0)
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;
-		}*/		// Don't close the app when user press escape and there is no tab opened, use Ctrl + Q instead like all editors do
+		}
 	}
 
 	if (WM_KEYDOWN == pMsg->message && VK_TAB == pMsg->wParam && GetAsyncKeyState(VK_CONTROL) < 0 && m_arrChild.GetSize() > 1)

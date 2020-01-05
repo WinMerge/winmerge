@@ -966,8 +966,8 @@ msgstr "一般"
 msgid "Automatically &scroll to first difference"
 msgstr "自動的に最初の差異にスクロールする(&S)"
 
-msgid "Cl&ose windows with ESC"
-msgstr "ESC キーでウィンドウを閉じる(&O)"
+msgid "Cl&ose windows with ESC:"
+msgstr "ESC キーでウィンドウを閉じる(&O):"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
@@ -3360,4 +3360,10 @@ msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
 msgstr ""
+
+msgid "MDI child window or main window"
+msgstr "MDI子ウインドウまたはメインウインドウ"
+
+msgid "MDI child window only"
+msgstr "MDI子ウインドウのみ"
 

@@ -1242,8 +1242,8 @@ msgid "Automatically &scroll to first difference"
 msgstr "Αυτόματη &κύλιση στην πρώτη διαφορά"
 
 #, c-format
-msgid "Cl&ose windows with ESC"
-msgstr "Κ&λείσιμο παραθύρων με ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "Κ&λείσιμο παραθύρων με ESC:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -3964,5 +3964,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

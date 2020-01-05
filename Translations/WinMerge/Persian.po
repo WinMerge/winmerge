@@ -1244,8 +1244,8 @@ msgid "Automatically &scroll to first difference"
 msgstr "&s بطور خودکار به نخستين تفاوت منتقل شود "
 
 #, c-format
-msgid "Cl&ose windows with ESC"
-msgstr "&o   ESC بستن پنجره ها با کليد "
+msgid "Cl&ose windows with ESC:"
+msgstr "&o   ESC بستن پنجره ها با کليد :"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -4045,5 +4045,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 

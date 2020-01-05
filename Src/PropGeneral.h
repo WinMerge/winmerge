@@ -29,7 +29,7 @@ public:
 	bool  m_bScroll;
 	bool  m_bSingleInstance;
 	bool  m_bVerifyPaths;
-	bool  m_bCloseWindowWithEsc;
+	int   m_nCloseWindowWithEsc;
 	bool  m_bAskMultiWindowClose;
 	int   m_nAutoCompleteSource;
 	bool  m_bPreserveFiletime;

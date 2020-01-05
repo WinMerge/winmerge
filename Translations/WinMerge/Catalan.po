@@ -1242,8 +1242,8 @@ msgid "Automatically &scroll to first difference"
 msgstr "&Desplaça automàticament fins a la primera diferència"
 
 #, c-format
-msgid "Cl&ose windows with ESC"
-msgstr "T&anca les finestres amb ESC"
+msgid "Cl&ose windows with ESC:"
+msgstr "T&anca les finestres amb ESC:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -3915,5 +3915,11 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgid "MDI child window or main window"
+msgstr ""
+
+msgid "MDI child window only"
 msgstr ""
 
