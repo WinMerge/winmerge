@@ -262,6 +262,9 @@ msgstr "ملاح&ظات الإصدار"
 msgid "&Translations"
 msgstr "التر&جمات"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "الإ&عدادات"
 
