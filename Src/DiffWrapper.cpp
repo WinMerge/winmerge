@@ -1482,7 +1482,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	if (ucr::CheckForInvalidUtf8(inf_patch[0].linbuf[inf_patch[0].linbuf_base], inf_patch[0].buffered_chars))
+	if ((inf_patch[0].linbuf && ucr::CheckForInvalidUtf8(inf_patch[0].linbuf[inf_patch[0].linbuf_base], inf_patch[0].buffered_chars)) ||
+		(inf_patch[1].linbuf && ucr::CheckForInvalidUtf8(inf_patch[1].linbuf[inf_patch[1].linbuf_base], inf_patch[1].buffered_chars)))
 	{
 		inf_patch[0].name = _strdup(ucr::toThreadCP(path1).c_str());
 		inf_patch[1].name = _strdup(ucr::toThreadCP(path2).c_str());
