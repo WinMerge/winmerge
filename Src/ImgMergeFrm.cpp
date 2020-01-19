@@ -146,6 +146,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_CURPANE_NEXTPAGE, OnUpdateImgCurPaneNextPage)
 	ON_COMMAND(ID_IMG_USEBACKCOLOR, OnImgUseBackColor)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
+	ON_COMMAND_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnImgVectorImageScaling)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnUpdateImgVectorImageScaling)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_WM_SETFOCUS ()
@@ -571,6 +573,7 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
 	m_pImgMergeWindow->SetColorDistanceThreshold(GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0);
 	m_pImgMergeWindow->SetInsertionDeletionDetectionMode(static_cast<IImgMergeWindow::INSERTION_DELETION_DETECTION_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE)));
+	m_pImgMergeWindow->SetVectorImageZoomRatio(GetOptionsMgr()->GetInt(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO) / 1000.0);
 }
 
 void CImgMergeFrame::SaveOptions()
@@ -587,6 +590,7 @@ void CImgMergeFrame::SaveOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFCOLORALPHA, static_cast<int>(m_pImgMergeWindow->GetDiffColorAlpha() * 100.0));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_THRESHOLD, static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold() * 1000));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, static_cast<int>(m_pImgMergeWindow->GetInsertionDeletionDetectionMode()));
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, static_cast<int>(m_pImgMergeWindow->GetVectorImageZoomRatio() * 1000));
 }
 /**
  * @brief Save coordinates of the frame, splitters, and bars
@@ -1966,6 +1970,17 @@ void CImgMergeFrame::OnImgUseBackColor()
 void CImgMergeFrame::OnUpdateImgUseBackColor(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetUseBackColor() ? 1 : 0);
+}
+
+void CImgMergeFrame::OnImgVectorImageScaling(UINT nId)
+{
+	m_pImgMergeWindow->SetVectorImageZoomRatio(pow(2.0, int(nId - ID_IMG_VECTORIMAGESCALING_100)));
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio(pow(2.0, int(pCmdUI->m_nID - ID_IMG_VECTORIMAGESCALING_100)) == m_pImgMergeWindow->GetVectorImageZoomRatio());
 }
 
 /**

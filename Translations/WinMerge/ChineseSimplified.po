@@ -175,6 +175,9 @@ msgstr "调整偏移(&A)"
 msgid "&Set Background Color"
 msgstr "设置背景颜色(&S)"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "文件(&F)"

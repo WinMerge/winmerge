@@ -171,6 +171,9 @@ msgstr "&Säädä siirtymää"
 msgid "&Set Background Color"
 msgstr "A&seta taustaväri"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Tiedosto"

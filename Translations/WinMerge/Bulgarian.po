@@ -135,6 +135,9 @@ msgstr "&Корекция на отместването"
 msgid "&Set Background Color"
 msgstr "&Настройка на фоновия цвят"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 

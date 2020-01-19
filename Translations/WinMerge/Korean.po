@@ -177,6 +177,9 @@ msgstr "오프셋 맞추기(&A)"
 msgid "&Set Background Color"
 msgstr "배경색 설정(&S)"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"

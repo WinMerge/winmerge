@@ -157,6 +157,15 @@ BEGIN
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
+        POPUP "&Vector Image Scaling"
+        BEGIN
+            MENUITEM "&800%",                       ID_IMG_VECTORIMAGESCALING_800
+            MENUITEM "&400%",                       ID_IMG_VECTORIMAGESCALING_400
+            MENUITEM "&200%",                       ID_IMG_VECTORIMAGESCALING_200
+            MENUITEM "&100%",                       ID_IMG_VECTORIMAGESCALING_100
+            MENUITEM "&50%",                        ID_IMG_VECTORIMAGESCALING_50
+            MENUITEM "&25%",                        ID_IMG_VECTORIMAGESCALING_25
+        END
     END
 END
 

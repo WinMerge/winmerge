@@ -146,6 +146,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70);
 	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
 	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0);
+	pOptions->InitOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, 1000);
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);

@@ -139,6 +139,9 @@ msgstr "Offset aanpassen"
 msgid "&Set Background Color"
 msgstr "Achtergrondkleur instellen"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "Bestand"
 

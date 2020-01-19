@@ -175,6 +175,9 @@ msgstr "Ajustar deslocamento"
 msgid "&Set Background Color"
 msgstr "Definir Cor de Fundo"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Ficheiro"

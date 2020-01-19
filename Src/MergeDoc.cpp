@@ -3135,12 +3135,16 @@ void CMergeDoc::OnCtxtOpenWithUnpacker()
 
 void CMergeDoc::OnBnClickedFileEncoding()
 {
+	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+		return;
 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	DoFileEncodingDialog();
 }
 
 void CMergeDoc::OnBnClickedPlugin()
 {
+	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+		return;
 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	OpenWithUnpackerDialog();
 }
@@ -3152,6 +3156,8 @@ void CMergeDoc::OnBnClickedHexView()
 
 void CMergeDoc::OnOK()
 {
+	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+		return;
 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 }
 

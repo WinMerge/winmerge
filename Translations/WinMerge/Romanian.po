@@ -173,6 +173,9 @@ msgstr ""
 msgid "&Set Background Color"
 msgstr ""
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fişier"

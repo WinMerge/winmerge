@@ -139,6 +139,9 @@ msgstr "オフセット調整(&A)"
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
 
+msgid "&Vector Image Scaling"
+msgstr "ベクタ画像スケーリング"
+
 msgid "&File"
 msgstr "ファイル(&F)"
 

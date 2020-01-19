@@ -176,6 +176,9 @@ msgstr "&Ajustar Offset"
 msgid "&Set Background Color"
 msgstr "&Definir a Cor do 2º Plano"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Arquivo"

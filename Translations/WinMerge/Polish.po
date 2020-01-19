@@ -138,6 +138,9 @@ msgstr "Dostosuj przesunięcie"
 msgid "&Set Background Color"
 msgstr "Ustaw kolor tła"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "Plik"
 

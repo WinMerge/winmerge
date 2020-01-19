@@ -178,6 +178,9 @@ msgstr "&Ajuster Offset"
 msgid "&Set Background Color"
 msgstr "Définir la couleur du fond"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fichier"
@@ -861,11 +864,11 @@ msgid "Comp&are"
 msgstr "Co&mparer"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Comparer non-hor&izontalement..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
-msgstr "Comparaison non-Hor & izontal"
+msgstr "Comparer non-hor&izontalement"
 
 #, c-format
 msgid "First &left item with second left item"
