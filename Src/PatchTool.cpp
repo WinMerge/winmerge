@@ -26,8 +26,6 @@
 #include "DiffWrapper.h"
 #include "PathContext.h"
 #include "PatchDlg.h"
-#include "TFile.h"
-#include "TempFile.h"
 #include "paths.h"
 #include "Merge.h"
 
@@ -126,16 +124,11 @@ int CPatchTool::CreatePatch()
 		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(true);
 
-		TempFile emptyFile;
-		emptyFile.Create();
-		TFile file(emptyFile.GetPath());
-		file.setLastModified(Poco::Timestamp::fromEpochTime(0));
-
 		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& tFiles = dlgPatch.GetItemAt(index);
-			String filename1 = tFiles.lfile.length() == 0 ? emptyFile.GetPath() : tFiles.lfile;
-			String filename2 = tFiles.rfile.length() == 0 ? emptyFile.GetPath() : tFiles.rfile;
+			String filename1 = tFiles.lfile.length() == 0 ? _T("NUL") : tFiles.lfile;
+			String filename2 = tFiles.rfile.length() == 0 ? _T("NUL") : tFiles.rfile;
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
