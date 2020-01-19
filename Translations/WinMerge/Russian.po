@@ -175,6 +175,9 @@ msgstr "Настроить смещение"
 msgid "&Set Background Color"
 msgstr "Установить цвет фона"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Файл"

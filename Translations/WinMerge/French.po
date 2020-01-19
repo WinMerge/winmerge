@@ -178,6 +178,9 @@ msgstr "&Ajuster Offset"
 msgid "&Set Background Color"
 msgstr "Définir la couleur du fond"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fichier"

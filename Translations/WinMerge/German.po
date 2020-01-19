@@ -173,6 +173,9 @@ msgstr "&Versatz einstellen"
 msgid "&Set Background Color"
 msgstr "&Hintergrundfarbe setzen"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datei"

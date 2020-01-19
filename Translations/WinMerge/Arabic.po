@@ -139,6 +139,9 @@ msgstr "ت&عديل مقدار الإزاحة"
 msgid "&Set Background Color"
 msgstr "&تغيير لون الخلفية"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "&ملف"
 

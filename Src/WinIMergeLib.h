@@ -146,6 +146,8 @@ struct IImgMergeWindow
 	virtual COLORREF GetSelDiffDeletedColor() const = 0;
 	virtual void SetSelDiffDeletedColor(COLORREF clrSelDiffDeletedColor) = 0;
 	virtual bool ConvertToRealPos(int pane, const POINT& pt, POINT& ptReal) const = 0;
+	virtual float GetVectorImageZoomRatio() const = 0;
+	virtual void SetVectorImageZoomRatio(float zoom) = 0;
 };
 
 struct IImgToolWindow

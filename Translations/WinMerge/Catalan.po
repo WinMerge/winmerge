@@ -172,6 +172,9 @@ msgstr ""
 msgid "&Set Background Color"
 msgstr "Tria color de fons"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fitxer"

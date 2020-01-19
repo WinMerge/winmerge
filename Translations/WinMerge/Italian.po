@@ -138,6 +138,9 @@ msgstr "Correggi s&costamento"
 msgid "&Set Background Color"
 msgstr "Imposta colore s&fondo"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "&File"
 

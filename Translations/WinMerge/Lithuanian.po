@@ -141,6 +141,9 @@ msgstr "&Reguliuoti poslinkį"
 msgid "&Set Background Color"
 msgstr "Nu&statyti fono spalvą"
 
+msgid "&Vector Image Scaling"
+msgstr ""
+
 msgid "&File"
 msgstr "&Failas"
 
