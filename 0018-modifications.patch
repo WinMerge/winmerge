@@ -1,0 +1,24 @@
+From e80fc54720f0afd18d036cb058a9d2d347e5375a Mon Sep 17 00:00:00 2001
+From: Flaviu <Flaviu@DESKTOP-HP>
+Date: Thu, 2 Jan 2020 20:07:34 +0200
+Subject: [PATCH 18/29] modifications
+
+---
+ Src/OpenView.cpp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Src/OpenView.cpp b/Src/OpenView.cpp
+index eff5f5469..f34cf9e78 100644
+--- a/Src/OpenView.cpp
++++ b/Src/OpenView.cpp
+@@ -308,7 +308,6 @@ COpenDoc* COpenView::GetDocument() const // non-debug version is inline
+ }
+ #endif //_DEBUG
+ 
+-
+ /////////////////////////////////////////////////////////////////////////////
+ // COpenView message handlers
+ 
+-- 
+2.18.0.windows.1
+

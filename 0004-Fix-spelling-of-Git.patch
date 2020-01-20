@@ -1,0 +1,1002 @@
+From 290dd14e6e8139db8b80bd84e228dd2630b0c308 Mon Sep 17 00:00:00 2001
+From: Sven Strickroth <email@cs-ware.de>
+Date: Thu, 2 Jan 2020 15:53:44 +0100
+Subject: [PATCH 04/29] Fix spelling of Git
+
+Signed-off-by: Sven Strickroth <email@cs-ware.de>
+---
+ Docs/Manual/EN/Install.xml                     | 6 +++---
+ Docs/Manual/EN/Version_control.xml             | 4 ++--
+ Docs/Manual/JP/Install.xml                     | 6 +++---
+ Docs/Manual/JP/Version_control.xml             | 4 ++--
+ Installer/InnoSetup/WinMerge.iss               | 8 ++++----
+ Installer/InnoSetup/WinMergeX64.is6.iss        | 8 ++++----
+ Installer/InnoSetup/WinMergeX64.iss            | 8 ++++----
+ Translations/InnoSetup/Arabic.isl              | 4 ++--
+ Translations/InnoSetup/Basque.isl              | 4 ++--
+ Translations/InnoSetup/Brazilian.isl           | 4 ++--
+ Translations/InnoSetup/Bulgarian.isl           | 4 ++--
+ Translations/InnoSetup/Catalan.isl             | 4 ++--
+ Translations/InnoSetup/Chinese_Simplified.isl  | 4 ++--
+ Translations/InnoSetup/Chinese_Traditional.isl | 4 ++--
+ Translations/InnoSetup/Croatian.isl            | 4 ++--
+ Translations/InnoSetup/Czech.isl               | 4 ++--
+ Translations/InnoSetup/Danish.isl              | 4 ++--
+ Translations/InnoSetup/Dutch.isl               | 4 ++--
+ Translations/InnoSetup/English.isl             | 4 ++--
+ Translations/InnoSetup/Finnish.isl             | 4 ++--
+ Translations/InnoSetup/French.isl              | 4 ++--
+ Translations/InnoSetup/Galician.isl            | 4 ++--
+ Translations/InnoSetup/German.isl              | 4 ++--
+ Translations/InnoSetup/Greek.isl               | 4 ++--
+ Translations/InnoSetup/Hungarian.isl           | 4 ++--
+ Translations/InnoSetup/Italian.isl             | 4 ++--
+ Translations/InnoSetup/Japanese.isl            | 4 ++--
+ Translations/InnoSetup/Korean.isl              | 4 ++--
+ Translations/InnoSetup/Lithuanian.isl          | 4 ++--
+ Translations/InnoSetup/Norwegian.isl           | 4 ++--
+ Translations/InnoSetup/Persian.isl             | 4 ++--
+ Translations/InnoSetup/Polish.isl              | 4 ++--
+ Translations/InnoSetup/Portuguese.isl          | 4 ++--
+ Translations/InnoSetup/Romanian.isl            | 4 ++--
+ Translations/InnoSetup/Russian.isl             | 4 ++--
+ Translations/InnoSetup/Serbian.isl             | 4 ++--
+ Translations/InnoSetup/Sinhala.islu            | 4 ++--
+ Translations/InnoSetup/Slovak.isl              | 4 ++--
+ Translations/InnoSetup/Slovenian.isl           | 4 ++--
+ Translations/InnoSetup/Spanish.isl             | 4 ++--
+ Translations/InnoSetup/Swedish.isl             | 4 ++--
+ Translations/InnoSetup/Turkish.isl             | 4 ++--
+ Translations/InnoSetup/Ukrainian.isl           | 4 ++--
+ 43 files changed, 94 insertions(+), 94 deletions(-)
+
+diff --git a/Docs/Manual/EN/Install.xml b/Docs/Manual/EN/Install.xml
+index 0778a6e47..2d337467f 100644
+--- a/Docs/Manual/EN/Install.xml
++++ b/Docs/Manual/EN/Install.xml
+@@ -254,12 +254,12 @@
+           </varlistentry>
+ 
+           <varlistentry>
+-            <term>Integrate with TortoiseGIT<indexterm>
+-                <primary>TortoiseGIT integration</primary>
++            <term>Integrate with TortoiseGit<indexterm>
++                <primary>TortoiseGit integration</primary>
+               </indexterm></term>
+ 
+             <listitem>
+-              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
++              <para>Sets WinMerge to be the TortoiseGit diff application.</para>
+             </listitem>
+           </varlistentry>
+ 
+diff --git a/Docs/Manual/EN/Version_control.xml b/Docs/Manual/EN/Version_control.xml
+index ec821186b..a3bb36fa2 100644
+--- a/Docs/Manual/EN/Version_control.xml
++++ b/Docs/Manual/EN/Version_control.xml
+@@ -65,7 +65,7 @@
+         <primary>TortoiseSVN integration</primary>
+       </indexterm>
+ 
+-      <para>When you compare files in TortoiseCVS, TortoiseSVN, or TortoiseGIT,
++      <para>When you compare files in TortoiseCVS, TortoiseSVN, or TortoiseGit,
+       you can have the VCS launch WinMerge instead of its native diff
+       utility. You can configure some of these integrations during <link
+       linkend="Installing_usinginstaller">WinMerge installation</link>.</para>
+@@ -74,7 +74,7 @@
+         <title>Tortoise SVN integration</title>
+ 
+         <para>Here is a sample diff operation in TortoiseSVN that uses the
+-        WinMerge integration. The integrations with TortoiseCVS and TortoiseGIT
++        WinMerge integration. The integrations with TortoiseCVS and TortoiseGit
+         are similar.</para>
+ 
+         <orderedlist>
+diff --git a/Docs/Manual/JP/Install.xml b/Docs/Manual/JP/Install.xml
+index 6ec423051..77e8db3ff 100644
+--- a/Docs/Manual/JP/Install.xml
++++ b/Docs/Manual/JP/Install.xml
+@@ -240,12 +240,12 @@
+           </varlistentry>
+ 
+           <varlistentry>
+-            <term>Integrate with TortoiseGIT<indexterm>
+-                <primary>TortoiseGIT integration</primary>
++            <term>Integrate with TortoiseGit<indexterm>
++                <primary>TortoiseGit integration</primary>
+               </indexterm></term>
+ 
+             <listitem>
+-              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
++              <para>Sets WinMerge to be the TortoiseGit diff application.</para>
+             </listitem>
+           </varlistentry>
+ 
+diff --git a/Docs/Manual/JP/Version_control.xml b/Docs/Manual/JP/Version_control.xml
+index a2b7de977..604922b78 100644
+--- a/Docs/Manual/JP/Version_control.xml
++++ b/Docs/Manual/JP/Version_control.xml
+@@ -66,7 +66,7 @@
+         <primary>TortoiseSVN „ÅÆÁµ±Âêà</primary>
+       </indexterm>
+ 
+-      <para>TortoiseCVS„ÄÅTortoiseSVN„ÄÅ„Åæ„Åü„ÅØ„ÄÅTortoiseGIT „Åß„Éï„Ç°„Ç§„É´ÊØîËºÉ„Åô„ÇãÈöõ„ÄÅ
++      <para>TortoiseCVS„ÄÅTortoiseSVN„ÄÅ„Åæ„Åü„ÅØ„ÄÅTortoiseGit „Åß„Éï„Ç°„Ç§„É´ÊØîËºÉ„Åô„ÇãÈöõ„ÄÅ
+         VCS„ÅØ„ÄÅÁµÑËæº„Åø„ÅÆÂ∑ÆÂàÜ„ÉÑ„Éº„É´„ÅÆ‰ª£„Çè„Çä„Å´„ÄÅWinMerge„ÇíËµ∑Âãï„Åô„Çã„Åì„Å®„Åå„Åß„Åç„Åæ„Åô„ÄÇ
+        „Åì„ÅÆË®≠ÂÆö„ÅØ„ÄÅ<link
+       linkend="Installing_usinginstaller">WinMerge„ÅÆ„Ç§„É≥„Çπ„Éà„Éº„É´</link>„ÅÆÊúÄ‰∏≠„ÅÆ„Åø„ÅßÂèØËÉΩ„Åß„Åô„ÄÇ</para>
+@@ -75,7 +75,7 @@
+         <title>TortoiseSVN„Å®„ÅÆÁµ±Âêà</title>
+ 
+         <para>„Åì„Çå„ÅØ„ÄÅWinMergeÁµ±Âêà„Çí‰ΩøÁî®„Åó„Åü„ÄÅTortoiseSVN„Åß„ÅÆÊØîËºÉÊìç‰Ωú„ÅÆ„Çµ„É≥„Éó„É´„Åß„Åô„ÄÇ
+-        „Åì„ÅÆÁµ±Âêà„ÅØ„ÄÅTortoiseCVS „Å® TortoiseGIT
++        „Åì„ÅÆÁµ±Âêà„ÅØ„ÄÅTortoiseCVS „Å® TortoiseGit
+         „ÇÇÂêå„Åò„Åß„Åô„ÄÇ</para>
+ 
+         <orderedlist>
+diff --git a/Installer/InnoSetup/WinMerge.iss b/Installer/InnoSetup/WinMerge.iss
+index f841cc5ae..7f66a9481 100755
+--- a/Installer/InnoSetup/WinMerge.iss
++++ b/Installer/InnoSetup/WinMerge.iss
+@@ -635,11 +635,11 @@ Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType
+ 
+ ;Set WinMerge as TortoiseGit diff tool
+ Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
+-Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Set WinMerge as TortoiseSVN diff tool
+ Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+-Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
+ ;(unless the user already has a startup language specified)
+@@ -838,7 +838,7 @@ begin
+     Result := g_CheckListBox.Checked[0];
+ end;
+ 
+-function TortoiseSVNGITMergeToolCommandLine(Unused: string): string;
++function TortoiseSVNGitMergeToolCommandLine(Unused: string): string;
+ var
+     lmr: string;
+     Args: string;
+@@ -861,7 +861,7 @@ end;
+ 
+ function ThreeWayMergePage_ShouldSkipPage(Page: TWizardPage): Boolean;
+ begin
+-    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGIT'));
++    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGit'));
+ end;
+ 
+ #include "modpath.iss"
+diff --git a/Installer/InnoSetup/WinMergeX64.is6.iss b/Installer/InnoSetup/WinMergeX64.is6.iss
+index a50cf1530..78a79ff7a 100644
+--- a/Installer/InnoSetup/WinMergeX64.is6.iss
++++ b/Installer/InnoSetup/WinMergeX64.is6.iss
+@@ -615,11 +615,11 @@ Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType
+ 
+ ;Set WinMerge as TortoiseGit diff tool
+ Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
+-Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Set WinMerge as TortoiseSVN diff tool
+ Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+-Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
+ ;(unless the user already has a startup language specified)
+@@ -833,7 +833,7 @@ begin
+     Result := g_CheckListBox.Checked[0];
+ end;
+ 
+-function TortoiseSVNGITMergeToolCommandLine(Unused: string): string;
++function TortoiseSVNGitMergeToolCommandLine(Unused: string): string;
+ var
+     lmr: string;
+     Args: string;
+@@ -856,7 +856,7 @@ end;
+ 
+ function ThreeWayMergePage_ShouldSkipPage(Page: TWizardPage): Boolean;
+ begin
+-    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGIT'));
++    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGit'));
+ end;
+ 
+ #include "modpath.is6.iss"
+diff --git a/Installer/InnoSetup/WinMergeX64.iss b/Installer/InnoSetup/WinMergeX64.iss
+index bf646eafd..be13e8803 100644
+--- a/Installer/InnoSetup/WinMergeX64.iss
++++ b/Installer/InnoSetup/WinMergeX64.iss
+@@ -613,11 +613,11 @@ Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType
+ 
+ ;Set WinMerge as TortoiseGit diff tool
+ Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
+-Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Set WinMerge as TortoiseSVN diff tool
+ Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+-Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
++Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGitMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
+ 
+ ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
+ ;(unless the user already has a startup language specified)
+@@ -821,7 +821,7 @@ begin
+     Result := g_CheckListBox.Checked[0];
+ end;
+ 
+-function TortoiseSVNGITMergeToolCommandLine(Unused: string): string;
++function TortoiseSVNGitMergeToolCommandLine(Unused: string): string;
+ var
+     lmr: string;
+     Args: string;
+@@ -844,7 +844,7 @@ end;
+ 
+ function ThreeWayMergePage_ShouldSkipPage(Page: TWizardPage): Boolean;
+ begin
+-    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGIT'));
++    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGit'));
+ end;
+ 
+ #include "modpath.iss"
+diff --git a/Translations/InnoSetup/Arabic.isl b/Translations/InnoSetup/Arabic.isl
+index cfd97916e..0235b0dbc 100644
+--- a/Translations/InnoSetup/Arabic.isl
++++ b/Translations/InnoSetup/Arabic.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Basque.isl b/Translations/InnoSetup/Basque.isl
+index ef81a859b..7fa05e9dd 100644
+--- a/Translations/InnoSetup/Basque.isl
++++ b/Translations/InnoSetup/Basque.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainiera menuak eta elkarrizketak
+ ;Tasks
+ ExplorerContextMenu=&Gaitu Explorer hitzinguru menu baterapena
+ IntegrateTortoiseCVS=Bateratu &TortoiseCVS-rekin
+-IntegrateTortoiseGIT=Bateratu To&rtoiseGIT-rekin
++IntegrateTortoiseGit=Bateratu To&rtoiseGit-rekin
+ IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
+ IntegrateClearCase=Bateratu Rational &ClearCase-rekin
+ AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Brazilian.isl b/Translations/InnoSetup/Brazilian.isl
+index b188212af..db25ba9c2 100755
+--- a/Translations/InnoSetup/Brazilian.isl
++++ b/Translations/InnoSetup/Brazilian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Ativar a integraÁ„o com o menu de contexto do explorer
+ IntegrateTortoiseCVS=Integrar com o &TortoiseCVS
+-IntegrateTortoiseGIT=Integrar com o To&rtoiseGIT
++IntegrateTortoiseGit=Integrar com o To&rtoiseGit
+ IntegrateTortoiseSVN=Integrar com o T&ortoiseSVN
+ IntegrateClearCase=Integrar com o Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Bulgarian.isl b/Translations/InnoSetup/Bulgarian.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/Bulgarian.isl
++++ b/Translations/InnoSetup/Bulgarian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Catalan.isl b/Translations/InnoSetup/Catalan.isl
+index b0e9e2450..3184f05f8 100755
+--- a/Translations/InnoSetup/Catalan.isl
++++ b/Translations/InnoSetup/Catalan.isl
+@@ -62,14 +62,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Habilita la integraciÛ del men˙ de contexte a l'Explorador
+ IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
+-IntegrateTortoiseGIT=Integra amb el To&rtoiseGIT
++IntegrateTortoiseGit=Integra amb el To&rtoiseGit
+ IntegrateTortoiseSVN=Integra amb el T&ortoiseSVN
+ IntegrateClearCase=Integra amb el Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Chinese_Simplified.isl b/Translations/InnoSetup/Chinese_Simplified.isl
+index 69b1c0dc3..8a6a6732e 100755
+--- a/Translations/InnoSetup/Chinese_Simplified.isl
++++ b/Translations/InnoSetup/Chinese_Simplified.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=ºØ≥…µΩ◊ ‘¥π‹¿Ì∆˜”“º¸≤Àµ•(&E)
+ IntegrateTortoiseCVS=ºØ≥…µΩ &TortoiseCVS
+-IntegrateTortoiseGIT=ºØ≥…µΩ To&rtoiseGIT
++IntegrateTortoiseGit=ºØ≥…µΩ To&rtoiseGit
+ IntegrateTortoiseSVN=ºØ≥…µΩ T&ortoiseSVN
+ IntegrateClearCase=ºØ≥…µΩ Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Chinese_Traditional.isl b/Translations/InnoSetup/Chinese_Traditional.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/Chinese_Traditional.isl
++++ b/Translations/InnoSetup/Chinese_Traditional.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Croatian.isl b/Translations/InnoSetup/Croatian.isl
+index 10906f963..bfa8bd005 100644
+--- a/Translations/InnoSetup/Croatian.isl
++++ b/Translations/InnoSetup/Croatian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Integracija u Explorer kontekst izbornik
+ IntegrateTortoiseCVS=Integracija s &TortoiseCVS
+-IntegrateTortoiseGIT=Integracija s To&rtoiseGIT
++IntegrateTortoiseGit=Integracija s To&rtoiseGit
+ IntegrateTortoiseSVN=Integracija s T&ortoiseSVN
+ IntegrateClearCase=Integracija s Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Czech.isl b/Translations/InnoSetup/Czech.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/Czech.isl
++++ b/Translations/InnoSetup/Czech.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Danish.isl b/Translations/InnoSetup/Danish.isl
+index aa98eec5b..39bf5688b 100755
+--- a/Translations/InnoSetup/Danish.isl
++++ b/Translations/InnoSetup/Danish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainske menuer og dialoger
+ ;Tasks
+ ExplorerContextMenu=&Installer Explorer kontekst menu integrationen
+ IntegrateTortoiseCVS=Integrer med &TortoiseCVS
+-IntegrateTortoiseGIT=Integrer med To&rtoiseGIT
++IntegrateTortoiseGit=Integrer med To&rtoiseGit
+ IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
+ IntegrateClearCase=Integrer med Rational &ClearCase
+ AddToPath=&Tilf¯j WinMerge folderen til din system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Dutch.isl b/Translations/InnoSetup/Dutch.isl
+index c83b51019..79559d6d6 100755
+--- a/Translations/InnoSetup/Dutch.isl
++++ b/Translations/InnoSetup/Dutch.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Oekra
+ ;Tasks
+ ExplorerContextMenu=&Activeer integratie in contextmenu van Verkenner
+ IntegrateTortoiseCVS=Integreren met &TortoiseCVS
+-IntegrateTortoiseGIT=Integreren met To&rtoiseGIT
++IntegrateTortoiseGit=Integreren met To&rtoiseGit
+ IntegrateTortoiseSVN= Integreren met T&ortoiseSVN
+ IntegrateClearCase= Integreren met Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/English.isl b/Translations/InnoSetup/English.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/English.isl
++++ b/Translations/InnoSetup/English.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Finnish.isl b/Translations/InnoSetup/Finnish.isl
+index 5159925de..509d7b414 100644
+--- a/Translations/InnoSetup/Finnish.isl
++++ b/Translations/InnoSetup/Finnish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/French.isl b/Translations/InnoSetup/French.isl
+index 959bdb947..01f1b74b6 100755
+--- a/Translations/InnoSetup/French.isl
++++ b/Translations/InnoSetup/French.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Menus et dialogues Ukrainien
+ ;Tasks
+ ExplorerContextMenu=&Permetre l'intÈgration au menu contextuel de l'explorateur
+ IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
+-IntegrateTortoiseGIT=Integrer avec To&rtoiseGIT
++IntegrateTortoiseGit=Integrer avec To&rtoiseGit
+ IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
+ IntegrateClearCase=Integrer avec Rational &ClearCase
+ AddToPath=&Ajouter le rÈpertoire WinMerge au chemin du systËme
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=Merge ‡ 3-voies
+-ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge ‡ 3-voies pour TortoiseSVN/GIT ?
++ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge ‡ 3-voies pour TortoiseSVN/Git ?
+ RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outils de merge ‡ 3-voies
+ MergeAtRightPane=Merge vers panneau de Droite
+ MergeAtCenterPane=Merge vers panneau du Milieu
+diff --git a/Translations/InnoSetup/Galician.isl b/Translations/InnoSetup/Galician.isl
+index 5159925de..509d7b414 100644
+--- a/Translations/InnoSetup/Galician.isl
++++ b/Translations/InnoSetup/Galician.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/German.isl b/Translations/InnoSetup/German.isl
+index e710de200..c1c7d1eec 100755
+--- a/Translations/InnoSetup/German.isl
++++ b/Translations/InnoSetup/German.isl
+@@ -61,13 +61,13 @@ UkrainianLanguage=Ukrainische Men
+ ;Tasks
+ ExplorerContextMenu=&Explorer Kontextmen¸-Integration aktivieren
+ IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
+-IntegrateTortoiseGIT=Integrieren in To&rtoiseGIT
++IntegrateTortoiseGit=Integrieren in To&rtoiseGit
+ IntegrateTortoiseSVN=Integrieren in T&ortoiseSVN
+ AddToPath=WinMerge-Ordner zum &Systempfad hinzuf¸gen
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Wege-Merge
+-ThreeWayMergeWizardPageDescription=Verwenden Sie WinMerge als 3-Wege-Mergeprogramm f¸r TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Verwenden Sie WinMerge als 3-Wege-Mergeprogramm f¸r TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=WinMerge als 3-Wege-Mergeprogramm registrieren
+ MergeAtRightPane=Im rechten Bereich zusammenf¸hren
+ MergeAtCenterPane=Im mittleren Bereich zusammenf¸hren
+diff --git a/Translations/InnoSetup/Greek.isl b/Translations/InnoSetup/Greek.isl
+index 01df5f8c9..428bf80a3 100644
+--- a/Translations/InnoSetup/Greek.isl
++++ b/Translations/InnoSetup/Greek.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=
+ ;Tasks
+ ExplorerContextMenu=≈Ì&ÂÒ„ÔÔﬂÁÛÁ ÂÌÛ˘Ï·Ù˛ÛÂ˘Ú ÛÙÈÚ ÂÈ‰ÈÍ›Ú ÂÈÎÔ„›Ú ÙÁÚ ÂÓÂÒÂıÌﬁÛÂ˘Ú
+ IntegrateTortoiseCVS=≈ÌÛ˘Ï‹Ù˘ÛÁ ÙÔı &TortoiseCVS
+-IntegrateTortoiseGIT=≈ÌÛ˘Ï‹Ù˘ÛÁ ÙÔı To&rtoiseGIT
++IntegrateTortoiseGit=≈ÌÛ˘Ï‹Ù˘ÛÁ ÙÔı To&rtoiseGit
+ IntegrateTortoiseSVN=≈ÌÛ˘Ï‹Ù˘ÛÁ ÙÔı T&ortoiseSVN
+ IntegrateClearCase=≈ÌÛ˘Ï‹Ù˘ÛÁ ÙÔı Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Hungarian.isl b/Translations/InnoSetup/Hungarian.isl
+index 2b95df032..4ecf6fe69 100755
+--- a/Translations/InnoSetup/Hungarian.isl
++++ b/Translations/InnoSetup/Hungarian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=Integr·l·s az IntÈzı &context-men¸jÈhez
+ IntegrateTortoiseCVS=Integr·l·s a &TortoiseCVS programmal
+-IntegrateTortoiseGIT=Integr·l·s a To&rtoiseGIT programmal
++IntegrateTortoiseGit=Integr·l·s a To&rtoiseGit programmal
+ IntegrateTortoiseSVN=Integr·l·s a T&ortoiseSVN programmal
+ IntegrateClearCase=Integr·l·s a Rational &ClearCase programmal
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Italian.isl b/Translations/InnoSetup/Italian.isl
+index 0666f394c..9665c7f26 100755
+--- a/Translations/InnoSetup/Italian.isl
++++ b/Translations/InnoSetup/Italian.isl
+@@ -62,14 +62,14 @@ UkrainianLanguage=Menu e finestre di dialogo in ucraino
+ ;Tasks
+ ExplorerContextMenu=&Attiva l'integrazione con il menu contestuale di Explorer
+ IntegrateTortoiseCVS=Integrazione con &TortoiseCVS
+-IntegrateTortoiseGIT=Integrazione con To&rtoiseGIT
++IntegrateTortoiseGit=Integrazione con To&rtoiseGit
+ IntegrateTortoiseSVN=Integrazione con T&ortoiseSVN
+ IntegrateClearCase=Integrazione con Rational &ClearCase
+ AddToPath=&Aggiungi cartella WinMerge al percorso di sistema
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=Unione a 3 vie
+-ThreeWayMergeWizardPageDescription=Vuoi usare WinMerge come strumento di unione a 3 vie per TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Vuoi usare WinMerge come strumento di unione a 3 vie per TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Registra WinMerge come strumento unione a 3 vie
+ MergeAtRightPane=Unisci nel riquadro a destra
+ MergeAtCenterPane=Unisci nel riqadro centrale
+diff --git a/Translations/InnoSetup/Japanese.isl b/Translations/InnoSetup/Japanese.isl
+index 66447f84d..50358a760 100755
+--- a/Translations/InnoSetup/Japanese.isl
++++ b/Translations/InnoSetup/Japanese.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=ÉGÉNÉXÉvÉçÅ[ÉâÇÃÉRÉìÉeÉLÉXÉgÉÅÉjÉÖÅ[Ç…í«â¡(&E)
+ IntegrateTortoiseCVS=TortoiseCVSÇ∆ÇÃòAåg(&T)
+-IntegrateTortoiseGIT=TortoiseGITÇ∆ÇÃòAåg(&R)
++IntegrateTortoiseGit=TortoiseGitÇ∆ÇÃòAåg(&R)
+ IntegrateTortoiseSVN=TortoiseSVNÇ∆ÇÃòAåg(&O)
+ IntegrateClearCase=Rational ClearCaseÇ∆ÇÃòAåg(&C)
+ AddToPath=ÉVÉXÉeÉÄä¬ã´ïœêîPATHÇ÷WinMergeÇÃÉtÉHÉãÉ_Çí«â¡Ç∑ÇÈ(&A)
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3ï˚å¸É}Å[ÉW
+-ThreeWayMergeWizardPageDescription=TortoiseSVN/GITÇ≈ WinMerge Ç3ï˚å¸É}Å[ÉWÉcÅ[ÉãÇ∆ÇµÇƒégópÇµÇ‹Ç∑Ç©?
++ThreeWayMergeWizardPageDescription=TortoiseSVN/GitÇ≈ WinMerge Ç3ï˚å¸É}Å[ÉWÉcÅ[ÉãÇ∆ÇµÇƒégópÇµÇ‹Ç∑Ç©?
+ RegisterWinMergeAs3WayMergeTool=WinMerge Ç3ï˚å¸É}Å[ÉWÉcÅ[ÉãÇ∆ÇµÇƒìoò^Ç∑ÇÈ
+ MergeAtRightPane=âEë§ÉyÉCÉìÇ≈É}Å[ÉW
+ MergeAtCenterPane=íÜâõÉyÉCÉìÇ≈É}Å[ÉW
+diff --git a/Translations/InnoSetup/Korean.isl b/Translations/InnoSetup/Korean.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/Korean.isl
++++ b/Translations/InnoSetup/Korean.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Lithuanian.isl b/Translations/InnoSetup/Lithuanian.isl
+index 6a4fd7a86..9d3593f30 100644
+--- a/Translations/InnoSetup/Lithuanian.isl
++++ b/Translations/InnoSetup/Lithuanian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainie
+ ;Tasks
+ ExplorerContextMenu=L&eisti ÑExplorerì kontekstinio meniu integracij‡
+ IntegrateTortoiseCVS=Integruoti su Ñ&TortoiseCVSì
+-IntegrateTortoiseGIT=Integruoti su ÑTo&rtoiseGITì
++IntegrateTortoiseGit=Integruoti su ÑTo&rtoiseGitì
+ IntegrateTortoiseSVN=Integruoti su ÑT&ortoiseSVNì
+ IntegrateClearCase=Integruoti su ÑRational &ClearCaseì
+ AddToPath=¡tr&aukti ÑWinMergeì katalog‡ · sistemos %PATH% kintamaj·
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3 krypËi¯ suliejimas
+-ThreeWayMergeWizardPageDescription=Gal norite naudoti ÑWinMergeì kaip 3 krypËi¯ suliejimo ·rank· ÑTortoiseSVN/GITì programose?
++ThreeWayMergeWizardPageDescription=Gal norite naudoti ÑWinMergeì kaip 3 krypËi¯ suliejimo ·rank· ÑTortoiseSVN/Gitì programose?
+ RegisterWinMergeAs3WayMergeTool=Registruoti ÑWinMergeì kaip 3 krypËi¯ suliejimo ·rank·
+ MergeAtRightPane=Sulieti deiniajame polangyje
+ MergeAtCenterPane=Sulieti viduriniame polangyje
+diff --git a/Translations/InnoSetup/Norwegian.isl b/Translations/InnoSetup/Norwegian.isl
+index 3c19b67cd..6a6dd7123 100755
+--- a/Translations/InnoSetup/Norwegian.isl
++++ b/Translations/InnoSetup/Norwegian.isl
+@@ -65,14 +65,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Aktiver integrasjon i Windows utforsker sin kontekstmeny
+ IntegrateTortoiseCVS=Integrer med &TortoiseCVS
+-IntegrateTortoiseGIT=Integrer med To&rtoiseGIT
++IntegrateTortoiseGit=Integrer med To&rtoiseGit
+ IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
+ IntegrateClearCase=Integrer med Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Persian.isl b/Translations/InnoSetup/Persian.isl
+index 509db330e..4f1f1c554 100644
+--- a/Translations/InnoSetup/Persian.isl
++++ b/Translations/InnoSetup/Persian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage= 
+ ;Tasks
+ ExplorerContextMenu=&E ›⁄«· ‰„Êœ‰ ÌòÅ«—çÂ ”«“Ì ›Â—”  Ã” ÃÊê— „ ‰ 
+ IntegrateTortoiseCVS=&T ÌòÅ«—ÃÂ ”«“Ì »«  Ê— Ê∆Ì“ ”Ì ÊÌ «” 
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=&o ÌòÅ«—ÃÂ ”«“Ì »«  Ê— Ê∆Ì“ «” ÊÌ «‰ 
+ IntegrateClearCase=&C ÌòÅ«—çÂ ”«“Ì »« —‘‰«· ò·—òÌ” 
+ AddToPath=&A «÷«›Â ‰„Êœ‰ ÅÊ‘Â ÊÌ‰„—Ã »Â „”Ì—Â«Ì ”Ì” „ 
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Polish.isl b/Translations/InnoSetup/Polish.isl
+index 58fb181b0..5b3804c1a 100755
+--- a/Translations/InnoSetup/Polish.isl
++++ b/Translations/InnoSetup/Polish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrai≈Ñski
+ ;Tasks
+ ExplorerContextMenu=&W≈ÇƒÖcz integracjƒô z menu kontekstowym Eksploratora
+ IntegrateTortoiseCVS=Integracja z &TortoiseCVS
+-IntegrateTortoiseGIT=Integracja z To&rtoiseGIT
++IntegrateTortoiseGit=Integracja z To&rtoiseGit
+ IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
+ IntegrateClearCase=Integracja z Rational &ClearCase
+ AddToPath=&Dodaj folder WinMerge do ≈õcie≈ºki systemowej
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=Scalanie tr√≥jstronne
+-ThreeWayMergeWizardPageDescription=Czy u≈ºywasz WinMerge jako narzƒôdzia do scalania tr√≥jstronnego dla TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Czy u≈ºywasz WinMerge jako narzƒôdzia do scalania tr√≥jstronnego dla TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Zarejestruj WinMerge jako narzƒôdzie do scalania tr√≥jstronnego
+ MergeAtRightPane=Scal w prawym panelu
+ MergeAtCenterPane=Scal w ≈õrodkowym panelu
+diff --git a/Translations/InnoSetup/Portuguese.isl b/Translations/InnoSetup/Portuguese.isl
+index 5b80fbbc3..f53cf4e47 100644
+--- a/Translations/InnoSetup/Portuguese.isl
++++ b/Translations/InnoSetup/Portuguese.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ucraniano menus e di
+ ;Tasks
+ ExplorerContextMenu=&Permitir o menu de contexto no Explorador
+ IntegrateTortoiseCVS=Integrar com &TortoiseCVS
+-IntegrateTortoiseGIT=Integrar com To&rtoiseGIT
++IntegrateTortoiseGit=Integrar com To&rtoiseGit
+ IntegrateTortoiseSVN=Integrar com T&ortoiseSVN
+ IntegrateClearCase=Integrar com Rational &ClearCase
+ AddToPath=&Criar pasta do WinMerge no caminho do sistema
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-CombinaÁ„o de modos
+-ThreeWayMergeWizardPageDescription=Utilizar o WinMerge como ferramenta de trÍs vias para TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Utilizar o WinMerge como ferramenta de trÍs vias para TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Registar o WinMerge como ferramenta de combinaÁ„o de trÍs vias
+ MergeAtRightPane=Combinar na janela direita
+ MergeAtCenterPane=Combinar na janela do meio
+diff --git a/Translations/InnoSetup/Romanian.isl b/Translations/InnoSetup/Romanian.isl
+index af4a1f775..37df48a16 100644
+--- a/Translations/InnoSetup/Romanian.isl
++++ b/Translations/InnoSetup/Romanian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Activeaza integrarea in meniurile contextuale Explorer
+ IntegrateTortoiseCVS=Integrare cu &TortoiseCVS
+-IntegrateTortoiseGIT=Integrare cu To&rtoiseGIT
++IntegrateTortoiseGit=Integrare cu To&rtoiseGit
+ IntegrateTortoiseSVN=Integrare cu T&ortoiseSVN
+ IntegrateClearCase=Integrare cu Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Russian.isl b/Translations/InnoSetup/Russian.isl
+index 8e76c3136..0444e04e5 100755
+--- a/Translations/InnoSetup/Russian.isl
++++ b/Translations/InnoSetup/Russian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Serbian.isl b/Translations/InnoSetup/Serbian.isl
+index 5159925de..509d7b414 100644
+--- a/Translations/InnoSetup/Serbian.isl
++++ b/Translations/InnoSetup/Serbian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Sinhala.islu b/Translations/InnoSetup/Sinhala.islu
+index bc26e68a0..6063200da 100644
+--- a/Translations/InnoSetup/Sinhala.islu
++++ b/Translations/InnoSetup/Sinhala.islu
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Slovak.isl b/Translations/InnoSetup/Slovak.isl
+index c678784af..a30c885d6 100755
+--- a/Translations/InnoSetup/Slovak.isl
++++ b/Translations/InnoSetup/Slovak.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Zapni integr·ciu do kontextovej ponuky PrieskumnÌka
+ IntegrateTortoiseCVS=Integr·cia s &TortoiseCVS
+-IntegrateTortoiseGIT=Integr·cia s To&rtoiseGIT
++IntegrateTortoiseGit=Integr·cia s To&rtoiseGit
+ IntegrateTortoiseSVN=Integr·cia s T&ortoiseSVN
+ IntegrateClearCase=Integr·cia s Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Slovenian.isl b/Translations/InnoSetup/Slovenian.isl
+index 845ccc2d4..f7c55c9dd 100644
+--- a/Translations/InnoSetup/Slovenian.isl
++++ b/Translations/InnoSetup/Slovenian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Spanish.isl b/Translations/InnoSetup/Spanish.isl
+index 5159925de..509d7b414 100755
+--- a/Translations/InnoSetup/Spanish.isl
++++ b/Translations/InnoSetup/Spanish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainian menus and dialogs
+ ;Tasks
+ ExplorerContextMenu=&Enable Explorer context menu integration
+ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
++IntegrateTortoiseGit=Integrate with To&rtoiseGit
+ IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+ IntegrateClearCase=Integrate with Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Swedish.isl b/Translations/InnoSetup/Swedish.isl
+index 5ddb1f78b..65fb21d5f 100755
+--- a/Translations/InnoSetup/Swedish.isl
++++ b/Translations/InnoSetup/Swedish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukrainska menyer och dialoger
+ ;Tasks
+ ExplorerContextMenu=&Mˆjliggˆr integration med Explorers menyer
+ IntegrateTortoiseCVS=Integrera med &TortoiseCVS
+-IntegrateTortoiseGIT=Integrera med To&rtoiseGIT
++IntegrateTortoiseGit=Integrera med To&rtoiseGit
+ IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
+ IntegrateClearCase=Integrera med Rational &ClearCase
+ AddToPath=&L‰gg till WinMerge-katalogen till Er systemsˆkv‰g
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+diff --git a/Translations/InnoSetup/Turkish.isl b/Translations/InnoSetup/Turkish.isl
+index 4a2f3e02b..2684e9df3 100755
+--- a/Translations/InnoSetup/Turkish.isl
++++ b/Translations/InnoSetup/Turkish.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=Ukraynaca men
+ ;Tasks
+ ExplorerContextMenu=&Windows gezgini sa t˝k men¸ b¸t¸nle˛tirmesi kullan˝ls˝n
+ IntegrateTortoiseCVS=&TortoiseCVS ile b¸t¸nle˛tir
+-IntegrateTortoiseGIT=To&rtoiseGIT ile b¸t¸nle˛tir
++IntegrateTortoiseGit=To&rtoiseGit ile b¸t¸nle˛tir
+ IntegrateTortoiseSVN=T&ortoiseSVN ile b¸t¸nle˛tir
+ IntegrateClearCase=Rational &ClearCase ile b¸t¸nle˛tir
+ AddToPath=Win&Merge klasˆr¸ sistem yoluna eklensin
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3 Yollu Birle˛tirme
+-ThreeWayMergeWizardPageDescription=WinMerge uygulamas˝n˝ TortoiseSVN/GIT iÁin 3 yollu birle˛tirme arac˝ olarak kullan˝yor musunuz?
++ThreeWayMergeWizardPageDescription=WinMerge uygulamas˝n˝ TortoiseSVN/Git iÁin 3 yollu birle˛tirme arac˝ olarak kullan˝yor musunuz?
+ RegisterWinMergeAs3WayMergeTool=WinMerge 3 yollu birle˛tirme arac˝ olarak kaydedilsin
+ MergeAtRightPane=Sa panoda birle˛tirilsin
+ MergeAtCenterPane=Orta panoda birle˛tirilsin
+diff --git a/Translations/InnoSetup/Ukrainian.isl b/Translations/InnoSetup/Ukrainian.isl
+index 3cd34782c..5f8a8876b 100644
+--- a/Translations/InnoSetup/Ukrainian.isl
++++ b/Translations/InnoSetup/Ukrainian.isl
+@@ -61,14 +61,14 @@ UkrainianLanguage=
+ ;Tasks
+ ExplorerContextMenu=&≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ ÍÓÌÚÂÍÒÚÌÂ ÏÂÌ˛ Ó·ÓÎÓÌÍË Œ—
+ IntegrateTortoiseCVS=≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ &TortoiseCVS
+-IntegrateTortoiseGIT=≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ To&rtoiseGIT
++IntegrateTortoiseGit=≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ To&rtoiseGit
+ IntegrateTortoiseSVN=≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ T&ortoiseSVN
+ IntegrateClearCase=≤ÌÚÂ„Û‚‡ÚËÒˇ ‚ Rational &ClearCase
+ AddToPath=&Add WinMerge folder to your system path
+ 
+ ; 3-way merge wizard page
+ ThreeWayMergeWizardPageCaption=3-Way Merge
+-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
++ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+ RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ MergeAtRightPane=Merge at right pane
+ MergeAtCenterPane=Merge at center pane
+-- 
+2.18.0.windows.1
+

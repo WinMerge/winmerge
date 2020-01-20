@@ -1,0 +1,24 @@
+From e981fc5767f25b79b3569c140d05986d8fb56f5a Mon Sep 17 00:00:00 2001
+From: Takashi Sawanaka <sdottaka@users.sourceforge.net>
+Date: Tue, 31 Dec 2019 14:03:55 +0900
+Subject: [PATCH 02/29] PATCH: [ 3038 ] Arabic translation (3)
+
+---
+ Translations/WinMerge/Arabic.po | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Translations/WinMerge/Arabic.po b/Translations/WinMerge/Arabic.po
+index 3b674f0c8..1a345c1cc 100644
+--- a/Translations/WinMerge/Arabic.po
++++ b/Translations/WinMerge/Arabic.po
+@@ -2920,6 +2920,7 @@ msgstr ""
+ "خطيرا.\n"
+ "هل ترغب في مع التعامل مع كلا الملفين باستخدام صفحة الترميز الافتراضية الخاصة "
+ "بويندوز (ينصح بهذا الإجراء)؟"
++
+ msgid "Information lost due to encoding errors: both files"
+ msgstr "المعلومات فقدت بسبب أخطاء في الترميز: كلا الملفين"
+ 
+-- 
+2.18.0.windows.1
+

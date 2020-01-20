@@ -1,0 +1,28 @@
+From a057677590ca393af7321eee9ca1e4b0e09a9531 Mon Sep 17 00:00:00 2001
+From: Flaviu <Flaviu@DESKTOP-HP>
+Date: Thu, 2 Jan 2020 20:06:33 +0200
+Subject: [PATCH 13/29] modifications
+
+---
+ Src/Merge.h | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Src/Merge.h b/Src/Merge.h
+index 5f9d0ca19..b4235415d 100644
+--- a/Src/Merge.h
++++ b/Src/Merge.h
+@@ -25,6 +25,11 @@
+  */
+ #pragma once
+ 
++#define WMU_CHILDFRAMEADDED						(WM_APP + 10)
++#define WMU_CHILDFRAMEREMOVED					(WM_APP + 11)
++#define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
++#define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
++
+ #ifndef __AFXWIN_H__
+ 	#error include 'stdafx.h' before including this file for PCH
+ #endif
+-- 
+2.18.0.windows.1
+

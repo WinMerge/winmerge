@@ -1,0 +1,43 @@
+From 80171adc2bef1d8154ac78f81476ace47899a81b Mon Sep 17 00:00:00 2001
+From: Takashi Sawanaka <sdottaka@users.sourceforge.net>
+Date: Sun, 19 Jan 2020 21:47:58 +0900
+Subject: [PATCH 28/29] Fix osdn issue #39924: An error message is shown when
+ pressing Enter key in Diff pane
+
+---
+ Src/MergeDoc.cpp | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Src/MergeDoc.cpp b/Src/MergeDoc.cpp
+index 1a6afa8c1..4e229e4be 100644
+--- a/Src/MergeDoc.cpp
++++ b/Src/MergeDoc.cpp
+@@ -3135,12 +3135,16 @@ void CMergeDoc::OnCtxtOpenWithUnpacker()
+ 
+ void CMergeDoc::OnBnClickedFileEncoding()
+ {
++	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
++		return;
+ 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+ 	DoFileEncodingDialog();
+ }
+ 
+ void CMergeDoc::OnBnClickedPlugin()
+ {
++	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
++		return;
+ 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+ 	OpenWithUnpackerDialog();
+ }
+@@ -3152,6 +3156,8 @@ void CMergeDoc::OnBnClickedHexView()
+ 
+ void CMergeDoc::OnOK()
+ {
++	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
++		return;
+ 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+ }
+ 
+-- 
+2.18.0.windows.1
+

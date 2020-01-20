@@ -1,0 +1,3993 @@
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Translators:
+# * Afyonlu <afyonlu@users.sourceforge.net>
+# * Ozkan UNVER <turquaz37915 at users.sourceforge.net>
+#
+# ID line follows -- this is updated by SVN
+# $Id: Turkish.po 7580 2013-01-02 01:36:48Z christianlist $
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2018-02-08 22:40+0000\n"
+"PO-Revision-Date: 2018-12-28 23:00+0300\n"
+"Last-Translator: Kaya Zeren <translator@zeron.net>\n"
+"Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.2\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_TURKISH, SUBLANG_DEFAULT"
+
+#, c-format
+msgid "C&opy to Right"
+msgstr "Sağa K&opyala"
+
+#, c-format
+msgid "Cop&y to Left"
+msgstr "Sola Kop&yala"
+
+#, c-format
+msgid "Copy &from Left"
+msgstr "So&ldan Kopyala"
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr "Sağ&dan Kopyala"
+
+#, c-format
+msgid "&Select Line Difference"
+msgstr "Farklı &Satırları Seç"
+
+#, c-format
+msgid "&Undo"
+msgstr "Geri A&l"
+
+#, c-format
+msgid "&Redo"
+msgstr "&Yinele"
+
+#, c-format
+msgid "Cu&t"
+msgstr "&Kes"
+
+#, c-format
+msgid "&Copy"
+msgstr "K&opyala"
+
+#, c-format
+msgid "&Paste"
+msgstr "Ya&pıştır"
+
+#, c-format
+msgid "&Goto..."
+msgstr "&Git..."
+
+#, c-format
+msgid "Op&en"
+msgstr "&Aç"
+
+#, c-format
+msgid "with &Registered Application"
+msgstr "Kayıtlı &Uygulama ile"
+
+#, c-format
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr "Dış Düz&enleyici ile\tCtrl+Alt+E"
+
+#, c-format
+msgid "&with..."
+msgstr "&Birlikte Aç..."
+
+msgid "S&hell Menu"
+msgstr ""
+
+#, c-format
+msgid "View &Differences"
+msgstr "&Farklılıkları Görüntüle"
+
+#, c-format
+msgid "Diff &Block Size"
+msgstr "Farklılık &Bloğu Boyutu"
+
+#, c-format
+msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgstr "&Renk Farkı Yok Sayılsın (Renk Farkı Eşiği)"
+
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#, c-format
+msgid "&None"
+msgstr "&Yok"
+
+msgid "&Vertical"
+msgstr ""
+
+msgid "&Horizontal"
+msgstr ""
+
+#, c-format
+msgid "&Previous Page"
+msgstr "Ö&nceki Sayfa"
+
+#, c-format
+msgid "&Next Page"
+msgstr "So&nraki Sayfa"
+
+#, c-format
+msgid "&Active Pane"
+msgstr "Etkin S&ayfa"
+
+#, c-format
+msgid "&Zoom"
+msgstr "&Yakınlaştır"
+
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "&Yakınlaştır\tCtrl++"
+
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "&Uzaklaştır\tCtrl+-"
+
+#. Zoom to normal
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normal\tCtrl+*"
+
+#, c-format
+msgid "&Overlay"
+msgstr "&Kaplama"
+
+#, c-format
+msgid "&Alpha Blend"
+msgstr "&Alfa Karıştırma"
+
+#, c-format
+msgid "Alpha &Blend Animation"
+msgstr "Alfa Karıştırma &Canlandırması"
+
+#, c-format
+msgid "Dragging &Mode"
+msgstr "Sürükle&me Kipi"
+
+#, c-format
+msgid "&Move"
+msgstr "&Taşı"
+
+#, c-format
+msgid "&Adjust Offset"
+msgstr "Sapmayı &Ayarla"
+
+#, c-format
+msgid "&Set Background Color"
+msgstr "Ar&t Alan Rengini Ayarla"
+
+#, c-format
+msgid "&File"
+msgstr "&Dosya"
+
+#, c-format
+msgid "&New\tCtrl+N"
+msgstr "Ye&ni\tCtrl+N"
+
+#, c-format
+msgid "New (&3 panes)"
+msgstr "Yeni (&3 pano)"
+
+#, c-format
+msgid "&Open...\tCtrl+O"
+msgstr "&Aç...\tCtrl+O"
+
+msgid "Open Conflic&t File..."
+msgstr "&Fark Dosyası Aç..."
+
+#, c-format
+msgid "Open Pro&ject...\tCtrl+J"
+msgstr "Pro&je Dosyası Aç...\tCtrl+J"
+
+#, c-format
+msgid "Sa&ve Project..."
+msgstr "&Proje Dosyası Kaydet..."
+
+#, c-format
+msgid "Recent Projects"
+msgstr "Son Kullanılan Projeler"
+
+#, c-format
+msgid "Recent F&iles Or Folders"
+msgstr "Son Dosya ya da K&lasörler"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Boş >"
+
+#, c-format
+msgid "E&xit"
+msgstr "Çı&kış"
+
+#, c-format
+msgid "&Edit"
+msgstr "Düz&enle"
+
+#, c-format
+msgid "&Options..."
+msgstr "&Ayarlar..."
+
+#, c-format
+msgid "&View"
+msgstr "&Görünüm"
+
+#, c-format
+msgid "&Toolbar"
+msgstr "&Araç Çubuğu"
+
+#, c-format
+msgid "&Small"
+msgstr "Küçük"
+
+#, c-format
+msgid "&Big"
+msgstr "&Büyük"
+
+#, c-format
+msgid "&Huge"
+msgstr "Çok &Büyük"
+
+#, c-format
+msgid "&Status Bar"
+msgstr "&Durum Çubuğu"
+
+#, c-format
+msgid "Ta&b Bar"
+msgstr "&Sekme Çubuğu"
+
+#, c-format
+msgid "&Tools"
+msgstr "&Araçlar"
+
+#, c-format
+msgid "&Filters..."
+msgstr "&Süzgeçler..."
+
+#, c-format
+msgid "&Generate Patch..."
+msgstr "Ya&ma Oluştur..."
+
+#, c-format
+msgid "&Plugins"
+msgstr "&Uygulama Ekleri"
+
+#, c-format
+msgid "P&lugin Settings..."
+msgstr "Uygu&lama Eki Ayarları..."
+
+#, c-format
+msgid "Ma&nual Prediffer"
+msgstr "El ile Ö&n Farklılaştırma"
+
+#, c-format
+msgid "A&utomatic Prediffer"
+msgstr "&Otomatik Ön Farklılaştırma"
+
+#, c-format
+msgid "&Manual Unpacking"
+msgstr "El ile Ayıkla&ma"
+
+#, c-format
+msgid "&Automatic Unpacking"
+msgstr "Otomatik &Ayıklama"
+
+#, c-format
+msgid "&Reload plugins"
+msgstr "Uygulama Ekle&rini Yeniden Yükle"
+
+#, c-format
+msgid "&Window"
+msgstr "&Pencere"
+
+#, c-format
+msgid "Cl&ose"
+msgstr "&Kapat"
+
+#, c-format
+msgid "Clo&se All"
+msgstr "&Tümünü Kapat"
+
+#, c-format
+msgid "Change &Pane\tF6"
+msgstr "&Pano Değiştir\tF6"
+
+#, c-format
+msgid "Tile &Horizontally"
+msgstr "&Yatay Döşe"
+
+#, c-format
+msgid "Tile &Vertically"
+msgstr "&Dikey Döşe"
+
+#, c-format
+msgid "&Cascade"
+msgstr "&Basamakla"
+
+#, c-format
+msgid "&Help"
+msgstr "Ya&rdım"
+
+#, c-format
+msgid "&WinMerge Help\tF1"
+msgstr "&WinMerge Yardımı\tF1"
+
+#, c-format
+msgid "R&elease Notes"
+msgstr "Sürüm &Notları"
+
+#, c-format
+msgid "&Translations"
+msgstr "Çe&viriler"
+
+#, c-format
+msgid "C&onfiguration"
+msgstr "&Yapılandırma"
+
+#, c-format
+msgid "&GNU General Public License"
+msgstr "&GNU Genel Kamu Lisansı"
+
+#, c-format
+msgid "&About WinMerge..."
+msgstr "WinMerge &Hakkında..."
+
+#, c-format
+msgid "&Read-only"
+msgstr "Salt Okunu&r"
+
+#, c-format
+msgid "L&eft Read-only"
+msgstr "So&l Salt Okunur Olsun"
+
+#, c-format
+msgid "M&iddle Read-only"
+msgstr "&Orta Salt Okunur Olsun"
+
+#, c-format
+msgid "Ri&ght Read-only"
+msgstr "S&ağ Salt Okunur Olsun"
+
+#, c-format
+msgid "File En&coding..."
+msgstr "&Dosya Kodlaması..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "&Tümünü Seç\tCtrl+A"
+
+#, c-format
+msgid "Show &Identical Items"
+msgstr "Eş Ögeleri &Görüntüle"
+
+#, c-format
+msgid "Show &Different Items"
+msgstr "&Farklı Ögeleri Görüntüle"
+
+#, c-format
+msgid "Show L&eft Unique Items"
+msgstr "Soldaki T&ekil Ögeleri Görüntüle"
+
+#, c-format
+msgid "Show Midd&le Unique Items"
+msgstr "Ortadaki Teki&l Ögeleri Görüntüle"
+
+#, c-format
+msgid "Show Ri&ght Unique Items"
+msgstr "Sağdaki Tekil Ö&geleri Görüntüle"
+
+#, c-format
+msgid "Show S&kipped Items"
+msgstr "A&tlanan Ögeleri Görüntüle"
+
+#, c-format
+msgid "S&how Binary Files"
+msgstr "&Binary Dosyaları Görüntüle"
+
+#, c-format
+msgid "&3-way Compare"
+msgstr "&3 Yollu Karşılaştırma"
+
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr "Yalnız So&ldaki Farklı Ögeleri Görüntüle"
+
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr "Yalnız &Ortadaki Farklı Ögeleri Görüntüle"
+
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr "Yalnız Sağdaki Fa&rklı Ögeleri Görüntüle"
+
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
+#, c-format
+msgid "Show Hidd&en Items"
+msgstr "Gizli Ög&eleri Görüntüle"
+
+#, c-format
+msgid "Tree &Mode"
+msgstr "Ağaç Görünü&mü"
+
+#, c-format
+msgid "E&xpand All Subfolders"
+msgstr "Tüm Alt Klasörleri &Genişlet"
+
+#, c-format
+msgid "&Collapse All Subfolders"
+msgstr "Tüm Alt Klasörleri &Daralt"
+
+#, c-format
+msgid "Select &Font..."
+msgstr "Ya&zı Türünü Seçin..."
+
+#, c-format
+msgid "Use Default F&ont"
+msgstr "Varsayılan Yazı &Türü Kullanılsın"
+
+#, c-format
+msgid "Sw&ap Panes"
+msgstr "&Panoların Yerini Değiştir"
+
+#, c-format
+msgid "Compa&re Statistics"
+msgstr "İstatistikleri Ka&rşılaştır"
+
+#, c-format
+msgid "Refre&sh\tF5"
+msgstr "Ye&nile\tF5"
+
+#, c-format
+msgid "&Refresh Selected\tCtrl+F5"
+msgstr "Seçilmişi &Yenile\tCtrl+F5"
+
+#, c-format
+msgid "&Merge"
+msgstr "&Birleştir"
+
+#, c-format
+msgid "Co&mpare\tEnter"
+msgstr "&Karşılaştır\tEnter"
+
+#, c-format
+msgid "&Next Difference\tAlt+Down"
+msgstr "So&nraki Fark\tAlt+Down"
+
+#, c-format
+msgid "&Previous Difference\tAlt+Up"
+msgstr "Ön&ceki Fark\tAlt+Up"
+
+#, c-format
+msgid "&First Difference\tAlt+Home"
+msgstr "İlk &Fark\tAlt+Home"
+
+#, c-format
+msgid "&Current Difference\tAlt+Enter"
+msgstr "İmleçtek&i Fark\tAlt+Enter"
+
+#, c-format
+msgid "&Last Difference\tAlt+End"
+msgstr "&Son Fark\tAlt+End"
+
+#, c-format
+msgid "Copy to &Right\tAlt+Right"
+msgstr "S&ağa Kopyala\tAlt+Right"
+
+#, c-format
+msgid "Copy to L&eft\tAlt+Left"
+msgstr "So&la Kopyala\tAlt+Left"
+
+#, c-format
+msgid "&Delete\tDel"
+msgstr "&Sil\tDel"
+
+#, c-format
+msgid "&Customize Columns..."
+msgstr "&Sütunları Ayarla..."
+
+#, c-format
+msgid "Generate &Report..."
+msgstr "&Rapor Hazırla..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "Ayıklayıcı ile Düz&enle..."
+
+#, c-format
+msgid "&Save\tCtrl+S"
+msgstr "&Kaydet\tCtrl+S"
+
+#, c-format
+msgid "Sav&e"
+msgstr "Panoyu Kayd&et"
+
+#, c-format
+msgid "Save &Left"
+msgstr "So&lu Kaydet"
+
+#, c-format
+msgid "Save &Middle"
+msgstr "&Ortayı Kaydet"
+
+#, c-format
+msgid "Save &Right"
+msgstr "&Sağı Kaydet"
+
+#, c-format
+msgid "Save &As"
+msgstr "F&arklı Kaydet"
+
+#, c-format
+msgid "Save &Left As..."
+msgstr "So&lu Farklı Kaydet..."
+
+#, c-format
+msgid "Save &Middle As..."
+msgstr "&Ortayı Farklı Kaydet..."
+
+#, c-format
+msgid "Save &Right As..."
+msgstr "Sağı Fa&rklı Kaydet..."
+
+#, c-format
+msgid "&Print..."
+msgstr "&Yazdır..."
+
+msgid "Page Set&up..."
+msgstr "&Sayfa Ayarları..."
+
+msgid "Print Previe&w..."
+msgstr "&Baskı Önizleme..."
+
+#, c-format
+msgid "&Convert Line Endings to"
+msgstr "Sa&tır Sonlarını Dönüştür"
+
+#, c-format
+msgid "&Merge Mode\tF9"
+msgstr "Birleştir&me Kipi\tF9"
+
+#, c-format
+msgid "Re&load\tCtrl+F5"
+msgstr "Yine&le\tCtrl+F5"
+
+#, c-format
+msgid "&File Encoding..."
+msgstr "&Dosya Kodlaması..."
+
+#, c-format
+msgid "Recompare As"
+msgstr "Farklı Karşılaştır"
+
+#, c-format
+msgid "&Text"
+msgstr "Me&tin"
+
+#, c-format
+msgid "&XML"
+msgstr "&XML"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binary"
+
+#, c-format
+msgid "&Image"
+msgstr "&Görsel"
+
+#, c-format
+msgid "&Undo\tCtrl+Z"
+msgstr "Geri A&l\tCtrl+Z"
+
+#, c-format
+msgid "&Redo\tCtrl+Y"
+msgstr "Yi&nele\tCtrl+Y"
+
+#, c-format
+msgid "Cu&t\tCtrl+X"
+msgstr "K&es\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopyala\tCtrl+C"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Ya&pıştır\tCtrl+V"
+
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Satır &Farkını Seç\tF4"
+
+#, c-format
+msgid "F&ind...\tCtrl+F"
+msgstr "&Bul...\tCtrl+F"
+
+#, c-format
+msgid "Repla&ce...\tCtrl+H"
+msgstr "&Değiştir...\tCtrl+H"
+
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr "İşa&retleyici...\tCtrl+Shift+M"
+
+#, c-format
+msgid "Advanced"
+msgstr "Geliş&miş"
+
+#, c-format
+msgid "&Copy With Line Numbers\tCtrl+Shift+C"
+msgstr "Satır Numaraları ile &Kopyala\tCtrl+Shift+C"
+
+#, c-format
+msgid "&Bookmarks"
+msgstr "&Yer İmleri"
+
+#, c-format
+msgid "&Toggle Bookmark\tCtrl+F2"
+msgstr "&Yer İmi Ekle/Sil\tCtrl+F2"
+
+#, c-format
+msgid "&Next Bookmark\tF2"
+msgstr "So&nraki Yer İmi\tF2"
+
+#, c-format
+msgid "&Previous bookmark\tShift+F2"
+msgstr "Ön&ceki Yer İmi\tShift+F2"
+
+#, c-format
+msgid "&Clear All Bookmarks"
+msgstr "&Tüm Yer İmlerini Sil"
+
+#, c-format
+msgid "&Go To...\tCtrl+G"
+msgstr "&Git...\tCtrl+G"
+
+#, c-format
+msgid "Syntax Highlight"
+msgstr "Söz Dizimi &Vurgulaması"
+
+#, c-format
+msgid "&Diff Context"
+msgstr "Fark &Bağlamı"
+
+#, c-format
+msgid "&All Lines"
+msgstr "Tüm S&atırlar"
+
+#, c-format
+msgid "&0 Lines"
+msgstr "&0 Satır"
+
+#, c-format
+msgid "&1 Line"
+msgstr "&1 Satır"
+
+#, c-format
+msgid "&3 Lines"
+msgstr "&3 Satır"
+
+#, c-format
+msgid "&5 Lines"
+msgstr "&5 Satır"
+
+#, c-format
+msgid "&7 Lines"
+msgstr "&7 Satır"
+
+#, c-format
+msgid "&9 Lines"
+msgstr "&9 Satır"
+
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr "&Tümünü ve 0-9 Satırları Değiştir\tCtrl+D"
+
+#, c-format
+msgid "&Lock Panes"
+msgstr "Pano&lar Kilitlensin"
+
+#, c-format
+msgid "&View Whitespace"
+msgstr "Beyaz B&oşluklar Görüntülensin"
+
+#, c-format
+msgid "Vie&w Line Differences"
+msgstr "Satır &Farklılıkları Görüntülensin"
+
+#, c-format
+msgid "View Line &Numbers"
+msgstr "Satır Nu&maraları Görüntülensin"
+
+#, c-format
+msgid "View &Margins"
+msgstr "Kenar Boşlukları &Görüntülensin"
+
+#, c-format
+msgid "W&rap Lines"
+msgstr "Satı&rlar Kaydırılsın"
+
+#, c-format
+msgid "Split V&ertically"
+msgstr "Dik&ey Bölünsün"
+
+#, c-format
+msgid "Diff &Pane"
+msgstr "Fark Panos&u"
+
+#, c-format
+msgid "Lo&cation Pane"
+msgstr "&Konum Panosu"
+
+#, c-format
+msgid "Ne&xt Conflict\tAlt+Shift+Down"
+msgstr "S&onraki Çelişki\tAlt+Shift+Aşağı"
+
+#, c-format
+msgid "Pre&vious Conflict\tAlt+Shift+Up"
+msgstr "Önc&eki Çelişki\tAlt+Shift+Up"
+
+#, c-format
+msgid "A&dvanced"
+msgstr "&Gelişmiş"
+
+#, c-format
+msgid "Next Difference Between Left and Middle\tAlt+1"
+msgstr "Sonraki Sol ve Orta Farkı\tAlt+1"
+
+#, c-format
+msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgstr "Önceki Sol ve Orta Farkı\tAlt+Shift+1"
+
+#, c-format
+msgid "Next Difference Between Left and Right\tAlt+2"
+msgstr "Sonraki Sol ve Sağ Farkı\tAlt+2"
+
+#, c-format
+msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgstr "Önceki Sol ve Sağ Farkı\tAlt+Shift+2"
+
+#, c-format
+msgid "Next Difference Between Middle and Right\tAlt+3"
+msgstr "Sonraki Orta ve Sağ Farkı\tAlt+3"
+
+#, c-format
+msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgstr "Önceki Orta ve Sağ Farkı\tAlt+Shift+3"
+
+#, c-format
+msgid "Next Left Only Difference\tAlt+7"
+msgstr "Sonraki Tekil Sol Farkı\tAlt+7"
+
+#, c-format
+msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgstr "Önceki Tekil Sol Farkı\tAlt+Shift+7"
+
+#, c-format
+msgid "Next Middle Only Difference\tAlt+8"
+msgstr "Sonraki Tekil Orta Farkı\tAlt+8"
+
+#, c-format
+msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgstr "Önceki Tekil Orta Farkı\tAlt+Shift+8"
+
+#, c-format
+msgid "Next Right Only Difference\tAlt+9"
+msgstr "Sonraki Tekil Sağ Farkı\tAlt+9"
+
+#, c-format
+msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgstr "Önceki Tekil Sağ Farkı\tAlt+Shift+9"
+
+#, c-format
+msgid "Copy from Left\tAlt+Shift+Right"
+msgstr "Sol&dan Kopyala\tAlt+Shift+Sağ"
+
+#, c-format
+msgid "Copy from Right\tAlt+Shift+Left"
+msgstr "Sağdan &Kopyala\tAlt+Shift+Sol"
+
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Sağa Kopyala &ve İlerle\tCtrl+Alt+Sağ"
+
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Sola Kopyala ve İle&rle\tCtrl+Alt+Sol"
+
+#, c-format
+msgid "Copy &All to Right"
+msgstr "Tü&münü Sağa Kopyala"
+
+#, c-format
+msgid "Cop&y All to Left"
+msgstr "&Tümünü Sola Kopyala"
+
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
+
+#, c-format
+msgid "Add &Synchronization Point\tAlt+S"
+msgstr "Eşitleme Noktası &Ekle\tAlt+S"
+
+#, c-format
+msgid "Clear Sync&hronization Points"
+msgstr "Eşitleme Noktalarını &Sil"
+
+#, c-format
+msgid "&Prediffer"
+msgstr "Ön &Farklılaştırıcı"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Betikler"
+
+#, c-format
+msgid "Sp&lit"
+msgstr "Bö&l"
+
+#, c-format
+msgid "Comp&are"
+msgstr "K&arşılaştır"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
+#, c-format
+msgid "Compare Non-hor&izontally"
+msgstr "&Yatay Olmayan Karşılaştırma"
+
+#, c-format
+msgid "First &left item with second left item"
+msgstr "Birinci So&l Öge ile İkinci Sol Öge"
+
+#, c-format
+msgid "First &right item with second right item"
+msgstr "Bi&rinci Sağ Öge ile İkinci Sağ Öge"
+
+#, c-format
+msgid "&First left item with second right item"
+msgstr "Birinci S&ol Öge ile İkinci Sağ Öge"
+
+#, c-format
+msgid "&Second left item with first right item"
+msgstr "Birinci &Sağ Öge ile İkinci Sol Öge"
+
+#, c-format
+msgid "Co&mpare As"
+msgstr "Ş&u Olarak Karşılaştır"
+
+#, c-format
+msgid "Left to Middle (%1 of %2)"
+msgstr "Soldakini Ortaya (%1 / %2)"
+
+#, c-format
+msgid "Left to Right (%1 of %2)"
+msgstr "Soldakini Sağa (%1 / %2)"
+
+#, c-format
+msgid "Left to... (%1 of %2)"
+msgstr "Soldakini şuraya... (%1 / %2)"
+
+#, c-format
+msgid "Middle to Left (%1 of %2)"
+msgstr "Ortadakini Sola (%1 / %2)"
+
+#, c-format
+msgid "Middle to Right (%1 of %2)"
+msgstr "Ortadakini Sağa (%1 / %2)"
+
+#, c-format
+msgid "Middle to... (%1 of %2)"
+msgstr "Ortadakini şuraya... (%1 / %2)"
+
+#, c-format
+msgid "Right to Middle (%1 of %2)"
+msgstr "Sağdakini Ortaya (%1 / %2)"
+
+#, c-format
+msgid "Right to Left (%1 of %2)"
+msgstr "Sağdakini Sola (%1 / %2)"
+
+#, c-format
+msgid "Right to... (%1 of %2)"
+msgstr "Sağdakini şuraya... (%1 / %2)"
+
+#, c-format
+msgid "&Delete"
+msgstr "&Sil"
+
+#, c-format
+msgid "&Left"
+msgstr "So&l"
+
+#, c-format
+msgid "&Middle"
+msgstr "&Orta"
+
+#, c-format
+msgid "&Right"
+msgstr "&Sağ"
+
+#, c-format
+msgid "&Both"
+msgstr "İ&kisi de"
+
+#, c-format
+msgid "&All"
+msgstr "&Tümü"
+
+#, c-format
+msgid "Re&name"
+msgstr "Ye&niden Adlandır"
+
+#, c-format
+msgid "&Hide Items"
+msgstr "Ögeleri &Gizle"
+
+#, c-format
+msgid "&Open Left"
+msgstr "S&ola Aç"
+
+#, c-format
+msgid "with &External Editor"
+msgstr "Dış Düz&enleyici ile"
+
+#, c-format
+msgid "&Parent Folder"
+msgstr "Üs&t Klasör"
+
+#, c-format
+msgid "Open Midd&le"
+msgstr "O&rtaya Aç"
+
+#, c-format
+msgid "O&pen Right"
+msgstr "&Sağa Aç"
+
+#, c-format
+msgid "Cop&y Pathnames"
+msgstr "&Yol Adlarını Kopyala"
+
+#, c-format
+msgid "Left (%1 of %2)"
+msgstr "Soldakini (%1 / %2)"
+
+#, c-format
+msgid "Middle (%1 of %2)"
+msgstr "Ortadakini (%1 / %2)"
+
+#, c-format
+msgid "Right (%1 of %2)"
+msgstr "Sağdakini (%1 / %2)"
+
+#, c-format
+msgid "Both (%1 of %2)"
+msgstr "İkisini de (%1 / %2)"
+
+#, c-format
+msgid "All (%1 of %2)"
+msgstr "Tümü (%1 / %2)"
+
+#, c-format
+msgid "Copy &Filenames"
+msgstr "&Dosya Adlarını Kopyala"
+
+#, c-format
+msgid "Copy Items To Clip&board"
+msgstr "Ö&geleri Panoya Kopyala"
+
+#, c-format
+msgid "&Zip"
+msgstr "&Sıkıştır"
+
+#, c-format
+msgid "Both to... (%1 of %2)"
+msgstr "İkisini de... (%1 / %2)"
+
+#, c-format
+msgid "All to... (%1 of %2)"
+msgstr "Tümünü... (%1 / %2)"
+
+#, c-format
+msgid "Differences to... (%1 of %2)"
+msgstr "&Farklı Olanları... (%1 / %2)"
+
+#, c-format
+msgid "&Refresh"
+msgstr "&Yenile"
+
+#, c-format
+msgid "Left Shell menu"
+msgstr "Sol Pano Sağ Tık Menüsü"
+
+#, c-format
+msgid "Middle Shell menu"
+msgstr "Orta Pano Sağ Tık Menüsü"
+
+#, c-format
+msgid "Right Shell menu"
+msgstr "Sağ Pano Sağ Tık Menüsü"
+
+#, c-format
+msgid "Copy"
+msgstr "Kopyala"
+
+#, c-format
+msgid "&Copy Full Path"
+msgstr "Tam Yolu &Kopyala"
+
+#, c-format
+msgid "Copy &Filename"
+msgstr "&Dosya Adını Kopyala"
+
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Ön Farklılaştırıcı Ayarları"
+
+#, c-format
+msgid "&No prediffer"
+msgstr "Ö&n Farklılaştırıcı Yok"
+
+#, c-format
+msgid "Auto prediffer"
+msgstr "Otomatik Ön Farklılaştırıcı"
+
+#, c-format
+msgid "G&oto Diff"
+msgstr "Fa&rka Git"
+
+#, c-format
+msgid "&No Moved Blocks"
+msgstr "&Taşınan Blok Yok"
+
+#, c-format
+msgid "&All Moved Blocks"
+msgstr "T&aşınan Blokların Tümü"
+
+#, c-format
+msgid "Moved Block for &Current Diff"
+msgstr "İmleçteki Fark &Yerine Taşınan Blok"
+
+#, c-format
+msgid "W&hitespaces"
+msgstr "Beyaz Boşl&uklar"
+
+#, c-format
+msgid "Com&pare"
+msgstr "&Karşılaştırılsın"
+
+#, c-format
+msgid "I&gnore changes"
+msgstr "Değişiklikler &Yok Sayılsın"
+
+#, c-format
+msgid "Ig&nore all"
+msgstr "Tümü Y&ok Sayılsın"
+
+#, c-format
+msgid "Case sensi&tive"
+msgstr "BÜYÜK-Küçük &Harf Ayrımı Yapılsın"
+
+#, c-format
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr "Satı&r Sonu Farklılıkları Yok Sayılsın (Windows/Unix/Mac)"
+
+#, c-format
+msgid "Ignore codepage &differences"
+msgstr "Ko&d Sayfası Farkları Yok Sayılsın"
+
+#, c-format
+msgid "&Include Subfolders"
+msgstr "A&lt Klasörler Katılsın"
+
+#, c-format
+msgid "&Compare method:"
+msgstr "&Karşılaştırma Yöntemi:"
+
+#, c-format
+msgid "Full Contents"
+msgstr "Tüm İçerik"
+
+#, c-format
+msgid "Quick Contents"
+msgstr "Hızlı İçerik"
+
+#, c-format
+msgid "Binary Contents"
+msgstr "Binary İçerik"
+
+#, c-format
+msgid "Modified Date"
+msgstr "Değiştirilme Tarihi"
+
+#, c-format
+msgid "Modified Date and Size"
+msgstr "Değiştirilme Tarihi ve Boyutu"
+
+#, c-format
+msgid "Size"
+msgstr "Boyut"
+
+#, c-format
+msgid "&Load Project..."
+msgstr "Proje Yük&le..."
+
+#, c-format
+msgid "About WinMerge"
+msgstr "WinMerge Hakkında"
+
+#, c-format
+msgid "Visit the WinMerge HomePage!"
+msgstr "WinMerge Sitesini Ziyaret Edin!"
+
+#, c-format
+msgid "OK"
+msgstr "Tamam"
+
+#, c-format
+msgid "Contributors"
+msgstr "Katkı Yapanlar"
+
+#, c-format
+msgid "Select Files or Folders"
+msgstr "Dosya ya da Klasör Seçin"
+
+#, c-format
+msgid "&1st File or Folder"
+msgstr "&1. Dosya ya da Klasör"
+
+#, c-format
+msgid "Re&ad-only"
+msgstr "S&alt Okunur"
+
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr "1. ile 2. Ögeyi Değiştir"
+
+#, c-format
+msgid "&Browse..."
+msgstr "&Gözat..."
+
+#, c-format
+msgid "&2nd File or Folder"
+msgstr "&2. Dosya ya da Klasör"
+
+#, c-format
+msgid "Rea&d-only"
+msgstr "Salt &Okunur"
+
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr "2. ile 3. Ögeyi Değiştir"
+
+#, c-format
+msgid "B&rowse..."
+msgstr "Gö&zat..."
+
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr "&3. Dosya ya da Klasör"
+
+#, c-format
+msgid "Read-o&nly"
+msgstr "Salt Oku&nur"
+
+#, c-format
+msgid "Swap 1st | 3rd"
+msgstr "1. ile 3. Ögeyi Değiştir"
+
+#, c-format
+msgid "Browse..."
+msgstr "Gözat..."
+
+#, c-format
+msgid " Folder: Filter"
+msgstr " Klasör: Süzgeç"
+
+#, c-format
+msgid "&Select..."
+msgstr "Seçi&n..."
+
+#, c-format
+msgid " File: Unpacker Plugin"
+msgstr " Dosya: Ayıklayıcı Uygulama Eki"
+
+#, c-format
+msgid "Se&lect..."
+msgstr "&Seçin..."
+
+msgid "Co&mpare"
+msgstr "&Karşılaştır"
+
+#, c-format
+msgid "Cancel"
+msgstr "İptal"
+
+#, c-format
+msgid "Status:"
+msgstr "Durum:"
+
+#, c-format
+msgid "Help"
+msgstr "Yardım"
+
+#, c-format
+msgid "General"
+msgstr "Genel"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Otomatik Olarak İlk &Farka Gidilsin"
+
+#, c-format
+msgid "Cl&ose windows with ESC:"
+msgstr "Pencereler ESC Tuşu ile &Kapatılsın"
+
+#, c-format
+msgid "&Automatically verify paths in Open-dialog"
+msgstr "'&Aç' Penceresindeki Yollar Doğrulansın"
+
+#, c-format
+msgid "All&ow only one instance to run"
+msgstr "Yalnız Bir &WinMerge Kopyası Çalışsın"
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "&Birden Fazla Pencere Kapatılıyorsa Onay İstensin"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Karşılaştırılırken &Dosya Zamanı Korunsun"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgstr "Açılışta \"Dosya ya da Klasör Seçin\" &Penceresi Görüntülensin"
+
+#, c-format
+msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgstr "&Tamam ile \"Dosya ya da Klasör Seçin\" Penceresi Kapatılsın"
+
+#, c-format
+msgid "O&pen-dialog Auto-Completion:"
+msgstr "'Aç' Penceresi Otomatik Olarak Doldurulsun:"
+
+#, c-format
+msgid "Language:"
+msgstr "Dil:"
+
+#, c-format
+msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgstr "Çok karşılaştığınız bazı iletileri gizleyebilirsiniz.\n"
+"Tüm iletileri yeniden görünür yapmak için;\n"
+"'Sıfırla' düğmesine tıklayın."
+
+#, c-format
+msgid "Reset"
+msgstr "Sıfırla"
+
+#, c-format
+msgid "Find"
+msgstr "Bul"
+
+#, c-format
+msgid "Fi&nd what:"
+msgstr "&Aranacak:"
+
+#, c-format
+msgid "Match &whole word only"
+msgstr "Sözcükler &Tam Olarak Eşleştirilsin"
+
+#, c-format
+msgid "Match &case"
+msgstr "BÜYÜK-Küçük &Harfler Eşleştirilsin"
+
+#, c-format
+msgid "Regular &expression"
+msgstr "Kurallı İfad&e"
+
+#, c-format
+msgid "D&on't wrap end of file"
+msgstr "D&osya Sonundan Başa Dönülmesin"
+
+#, c-format
+msgid "&Don't close this dialog box"
+msgstr "Bu &Pencere Kapatılmasın"
+
+#, c-format
+msgid "&Find Next"
+msgstr "S&onrakini Bul"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Ö&ncekini Bul"
+
+#, c-format
+msgid "&Ok"
+msgstr "&Tamam"
+
+#, c-format
+msgid "Replace"
+msgstr "Değiştir"
+
+#, c-format
+msgid "Re&place with:"
+msgstr "Şununla &Değiştir:"
+
+#, c-format
+msgid "&Don't wrap end of file"
+msgstr "Dosya &Sonundan Başa Dönülmesin"
+
+#, c-format
+msgid "Replace in"
+msgstr "Şurada Değiştir"
+
+#, c-format
+msgid "&Selection"
+msgstr "&Seçilmiş Bölümde"
+
+#, c-format
+msgid "Wh&ole file"
+msgstr "D&osyanın Tümünde"
+
+msgid "Find Pre&v"
+msgstr ""
+
+#, c-format
+msgid "&Replace"
+msgstr "Değişti&r"
+
+#, c-format
+msgid "Replace &All"
+msgstr "&Tümünü Değiştir"
+
+#, c-format
+msgid "Markers"
+msgstr "İşaretleyiciler"
+
+#, c-format
+msgid "Enable &Markers"
+msgstr "İşaretleyiciler &Kullanılsın"
+
+#, c-format
+msgid "New"
+msgstr "Yeni"
+
+#, c-format
+msgid "&Background color:"
+msgstr "A&rt Alan Rengi:"
+
+#, c-format
+msgid "&Apply"
+msgstr "&Uygula"
+
+#, c-format
+msgid "Linefilters"
+msgstr "Satır Süzgeçleri"
+
+#, c-format
+msgid "Enable Line Filters"
+msgstr "Satır Süzgeçleri Kullanılsın"
+
+#, c-format
+msgid "Regular Expressions (one per line):"
+msgstr "Kurallı İfadeler (her satıra bir tane):"
+
+#, c-format
+msgid "Edit"
+msgstr "Düzenle"
+
+#, c-format
+msgid "Remove"
+msgstr "Sil"
+
+#, c-format
+msgid "Colors"
+msgstr "Renkler"
+
+#, c-format
+msgid "Background"
+msgstr "Art Alan"
+
+#, c-format
+msgid "Deleted"
+msgstr "Silinmiş"
+
+#, c-format
+msgid "Text"
+msgstr "Metin"
+
+#, c-format
+msgid "Difference:"
+msgstr "Farklılık:"
+
+#, c-format
+msgid "Selected Difference:"
+msgstr "Seçilmiş Farklılık:"
+
+#, c-format
+msgid "Ignored Difference:"
+msgstr "Yok Sayılan Farklılık:"
+
+#, c-format
+msgid "Moved:"
+msgstr "Taşınmış:"
+
+#, c-format
+msgid "Selected Moved:"
+msgstr "Seçilmiş Taşınmış:"
+
+#, c-format
+msgid "Same As The Next (3 panes):"
+msgstr "Sonraki ile Aynı (3 Pano):"
+
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr "Sonraki ile Aynı (Seçilmiş):"
+
+#, c-format
+msgid "Word Difference:"
+msgstr "Sözcük Farklılığı:"
+
+#, c-format
+msgid "Selected Word Diff:"
+msgstr "Seçilmiş Sözcük Farklılığı:"
+
+#, c-format
+msgid "Defaults"
+msgstr "Varsayılan Ayarlar"
+
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "System"
+msgstr "Sistem"
+
+#, c-format
+msgid "&Send deleted files to Recycle Bin"
+msgstr "&Silinen Dosyalar Geri Dönüşüm Kutusuna Atılsın"
+
+#, c-format
+msgid "&External editor:"
+msgstr "Dış Düz&enleyici:"
+
+#, c-format
+msgid "&Filter folder:"
+msgstr "Süzgeç &Klasörü:"
+
+#, c-format
+msgid "Temporary files folder"
+msgstr "Geçici Dosya Klasörü"
+
+#, c-format
+msgid "S&ystem's temp folder"
+msgstr "&Sistemin Geçici Klasörü"
+
+#, c-format
+msgid "C&ustom folder:"
+msgstr "Ö&zel Klasör:"
+
+#, c-format
+msgid "Br&owse..."
+msgstr "Göza&t..."
+
+#, c-format
+msgid "Patch Generator"
+msgstr "Yama Oluşturucu"
+
+#, c-format
+msgid "File&1:"
+msgstr "&1. Dosya:"
+
+#, c-format
+msgid "File&2:"
+msgstr "&2. Dosya:"
+
+#, c-format
+msgid "&Swap"
+msgstr "&Değiştir"
+
+#, c-format
+msgid "&Append to existing file"
+msgstr "&Var Olan Bir Dosyaya Eklensin"
+
+#, c-format
+msgid "&Result:"
+msgstr "&Sonuç:"
+
+#, c-format
+msgid "Bro&wse..."
+msgstr "Gö&zat..."
+
+#, c-format
+msgid "&Format"
+msgstr "&Biçim"
+
+#, c-format
+msgid "St&yle:"
+msgstr "Biç&em:"
+
+#, c-format
+msgid "&Context:"
+msgstr "B&ağlam:"
+
+#, c-format
+msgid "Ignor&e blank lines"
+msgstr "Boş Satırlar Yok Sayılsı&n"
+
+#, c-format
+msgid "Inclu&de command line"
+msgstr "Ko&mut Satırı Katılsın"
+
+#, c-format
+msgid "Open to e&xternal editor"
+msgstr "Dış Düzen&leyici ile Açılsın"
+
+#, c-format
+msgid "Display Columns"
+msgstr "Sütunlar Görüntülensin"
+
+#, c-format
+msgid "Move &Up"
+msgstr "Y&ukarı Kaydır"
+
+#, c-format
+msgid "Move &Down"
+msgstr "Aşağı Kay&dır"
+
+#, c-format
+msgid "Select Unpacker"
+msgstr "Ayıklayıcı Seç"
+
+#, c-format
+msgid "File unpacker:"
+msgstr "Dosya Ayıklayıcı:"
+
+#, c-format
+msgid "Display all unpackers, don't check the extension"
+msgstr "Uzantıya Bakılmadan Tüm Ayıklayıcılar Görüntülensin"
+
+#, c-format
+msgid "Extensions list:"
+msgstr "Uzantı Listesi:"
+
+#, c-format
+msgid "Description:"
+msgstr "Açıklama:"
+
+#, c-format
+msgid "Stop"
+msgstr "Dur"
+
+#, c-format
+msgid "Pause"
+msgstr "Duraklat"
+
+#, c-format
+msgid "Continue"
+msgstr "Sürdür"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Ögeler Karşılaştırılıyor..."
+
+#, c-format
+msgid "Items compared:"
+msgstr "Karşılaştırılan Öge:"
+
+#, c-format
+msgid "Items total:"
+msgstr "Toplam Öge:"
+
+#, c-format
+msgid "Go To"
+msgstr "Git"
+
+#, c-format
+msgid "G&oto:"
+msgstr "&Git:"
+
+#, c-format
+msgid "File"
+msgstr "Dosya"
+
+#, c-format
+msgid "Goto what"
+msgstr "Şuna Git"
+
+#, c-format
+msgid "Li&ne"
+msgstr "&Satır"
+
+#, c-format
+msgid "&Difference"
+msgstr "&Farklılık"
+
+#, c-format
+msgid "&Go To"
+msgstr "&Git"
+
+#, c-format
+msgid "Compare"
+msgstr "Karşılaştırma"
+
+#, c-format
+msgid "Whitespace"
+msgstr "Beyaz Boşluk"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Karşılaştırılsın"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&Değişiklik Yok Sayılsın"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "Tümü &Yok Sayılsın"
+
+#, c-format
+msgid "Ignore blan&k lines"
+msgstr "Boş Satırlar Yo&k Sayılsın"
+
+#, c-format
+msgid "Ignore &case"
+msgstr "BÜYÜK-Küçük &Harf Ayrımı Yapılmasın"
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Taşı&nan Blok Algılaması Kullanılsın"
+
+#, c-format
+msgid "&Match similar lines"
+msgstr "&Benzer Satırlar Eşleştirilsin"
+
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+#, c-format
+msgid "Comments"
+msgstr "Açıklamalar"
+
+#, c-format
+msgid "Filter Comments"
+msgstr "Açıklamalar Süzülsün"
+
+#, c-format
+msgid "Editor"
+msgstr "Düzenleyici"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "Söz Dizimi &Vurgulansın"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Otomatik Olarak Yeniden T&aransın"
+
+#, c-format
+msgid "&Preserve original EOL chars"
+msgstr "Ö&zgün Satır Sonu Karakterleri Korunsun"
+
+#, c-format
+msgid "Tabs"
+msgstr "Sekmeler"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&Sekme Aralığı:"
+
+#, c-format
+msgid "&Insert Tabs"
+msgstr "Sekme &Olarak"
+
+#, c-format
+msgid "Insert &Spaces"
+msgstr "&Boşluk Olarak"
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Satır Farklılıkları Renklendirilsin"
+
+#, c-format
+msgid "View line differences"
+msgstr "Satır Farklılıkları Görüntülensin"
+
+#, c-format
+msgid "&Character level"
+msgstr "&Karakter Düzeyinde"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "&Sözcük Düzeyinde:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr "&Sözcük Kesme Karakterleri:"
+
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
+msgid "Filefilters"
+msgstr "Dosya Süzgeçleri"
+
+msgid "Test..."
+msgstr "Sına..."
+
+#, c-format
+msgid "Install..."
+msgstr "Kur..."
+
+#, c-format
+msgid "New..."
+msgstr "Yeni..."
+
+#, c-format
+msgid "Edit..."
+msgstr "Düzenle..."
+
+#, c-format
+msgid "Delete..."
+msgstr "Sil..."
+
+#, c-format
+msgid "Save modified files?"
+msgstr "Dosya değişiklikleri kaydedilsin mi?"
+
+#, c-format
+msgid "Left side file"
+msgstr "Sol panodaki dosya"
+
+#, c-format
+msgid "&Save changes"
+msgstr "Değişiklikler &Kaydedilsin"
+
+#, c-format
+msgid "&Discard changes"
+msgstr "&Değişiklikler Kaydedilmesin"
+
+#, c-format
+msgid "Middle side file"
+msgstr "Orta panodaki dosya"
+
+#, c-format
+msgid "Sa&ve changes"
+msgstr "D&eğişiklikleri kaydet"
+
+#, c-format
+msgid "Disca&rd changes"
+msgstr "Değişiklikleri kayde&tme"
+
+#, c-format
+msgid "Right side file"
+msgstr "Sağ panodaki dosya"
+
+#, c-format
+msgid "S&ave changes"
+msgstr "Değişiklikleri k&aydet"
+
+#, c-format
+msgid "Dis&card changes"
+msgstr "Değişiklikleri kaydet&me"
+
+#, c-format
+msgid "Disca&rd All"
+msgstr "&Tümünü Yok Say"
+
+#, c-format
+msgid "Codepage"
+msgstr "Kod Sayfası"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Varsayılan Kod Sayfası"
+
+#, c-format
+msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgstr "Unikod Olmayan Dosyalar İçin Kullanılacak Kod Sayfası:"
+
+#, c-format
+msgid "Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
+msgstr ".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın:  \n"
+"oturumun yeniden başlatılması gerekir"
+
+#, c-format
+msgid "Detect codepage for text files using mlang.dll\n"
+"need to restart session"
+msgstr "Metin dosyalarının kod sayfası mlang.dll kullanılarak algılansın\n"
+"oturumun yeniden başlatılması gerekir"
+
+#, c-format
+msgid "System codepage"
+msgstr "Sistem Kod Sayfası"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge Kullanıcı Arayüzüne Göre"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Özel Kod Sayfası:"
+
+#, c-format
+msgid "Options"
+msgstr "Ayarlar"
+
+#, c-format
+msgid " Categories"
+msgstr " Ayar Grupları"
+
+#, c-format
+msgid "Import..."
+msgstr "İçe Aktar..."
+
+#, c-format
+msgid "Export..."
+msgstr "Dışa Aktar..."
+
+#, c-format
+msgid "Dialog"
+msgstr "İletişim"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Anahtar Sözcükler:"
+
+#, c-format
+msgid "Function names:"
+msgstr "İşlev Adları:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Açıklamalar:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Rakamlar:"
+
+#, c-format
+msgid "Operators:"
+msgstr "İşlemler:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Dizgeler:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Ön İşleyici:"
+
+#, c-format
+msgid "User 1:"
+msgstr "1. Kullanıcı:"
+
+#, c-format
+msgid "User 2:"
+msgstr "2. Kullanıcı:"
+
+#, c-format
+msgid "Bold"
+msgstr "Koyu"
+
+#, c-format
+msgid "Marker colors"
+msgstr "İşaretleyici Renkleri"
+
+#, c-format
+msgid "Search Marker:"
+msgstr "İşaretleyici Arama"
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "1. Kullanıcı İşaretleyicisi:"
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "2. Kullanıcı İşaretleyicisi:"
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "3. Kullanıcı İşaretleyicisi:"
+
+#, c-format
+msgid "Folder Compare Report"
+msgstr "Klasör Karşılaştırma Raporu"
+
+#, c-format
+msgid "Report &File:"
+msgstr "Rapor &Dosyası:"
+
+#, c-format
+msgid "&Style:"
+msgstr "&Biçem:"
+
+#, c-format
+msgid "&Include File Compare Report"
+msgstr "K&lasör Karşılaştırma Raporu Katılsın"
+
+#, c-format
+msgid "&Copy to Clipboard"
+msgstr "Panoya &Kopyala"
+
+#, c-format
+msgid "Shared or Private Filter"
+msgstr "Ortak ya da Özel Süzgeç"
+
+#, c-format
+msgid "Which type of filter do you want to create?"
+msgstr "Oluşturmak istediğiniz süzgeç türü nedir?"
+
+#, c-format
+msgid "Shared Filter (for all users on this machine)"
+msgstr "Ortak Süzgeç (bilgisayardaki tüm kullanıcılar için)"
+
+#, c-format
+msgid "Private Filter (only for current user)"
+msgstr "Özel Süzgeç (yalnız geçerli kullanıcı için)"
+
+#, c-format
+msgid "Archive Support"
+msgstr "Dosya Sıkıştırma"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Dosya Sıkıştırması Kullanılsın"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "&Arşiv Türü Dosya İmzasından Belirlensin"
+
+#, c-format
+msgid "Compare Statistics"
+msgstr "Karşılaştırma İstatistikleri"
+
+#, c-format
+msgid "Folders:"
+msgstr "Klasörler:"
+
+#, c-format
+msgid "Files:"
+msgstr "Dosyalar:"
+
+#, c-format
+msgid "Different"
+msgstr "Farklılık"
+
+#, c-format
+msgid "Binary:"
+msgstr "Binary:"
+
+#, c-format
+msgid "Unique"
+msgstr "Tekil"
+
+#, c-format
+msgid "Left:"
+msgstr "Sol:"
+
+#, c-format
+msgid "Right:"
+msgstr "Sağ:"
+
+#, c-format
+msgid "Identical"
+msgstr "Aynı"
+
+#, c-format
+msgid "Total:"
+msgstr "Toplam:"
+
+#, c-format
+msgid "Close"
+msgstr "Kapat"
+
+#, c-format
+msgid "Middle:"
+msgstr "Orta:"
+
+#, c-format
+msgid "Missing Left:"
+msgstr "Solda Eksik:"
+
+#, c-format
+msgid "Missing Middle:"
+msgstr "Ortada Eksik:"
+
+#, c-format
+msgid "Missing Right:"
+msgstr "Sağda Eksik:"
+
+#, c-format
+msgid "Affects"
+msgstr "Etkilenecek Pano"
+
+#, c-format
+msgid "(Affects)"
+msgstr "(Etkiler)"
+
+#, c-format
+msgid "Select Codepage for"
+msgstr "İşlemlerde Kullanılacak Kod Sayfası"
+
+#, c-format
+msgid "&File Loading:"
+msgstr "&Dosya Yükleme:"
+
+#, c-format
+msgid "File &Saving:"
+msgstr "Dosya &Kaydetme:"
+
+#, c-format
+msgid "&Use same codepage for both"
+msgstr "İki İşlemde de Aynı Kod Sayfası K&ullanılsın"
+
+#, c-format
+msgid "&Cancel"
+msgstr "İ&ptal"
+
+#, c-format
+msgid "Test Filter"
+msgstr "Süzgeci Sına"
+
+msgid "Testing filter..."
+msgstr "Süzgeç sınanıyor..."
+
+#, c-format
+msgid "&Enter text to test:"
+msgstr "Sınanacak m&etni yazın:"
+
+#, c-format
+msgid "&Folder Name"
+msgstr "&Klasör Adı"
+
+#, c-format
+msgid "Result:"
+msgstr "Sonuç:"
+
+#, c-format
+msgid "&Test"
+msgstr "&Sına"
+
+#, c-format
+msgid "&Close"
+msgstr "&Kapat"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Özel Metin Renkleri K&ullanılsın"
+
+#, c-format
+msgid "Custom text colors"
+msgstr "Özel Metin Renkleri"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Beyaz Boşluk:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Normal Metin:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Seçim:"
+
+#, c-format
+msgid "Margin:"
+msgstr "Kenar Boşluğu:"
+
+#, c-format
+msgid "Backup Files"
+msgstr "Yedekleme Dosyaları"
+
+#, c-format
+msgid "Create backup files in:"
+msgstr "Yedekleme Dosyalarının Konumu:"
+
+#, c-format
+msgid "&Folder compare"
+msgstr "&Klasör Karşılaştırma"
+
+#, c-format
+msgid "Fil&e compare"
+msgstr "Dosya Karşı&laştırma"
+
+#, c-format
+msgid "Create backup files into:"
+msgstr "Yedekleme Dosyalarının Konumu:"
+
+#, c-format
+msgid "&Original file's folder"
+msgstr "Ö&zgün Dosya Konumu"
+
+#, c-format
+msgid "&Global backup folder:"
+msgstr "&Genel Yedekleme Klasörü:"
+
+#, c-format
+msgid "Backup filename:"
+msgstr "Yedekleme Dosyası Adının:"
+
+#, c-format
+msgid "&Append .bak -extension"
+msgstr "Sonun&a '.bak' Uzantısı Eklensin"
+
+#, c-format
+msgid "A&ppend timestamp"
+msgstr "Sonuna Tarih Da&mgası Eklensin"
+
+#, c-format
+msgid "Confirm Copy"
+msgstr "Kopya Doğrulansın"
+
+#, c-format
+msgid "Are you sure you want to copy XXX items?"
+msgstr "XXX ögeyi kopyalamak istediğinize emin misiniz?"
+
+#, c-format
+msgid "From left"
+msgstr "Soldan"
+
+#, c-format
+msgid "To right"
+msgstr "Sağa"
+
+#, c-format
+msgid "Yes"
+msgstr "Evet"
+
+#, c-format
+msgid "No"
+msgstr "Hayır"
+
+#, c-format
+msgid "Plugins"
+msgstr "Uygulama Ekleri"
+
+#, c-format
+msgid "&Enable plugins"
+msgstr "&Uygulama Ekleri Kullanılsın"
+
+msgid "File filters:"
+msgstr ""
+
+#, c-format
+msgid "Shell Integration"
+msgstr "Windows Bütünleştirmesi"
+
+#, c-format
+msgid "Explorer"
+msgstr "Sağ Tık Menüsünde WinMerge Görüntülensin"
+
+#, c-format
+msgid "E&nable advanced menu"
+msgstr "Gelişmiş Me&nü Kullanılsın"
+
+#, c-format
+msgid "&Add to context menu"
+msgstr "S&ağ Tık Menüsüne Eklensin"
+
+#, c-format
+msgid "&Register shell extension"
+msgstr "Kabuk &Uzantısını Kaydet"
+
+#, c-format
+msgid "&Unregister shell extension"
+msgstr "Kab&uk Uzantısı Kaydını Sil"
+
+msgid "Register shell extension for current user &only"
+msgstr ""
+
+msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
+msgctxt "Options dialog|Categories"
+msgid "Folder"
+msgstr "Klasör"
+
+#, c-format
+msgid "S&top after first difference"
+msgstr "İlk Fark&tan Sonra Durulsun"
+
+#, c-format
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "3 Saniyeden Az Zaman Farkları Y&ok Sayılsın"
+
+#, c-format
+msgid "&Include unique subfolders contents"
+msgstr "Tekil A&lt Klasör İçerikleri Katılsın"
+
+#, c-format
+msgid "&Automatically expand all subfolders"
+msgstr "Tüm Alt Klasörler Genişletilsin"
+
+#, c-format
+msgid "Ignore &Reparse Points"
+msgstr "Yeniden İşleme Noktala&rı Yok Sayılsın"
+
+#, c-format
+msgid "&Quick compare limit (MB):"
+msgstr "&Hızlı Karşılaştırma Sınırı (MB):"
+
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\nKarşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka işlemci çekirdeklerine eklenir):"
+
+msgctxt "Options dialog|Categories"
+msgid "Binary"
+msgstr "Binary"
+
+#, c-format
+msgid "Binary File &Patterns:"
+msgstr "Binary Dosya &Uzantıları:"
+
+#, c-format
+msgid "Frhed settings"
+msgstr "Frhed Ayarları"
+
+#, c-format
+msgid "View &Settings..."
+msgstr "Ayarları &Görüntüle..."
+
+#, c-format
+msgid "&Binary Mode..."
+msgstr "&Binary Kipi..."
+
+#, c-format
+msgid "&Character Set..."
+msgstr "&Karakter Kümesi..."
+
+msgid "Image"
+msgstr "Görsel"
+
+#, c-format
+msgid "Image File &Patterns:"
+msgstr "Görsel Dosyası &Uzantıları:"
+
+#, c-format
+msgid "&Hex View"
+msgstr "Onaltılık &Görünüm"
+
+#, c-format
+msgid "EXT"
+msgstr "EXT"
+
+#, c-format
+msgid "CAP"
+msgstr "CAP"
+
+#, c-format
+msgid "NUM"
+msgstr "NUM"
+
+#, c-format
+msgid "SCRL"
+msgstr "SCRL"
+
+#, c-format
+msgid "OVR"
+msgstr "OVR"
+
+#, c-format
+msgid "REC"
+msgstr "REC"
+
+#, c-format
+msgid "\n"
+"New Documents (Ctrl+N)"
+msgstr "\n"
+"Yeni Belgeler (Ctrl+N)"
+
+#, c-format
+msgid "\n"
+"Open (Ctrl+O)"
+msgstr "\n"
+"Aç (Ctrl+O)"
+
+#, c-format
+msgid "\n"
+"Save (Ctrl+S)"
+msgstr "\n"
+"Kaydet (Ctrl+S)"
+
+#, c-format
+msgid "Unknown error attempting to open project file"
+msgstr "Proje dosyası açılırken bilinmeyen bir sorun çıktı"
+
+#, c-format
+msgid "Unknown error attempting to save project file"
+msgstr "Proje dosyası kaydedilirken bilinmeyen bir sorun çıktı"
+
+#, c-format
+msgid "Project file successfully loaded."
+msgstr "Proje dosyası yüklendi."
+
+#, c-format
+msgid "Project file successfully saved."
+msgstr "Proje dosyası kaydedildi."
+
+#, c-format
+msgid "\n"
+"Undo (Ctrl+Z)"
+msgstr "\n"
+"Geri Al (Ctrl+Z)"
+
+#, c-format
+msgid "\n"
+"Redo (Ctrl+Y)"
+msgstr "\n"
+"Yinele (Ctrl+Y)"
+
+#, c-format
+msgid "\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr "\n"
+"DosyaKarşılaştır\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.DosyaKarşılaştır\n"
+"WinMerge Dosya Karşılaştır"
+
+#, c-format
+msgid "\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr "\n"
+"KlasörKarşılaştır\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.KlasörKarşılaştır\n"
+"WinMerge Klasör Karşılaştır"
+
+#, c-format
+msgid "Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgstr "Geliştiriciler:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+
+#, c-format
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge size kesinlikle BİR GARANTİ VERMEZ. Bu uygulama, belirli şartlar altında serbestçe çoğaltıp dağıtabileceğiniz özgür bir yazılımdır. Ayrıntılar için yardım menüsündeki GNU Genel Kamu Lisansı'na bakın."
+
+#, c-format
+msgid "&Abort"
+msgstr "&Durdur"
+
+#, c-format
+msgid "&Retry"
+msgstr "&Yeniden Dene"
+
+#, c-format
+msgid "&Ignore"
+msgstr "&Yok Say"
+
+#, c-format
+msgid "Ignore &all"
+msgstr "Tümünü Yok S&ay"
+
+#, c-format
+msgid "&Yes"
+msgstr "&Evet"
+
+#, c-format
+msgid "Yes to &all"
+msgstr "&Tümüne Evet"
+
+#, c-format
+msgid "&No"
+msgstr "&Hayır"
+
+#, c-format
+msgid "No to a&ll"
+msgstr "Tü&müne Hayır"
+
+#, c-format
+msgid "&Continue"
+msgstr "&Devam"
+
+#, c-format
+msgid "&Skip"
+msgstr "&Atla"
+
+#, c-format
+msgid "Skip &all"
+msgstr "&Tümünü Atla"
+
+#, c-format
+msgid "Don't display this &message again."
+msgstr "Bu ileti &yeniden görüntülenmesin."
+
+#, c-format
+msgid "Don't ask this &question again."
+msgstr "Bu soru &yeniden sorulmasın."
+
+#, c-format
+msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel Grubu altındaki Sıfırla düğmesine tıklayın."
+
+#, c-format
+msgid "Syntax"
+msgstr "Söz Dizimi"
+
+msgid "Folder Compare"
+msgstr ""
+
+#, c-format
+msgid "Differences"
+msgstr "Farklar"
+
+#, c-format
+msgid "To:"
+msgstr "Kime:"
+
+#, c-format
+msgid "From left:"
+msgstr "Soldan:"
+
+#, c-format
+msgid "To left:"
+msgstr "Sola:"
+
+#, c-format
+msgid "From right:"
+msgstr "Sağdan:"
+
+#, c-format
+msgid "To right:"
+msgstr "Sağa:"
+
+#, c-format
+msgid "Version %1"
+msgstr "Sürüm %1"
+
+#, c-format
+msgid "X64"
+msgstr "X64"
+
+#, c-format
+msgid "Options (%1)"
+msgstr "Ayarlar (%1)"
+
+#, c-format
+msgid "All message boxes are now displayed again."
+msgstr "Tüm iletiler yeniden görünür oldu."
+
+#, c-format
+msgid "Value in Tab size -field is not in range WinMerge accepts.\n"
+"\n"
+"Please use values 1 - %1."
+msgstr "Sekme genişliği WinMerge tarafından kabul edilen aralıkta değil.\n"
+"\n"
+"Lütfen 1 - %1 arasında bir değer yazın."
+
+#, c-format
+msgid "Open"
+msgstr "Aç"
+
+#, c-format
+msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+msgstr "Uygulamalar|*.exe;*.bat;*.cmd|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "All Files (*.*)|*.*||"
+msgstr "Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge Proje Dosyaları (*.WinMerge)|*.WinMerge||"
+
+#, c-format
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "Ayar Dosyaları (*.ini)|*.ini|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Metin Dosyaları (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "HTML Dosyaları (*.htm,*.html)|*.htm;*.html|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "XML Dosyaları (*.xml)|*.xml|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "Name"
+msgstr "Ad"
+
+#, c-format
+msgid "Location"
+msgstr "Konum"
+
+#, c-format
+msgid "Filters"
+msgstr "Süzgeçler"
+
+#, c-format
+msgid "[F] "
+msgstr "[F] "
+
+#, c-format
+msgid "Description"
+msgstr "Açıklama"
+
+#, c-format
+msgid "Select filename for new filter"
+msgstr "Yeni süzgeç için bir dosya adı yazın"
+
+#, c-format
+msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "Dosya Süzgeçleri (*.flt)|*.flt|Tüm Dosyalar (*.*)|*.*||"
+
+#, c-format
+msgid "Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters -folder:\n"
+"%2."
+msgstr "Dosya süzgeci kalıp dosyası bulunamıyor!\n"
+"\n"
+"Lütfen %1 dosyasını, WinMerge/Filters klasörüne kopyalayın:\n"
+"%2."
+
+#, c-format
+msgid "Cannot copy filter template file to filter folder:\n"
+"%1\n"
+"\n"
+"Please make sure the folder exists and is writable."
+msgstr "Süzgeç kalıbı dosyası süzgeç klasörüne kopyalanamıyor:\n"
+"%1\n"
+"\n"
+"Klasörün var ve yazılabilir olduğundan emin olun."
+
+#, c-format
+msgid "User's filter file folder is not defined!\n"
+"\n"
+"Please select filter folder in Options/System."
+msgstr "Kullanıcı süzgeç dosyası klasörü belirtilmemiş!\n"
+"\n"
+"Lütfen 'Ayarlar/Sistem' bölümünden süzgeç klasörünü belirtin."
+
+#, c-format
+msgid "Failed to delete the filter file:\n"
+"%1\n"
+"\n"
+"Maybe the file is read-only?"
+msgstr "Süzgeç dosyası silinemedi:\n"
+"%1\n"
+"\n"
+"Dosya salt okunur olabilir mi?"
+
+#, c-format
+msgid "Locate filter file to install"
+msgstr "Kurulacak süzgeç dosyasını seçin"
+
+#, c-format
+msgid "Installing filter file failed.\n"
+"\n"
+"Could not copy new filter file to filter folder."
+msgstr "Süzgeç dosyası kurulamadı.\n"
+"\n"
+"Yeni süzgeç dosyası süzgeç klasörüne kopyalanamadı."
+
+#, c-format
+msgid "Filter file already exists. Overwrite existing filter?"
+msgstr "Bu süzgeç dosyası zaten var. Üzerine yazılsın mı?"
+
+#, c-format
+msgid "Regular expression"
+msgstr "Kurallı ifade"
+
+#, c-format
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
+msgstr "Süzgeçler güncellendi. Tüm açık klasör karşılaştırmalarını yenilemek ister misiniz?\n"
+"\n"
+"Şimdi istemezseniz Hayır seçebilir ve tüm karşılaştırmaları daha sonra yenileyebilirsiniz."
+
+#, c-format
+msgid "Folder Comparison Results"
+msgstr "Klasör Karşılaştırma Sonuçları"
+
+#, c-format
+msgid "File Comparison"
+msgstr "Dosya Karşılaştırma"
+
+#, c-format
+msgid "Untitled left"
+msgstr "Sol Adsız"
+
+#, c-format
+msgid "Untitled middle"
+msgstr "Orta Adsız"
+
+#, c-format
+msgid "Untitled right"
+msgstr "Sağ Adsız"
+
+#, c-format
+msgid "Theirs File"
+msgstr "Başkalarının Dosyası"
+
+#, c-format
+msgid "Mine File"
+msgstr "Benim Dosyam"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "Satır: %s  Sütun: %d/%d  Karakter: %d/%d  Satır Sonu: %s"
+
+#, c-format
+msgid "Line: %s"
+msgstr "Satır: %s"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "Satır: %s  Sütun: %d/%d  Karakter: %d/%d"
+
+#, c-format
+msgid "Merge"
+msgstr "Birleştir"
+
+#, c-format
+msgid "Difference %1 of %2"
+msgstr "Fark %1 / %2"
+
+#, c-format
+msgid "%1 Differences Found"
+msgstr "%1 Fark Bulundu"
+
+#, c-format
+msgid "1 Difference Found"
+msgstr "1 Fark Bulundu"
+
+#. Abbreviation from "Read Only"
+#, c-format
+msgid "RO"
+msgstr "SO"
+
+#, c-format
+msgid "Item %1 of %2"
+msgstr "Öge %1 / %2"
+
+#, c-format
+msgid "Items: %1"
+msgstr "Ögeler: %1"
+
+#, c-format
+msgid "Select two existing folders or files to compare"
+msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin"
+
+#, c-format
+msgid "Folder Selection"
+msgstr "Klasör Seçimi"
+
+#, c-format
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr "Karşılaştırılacak iki (ya da üç) klasör ya da iki (ya da üç) dosya seçin."
+
+#, c-format
+msgid "Left (1st) path is invalid!"
+msgstr "Sol (1.) yol geçersiz!"
+
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr "Orta (2.) yol geçersiz!"
+
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr "Sağ (2.) yol geçersiz!"
+
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr "Sağ (3.) yol geçersiz!"
+
+#, c-format
+msgid "Both paths are invalid!"
+msgstr "İki yolda geçersiz!"
+
+#, c-format
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr "Sol (1.) ve Orta (2.) yollar geçersiz!"
+
+#, c-format
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr "Sol (1.) ve Sağ (3.) yollar geçersiz!"
+
+#, c-format
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr "Orta (2.) ve Sağ (3.) yollar geçersiz!"
+
+#, c-format
+msgid "All paths are invalid!"
+msgstr "Tüm yollar geçersiz!"
+
+#, c-format
+msgid "Only enabled for File comparisons"
+msgstr "Yalnız Dosya karşılaştırması için kullanılabilir"
+
+#, c-format
+msgid "Cannot compare file and folder!"
+msgstr "Dosya ile klasör karşılaştırılamaz!"
+
+#, c-format
+msgid "File not found: %1"
+msgstr "%1 dosyası bulunamadı"
+
+#, c-format
+msgid "File not unpacked: %1"
+msgstr "%1 dosyası ayıklanamadı"
+
+#, c-format
+msgid "Cannot open file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr "Dosya açılamadı\n"
+"%1\n"
+"\n"
+"%2"
+
+#, c-format
+msgid "Failed to parse conflict file."
+msgstr "Çelişki dosyası işlenemedi."
+
+#, c-format
+msgid "The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr "%1\n"
+"dosyası\n"
+"bir çelişki dosyası değil."
+
+#, c-format
+msgid "Save As"
+msgstr "Farklı Kaydet"
+
+#, c-format
+msgid "Save changes to %1?"
+msgstr "%1 içindeki değişiklikler kaydedilsin mi?"
+
+#, c-format
+msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgstr "%1 salt okunur olarak işaretli. Üzerine yazılmasını ister misiniz ? (Hayır seçerseniz, yeni bir adla farklı kaydedebilirsiniz.)"
+
+#, c-format
+msgid "Error backing up file"
+msgstr "Dosya yedekleme sorunu"
+
+#, c-format
+msgid "Unable to backup original file:\n"
+"%1\n"
+"\n"
+"Continue anyway?"
+msgstr "Özgün dosya yedeklenemedi:\n"
+"%1\n"
+"\n"
+"Gene de devam edilsin mi?"
+
+#, c-format
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgstr "Dosya kaydedilemedi.\n"
+"%1\n"
+"%2\n"
+"Ne yapmak istersiniz:\n"
+"\t- Farklı bir ad kullanılsın (Tamam Üzerine Tıklayın)\n"
+"\t- Bu işlem iptal edilsin (İptal Üzerine Tıklayın)"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr "'%2' uygulama eki, sol dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n"
+"\n"
+"Özgün dosya değiştirilmeyecek.\n"
+"\n"
+"Ayıklanmış sürümü başka bir dosyaya kaydetmek ister misiniz?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr "'%2' uygulama eki, sağ dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n"
+"\n"
+"Özgün dosya değiştirilmeyecek.\n"
+"\n"
+"Ayıklanmış sürümü başka bir dosyaya kaydetmek ister misiniz?"
+
+#, c-format
+msgid "Another application has updated file\n"
+"%1\n"
+"since WinMerge loaded it.\n"
+"\n"
+"Overwrite changed file?"
+msgstr "WinMerge tarafından yüklendikten sonra\n"
+"%1\n"
+"dosyası başka bir uygulama tarafından değiştirilmiş.\n"
+"\n"
+"Değiştirilmiş dosyanın üzerine yazılsın mı?"
+
+#, c-format
+msgid "%1\n"
+"is marked read-only. Would you like to override the read-only item?"
+msgstr "%1\n"
+"salt okunur olarak işaretli. Üzerine yazılmasını istediğinize emin misiniz?"
+
+#, c-format
+msgid "Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
+msgstr "WinMerge tarafından tarandıktan sonra\n"
+"%1\n"
+"dosyası başka bir uygulama tarafından değiştirilmiş.\n"
+"\n"
+"Dosyanın yeniden yüklenmesini ister misiniz?"
+
+#, c-format
+msgid "Save Left File As"
+msgstr "Sol Dosyayı Farklı Kaydet"
+
+#, c-format
+msgid "Save Middle File As"
+msgstr "Orta Dosyayı Farklı Kaydet"
+
+#, c-format
+msgid "Save Right File As"
+msgstr "Sağ Dosyayı Farklı Kaydet"
+
+#, c-format
+msgid "The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
+msgstr "%1\n"
+"dosyası\n"
+"yok oldu. Devam etmek için dosyanın bir kopyasını kaydedin."
+
+#, c-format
+msgid "Cannot merge differences when documents are not in synch.\n"
+"\n"
+"Refresh documents before continuing."
+msgstr "Belgeler eşleştirilmeden, farklılıklar birleştirilemez.\n"
+"\n"
+"Devam etmeden önce belgeleri yenileyin."
+
+msgid "Break at whitespace"
+msgstr "Beyaz Boşlukta Kesilsin"
+
+msgid "Break at whitespace or punctuation"
+msgstr "Beyaz boşluk ya da noktalamada kesilsin"
+
+#, c-format
+msgid "Right to Left (%1)"
+msgstr "Sağdakini Sola (%1)"
+
+#, c-format
+msgid "Right to Middle (%1)"
+msgstr "Sağdakini Ortaya (%1)"
+
+#, c-format
+msgid "Middle to Left (%1)"
+msgstr "Ortadakini Sola (%1)"
+
+#, c-format
+msgid "Middle to Right (%1)"
+msgstr "Ortadakini Sağa (%1)"
+
+#, c-format
+msgid "Left to Right (%1)"
+msgstr "Soldakini Sağa (%1)"
+
+#, c-format
+msgid "Left to Middle (%1)"
+msgstr "Soldakini Ortaya (%1)"
+
+#, c-format
+msgid "Left to... (%1)"
+msgstr "Soldakini... (%1)"
+
+#, c-format
+msgid "Middle to... (%1)"
+msgstr "Ortadakini... (%1)"
+
+#, c-format
+msgid "Right to... (%1)"
+msgstr "Sağdakini... (%1)"
+
+#, c-format
+msgid "Both to... (%1)"
+msgstr "İkisini de... (%1)"
+
+#, c-format
+msgid "All to... (%1)"
+msgstr "Tümünü... (%1)"
+
+#, c-format
+msgid "Differences to... (%1)"
+msgstr "Farklı Olanları... (%1)"
+
+#, c-format
+msgid "Left (%1)"
+msgstr "Soldakini (%1)"
+
+#, c-format
+msgid "Middle (%1)"
+msgstr "Ortadakini (%1)"
+
+#, c-format
+msgid "Right (%1)"
+msgstr "Sağdakini (%1)"
+
+#, c-format
+msgid "Both (%1)"
+msgstr "İkisini de (%1)"
+
+#, c-format
+msgid "All (%1)"
+msgstr "Tümünü (%1)"
+
+#, c-format
+msgid "Left side - select destination folder:"
+msgstr "Sol Panonun Hedef Klasörünü Seçin:"
+
+#, c-format
+msgid "Middle side - select destination folder:"
+msgstr "Orta Panonun Hedef Klasörünü Seçin:"
+
+#, c-format
+msgid "Right side - select destination folder:"
+msgstr "Sağ Panonun Hedef Klasörünü Seçin:"
+
+#, c-format
+msgid "(%1 Files Affected)"
+msgstr "(%1 Dosya Etkilendi)"
+
+#, c-format
+msgid "(%1 of %2 Files Affected)"
+msgstr "(%1 / %2 Dosya Etkilendi)"
+
+#, c-format
+msgid "Are you sure you want to delete\n"
+"\n"
+"%1 ?"
+msgstr "Bu dosyayı silmek istediğinize emin misiniz\n"
+"\n"
+"%1 ?"
+
+#, c-format
+msgid "Are you sure you want to copy:"
+msgstr "Şunu kopyalamak istediğinize emin misiniz:"
+
+#, c-format
+msgid "Are you sure you want to copy %d items:"
+msgstr "%d ögeyi kopyalamak istediğinize emin misiniz:"
+
+#, c-format
+msgid "Operation aborted!\n"
+"\n"
+"Folder contents at disks has changed, path\n"
+"%1\n"
+"was not found.\n"
+"\n"
+"Please refresh the compare."
+msgstr "İşlem iptal edildi!\n"
+"\n"
+"Diskteki klasör içerikleri değişmiş\n"
+"%1\n"
+"yolu bulunamadı.\n"
+"\n"
+"Lütfen karşılaştırmayı yenileyin."
+
+#, c-format
+msgid "Are you sure you want to move:"
+msgstr "Bunu taşımak istediğinize emin misiniz:"
+
+#, c-format
+msgid "Are you sure you want to move %d items:"
+msgstr "%d ögeyi taşımak istediğinize emin misiniz:"
+
+#, c-format
+msgid "Confirm Move"
+msgstr "Taşımayı Onayla"
+
+#, c-format
+msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr "Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak istediğinize emin misiniz?"
+
+#, c-format
+msgid "Failed to execute external editor: %1"
+msgstr "%1 dış düzenleyicisi çalıştırılamadı"
+
+#, c-format
+msgid "Unknown archive format"
+msgstr "Sıkıştırma biçimi bilinmiyor"
+
+#, c-format
+msgid "Filename"
+msgstr "Dosya Adı"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Klasör"
+
+#, c-format
+msgid "Comparison result"
+msgstr "Karşılaştırma sonucu"
+
+#, c-format
+msgid "Left Date"
+msgstr "Sol Dosya Tarihi"
+
+#, c-format
+msgid "Right Date"
+msgstr "Sağ Dosya Tarihi"
+
+#, c-format
+msgid "Middle Date"
+msgstr "Orta Dosya Tarihi"
+
+#, c-format
+msgid "Extension"
+msgstr "Uzantı"
+
+#, c-format
+msgid "Left Size"
+msgstr "Sol Dosya Boyutu"
+
+#, c-format
+msgid "Right Size"
+msgstr "Sağ Dosya Boyutu"
+
+#, c-format
+msgid "Middle Size"
+msgstr "Orta Dosya Boyutu"
+
+#, c-format
+msgid "Right Size (Short)"
+msgstr "Sağ Dosya Boyutu (Kısa)"
+
+#, c-format
+msgid "Left Size (Short)"
+msgstr "Sol Dosya Boyutu (Kısa)"
+
+#, c-format
+msgid "Middle Size (Short)"
+msgstr "Orta Dosya Boyutu (Kısa)"
+
+#, c-format
+msgid "Left Creation Time"
+msgstr "Sol Dosya Oluşturulma Zamanı"
+
+#, c-format
+msgid "Right Creation Time"
+msgstr "Sağ Dosya Oluşturulma Zamanı"
+
+#, c-format
+msgid "Middle Creation Time"
+msgstr "Orta Dosya Oluşturulma Zamanı"
+
+#, c-format
+msgid "Newer File"
+msgstr "Daha Yeni Dosya"
+
+#, c-format
+msgid "Left File Version"
+msgstr "Sol Dosya Sürümü"
+
+#, c-format
+msgid "Right File Version"
+msgstr "Sağ Dosya Sürümü"
+
+#, c-format
+msgid "Middle File Version"
+msgstr "Orta Dosya Sürümü"
+
+#, c-format
+msgid "Short Result"
+msgstr "Sonuç Özeti"
+
+#, c-format
+msgid "Left Attributes"
+msgstr "Sol Dosya Öznitelikleri"
+
+#, c-format
+msgid "Right Attributes"
+msgstr "Sağ Dosya Öznitelikleri"
+
+#, c-format
+msgid "Middle Attributes"
+msgstr "Orta Dosya Öznitelikleri"
+
+#, c-format
+msgid "Left EOL"
+msgstr "Sol Dosya Satır Sonu"
+
+#, c-format
+msgid "Middle EOL"
+msgstr "Orta Dosya Satır Sonu"
+
+#, c-format
+msgid "Right EOL"
+msgstr "Sağ Dosya Satır Sonu"
+
+#, c-format
+msgid "Left Encoding"
+msgstr "Sol Dosya Kodlaması"
+
+#, c-format
+msgid "Right Encoding"
+msgstr "Sağ Dosya Kodlaması"
+
+#, c-format
+msgid "Middle Encoding"
+msgstr "Orta Dosya Kodlaması"
+
+msgid "Ignored Diff"
+msgstr ""
+
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Binary"
+
+#, c-format
+msgid "Unable to compare files"
+msgstr "Dosyalar karşılaştırılamıyor"
+
+#, c-format
+msgid "Item aborted"
+msgstr "Ögeden vazgeçildi"
+
+#, c-format
+msgid "File skipped"
+msgstr "Dosya atlandı"
+
+#, c-format
+msgid "Folder skipped"
+msgstr "Klasör atlandı"
+
+#, c-format
+msgid "Left only: %1"
+msgstr "Yalnız solda: %1"
+
+#, c-format
+msgid "Middle only: %1"
+msgstr "Yalnız ortada: %1"
+
+#, c-format
+msgid "Right only: %1"
+msgstr "Yalnız sağda: %1"
+
+#, c-format
+msgid "Does not exist in %1"
+msgstr "%1 içinde bulunamadı"
+
+#, c-format
+msgid "Binary files are identical"
+msgstr "Binary dosyaları aynı"
+
+#, c-format
+msgid "Binary files are different"
+msgstr "Binary dosyaları farklı"
+
+#, c-format
+msgid "Files are different"
+msgstr "Dosyalar farklı"
+
+#, c-format
+msgid "Folders are different"
+msgstr "Klasörler farklı"
+
+#, c-format
+msgid "Left Only"
+msgstr "Yalnız Soldaki"
+
+#, c-format
+msgid "Right Only"
+msgstr "Yalnız Sağdaki"
+
+#, c-format
+msgid "Middle Only"
+msgstr "Yalnız Ortadaki"
+
+#, c-format
+msgid "No item in left"
+msgstr "Solda herhangi bir öge yok"
+
+#, c-format
+msgid "No item in right"
+msgstr "Sağda herhangi bir öge yok"
+
+#, c-format
+msgid "No item in middle"
+msgstr "Ortada herhangi bir öge yok"
+
+#, c-format
+msgid "Error"
+msgstr "Sorun"
+
+#, c-format
+msgid "Text files are identical"
+msgstr "Metin dosyaları aynı"
+
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr "(Orta ve sağ dosya aynı)"
+
+#, c-format
+msgid "(Left and right are identical)"
+msgstr "(Sol ve sağ dosya aynı)"
+
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr "(Sol ve orta dosya aynı)"
+
+#, c-format
+msgid "Text files are different"
+msgstr "Metin dosyaları farklı"
+
+#, c-format
+msgid "Elapsed time: %ld ms"
+msgstr "Geçen süre: %ld ms"
+
+#, c-format
+msgid "1 item selected"
+msgstr "1 öge seçilmiş"
+
+#, c-format
+msgid "%1 items selected"
+msgstr "%1 öge seçilmiş"
+
+#, c-format
+msgid "Filename or folder name."
+msgstr "Dosya ya da klasör adı."
+
+#, c-format
+msgid "Subfolder name when subfolders are included."
+msgstr "Alt klasörler katıldığında alt klasör adı."
+
+#, c-format
+msgid "Comparison result, long form."
+msgstr "Karşılaştırma sonucu, uzun biçim."
+
+#, c-format
+msgid "Left side modification date."
+msgstr "Sol dosya değiştirilme tarihi."
+
+#, c-format
+msgid "Right side modification date."
+msgstr "Sağ dosya değiştirilme tarihi."
+
+#, c-format
+msgid "Middle side modification date."
+msgstr "Orta dosya değiştirilme tarihi."
+
+#, c-format
+msgid "File's extension."
+msgstr "Dosya uzantısı."
+
+#, c-format
+msgid "Left file size in bytes."
+msgstr "Soldaki dosyanın bayt olarak boyutu."
+
+#, c-format
+msgid "Right file size in bytes."
+msgstr "Sağdaki dosyanın bayt olarak boyutu."
+
+#, c-format
+msgid "Middle file size in bytes."
+msgstr "Ortadaki dosyanın bayt olarak boyutu."
+
+#, c-format
+msgid "Left file size abbreviated."
+msgstr "Soldaki dosyanın kısaltılmış boyutu."
+
+#, c-format
+msgid "Right file size abbreviated."
+msgstr "Sağdaki dosyanın kısaltılmış boyutu."
+
+#, c-format
+msgid "Middle file size abbreviated."
+msgstr "Ortadaki dosyanın kısaltılmış boyutu."
+
+#, c-format
+msgid "Left side creation time."
+msgstr "Sol dosyanın oluşturulma zamanı."
+
+#, c-format
+msgid "Right side creation time."
+msgstr "Sağ dosyanın oluşturulma zamanı."
+
+#, c-format
+msgid "Middle side creation time."
+msgstr "Orta dosyanın oluşturulma zamanı."
+
+#, c-format
+msgid "Tells which side has newer modification date."
+msgstr "Hangi panonun en son değişiklik tarihine sahip olduğunu söyler."
+
+#, c-format
+msgid "Left side file version, only for some filetypes."
+msgstr "Soldaki dosya sürümü, yalnız bazı dosya türleri için."
+
+#, c-format
+msgid "Right side file version, only for some filetypes."
+msgstr "Sağdaki dosya sürümü, yalnız bazı dosya türleri için."
+
+#, c-format
+msgid "Middle side file version, only for some filetypes."
+msgstr "Ortadaki dosya sürümü, yalnız bazı dosya türleri için."
+
+#, c-format
+msgid "Short comparison result."
+msgstr "Kısa karşılaştırma sonucu."
+
+#, c-format
+msgid "Left side attributes."
+msgstr "Soldaki dosyanın öznitelikleri."
+
+#, c-format
+msgid "Right side attributes."
+msgstr "Sağdaki dosyanın öznitelikleri."
+
+#, c-format
+msgid "Middle side attributes."
+msgstr "Ortadaki dosyanın öznitelikleri."
+
+msgid "Left side file EOL type."
+msgstr ""
+
+msgid "Right side file EOL type."
+msgstr ""
+
+msgid "Middle side file EOL type."
+msgstr ""
+
+#, c-format
+msgid "Left side encoding."
+msgstr "Soldaki dosyanın kodlaması."
+
+#, c-format
+msgid "Right side encoding."
+msgstr "Sağdaki dosyanın kodlaması."
+
+#, c-format
+msgid "Middle side encoding."
+msgstr "Ortadaki dosyanın kodlaması."
+
+#, c-format
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "Dosyada yok sayılan farkların sayısı. WinMerge tarafından yok sayılan farklar ve birleştirilemez."
+
+#, c-format
+msgid "Number of differences in file. This number does not include ignored differences."
+msgstr "Dosyadaki fark sayısı. Bu sayıya yok sayılan farklar katılmamıştır."
+
+#, c-format
+msgid "Shows an asterisk (*) if the file is binary."
+msgstr "Dosya Binary ise yıldız (*) ile görüntülensin."
+
+#, c-format
+msgid "Compare %1 with %2"
+msgstr "%1 ile %2 ögesini karşılaştır"
+
+#, c-format
+msgid "Comma-separated list"
+msgstr "Virgül ile ayrılmış liste"
+
+#, c-format
+msgid "Tab-separated list"
+msgstr "Sekme ile ayrılmış liste"
+
+#, c-format
+msgid "Simple HTML"
+msgstr "Basit HTML"
+
+#, c-format
+msgid "Simple XML"
+msgstr "Basit XML"
+
+#, c-format
+msgid "The report file already exists. Do you want to overwrite existing file?"
+msgstr "Rapor dosyası zaten var. Üzerine yazılmasını ister misiniz?"
+
+#, c-format
+msgid "Error creating the report:\n"
+"%1"
+msgstr "Rapor hazırlanırken sorun çıktı:\n"
+"%1"
+
+#, c-format
+msgid "The report has been created successfully."
+msgstr "Rapor tamamlandı."
+
+#, c-format
+msgid "The same file is opened in both panels."
+msgstr "İki panoda da de aynı dosya açıldı."
+
+#, c-format
+msgid "The selected files are identical."
+msgstr "Seçilmiş dosyalar aynı."
+
+#, c-format
+msgid "An error occurred while comparing the files."
+msgstr "Dosyalar karşılaştırılırken bir sorun çıktı."
+
+#, c-format
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "Geçici klasör oluşturulamadı. Geçici klasör yolu ayarlarınızı denetleyin."
+
+#, c-format
+msgid "These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr "Bu dosyalar farklı satır sonu türleri kullanıyor.\n"
+"\n"
+"Bu karşılaştırma için tüm satır sonu türlerinin aynı kabul edilmesini istiyor musunuz?\n"
+"\n"
+"Not: Genel olarak satır sonu türlerinin aynı kabul edilmesini istiyorsanız, Düzenle/Ayarlar menüsünden Karşılaştırma bölümüne giderek, 'Satır Sonu Farklılıkları Yok Sayılsın..' seçeneğini işaretleyin."
+
+#, c-format
+msgid "The selected folder is invalid."
+msgstr "Seçilmiş klasör geçersiz."
+
+#, c-format
+msgid "Cannot open a binary file to editor."
+msgstr "Bir Binary dosyası düzenleyicide açılamaz."
+
+#, c-format
+msgid "The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
+msgstr "Klasör yalnız karşı tarafta bulunduğundan açılamaz.\n"
+"\n"
+"Diğer tarafa aynı klasörü oluşturmak :\n"
+"%1\n"
+"ve bu klasörleri açmak istiyor musunuz?"
+
+#, c-format
+msgid "Do you want to move to the next file?"
+msgstr "Sonraki dosyaya geçmek ister misiniz?"
+
+#, c-format
+msgid "Do you want to move to the previous file?"
+msgstr "Önceki dosyaya geçmek ister misiniz?"
+
+#, c-format
+msgid "Do you want to move to the next page?"
+msgstr "Sonraki sayfaya geçmek ister misiniz?"
+
+#, c-format
+msgid "Do you want to move to the previous page?"
+msgstr "Önceki sayfaya geçmek ister misiniz?"
+
+#, c-format
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr ""
+
+#, c-format
+msgid "Information lost due to encoding errors: both files"
+msgstr "Kodlama sorunları yüzünden iki dosyada da bilgi kaybı oldu"
+
+#, c-format
+msgid "Information lost due to encoding errors: first file"
+msgstr "Kodlama sorunları yüzünden ilk dosyada bilgi kaybı oldu"
+
+#, c-format
+msgid "Information lost due to encoding errors: second file"
+msgstr "Kodlama sorunları yüzünden ikinci dosyada bilgi kaybı oldu"
+
+#, c-format
+msgid "Information lost due to encoding errors: third file"
+msgstr "Kodlama sorunları yüzünden üçüncü dosyada bilgi kaybı oldu"
+
+#, c-format
+msgid "No difference"
+msgstr "Fark yok"
+
+#, c-format
+msgid "Line difference"
+msgstr "Satır farkı"
+
+#, c-format
+msgid "Replaced %1 string(s)."
+msgstr "%1 dizge değiştirildi."
+
+#, c-format
+msgid "Cannot find string \"%s\""
+msgstr "Aranan \"%s\" ifadesi bulunamadı"
+
+#, c-format
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
+msgstr "Birleştirme kipine geçiyorsunuz. Birleştirme kipinden çıkmak için F9 tuşuna basın"
+
+#, c-format
+msgid "The number of automatically merged changes: %1\n"
+"The number of unresolved conflicts: %2"
+msgstr "Otomatik olarak birleştirilen değişiklik sayısı: %1\n"
+"Çözümlenmemiş çelişki sayısı: %2"
+
+#, c-format
+msgid "The change of codepage has been merged"
+msgstr "Kod sayfası değişikliği birleştirildi"
+
+#, c-format
+msgid "The changes of codepage are conflicting"
+msgstr "Kod sayfası değişiklikleri çelişiyor"
+
+#, c-format
+msgid "The change of EOL has been merged"
+msgstr "Satır sonu değişikliği birleştirildi"
+
+#, c-format
+msgid "The changes of EOL are conflicting"
+msgstr "Satır sonu değişiklikleri çelişiyor"
+
+#, c-format
+msgid "Location Pane"
+msgstr "Konum Panosu"
+
+#, c-format
+msgid "Diff Pane"
+msgstr "Fark Panosu"
+
+#, c-format
+msgid "Patch file successfully written."
+msgstr "Yama dosyası kaydedildi."
+
+#, c-format
+msgid "1. item is not found or is directory!"
+msgstr "1. öge bulunamadı ya da bir klasör!"
+
+#, c-format
+msgid "2. item is not found or is directory!"
+msgstr "2. öge bulunamadı ya da bir klasör!"
+
+#, c-format
+msgid "The patch file already exists. Do you want to overwrite it?"
+msgstr "Yama dosyası zaten var. Üzerine yazılmasını ister misiniz?"
+
+#, c-format
+msgid "[%1 files selected]"
+msgstr "[%1 dosya seçildi]"
+
+#, c-format
+msgid "Normal"
+msgstr "Normal"
+
+#, c-format
+msgid "Context"
+msgstr "Bağlam"
+
+#, c-format
+msgid "Unified"
+msgstr "Birleşik"
+
+#, c-format
+msgid "Could not write to file %1."
+msgstr "%1 dosyasına yazılamadı."
+
+#, c-format
+msgid "The specified output path is not an absolute path: %1"
+msgstr "Belirtilen çıktı klasörü mutlak bir yol değil: %1"
+
+#, c-format
+msgid "Specify an output file"
+msgstr "Bir çıktı dosyası belirtin"
+
+#, c-format
+msgid "Cannot create a patch file from binary files."
+msgstr "Binary dosyalarından, yama dosyası hazırlanamaz."
+
+#, c-format
+msgid "Cannot create a patch file from directories."
+msgstr "Klasörlerden yama dosyası hazırlanamaz."
+
+#, c-format
+msgid "Please save all files first.\n"
+"\n"
+"Creating a patch requires that there are no unsaved changes in files."
+msgstr "Lütfen önce tüm dosyaları kaydedin.\n"
+"\n"
+"Bir yama hazırlamak için dosyalardaki değişikliklerin kaydedilmiş olması gerekir."
+
+#, c-format
+msgid "Folder does not exist."
+msgstr "Klasör bulunamadı."
+
+#, c-format
+msgid "Archive support is not enabled.\n"
+"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
+msgstr "Sıkıştırılmış dosya desteği etkinleştirilmemiş.\n"
+"Sıkıştırılmış dosya desteği için gereken bileşenler bulunamadı (7-zip ya da Merge7z*.dll).\n"
+"Sıkıştırılmış dosya desteği ve nasıl etkinleştirileceği ile ilgili ayrıntılı bilgi almak için kullanım kitabına bakın."
+
+#, c-format
+msgid "Select file for export"
+msgstr "Dışa aktarılacak dosyayı seçin"
+
+#, c-format
+msgid "Select file for import"
+msgstr "İçe aktarılacak dosyayı seçin"
+
+#, c-format
+msgid "Options imported from the file."
+msgstr "Ayarlar dosyadan içe aktarıldı."
+
+#, c-format
+msgid "Options exported to the file."
+msgstr "Ayarlar dosyaya dışa aktarıldı."
+
+#, c-format
+msgid "Failed to import options from the file."
+msgstr "Ayarlar dosyadan içe aktarılamadı."
+
+#, c-format
+msgid "Failed to write options to the file."
+msgstr "Ayarlar dosyaya dışa aktarılamadı."
+
+#, c-format
+msgid "You are about to close several compare windows.\n"
+"\n"
+"Do you want to continue?"
+msgstr "Birden fazla karşılaştırma penceresini kapatmak üzeresiniz.\n"
+"\n"
+"Devam etmek istiyor musunuz?"
+
+#, c-format
+msgid "Mixed"
+msgstr "Karma"
+
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Binary"
+
+#, c-format
+msgid "None"
+msgstr "Yok"
+
+#, c-format
+msgid "Type"
+msgstr "Tür"
+
+#, c-format
+msgid "Unpacker"
+msgstr "Ayıklayıcı"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Ön Farklılaştırıcı"
+
+#, c-format
+msgid "Editor script"
+msgstr "Düzenleyici betiği"
+
+#, c-format
+msgid "\n"
+"Difference in the Current Line"
+msgstr "\n"
+"Geçerli Satırdaki Fark"
+
+#, c-format
+msgid "\n"
+"Options"
+msgstr "\n"
+"Ayarlar"
+
+#, c-format
+msgid "\n"
+"Refresh (F5)"
+msgstr "\n"
+"Yenile (F5)"
+
+#, c-format
+msgid "\n"
+"Previous Difference (Alt+Up)"
+msgstr "\n"
+"Önceki Fark (Alt+Yukarı)"
+
+#, c-format
+msgid "\n"
+"Next Difference (Alt+Down)"
+msgstr "\n"
+"Sonraki Fark (Alt+Aşağı)"
+
+#, c-format
+msgid "\n"
+"Previous Conflict (Alt+Shift+Up)"
+msgstr "\n"
+"Önceki Çelişki (Alt+Shift+Yukarı)"
+
+#, c-format
+msgid "\n"
+"Next Conflict (Alt+Shift+Down)"
+msgstr "\n"
+"Sonraki Çelişki (Alt+Shift+Aşağı)"
+
+#, c-format
+msgid "\n"
+"First Difference (Alt+Home)"
+msgstr "\n"
+"İlk Fark (Alt+Home)"
+
+#, c-format
+msgid "\n"
+"Current Difference (Alt+Enter)"
+msgstr "\n"
+"İmleçteki Fark (Alt+Enter)"
+
+#, c-format
+msgid "\n"
+"Last Difference (Alt+End)"
+msgstr "\n"
+"Son Fark (Alt+End)"
+
+#, c-format
+msgid "\n"
+"Copy Right (Alt+Right)"
+msgstr "\n"
+"Sağa Kopyala (Alt+Right)"
+
+#, c-format
+msgid "\n"
+"Copy Left (Alt+Left)"
+msgstr "\n"
+"Sola Kopyala (Alt+Left)"
+
+#, c-format
+msgid "\n"
+"Copy Right and Advance (Ctrl+Alt+Right)"
+msgstr "\n"
+"Sağa Kopyala ve İlerle (Ctrl+Alt+Sağ)"
+
+#, c-format
+msgid "\n"
+"Copy Left and Advance (Ctrl+Alt+Left)"
+msgstr "\n"
+"Sola Kopyala ve İlerle (Ctrl+Alt+Sol)"
+
+#, c-format
+msgid "\n"
+"All Right"
+msgstr "\n"
+"Tümünü Sağa Kopyala"
+
+#, c-format
+msgid "\n"
+"All Left"
+msgstr "\n"
+"Tümünü Sola Kopyala"
+
+#, c-format
+msgid "\n"
+"Auto Merge (Ctrl+Alt+M)"
+msgstr "\n"
+"Otomatik Karşılaştır (Ctrl+Alt+M)"
+
+#, c-format
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
+msgstr "Uyarlanan ayıklayıcı iki dosyaya da uygulandı (yalnız bir dosya bu eklentiye gerek duyuyor)"
+
+#, c-format
+msgid "No prediffer (normal)"
+msgstr "Ön Farklılaştırıcı Yok (Normal)"
+
+#, c-format
+msgid "Suggested plugins"
+msgstr "Önerilen Uygulama Ekleri"
+
+#, c-format
+msgid "Other plugins"
+msgstr "Diğer Uygulama Ekleri"
+
+#, c-format
+msgid "Private Build: %1"
+msgstr "Özel Yapım: %1"
+
+#, c-format
+msgid "Your software is up to date"
+msgstr "Uygulamanız güncel"
+
+#, c-format
+msgid "A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
+msgstr "Yeni bir WinMerge sürümü yayınlanmış.\n"
+"%1 sürümünü indirmek ister misiniz (%2 sürümünü kullanıyorsunuz)?"
+
+#, c-format
+msgid "Failed to download latest version information"
+msgstr "Son sürüm bilgisi alınamadı"
+
+#, c-format
+msgid "Plugin Settings"
+msgstr "Ayarlar"
+
+#, c-format
+msgid "WSH not found - .sct scripts disabled"
+msgstr "Windows Script Host bulunamadı - .sct betikleri devre dışı"
+
+#, c-format
+msgid "<None>"
+msgstr "<Yok>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Otomatik>"
+
+#, c-format
+msgid "G&oto Line %1"
+msgstr "%1. &Satıra Git"
+
+#, c-format
+msgid "Disabled"
+msgstr "Devre dışı"
+
+#, c-format
+msgid "From file system"
+msgstr "Dosya Sisteminden"
+
+#, c-format
+msgid "From MRU list"
+msgstr "Sık Kullanılanlar Listesinden"
+
+#, c-format
+msgid "No Highlighting"
+msgstr "Vurgulama Yok"
+
+#, c-format
+msgid "Batch"
+msgstr "Batch"
+
+msgid "Lua"
+msgstr ""
+
+#, c-format
+msgid "Portable Object"
+msgstr "Portable Object"
+
+#, c-format
+msgid "Resources"
+msgstr "Resources"
+
+#, c-format
+msgid "Shell"
+msgstr "Shell"
+
+#, c-format
+msgid "VHDL"
+msgstr "VHDL"
+
+#, c-format
+msgid "Close &Left Tabs"
+msgstr "So&l Sekmeleri Kapat"
+
+#, c-format
+msgid "Close R&ight Tabs"
+msgstr "&Sağ Sekmeleri Kapat"
+
+#, c-format
+msgid "Close &Other Tabs"
+msgstr "&Diğer Sekmeleri Kapat"
+
+#, c-format
+msgid "Enable &Auto Max Width"
+msgstr "Otom&atik En Fazla Genişlik Kullanılsın"
+
+#, c-format
+msgid "frhed is not installed"
+msgstr "frhed kurulmamış"
+
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr "%1 bulunamadı. Oluşturmak ister misiniz?"
+
+#, c-format
+msgid "Failed to create folder."
+msgstr "Klasör oluşturulamadı."
+
+#, c-format
+msgid "You can specify the following parameters to the path:\n"
+"$file: Path name of the current file\n"
+"$linenum: Line number of the current cursor position"
+msgstr "Yolda şu parametreler kullanılabilir:\n"
+"$file: Geçerli dosyasının yol adı\n"
+"$linenum: Geçerli imleç konumunun satır numarası"
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+

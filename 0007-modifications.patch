@@ -1,0 +1,35 @@
+From 2f21f7186e4462b7002f1ee6c3594a95abdf2196 Mon Sep 17 00:00:00 2001
+From: Flaviu <Flaviu@DESKTOP-HP>
+Date: Thu, 2 Jan 2020 20:05:06 +0200
+Subject: [PATCH 07/29] modifications
+
+---
+ Src/DirFrame.cpp | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Src/DirFrame.cpp b/Src/DirFrame.cpp
+index 35db54d34..ae81f1b62 100644
+--- a/Src/DirFrame.cpp
++++ b/Src/DirFrame.cpp
+@@ -88,13 +88,11 @@ CDirFrame::~CDirFrame()
+ {
+ }
+ 
+-
+ BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
+ 	//{{AFX_MSG_MAP(CDirFrame)
+ 	ON_WM_CREATE()
+ 	ON_WM_CLOSE()
+ 	ON_WM_SIZE()
+-	ON_WM_MDIACTIVATE()
+ 	//}}AFX_MSG_MAP
+ END_MESSAGE_MAP()
+ 
+@@ -212,4 +210,3 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
+ 	
+ 	m_wndFilePathBar.Resize();
+ }
+-
+-- 
+2.18.0.windows.1
+

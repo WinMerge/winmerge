@@ -1,0 +1,3998 @@
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Translators:
+# * Xabier Aramendi <azpidatziak at gmail.com>
+#
+# ID line follows -- this is updated by SVN
+# $Id: Basque.po 7598 2013-02-03 20:17:44Z christianlist $
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2009-02-10 22:14+0000\n"
+"PO-Revision-Date: 2013-02-03 22:14+0000\n"
+"Last-Translator: Xabier Aramendi (Azpidatziak) <azpidatziak at gmail.com>\n"
+"Language-Team: (EUS_Xabier Aramendi) <azpidatziak@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Basque\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: Basque Country (Navarre)\n"
+"X-Poedit-Basepath: ../../Src/\n"
+"X-Poedit-Bookmarks: 0,439,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Generator: Poedit 1.5.3\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_BASQUE, SUBLANG_DEFAULT"
+
+#, c-format
+msgid "C&opy to Right"
+msgstr "K&opiatu Eskuinera"
+
+#, c-format
+msgid "Cop&y to Left"
+msgstr "Kop&iatu Ezkerrera"
+
+#, c-format
+msgid "Copy &from Left"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr ""
+
+#, c-format
+msgid "&Select Line Difference"
+msgstr "Hautatu &Lerro Ezberdintasuna"
+
+#, c-format
+msgid "&Undo"
+msgstr "&Desegin"
+
+#, c-format
+msgid "&Redo"
+msgstr "&Birregin"
+
+#, c-format
+msgid "Cu&t"
+msgstr "Eba&ki"
+
+#, c-format
+msgid "&Copy"
+msgstr "&Kopiatu"
+
+#, c-format
+msgid "&Paste"
+msgstr "&Itsatsi"
+
+#, c-format
+msgid "&Goto..."
+msgstr "&Joan hona..."
+
+#, c-format
+msgid "Op&en"
+msgstr "Ire&ki"
+
+#, c-format
+msgid "with &Registered Application"
+msgstr "&Erregistratutako Aplikazioarekin"
+
+#, c-format
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
+
+#, c-format
+msgid "&with..."
+msgstr "&Honekin..."
+
+msgid "S&hell Menu"
+msgstr ""
+
+#, c-format
+msgid "View &Differences"
+msgstr ""
+
+#, c-format
+msgid "Diff &Block Size"
+msgstr ""
+
+#, c-format
+msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgstr ""
+
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#, c-format
+msgid "&None"
+msgstr "&Ezer ez"
+
+msgid "&Vertical"
+msgstr ""
+
+msgid "&Horizontal"
+msgstr ""
+
+#, c-format
+msgid "&Previous Page"
+msgstr ""
+
+#, c-format
+msgid "&Next Page"
+msgstr ""
+
+#, c-format
+msgid "&Active Pane"
+msgstr ""
+
+#, c-format
+msgid "&Zoom"
+msgstr "&Zooma"
+
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Zooma &Handitu\tCtrl++"
+
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Zooma &Gutxitu\tCtrl+-"
+
+#. Zoom to normal
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normala\tCtrl+*"
+
+#, c-format
+msgid "&Overlay"
+msgstr ""
+
+#, c-format
+msgid "&Alpha Blend"
+msgstr ""
+
+#, c-format
+msgid "Alpha &Blend Animation"
+msgstr ""
+
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#, c-format
+msgid "&Move"
+msgstr "&Mugitu"
+
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
+#, c-format
+msgid "&Set Background Color"
+msgstr ""
+
+#, c-format
+msgid "&File"
+msgstr "&Agiria"
+
+#, c-format
+msgid "&New\tCtrl+N"
+msgstr "&Berria\tCtrl+N"
+
+#, c-format
+msgid "New (&3 panes)"
+msgstr ""
+
+#, c-format
+msgid "&Open...\tCtrl+O"
+msgstr "&Ireki...\tCtrl+O"
+
+msgid "Open Conflic&t File..."
+msgstr "Ire&ki Gatazka Agiria..."
+
+#, c-format
+msgid "Open Pro&ject...\tCtrl+J"
+msgstr "Ireki  Egit&asmoa...\tCtrl+J"
+
+#, c-format
+msgid "Sa&ve Project..."
+msgstr "Gor&de Egitasmoa..."
+
+#, c-format
+msgid "Recent Projects"
+msgstr "Azken Egitasmoak"
+
+#, c-format
+msgid "Recent F&iles Or Folders"
+msgstr ""
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Hutsik >"
+
+#, c-format
+msgid "E&xit"
+msgstr "Ir&ten"
+
+#, c-format
+msgid "&Edit"
+msgstr "&Editatu"
+
+#, c-format
+msgid "&Options..."
+msgstr "&Aukerak..."
+
+#, c-format
+msgid "&View"
+msgstr "&Ikusi"
+
+#, c-format
+msgid "&Toolbar"
+msgstr "Tre&snabarra"
+
+#, c-format
+msgid "&Small"
+msgstr "&Txikia"
+
+#, c-format
+msgid "&Big"
+msgstr "&Handia"
+
+#, c-format
+msgid "&Huge"
+msgstr ""
+
+#, c-format
+msgid "&Status Bar"
+msgstr "&Egoera Barra"
+
+#, c-format
+msgid "Ta&b Bar"
+msgstr "&Fitxa Barra"
+
+#, c-format
+msgid "&Tools"
+msgstr "&Tresnak"
+
+#, c-format
+msgid "&Filters..."
+msgstr "&Iragazkiak..."
+
+#, c-format
+msgid "&Generate Patch..."
+msgstr "Sortu &Eranskina..."
+
+#, c-format
+msgid "&Plugins"
+msgstr "&Pluginak"
+
+#, c-format
+msgid "P&lugin Settings..."
+msgstr ""
+
+#, c-format
+msgid "Ma&nual Prediffer"
+msgstr "&Eskuzko Aurrezberd"
+
+#, c-format
+msgid "A&utomatic Prediffer"
+msgstr "&Berezgaitasunezko Aurrezberd"
+
+#, c-format
+msgid "&Manual Unpacking"
+msgstr "E&skuzko Despaketatzea"
+
+#, c-format
+msgid "&Automatic Unpacking"
+msgstr "Be&rezgaitasunezko Despaketatzea"
+
+#, c-format
+msgid "&Reload plugins"
+msgstr "B&irgertatu pluginak"
+
+#, c-format
+msgid "&Window"
+msgstr "Lei&hoa"
+
+#, c-format
+msgid "Cl&ose"
+msgstr "It&xi"
+
+#, c-format
+msgid "Clo&se All"
+msgstr "I&txi Denak"
+
+#, c-format
+msgid "Change &Pane\tF6"
+msgstr "Aldatu &Panela\tF6"
+
+#, c-format
+msgid "Tile &Horizontally"
+msgstr "Eradonki &Etzana"
+
+#, c-format
+msgid "Tile &Vertically"
+msgstr "Eradonki &Zutia"
+
+#, c-format
+msgid "&Cascade"
+msgstr "&Urjauzia"
+
+#, c-format
+msgid "&Help"
+msgstr "&Laguntza"
+
+#, c-format
+msgid "&WinMerge Help\tF1"
+msgstr "WinMerge &Laguntza\tF1"
+
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#, c-format
+msgid "&Translations"
+msgstr ""
+
+#, c-format
+msgid "C&onfiguration"
+msgstr "It&xurapena"
+
+#, c-format
+msgid "&GNU General Public License"
+msgstr "&GNU Baimen Publiko Orokorra "
+
+#, c-format
+msgid "&About WinMerge..."
+msgstr "&WinMergeri buruz..."
+
+#, c-format
+msgid "&Read-only"
+msgstr ""
+
+#, c-format
+msgid "L&eft Read-only"
+msgstr "Ezkerra Irakurri-bakarrik"
+
+#, c-format
+msgid "M&iddle Read-only"
+msgstr ""
+
+#, c-format
+msgid "Ri&ght Read-only"
+msgstr "Eskuina Irakurri-bakarrik"
+
+#, c-format
+msgid "File En&coding..."
+msgstr ""
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Hautatu &Denak\t Ctrl+A"
+
+#, c-format
+msgid "Show &Identical Items"
+msgstr "Erakutsi Gai &Berdinak"
+
+#, c-format
+msgid "Show &Different Items"
+msgstr "Erakutsi Gai &Ezberdinak"
+
+#, c-format
+msgid "Show L&eft Unique Items"
+msgstr "Erakutsi E&zkerreko Unique gaiak"
+
+#, c-format
+msgid "Show Midd&le Unique Items"
+msgstr ""
+
+#, c-format
+msgid "Show Ri&ght Unique Items"
+msgstr "Erakutsi E&skuineko Unique gaiak"
+
+#, c-format
+msgid "Show S&kipped Items"
+msgstr "Erakutsi &Jauzitako Gaiak"
+
+#, c-format
+msgid "S&how Binary Files"
+msgstr "&Erakutsi Agiri Binarioak"
+
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
+#, c-format
+msgid "Show Hidd&en Items"
+msgstr "Erakutsi E&zkutatutako Gaiak"
+
+#, c-format
+msgid "Tree &Mode"
+msgstr "Zuhaitz &Modua"
+
+#, c-format
+msgid "E&xpand All Subfolders"
+msgstr "H&edatu Azpiagiritegi Guztiak"
+
+#, c-format
+msgid "&Collapse All Subfolders"
+msgstr "&Azpiagiritegi Denak Erauzi"
+
+#, c-format
+msgid "Select &Font..."
+msgstr "Hautatu &Hizkia..."
+
+#, c-format
+msgid "Use Default F&ont"
+msgstr "Erabili Berezko H&izkia"
+
+#, c-format
+msgid "Sw&ap Panes"
+msgstr "&Trukatu Panelak"
+
+#, c-format
+msgid "Compa&re Statistics"
+msgstr "Alderatu Esta&tistikak"
+
+#, c-format
+msgid "Refre&sh\tF5"
+msgstr "Ber&ritu\tF5"
+
+#, c-format
+msgid "&Refresh Selected\tCtrl+F5"
+msgstr "&Berritu Hautatutakoa\tCtrl+F5"
+
+#, c-format
+msgid "&Merge"
+msgstr "&Batu"
+
+#, c-format
+msgid "Co&mpare\tEnter"
+msgstr "&Alderatu\tEnter"
+
+#, c-format
+msgid "&Next Difference\tAlt+Down"
+msgstr "&Hurrengo Ezberdintasuna\tAlt+Down"
+
+#, c-format
+msgid "&Previous Difference\tAlt+Up"
+msgstr "A&urreko Ezberdintasuna\tAlt+Up"
+
+#, c-format
+msgid "&First Difference\tAlt+Home"
+msgstr "&Lehen Ezberdintasuna\tAlt+Home"
+
+#, c-format
+msgid "&Current Difference\tAlt+Enter"
+msgstr "U&neko Ezberdintasuna\tAlt+Enter"
+
+#, c-format
+msgid "&Last Difference\tAlt+End"
+msgstr "&Azken Ezberdintasuna\tAlt+End"
+
+#, c-format
+msgid "Copy to &Right\tAlt+Right"
+msgstr "Kopiatu E&skuinera\tAlt+Right"
+
+#, c-format
+msgid "Copy to L&eft\tAlt+Left"
+msgstr "Kopiatu E&zkerrera\tAlt+Left"
+
+#, c-format
+msgid "&Delete\tDel"
+msgstr "&Ezabatu\tDel"
+
+#, c-format
+msgid "&Customize Columns..."
+msgstr "&Antolatu Zutabeak..."
+
+#, c-format
+msgid "Generate &Report..."
+msgstr "Sortu &Jakinarazpena..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
+
+#, c-format
+msgid "&Save\tCtrl+S"
+msgstr "&Gorde\tCtrl+S"
+
+#, c-format
+msgid "Sav&e"
+msgstr ""
+
+#, c-format
+msgid "Save &Left"
+msgstr "Gorde E&zkerra"
+
+#, c-format
+msgid "Save &Middle"
+msgstr ""
+
+#, c-format
+msgid "Save &Right"
+msgstr "Gorde E&skuina"
+
+#, c-format
+msgid "Save &As"
+msgstr ""
+
+#, c-format
+msgid "Save &Left As..."
+msgstr ""
+
+#, c-format
+msgid "Save &Middle As..."
+msgstr ""
+
+#, c-format
+msgid "Save &Right As..."
+msgstr ""
+
+#, c-format
+msgid "&Print..."
+msgstr "I&rarkitu..."
+
+msgid "Page Set&up..."
+msgstr "Ire&ki Gatazka Agiria..."
+
+msgid "Print Previe&w..."
+msgstr "Irarkitu Aurreikus&pena..."
+
+#, c-format
+msgid "&Convert Line Endings to"
+msgstr "Bihurtu &Lerro Amaierak hona"
+
+#, c-format
+msgid "&Merge Mode\tF9"
+msgstr "Batu &Modua\tF9"
+
+#, c-format
+msgid "Re&load\tCtrl+F5"
+msgstr ""
+
+#, c-format
+msgid "&File Encoding..."
+msgstr "&Agiria Kodeatzen..."
+
+#, c-format
+msgid "Recompare As"
+msgstr ""
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&XML"
+msgstr "&XML"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binarioa"
+
+#, c-format
+msgid "&Image"
+msgstr ""
+
+#, c-format
+msgid "&Undo\tCtrl+Z"
+msgstr "&Desegin\tCtrl+Z"
+
+#, c-format
+msgid "&Redo\tCtrl+Y"
+msgstr "Birre&gin\tCtrl+Y"
+
+#, c-format
+msgid "Cu&t\tCtrl+X"
+msgstr "&Ebaki\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiatu\tCtrl+C"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Itsatsi\tCtrl+V"
+
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Hautatu Lerro &Ezberdintasunak\tF4"
+
+#, c-format
+msgid "F&ind...\tCtrl+F"
+msgstr "&Bilatu...\tCtrl+F"
+
+#, c-format
+msgid "Repla&ce...\tCtrl+H"
+msgstr "&Ordeztu...\tCtrl+H"
+
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
+#, c-format
+msgid "Advanced"
+msgstr "Aurrera&tua"
+
+#, c-format
+msgid "&Copy With Line Numbers\tCtrl+Shift+C"
+msgstr "&Kopiatu Lerro Zenbakiekin\tCtrl+Shift+C"
+
+#, c-format
+msgid "&Bookmarks"
+msgstr "Laster&markak"
+
+#, c-format
+msgid "&Toggle Bookmark\tCtrl+F2"
+msgstr "&Aldatu Lastermarka\tCtrl+F2"
+
+#, c-format
+msgid "&Next Bookmark\tF2"
+msgstr "&Hurrengo Lastermarka\tF2"
+
+#, c-format
+msgid "&Previous bookmark\tShift+F2"
+msgstr "A&urreko Lastermarka\tShift+F2"
+
+#, c-format
+msgid "&Clear All Bookmarks"
+msgstr "&Garbitu Lastermarka Guztiak"
+
+#, c-format
+msgid "&Go To...\tCtrl+G"
+msgstr "&Joan Hona...\tCtrl+G"
+
+#, c-format
+msgid "Syntax Highlight"
+msgstr "Joskera Nabar&mentzea"
+
+#, c-format
+msgid "&Diff Context"
+msgstr ""
+
+#, c-format
+msgid "&All Lines"
+msgstr ""
+
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+#, c-format
+msgid "&Lock Panes"
+msgstr "Bl&okeatu Panelak"
+
+#, c-format
+msgid "&View Whitespace"
+msgstr "Ikusi Zurigu&nea"
+
+#, c-format
+msgid "Vie&w Line Differences"
+msgstr "I&kusi Lerro Ezberdintasunak"
+
+#, c-format
+msgid "View Line &Numbers"
+msgstr "Ikusi &Lerro Zenbakiak"
+
+#, c-format
+msgid "View &Margins"
+msgstr "Ikusi &Bazterrak"
+
+#, c-format
+msgid "W&rap Lines"
+msgstr "I&nguratu Lerroak"
+
+#, c-format
+msgid "Split V&ertically"
+msgstr ""
+
+#, c-format
+msgid "Diff &Pane"
+msgstr "Ezberd &Panela"
+
+#, c-format
+msgid "Lo&cation Pane"
+msgstr "Kokalek&u Panela"
+
+#, c-format
+msgid "Ne&xt Conflict\tAlt+Shift+Down"
+msgstr ""
+
+#, c-format
+msgid "Pre&vious Conflict\tAlt+Shift+Up"
+msgstr ""
+
+#, c-format
+msgid "A&dvanced"
+msgstr ""
+
+#, c-format
+msgid "Next Difference Between Left and Middle\tAlt+1"
+msgstr ""
+
+#, c-format
+msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgstr ""
+
+#, c-format
+msgid "Next Difference Between Left and Right\tAlt+2"
+msgstr ""
+
+#, c-format
+msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgstr ""
+
+#, c-format
+msgid "Next Difference Between Middle and Right\tAlt+3"
+msgstr ""
+
+#, c-format
+msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgstr ""
+
+#, c-format
+msgid "Next Left Only Difference\tAlt+7"
+msgstr ""
+
+#, c-format
+msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgstr ""
+
+#, c-format
+msgid "Next Middle Only Difference\tAlt+8"
+msgstr ""
+
+#, c-format
+msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgstr ""
+
+#, c-format
+msgid "Next Right Only Difference\tAlt+9"
+msgstr ""
+
+#, c-format
+msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgstr ""
+
+#, c-format
+msgid "Copy from Left\tAlt+Shift+Right"
+msgstr ""
+
+#, c-format
+msgid "Copy from Right\tAlt+Shift+Left"
+msgstr ""
+
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "K&opiatu Eskuinera eta Aurrera egin\tCtrl+Alt+Right"
+
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Kopiatu Ez&kerrera eta Aurrera egin\tCtrl+Alt+Right"
+
+#, c-format
+msgid "Copy &All to Right"
+msgstr "Kopiatu &Dena Eskuinera"
+
+#, c-format
+msgid "Cop&y All to Left"
+msgstr "Kopia&tu Dena Ezkerrera"
+
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr ""
+
+#, c-format
+msgid "Add &Synchronization Point\tAlt+S"
+msgstr ""
+
+#, c-format
+msgid "Clear Sync&hronization Points"
+msgstr ""
+
+#, c-format
+msgid "&Prediffer"
+msgstr "Au&rrezberdintasuna"
+
+#, c-format
+msgid "&Scripts"
+msgstr "E&skriptak"
+
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
+#, c-format
+msgid "Comp&are"
+msgstr "Alder&atu"
+
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
+#, c-format
+msgid "Compare Non-hor&izontally"
+msgstr ""
+
+#, c-format
+msgid "First &left item with second left item"
+msgstr ""
+
+#, c-format
+msgid "First &right item with second right item"
+msgstr ""
+
+#, c-format
+msgid "&First left item with second right item"
+msgstr ""
+
+#, c-format
+msgid "&Second left item with first right item"
+msgstr ""
+
+#, c-format
+msgid "Co&mpare As"
+msgstr "Alderatu &Honela"
+
+#, c-format
+msgid "Left to Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Left to Right (%1 of %2)"
+msgstr "Ezkerra Eskuinera (%1 %2-tik)"
+
+#, c-format
+msgid "Left to... (%1 of %2)"
+msgstr "Ezkerra hona... (%1 %2-tik)"
+
+#, c-format
+msgid "Middle to Left (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Right (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right to Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right to Left (%1 of %2)"
+msgstr "Eskuina Ezkerrera (%1 %2-tik)"
+
+#, c-format
+msgid "Right to... (%1 of %2)"
+msgstr "Eskuina hona... (%1 %2-tik)"
+
+#, c-format
+msgid "&Delete"
+msgstr "&Ezabatu"
+
+#, c-format
+msgid "&Left"
+msgstr "Ezker&ra"
+
+#, c-format
+msgid "&Middle"
+msgstr ""
+
+#, c-format
+msgid "&Right"
+msgstr "&E&skuina"
+
+#, c-format
+msgid "&Both"
+msgstr "&Biak"
+
+#, c-format
+msgid "&All"
+msgstr ""
+
+#, c-format
+msgid "Re&name"
+msgstr "Birri&zendatu"
+
+#, c-format
+msgid "&Hide Items"
+msgstr "&Ezkutatu Gaiak"
+
+#, c-format
+msgid "&Open Left"
+msgstr "&Ireki Ezkerrekoa"
+
+#, c-format
+msgid "with &External Editor"
+msgstr "&Kanpoko Editorearekin"
+
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
+#, c-format
+msgid "Open Midd&le"
+msgstr ""
+
+#, c-format
+msgid "O&pen Right"
+msgstr "Ire&ki Eskuina"
+
+#, c-format
+msgid "Cop&y Pathnames"
+msgstr "Kopiatu &Helburu-izenak"
+
+#, c-format
+msgid "Left (%1 of %2)"
+msgstr "Ezkerra (%1 %2-tik)"
+
+#, c-format
+msgid "Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right (%1 of %2)"
+msgstr "Eskuina (%1 %2-tik)"
+
+#, c-format
+msgid "Both (%1 of %2)"
+msgstr "Biak (%1 %2-tik)"
+
+#, c-format
+msgid "All (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Copy &Filenames"
+msgstr "Kopiatu &Agirizenak"
+
+#, c-format
+msgid "Copy Items To Clip&board"
+msgstr ""
+
+#, c-format
+msgid "&Zip"
+msgstr "&Zipa"
+
+#, c-format
+msgid "Both to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "All to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Differences to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "&Refresh"
+msgstr "&Berritu"
+
+#, c-format
+msgid "Left Shell menu"
+msgstr "Ezkerreko Shell menua"
+
+#, c-format
+msgid "Middle Shell menu"
+msgstr ""
+
+#, c-format
+msgid "Right Shell menu"
+msgstr "Eskuineko Shell menua"
+
+#, c-format
+msgid "Copy"
+msgstr ""
+
+#, c-format
+msgid "&Copy Full Path"
+msgstr "Kopiatu Helburu O&soa"
+
+#, c-format
+msgid "Copy &Filename"
+msgstr "Kopiatu &Agirizena"
+
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Aurrezberdintasun Ezarpenak"
+
+#, c-format
+msgid "&No prediffer"
+msgstr "&Ez aurrezberd"
+
+#, c-format
+msgid "Auto prediffer"
+msgstr "Berez aurrezberd"
+
+#, c-format
+msgid "G&oto Diff"
+msgstr "Jo&an Ezberd"
+
+#, c-format
+msgid "&No Moved Blocks"
+msgstr "Mugitu &Gabeko Bloke Guztiak"
+
+#, c-format
+msgid "&All Moved Blocks"
+msgstr "&Mugitutako Bloke Guztiak"
+
+#, c-format
+msgid "Moved Block for &Current Diff"
+msgstr "&Uneko Ezberd Mugitutako Blokeak "
+
+#, c-format
+msgid "W&hitespaces"
+msgstr "Zurig&uneak"
+
+#, c-format
+msgid "Com&pare"
+msgstr "Al&deratu"
+
+#, c-format
+msgid "I&gnore changes"
+msgstr "Ezikus&i aldaketak"
+
+#, c-format
+msgid "Ig&nore all"
+msgstr "E&zikusi denak"
+
+#, c-format
+msgid "Case sensi&tive"
+msgstr "Hizki larri eta &xehe artean"
+
+#, c-format
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
+
+#, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
+msgid "&Include Subfolders"
+msgstr "&Az&piagiritegiak Barne"
+
+#, c-format
+msgid "&Compare method:"
+msgstr "Alderaketa &metodoa:"
+
+#, c-format
+msgid "Full Contents"
+msgstr "Eduki Denak"
+
+#, c-format
+msgid "Quick Contents"
+msgstr "Eduki Azkarrak"
+
+#, c-format
+msgid "Binary Contents"
+msgstr ""
+
+#, c-format
+msgid "Modified Date"
+msgstr "Eguna Aldatuta"
+
+#, c-format
+msgid "Modified Date and Size"
+msgstr "Eguna eta Neurria Aldatuta"
+
+#, c-format
+msgid "Size"
+msgstr "Neurria"
+
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
+#, c-format
+msgid "About WinMerge"
+msgstr "WinMergeri buruz"
+
+#, c-format
+msgid "Visit the WinMerge HomePage!"
+msgstr "Ikusi WinMerge Webgunea!"
+
+#, c-format
+msgid "OK"
+msgstr "Ongi"
+
+#, c-format
+msgid "Contributors"
+msgstr "&Laguntzaileak"
+
+#, c-format
+msgid "Select Files or Folders"
+msgstr "Hautatu Agiriak edo Agiritegiak"
+
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
+#, c-format
+msgid "Re&ad-only"
+msgstr "Irakurri-&bakarrik"
+
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#, c-format
+msgid "&Browse..."
+msgstr "Bil&atu..."
+
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#, c-format
+msgid "B&rowse..."
+msgstr "Bi&latu..."
+
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
+#, c-format
+msgid "Swap 1st | 3rd"
+msgstr ""
+
+#, c-format
+msgid "Browse..."
+msgstr "Bilatu..."
+
+#, c-format
+msgid " Folder: Filter"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Hautatu..."
+
+#, c-format
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+msgid "Co&mpare"
+msgstr ""
+
+#, c-format
+msgid "Cancel"
+msgstr "Ezeztatu"
+
+#, c-format
+msgid "Status:"
+msgstr "Egoera:"
+
+#, c-format
+msgid "Help"
+msgstr "Laguntza"
+
+#, c-format
+msgid "General"
+msgstr "Orokorra"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
+
+#, c-format
+msgid "Cl&ose windows with ESC:"
+msgstr "Itxi leihoak ES&C-rekin"
+
+#, c-format
+msgid "&Automatically verify paths in Open-dialog"
+msgstr "&Berezgaitasunez egiaztatu helburuak Ireki-elkarrizketan"
+
+#, c-format
+msgid "All&ow only one instance to run"
+msgstr "Ahalbidetu e&kinbide bat bakarrik "
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Gal&detu leiho anitz isterakoan"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "&Heutsi agiri denborari agiri alderaketan"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgstr "Erakutsi \"Hau&tatu agiriak edo Agiritegiak\" Elkarrizk. Hasterakoan"
+
+#, c-format
+msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgstr ""
+
+#, c-format
+msgid "O&pen-dialog Auto-Completion:"
+msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
+
+#, c-format
+msgid "Reset"
+msgstr "Birrezarri"
+
+#, c-format
+msgid "Find"
+msgstr "Bilatu"
+
+#, c-format
+msgid "Fi&nd what:"
+msgstr "Bi&latu zer:"
+
+#, c-format
+msgid "Match &whole word only"
+msgstr "Hitz osoa bat datorre&nean bakarrik"
+
+#, c-format
+msgid "Match &case"
+msgstr "Hizki larriak eta &xeheak"
+
+#, c-format
+msgid "Regular &expression"
+msgstr "Adierazpen a&rrunta"
+
+#, c-format
+msgid "D&on't wrap end of file"
+msgstr "E&z inguratu agiri amaiera"
+
+#, c-format
+msgid "&Don't close this dialog box"
+msgstr ""
+
+#, c-format
+msgid "&Find Next"
+msgstr "Bilatu &Hurrengoa"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&Ongi"
+
+#, c-format
+msgid "Replace"
+msgstr "Ordeztu"
+
+#, c-format
+msgid "Re&place with:"
+msgstr "Ordez&tu honekin:"
+
+#, c-format
+msgid "&Don't wrap end of file"
+msgstr "&Ez inguratu agiri amaiera"
+
+#, c-format
+msgid "Replace in"
+msgstr "Ordeztu hemen"
+
+#, c-format
+msgid "&Selection"
+msgstr "Hauta&pena"
+
+#, c-format
+msgid "Wh&ole file"
+msgstr "&Agiri osoa"
+
+msgid "Find Pre&v"
+msgstr ""
+
+#, c-format
+msgid "&Replace"
+msgstr "&Ordeztu"
+
+#, c-format
+msgid "Replace &All"
+msgstr "Ordeztu &Dena"
+
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#, c-format
+msgid "New"
+msgstr "Berria"
+
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#, c-format
+msgid "&Apply"
+msgstr "&Ezarri"
+
+#, c-format
+msgid "Linefilters"
+msgstr "Lerro-iragazkiak"
+
+#, c-format
+msgid "Enable Line Filters"
+msgstr "Gaitu Lerro Iragazkiak"
+
+#, c-format
+msgid "Regular Expressions (one per line):"
+msgstr "Adierazpen Arruntak (bat lerroko)"
+
+#, c-format
+msgid "Edit"
+msgstr "Editatu"
+
+#, c-format
+msgid "Remove"
+msgstr "Kendu"
+
+#, c-format
+msgid "Colors"
+msgstr "Margoak"
+
+#, c-format
+msgid "Background"
+msgstr "Barrena"
+
+#, c-format
+msgid "Deleted"
+msgstr "Ezabatuta"
+
+#, c-format
+msgid "Text"
+msgstr "Idazkia"
+
+#, c-format
+msgid "Difference:"
+msgstr "Ezberdintasuna"
+
+#, c-format
+msgid "Selected Difference:"
+msgstr "Hautatutako Ezberdintasuna:"
+
+#, c-format
+msgid "Ignored Difference:"
+msgstr "Baztertutako Ezberdintasuna:"
+
+#, c-format
+msgid "Moved:"
+msgstr "Mugituta:"
+
+#, c-format
+msgid "Selected Moved:"
+msgstr "Hautatutakoa Mugituta:"
+
+#, c-format
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr ""
+
+#, c-format
+msgid "Word Difference:"
+msgstr "Hitz Ezberdintasuna:"
+
+#, c-format
+msgid "Selected Word Diff:"
+msgstr "Hautatutako Hitz Ezberd:"
+
+#, c-format
+msgid "Defaults"
+msgstr "Berezkoak"
+
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "System"
+msgstr "Sistema"
+
+#, c-format
+msgid "&Send deleted files to Recycle Bin"
+msgstr "&Bidali ezabatutako agiriak Birziklatze Ontzira"
+
+#, c-format
+msgid "&External editor:"
+msgstr "&Kanpoko editatzailea:"
+
+#, c-format
+msgid "&Filter folder:"
+msgstr "&Iragazki agiritegia:"
+
+#, c-format
+msgid "Temporary files folder"
+msgstr "Aldibaterako agirien agiritegia"
+
+#, c-format
+msgid "S&ystem's temp folder"
+msgstr "&Sistemaren aldibaterako agiritegia"
+
+#, c-format
+msgid "C&ustom folder:"
+msgstr "&Egile agiritegia:"
+
+#, c-format
+msgid "Br&owse..."
+msgstr "Bilat&u"
+
+#, c-format
+msgid "Patch Generator"
+msgstr "Eranskin Sortzailea"
+
+#, c-format
+msgid "File&1:"
+msgstr "&1 Agiria:"
+
+#, c-format
+msgid "File&2:"
+msgstr "&2 Agiria:"
+
+#, c-format
+msgid "&Swap"
+msgstr "A&ldaketa"
+
+#, c-format
+msgid "&Append to existing file"
+msgstr "E&rantsi dagoen agirira"
+
+#, c-format
+msgid "&Result:"
+msgstr "&Emaitzak:"
+
+#, c-format
+msgid "Bro&wse..."
+msgstr "Bila&tu..."
+
+#, c-format
+msgid "&Format"
+msgstr "&Formatoa"
+
+#, c-format
+msgid "St&yle:"
+msgstr "Estil&oa:"
+
+#, c-format
+msgid "&Context:"
+msgstr "Hitzi&ngurua:"
+
+#, c-format
+msgid "Ignor&e blank lines"
+msgstr "Ezi&kusi lerro zuriak"
+
+#, c-format
+msgid "Inclu&de command line"
+msgstr "Ko&mando lerroa barne"
+
+#, c-format
+msgid "Open to e&xternal editor"
+msgstr "Ireki kan&poko editatzailean"
+
+#, c-format
+msgid "Display Columns"
+msgstr "Erakutsi Zutabeak"
+
+#, c-format
+msgid "Move &Up"
+msgstr "Mugitu &Gora"
+
+#, c-format
+msgid "Move &Down"
+msgstr "Mugitu &Behera"
+
+#, c-format
+msgid "Select Unpacker"
+msgstr "Hautatu Despaketatzailea"
+
+#, c-format
+msgid "File unpacker:"
+msgstr "Agiri Despaketatzailea:"
+
+#, c-format
+msgid "Display all unpackers, don't check the extension"
+msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena"
+
+#, c-format
+msgid "Extensions list:"
+msgstr "Luzapen zerrenda:"
+
+#, c-format
+msgid "Description:"
+msgstr "Azalpena:"
+
+#, c-format
+msgid "Stop"
+msgstr "Gelditu"
+
+#, c-format
+msgid "Pause"
+msgstr ""
+
+#, c-format
+msgid "Continue"
+msgstr ""
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Gaiak alderatzen..."
+
+#, c-format
+msgid "Items compared:"
+msgstr "Alderatutako gaiak:"
+
+#, c-format
+msgid "Items total:"
+msgstr "Gaiak guztira:"
+
+#, c-format
+msgid "Go To"
+msgstr "Joan Hona"
+
+#, c-format
+msgid "G&oto:"
+msgstr "Joan &Hona:"
+
+#, c-format
+msgid "File"
+msgstr "Agiria"
+
+#, c-format
+msgid "Goto what"
+msgstr "Joan &nora"
+
+#, c-format
+msgid "Li&ne"
+msgstr "&Lerroa"
+
+#, c-format
+msgid "&Difference"
+msgstr "&Ezberdintasuna"
+
+#, c-format
+msgid "&Go To"
+msgstr "&Joan Hona"
+
+#, c-format
+msgid "Compare"
+msgstr "Alderatu"
+
+#, c-format
+msgid "Whitespace"
+msgstr "&Zurigunea"
+
+#, c-format
+msgid "&Compare"
+msgstr "Al&deratu"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&Ezikusi aldaketa"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "E&zikusi denak"
+
+#, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ezikusi &lerro zuriak"
+
+#, c-format
+msgid "Ignore &case"
+msgstr "Ezikusi &kasua"
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Gaitu bloke &mugitu atzematea"
+
+#, c-format
+msgid "&Match similar lines"
+msgstr "&Berdindu antzeko lerroak"
+
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+#, c-format
+msgid "Comments"
+msgstr "Aipamenak"
+
+#, c-format
+msgid "Filter Comments"
+msgstr "&Iragazki Aipamenak"
+
+#, c-format
+msgid "Editor"
+msgstr "Editatzailea"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Nabarmendu joskera"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Berezgaitasunezko birmihaketa"
+
+#, c-format
+msgid "&Preserve original EOL chars"
+msgstr "&Heutsi jatorrizko EOL hizkiei"
+
+#, c-format
+msgid "Tabs"
+msgstr "Fitxak"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "Fit&xa neurria:"
+
+#, c-format
+msgid "&Insert Tabs"
+msgstr "Sartu &Fitxak"
+
+#, c-format
+msgid "Insert &Spaces"
+msgstr "Sartu &Tarteak"
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Lerro Ezberdintasuna Margotzen"
+
+#, c-format
+msgid "View line differences"
+msgstr "&Ikusi lerro ezberdintasunak"
+
+#, c-format
+msgid "&Character level"
+msgstr "Hiz&ki maila"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Hit&z maila:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
+msgid "Filefilters"
+msgstr "Agiri-iragazkiak"
+
+msgid "Test..."
+msgstr "Azterketa..."
+
+#, c-format
+msgid "Install..."
+msgstr "Ezarri..."
+
+#, c-format
+msgid "New..."
+msgstr "Berria..."
+
+#, c-format
+msgid "Edit..."
+msgstr "Editatu..."
+
+#, c-format
+msgid "Delete..."
+msgstr "Ezabatu..."
+
+#, c-format
+msgid "Save modified files?"
+msgstr "Gorde amaitutako agiriak?"
+
+#, c-format
+msgid "Left side file"
+msgstr "Ezkerralde agiria"
+
+#, c-format
+msgid "&Save changes"
+msgstr "Gor&de aldaketak"
+
+#, c-format
+msgid "&Discard changes"
+msgstr "&Baztertu aldaketak"
+
+#, c-format
+msgid "Middle side file"
+msgstr ""
+
+#, c-format
+msgid "Sa&ve changes"
+msgstr ""
+
+#, c-format
+msgid "Disca&rd changes"
+msgstr ""
+
+#, c-format
+msgid "Right side file"
+msgstr "Eskuinalde agiria"
+
+#, c-format
+msgid "S&ave changes"
+msgstr "&Gorde aldaketak"
+
+#, c-format
+msgid "Dis&card changes"
+msgstr "B&aztertu aldaketak"
+
+#, c-format
+msgid "Disca&rd All"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Kode-orrialdea"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Berezko Kode-orrialdea"
+
+#, c-format
+msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
+
+#, c-format
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
+msgstr ""
+"&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
+" .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
+
+#, c-format
+msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
+msgstr ""
+
+#, c-format
+msgid "System codepage"
+msgstr "&Sistema kode-orrialdea"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "&WinMerge Erabiltzaile Interfazearen arabera"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "&Egile kode-orrialdea:"
+
+#, c-format
+msgid "Options"
+msgstr "Aukerak"
+
+#, c-format
+msgid " Categories"
+msgstr "  Kategoriak"
+
+#, c-format
+msgid "Import..."
+msgstr "Inportatu"
+
+#, c-format
+msgid "Export..."
+msgstr "Esportatu..."
+
+#, c-format
+msgid "Dialog"
+msgstr "Elkarrizketa"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Lasterteklak:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Eginkizun izenak:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Aipamenak:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Zenbakiak:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Eragileak:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Kateak:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Aurreprozesapena:"
+
+#, c-format
+msgid "User 1:"
+msgstr "1 Erabiltzailea:"
+
+#, c-format
+msgid "User 2:"
+msgstr "2 Erabiltzailea:"
+
+#, c-format
+msgid "Bold"
+msgstr "Lodia"
+
+#, c-format
+msgid "Marker colors"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
+#, c-format
+msgid "Folder Compare Report"
+msgstr "Agiritegi Alderaketa Jakinarazpena"
+
+#, c-format
+msgid "Report &File:"
+msgstr "Jakinarazi &Agiria:"
+
+#, c-format
+msgid "&Style:"
+msgstr "&Estiloa"
+
+#, c-format
+msgid "&Include File Compare Report"
+msgstr ""
+
+#, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopiatu Gakoan"
+
+#, c-format
+msgid "Shared or Private Filter"
+msgstr "Iragazki Partekatua edo Pribatua"
+
+#, c-format
+msgid "Which type of filter do you want to create?"
+msgstr "Zein iragazki mota nahi duzu sortzea?"
+
+#, c-format
+msgid "Shared Filter (for all users on this machine)"
+msgstr "Partekatutako Iragazkia (erabiltzaile guztientzat ordenagailu honetan)"
+
+#, c-format
+msgid "Private Filter (only for current user)"
+msgstr "Iragazki Pribatua (uneko erabiltzailearentzat bakarrik)"
+
+#, c-format
+msgid "Archive Support"
+msgstr "Agiri Sostengua"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Gaitu agirien agiri sostengua"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "&Atzeman agiri mota agiriaren sinaduratik"
+
+#, c-format
+msgid "Compare Statistics"
+msgstr "Alderatu Estatistikak"
+
+#, c-format
+msgid "Folders:"
+msgstr "Agiritegiak:"
+
+#, c-format
+msgid "Files:"
+msgstr "Agiriak:"
+
+#, c-format
+msgid "Different"
+msgstr "Ezberdin"
+
+#, c-format
+msgid "Binary:"
+msgstr "Binarioa:"
+
+#, c-format
+msgid "Unique"
+msgstr "Unique"
+
+#, c-format
+msgid "Left:"
+msgstr "Ezker:"
+
+#, c-format
+msgid "Right:"
+msgstr "Eskuin:"
+
+#, c-format
+msgid "Identical"
+msgstr "Berdin"
+
+#, c-format
+msgid "Total:"
+msgstr "Guztira:"
+
+#, c-format
+msgid "Close"
+msgstr "Itxi"
+
+#, c-format
+msgid "Middle:"
+msgstr ""
+
+#, c-format
+msgid "Missing Left:"
+msgstr ""
+
+#, c-format
+msgid "Missing Middle:"
+msgstr ""
+
+#, c-format
+msgid "Missing Right:"
+msgstr ""
+
+#, c-format
+msgid "Affects"
+msgstr "Eraginak"
+
+#, c-format
+msgid "(Affects)"
+msgstr "(Eraginak)"
+
+#, c-format
+msgid "Select Codepage for"
+msgstr "Hautatu Kode-orrialdea"
+
+#, c-format
+msgid "&File Loading:"
+msgstr "&Agiria Gertatzen:"
+
+#, c-format
+msgid "File &Saving:"
+msgstr "Agira &Gordetzen:"
+
+#, c-format
+msgid "&Use same codepage for both"
+msgstr "Erabili &kode-orrialde bera bientzat"
+
+#, c-format
+msgid "&Cancel"
+msgstr "E&zeztatu"
+
+#, c-format
+msgid "Test Filter"
+msgstr "Azterketa Iragazkia"
+
+msgid "Testing filter..."
+msgstr "Iragazkia aztertzen..."
+
+#, c-format
+msgid "&Enter text to test:"
+msgstr "&Sartu idazkia aztertzeko:"
+
+#, c-format
+msgid "&Folder Name"
+msgstr "&Agiritegi Izena"
+
+#, c-format
+msgid "Result:"
+msgstr "Emaitza:"
+
+#, c-format
+msgid "&Test"
+msgstr "&Azterketa"
+
+#, c-format
+msgid "&Close"
+msgstr "&Itxi"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&Erabili norbere idazki margoak"
+
+#, c-format
+msgid "Custom text colors"
+msgstr "Norbere idazki margoak"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Zurigunea:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Idazki arrunta:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Hautapena:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Backup Files"
+msgstr "Babeskopia Agiriak"
+
+#, c-format
+msgid "Create backup files in:"
+msgstr "Sortu babeskopia agiriak hemen:"
+
+#, c-format
+msgid "&Folder compare"
+msgstr "&Agiritegi alderaketa"
+
+#, c-format
+msgid "Fil&e compare"
+msgstr "A&giri alderaketa"
+
+#, c-format
+msgid "Create backup files into:"
+msgstr "Sortu babeskopia agiriak honen barnean:"
+
+#, c-format
+msgid "&Original file's folder"
+msgstr "Agiriaren &jatorrizko agiritegia"
+
+#, c-format
+msgid "&Global backup folder:"
+msgstr "&Babeskopia agiritegi globala:"
+
+#, c-format
+msgid "Backup filename:"
+msgstr "Babeskopia agirizena:"
+
+#, c-format
+msgid "&Append .bak -extension"
+msgstr "&Erantsi .bak -luzapena"
+
+#, c-format
+msgid "A&ppend timestamp"
+msgstr "Erantsi &denbora"
+
+#, c-format
+msgid "Confirm Copy"
+msgstr "Berretsi Kopiatzea"
+
+#, c-format
+msgid "Are you sure you want to copy XXX items?"
+msgstr "Zihur zaude XXX gaiak kopiatzea nahi dituzula?"
+
+#, c-format
+msgid "From left"
+msgstr "Ezkerretik"
+
+#, c-format
+msgid "To right"
+msgstr "Eskuinera"
+
+#, c-format
+msgid "Yes"
+msgstr "Bai"
+
+#, c-format
+msgid "No"
+msgstr "Ez"
+
+#, c-format
+msgid "Plugins"
+msgstr "Pluginak"
+
+#, c-format
+msgid "&Enable plugins"
+msgstr "Gaitu &pluginak"
+
+msgid "File filters:"
+msgstr ""
+
+#, c-format
+msgid "Shell Integration"
+msgstr "Shell Baterapena"
+
+#, c-format
+msgid "Explorer"
+msgstr "Bilaketa"
+
+#, c-format
+msgid "E&nable advanced menu"
+msgstr "Gaitu &menu aurreratua"
+
+#, c-format
+msgid "&Add to context menu"
+msgstr "Gehitu &hitzinguru menura"
+
+#, c-format
+msgid "&Register shell extension"
+msgstr ""
+
+#, c-format
+msgid "&Unregister shell extension"
+msgstr ""
+
+msgid "Register shell extension for current user &only"
+msgstr ""
+
+msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
+msgctxt "Options dialog|Categories"
+msgid "Folder"
+msgstr "Agiritegia"
+
+#, c-format
+msgid "S&top after first difference"
+msgstr "&Gelditu lehen ezberdintasunaren ondoren"
+
+#, c-format
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "Ezikusi 3 segundu baino gut&xiagoko ezberdintasunak"
+
+#, c-format
+msgid "&Include unique subfolders contents"
+msgstr ""
+
+#, c-format
+msgid "&Automatically expand all subfolders"
+msgstr ""
+
+#, c-format
+msgid "Ignore &Reparse Points"
+msgstr ""
+
+#, c-format
+msgid "&Quick compare limit (MB):"
+msgstr "&Alderaketa azkar muga (MB):"
+
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgctxt "Options dialog|Categories"
+msgid "Binary"
+msgstr "Binarioa"
+
+#, c-format
+msgid "Binary File &Patterns:"
+msgstr ""
+
+#, c-format
+msgid "Frhed settings"
+msgstr ""
+
+#, c-format
+msgid "View &Settings..."
+msgstr ""
+
+#, c-format
+msgid "&Binary Mode..."
+msgstr ""
+
+#, c-format
+msgid "&Character Set..."
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+#, c-format
+msgid "Image File &Patterns:"
+msgstr ""
+
+#, c-format
+msgid "&Hex View"
+msgstr ""
+
+#, c-format
+msgid "EXT"
+msgstr "EXT"
+
+#, c-format
+msgid "CAP"
+msgstr "NUM"
+
+#, c-format
+msgid "NUM"
+msgstr "NUM"
+
+#, c-format
+msgid "SCRL"
+msgstr "SCRL"
+
+#, c-format
+msgid "OVR"
+msgstr "OVR"
+
+#, c-format
+msgid "REC"
+msgstr "REC"
+
+#, c-format
+msgid "\nNew Documents (Ctrl+N)"
+msgstr ""
+
+#, c-format
+msgid "\nOpen (Ctrl+O)"
+msgstr ""
+
+#, c-format
+msgid "\nSave (Ctrl+S)"
+msgstr ""
+
+#, c-format
+msgid "Unknown error attempting to open project file"
+msgstr "Akats ezezagun bat egitasmo agiria irekitzen saiatzean"
+
+#, c-format
+msgid "Unknown error attempting to save project file"
+msgstr "Akats ezezagun bat egitasmo agiria gordetzen saiatzean"
+
+#, c-format
+msgid "Project file successfully loaded."
+msgstr "Egitasmo agiria ongi gertatu da."
+
+#, c-format
+msgid "Project file successfully saved."
+msgstr "Egitasmo agiria ongi gorde da."
+
+#, c-format
+msgid "\nUndo (Ctrl+Z)"
+msgstr ""
+
+#, c-format
+msgid "\nRedo (Ctrl+Y)"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr ""
+"\n"
+"AgiriAlderaketa\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.AgiriAlderaketa\n"
+"WinMerge Agiri Alderaketa"
+
+#, c-format
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr ""
+"\n"
+"AgiritegiAlderaketa\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.AgiritegiAlderketa\n"
+"WinMerge Agirtegi Alderaketa"
+
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgstr ""
+"Garatzaileak:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+
+#, c-format
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge BERME BAKAR BAT GABE dator. Hau software askea da eta ongi etorria zara birbanatzeko baldintza jakin batzuenpean ; ikusi GNU Baimen Publiko Orokorra, Laguntza menuan xehetasunetarako."
+
+#, c-format
+msgid "&Abort"
+msgstr "&Utzi"
+
+#, c-format
+msgid "&Retry"
+msgstr "&Birsaiatu"
+
+#, c-format
+msgid "&Ignore"
+msgstr "&Baztertu"
+
+#, c-format
+msgid "Ignore &all"
+msgstr "&Baztertu denak"
+
+#, c-format
+msgid "&Yes"
+msgstr "&Bai"
+
+#, c-format
+msgid "Yes to &all"
+msgstr "Bai g&uztiari"
+
+#, c-format
+msgid "&No"
+msgstr "&Ez"
+
+#, c-format
+msgid "No to a&ll"
+msgstr "Ez gu&ztiari"
+
+#, c-format
+msgid "&Continue"
+msgstr "&Jarraitu"
+
+#, c-format
+msgid "&Skip"
+msgstr "&Jauzi"
+
+#, c-format
+msgid "Skip &all"
+msgstr "Jauzi &guztiak"
+
+#, c-format
+msgid "Don't display this &message again."
+msgstr "Ez erakutsi &mezu hau berriro."
+
+#, c-format
+msgid "Don't ask this &question again."
+msgstr "Ez egin ga&ldera hau berriro."
+
+#, c-format
+msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+#, c-format
+msgid "Syntax"
+msgstr "Joskera"
+
+msgid "Folder Compare"
+msgstr ""
+
+#, c-format
+msgid "Differences"
+msgstr "Ezberdintasunak"
+
+#, c-format
+msgid "To:"
+msgstr "Hona:"
+
+#, c-format
+msgid "From left:"
+msgstr "Ezkerretik:"
+
+#, c-format
+msgid "To left:"
+msgstr "Ezkerrera:"
+
+#, c-format
+msgid "From right:"
+msgstr "Eskuinetik:"
+
+#, c-format
+msgid "To right:"
+msgstr "Eskuinera:"
+
+#, c-format
+msgid "Version %1"
+msgstr "Bertsioa %1"
+
+#, c-format
+msgid "X64"
+msgstr "X64"
+
+#, c-format
+msgid "Options (%1)"
+msgstr "Aukerak (%1)"
+
+#, c-format
+msgid "All message boxes are now displayed again."
+msgstr "Mezu kutxatila guztiak erakusten dira berriro."
+
+#, c-format
+msgid ""
+"Value in Tab size -field is not in range WinMerge accepts.\n"
+"\n"
+"Please use values 1 - %1."
+msgstr ""
+"Balioa Fitxa neurri -eremua ez da WinMergek onartzen duen zabalera.\n"
+"\n"
+"Mesedez erabili balioak 1 - %1."
+
+#, c-format
+msgid "Open"
+msgstr "Ireki"
+
+#, c-format
+msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+msgstr "Programak|*.exe;*.bat;*.cmd|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "All Files (*.*)|*.*||"
+msgstr "Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge Egitasmo Agiriak (*.WinMerge)|*.WinMerge||"
+
+#, c-format
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "Aukera agiriak (*.ini)|*.ini|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Idazki Agiriak (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "HTML Agiriak (*.htm,*.html)|*.htm;*.html|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "XML Agiriak (*.xml)|*.xml|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid "Name"
+msgstr "Izena"
+
+#, c-format
+msgid "Location"
+msgstr "Kokalekua"
+
+#, c-format
+msgid "Filters"
+msgstr "Iragazkiak"
+
+#, c-format
+msgid "[F] "
+msgstr "[F] "
+
+#, c-format
+msgid "Description"
+msgstr "Azalpena"
+
+#, c-format
+msgid "Select filename for new filter"
+msgstr "Hautatu agirizena iragazki berriarentzat"
+
+#, c-format
+msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "Agiri Iragazkiak (*.flt)|*.flt|Agiri Denak (*.*)|*.*||"
+
+#, c-format
+msgid ""
+"Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters -folder:\n"
+"%2."
+msgstr ""
+"Ezinezkoa iragazki agiri eredua aurkitzea!\n"
+"\n"
+"Mesedez kopiatu agiri hau: %1 WinMerge/Iragazkiak -agiritegia:\n"
+"%2."
+
+#, c-format
+msgid ""
+"Cannot copy filter template file to filter folder:\n"
+"%1\n"
+"\n"
+"Please make sure the folder exists and is writable."
+msgstr ""
+"Ezinezkoa kopiatzea iragazki eredu agiria iragazki agiritegira:\n"
+"%1\n"
+"\n"
+"Mesedez zihurtatu zaitez dagoen agiritegia idazgarria dela."
+
+#, c-format
+msgid ""
+"User's filter file folder is not defined!\n"
+"\n"
+"Please select filter folder in Options/System."
+msgstr ""
+"Erabiltzailearen iragazki agiri agiritegia ez dago zehaztuta!\n"
+"\n"
+"Mesedez hautatu iragazki agiritegia hemen: Aukerak/Sistema."
+
+#, c-format
+msgid ""
+"Failed to delete the filter file:\n"
+"%1\n"
+"\n"
+"Maybe the file is read-only?"
+msgstr ""
+"Hutsegitea iragazki agiria gordetzerakoan:\n"
+"%1\n"
+"\n"
+"Badaiteke irakurtzeko-bakarrik agiria izatea?"
+
+#, c-format
+msgid "Locate filter file to install"
+msgstr "Aurkitu ezartzeko iragazki agiria"
+
+#, c-format
+msgid ""
+"Installing filter file failed.\n"
+"\n"
+"Could not copy new filter file to filter folder."
+msgstr ""
+"Iragazki agiria ezartzeak huts egin du.\n"
+"\n"
+"Ezinezkoa iragazki agiri berria iragazki agiritegira kopiatzea."
+
+#, c-format
+msgid "Filter file already exists. Overwrite existing filter?"
+msgstr "Iragazki agiria jadanik badago. Gainidatzi dagoen iragazkia?"
+
+#, c-format
+msgid "Regular expression"
+msgstr "Adierazpen arrunta"
+
+#, c-format
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
+msgstr ""
+"Iragazkiak eguneratuak izan dira. Nahi duzu irekita dituzun alderaketa agiritegi guztiak berritzea?\n"
+"\n"
+"Ez badituzu nahi alderaketa guztiak orain berritzea hautatu Ez eta berritu alderaketak gero."
+
+#, c-format
+msgid "Folder Comparison Results"
+msgstr "Agiritegi Alderaketa Emaitzak"
+
+#, c-format
+msgid "File Comparison"
+msgstr "Agiri Alderaketa"
+
+#, c-format
+msgid "Untitled left"
+msgstr "Izenburugabeko ezkerra"
+
+#, c-format
+msgid "Untitled middle"
+msgstr ""
+
+#, c-format
+msgid "Untitled right"
+msgstr "Izenburugabeko eskuina"
+
+#, c-format
+msgid "Theirs File"
+msgstr "Theirs Agiria"
+
+#, c-format
+msgid "Mine File"
+msgstr "Mine Agiria"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr ""
+
+#, c-format
+msgid "Line: %s"
+msgstr "Lerroa: %s"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "Merge"
+msgstr "Batu"
+
+#, c-format
+msgid "Difference %1 of %2"
+msgstr "Ezberdintasuna %1 %2-tik"
+
+#, c-format
+msgid "%1 Differences Found"
+msgstr "%1 Ezberdintasun Aurkiturik"
+
+#, c-format
+msgid "1 Difference Found"
+msgstr "1 Ezberdintasun Aurkituta"
+
+#. Abbreviation from "Read Only"
+#, c-format
+msgid "RO"
+msgstr "RO"
+
+#, c-format
+msgid "Item %1 of %2"
+msgstr "Gaiak %1 %2-tik"
+
+#, c-format
+msgid "Items: %1"
+msgstr "Gaiak:%1"
+
+#, c-format
+msgid "Select two existing folders or files to compare"
+msgstr "Hautatu badauden bi agiritegi edo agiri alderatzeko"
+
+#, c-format
+msgid "Folder Selection"
+msgstr "Agirtegi Hautapena"
+
+#, c-format
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
+
+#, c-format
+msgid "Left (1st) path is invalid!"
+msgstr ""
+
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
+
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
+
+#, c-format
+msgid "Both paths are invalid!"
+msgstr "Bi helburuak baliogabeak dira!"
+
+#, c-format
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
+
+#, c-format
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
+
+#, c-format
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
+
+#, c-format
+msgid "All paths are invalid!"
+msgstr ""
+
+#, c-format
+msgid "Only enabled for File comparisons"
+msgstr ""
+
+#, c-format
+msgid "Cannot compare file and folder!"
+msgstr "Ezin dira agiria eta agiritegia alderatu!"
+
+#, c-format
+msgid "File not found: %1"
+msgstr "Agiria ez da aurkitu: %1"
+
+#, c-format
+msgid "File not unpacked: %1"
+msgstr "Agiria ez da despaketatu: %1"
+
+#, c-format
+msgid ""
+"Cannot open file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"Ezin da agiria ireki\n"
+"%1\n"
+"\n"
+"%2"
+
+#, c-format
+msgid "Failed to parse conflict file."
+msgstr "Hutsegitea gatazka agiria aztertzerakoan."
+
+#, c-format
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"%1\n"
+"agiria\n"
+"ez da agiri gatazkatsu bat."
+
+#, c-format
+msgid "Save As"
+msgstr "Gorde Honela"
+
+#, c-format
+msgid "Save changes to %1?"
+msgstr "Gorde aldaketak %1-ri?"
+
+#, c-format
+msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgstr "%1 markatuta dago irrakurtzeko-bakarrik bezala. Nahi duzu ezabatzea irakurtzeko-bakarrik agiria? (Ez gordetzeko agirizen berri bezala.)"
+
+#, c-format
+msgid "Error backing up file"
+msgstr "Akatsa babeskopia agirian"
+
+#, c-format
+msgid ""
+"Unable to backup original file:\n"
+"%1\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Ezinezkoa jatorrizko agiri babeskopia egitea:\n"
+"%1\n"
+"\n"
+"Jarraitu horrela ere?"
+
+#, c-format
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgstr ""
+"Agiri gordetze hutsegitea.\n"
+"%1\n"
+"%2\n"
+"Nahi duzu:\n"
+"\t- agirizen ezberdin bat erabiltzea (Sakatu Ongi)\n"
+"\t- uneko eragiketa uztea (Sakatu Ezeztatu)?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"'%2' pluginak ezin ditu zure aldaketak paketatu ezkerreko agirian atzera hemen: '%1'.\n"
+"\n"
+"Jatorrizko agira ez da aldatuko.\n"
+"\n"
+"Nahi duzu despaketatutako bertsioa beste agiri batean gordetzea?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"'%2' pluginak ezin ditu zure aldaketak paketatu eskuineko agirian atzera hemen: '%1'.\n"
+"\n"
+"Jatorrizko agira ez da aldatuko.\n"
+"\n"
+"Nahi duzu despaketatutako bertsioa beste agiri batean gordetzea?"
+
+#, c-format
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge loaded it.\n"
+"\n"
+"Overwrite changed file?"
+msgstr ""
+"Beste aplikazio batek agiri hau eguneratu du:\n"
+"%1\n"
+"WinMergek gertatu zuenetik.\n"
+"\n"
+"Gainidatzi aldatutako agiria?"
+
+#, c-format
+msgid ""
+"%1\n"
+"is marked read-only. Would you like to override the read-only item?"
+msgstr ""
+"%1\n"
+"irakurtzeko-bakarrik markatuta dago. Irakurtzeko-bakarrik gaia ezeztatzea nahi duzu?"
+
+#, c-format
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
+msgstr ""
+"Beste aplikazio batek agiri hau eguneratu du:\n"
+"%1\n"
+"WinMergek azken aldiz mihatu zuenetik.\n"
+"\n"
+"Nahi duzu agiria birgertatzea?"
+
+#, c-format
+msgid "Save Left File As"
+msgstr "Gorde Ezker Agiria Honela"
+
+#, c-format
+msgid "Save Middle File As"
+msgstr ""
+
+#, c-format
+msgid "Save Right File As"
+msgstr "Gorde Eskuineko Agiria Honela"
+
+#, c-format
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
+msgstr ""
+"Agiri hau\n"
+"%1\n"
+"ezagertuta dago. Mesedez gorde agiriaren kopia bat jarraitzeko."
+
+#, c-format
+msgid ""
+"Cannot merge differences when documents are not in synch.\n"
+"\n"
+"Refresh documents before continuing."
+msgstr ""
+"Ezinezkoa ezberdintasunak batzea agiriak aldiberetuta ez daudenean.\n"
+"\n"
+"Berritu agiriak jarraitu aurretik."
+
+msgid "Break at whitespace"
+msgstr "Hautsi zurigunean"
+
+msgid "Break at whitespace or punctuation"
+msgstr "Hautsi zurigunean edo puntuaketan"
+
+#, c-format
+msgid "Right to Left (%1)"
+msgstr "Eskuina Ezkerrera (%1)"
+
+#, c-format
+msgid "Right to Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Left (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Right (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left to Right (%1)"
+msgstr "Ezkerra Eskuinera (%1)"
+
+#, c-format
+msgid "Left to Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left to... (%1)"
+msgstr "Ezkerra hona... (%1)"
+
+#, c-format
+msgid "Middle to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Right to... (%1)"
+msgstr "Eskuina hona... (%1)"
+
+#, c-format
+msgid "Both to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "All to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Differences to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left (%1)"
+msgstr "Ezkerra (%1)"
+
+#, c-format
+msgid "Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Right (%1)"
+msgstr "Eskuina (%1)"
+
+#, c-format
+msgid "Both (%1)"
+msgstr "Biak (%1)"
+
+#, c-format
+msgid "All (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left side - select destination folder:"
+msgstr "Ezkerraldea - hautatu helmuga agiritegia:"
+
+#, c-format
+msgid "Middle side - select destination folder:"
+msgstr ""
+
+#, c-format
+msgid "Right side - select destination folder:"
+msgstr "Eskuinaldea - hautatu helmuga agiritegia:"
+
+#, c-format
+msgid "(%1 Files Affected)"
+msgstr "(%1 Agiri Eraginda)"
+
+#, c-format
+msgid "(%1 of %2 Files Affected)"
+msgstr "(%1 Agiri %2-tik Eraginda)"
+
+#, c-format
+msgid ""
+"Are you sure you want to delete\n"
+"\n"
+"%1 ?"
+msgstr ""
+"Zihur zaude ezabatzea nahi duzula\n"
+"\n"
+"%1?"
+
+#, c-format
+msgid "Are you sure you want to copy:"
+msgstr "Zihur zaude hona kopiatzea nahi duzula:"
+
+#, c-format
+msgid "Are you sure you want to copy %d items:"
+msgstr "Zihur zaude %d gaiak kopiatzea nahi dituzula:"
+
+#, c-format
+msgid ""
+"Operation aborted!\n"
+"\n"
+"Folder contents at disks has changed, path\n"
+"%1\n"
+"was not found.\n"
+"\n"
+"Please refresh the compare."
+msgstr ""
+"Eragiketa utzita!\n"
+"\n"
+"Diskako agiritegiko edukiak aldatu egin dira, helburua\n"
+"%1\n"
+"ez da aurkitu.\n"
+"\n"
+"Mesedez berritu alderaketa."
+
+#, c-format
+msgid "Are you sure you want to move:"
+msgstr "Zihur zaude mugitzea nahi duzula:"
+
+#, c-format
+msgid "Are you sure you want to move %d items:"
+msgstr "Zihur zaude %d gaiak mugitzea nahi dituzula:"
+
+#, c-format
+msgid "Confirm Move"
+msgstr "Berretsi Mugitzea"
+
+#, c-format
+msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr ""
+
+#, c-format
+msgid "Failed to execute external editor: %1"
+msgstr "Hutsegitea kanpoko editatzailea ekiterakoan: %1"
+
+#, c-format
+msgid "Unknown archive format"
+msgstr "Agiri heuskarri ezezaguna"
+
+#, c-format
+msgid "Filename"
+msgstr "Agirizena"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Agiritegia"
+
+#, c-format
+msgid "Comparison result"
+msgstr "Alderaketa emaitza"
+
+#, c-format
+msgid "Left Date"
+msgstr "Ezker Eguna"
+
+#, c-format
+msgid "Right Date"
+msgstr "Eskuin Eguna"
+
+#, c-format
+msgid "Middle Date"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Luzapena"
+
+#, c-format
+msgid "Left Size"
+msgstr "Ezker Neurria"
+
+#, c-format
+msgid "Right Size"
+msgstr "Eskuin Neurria"
+
+#, c-format
+msgid "Middle Size"
+msgstr ""
+
+#, c-format
+msgid "Right Size (Short)"
+msgstr "Eskuin Neurria (Laburra)"
+
+#, c-format
+msgid "Left Size (Short)"
+msgstr "Ezker Neurria (Laburra)"
+
+#, c-format
+msgid "Middle Size (Short)"
+msgstr ""
+
+#, c-format
+msgid "Left Creation Time"
+msgstr "Ezkerreko Sortze Denbora"
+
+#, c-format
+msgid "Right Creation Time"
+msgstr "Eskuineko Sortze Denbora"
+
+#, c-format
+msgid "Middle Creation Time"
+msgstr ""
+
+#, c-format
+msgid "Newer File"
+msgstr "Agiri Berriena"
+
+#, c-format
+msgid "Left File Version"
+msgstr "Ezkerreko Agiri Bertsioa"
+
+#, c-format
+msgid "Right File Version"
+msgstr "Eskuineko Agiri Bertsioa"
+
+#, c-format
+msgid "Middle File Version"
+msgstr ""
+
+#, c-format
+msgid "Short Result"
+msgstr "Emaitz Laburra"
+
+#, c-format
+msgid "Left Attributes"
+msgstr "Ezkerraren Ezaugarriak"
+
+#, c-format
+msgid "Right Attributes"
+msgstr "Eskuinaren Ezaugarriak"
+
+#, c-format
+msgid "Middle Attributes"
+msgstr ""
+
+#, c-format
+msgid "Left EOL"
+msgstr "Ezker EOL"
+
+#, c-format
+msgid "Middle EOL"
+msgstr ""
+
+#, c-format
+msgid "Right EOL"
+msgstr "Eskuin EOL"
+
+#, c-format
+msgid "Left Encoding"
+msgstr "Ezker Kodeaketa"
+
+#, c-format
+msgid "Right Encoding"
+msgstr "Eskuin Kodeaketa"
+
+#, c-format
+msgid "Middle Encoding"
+msgstr ""
+
+msgid "Ignored Diff"
+msgstr "Ezikusitako Ezberd"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Binarioa"
+
+#, c-format
+msgid "Unable to compare files"
+msgstr "Ezinezkoa agiriak alderatzea"
+
+#, c-format
+msgid "Item aborted"
+msgstr "Gaia utzita"
+
+#, c-format
+msgid "File skipped"
+msgstr "Agiria Jauzita"
+
+#, c-format
+msgid "Folder skipped"
+msgstr "Agiritegia jauzita"
+
+#, c-format
+msgid "Left only: %1"
+msgstr "Ezkerra bakarrik: %1"
+
+#, c-format
+msgid "Middle only: %1"
+msgstr ""
+
+#, c-format
+msgid "Right only: %1"
+msgstr "Eskuina bakarrik: %1"
+
+#, c-format
+msgid "Does not exist in %1"
+msgstr ""
+
+#, c-format
+msgid "Binary files are identical"
+msgstr "Agiri binarioak berdinak dira"
+
+#, c-format
+msgid "Binary files are different"
+msgstr "Agiri binarioak ezberdinak dira"
+
+#, c-format
+msgid "Files are different"
+msgstr "Agiriak ezberdinak dira"
+
+#, c-format
+msgid "Folders are different"
+msgstr "Agiritegiak ezberdinak dira"
+
+#, c-format
+msgid "Left Only"
+msgstr "Ezkerra Bakarrik"
+
+#, c-format
+msgid "Right Only"
+msgstr "Eskuina Bakarrik"
+
+#, c-format
+msgid "Middle Only"
+msgstr ""
+
+#, c-format
+msgid "No item in left"
+msgstr ""
+
+#, c-format
+msgid "No item in right"
+msgstr ""
+
+#, c-format
+msgid "No item in middle"
+msgstr ""
+
+#, c-format
+msgid "Error"
+msgstr "Akatsa"
+
+#, c-format
+msgid "Text files are identical"
+msgstr "Idazki agiriak berdinak dira"
+
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr ""
+
+#, c-format
+msgid "Text files are different"
+msgstr "Idazki agiriak ezberdinak dira"
+
+#, c-format
+msgid "Elapsed time: %ld ms"
+msgstr "Igarotako denbora: %ld sm"
+
+#, c-format
+msgid "1 item selected"
+msgstr "1 gai hautatuta"
+
+#, c-format
+msgid "%1 items selected"
+msgstr "%1 gai hautatuta"
+
+#, c-format
+msgid "Filename or folder name."
+msgstr "Agirizena edo agiritegi izena"
+
+#, c-format
+msgid "Subfolder name when subfolders are included."
+msgstr "Azpiagiritegi izena azpiagiritegiak barne direnean."
+
+#, c-format
+msgid "Comparison result, long form."
+msgstr "Alderaketa emaitza, modu luzean."
+
+#, c-format
+msgid "Left side modification date."
+msgstr "Ezkerralde aldaketa eguna."
+
+#, c-format
+msgid "Right side modification date."
+msgstr "Eskuinalde aldaketa eguna."
+
+#, c-format
+msgid "Middle side modification date."
+msgstr ""
+
+#, c-format
+msgid "File's extension."
+msgstr "Agiriaren luzapena."
+
+#, c-format
+msgid "Left file size in bytes."
+msgstr "Ezkerreko agiriaren neurria byte-tan"
+
+#, c-format
+msgid "Right file size in bytes."
+msgstr "Eskuineko agiriaren neurria byte-tan"
+
+#, c-format
+msgid "Middle file size in bytes."
+msgstr ""
+
+#, c-format
+msgid "Left file size abbreviated."
+msgstr "Ezkerreko agiri neurria laburtuta."
+
+#, c-format
+msgid "Right file size abbreviated."
+msgstr "Eskuineko agiri neurria laburtuta."
+
+#, c-format
+msgid "Middle file size abbreviated."
+msgstr ""
+
+#, c-format
+msgid "Left side creation time."
+msgstr "Ezkerraldearen sortze denbora."
+
+#, c-format
+msgid "Right side creation time."
+msgstr "Eskuinaldearen sortze denbora."
+
+#, c-format
+msgid "Middle side creation time."
+msgstr ""
+
+#, c-format
+msgid "Tells which side has newer modification date."
+msgstr "Esaten du zein aldek duen aldaketa egun berriagoa."
+
+#, c-format
+msgid "Left side file version, only for some filetypes."
+msgstr "Ezkerraldeko agiri bertsioa, agiri-mota batzuentzat bakarrik."
+
+#, c-format
+msgid "Right side file version, only for some filetypes."
+msgstr "Eskuinaldeko agiri bertsioa, agiri-mota batzuentzat bakarrik."
+
+#, c-format
+msgid "Middle side file version, only for some filetypes."
+msgstr ""
+
+#, c-format
+msgid "Short comparison result."
+msgstr "Alderaketa laburraren emaitza."
+
+#, c-format
+msgid "Left side attributes."
+msgstr "Ezkerraldearen ezaugarriak."
+
+#, c-format
+msgid "Right side attributes."
+msgstr "Eskuinaldearen ezaugarriak."
+
+#, c-format
+msgid "Middle side attributes."
+msgstr ""
+
+msgid "Left side file EOL type."
+msgstr "Ezkerraldeko agiria EOL motakoa da."
+
+msgid "Right side file EOL type."
+msgstr "Eskuinaldeko agiria EOL motakoa da."
+
+msgid "Middle side file EOL type."
+msgstr ""
+
+#, c-format
+msgid "Left side encoding."
+msgstr "Eskuinalde kodeaketa."
+
+#, c-format
+msgid "Right side encoding."
+msgstr "Ezkerralde kodeaketa."
+
+#, c-format
+msgid "Middle side encoding."
+msgstr ""
+
+#, c-format
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "Agirian ezikusitako ezberdintasun zenbatekoa. Ezberdintasun hauek WinMergek ezikusi ditu eta ezin dira batu."
+
+#, c-format
+msgid "Number of differences in file. This number does not include ignored differences."
+msgstr "Agirian dauden ezberdintasun zenbatekoa. Zenbateko honek ez ditu barnebiltzen ezikusitako ezberdintasunak."
+
+#, c-format
+msgid "Shows an asterisk (*) if the file is binary."
+msgstr "Erakutsi asteriskoa (*) agiria binarioa bada."
+
+#, c-format
+msgid "Compare %1 with %2"
+msgstr "Alderatu %1 %2-rekin"
+
+#, c-format
+msgid "Comma-separated list"
+msgstr "Kakotxaz banandutako zerrenda"
+
+#, c-format
+msgid "Tab-separated list"
+msgstr "Fitxaz banandutako zerrenda"
+
+#, c-format
+msgid "Simple HTML"
+msgstr "HTML Arrunta"
+
+#, c-format
+msgid "Simple XML"
+msgstr "XML Arrunta"
+
+#, c-format
+msgid "The report file already exists. Do you want to overwrite existing file?"
+msgstr "Jakinarazpen agiria jadanik badago. Dagoen agiria gainidaztea nahi duzu?"
+
+#, c-format
+msgid ""
+"Error creating the report:\n"
+"%1"
+msgstr ""
+"Akatsa jakinarazpena sortzean:\n"
+"%1"
+
+#, c-format
+msgid "The report has been created successfully."
+msgstr "Jakinarazpena ongi sortu da."
+
+#, c-format
+msgid "The same file is opened in both panels."
+msgstr "Agiri berdina dago irekita bi paneletan."
+
+#, c-format
+msgid "The selected files are identical."
+msgstr "Hautatutako agiriak berdinak dira."
+
+#, c-format
+msgid "An error occurred while comparing the files."
+msgstr "Akats bat gertatu da agiriak alderatzerakoan."
+
+#, c-format
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "Aldibaterako agiriak ezin izan dira sortu. Egiaztatu zure aldibaterako helburu ezarpenak."
+
+#, c-format
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr ""
+"Agiri hauek gurdi itzulera mota ezberdinak erabiltzen dituzte.\n"
+"\n"
+"Nahi ditutzu gurdi itzulera mota guztiak tratatzea alderaketa honekiko berdin bezala?\n"
+"\n"
+"Oharra: Gurdi itzulera mota guztiak berdin bezala tratatzea nahi badituzu, ezarri 'Ezikusi gurdi itzulera ezberdintasunak...' aukera Alderaketa fitxan aukeren elkarrizketan (eskuragarri hemen: Editatu/Aukerak)."
+
+#, c-format
+msgid "The selected folder is invalid."
+msgstr "Hautatutako agiritegia ez da baliogarria"
+
+#, c-format
+msgid "Cannot open a binary file to editor."
+msgstr "Ezinenezkoa agiri binarioa editatzailera irekitzea"
+
+#, c-format
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
+msgstr ""
+"Agiritegia beste aldean bakarrik dago eta ezin da ireki.\n"
+"\n"
+"Nahi duzu dagokion agiritegi bat sortzea:\n"
+"%1\n"
+"beste aldean eta agiritegi hauek irekitzea?"
+
+#, c-format
+msgid "Do you want to move to the next file?"
+msgstr ""
+
+#, c-format
+msgid "Do you want to move to the previous file?"
+msgstr ""
+
+#, c-format
+msgid "Do you want to move to the next page?"
+msgstr ""
+
+#, c-format
+msgid "Do you want to move to the previous page?"
+msgstr ""
+
+#, c-format
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr ""
+"Kode-orrialde ezberdinak aurkitu dira ezkerreko (cp%d) eta eskuineko (cp%d) agirietan.\n"
+"Erakutsiz agiri bakoitza kode-orrialde horretan erakuspen hobeago bat emango du baina batzea/kopiatzea kaltegarria izango da.\n"
+"Nahi duzu agiri biak tratatzea windowsen kode-orrialde berezkoan (gomendatuta)?"
+
+#, c-format
+msgid "Information lost due to encoding errors: both files"
+msgstr "Informazioa galduta kodeaketa akatsengaitik: bi agirietan"
+
+#, c-format
+msgid "Information lost due to encoding errors: first file"
+msgstr ""
+
+#, c-format
+msgid "Information lost due to encoding errors: second file"
+msgstr ""
+
+#, c-format
+msgid "Information lost due to encoding errors: third file"
+msgstr ""
+
+#, c-format
+msgid "No difference"
+msgstr "Ezberdintasunik ez"
+
+#, c-format
+msgid "Line difference"
+msgstr "Lerro ezberdintasuna"
+
+#, c-format
+msgid "Replaced %1 string(s)."
+msgstr "Ordeztuta %1 kate."
+
+#, c-format
+msgid "Cannot find string \"%s\""
+msgstr "Ezin da kate hau aurkitu: \"%s\""
+
+#, c-format
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
+msgstr ""
+
+#, c-format
+msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgstr ""
+
+#, c-format
+msgid "The change of codepage has been merged"
+msgstr ""
+
+#, c-format
+msgid "The changes of codepage are conflicting"
+msgstr ""
+
+#, c-format
+msgid "The change of EOL has been merged"
+msgstr ""
+
+#, c-format
+msgid "The changes of EOL are conflicting"
+msgstr ""
+
+#, c-format
+msgid "Location Pane"
+msgstr "Kokaleku Panela"
+
+#, c-format
+msgid "Diff Pane"
+msgstr "Ezberdint. Panela"
+
+#, c-format
+msgid "Patch file successfully written."
+msgstr "Eranskina agiria ongi idatzi da."
+
+#, c-format
+msgid "1. item is not found or is directory!"
+msgstr "1. gaia ez da aurkitu edo zuzenbidea da!"
+
+#, c-format
+msgid "2. item is not found or is directory!"
+msgstr "2. gaia ez da aurkitu edo zuzenbidea da!"
+
+#, c-format
+msgid "The patch file already exists. Do you want to overwrite it?"
+msgstr "Eranskin agiria jadanik badago. Gainidaztea nahi duzu?"
+
+#, c-format
+msgid "[%1 files selected]"
+msgstr "[%1 agiri hautatuta]"
+
+#, c-format
+msgid "Normal"
+msgstr "Normala"
+
+#, c-format
+msgid "Context"
+msgstr "Hitzingurua"
+
+#, c-format
+msgid "Unified"
+msgstr "Bateratuta"
+
+#, c-format
+msgid "Could not write to file %1."
+msgstr "Ezin da %1 agirira idatzi."
+
+#, c-format
+msgid "The specified output path is not an absolute path: %1"
+msgstr "Adierazitako irteera helburua ez helburu osoa: %1"
+
+#, c-format
+msgid "Specify an output file"
+msgstr "Adierazi irteera agiri bat"
+
+#, c-format
+msgid "Cannot create a patch file from binary files."
+msgstr "Ezin da eranski agiria sortu agiri binarioetatik."
+
+#, c-format
+msgid "Cannot create a patch file from directories."
+msgstr "Ezin da eranskina agiria sortu zuzenbideetatik"
+
+#, c-format
+msgid ""
+"Please save all files first.\n"
+"\n"
+"Creating a patch requires that there are no unsaved changes in files."
+msgstr ""
+"Mesedez gorde agiri guztiak lehenik.\n"
+"\n"
+"Eranskina sortzeak agirietan gordegabeko aldaketarik ez egotea eskatzen du."
+
+#, c-format
+msgid "Folder does not exist."
+msgstr "Agiritegia ez dago."
+
+#, c-format
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
+msgstr ""
+"Agiri sostengua ez dago gaituta\n"
+"Beharrezko osagai guztiak (7-zip eta/edo Merge7z*.dll) agiri sostengurako ezin dira aurkitu.\n"
+"Ikusi eskuliburua argibide gehigorako agiri sostenguari buruz eta nola gaitzeaz."
+
+#, c-format
+msgid "Select file for export"
+msgstr "Hautatu esportatzeko agiria"
+
+#, c-format
+msgid "Select file for import"
+msgstr "Hautatu inportatzeko agiria"
+
+#, c-format
+msgid "Options imported from the file."
+msgstr "Agiritik inportatutako aukerak"
+
+#, c-format
+msgid "Options exported to the file."
+msgstr "Agiritik esportatutako aukerak"
+
+#, c-format
+msgid "Failed to import options from the file."
+msgstr "Hutsegitea agiritik aukerak inportatzerakoan."
+
+#, c-format
+msgid "Failed to write options to the file."
+msgstr "Hutsegitea aukerak agirian idazterakoan."
+
+#, c-format
+msgid ""
+"You are about to close several compare windows.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"Alderaketa leiho anitz isteko zorian zaude.\n"
+"\n"
+"Jarraitzea nahi duzu?"
+
+#, c-format
+msgid "Mixed"
+msgstr "Mixed"
+
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Binarioa"
+
+#, c-format
+msgid "None"
+msgstr "Bat ere ez"
+
+#, c-format
+msgid "Type"
+msgstr "Mota"
+
+#, c-format
+msgid "Unpacker"
+msgstr "Despaketatzailea"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Aurrezberd"
+
+#, c-format
+msgid "Editor script"
+msgstr "Editatzaile eskripta"
+
+#, c-format
+msgid "\nDifference in the Current Line"
+msgstr ""
+
+#, c-format
+msgid "\nOptions"
+msgstr ""
+
+#, c-format
+msgid "\nRefresh (F5)"
+msgstr ""
+
+#, c-format
+msgid "\nPrevious Difference (Alt+Up)"
+msgstr ""
+
+#, c-format
+msgid "\nNext Difference (Alt+Down)"
+msgstr ""
+
+#, c-format
+msgid "\nPrevious Conflict (Alt+Shift+Up)"
+msgstr ""
+
+#, c-format
+msgid "\nNext Conflict (Alt+Shift+Down)"
+msgstr ""
+
+#, c-format
+msgid "\nFirst Difference (Alt+Home)"
+msgstr ""
+
+#, c-format
+msgid "\nCurrent Difference (Alt+Enter)"
+msgstr ""
+
+#, c-format
+msgid "\nLast Difference (Alt+End)"
+msgstr ""
+
+#, c-format
+msgid "\nCopy Right (Alt+Right)"
+msgstr ""
+
+#, c-format
+msgid "\nCopy Left (Alt+Left)"
+msgstr ""
+
+#, c-format
+msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+
+#, c-format
+msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+
+#, c-format
+msgid "\nAll Right"
+msgstr ""
+
+#, c-format
+msgid "\nAll Left"
+msgstr ""
+
+#, c-format
+msgid "\nAuto Merge (Ctrl+Alt+M)"
+msgstr ""
+
+#, c-format
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
+msgstr "Egokitutako despaketatzailea bi agiriei ezartzen zaie (agiri batek bakarrik behar du luzapena)"
+
+#, c-format
+msgid "No prediffer (normal)"
+msgstr "Ez aurrezberd (normala)"
+
+#, c-format
+msgid "Suggested plugins"
+msgstr "Iradokitutako pluginak"
+
+#, c-format
+msgid "Other plugins"
+msgstr "Beste pluginak"
+
+#, c-format
+msgid "Private Build: %1"
+msgstr "Bilduma Pribatua: %1"
+
+#, c-format
+msgid "Your software is up to date"
+msgstr ""
+
+#, c-format
+msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+msgstr ""
+
+#, c-format
+msgid "Failed to download latest version information"
+msgstr ""
+
+#, c-format
+msgid "Plugin Settings"
+msgstr "Plugin Ezarpenak"
+
+#, c-format
+msgid "WSH not found - .sct scripts disabled"
+msgstr "WSH ez da aurkitu - .sct eskriptak ezgaituta"
+
+#, c-format
+msgid "<None>"
+msgstr "<Ezer ez>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Berezgaitasunez>"
+
+#, c-format
+msgid "G&oto Line %1"
+msgstr "&Joan lerro honetara: %1"
+
+#, c-format
+msgid "Disabled"
+msgstr "Ezgaituta"
+
+#, c-format
+msgid "From file system"
+msgstr "Agiri sistematik"
+
+#, c-format
+msgid "From MRU list"
+msgstr "MRU zerrendatik"
+
+#, c-format
+msgid "No Highlighting"
+msgstr "Ez Nabarmenduta"
+
+#, c-format
+msgid "Batch"
+msgstr "Batch"
+
+msgid "Lua"
+msgstr ""
+
+#, c-format
+msgid "Portable Object"
+msgstr "Portable Object"
+
+#, c-format
+msgid "Resources"
+msgstr "Resources"
+
+#, c-format
+msgid "Shell"
+msgstr "Shell"
+
+#, c-format
+msgid "VHDL"
+msgstr ""
+
+#, c-format
+msgid "Close &Left Tabs"
+msgstr ""
+
+#, c-format
+msgid "Close R&ight Tabs"
+msgstr ""
+
+#, c-format
+msgid "Close &Other Tabs"
+msgstr ""
+
+#, c-format
+msgid "Enable &Auto Max Width"
+msgstr ""
+
+#, c-format
+msgid "frhed is not installed"
+msgstr ""
+
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "Failed to create folder."
+msgstr ""
+
+#, c-format
+msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "minimal"
+msgstr ""
+
+msgid "patience"
+msgstr ""
+
+msgid "histogram"
+msgstr ""
+
+msgid "GDI"
+msgstr ""
+
+msgid "DirectWrite Default"
+msgstr ""
+
+msgid "DirectWrite Aliased"
+msgstr ""
+
+msgid "DirectWrite GDI Classic"
+msgstr ""
+
+msgid "DirectWrite GDI Natural"
+msgstr ""
+
+msgid "DirectWrite Natural"
+msgstr ""
+
+msgid "DirectWrite Natural Symmetric"
+msgstr ""
+

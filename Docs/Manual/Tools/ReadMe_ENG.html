@@ -1,0 +1,669 @@
+<html>
+	<body>
+		<h1>SBAppLocale</h1>
+		<p>Copyright 2005-2013 SteelBytes</p>
+		<p>basically it's a command line version of Microsoft's AppLocale :-)<br />I wrote it as I needed to automate the building of CHM files using MS's HTML Help Workshop</p>
+		<P>Syntax:<br />SBAppLocale [-freeconsole] [-nowarndotnet] &lt;locale_num&gt; &lt;command&gt; [&lt;command arg1&gt; &lt;command 
+			arg2&gt; ..]</P>
+		<P>How's it work? It launches the target with the following Win32 API calls patched:<br />
+	<i>GetACP</i><br />
+	<i>GetOEMCP</i><br />
+	<i>GetSystemDefaultLCID</i><br />
+	<i>GetUserDefaultLCID</i><br />
+	<i>GetSystemDefaultLangID</i><br />
+	<i>GetUserDefaultLangID</i><br />
+	<i>CharNextA/CharPrevA</i><br />
+	<i>IsDBCSLeadByte</i><br />
+	<i>GetCPInfo</i> if equals CP_ACP or CP_OEMCP<br />
+	<i>GetLocaleInfoA</i>/<i>GetLocaleInfoW</i> if LOCALE_SYSTEM_DEFAULT or LOCALE_USER_DEFAULT<br />
+	<i>MultiByteToWideChar</i> if CP_ACP or CP_OEMCP<br />
+	<i>WideCharToMultiByte</i> if CP_ACP or CP_OEMCP<br />
+	<i>CreateThread</i> adds call to SetThreadLocale<br />
+	<i>GetCommandLineA</i>/<i>GetCommandLineW</i><br />
+		</P>
+		<P>Locales (installed on my Windows XP Pro SP2):
+		<table>
+			<tr>
+				<td>1078</td>
+				<td>Afrikaans</td>
+			</tr>
+			<tr>
+				<td>1052</td>
+				<td>Albanian</td>
+			</tr>
+			<tr>
+				<td>5121</td>
+				<td>Arabic (Algeria)</td>
+			</tr>
+			<tr>
+				<td>15361</td>
+				<td>Arabic (Bahrain)</td>
+			</tr>
+			<tr>
+				<td>3073</td>
+				<td>Arabic (Egypt)</td>
+			</tr>
+			<tr>
+				<td>2049</td>
+				<td>Arabic (Iraq)</td>
+			</tr>
+			<tr>
+				<td>11265</td>
+				<td>Arabic (Jordan)</td>
+			</tr>
+			<tr>
+				<td>13313</td>
+				<td>Arabic (Kuwait)</td>
+			</tr>
+			<tr>
+				<td>12289</td>
+				<td>Arabic (Lebanon)</td>
+			</tr>
+			<tr>
+				<td>4097</td>
+				<td>Arabic (Libya)</td>
+			</tr>
+			<tr>
+				<td>6145</td>
+				<td>Arabic (Morocco)</td>
+			</tr>
+			<tr>
+				<td>8193</td>
+				<td>Arabic (Oman)</td>
+			</tr>
+			<tr>
+				<td>16385</td>
+				<td>Arabic (Qatar)</td>
+			</tr>
+			<tr>
+				<td>1025</td>
+				<td>Arabic (Saudi Arabia)</td>
+			</tr>
+			<tr>
+				<td>10241</td>
+				<td>Arabic (Syria)</td>
+			</tr>
+			<tr>
+				<td>7169</td>
+				<td>Arabic (Tunisia)</td>
+			</tr>
+			<tr>
+				<td>14337</td>
+				<td>Arabic (U.A.E.)</td>
+			</tr>
+			<tr>
+				<td>9217</td>
+				<td>Arabic (Yemen)</td>
+			</tr>
+			<tr>
+				<td>1067</td>
+				<td>Armenian</td>
+			</tr>
+			<tr>
+				<td>2092</td>
+				<td>Azeri (Cyrillic)</td>
+			</tr>
+			<tr>
+				<td>1068</td>
+				<td>Azeri (Latin)</td>
+			</tr>
+			<tr>
+				<td>1069</td>
+				<td>Basque</td>
+			</tr>
+			<tr>
+				<td>1059</td>
+				<td>Belarusian</td>
+			</tr>
+			<tr>
+				<td>1093</td>
+				<td>Bengali (India)</td>
+			</tr>
+			<tr>
+				<td>5146</td>
+				<td>Bosnian (Latin, Bosnia and Herzegovina)</td>
+			</tr>
+			<tr>
+				<td>1026</td>
+				<td>Bulgarian</td>
+			</tr>
+			<tr>
+				<td>1027</td>
+				<td>Catalan</td>
+			</tr>
+			<tr>
+				<td>3076</td>
+				<td>Chinese (Hong Kong S.A.R.)</td>
+			</tr>
+			<tr>
+				<td>5124</td>
+				<td>Chinese (Macau S.A.R.)</td>
+			</tr>
+			<tr>
+				<td>2052</td>
+				<td>Chinese (PRC)</td>
+			</tr>
+			<tr>
+				<td>4100</td>
+				<td>Chinese (Singapore)</td>
+			</tr>
+			<tr>
+				<td>1028</td>
+				<td>Chinese (Taiwan)</td>
+			</tr>
+			<tr>
+				<td>1050</td>
+				<td>Croatian</td>
+			</tr>
+			<tr>
+				<td>4122</td>
+				<td>Croatian (Bosnia and Herzegovina)</td>
+			</tr>
+			<tr>
+				<td>1029</td>
+				<td>Czech</td>
+			</tr>
+			<tr>
+				<td>1030</td>
+				<td>Danish</td>
+			</tr>
+			<tr>
+				<td>1125</td>
+				<td>Divehi</td>
+			</tr>
+			<tr>
+				<td>2067</td>
+				<td>Dutch (Belgium)</td>
+			</tr>
+			<tr>
+				<td>1043</td>
+				<td>Dutch (Netherlands)</td>
+			</tr>
+			<tr>
+				<td>3081</td>
+				<td>English (Australia)</td>
+			</tr>
+			<tr>
+				<td>10249</td>
+				<td>English (Belize)</td>
+			</tr>
+			<tr>
+				<td>4105</td>
+				<td>English (Canada)</td>
+			</tr>
+			<tr>
+				<td>9225</td>
+				<td>English (Caribbean)</td>
+			</tr>
+			<tr>
+				<td>6153</td>
+				<td>English (Ireland)</td>
+			</tr>
+			<tr>
+				<td>8201</td>
+				<td>English (Jamaica)</td>
+			</tr>
+			<tr>
+				<td>5129</td>
+				<td>English (New Zealand)</td>
+			</tr>
+			<tr>
+				<td>13321</td>
+				<td>English (Philippines)</td>
+			</tr>
+			<tr>
+				<td>7177</td>
+				<td>English (South Africa)</td>
+			</tr>
+			<tr>
+				<td>11273</td>
+				<td>English (Trinidad)</td>
+			</tr>
+			<tr>
+				<td>2057</td>
+				<td>English (United Kingdom)</td>
+			</tr>
+			<tr>
+				<td>1033</td>
+				<td>English (United States)</td>
+			</tr>
+			<tr>
+				<td>12297</td>
+				<td>English (Zimbabwe)</td>
+			</tr>
+			<tr>
+				<td>1061</td>
+				<td>Estonian</td>
+			</tr>
+			<tr>
+				<td>1080</td>
+				<td>Faeroese</td>
+			</tr>
+			<tr>
+				<td>1065</td>
+				<td>Farsi</td>
+			</tr>
+			<tr>
+				<td>1035</td>
+				<td>Finnish</td>
+			</tr>
+			<tr>
+				<td>2060</td>
+				<td>French (Belgium)</td>
+			</tr>
+			<tr>
+				<td>3084</td>
+				<td>French (Canada)</td>
+			</tr>
+			<tr>
+				<td>1036</td>
+				<td>French (France)</td>
+			</tr>
+			<tr>
+				<td>5132</td>
+				<td>French (Luxembourg)</td>
+			</tr>
+			<tr>
+				<td>6156</td>
+				<td>French (Monaco)</td>
+			</tr>
+			<tr>
+				<td>4108</td>
+				<td>French (Switzerland)</td>
+			</tr>
+			<tr>
+				<td>1071</td>
+				<td>FYRO Macedonian</td>
+			</tr>
+			<tr>
+				<td>1110</td>
+				<td>Galician</td>
+			</tr>
+			<tr>
+				<td>1079</td>
+				<td>Georgian</td>
+			</tr>
+			<tr>
+				<td>3079</td>
+				<td>German (Austria)</td>
+			</tr>
+			<tr>
+				<td>1031</td>
+				<td>German (Germany)</td>
+			</tr>
+			<tr>
+				<td>5127</td>
+				<td>German (Liechtenstein)</td>
+			</tr>
+			<tr>
+				<td>4103</td>
+				<td>German (Luxembourg)</td>
+			</tr>
+			<tr>
+				<td>2055</td>
+				<td>German (Switzerland)</td>
+			</tr>
+			<tr>
+				<td>1032</td>
+				<td>Greek</td>
+			</tr>
+			<tr>
+				<td>1095</td>
+				<td>Gujarati</td>
+			</tr>
+			<tr>
+				<td>1037</td>
+				<td>Hebrew</td>
+			</tr>
+			<tr>
+				<td>1081</td>
+				<td>Hindi</td>
+			</tr>
+			<tr>
+				<td>1038</td>
+				<td>Hungarian</td>
+			</tr>
+			<tr>
+				<td>1039</td>
+				<td>Icelandic</td>
+			</tr>
+			<tr>
+				<td>1057</td>
+				<td>Indonesian</td>
+			</tr>
+			<tr>
+				<td>1040</td>
+				<td>Italian (Italy)</td>
+			</tr>
+			<tr>
+				<td>2064</td>
+				<td>Italian (Switzerland)</td>
+			</tr>
+			<tr>
+				<td>1041</td>
+				<td>Japanese</td>
+			</tr>
+			<tr>
+				<td>1099</td>
+				<td>Kannada</td>
+			</tr>
+			<tr>
+				<td>1087</td>
+				<td>Kazakh</td>
+			</tr>
+			<tr>
+				<td>1111</td>
+				<td>Konkani</td>
+			</tr>
+			<tr>
+				<td>1042</td>
+				<td>Korean</td>
+			</tr>
+			<tr>
+				<td>1088</td>
+				<td>Kyrgyz (Cyrillic)</td>
+			</tr>
+			<tr>
+				<td>1062</td>
+				<td>Latvian</td>
+			</tr>
+			<tr>
+				<td>1063</td>
+				<td>Lithuanian</td>
+			</tr>
+			<tr>
+				<td>2110</td>
+				<td>Malay (Brunei Darussalam)</td>
+			</tr>
+			<tr>
+				<td>1086</td>
+				<td>Malay (Malaysia)</td>
+			</tr>
+			<tr>
+				<td>1100</td>
+				<td>Malayalam (India)</td>
+			</tr>
+			<tr>
+				<td>1082</td>
+				<td>Maltese</td>
+			</tr>
+			<tr>
+				<td>1153</td>
+				<td>Maori</td>
+			</tr>
+			<tr>
+				<td>1102</td>
+				<td>Marathi</td>
+			</tr>
+			<tr>
+				<td>1104</td>
+				<td>Mongolian (Cyrillic)</td>
+			</tr>
+			<tr>
+				<td>1132</td>
+				<td>Northern Sotho</td>
+			</tr>
+			<tr>
+				<td>1044</td>
+				<td>Norwegian (Bokmal)</td>
+			</tr>
+			<tr>
+				<td>2068</td>
+				<td>Norwegian (Nynorsk)</td>
+			</tr>
+			<tr>
+				<td>1045</td>
+				<td>Polish</td>
+			</tr>
+			<tr>
+				<td>1046</td>
+				<td>Portuguese (Brazil)</td>
+			</tr>
+			<tr>
+				<td>2070</td>
+				<td>Portuguese (Portugal)</td>
+			</tr>
+			<tr>
+				<td>1094</td>
+				<td>Punjabi</td>
+			</tr>
+			<tr>
+				<td>1131</td>
+				<td>Quechua (Bolivia)</td>
+			</tr>
+			<tr>
+				<td>2155</td>
+				<td>Quechua (Ecuador)</td>
+			</tr>
+			<tr>
+				<td>3179</td>
+				<td>Quechua (Peru)</td>
+			</tr>
+			<tr>
+				<td>1048</td>
+				<td>Romanian</td>
+			</tr>
+			<tr>
+				<td>1049</td>
+				<td>Russian</td>
+			</tr>
+			<tr>
+				<td>9275</td>
+				<td>Sami, Inari (Finland)</td>
+			</tr>
+			<tr>
+				<td>4155</td>
+				<td>Sami, Lule (Norway)</td>
+			</tr>
+			<tr>
+				<td>5179</td>
+				<td>Sami, Lule (Sweden)</td>
+			</tr>
+			<tr>
+				<td>3131</td>
+				<td>Sami, Northern (Finland)</td>
+			</tr>
+			<tr>
+				<td>1083</td>
+				<td>Sami, Northern (Norway)</td>
+			</tr>
+			<tr>
+				<td>2107</td>
+				<td>Sami, Northern (Sweden)</td>
+			</tr>
+			<tr>
+				<td>8251</td>
+				<td>Sami, Skolt (Finland)</td>
+			</tr>
+			<tr>
+				<td>6203</td>
+				<td>Sami, Southern (Norway)</td>
+			</tr>
+			<tr>
+				<td>7227</td>
+				<td>Sami, Southern (Sweden)</td>
+			</tr>
+			<tr>
+				<td>1103</td>
+				<td>Sanskrit</td>
+			</tr>
+			<tr>
+				<td>3098</td>
+				<td>Serbian (Cyrillic)</td>
+			</tr>
+			<tr>
+				<td>7194</td>
+				<td>Serbian (Cyrillic, Bosnia and Herzegovina)</td>
+			</tr>
+			<tr>
+				<td>2074</td>
+				<td>Serbian (Latin)</td>
+			</tr>
+			<tr>
+				<td>6170</td>
+				<td>Serbian (Latin, Bosnia and Herzegovina)</td>
+			</tr>
+			<tr>
+				<td>1051</td>
+				<td>Slovak</td>
+			</tr>
+			<tr>
+				<td>1060</td>
+				<td>Slovenian</td>
+			</tr>
+			<tr>
+				<td>11274</td>
+				<td>Spanish (Argentina)</td>
+			</tr>
+			<tr>
+				<td>16394</td>
+				<td>Spanish (Bolivia)</td>
+			</tr>
+			<tr>
+				<td>13322</td>
+				<td>Spanish (Chile)</td>
+			</tr>
+			<tr>
+				<td>9226</td>
+				<td>Spanish (Colombia)</td>
+			</tr>
+			<tr>
+				<td>5130</td>
+				<td>Spanish (Costa Rica)</td>
+			</tr>
+			<tr>
+				<td>7178</td>
+				<td>Spanish (Dominican Republic)</td>
+			</tr>
+			<tr>
+				<td>12298</td>
+				<td>Spanish (Ecuador)</td>
+			</tr>
+			<tr>
+				<td>17418</td>
+				<td>Spanish (El Salvador)</td>
+			</tr>
+			<tr>
+				<td>4106</td>
+				<td>Spanish (Guatemala)</td>
+			</tr>
+			<tr>
+				<td>18442</td>
+				<td>Spanish (Honduras)</td>
+			</tr>
+			<tr>
+				<td>3082</td>
+				<td>Spanish (International Sort)</td>
+			</tr>
+			<tr>
+				<td>2058</td>
+				<td>Spanish (Mexico)</td>
+			</tr>
+			<tr>
+				<td>19466</td>
+				<td>Spanish (Nicaragua)</td>
+			</tr>
+			<tr>
+				<td>6154</td>
+				<td>Spanish (Panama)</td>
+			</tr>
+			<tr>
+				<td>15370</td>
+				<td>Spanish (Paraguay)</td>
+			</tr>
+			<tr>
+				<td>10250</td>
+				<td>Spanish (Peru)</td>
+			</tr>
+			<tr>
+				<td>20490</td>
+				<td>Spanish (Puerto Rico)</td>
+			</tr>
+			<tr>
+				<td>1034</td>
+				<td>Spanish (Traditional Sort)</td>
+			</tr>
+			<tr>
+				<td>14346</td>
+				<td>Spanish (Uruguay)</td>
+			</tr>
+			<tr>
+				<td>8202</td>
+				<td>Spanish (Venezuela)</td>
+			</tr>
+			<tr>
+				<td>1089</td>
+				<td>Swahili</td>
+			</tr>
+			<tr>
+				<td>1053</td>
+				<td>Swedish</td>
+			</tr>
+			<tr>
+				<td>2077</td>
+				<td>Swedish (Finland)</td>
+			</tr>
+			<tr>
+				<td>1114</td>
+				<td>Syriac</td>
+			</tr>
+			<tr>
+				<td>1097</td>
+				<td>Tamil</td>
+			</tr>
+			<tr>
+				<td>1092</td>
+				<td>Tatar</td>
+			</tr>
+			<tr>
+				<td>1098</td>
+				<td>Telugu</td>
+			</tr>
+			<tr>
+				<td>1054</td>
+				<td>Thai</td>
+			</tr>
+			<tr>
+				<td>1074</td>
+				<td>Tswana</td>
+			</tr>
+			<tr>
+				<td>1055</td>
+				<td>Turkish</td>
+			</tr>
+			<tr>
+				<td>1058</td>
+				<td>Ukrainian</td>
+			</tr>
+			<tr>
+				<td>1056</td>
+				<td>Urdu</td>
+			</tr>
+			<tr>
+				<td>2115</td>
+				<td>Uzbek (Cyrillic)</td>
+			</tr>
+			<tr>
+				<td>1091</td>
+				<td>Uzbek (Latin)</td>
+			</tr>
+			<tr>
+				<td>1066</td>
+				<td>Vietnamese</td>
+			</tr>
+			<tr>
+				<td>1106</td>
+				<td>Welsh</td>
+			</tr>
+			<tr>
+				<td>1076</td>
+				<td>Xhosa</td>
+			</tr>
+			<tr>
+				<td>1077</td>
+				<td>Zulu</td>
+			</tr>
+		</table>
+	</P>
+	</body>
+</html>

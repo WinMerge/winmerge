@@ -1,0 +1,33 @@
+From fc4d8248aa9679a979d5167bc82e7087fee3efc5 Mon Sep 17 00:00:00 2001
+From: Flaviu <Flaviu@DESKTOP-HP>
+Date: Thu, 2 Jan 2020 20:05:22 +0200
+Subject: [PATCH 08/29] modifications
+
+---
+ Src/DirView.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/Src/DirView.cpp b/Src/DirView.cpp
+index fcf9061c5..17919face 100644
+--- a/Src/DirView.cpp
++++ b/Src/DirView.cpp
+@@ -683,7 +683,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
+  */
+ void CDirView::ListContextMenu(CPoint point, int /*i*/)
+ {
+-	CDirDoc *pDoc = GetDocument();
++	CDirDoc* pDoc = GetDocument();
+ 	BCMenu menu;
+ 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
+ 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+@@ -3694,7 +3694,6 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
+ 	CEdit *pEdit = m_pList->GetEditControl();
+ 	pCmdUI->Enable(pEdit && pEdit->CanUndo());
+ }
+-
+ /**
+  * @brief Returns CShellContextMenu object that owns given HMENU.
+  *
+-- 
+2.18.0.windows.1
+

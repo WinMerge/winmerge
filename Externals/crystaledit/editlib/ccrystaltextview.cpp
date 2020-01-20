@@ -141,6 +141,10 @@ using CrystalLineParser::TEXTBLOCK;
 
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
+
 /** @brief Maximum tab-char width. */
 const UINT MAX_TAB_LEN = 64;
 /** @brief Width of revision marks. */
@@ -197,6 +201,7 @@ ON_COMMAND (ID_EDIT_REPEAT, OnEditRepeat)
 ON_UPDATE_COMMAND_UI (ID_EDIT_REPEAT, OnUpdateEditRepeat)
 ON_COMMAND (ID_EDIT_MARK, OnEditMark)
 ON_WM_MOUSEWHEEL ()
+ON_WM_MOUSEHWHEEL ()
 ON_MESSAGE (WM_IME_STARTCOMPOSITION, OnImeStartComposition) /* IME */
 //}}AFX_MSG_MAP
 ON_COMMAND (ID_EDIT_CHAR_LEFT, OnCharLeft)
@@ -5620,6 +5625,26 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
   UpdateSiblingScrollPos(false);
 
   return CView::OnMouseWheel (nFlags, zDelta, pt);
+}
+
+void CCrystalTextView::
+OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
+{
+  SCROLLINFO si = { sizeof(si) };
+  si.fMask = SIF_POS | SIF_RANGE;
+  VERIFY (GetScrollInfo (SB_HORZ, &si));
+
+  int nCurPos = si.nPos + zDelta;
+  if (nCurPos < si.nMin)
+    nCurPos = si.nMin;
+  else if (nCurPos > si.nMax)
+    nCurPos = si.nMax;
+
+  ScrollToChar (nCurPos, true);
+  UpdateCaret ();
+  UpdateSiblingScrollPos (true);
+
+  CView::OnMouseHWheel (nFlags, zDelta, pt);
 }
 
 void CCrystalTextView::

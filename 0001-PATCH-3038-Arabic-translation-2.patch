@@ -1,0 +1,24 @@
+From 673de4d955b69a898a884fc177006764adfadd44 Mon Sep 17 00:00:00 2001
+From: Takashi Sawanaka <sdottaka@users.sourceforge.net>
+Date: Tue, 31 Dec 2019 13:16:48 +0900
+Subject: [PATCH 01/29] PATCH: [ 3038 ] Arabic translation (2)
+
+---
+ Installer/InnoSetup/WinMergeX64.is6.iss | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Installer/InnoSetup/WinMergeX64.is6.iss b/Installer/InnoSetup/WinMergeX64.is6.iss
+index bb23e8bd1..a50cf1530 100644
+--- a/Installer/InnoSetup/WinMergeX64.is6.iss
++++ b/Installer/InnoSetup/WinMergeX64.is6.iss
+@@ -624,6 +624,7 @@ Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; V
+ ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
+ ;(unless the user already has a startup language specified)
+ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00001401; Flags: deletevalue; Languages: Arabic
++Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000042d; Flags: deletevalue; Languages: Basque
+ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000402; Flags: deletevalue; Languages: Bulgarian
+ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
+ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Simplified
+-- 
+2.18.0.windows.1
+

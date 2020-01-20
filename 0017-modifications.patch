@@ -1,0 +1,49 @@
+From ed493853c8123c5eb973e674c9e6e37417fcd204 Mon Sep 17 00:00:00 2001
+From: Flaviu <Flaviu@DESKTOP-HP>
+Date: Thu, 2 Jan 2020 20:07:22 +0200
+Subject: [PATCH 17/29] modifications
+
+---
+ Src/MergeFrameCommon.h | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/Src/MergeFrameCommon.h b/Src/MergeFrameCommon.h
+index 8c6a2843c..24daf45a8 100644
+--- a/Src/MergeFrameCommon.h
++++ b/Src/MergeFrameCommon.h
+@@ -10,13 +10,14 @@ class CMergeFrameCommon: public CMDIChildWnd
+ {
+ 	DECLARE_DYNCREATE(CMergeFrameCommon)
+ public:
+-	CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon  = -1, int nDifferentIcon = -1);
++	CMergeFrameCommon(int nIdenticalIcon  = -1, int nDifferentIcon = -1);
+ 	bool IsActivated() const { return m_bActivated; }
+ 	void ActivateFrame(int nCmdShow);
+ 	void SetLastCompareResult(int nResult);
+ 	void SaveWindowState();
+-	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
+-	virtual BOOL IsTabbedMDIChild() {
++	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
++	virtual BOOL IsTabbedMDIChild()
++	{
+ 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
+ 	}
+ protected:
+@@ -26,9 +27,14 @@ private:
+ 	HICON m_hIdentical;
+ 	HICON m_hDifferent;
+ 
++protected:
++	virtual ~CMergeFrameCommon();
++
++protected:
+ 	//{{AFX_MSG(CMergeFrameCommon)
+ 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+ 	afx_msg void OnDestroy();
++	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+ 	//}}AFX_MSG
+ 	DECLARE_MESSAGE_MAP()
+ };
+-- 
+2.18.0.windows.1
+

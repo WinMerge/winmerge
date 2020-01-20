@@ -1,0 +1,35 @@
+From 765471ba6f6c18c064dc418610ca85867869fa8f Mon Sep 17 00:00:00 2001
+From: Takashi Sawanaka <sdottaka@users.sourceforge.net>
+Date: Sun, 5 Jan 2020 13:40:58 +0900
+Subject: [PATCH 24/29] Merge.cpp: Allow path starting '\' without drive name
+ in the project file
+
+---
+ Src/Merge.cpp | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/Src/Merge.cpp b/Src/Merge.cpp
+index 4801eae75..99e2f668d 100644
+--- a/Src/Merge.cpp
++++ b/Src/Merge.cpp
+@@ -1121,7 +1121,16 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
+ 		for (int i = 0; i < tFiles.GetSize(); ++i)
+ 		{
+ 			if (!paths::IsPathAbsolute(tFiles[i]))
+-				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);
++			{
++				String sProjectDir = paths::GetParentPath(sProject);
++				if (tFiles[i].substr(0, 1) == _T("\\"))
++				{
++					if (sProjectDir.length() > 1 && sProjectDir[1] == ':')
++						tFiles[i] = paths::ConcatPath(sProjectDir.substr(0, 2), tFiles[i]);
++				}
++				else
++					tFiles[i] = paths::ConcatPath(sProjectDir, tFiles[i]);
++			}
+ 		}
+ 		bool bLeftReadOnly = projItem.GetLeftReadOnly();
+ 		bool bMiddleReadOnly = projItem.GetMiddleReadOnly();
+-- 
+2.18.0.windows.1
+

@@ -1,0 +1,25 @@
+From e5aa42f1cf00086df434ef79c931de39fbd1af32 Mon Sep 17 00:00:00 2001
+From: Takashi Sawanaka <sdottaka@users.sourceforge.net>
+Date: Sun, 19 Jan 2020 22:09:26 +0900
+Subject: [PATCH 29/29] Update copyright year to 2020
+
+---
+ Src/Merge2.rc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Src/Merge2.rc b/Src/Merge2.rc
+index b52eb49e3..245940237 100644
+--- a/Src/Merge2.rc
++++ b/Src/Merge2.rc
+@@ -208,7 +208,7 @@ BEGIN
+             VALUE "FileDescription", "WinMerge\0"
+             VALUE "FileVersion", STRFILEVER
+             VALUE "InternalName", "WinMerge\0"
+-            VALUE "LegalCopyright", "(c) 1996-2019 Dean P. Grimm / Thingamahoochie Software\0"
++            VALUE "LegalCopyright", "(c) 1996-2020 Dean P. Grimm / Thingamahoochie Software\0"
+             VALUE "OriginalFilename", "WinMergeU.EXE\0"
+             VALUE "PrivateBuild", STRPRIVATEBUILD
+             VALUE "ProductName", "WinMerge\0"
+-- 
+2.18.0.windows.1
+

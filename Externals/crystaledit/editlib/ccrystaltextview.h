@@ -917,6 +917,7 @@ protected :
     afx_msg void OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags );
 
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
+    afx_msg void OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt);
     LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);
     //}}AFX_MSG
     afx_msg void OnFilePageSetup ();
