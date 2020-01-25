@@ -68,24 +68,43 @@ static int hunk_func(long start_a, long count_a, long start_b, long count_b, voi
 
 static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::vector<xrecord_t *>& equivs, unsigned xdl_flags)
 {
+	std::unordered_map<unsigned long, std::vector<int>> equivs_map;
+	for (int i = 0; i < equivs.size(); ++i)
+	{
+		unsigned long ha = equivs[i]->ha;
+		if (equivs_map.find(ha) != equivs_map.end())
+			equivs_map[ha].push_back(i);
+		else
+			equivs_map.emplace(ha, std::vector<int>{i});
+	}
+
 	for (int i = 0; i < xdf.nrec; ++i)
 	{
-		int j;
-		for (j = 0; j < static_cast<int>(equivs.size()); j++)
+		unsigned long ha = xdf.recs[i]->ha;
+		if (equivs_map.find(ha) != equivs_map.end())
 		{
-			if (equivs[j]->ha == xdf.recs[i]->ha &&
-				xdl_recmatch(equivs[j]->ptr, equivs[j]->size, xdf.recs[i]->ptr, xdf.recs[i]->size, xdl_flags))
+			bool found = false;
+			for (auto j: equivs_map[ha])
 			{
-				break;
+				if (xdl_recmatch(equivs[j]->ptr, equivs[j]->size, xdf.recs[i]->ptr, xdf.recs[i]->size, xdl_flags))
+				{
+					found = true;
+					filevec.equivs[i] = j;
+					equivs_map.emplace(ha, std::vector<int>{j});
+					break;
+				}
 			}
-		}
-		if (j < static_cast<int>(equivs.size()))
-		{
-			filevec.equivs[i] = j;
+			if (!found)
+			{
+				filevec.equivs[i] = static_cast<int>(equivs.size());
+				equivs_map[ha].push_back(filevec.equivs[i]);
+				equivs.push_back(xdf.recs[i]);
+			}
 		}
 		else
 		{
 			filevec.equivs[i] = static_cast<int>(equivs.size());
+			equivs_map.emplace(ha, std::vector<int>{filevec.equivs[i]});
 			equivs.push_back(xdf.recs[i]);
 		}
 	}
