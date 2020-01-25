@@ -273,7 +273,16 @@ InsertText (CCrystalTextView * pSource, int nLine,
 		if (i >= 0 && !m_aLines[i].HasEol())
 			CCrystalTextBuffer::InsertText(pSource, i, GetLineLength(i), text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
 		else if (!LineInfo::IsEol(pszText[cchText - 1]))
-			CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		{
+			auto findRealLine = [&](int nLine) {
+				for (; nLine < GetLineCount(); ++nLine) { if ((GetLineFlags(nLine) & LF_GHOST) == 0) break; }
+				if (nLine == GetLineCount())
+					return -1;
+				return nLine;
+			};
+			if (findRealLine(nLine) != -1)
+				CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		}
 	}
 
 	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText,
