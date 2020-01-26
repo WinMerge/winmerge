@@ -7,7 +7,10 @@
 
 inline time_t filetime_to_time_t(const FILETIME& ft)
 {
-	return ((static_cast<time_t>(ft.dwHighDateTime) << 32) + ft.dwLowDateTime) / 10000000ULL - 11644473600ULL;
+	if (ft.dwHighDateTime == 0 && ft.dwLowDateTime == 0)
+		return 0;
+	else
+		return ((static_cast<time_t>(ft.dwHighDateTime) << 32) + ft.dwLowDateTime) / 10000000ULL - 11644473600ULL;
 }
 
 template<typename FileInfo>

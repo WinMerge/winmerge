@@ -1012,14 +1012,15 @@ read_files (struct file_data filevec[], int pretend_binary, int *bin_file)
         appears_binary |= sip (&filevec[1], skip_test | appears_binary);
     }
 	
-	// Are both files Open and Regular (no Pipes, Directories, Devices (e.g. NUL))
+	// Are both files Open and Regular (no Pipes, Directories, Devices (except NUL))
 	if (filevec[0].desc < 0 || filevec[1].desc < 0 ||
-		!(S_ISREG (filevec[0].stat.st_mode)) || !(S_ISREG (filevec[1].stat.st_mode))   )
-	{
-		assert(!S_ISCHR(filevec[0].stat.st_mode) || strcmp(filevec[0].name, "NUL")==0);
-		assert(!S_ISCHR(filevec[1].stat.st_mode) || strcmp(filevec[1].name, "NUL")==0);
+        (!(S_ISREG (filevec[0].stat.st_mode)) && strcmp(filevec[0].name, "NUL") != 0) ||
+		(!(S_ISREG (filevec[1].stat.st_mode)) && strcmp(filevec[1].name, "NUL") != 0))
+      {
+		assert(!S_ISCHR(filevec[0].stat.st_mode));
+		assert(!S_ISCHR(filevec[1].stat.st_mode));
 		return appears_binary;
-	}
+      }
 
   if (appears_binary)
 	{

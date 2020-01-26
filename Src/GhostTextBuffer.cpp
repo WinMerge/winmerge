@@ -273,7 +273,16 @@ InsertText (CCrystalTextView * pSource, int nLine,
 		if (i >= 0 && !m_aLines[i].HasEol())
 			CCrystalTextBuffer::InsertText(pSource, i, GetLineLength(i), text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
 		else if (!LineInfo::IsEol(pszText[cchText - 1]))
-			CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		{
+			auto findRealLine = [&](int nLine) {
+				for (; nLine < GetLineCount(); ++nLine) { if ((GetLineFlags(nLine) & LF_GHOST) == 0) break; }
+				if (nLine == GetLineCount())
+					return -1;
+				return nLine;
+			};
+			if (findRealLine(nLine) != -1)
+				CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		}
 	}
 
 	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText,
@@ -786,9 +795,10 @@ OnNotifyLineHasBeenEdited(int nLine)
 	return;
 }
 
-static int CountEol(LPCTSTR pszText, size_t cchText)
+static void CountEolAndLastLineLength(LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
-	int nEol = 0;
+	nLastLineLength = 0;
+	nEol = 0;
 	for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
 	{
 		if (LineInfo::IsEol(pszText[nTextPos]))
@@ -796,11 +806,12 @@ static int CountEol(LPCTSTR pszText, size_t cchText)
 			if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
 				++nTextPos;
 			++nEol;
+			nLastLineLength = 0;
 		}
+		else
+			++nLastLineLength;
 	}
-	return nEol;
 }
-
 
 void CGhostTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
@@ -809,7 +820,11 @@ AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
-	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + CountEol(pszText, cchText));
+	int nLastLineLength, nEol;
+	CountEolAndLastLineLength(pszText, cchText, nLastLineLength, nEol);
+	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
+	if (ptEndPos.x == 0 && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
+		real_ptEndPos.x = nLastLineLength;
 	CCrystalTextBuffer::AddUndoRecord(bInsert, real_ptStartPos, real_ptEndPos, pszText,
 		cchText, nActionType, paSavedRevisionNumbers);
 }
