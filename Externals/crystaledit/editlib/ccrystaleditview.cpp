@@ -1554,6 +1554,7 @@ OnEditReplace ()
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
       lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
     }
+  lastSearch->m_nDirection = 1;
   m_pEditReplaceDlg->UseLastSearch ();
 
 
