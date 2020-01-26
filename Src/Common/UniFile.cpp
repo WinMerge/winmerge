@@ -241,10 +241,10 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 		return false;
 	m_lineno = -1;
 
+#ifndef _WIN64
 	unsigned sizehi = (unsigned)(m_filesize >> 32);
 	unsigned sizelo = (unsigned)(m_filesize & 0xFFFFFFFF);
 
-#ifndef _WIN64
 	if (sizehi || sizelo > 0x7FFFFFFF)
 	{
 		LastErrorCustom(_T("UniMemFile cannot handle files over 2 gigabytes"));
@@ -252,7 +252,7 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	}
 #endif
 
-	if (sizelo == 0)
+	if (m_filesize == 0)
 	{
 		// Allow opening empty file, but memory mapping doesn't work on such
 		// m_base and m_current are 0 from the Close call above
