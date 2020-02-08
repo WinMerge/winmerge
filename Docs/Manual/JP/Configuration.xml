@@ -26,7 +26,7 @@
 
       <para>オプションダイアログには、多くのページがあり、それぞれ、関連する設定のグループを含んでいます。
       ダイアログの左端にある
-      <guilabel><!-- TODO: 日本語版確認 -->カテゴリ</guilabel>
+      <guilabel>カテゴリ</guilabel>
       リストのタイトルをクリックすることで、ページを開くことができます。</para>
     </listitem>
 
@@ -114,7 +114,7 @@
       <itemizedlist>
         <listitem>
           <para><option>無効</option>(デフォルト): 
-          <!-- FIXME: イマイチ -->比較ウィンドウは、フォルダ、または、ファイルの先頭から開始します(差異は未選択)。</para>
+          比較ウィンドウは、フォルダ、または、ファイルの先頭を表示し、差異を選択しません。</para>
         </listitem>
 
         <listitem>
@@ -259,7 +259,7 @@
     </section>
 
     <section>
-      <title>起動時にファイルまたはフォルダの選択ダイアログを表示<indexterm>
+      <title>起動時にファイルまたはフォルダの選択ダイアログを表示する<indexterm>
           <primary>Select Files or Folders dialog</primary>
 
           <secondary>opening automatically</secondary>
@@ -283,17 +283,17 @@
     </section>
 
     <section>
-      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+      <title>OK押下時にファイルまたはフォルダの選択ダイアログを閉じる<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>無効</option> (デフォルト): TBD</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>有効</option>: TBD</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -630,23 +630,26 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>default</option> (default): The basic greedy diff
-          algorithm.</para>
+          <para><option>default</option> (デフォルト): 
+          基本的な差分アルゴリズムです。</para>
         </listitem>
 
         <listitem>
-          <para><option>minimal</option>: Spend extra time to make sure the 
-          smallest possible diff is produced.</para>
+          <para><option>minimal</option>: 
+          できるだけ差分が少なくなるように比較します。
+          その分、比較に時間がかかります。</para>
         </listitem>
 
         <listitem>
-          <para><option>patience</option>: Use "patience diff" algorithm when
-          generating diff.</para>
+          <para><option>patience</option>: 
+          patienceアルゴリズムで差分を比較します。</para>
         </listitem>
 
         <listitem>
-          <para><option>histogram</option>: This algorithm extends the patience
-          algorithm to "support low-occurrence common elements".</para>
+          <para><option>histogram</option>: 
+          histogramアルゴリズムで差分を比較します。
+          このアルゴリズムはpatienceアルゴリズムを低頻度の共通要素に対応するように拡張しています。
+          </para>
         </listitem>
       </itemizedlist>
     </section>
@@ -658,13 +661,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default):
-          Enable the heuristic that shifts diff hunk boundaries to make diffs easier to read.
-          It has no effect if the Diff algorithm is default.</para>
+          <para><option>有効</option> (デフォルト):
+          差分のハンク境界をシフトするヒューリスティックを有効にして、差分を読みやすくします。
+          Diff アルゴリズムがdefaultの場合、効果はありません。</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option> Disable the heuristic.</para>
+          <para><option>無効</option> ヒューリスティックを無効にします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -737,7 +740,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Binary Contents</term>
+          <term>バイナリコンテンツ</term>
 
           <listitem>
             <para>TBD</para>
