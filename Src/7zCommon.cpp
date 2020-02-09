@@ -689,7 +689,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				{
 					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));
 				}
-				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
+				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[2].c_str());
 				res.files[2] = OLE2T(pTmp);
 				SysFreeString(pTmp);
 				res.files[2].insert(0, _T("\\"));
