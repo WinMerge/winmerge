@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Dean Grimm <grimmdp at yahoo.com>
@@ -4108,3 +4108,4 @@ msgstr ""
 
 msgid "MDI child window only"
 msgstr ""
+
