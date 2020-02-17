@@ -56,9 +56,10 @@ void DrawBitmap(CDC *pDC, int x, int y, CBitmap *pBitmap)
  * @brief Duplicate a bitmap and make it dark
  * @param pDC [in] Device context
  * @param pBitmap [in] the bitmap to darken
+ * @param lighten [in] make bitmap lighten if ligthen is true
  * @return The bitmap object
  */
-CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
+CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap, bool lighten)
 {
 	CDC dcMem;
 	dcMem.CreateCompatibleDC(pDC);
@@ -85,39 +86,77 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	std::unique_ptr<BYTE[]> pbuf(new BYTE[bi.bmiHeader.biSizeImage]);
 	GetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
 
-	int x;
-	for (x = 0; x < bm.bmWidth; x++)
+	if (!lighten)
 	{
-		double b = 0.85 + (0.10 * sin(acos((double)x/bm.bmWidth*2.0-1.0)));
-		for (int y = 1; y < bm.bmHeight-1; y++)
+		for (int x = 0; x < bm.bmWidth; x++)
 		{
-			int i = x * 4 + y * bm.bmWidth * 4;
-			pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-			pbuf[i+1] = (BYTE)(pbuf[i+1] * b);
-			pbuf[i+2] = (BYTE)(pbuf[i+2] * b);
+			double b = 0.85 + (0.10 * sin(acos((double)x / bm.bmWidth*2.0 - 1.0)));
+			for (int y = 1; y < bm.bmHeight - 1; y++)
+			{
+				int i = x * 4 + y * bm.bmWidth * 4;
+				pbuf[i] = (BYTE)(pbuf[i] * 0.95);
+				pbuf[i + 1] = (BYTE)(pbuf[i + 1] * b);
+				pbuf[i + 2] = (BYTE)(pbuf[i + 2] * b);
+			}
+		}
+		for (int x = 0; x < bm.bmWidth; x++)
+		{
+			int i = x * 4 + 0 * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)(pbuf[i] * 0.95);
+			pbuf[i + 1] = (BYTE)(pbuf[i + 1] * 0.9);
+			pbuf[i + 2] = (BYTE)(pbuf[i + 2] * 0.9);
+			i = x * 4 + (bm.bmHeight - 1) * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)(pbuf[i] * 0.95);
+			pbuf[i + 1] = (BYTE)(pbuf[i + 1] * 0.9);
+			pbuf[i + 2] = (BYTE)(pbuf[i + 2] * 0.9);
+		}
+		for (int y = 0; y < bm.bmHeight; y++)
+		{
+			int i = 0 * 4 + y * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)(pbuf[i] * 0.95);
+			pbuf[i + 1] = (BYTE)(pbuf[i + 1] * 0.9);
+			pbuf[i + 2] = (BYTE)(pbuf[i + 2] * 0.9);
+			i = (bm.bmWidth - 1) * 4 + y * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)(pbuf[i] * 0.95);
+			pbuf[i + 1] = (BYTE)(pbuf[i + 1] * 0.9);
+			pbuf[i + 2] = (BYTE)(pbuf[i + 2] * 0.9);
 		}
 	}
-	for (x = 0; x < bm.bmWidth; x++)
+	else
 	{
-		int i = x * 4 + 0 * bm.bmWidth * 4;
-		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
-		i = x * 4 + (bm.bmHeight-1) * bm.bmWidth * 4;
-		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
-	}
-	for (int y = 0; y < bm.bmHeight; y++)
-	{
-		int i = 0 * 4 + y * bm.bmWidth * 4;
-		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
-		i = (bm.bmWidth-1) * 4 + y * bm.bmWidth * 4;
-		pbuf[i  ] = (BYTE)(pbuf[i] * 0.95);
-		pbuf[i+1] = (BYTE)(pbuf[i+1] * 0.9);
-		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.9);
+		for (int x = 0; x < bm.bmWidth; x++)
+		{
+			int b = static_cast<int>(12.0 + (20.0 * sin(acos((double)x / bm.bmWidth*2.0 - 1.0))));
+			for (int y = 1; y < bm.bmHeight - 1; y++)
+			{
+				int i = x * 4 + y * bm.bmWidth * 4;
+				pbuf[i] = (BYTE)((std::min)(pbuf[i] + 40, 255));
+				pbuf[i + 1] = (BYTE)((std::min)(pbuf[i + 1] + b, 255));
+				pbuf[i + 2] = (BYTE)((std::min)(pbuf[i + 2] + b, 255));
+			}
+		}
+		for (int x = 0; x < bm.bmWidth; x++)
+		{
+			int i = x * 4 + 0 * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)((std::min)(pbuf[i] + 40, 255));
+			pbuf[i + 1] = (BYTE)((std::min)(pbuf[i + 1] + 32, 255));
+			pbuf[i + 2] = (BYTE)((std::min)(pbuf[i + 2] + 32, 255));
+			i = x * 4 + (bm.bmHeight - 1) * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)((std::min)(pbuf[i] + 40, 255));
+			pbuf[i + 1] = (BYTE)((std::min)(pbuf[i + 1] + 32, 255));
+			pbuf[i + 2] = (BYTE)((std::min)(pbuf[i + 2] + 32, 255));
+		}
+		for (int y = 0; y < bm.bmHeight; y++)
+		{
+			int i = 0 * 4 + y * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)((std::min)(pbuf[i] + 40, 255));
+			pbuf[i + 1] = (BYTE)((std::min)(pbuf[i + 1] + 32, 255));
+			pbuf[i + 2] = (BYTE)((std::min)(pbuf[i + 2] + 32, 255));
+			i = (bm.bmWidth - 1) * 4 + y * bm.bmWidth * 4;
+			pbuf[i] = (BYTE)((std::min)(pbuf[i] + 40, 255));
+			pbuf[i + 1] = (BYTE)((std::min)(pbuf[i + 1] + 32, 255));
+			pbuf[i + 2] = (BYTE)((std::min)(pbuf[i + 2] + 32, 255));
+		}
 	}
 
 	SetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
