@@ -36,6 +36,7 @@ WinMerge 2.16.6
     - German (GitHub #239, #245, #258)
     - Lithuanian (GitHub #233)
     - Portuguese (GitHub #237)
+    - Spanish (GitHub #266)
   Manual:
   - Bugfix: Fix spelling of Git (GitHub #246)
   - Update Configuration.xml (GitHub #262)
