@@ -17,6 +17,7 @@ WinMerge 2.16.6
   - Bugfix: Non-moved lines are treated as moved lines (osdn.net #39851)
   - Add support for touchpad horizontal scroll (GitHub #254)
   Image compare:
+  - Bugfix: Support 16-bit images (GitHub WinMerge/winimerge issue #6)
   - Add support for SVG, PDF, WMF and EMF file types
     (Only available in WinMerge 64bit version on Windows 10)
       Demo1: https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa
