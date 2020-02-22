@@ -31,10 +31,10 @@ WinMerge 2.16.6
   Translations:
   - New translation: Arabic (sf.net #3038)
   - Translation updates:
-    - Bulgarian (GitHub #236)
+    - Bulgarian (GitHub #236, #268)
     - French (GitHub #251)
     - German (GitHub #239, #245, #258)
-    - Lithuanian (GitHub #233)
+    - Lithuanian (GitHub #233, #267)
     - Portuguese (GitHub #237)
     - Spanish (GitHub #266)
   Manual:
