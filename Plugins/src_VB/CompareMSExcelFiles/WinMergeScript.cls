@@ -59,7 +59,7 @@ Public Property Get PluginDescription() As String
 End Property
 
 Public Property Get PluginFileFilters() As String
-    PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$"
+    PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlam(\..*)?$"
 End Property
 
 Public Property Get PluginIsAutomatic() As Boolean
