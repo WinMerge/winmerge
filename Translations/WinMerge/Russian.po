@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -2381,7 +2381,7 @@ msgstr "Кодировка справа"
 msgid "Middle Encoding"
 msgstr "Кодировка посередине"
 
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Игнор. отличия"
 
 msgctxt "DirView|ColumnHeader"
@@ -2972,3 +2972,4 @@ msgstr "MDI дочернее окно или главное окно"
 
 msgid "MDI child window only"
 msgstr "MDI дочернее окно только"
+
