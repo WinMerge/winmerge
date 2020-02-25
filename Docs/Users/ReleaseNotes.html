@@ -49,24 +49,88 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.5 Release Notes</h2>
+<h2>WinMerge 2.16.6 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2165">What Is New in 2.16.5?</a></li>
+  <li><a href="#new2166">What Is New in 2.16.6?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>December 2019</p>
+<p>February 2020</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.6 stable release. This release replaces earlier WinMerge 
+stable releases as a recommended release.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2166">What Is New in 2.16.6?</a></h3>
+
+<h4>General</h4>
+<ul>
+  <li>Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab, now the application is behave just like professional editors (Visual Studio, Notepad++, etc.) to switch and activate the open tabs. (GitHub #247)
+  </li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: GhostTextBuffer: Don't unexpectedly bring back empty lines user wants to delete (GitHub #244)</li>
+  <li>Bugfix: Prevent silent abort with File Comparison of files whose size is an exact multiple of 2^32 bytes (GitHub #257)</li>
+  <li>Bugfix: WinMerge 2.16.4.0 crashes after de-selecting Split Vertically (GitHub #259)</li>
+  <li>Bugfix: "Replace All" may not replace all text</li>
+  <li>Bugfix: An error message is shown when pressing Enter key in Diff pane (osdn.net #39924)</li>
+  <li>Bugfix: Non-moved lines are treated as moved lines (osdn.net #39851)</li>
+  <li>Add support for touchpad horizontal scroll (GitHub #254)</li>
+</ul>
+
+<h4>Image compare</h4>
+<ul>
+  <li>Bugfix: Support 16-bit images (GitHub WinMerge/winimerge issue #6)</li>
+  <li>Add support for SVG, PDF, WMF and EMF file types
+    (Only available in WinMerge 64bit version on Windows 10)
+    <a href="https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa">Demo1</a>
+    <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">Demo2</a>
+</ul>
+
+<h4>Archive support</h4>
+<ul>
+  <li>Bugfix: Third tgz doesn't get fully extracted (first two do) (GitHub #263)</li>
+</ul>
+
+<h4>Patch generator dialog</h4>
+<ul>
+  <li>Bugfix: Crash when generating patch for multiple files and a file only on one side (GitHub #252)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Bugfix: Fix spelling of Git (GitHub #246)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>New translation: Arabic (sf.net #3038)</li>
+  <li>Translation updates:
+    <ul>
+      <li>Bulgarian (GitHub #236, #268)</li>
+      <li>French (GitHub #251)</li>
+      <li>German (GitHub #239, #245, #258)</li>
+      <li>Lithuanian (GitHub #233, #267)</li>
+      <li>Portuguese (GitHub #237)</li>
+      <li>Spanish (GitHub #266)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li>Bugfix: Fix spelling of Git (GitHub #246)</li>
+  <li>Update Configuration.xml (GitHub #262)</li>
+</ul>
 
 <h3><a name="#new2165">What Is New in 2.16.5 Beta?</a></h3>
 <h4>File compare</h4>
@@ -79,7 +143,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   <li>Bugfix: Program is crashed! (GitHub #229)</li>
   <li>Switch "Find" buttons in Find dialog (GitHub #201)</li>
   <li>Improve UNICODE character support using icu.dll usable from Windows 10 Creators Update </li>
-  <li>Add support for color emoji (Only available in 64bit version) To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog</li>
+  <li>Add support for color emoji (Only available in 64bit version) To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog. <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">Demo</a></li>
 </ul>
 
 <h4>Folder compare</h4>

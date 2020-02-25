@@ -87,10 +87,10 @@ msgid "&None"
 msgstr "&Няма"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "&Вертикал"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Хоризонтал"
 
 msgid "&Previous Page"
 msgstr "&Предишна страница"
@@ -325,13 +325,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Показване само на уникалните от&дясно"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Покажи само липсващите от ляво елементи"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Покажи само липсващите в средата елементи"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Покажи само липсващите от дясно елементи"
 
 msgid "Show Hidd&en Items"
 msgstr "Показване на &скритите елементи"
@@ -1138,16 +1138,16 @@ msgid "&Use folder compare colors"
 msgstr ""
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Еднакви елементи:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Различни елементи:"
 
 msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Филтрирани елементи:"
 
 msgid "System"
 msgstr "Системни"
@@ -1695,7 +1695,7 @@ msgid "&Enable plugins"
 msgstr "Включване на &добавките"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Филтри за файлове:"
 
 msgid "Shell Integration"
 msgstr "Сливане със системата"
@@ -1747,7 +1747,7 @@ msgid "&Binary compare limit (MB):"
 msgstr "Ограничение на &двоичното сравняване (МБ):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
+msgstr "\nБрой на нишки извършващи сравняване (отрицателна стойност  се отнася за CPU ядра) "
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2628,7 +2628,7 @@ msgstr "От ляво само: %1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr ""
+msgstr "Само в средата: %1"
 
 #, c-format
 msgid "Right only: %1"

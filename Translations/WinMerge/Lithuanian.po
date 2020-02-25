@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-11-12 11:12+0000\n"
-"PO-Revision-Date: 2019-12-10 12:10+0300\n"
+"POT-Creation-Date: 2020-01-19 21:36+0000\n"
+"PO-Revision-Date: 2020-02-18 07:49+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -142,7 +142,7 @@ msgid "&Set Background Color"
 msgstr "Nu&statyti fono spalvą"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "&Vektorinių vaizdų mąstelio keitimas"
 
 msgid "&File"
 msgstr "&Failas"
@@ -2886,7 +2886,7 @@ msgid "G&oto Line %1"
 msgstr "E&iti į %1 eilutę"
 
 msgid "Disabled"
-msgstr "Išjungtas"
+msgstr "Išjungta"
 
 msgid "From file system"
 msgstr "Iš sistemos"
@@ -2974,8 +2974,8 @@ msgid "DirectWrite Natural Symmetric"
 msgstr ""
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI antrinį arba pagrindinį langą"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Tik MDI antrinį langą"
 

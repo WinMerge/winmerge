@@ -18,7 +18,7 @@ msgstr ""
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2020-02-04 20:55+0200\n"
 "Last-Translator: wvxwxvw\n"
-"Language-Team: wvxwxvw <ru-board>\n"
+"Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -440,11 +440,11 @@ msgstr "Сохранить справа как..."
 msgid "&Print..."
 msgstr "&Печать..."
 
-msgid "Page Set&up"
+msgid "Page Set&up..."
 msgstr "Параметры страницы..."
 
-msgid "Print Previe&w"
-msgstr "Предпросмотр"
+msgid "Print Previe&w..."
+msgstr "Предпросмотр..."
 
 msgid "&Convert Line Endings to"
 msgstr "&Заменить концы строк на"
@@ -468,7 +468,7 @@ msgid "&XML"
 msgstr "&XML"
 
 msgid "&Binary"
-msgstr "Бинарный"
+msgstr "Двоичный"
 
 msgid "&Image"
 msgstr "Изображение"
@@ -1600,7 +1600,7 @@ msgstr "&Отмена"
 msgid "Test Filter"
 msgstr "Тест фильтра"
 
-msgid "Testing filter ..."
+msgid "Testing filter..."
 msgstr "Тестировать фильтр ..."
 
 msgid "&Enter text to test:"
@@ -1706,16 +1706,16 @@ msgid "&Add to context menu"
 msgstr "&Добавить в контекстное меню"
 
 msgid "&Register shell extension"
-msgstr ""
+msgstr "Зарегистрировать shell"
 
 msgid "&Unregister shell extension"
-msgstr ""
+msgstr "Удалить shell"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "Зарегистрировать shell для текущего пользователя"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "Удалить shell для текущего пользователя"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2384,7 +2384,7 @@ msgstr "Кодировка справа"
 msgid "Middle Encoding"
 msgstr "Кодировка посередине"
 
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Игнор. отличия"
 
 msgctxt "DirView|ColumnHeader"
@@ -2975,3 +2975,4 @@ msgstr "MDI дочернее окно или главное окно"
 
 msgid "MDI child window only"
 msgstr "MDI дочернее окно только"
+

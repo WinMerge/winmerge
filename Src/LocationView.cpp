@@ -73,8 +73,6 @@ enum LOCBAR_TYPE
 	BAR_YAREA,		/**< Y-Coord in bar area */
 };
 
-const COLORREF clrBackground = RGB(0xe4, 0xe4, 0xf4);
-
 /////////////////////////////////////////////////////////////////////////////
 // CLocationView
 
@@ -175,6 +173,28 @@ BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 	return FALSE;
 }
 
+static bool IsColorDark(COLORREF clrBackground)
+{
+	return !(GetRValue(clrBackground) >= 0x80 || GetGValue(clrBackground) >= 0x80 || GetBValue(clrBackground) >= 0x80);
+
+}
+
+COLORREF CLocationView::GetBackgroundColor()
+{
+	COLORREF clrBackground = GetDocument()->GetView(0, 0)->GetColor(COLORINDEX_WHITESPACE);
+	if (!IsColorDark(clrBackground))
+	{
+		return RGB(
+			(std::max)(GetRValue(clrBackground) - 24, 0),
+			(std::max)(GetGValue(clrBackground) - 24, 0),
+			(std::max)(GetBValue(clrBackground) - 12, 0));
+	}
+	return RGB(
+		(std::min)(GetRValue(clrBackground) + 20, 255),
+		(std::min)(GetGValue(clrBackground) + 20, 255),
+		(std::min)(GetBValue(clrBackground) + 32, 255));
+}
+
 /**
  * @brief Draw custom (non-white) background.
  * @param [in] pDC Pointer to draw context.
@@ -182,7 +202,7 @@ BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 void CLocationView::DrawBackground(CDC* pDC)
 {
 	// Set brush to desired background color
-	CBrush backBrush(clrBackground);
+	CBrush backBrush(GetBackgroundColor());
 	
 	// Save old brush
 	CBrush* pOldBrush = pDC->SelectObject(&backBrush);
@@ -389,7 +409,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	CalculateBars();
 	DrawBackground(&dc);
 
-	COLORREF clrFace    = clrBackground;
+	COLORREF clrFace    = GetBackgroundColor();
 	COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
 	COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow, 0.9f);
 	COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2, 0.5f);
@@ -961,7 +981,7 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 
 	CRect rcVisibleArea(2, m_visibleTop, rc.right - 2, m_visibleBottom);
 	std::unique_ptr<CBitmap> pBitmap(CopyRectToBitmap(pClientDC, rcVisibleArea));
-	std::unique_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get()));
+	std::unique_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get(), IsColorDark(GetBackgroundColor())));
 	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap.get());
 }
 

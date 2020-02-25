@@ -174,7 +174,7 @@ msgid "&Set Background Color"
 msgstr "&Hintergrundfarbe setzen"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "Vektorbild-Skalierung"
 
 #, c-format
 msgid "&File"
@@ -1250,7 +1250,7 @@ msgstr "&Anzeige automatisch auf den ersten Unterschied positionieren"
 
 #, c-format
 msgid "Cl&ose windows with ESC:"
-msgstr "Fenster mit &Esc schließen:"
+msgstr "Fenster mit '&Esc' schließen:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -4109,8 +4109,8 @@ msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite natürlich symmetrisch"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI-Unter- oder MDI-Hauptfenster"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Nur MDI-Unterfenster"
 

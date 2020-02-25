@@ -7,9 +7,9 @@ install:
 - ps: >-
     Add-Content $ENV:UserProfile\Mercurial.ini "`r`n[extensions]`r`neol = "
 
-    (new-object net.webclient).DownloadFile('http://www.jrsoftware.org/download.php/is.exe#innosetup-6.0.2.exe', "$Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe")
+    (new-object net.webclient).DownloadFile('http://www.jrsoftware.org/download.php/is.exe#innosetup-6.0.3.exe', "$Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.3.exe")
 
-    & $Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe /verysilent /norestart /currentuser
+    & $Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.3.exe /verysilent /norestart /currentuser
 cache: 
 - build/WinMergeDownloadDeps
 build_script:

@@ -1,3 +1,51 @@
+WinMerge 2.16.6
+  General:
+  - Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab,
+    now the application is behave just like professional editors
+    (Visual Studio, Notepad++, etc.) to switch and activate the open tabs.
+    (GitHub #247)
+  File compare:
+  - Bugfix: GhostTextBuffer: Don't unexpectedly bring back empty lines user
+      wants to delete (GitHub #244)
+  - Bugfix: Prevent silent abort with File Comparison of files whose size
+      is an exact multiple of 2^32 bytes (GitHub #257)
+  - Bugfix: WinMerge 2.16.4.0 crashes after de-selecting Split Vertically
+      (GitHub #259)
+  - Bugfix: "Replace All" may not replace all text
+  - Bugfix: An error message is shown when pressing Enter key in Diff pane
+      (osdn.net #39924)
+  - Bugfix: Non-moved lines are treated as moved lines (osdn.net #39851)
+  - Add support for touchpad horizontal scroll (GitHub #254)
+  Image compare:
+  - Bugfix: Support 16-bit images (GitHub WinMerge/winimerge issue #6)
+  - Add support for SVG, PDF, WMF and EMF file types
+    (Only available in WinMerge 64bit version on Windows 10)
+      Demo1: https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa
+      Demo2: https://gyazo.com/f5f267546db27f2dc801c00df8cb4251
+  Archive support:
+  - Bugfix: Third tgz doesn't get fully extracted (first two do) (GitHub #263)
+  Patch generator dialog:
+  - Bugfix: Crash when generating patch for multiple files and a file only on
+      one side (GitHub #252)
+  Installer:
+  - Bugfix: Fix spelling of Git (GitHub #246)
+  Translations:
+  - New translation: Arabic (sf.net #3038)
+  - Translation updates:
+    - Bulgarian (GitHub #236, #268)
+    - French (GitHub #251)
+    - German (GitHub #239, #245, #258)
+    - Lithuanian (GitHub #233, #267)
+    - Portuguese (GitHub #237)
+    - Spanish (GitHub #266)
+  Manual:
+  - Bugfix: Fix spelling of Git (GitHub #246)
+  - Update Configuration.xml (GitHub #262)
+  Internals:
+  - Consolidate FolderCmp (GitHub #240, #242)
+  - Avoid some back and forth file path transcoding between UTF16 and UTF8
+      (GitHub #243)
+
 WinMerge 2.16.5
   File compare:
   - Bugfix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)
@@ -16,6 +64,7 @@ WinMerge 2.16.5
   - Add support for color emoji (Only available in 64bit version)
       (To enable color emoji support, select DirectWrite* in Rendering
        mode combobox on Editor page in the Options dialog)
+      Demo: https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4
   Folder compare:
   - Bugfix: Crash when clicking Next Difference button after unchecking
       Show Different Items menu item

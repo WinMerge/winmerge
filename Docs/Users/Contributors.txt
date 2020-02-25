@@ -137,6 +137,7 @@ Localization:
 * Russian:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
   Timon34
+  wvxwxvw
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>
@@ -156,6 +157,7 @@ Localization:
   Mario Angel <marioangel70@gmail.com>
   Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
   Dean Grimm <grimmdp@yahoo.com>
+  borjafg
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
@@ -220,7 +222,7 @@ Other Contributors (code, ideas, testing..):
 * Etienne Faisant
 * Bill Gord
 * H.Saido
-
+* Flaviu_
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

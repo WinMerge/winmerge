@@ -18,7 +18,7 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 
 	bool firstDiffBlockIsDiff12;
 
-		Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
+	Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
 
 	int linelast0 = 0;
 	int linelast1 = 0;

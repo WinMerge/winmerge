@@ -92,6 +92,7 @@ protected:
 	void CalculateBlocks();
 	void CalculateBlocksPixel(int nBlockStart, int nBlockEnd, int nBlockLength,
 			int &nBeginY, int &nEndY);
+	COLORREF GetBackgroundColor();
 	void DrawBackground(CDC* pDC);
 
 private:
