@@ -9,7 +9,7 @@ Developer documentation is in meant for people who want to compile WinMerge them
 ### Important files:
 
  * [ReadMe for developers](readme-developers.html) is old "main" document. Contains still lots and lots of useful information.
- * [Translation instructions](Translations.html)
+ * [Translation instructions](../../Translations/README.md)
  * [User manual information](../Users/Manual/README.md) tells how to convert manual from DocBook to HTML and HTML help.
  * [Options](Options.html) explains WinMerge's options handling.
  * [Plugins](Plugins.html) contains documentation about plugins-system.
