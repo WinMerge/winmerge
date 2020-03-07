@@ -81,7 +81,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_RENDERING_MODE, -1);
 
 	pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
-	pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<>`'!\"#$%&^~\\|@+-*/"));
+	pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<=>`'!\"#$%&^~\\|@+-*/"));
 
 	pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
 	pOptions->InitOption(OPT_BACKUP_FILECMP, true);
