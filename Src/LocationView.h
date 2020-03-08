@@ -26,8 +26,14 @@ enum DISPLAY_MOVED_BLOCKS
  */
 struct MovedLine
 {
-	CPoint ptLeft;
-	CPoint ptRight;
+	int apparent0;
+	int apparent1;
+	int blockHeight;
+	CPoint ptLeftUpper;
+	CPoint ptLeftLower;
+	CPoint ptRightUpper;
+	CPoint ptRightLower;
+	bool currentDiff;
 };
 
 typedef CList<MovedLine, MovedLine&> MOVEDLINE_LIST;

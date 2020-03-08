@@ -449,6 +449,9 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	unsigned nPrevEndY = static_cast<unsigned>(-1);
 	const unsigned nCurDiff = pDoc->GetCurrentDiff();
+	DIFFRANGE diCur;
+	if (nCurDiff != -1)
+		pDoc->m_diffList.GetDiff(nCurDiff, diCur);
 
 	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
 	for (; iter != m_diffBlocks.end(); ++iter)
@@ -514,26 +517,43 @@ void CLocationView::OnDraw(CDC* pDC)
 			{
 				int apparent0 = (*iter).top_line;
 				int apparent1 = pDoc->RightLineInMovedBlock(pane, apparent0);
-				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
+				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line + 1;
 				if (apparent1 != -1)
 				{
 					MovedLine line;
-					CPoint start;
-					CPoint end;
+
+					line.currentDiff = bInsideDiff || (nCurDiff != -1 && diCur.dbegin <= apparent1 && apparent1 <= diCur.dend);
 
 					apparent0 = pView->GetSubLineIndex(apparent0);
 					apparent1 = pView->GetSubLineIndex(apparent1);
 
-					start.x = m_bar[pane].right;
 					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
-					start.y = leftUpper + (leftLower - leftUpper) / 2;
-					end.x = m_bar[pane + 1].left;
+					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET - 1);
 					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
-					end.y = rightUpper + (rightLower - rightUpper) / 2;
-					line.ptLeft = start;
-					line.ptRight = end;
+					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET - 1);
+					line.ptLeftUpper.x = line.ptLeftLower.x = m_bar[pane].right - 1;
+					line.ptLeftUpper.y = leftUpper;
+					line.ptLeftLower.y = leftLower;
+					line.ptRightUpper.x = line.ptRightLower.x = m_bar[pane + 1].left;
+					line.ptRightUpper.y = rightUpper;
+					line.ptRightLower.y = rightLower;
+					line.apparent0 = apparent0;
+					line.apparent1 = apparent1;
+					line.blockHeight = nBlockHeight;
+					if (!m_movedLines.IsEmpty())
+					{
+						MovedLine& movedLineTail = m_movedLines.GetTail();
+						if (line.apparent0 - movedLineTail.blockHeight - 1 == movedLineTail.apparent0 &&
+						    line.apparent1 - movedLineTail.blockHeight - 1 == movedLineTail.apparent1)
+						{
+							line.ptLeftUpper = movedLineTail.ptLeftUpper;
+							line.ptRightUpper = movedLineTail.ptRightUpper;
+							line.apparent0 = movedLineTail.apparent0;
+							line.apparent1 = movedLineTail.apparent1;
+							line.blockHeight += movedLineTail.blockHeight;
+							m_movedLines.RemoveTail();
+						}
+					}
 					m_movedLines.AddTail(line);
 				}
 			}
@@ -542,26 +562,42 @@ void CLocationView::OnDraw(CDC* pDC)
 			{
 				int apparent1 = (*iter).top_line;
 				int apparent0 = pDoc->LeftLineInMovedBlock(pane, apparent1);
-				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
+				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line + 1;
 				if (apparent0 != -1)
 				{
 					MovedLine line;
-					CPoint start;
-					CPoint end;
+					line.currentDiff = bInsideDiff || (nCurDiff != -1 && diCur.dbegin <= apparent0 && apparent0 <= diCur.dend);
 
 					apparent0 = pView->GetSubLineIndex(apparent0);
 					apparent1 = pView->GetSubLineIndex(apparent1);
 
-					start.x = m_bar[pane - 1].right;
 					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
-					start.y = leftUpper + (leftLower - leftUpper) / 2;
-					end.x = m_bar[pane].left;
+					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET) - 1;
 					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
-					end.y = rightUpper + (rightLower - rightUpper) / 2;
-					line.ptLeft = start;
-					line.ptRight = end;
+					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET) - 1;
+					line.ptLeftUpper.x = line.ptLeftLower.x = m_bar[pane - 1].right - 1;
+					line.ptLeftUpper.y = leftUpper;
+					line.ptLeftLower.y = leftLower;
+					line.ptRightUpper.x = line.ptRightLower.x = m_bar[pane].left;
+					line.ptRightUpper.y = rightUpper;
+					line.ptRightLower.y = rightLower;
+					line.apparent0 = apparent0;
+					line.apparent1 = apparent1;
+					line.blockHeight = nBlockHeight;
+					if (!m_movedLines.IsEmpty())
+					{
+						MovedLine& movedLineTail = m_movedLines.GetTail();
+						if (line.apparent0 - movedLineTail.blockHeight - 1 == movedLineTail.apparent0 &&
+						    line.apparent1 - movedLineTail.blockHeight - 1 == movedLineTail.apparent1)
+						{
+							line.ptLeftUpper = movedLineTail.ptLeftUpper;
+							line.ptRightUpper = movedLineTail.ptRightUpper;
+							line.apparent0 = movedLineTail.apparent0;
+							line.apparent1 = movedLineTail.apparent1;
+							line.blockHeight += movedLineTail.blockHeight;
+							m_movedLines.RemoveTail();
+						}
+					}
 					m_movedLines.AddTail(line);
 				}
 			}
@@ -1041,17 +1077,55 @@ void CLocationView::OnClose()
  */
 void CLocationView::DrawConnectLines(CDC *pClientDC)
 {
-	CPen* oldObj = (CPen*)pClientDC->SelectStockObject(BLACK_PEN);
+	COLORREF clrMovedBlock = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
+	COLORREF clrSelectedMovedBlock = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	CBrush brushMovedBlock(clrMovedBlock);
+	CBrush brushSelectedMovedBlock(clrSelectedMovedBlock);
+	CPen penMovedBlock(PS_SOLID, 0, clrMovedBlock);
+	CPen penSelectedMovedBlock(PS_SOLID, 0, clrSelectedMovedBlock);
 
 	POSITION pos = m_movedLines.GetHeadPosition();
+	int oldMode = pClientDC->SetPolyFillMode(ALTERNATE);
+
 	while (pos != nullptr)
 	{
 		MovedLine line = m_movedLines.GetNext(pos);
-		pClientDC->MoveTo(line.ptLeft.x, line.ptLeft.y);
-		pClientDC->LineTo(line.ptRight.x, line.ptRight.y);
+		CPen *pOldPen = (CPen *)pClientDC->SelectObject(line.currentDiff ? &penSelectedMovedBlock : &penMovedBlock);
+		if (line.ptLeftLower.y - line.ptLeftUpper.y <= 1)
+		{
+			CPoint points[4] = {
+				line.ptLeftUpper,
+				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y},
+				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightLower.y},
+				line.ptRightUpper };
+			pClientDC->PolyBezier(points, 4);
+		}
+		else
+		{
+			BYTE types[9] = {
+				PT_MOVETO, PT_BEZIERTO, PT_BEZIERTO, PT_BEZIERTO,
+				PT_LINETO, PT_BEZIERTO, PT_BEZIERTO, PT_BEZIERTO, PT_LINETO };
+			CPoint points[9] = {
+				line.ptLeftUpper,
+				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y},
+				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightUpper.y},
+				line.ptRightUpper,
+				line.ptRightLower,
+				{(line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptRightLower.y},
+				{(line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptLeftLower.y},
+				line.ptLeftLower, line.ptLeftUpper };
+			pClientDC->BeginPath();
+			pClientDC->PolyDraw(points, types, 8);
+			pClientDC->EndPath();
+			CRgn rgn;
+			if (rgn.CreateFromPath(pClientDC))
+				pClientDC->FillRgn(&rgn, line.currentDiff ? &brushSelectedMovedBlock : &brushMovedBlock);
+			pClientDC->PolyDraw(points, types, 9);
+		}
+		pClientDC->SelectObject(pOldPen);
 	}
 
-	pClientDC->SelectObject(oldObj);
+	pClientDC->SetPolyFillMode(oldMode);
 }
 
 /** 

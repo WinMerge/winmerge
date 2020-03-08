@@ -20,4 +20,3 @@ Developer documentation is in [Developers](Developers/README.md)-subfolder.
 ### Important files in developer documentation:
 
  * [ReadMe for developers](Developers/readme-developers.html) contains lots of development-related information.
- * [Translation instructions](Developers/Translations.html)
