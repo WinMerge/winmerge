@@ -248,7 +248,7 @@
 
     <para>あながたが翻訳ミスを見つけた場合は、バグとして
     <ulink
-    url="https://sourceforge.net/p/winmerge/bugs/">バグリスト</ulink>に投稿してください。
+    url="https://github.com/WinMerge/winmerge/issues">バグリスト</ulink>に投稿してください。
     また、翻訳された文章の訂正版を提供してくだされば幸いです。
     </para>
   </section>

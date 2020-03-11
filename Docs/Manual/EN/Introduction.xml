@@ -86,7 +86,7 @@
       compile, and to participate in development discussions concerning new and
       changing features. We also appreciate any help testing the current code.
       Use experimental versions with care and enable backups! And please <ulink
-      url="https://sourceforge.net/p/winmerge/bugs/">report
+      url="https://github.com/WinMerge/winmerge/issues">report
       bugs</ulink> that you find while using these builds: it really helps with
       WinMerge development!</para>
     </section>
@@ -157,7 +157,7 @@
     it may take some time for somebody to answer.</para>
 
     <para>If you find a bug, please submit it as a <ulink
-    url="https://sourceforge.net/p/winmerge/bugs/">bug
+    url="https://github.com/WinMerge/winmerge/issues">bug
     report</ulink>. Please attach as much information as you can: at a minimum,
     the version number of WinMerge that you are using. If you can, also attach a
     configuration log which, you can display by clicking <menuchoice>
@@ -175,14 +175,6 @@
           <guimenuitem>About WinMerge</guimenuitem>
         </menuchoice>.</para>
     </important>
-
-    <para>You must <ulink
-    url="https://sourceforge.net/user/registration">register with
-    SourceForge.net</ulink> before posting a bug report (registration is free).
-    We require registering because anonymous submissions caused a lot of spam
-    and also because there were no possibility to contact people for asking more
-    information. We rarely sent direct emails but you'll get notifications when
-    we ask questions in the bug item.</para>
   </section>
 
   <section>

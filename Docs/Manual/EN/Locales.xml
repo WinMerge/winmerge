@@ -259,7 +259,7 @@
 
     <para>Please submit any errors you find in translations as bugs to our
     <ulink
-    url="https://sourceforge.net/p/winmerge/bugs/">bug-list</ulink>.
+    url="https://github.com/WinMerge/winmerge/issues">bug-list</ulink>.
     It would be great if you also provide a corrected version of the translated
     text.</para>
   </section>
