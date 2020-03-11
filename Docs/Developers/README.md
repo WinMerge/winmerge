@@ -14,5 +14,4 @@ Developer documentation is in meant for people who want to compile WinMerge them
  * [Options](Options.html) explains WinMerge's options handling.
  * [Plugins](Plugins.html) contains documentation about plugins-system.
  * [InnoSetup](../../Installer/InnoSetup/README.md) contains documentation about WinMerge's installer.
- * [Releasing](Releasing.html) instructions for doing a WinMerge release.
  * [Unit testing](UnitTesting.html) instructions for unit testing in WinMerge development.
