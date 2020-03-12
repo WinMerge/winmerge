@@ -13,5 +13,6 @@ Developer documentation is in meant for people who want to compile WinMerge them
  * [User manual information](../Users/Manual/README.md) tells how to convert manual from DocBook to HTML and HTML help.
  * [Options](Options.html) explains WinMerge's options handling.
  * [Plugins](Plugins.html) contains documentation about plugins-system.
+ * [ShellExtension](../../ShellExtension/README.md) contains tipps for the Windows Explorer shell integration.
  * [InnoSetup](../../Installer/InnoSetup/README.md) contains documentation about WinMerge's installer.
  * [Unit testing](UnitTesting.html) instructions for unit testing in WinMerge development.
