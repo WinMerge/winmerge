@@ -217,22 +217,30 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey)
 {
 	ResetContent();
 
-	int cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
+	HKEY hKey = AfxGetApp()->GetSectionKey(szRegSubKey);
+	CRegKey reg(hKey);
+	DWORD cnt = 0;
+	reg.QueryDWORDValue(_T("Count"), cnt);
 	int idx = 0;
-	for (int i=0; i < cnt && idx < m_nMaxItems; i++)
+	for (DWORD i=0; i < cnt && idx < m_nMaxItems; i++)
 	{
-		CString s,s2;
+		CString s2;
 		s2.Format(_T("Item_%d"), i);
-		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
-		if (FindStringExact(-1, s) == CB_ERR && !s.IsEmpty())
+		TCHAR szValue[32767];
+		ULONG nChars = sizeof(szValue)/sizeof(TCHAR);
+		szValue[0] = 0;
+		reg.QueryStringValue(s2, szValue, &nChars);
+		if (FindStringExact(-1, szValue) == CB_ERR && nChars > 0)
 		{
-			AddString(s);
+			AddString(szValue);
 			idx++;
 		}
 	}
 	if (idx > 0)
 	{
-		bool bIsEmpty = (m_bCanBeEmpty ? (AfxGetApp()->GetProfileInt(szRegSubKey, _T("Empty"), FALSE) == TRUE) : false);
+		DWORD bIsEmpty = FALSE;
+		if (m_bCanBeEmpty)
+			reg.QueryDWORDValue(_T("Empty"), bIsEmpty);
 		if (bIsEmpty)
 		{
 			SetCurSel(-1);
