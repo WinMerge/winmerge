@@ -34,8 +34,11 @@ CRegOptionsMgr::CRegOptionsMgr()
 
 CRegOptionsMgr::~CRegOptionsMgr()
 {
-	PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);
-	WaitForSingleObject(m_hThread, INFINITE);
+	for (;;) {
+		PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);
+		if (WaitForSingleObject(m_hThread, 1) != WAIT_TIMEOUT)
+			break;
+	}
 	DeleteCriticalSection(&m_cs);
 }
 
