@@ -1799,7 +1799,7 @@ msgid "Sa&ve changes"
 msgstr "Sa&lvar mudanças"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Desca&rtar mudanças"
 
 #, c-format

@@ -1799,7 +1799,7 @@ msgid "Sa&ve changes"
 msgstr "D&eğişiklikleri kaydet"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Değişiklikleri kayde&tme"
 
 #, c-format

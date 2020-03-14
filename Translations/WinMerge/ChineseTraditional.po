@@ -1806,8 +1806,8 @@ msgid "Sa&ve changes"
 msgstr "儲存變更(&V)"
 
 #, c-format
-msgid "Disca&rd changes"
-msgstr "放棄變更(&R)"
+msgid "Discard c&hanges"
+msgstr "放棄變更(&H)"
 
 #, c-format
 msgid "Right side file"

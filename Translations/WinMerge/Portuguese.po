@@ -1798,7 +1798,7 @@ msgid "Sa&ve changes"
 msgstr "Gu&ardar alterações"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Rejei&tar alterações"
 
 #, c-format

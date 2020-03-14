@@ -1389,7 +1389,7 @@ msgstr "Środkowy plik"
 msgid "Sa&ve changes"
 msgstr "Zapisz zmiany"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Odrzuć zmiany"
 
 msgid "Right side file"

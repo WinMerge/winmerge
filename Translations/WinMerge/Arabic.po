@@ -1395,7 +1395,7 @@ msgstr "الملف في الجزء الأوسط"
 msgid "Sa&ve changes"
 msgstr "حفظ التغييرات"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "تجاهل التغييرات"
 
 msgid "Right side file"

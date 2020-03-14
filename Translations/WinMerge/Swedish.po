@@ -1796,7 +1796,7 @@ msgid "Sa&ve changes"
 msgstr "Spara ändringar"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Åsidosätt ändringar"
 
 #, c-format

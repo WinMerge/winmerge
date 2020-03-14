@@ -1382,7 +1382,7 @@ msgstr ""
 msgid "Sa&ve changes"
 msgstr ""
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 msgid "Right side file"

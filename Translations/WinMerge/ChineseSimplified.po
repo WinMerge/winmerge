@@ -1798,8 +1798,8 @@ msgid "Sa&ve changes"
 msgstr "保存修改(&V)"
 
 #, c-format
-msgid "Disca&rd changes"
-msgstr "放弃修改(&R)"
+msgid "Discard c&hanges"
+msgstr "放弃修改(&H)"
 
 #, c-format
 msgid "Right side file"

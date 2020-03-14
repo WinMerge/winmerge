@@ -1394,7 +1394,7 @@ msgstr "Middelste bestand"
 msgid "Sa&ve changes"
 msgstr "Wijzigingen opslaan"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Wijzigingen verwerpen"
 
 msgid "Right side file"

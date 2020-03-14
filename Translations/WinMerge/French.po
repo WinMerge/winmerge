@@ -1807,7 +1807,7 @@ msgid "Sa&ve changes"
 msgstr "Enregistrer les modifications"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Annule&r les modifications"
 
 #, c-format

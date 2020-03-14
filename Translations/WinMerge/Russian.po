@@ -1393,7 +1393,7 @@ msgstr "Файл посередине"
 msgid "Sa&ve changes"
 msgstr "Сохранить изменения"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Отменить изменения"
 
 msgid "Right side file"

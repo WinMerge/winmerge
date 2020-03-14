@@ -1392,7 +1392,7 @@ msgstr "File zona centrale"
 msgid "Sa&ve changes"
 msgstr "S&alva modifiche"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Sca&rta modifiche"
 
 msgid "Right side file"

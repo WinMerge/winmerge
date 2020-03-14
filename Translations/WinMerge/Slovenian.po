@@ -1797,7 +1797,7 @@ msgid "Sa&ve changes"
 msgstr "S&hrani spremembe"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Zav&rzi spremembe"
 
 #, c-format

@@ -1800,8 +1800,8 @@ msgid "Sa&ve changes"
 msgstr "변경사항 저장(&V)"
 
 #, c-format
-msgid "Disca&rd changes"
-msgstr "변경사항 취소(&R)"
+msgid "Discard c&hanges"
+msgstr "변경사항 취소(&H)"
 
 #, c-format
 msgid "Right side file"

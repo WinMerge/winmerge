@@ -1397,8 +1397,8 @@ msgstr "中央ファイル"
 msgid "Sa&ve changes"
 msgstr "変更を保存する(&V)"
 
-msgid "Disca&rd changes"
-msgstr "変更を破棄する(&R)"
+msgid "Discard c&hanges"
+msgstr "変更を破棄する(&H)"
 
 msgid "Right side file"
 msgstr "右側ファイル"

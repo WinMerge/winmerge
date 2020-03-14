@@ -1391,7 +1391,7 @@ msgstr "Vidurinis failas"
 msgid "Sa&ve changes"
 msgstr "Iš&saugoti pakeitimus"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "&Atmesti pakeitimus"
 
 msgid "Right side file"
