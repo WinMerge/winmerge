@@ -17,11 +17,10 @@ class COptionsMgr;
 class CRegOptionsMgr: public COptionsMgr
 {
 public:
-	CRegOptionsMgr() : m_serializing(true), m_bCloseHandle(false) { }
-	virtual ~CRegOptionsMgr() { }
-	int LoadOption(const String& name);
+	CRegOptionsMgr();
+	virtual ~CRegOptionsMgr();
 	int SetRegRootKey(const String& path);
-	void CloseHandles();
+	void CloseKeys();
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
@@ -44,15 +43,22 @@ public:
 	virtual int ImportOptions(const String& filename) override;
 
 protected:
+	HKEY OpenKey(const String& strPath, bool bAlwaysCreate);
+	void CloseKey(HKEY hKey, const String& strPath);
 	void SplitName(const String &strName, String &strPath, String &strValue) const;
 	int LoadValueFromReg(HKEY hKey, const String& strName,
 		varprop::VariantValue &value);
-	int SaveValueToReg(HKEY hKey, const String& strValueName,
+	static int SaveValueToReg(HKEY hKey, const String& strValueName,
 		const varprop::VariantValue& value);
+	static DWORD AsyncWriterThreadProc(void *pParam);
 
 private:
 	String m_registryRoot; /**< Registry path where to store options. */
 	bool m_serializing;
 	std::map<String, HKEY> m_hKeys;
 	bool m_bCloseHandle;
+	DWORD m_dwThreadId;
+	HANDLE m_hThread;
+	CRITICAL_SECTION m_cs;
+	DWORD m_dwQueueCount;
 };

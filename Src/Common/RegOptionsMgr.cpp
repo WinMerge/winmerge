@@ -14,6 +14,31 @@
 #include "OptionsMgr.h"
 
 #define MAX_PATH_FULL 32767
+
+struct AsyncWriterThreadParams
+{
+	String name;
+	varprop::VariantValue value;
+};
+
+CRegOptionsMgr::CRegOptionsMgr()
+	: m_serializing(true)
+	, m_bCloseHandle(false)
+	, m_dwThreadId(0)
+	, m_hThread(nullptr)
+	, m_dwQueueCount(0)
+{
+	InitializeCriticalSection(&m_cs);
+	m_hThread = CreateThread(nullptr, 0, AsyncWriterThreadProc, this, 0, &m_dwThreadId);
+}
+
+CRegOptionsMgr::~CRegOptionsMgr()
+{
+	PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);
+	WaitForSingleObject(m_hThread, INFINITE);
+	DeleteCriticalSection(&m_cs);
+}
+
 /**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
@@ -40,6 +65,79 @@ void CRegOptionsMgr::SplitName(const String &strName, String &strPath,
 		strValue = strName;
 		strPath.erase();
 	}
+}
+
+HKEY CRegOptionsMgr::OpenKey(const String& strPath, bool bAlwaysCreate)
+{
+	String strRegPath(m_registryRoot);
+	strRegPath += strPath;
+	HKEY hKey = nullptr;
+	if (m_hKeys.find(strPath) == m_hKeys.end())
+	{
+		DWORD action = 0;
+		LONG retValReg;
+		if (bAlwaysCreate)
+		{
+			retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+				0, nullptr, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr,
+				&hKey, &action);
+		}
+		else
+		{
+			retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+				0, KEY_ALL_ACCESS, &hKey);
+		}
+		if (retValReg != ERROR_SUCCESS)
+			return nullptr;
+
+		m_hKeys[strPath] = hKey;
+	}
+	else
+	{
+		hKey = m_hKeys[strPath];
+	}
+	return hKey;
+}
+
+void CRegOptionsMgr::CloseKey(HKEY hKey, const String& strPath)
+{
+	if (m_bCloseHandle)
+	{
+		if (hKey)
+			RegCloseKey(hKey);
+		m_hKeys.erase(strPath);
+	}
+}
+
+void CRegOptionsMgr::CloseKeys()
+{
+	EnterCriticalSection(&m_cs);
+	for (auto& pair : m_hKeys)
+		RegCloseKey(pair.second);
+	m_hKeys.clear();
+	LeaveCriticalSection(&m_cs);
+}
+
+DWORD CALLBACK CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
+{
+	CRegOptionsMgr *pThis = reinterpret_cast<CRegOptionsMgr *>(pvThis);
+	MSG msg;
+	BOOL bRet;
+	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
+	{
+		AsyncWriterThreadParams *pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
+		String strPath;
+		String strValueName;
+		pThis->SplitName(pParam->name, strPath, strValueName);
+		EnterCriticalSection(&pThis->m_cs);
+		HKEY hKey = pThis->OpenKey(strPath, true);
+		SaveValueToReg(hKey, strValueName, pParam->value);
+		pThis->CloseKey(hKey, strPath);
+		LeaveCriticalSection(&pThis->m_cs);
+		delete pParam;
+		InterlockedDecrement(&pThis->m_dwQueueCount);
+	}
+	return 0;
 }
 
 /**
@@ -195,27 +293,10 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	String strPath;
 	String strValueName;
 	SplitName(name, strPath, strValueName);
-	String strRegPath(m_registryRoot);
-	strRegPath += strPath;
 
-	// Open key. Create new key if it does not exist.
-	HKEY hKey = nullptr;
-	if (m_hKeys.find(strPath) == m_hKeys.end())
-	{
-		DWORD action = 0;
-		LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			0, nullptr, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr,
-			&hKey, &action);
-
-		if (retValReg != ERROR_SUCCESS)
-			return COption::OPT_ERR;
-
-		m_hKeys[strPath] = hKey;
-	}
-	else
-	{
-		hKey = m_hKeys[strPath];
-	}
+	// Open key.
+	EnterCriticalSection(&m_cs);
+	HKEY hKey = OpenKey(strPath, false);
 
 	// Check previous value
 	// This just checks if the value exists, LoadValueFromReg() below actually
@@ -223,8 +304,12 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	DWORD type = 0;
 	BYTE dataBuf[MAX_PATH_FULL] = {0};
 	DWORD size = MAX_PATH_FULL;
-	LONG retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
-		0, &type, dataBuf, &size);
+	LONG retValReg;
+	if (hKey)
+		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
+			0, &type, dataBuf, &size);
+	else
+		retValReg = ERROR_FILE_NOT_FOUND;
 
 	// Actually save value into our in-memory options table
 	int retVal = AddOption(name, defaultValue);
@@ -232,10 +317,9 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	// Update registry if successfully saved to in-memory table
 	if (retVal == COption::OPT_OK)
 	{
-		// Value didn't exist. Save default value to registry
+		// Value didn't exist. Do nothing
 		if (retValReg == ERROR_FILE_NOT_FOUND)
 		{
-			retVal = SaveValueToReg(hKey, strValueName, defaultValue);
 		}
 		// Value already exists so read it.
 		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
@@ -247,11 +331,8 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		}
 	}
 
-	if (m_bCloseHandle)
-	{
-		RegCloseKey(hKey);
-		m_hKeys.erase(strPath);
-	}
+	CloseKey(hKey, strPath);
+	LeaveCriticalSection(&m_cs);
 	return retVal;
 }
 
@@ -306,58 +387,6 @@ int CRegOptionsMgr::InitOption(const String& name, bool defaultValue)
 }
 
 /**
- * @brief Load option from registry.
- * @note Currently handles only integer and string options!
- */
-int CRegOptionsMgr::LoadOption(const String& name)
-{
-	varprop::VariantValue value;
-	String strPath;
-	String strValueName;
-	String strRegPath(m_registryRoot);
-	HKEY hKey = nullptr;
-	int retVal = COption::OPT_OK;
-
-	SplitName(name, strPath, strValueName);
-	strRegPath += strPath;
-
-	value = Get(name);
-	int valType = value.GetType();
-	if (valType == varprop::VT_NULL)
-		retVal = COption::OPT_NOTFOUND;
-	
-	if (retVal == COption::OPT_OK)
-	{
-		LONG retValReg;
-		if (m_hKeys.find(strPath) == m_hKeys.end())
-		{
-			retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-				0, KEY_ALL_ACCESS, &hKey);
-			if (retValReg == ERROR_SUCCESS)
-				m_hKeys[strPath] = hKey;
-		}
-		else
-		{
-			hKey = m_hKeys[strPath];
-			retValReg = ERROR_SUCCESS;
-		}
-
-		if (retValReg == ERROR_SUCCESS)
-		{
-			retVal = LoadValueFromReg(hKey, name, value);
-			if (m_bCloseHandle)
-			{
-				RegCloseKey(hKey);
-				m_hKeys.erase(strPath);
-			}
-		}
-		else
-			retVal = COption::OPT_ERR;
-	}
-	return retVal;
-}
-
-/**
  * @brief Save option to registry
  * @note Currently handles only integer and string options!
  */
@@ -366,14 +395,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	if (!m_serializing) return COption::OPT_OK;
 
 	varprop::VariantValue value;
-	String strPath;
-	String strValueName;
-	String strRegPath(m_registryRoot);
-	HKEY hKey = nullptr;
 	int retVal = COption::OPT_OK;
-
-	SplitName(name, strPath, strValueName);
-	strRegPath += strPath;
 
 	value = Get(name);
 	int valType = value.GetType();
@@ -382,31 +404,11 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	
 	if (retVal == COption::OPT_OK)
 	{
-		LONG retValReg;
-		if (m_hKeys.find(strPath) == m_hKeys.end())
-		{
-			retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-				0, KEY_ALL_ACCESS, &hKey);
-			if (retValReg == ERROR_SUCCESS)
-				m_hKeys[strPath] = hKey;
-		}
-		else
-		{
-			retValReg = ERROR_SUCCESS;
-			hKey = m_hKeys[strPath];
-		}
-
-		if (retValReg == ERROR_SUCCESS)
-		{
-			retVal = SaveValueToReg(hKey, strValueName, value);
-			if (m_bCloseHandle)
-			{
-				RegCloseKey(hKey);
-				m_hKeys.erase(strPath);
-			}
-		}
-		else
-			retVal = COption::OPT_ERR;
+		AsyncWriterThreadParams *pParam = new AsyncWriterThreadParams();
+		pParam->name = name;
+		pParam->value = value;
+		InterlockedIncrement(&m_dwQueueCount);
+		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
 	}
 	return retVal;
 }
@@ -471,45 +473,23 @@ int CRegOptionsMgr::SaveOption(const String& name, bool value)
 
 int CRegOptionsMgr::RemoveOption(const String& name)
 {
-	HKEY hKey = nullptr;
 	int retVal = COption::OPT_OK;
-	String strRegPath(m_registryRoot);
-	String strPath;
-	String strValueName;
-	LONG retValReg;
 
 	retVal = COptionsMgr::RemoveOption(name);
 
-	SplitName(name, strPath, strValueName);
-	strRegPath += strPath;
+	String strPath;
+	String strValueName;
 
-	if (m_hKeys.find(strPath) == m_hKeys.end())
-	{
-		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			0, KEY_ALL_ACCESS, &hKey);
-		if (retValReg == ERROR_SUCCESS)
-			m_hKeys[strPath] = hKey;
-	}
-	else
-	{
-		hKey = m_hKeys[strPath];
-		retValReg = ERROR_SUCCESS;
-	}
-	if (retValReg == ERROR_SUCCESS)
-	{
-		retValReg = RegDeleteValue(hKey, strValueName.c_str());
-		if (retValReg != ERROR_SUCCESS)
-		{
-			retVal = COption::OPT_ERR;
-		}
-		if (m_bCloseHandle)
-		{
-			RegCloseKey(hKey);
-			m_hKeys.erase(strPath);
-		}
-	}
-	else
-		retVal = COption::OPT_ERR;
+	SplitName(name, strPath, strValueName);
+
+	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
+		Sleep(0);
+
+	EnterCriticalSection(&m_cs);
+	HKEY hKey = OpenKey(strPath, true);
+	RegDeleteValue(hKey, strValueName.c_str());
+	CloseKey(hKey, strPath);
+	LeaveCriticalSection(&m_cs);
 
 	return retVal;
 
@@ -657,11 +637,4 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 			pKey++;
 	}
 	return retVal;
-}
-
-void CRegOptionsMgr::CloseHandles()
-{
-	for (auto& pair : m_hKeys)
-		RegCloseKey(pair.second);
-	m_hKeys.clear();
 }

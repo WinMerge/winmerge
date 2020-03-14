@@ -550,7 +550,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (m_bNonInteractive && IsReallyIdle())
 		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
 
-	static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseHandles();
+	static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseKeys();
 
 	return FALSE;
 }
@@ -1316,11 +1316,7 @@ UINT CMergeApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefau
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
 	if (!pOptions->Get(name).IsInt())
-	{
-		varprop::VariantValue defaultValue;
-		defaultValue.SetInt(CWinApp::GetProfileInt(lpszSection, lpszEntry, nDefault));
-		pOptions->AddOption(name, defaultValue);
-	}
+		pOptions->InitOption(name, nDefault);
 	return pOptions->GetInt(name);
 }
 
@@ -1338,11 +1334,7 @@ CString CMergeApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCT
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
 	if (!pOptions->Get(name).IsString())
-	{
-		varprop::VariantValue defaultValue;
-		defaultValue.SetString(CWinApp::GetProfileString(lpszSection, lpszEntry, lpszDefault));
-		pOptions->AddOption(name, defaultValue);
-	}
+		pOptions->InitOption(name, lpszDefault ? lpszDefault : _T(""));
 	return pOptions->GetString(name).c_str();
 }
 
