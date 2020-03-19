@@ -68,7 +68,7 @@ Installer translation files are in `Translations\InnoSetup\` folder. Look for a 
 
 If one does not yet exist, copy and rename `English.isl` to `YourLanguage.isl`, where *YourLanguage* is the english name of your language.
 
-Translate the text after the `=` charactar:
+Translate the text after the `=` character:
 
 ```
 OptionalFeatures=Optional Features:
@@ -82,4 +82,4 @@ Please consider translating also `ReadMe.txt` file - it is shown in end of insta
 
 ## Translating Website
 
-We use PO files for the website too. But the source are in a own [GitHub project](https://github.com/winmerge/website/).
+We use PO files for the website too. But the source files are in its own [GitHub project](https://github.com/winmerge/website/).
