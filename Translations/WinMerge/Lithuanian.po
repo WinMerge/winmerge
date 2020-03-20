@@ -1401,7 +1401,7 @@ msgid "S&ave changes"
 msgstr "Išs&augoti pakeitimus"
 
 msgid "Dis&card changes"
-msgstr "A&t&mesti pakeitimus"
+msgstr "At&mesti pakeitimus"
 
 msgid "Disca&rd All"
 msgstr "Atmes&ti viską"
