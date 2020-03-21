@@ -128,6 +128,9 @@ COpenView::COpenView()
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
 	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
 {
+	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
+	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
+	m_bInsideUpdate = TRUE;
 }
 
 COpenView::~COpenView()

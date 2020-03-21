@@ -1350,12 +1350,8 @@ BOOL CMergeApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTS
 	}
 	else
 	{
-		for (auto& name : pOptions->GetNameList())
-		{
-			if (name.find(lpszSection) == 0)
-				pOptions->RemoveOption(name);
-		}
-
+		String name = strutils::format(_T("%s/"), lpszSection);
+		pOptions->RemoveOption(name);
 	}
 	return TRUE;
 }

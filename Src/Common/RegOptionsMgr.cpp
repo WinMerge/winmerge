@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "RegOptionsMgr.h"
 #include <windows.h>
+#include <Shlwapi.h>
 #include <tchar.h>
 #include <vector>
 #include "varprop.h"
@@ -478,19 +479,40 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 {
 	int retVal = COption::OPT_OK;
 
-	retVal = COptionsMgr::RemoveOption(name);
-
 	String strPath;
 	String strValueName;
 
 	SplitName(name, strPath, strValueName);
+
+	if (!strValueName.empty())
+	{
+		retVal = COptionsMgr::RemoveOption(name);
+	}
+	else
+	{
+		for (auto it = m_optionsMap.begin(); it != m_optionsMap.end(); )
+		{
+			if (it->first.find(strPath) == 0)
+				it = m_optionsMap.erase(it);
+			else 
+				++it;
+		}
+		retVal = COption::OPT_OK;
+	}
 
 	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
 		Sleep(0);
 
 	EnterCriticalSection(&m_cs);
 	HKEY hKey = OpenKey(strPath, true);
-	RegDeleteValue(hKey, strValueName.c_str());
+	if (strValueName.empty())
+#ifdef _WIN64
+		RegDeleteTree(hKey, nullptr);
+#else
+		SHDeleteKey(hKey, nullptr);
+#endif
+	else
+		RegDeleteValue(hKey, strValueName.c_str());
 	CloseKey(hKey, strPath);
 	LeaveCriticalSection(&m_cs);
 
