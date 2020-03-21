@@ -102,13 +102,32 @@ End Function
 <script language="JScript">
 
 function SortAscending(Text) {
-	return Text.split("\n").sort().join("\n");
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+
+	if (lines.length == 1) {
+		return Text;
+	} else if (lines[lines.length - 1] == "") {
+		lines.pop();
+		return lines.sort().join(eol) + eol;
+	} else {
+		return lines.sort().join(eol);
+	}
 }
 
 function SortDescending(Text) {
-	var lines = Text.split("\n");
-	lines.sort(function(a, b) { return a < b ? 1 : -1; });
-	return lines.join("\n");
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split("\r\n");
+
+	if (lines.length == 1) {
+		return Text;
+	} else if (lines[lines.length - 1] == "") {
+		lines.pop();
+		lines.sort(function(a, b) { return a < b ? 1 : -1; });
+		return lines.join(eol) + eol;
+	} else {
+		return lines.sort(function(a, b) { return a < b ? 1 : -1; }).join(eol);
+	}
 }
 
 </script>
