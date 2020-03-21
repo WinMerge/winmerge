@@ -522,6 +522,9 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
+    <ClCompile Include="Concurrent.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
     <ClCompile Include="charsets.c">

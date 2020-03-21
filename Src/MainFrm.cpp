@@ -874,9 +874,15 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
 		params += _T("/r ");
 	if (!filter.empty())
 		params += _T("/f \"") + filter + _T("\" ");
-	return JumpList::AddToRecentDocs(_T(""), params, title, params, 0);
-}
 
+	Concurrent::CreateTask([params, title](){
+			CoInitialize(nullptr);
+			JumpList::AddToRecentDocs(_T(""), params, title, params, 0);
+			CoUninitialize();
+			return 0;
+		});
+	return true;
+}
 /**
  * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing.
  * @param [in] pszLeft Left-side path.

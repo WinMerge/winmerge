@@ -523,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
+    <ClCompile Include="Concurrent.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
     <ClCompile Include="charsets.c">
@@ -1105,6 +1108,7 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
