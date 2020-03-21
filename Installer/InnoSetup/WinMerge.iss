@@ -546,6 +546,7 @@ Source: ..\..\Build\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Compo
 Source: ..\..\Build\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge

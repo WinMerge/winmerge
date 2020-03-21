@@ -526,6 +526,7 @@ Source: ..\..\Build\x64\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; C
 Source: ..\..\Build\x64\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\x64\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\x64\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x64\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\x64\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge
