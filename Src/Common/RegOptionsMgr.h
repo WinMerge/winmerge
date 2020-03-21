@@ -50,7 +50,7 @@ protected:
 		varprop::VariantValue &value);
 	static int SaveValueToReg(HKEY hKey, const String& strValueName,
 		const varprop::VariantValue& value);
-	static DWORD AsyncWriterThreadProc(void *pParam);
+	static DWORD WINAPI AsyncWriterThreadProc(void *pParam);
 
 private:
 	String m_registryRoot; /**< Registry path where to store options. */
