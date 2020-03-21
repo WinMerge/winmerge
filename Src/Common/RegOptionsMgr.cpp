@@ -121,7 +121,7 @@ void CRegOptionsMgr::CloseKeys()
 	LeaveCriticalSection(&m_cs);
 }
 
-DWORD CALLBACK CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
+DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 {
 	CRegOptionsMgr *pThis = reinterpret_cast<CRegOptionsMgr *>(pvThis);
 	MSG msg;
