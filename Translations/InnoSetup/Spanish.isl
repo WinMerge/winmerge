@@ -1,87 +1,87 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Optional Features:
+OptionalFeatures=Características opcionales:
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Instalación Típica
+FullInstallation=Instalación Completa
+CompactInstallation=Instalación Compacta
+CustomInstallation=Instalación Personalizada
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
-Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+AppCoreFiles=Ficheros básicos de WinMerge
+Filters=Filtros
+Plugins=Complementos
+Frhed=Frhed(Editor hexadecimal gratuito)
+WinIMerge=WinIMerge(Diferenciar/Mezclar Imágenes)
+ArchiveSupport=Soporte de Archivado
+ShellExtension32bit=Extensión del Shell de 32-bit para WinMerge
+Patch=Parche GnuWin32 para Windows
 
 ;Localization Components
-Languages=Languages
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FinnishLanguage=Finnish menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-LithuanianLanguage=Lithuanian menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages=Idiomas
+ArabicLanguage=Menús y diálogos en árabe
+BasqueLanguage=Menús y diálogos en vasco
+BulgarianLanguage=Menús y diálogos en búlgaro
+CatalanLanguage=Menús y diálogos en catalán
+ChineseSimplifiedLanguage=Menús y diálogos en chino (simplificado)
+ChineseTraditionalLanguage=Menús y diálogos en chino (tradicional)
+CroatianLanguage=Menús y diálogos en croata
+CzechLanguage=Menús y diálogos en checo
+DanishLanguage=Menús y diálogos en danés
+DutchLanguage=Menús y diálogos en holandés
+FinnishLanguage=Menús y diálogos en finés
+FrenchLanguage=Menús y diálogos en francés
+GalicianLanguage=Menús y diálogos en gallego
+GermanLanguage=Menús y diálogos en alemán
+GreekLanguage=Menús y diálogos en griego
+HungarianLanguage=Menús y diálogos en húngaro
+ItalianLanguage=Menús y diálogos en italiano
+JapaneseLanguage=Menús y diálogos en japonés
+KoreanLanguage=Menús y diálogos en coreano
+LithuanianLanguage=Menús y diálogos en lituano
+NorwegianLanguage=Menús y diálogos en noruego
+PersianLanguage=Menús y diálogos en persa
+PolishLanguage=Menús y diálogos en polaco
+PortugueseBrazilLanguage=Menús y diálogos en portugués (Brasil)
+PortugueseLanguage=Menús y diálogos en portugués
+RomanianLanguage=Menús y diálogos en rumano
+RussianLanguage=Menús y diálogos en ruso
+SerbianLanguage=Menús y diálogos en serbio
+SinhalaLanguage=Menús y diálogos en cingalés
+SlovakLanguage=Menús y diálogos en eslovaco
+SlovenianLanguage=Menús y diálogos en esloveno
+SpanishLanguage=Menús y diálogos en español
+SwedishLanguage=Menús y diálogos en sueco
+TurkishLanguage=Menús y diálogos en turco
+UkrainianLanguage=Menús y diálogos en ucraniano
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseGit=Integrate with To&rtoiseGit
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+ExplorerContextMenu=Habilitar la integración con menú de contexto de &Explorer
+IntegrateTortoiseCVS=Integrar con &TortoiseCVS
+IntegrateTortoiseGit=Integrar con To&rtoiseGit
+IntegrateTortoiseSVN=Integrar con T&ortoiseSVN
+IntegrateClearCase=Integrar con Rational &ClearCase
+AddToPath=&Añadir la carpeta de WinMerge a tu ruta de sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=Mezcla a 3
+ThreeWayMergeWizardPageDescription=¿Usas WinMerge como herramienta de mezcla a 3 para TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Registrar WinMerge como herramienta de mezcla a 3
+MergeAtRightPane=Mezclar en el panel derecho
+MergeAtCenterPane=Mezclar en el panel central
+MergeAtLeftPane=Mezclar en el panel izquierdo
+AutoMergeAtStartup=Auto mezclar al inicio
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Léeme
+UsersGuide=Guía de Usuario
+ViewStartMenuFolder=&Ver la carpeta de WinMerge del Menú de Inicio
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=El instalador ha detectado que se cambió la ubicación del Menú de Inicio de "%s" a "%s". ¿Quieres eliminar la anterior carpeta del Menú de Inicio?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Fichero de Proyecto de WinMerge
