@@ -56,7 +56,7 @@ msgstr "Abrir con WinMerge"
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Por favor non selecciones máis de 2 elementos"
+msgstr "Por favor, non selecciones máis de 2 elementos"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -66,7 +66,7 @@ msgstr "Comparar"
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Comparar..."
+msgstr "Comparar…"
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
@@ -86,4 +86,4 @@ msgstr "Comparar coa ruta gardada (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Voltar seleccionar a primeira"
+msgstr "Volver a seleccionar a primeira"
