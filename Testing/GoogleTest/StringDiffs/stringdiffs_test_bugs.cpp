@@ -66,7 +66,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
 			_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)"),
 			_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)"),
-			false, 0, 1, true);
+			false, true, 0, 1, true);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -86,7 +86,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
 			_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)"),
 			_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)"),
-			false, 0, 1, false);
+			false, true, 0, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -106,7 +106,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
 			_T("[overlay_oid_origin, overlay_oid_target], [nil, nil]"),
 			_T("[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\"), \"target.txt\"]"),
-			false, 0, 1, true);
+			false, true, 0, 1, true);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -126,7 +126,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
 			_T("[overlay_oid_origin, overlay_oid_target], [nil, nil]"),
 			_T("[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\"), \"target.txt\"]"),
-			false, 0, 1, false);
+			false, true, 0, 1, false);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -146,7 +146,7 @@ namespace
 			//  012345678901234567890
 			_T("N42=Import"), 
 			_T("N42=Importuj"),
-			false, 0, 1, true);
+			false, true, 0, 1, true);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -166,7 +166,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -186,7 +186,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
-			false, 0, 1, false);
+			false, true, 0, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -206,7 +206,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -227,7 +227,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 			_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
-			false, 0, 1, false);
+			false, true, 0, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -248,7 +248,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("if (nDiff < m_diffs.size())"),
 			_T("if(nDiff < (int) m_diffs.size())"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -269,7 +269,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("if (nDiff < m_diffs.size())"),
 			_T("if(nDiff < (int) m_diffs.size())"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -290,7 +290,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("const string ManualFolder = \"Manual\";"),
 			_T("private const string ManualFolder = \"Manual\";"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -311,7 +311,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("const string ManualFolder = \"Manual\";"),
 			_T("private const string ManualFolder = \"Manual\";"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -332,7 +332,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno"),
 			_T("abc defx ghi jklx mno"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
@@ -358,7 +358,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno"),
 			_T("abc defx ghi jklx mno"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
@@ -386,7 +386,7 @@ namespace
 			//  0123456789012345678901234567890123456789012345678901234567890123456789
 			_T("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);"),
 			_T("static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);"),
-			false, 0, 1, true);
+			false, true, 0, 1, true);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
@@ -414,7 +414,7 @@ namespace
 			//  0123456789012345678901234567890123456789012345678901234567890123456789
 			_T("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);"),
 			_T("static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);"),
-			false, 0, 1, false);
+			false, true, 0, 1, false);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -440,7 +440,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno pqr stu vwx yz"),
 			_T("abc def 123 ghi jkl mno pqr stu 456 vw x yz"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
@@ -471,7 +471,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno pqr stu vwx yz"),
 			_T("abc def 123 ghi jkl mno pqr stu 456 vw x yz"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
@@ -502,7 +502,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno pqr stu vwx yzr"),
 			_T("abc def 123ghi jkl mno pqr stu 456vwx yzrr"),
-			false, 0, 0, true);
+			false, true, 0, 0, true);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
@@ -533,7 +533,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abc def ghi jkl mno pqr stu vwx yzr"),
 			_T("abc def 123ghi jkl mno pqr stu 456vwx yzrr"),
-			false, 0, 0, false);
+			false, true, 0, 0, false);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{

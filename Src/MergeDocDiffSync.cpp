@@ -142,11 +142,12 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
+	bool eolSensitive = !diffOptions.bIgnoreEol;
 	int xwhite = diffOptions.nIgnoreWhitespace;
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(2, str, casitive, xwhite, breakType, byteColoring);
+	std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(2, str, casitive, eolSensitive, xwhite, breakType, byteColoring);
 
 	int nDiffLenSum = 0;
 	for (std::vector<strdiff::wdiff>::const_iterator it = worddiffs.begin(); it != worddiffs.end(); ++it)

@@ -42,8 +42,8 @@ void Close();
 void SetBreakChars(const TCHAR *breakChars);
 
 std::vector<wdiff> ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, int whitespace, int breakType, bool byte_level);
+	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level);
 std::vector<wdiff> ComputeWordDiffs(int nStrings, const String str[3], 
-                   bool case_sensitive, int whitespace, int breakType, bool byte_level);
+                   bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level);
 
 }

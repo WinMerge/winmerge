@@ -63,7 +63,7 @@ namespace
 			//  0	1	2	3	4567890123456789012345678901234567890123456789
 			_T("				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),"),
 			_T("					if (len2 < 50)"),
-			true, 0, 1, true);
+			true, true, 0, 1, true);
 		EXPECT_EQ(4, diffs.size());
 	}
 
@@ -75,7 +75,7 @@ namespace
 		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(
 			//  0	1234567890123456789012345678901234567890123456789
 			_T("	while (1)"),
-			_T("	for (;;)"), true, 0, 1, true);
+			_T("	for (;;)"), true, true, 0, 1, true);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )
@@ -112,7 +112,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T("abcdef,abccef,abcdef,"),
 			_T("abcdef,abcdef,abcdef,"),
-			true, 0, 1, true);
+			true, true, 0, 1, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )
@@ -133,7 +133,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T(""),
 			_T("		// remove empty records on both side"),
-			true, 0, 1, true);
+			true, true, 0, 1, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )
@@ -154,7 +154,7 @@ namespace
 			//  01234567890123456789012345678901234567890123456789
 			_T(",;+ der abcdef,der,Thomas,abcdef,abcdef,;"),
 			_T(",;+ der abcdef,Thomas,accdgf,abcdef,-+"),
-			true, 0, 1, true);
+			true, true, 0, 1, true);
 		EXPECT_EQ(3, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )
@@ -205,7 +205,7 @@ namespace
 	{
 		strdiff::SetBreakChars(_T(","));
 		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcdef,abcdef,abcdef,"), _T("abcdef,abccef,abcdef,"),
-				true, 0, 1, false);
+				true, true, 0, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )
@@ -224,7 +224,7 @@ namespace
 	{
 		strdiff::SetBreakChars(_T(","));
 		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcdef,abccef,abcdef,"), _T("abcdef,abcdef,abcdef,"),
-				true, 0, 1, true);
+				true, true, 0, 1, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() >= 1 )

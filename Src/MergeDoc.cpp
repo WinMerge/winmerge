@@ -573,6 +573,7 @@ void CMergeDoc::FlagTrivialLines(void)
 				// Make the call to stringdiffs, which does all the hard & tedious computations
 				std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(m_nBuffers, str,
 					!diffOptions.bIgnoreCase,
+					!diffOptions.bIgnoreEol,
 					diffOptions.nIgnoreWhitespace,
 					GetBreakType(), // whitespace only or include punctuation
 					GetByteColoringOption());
