@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-03-13 13:59+0100\n"
+"PO-Revision-Date: 2020-03-21 06:12+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -71,7 +71,7 @@ msgstr "&Prilepi"
 
 #, c-format
 msgid "&Goto..."
-msgstr "Pojdi &na ..."
+msgstr "Pojdi &na..."
 
 #, c-format
 msgid "Op&en"
@@ -191,18 +191,18 @@ msgstr "Nova (&3 okna)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&Odpri ... \tCtrl+O"
+msgstr "&Odpri... \tCtrl+O"
 
 msgid "Open Conflic&t File..."
 msgstr "Od&pri datoteko v sporu..."
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Odpri pro&jekt ... \tCtrl+J"
+msgstr "Odpri pro&jekt... \tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "S&hrani projekt ..."
+msgstr "S&hrani projekt..."
 
 #, c-format
 msgid "Recent Projects"
@@ -262,11 +262,11 @@ msgstr "&Orodja"
 
 #, c-format
 msgid "&Filters..."
-msgstr "&Filtri ..."
+msgstr "&Filtri..."
 
 #, c-format
 msgid "&Generate Patch..."
-msgstr "&Generiraj popravek..."
+msgstr "Us&tvari popravek..."
 
 #, c-format
 msgid "&Plugins"
@@ -310,7 +310,7 @@ msgstr "Zapri &vse"
 
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Preklopi &okna\tF6"
+msgstr "Spremeni &okna\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
@@ -342,7 +342,7 @@ msgstr "P&revodi"
 
 #, c-format
 msgid "C&onfiguration"
-msgstr "&Nastavitve"
+msgstr "&Dnevnik nastavitev"
 
 #, c-format
 msgid "&GNU General Public License"
@@ -358,7 +358,7 @@ msgstr "S&amo-za-branje"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "L&evo le za branje"
+msgstr "L&evo Samo-za-branje"
 
 #, c-format
 msgid "M&iddle Read-only"
@@ -402,7 +402,7 @@ msgstr "Prikaži &preskočene vnose"
 
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Prikaži &binarne datoteke"
+msgstr "Prikaži &dvojiške datoteke"
 
 #, c-format
 msgid "&3-way Compare"
@@ -507,7 +507,7 @@ msgstr "Kopiraj v &levo\tAlt+Left"
 
 #, c-format
 msgid "&Delete\tDel"
-msgstr "&Zbriši\tDel"
+msgstr "I&zbriši\tDel"
 
 #, c-format
 msgid "&Customize Columns..."
@@ -515,7 +515,7 @@ msgstr "Prilagodi s&tolpce..."
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "Ustvari &poročilo ..."
+msgstr "Ustvari &poročilo..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
@@ -559,7 +559,7 @@ msgstr "Shrani l&evo kot..."
 
 #, c-format
 msgid "&Print..."
-msgstr "&Natisni ..."
+msgstr "&Natisni..."
 
 msgid "Page Set&up..."
 msgstr "Nastavitev &strani..."
@@ -581,7 +581,7 @@ msgstr "Znova nal&oži\tCtrl+F5"
 
 #, c-format
 msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke ..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Recompare As"
@@ -597,7 +597,7 @@ msgstr "&XML"
 
 #, c-format
 msgid "&Binary"
-msgstr "&Binarno"
+msgstr "&Dvojiško"
 
 #, c-format
 msgid "&Image"
@@ -629,11 +629,11 @@ msgstr "Izberi &razliko vrstice\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "&Najdi ... \tCtrl+F"
+msgstr "&Najdi... \tCtrl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Zamen&jaj ... \tCtrl+H"
+msgstr "Zamen&jaj... \tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
@@ -677,7 +677,7 @@ msgstr "Označevanje sintakse"
 
 #, c-format
 msgid "&Diff Context"
-msgstr "Vse&bina razlik"
+msgstr "Razlika vse&bine"
 
 #, c-format
 msgid "&All Lines"
@@ -1013,11 +1013,11 @@ msgstr "Obe v... (%1 od %2)"
 
 #, c-format
 msgid "All to... (%1 of %2)"
-msgstr "Vse v... (%1 of %2)"
+msgstr "Vse v... (%1 od %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr "Razlike vo... (%1 od %2)"
+msgstr "Razlike v... (%1 od %2)"
 
 #, c-format
 msgid "&Refresh"
@@ -1121,7 +1121,7 @@ msgstr "Hitra vsebina"
 
 #, c-format
 msgid "Binary Contents"
-msgstr "Binarna vsebina"
+msgstr "Dvojiška vsebina"
 
 #, c-format
 msgid "Modified Date"
@@ -1256,7 +1256,7 @@ msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
 
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Dovoli &samo en trenutno aktiven program za izvajanje"
+msgstr "Dovoli &samo en primerek programa za izvajanje"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1306,7 +1306,7 @@ msgstr "Ujemanje le &celih besed"
 
 #, c-format
 msgid "Match &case"
-msgstr "Ujeman V/m črke"
+msgstr "Ujemaj m/V črke"
 
 #, c-format
 msgid "Regular &expression"
@@ -1437,7 +1437,7 @@ msgstr "Prezrte razlike:"
 
 #, c-format
 msgid "Moved:"
-msgstr "Premaknjen:"
+msgstr "Premaknjeno:"
 
 #, c-format
 msgid "Selected Moved:"
@@ -1547,7 +1547,7 @@ msgstr "S&log:"
 
 #, c-format
 msgid "&Context:"
-msgstr "&Skladnost:"
+msgstr "&Zveza:"
 
 #, c-format
 msgid "Ignor&e blank lines"
@@ -1682,7 +1682,7 @@ msgid "&Match similar lines"
 msgstr "&Ujemaj enake vrstice"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritem azlik (Eksperimentalno):"
+msgstr "Al&goritem razlik (eksperimen):"
 
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
@@ -1758,7 +1758,7 @@ msgstr "Preizkusi..."
 
 #, c-format
 msgid "Install..."
-msgstr "Namesti ..."
+msgstr "Namesti..."
 
 #, c-format
 msgid "New..."
@@ -1766,7 +1766,7 @@ msgstr "Nova..."
 
 #, c-format
 msgid "Edit..."
-msgstr "Uredi ..."
+msgstr "Uredi..."
 
 #, c-format
 msgid "Delete..."
@@ -1796,9 +1796,8 @@ msgstr "Datoteka v sredini"
 msgid "Sa&ve changes"
 msgstr "S&hrani spremembe"
 
-#, c-format
 msgid "Discard c&hanges"
-msgstr "Zav&rzi spremembe"
+msgstr ""
 
 #, c-format
 msgid "Right side file"
@@ -1854,7 +1853,7 @@ msgstr "Glede na uporabniški vmesnik WinMerge"
 
 #, c-format
 msgid "Custom codepage:"
-msgstr "Poljubna kod. stran:"
+msgstr "Poljubna kodna stran:"
 
 #, c-format
 msgid "Options"
@@ -1866,11 +1865,11 @@ msgstr " Kategorije"
 
 #, c-format
 msgid "Import..."
-msgstr "Uvozi ..."
+msgstr "Uvozi..."
 
 #, c-format
 msgid "Export..."
-msgstr "Izvozi ..."
+msgstr "Izvozi..."
 
 #, c-format
 msgid "Dialog"
@@ -1969,11 +1968,11 @@ msgstr "Deljen filter (za vse uporabnike na tem računalniku)"
 
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Zasebni filter (samo za trenutnega uporabnika)"
+msgstr "Zasebni filter (le za trenutnega uporabnika)"
 
 #, c-format
 msgid "Archive Support"
-msgstr "Podpora arhivskih datotek"
+msgstr "Podpora arhivov"
 
 #, c-format
 msgid "&Enable archive file support"
@@ -2001,7 +2000,7 @@ msgstr "Razlika"
 
 #, c-format
 msgid "Binary:"
-msgstr "Binarno:"
+msgstr "Dvojiško:"
 
 #, c-format
 msgid "Unique"
@@ -2160,7 +2159,7 @@ msgstr "&Dodaj končnico '.bak'"
 
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "&Dodaj časovni žig"
+msgstr "Dodaj ča&sovni žig"
 
 #, c-format
 msgid "Confirm Copy"
@@ -2219,13 +2218,13 @@ msgstr "&Registriraj končnico lupine"
 
 #, c-format
 msgid "&Unregister shell extension"
-msgstr "&Odregistriraj končnico lupine"
+msgstr "&Odstrani registracijo končnice lupine"
 
 msgid "Register shell extension for current user &only"
-msgstr "Register shell extension for current user &only"
+msgstr "Registriraj končnico lupine le za &trenutnega uporabnika"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "Unregister shell extension for current user on&ly"
+msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2256,7 +2255,7 @@ msgid "&Quick compare limit (MB):"
 msgstr "Omejitev &hitre primerjave (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr "Omejitev &binarne primerjave (MB):"
+msgstr "Omejitev d&vojiške primerjave (MB):"
 
 msgid ""
 "\n"
@@ -2267,11 +2266,11 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr "Binarno"
+msgstr "Dvojiško"
 
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr "Vzorci &binarnih datotek:"
+msgstr "Vzorci &dvojiških datotek:"
 
 #, c-format
 msgid "Frhed settings"
@@ -2283,7 +2282,7 @@ msgstr "Nas&tavitve prikaza..."
 
 #, c-format
 msgid "&Binary Mode..."
-msgstr "&Binarni način..."
+msgstr "&Dvojiški način..."
 
 #, c-format
 msgid "&Character Set..."
@@ -2302,7 +2301,7 @@ msgstr "16-tiški prikaz"
 
 #, c-format
 msgid "EXT"
-msgstr "EXT"
+msgstr "KON"
 
 #, c-format
 msgid "CAP"
@@ -2428,7 +2427,7 @@ msgstr "WinMerge prihaja POPOLNOMA BREZ GARANCIJE. To je brezplačen program. Do
 
 #, c-format
 msgid "&Abort"
-msgstr "&Prekini"
+msgstr "Pre&kini"
 
 #, c-format
 msgid "&Retry"
@@ -2608,7 +2607,7 @@ msgid ""
 msgstr ""
 "Ni mogoče najti predloge filtra!\n"
 "\n"
-"Prosimo, kopirajte datoteko %1 v mapo \"WinMerge/Filters\":\n"
+"Kopirajte datoteko %1 v mapo \"WinMerge/Filters\":\n"
 "%2."
 
 #, c-format
@@ -2629,9 +2628,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Uporabniška filter datotečna mapa ni definirana.\n"
+"Ni določena mapa uporabniškega filtra.\n"
 "\n"
-"Prosim izberite filter mape v Možnosti/Sistem."
+"Izberite mapo filtrov v Možnosti/Sistem."
 
 #, c-format
 msgid ""
@@ -2800,7 +2799,7 @@ msgstr "Omogočeno je le za primerjave datotek"
 
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Ne morete primerjati datoteke in mape!"
+msgstr "Ni mogoče primerjati datoteke in mape!"
 
 #, c-format
 msgid "File not found: %1"
@@ -2846,7 +2845,7 @@ msgstr "Shrani spremembe v %1?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 je označena samo-za- branje. Ali želite prepisati datoteko samo-za- branje? ( Ne, za shranjevanje pod novim imenom)"
+msgstr "%1 je označena Samo-za- branje. Ali želite preglasiti datoteko Samo-za- branje? ('Ne', za shranjevanje pod novim imenom)"
 
 #, c-format
 msgid "Error backing up file"
@@ -2928,7 +2927,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"is marked read-only. Would you like to override the read-only item?"
+"je označena Samo-za-branje. Ali želite preglasiti vnos Samo-za-branje?"
 
 #, c-format
 msgid ""
@@ -2942,7 +2941,7 @@ msgstr ""
 "%1\n"
 "odkar jo je WinMerge zadnjič pregledal.\n"
 "\n"
-"Ali želite ponovno naložiti datoteko?"
+"Ali želite znova naložiti datoteko?"
 
 #, c-format
 msgid "Save Left File As"
@@ -3008,7 +3007,7 @@ msgstr "Iz leve v srednjo (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Leva do ... (%1)"
+msgstr "Leva do... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -3068,7 +3067,7 @@ msgstr "(%1 vpletenih datotek)"
 
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 of %2 vpletenih datotek)"
+msgstr "(%1 od %2 vpletenih datotek)"
 
 #, c-format
 msgid ""
@@ -3255,7 +3254,7 @@ msgstr "Prezrte razlike"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binarno"
+msgstr "Dvojiško"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3291,11 +3290,11 @@ msgstr "Ne obstaja v %1"
 
 #, c-format
 msgid "Binary files are identical"
-msgstr "Binarni datoteki sta enaki"
+msgstr "Dvojiški datoteki sta enaki"
 
 #, c-format
 msgid "Binary files are different"
-msgstr "Binarni datoteki sta različni"
+msgstr "Dvojiški datoteki sta različni"
 
 #, c-format
 msgid "Files are different"
@@ -3492,7 +3491,7 @@ msgstr "Število razlik v datoteki. Ta številka ne vsebuje prezrtih razlik."
 
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Prikaže zvezdico (*) če je datoteka binarna."
+msgstr "Prikaže zvezdico (*) če je datoteka dvojiška."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3532,7 +3531,7 @@ msgstr "Poročilo je bilo uspešno izdelano."
 
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Ista datoteka je odprta v obeh oknih."
+msgstr "Ista datoteka je odprta v obeh podoknih."
 
 #, c-format
 msgid "The selected files are identical."
@@ -3566,7 +3565,7 @@ msgstr "Izbrana mapa ni veljavna."
 
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "V urejevalniku ni mogoče odpreti binarne datoteke."
+msgstr "V urejevalniku ni mogoče odpreti dvojiške datoteke."
 
 #, c-format
 msgid ""
@@ -3699,7 +3698,7 @@ msgstr "[%1 izbranih datotek]"
 
 #, c-format
 msgid "Normal"
-msgstr "Normalno"
+msgstr "Običajno"
 
 #, c-format
 msgid "Context"
@@ -3723,7 +3722,7 @@ msgstr "Določite izhodno datoteko"
 
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Iz binarnih datotek ni mogoče ustvariti datoteke s popravki."
+msgstr "Iz dvojiških datotek ni mogoče ustvariti datoteke s popravki."
 
 #, c-format
 msgid "Cannot create a patch file from directories."
@@ -3793,7 +3792,7 @@ msgstr "Mešano"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binarno"
+msgstr "Dvojiško"
 
 #, c-format
 msgid "None"
@@ -3981,7 +3980,7 @@ msgid ""
 "%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
 "Na voljo je nova različica WinMerge.\n"
-"%1 je zdaj na voljo (vi imate %2). Želite jo zdaj prenesti?"
+"%1 je zdaj na voljo (vi imate %2). Ali jo želite zdaj prenesti?"
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -4099,7 +4098,7 @@ msgid "GDI"
 msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr "Privzeto DirectWrite"
+msgstr "Privzeti DirectWrite"
 
 msgid "DirectWrite Aliased"
 msgstr "Kratko DirectWrite"
@@ -4120,5 +4119,5 @@ msgid "MDI child window or main window"
 msgstr "Podrejeno ali glavno okno MDI"
 
 msgid "MDI child window only"
-msgstr "Samo podrejeno okno MDI"
+msgstr "Le podrejeno okno MDI"
 
