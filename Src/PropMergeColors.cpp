@@ -1,11 +1,11 @@
 /** 
- * @file  PropColors.cpp
+ * @file  PropMergeColors.cpp
  *
  * @brief Implementation of PropMergeColors propertysheet
  */
 
 #include "stdafx.h"
-#include "PropColors.h"
+#include "PropMergeColors.h"
 #include "OptionsCustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

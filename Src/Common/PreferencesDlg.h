@@ -14,7 +14,7 @@
 #include "PropCompare.h"
 #include "PropEditor.h"
 #include "PropRegistry.h"
-#include "PropColors.h"
+#include "PropMergeColors.h"
 #include "PropTextColors.h"
 #include "PropSyntaxColors.h"
 #include "PropMarkerColors.h"

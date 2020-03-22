@@ -1,5 +1,5 @@
 /** 
- * @file  PropColors.h
+ * @file  PropMergeColors.h
  *
  * @brief Declaration file for PropMergeColors propertyheet
  *
