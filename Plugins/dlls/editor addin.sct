@@ -117,7 +117,7 @@ function SortAscending(Text) {
 
 function SortDescending(Text) {
 	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split("\r\n");
+	var lines = Text.split(eol);
 
 	if (lines.length == 1) {
 		return Text;
