@@ -76,7 +76,7 @@ msgstr "Comparar con"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Gardar esta ruta. Seleccionar outra ruta para comparar con esta."
+msgstr "Gardar esta ruta. Seleccionar outra ruta para comparar con ésta."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
