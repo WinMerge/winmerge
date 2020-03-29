@@ -523,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
+    <ClCompile Include="Concurrent.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
     <ClCompile Include="charsets.c">
@@ -890,7 +893,8 @@
     <ClCompile Include="PropArchive.cpp" />
     <ClCompile Include="PropBackups.cpp" />
     <ClCompile Include="PropCodepage.cpp" />
-    <ClCompile Include="PropColors.cpp" />
+    <ClCompile Include="PropColorSchemes.cpp" />
+    <ClCompile Include="PropMergeColors.cpp" />
     <ClCompile Include="PropCompare.cpp" />
     <ClCompile Include="PropCompareBinary.cpp" />
     <ClCompile Include="PropCompareFolder.cpp" />
@@ -1105,6 +1109,7 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
@@ -1239,7 +1244,8 @@
     <ClInclude Include="PropArchive.h" />
     <ClInclude Include="PropBackups.h" />
     <ClInclude Include="PropCodepage.h" />
-    <ClInclude Include="PropColors.h" />
+    <ClInclude Include="PropColorSchemes.h" />
+    <ClInclude Include="PropMergeColors.h" />
     <ClInclude Include="PropCompare.h" />
     <ClInclude Include="PropCompareBinary.h" />
     <ClInclude Include="PropCompareFolder.h" />

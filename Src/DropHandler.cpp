@@ -21,13 +21,13 @@ namespace
 	typedef _com_ptr_t<_com_IIID<IFileOperation, &__uuidof(IFileOperation)>> IFileOperationPtr;
 	typedef _com_ptr_t<_com_IIID<IShellItem, &__uuidof(IShellItem)>> IShellItemPtr;
 
-	bool CopyFileOrFolder(const String& src, const String& dst)
+	bool CopyFileOrFolder(const String& src, const String& dst, unsigned op = FO_COPY)
 	{
 		std::vector<TCHAR> srcpath(src.length() + 2, 0);
 		std::vector<TCHAR> dstpath(dst.length() + 2, 0);
 		memcpy(&srcpath[0], src.c_str(), src.length() * sizeof(TCHAR));
 		memcpy(&dstpath[0], dst.c_str(), dst.length() * sizeof(TCHAR));
-		SHFILEOPSTRUCT fileop = { 0, FO_COPY, &srcpath[0], &dstpath[0], FOF_NOCONFIRMATION, 0, 0, 0 };
+		SHFILEOPSTRUCT fileop = { 0, op, &srcpath[0], &dstpath[0], FOF_NOCONFIRMATION, 0, 0, 0 };
 		return SHFileOperation(&fileop) == 0;
 	}
 
@@ -146,6 +146,8 @@ namespace
 
 	HRESULT GetFileItemsFromIDataObject_CF_HDROP(IDataObject *pDataObj, std::vector<String>& files)
 	{
+		FORMATETC fmtetc_preferreddropeffect = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT )), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_performeddropeffect = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_PERFORMEDDROPEFFECT )), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		FORMATETC fmtetc_cf_hdrop = { CF_HDROP, nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
@@ -155,6 +157,35 @@ namespace
 			if (hDrop != nullptr)
 			{
 				files = FilterFiles(GetDroppedFiles(hDrop));
+
+				STGMEDIUM medium2 = {};
+				DWORD dwDropEffect = DROPEFFECT_NONE;
+				if (pDataObj->GetData(&fmtetc_preferreddropeffect, &medium2) == S_OK)
+				{
+					dwDropEffect = *((DWORD *)GlobalLock(medium2.hGlobal));
+					GlobalUnlock(medium2.hGlobal);
+					ReleaseStgMedium(&medium2);
+
+					for (auto& file : files)
+					{
+						if (dwDropEffect == DROPEFFECT_COPY || dwDropEffect == DROPEFFECT_MOVE)
+						{
+							String tmpdir = env::GetTempChildPath();
+							CopyFileOrFolder(file, tmpdir, dwDropEffect == DROPEFFECT_COPY ? FO_COPY : FO_MOVE);
+							file = paths::ConcatPath(tmpdir, paths::FindFileName(file));
+						}
+					}
+
+					STGMEDIUM medium3 = { TYMED_HGLOBAL };
+					medium3.hGlobal = GlobalAlloc(GMEM_MOVEABLE | GMEM_SHARE | GMEM_DISCARDABLE, sizeof(DWORD));
+					if (medium3.hGlobal != nullptr)
+					{
+						*((DWORD *)GlobalLock(medium3.hGlobal)) = dwDropEffect;
+						GlobalUnlock(medium3.hGlobal);
+						pDataObj->SetData(&fmtetc_performeddropeffect, &medium3, TRUE);
+					}
+				}
+
 				GlobalUnlock(medium.hGlobal);
 			}
 			ReleaseStgMedium(&medium);

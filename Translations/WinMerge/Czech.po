@@ -1413,6 +1413,9 @@ msgstr "O&dstranit"
 msgid "Colors"
 msgstr "Barvy"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Pozadí"
@@ -1461,10 +1464,6 @@ msgstr "Rozdílné slovo:"
 msgid "Selected Word Diff:"
 msgstr "Vybrané rozdílné slovo:"
 
-#, c-format
-msgid "Defaults"
-msgstr "&Původní"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1478,6 +1477,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1563,6 +1566,10 @@ msgstr "Vložit pří&kazový řádek"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Otevřít v &externím editoru"
+
+#, c-format
+msgid "Defaults"
+msgstr "&Původní"
 
 #, c-format
 msgid "Display Columns"
@@ -1801,7 +1808,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2116,10 +2123,6 @@ msgid "Selection:"
 msgstr "Výběr:"
 
 #, c-format
-msgid "Margin:"
-msgstr ""
-
-#, c-format
 msgid "Backup Files"
 msgstr "Zálohování souborů"
 
@@ -2422,6 +2425,9 @@ msgstr "Na t&uto otázku se již příště nedotazovat."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

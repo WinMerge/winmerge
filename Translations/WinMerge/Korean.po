@@ -1415,6 +1415,9 @@ msgstr "제거"
 msgid "Colors"
 msgstr "색상"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "배경색"
@@ -1463,10 +1466,6 @@ msgstr "단어 차이점:"
 msgid "Selected Word Diff:"
 msgstr "선택된 단어 차이점:"
 
-#, c-format
-msgid "Defaults"
-msgstr "기본값"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1481,6 +1480,10 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+#, c-format
+msgid "Margin:"
+msgstr "여백:"
 
 #, c-format
 msgid "System"
@@ -1565,6 +1568,10 @@ msgstr "명령행 포함하기(&D)"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "외부 편집기로 열기(&X)"
+
+#, c-format
+msgid "Defaults"
+msgstr "기본값"
 
 #, c-format
 msgid "Display Columns"
@@ -1803,8 +1810,8 @@ msgid "Sa&ve changes"
 msgstr "변경사항 저장(&V)"
 
 #, c-format
-msgid "Disca&rd changes"
-msgstr "변경사항 취소(&R)"
+msgid "Discard c&hanges"
+msgstr "변경사항 취소(&H)"
 
 #, c-format
 msgid "Right side file"
@@ -2124,10 +2131,6 @@ msgstr "일반 텍스트:"
 #, c-format
 msgid "Selection:"
 msgstr "선택:"
-
-#, c-format
-msgid "Margin:"
-msgstr "여백:"
 
 #, c-format
 msgid "Backup Files"
@@ -2483,6 +2486,9 @@ msgstr "다시 묻지 않음(&Q)"
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 일반 페이지에서 초기화 버튼을 누르세요."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

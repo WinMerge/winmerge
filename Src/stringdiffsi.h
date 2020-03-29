@@ -46,7 +46,7 @@ class stringdiffs
 {
 public:
 	stringdiffs(const String & str1, const String & str2,
-		bool case_sensitive, int whitespace, int breakType,
+		bool case_sensitive, bool eol_sensitive, int whitespace, int breakType,
 		std::vector<wdiff> * pDiffs);
 
 	~stringdiffs();
@@ -111,6 +111,7 @@ private:
 	const String & m_str1;
 	const String & m_str2;
 	bool m_case_sensitive;
+	bool m_eol_sensitive;
 	int m_whitespace;
 	int m_breakType;
 	bool m_matchblock;

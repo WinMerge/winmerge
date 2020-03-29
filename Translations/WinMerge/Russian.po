@@ -1099,6 +1099,9 @@ msgstr "Удалить"
 msgid "Colors"
 msgstr "Цвета"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Фон"
 
@@ -1135,9 +1138,6 @@ msgstr "Словарное отличие:"
 msgid "Selected Word Diff:"
 msgstr "Выбранное словарное отличие:"
 
-msgid "Defaults"
-msgstr "По умолчанию"
-
 msgid "&Use folder compare colors"
 msgstr "Использовать цвета сравнения папок"
 
@@ -1152,6 +1152,9 @@ msgstr "Элементы существуют не все:"
 
 msgid "Items filtered:"
 msgstr "Элементы отфильтрованы:"
+
+msgid "Margin:"
+msgstr "Поле:"
 
 msgid "System"
 msgstr "Система"
@@ -1215,6 +1218,9 @@ msgstr "Вкл&ючать командную строку"
 
 msgid "Open to e&xternal editor"
 msgstr "Открыть во внешнем редакторе"
+
+msgid "Defaults"
+msgstr "По умолчанию"
 
 msgid "Display Columns"
 msgstr "Отображать столбцы"
@@ -1396,7 +1402,7 @@ msgstr "Файл посередине"
 msgid "Sa&ve changes"
 msgstr "Сохранить изменения"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Отменить изменения"
 
 msgid "Right side file"
@@ -1633,9 +1639,6 @@ msgstr "Обычный текст:"
 msgid "Selection:"
 msgstr "Выбранный текст:"
 
-msgid "Margin:"
-msgstr "Поле:"
-
 msgid "Backup Files"
 msgstr "Резервные копии"
 
@@ -1871,6 +1874,9 @@ msgstr "Не справшивать &больше"
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"

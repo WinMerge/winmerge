@@ -1398,6 +1398,9 @@ msgstr "Уклони"
 msgid "Colors"
 msgstr "Боје"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Позадина"
@@ -1444,10 +1447,6 @@ msgstr "Различите речи:"
 msgid "Selected Word Diff:"
 msgstr "Одабери различите речи:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Подразумевано"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1461,6 +1460,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1546,6 +1549,10 @@ msgstr "Укључи наредбени ред"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Отвори у другом уре&ђивачу"
+
+#, c-format
+msgid "Defaults"
+msgstr "Подразумевано"
 
 #, c-format
 msgid "Display Columns"
@@ -1782,7 +1789,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2099,10 +2106,6 @@ msgstr "Правилан текст:"
 #, c-format
 msgid "Selection:"
 msgstr "Изабери:"
-
-#, c-format
-msgid "Margin:"
-msgstr ""
 
 #, c-format
 msgid "Backup Files"
@@ -2437,6 +2440,9 @@ msgstr "Не питај поново"
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

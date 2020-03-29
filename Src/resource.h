@@ -58,6 +58,7 @@
 #define IDD_EDIT_MARKER                 245
 #define IDD_PROPPAGE_COLORS_DIR         246
 #define IDD_SELECT_FILES_OR_FOLDERS     247
+#define IDD_PROPPAGE_COLOR_SCHEMES      248
 #define IDD_DIALOG_WINDOWSMANAGER       251
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
@@ -323,7 +324,6 @@
 #define IDC_SCOLOR_NUMBERS              1184
 #define IDC_SCOLOR_OPERATORS            1185
 #define IDC_SCOLOR_STRINGS              1186
-#define IDC_SCOLORS_BDEFAULTS           1187
 #define IDC_SCOLOR_PREPROCESSOR         1188
 #define IDC_SCOLOR_USER1                1189
 #define IDC_SCOLOR_USER2                1190
@@ -507,6 +507,8 @@
 #define IDC_FIRST                       1388
 #define IDC_SECOND                      1389
 #define IDC_THIRD                       1390
+#define IDC_COLOR_SCHEMES               1391
+#define IDC_DIR_MARGIN_COLOR            1392
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -590,6 +592,7 @@
 #define IDS_OPTIONSPG_IMAGECOMPARE      9057
 #define IDS_OPTIONSPG_BINARYCOMPARE     9058
 #define IDS_OPTIONSPG_DIRCOLORS         9059
+#define IDS_OPTIONSPG_COLOR_SCHEMES     9060
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1304,7 +1307,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         33719
+#define _APS_NEXT_COMMAND_VALUE         33725
 #define _APS_NEXT_CONTROL_VALUE         8831
 #define _APS_NEXT_SYMED_VALUE           116
 #endif

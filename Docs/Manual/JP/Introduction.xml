@@ -81,7 +81,7 @@
       新機能や改良されている機能に関する議論に参加することなく試してもらうことを可能にします。
       さらに、私たちは、現在のコードをテストするどんな助けも感謝します。
       細心の注意とバックアップをとって、実験版を使用すること！そして、これらのビルドを使用中に見つけた<ulink
-      url="https://sourceforge.net/p/winmerge/bugs/">バグ報告
+      url="https://github.com/WinMerge/winmerge/issues">バグ報告
       </ulink>をしてください。それは、本当にWinMerge開発の助けになります。
       </para>
     </section>
@@ -153,7 +153,7 @@
     </para>
 
     <para>もし、バグを発見したら、<ulink
-        url="https://sourceforge.net/p/winmerge/bugs/">バグレポート</ulink>を通じて
+        url="https://github.com/WinMerge/winmerge/issues">バグレポート</ulink>を通じて
       それを提出してください。より多くの情報を添えてください(少なくとも、使用しているWinMergeのバージョン番号は)。
     可能なら、WinMergeのウィンドウの
       <menuchoice>
@@ -171,13 +171,6 @@
           <guimenuitem>WinMergeについて</guimenuitem>
         </menuchoice>をクリックすることで確認できます。</para>
     </important>
-
-    <para>あなたは、バグレポートをする前に、<ulink
-    url="https://sourceforge.net/user/registration">SourceForge.netへの登録</ulink>をしなければなりません(登録は無料です)。
-    我々が登録を求めているのは、匿名による報告は、多くのスパムの原因になるからです。
-    そして、より多くの情報を尋ねることができないからです。
-    我々が、直接Eメールを送ることは稀です。しかし、バグへの質問があったときは、連絡が入るでしょう。
-    </para>
   </section>
 
   <section>

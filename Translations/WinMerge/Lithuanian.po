@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-02-18 07:49+0300\n"
+"PO-Revision-Date: 2020-03-16 07:43+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1097,6 +1097,9 @@ msgstr "Pašalinti"
 msgid "Colors"
 msgstr "Spalvų"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Fono"
 
@@ -1133,9 +1136,6 @@ msgstr "Žodžio skirtumas:"
 msgid "Selected Word Diff:"
 msgstr "Pažym. žodžio skirtumas:"
 
-msgid "Defaults"
-msgstr "Numat. reikšmės"
-
 msgid "&Use folder compare colors"
 msgstr "Na&udoti katalogų lyginimo spalvas"
 
@@ -1150,6 +1150,9 @@ msgstr "Elementų visai nėra:"
 
 msgid "Items filtered:"
 msgstr "Elementai filtruoti:"
+
+msgid "Margin:"
+msgstr "Paraštė:"
 
 msgid "System"
 msgstr "Sistemos"
@@ -1213,6 +1216,9 @@ msgstr "Įterpti koman&dinę eilutę"
 
 msgid "Open to e&xternal editor"
 msgstr "Atverti &išoriniame redaktoriuje"
+
+msgid "Defaults"
+msgstr "Numat. reikšmės"
 
 msgid "Display Columns"
 msgstr "Rodyti stulpelius"
@@ -1394,8 +1400,8 @@ msgstr "Vidurinis failas"
 msgid "Sa&ve changes"
 msgstr "Iš&saugoti pakeitimus"
 
-msgid "Disca&rd changes"
-msgstr "&Atmesti pakeitimus"
+msgid "Discard c&hanges"
+msgstr "Atmesti &pakeitimus"
 
 msgid "Right side file"
 msgstr "Dešinysis failas"
@@ -1404,7 +1410,7 @@ msgid "S&ave changes"
 msgstr "Išs&augoti pakeitimus"
 
 msgid "Dis&card changes"
-msgstr "A&tmesti pakeitimus"
+msgstr "At&mesti pakeitimus"
 
 msgid "Disca&rd All"
 msgstr "Atmes&ti viską"
@@ -1630,9 +1636,6 @@ msgstr "Paprastas tekstas:"
 
 msgid "Selection:"
 msgstr "Pažymėtas fragmentas:"
-
-msgid "Margin:"
-msgstr "Paraštė:"
 
 msgid "Backup Files"
 msgstr "Rezervinių failų kurimo"
@@ -1874,6 +1877,9 @@ msgstr "Daugiau neklausti šio &klausimo."
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaksės"

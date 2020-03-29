@@ -222,12 +222,13 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
+	bool eolSensitive = !diffOptions.bIgnoreEol;
 	int xwhite = diffOptions.nIgnoreWhitespace;
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring);
+	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, eolSensitive, xwhite, breakType, byteColoring);
 
 	int i;
 	std::vector<strdiff::wdiff>::iterator it;

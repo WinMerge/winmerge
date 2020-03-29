@@ -58,10 +58,10 @@ void SetBreakChars(const TCHAR *breakChars)
 
 std::vector<wdiff>
 ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, int whitespace, int breakType, bool byte_level)
+	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level)
 {
 	String strs[3] = {str1, str2, _T("")};
-	return ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level);
+	return ComputeWordDiffs(2, strs, case_sensitive, eol_sensitive, whitespace, breakType, byte_level);
 }
 
 struct Comp02Functor
@@ -97,12 +97,12 @@ struct Comp02Functor
  */
 std::vector<wdiff>
 ComputeWordDiffs(int nFiles, const String str[3],
-	bool case_sensitive, int whitespace, int breakType, bool byte_level)
+	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level)
 {
 	std::vector<wdiff> diffs;
 	if (nFiles == 2)
 	{
-		stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, &diffs);
+		stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
 		// Hash all words in both lines and then compare them word by word
 		// storing differences into m_wdiffs
 		sdiffs.BuildWordDiffList();
@@ -118,7 +118,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 	{
 		if (str[0].empty())
 		{
-			stringdiffs sdiffs(str[1], str[2], case_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[1], str[2], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -136,7 +136,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[1].empty())
 		{
-			stringdiffs sdiffs(str[0], str[2], case_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[2], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -154,7 +154,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[2].empty())
 		{
-			stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -173,8 +173,8 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		else
 		{
 			std::vector<wdiff> diffs10, diffs12;
-			stringdiffs sdiffs10(str[1], str[0], case_sensitive, 0, breakType, &diffs10);
-			stringdiffs sdiffs12(str[1], str[2], case_sensitive, 0, breakType, &diffs12);
+			stringdiffs sdiffs10(str[1], str[0], case_sensitive, eol_sensitive, 0, breakType, &diffs10);
+			stringdiffs sdiffs12(str[1], str[2], case_sensitive, eol_sensitive, 0, breakType, &diffs12);
 			// Hash all words in both lines and then compare them word by word
 			// storing differences into m_wdiffs
 			sdiffs10.BuildWordDiffList();
@@ -199,11 +199,12 @@ ComputeWordDiffs(int nFiles, const String str[3],
  * @brief stringdiffs constructor simply loads all members from arguments
  */
 stringdiffs::stringdiffs(const String & str1, const String & str2,
-	bool case_sensitive, int whitespace, int breakType,
+	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType,
 	std::vector<wdiff> * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
 , m_case_sensitive(case_sensitive)
+, m_eol_sensitive(eol_sensitive)
 , m_whitespace(whitespace)
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
@@ -439,6 +440,13 @@ inword:
 void
 stringdiffs::PopulateDiffs()
 {
+	auto IsEOLorEmpty = [](const String& text, size_t begin, size_t end) -> bool {
+		if (end - begin + 1 > 2)
+			return false;
+		String str = text.substr(begin, end - begin + 1);
+		return (str.empty() || str == _T("\r\n") || str == _T("\n") || str == _T("\r"));
+	};
+	
 	for (int i=0; i< (int)m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
@@ -454,6 +462,13 @@ stringdiffs::PopulateDiffs()
 				m_wdiffs[i+1].begin[1] = m_wdiffs[i].begin[1];
 				skipIt = true;
 			}
+		}
+		else
+		{
+			if (!m_eol_sensitive &&
+				IsEOLorEmpty(m_str1, m_wdiffs[i].begin[0], m_wdiffs[i].end[0]) &&
+				IsEOLorEmpty(m_str2, m_wdiffs[i].begin[1], m_wdiffs[i].end[1]))
+				skipIt = true;
 		}
 		if (!skipIt)
 		{

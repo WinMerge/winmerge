@@ -1411,6 +1411,9 @@ msgstr "Odstrániť"
 msgid "Colors"
 msgstr "Farby"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Pozadie"
@@ -1459,10 +1462,6 @@ msgstr "Rozdiel v slove:"
 msgid "Selected Word Diff:"
 msgstr "Rozdiel vo vybranom slove:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Predvolené"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1476,6 +1475,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1561,6 +1564,10 @@ msgstr "Zahrnúť príkazový ria&dok"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Otvoriť v e&xternom editore"
+
+#, c-format
+msgid "Defaults"
+msgstr "Predvolené"
 
 #, c-format
 msgid "Display Columns"
@@ -1799,7 +1806,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2116,10 +2123,6 @@ msgstr "Bežný text:"
 #, c-format
 msgid "Selection:"
 msgstr "Výber:"
-
-#, c-format
-msgid "Margin:"
-msgstr ""
 
 #, c-format
 msgid "Backup Files"
@@ -2454,6 +2457,9 @@ msgstr "Už sa túto otázku nepýtať."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

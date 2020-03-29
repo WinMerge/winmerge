@@ -553,9 +553,6 @@
     <ClCompile Include="PropCodepage.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PropColors.cpp">
-      <Filter>MFCGui\PropertyPages\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PropCompare.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
@@ -885,6 +882,15 @@
     </ClCompile>
     <ClCompile Include="WindowsManagerDialog.cpp">
       <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropMergeColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropColorSchemes.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1362,9 +1368,6 @@
     <ClInclude Include="PropCodepage.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PropColors.h">
-      <Filter>MFCGui\PropertyPages\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PropCompare.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
@@ -1601,6 +1604,15 @@
     </ClInclude>
     <ClInclude Include="WindowsManagerDialog.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMergeColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropColorSchemes.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

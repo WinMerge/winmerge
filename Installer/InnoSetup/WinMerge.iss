@@ -510,6 +510,9 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs
 Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
+;ColorSchemes
+Source: ..\..\ColorSchemes\*.ini; DestDir: {app}\ColorSchemes; Flags: sortfilesbyextension comparetimestamp ignoreversion
+
 ;Documentation
 Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
@@ -546,6 +549,7 @@ Source: ..\..\Build\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Compo
 Source: ..\..\Build\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Build\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge

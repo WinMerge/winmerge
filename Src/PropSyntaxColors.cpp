@@ -65,7 +65,6 @@ BEGIN_MESSAGE_MAP(PropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_PREPROCESSOR, OnBnClickedEcolor<COLORINDEX_PREPROCESSOR>)
 	ON_BN_CLICKED(IDC_SCOLOR_USER1, OnBnClickedEcolor<COLORINDEX_USER1>)
 	ON_BN_CLICKED(IDC_SCOLOR_USER2, OnBnClickedEcolor<COLORINDEX_USER2>)
-	ON_BN_CLICKED(IDC_SCOLORS_BDEFAULTS, OnBnClickedEcolorsBdefaults)
 	ON_BN_CLICKED(IDC_SCOLOR_KEYWORDS_BOLD, (OnBnClickedBoldButton<IDC_SCOLOR_KEYWORDS_BOLD, COLORINDEX_KEYWORD>))
 	ON_BN_CLICKED(IDC_SCOLOR_FUNCTIONS_BOLD, (OnBnClickedBoldButton<IDC_SCOLOR_FUNCTIONS_BOLD, COLORINDEX_FUNCNAME>))
 	ON_BN_CLICKED(IDC_SCOLOR_COMMENTS_BOLD, (OnBnClickedBoldButton<IDC_SCOLOR_COMMENTS_BOLD, COLORINDEX_COMMENT>))
@@ -127,18 +126,6 @@ template <unsigned colorIndex>
 void PropSyntaxColors::OnBnClickedEcolor()
 {
 	BrowseColorAndSave(colorIndex);
-}
-
-void PropSyntaxColors::OnBnClickedEcolorsBdefaults()
-{
-	m_pTempColors->SetDefaults();
-	for (auto&& colorIndex : ColorIndices)
-	{
-		m_colorButtons[colorIndex].SetColor(m_pTempColors->GetColor(colorIndex));
-		m_nBolds[colorIndex] = GetCheckVal(colorIndex);
-	}
-
-	UpdateData(FALSE);
 }
 
 template <unsigned ctlId, unsigned colorIndex>

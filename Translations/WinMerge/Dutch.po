@@ -1100,6 +1100,9 @@ msgstr "Verwijderen"
 msgid "Colors"
 msgstr "Kleuren"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Achtergrond"
 
@@ -1136,9 +1139,6 @@ msgstr "Woordverschil:"
 msgid "Selected Word Diff:"
 msgstr "Geselecteerd woordverschil:"
 
-msgid "Defaults"
-msgstr "Standaardwaarden"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1153,6 +1153,9 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+msgid "Margin:"
+msgstr "Marge:"
 
 msgid "System"
 msgstr "Systeem"
@@ -1216,6 +1219,9 @@ msgstr "Inclusief opdrachtregel"
 
 msgid "Open to e&xternal editor"
 msgstr "Openen met externe editor"
+
+msgid "Defaults"
+msgstr "Standaardwaarden"
 
 msgid "Display Columns"
 msgstr "Kolommen weergeven"
@@ -1397,7 +1403,7 @@ msgstr "Middelste bestand"
 msgid "Sa&ve changes"
 msgstr "Wijzigingen opslaan"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Wijzigingen verwerpen"
 
 msgid "Right side file"
@@ -1643,9 +1649,6 @@ msgstr "Gewone tekst:"
 
 msgid "Selection:"
 msgstr "Selectie:"
-
-msgid "Margin:"
-msgstr "Marge:"
 
 msgid "Backup Files"
 msgstr "Backupbestanden"
@@ -1946,6 +1949,9 @@ msgid ""
 msgstr ""
 "Om dit berichtvenster opnieuw zichtbaar te maken, druk op de herstellen-knop"
 " op de pagina \"algemeen\" van het venster \"opties\"."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Syntax"

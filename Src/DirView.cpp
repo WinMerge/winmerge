@@ -396,6 +396,9 @@ void CDirView::OnInitialUpdate()
 		CWnd::SetFont(&m_font, TRUE);
 	}
 
+	if (m_bUseColors)
+		m_pList->SetBkColor(m_cachedColors.clrDirMargin);
+
 	// Replace standard header with sort header
 	HWND hWnd = ListView_GetHeader(m_pList->m_hWnd);
 	if (hWnd != nullptr)
@@ -2902,6 +2905,8 @@ void CDirView::RefreshOptions()
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
+	m_pList->SetBkColor(m_bUseColors ? m_cachedColors.clrDirMargin : GetSysColor(COLOR_WINDOW));
+	Invalidate();
 }
 
 /**

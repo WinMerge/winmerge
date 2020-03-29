@@ -1410,6 +1410,9 @@ msgstr "Suprimeix"
 msgid "Colors"
 msgstr ""
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Fons"
@@ -1458,10 +1461,6 @@ msgstr "Paraula diferent:"
 msgid "Selected Word Diff:"
 msgstr "Paraula diferent seleccionada:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Predeterminats"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1475,6 +1474,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1560,6 +1563,10 @@ msgstr "Inc&lou-hi la línia de comandes"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Obre-ho en un &editor extern"
+
+#, c-format
+msgid "Defaults"
+msgstr "Predeterminats"
 
 #, c-format
 msgid "Display Columns"
@@ -1798,7 +1805,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2113,10 +2120,6 @@ msgid "Selection:"
 msgstr "Selecció:"
 
 #, c-format
-msgid "Margin:"
-msgstr ""
-
-#, c-format
 msgid "Backup Files"
 msgstr "Fitxers de còpia de seguretat"
 
@@ -2419,6 +2422,9 @@ msgstr "No tornis a preguntar-ho."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

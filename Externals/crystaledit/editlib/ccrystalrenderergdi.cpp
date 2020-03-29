@@ -74,7 +74,7 @@ CSize CCrystalRendererGDI::GetCharWidthHeight()
 	dc.SelectObject(m_apFonts[0].get());
 	CSize sizeNormal = dc.GetTextExtent(_T("X"));
 	dc.SelectObject(pOldFont);
-	return CSize{ (std::max)(sizeNormal.cx, sizeItalicBold.cx), (std::max)(sizeNormal.cy, sizeItalicBold.cy)};
+	return CSize{ sizeNormal.cx, (std::max)(sizeNormal.cy, sizeItalicBold.cy) };
 }
 
 bool CCrystalRendererGDI::GetCharWidth(unsigned start, unsigned end, int * nWidthArray)

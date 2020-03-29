@@ -1,5 +1,5 @@
 /** 
- * @file  PropColors.h
+ * @file  PropMergeColors.h
  *
  * @brief Declaration file for PropMergeColors propertyheet
  *
@@ -70,14 +70,12 @@ protected:
 
 	static const COLORREF COLOR_NONE = 0xffffffff;
 	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
-	typedef enum { COLORSCHEME_GITHUBBITBUCKET} COLORSCHEME;
 
 	void BrowseColor(CColorButton & colorButton);
 	void SerializeColors(OPERATION op);
 	void SerializeColor(OPERATION op, CColorButton & btn, const String& optionName);
 	void UpdateTextColorButtonState(int checkboxId, CColorButton &btn);
 	void UpdateTextColorButtonsState();
-	void SetColorScheme(int scheme);
 
 	std::array<COLORREF, CustomColorsAmount> m_cCustColors;
 
@@ -112,9 +110,6 @@ protected:
 	afx_msg void OnSelWordDiffTextColor();
 	template<int checkbox_id, int colorbutton_id>
 	afx_msg void OnUseTextColor();
-	template<int scheme>
-	afx_msg void OnColorSchemeButton();
-	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

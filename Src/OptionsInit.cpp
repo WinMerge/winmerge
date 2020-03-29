@@ -9,6 +9,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
+#include "OptionsCustomColors.h"
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
 #include "OptionsDirColors.h"
@@ -37,9 +38,6 @@ namespace Options
  */
 void Init(COptionsMgr *pOptions)
 {
-	// Copy some values from HKLM to HKCU
-	CopyHKLMValues();
-
 	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	LANGID LangId = GetUserDefaultLangID();
@@ -198,6 +196,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_MRU_MAX, 9);
 
+	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
+
+	Options::CustomColors::SetDefaults(pOptions);
 	pOptions->InitOption(OPT_CURRENT_VERSION_URL, CurrentVersionURL);
 	if (pOptions->GetString(OPT_CURRENT_VERSION_URL) == CurrentVersionURLOld)
 		pOptions->SaveOption(OPT_CURRENT_VERSION_URL, CurrentVersionURL);
@@ -212,15 +213,13 @@ void Init(COptionsMgr *pOptions)
 	Options::Font::SetDefaults(pOptions);
 }
 
-}
-
 /**
  * @brief Copy some HKLM values to HKCU.
  * The installer sets HKLM values for "all users". This function copies
  * few of those values for "user" values. E.g. enabling ShellExtension
  * initially for user is done by this function.
  */
-static void CopyHKLMValues()
+void CopyHKLMValues()
 {
 	HKEY LMKey;
 	HKEY CUKey;
@@ -243,6 +242,8 @@ static void CopyHKLMValues()
 		}
 		RegCloseKey(LMKey);
 	}
+}
+
 }
 
 /**

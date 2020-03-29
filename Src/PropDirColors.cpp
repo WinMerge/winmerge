@@ -38,6 +38,7 @@ void PropDirColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DIR_ITEM_NOTEXISTALL_TEXT_COLOR, m_cDirItemNotExistAllText);
 	DDX_Control(pDX, IDC_DIR_ITEM_FILTERED_COLOR, m_cDirItemFiltered);
 	DDX_Control(pDX, IDC_DIR_ITEM_FILTERED_TEXT_COLOR, m_cDirItemFilteredText);
+	DDX_Control(pDX, IDC_DIR_MARGIN_COLOR, m_cDirMargin);
 	//}}AFX_DATA_MAP
 }
 
@@ -52,7 +53,7 @@ BEGIN_MESSAGE_MAP(PropDirColors, CDialog)
 	ON_BN_CLICKED(IDC_DIR_ITEM_NOTEXISTALL_TEXT_COLOR, OnDirItemNotExistAllTextColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_FILTERED_COLOR, OnDirItemFilteredColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_FILTERED_TEXT_COLOR, OnDirItemFilteredTextColor)
-	ON_BN_CLICKED(IDC_COLORDEFAULTS_BTN, OnDefaults)
+	ON_BN_CLICKED(IDC_DIR_MARGIN_COLOR, OnDirMargniColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -154,6 +155,14 @@ void PropDirColors::OnDirItemFilteredTextColor()
 	BrowseColor(m_cDirItemFilteredText);
 }
 
+/**
+ * @brief User wants to change background color
+ */
+void PropDirColors::OnDirMargniColor()
+{
+	BrowseColor(m_cDirMargin);
+}
+
 void PropDirColors::SerializeColors(OPERATION op)
 {
 	SerializeColor(op, m_cDirItemEqual, OPT_DIRCLR_ITEM_EQUAL);
@@ -167,16 +176,14 @@ void PropDirColors::SerializeColors(OPERATION op)
 
 	SerializeColor(op, m_cDirItemFiltered, OPT_DIRCLR_ITEM_FILTERED);
 	SerializeColor(op, m_cDirItemFilteredText, OPT_DIRCLR_ITEM_FILTERED_TEXT);
+
+	SerializeColor(op, m_cDirMargin, OPT_DIRCLR_MARGIN);
 }
 
 void PropDirColors::SerializeColor(OPERATION op, CColorButton & btn, const String& optionName)
 {
 	switch (op)
 	{
-	case SET_DEFAULTS:
-		btn.SetColor(GetOptionsMgr()->GetDefault<unsigned>(optionName));
-		return;
-
 	case WRITE_OPTIONS:
 		GetOptionsMgr()->SaveOption(optionName, (unsigned)btn.GetColor());
 		return;
@@ -187,12 +194,3 @@ void PropDirColors::SerializeColor(OPERATION op, CColorButton & btn, const Strin
 		return;
 	}
 }
-
-/** 
- * @brief Resets colors to defaults
- */
-void PropDirColors::OnDefaults()
-{
-	SerializeColors(SET_DEFAULTS);
-}
-

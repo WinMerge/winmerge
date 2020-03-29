@@ -1408,6 +1408,9 @@ msgstr "ඉවත් කරන්න"
 msgid "Colors"
 msgstr "වර්ණ"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "පසුතලය"
@@ -1456,10 +1459,6 @@ msgstr "වචන වෙනස:"
 msgid "Selected Word Diff:"
 msgstr "තෝරාගත් වචන වෙනස:"
 
-#, fuzzy, c-format
-msgid "Defaults"
-msgstr "Defaults"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1473,6 +1472,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1558,6 +1561,10 @@ msgstr "Inclu&de command line"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "බාහිර සංස්කරණය සඳහා විවෘත කරන්න"
+
+#, fuzzy, c-format
+msgid "Defaults"
+msgstr "Defaults"
 
 #, c-format
 msgid "Display Columns"
@@ -1796,7 +1803,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2111,10 +2118,6 @@ msgstr "විධිමත් වගන්තිය"
 #, c-format
 msgid "Selection:"
 msgstr "තෝරා ගැනීම:"
-
-#, c-format
-msgid "Margin:"
-msgstr ""
 
 #, c-format
 msgid "Backup Files"
@@ -2449,6 +2452,9 @@ msgstr "මෙම ප්‍රශ්නය නැවත නොඅසන්න."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

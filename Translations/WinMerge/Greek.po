@@ -1410,6 +1410,9 @@ msgstr "Διαγραφή"
 msgid "Colors"
 msgstr "Χρώματα"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Φόντο"
@@ -1458,10 +1461,6 @@ msgstr "Διαφορά Λέξεως:"
 msgid "Selected Word Diff:"
 msgstr "Επιλεγμένη Διαφορά Λέξεως:"
 
-#, c-format
-msgid "Defaults"
-msgstr "&Αρχικές Ρυθμίσεις"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1475,6 +1474,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1560,6 +1563,10 @@ msgstr "Η γραμμή εντολής να συμπεριλαμβάνεται"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Άν&οιγμα με άλλη εφαρμογή επεξεργασίας"
+
+#, c-format
+msgid "Defaults"
+msgstr "&Αρχικές Ρυθμίσεις"
 
 #, c-format
 msgid "Display Columns"
@@ -1798,7 +1805,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2111,10 +2118,6 @@ msgstr "Απλό κείμενο:"
 #, c-format
 msgid "Selection:"
 msgstr "Επιλογή:"
-
-#, c-format
-msgid "Margin:"
-msgstr ""
 
 #, c-format
 msgid "Backup Files"
@@ -2449,6 +2452,9 @@ msgstr "Να μην ξαναγίνει αυτή η &ερώτηση."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

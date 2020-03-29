@@ -1098,6 +1098,9 @@ msgstr "Rimuovi"
 msgid "Colors"
 msgstr "Colori"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Sfondo"
 
@@ -1134,9 +1137,6 @@ msgstr "Differenza di parole:"
 msgid "Selected Word Diff:"
 msgstr "Diff. parole selezionata:"
 
-msgid "Defaults"
-msgstr "Predefinito"
-
 msgid "&Use folder compare colors"
 msgstr "&Usa colori per confronto cartelle"
 
@@ -1151,6 +1151,9 @@ msgstr "Elementi inesistenti:"
 
 msgid "Items filtered:"
 msgstr "Elementi filtrati:"
+
+msgid "Margin:"
+msgstr "Margine:"
 
 msgid "System"
 msgstr "Sistema"
@@ -1214,6 +1217,9 @@ msgstr "Includi &linea di comando"
 
 msgid "Open to e&xternal editor"
 msgstr "Apri in e&ditor esterno"
+
+msgid "Defaults"
+msgstr "Predefinito"
 
 msgid "Display Columns"
 msgstr "Scelta delle colonne"
@@ -1395,7 +1401,7 @@ msgstr "File zona centrale"
 msgid "Sa&ve changes"
 msgstr "S&alva modifiche"
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Sca&rta modifiche"
 
 msgid "Right side file"
@@ -1641,9 +1647,6 @@ msgstr "Testo normale:"
 
 msgid "Selection:"
 msgstr "Selezione:"
-
-msgid "Margin:"
-msgstr "Margine:"
 
 msgid "Backup Files"
 msgstr "File di backup"
@@ -1946,6 +1949,9 @@ msgid ""
 msgstr ""
 "Per visualizzare nuovamente questa finestra di dialogo seleziona il pulsante "
 "'Ripristina' nella scheda Generale della finestra delle opzioni."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintassi"

@@ -35,7 +35,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	template<unsigned colorIndex>
 	afx_msg void OnBnClickedEcolor();
-	afx_msg void OnBnClickedEcolorsBdefaults();
 	template<unsigned ctlId, unsigned colorIndex>
 	afx_msg void OnBnClickedBoldButton();
 

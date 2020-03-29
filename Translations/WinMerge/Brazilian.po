@@ -1414,6 +1414,9 @@ msgstr "Remover"
 msgid "Colors"
 msgstr "Cores"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "2º Plano"
@@ -1462,10 +1465,6 @@ msgstr "Diferença das Palavras:"
 msgid "Selected Word Diff:"
 msgstr "Diferença das Palavras Selecionadas:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Padrões"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1480,6 +1479,10 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+#, c-format
+msgid "Margin:"
+msgstr "Margem:"
 
 #, c-format
 msgid "System"
@@ -1564,6 +1567,10 @@ msgstr "Inclu&ir a linha de comando"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Abrir no e&ditor externo"
+
+#, c-format
+msgid "Defaults"
+msgstr "Padrões"
 
 #, c-format
 msgid "Display Columns"
@@ -1802,7 +1809,7 @@ msgid "Sa&ve changes"
 msgstr "Sa&lvar mudanças"
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr "Desca&rtar mudanças"
 
 #, c-format
@@ -2123,10 +2130,6 @@ msgstr "Texto regular:"
 #, c-format
 msgid "Selection:"
 msgstr "Seleção:"
-
-#, c-format
-msgid "Margin:"
-msgstr "Margem:"
 
 #, c-format
 msgid "Backup Files"
@@ -2482,6 +2485,9 @@ msgstr "Não perguntar esta &questão de novo."
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Resetar na página Geral do diálogo das Opções."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

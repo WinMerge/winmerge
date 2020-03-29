@@ -1414,6 +1414,9 @@ msgstr "Kendu"
 msgid "Colors"
 msgstr "Margoak"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Barrena"
@@ -1462,10 +1465,6 @@ msgstr "Hitz Ezberdintasuna:"
 msgid "Selected Word Diff:"
 msgstr "Hautatutako Hitz Ezberd:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Berezkoak"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1479,6 +1478,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1564,6 +1567,10 @@ msgstr "Ko&mando lerroa barne"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Ireki kan&poko editatzailean"
+
+#, c-format
+msgid "Defaults"
+msgstr "Berezkoak"
 
 #, c-format
 msgid "Display Columns"
@@ -1802,7 +1809,7 @@ msgid "Sa&ve changes"
 msgstr ""
 
 #, c-format
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 #, c-format
@@ -2119,10 +2126,6 @@ msgstr "Idazki arrunta:"
 #, c-format
 msgid "Selection:"
 msgstr "Hautapena:"
-
-#, c-format
-msgid "Margin:"
-msgstr ""
 
 #, c-format
 msgid "Backup Files"
@@ -2457,6 +2460,9 @@ msgstr "Ez egin ga&ldera hau berriro."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

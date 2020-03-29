@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-01-19 21:36+0000\n"
+"POT-Creation-Date: 2020-03-28 08:32+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1088,6 +1088,9 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr ""
 
@@ -1124,9 +1127,6 @@ msgstr ""
 msgid "Selected Word Diff:"
 msgstr ""
 
-msgid "Defaults"
-msgstr ""
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1140,6 +1140,9 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+msgid "Margin:"
 msgstr ""
 
 msgid "System"
@@ -1203,6 +1206,9 @@ msgid "Inclu&de command line"
 msgstr ""
 
 msgid "Open to e&xternal editor"
+msgstr ""
+
+msgid "Defaults"
 msgstr ""
 
 msgid "Display Columns"
@@ -1385,7 +1391,7 @@ msgstr ""
 msgid "Sa&ve changes"
 msgstr ""
 
-msgid "Disca&rd changes"
+msgid "Discard c&hanges"
 msgstr ""
 
 msgid "Right side file"
@@ -1622,9 +1628,6 @@ msgstr ""
 msgid "Selection:"
 msgstr ""
 
-msgid "Margin:"
-msgstr ""
-
 msgid "Backup Files"
 msgstr ""
 
@@ -1859,6 +1862,9 @@ msgid "Don't ask this &question again."
 msgstr ""
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Syntax"
