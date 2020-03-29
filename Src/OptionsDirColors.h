@@ -15,6 +15,7 @@ struct DIRCOLORSETTINGS
 	COLORREF	clrDirItemNotExistAllText;	/**< Item not-exist-all text color */
 	COLORREF	clrDirItemFiltered;			/**< Item filtered background color */
 	COLORREF	clrDirItemFilteredText;		/**< Item filtered text color */
+	COLORREF	clrDirMargin;			/**< Background color */
 };
 
 class COptionsMgr;

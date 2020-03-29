@@ -73,8 +73,6 @@ BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_TEXT_COLOR, OnSelDifferenceTextColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_COLOR, OnTrivialDiffColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_DELETED_COLOR, OnTrivialDiffDeletedColor)
-	ON_BN_CLICKED(IDC_COLORDEFAULTS_BTN, OnDefaults)
-	ON_BN_CLICKED(IDC_COLORSCHEME_GITHUBBITBUCKET, OnColorSchemeButton<COLORSCHEME_GITHUBBITBUCKET>)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_TRIVIAL_DIFF_USE_TEXT_COLOR, IDC_TRIVIAL_DIFF_TEXT_COLOR>))
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_TEXT_COLOR, OnTrivialDiffTextColor)
 	ON_BN_CLICKED(IDC_MOVEDBLOCK_COLOR, OnMovedColor)
@@ -405,63 +403,3 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, const Str
 	}
 }
 
-void PropMergeColors::SetColorScheme(int scheme)
-{
-	struct ColorScheme {
-		CColorButton *button;
-		COLORREF color;
-	};
-	
-	ColorScheme github_bitbucket[] = {
-		{&m_cDiff,               RGB(221,255,221)},
-		{&m_cDiffDeleted,        RGB(224,224,255)},
-		{&m_cDiffText,           COLOR_NONE},
-		{&m_cSelDiff,            RGB(255,221,221)},
-		{&m_cSelDiffDeleted,     RGB(240, 192, 192)},
-		{&m_cSelDiffText,        COLOR_NONE},
-		{&m_cTrivial,            RGB(251,242,191)},
-		{&m_cTrivialDeleted,     RGB(233,233,233)},
-		{&m_cTrivialText,        COLOR_NONE},
-		{&m_cMoved,              RGB(240,216,192)},
-		{&m_cMovedDeleted,       RGB(192, 192, 192)},
-		{&m_cMovedText,          COLOR_NONE},
-		{&m_cSelMoved,           RGB(248,112,78)},
-		{&m_cSelMovedDeleted,    RGB(252, 181, 163)},
-		{&m_cSelMovedText,       COLOR_NONE},
-		{&m_cSNP,                RGB(251,250,223)},
-		{&m_cSNPDeleted,         RGB(233, 233, 233)},
-		{&m_cSNPText,            COLOR_NONE},
-		{&m_cSelSNP,             RGB(239,183,180)},
-		{&m_cSelSNPDeleted,      RGB(240, 224, 224)},
-		{&m_cSelSNPText,         COLOR_NONE},
-		{&m_cWordDiff,           RGB(170,255,170)},
-		{&m_cWordDiffDeleted,    RGB(160,230,160)},
-		{&m_cWordDiffText,       COLOR_NONE},
-		{&m_cSelWordDiff,        RGB(255,170,170)},
-		{&m_cSelWordDiffDeleted, RGB(230,150,140)},
-		{&m_cSelWordDiffText,    COLOR_NONE},
-	};
-
-	if (scheme == COLORSCHEME_GITHUBBITBUCKET)
-	{
-		for (int i = 0; i < sizeof(github_bitbucket)/sizeof(github_bitbucket[0]); ++i)
-			github_bitbucket[i].button->SetColor(github_bitbucket[i].color);
-	}
-
-	UpdateTextColorButtonsState();
-}
-
-template<int scheme>
-void PropMergeColors::OnColorSchemeButton()
-{
-	SetColorScheme(scheme);
-}
-
-/** 
- * @brief Resets colors to defaults
- */
-void PropMergeColors::OnDefaults()
-{
-	SerializeColors(SET_DEFAULTS);
-	UpdateTextColorButtonsState();
-}

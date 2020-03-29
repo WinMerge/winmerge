@@ -1091,6 +1091,9 @@ msgstr "Премахване"
 msgid "Colors"
 msgstr "Цветове"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Фон"
 
@@ -1127,9 +1130,6 @@ msgstr "Различия в думи:"
 msgid "Selected Word Diff:"
 msgstr "В избраните думи:"
 
-msgid "Defaults"
-msgstr "По подразбиране"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1144,6 +1144,9 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr "Филтрирани елементи:"
+
+msgid "Margin:"
+msgstr ""
 
 msgid "System"
 msgstr "Системни"
@@ -1207,6 +1210,9 @@ msgstr "Включително командния &ред"
 
 msgid "Open to e&xternal editor"
 msgstr "Отваряне с външе&н редактор"
+
+msgid "Defaults"
+msgstr "По подразбиране"
 
 msgid "Display Columns"
 msgstr "Видими колони"
@@ -1633,9 +1639,6 @@ msgstr "Нормален текст:"
 msgid "Selection:"
 msgstr "Избран:"
 
-msgid "Margin:"
-msgstr ""
-
 msgid "Backup Files"
 msgstr "Резервни файлове"
 
@@ -1921,6 +1924,9 @@ msgid ""
 msgstr ""
 "За да видите отново това съобщение, натиснете бутона Отменяне на страницата "
 "„Общи“ в Настройки."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"

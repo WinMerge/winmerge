@@ -889,6 +889,9 @@
     <ClCompile Include="PropMergeColors.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropColorSchemes.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1606,6 +1609,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropMergeColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropColorSchemes.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

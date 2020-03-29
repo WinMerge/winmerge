@@ -1419,6 +1419,9 @@ msgstr "Supprimer"
 msgid "Colors"
 msgstr "Couleurs"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Fond"
@@ -1467,10 +1470,6 @@ msgstr "Mot différent :"
 msgid "Selected Word Diff:"
 msgstr "Mot différent sélectionné :"
 
-#, c-format
-msgid "Defaults"
-msgstr "Défauts"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1485,6 +1484,10 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+#, c-format
+msgid "Margin:"
+msgstr "Marge :"
 
 #, c-format
 msgid "System"
@@ -1569,6 +1572,10 @@ msgstr "Inclure la ligne de co&mmande"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Ouvrir avec l'éditeur e&xterne"
+
+#, c-format
+msgid "Defaults"
+msgstr "Défauts"
 
 #, c-format
 msgid "Display Columns"
@@ -2132,10 +2139,6 @@ msgid "Selection:"
 msgstr "Sélection :"
 
 #, c-format
-msgid "Margin:"
-msgstr "Marge :"
-
-#, c-format
 msgid "Backup Files"
 msgstr "Fichiers d'archive"
 
@@ -2512,6 +2515,9 @@ msgid ""
 msgstr ""
 "Pour que cette boîte de message soit à nouveau visible, appuyez sur le "
 "bouton Réinitialiser de la page Général de la boîte de dialogue Options."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

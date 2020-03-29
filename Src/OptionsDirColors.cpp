@@ -21,6 +21,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(250,245,215));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, defaultTextColor);
+	pOptionsMgr->InitOption(OPT_DIRCLR_MARGIN, (int)GetSysColor(COLOR_WINDOW));
 	pOptionsMgr->InitOption(OPT_DIRCLR_USE_COLORS, true);
 }
 
@@ -34,6 +35,7 @@ void Load(const COptionsMgr *pOptionsMgr, DIRCOLORSETTINGS& colors)
 	colors.clrDirItemNotExistAllText = pOptionsMgr->GetInt(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT);
 	colors.clrDirItemFiltered = pOptionsMgr->GetInt(OPT_DIRCLR_ITEM_FILTERED);
 	colors.clrDirItemFilteredText = pOptionsMgr->GetInt(OPT_DIRCLR_ITEM_FILTERED_TEXT);
+	colors.clrDirMargin = pOptionsMgr->GetInt(OPT_DIRCLR_MARGIN);
 }
 
 void Save(COptionsMgr *pOptionsMgr, const DIRCOLORSETTINGS& colors)
@@ -46,6 +48,7 @@ void Save(COptionsMgr *pOptionsMgr, const DIRCOLORSETTINGS& colors)
 	pOptionsMgr->SaveOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, (int)colors.clrDirItemNotExistAllText);
 	pOptionsMgr->SaveOption(OPT_DIRCLR_ITEM_FILTERED, (int)colors.clrDirItemFiltered);
 	pOptionsMgr->SaveOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, (int)colors.clrDirItemFilteredText);
+	pOptionsMgr->SaveOption(OPT_DIRCLR_MARGIN, (int)colors.clrDirMargin);
 }
 
 }}

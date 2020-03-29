@@ -9,6 +9,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
+#include "OptionsCustomColors.h"
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
 #include "OptionsDirColors.h"
@@ -37,9 +38,6 @@ namespace Options
  */
 void Init(COptionsMgr *pOptions)
 {
-	// Copy some values from HKLM to HKCU
-	CopyHKLMValues();
-
 	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	LANGID LangId = GetUserDefaultLangID();
@@ -198,12 +196,13 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_MRU_MAX, 9);
 
+	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
+
+	Options::CustomColors::SetDefaults(pOptions);
 	Options::DiffOptions::SetDefaults(pOptions);
 	Options::DiffColors::SetDefaults(pOptions);
 	Options::DirColors::SetDefaults(pOptions);
 	Options::Font::SetDefaults(pOptions);
-}
-
 }
 
 /**
@@ -212,7 +211,7 @@ void Init(COptionsMgr *pOptions)
  * few of those values for "user" values. E.g. enabling ShellExtension
  * initially for user is done by this function.
  */
-static void CopyHKLMValues()
+void CopyHKLMValues()
 {
 	HKEY LMKey;
 	HKEY CUKey;
@@ -235,6 +234,8 @@ static void CopyHKLMValues()
 		}
 		RegCloseKey(LMKey);
 	}
+}
+
 }
 
 /**

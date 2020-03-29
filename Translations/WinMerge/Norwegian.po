@@ -1408,6 +1408,9 @@ msgstr "Fjern"
 msgid "Colors"
 msgstr "Farger"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Bakgrunn"
@@ -1456,10 +1459,6 @@ msgstr "Ordforskjell:"
 msgid "Selected Word Diff:"
 msgstr "Valgt ordforskjell:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Standardverdier"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1473,6 +1472,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1558,6 +1561,10 @@ msgstr "Inklud&er kommandolinje"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Åpne i e&ksternt redigeringsprogram"
+
+#, c-format
+msgid "Defaults"
+msgstr "Standardverdier"
 
 #, c-format
 msgid "Display Columns"
@@ -2115,10 +2122,6 @@ msgid "Selection:"
 msgstr "Markering:"
 
 #, c-format
-msgid "Margin:"
-msgstr ""
-
-#, c-format
 msgid "Backup Files"
 msgstr "Sikkerhetskopifiler"
 
@@ -2451,6 +2454,9 @@ msgstr "Ikke still dette &spørsmålet igjen."
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

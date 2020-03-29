@@ -37,6 +37,7 @@ private:
 	CColorButton	m_cDirItemNotExistAllText;
 	CColorButton	m_cDirItemFiltered;
 	CColorButton	m_cDirItemFilteredText;
+	CColorButton	m_cDirMargin;
 	bool            m_bUseColors;
 	//}}AFX_DATA
 
@@ -51,7 +52,7 @@ private:
 protected:
 
 	static const COLORREF COLOR_NONE = 0xffffffff;
-	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
+	typedef enum { WRITE_OPTIONS, READ_OPTIONS } OPERATION;
 
 	void BrowseColor(CColorButton & colorButton);
 	void SerializeColors(OPERATION op);
@@ -69,7 +70,7 @@ protected:
 	afx_msg void OnDirItemNotExistAllTextColor();
 	afx_msg void OnDirItemFilteredColor();
 	afx_msg void OnDirItemFilteredTextColor();
-	afx_msg void OnDefaults();
+	afx_msg void OnDirMargniColor();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

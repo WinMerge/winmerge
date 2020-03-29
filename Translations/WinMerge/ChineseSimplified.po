@@ -1410,6 +1410,9 @@ msgstr "删除"
 msgid "Colors"
 msgstr "颜色"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "背景"
@@ -1458,10 +1461,6 @@ msgstr "单词差异:"
 msgid "Selected Word Diff:"
 msgstr "选中的单词差异:"
 
-#, c-format
-msgid "Defaults"
-msgstr "默认"
-
 msgid "&Use folder compare colors"
 msgstr "使用文件夹比较颜色(&U)"
 
@@ -1476,6 +1475,10 @@ msgstr "不在所有处都存在的项目:"
 
 msgid "Items filtered:"
 msgstr "过滤的项目:"
+
+#, c-format
+msgid "Margin:"
+msgstr "边缘:"
 
 #, c-format
 msgid "System"
@@ -1560,6 +1563,10 @@ msgstr "包含命令行(&D)"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "用外部编辑器打开(&X)"
+
+#, c-format
+msgid "Defaults"
+msgstr "默认"
 
 #, c-format
 msgid "Display Columns"
@@ -2113,10 +2120,6 @@ msgid "Selection:"
 msgstr "选中区域:"
 
 #, c-format
-msgid "Margin:"
-msgstr "边缘:"
-
-#, c-format
 msgid "Backup Files"
 msgstr "备份文件"
 
@@ -2420,6 +2423,9 @@ msgstr "不再询问此问题(&Q)."
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "如需重新显示这些提示消息, 请在\"选项\"对话框中\"常规\"选项卡中点击\"重置\"按钮."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

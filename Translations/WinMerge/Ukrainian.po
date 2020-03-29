@@ -1409,6 +1409,9 @@ msgstr "Вилучити"
 msgid "Colors"
 msgstr "Кольори"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Тло"
@@ -1457,10 +1460,6 @@ msgstr "Словникова відмінність:"
 msgid "Selected Word Diff:"
 msgstr "Відзначена словникова відмінність:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Звичайні параметри"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1474,6 +1473,10 @@ msgid "Items not exists all:"
 msgstr ""
 
 msgid "Items filtered:"
+msgstr ""
+
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #, c-format
@@ -1559,6 +1562,10 @@ msgstr "Ввім&кнути командний рядок"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Відкрити у зовнішньому редакторі"
+
+#, c-format
+msgid "Defaults"
+msgstr "Звичайні параметри"
 
 #, c-format
 msgid "Display Columns"
@@ -2116,10 +2123,6 @@ msgid "Selection:"
 msgstr "Відзнач. текст:"
 
 #, c-format
-msgid "Margin:"
-msgstr ""
-
-#, c-format
 msgid "Backup Files"
 msgstr "Резервні копії"
 
@@ -2452,6 +2455,9 @@ msgstr "Не задавати &це запитання знову"
 
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 #, c-format

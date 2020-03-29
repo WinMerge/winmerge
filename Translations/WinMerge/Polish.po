@@ -1091,6 +1091,9 @@ msgstr "Usuń"
 msgid "Colors"
 msgstr "Kolory"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Tło"
 
@@ -1127,9 +1130,6 @@ msgstr "Różnica słowa:"
 msgid "Selected Word Diff:"
 msgstr "Wybrana różnica słowa:"
 
-msgid "Defaults"
-msgstr "Domyślne"
-
 msgid "&Use folder compare colors"
 msgstr "Użyj kolorów do porównania folderów"
 
@@ -1144,6 +1144,9 @@ msgstr "Wszystkie nieistniejące elementy:"
 
 msgid "Items filtered:"
 msgstr "Przefiltrowane elementy:"
+
+msgid "Margin:"
+msgstr "Margines:"
 
 msgid "System"
 msgstr "System"
@@ -1207,6 +1210,9 @@ msgstr "Uwzględnij wiersz poleceń"
 
 msgid "Open to e&xternal editor"
 msgstr "Otwórz w zewnętrznym edytorze"
+
+msgid "Defaults"
+msgstr "Domyślne"
 
 msgid "Display Columns"
 msgstr "Wyświetl kolumny"
@@ -1626,9 +1632,6 @@ msgstr "Czcionka regularna:"
 msgid "Selection:"
 msgstr "Zaznaczenie:"
 
-msgid "Margin:"
-msgstr "Margines:"
-
 msgid "Backup Files"
 msgstr "Pliki kopii"
 
@@ -1864,6 +1867,9 @@ msgstr "Nie pytaj ponownie."
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Aby ponownie wyświetlić ten komunikat, naciśnij przycisk Resetuj na stronie Ogólne w oknie dialogowym Opcje."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Składnia"

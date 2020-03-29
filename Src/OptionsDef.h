@@ -178,8 +178,12 @@ extern const String OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT OP("Settings/DirItemNotEx
 extern const String OPT_DIRCLR_ITEM_FILTERED OP("Settings/DirItemFilteredColor");
 // The item filtered text color
 extern const String OPT_DIRCLR_ITEM_FILTERED_TEXT OP("Settings/DirItemFilteredTextColor");
+// The background color
+extern const String OPT_DIRCLR_MARGIN OP("Settings/DirMarginColor");
 // Use dir compare coloring?
 extern const String OPT_DIRCLR_USE_COLORS OP("Settings/UseDirCompareColors");
+
+extern const String OPT_COLOR_SCHEME OP("Settings/ColorScheme");
 
 // Compare options
 extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");

@@ -1094,6 +1094,9 @@ msgstr "Pašalinti"
 msgid "Colors"
 msgstr "Spalvų"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "Fono"
 
@@ -1130,9 +1133,6 @@ msgstr "Žodžio skirtumas:"
 msgid "Selected Word Diff:"
 msgstr "Pažym. žodžio skirtumas:"
 
-msgid "Defaults"
-msgstr "Numat. reikšmės"
-
 msgid "&Use folder compare colors"
 msgstr "Na&udoti katalogų lyginimo spalvas"
 
@@ -1147,6 +1147,9 @@ msgstr "Elementų visai nėra:"
 
 msgid "Items filtered:"
 msgstr "Elementai filtruoti:"
+
+msgid "Margin:"
+msgstr "Paraštė:"
 
 msgid "System"
 msgstr "Sistemos"
@@ -1210,6 +1213,9 @@ msgstr "Įterpti koman&dinę eilutę"
 
 msgid "Open to e&xternal editor"
 msgstr "Atverti &išoriniame redaktoriuje"
+
+msgid "Defaults"
+msgstr "Numat. reikšmės"
 
 msgid "Display Columns"
 msgstr "Rodyti stulpelius"
@@ -1628,9 +1634,6 @@ msgstr "Paprastas tekstas:"
 msgid "Selection:"
 msgstr "Pažymėtas fragmentas:"
 
-msgid "Margin:"
-msgstr "Paraštė:"
-
 msgid "Backup Files"
 msgstr "Rezervinių failų kurimo"
 
@@ -1871,6 +1874,9 @@ msgstr "Daugiau neklausti šio &klausimo."
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaksės"

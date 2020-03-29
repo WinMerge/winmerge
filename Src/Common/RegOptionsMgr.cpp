@@ -614,7 +614,7 @@ int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /
  * already in options storage its is not created.
  *
  * @param [in] filename Filename where optios are written.
- * @return 
+ * @return
  * - COption::OPT_OK when succeeds
  * - COption::OPT_NOTFOUND if file wasn't found or didn't contain values
  */
@@ -623,6 +623,7 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 	int retVal = COption::OPT_OK;
 	const int BufSize = 20480; // This should be enough for a long time..
 	TCHAR buf[BufSize] = {0};
+	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
 
 	// Query keys - returns NUL separated strings
 	DWORD len = GetPrivateProfileString(_T("WinMerge"), nullptr, _T(""),buf, BufSize, filename.c_str());
@@ -642,6 +643,8 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		else if (value.GetType() == varprop::VT_INT)
 		{
 			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
+			if (strutils::makelower(pKey).find(String(_T("color"))) != std::string::npos)
+				intVal = static_cast<int>(oleTranslateColor(static_cast<unsigned>(intVal)));
 			value.SetInt(intVal);
 			SaveOption(pKey, intVal);
 		}

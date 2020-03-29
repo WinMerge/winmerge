@@ -1098,6 +1098,9 @@ msgstr "حذف"
 msgid "Colors"
 msgstr "ألوان"
 
+msgid "Color Scheme:"
+msgstr ""
+
 msgid "Background"
 msgstr "الخلفية"
 
@@ -1134,9 +1137,6 @@ msgstr "الاختلافات على مستوى الكلمة:"
 msgid "Selected Word Diff:"
 msgstr "المقارنة على مستوى الكلمة المحددة:"
 
-msgid "Defaults"
-msgstr "الإعدادات الافتراضية"
-
 msgid "&Use folder compare colors"
 msgstr "استخدم الألوان في مقارنة المجلدات"
 
@@ -1151,6 +1151,9 @@ msgstr "العناصر غير مكتملة:"
 
 msgid "Items filtered:"
 msgstr "العناصر التي تمت حصرها بالمرشح:"
+
+msgid "Margin:"
+msgstr "الهامش:"
 
 msgid "System"
 msgstr "النظام"
@@ -1214,6 +1217,9 @@ msgstr "دمج سطر الأوامر"
 
 msgid "Open to e&xternal editor"
 msgstr "فتح في المحرر الخارجي"
+
+msgid "Defaults"
+msgstr "الإعدادات الافتراضية"
 
 msgid "Display Columns"
 msgstr "عرض الأعمدة"
@@ -1640,9 +1646,6 @@ msgstr "نص عادي:"
 msgid "Selection:"
 msgstr "التحديد:"
 
-msgid "Margin:"
-msgstr "الهامش:"
-
 msgid "Backup Files"
 msgstr "ملفات النسخ الاحتياطي"
 
@@ -1943,6 +1946,9 @@ msgid ""
 msgstr ""
 "لإعادة تفعيل عرض الرسالة مجددا، قم بالضغط على زر إعادة التعيين من صفحة \"عام"
 "\" في قائمة الخيارات."
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Syntax"
 msgstr "اللغة"

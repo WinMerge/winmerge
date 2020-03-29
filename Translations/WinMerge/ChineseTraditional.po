@@ -1418,6 +1418,9 @@ msgstr "移除"
 msgid "Colors"
 msgstr "色彩"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "背景"
@@ -1466,10 +1469,6 @@ msgstr "字層次的差異："
 msgid "Selected Word Diff:"
 msgstr "已選取的字的差異："
 
-#, c-format
-msgid "Defaults"
-msgstr "預設值"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1484,6 +1483,10 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+#, c-format
+msgid "Margin:"
+msgstr "邊距："
 
 #, c-format
 msgid "System"
@@ -1568,6 +1571,10 @@ msgstr "附加 diff 命令於檔首(&P)"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "開啟外部編輯器(&X)"
+
+#, c-format
+msgid "Defaults"
+msgstr "預設值"
 
 #, c-format
 msgid "Display Columns"
@@ -2126,10 +2133,6 @@ msgid "Selection:"
 msgstr "選取："
 
 #, c-format
-msgid "Margin:"
-msgstr "邊距："
-
-#, c-format
 msgid "Backup Files"
 msgstr "備份檔案"
 
@@ -2463,6 +2466,9 @@ msgstr "不要再提示這個問題(&Q)"
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁面點擊重設按鈕"
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

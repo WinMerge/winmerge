@@ -1411,6 +1411,9 @@ msgstr "Sil"
 msgid "Colors"
 msgstr "Renkler"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Art Alan"
@@ -1459,10 +1462,6 @@ msgstr "Sözcük Farklılığı:"
 msgid "Selected Word Diff:"
 msgstr "Seçilmiş Sözcük Farklılığı:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Varsayılan Ayarlar"
-
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1477,6 +1476,10 @@ msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
+
+#, c-format
+msgid "Margin:"
+msgstr "Kenar Boşluğu:"
 
 #, c-format
 msgid "System"
@@ -1561,6 +1564,10 @@ msgstr "Ko&mut Satırı Katılsın"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Dış Düzen&leyici ile Açılsın"
+
+#, c-format
+msgid "Defaults"
+msgstr "Varsayılan Ayarlar"
 
 #, c-format
 msgid "Display Columns"
@@ -2118,10 +2125,6 @@ msgid "Selection:"
 msgstr "Seçim:"
 
 #, c-format
-msgid "Margin:"
-msgstr "Kenar Boşluğu:"
-
-#, c-format
 msgid "Backup Files"
 msgstr "Yedekleme Dosyaları"
 
@@ -2462,6 +2465,9 @@ msgstr "Bu soru &yeniden sorulmasın."
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel Grubu altındaki Sıfırla düğmesine tıklayın."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"

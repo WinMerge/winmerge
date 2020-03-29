@@ -49,6 +49,18 @@ public:
 		return (void *)lvi.lParam;
 	}
 
+	int GetTextColor(int row) const override
+	{
+		NMLVCUSTOMDRAW nmlvcd = {0};
+		nmlvcd.nmcd.hdr.code = NM_CUSTOMDRAW;
+		nmlvcd.nmcd.hdr.idFrom = GetDlgCtrlID(m_hwndListCtrl);
+		nmlvcd.nmcd.hdr.hwndFrom = m_hwndListCtrl;
+		nmlvcd.nmcd.dwDrawStage = CDDS_ITEMPREPAINT | CDDS_SUBITEM;
+		nmlvcd.nmcd.dwItemSpec = row;
+		SendMessage(GetParent(m_hwndListCtrl), WM_NOTIFY, (WPARAM)m_hwndListCtrl, (LPARAM)&nmlvcd);
+		return nmlvcd.clrText;
+	}
+
 	int GetBackColor(int row) const override
 	{
 		NMLVCUSTOMDRAW nmlvcd = {0};

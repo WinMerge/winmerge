@@ -23,7 +23,7 @@ if "%1" == "" (
 
 del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" 2> NUL
 
-7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.db -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!.vs -xr!*.VC.db-* -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.exp -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!ipch -xr!*.tlb -xr!*.tlog -xr!*.*~ -xr!CVS -xr!.svn -xr!.hg -xr!*.log -xr!*.lastbuildstate -xr!FreeImage*.dll -xr!WinIMergeLib.dll -xr!WinIMerge.exe -xr!BuildTmp -xr!Docs\Manual\Tools "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
+7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.db -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!.vs -xr!*.VC.db-* -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.exp -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!ipch -xr!*.tlb -xr!*.tlog -xr!*.*~ -xr!CVS -xr!.svn -xr!.hg -xr!*.log -xr!*.lastbuildstate -xr!FreeImage*.dll -xr!WinIMergeLib.dll -xr!WinIMerge.exe -xr!BuildTmp -xr!Docs\Manual\Tools "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport ColorSchemes Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
 
 (
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
@@ -56,7 +56,7 @@ mkdir "%DISTDIR%" 2> NUL
 
 copy "Build\WinMerge-%RCVER%-%PLATFORMH%Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe"
 
-for %%i in (Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge Merge7z\Lang GnuWin32) do (
+for %%i in (ColorSchemes Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge Merge7z\Lang GnuWin32) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -85,6 +85,12 @@ copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" 
 rem Translations
 echo Copy Translations...
 copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
+
+rem ColorSchemes
+echo Copy ColorSchemes...
+for %%i in (ColorSchemes\*.ini) do (
+  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\ColorSchemes" > NUL
+)
 
 rem Filters
 echo Copy Filters...

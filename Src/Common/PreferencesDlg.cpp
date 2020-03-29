@@ -40,6 +40,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pOptionsMgr(regOptions)
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
+, m_pageColorSchemes(regOptions)
 , m_pageMergeColors(regOptions)
 , m_pSyntaxColors(colors)
 , m_pageTextColors(regOptions, colors)
@@ -79,6 +80,7 @@ BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
 	ON_BN_CLICKED(IDC_TREEOPT_IMPORT, OnImportButton)
 	ON_BN_CLICKED(IDC_TREEOPT_EXPORT, OnExportButton)
+	ON_MESSAGE(WM_APP + IDC_COLOR_SCHEMES, OnColorSchemeChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -101,6 +103,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageCompareBinary, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_BINARYCOMPARE);
 	AddPage(&m_pageCompareImage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_IMAGECOMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
+	AddPage(&m_pageColorSchemes, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_COLOR_SCHEMES);
 	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MERGECOLORS);
 	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_SYNTAXCOLORS);
 	AddPage(&m_pageTextColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_TEXTCOLORS);
@@ -258,6 +261,7 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 void CPreferencesDlg::ReadOptions(bool bUpdate)
 {
 	m_pageGeneral.ReadOptions();
+	m_pageColorSchemes.ReadOptions();
 	m_pageMergeColors.ReadOptions();
 	m_pageTextColors.ReadOptions();
 	m_pageSyntaxColors.ReadOptions();
@@ -277,6 +281,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	if (bUpdate)
 	{
 		SafeUpdatePage(&m_pageGeneral, false);
+		SafeUpdatePage(&m_pageColorSchemes, false);
 		SafeUpdatePage(&m_pageMergeColors, false);
 		SafeUpdatePage(&m_pageTextColors, false);
 		SafeUpdatePage(&m_pageSyntaxColors, false);
@@ -307,6 +312,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageCompareBinary.WriteOptions();
 	m_pageCompareImage.WriteOptions();
 	m_pageEditor.WriteOptions();
+	m_pageColorSchemes.WriteOptions();
 	m_pageMergeColors.WriteOptions();
 	m_pageTextColors.WriteOptions();
 	m_pageSyntaxColors.WriteOptions();
@@ -360,11 +366,18 @@ void CPreferencesDlg::OnExportButton()
 		m_pphost.UpdatePagesData();
 		SaveOptions();
 
-		if (m_pOptionsMgr->ExportOptions(settingsFile) == COption::OPT_OK)
+		if (m_pOptionsMgr->ExportOptions(settingsFile, true) == COption::OPT_OK)
 			LangMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
 			LangMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
 	}
+}
+
+LRESULT CPreferencesDlg::OnColorSchemeChanged(WPARAM wParams, LPARAM lParam)
+{
+	Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
+	ReadOptions(true);
+	return 0;
 }
 
 /**

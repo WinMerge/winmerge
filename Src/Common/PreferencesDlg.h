@@ -14,6 +14,7 @@
 #include "PropCompare.h"
 #include "PropEditor.h"
 #include "PropRegistry.h"
+#include "PropColorSchemes.h"
 #include "PropMergeColors.h"
 #include "PropTextColors.h"
 #include "PropSyntaxColors.h"
@@ -59,6 +60,7 @@ protected:
 	PropEditor m_pageEditor;
 	PropRegistry m_pageSystem;
 	PropCodepage m_pageCodepage;
+	PropColorSchemes m_pageColorSchemes;
 	PropMergeColors m_pageMergeColors;
 	PropTextColors m_pageTextColors;
 	PropSyntaxColors m_pageSyntaxColors;
@@ -92,6 +94,7 @@ protected:
 	afx_msg void OnHelpButton();
 	afx_msg void OnImportButton();
 	afx_msg void OnExportButton();
+	afx_msg LRESULT OnColorSchemeChanged(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

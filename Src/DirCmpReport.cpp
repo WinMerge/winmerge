@@ -500,9 +500,12 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		}
 		else
 		{
-			COLORREF color = m_pList->GetBackColor(currRow);
-			String attr = strutils::format(_T("style='background-color: #%02x%02x%02x'"),
-				GetRValue(color), GetGValue(color), GetBValue(color));
+			COLORREF backcolor = m_pList->GetBackColor(currRow);
+			COLORREF textcolor = m_pList->GetTextColor(currRow);
+			String attr = strutils::format(_T("style='%sbackground-color: #%02x%02x%02x'"),
+				textcolor == 0 ? _T("") : strutils::format(_T("color: #%02x%02x%02x; "),
+						GetRValue(textcolor), GetGValue(textcolor), GetBValue(textcolor)).c_str(),
+				GetRValue(backcolor), GetGValue(backcolor), GetBValue(backcolor));
 			WriteString(BeginEl(rowEl, attr));
 		}
 		for (int currCol = 0; currCol < m_nColumns; currCol++)

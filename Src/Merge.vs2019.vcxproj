@@ -892,6 +892,7 @@
     <ClCompile Include="PropArchive.cpp" />
     <ClCompile Include="PropBackups.cpp" />
     <ClCompile Include="PropCodepage.cpp" />
+    <ClCompile Include="PropColorSchemes.cpp" />
     <ClCompile Include="PropMergeColors.cpp" />
     <ClCompile Include="PropCompare.cpp" />
     <ClCompile Include="PropCompareBinary.cpp" />
@@ -1242,6 +1243,7 @@
     <ClInclude Include="PropArchive.h" />
     <ClInclude Include="PropBackups.h" />
     <ClInclude Include="PropCodepage.h" />
+    <ClInclude Include="PropColorSchemes.h" />
     <ClInclude Include="PropMergeColors.h" />
     <ClInclude Include="PropCompare.h" />
     <ClInclude Include="PropCompareBinary.h" />

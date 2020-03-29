@@ -202,6 +202,7 @@ BOOL CMergeApp::InitInstance()
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
+	Options::CopyHKLMValues();
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
@@ -297,7 +298,7 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	if (m_pSyntaxColors != nullptr)
-		Options::SyntaxColors::Load(GetOptionsMgr(), m_pSyntaxColors.get());
+		Options::SyntaxColors::Init(GetOptionsMgr(), m_pSyntaxColors.get());
 
 	if (m_pMarkers != nullptr)
 		m_pMarkers->LoadFromRegistry();

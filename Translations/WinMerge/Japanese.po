@@ -1096,6 +1096,9 @@ msgstr "削除"
 msgid "Colors"
 msgstr "色"
 
+msgid "Color Scheme:"
+msgstr "配色:"
+
 msgid "Background"
 msgstr "背景"
 
@@ -1136,9 +1139,6 @@ msgstr "単語の差異:"
 msgid "Selected Word Diff:"
 msgstr "選択された単語の差異:"
 
-msgid "Defaults"
-msgstr "デフォルト"
-
 msgid "&Use folder compare colors"
 msgstr "フォルダー比較用の色を使用"
 
@@ -1153,6 +1153,9 @@ msgstr "すべて存在しない項目:"
 
 msgid "Items filtered:"
 msgstr "無視された項目:"
+
+msgid "Margin:"
+msgstr "マージン:"
 
 msgid "System"
 msgstr "システム"
@@ -1216,6 +1219,9 @@ msgstr "コマンド行を含める(&D)"
 
 msgid "Open to e&xternal editor"
 msgstr "外部エディタで開く(&X)"
+
+msgid "Defaults"
+msgstr "デフォルト"
 
 msgid "Display Columns"
 msgstr "列の表示"
@@ -1643,9 +1649,6 @@ msgstr "標準テキスト:"
 msgid "Selection:"
 msgstr "選択:"
 
-msgid "Margin:"
-msgstr "マージン:"
-
 msgid "Backup Files"
 msgstr "バックアップ ファイル"
 
@@ -1945,6 +1948,9 @@ msgid ""
 msgstr ""
 "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般"
 "ページで [リセット] ボタンを押してください。"
+
+msgid "Color Schemes"
+msgstr "配色"
 
 msgid "Syntax"
 msgstr "シンタックス"

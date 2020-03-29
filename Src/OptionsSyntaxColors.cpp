@@ -19,11 +19,7 @@ static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
 
 namespace Options { namespace SyntaxColors {
 
-/**
- * @brief Load color values from storage
- * @param [out] pSyntaxColors pointer to SyntaxColors
- */
-void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
+void Init(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 {
 	String valuename(DefColorsPath);
 
@@ -58,6 +54,26 @@ void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 	
 		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);
 		pOptionsMgr->InitOption(valuename, pSyntaxColors->GetBold(i));
+		pSyntaxColors->SetBold(i, pOptionsMgr->GetBool(valuename));
+	}
+}
+
+/**
+ * @brief Load color values from storage
+ * @param [out] pSyntaxColors pointer to SyntaxColors
+ */
+void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
+{
+	String valuename(DefColorsPath);
+
+	for (unsigned i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
+	{
+		valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
+		int color = pOptionsMgr->GetInt(valuename);
+		COLORREF ref = color;
+		pSyntaxColors->SetColor(i, ref);
+	
+		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);
 		pSyntaxColors->SetBold(i, pOptionsMgr->GetBool(valuename));
 	}
 }

@@ -9,6 +9,7 @@ struct IListCtrl
 	virtual String GetColumnName(int col) const = 0;
 	virtual String GetItemText(int row, int col) const = 0;
 	virtual void *GetItemData(int row) const = 0;
+	virtual int GetTextColor(int row) const = 0;
 	virtual int GetBackColor(int row) const = 0;
 	virtual bool IsSelectedItem(int sel) const = 0;
 	virtual int GetNextItem(int sel, bool selected = false, bool reverse = false) const = 0;

@@ -1408,6 +1408,9 @@ msgstr "Ta bort"
 msgid "Colors"
 msgstr "Färger"
 
+msgid "Color Scheme:"
+msgstr ""
+
 #, c-format
 msgid "Background"
 msgstr "Bakgrund"
@@ -1456,10 +1459,6 @@ msgstr "Ordskillnad:"
 msgid "Selected Word Diff:"
 msgstr "Vald Ordskillnad:"
 
-#, c-format
-msgid "Defaults"
-msgstr "Förval"
-
 msgid "&Use folder compare colors"
 msgstr "Använd MappJämföringsFärger"
 
@@ -1474,6 +1473,10 @@ msgstr "Objekt som ej finns:"
 
 msgid "Items filtered:"
 msgstr "Objekt filtrerade:"
+
+#, c-format
+msgid "Margin:"
+msgstr "Marginal:"
 
 #, c-format
 msgid "System"
@@ -1558,6 +1561,10 @@ msgstr "Inkludera kommandorad"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Öppna i Extern redigerare"
+
+#, c-format
+msgid "Defaults"
+msgstr "Förval"
 
 #, c-format
 msgid "Display Columns"
@@ -2118,10 +2125,6 @@ msgid "Selection:"
 msgstr "Markering:"
 
 #, c-format
-msgid "Margin:"
-msgstr "Marginal:"
-
-#, c-format
 msgid "Backup Files"
 msgstr "Reservkopierade Filer"
 
@@ -2474,6 +2477,9 @@ msgstr "Fråga inte denna fråga igen."
 
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
+
+msgid "Color Schemes"
+msgstr ""
 
 #, c-format
 msgid "Syntax"
