@@ -2488,7 +2488,7 @@ msgstr "Sprava:"
 
 #, c-format
 msgid "To right:"
-msgstr "Doľava:"
+msgstr "Doprava:"
 
 #, c-format
 msgid "Version %1"
