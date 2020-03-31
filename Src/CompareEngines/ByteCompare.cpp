@@ -81,6 +81,8 @@ void ByteCompare::SetFileData(int items, file_data *data)
 	// We support only two files currently!
 	assert(items == 2);
 	m_inf = data;
+	m_textStats[0].clear();
+	m_textStats[1].clear();
 }
 
 
