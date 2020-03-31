@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-03-16 07:43+0300\n"
+"POT-Creation-Date: 2020-03-28 08:32+0000\n"
+"PO-Revision-Date: 2020-03-30 07:45+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1098,7 +1098,7 @@ msgid "Colors"
 msgstr "Spalvų"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Spalvų schema:"
 
 msgid "Background"
 msgstr "Fono"
@@ -1879,7 +1879,7 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Schemų"
 
 msgid "Syntax"
 msgstr "Sintaksės"
