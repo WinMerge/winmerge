@@ -176,7 +176,7 @@ msgid "&Set Background Color"
 msgstr "设置背景颜色(&S)"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "矢量图形缩放 (&V)"
 
 #, c-format
 msgid "&File"
@@ -1411,7 +1411,7 @@ msgid "Colors"
 msgstr "颜色"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "配色方案:"
 
 #, c-format
 msgid "Background"
@@ -2425,7 +2425,7 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "如需重新显示这些提示消息, 请在\"选项\"对话框中\"常规\"选项卡中点击\"重置\"按钮."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "配色方案"
 
 #, c-format
 msgid "Syntax"
@@ -3888,41 +3888,41 @@ msgid "You can specify the following parameters to the path:\n$file: Path name o
 msgstr "您可以在路径中指定下列参数:\n$file: 当前文件的路径名\n$linenum: 当前游标位置的行号"
 
 msgid "default"
-msgstr ""
+msgstr "默认"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite 默认"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI 子窗口或主窗口"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "仅 MDI 子窗口"
 
