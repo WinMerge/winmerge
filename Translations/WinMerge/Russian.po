@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-02-04 20:55+0200\n"
+"PO-Revision-Date: 2020-04-02 12:00+0300\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgid "Colors"
 msgstr "Цвета"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Цветовая схема"
 
 msgid "Background"
 msgstr "Фон"
@@ -1873,7 +1873,7 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Цветовая схема"
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -2978,4 +2978,3 @@ msgstr "MDI дочернее окно или главное окно"
 
 msgid "MDI child window only"
 msgstr "MDI дочернее окно только"
-
