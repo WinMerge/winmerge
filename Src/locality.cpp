@@ -127,14 +127,15 @@ String TimeString(const int64_t * tim)
 {
 	if (tim == nullptr) return _T("---");
 	
-	SYSTEMTIME sysTime;
-	FILETIME ft, ftlocal;
+	SYSTEMTIME sysTimeGlobal, sysTime;
+	FILETIME ft;
 	Timestamp t(*tim * Timestamp::resolution());
 
 	if (t == 0)
 		return String();
 	t.toFileTimeNP((unsigned int&)ft.dwLowDateTime, (unsigned int&)ft.dwHighDateTime);
-	if (!FileTimeToLocalFileTime(&ft, &ftlocal) || !FileTimeToSystemTime(&ftlocal, &sysTime))
+	if (!FileTimeToSystemTime(&ft, &sysTimeGlobal) ||
+	    !SystemTimeToTzSpecificLocalTime(nullptr, &sysTimeGlobal, &sysTime))
 		return _T("---");
 
 	TCHAR buff[128];
