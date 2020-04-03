@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2020-04-03 10:57-0500\n"
+"PO-Revision-Date: 2020-04-03 14:38-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_AR\n"
@@ -180,7 +180,7 @@ msgid "&Edit"
 msgstr "&Editar"
 
 msgid "&Options..."
-msgstr "Conf&iguración..."
+msgstr "Configuració&n..."
 
 msgid "&View"
 msgstr "&Ver"
@@ -198,7 +198,7 @@ msgid "&Huge"
 msgstr "&Enorme"
 
 msgid "&Status Bar"
-msgstr "Barra de &estado"
+msgstr "&Barra de estado"
 
 msgid "Ta&b Bar"
 msgstr "&Pestañas"
@@ -210,7 +210,7 @@ msgid "&Filters..."
 msgstr "&Filtros..."
 
 msgid "&Generate Patch..."
-msgstr "&Crear corrección..."
+msgstr "&Generar corrección..."
 
 msgid "&Plugins"
 msgstr "&Plugins"
@@ -240,7 +240,7 @@ msgid "Cl&ose"
 msgstr "&Cerrar"
 
 msgid "Clo&se All"
-msgstr "Cerrar &Todas"
+msgstr "Cerrar Toda&s"
 
 msgid "Change &Pane\tF6"
 msgstr "Cambiar &Panel\tF6"
@@ -279,19 +279,19 @@ msgid "&Read-only"
 msgstr "Sólo Lectu&ra"
 
 msgid "L&eft Read-only"
-msgstr "Lado i&zquierdo sólo lectura"
+msgstr "Lado izqui&erdo sólo lectura"
 
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "Lado med&io sólo lectura"
 
 msgid "Ri&ght Read-only"
-msgstr "Lado d&erecho sólo lectura"
+msgstr "Lado derec&ho sólo lectura"
 
 msgid "File En&coding..."
 msgstr "&Codificación de archivo..."
 
 msgid "Select &All\tCtrl+A"
-msgstr "&Seleccionar todo\tCtrl+A"
+msgstr "Seleccion&ar todo\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Mostrar elementos &idénticos"
@@ -351,7 +351,7 @@ msgid "Select &Font..."
 msgstr "Seleccionar &Fuente..."
 
 msgid "Use Default F&ont"
-msgstr "Usar F&uente del Siste&ma"
+msgstr "Usar F&uente del Sistema"
 
 msgid "Sw&ap Panes"
 msgstr "&Intercambiar paneles"
@@ -360,7 +360,7 @@ msgid "Compa&re Statistics"
 msgstr "Estadísticas de &comparación"
 
 msgid "Refre&sh\tF5"
-msgstr "&Actualizar\tF5"
+msgstr "Ac&tualizar\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "&Actualizar seleccionados\tCtrl+F5"
@@ -372,25 +372,25 @@ msgid "Co&mpare\tEnter"
 msgstr "Co&mparar\tEnter"
 
 msgid "&Next Difference\tAlt+Down"
-msgstr "Diferencia &siguiente\tAlt+Down"
+msgstr "Diferencia siguie&nte\tAlt+Abajo"
 
 msgid "&Previous Difference\tAlt+Up"
-msgstr "Diferencia &anterior\tAlt+Up"
+msgstr "Diferencia anter&ior\tAlt+Arriba"
 
 msgid "&First Difference\tAlt+Home"
-msgstr "&Primer diferencia\tAlt+Home"
+msgstr "Primer di&ferencia\tAlt+Inicio"
 
 msgid "&Current Difference\tAlt+Enter"
 msgstr "Diferencia a&ctual\tAlt+Enter"
 
 msgid "&Last Difference\tAlt+End"
-msgstr "&Última diferencia\tAlt+End"
+msgstr "Ú&ltima diferencia\tAlt+Fin"
 
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Copiar al lado De&recho\tAlt+Right"
+msgstr "Copia&r al lado derecho\tAlt+Der."
 
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Copiar al lado Izqui&erdo\tAlt+Left"
+msgstr "Copiar al lado izqui&erdo\tAlt+Izq."
 
 msgid "&Delete\tDel"
 msgstr "&Eliminar\tDel"
@@ -399,7 +399,7 @@ msgid "&Customize Columns..."
 msgstr "&Personalizar columnas..."
 
 msgid "Generate &Report..."
-msgstr "Generar Info&rme..."
+msgstr "Gene&rar Informe..."
 
 msgid "&Edit with Unpacker..."
 msgstr "&Editar con Desempaquetador..."
@@ -411,13 +411,13 @@ msgid "Sav&e"
 msgstr ""
 
 msgid "Save &Left"
-msgstr "Guardar lado &Izquierdo"
+msgstr "Guardar &lado Izquierdo"
 
 msgid "Save &Middle"
 msgstr "Guardar lado &Medio"
 
 msgid "Save &Right"
-msgstr "Guardar lado &Derecho"
+msgstr "Gua&rdar lado Derecho"
 
 msgid "Save &As"
 msgstr "Gu&ardar Como"
@@ -483,7 +483,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar dif. de &línea\tF4"
+msgstr "Seleccionar &dif. de línea\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Buscar...\tCtrl+F"
@@ -501,7 +501,7 @@ msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr "&Copiar con Números de Línea\tCtrl+Shift+C"
 
 msgid "&Bookmarks"
-msgstr "&Marcadores"
+msgstr "Marcad&ores"
 
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Al&ternar marcador\tCtrl+F2"
@@ -555,7 +555,7 @@ msgid "&View Whitespace"
 msgstr "Mostrar &espacios"
 
 msgid "Vie&w Line Differences"
-msgstr "Mostrar diferencias de &línea"
+msgstr "M&ostrar diferencias de línea"
 
 msgid "View Line &Numbers"
 msgstr "Ver &números de línea"
@@ -567,19 +567,19 @@ msgid "W&rap Lines"
 msgstr "&Ajuste de línea"
 
 msgid "Split V&ertically"
-msgstr "Dividir V&erticalmente"
+msgstr "Dividir &Verticalmente"
 
 msgid "Diff &Pane"
-msgstr "Panel de di&ferencias"
+msgstr "Panel de dife&rencias"
 
 msgid "Lo&cation Pane"
-msgstr "Panel de &posición"
+msgstr "Panel de po&sición"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Conflicto si&guiente\tAlt+Shift+Abajo"
 
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Conflicto &anterior\tAlt+Shift+Arriba"
 
 msgid "A&dvanced"
 msgstr "Avanza&do"
@@ -621,19 +621,19 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Diferencia Anterior (Sólo Derecha)\tAlt+Shift+9"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Copiar desde izq.\tAlt+Shift+Der."
+msgstr "Copiar desde lado izquierdo\tAlt+Shift+Der."
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Copiar desde der.\tAlt+Shift+Izq."
+msgstr "Copiar desde lado derecho\tAlt+Shift+Izq."
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Copiar al lado D&erecho y avanzar\tCtrl+Alt+Der."
+msgstr "C&opiar a la der. y avanzar\tCtrl+Alt+Der."
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Copiar al lado I&zquierdo y avanzar\tCtrl+Alt+Izq."
+msgstr "Copiar a la i&zq. y avanzar\tCtrl+Alt+Izq."
 
 msgid "Copy &All to Right"
-msgstr "Copiar todas al lado De&recho"
+msgstr "Copiar todas al lado Derecho"
 
 msgid "Cop&y All to Left"
 msgstr "Copiar todas al lado Iz&quierdo"
@@ -645,16 +645,16 @@ msgid "Add &Synchronization Point\tAlt+S"
 msgstr "Añadir Punto de &Sincronización\tAlt+S"
 
 msgid "Clear Sync&hronization Points"
-msgstr ""
+msgstr "Limpiar puntos de sincroni&zación"
 
 msgid "&Prediffer"
 msgstr "&Precomparación"
 
 msgid "&Scripts"
-msgstr "Scri&pts"
+msgstr "&Scripts"
 
 msgid "Sp&lit"
-msgstr ""
+msgstr "&Dividir"
 
 msgid "Comp&are"
 msgstr "Com&parar"
@@ -1158,7 +1158,7 @@ msgid "System"
 msgstr "Sistema"
 
 msgid "&Send deleted files to Recycle Bin"
-msgstr "&Enviar archivos eliminados a la Papelera de reciclaje"
+msgstr "Enviar archivo&s eliminados a la Papelera de reciclaje"
 
 msgid "&External editor:"
 msgstr "Editor &externo:"
@@ -1170,10 +1170,10 @@ msgid "Temporary files folder"
 msgstr "Carpeta de archivos temporales"
 
 msgid "S&ystem's temp folder"
-msgstr "Carpeta temp del s&istema"
+msgstr "Carpeta temporal del s&istema"
 
 msgid "C&ustom folder:"
-msgstr "Carpeta personal:"
+msgstr "Carpeta &personalizada"
 
 msgid "Br&owse..."
 msgstr "Examinar..."
@@ -1356,7 +1356,7 @@ msgid "&Character level"
 msgstr "A nivel de &caracter"
 
 msgid "&Word-level:"
-msgstr "A nivel de &palabra:"
+msgstr "A nivel de pa&labra:"
 
 msgid "W&ord break characters:"
 msgstr "Caracteres de salt&o de palabra:"
@@ -1657,7 +1657,7 @@ msgid "&Folder compare"
 msgstr "Comparación de &carpetas"
 
 msgid "Fil&e compare"
-msgstr "Comparación de &archivos"
+msgstr "Comparación d&e archivos"
 
 msgid "Create backup files into:"
 msgstr "Crear archivos de seguridad en:"
@@ -1748,7 +1748,7 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignora&r y volver a analizar puntos"
 
 msgid "&Quick compare limit (MB):"
-msgstr "Límite de comparación rápida (MB):"
+msgstr "Límite de comparación rá&pida (MB):"
 
 msgid "&Binary compare limit (MB):"
 msgstr "Límite de comparación &binaria (MB):"
@@ -2083,7 +2083,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"¡La carpeta de filtos de usuario no está definida!\n"
+"¡La carpeta de filtros de usuario no está definida!\n"
 "\n"
 "Por favor, seleccione la carpeta de filtros en Configuración/Sistema."
 
