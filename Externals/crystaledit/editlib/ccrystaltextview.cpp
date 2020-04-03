@@ -1913,7 +1913,7 @@ EscapeHTML (const CString & strText, bool & bLastCharSpace, int & nNonbreakChars
             nNonbreakChars = 0;
             break;
           case ' ':
-            if (bLastCharSpace)
+            if (i == 0 || bLastCharSpace)
               {
                 strHTML += _T("&nbsp;");
                 bLastCharSpace = false;
