@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2020-04-02 18:59-0500\n"
+"PO-Revision-Date: 2020-04-03 10:57-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_AR\n"
@@ -153,16 +153,16 @@ msgid "New (&3 panes)"
 msgstr "Nuevo (&3 paneles)"
 
 msgid "&Open...\tCtrl+O"
-msgstr "&Abrir...\tCtrl+O"
+msgstr "A&brir...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "Abrir Archivo &Conflictivo..."
+msgstr "Abrir Archivo Conflic&tivo..."
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Abrir Pro&yecto...\tCtrl+J"
 
 msgid "Sa&ve Project..."
-msgstr "&Guardar Proyecto..."
+msgstr "Guar&dar Proyecto..."
 
 msgid "Recent Projects"
 msgstr "Proyectos recientes"
@@ -432,10 +432,10 @@ msgid "Save &Right As..."
 msgstr "Gua&rdar Lado Derecho Como..."
 
 msgid "&Print..."
-msgstr "&Imprimir..."
+msgstr "Im&primir..."
 
 msgid "Page Set&up..."
-msgstr "Configurar &página..."
+msgstr "Config&urar página..."
 
 msgid "Print Previe&w..."
 msgstr "&Vista preliminar..."
@@ -444,7 +444,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Convertir Saltos de Línea a"
 
 msgid "&Merge Mode\tF9"
-msgstr "Modo &Combinación\tF9"
+msgstr "&Modo Combinación\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr ""
