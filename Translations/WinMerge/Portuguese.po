@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-12-11 00:23+0100\n"
+"PO-Revision-Date: 2020-04-03 18:51+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -528,7 +528,7 @@ msgstr "&Guardar\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr "Gua&ardar"
+msgstr "Gu&ardar"
 
 #, c-format
 msgid "Save &Left"
