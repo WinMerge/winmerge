@@ -38,11 +38,11 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID /*= 0*/, CWnd* pParent /*= nullptr*/)   // standard constructor
 : CTrDialog(IDD_PREFERENCES, pParent)
 , m_pOptionsMgr(regOptions)
+, m_pSyntaxColors(colors)
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
 , m_pageColorSchemes(regOptions)
 , m_pageMergeColors(regOptions)
-, m_pSyntaxColors(colors)
 , m_pageTextColors(regOptions, colors)
 , m_pageSyntaxColors(regOptions, colors)
 , m_pageMarkerColors(regOptions, colors)
@@ -322,11 +322,6 @@ void CPreferencesDlg::SaveOptions()
 	m_pageArchive.WriteOptions();
 	m_pageBackups.WriteOptions();
 	m_pageShell.WriteOptions();
-}
-
-void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
-{
-	m_pSyntaxColors = pColors;
 }
 
 /**
