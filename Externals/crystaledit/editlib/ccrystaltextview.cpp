@@ -145,8 +145,6 @@ using CrystalLineParser::TEXTBLOCK;
 #  define WM_MOUSEHWHEEL 0x20e
 #endif
 
-/** @brief Maximum tab-char width. */
-const UINT MAX_TAB_LEN = 64;
 /** @brief Width of revision marks. */
 const UINT MARGIN_REV_WIDTH = 3;
 /** @brief Width of icons printed in the margin. */

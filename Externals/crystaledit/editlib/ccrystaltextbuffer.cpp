@@ -84,8 +84,6 @@
 
 using std::vector;
 
-const TCHAR crlf[] = _T ("\r\n");
-
 int CCrystalTextBuffer::m_nDefaultEncoding = -1;
 
 
