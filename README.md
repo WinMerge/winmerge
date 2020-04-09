@@ -1,4 +1,7 @@
 # WinMerge Source Code
+[![Build status](https://ci.appveyor.com/api/projects/status/h3v3ap1kswi1tyyt?svg=true)](https://ci.appveyor.com/project/sdottaka/winmerge)
+[![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
+[![Github Releases All](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
 
 [WinMerge](https://winmerge.org/) is an open source differencing and merging tool
 for Windows. WinMerge can compare files and folders, presenting differences
