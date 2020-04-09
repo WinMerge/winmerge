@@ -1106,7 +1106,7 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditCut()
 {
-	if (IsReadOnly(m_nThisPane))
+	if (IsReadOnly(m_nThisPane) || m_bDetailView)
 		return;
 
 	CPoint ptSelStart, ptSelEnd;
@@ -1149,7 +1149,7 @@ void CMergeEditView::OnEditCut()
  */
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane))
+	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
 		CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
 	else
 		pCmdUI->Enable(false);
@@ -1160,7 +1160,7 @@ void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditPaste()
 {
-	if (IsReadOnly(m_nThisPane))
+	if (IsReadOnly(m_nThisPane) && !m_bDetailView)
 		return;
 
 	CCrystalEditViewEx::Paste();
@@ -1172,7 +1172,7 @@ void CMergeEditView::OnEditPaste()
  */
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane))
+	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
 		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
 	else
 		pCmdUI->Enable(false);
