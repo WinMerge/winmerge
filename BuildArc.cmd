@@ -3,12 +3,14 @@ pushd "%~dp0"
 setlocal
 call SetVersion.cmd
 if "%2" == "-ci" (
+  set MYDATETMP=%DATE:/=-%
+  set MYDATE=%MYDATETMP: =_%
   if exist .hg (
-    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%MYDATE%-%%i
   ) else if exist .git (
-    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%MYDATE%-%%i
   ) else (
-    set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%APPVEYOR_BUILD_VERSION%
+    set SAFEAPPVER=%SAFEAPPVER%-%MYDATE%-%APPVEYOR_BUILD_VERSION%
   )
 )
 set DISTDIR=.\Build\Releases
