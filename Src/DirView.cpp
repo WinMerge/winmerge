@@ -60,6 +60,7 @@
 #include "FileOrFolderSelect.h"
 #include "IntToIntMap.h"
 #include "PatchTool.h"
+#include "SyntaxColors.h"
 #include <numeric>
 #include <functional>
 
@@ -3826,8 +3827,8 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 
 	if (di.isEmpty())
 	{
-		clrText = ::GetSysColor (COLOR_WINDOWTEXT);
-		clrBk = ::GetSysColor (COLOR_WINDOW);
+		clrText = theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT);
+		clrBk = theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_BKGND);
 	}
 	else if (di.diffcode.isResultFiltered())
 	{
@@ -3851,8 +3852,8 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 	}
 	else
 	{
-		clrText = ::GetSysColor (COLOR_WINDOWTEXT);
-		clrBk = ::GetSysColor (COLOR_WINDOW);
+		clrText = theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT);
+		clrBk = theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_BKGND);
 	}
 }
 
