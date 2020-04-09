@@ -25,13 +25,13 @@ jobs:
         .\BuildAll.vs2019.cmd x64 -ci
 
     - name: Upload zip
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2-preview
       with:
         name: WinMerge-x64.zip
         path: Build/Releases/*.zip
 
     - name: Upload installer
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2-preview
       with:
         name: WinMerge-x64-Setup-x64.exe
         path: Build/Releases/*.exe
