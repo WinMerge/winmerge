@@ -4156,7 +4156,7 @@ void CMergeEditView::OnWindowSplit()
 
 void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(TRUE);
+	pCmdUI->Enable(!m_bDetailView);
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
 }
 
