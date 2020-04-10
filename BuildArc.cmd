@@ -1,17 +1,14 @@
 pushd "%~dp0"
 
-setlocal EnableDelayedExpansion
+setlocal
 call SetVersion.cmd
 if "%2" == "-ci" (
-  for /f %%i in ('date /t') do set MYDATETMP1=%%i
-  set MYDATETMP2=!MYDATETMP1:/=-!
-  set MYDATE=!MYDATETMP2: =_!
   if exist .hg (
-    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-!MYDATE!-%%i
+    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%%i
   ) else if exist .git (
-    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-!MYDATE!-%%i
+    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%%i
   ) else (
-    set SAFEAPPVER=%SAFEAPPVER%-!MYDATE!-%APPVEYOR_BUILD_VERSION%
+    set SAFEAPPVER=%SAFEAPPVER%-%APPVEYOR_BUILD_VERSION%
   )
 )
 set DISTDIR=.\Build\Releases
