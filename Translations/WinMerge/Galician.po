@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-15 03:22+0100\n"
-"Last-Translator: Medulio <medulio@ciberirmandade.org>\n"
+"PO-Revision-Date: 2020-04-12 00:06+0200\n"
+"Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Galician\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Country: Galiza\n"
-"X-Poedit-Basepath: ../../Src/\n"
+"X-Poedit-Basepath: ../../Src\n"
+"Language: gl\n"
+"X-Generator: Poedit 2.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -70,7 +70,7 @@ msgstr "&Colar"
 
 #, c-format
 msgid "&Goto..."
-msgstr "&Ir a..."
+msgstr "&Ir a…"
 
 #, c-format
 msgid "Op&en"
@@ -86,7 +86,7 @@ msgstr ""
 
 #, c-format
 msgid "&with..."
-msgstr "&con..."
+msgstr "&con…"
 
 msgid "S&hell Menu"
 msgstr ""
@@ -190,18 +190,18 @@ msgstr ""
 
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&Abrir...\tCtrl+O"
+msgstr "&Abrir…\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "Abrir Arquivo de C&onflito..."
+msgstr "Abrir Arquivo de C&onflito…"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Abrir Pro&xecto...\tCtrl+J"
+msgstr "Abrir Pro&xecto…\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Gar&dar Proxecto..."
+msgstr "Gar&dar Proxecto…"
 
 #, c-format
 msgid "Recent Projects"
@@ -225,7 +225,7 @@ msgstr "&Editar"
 
 #, c-format
 msgid "&Options..."
-msgstr "&Opcións..."
+msgstr "&Opcións…"
 
 #, c-format
 msgid "&View"
@@ -261,11 +261,11 @@ msgstr "&Ferramentas"
 
 #, c-format
 msgid "&Filters..."
-msgstr "&Filtros..."
+msgstr "&Filtros…"
 
 #, c-format
 msgid "&Generate Patch..."
-msgstr "&Xerar Patch..."
+msgstr "&Xerar Patch…"
 
 #, c-format
 msgid "&Plugins"
@@ -341,15 +341,15 @@ msgstr ""
 
 #, c-format
 msgid "C&onfiguration"
-msgstr "C&onfiguración..."
+msgstr "C&onfiguración…"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "Licenza Pública Xeral &GNU..."
+msgstr "Licenza Pública Xeral &GNU…"
 
 #, c-format
 msgid "&About WinMerge..."
-msgstr "&Acerca de WinMerge..."
+msgstr "&Acerca de WinMerge…"
 
 #, c-format
 msgid "&Read-only"
@@ -446,7 +446,7 @@ msgstr "&Colapsar Todos os Subcartafoles"
 
 #, c-format
 msgid "Select &Font..."
-msgstr "Escoller &fonte..."
+msgstr "Escoller &fonte…"
 
 #, c-format
 msgid "Use Default F&ont"
@@ -510,11 +510,11 @@ msgstr "&Borrar\tDel"
 
 #, c-format
 msgid "&Customize Columns..."
-msgstr "Personalizar &columnas..."
+msgstr "Personalizar &columnas…"
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "Xera&r informe..."
+msgstr "Xera&r informe…"
 
 #, c-format
 msgid "&Edit with Unpacker..."
@@ -558,13 +558,13 @@ msgstr ""
 
 #, c-format
 msgid "&Print..."
-msgstr "&Imprimir..."
+msgstr "&Imprimir…"
 
 msgid "Page Set&up..."
-msgstr "Con&figuración da páxina..."
+msgstr "Con&figuración da páxina…"
 
 msgid "Print Previe&w..."
-msgstr "Vista previa da impresión..."
+msgstr "Vista previa da impresión…"
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -628,11 +628,11 @@ msgstr "Seleccionar &diferenzas de liña\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "Pr&ocurar...\tCtrl+F"
+msgstr "Pr&ocurar…\tCtrl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Substituí&r...\tCtrl+H"
+msgstr "Substituí&r…\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
@@ -668,7 +668,7 @@ msgstr "&Borrar todos os marcadores"
 
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "&Ir a...\tCtrl+G"
+msgstr "&Ir a…\tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -892,7 +892,7 @@ msgstr "Da esquerda para a dereita (%1 de %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Banda esquerda a...(%1 de %2)"
+msgstr "Banda esquerda a…(%1 de %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
@@ -916,7 +916,7 @@ msgstr "Da dereita para a esquerda (%1 de %2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Banda dereita a...(%1 de %2)"
+msgstr "Banda dereita a…(%1 de %2)"
 
 #, c-format
 msgid "&Delete"
@@ -1172,7 +1172,7 @@ msgstr ""
 
 #, c-format
 msgid "&Browse..."
-msgstr "&Explorar..."
+msgstr "&Explorar…"
 
 #, c-format
 msgid "&2nd File or Folder"
@@ -1188,7 +1188,7 @@ msgstr ""
 
 #, c-format
 msgid "B&rowse..."
-msgstr "Explo&rar..."
+msgstr "Explo&rar…"
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
@@ -1204,7 +1204,7 @@ msgstr ""
 
 #, c-format
 msgid "Browse..."
-msgstr "Explorar..."
+msgstr "Explorar…"
 
 #, c-format
 msgid " Folder: Filter"
@@ -1212,7 +1212,7 @@ msgstr ""
 
 #, c-format
 msgid "&Select..."
-msgstr "&Seleccionar..."
+msgstr "&Seleccionar…"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1508,7 +1508,7 @@ msgstr "Ca&rtafol personalizado:"
 
 #, c-format
 msgid "Br&owse..."
-msgstr "Pro&curar..."
+msgstr "Pro&curar…"
 
 #, c-format
 msgid "Patch Generator"
@@ -1536,7 +1536,7 @@ msgstr "&Resultado:"
 
 #, c-format
 msgid "Bro&wse..."
-msgstr "Procu&rar..."
+msgstr "Procu&rar…"
 
 #, c-format
 msgid "&Format"
@@ -1612,7 +1612,7 @@ msgstr ""
 
 #, c-format
 msgid "Comparing items..."
-msgstr "A comparar elementos..."
+msgstr "A comparar elementos…"
 
 #, c-format
 msgid "Items compared:"
@@ -1760,23 +1760,23 @@ msgid "Filefilters"
 msgstr "Filtros de arquivos"
 
 msgid "Test..."
-msgstr "Testar..."
+msgstr "Testar…"
 
 #, c-format
 msgid "Install..."
-msgstr "Instalar..."
+msgstr "Instalar…"
 
 #, c-format
 msgid "New..."
-msgstr "Novo..."
+msgstr "Novo…"
 
 #, c-format
 msgid "Edit..."
-msgstr "Editar..."
+msgstr "Editar…"
 
 #, c-format
 msgid "Delete..."
-msgstr "Borrar..."
+msgstr "Borrar…"
 
 #, c-format
 msgid "Save modified files?"
@@ -1843,7 +1843,9 @@ msgstr ""
 "Precísase reiniciar a sesión"
 
 #, c-format
-msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
+msgid ""
+"Detect codepage for text files using mlang.dll\n"
+"need to restart session"
 msgstr ""
 
 #, c-format
@@ -1868,11 +1870,11 @@ msgstr "Categorías"
 
 #, c-format
 msgid "Import..."
-msgstr "Importar..."
+msgstr "Importar…"
 
 #, c-format
 msgid "Export..."
-msgstr "Exportar..."
+msgstr "Exportar…"
 
 #, c-format
 msgid "Dialog"
@@ -2080,7 +2082,7 @@ msgid "Test Filter"
 msgstr "Probar filtro"
 
 msgid "Testing filter..."
-msgstr "Probando filtro..."
+msgstr "Probando filtro…"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2258,7 +2260,9 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2321,15 +2325,21 @@ msgid "REC"
 msgstr "REC"
 
 #, c-format
-msgid "\nNew Documents (Ctrl+N)"
+msgid ""
+"\n"
+"New Documents (Ctrl+N)"
 msgstr ""
 
 #, c-format
-msgid "\nOpen (Ctrl+O)"
+msgid ""
+"\n"
+"Open (Ctrl+O)"
 msgstr ""
 
 #, c-format
-msgid "\nSave (Ctrl+S)"
+msgid ""
+"\n"
+"Save (Ctrl+S)"
 msgstr ""
 
 #, c-format
@@ -2349,11 +2359,15 @@ msgid "Project file successfully saved."
 msgstr "O arquivo do proxecto gardouse correctamente."
 
 #, c-format
-msgid "\nUndo (Ctrl+Z)"
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
 msgstr ""
 
 #, c-format
-msgid "\nRedo (Ctrl+Y)"
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
 msgstr ""
 
 #, c-format
@@ -2392,7 +2406,9 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Desenvolvedores:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
@@ -2843,7 +2859,13 @@ msgstr ""
 "Queres continuar?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press Ok)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Fallou a gravación do arquivo.\n"
 "%1\n"
@@ -2929,7 +2951,10 @@ msgid "Save Right File As"
 msgstr "Gardar o arquivo dereito como"
 
 #, c-format
-msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
 msgstr ""
 
 #, c-format
@@ -2974,7 +2999,7 @@ msgstr ""
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Banda esquerda a...(%1)"
+msgstr "Banda esquerda a…(%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -2982,7 +3007,7 @@ msgstr ""
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Banda dereita a...(%1)"
+msgstr "Banda dereita a…(%1)"
 
 #, c-format
 msgid "Both to... (%1)"
@@ -3563,7 +3588,10 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Atopáronse diferentes páxinas de codigos na esquerda (cp%d) e na dereita (cp%d).\n"
 "Amosando cada arquivo coa súa páxina de códigos proporcionará unha mellor visualización pero combinar/copiar será perigoso.\n"
@@ -3606,7 +3634,9 @@ msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, pres
 msgstr ""
 
 #, c-format
-msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgid ""
+"The number of automatically merged changes: %1\n"
+"The number of unresolved conflicts: %2"
 msgstr ""
 
 #, c-format
@@ -3772,71 +3802,105 @@ msgid "Editor script"
 msgstr "Script do Editor"
 
 #, c-format
-msgid "\nDifference in the Current Line"
+msgid ""
+"\n"
+"Difference in the Current Line"
 msgstr ""
 
 #, c-format
-msgid "\nOptions"
+msgid ""
+"\n"
+"Options"
 msgstr ""
 
 #, c-format
-msgid "\nRefresh (F5)"
+msgid ""
+"\n"
+"Refresh (F5)"
 msgstr ""
 
 #, c-format
-msgid "\nPrevious Difference (Alt+Up)"
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
 
 #, c-format
-msgid "\nNext Difference (Alt+Down)"
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
 msgstr ""
 
 #, c-format
-msgid "\nPrevious Conflict (Alt+Shift+Up)"
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 
 #, c-format
-msgid "\nNext Conflict (Alt+Shift+Down)"
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
 msgstr ""
 
 #, c-format
-msgid "\nFirst Difference (Alt+Home)"
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
 msgstr ""
 
 #, c-format
-msgid "\nCurrent Difference (Alt+Enter)"
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
 
 #, c-format
-msgid "\nLast Difference (Alt+End)"
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
 msgstr ""
 
 #, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid ""
+"\n"
+"Copy Right (Alt+Right)"
 msgstr ""
 
 #, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid ""
+"\n"
+"Copy Left (Alt+Left)"
 msgstr ""
 
 #, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid ""
+"\n"
+"Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
 #, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid ""
+"\n"
+"Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 #, c-format
-msgid "\nAll Right"
+msgid ""
+"\n"
+"All Right"
 msgstr ""
 
 #, c-format
-msgid "\nAll Left"
+msgid ""
+"\n"
+"All Left"
 msgstr ""
 
 #, c-format
-msgid "\nAuto Merge (Ctrl+Alt+M)"
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
 msgstr ""
 
 #, c-format
@@ -3864,7 +3928,9 @@ msgid "Your software is up to date"
 msgstr ""
 
 #, c-format
-msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+msgid ""
+"A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
 
 #, c-format
@@ -3959,7 +4025,10 @@ msgid "Failed to create folder."
 msgstr ""
 
 #, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgid ""
+"You can specify the following parameters to the path:\n"
+"$file: Path name of the current file\n"
+"$linenum: Line number of the current cursor position"
 msgstr ""
 
 msgid "default"
@@ -4000,4 +4069,3 @@ msgstr ""
 
 msgid "MDI child window only"
 msgstr ""
-
