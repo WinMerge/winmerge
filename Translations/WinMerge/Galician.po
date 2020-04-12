@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-12 20:19+0200\n"
+"PO-Revision-Date: 2020-04-12 22:02+0200\n"
 "Last-Translator: Luis A. Martínez Sobrino <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -454,7 +454,7 @@ msgstr "Empregar f&onte predefinida"
 
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "In&tercambiar paneis"
+msgstr "Interc&ambiar paneis"
 
 #, c-format
 msgid "Compa&re Statistics"
@@ -470,7 +470,7 @@ msgstr "&Refrescar seleccionados\tCtrl+F5"
 
 #, c-format
 msgid "&Merge"
-msgstr "&Combinar"
+msgstr "&Mesturar"
 
 #, c-format
 msgid "Co&mpare\tEnter"
@@ -478,11 +478,11 @@ msgstr "Co&mparar\tIntro"
 
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "Segui&nte diferenza\tAlt+Down"
+msgstr "Diferenza segui&nte\tAlt+Down"
 
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "Diferenza &previa\tAlt+Up"
+msgstr "Diferenza &anterior\tAlt+Up"
 
 #, c-format
 msgid "&First Difference\tAlt+Home"
@@ -518,7 +518,7 @@ msgstr "Xera&r informe…"
 
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr ""
+msgstr "&Editar co desempaquetador…"
 
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -526,35 +526,35 @@ msgstr "&Gardar\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "Gard&ar"
 
 #, c-format
 msgid "Save &Left"
-msgstr "Gardar banda esquerda"
+msgstr "Gardar lado &esquerdo"
 
 #, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Gardar &centro"
 
 #, c-format
 msgid "Save &Right"
-msgstr "Gardar banda &dereita"
+msgstr "Gardar lado &dereito"
 
 #, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Gard&ar como"
 
 #, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Gardar &lado esquerdo como…"
 
 #, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Gardar cen&tro como…"
 
 #, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Gardar lado d&ereito como…"
 
 #, c-format
 msgid "&Print..."
@@ -568,15 +568,15 @@ msgstr "Vista previa da impresión…"
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "&Converter quebras de liña a"
+msgstr "&Converter saltos de liña a"
 
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "&Modo Combinar\tF9"
+msgstr "&Modo mestura\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr ""
+msgstr "Re&cargar\tCtrl+F5"
 
 #, c-format
 msgid "&File Encoding..."
@@ -584,11 +584,11 @@ msgstr "Codificación do ar&quivo"
 
 #, c-format
 msgid "Recompare As"
-msgstr ""
+msgstr "Volver comparar como"
 
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "&Texto"
 
 #, c-format
 msgid "&XML"
@@ -596,11 +596,11 @@ msgstr "&XML"
 
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Binario"
 
 #, c-format
 msgid "&Image"
-msgstr ""
+msgstr "&Imaxe"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -628,7 +628,7 @@ msgstr "Seleccionar &diferenzas de liña\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "Pr&ocurar…\tCtrl+F"
+msgstr "B&uscar…\tCtrl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
@@ -636,7 +636,7 @@ msgstr "Substituí&r…\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "&Marcador…\tCtrl+Shift+M"
 
 #, c-format
 msgid "Advanced"
@@ -652,7 +652,7 @@ msgstr "&Marcadores"
 
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Cambiar marcador\tCtrl+F2"
+msgstr "&Intercambiar marcador\tCtrl+F2"
 
 #, c-format
 msgid "&Next Bookmark\tF2"
@@ -660,7 +660,7 @@ msgstr "&Seguinte marcador\tF2"
 
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "&Marcador anterior\tShift+F2"
+msgstr "Anterior &Marcador\tShift+F2"
 
 #, c-format
 msgid "&Clear All Bookmarks"
@@ -676,43 +676,43 @@ msgstr "Resaltar sintaxe"
 
 #, c-format
 msgid "&Diff Context"
-msgstr ""
+msgstr "Contexto da &diferenza"
 
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "&Todas as liñas"
 
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "&0 Liñas"
 
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "&1 Liña"
 
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "&3 Liñas"
 
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "&5 Liñas"
 
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "&7 Liñas"
 
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "&9 Liñas"
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr ""
+msgstr "&Intercambiar todas e 0-9 liñas\tCtrl+D"
 
 #, c-format
 msgid "&Lock Panes"
-msgstr "B&loquear Paneis"
+msgstr "B&loquear paneis"
 
 #, c-format
 msgid "&View Whitespace"
@@ -724,19 +724,19 @@ msgstr "Ve&r diferenzas de liña"
 
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Ver os números de liña"
+msgstr "Ver &números de liña"
 
 #, c-format
 msgid "View &Margins"
-msgstr "Ver as &marxes"
+msgstr "Ver &marxes"
 
 #, c-format
 msgid "W&rap Lines"
-msgstr "A&xuste de liñas"
+msgstr "A&xustar liñas"
 
 #, c-format
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Dividir v&erticalmente"
 
 #, c-format
 msgid "Diff &Pane"
@@ -748,71 +748,71 @@ msgstr "Pane&l de situación"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Con&flito seguinte\tAlt+Shift+Down"
 
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Co&nflito anterior\tAlt+Shift+Up"
 
 #, c-format
 msgid "A&dvanced"
-msgstr ""
+msgstr "A&vanzado"
 
 #, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr ""
+msgstr "Seguinte diferenza entre esqueda e centro\tAlt+1"
 
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr ""
+msgstr "Anterior diferenza entre esqueda e centro\tAlt+Shift+1"
 
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr ""
+msgstr "Seguinte diferenza entre esquerda e dereita\tAlt+2"
 
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr ""
+msgstr "Anterior diferenza entre esqueda e dereita\tAlt+Shift+2"
 
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr ""
+msgstr "Seguinte diferenza entre centro e dereita\tAlt+3"
 
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr ""
+msgstr "Anterior diferenza entre centro e dereita\tAlt+Shift+3"
 
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
-msgstr ""
+msgstr "Seguinte diferenza só na esquerda \tAlt+7"
 
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr ""
+msgstr "Anterior diferenza só na esquerda\tAlt+Shift+7"
 
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr ""
+msgstr "Seguinte diferenza so no centro\tAlt+8"
 
 #, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr ""
+msgstr "Anterior diferenza só no centro\tAlt+Shift+8"
 
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
-msgstr ""
+msgstr "Seguinte diferenza só na dereita\tAlt+9"
 
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr ""
+msgstr "Anterior diferenza só na dereita\tAlt+Shift+9"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copiar da esquerda\tAlt+Shift+Right"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copiar da dereita\tAlt+Shift+Left"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
 msgstr "C&opiar para a dereita e avanzar\tCtrl+Alt+Dereita"
@@ -829,7 +829,7 @@ msgid "Cop&y All to Left"
 msgstr "Cop&iar todo para a esquerda"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr ""
+msgstr "A&uto-mesturar\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -2713,7 +2713,7 @@ msgstr ""
 
 #, c-format
 msgid "Merge"
-msgstr "Combinar"
+msgstr "Mesturar"
 
 #, c-format
 msgid "Difference %1 of %2"
@@ -2963,7 +2963,7 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Non se poden combinar diferenzas en documentos non sincronizados.\n"
+"Non se poden mesturar diferenzas en documentos non sincronizados.\n"
 "\n"
 "Actualizar os documentos antes de seguir."
 
