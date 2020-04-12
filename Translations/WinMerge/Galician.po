@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-12 00:06+0200\n"
-"Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
+"PO-Revision-Date: 2020-04-12 12:51+0200\n"
+"Last-Translator: Luis A. Martínez Sobrino <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,7 +201,7 @@ msgstr "Abrir Pro&xecto…\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Gar&dar Proxecto…"
+msgstr "Gar&dar proxecto…"
 
 #, c-format
 msgid "Recent Projects"
@@ -1056,7 +1056,7 @@ msgstr "&Sen pre-comparación"
 
 #, c-format
 msgid "Auto prediffer"
-msgstr "Pre-comparación autom."
+msgstr "Pre-comparación automática"
 
 #, c-format
 msgid "G&oto Diff"
@@ -1156,7 +1156,7 @@ msgstr "Colaboradores"
 
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Seleccionar arquivos ou cartafoles"
+msgstr "Selecciona arquivos ou cartafoles"
 
 #, c-format
 msgid "&1st File or Folder"
@@ -1267,7 +1267,7 @@ msgstr "&Preservar data e hora do arquivo nas comparacións de ficheiros"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Amosar o Diálogo \"Selecciona Arquivos ou Cartafoles\" no Inicio "
+msgstr "Amosar o diálogo \"Selecciona Arquivos ou Cartafoles\" ao inicio"
 
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
@@ -1303,7 +1303,7 @@ msgstr "Só se coinci&de toda a palabra"
 
 #, c-format
 msgid "Match &case"
-msgstr "&Coincidir maiúsc./minúsc."
+msgstr "&Coincidir maiúsculas e minúsculas"
 
 #, c-format
 msgid "Regular &expression"
@@ -1508,7 +1508,7 @@ msgstr "Ca&rtafol personalizado:"
 
 #, c-format
 msgid "Br&owse..."
-msgstr "Pro&curar…"
+msgstr "Expl&orar…"
 
 #, c-format
 msgid "Patch Generator"
@@ -1536,7 +1536,7 @@ msgstr "&Resultado:"
 
 #, c-format
 msgid "Bro&wse..."
-msgstr "Procu&rar…"
+msgstr "Explo&rar…"
 
 #, c-format
 msgid "&Format"
@@ -1544,7 +1544,7 @@ msgstr "&Formato"
 
 #, c-format
 msgid "St&yle:"
-msgstr "Est&ilo"
+msgstr "Est&ilo:"
 
 #, c-format
 msgid "&Context:"
@@ -1612,7 +1612,7 @@ msgstr ""
 
 #, c-format
 msgid "Comparing items..."
-msgstr "A comparar elementos…"
+msgstr "Comparando elementos…"
 
 #, c-format
 msgid "Items compared:"
@@ -1676,7 +1676,7 @@ msgstr "Ignorar &liñas en branco"
 
 #, c-format
 msgid "Ignore &case"
-msgstr "Ignorar maiúsc/minús."
+msgstr "Ignorar maiúsculas e minúsculas"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1760,7 +1760,7 @@ msgid "Filefilters"
 msgstr "Filtros de arquivos"
 
 msgid "Test..."
-msgstr "Testar…"
+msgstr "Probar…"
 
 #, c-format
 msgid "Install..."
@@ -1858,7 +1858,7 @@ msgstr "Igual á que emprega a interface de usuario de Winmerge"
 
 #, c-format
 msgid "Custom codepage:"
-msgstr "Páxina de códigos á medida: "
+msgstr "Personalizar codificación:"
 
 #, c-format
 msgid "Options"
@@ -1947,7 +1947,7 @@ msgstr "Informe da comparación de cartafoles"
 
 #, c-format
 msgid "Report &File:"
-msgstr "Arquivo do &Informe"
+msgstr "Arquivo do &Informe:"
 
 #, c-format
 msgid "&Style:"
@@ -2019,7 +2019,7 @@ msgstr "Esquerda:"
 
 #, c-format
 msgid "Right:"
-msgstr "Dereita"
+msgstr "Dereita:"
 
 #, c-format
 msgid "Identical"
@@ -2118,7 +2118,7 @@ msgstr "Espazo en branco:"
 
 #, c-format
 msgid "Regular text:"
-msgstr "Texto normal"
+msgstr "Texto normal:"
 
 #, c-format
 msgid "Selection:"
@@ -2142,7 +2142,7 @@ msgstr "Comparación de arq&uivos"
 
 #, c-format
 msgid "Create backup files into:"
-msgstr "Crear as copias de seguridade no: "
+msgstr "Crear as copias de seguridade en:"
 
 #, c-format
 msgid "&Original file's folder"
@@ -2154,7 +2154,7 @@ msgstr "&Cartafol das copias de seguridade:"
 
 #, c-format
 msgid "Backup filename:"
-msgstr "Nome do arquivo de seguridade"
+msgstr "Nome do arquivo de seguridade:"
 
 #, c-format
 msgid "&Append .bak -extension"
@@ -2529,9 +2529,9 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"O valor do tamaño da tabulación non está no rango aceptado por WinMerge\n"
+"O valor do tamaño da tabulación non está no rango aceptado por WinMerge.\n"
 "\n"
-"Emprega valores entre 1 e %1"
+"Emprega valores entre 1 e %1."
 
 #, c-format
 msgid "Open"
@@ -2587,7 +2587,7 @@ msgstr "Descrición"
 
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Escoller un nome de arquivo para o filtro novo "
+msgstr "Escoller un nome de arquivo para o filtro novo"
 
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
@@ -2603,7 +2603,7 @@ msgstr ""
 "Non se pode atopar a sobreplanta do filtro de arquivos\n"
 "\n"
 "Copia o arquivo %1 ao cartafol de filtros:\n"
-"%2"
+"%2."
 
 #, c-format
 msgid ""
@@ -2637,7 +2637,7 @@ msgstr ""
 "Fallou o borrado do arquivo de filtros::\n"
 "%1\n"
 "\n"
-"Comprobe se o arquivo é do só-lectura."
+"Comprobe se o arquivo é de só-lectura."
 
 #, c-format
 msgid "Locate filter file to install"
@@ -2673,7 +2673,7 @@ msgstr ""
 
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "Resultado da comparación dos cartafoles "
+msgstr "Resultado da comparación dos cartafoles"
 
 #, c-format
 msgid "File Comparison"
@@ -3077,7 +3077,7 @@ msgstr "Tes a certeza de quereres copiar:"
 
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Tes a certeza de quereres copiar %d elementos: "
+msgstr "Tes a certeza de quereres copiar %d elementos:"
 
 #, c-format
 msgid ""
@@ -3095,7 +3095,7 @@ msgstr ""
 "%1\n"
 "\n"
 "\n"
-"Actualiza a comparación. "
+"Actualiza a comparación."
 
 #, c-format
 msgid "Are you sure you want to move:"
@@ -3103,7 +3103,7 @@ msgstr "Tes a certeza de quereres mover:"
 
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr "Tes a certeza de quereres mover %d elementos: "
+msgstr "Tes a certeza de quereres mover %d elementos:"
 
 #, c-format
 msgid "Confirm Move"
@@ -3362,7 +3362,7 @@ msgstr "Nome do arquivo ou cartafol."
 
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Nome do sub-cartafol cando os sub-cartafoles están incluídos"
+msgstr "Nome do sub-cartafol cando os sub-cartafoles están incluídos."
 
 #, c-format
 msgid "Comparison result, long form."
@@ -3374,7 +3374,7 @@ msgstr "Data de modificación da banda esquerda."
 
 #, c-format
 msgid "Right side modification date."
-msgstr "Data de modificación da banda dereita"
+msgstr "Data de modificación da banda dereita."
 
 #, c-format
 msgid "Middle side modification date."
@@ -3402,7 +3402,7 @@ msgstr "Tamaño abreviado do arquivo esquerdo."
 
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "Tamaño abreviado do arquivo dereito. "
+msgstr "Tamaño abreviado do arquivo dereito."
 
 #, c-format
 msgid "Middle file size abbreviated."
@@ -3669,11 +3669,11 @@ msgstr "Escribiuse correctamente o arquivo de mendo."
 
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. Non se atopou este elemento ou é un cartafol"
+msgstr "1. Non se atopou este elemento ou é un cartafol!"
 
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. Non se atopou este elemento ou é un cartafol"
+msgstr "2. Non se atopou este elemento ou é un cartafol!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3737,7 +3737,7 @@ msgid ""
 msgstr ""
 "O soporte de arquivos non está activado.\n"
 "Non foron atopados todos os compoñentes precisos (7-zip e/ou Merge7z*.dll).\n"
-"Mira o manual para máis información acerca do soporte de arquivos e como se activa. "
+"Mira o manual para máis información acerca do soporte de arquivos e como se activa."
 
 #, c-format
 msgid "Select file for export"
