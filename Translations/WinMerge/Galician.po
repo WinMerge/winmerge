@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-12 22:02+0200\n"
+"PO-Revision-Date: 2020-04-13 12:35+0200\n"
 "Last-Translator: Luis A. Martínez Sobrino <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -277,11 +277,11 @@ msgstr "Configuración do comp&lemento…"
 
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr "Pre-comparación ma&nual"
+msgstr "Precomparación ma&nual"
 
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr "Pre-comparación a&utomática"
+msgstr "Precomparación a&utomática"
 
 #, c-format
 msgid "&Manual Unpacking"
@@ -829,7 +829,7 @@ msgid "Cop&y All to Left"
 msgstr "Cop&iar todo para a esquerda"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "A&uto-mesturar\tCtrl+Alt+M"
+msgstr "A&utomesturar\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -841,7 +841,7 @@ msgstr ""
 
 #, c-format
 msgid "&Prediffer"
-msgstr "&Pre-comparación"
+msgstr "&Precomparación"
 
 #, c-format
 msgid "&Scripts"
@@ -1048,15 +1048,15 @@ msgstr "Copiar o nome do &arquivo"
 
 #, c-format
 msgid "Prediffer Settings"
-msgstr "Configuración da pre-comparación"
+msgstr "Configuración da precomparación"
 
 #, c-format
 msgid "&No prediffer"
-msgstr "&Sen pre-comparación"
+msgstr "&Sen precomparación"
 
 #, c-format
 msgid "Auto prediffer"
-msgstr "Pre-comparación automática"
+msgstr "Precomparación automática"
 
 #, c-format
 msgid "G&oto Diff"
@@ -1104,7 +1104,7 @@ msgstr ""
 
 #, c-format
 msgid "&Include Subfolders"
-msgstr "&Incluíndo sub-cartafoles"
+msgstr "&Incluíndo subcartafoles"
 
 #, c-format
 msgid "&Compare method:"
@@ -1208,7 +1208,7 @@ msgstr "Explorar…"
 
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Cartafol: Filtro"
 
 #, c-format
 msgid "&Select..."
@@ -1216,7 +1216,7 @@ msgstr "&Seleccionar…"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr "Arquivo: Complemento de desempaquetamento"
+msgstr " Arquivo: Complemento de desempaquetamento"
 
 #, c-format
 msgid "Se&lect..."
@@ -1275,7 +1275,7 @@ msgstr ""
 
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "A&uto-completar diálogo de apertura:"
+msgstr "A&utocompletar diálogo de apertura:"
 
 #, c-format
 msgid "Language:"
@@ -1710,7 +1710,7 @@ msgstr "&Resaltar a sintaxe"
 
 #, c-format
 msgid "&Automatic rescan"
-msgstr "&Re-escaneo automático"
+msgstr "&Reescaneo automático"
 
 #, c-format
 msgid "&Preserve original EOL chars"
@@ -1866,7 +1866,7 @@ msgstr "Opcións"
 
 #, c-format
 msgid " Categories"
-msgstr "Categorías"
+msgstr " Categorías"
 
 #, c-format
 msgid "Import..."
@@ -1906,7 +1906,7 @@ msgstr "Cadeas:"
 
 #, c-format
 msgid "Preprocessor:"
-msgstr "Pre-procesador:"
+msgstr "Preprocesador:"
 
 #, c-format
 msgid "User 1:"
@@ -2579,7 +2579,7 @@ msgstr "Filtros"
 
 #, c-format
 msgid "[F] "
-msgstr "[F]"
+msgstr "[F] "
 
 #, c-format
 msgid "Description"
@@ -2637,7 +2637,7 @@ msgstr ""
 "Fallou o borrado do arquivo de filtros::\n"
 "%1\n"
 "\n"
-"Comprobe se o arquivo é de só-lectura."
+"Comprobe se o arquivo é de só lectura."
 
 #, c-format
 msgid "Locate filter file to install"
@@ -2655,7 +2655,7 @@ msgstr ""
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "O arquivo de filtros xa existe. Quérelo sobre-escribir?"
+msgstr "O arquivo de filtros xa existe. Quérelo sobreescribir?"
 
 #, c-format
 msgid "Regular expression"
@@ -2840,7 +2840,7 @@ msgstr "Queres gardar os cambios en %1?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 está definido como de só-lectura. Queres sobre-escribilo? (Non gardar cun nome de arquivo novo.)"
+msgstr "%1 está definido como de sólectura. Queres sobreescribilo? (Non gardar cun nome de arquivo novo.)"
 
 #, c-format
 msgid "Error backing up file"
@@ -2914,7 +2914,7 @@ msgstr ""
 "%1\n"
 "desde que WinMerge o cargou.\n"
 "\n"
-"Queres sobre-escribir o arquivo cambiado?"
+"Queres sobreescribir o arquivo cambiado?"
 
 #, c-format
 msgid ""
@@ -2922,7 +2922,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-" está marcado como de só-lectura. Queres sobre-escribir o elemento?"
+" está marcado como de só lectura. Queres sobreescribir o elemento?"
 
 #, c-format
 msgid ""
@@ -3362,7 +3362,7 @@ msgstr "Nome do arquivo ou cartafol."
 
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Nome do sub-cartafol cando os sub-cartafoles están incluídos."
+msgstr "Nome do subcartafol cando os subcartafoles están incluídos."
 
 #, c-format
 msgid "Comparison result, long form."
@@ -3507,7 +3507,7 @@ msgstr "XML simple"
 
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "O arquivo de informe xa existe. Quérelo sobre-escribir?"
+msgstr "O arquivo de informe xa existe. Quérelo sobreescribir?"
 
 #, c-format
 msgid ""
@@ -3677,7 +3677,7 @@ msgstr "2. Non se atopou este elemento ou é un cartafol!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "O arquivo patch xa existe. Quérelo sobre-escribir?"
+msgstr "O arquivo patch xa existe. Quérelo sobreescribir?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3795,7 +3795,7 @@ msgstr "Desempaquetador"
 
 #, c-format
 msgid "Prediffer"
-msgstr "Pre-comparación"
+msgstr "Precomparación"
 
 #, c-format
 msgid "Editor script"
@@ -3909,7 +3909,7 @@ msgstr "O desempaquetador escollido utilízase con ambos arquivos (unicamente un
 
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Sen pre-comparación (normal)"
+msgstr "Sen precomparación (normal)"
 
 #, c-format
 msgid "Suggested plugins"
