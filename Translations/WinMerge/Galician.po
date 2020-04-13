@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-13 19:29+0200\n"
-"Last-Translator: Luis A. Martínez Sobrino <luis.martinez.sobrino@gmail.com>\n"
+"PO-Revision-Date: 2020-04-13 23:58+0200\n"
+"Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1980,7 +1980,7 @@ msgstr "Filtro privado (só para o usuario actual)"
 
 #, c-format
 msgid "Archive Support"
-msgstr "Soporte de Arquivos"
+msgstr "Soporte de arquivos"
 
 #, c-format
 msgid "&Enable archive file support"
@@ -2171,7 +2171,7 @@ msgstr "Confirmar copia"
 
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Estás seguro de querer copiar XXX elementos?"
+msgstr "Seguro que queres copiar XXX elementos?"
 
 #, c-format
 msgid "From left"
@@ -2613,9 +2613,9 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"Non se pode atopar a sobreplanta do filtro de arquivos\n"
+"Non se pode atopar o arquivo modelo do filtro de arquivos!\n"
 "\n"
-"Copia o arquivo %1 ao cartafol de filtros:\n"
+"Copia o arquivo %1 ao cartafol de WinMerge/Filtros:\n"
 "%2."
 
 #, c-format
@@ -2625,7 +2625,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Non se pode copiar a sobreplanta de filtros ao cartafol de filtros:\n"
+"Non se pode copiar o arquivo modelo do filtro ao cartafol de filtros:\n"
 "%1\n"
 "\n"
 "Asegúrate de que existe o cartafol e de que é escribible."
@@ -2636,7 +2636,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"O cartafol de filtros de usuario non está definido\n"
+"O cartafol de filtros de usuario non está definido!\n"
 "\n"
 "Escolle un cartafol de filtros en Opcións/Sistema."
 
@@ -2647,10 +2647,10 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Fallou o borrado do arquivo de filtros::\n"
+"Fallou o borrado do arquivo de filtros:\n"
 "%1\n"
 "\n"
-"Comprobe se o arquivo é de só lectura."
+"Comproba se o arquivo é de só lectura."
 
 #, c-format
 msgid "Locate filter file to install"
@@ -2664,7 +2664,7 @@ msgid ""
 msgstr ""
 "Fallou a instalación do arquivo de filtros.\n"
 "\n"
-"Non se poden copiar novos filtros ao cartafol de filtros."
+"Non se puido copiar o novo filtro ao cartafol de filtros."
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
@@ -2680,13 +2680,13 @@ msgid ""
 "\n"
 "If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
-"Os filtros foron actualizados. Queres recargar todas as comparacións de cartafol abertas?\n"
+"Os filtros foron actualizados. Queres recargar todas as comparacións de cartafoles abertas?\n"
 "\n"
-"Se non queres regargar todas as comparacións agora podes seleccionar Non e actualizalas máis adiante."
+"Se non queres recargar todas as comparacións agora podes seleccionar Non e actualizalas máis adiante."
 
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "Resultado da comparación dos cartafoles"
+msgstr "Resultado da comparación de cartafoles"
 
 #, c-format
 msgid "File Comparison"
@@ -2694,27 +2694,27 @@ msgstr "Comparación de arquivos"
 
 #, c-format
 msgid "Untitled left"
-msgstr "Cadro esquerdo sen título"
+msgstr "Lado esquerdo sen título"
 
 #, c-format
 msgid "Untitled middle"
-msgstr ""
+msgstr "Centro sen título"
 
 #, c-format
 msgid "Untitled right"
-msgstr "Cadro dereito sen título"
+msgstr "Lado dereito sen título"
 
 #, c-format
 msgid "Theirs File"
-msgstr "O Arquivo Deles"
+msgstr "Arquivo Theirs"
 
 #, c-format
 msgid "Mine File"
-msgstr "O Meu Arquivo"
+msgstr "Arquivo Mine"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Lñ: %s  Col: %d/%d  Car: %d/%d  EOL: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -2722,7 +2722,7 @@ msgstr "Liña: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Lñ: %s  Col: %d/%d  Car: %d/%d"
 
 #, c-format
 msgid "Merge"
@@ -2763,47 +2763,47 @@ msgstr "Selección de cartafol"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Escolle dous (ou tres) cartafoles ou dous (ou tres) arquivos para comparar."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "A ruta esqueda (1º) non é válida!"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "A ruta central (2º) non é válida!"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "A ruta dereita (2º) non é válida!"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "A ruta dereita (3º) non é válida!"
 
 #, c-format
 msgid "Both paths are invalid!"
-msgstr "Ambos os camiños non son válidos!"
+msgstr "Ambas as dúas rutas non son válidas!"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "As rutas esquerda (1º) e central (2º) non son válidas!"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "As rutas esquerda (1º) e dereita (3º) non son válidas!"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "As rutas central (2º) e dereita (3º) non son válidas!"
 
 #, c-format
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Ningunha das rutas é válida!"
 
 #, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Só habilitado para comparar arquivos"
 
 #, c-format
 msgid "Cannot compare file and folder!"
@@ -2831,7 +2831,7 @@ msgstr ""
 
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "Fallo na análise interpretativa do arquivo de conflito."
+msgstr "Non se puido analizar o arquivo de conflito."
 
 #, c-format
 msgid ""
@@ -2853,7 +2853,7 @@ msgstr "Queres gardar os cambios en %1?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 está definido como de sólectura. Queres sobreescribilo? (Non gardar cun nome de arquivo novo.)"
+msgstr "%1 está definido como de só lectura. Queres sobreescribilo? (Seleccionar Non gárdao cun nome novo)"
 
 #, c-format
 msgid "Error backing up file"
@@ -2885,7 +2885,7 @@ msgstr ""
 "%2\n"
 "Queres\n"
 "\t- usar un nome de arquivo distinto (preme Aceptar)\n"
-"\t- abortar a operación (preme Abortar)?"
+"\t- abortar a operación (preme Cancelar)?"
 
 #, c-format
 msgid ""
@@ -2895,7 +2895,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"O complemento '%2' non puido empaquetar os cambios no arquivo da esquerda en '%1'.\n"
+"O complemento '%2' non puido empaquetar os cambios no arquivo esquerdo en '%1'.\n"
 "\n"
 "O arquivo orixinal non será cambiado.\n"
 "\n"
@@ -2909,7 +2909,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"O complemento '%2' non puido empaquetar os cambios no arquivo da dereita en '%1'.\n"
+"O complemento '%2' non puido empaquetar os cambios no arquivo dereito en '%1'.\n"
 "\n"
 "O arquivo orixinal non será cambiado.\n"
 "\n"
@@ -2935,7 +2935,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-" está marcado como de só lectura. Queres sobreescribir o elemento?"
+" está definido como de só lectura. Queres sobreescribir o elemento?"
 
 #, c-format
 msgid ""
@@ -2947,9 +2947,9 @@ msgid ""
 msgstr ""
 "Outra aplicación actualizou o arquivo\n"
 "%1\n"
-"logo da última comprobación que fixo o WinMerge.\n"
+"desde a última comprobación de WinMerge.\n"
 "\n"
-"Queres recargar o arquivo?"
+"Queres recargalo?"
 
 #, c-format
 msgid "Save Left File As"
@@ -2957,7 +2957,7 @@ msgstr "Gardar o arquivo esquerdo como"
 
 #, c-format
 msgid "Save Middle File As"
-msgstr ""
+msgstr "Gardar o arquivo central como"
 
 #, c-format
 msgid "Save Right File As"
@@ -2969,6 +2969,9 @@ msgid ""
 "%1\n"
 "has disappeared. Please save a copy of the file to continue."
 msgstr ""
+"O arquivo\n"
+"%1\n"
+"desapareceu. Por favor, garda unha copia do arquivo para continuar."
 
 #, c-format
 msgid ""
@@ -2981,7 +2984,7 @@ msgstr ""
 "Actualizar os documentos antes de seguir."
 
 msgid "Break at whitespace"
-msgstr "Parar no espazo en branco"
+msgstr "Parar en espazo en branco"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Parar en espazo en branco ou puntuación"
@@ -3024,15 +3027,15 @@ msgstr "Da dereita para… (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "Ambos para… (%1)"
 
 #, c-format
 msgid "All to... (%1)"
-msgstr ""
+msgstr "Todos para… (%1)"
 
 #, c-format
 msgid "Differences to... (%1)"
-msgstr ""
+msgstr "Diferenzas para… (%1)"
 
 #, c-format
 msgid "Left (%1)"
@@ -3048,11 +3051,11 @@ msgstr "Dereita (%1)"
 
 #, c-format
 msgid "Both (%1)"
-msgstr "Ambas (%1)"
+msgstr "Ambos (%1)"
 
 #, c-format
 msgid "All (%1)"
-msgstr ""
+msgstr "Todos (%1)"
 
 #, c-format
 msgid "Left side - select destination folder:"
@@ -3086,11 +3089,11 @@ msgstr ""
 
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Tes a certeza de quereres copiar:"
+msgstr "Seguro que queres copiar:"
 
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Tes a certeza de quereres copiar %d elementos:"
+msgstr "Seguro que queres copiar %d elementos:"
 
 #, c-format
 msgid ""
@@ -3112,11 +3115,11 @@ msgstr ""
 
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr "Tes a certeza de quereres mover:"
+msgstr "Seguro que queres mover:"
 
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr "Tes a certeza de quereres mover %d elementos:"
+msgstr "Seguro que queres mover %d elementos:"
 
 #, c-format
 msgid "Confirm Move"
@@ -3124,7 +3127,7 @@ msgstr "Confirmar Movemento"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "Vas pechar a ventá de comparación de cartafoles. Queres continuar?"
+msgstr "Vas pechar a ventá de comparación de cartafoles. Seguro que queres continuar?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3379,7 +3382,7 @@ msgstr "Nome do subcartafol cando os subcartafoles están incluídos."
 
 #, c-format
 msgid "Comparison result, long form."
-msgstr "Resultados da comparación, formato completo."
+msgstr "Resultado da comparación, formato completo."
 
 #, c-format
 msgid "Left side modification date."
@@ -3526,7 +3529,9 @@ msgstr "O arquivo de informe xa existe. Quérelo sobreescribir?"
 msgid ""
 "Error creating the report:\n"
 "%1"
-msgstr "Erro ao crear o informe:n%1"
+msgstr ""
+"Erro ao crear o informe:\n"
+"%1"
 
 #, c-format
 msgid "The report has been created successfully."
@@ -3640,7 +3645,7 @@ msgstr "Substituídas %1 cadea(s)."
 
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Non se atopou a cadea \"%s\""
+msgstr "Non se pode atopar a cadea \"%s\""
 
 #, c-format
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
@@ -3770,11 +3775,11 @@ msgstr "Opcións exportadas desde o arquivo."
 
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Fallo na importación das opcións deste arquivo."
+msgstr "Non se puideron importar as opcións deste arquivo."
 
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Fallo ao escribir as opcións no arquivo."
+msgstr "Non se puideron escribir as opcións no arquivo."
 
 #, c-format
 msgid ""
@@ -3948,7 +3953,7 @@ msgstr ""
 
 #, c-format
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Non se puido descargar a información da última versión"
 
 #, c-format
 msgid "Plugin Settings"
@@ -4011,15 +4016,15 @@ msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
-msgstr ""
+msgstr "Pechar pestanas á &esquerda"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr ""
+msgstr "Pechar pestanas á &dereita"
 
 #, c-format
 msgid "Close &Other Tabs"
-msgstr ""
+msgstr "Pechar &outras pestanas"
 
 #, c-format
 msgid "Enable &Auto Max Width"
@@ -4045,7 +4050,7 @@ msgid ""
 msgstr ""
 
 msgid "default"
-msgstr ""
+msgstr "predeterminado"
 
 msgid "minimal"
 msgstr ""
