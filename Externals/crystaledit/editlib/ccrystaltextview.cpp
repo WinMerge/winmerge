@@ -3803,7 +3803,7 @@ ClientToText (const CPoint & point)
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0, nPrevIndex = 0;
+  int nIndex = 0;
   int nCurPos = 0;
   int n = 0;
   int i = 0;
@@ -3828,8 +3828,6 @@ ClientToText (const CPoint & point)
 
       if (n > nPos && i == nSubLineOffset)
         break;
-
-      nPrevIndex = nIndex;
 
       nIndex = pIterChar->next();
     }
