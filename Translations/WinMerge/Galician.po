@@ -193,7 +193,7 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Abrir…\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "Abrir arquivo de c&onflito…"
+msgstr "Abrir arquivo de con&flito…"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -201,7 +201,7 @@ msgstr "Abrir pro&xecto…\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Gar&dar proxecto…"
+msgstr "Gardar &proxecto…"
 
 #, c-format
 msgid "Recent Projects"
@@ -209,7 +209,7 @@ msgstr "Proxectos recentes"
 
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr "F&icheiros ou cartafoles recentes"
+msgstr "Fic&heiros ou cartafoles recentes"
 
 #, c-format
 msgid "< Empty >"
@@ -217,7 +217,7 @@ msgstr "< Baleiro >"
 
 #, c-format
 msgid "E&xit"
-msgstr "S&aír"
+msgstr "&Saír"
 
 #, c-format
 msgid "&Edit"
@@ -353,7 +353,7 @@ msgstr "&Acerca de WinMerge…"
 
 #, c-format
 msgid "&Read-only"
-msgstr "&Só lectura"
+msgstr "Só &lectura"
 
 #, c-format
 msgid "L&eft Read-only"
@@ -369,11 +369,11 @@ msgstr "Lado &dereito só lectura"
 
 #, c-format
 msgid "File En&coding..."
-msgstr "&Codificación do arquivo…"
+msgstr "&Codificación dos arquivos…"
 
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Seleccion&ar todo\tCtrl+A"
+msgstr "S&eleccionar todo\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -526,7 +526,7 @@ msgstr "&Gardar\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr "Gard&ar"
+msgstr "Ga&rdar"
 
 #, c-format
 msgid "Save &Left"
@@ -542,7 +542,7 @@ msgstr "Gardar lado &dereito"
 
 #, c-format
 msgid "Save &As"
-msgstr "Gard&ar como"
+msgstr "Gardar &como"
 
 #, c-format
 msgid "Save &Left As..."
@@ -561,14 +561,14 @@ msgid "&Print..."
 msgstr "&Imprimir…"
 
 msgid "Page Set&up..."
-msgstr "Con&figuración da páxina…"
+msgstr "Config&uración da páxina…"
 
 msgid "Print Previe&w..."
-msgstr "Vista previa da impresión…"
+msgstr "&Vista previa da impresión…"
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "&Converter saltos de liña a"
+msgstr "Converter salt&os de liña a"
 
 #, c-format
 msgid "&Merge Mode\tF9"
@@ -576,7 +576,7 @@ msgstr "&Modo mestura\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr "Re&cargar\tCtrl+F5"
+msgstr "R&ecargar\tCtrl+F5"
 
 #, c-format
 msgid "&File Encoding..."
@@ -624,7 +624,7 @@ msgstr "&Pegar\tCtrl+V"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar &diferenzas de liña\tF4"
+msgstr "Seleccionar diferen&zas de liña\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -632,7 +632,7 @@ msgstr "B&uscar…\tCtrl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Substituí&r…\tCtrl+H"
+msgstr "Su&bstituír…\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
@@ -648,7 +648,7 @@ msgstr "&Copiar cos números de liña\tCtrl+Shift+C"
 
 #, c-format
 msgid "&Bookmarks"
-msgstr "&Marcadores"
+msgstr "M&arcadores"
 
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
@@ -833,7 +833,7 @@ msgstr "A&utomesturar\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr "Engadir punto de &sincronizaciónAlt+S"
+msgstr "Engadir punto de &sincronización\tAlt+S"
 
 #, c-format
 msgid "Clear Sync&hronization Points"
@@ -1469,7 +1469,7 @@ msgid "Items different:"
 msgstr "Elementos diferentes:"
 
 msgid "Items not exists all:"
-msgstr "Elementos que no existen todos:"
+msgstr "Elementos sen parella:"
 
 msgid "Items filtered:"
 msgstr "Elementos filtrados:"
@@ -1928,19 +1928,19 @@ msgstr "Cores do marcador"
 
 #, c-format
 msgid "Search Marker:"
-msgstr "Buscar marcador:"
+msgstr "Marcador de Busca:"
 
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "Marcador definido polo usuario1:"
+msgstr "Definido polo usuario 1:"
 
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "Marcador definido polo usuario2:"
+msgstr "Definido polo usuario 2:"
 
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "Marcador definido polo usuario3:"
+msgstr "Definido polo usuario 3:"
 
 #, c-format
 msgid "Folder Compare Report"
