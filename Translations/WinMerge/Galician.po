@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-13 23:58+0200\n"
+"PO-Revision-Date: 2020-04-14 10:59+0200\n"
 "Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -458,7 +458,7 @@ msgstr "Interc&ambiar paneis"
 
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Estadístic&as da comparación"
+msgstr "Estatístic&as da comparación"
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1016,7 +1016,7 @@ msgstr "Todos para… (%1 de %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr "Diferencias para… (%1 de %2)"
+msgstr "Diferenzas para… (%1 de %2)"
 
 #, c-format
 msgid "&Refresh"
@@ -1339,7 +1339,7 @@ msgstr "Substituír con:"
 
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "&Non sobrepasar o remate do arquivo"
+msgstr "&Non volver ao principio ao remate do arquivo"
 
 #, c-format
 msgid "Replace in"
@@ -1992,7 +1992,7 @@ msgstr "&Detectar o tipo de arquivo pola sinatura"
 
 #, c-format
 msgid "Compare Statistics"
-msgstr "Estadísticas da comparación"
+msgstr "Estatísticas da comparación"
 
 #, c-format
 msgid "Folders:"
@@ -2647,7 +2647,7 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Fallou o borrado do arquivo de filtros:\n"
+"Non se puido borrar o arquivo de filtros:\n"
 "%1\n"
 "\n"
 "Comproba se o arquivo é de só lectura."
