@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-14 22:11+0200\n"
+"PO-Revision-Date: 2020-04-14 22:16+0200\n"
 "Last-Translator: Luis A. Martínez Sobrino <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -580,7 +580,7 @@ msgstr "Re&cargar\tCtrl+F5"
 
 #, c-format
 msgid "&File Encoding..."
-msgstr "Codificación do ar&quivo"
+msgstr "Codificación do ar&quivo…"
 
 #, c-format
 msgid "Recompare As"
@@ -1108,7 +1108,7 @@ msgstr "&Incluír subcartafoles"
 
 #, c-format
 msgid "&Compare method:"
-msgstr "Método de &comparación"
+msgstr "Método de &comparación:"
 
 #, c-format
 msgid "Full Contents"
@@ -1279,7 +1279,7 @@ msgstr "A&utocompletar diálogo de apertura:"
 
 #, c-format
 msgid "Language:"
-msgstr "Idioma"
+msgstr "Idioma:"
 
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
@@ -1378,7 +1378,7 @@ msgstr "Novo"
 
 #, c-format
 msgid "&Background color:"
-msgstr "Cor de &fondo"
+msgstr "Cor de &fondo:"
 
 #, c-format
 msgid "&Apply"
@@ -1750,10 +1750,10 @@ msgstr "&A nivel da palabra:"
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr "Caracteres de rotura de palabra"
+msgstr "Caracteres de rotura de palabra:"
 
 msgid "&Rendering Mode:"
-msgstr "Modo de &renderizado"
+msgstr "Modo de &renderizado:"
 
 #, c-format
 msgid "Filefilters"
@@ -2286,7 +2286,7 @@ msgstr "Ver &configuración…"
 
 #, c-format
 msgid "&Binary Mode..."
-msgstr "Modo &binario"
+msgstr "Modo &binario…"
 
 #, c-format
 msgid "&Character Set..."
@@ -2297,7 +2297,7 @@ msgstr "Imaxen"
 
 #, c-format
 msgid "Image File &Patterns:"
-msgstr "&Patróns de ficheiros de imaxe"
+msgstr "&Patróns de ficheiros de imaxe:"
 
 #, c-format
 msgid "&Hex View"
@@ -3438,7 +3438,7 @@ msgstr "Data de creación do arquivo central."
 
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "Indica que lado te a data de modificación máis recente"
+msgstr "Indica que lado te a data de modificación máis recente:"
 
 #, c-format
 msgid "Left side file version, only for some filetypes."
@@ -4078,7 +4078,7 @@ msgstr "%1 non existe. Queres crealo?"
 
 #, c-format
 msgid "Failed to create folder."
-msgstr "Non se puido crear o cartafol"
+msgstr "Non se puido crear o cartafol."
 
 #, c-format
 msgid ""
