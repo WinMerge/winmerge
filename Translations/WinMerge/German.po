@@ -4085,7 +4085,7 @@ msgid "minimal"
 msgstr "Minimal"
 
 msgid "patience"
-msgstr "Geduld"
+msgstr "Patience"
 
 msgid "histogram"
 msgstr "Histogramm"
