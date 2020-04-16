@@ -249,11 +249,11 @@ msgstr "&Enorme"
 
 #, c-format
 msgid "&Status Bar"
-msgstr "Barra de e&stado"
+msgstr "&Barra de estado"
 
 #, c-format
 msgid "Ta&b Bar"
-msgstr "&Barra de pestanas"
+msgstr "Barra de &pestanas"
 
 #, c-format
 msgid "&Tools"
@@ -265,7 +265,7 @@ msgstr "&Filtros…"
 
 #, c-format
 msgid "&Generate Patch..."
-msgstr "&Xerar Patch…"
+msgstr "Xerar &Patch…"
 
 #, c-format
 msgid "&Plugins"
@@ -301,15 +301,15 @@ msgstr "&Ventá"
 
 #, c-format
 msgid "Cl&ose"
-msgstr "Pe&char"
+msgstr "&Pechar"
 
 #, c-format
 msgid "Clo&se All"
-msgstr "Pe&char todo"
+msgstr "Pechar &todo"
 
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Cambiar &panel\tF6"
+msgstr "&Cambiar panel\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
@@ -329,11 +329,11 @@ msgstr "&Axuda"
 
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "Axuda do &WinMerge\tF1"
+msgstr "&Axuda do WinMerge\tF1"
 
 #, c-format
 msgid "R&elease Notes"
-msgstr "Notas da v&ersión"
+msgstr "&Notas da versión"
 
 #, c-format
 msgid "&Translations"
@@ -341,15 +341,15 @@ msgstr "&Traducións"
 
 #, c-format
 msgid "C&onfiguration"
-msgstr "C&onfiguración…"
+msgstr "&Configuración…"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "Licenza Pública Xeral &GNU…"
+msgstr "&Licenza Pública Xeral GNU…"
 
 #, c-format
 msgid "&About WinMerge..."
-msgstr "&Acerca de WinMerge…"
+msgstr "Acerca de &WinMerge…"
 
 #, c-format
 msgid "&Read-only"
@@ -462,7 +462,7 @@ msgstr "Estatístic&as da comparación"
 
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "Refre&scar\tF5"
+msgstr "&Refrescar\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -478,7 +478,7 @@ msgstr "Co&mparar\tIntro"
 
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "Diferenza segui&nte\tAlt+Down"
+msgstr "Diferenza se&guinte\tAlt+Down"
 
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
@@ -486,7 +486,7 @@ msgstr "Diferenza &anterior\tAlt+Up"
 
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "&Primeira diferenza\tAlt+Home"
+msgstr "Pri&meira diferenza\tAlt+Home"
 
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
@@ -514,7 +514,7 @@ msgstr "Personalizar &columnas…"
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "Xera&r informe…"
+msgstr "&Xerar informe…"
 
 #, c-format
 msgid "&Edit with Unpacker..."
@@ -676,7 +676,7 @@ msgstr "Resaltar sintaxe"
 
 #, c-format
 msgid "&Diff Context"
-msgstr "Contexto da &diferenza"
+msgstr "&Contexto da diferenza"
 
 #, c-format
 msgid "&All Lines"
@@ -716,11 +716,11 @@ msgstr "B&loquear paneis"
 
 #, c-format
 msgid "&View Whitespace"
-msgstr "&Ver espazos en branco"
+msgstr "Ver &espazos en branco"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Ve&r diferenzas de liña"
+msgstr "Ver &diferenzas de liña"
 
 #, c-format
 msgid "View Line &Numbers"
@@ -736,15 +736,15 @@ msgstr "A&xustar liñas"
 
 #, c-format
 msgid "Split V&ertically"
-msgstr "Dividir v&erticalmente"
+msgstr "Dividir &verticalmente"
 
 #, c-format
 msgid "Diff &Pane"
-msgstr "Panel de &diferenzas"
+msgstr "Panel de diferenza&s"
 
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Pane&l de situación"
+msgstr "Panel de sit&uación"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -818,7 +818,7 @@ msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
 msgstr "C&opiar para a dereita e avanzar\tCtrl+Alt+Dereita"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "C&opiar para a esquerda e avanzar\tCtrl+Alt+Esquerda"
+msgstr "Copiar para a es&querda e avanzar\tCtrl+Alt+Esquerda"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -837,7 +837,7 @@ msgstr "Engadir punto de &sincronización\tAlt+S"
 
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr "Eliminar puntos de sincronización"
+msgstr "Eliminar puntos de sincroni&zación"
 
 #, c-format
 msgid "&Prediffer"
@@ -849,7 +849,7 @@ msgstr "&Scripts"
 
 #, c-format
 msgid "Sp&lit"
-msgstr "Se&parar"
+msgstr "&Separar"
 
 #, c-format
 msgid "Comp&are"
