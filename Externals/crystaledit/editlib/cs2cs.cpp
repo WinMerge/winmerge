@@ -110,10 +110,8 @@ skip_word (LPCTSTR s)
 ptrdiff_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
-  size_t pos;
-
   for (int i = 0; i < codes_count; i++)
-    if ((pos = str_pos (name, codes[i].name)) >= 0)
+    if (size_t pos; (pos = str_pos (name, codes[i].name)) >= 0)
       {
         *coding = i;
         return pos;
@@ -180,7 +178,6 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
 int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
-    ptrdiff_t posit = -2;
     LPCTSTR source_chars, destination_chars, cod_pos = nullptr;
     TCHAR ch;
     LPTSTR s = string;
@@ -189,7 +186,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
       return -1;
     if (source_coding < 0)
       {
-        posit = fget_coding (string, &source_coding);
+        ptrdiff_t posit = fget_coding (string, &source_coding);
         if (posit != 0)
           cod_pos = string + posit;
       }

@@ -306,12 +306,14 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	// This just checks if the value exists, LoadValueFromReg() below actually
 	// loads the value.
 	DWORD type = 0;
-	BYTE dataBuf[MAX_PATH_FULL] = {0};
 	DWORD size = MAX_PATH_FULL;
 	LONG retValReg;
 	if (hKey)
+	{
+		BYTE dataBuf[MAX_PATH_FULL] = {0};
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 			0, &type, dataBuf, &size);
+	}
 	else
 		retValReg = ERROR_FILE_NOT_FOUND;
 

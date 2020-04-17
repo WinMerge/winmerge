@@ -596,6 +596,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_bIncrementalFound(false)
 , m_rxmatch{}
 , m_nRenderingMode(s_nRenderingModeDefault)
+, m_pCrystalRendererSaved(nullptr)
 {
 #ifdef _WIN64
   if (m_nRenderingMode == RENDERING_MODE_GDI)
@@ -3004,8 +3005,11 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
-  m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
-
+  if (m_pCrystalRendererSaved)
+  {
+    m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
+    m_pCrystalRendererSaved = nullptr;
+  }
   if (m_pPrintFont != nullptr)
     {
       delete m_pPrintFont;
@@ -3803,7 +3807,7 @@ ClientToText (const CPoint & point)
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0, nPrevIndex = 0;
+  int nIndex = 0;
   int nCurPos = 0;
   int n = 0;
   int i = 0;
@@ -3828,8 +3832,6 @@ ClientToText (const CPoint & point)
 
       if (n > nPos && i == nSubLineOffset)
         break;
-
-      nPrevIndex = nIndex;
 
       nIndex = pIterChar->next();
     }

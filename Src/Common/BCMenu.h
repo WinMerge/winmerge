@@ -80,7 +80,6 @@ typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 #define SetImageForPopupFromToolbar SetImageForPopupFromToolbarW
 #endif
 
-
 class BCMenu : public CMenu
 {
 	DECLARE_DYNAMIC( BCMenu )
@@ -297,12 +296,14 @@ protected:
 	void DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp,COLORREF bgcolor);
 	bool GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp);
+	bool GetBitmapFromImageList(CDC* pDC, CImageList *imglist, int nIndex, CImage &bmp);
 	bool ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist);
 	static WORD NumBitmapColors(LPBITMAPINFOHEADER lpBitmap);
 	void RemoveTopLevelOwnerDraw(void);
 	int GetMenuStart(void);
 	void GetTransparentBitmap(CBitmap &bmp);
 	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
+	void GetDisabledBitmap(CImage &bmp);
 	INT_PTR AddToGlobalImageList(CImageList *il,int xoffset,int nID);
 	INT_PTR AddToGlobalImageList(int nIconNormal,int nID);
 	int GlobalImageListOffset(int nID);
