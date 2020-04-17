@@ -70,11 +70,11 @@ msgstr "&Pegar"
 
 #, c-format
 msgid "&Goto..."
-msgstr "&Ir a…"
+msgstr "Ir &a…"
 
 #, c-format
 msgid "Op&en"
-msgstr "&Abrir"
+msgstr "A&brir"
 
 #, c-format
 msgid "with &Registered Application"
@@ -89,22 +89,22 @@ msgid "&with..."
 msgstr "&con…"
 
 msgid "S&hell Menu"
-msgstr "Menú cont&extual"
+msgstr "Menú conte&xtual"
 
 #, c-format
 msgid "View &Differences"
-msgstr "Ver &diferencias"
+msgstr "&Ver diferenzas"
 
 #, c-format
 msgid "Diff &Block Size"
-msgstr "Tamaño de &bloque de diferencias"
+msgstr "&Tamaño de bloque de diferenzas"
 
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr "&Ignorar diferencia de color (Umbral de distancia de color)"
+msgstr "&Ignorar diferenza de color (Umbral de distancia de color)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr "Detección de ins&erción/eliminación"
+msgstr "&Detección de inserción/eliminación"
 
 #, c-format
 msgid "&None"
@@ -118,11 +118,11 @@ msgstr "&Horizontal"
 
 #, c-format
 msgid "&Previous Page"
-msgstr "&Páxina anterior"
+msgstr "Páxina &anterior"
 
 #, c-format
 msgid "&Next Page"
-msgstr "&Páxina seguinte"
+msgstr "Páxina &seguinte"
 
 #, c-format
 msgid "&Active Pane"
@@ -147,15 +147,15 @@ msgstr "&Normal\tCtrl+*"
 
 #, c-format
 msgid "&Overlay"
-msgstr "Superp&oñer"
+msgstr "S&uperpoñer"
 
 #, c-format
 msgid "&Alpha Blend"
-msgstr "Mezcla &alfa"
+msgstr "&Mestura alfa"
 
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr "Animación de &mezcla alfa"
+msgstr "&Animación de mestura alfa"
 
 #, c-format
 msgid "Dragging &Mode"
@@ -171,10 +171,10 @@ msgstr "&Axustar offset"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr "E&tablecer cor de fondo"
+msgstr "Es&tablecer cor de fondo"
 
 msgid "&Vector Image Scaling"
-msgstr "Escalado de imaxe &vectorial"
+msgstr "&Escalado de imaxe vectorial"
 
 #, c-format
 msgid "&File"
@@ -273,15 +273,15 @@ msgstr "&Complementos"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Configuración do comp&lemento…"
+msgstr "&Configuración do complemento…"
 
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr "Precomparación ma&nual"
+msgstr "&Precomparación manual"
 
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr "Precomparación a&utomática"
+msgstr "Precomparación &automática"
 
 #, c-format
 msgid "&Manual Unpacking"
@@ -289,11 +289,11 @@ msgstr "Desempaquetado &manual"
 
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "Desempaquetado &automático"
+msgstr "&Desempaquetado automático"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Recargar complementos"
+msgstr "Recar&gar complementos"
 
 #, c-format
 msgid "&Window"
@@ -385,23 +385,23 @@ msgstr "Amosar os elementos &diferentes"
 
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Amosar os elementos únicos da &esquerda"
+msgstr "Amosar os elementos únicos da es&querda"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr "Amosar os elementos únicos do cen&tro"
+msgstr "Amosar os elementos únicos do &centro"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Amosar os elementos únicos da &dereita"
+msgstr "Amosar os elementos únicos da d&ereita"
 
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Amosar os elementos s&altados"
+msgstr "Amosar os elementos &saltados"
 
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Amosar os arq&uivos binarios"
+msgstr "Amosar os arquivos bi&narios"
 
 #, c-format
 msgid "&3-way Compare"
@@ -409,15 +409,15 @@ msgstr "Comparación a &3 bandas"
 
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr "Amosar só as diferencias da es&querda"
+msgstr "Amosar só as diferenzas da es&querda"
 
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr "Amosar só as diferencias da ce&ntro"
+msgstr "Amosar só as diferenzas da ce&ntro"
 
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr "Amosar só as diferencias da de&reita"
+msgstr "Amosar só as diferenzas da de&reita"
 
 msgid "Show L&eft Only Missing Items"
 msgstr "Amosar só elementos ausentes da esq&uerda"
@@ -430,7 +430,7 @@ msgstr "Amosar só elementos ausentes da dere&ita"
 
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Amosar os elementos ocu&ltos"
+msgstr "Amosar elementos &ocultos"
 
 #, c-format
 msgid "Tree &Mode"
@@ -442,7 +442,7 @@ msgstr "E&xpandir todos os subcartafoles"
 
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "&Colapsar todos os subcartafoles"
+msgstr "Colapsar todos os s&ubcartafoles"
 
 #, c-format
 msgid "Select &Font..."
@@ -450,7 +450,7 @@ msgstr "Seleccionar &fonte…"
 
 #, c-format
 msgid "Use Default F&ont"
-msgstr "Empregar f&onte predefinida"
+msgstr "Empregar fonte predef&inida"
 
 #, c-format
 msgid "Sw&ap Panes"
@@ -458,7 +458,7 @@ msgstr "Interc&ambiar paneis"
 
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Estatístic&as da comparación"
+msgstr "Estatísticas da comparación"
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -466,7 +466,7 @@ msgstr "&Refrescar\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "&Refrescar seleccionados\tCtrl+F5"
+msgstr "Refrescar se&leccionados\tCtrl+F5"
 
 #, c-format
 msgid "&Merge"
@@ -474,7 +474,7 @@ msgstr "&Mesturar"
 
 #, c-format
 msgid "Co&mpare\tEnter"
-msgstr "Co&mparar\tIntro"
+msgstr "C&omparar\tIntro"
 
 #, c-format
 msgid "&Next Difference\tAlt+Down"
@@ -510,7 +510,7 @@ msgstr "&Borrar\tDel"
 
 #, c-format
 msgid "&Customize Columns..."
-msgstr "Personalizar &columnas…"
+msgstr "&Personalizar columnas…"
 
 #, c-format
 msgid "Generate &Report..."
@@ -546,15 +546,15 @@ msgstr "Gardar &como"
 
 #, c-format
 msgid "Save &Left As..."
-msgstr "Gardar &lado esquerdo como…"
+msgstr "Gardar lado &esquerdo como…"
 
 #, c-format
 msgid "Save &Middle As..."
-msgstr "Gardar cen&tro como…"
+msgstr "Gardar &centro como…"
 
 #, c-format
 msgid "Save &Right As..."
-msgstr "Gardar lado d&ereito como…"
+msgstr "Gardar lado &dereito como…"
 
 #, c-format
 msgid "&Print..."
@@ -841,7 +841,7 @@ msgstr "Eliminar puntos de sincroni&zación"
 
 #, c-format
 msgid "&Prediffer"
-msgstr "&Precomparación"
+msgstr "Prec&omparación"
 
 #, c-format
 msgid "&Scripts"
@@ -1255,7 +1255,7 @@ msgstr "&Verificar automaticamente as rutas no diálogo Abrir"
 
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Per&mitir executa só unha instancia"
+msgstr "Per&mitir executar só unha instancia"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1263,7 +1263,7 @@ msgstr "Pr&eguntar antes de pechar varias ventás"
 
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "&Preservar data e hora do arquivo nas comparacións de ficheiros"
+msgstr "&Preservar hora do arquivo nas comparacións de arquivos"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
@@ -1425,15 +1425,15 @@ msgstr "Texto"
 
 #, c-format
 msgid "Difference:"
-msgstr "Diferenza:"
+msgstr "Diferenzas:"
 
 #, c-format
 msgid "Selected Difference:"
-msgstr "Diferenza seleccionada:"
+msgstr "Diferenzas seleccionadas:"
 
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Diferenza ignorada:"
+msgstr "Diferenzas ignoradas:"
 
 #, c-format
 msgid "Moved:"
@@ -1441,7 +1441,7 @@ msgstr "Movidas:"
 
 #, c-format
 msgid "Selected Moved:"
-msgstr "Seleccionadas movidas:"
+msgstr "Movidas seleccionadas:"
 
 #, c-format
 msgid "Same As The Next (3 panes):"
@@ -1453,11 +1453,11 @@ msgstr "O mesmo que o seguinte (selecionado)"
 
 #, c-format
 msgid "Word Difference:"
-msgstr "Diferenza de palabra:"
+msgstr "Diferenzas de palabras:"
 
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Diferenza de palabra seleccionada:"
+msgstr "Diferenzas de palabras seleccionadas:"
 
 msgid "&Use folder compare colors"
 msgstr "&Usar cores de comparación de cartafoles"
@@ -1656,7 +1656,7 @@ msgstr "Comparar"
 
 #, c-format
 msgid "Whitespace"
-msgstr "Espazo en branco"
+msgstr "Espazos en branco"
 
 #, c-format
 msgid "&Compare"
@@ -1687,7 +1687,7 @@ msgid "&Match similar lines"
 msgstr "&Coincidir as liñas semellantes"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Algoritmo de diferenciación (experimental):"
+msgstr "Algoritmo de diferenciación (exper.):"
 
 msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
@@ -1750,7 +1750,7 @@ msgstr "&A nivel da palabra:"
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr "Caracteres de rotura de palabra:"
+msgstr "Caracteres de separación de palabra:"
 
 msgid "&Rendering Mode:"
 msgstr "Modo de &renderizado:"
@@ -1928,7 +1928,7 @@ msgstr "Cores do marcador"
 
 #, c-format
 msgid "Search Marker:"
-msgstr "Marcador de Busca:"
+msgstr "Busca:"
 
 #, c-format
 msgid "User Defined Marker1:"
@@ -2115,7 +2115,7 @@ msgstr "Cores de texto personalizadas"
 
 #, c-format
 msgid "Whitespace:"
-msgstr "Espazo en branco:"
+msgstr "Espazos:"
 
 #, c-format
 msgid "Regular text:"
@@ -2131,7 +2131,7 @@ msgstr "Copias de seguridade"
 
 #, c-format
 msgid "Create backup files in:"
-msgstr "Crear copias de seguridade en:"
+msgstr "Crear copias de seguridade ao:"
 
 #, c-format
 msgid "&Folder compare"
@@ -2309,19 +2309,19 @@ msgstr "EXT"
 
 #, c-format
 msgid "CAP"
-msgstr "CAP"
+msgstr "MAY"
 
 #, c-format
 msgid "NUM"
-msgstr "NUM"
+msgstr "NÚM"
 
 #, c-format
 msgid "SCRL"
-msgstr "SCRL"
+msgstr "DESP"
 
 #, c-format
 msgid "OVR"
-msgstr "OVR"
+msgstr "SOBR"
 
 #, c-format
 msgid "REC"
@@ -4023,7 +4023,7 @@ msgstr "Do sistema de arquivos"
 
 #, c-format
 msgid "From MRU list"
-msgstr "Da listaxe MRU"
+msgstr "Da listaxe de últimos arquivos usados"
 
 #, c-format
 msgid "No Highlighting"
@@ -4106,13 +4106,13 @@ msgid "GDI"
 msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr "DirectWrite Default"
+msgstr "DirectWrite Predeterminado"
 
 msgid "DirectWrite Aliased"
-msgstr "DirectWrite Aliased"
+msgstr "DirectWrite Alisado"
 
 msgid "DirectWrite GDI Classic"
-msgstr "DirectWrite GDI Classic"
+msgstr "DirectWrite GDI Clasico"
 
 msgid "DirectWrite GDI Natural"
 msgstr "DirectWrite GDI Natural"
@@ -4121,7 +4121,7 @@ msgid "DirectWrite Natural"
 msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr "DirectWrite Natural Symmetric"
+msgstr "DirectWrite Natural Simétrico"
 
 msgid "MDI child window or main window"
 msgstr "Ventá filla ou principal MDI"
