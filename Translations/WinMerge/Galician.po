@@ -4128,3 +4128,4 @@ msgstr "Ventá filla ou principal MDI"
 
 msgid "MDI child window only"
 msgstr "Só a ventá filla MDI"
+
