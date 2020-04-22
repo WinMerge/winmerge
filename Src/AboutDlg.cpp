@@ -132,6 +132,9 @@ void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 	CRect rc;
 	GetDlgItem(nIDCtl)->GetClientRect(&rc);
 	m_image.Draw(lpDrawItemStruct->hDC, rc, Gdiplus::InterpolationModeBicubic);
+	GetDlgItem(IDC_DEVELOPERS)->Invalidate();
+	GetDlgItem(IDC_VERSION)->Invalidate();
+	GetDlgItem(IDC_COMPANY)->Invalidate();
 }
 /**
  * @brief Show contributors list.
