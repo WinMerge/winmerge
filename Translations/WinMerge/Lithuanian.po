@@ -1768,6 +1768,9 @@ msgstr "Paveikslėlių"
 msgid "Image File &Patterns:"
 msgstr "&Paveikslėlių failų šablonai:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
@@ -2472,6 +2475,12 @@ msgstr "(Kairysis ir vidurinis yra vienodi)"
 
 msgid "Text files are different"
 msgstr "Tekstiniai failai yra skirtingi"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

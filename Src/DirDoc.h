@@ -28,6 +28,7 @@
 #include <memory>
 #include "DiffThread.h"
 #include "PluginManager.h"
+#include "FileFilterHelper.h"
 #include "DirCmpReport.h"
 
 class CDirView;
@@ -143,6 +144,7 @@ private:
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	String m_sReportFile;
 	PluginManager m_pluginman;
+	FileFilterHelper m_imgfileFilter;
 	bool m_bMarkedRescan; /**< If `true` next rescan scans only marked items */
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;

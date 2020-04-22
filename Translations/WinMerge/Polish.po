@@ -1766,6 +1766,9 @@ msgstr "Obraz"
 msgid "Image File &Patterns:"
 msgstr "Rozszerzenia pliku obrazu:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
@@ -2465,6 +2468,12 @@ msgstr "(Lewy i środkowy są identyczne)"
 
 msgid "Text files are different"
 msgstr "Pliki tekstowe są różne"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

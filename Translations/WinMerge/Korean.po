@@ -2299,6 +2299,9 @@ msgstr "이미지"
 msgid "Image File &Patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "16진수 보기(&H)"
@@ -3350,6 +3353,12 @@ msgstr "(왼쪽과 가운데는 동일합니다)"
 #, c-format
 msgid "Text files are different"
 msgstr "텍스트 파일이 다릅니다"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -2302,6 +2302,9 @@ msgstr "圖片"
 msgid "Image File &Patterns:"
 msgstr "圖片檔案副檔名(&P)"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "二進制顯示(&H)"
@@ -3332,6 +3335,12 @@ msgstr "(左邊和中間內容相同)"
 #, c-format
 msgid "Text files are different"
 msgstr "文字檔內容不同"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

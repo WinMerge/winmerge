@@ -264,6 +264,8 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
 	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	m_pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	m_pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
 
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
@@ -284,7 +286,11 @@ void CDirDoc::Rescan()
 	// Make sure filters are up-to-date
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 	m_pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
-	
+
+	m_imgfileFilter.UseMask(true);
+	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	m_pCtxt->m_pImgfileFilter = &m_imgfileFilter;
+
 	m_pCtxt->m_pFilterCommentsManager = theApp.m_pFilterCommentsManager.get();
 
 	// Show current compare method name and active filter name in statusbar

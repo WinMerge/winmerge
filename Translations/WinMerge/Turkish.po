@@ -2294,6 +2294,9 @@ msgstr "Görsel"
 msgid "Image File &Patterns:"
 msgstr "Görsel Dosyası &Uzantıları:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "Onaltılık &Görünüm"
@@ -3294,6 +3297,12 @@ msgstr "(Sol ve orta dosya aynı)"
 #, c-format
 msgid "Text files are different"
 msgstr "Metin dosyaları farklı"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -1781,6 +1781,9 @@ msgstr "صورة"
 msgid "Image File &Patterns:"
 msgstr "أ&نماط ملف الصور:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
@@ -2708,6 +2711,12 @@ msgstr "(الجزء الأيسر والجزء الأوسط متطابقان)"
 
 msgid "Text files are different"
 msgstr "الملفات النصية مختلفة"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

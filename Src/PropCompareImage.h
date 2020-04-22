@@ -27,6 +27,7 @@ public:
 	//{{AFX_DATA(PropCompareImage)
 	enum { IDD = IDD_PROPPAGE_COMPARE_IMAGE };
 	String m_sFilePatterns;
+	bool m_bEnableImageCompare;
 	//}}AFX_DATA
 
 

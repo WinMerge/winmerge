@@ -1786,6 +1786,9 @@ msgstr "画像"
 msgid "Image File &Patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
+msgid "&Enable image compare in folder compare"
+msgstr "フォルダ比較で画像比較を有効にする(&E)"
+
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
@@ -2713,6 +2716,12 @@ msgstr "(左側と中央は同一です)"
 
 msgid "Text files are different"
 msgstr "テキスト ファイルは異なります"
+
+msgid "Image files are identical"
+msgstr "画像ファイルは同一です"
+
+msgid "Image files are different"
+msgstr "画像ファイルは異なります"
 
 #, c-format
 msgid "Elapsed time: %ld ms"

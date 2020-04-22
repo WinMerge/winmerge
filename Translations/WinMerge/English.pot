@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-03-28 08:32+0000\n"
+"POT-Creation-Date: 2020-04-22 14:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1759,6 +1759,9 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr ""
 
@@ -2457,6 +2460,12 @@ msgid "(Left and middle are identical)"
 msgstr ""
 
 msgid "Text files are different"
+msgstr ""
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
 msgstr ""
 
 #, c-format

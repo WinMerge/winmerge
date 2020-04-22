@@ -837,6 +837,8 @@
 #define IDS_LEFTONLY_DIFF               17862
 #define IDS_MIDDLEONLY_DIFF             17863
 #define IDS_RIGHTONLY_DIFF              17864
+#define IDS_IMAGE_FILES_SAME            17865
+#define IDS_IMAGE_FILES_DIFF            17866
 #define IDS_ELAPSED_TIME                17881
 #define IDS_STATUS_SELITEM1             17882
 #define IDS_STATUS_SELITEMS             17883
@@ -1300,6 +1302,7 @@
 #define ID_IMG_VECTORIMAGESCALING_200   33722
 #define ID_IMG_VECTORIMAGESCALING_400   33723
 #define ID_IMG_VECTORIMAGESCALING_800   33724
+#define IDC_ENABLE_IMGCMP_IN_DIRCMP 33725
 
 // Next default values for new objects
 // 
@@ -1307,7 +1310,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         33725
+#define _APS_NEXT_COMMAND_VALUE         33726
 #define _APS_NEXT_CONTROL_VALUE         8831
 #define _APS_NEXT_SYMED_VALUE           116
 #endif

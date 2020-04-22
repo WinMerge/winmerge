@@ -2297,6 +2297,9 @@ msgstr "Bild"
 msgid "Image File &Patterns:"
 msgstr "&Bilddateimuster:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "&Hex-Ansicht"
@@ -3350,6 +3353,12 @@ msgstr "(Links und Mitte sind identisch)"
 #, c-format
 msgid "Text files are different"
 msgstr "Textdateien sind unterschiedlich"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

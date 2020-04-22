@@ -1773,6 +1773,9 @@ msgstr "Изображения"
 msgid "Image File &Patterns:"
 msgstr "Файлови &разширения на изображения:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
@@ -2687,6 +2690,12 @@ msgstr "(Ляво и среда са еднакви)"
 
 msgid "Text files are different"
 msgstr "Текстовите файлове са различни"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

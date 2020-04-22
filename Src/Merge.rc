@@ -1806,6 +1806,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,200,10
     EDITTEXT        IDC_COMPAREIMAGE_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
+    CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,240,10
     PUSHBUTTON      "Defaults",IDC_COMPAREIMAGE_DEFAULTS,7,198,70,14
 END
 
@@ -2508,6 +2509,8 @@ BEGIN
     IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
     IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
     IDS_TEXT_FILES_DIFF     "Text files are different"
+    IDS_IMAGE_FILES_SAME     "Image files are identical"
+    IDS_IMAGE_FILES_DIFF     "Image files are different"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

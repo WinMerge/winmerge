@@ -2298,6 +2298,9 @@ msgstr "Slika"
 msgid "Image File &Patterns:"
 msgstr "V&zorci slikovnih datotek:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
@@ -3357,6 +3360,12 @@ msgstr "(Leva in srednja sta enaki)"
 #, c-format
 msgid "Text files are different"
 msgstr "Besedilne datoteke so različne"
+
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
