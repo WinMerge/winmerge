@@ -17,12 +17,14 @@ namespace CompareEngines
 ImageCompare::ImageCompare()
 	: m_colorDistanceThreshold(0.0)
 	, m_pImgMergeWindow(nullptr)
-	, m_hModule(nullptr)
 {
-	HMODULE hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (hModule == nullptr)
-		return;
-	m_hModule = reinterpret_cast<void *>(hModule);
+	{
+		hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+		if (hModule == nullptr)
+			return;
+	}
 	IImgMergeWindow* (*pfnWinIMerge_CreateWindowless)() =
 		(IImgMergeWindow * (*)())GetProcAddress(hModule, "WinIMerge_CreateWindowless");
 	if (pfnWinIMerge_CreateWindowless == nullptr)
@@ -43,28 +45,30 @@ ImageCompare::~ImageCompare()
 				pfnWinIMerge_DestroyWindow(m_pImgMergeWindow);
 		}
 	}
-	if (m_hModule)
-		FreeLibrary(reinterpret_cast<HMODULE>(m_hModule));
 }
 
 int ImageCompare::compare_files(const String& file1, const String& file2) const
 {
-	bool bImgDiff = true;
 	if (!m_pImgMergeWindow)
 		return DIFFCODE::CMPERR;
+	int code = DIFFCODE::CMPERR;
 	m_pImgMergeWindow->SetColorDistanceThreshold(m_colorDistanceThreshold);
-	if (!m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
-		return DIFFCODE::CMPERR;
-	if (m_pImgMergeWindow->GetPageCount(0) == m_pImgMergeWindow->GetPageCount(1))
+	if (m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
 	{
-		for (int page = 0; page < m_pImgMergeWindow->GetPageCount(0); ++page)
+		bool bImgDiff = true;
+		if (m_pImgMergeWindow->GetPageCount(0) == m_pImgMergeWindow->GetPageCount(1))
 		{
-			m_pImgMergeWindow->SetCurrentPageAll(page);
-			if (m_pImgMergeWindow->GetDiffCount() == 0)
-				bImgDiff = false;
+			for (int page = 0; page < m_pImgMergeWindow->GetPageCount(0); ++page)
+			{
+				m_pImgMergeWindow->SetCurrentPageAll(page);
+				if (m_pImgMergeWindow->GetDiffCount() == 0)
+					bImgDiff = false;
+			}
 		}
+		code = bImgDiff ? DIFFCODE::DIFF : DIFFCODE::SAME;
+		m_pImgMergeWindow->CloseImages();
 	}
-	return bImgDiff ? DIFFCODE::DIFF : DIFFCODE::SAME;
+	return code;
 }
 
 /**

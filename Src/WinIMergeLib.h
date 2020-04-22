@@ -148,6 +148,7 @@ struct IImgMergeWindow
 	virtual bool ConvertToRealPos(int pane, const POINT& pt, POINT& ptReal) const = 0;
 	virtual float GetVectorImageZoomRatio() const = 0;
 	virtual void SetVectorImageZoomRatio(float zoom) = 0;
+	virtual bool CloseImages() = 0;
 };
 
 struct IImgToolWindow
