@@ -3780,6 +3780,10 @@ msgid "None"
 msgstr "None"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Type"
 

@@ -82,9 +82,13 @@ BOOL CTextMarkerDlg::OnInitDialog ()
 	LangTranslateDialog(m_hWnd);
 	CDialog::OnInitDialog ();
 
-	m_ctlBgColorIdx.InsertString(-1, _T("Marker Color 1"));
-	m_ctlBgColorIdx.InsertString(-1, _T("Marker Color 2"));
-	m_ctlBgColorIdx.InsertString(-1, _T("Marker Color 3"));
+	CString fmt = LoadResString(IDS_MARKER_COLOR_FMT).c_str();
+	for (int i = 0; i < 3; ++i)
+	{
+		CString str;
+		str.Format(fmt, i + 1);
+		m_ctlBgColorIdx.InsertString(-1, str);
+	}
 
 	m_listMarkers.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_ONECLICKACTIVATE | LVS_EX_FULLROWSELECT);
 	std::vector<CString> keys;

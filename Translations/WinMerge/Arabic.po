@@ -3111,6 +3111,10 @@ msgstr "ثنائي"
 msgid "None"
 msgstr "لا يوجد"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "النوع"
 

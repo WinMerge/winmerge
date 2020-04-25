@@ -3090,6 +3090,10 @@ msgstr "Двоичен"
 msgid "None"
 msgstr "Няма"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "Вид"
 

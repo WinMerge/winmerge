@@ -953,6 +953,7 @@
 #define IDS_EOL_CR                      30406
 #define IDS_EOL_CRLF                    30407
 #define IDS_EOL_NONE                    30408
+#define IDS_MARKER_COLOR_FMT            30409
 #define IDS_PLUGINSLIST_NAME            30432
 #define IDS_PLUGINSLIST_TYPE            30433
 #define IDS_PLUGINSLIST_DESC            30434

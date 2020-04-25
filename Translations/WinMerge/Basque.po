@@ -3785,6 +3785,10 @@ msgid "None"
 msgstr "Bat ere ez"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Mota"
 

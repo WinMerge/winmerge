@@ -3103,6 +3103,10 @@ msgstr "Binair"
 msgid "None"
 msgstr "Geen"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "Type"
 

@@ -3834,6 +3834,10 @@ msgid "None"
 msgstr " هيچيک "
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr " نوع "
 

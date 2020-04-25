@@ -2795,6 +2795,10 @@ msgstr "Binarny"
 msgid "None"
 msgstr "Brak"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "Typ"
 

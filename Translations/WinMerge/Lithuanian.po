@@ -2802,6 +2802,10 @@ msgstr "Binarinių"
 msgid "None"
 msgstr "Nėra"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipas"
 

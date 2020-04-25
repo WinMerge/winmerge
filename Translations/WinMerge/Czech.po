@@ -3713,6 +3713,10 @@ msgid "None"
 msgstr "Žádný"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Typ"
 

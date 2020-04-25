@@ -3824,6 +3824,10 @@ msgid "None"
 msgstr "Brez"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Vrsta"
 

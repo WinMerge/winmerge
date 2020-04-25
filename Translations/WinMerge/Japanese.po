@@ -3114,6 +3114,10 @@ msgstr "バイナリ"
 msgid "None"
 msgstr "なし"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr "マーカー色 %d"
+
 msgid "Type"
 msgstr "タイプ"
 

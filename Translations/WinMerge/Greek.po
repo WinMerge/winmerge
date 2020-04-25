@@ -3755,6 +3755,10 @@ msgid "None"
 msgstr "Χωρίς"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Τύπος"
 

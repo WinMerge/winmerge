@@ -3808,6 +3808,10 @@ msgid "None"
 msgstr "Ei mitään"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "Tyyppi"
 

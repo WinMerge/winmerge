@@ -2716,6 +2716,7 @@ BEGIN
     IDS_EOL_CR              "CR"
     IDS_EOL_CRLF            "CRLF"
     IDS_EOL_NONE            "None"
+	IDS_MARKER_COLOR_FMT    "Marker Color %d"
 END
 
 STRINGTABLE

@@ -3121,6 +3121,10 @@ msgstr "Binario"
 msgid "None"
 msgstr "Nessuno"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipo"
 
