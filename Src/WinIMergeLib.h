@@ -36,7 +36,7 @@ struct IImgMergeWindow
 		REFRESH, SCROLLTODIFF, OPEN
 	};
 	enum DRAGGING_MODE {
-		NONE = 0, MOVE, ADJUST_OFFSET
+		NONE = 0, MOVE, ADJUST_OFFSET, VERTICAL_WIPE, HORIZONTAL_WIPE
 	};
 	struct Event
 	{
@@ -153,8 +153,10 @@ struct IImgMergeWindow
 
 struct IImgToolWindow
 {
+	using TranslateCallback = void(*)(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 	virtual HWND GetHWND() const = 0;
 	virtual void Sync() = 0;
+	virtual void Translate(TranslateCallback translateCallback) = 0;
 };
 
 extern "C"

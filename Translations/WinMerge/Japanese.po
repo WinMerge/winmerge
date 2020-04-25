@@ -108,6 +108,10 @@ msgstr "選択ペイン(&A)"
 msgid "&Zoom"
 msgstr "拡大(&Z)"
 
+#, c-format
+msgid "25%"
+msgstr "25%"
+
 msgid "Zoom &In\tCtrl++"
 msgstr "ズームイン(&I)\tCtrl++"
 
@@ -135,6 +139,12 @@ msgstr "移動(&M)"
 
 msgid "&Adjust Offset"
 msgstr "オフセット調整(&A)"
+
+msgid "&Vertical Wipe"
+msgstr "垂直ワイプ(&V)"
+
+msgid "&Horizontal Wipe"
+msgstr "水平ワイプ(&H)"
 
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
@@ -3384,4 +3394,88 @@ msgstr "MDI子ウインドウまたはメインウインドウ"
 
 msgid "MDI child window only"
 msgstr "MDI子ウインドウのみ"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Diff"
+msgstr "差異"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Highlight"
+msgstr "差異表示"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Blink"
+msgstr "点滅"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Size"
+msgstr "ブロックサイズ"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Alpha"
+msgstr "ブロック透明度"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "CD Threshold"
+msgstr "色距離閾値"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Ins/Del Detection"
+msgstr "挿入/削除検出"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "None"
+msgstr "なし"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Vertical"
+msgstr "垂直方向"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Horizontal"
+msgstr "水平方向"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Overlay"
+msgstr "重ね合わせ"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha"
+msgstr "透明度"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "XOR"
+msgstr "XOR"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Blend"
+msgstr "アルファブレンド"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Animation"
+msgstr "アニメ表示"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Zoom"
+msgstr "拡大"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Page:"
+msgstr "ページ:"
+
+#, c-format
+msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgstr "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+
+#, c-format
+msgid "Dist:%g "
+msgstr "色距離:%g "
+
+#, c-format
+msgid "Dist:%g,%g "
+msgstr "色距離:%g,%g "
+
+#, c-format
+msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
+msgstr "ページ:%d/%d 拡大:%d%% %dx%dpx %dbpp"
 

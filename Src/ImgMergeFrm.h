@@ -115,6 +115,7 @@ private:
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
 	void OnDropFiles(int pane, const std::vector<String>& files);
+	static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 	CLocationBar m_wndLocationBar;
 	IImgMergeWindow *m_pImgMergeWindow;
 	IImgToolWindow *m_pImgToolWindow;

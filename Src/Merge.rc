@@ -136,7 +136,7 @@ BEGIN
             MENUITEM "&200%",                       ID_IMG_ZOOM_200
             MENUITEM "&100%",                       ID_IMG_ZOOM_100
             MENUITEM "&50%",                        ID_IMG_ZOOM_50
-            MENUITEM "&25%",                        ID_IMG_ZOOM_25
+            MENUITEM "25%",                         ID_IMG_ZOOM_25
             MENUITEM SEPARATOR
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
@@ -155,6 +155,8 @@ BEGIN
             MENUITEM "&None",                       ID_IMG_DRAGGINGMODE_NONE
             MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+            MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
+            MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -164,7 +166,7 @@ BEGIN
             MENUITEM "&200%",                       ID_IMG_VECTORIMAGESCALING_200
             MENUITEM "&100%",                       ID_IMG_VECTORIMAGESCALING_100
             MENUITEM "&50%",                        ID_IMG_VECTORIMAGESCALING_50
-            MENUITEM "&25%",                        ID_IMG_VECTORIMAGESCALING_25
+            MENUITEM "25%",                         ID_IMG_VECTORIMAGESCALING_25
         END
     END
 END
@@ -2906,6 +2908,32 @@ STRINGTABLE
 BEGIN
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DIFF_GROUP          NC_("ImgMergeFrame|LocationPane", "Diff")
+    IDS_DIFF_HIGHLIGHT      NC_("ImgMergeFrame|LocationPane", "Highlight")
+    IDS_DIFF_BLINK          NC_("ImgMergeFrame|LocationPane", "Blink")
+    IDS_DIFF_BLOCKSIZE      NC_("ImgMergeFrame|LocationPane", "Block Size")
+    IDS_DIFF_BLOCKALPHA     NC_("ImgMergeFrame|LocationPane", "Block Alpha")
+    IDS_DIFF_CDTHRESHOLD    NC_("ImgMergeFrame|LocationPane", "CD Threshold")
+    IDS_DIFF_INSERTION_DELETION_DETECTION NC_("ImgMergeFrame|LocationPane", "Ins/Del Detection")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_NONE NC_("ImgMergeFrame|LocationPane", "None")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL NC_("ImgMergeFrame|LocationPane", "Vertical")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL NC_("ImgMergeFrame|LocationPane", "Horizontal")
+    IDS_OVERLAY_GROUP       NC_("ImgMergeFrame|LocationPane", "Overlay")
+    IDS_OVERLAY_ALPHA       NC_("ImgMergeFrame|LocationPane", "Alpha")
+    IDS_OVERLAY_MODE_NONE   NC_("ImgMergeFrame|LocationPane", "None")
+    IDS_OVERLAY_MODE_XOR    NC_("ImgMergeFrame|LocationPane", "XOR")
+    IDS_OVERLAY_MODE_ALPHA  NC_("ImgMergeFrame|LocationPane", "Alpha Blend")
+    IDS_OVERLAY_MODE_ALPHA_ANIMATION NC_("ImgMergeFrame|LocationPane", "Alpha Animation")
+    IDS_ZOOM                NC_("ImgMergeFrame|LocationPane", "Zoom")
+    IDS_PAGE                NC_("ImgMergeFrame|LocationPane", "Page:")
+    IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+    IDS_IMGCMP_STATUS_DIST1_FMT "Dist:%g "
+    IDS_IMGCMP_STATUS_DIST2_FMT "Dist:%g,%g "
+    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 END
 
 #endif    // English (United States) resources

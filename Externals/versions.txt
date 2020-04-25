@@ -7,7 +7,7 @@ POCO: 1.4.3p1
 boost: 1.72.0
 frhed: 0.10904.2017.3
 freeimage: 3.18.0
-WinIMerge: 1.0.17.0
+WinIMerge: 1.0.18.0
 Google C++ Testing Framework: 1.70
 GnuWin32 Patch for Windows: 2.5.9-7
 7-zip: 19.00
