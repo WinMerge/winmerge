@@ -20,11 +20,13 @@
 #include "BinaryCompare.h"
 #include "TimeSizeCompare.h"
 #include "TFile.h"
+#include "FileFilterHelper.h"
 #include "DebugNew.h"
 
 using CompareEngines::ByteCompare;
 using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;
+using CompareEngines::ImageCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
 
@@ -69,12 +71,21 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 	unsigned code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
-	if ((nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT) &&
-		((di.diffFileInfo[0].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
-		 (di.diffFileInfo[1].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
-		 (nDirs > 2 && di.diffFileInfo[2].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE)))
+	if (nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT)
 	{
-		nCompMethod = CMP_BINARY_CONTENT;
+		if ((di.diffFileInfo[0].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
+			(di.diffFileInfo[1].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
+			(nDirs > 2 && di.diffFileInfo[2].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE))
+		{
+			nCompMethod = CMP_BINARY_CONTENT;
+		}
+		else if (m_pCtxt->m_bEnableImageCompare && (
+			di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[0].filename) ||
+			di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[1].filename) ||
+			nDirs > 2 && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[2].filename)))
+		{
+			nCompMethod = CMP_IMAGE_CONTENT;
+		}
 	}
 
 	if (nCompMethod == CMP_CONTENT ||
@@ -427,6 +438,18 @@ exitPrepAndCompare:
 
 		m_pTimeSizeCompare->SetAdditionalOptions(m_pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
+	}
+	else if (nCompMethod == CMP_IMAGE_CONTENT)
+	{
+		if (!m_pImageCompare)
+		{
+			m_pImageCompare.reset(new ImageCompare());
+			m_pImageCompare->SetColorDistanceThreshold(m_pCtxt->m_dColorDistanceThreshold);
+		}
+
+		PathContext tFiles;
+		GetComparePaths(m_pCtxt, di, tFiles);
+		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(tFiles, di);
 	}
 	else
 	{

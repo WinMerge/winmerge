@@ -892,6 +892,9 @@
     <ClCompile Include="PropColorSchemes.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CompareEngines\ImageCompare.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1613,6 +1616,9 @@
     </ClInclude>
     <ClInclude Include="PropColorSchemes.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\ImageCompare.h">
+      <Filter>Compare Engines\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

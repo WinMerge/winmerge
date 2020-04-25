@@ -136,7 +136,7 @@ BEGIN
             MENUITEM "&200%",                       ID_IMG_ZOOM_200
             MENUITEM "&100%",                       ID_IMG_ZOOM_100
             MENUITEM "&50%",                        ID_IMG_ZOOM_50
-            MENUITEM "&25%",                        ID_IMG_ZOOM_25
+            MENUITEM "25%",                         ID_IMG_ZOOM_25
             MENUITEM SEPARATOR
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
@@ -155,6 +155,8 @@ BEGIN
             MENUITEM "&None",                       ID_IMG_DRAGGINGMODE_NONE
             MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+            MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
+            MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -164,7 +166,7 @@ BEGIN
             MENUITEM "&200%",                       ID_IMG_VECTORIMAGESCALING_200
             MENUITEM "&100%",                       ID_IMG_VECTORIMAGESCALING_100
             MENUITEM "&50%",                        ID_IMG_VECTORIMAGESCALING_50
-            MENUITEM "&25%",                        ID_IMG_VECTORIMAGESCALING_25
+            MENUITEM "25%",                         ID_IMG_VECTORIMAGESCALING_25
         END
     END
 END
@@ -1335,7 +1337,7 @@ BEGIN
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,241,10
     CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,241,10
     LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,132,140,20
-    COMBOBOX        IDC_DIFF_ALGORITHM,145,132,100,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DIFF_ALGORITHM,145,130,100,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,146,241,10
     GROUPBOX        "Comments",IDC_STATIC,7,164,241,32
     CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
@@ -1806,6 +1808,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,200,10
     EDITTEXT        IDC_COMPAREIMAGE_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
+    CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,240,10
     PUSHBUTTON      "Defaults",IDC_COMPAREIMAGE_DEFAULTS,7,198,70,14
 END
 
@@ -2508,6 +2511,8 @@ BEGIN
     IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
     IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
     IDS_TEXT_FILES_DIFF     "Text files are different"
+    IDS_IMAGE_FILES_SAME     "Image files are identical"
+    IDS_IMAGE_FILES_DIFF     "Image files are different"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -2711,6 +2716,7 @@ BEGIN
     IDS_EOL_CR              "CR"
     IDS_EOL_CRLF            "CRLF"
     IDS_EOL_NONE            "None"
+	IDS_MARKER_COLOR_FMT    "Marker Color %d"
 END
 
 STRINGTABLE
@@ -2903,6 +2909,32 @@ STRINGTABLE
 BEGIN
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DIFF_GROUP          NC_("ImgMergeFrame|LocationPane", "Diff")
+    IDS_DIFF_HIGHLIGHT      NC_("ImgMergeFrame|LocationPane", "Highlight")
+    IDS_DIFF_BLINK          NC_("ImgMergeFrame|LocationPane", "Blink")
+    IDS_DIFF_BLOCKSIZE      NC_("ImgMergeFrame|LocationPane", "Block Size")
+    IDS_DIFF_BLOCKALPHA     NC_("ImgMergeFrame|LocationPane", "Block Alpha")
+    IDS_DIFF_CDTHRESHOLD    NC_("ImgMergeFrame|LocationPane", "CD Threshold")
+    IDS_DIFF_INSERTION_DELETION_DETECTION NC_("ImgMergeFrame|LocationPane", "Ins/Del Detection")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_NONE NC_("ImgMergeFrame|LocationPane", "None")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_VERTICAL NC_("ImgMergeFrame|LocationPane", "Vertical")
+    IDS_DIFF_INSERTION_DELETION_DETECTION_HORIZONTAL NC_("ImgMergeFrame|LocationPane", "Horizontal")
+    IDS_OVERLAY_GROUP       NC_("ImgMergeFrame|LocationPane", "Overlay")
+    IDS_OVERLAY_ALPHA       NC_("ImgMergeFrame|LocationPane", "Alpha")
+    IDS_OVERLAY_MODE_NONE   NC_("ImgMergeFrame|LocationPane", "None")
+    IDS_OVERLAY_MODE_XOR    NC_("ImgMergeFrame|LocationPane", "XOR")
+    IDS_OVERLAY_MODE_ALPHA  NC_("ImgMergeFrame|LocationPane", "Alpha Blend")
+    IDS_OVERLAY_MODE_ALPHA_ANIMATION NC_("ImgMergeFrame|LocationPane", "Alpha Animation")
+    IDS_ZOOM                NC_("ImgMergeFrame|LocationPane", "Zoom")
+    IDS_PAGE                NC_("ImgMergeFrame|LocationPane", "Page:")
+    IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+    IDS_IMGCMP_STATUS_DIST1_FMT "Dist:%g "
+    IDS_IMGCMP_STATUS_DIST2_FMT "Dist:%g,%g "
+    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 END
 
 #endif    // English (United States) resources

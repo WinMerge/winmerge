@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 #include "string_util.h"
 
 #ifndef ICU_EXTERN

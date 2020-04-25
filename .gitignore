@@ -30,6 +30,12 @@ winmerge-cppcheck-build-dir/
 *.cppcheck
 *.un~
 *.*~
+*.obj
+*.res
+*.tlog
+*.pch
+*.idb
+*.log
 
 Testing/Data/ShellFileOpTest/File1.txt
 Translations/WinMerge/MergeLang.lastbuild

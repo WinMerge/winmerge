@@ -108,6 +108,10 @@ msgstr "ال&جزء النشط"
 msgid "&Zoom"
 msgstr "&تغيير الحجم"
 
+#, c-format
+msgid "25%"
+msgstr ""
+
 msgid "Zoom &In\tCtrl++"
 msgstr "ت&كبير\tCtrl++"
 
@@ -135,6 +139,12 @@ msgstr "&تحريك"
 
 msgid "&Adjust Offset"
 msgstr "ت&عديل مقدار الإزاحة"
+
+msgid "&Vertical Wipe"
+msgstr ""
+
+msgid "&Horizontal Wipe"
+msgstr ""
 
 msgid "&Set Background Color"
 msgstr "&تغيير لون الخلفية"
@@ -1781,6 +1791,9 @@ msgstr "صورة"
 msgid "Image File &Patterns:"
 msgstr "أ&نماط ملف الصور:"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
@@ -2709,6 +2722,12 @@ msgstr "(الجزء الأيسر والجزء الأوسط متطابقان)"
 msgid "Text files are different"
 msgstr "الملفات النصية مختلفة"
 
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "الوقت المنقضي: %ld م.ث"
@@ -3092,6 +3111,10 @@ msgstr "ثنائي"
 msgid "None"
 msgstr "لا يوجد"
 
+#, c-format
+msgid "Marker Color %d"
+msgstr ""
+
 msgid "Type"
 msgstr "النوع"
 
@@ -3370,5 +3393,89 @@ msgid "MDI child window or main window"
 msgstr ""
 
 msgid "MDI child window only"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Diff"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Highlight"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Blink"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Size"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Alpha"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "CD Threshold"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Ins/Del Detection"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "None"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Vertical"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Horizontal"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Overlay"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "XOR"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Blend"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Animation"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Zoom"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Page:"
+msgstr ""
+
+#, c-format
+msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgstr ""
+
+#, c-format
+msgid "Dist:%g "
+msgstr ""
+
+#, c-format
+msgid "Dist:%g,%g "
+msgstr ""
+
+#, c-format
+msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr ""
 

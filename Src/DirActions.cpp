@@ -1038,6 +1038,8 @@ int GetColImage(const DIFFITEM &di)
 				return DIFFIMG_TEXTSAME;
 			else if (di.diffcode.isBin())
 				return DIFFIMG_BINSAME;
+			else if (di.diffcode.isImage())
+				return DIFFIMG_IMAGESAME;
 			else
 				return DIFFIMG_SAME;
 		}
@@ -1053,6 +1055,8 @@ int GetColImage(const DIFFITEM &di)
 				return DIFFIMG_TEXTDIFF;
 			else if (di.diffcode.isBin())
 				return DIFFIMG_BINDIFF;
+			else if (di.diffcode.isImage())
+				return DIFFIMG_IMAGEDIFF;
 			else
 				return DIFFIMG_DIFF;
 		}

@@ -5,6 +5,7 @@
  */
 #include "ccrystalrenderer.h"
 #include <memory>
+#include <array>
 
 #pragma once
 
