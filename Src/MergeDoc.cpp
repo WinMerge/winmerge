@@ -537,16 +537,23 @@ void CMergeDoc::CheckFileChanged(void)
 		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
 	}
 
+	bool bDoReload = false;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		if (FileChange[nBuffer] == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
 			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
-			{
-				OnFileReload();
-			}
+				bDoReload = true;
 			break;
+		}
+	}
+	if (bDoReload)
+	{
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (FileChange[nBuffer] == FileChanged)
+				ChangeFile(nBuffer, m_filePaths[nBuffer]);
 		}
 	}
 }
