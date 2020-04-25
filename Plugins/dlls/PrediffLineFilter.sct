@@ -166,8 +166,8 @@ End Sub
         newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkEnabled" ' + (regRead(REGKEY_PATH + "Enabled" + r, true) ? 'checked' : '') + ' />';
         newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkIgnoreCase" ' + (regRead(REGKEY_PATH + "IgnoreCase" + r, false) ? 'checked' : '') + ' />';
         newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkUseRegExp" ' + (regRead(REGKEY_PATH + "UseRegExp" + r, false) ? 'checked' : '') + ' />';
-        newRow.insertCell(-1).innerHTML = '<input type="text" name="txtPattern" value="" />'
-        newRow.insertCell(-1).innerHTML = '<input type="text" name="txtReplaceText" value="" />'
+        newRow.insertCell(-1).innerHTML = '<input class="textbox" type="text" name="txtPattern" value="" />'
+        newRow.insertCell(-1).innerHTML = '<input class="textbox" type="text" name="txtReplaceText" value="" />'
         newRow.cells[3].childNodes[0].value = regRead(REGKEY_PATH + "Pattern" + r,  "");
         newRow.cells[4].childNodes[0].value = regRead(REGKEY_PATH + "ReplaceText" + r,  "");
       }
@@ -197,9 +197,9 @@ End Sub
         div.id = "language";
         var html = '&shy;<style>';
         if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline }';
+          html += '.en { display: none } .ja { display: inline } .textbox { font-family: "MS Gothic" }';    
         } else {
-          html += '.ja { display: none } .en { display: inline }';
+          html += '.ja { display: none } .en { display: inline } .textbox { font-family: "Courier New" }';
         }
         div.innerHTML = html;
         if (!document.getElementById("language"))
