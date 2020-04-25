@@ -1630,6 +1630,7 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 	if (removeDIFFITEM)
 	{
 		DIFFITEM *diffpos = GetItemKey(sel);
+		m_pList->DeleteItem(sel);
 		if (diffpos != (DIFFITEM *)SPECIAL_ITEM_POS)
 		{
 			if (diffpos->HasChildren())
@@ -1638,7 +1639,10 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 			delete diffpos;
 		}
 	}
-	m_pList->DeleteItem(sel);
+	else
+	{
+		m_pList->DeleteItem(sel);
+	}
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -3142,8 +3146,8 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		if (!sText.IsEmpty())
 		{
 			try {
-				DirItemIterator dirBegin = SelBegin();
-				*pResult = DoItemRename(dirBegin, GetDiffContext(), String(sText));
+				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
+				*pResult = DoItemRename(it, GetDiffContext(), String(sText));
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
