@@ -402,6 +402,7 @@ END
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
 IDR_MARGIN_ICONS        BITMAP                  "res\\mg_icons.bmp"
+IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -616,6 +617,7 @@ BEGIN
     IDS_EOL_CR              "CR"
     IDS_EOL_CRLF            "CRLF"
     IDS_EOL_NONE            "None"
+    IDS_MARKER_COLOR_FMT    "Marker Color %d"
 END
 
 #endif    // English (United States) resources

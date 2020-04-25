@@ -567,8 +567,10 @@ CCrystalTextView::CCrystalTextView ()
 , m_lfSavedBaseFont{}
 , m_pParser(nullptr)
 , m_pPrintFont(nullptr)
+#ifdef _UNICODE
 , m_bChWidthsCalculated{}
 , m_iChDoubleWidthFlags{}
+#endif
 , m_bPreparingToDrag(false)
 , m_bDraggingText(false)
 , m_bDragSelection(false)

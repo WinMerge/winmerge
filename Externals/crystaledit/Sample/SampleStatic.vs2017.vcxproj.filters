@@ -237,11 +237,11 @@
     <ClCompile Include="..\editlib\icu.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ccrystalrendererdirectdraw.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp">
       <Filter>editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\ccrystalrendererdirectwrite.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
