@@ -80,7 +80,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup>
     <PreBuildEvent>
       <Command>
       </Command>
@@ -90,61 +90,10 @@
 copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <PostBuildEvent>
-      <Command>pushd $(ProjectDir)..\Translations\WinMerge
-cscript UpdatePoFilesFromPotFile.vbs
-popd
-mkdir $(OutDir)\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>pushd $(ProjectDir)..\Translations\WinMerge
-cscript UpdatePoFilesFromPotFile.vbs
-popd
-mkdir $(OutDir)\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"
-</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <PostBuildEvent>
-      <Command>pushd $(ProjectDir)..\Translations\WinMerge
-cscript UpdatePoFilesFromPotFile.vbs
-popd
-mkdir $(OutDir)\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="Merge.rc">
       <Command>pushd ..\Translations\WinMerge
 
-cscript CreateMasterPotFile.vbs
-cscript UpdatePoFilesFromPotFile.vbs
-popd
-</Command>
-      <Command>pushd ..\Translations\WinMerge
 date /t &gt; MergeLang.lastbuild
 attrib -a English.pot
 del English.pot.prev English.pot.flt English.pot.prev.flt 2&gt; NUL
@@ -156,7 +105,7 @@ findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
 fc English.pot.flt English.pot.prev.flt
 if not errorlevel 1 copy /y English.pot.prev English.pot
 del English.pot.prev English.pot.flt English.pot.prev.flt
-cscript UpdatePoFilesFromPotFile.vbs
+powershell -ExecutionPolicy ByPass -File UpdatePoFilesFromPotFile.ps1
 popd
 </Command>
       <Outputs>$(ProjectDir)..\Translations\WinMerge\MergeLang.lastbuild</Outputs>
@@ -164,7 +113,7 @@ popd
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
-    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -55,6 +55,31 @@ int BCMenu::m_gutterWidth = 0;
 int BCMenu::m_arrowWidth = 0;
 HTHEME BCMenu::m_hTheme = nullptr;
 
+static class GdiplusToken
+{
+public:
+	GdiplusToken()
+	{
+	}
+
+	~GdiplusToken()
+	{
+		if (m_token != 0)
+			Gdiplus::GdiplusShutdown(m_token);
+	}
+
+	void InitGdiplus()
+	{
+		if (m_token == 0)
+		{
+			Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+			Gdiplus::GdiplusStartup(&m_token, &gdiplusStartupInput, nullptr);
+		}
+	}
+
+private:
+	ULONG_PTR m_token = 0;
+} m_gdiplusToken;
 
 // The Representation of a 32 bit color table entry
 #pragma pack(push)
@@ -554,29 +579,24 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		bitmap = &m_AllImages;
 	}
 	
-	int dy = (int)(0.5+(rect.Height()-m_iconY)/2.0);
-	dy = dy<0 ? 0 : dy;
-	int dx = (int)(0.5+(m_checkBgWidth-m_iconX)/2.0);
-	dx = dx<0 ? 0 : dx;
+	int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
+	int cySMIcon = GetSystemMetrics(SM_CYSMICON);
 
-	if(nIconNormal != -1){
-		if((state & ODS_GRAYED)!=0){
-			CBitmap bitmapstandard;
-			GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
-			COLORREF transparentcol = pDC->GetPixel(rect.left+dx,rect.top+dy);
-			if(hicolor_bitmaps)
-				DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-				bitmapstandard,transparentcol);
-			else
-				DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-				bitmapstandard,0,0,transparentcol);
-		}
-		else{
-			if(bitmap!=nullptr){
-				CPoint ptImage(rect.left+dx,rect.top+dy);
-				bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
-			}
-		}
+	if(nIconNormal != -1 && bitmap != nullptr){
+		CImage bitmapstandard;
+		GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
+		if((state & ODS_GRAYED)!=0)
+			GetDisabledBitmap(bitmapstandard);
+		m_gdiplusToken.InitGdiplus();
+		Gdiplus::Bitmap bm(bitmapstandard.GetWidth(), bitmapstandard.GetHeight(), 
+			bitmapstandard.GetPitch(), PixelFormat32bppARGB, (BYTE *)bitmapstandard.GetBits());
+		Gdiplus::Graphics dcDst(pDC->m_hDC);
+		dcDst.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+		Gdiplus::Rect rcDst(
+			static_cast<int>(rect.left + (rectGutter.right - cxSMIcon) / 2.0 + 0.5),
+			static_cast<int>(rect.top  + (rect.Height() - cySMIcon) / 2.0 + 0.5),
+			cxSMIcon, cySMIcon);
+		dcDst.DrawImage(&bm, rcDst, 0, 0, m_iconX, m_iconY, Gdiplus::UnitPixel);
 	}
 	if(nIconNormal<0 && (state&ODS_CHECKED)!=0){
 		CMenuItemInfo info;
@@ -613,7 +633,7 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		if(tablocr!=-1){
 			rightStr=strText.Mid(tablocr+1);
 			leftStr=strText.Left(strText.Find(_T('\t')));
-			rectt.right-=m_iconX;
+			rectt.right-=cxSMIcon;
 		}
 		else leftStr=strText;
 		
@@ -630,6 +650,52 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
 		pDC->SetBkMode( iOldMode );
 	}
+}
+
+bool BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CImage &bmp)
+{
+	CDC dc;
+	dc.CreateCompatibleDC(pDC);
+	bmp.Create(m_iconX, -m_iconY, 32, CImage::createAlphaChannel);
+	memset(bmp.GetBits(), 0xff, abs(bmp.GetPitch()) * m_iconY);
+	HGDIOBJ pOldBmp = dc.SelectObject(bmp.operator HBITMAP());
+	POINT pt = {0};
+	SIZE  sz = {m_iconX, m_iconY};
+
+	IMAGELISTDRAWPARAMS drawing;
+
+	drawing.cbSize = IMAGELISTDRAWPARAMS_V3_SIZE;
+	drawing.himl = imglist->m_hImageList;
+	drawing.i = nIndex;
+	drawing.hdcDst = dc.m_hDC;
+	drawing.x = pt.x;
+	drawing.y = pt.y;
+	drawing.cx = sz.cx;
+	drawing.cy = sz.cy;
+	drawing.xBitmap = pt.x;
+	drawing.yBitmap = pt.y;
+	drawing.rgbBk = CLR_NONE;
+	drawing.rgbFg = CLR_DEFAULT;
+	drawing.fStyle = ILD_NORMAL;
+	drawing.dwRop = SRCCOPY;
+
+	ImageList_DrawIndirect(&drawing);
+
+	int pitch = bmp.GetPitch();
+	BYTE *p = (BYTE *)bmp.GetBits();
+	for (int y = 0; y < m_iconY; ++y)
+	{
+		for (int x = 0; x < m_iconX; ++x)
+		{
+			if (p[x * 4 + y * pitch + 3] == 0xff)
+				p[x * 4 + y * pitch + 3] = 0;
+			else
+				p[x * 4 + y * pitch + 3] = 0xff;
+		}
+	}
+
+	dc.SelectObject( pOldBmp );
+	return true;
 }
 
 bool BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp)
@@ -1762,6 +1828,23 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	free(pdstBGR);
 
 	ddc.SelectObject(pddcOldBmp);
+}
+
+void BCMenu::GetDisabledBitmap(CImage &bmp)
+{
+	COLORREF discol=GetSysColor(COLOR_BTNSHADOW);
+	pBGR pcurBGR = static_cast<pBGR>(bmp.GetBits());
+
+	for(int i=0;i<bmp.GetWidth();++i){
+		for(int j=0;j<bmp.GetHeight();++j){
+			int avgcol = ((DWORD)pcurBGR->r+(DWORD)pcurBGR->g+(DWORD)pcurBGR->b)/3;
+			double factor = avgcol/255.0;
+			COLORREF newcol = LightenColor(discol,factor);
+			sBGR newcolBGR = {GetBValue(newcol),GetGValue(newcol),GetRValue(newcol),pcurBGR->pad};
+			*pcurBGR = newcolBGR;
+			pcurBGR++;
+		}
+	}
 }
 
 bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, bool bDisabled/*= false*/)

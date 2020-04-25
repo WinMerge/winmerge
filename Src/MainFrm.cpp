@@ -464,9 +464,9 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	if (view == MENU_IMGMERGEVIEW)
 	{
-		BCMenu *pMenu = new BCMenu;
-		pMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)pMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+		m_pImageMenu.reset(new BCMenu);
+		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -1137,6 +1137,8 @@ void CMainFrame::UpdateResources()
 		pDoc->UpdateResources();
 	for (auto pDoc : GetAllOpenDocs())
 		pDoc->UpdateResources();
+	for (auto pFrame: GetAllImgMergeFrames())
+		pFrame->UpdateResources();
 }
 
 /**
@@ -1237,17 +1239,10 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
-	// Close Non-Document/View frame with confirmation
-	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
-	while (pChild != nullptr)
+	for (auto pFrame: GetAllImgMergeFrames())
 	{
-		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
-		if (GetFrameType(pChild) == FRAME_IMGFILE)
-		{
-			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
-				return;
-		}
-		pChild = pNextChild;
+		if (!pFrame->CloseNow())
+			return;
 	}
 
 	CMDIFrameWnd::OnClose();
@@ -1308,6 +1303,21 @@ DirDocList &CMainFrame::GetAllDirDocs()
 HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 {
 	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
+}
+
+std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
+{
+	std::list<CImgMergeFrame *> list;
+	// Close Non-Document/View frame with confirmation
+	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
+	while (pChild != nullptr)
+	{
+		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
+		if (GetFrameType(pChild) == FRAME_IMGFILE)
+			list.push_back(static_cast<CImgMergeFrame *>(pChild));
+		pChild = pNextChild;
+	}
+	return list;
 }
 
 /**

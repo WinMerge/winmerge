@@ -523,6 +523,10 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
+    <ClCompile Include="CompareEngines\ImageCompare.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -1109,6 +1113,7 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="CompareEngines\ImageCompare.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />

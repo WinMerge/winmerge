@@ -28,6 +28,8 @@
 #include "MergeStatusBar.h"
 #include "charsets.h"
 #include "unicoder.h"
+#include "SyntaxColors.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -159,7 +161,8 @@ void CMergeStatusBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	if (displayedAll && diff)
 	{
 		dc.SetBkMode(OPAQUE);
-		dc.SetTextColor(m_cachedColors.clrWordDiffText);
+		dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
+			theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
 		dc.SetBkColor(m_cachedColors.clrWordDiff);
 		dc.ExtTextOut(
 			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,

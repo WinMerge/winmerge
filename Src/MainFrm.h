@@ -43,6 +43,7 @@ class TempFile;
 struct FileLocation;
 class DropHandler;
 class CMainFrame;
+class CImgMergeFrame;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -228,6 +229,7 @@ protected:
 	static const MENUITEM_ICON m_MenuIcons[];
 
 	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
+	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 
@@ -313,6 +315,7 @@ private:
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();
 	HexMergeDocList &GetAllHexMergeDocs();
+	std::list<CImgMergeFrame *> GetAllImgMergeFrames();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();

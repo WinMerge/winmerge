@@ -159,6 +159,7 @@ Localization:
   Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
   Dean Grimm <grimmdp@yahoo.com>
   borjafg
+  Mario Angel <marioangel70 at gmail.com>
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>

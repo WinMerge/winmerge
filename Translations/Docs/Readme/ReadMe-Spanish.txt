@@ -1,46 +1,56 @@
 WINMERGE
 
-WinMerge es una utilidad de codigo abierto para la comparación y combinación
-de ficheros, ejecutable en todas las versiones modernas de Windows. Algunas
-características requieren la instalación de componentes adicionales.
+WinMerge es una herramienta Open Source de comparación y combinación para
+Windows. WinMerge puede comparar tanto ficheros como carpetas, presentando las
+diferencias en un formato de texto visual que es muy fácil de entender y de
+manejar. WinMerge puede emplearse como una herramienta externa de
+diferenciación/combinación o como una aplicación independiente.
 
-La última versión de WinMerge e información adicional están disponibles en
-https://winmerge.org
+WinMerge tiene varias funcionalidades de gran utilidad para hacer comparaciones,
+sincronizar y combinar de la forma más fácil e útil posible. Incluso resalta el
+texto según la sintaxis para diversos lenguajes de programación y otros formatos
+de archivo.
 
-Guía rápida de WinMerge:
-Lea el capítulo Quick-start del manual on-line para comenzar con WinMerge;
-https://manual.winmerge.org/QuickStart.html
+Tanto la información como la última versión de WinMerge están disponibles en
+https://winmerge.org/
 
-Manual HTML:
-el manual está disponible online en:
+Comienzo rápido
+===============
+Para aprender a llevar a cabo las operaciones básicas tras instalar WinMerge,
+pulsa en Axuda>Axuda de WinMerge y vete al tema Quick start. O también puedes
+visitar la versión Web en https://manual.winmerge.org/QuickStart.html
+
+Ayuda de WinMerge
+=================
+La ayuda de WinMerge se instala localmente como un arquivo de ayuda Microsoft
+HTML, WinMerge.chm, al instalar WinMerge. Para abrirla, pulsa en Ayuda>Ayuda de
+WinMerge o pulsa F1 en la ventana de WinMerge. Si usas la línea de comandos,
+ejecuta WinMerge con la opción de ayuda /?.
+
+También puedes explorar la versión HTML de la ayuda de WinMerge en
 https://manual.winmerge.org/
-Posiblemente también esté instalado (si se eligió así) localmente, y se puede 
-descargar por separado desde https://winmerge.org/ (ver Documentación)
 
-Soporte de Scripts:
-Si desea trabajar con scripts necesitará tener Windows Scripting Host instalado.
-Si recibe cualquier error relacionado con sus scripts, por favor visite
-https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-para comprobar que el Scripting Host está actualizado y no corrupto.
+Soporte WinMerge
+================
+¿Preguntas o sugerencias sobre WinMerge? Un buen lugar para comenzar es el foro
+de la comunidad de WinMerge en https://forums.winmerge.org/ Los desarrolladores
+leen y responden de forma frecuente a las preguntas presentadas en ambos foros.
+Utiliza el foro de Discusión Abierta para cuestiones generales como los temas
+relacionados con el uso de WinMerge. Usa el foro de Desarrolladores para las
+preguntas relativas al desarrollo de WinMerge.
 
-Soporte:
-Los desarrolladores contestan consultas en los foros WinMerge de SourceForge.net:
-https://sourceforge.net/forum/?group_id=13216
+Errores y peticiones de funcionalidades
+=======================================
+Si una cuestión no se resuelve en los foros de WinMerge, comprueba los
+rastreadores del proyecto: vete a https://project.winmerge.org/ y pulsa en el
+menú de los Rastreadores, como Errores y Peticiones de Funcionalidades, donde
+podrás explorar o enviar los temas que te interesen.
 
-Errores y solicitud de nuevas características:
-Los errores y peticiones de nuevas opciones deben ser enviados a las listas de 
-errores y peticiones (RFE) de sourceforge.net
-
-Lista de errores (Bug tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=113216
-Al reportar un error por favor indique la versión de WinMerge.
-A partir de la versión 2.2.0, WinMerge puede extraer un resumen de configuración
-a traves del menú Ayuda/Configuración. Por favor, anexe este fichero al
-informe de error, ya que contiene mucha información de utilidad para los
-desarrolladores.
-
-Lista de peticiones (RFE tracker):
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+Si envías una notificación de error, por favor, incluye la versión de WinMerge
+en la misma. Puedes generar un registro de la configuración pulsando en
+Ayuda>Configuración. Por favor, adjunta a la notificación de error el registro
+de la configuración generado, ya que contiene una gran cantidad de información
+muy útil para los desarrolladores.
 
 
-- El equipo de desarrollo de WinMerge
+- The WinMerge Developers

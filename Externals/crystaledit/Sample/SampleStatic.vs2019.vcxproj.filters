@@ -237,10 +237,10 @@
     <ClCompile Include="..\editlib\icu.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ccrystalrendererdirectdraw.cpp">
+    <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp">
+    <ClCompile Include="..\editlib\ccrystalrendererdirectwrite.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
   </ItemGroup>
@@ -370,10 +370,10 @@
     <ClInclude Include="..\editlib\ccrystalrenderer.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrendererdirectdraw.h">
+    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
+    <ClInclude Include="..\editlib\ccrystalrendererdirectwrite.h">
       <Filter>editlib</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,11 +4,11 @@ setlocal
 call SetVersion.cmd
 if "%2" == "-ci" (
   if exist .hg (
-    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%%i
   ) else if exist .git (
-    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%%i
   ) else (
-    set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%APPVEYOR_BUILD_VERSION%
+    set SAFEAPPVER=%SAFEAPPVER%-%APPVEYOR_BUILD_VERSION%
   )
 )
 set DISTDIR=.\Build\Releases

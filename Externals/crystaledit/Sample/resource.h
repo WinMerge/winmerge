@@ -8,6 +8,7 @@
 #define IDB_BITMAP1                     130
 #define IDR_MARGIN_ICONS                131
 #define IDR_MARGIN_CURSOR               132
+#define IDR_MARGIN_ICONS_PNG            133
 #define IDD_MESSAGE_BOX                 219
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
@@ -62,6 +63,7 @@
 #define IDS_EOL_CR                      30406
 #define IDS_EOL_CRLF                    30407
 #define IDS_EOL_NONE                    30408
+#define IDS_MARKER_COLOR_FMT            30409
 #define ID_EDIT_DISABLEBSATSOL          32796
 #define ID_EDIT_DISABLEDRAGANDDROP      32797
 #define ID_EDIT_FIND_PREVIOUS           32799

@@ -12,8 +12,8 @@ namespace CompareEngines
 {
 
 /**
- * @brief A time/size compare class.
- * This compare method compares files by their times and sizes.
+ * @brief A binary compare class.
+ * This compare method compares files by their binary contents.
  */
 class BinaryCompare
 {
