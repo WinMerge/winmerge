@@ -229,6 +229,7 @@ protected:
 	static const MENUITEM_ICON m_MenuIcons[];
 
 	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
+	std::unique_ptr<BCMenu> m_pImageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 

@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CImgMergeFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
+	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
@@ -189,11 +190,7 @@ CImgMergeFrame::~CImgMergeFrame()
 		if (pfnWinIMerge_DestroyWindow != nullptr && pfnWinIMerge_DestroyToolWindow != nullptr)
 		{
 			if (m_pImgMergeWindow != nullptr)
-			{
-				for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
-					RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 				pfnWinIMerge_DestroyWindow(m_pImgMergeWindow);
-			}
 			if (m_pImgToolWindow != nullptr)
 				pfnWinIMerge_DestroyToolWindow(m_pImgToolWindow);
 			m_pImgMergeWindow = nullptr;
@@ -654,6 +651,12 @@ void CImgMergeFrame::OnClose()
 	CMergeFrameCommon::OnClose();
 
 	GetMainFrame()->ClearStatusbarItemCount();
+}
+
+void CImgMergeFrame::OnDestroy()
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 }
 
 bool CImgMergeFrame::DoFileSave(int pane)
