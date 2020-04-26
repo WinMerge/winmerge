@@ -329,6 +329,8 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 			s = _("Text files are identical");
 		else if (di.diffcode.isBin())
 			s = _("Binary files are identical");
+		else if (di.diffcode.isImage())
+			s = _("Image files are identical");
 		else
 			s = _("Identical");
 	}
@@ -338,6 +340,8 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 			s = _("Text files are different");
 		else if (di.diffcode.isBin())
 			s = _("Binary files are different");
+		else if (di.diffcode.isImage())
+			s = _("Image files are different");
 		else if (di.diffcode.isDirectory())
 			s = _("Folders are different");
 		else

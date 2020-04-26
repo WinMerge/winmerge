@@ -20,7 +20,9 @@ class Heksedit
 public:
 	explicit Heksedit(CWnd *pwndParent)
 	{
-		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
+		HMODULE pv = GetModuleHandle(_T("hekseditU.dll"));
+		if (pv == nullptr)
+			pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 		if (pv == nullptr)
 		{
 			LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
@@ -34,7 +36,6 @@ public:
 	~Heksedit()
 	{
 		wnd.DestroyWindow();
-		FreeLibrary(pv);
 	}
 
 	Heksedit(const Heksedit&) = delete;
@@ -45,7 +46,6 @@ public:
 	}
 
 private:
-	HMODULE pv;
 	CWnd wnd;
 };
 

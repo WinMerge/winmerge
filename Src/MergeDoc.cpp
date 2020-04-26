@@ -537,16 +537,23 @@ void CMergeDoc::CheckFileChanged(void)
 		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
 	}
 
+	bool bDoReload = false;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		if (FileChange[nBuffer] == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
 			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
-			{
-				OnFileReload();
-			}
+				bDoReload = true;
 			break;
+		}
+	}
+	if (bDoReload)
+	{
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (FileChange[nBuffer] == FileChanged)
+				ChangeFile(nBuffer, m_filePaths[nBuffer]);
 		}
 	}
 }
@@ -2702,10 +2709,18 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			// All lines will differ, that is not very interesting and probably not wanted.
 			// Propose to turn off the option 'sensitive to EOL'
 			String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
-			if (ShowMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
+			if (ShowMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 			{
 				diffOptions.bIgnoreEol = true;
 				m_diffWrapper.SetOptions(&diffOptions);
+
+				CMessageBoxDialog dlg(nullptr, s.c_str(), _T(""), 0, IDS_SUGGEST_IGNOREEOL);
+				const int nFormerResult = dlg.GetFormerResult();
+				if (nFormerResult != -1)
+				{
+					// "Don't ask this question again" checkbox is checked
+					GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, true);
+				}
 			}
 		}
 	}

@@ -145,8 +145,6 @@ using CrystalLineParser::TEXTBLOCK;
 #  define WM_MOUSEHWHEEL 0x20e
 #endif
 
-/** @brief Maximum tab-char width. */
-const UINT MAX_TAB_LEN = 64;
 /** @brief Width of revision marks. */
 const UINT MARGIN_REV_WIDTH = 3;
 /** @brief Width of icons printed in the margin. */
@@ -569,8 +567,10 @@ CCrystalTextView::CCrystalTextView ()
 , m_lfSavedBaseFont{}
 , m_pParser(nullptr)
 , m_pPrintFont(nullptr)
+#ifdef _UNICODE
 , m_bChWidthsCalculated{}
 , m_iChDoubleWidthFlags{}
+#endif
 , m_bPreparingToDrag(false)
 , m_bDraggingText(false)
 , m_bDragSelection(false)
@@ -598,6 +598,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_bIncrementalFound(false)
 , m_rxmatch{}
 , m_nRenderingMode(s_nRenderingModeDefault)
+, m_pCrystalRendererSaved(nullptr)
 {
 #ifdef _WIN64
   if (m_nRenderingMode == RENDERING_MODE_GDI)
@@ -1913,7 +1914,7 @@ EscapeHTML (const CString & strText, bool & bLastCharSpace, int & nNonbreakChars
             nNonbreakChars = 0;
             break;
           case ' ':
-            if (bLastCharSpace)
+            if (i == 0 || bLastCharSpace)
               {
                 strHTML += _T("&nbsp;");
                 bLastCharSpace = false;
@@ -3006,8 +3007,11 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
-  m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
-
+  if (m_pCrystalRendererSaved)
+  {
+    m_pCrystalRenderer.reset(m_pCrystalRendererSaved);
+    m_pCrystalRendererSaved = nullptr;
+  }
   if (m_pPrintFont != nullptr)
     {
       delete m_pPrintFont;
@@ -3805,7 +3809,7 @@ ClientToText (const CPoint & point)
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0, nPrevIndex = 0;
+  int nIndex = 0;
   int nCurPos = 0;
   int n = 0;
   int i = 0;
@@ -3830,8 +3834,6 @@ ClientToText (const CPoint & point)
 
       if (n > nPos && i == nSubLineOffset)
         break;
-
-      nPrevIndex = nIndex;
 
       nIndex = pIterChar->next();
     }

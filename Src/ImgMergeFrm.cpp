@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CImgMergeFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
+	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
@@ -128,8 +129,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnUpdateImgZoom)
 	ON_COMMAND_RANGE(ID_IMG_OVERLAY_NONE, ID_IMG_OVERLAY_ALPHABLEND_ANIM, OnImgOverlayMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_OVERLAY_NONE, ID_IMG_OVERLAY_ALPHABLEND_ANIM, OnUpdateImgOverlayMode)
-	ON_COMMAND_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET, OnImgDraggingMode)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET, OnUpdateImgDraggingMode)
+	ON_COMMAND_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE, OnImgDraggingMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE, OnUpdateImgDraggingMode)
 	ON_COMMAND_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnImgDiffBlockSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnUpdateImgDiffBlockSize)
 	ON_COMMAND_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnImgThreshold)
@@ -189,11 +190,7 @@ CImgMergeFrame::~CImgMergeFrame()
 		if (pfnWinIMerge_DestroyWindow != nullptr && pfnWinIMerge_DestroyToolWindow != nullptr)
 		{
 			if (m_pImgMergeWindow != nullptr)
-			{
-				for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
-					RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 				pfnWinIMerge_DestroyWindow(m_pImgMergeWindow);
-			}
 			if (m_pImgToolWindow != nullptr)
 				pfnWinIMerge_DestroyToolWindow(m_pImgToolWindow);
 			m_pImgMergeWindow = nullptr;
@@ -406,7 +403,7 @@ bool CImgMergeFrame::IsLoadable()
 /**
  * @brief Create the splitter, the filename bar, the status bar, and the two views
  */
-BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
+BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
 	if (!IsLoadable())
@@ -416,9 +413,9 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	if (hModule == nullptr)
 		return FALSE;
 
-	IImgMergeWindow * (*pfnWinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) = 
-			(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinIMerge_CreateWindow");
-	if (pfnWinIMerge_CreateWindow == nullptr || 
+	IImgMergeWindow * (*pfnWinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) =
+		(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinIMerge_CreateWindow");
+	if (pfnWinIMerge_CreateWindow == nullptr ||
 		(m_pImgMergeWindow = pfnWinIMerge_CreateWindow(hModule, m_hWnd, AFX_IDW_PANE_FIRST)) == nullptr)
 	{
 		FreeLibrary(hModule);
@@ -433,7 +430,7 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_pImgMergeWindow->SetSelDiffDeletedColor(colors.clrSelDiffDeleted);
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
 	LoadOptions();
-	
+
 	bool bResult;
 	if (m_filePaths.GetSize() == 2)
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str());
@@ -443,8 +440,8 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
-		
-		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane), 
+
+		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
 			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
 	}
 
@@ -458,17 +455,24 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
-	IImgToolWindow * (*pfnWinIMerge_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *) = 
-			(IImgToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow))GetProcAddress(hModule, "WinIMerge_CreateToolWindow");
+	IImgToolWindow * (*pfnWinIMerge_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *) =
+		(IImgToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow))GetProcAddress(hModule, "WinIMerge_CreateToolWindow");
 	if (pfnWinIMerge_CreateToolWindow == nullptr ||
 		(m_pImgToolWindow = pfnWinIMerge_CreateToolWindow(hModule, m_wndLocationBar.m_hWnd, m_pImgMergeWindow)) == nullptr)
 	{
 		return FALSE;
 	}
 
+	m_pImgToolWindow->Translate(TranslateLocationPane);
+
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 
 	return TRUE;
+}
+
+void CImgMergeFrame::TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst)
+{
+	swprintf_s(dst, dstbufsize, L"%s", tr("ImgMergeFrame|LocationPane", ucr::toUTF8(org)).c_str());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -647,6 +651,12 @@ void CImgMergeFrame::OnClose()
 	CMergeFrameCommon::OnClose();
 
 	GetMainFrame()->ClearStatusbarItemCount();
+}
+
+void CImgMergeFrame::OnDestroy()
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 }
 
 bool CImgMergeFrame::DoFileSave(int pane)
@@ -1195,6 +1205,7 @@ bool CImgMergeFrame::CloseNow()
  */
 void CImgMergeFrame::UpdateResources()
 {
+	m_pImgToolWindow->Translate(TranslateLocationPane);
 }
 
 /**
@@ -1313,15 +1324,15 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 			String text;
 			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
 			{
-				text += strutils::format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), ptReal.x, ptReal.y,
+				text += strutils::format(_("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), ptReal.x, ptReal.y,
 					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
-					text += strutils::format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
+					text += strutils::format(_("Dist:%g,%g "), colorDistance01, colorDistance12);
 				else
-					text += strutils::format(_T("Dist:%g "), colorDistance01);
+					text += strutils::format(_("Dist:%g "), colorDistance01);
 			}
 
-			text += strutils::format(_T("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
+			text += strutils::format(_("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),
 					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),

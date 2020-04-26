@@ -1,1 +1,39 @@
+name: CI
 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    
+    runs-on: windows-latest
+
+    steps:  
+    - uses: actions/checkout@v2
+
+    - name: Cache
+      uses: actions/cache@v1.1.2
+      with:
+        path: Build/WinMergeDownloadDeps
+        key: WinMergeDownloadDeps
+
+    - name: Build
+      run: |
+        .\DownloadDeps.cmd
+        .\BuildAll.vs2019.cmd x64 -ci
+
+    - name: Upload zip
+      uses: actions/upload-artifact@v2-preview
+      with:
+        name: WinMerge-x64.zip
+        path: Build/Releases/*.zip
+
+    - name: Upload installer
+      uses: actions/upload-artifact@v2-preview
+      with:
+        name: WinMerge-x64-Setup-x64.exe
+        path: Build/Releases/*.exe

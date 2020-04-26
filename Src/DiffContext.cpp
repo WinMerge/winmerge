@@ -69,6 +69,8 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_iGuessEncodingType(0)
 , m_nQuickCompareLimit(0)
 , m_nBinaryCompareLimit(0)
+, m_bEnableImageCompare(false)
+, m_dColorDistanceThreshold(0.0)
 , m_pFilterCommentsManager(nullptr)
 {
 	int index;

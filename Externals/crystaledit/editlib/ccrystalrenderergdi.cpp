@@ -6,6 +6,7 @@
 
 #include "StdAfx.h"
 #include "ccrystalrenderergdi.h"
+#include "resource.h"
 
 CImageList* CCrystalRendererGDI::s_pIcons = nullptr;
 

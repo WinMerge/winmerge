@@ -86,6 +86,7 @@ void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
+	DDX_Text(pDX, IDC_DEVELOPERS, m_p->m_info.developers);
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
 	//}}AFX_DATA_MAP
@@ -102,8 +103,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
 
-	SetDlgItemText(static_cast<unsigned>(IDC_STATIC), m_p->m_info.developers);
-	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
+	GetDlgItem(IDC_DEVELOPERS)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
 	String link;
@@ -132,6 +132,9 @@ void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 	CRect rc;
 	GetDlgItem(nIDCtl)->GetClientRect(&rc);
 	m_image.Draw(lpDrawItemStruct->hDC, rc, Gdiplus::InterpolationModeBicubic);
+	GetDlgItem(IDC_DEVELOPERS)->Invalidate();
+	GetDlgItem(IDC_VERSION)->Invalidate();
+	GetDlgItem(IDC_COMPANY)->Invalidate();
 }
 /**
  * @brief Show contributors list.

@@ -78,6 +78,8 @@ BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowNam
 		bSplitVert = !bSplitVert;
 
 	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(GetDocument());
+	if (pDoc == nullptr)
+		return FALSE;
 
 	// create a splitter with 1 row, 2 columns
 	if (!m_wndSplitter.CreateStatic(this, SWAPPARAMS_IF(bSplitVert, 1, pDoc->m_nBuffers),

@@ -28,6 +28,7 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareImage)
 	DDX_Text(pDX, IDC_COMPAREIMAGE_PATTERNS, m_sFilePatterns);
+	DDX_Check(pDX, IDC_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
 	//}}AFX_DATA_MAP
 }
 
@@ -46,6 +47,7 @@ END_MESSAGE_MAP()
 void PropCompareImage::ReadOptions()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
+    m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 }
 
 /** 
@@ -56,6 +58,7 @@ void PropCompareImage::ReadOptions()
 void PropCompareImage::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns);
+    GetOptionsMgr()->SaveOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
 }
 
 /** 

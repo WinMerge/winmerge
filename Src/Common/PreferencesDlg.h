@@ -45,8 +45,6 @@ public:
 		UINT nMenuID = 0, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPreferencesDlg();
 
-	void SetSyntaxColors(SyntaxColors *pColors);
-
 protected:
 // Dialog Data
 	//{{AFX_DATA(CPreferencesDlg)
@@ -73,7 +71,6 @@ protected:
 	PropCompareBinary m_pageCompareBinary;
 	PropCompareImage m_pageCompareImage;
 
-	SyntaxColors *m_pSyntaxColors;
 
 	CMapPtrToPtr m_mapPP2HTI;
 
@@ -111,5 +108,5 @@ protected:
 
 private:
 	COptionsMgr *m_pOptionsMgr;
-
+	SyntaxColors *m_pSyntaxColors;
 };

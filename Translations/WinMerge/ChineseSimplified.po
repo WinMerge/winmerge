@@ -135,6 +135,10 @@ msgid "&Zoom"
 msgstr "缩放(&Z)"
 
 #, c-format
+msgid "25%"
+msgstr ""
+
+#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "放大(&I)\tCtrl++"
 
@@ -171,12 +175,18 @@ msgstr "移动(&M)"
 msgid "&Adjust Offset"
 msgstr "调整偏移(&A)"
 
+msgid "&Vertical Wipe"
+msgstr ""
+
+msgid "&Horizontal Wipe"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "设置背景颜色(&S)"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "矢量图形缩放 (&V)"
 
 #, c-format
 msgid "&File"
@@ -1414,7 +1424,7 @@ msgid "Colors"
 msgstr "颜色"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "配色方案:"
 
 #, c-format
 msgid "Background"
@@ -2292,6 +2302,9 @@ msgstr "图片"
 msgid "Image File &Patterns:"
 msgstr "图片文件扩展名 (&P):"
 
+msgid "&Enable image compare in folder compare"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
@@ -2428,7 +2441,7 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "如需重新显示这些提示消息, 请在\"选项\"对话框中\"常规\"选项卡中点击\"重置\"按钮."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "配色方案"
 
 #, c-format
 msgid "Syntax"
@@ -3261,6 +3274,12 @@ msgstr "(左侧和中间完全相同)"
 msgid "Text files are different"
 msgstr "文本文件不同"
 
+msgid "Image files are identical"
+msgstr ""
+
+msgid "Image files are different"
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "执行时间: %ld 毫秒"
@@ -3684,6 +3703,10 @@ msgid "None"
 msgstr "无"
 
 #, c-format
+msgid "Marker Color %d"
+msgstr ""
+
+#, c-format
 msgid "Type"
 msgstr "类型"
 
@@ -3891,41 +3914,125 @@ msgid "You can specify the following parameters to the path:\n$file: Path name o
 msgstr "您可以在路径中指定下列参数:\n$file: 当前文件的路径名\n$linenum: 当前游标位置的行号"
 
 msgid "default"
-msgstr ""
+msgstr "默认"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite 默认"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI 子窗口或主窗口"
 
 msgid "MDI child window only"
+msgstr "仅 MDI 子窗口"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Diff"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Highlight"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Blink"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Size"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Alpha"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "CD Threshold"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Ins/Del Detection"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "None"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Vertical"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Horizontal"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Overlay"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "XOR"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Blend"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Animation"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Zoom"
+msgstr ""
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Page:"
+msgstr ""
+
+#, c-format
+msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgstr ""
+
+#, c-format
+msgid "Dist:%g "
+msgstr ""
+
+#, c-format
+msgid "Dist:%g,%g "
+msgstr ""
+
+#, c-format
+msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr ""
 
