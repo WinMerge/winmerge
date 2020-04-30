@@ -2267,6 +2267,9 @@ msgstr ""
 "%1\n"
 "ليس محل تضارب."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 msgid "Save As"
 msgstr "الحفظ باسم"
 

@@ -102,6 +102,7 @@ extern const String OPT_USE_SYSTEM_TEMP_PATH OP("Settings/UseSystemTempPath");
 extern const String OPT_CUSTOM_TEMP_PATH OP("Settings/CustomTempPath");
 
 extern const String OPT_SPLIT_HORIZONTALLY OP("Settings/SplitHorizontally");
+extern const String OPT_FILE_SIZE_THRESHOLD OP("Settings/OPT_FILE_SIZE_THRESHOLD");
 
 // Color options
 // The difference color

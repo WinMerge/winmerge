@@ -1328,6 +1328,7 @@
 #define IDS_IMGCMP_STATUS_DIST1_FMT     34150
 #define IDS_IMGCMP_STATUS_DIST2_FMT     34151
 #define IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT 34152
+#define IDS_COMPARE_LARGE_FILES         34153
 
 // Next default values for new objects
 // 
@@ -1335,7 +1336,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34153
+#define _APS_NEXT_COMMAND_VALUE         34154
 #define _APS_NEXT_CONTROL_VALUE         8831
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
