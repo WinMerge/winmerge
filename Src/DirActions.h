@@ -526,13 +526,12 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	assert(it != InputIterator());
 
 	// We must check that paths still exists
-	String failpath;
 	DIFFITEM &di = *it;
 	paths = ::GetItemFileNames(ctxt, di);
 	for (int index = 0; index < nDirs; index++)
 	{
 		if (di.diffcode.exists(index) && paths::DoesPathExist(paths[index]) == paths::DOES_NOT_EXIST)
-			throw ContentsChangedException(failpath);
+			throw ContentsChangedException(paths[index]);
 	}
 
 	bool bRename[3] = {false};

@@ -38,6 +38,7 @@ class DirDocFilterGlobal;
 class DirDocFilterByExtension;
 class CTempPathContext;
 struct FileActionItem;
+struct FileLocation;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
@@ -124,9 +125,12 @@ public:
 	bool MoveableToPrevDiff();
 	void MoveToNextDiff(IMergeDoc *pMergeDoc);
 	void MoveToPrevDiff(IMergeDoc *pMergeDoc);
+	
+	bool CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifileloc[]);
 
 protected:
-	void LoadLineFilterList();
+	void InitDiffContext(CDiffContext *pCtxt);
+	void LoadLineFilterList(CDiffContext *pCtxt);
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

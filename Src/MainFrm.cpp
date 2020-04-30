@@ -462,9 +462,9 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	if (view == MENU_IMGMERGEVIEW)
 	{
-		BCMenu *pMenu = new BCMenu;
-		pMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)pMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+		m_pImageMenu.reset(new BCMenu);
+		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -613,13 +613,15 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
-	int pane;
+	if (sReportFile.empty() && pDirDoc->CompareFilesIfFilesAreLarge(nFiles, ifileloc))
+		return false;
+
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
 	filterImg.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	filterBin.UseMask(true);
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
-	for (pane = 0; pane < nFiles; ++pane)
+	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		if (filterImg.includeFile(ifileloc[pane].filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
