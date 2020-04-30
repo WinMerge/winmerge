@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-02 12:00+0300\n"
+"PO-Revision-Date: 2020-04-30 01:00+0300\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -145,10 +145,10 @@ msgid "&Adjust Offset"
 msgstr "Коррекция смещения"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "Вертикальное стирание"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "Горизонтальное стирание"
 
 msgid "&Set Background Color"
 msgstr "Цвет фона"
@@ -1781,7 +1781,7 @@ msgid "Image File &Patterns:"
 msgstr "Шаблоны изображений:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Cравнивать изображения в папках сравнения"
 
 msgid "&Hex View"
 msgstr "&Hex"
@@ -2484,10 +2484,10 @@ msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Файлы изображений идентичны"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Файлы изображений разные"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -2801,7 +2801,7 @@ msgstr "Нет"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Цвет маркера %d"
 
 msgid "Type"
 msgstr "Тип"
@@ -3004,51 +3004,51 @@ msgstr "MDI дочернее окно только"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Отличия"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Подсветка"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Мигать"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Размер блока"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Прозрачность блока"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Порог CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Обнаружение Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикальный"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтальный"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Оверлей"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Альфа"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
@@ -3056,19 +3056,19 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Альфа-смешение"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Альфа-анимация"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Масштаб"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Страница:"
 
 #, c-format
 msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
@@ -3084,5 +3084,5 @@ msgstr ""
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-msgstr ""
+msgstr "Страница:%d/%d Масштаб:%d%% %dx%dpx %dbpp"
 
