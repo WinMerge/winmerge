@@ -359,7 +359,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
 
   HANDLE hFile = nullptr;
   int nCurrentMax = 256;
-  TCHAR *pcLineBuf = new TCHAR[nCurrentMax];
+  char *pcLineBuf = new char[nCurrentMax];
 
   bool bSuccess = false;
 
@@ -428,7 +428,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       DWORD dwBufPtr = 0;
       while (dwBufPtr < dwCurSize)
         {
-          TCHAR c = pcBuf[dwBufPtr];
+          char c = pcBuf[dwBufPtr];
           dwBufPtr++;
           if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
             {
@@ -443,8 +443,8 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
             {
               //  Reallocate line buffer
               nCurrentMax += 256;
-              TCHAR *pcNewLineBuf = new TCHAR[nCurrentMax];
-              memcpy(pcNewLineBuf, pcLineBuf, sizeof(TCHAR) * (nCurrentMax - 256));
+              char *pcNewLineBuf = new char[nCurrentMax];
+              memcpy(pcNewLineBuf, pcLineBuf, sizeof(char) * (nCurrentMax - 256));
               delete [] pcLineBuf;
               pcLineBuf = pcNewLineBuf;
             }
@@ -455,15 +455,31 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
           if( c==0x0A )
             {
               pcLineBuf[nCurrentLength] = '\0';
-              nCurrentLength = 0;
+#ifdef _UNICODE
+              wchar_t *buf = new wchar_t[nCurrentLength];
+              int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
+              if (m_nSourceEncoding >= 0)
+                  iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+              InsertLine(buf, len);
+              delete[] buf;
+#else
               if (m_nSourceEncoding >= 0)
                 iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-              InsertLine (pcLineBuf, lstrlen(pcLineBuf));
+              InsertLine (pcLineBuf, nCurrentLength);
+#endif
+              nCurrentLength = 0;
             }
         }
 
       pcLineBuf[nCurrentLength] = 0;
+#ifdef _UNICODE
+      wchar_t *buf = new wchar_t[nCurrentLength];
+      int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
+      InsertLine(buf, len);
+      delete[] buf;
+#else
       InsertLine (&pcLineBuf[0], nCurrentLength);
+#endif
 
       ASSERT (m_aLines.size() > 0);   //  At least one empty line must present
 
@@ -532,12 +548,12 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
 
           ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
           LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-          int nCRLFLength = _tcslen (pszCRLF);
+          int nCRLFLength = lstrlen (pszCRLF);
 
-          int nLineCount = m_aLines.size();
+          int nLineCount = static_cast<int>(m_aLines.size());
           for (int nLine = 0; nLine < nLineCount; nLine++)
             {
-              int nLength = m_aLines[nLine].Length();
+              int nLength = static_cast<int>(m_aLines[nLine].Length());
               DWORD dwWrittenBytes;
               if (nLength > 0)
                 {

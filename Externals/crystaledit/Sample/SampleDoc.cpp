@@ -41,11 +41,13 @@ CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
 	m_lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 	m_lf.lfQuality = DEFAULT_QUALITY;
 	m_lf.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
+	m_lf.lfHeight = -20;
 	_tcscpy_s(m_lf.lfFaceName, _T("Courier New"));
 
 	m_pSyntaxColors = new SyntaxColors();
 	m_pMarkers = new CCrystalTextMarkers();
 	m_pMarkers->LoadFromRegistry();
+	CCrystalTextView::SetRenderingModeDefault(CCrystalTextView::RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC);
 }
 
 CSampleDoc::~CSampleDoc()
