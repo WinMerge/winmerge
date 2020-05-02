@@ -475,6 +475,11 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 		float fBaselineOriginX = static_cast<float>(x);
 		for (size_t i = 0; i < indices.size(); ++i)
 		{
+			if (indices[i].glyphPos >= customGlyphAdvances.size())
+			{
+				TRACE(_T("BUG: indices[i].glyphPos >= customGlyphAdvances.size()\n"));
+				break;
+			}
 			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[indices[i].i];
 			CustomGlyphRun customGlyphRun(param.glyphRun, &customGlyphAdvances[indices[i].glyphPos], m_charSize.height);
 			float fBaselineOriginY = y + customGlyphRun.ascent;
