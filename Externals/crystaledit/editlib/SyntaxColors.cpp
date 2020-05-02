@@ -15,8 +15,6 @@
  */
 SyntaxColors::SyntaxColors()
 {
-	m_colors.resize(COLORINDEX_COUNT);
-	m_bolds.resize(COLORINDEX_COUNT);
 	SetDefaults();
 }
 
@@ -25,11 +23,9 @@ SyntaxColors::SyntaxColors()
  * @param [in] pColors Instance to copy.
  */
 SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
+	: m_colors{pColors->m_colors}
+	, m_bolds{pColors->m_bolds}
 {
-	m_colors.resize(COLORINDEX_COUNT);
-	m_bolds.resize(COLORINDEX_COUNT);
-	m_colors = pColors->m_colors;
-	m_bolds = pColors->m_bolds;
 }
 
 /**
@@ -38,8 +34,6 @@ SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
  */
 void SyntaxColors::Clone(const SyntaxColors *pColors)
 {
-	m_colors.resize(COLORINDEX_COUNT);
-	m_bolds.resize(COLORINDEX_COUNT);
 	m_colors = pColors->m_colors;
 	m_bolds = pColors->m_bolds;
 }
