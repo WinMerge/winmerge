@@ -96,9 +96,6 @@
     <ClCompile Include="..\editlib\registry.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\splash.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\statbar.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
@@ -329,9 +326,6 @@
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\registry.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\splash.h">
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\statbar.h">
