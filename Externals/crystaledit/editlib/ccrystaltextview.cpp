@@ -625,42 +625,28 @@ CCrystalTextView::~CCrystalTextView ()
 
   delete m_pFindTextDlg;
 
-  if (m_pszLastFindWhat != nullptr)
-    {
-      free (m_pszLastFindWhat);
-      m_pszLastFindWhat=nullptr;
-    }
-  if (m_rxnode != nullptr)
-    {
-      RxFree (m_rxnode);
-      m_rxnode = nullptr;
-    }
-  if (m_pszMatched != nullptr)
-    {
-      free(m_pszMatched); // Allocated by _tcsdup()
-      m_pszMatched = nullptr;
-    }
+  free (m_pszLastFindWhat);
+  m_pszLastFindWhat=nullptr;
+
+  RxFree (m_rxnode);
+  m_rxnode = nullptr;
+
+  free(m_pszMatched); // Allocated by _tcsdup()
+  m_pszMatched = nullptr;
+
   //BEGIN SW
-  if( m_panSubLines != nullptr )
-    {
-      delete m_panSubLines;
-      m_panSubLines = nullptr;
-    }
-  if( m_panSubLineIndexCache != nullptr )
-    {
-      delete m_panSubLineIndexCache;
-      m_panSubLineIndexCache = nullptr;
-    }
-  if( m_pstrIncrementalSearchString != nullptr )
-    {
-      delete m_pstrIncrementalSearchString;
-      m_pstrIncrementalSearchString = nullptr;
-    }
-  if( m_pstrIncrementalSearchStringOld != nullptr )
-    {
-      delete m_pstrIncrementalSearchStringOld;
-      m_pstrIncrementalSearchStringOld = nullptr;
-    }
+  delete m_panSubLines;
+  m_panSubLines = nullptr;
+
+  delete m_panSubLineIndexCache;
+  m_panSubLineIndexCache = nullptr;
+
+  delete m_pstrIncrementalSearchString;
+  m_pstrIncrementalSearchString = nullptr;
+
+  delete m_pstrIncrementalSearchStringOld;
+  m_pstrIncrementalSearchStringOld = nullptr;
+
   //END SW
   ASSERT(m_ParseCookies != nullptr);
   delete m_ParseCookies;

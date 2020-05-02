@@ -104,8 +104,7 @@ void LineInfo::CreateEmpty()
   m_nLength = 0;
   m_nEolChars = 0;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
-  if (m_pcLine != nullptr)
-    delete [] m_pcLine;
+  delete [] m_pcLine;
   m_pcLine = new TCHAR[m_nMax];
   ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
 }
@@ -255,8 +254,7 @@ void LineInfo::DeleteEnd(size_t nStartChar)
  */
 void LineInfo::CopyFrom(const LineInfo &li)
 {
-  if (m_pcLine != nullptr)
-    delete [] m_pcLine;
+  delete [] m_pcLine;
   m_pcLine = new TCHAR[li.m_nMax];
   memcpy(m_pcLine, li.m_pcLine, li.m_nMax * sizeof(TCHAR));
 }

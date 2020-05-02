@@ -1529,8 +1529,7 @@ OnEditReplace ()
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != nullptr);
 
-  if (m_pEditReplaceDlg != nullptr)
-    delete m_pEditReplaceDlg;
+  delete m_pEditReplaceDlg;
   m_pEditReplaceDlg = new CEditReplaceDlg(this);
   LastSearchInfos * lastSearch = m_pEditReplaceDlg->GetLastSearchInfos();
 

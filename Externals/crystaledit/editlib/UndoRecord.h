@@ -67,8 +67,7 @@ private:
   virtual ~UndoRecord () // destructor
   {
     FreeText();
-    if (m_paSavedRevisionNumbers != nullptr)
-		delete m_paSavedRevisionNumbers;
+    delete m_paSavedRevisionNumbers;
   }
 
   void SetText (LPCTSTR pszText, size_t cchText);
