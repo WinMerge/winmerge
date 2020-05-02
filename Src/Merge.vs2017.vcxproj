@@ -474,7 +474,6 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

@@ -691,9 +691,6 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp">
       <Filter>EditLib\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp">
-      <Filter>EditLib\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
       <Filter>EditLib\Source Files</Filter>
     </ClCompile>

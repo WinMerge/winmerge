@@ -541,7 +541,6 @@
     <ClCompile Include="..\editlib\sh.cpp" />
     <ClCompile Include="..\editlib\siod.cpp" />
     <ClCompile Include="..\editlib\sql.cpp" />
-    <ClCompile Include="..\editlib\statbar.cpp" />
     <ClCompile Include="..\editlib\string_util.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -616,7 +615,6 @@
     <ClInclude Include="..\editlib\crystallineparser.h" />
     <ClInclude Include="..\editlib\memcombo.h" />
     <ClInclude Include="..\editlib\registry.h" />
-    <ClInclude Include="..\editlib\statbar.h" />
     <ClInclude Include="..\editlib\string_util.h" />
     <ClInclude Include="..\editlib\SyntaxColors.h" />
     <ClInclude Include="..\editlib\UndoRecord.h" />
