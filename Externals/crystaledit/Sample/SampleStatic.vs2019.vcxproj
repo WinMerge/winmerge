@@ -163,7 +163,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -326,7 +325,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
