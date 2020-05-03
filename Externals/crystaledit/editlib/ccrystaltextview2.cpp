@@ -100,7 +100,7 @@ MoveLeft (bool bSelect)
         }
       else
         {
-          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(m_ptCursorPos.y), GetLineLength(m_ptCursorPos.y));
           m_ptCursorPos.x = pIterChar->preceding(m_ptCursorPos.x);
         }
     }
@@ -133,7 +133,7 @@ MoveRight (bool bSelect)
         }
       else
         {
-          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(m_ptCursorPos.y), nLineLength);
           m_ptCursorPos.x = pIterChar->following(m_ptCursorPos.x);
         }
     }

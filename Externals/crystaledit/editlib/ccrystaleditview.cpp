@@ -621,7 +621,7 @@ OnEditDelete ()
         }
       else 
         {
-		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
           ptSelEnd.x = pIterChar->following(ptSelEnd.x);
       }
     }
@@ -836,7 +836,7 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptCursorPos.y), GetLineLength(ptCursorPos.y));
       ptCursorPos.x = pIterChar->preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
     }

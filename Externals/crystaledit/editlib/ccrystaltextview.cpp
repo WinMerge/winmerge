@@ -795,7 +795,7 @@ GetLineActualLength (int nLineIndex)
     {
       LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nLength);
       for (int i = 0; i < nLength; i = pIterChar->next())
         {
           TCHAR c = pszChars[i];
@@ -979,7 +979,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nLength);
       for (int i = 0, next = 0; i < nLength; i = next)
         {
           next = pIterChar->next();
@@ -1040,7 +1040,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
     }
   else
     {
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nLength);
       for (int i1=0, next=0; i1<nLength; i1 = next)
       {
         next = pIterChar->next();
@@ -1074,7 +1074,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator((LPCTSTR)line, lineLen);
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -2589,7 +2589,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   const int nTabSize = GetTabSize();
 
   int nIndex=0, nPrevIndex = 0;
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(szLine), nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(szLine, nLength);
   for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next())
     {
       if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
@@ -3802,7 +3802,7 @@ ClientToText (const CPoint & point)
   int i = 0;
   const int nTabSize = GetTabSize();
 
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszLine), nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszLine, nLength);
   while (nIndex < nLength)
     {
       if (nBreaks && nIndex == anBreaks[i])
@@ -3894,7 +3894,7 @@ TextToClient (const CPoint & point)
   //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszLine), point.x);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszLine, point.x);
   for (int nIndex = 0; nIndex < point.x; nIndex = pIterChar->next())
     {
       //BEGIN SW
@@ -4025,7 +4025,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
     nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
   //END SW
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nCharIndex);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nCharIndex);
   int I=0;
   for (I = 0; I < nCharIndex; I = pIterChar->next())
     {
@@ -4060,7 +4060,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nCurrentOffset = 0;
   int nTabSize = GetTabSize ();
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nLength);
   for (int I = 0; I < nLength; I = pIterChar->next())
     {
       if (pszChars[I] == _T ('\t'))
