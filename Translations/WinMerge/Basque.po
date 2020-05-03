@@ -3669,13 +3669,11 @@ msgstr "Ezberdint. Panela"
 msgid "Patch file successfully written."
 msgstr "Eranskina agiria ongi idatzi da."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. gaia ez da aurkitu edo zuzenbidea da!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. gaia ez da aurkitu edo zuzenbidea da!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

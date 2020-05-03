@@ -122,8 +122,8 @@ void CPatchDlg::OnOK()
 	}
 	if (selectCount == 1)
 	{
-		bool file1Ok = (paths::DoesPathExist(m_file1) == paths::IS_EXISTING_FILE);
-		bool file2Ok = (paths::DoesPathExist(m_file2) == paths::IS_EXISTING_FILE);
+		bool file1Ok = (paths::DoesPathExist(m_file1) != paths::DOES_NOT_EXIST);
+		bool file2Ok = (paths::DoesPathExist(m_file2) != paths::DOES_NOT_EXIST);
 
 		if (!file1Ok || !file2Ok)
 		{
@@ -276,7 +276,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
 		m_ctlFile1.SetWindowText(s.c_str());
 }
 
@@ -289,7 +289,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
 		m_ctlFile2.SetWindowText(s.c_str());
 }
 

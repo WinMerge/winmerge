@@ -2719,11 +2719,11 @@ msgstr "Panel różnic"
 msgid "Patch file successfully written."
 msgstr "Łatka została utworzona."
 
-msgid "1. item is not found or is directory!"
-msgstr "Pierwszy element nie został znaleziony lub jest katalogiem!"
+msgid "1. item is not found!"
+msgstr ""
 
-msgid "2. item is not found or is directory!"
-msgstr "Drugi element nie został znaleziony lub jest katalogiem!"
+msgid "2. item is not found!"
+msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Plik łatki już istnieje. Czy napisać plik?"

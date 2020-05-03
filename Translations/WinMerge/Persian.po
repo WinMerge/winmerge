@@ -3713,13 +3713,11 @@ msgstr " چهارگوش تفاوت "
 msgid "Patch file successfully written."
 msgstr " پرونده وصله  با موفقيت نوشته شد "
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr " مورد پيدا نشد يا فهرست نشده است !     -1"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr " مورد پيدا نشد يا فهرست نشده است !     -2"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

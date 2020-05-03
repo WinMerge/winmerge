@@ -3566,13 +3566,11 @@ msgstr ""
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "Az 1. elem nem található vagy az egy könyvtár!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "A 2. elem nem található vagy az egy könyvtár!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

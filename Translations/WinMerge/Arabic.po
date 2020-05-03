@@ -3014,11 +3014,11 @@ msgstr "الجزء الخاص بأداة مقارنة الملفات Diff"
 msgid "Patch file successfully written."
 msgstr "ملف التصحيح (Patch) تم كتابتة بنجاح."
 
-msgid "1. item is not found or is directory!"
-msgstr "1. العنصر غير موجود أو أنه مجلد!"
+msgid "1. item is not found!"
+msgstr ""
 
-msgid "2. item is not found or is directory!"
-msgstr "2. العنصر غير موجود أو أنه مجلد!"
+msgid "2. item is not found!"
+msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "ملف التصحيح موجود مسبقا. هل تريد الكتابة عليه؟"

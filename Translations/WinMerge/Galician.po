@@ -3709,13 +3709,11 @@ msgstr "Panel de diferenzas"
 msgid "Patch file successfully written."
 msgstr "Escribiuse correctamente o arquivo Patch."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. Non se atopou este elemento ou é un cartafol!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. Non se atopou este elemento ou é un cartafol!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
