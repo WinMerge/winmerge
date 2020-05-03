@@ -2106,7 +2106,7 @@ OnEditAutoComplete ()
       CString sText;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
-      _tcsncpy_s (pszBuffer + 1, nLength - 1, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer + 1, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2119,13 +2119,14 @@ OnEditAutoComplete ()
         }
       if (bFound)
         {
+          int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
           int nFound = m_pTextBuffer->GetLineLength (ptTextPos.y);
           pszText = m_pTextBuffer->GetLineChars (ptTextPos.y) + ptTextPos.x + m_nLastFindWhatLen;
           nFound -= ptTextPos.x + m_nLastFindWhatLen;
           pszBuffer = sText.GetBuffer (nFound + 1);
           while (nFound-- && xisalnum (*pszText))
             *pszBuffer++ = *pszText++;
-          sText.ReleaseBuffer (nFound);
+          sText.ReleaseBuffer (nLineLength - (ptTextPos.x + m_nLastFindWhatLen) - nFound - 1);
           if (!sText.IsEmpty ())
             {
               m_pTextBuffer->BeginUndoGroup ();
