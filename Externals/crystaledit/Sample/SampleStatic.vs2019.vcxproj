@@ -630,6 +630,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\mg_icons.bmp" />
+    <Image Include="res\mg_icons.png" />
     <Image Include="res\Sample.ico" />
     <Image Include="res\SampleDoc.ico" />
     <Image Include="res\Toolbar.bmp" />

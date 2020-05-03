@@ -160,7 +160,7 @@ BEGIN
     IDS_MENU_UNDO_FORMAT    "&Undo %s\tCtrl+Z"
     IDS_MENU_REDO_FORMAT    "&Redo %s\tCtrl+Y"
     IDS_MENU_UNDO_DEFAULT   "&Undo\tCtrl+Z"
-    IDS_MENU_REDO_DEFAULT   "&Redo\tCtrl+Z"
+    IDS_MENU_REDO_DEFAULT   "&Redo\tCtrl+Y"
     IDS_EDITOP_UNKNOWN      "Unknown"
     IDS_EDITOP_PASTE        "Paste"
     IDS_EDITOP_DELSELECTION "Delete Selection"
