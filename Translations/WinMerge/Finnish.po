@@ -3692,13 +3692,11 @@ msgstr "Eroavuusruutu"
 msgid "Patch file successfully written."
 msgstr "Paikkaustiedoston kirjoitus onnistui."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. kohdetta ei löydy, tai se on hakemisto!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. kohdetta ei löydy, tai se on hakemisto!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

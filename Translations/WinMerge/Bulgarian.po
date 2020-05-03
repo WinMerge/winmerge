@@ -2993,11 +2993,11 @@ msgstr "Панел с различия"
 msgid "Patch file successfully written."
 msgstr "Кръпката е успешно запазена."
 
-msgid "1. item is not found or is directory!"
-msgstr "1. обектът не е намерен или е директория!"
+msgid "1. item is not found!"
+msgstr ""
 
-msgid "2. item is not found or is directory!"
-msgstr "2. обекът не е намерен или е директория!"
+msgid "2. item is not found!"
+msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Кръпката вече съществува. Да бъдели презаписана?"

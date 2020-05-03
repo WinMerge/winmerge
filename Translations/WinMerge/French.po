@@ -3773,13 +3773,11 @@ msgstr "Détail des différences"
 msgid "Patch file successfully written."
 msgstr "Fichier de retouche écrit avec succès."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. élément non trouvé ou il s'agit d'un répertoire !"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. élément non trouvé ou il s'agit d'un répertoire !"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

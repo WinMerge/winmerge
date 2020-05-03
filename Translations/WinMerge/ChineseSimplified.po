@@ -3587,13 +3587,11 @@ msgstr "差异窗格"
 msgid "Patch file successfully written."
 msgstr "补丁文件写入成功."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. 项目未找到或者它是一个文件夹!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. 项目未找到或者它是一个文件夹!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
