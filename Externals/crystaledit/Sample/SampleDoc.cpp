@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 // CSampleDoc construction/destruction
 
 #pragma warning(disable:4355)
-CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
+CSampleDoc::CSampleDoc()
 {
 	// TODO: add one-time construction code here
 
