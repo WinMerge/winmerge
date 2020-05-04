@@ -3696,13 +3696,11 @@ msgstr "Janela de Diferenças"
 msgid "Patch file successfully written."
 msgstr "Ficheiro patch escrito com sucesso."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. item não encontrado ou é uma directoria!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. item não encontrado ou é uma directoria!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

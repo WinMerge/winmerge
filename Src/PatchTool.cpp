@@ -28,6 +28,7 @@
 #include "PatchDlg.h"
 #include "paths.h"
 #include "Merge.h"
+#include "DirTravel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -121,12 +122,38 @@ int CPatchTool::CreatePatch()
 
 		size_t fileCount = dlgPatch.GetItemCount();
 
-		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
-		m_diffWrapper.SetAppendFiles(true);
-
+		std::vector<PATCHFILES> fileList;
 		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& tFiles = dlgPatch.GetItemAt(index);
+			if (paths::DoesPathExist(tFiles.lfile) == paths::IS_EXISTING_DIR && paths::DoesPathExist(tFiles.rfile) == paths::IS_EXISTING_DIR)
+			{
+				// Walk given folders recursively and adds found files into patch list
+				String lfile = tFiles.lfile;
+				String rfile = tFiles.rfile;
+				paths::normalize(lfile);
+				paths::normalize(rfile);
+				PathContext paths((tFiles.pathLeft.empty() ? _T("") : paths::GetParentPath(lfile)),
+								  (tFiles.pathRight.empty() ? _T("") : paths::GetParentPath(rfile)));
+				String subdir[2] = { (tFiles.pathLeft.empty() ? lfile : tFiles.pathLeft),
+									 (tFiles.pathRight.empty() ? rfile : tFiles.pathRight) };
+				GetItemsForPatchList(paths, subdir, &fileList);
+			}
+			else {
+				fileList.push_back(tFiles);
+			}
+		}
+		fileCount = fileList.size();
+
+		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
+		m_diffWrapper.SetAppendFiles(true);
+
+		bool bShowedBinaryMessage = false;
+		int writeFileCount = 0;
+
+		for (size_t index = 0; index < fileCount; index++)
+		{
+			const PATCHFILES& tFiles = fileList[index];
 			String filename1 = tFiles.lfile.length() == 0 ? _T("NUL") : tFiles.lfile;
 			String filename2 = tFiles.rfile.length() == 0 ? _T("NUL") : tFiles.rfile;
 			
@@ -145,9 +172,11 @@ int CPatchTool::CreatePatch()
 			}
 			else if (status.bBinaries)
 			{
-				LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONSTOP);
-				bResult = false;
-				break;
+				if (!bShowedBinaryMessage)
+				{
+					LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING);
+					bShowedBinaryMessage = true;
+				}
 			}
 			else if (status.bPatchFileFailed)
 			{
@@ -156,11 +185,16 @@ int CPatchTool::CreatePatch()
 				bResult = false;
 				break;
 			}
+			else
+			{
+				writeFileCount++;
+			}
+
 		}
 		
 		m_diffWrapper.WritePatchFileTerminator(dlgPatch.m_outputStyle);
 
-		if (bResult && fileCount > 0)
+		if (bResult && writeFileCount > 0)
 		{
 			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
 				            IDS_DIFF_SUCCEEDED);
@@ -221,4 +255,159 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		return false;
 
 	return bRetVal;
+}
+
+/**
+ * @brief Add one compare item to patch list.
+ * @param [in] sDir1 Left subdirectory.
+ * @param [in] sDir2 Right subdirectory.
+ * @param [in] ent1 Left item data to add.
+ * @param [in] ent2 Right item data to add.
+ * @param [out] fileList Patch files list.
+ */
+void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const DirItem* ent1, const DirItem* ent2, std::vector<PATCHFILES>* fileList)
+{
+	if ((ent1 == nullptr && ent2 == nullptr) || fileList == nullptr)
+		return;
+
+	static const TCHAR backslash[] = _T("\\");
+
+	PATCHFILES tFiles;
+
+	if (ent1 != nullptr)
+	{
+		tFiles.lfile = ent1->path.get() + backslash + ent1->filename.get();
+
+		String pathLeft = _T("");
+		if (!sDir1.empty())
+			pathLeft = sDir1 + backslash;
+		pathLeft += ent1->filename.get();
+		tFiles.pathLeft = pathLeft;
+	}
+
+	if (ent2 != nullptr)
+	{
+		tFiles.rfile = ent2->path.get() + backslash + ent2->filename.get();
+
+		String pathRight = _T("");
+		if (!sDir2.empty())
+			pathRight = sDir2 + backslash;
+		pathRight += ent2->filename.get();
+
+		tFiles.pathRight = pathRight;
+	}
+
+	fileList->push_back(tFiles);
+}
+
+/**
+ * @brief This function walks given folders and adds found files into patch list.
+ * We walk all subfolders and add the files they contain into list.
+ *
+ * @param [in] paths Root paths of compare
+ * @param [in] subdir Subdirectories under root path
+ * @param [out] fileList Patch files list
+ * @return 1 normally, 0 if no directories and files exist.
+ * @remark This function was written based on DirScan_GetItems() in DirScan.cpp
+ */
+int CPatchTool::GetItemsForPatchList(const PathContext& paths, const String subdir[], std::vector<PATCHFILES>* fileList)
+{
+	static const TCHAR backslash[] = _T("\\");
+	int nDirs = paths.GetSize();
+
+	String sDir[2];
+	String subprefix[2];
+
+	std::copy(paths.begin(), paths.end(), sDir);
+
+	if (!subdir[0].empty())
+	{
+		for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
+		{
+			sDir[nIndex] = paths::ConcatPath(sDir[nIndex], subdir[nIndex]);
+			subprefix[nIndex] = subdir[nIndex] + backslash;
+		}
+	}
+
+	DirItemArray dirs[2], aFiles[2];
+	for (int nIndex = 0; nIndex < nDirs; nIndex++)
+		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], false);
+
+	{
+		int nIndex;
+		for (nIndex = 0; nIndex < nDirs; nIndex++)
+			if (dirs[nIndex].size() != 0 || aFiles[nIndex].size() != 0) break;
+		if (nIndex == nDirs)
+			return 0;
+	}
+
+	// Handle directories
+	// i points to current directory in left list (dirs[0])
+	// j points to current directory in right list (dirs[1])
+	DirItemArray::size_type i = 0, j = 0;
+	while (true)
+	{
+		if (i >= dirs[0].size() && j >= dirs[1].size())
+			break;
+
+		unsigned nDiffCode = DIFFCODE::DIR;
+		// Comparing directories leftDirs[i].name to rightDirs[j].name
+		if (i < dirs[0].size() && (j == dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, false) < 0))
+		{
+			nDiffCode |= DIFFCODE::FIRST;
+		}
+		else if (j < dirs[1].size() && (i == dirs[0].size() || collstr(dirs[1][j].filename, dirs[0][i].filename, false) < 0))
+		{
+			nDiffCode |= DIFFCODE::SECOND;
+		}
+		else
+		{
+			nDiffCode |= DIFFCODE::BOTH;
+		}
+
+		String leftnewsub = (nDiffCode & DIFFCODE::FIRST) ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
+		String rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
+
+		// Scan recursively all subdirectories too
+		String newsubdir[2] = { leftnewsub, rightnewsub };
+		GetItemsForPatchList(paths, newsubdir, fileList);
+
+		if (nDiffCode & DIFFCODE::FIRST)
+			i++;
+		if (nDiffCode & DIFFCODE::SECOND)
+			j++;
+	}
+
+	// Handle files
+	// i points to current file in left list (aFiles[0])
+	// j points to current file in right list (aFiles[1])
+	i = 0, j = 0;
+	while (true)
+	{
+		// Comparing file aFiles[0][i].name to aFiles[1][j].name
+		if (i < aFiles[0].size() && (j == aFiles[1].size() || collstr(aFiles[0][i].filename, aFiles[1][j].filename, false) < 0))
+		{
+			AddFilesToList(subdir[0], subdir[1], &aFiles[0][i], nullptr, fileList);
+			++i;
+			continue;
+		}
+		if (j < aFiles[1].size() && (i == aFiles[0].size() || collstr(aFiles[0][i].filename, aFiles[1][j].filename, false) > 0))
+		{
+			AddFilesToList(subdir[0], subdir[1], nullptr, &aFiles[1][j], fileList);
+			++j;
+			continue;
+		}
+		if (i < aFiles[0].size())
+		{
+			assert(j < aFiles[1].size());
+
+			AddFilesToList(subdir[0], subdir[1], &aFiles[0][i], &aFiles[1][j], fileList);
+			++i;
+			++j;
+			continue;
+		}
+		break;
+	}
+
+	return 1;
 }

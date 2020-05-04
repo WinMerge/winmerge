@@ -2706,12 +2706,6 @@ void CDirView::OnToolsGeneratePatch()
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
 			bValidFiles = false;
 		}
-		else if (item.diffcode.isDirectory())
-		{
-			LangMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
-				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
-			bValidFiles = false;
-		}
 
 		if (bValidFiles)
 		{

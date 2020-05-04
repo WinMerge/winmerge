@@ -3593,13 +3593,11 @@ msgstr "Subfinestra de diferències"
 msgid "Patch file successfully written."
 msgstr "El pedaç s'ha generat satisfactòriament."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. no s'ha trobat l'element o aquest és un directori!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. no s'ha trobat l'element o aquest és un directori!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

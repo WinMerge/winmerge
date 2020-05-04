@@ -206,6 +206,7 @@
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -220,9 +221,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <OptimizeReferences>true</OptimizeReferences>
@@ -347,13 +345,14 @@
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -366,9 +365,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
@@ -396,12 +392,13 @@
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -414,9 +411,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
@@ -481,7 +475,6 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

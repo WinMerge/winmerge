@@ -3709,13 +3709,11 @@ msgstr "Forskels vindue"
 msgid "Patch file successfully written."
 msgstr "Patch fil oprettet med succes."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. element er ikke fundet eller er en mappe!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. element er ikke fundet eller er en mappe!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

@@ -312,7 +312,7 @@ DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 	}
 
 	// Filenames must be identical
-	if (std::count(file, file + paths.GetSize(), file[0]) < paths.GetSize())
+	if (std::any_of(file, file + paths.GetSize(), [&](auto& it) { return strutils::compare_nocase(it, file[0]) != 0; }))
 		return 0;
 
 	DIFFITEM *pos = ctxt.GetFirstDiffPosition();

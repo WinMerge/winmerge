@@ -163,13 +163,14 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -208,6 +209,8 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -248,6 +251,8 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -287,6 +292,8 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -318,13 +325,14 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -364,6 +372,8 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -405,6 +415,8 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -445,6 +457,8 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -523,9 +537,7 @@
     <ClCompile Include="..\editlib\sgml.cpp" />
     <ClCompile Include="..\editlib\sh.cpp" />
     <ClCompile Include="..\editlib\siod.cpp" />
-    <ClCompile Include="..\editlib\splash.cpp" />
     <ClCompile Include="..\editlib\sql.cpp" />
-    <ClCompile Include="..\editlib\statbar.cpp" />
     <ClCompile Include="..\editlib\string_util.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -600,8 +612,6 @@
     <ClInclude Include="..\editlib\crystallineparser.h" />
     <ClInclude Include="..\editlib\memcombo.h" />
     <ClInclude Include="..\editlib\registry.h" />
-    <ClInclude Include="..\editlib\splash.h" />
-    <ClInclude Include="..\editlib\statbar.h" />
     <ClInclude Include="..\editlib\string_util.h" />
     <ClInclude Include="..\editlib\SyntaxColors.h" />
     <ClInclude Include="..\editlib\UndoRecord.h" />
@@ -618,6 +628,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\mg_icons.bmp" />
+    <Image Include="res\mg_icons.png" />
     <Image Include="res\Sample.ico" />
     <Image Include="res\SampleDoc.ico" />
     <Image Include="res\Toolbar.bmp" />

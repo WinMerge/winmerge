@@ -22,6 +22,7 @@
 #pragma once
 
 #include "DiffWrapper.h"
+#include "DiffItem.h"
 
 class CPatchDlg;
 
@@ -70,6 +71,10 @@ public:
 
 protected:
 	bool ShowDialog(CPatchDlg *pDlgPatch);
+
+private:
+	void AddFilesToList(const String& sDir1, const String& sDir2, const DirItem* ent1, const DirItem* ent2, std::vector<PATCHFILES>* fileList);
+	int GetItemsForPatchList(const PathContext& paths, const String subdir[], std::vector<PATCHFILES>* fileList);
 
 private:
     std::vector<PATCHFILES> m_fileList; /**< List of files to patch. */

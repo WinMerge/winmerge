@@ -108,6 +108,7 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM "&Close\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
         MENUITEM "Print Preview",               ID_FILE_PRINT_PREVIEW
@@ -133,6 +134,11 @@ BEGIN
         MENUITEM "Find &Next\tF3",              ID_EDIT_REPEAT
         MENUITEM "Find Previous\tShift+F3",     ID_EDIT_FIND_PREVIOUS
         MENUITEM "R&eplace...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_GOTO
+        MENUITEM "Match Brace\tCtrl+E",         ID_EDIT_MATCHBRACE
+        MENUITEM "Marker...\tCtrl+Shift+M",     ID_EDIT_MARK
+        MENUITEM "Find Incremental Next\tCtrl+I", ID_EDIT_FIND_INCREMENTAL_FORWARD
+        MENUITEM "Find Incremental Previous\tCtrl+Shift+I", ID_EDIT_FIND_INCREMENTAL_BACKWARD
         MENUITEM SEPARATOR
         MENUITEM "Read &Only",                  ID_READ_ONLY
         MENUITEM SEPARATOR
@@ -177,6 +183,11 @@ BEGIN
     END
     POPUP "&View"
     BEGIN
+        MENUITEM "To&ggle source/header",       ID_VIEW_TOGGLE_SRC_HDR
+        MENUITEM SEPARATOR
+        MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
+        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM SEPARATOR
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
@@ -205,8 +216,12 @@ BEGIN
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_EDIT_MATCHBRACE,     VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_GOTO,           VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_EDIT_FIND_INCREMENTAL_FORWARD, VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_EDIT_FIND_INCREMENTAL_BACKWARD, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "M",            ID_EDIT_MARK,           VIRTKEY, SHIFT, CONTROL, NOINVERT
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
@@ -216,8 +231,14 @@ BEGIN
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_EDIT_UPPERCASE,      VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_EDIT_LOWERCASE,      VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "W",            ID_FILE_CLOSE,          VIRTKEY, CONTROL, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
+    VK_SPACE,       ID_EDIT_AUTOCOMPLETE,   VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -297,6 +318,17 @@ BEGIN
     DEFPUSHBUTTON   "&OK",IDOK,138,154,50,14,WS_GROUP
     PUSHBUTTON      "&Apply",ID_APPLY_NOW,189,154,50,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
+END
+
+IDD_EDIT_GOTO DIALOGEX 30, 73, 167, 47
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go to line"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "&Line number:",-1,5,5,42,10,SS_CENTERIMAGE
+    EDITTEXT        IDC_NUMBER,55,5,45,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,110,5,50,15,WS_GROUP
+    PUSHBUTTON      "&Cancel",IDCANCEL,110,25,50,15
 END
 
 
@@ -402,6 +434,13 @@ END
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
 IDR_MARGIN_ICONS        BITMAP                  "res\\mg_icons.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// IMAGE
+//
+
 IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 
 

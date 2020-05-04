@@ -959,7 +959,7 @@ static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
     return 0;
 }
 
-int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *Dest, int *Dlen) {
+int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR *Dest, int *Dlen) {
     int dlen = 0;
     LPTSTR dest = 0;
     TCHAR Ch;
@@ -982,8 +982,8 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
             case _T('7'): case _T('8'): case _T('9'):
                 n = Ch - 48;
 
-                if (match.Open[n] != -1 && match.Close[n] != -1) {
-                    add(&dlen, &dest, Src + match.Open[n], match.Close[n] - match.Open[n], flag);
+                if (matchres.Open[n] != -1 && matchres.Close[n] != -1) {
+                    add(&dlen, &dest, Src + matchres.Open[n], matchres.Close[n] - matchres.Open[n], flag);
                 } else return -1;
                 break;
             case 0:

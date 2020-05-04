@@ -216,6 +216,18 @@ public:
 		return getCharacterBreakIterator<1>(text, textLength);
 	}
 
+	static ICUBreakIterator *getCharacterBreakIterator(const wchar_t * text, int32_t textLength)
+	{
+		return getCharacterBreakIterator<1>(reinterpret_cast<const UChar *>(text), textLength);
+	}
+
+	static ICUBreakIterator *getCharacterBreakIterator(const char * text, int32_t textLength)
+	{
+		std::unique_ptr<wchar_t> wtext{ new wchar_t[textLength] };
+		int wlen = MultiByteToWideChar(CP_ACP, 0, text, textLength, wtext.get(), textLength);
+		return getCharacterBreakIterator<1>(reinterpret_cast<const UChar *>(wtext.get()), wlen);
+	}
+
 	template<int N>
 	static ICUBreakIterator *getCharacterBreakIterator(const UChar * text, int32_t textLength)
 	{

@@ -96,12 +96,6 @@
     <ClCompile Include="..\editlib\registry.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\splash.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\statbar.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\string_util.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
@@ -241,7 +235,7 @@
       <Filter>editlib</Filter>
     </ClCompile>
     <ClCompile Include="..\editlib\ccrystalrendererdirectwrite.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>editlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,12 +325,6 @@
     <ClInclude Include="..\editlib\registry.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\splash.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\statbar.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\editlib\string_util.h">
       <Filter>editlib</Filter>
     </ClInclude>
@@ -370,10 +358,10 @@
     <ClInclude Include="..\editlib\ccrystalrenderer.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrendererdirectdraw.h">
+    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
+    <ClInclude Include="..\editlib\ccrystalrendererdirectwrite.h">
       <Filter>editlib</Filter>
     </ClInclude>
   </ItemGroup>
@@ -388,6 +376,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mg_icons.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

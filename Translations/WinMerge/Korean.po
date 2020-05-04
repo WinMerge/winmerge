@@ -3697,13 +3697,11 @@ msgstr "차이점 창"
 msgid "Patch file successfully written."
 msgstr "패치 파일을 성공적으로 기록했습니다."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. 항목을 찾을 수 없거나 폴더입니다!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. 항목을 찾을 수 없거나 폴더입니다!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

@@ -85,6 +85,12 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 			// remember whitespace
 			bBreakable = true;
 		}
+		else if (ch >= _T('\x00') && ch <= _T('\x1F'))
+		{
+			nLineCharCount+= 3;
+			nCharCount+= 3;
+			bBreakable = true;
+		}
 		else
 		{
 #ifndef _UNICODE

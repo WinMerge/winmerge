@@ -304,7 +304,7 @@ void CCrystalRendererDirectWrite::SetFont(const LOGFONT &lf)
 		bool bold = (nIndex & 1) != 0;
 		bool italic = (nIndex & 2) != 0;
 		m_pTextFormat[nIndex].reset(new CD2DTextFormat(&m_renderTarget,
-			lf.lfFaceName[0] ? lf.lfFaceName : L"Courier New",
+			lf.lfFaceName[0] ? lf.lfFaceName : _T("Courier New"),
 			static_cast<FLOAT>(abs(lf.lfHeight == 0 ? 11 : lf.lfHeight)),
 			bold ? DWRITE_FONT_WEIGHT_BOLD : DWRITE_FONT_WEIGHT_NORMAL,
 			italic ? DWRITE_FONT_STYLE_ITALIC : DWRITE_FONT_STYLE_NORMAL));
@@ -391,7 +391,7 @@ void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex)
 {
 	if (!m_pIconBitmap)
 	{
-		m_pIconBitmap.reset(new CD2DBitmap(nullptr, static_cast<UINT>(IDR_MARGIN_ICONS_PNG), L"IMAGE"));
+		m_pIconBitmap.reset(new CD2DBitmap(nullptr, static_cast<UINT>(IDR_MARGIN_ICONS_PNG), _T("IMAGE")));
 		m_pIconBitmap->Create(&m_renderTarget);
 	}
 	auto size = m_pIconBitmap->GetPixelSize();
@@ -445,7 +445,12 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 	{
 		CDrawingContext drawingContext{ &m_renderTarget };
 		CComPtr<IDWriteTextLayout> pTextLayout;
+#ifdef _UNICODE
 		AfxGetD2DState()->GetWriteFactory()->CreateTextLayout(text, static_cast<unsigned>(len),
+#else
+		USES_CONVERSION;
+		AfxGetD2DState()->GetWriteFactory()->CreateTextLayout(A2W(text), static_cast<unsigned>(len),
+#endif
 			*m_pCurrentTextFormat,
 			rcF.right - rcF.left, rcF.bottom - rcF.top, &pTextLayout);
 		pTextLayout->Draw(&drawingContext, m_pTextRenderer->Get(), 0, 0);
@@ -470,6 +475,11 @@ void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const 
 		float fBaselineOriginX = static_cast<float>(x);
 		for (size_t i = 0; i < indices.size(); ++i)
 		{
+			if (indices[i].glyphPos >= customGlyphAdvances.size())
+			{
+				TRACE(_T("BUG: indices[i].glyphPos >= customGlyphAdvances.size()\n"));
+				break;
+			}
 			DrawGlyphRunParams& param = drawingContext.m_drawGlyphRunParams[indices[i].i];
 			CustomGlyphRun customGlyphRun(param.glyphRun, &customGlyphAdvances[indices[i].glyphPos], m_charSize.height);
 			float fBaselineOriginY = y + customGlyphRun.ascent;

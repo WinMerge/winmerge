@@ -621,7 +621,7 @@ OnEditDelete ()
         }
       else 
         {
-		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
           ptSelEnd.x = pIterChar->following(ptSelEnd.x);
       }
     }
@@ -836,7 +836,7 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptCursorPos.y), GetLineLength(ptCursorPos.y));
       ptCursorPos.x = pIterChar->preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
     }
@@ -1529,8 +1529,7 @@ OnEditReplace ()
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != nullptr);
 
-  if (m_pEditReplaceDlg != nullptr)
-    delete m_pEditReplaceDlg;
+  delete m_pEditReplaceDlg;
   m_pEditReplaceDlg = new CEditReplaceDlg(this);
   LastSearchInfos * lastSearch = m_pEditReplaceDlg->GetLastSearchInfos();
 
@@ -2107,7 +2106,7 @@ OnEditAutoComplete ()
       CString sText;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
-      _tcsncpy_s (pszBuffer + 1, nLength - 1, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer + 1, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2120,13 +2119,14 @@ OnEditAutoComplete ()
         }
       if (bFound)
         {
+          int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
           int nFound = m_pTextBuffer->GetLineLength (ptTextPos.y);
           pszText = m_pTextBuffer->GetLineChars (ptTextPos.y) + ptTextPos.x + m_nLastFindWhatLen;
           nFound -= ptTextPos.x + m_nLastFindWhatLen;
           pszBuffer = sText.GetBuffer (nFound + 1);
           while (nFound-- && xisalnum (*pszText))
             *pszBuffer++ = *pszText++;
-          sText.ReleaseBuffer (nFound);
+          sText.ReleaseBuffer (nLineLength - (ptTextPos.x + m_nLastFindWhatLen) - nFound - 1);
           if (!sText.IsEmpty ())
             {
               m_pTextBuffer->BeginUndoGroup ();
