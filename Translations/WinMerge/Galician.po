@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-25 18:28+0200\n"
+"PO-Revision-Date: 2020-05-04 23:47+0200\n"
 "Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -2856,8 +2856,16 @@ msgstr ""
 "%1\n"
 "non é un arquivo de conflito."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"Vas comparar dous arquivos moi grandes.\n"
+"Amosar os seus contidos precisa dunha gran cantidade de memoria.\n"
+"Queres amosar só os resultados da comparación e non os contidos dos arquivos?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -3710,10 +3718,10 @@ msgid "Patch file successfully written."
 msgstr "Escribiuse correctamente o arquivo Patch."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. non se atopa o elemento!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. non se atopa o elemento!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -4236,4 +4244,3 @@ msgstr "Dist:%g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Páx:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-
