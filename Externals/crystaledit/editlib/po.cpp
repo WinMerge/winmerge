@@ -52,14 +52,6 @@ IsPoKeyword (LPCTSTR pszChars, int nLength)
   return IsXKeyword (s_apszPoKeywordList, pszChars, nLength);
 }
 
-static bool
-IsPoNumber (LPCTSTR pszChars, int nLength)
-{
-  if (!_istdigit (pszChars[0]))
-    return false;
-  return true;
-}
-
 DWORD
 CrystalLineParser::ParseLinePo (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -195,7 +187,7 @@ out:
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
                 }
-              else if (IsPoNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -232,7 +224,7 @@ out:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
-      else if (IsPoNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }

@@ -60,110 +60,6 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("version"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
-  {
-    _T ("Aacute"),
-    _T ("aacute"),
-    _T ("acirc"),
-    _T ("Acirc"),
-    _T ("acute"),
-    _T ("aelig"),
-    _T ("AElig"),
-    _T ("agrave"),
-    _T ("Agrave"),
-    _T ("amp"),
-    _T ("Aring"),
-    _T ("aring"),
-    _T ("Atilde"),
-    _T ("atilde"),
-    _T ("Auml"),
-    _T ("auml"),
-    _T ("brvbar"),
-    _T ("ccedil"),
-    _T ("Ccedil"),
-    _T ("cedil"),
-    _T ("cent"),
-    _T ("copy"),
-    _T ("curren"),
-    _T ("deg"),
-    _T ("divide"),
-    _T ("Eacute"),
-    _T ("eacute"),
-    _T ("Ecirc"),
-    _T ("ecirc"),
-    _T ("Egrave"),
-    _T ("egrave"),
-    _T ("ETH"),
-    _T ("eth"),
-    _T ("euml"),
-    _T ("Euml"),
-    _T ("frac12"),
-    _T ("frac14"),
-    _T ("frac34"),
-    _T ("gt"),
-    _T ("Iacute"),
-    _T ("iacute"),
-    _T ("icirc"),
-    _T ("Icirc"),
-    _T ("iexcl"),
-    _T ("Igrave"),
-    _T ("igrave"),
-    _T ("iquest"),
-    _T ("iuml"),
-    _T ("Iuml"),
-    _T ("laquo"),
-    _T ("lt"),
-    _T ("macr"),
-    _T ("micro"),
-    _T ("middot"),
-    _T ("nbsp"),
-    _T ("not"),
-    _T ("ntilde"),
-    _T ("Ntilde"),
-    _T ("oacute"),
-    _T ("Oacute"),
-    _T ("ocirc"),
-    _T ("Ocirc"),
-    _T ("ograve"),
-    _T ("Ograve"),
-    _T ("ordf"),
-    _T ("ordm"),
-    _T ("oslash"),
-    _T ("Oslash"),
-    _T ("otilde"),
-    _T ("Otilde"),
-    _T ("Ouml"),
-    _T ("ouml"),
-    _T ("para"),
-    _T ("plusmn"),
-    _T ("pound"),
-    _T ("quot"),
-    _T ("raquo"),
-    _T ("reg"),
-    _T ("sect"),
-    _T ("shy"),
-    _T ("sup1"),
-    _T ("sup2"),
-    _T ("sup3"),
-    _T ("szlig"),
-    _T ("THORN"),
-    _T ("thorn"),
-    _T ("times"),
-    _T ("Uacute"),
-    _T ("uacute"),
-    _T ("Ucirc"),
-    _T ("ucirc"),
-    _T ("ugrave"),
-    _T ("Ugrave"),
-    _T ("uml"),
-    _T ("uuml"),
-    _T ("Uuml"),
-    _T ("Yacute"),
-    _T ("yacute"),
-    _T ("yen"),
-    _T ("yuml"),
-  };
-
 static bool
 IsXmlKeyword (LPCTSTR pszChars, int nLength)
 {
@@ -174,38 +70,6 @@ static bool
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
-}
-
-static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
-{
-  return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
-}
-
-static bool
-IsXmlNumber (LPCTSTR pszChars, int nLength)
-{
-  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
-    {
-      for (int I = 2; I < nLength; I++)
-        {
-          if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
-            continue;
-          return false;
-        }
-      return true;
-    }
-  if (!_istdigit (pszChars[0]))
-    return false;
-  for (int I = 1; I < nLength; I++)
-    {
-      if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
-            pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
-        return false;
-    }
-  return true;
 }
 
 DWORD
@@ -376,7 +240,7 @@ out:
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
                     }
-                  else if (IsXmlNumber (pszChars + nIdentBegin, I - nIdentBegin))
+                  else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                     }
@@ -387,7 +251,7 @@ out:
                 }
               else if (dwCookie & COOKIE_USER1)
                 {
-                  if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+                  if (IsHtmlUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
                     }
@@ -396,7 +260,7 @@ out:
                       goto next;
                     }
                 }
-              else if (IsXmlNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -461,11 +325,11 @@ next:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
         }
-      else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsHtmlUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
         }
-      else if (IsXmlNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }

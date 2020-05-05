@@ -452,6 +452,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\isx.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp" />

@@ -56,55 +56,6 @@ IsLuaKeyword (LPCTSTR pszChars, int nLength)
   return ISXKEYWORD (s_apszLuaKeywordList, pszChars, nLength);
 }
 
-static bool
-IsLuaNumber (LPCTSTR pszChars, int nLength)
-{
-  if (nLength > 2 && pszChars[0] == '0')
-    {
-      if (pszChars[1] == 'x')
-        {
-          for (int I = 2; I < nLength; I++)
-            {
-              if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                    (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_')
-                continue;
-              return false;
-            }
-          return true;
-        }
-      else if (pszChars[1] == 'o')
-        {
-          for (int I = 2; I < nLength; I++)
-            {
-              if ((pszChars[I] >= '0' && pszChars[I] <= '7') || pszChars[I] == '_')
-                continue;
-              return false;
-            }
-          return true;
-        }
-      else if (pszChars[1] == 'b')
-        {
-          for (int I = 2; I < nLength; I++)
-            {
-              if ((pszChars[I] >= '0' && pszChars[I] <= '1') || pszChars[I] == '_')
-                continue;
-              return false;
-            }
-          return true;
-        }
-    }
-  if (!_istdigit (pszChars[0]) && pszChars[0] != '.')
-    return false;
-  for (int I = 1; I < nLength; I++)
-    {
-      if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
-            pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E' && pszChars[I] != '_')
-        return false;
-    }
-  return true;
-}
-
 DWORD
 CrystalLineParser::ParseLineLua (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -289,7 +240,7 @@ out:
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
                 }
-              else if (IsLuaNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -326,7 +277,7 @@ out:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
-      else if (IsLuaNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }

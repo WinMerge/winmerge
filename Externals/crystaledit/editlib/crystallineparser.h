@@ -1,5 +1,8 @@
 #pragma once
 
+#define ISXKEYWORD(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), _tcsncmp)
+#define ISXKEYWORDI(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), _tcsnicmp)
+
 #define DEFINE_BLOCK(pos, colorindex)   \
 ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != nullptr)\
@@ -44,6 +47,12 @@ struct TEXTBLOCK
 	int m_nColorIndex;
 	int m_nBgColorIndex;
 };
+
+bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
+bool IsXNumber(const TCHAR* pszChars, int nLength);
+bool IsHtmlKeyword(const TCHAR *pszChars, int nLength);
+bool IsHtmlUser1Keyword(const TCHAR *pszChars, int nLength);
+bool IsHtmlUser2Keyword(const TCHAR *pszChars, int nLength);
 
 DWORD ParseLinePlain(DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 DWORD ParseLineAsp(DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

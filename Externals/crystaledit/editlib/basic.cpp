@@ -313,32 +313,6 @@ IsBasicKeyword (LPCTSTR pszChars, int nLength)
   return ISXKEYWORDI (s_apszBasicKeywordList, pszChars, nLength);
 }
 
-static bool
-IsBasicNumber (LPCTSTR pszChars, int nLength)
-{
-  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
-    {
-      for (int I = 2; I < nLength; I++)
-        {
-          if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
-            continue;
-          return false;
-        }
-      return true;
-    }
-  if (!_istdigit (pszChars[0]))
-    return false;
-  for (int I = 1; I < nLength; I++)
-    {
-      if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
-            pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
-        return false;
-    }
-  return true;
-}
-
 inline void
 DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
@@ -346,7 +320,7 @@ DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXT
     {
       DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
     }
-  else if (IsBasicNumber (pszChars + nIdentBegin, I - nIdentBegin))
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
     {
       DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
     }

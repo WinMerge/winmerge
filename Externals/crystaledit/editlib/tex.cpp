@@ -856,32 +856,6 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-static bool
-IsTexNumber (LPCTSTR pszChars, int nLength)
-{
-  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
-    {
-      for (int I = 2; I < nLength; I++)
-        {
-          if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
-            continue;
-          return false;
-        }
-      return true;
-    }
-  if (!_istdigit (pszChars[0]))
-    return false;
-  for (int I = 1; I < nLength; I++)
-    {
-      if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
-            pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
-        return false;
-    }
-  return true;
-}
-
 DWORD
 CrystalLineParser::ParseLineTex (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -1021,7 +995,7 @@ out:
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
                 }
-              else if (IsTexNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -1065,7 +1039,7 @@ out:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
         }
-      else if (IsTexNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }

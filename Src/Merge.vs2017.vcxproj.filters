@@ -892,6 +892,9 @@
     <ClCompile Include="CompareEngines\ImageCompare.cpp">
       <Filter>Compare Engines\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\isx.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">

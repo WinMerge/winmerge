@@ -59,14 +59,12 @@
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
-    <XPDeprecationWarning>false</XPDeprecationWarning>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
-    <XPDeprecationWarning>false</XPDeprecationWarning>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -453,6 +451,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\isx.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp" />
