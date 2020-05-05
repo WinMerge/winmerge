@@ -2077,29 +2077,27 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
   strHTML += _T("><code>");
 
+  auto MakeSpan = [&](TEXTBLOCK& block, CString& strExpanded) {
+    CString strHTML;
+    strHTML += _T("<span ");
+    strHTML += GetHTMLAttribute (block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
+    strHTML += _T(">");
+    strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+    strHTML += _T("</span>");
+    return strHTML;
+  };
+
   for (i = 0; i < blocks.size() - 1; i++)
     {
       ExpandChars (pszChars, blocks[i].m_nCharPos, blocks[i + 1].m_nCharPos - blocks[i].m_nCharPos, strExpanded, 0);
       if (!strExpanded.IsEmpty())
-        {
-          strHTML += _T("<span ");
-          strHTML += GetHTMLAttribute (blocks[i].m_nColorIndex, blocks[i].m_nBgColorIndex, crText, crBkgnd);
-          strHTML += _T(">");
-          strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-          strHTML += _T("</span>");
-        }
+        strHTML += MakeSpan(blocks[i], strExpanded);
     }
   if (blocks.size() > 0)
   {
     ExpandChars (pszChars, blocks[i].m_nCharPos, nLength - blocks[i].m_nCharPos, strExpanded, 0);
     if (!strExpanded.IsEmpty())
-      {
-        strHTML += _T("<span ");
-        strHTML += GetHTMLAttribute (blocks[i].m_nColorIndex, blocks[i].m_nBgColorIndex, crText, crBkgnd);
-        strHTML += _T(">");
-        strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-        strHTML += _T("</span>");
-      }
+      strHTML += MakeSpan(blocks[i], strExpanded);
     if (strExpanded.Compare (CString (' ', strExpanded.GetLength())) == 0)
       strHTML += _T("&nbsp;");
   }
@@ -4082,79 +4080,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
 void CCrystalTextView::
 EnsureVisible (CPoint pt)
 {
-  //  Scroll vertically
-  int			nSubLineCount = GetSubLineCount();
-  int			nNewTopSubLine = m_nTopSubLine;
-  CPoint	subLinePos;
-
-  CharPosToPoint( pt.y, pt.x, subLinePos );
-  subLinePos.y+= GetSubLineIndex( pt.y );
-
-  if( subLinePos.y >= nNewTopSubLine + GetScreenLines() )
-    nNewTopSubLine = subLinePos.y - GetScreenLines() + 1;
-  if( subLinePos.y < nNewTopSubLine )
-    nNewTopSubLine = subLinePos.y;
-
-  if( nNewTopSubLine < 0 )
-    nNewTopSubLine = 0;
-  if( nNewTopSubLine >= nSubLineCount )
-    nNewTopSubLine = nSubLineCount - 1;
-
-  if ( !m_bWordWrap && !m_bHideLines )
-    {
-      // WINMERGE: This line fixes (cursor) slowdown after merges!
-      // I don't know exactly why, but propably we are setting
-      // m_nTopLine to zero in ResetView() and are not setting to
-      // valid value again. Maybe this is a good place to set it?
-      m_nTopLine = nNewTopSubLine;
-    }
-  else
-    {
-      int dummy;
-      GetLineBySubLine(nNewTopSubLine, m_nTopLine, dummy);
-    }
-
-  if( nNewTopSubLine != m_nTopSubLine )
-    {
-      ScrollToSubLine( nNewTopSubLine );
-      UpdateCaret();
-      UpdateSiblingScrollPos( false );
-    }
-
-  //  Scroll horizontally
-  // we do not need horizontally scrolling, if we wrap the words
-  if( m_bWordWrap )
-    return;
-  int nActualPos = CalculateActualOffset (pt.y, pt.x);
-  int nNewOffset = m_nOffsetChar;
-  const int nScreenChars = GetScreenChars ();
-  
-  // Keep 5 chars visible right to cursor
-  if (nActualPos > nNewOffset + nScreenChars - 5)
-    {
-      // Add 10 chars width space after line
-      nNewOffset = nActualPos - nScreenChars + 10;
-    }
-  // Keep 5 chars visible left to cursor
-  if (nActualPos < nNewOffset + 5)
-    {
-      // Jump by 10 char steps, so user sees previous letters too
-      nNewOffset = nActualPos - 10;
-    }
-
-  // Horiz scroll limit to longest line + one screenwidth
-  const int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
-  if (nNewOffset >= nMaxLineLen + nScreenChars)
-    nNewOffset = nMaxLineLen + nScreenChars - 1;
-  if (nNewOffset < 0)
-    nNewOffset = 0;
-
-  if (m_nOffsetChar != nNewOffset)
-    {
-      ScrollToChar (nNewOffset);
-      UpdateCaret ();
-      UpdateSiblingScrollPos (true);
-    }
+  EnsureVisible(pt, pt);
 }
 
 void CCrystalTextView::
@@ -6416,12 +6342,9 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
   int nSubLineCount = GetSubLineCount();
   int nNewTopSubLine = m_nTopSubLine;
   CPoint subLinePos;
-  CPoint subLinePosEnd;
 
   CharPosToPoint( ptStart.y, ptStart.x, subLinePos );
   subLinePos.y += GetSubLineIndex( ptStart.y );
-  CharPosToPoint( ptEnd.y, ptEnd.x, subLinePosEnd );
-  subLinePosEnd.y += GetSubLineIndex( ptEnd.y );
 
   if( subLinePos.y >= nNewTopSubLine + GetScreenLines() )
     nNewTopSubLine = subLinePos.y - GetScreenLines() + 1;
@@ -6461,43 +6384,62 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
     return;
   //END SW
   int nActualPos = CalculateActualOffset (ptStart.y, ptStart.x);
-  int nActualEndPos = CalculateActualOffset (ptEnd.y, ptEnd.x);
   int nNewOffset = m_nOffsetChar;
   const int nScreenChars = GetScreenChars ();
-  const int nBeginOffset = nActualPos - m_nOffsetChar;
-  const int nEndOffset = nActualEndPos - m_nOffsetChar;
-  const int nSelLen = nActualEndPos - nActualPos;
 
-  // Selection fits to screen, scroll whole selection visible
-  if (nSelLen < nScreenChars)
+  if (ptStart == ptEnd)
     {
-      // Begin of selection not visible 
-      if (nBeginOffset > nScreenChars)
+      // Keep 5 chars visible right to cursor
+      if (nActualPos > nNewOffset + nScreenChars - 5)
         {
-          // Scroll so that there is max 5 chars margin at end
-          if (nScreenChars - nSelLen > 5)
-            nNewOffset = nActualPos + 5 - nScreenChars + nSelLen;
-          else
-            nNewOffset = nActualPos - 5;
+          // Add 10 chars width space after line
+          nNewOffset = nActualPos - nScreenChars + 10;
         }
-      else if (nBeginOffset < 0)
+      // Keep 5 chars visible left to cursor
+      if (nActualPos < nNewOffset + 5)
         {
-          // Scroll so that there is max 5 chars margin at begin
-          if (nScreenChars - nSelLen >= 5)
-            nNewOffset = nActualPos - 5;
-          else
-            nNewOffset = nActualPos - 5 - nScreenChars + nSelLen;
+          // Jump by 10 char steps, so user sees previous letters too
+          nNewOffset = nActualPos - 10;
         }
-      // End of selection not visible
-      else if (nEndOffset > nScreenChars ||
-          nEndOffset < 0)
+    }
+  else
+    {
+      int nActualEndPos = CalculateActualOffset (ptEnd.y, ptEnd.x);
+      const int nBeginOffset = nActualPos - m_nOffsetChar;
+      const int nEndOffset = nActualEndPos - m_nOffsetChar;
+      const int nSelLen = nActualEndPos - nActualPos;
+
+      // Selection fits to screen, scroll whole selection visible
+      if (nSelLen < nScreenChars)
+        {
+          // Begin of selection not visible 
+          if (nBeginOffset > nScreenChars)
+            {
+              // Scroll so that there is max 5 chars margin at end
+              if (nScreenChars - nSelLen > 5)
+                  nNewOffset = nActualPos + 5 - nScreenChars + nSelLen;
+              else
+                  nNewOffset = nActualPos - 5;
+            }
+          else if (nBeginOffset < 0)
+            {
+              // Scroll so that there is max 5 chars margin at begin
+              if (nScreenChars - nSelLen >= 5)
+                  nNewOffset = nActualPos - 5;
+              else
+                  nNewOffset = nActualPos - 5 - nScreenChars + nSelLen;
+            }
+          // End of selection not visible
+          else if (nEndOffset > nScreenChars ||
+              nEndOffset < 0)
+            {
+              nNewOffset = nActualPos - 5;
+            }
+        }
+      else // Selection does not fit screen so scroll to begin of selection
         {
           nNewOffset = nActualPos - 5;
         }
-     }
-  else // Selection does not fit screen so scroll to begin of selection
-    {
-      nNewOffset = nActualPos - 5;
     }
 
   // Horiz scroll limit to longest line + one screenwidth
