@@ -386,21 +386,6 @@
     <None Include="res\Sample.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\editlib\ccrystaleditview.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\ccrystaltextbuffer.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\ccrystaltextview.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\filesup.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\memcombo.inl">
-      <Filter>editlib</Filter>
-    </None>
     <None Include="res\mg_cur.cur">
       <Filter>Resource Files</Filter>
     </None>

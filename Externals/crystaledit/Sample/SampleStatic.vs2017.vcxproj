@@ -635,11 +635,6 @@
     <Image Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\editlib\ccrystaleditview.inl" />
-    <None Include="..\editlib\ccrystaltextbuffer.inl" />
-    <None Include="..\editlib\ccrystaltextview.inl" />
-    <None Include="..\editlib\filesup.inl" />
-    <None Include="..\editlib\memcombo.inl" />
     <None Include="res\mg_cur.cur" />
     <None Include="res\Sample.rc2" />
   </ItemGroup>
