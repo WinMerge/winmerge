@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -4244,3 +4244,4 @@ msgstr "Dist:%g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Páx:%d/%d Zoom:%d%% %dx%dpx %dbpp"
+
