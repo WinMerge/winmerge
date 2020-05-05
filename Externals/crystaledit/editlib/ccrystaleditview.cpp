@@ -621,9 +621,9 @@ OnEditDelete ()
         }
       else 
         {
-		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
           ptSelEnd.x = pIterChar->following(ptSelEnd.x);
-      }
+        }
     }
 
   if (!m_bColumnSelection)

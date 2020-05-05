@@ -41,11 +41,11 @@ struct _RxNode
 #define mytcsnextc(p) (*p)
 #else
 __inline unsigned int mytcsnextc(LPCSTR p) {
-	int ch = 0;
-	if (_ismbblead((unsigned char)*p))
-		ch = ((unsigned char)*p++<<8);
-	ch += (unsigned char)*p;
-	return ch;
+  int ch = 0;
+  if (_ismbblead((unsigned char)*p))
+    ch = ((unsigned char)*p++<<8);
+  ch += (unsigned char)*p;
+  return ch;
 }
 #endif
 

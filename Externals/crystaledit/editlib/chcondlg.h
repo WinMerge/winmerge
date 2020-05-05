@@ -31,15 +31,15 @@ public :
 
     // Dialog Data
     //{{AFX_DATA(CCharConvDlg)
-	enum { IDD = IDD_EDIT_CHARCONV };
-	CComboBox	m_ctlSource;
-	CComboBox	m_ctlDest;
-	int		m_nSource;
-	int		m_nDest;
-	bool	m_bAlpha;
-	CString	m_sPreview;
-	//}}AFX_DATA
-	CString	m_sOriginal;
+    enum { IDD = IDD_EDIT_CHARCONV };
+    CComboBox	m_ctlSource;
+    CComboBox	m_ctlDest;
+    int		m_nSource;
+    int		m_nDest;
+    bool	m_bAlpha;
+    CString	m_sPreview;
+    //}}AFX_DATA
+    CString	m_sOriginal;
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -55,7 +55,7 @@ protected :
     //{{AFX_MSG(CCharConvDlg)
     virtual void OnOK ();
     virtual BOOL OnInitDialog ();
-	afx_msg void OnPreview();
-	//}}AFX_MSG
+    afx_msg void OnPreview();
+    //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()
   };

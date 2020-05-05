@@ -484,7 +484,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-			  DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;

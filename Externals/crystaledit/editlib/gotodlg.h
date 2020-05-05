@@ -36,7 +36,7 @@ public :
     CPoint m_ptCurrentPos;
     // Dialog Data
     //{{AFX_DATA(CGotoDlg)
-	enum { IDD = IDD_EDIT_GOTO };
+    enum { IDD = IDD_EDIT_GOTO };
     CEdit m_ctlNumber;
     CString m_sNumber;
     //}}AFX_DATA

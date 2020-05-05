@@ -324,7 +324,7 @@ IsVerilogNumber (LPCTSTR pszChars, int nLength)
       if (_istdigit (pszChars[I]) || pszChars[I] == '.' || pszChars[I] == '\'' || 
             pszChars[I] == 'h' || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
             (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_' ||
-			pszChars[I] == 'x' || pszChars[I] == 'Z')
+            pszChars[I] == 'x' || pszChars[I] == 'Z')
         continue;
       return false;
     }

@@ -21,9 +21,9 @@ static wint_t normch(wint_t c);
 static wint_t normch(wint_t c)
 {
 #ifdef _UNICODE
-	return (unsigned short)(short)c;
+  return (unsigned short)(short)c;
 #else
-	return (unsigned char)(char)c;
+  return (unsigned char)(char)c;
 #endif
 }
 
@@ -62,20 +62,22 @@ int xisspace(wint_t c)
 
 bool IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int (*compare)(LPCTSTR, LPCTSTR, size_t))
 {
-	TCHAR **base = (TCHAR **)pszKeywordList;
-	size_t lim;
+  TCHAR **base = (TCHAR **)pszKeywordList;
+  size_t lim;
 
-	for (lim = nKeywordListCount; lim != 0; lim >>= 1) {
-		TCHAR **p = base + (lim >> 1) ;
-		int cmp = (*compare)(pszKey, *p, nKeyLen);
-		if (cmp == 0 && (*p)[nKeyLen] == 0)
-			return true;
-		if (cmp > 0) {	/* key > p: move right */
-			base = (TCHAR **)p + 1;
-			lim--;
-		} /* else move left */
-	}
-	return false;
+  for (lim = nKeywordListCount; lim != 0; lim >>= 1)
+    {
+      TCHAR **p = base + (lim >> 1) ;
+      int cmp = (*compare)(pszKey, *p, nKeyLen);
+      if (cmp == 0 && (*p)[nKeyLen] == 0)
+        return true;
+      if (cmp > 0)
+        { /* key > p: move right */
+          base = (TCHAR **)p + 1;
+          lim--;
+        } /* else move left */
+    }
+  return false;
 }
 
 bool IsMBSTrail (const TCHAR *pszChars, int nCol)

@@ -202,7 +202,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     for (;;)
       if (cod_pos == s)
         {
-		  size_t i, j;
+          size_t i, j;
           i = _tcslen (source_codes[source_coding].name);
           j = _tcslen (destination_codes[destination_coding].name);
           if (i != j)
@@ -233,7 +233,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
 int
 iconvert_new (LPCTSTR source, LPTSTR *destination, int source_coding, int destination_coding, bool alphabet_only)
   {
-	const size_t destSiz = _tcslen(source) + 1 + 10;
+    const size_t destSiz = _tcslen(source) + 1 + 10;
     LPTSTR dest = static_cast<LPTSTR> (malloc (sizeof(TCHAR) * destSiz)); /* reserved for MYCHARSET= replacement */
     int result = -3;
     if (dest)

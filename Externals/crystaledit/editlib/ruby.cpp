@@ -299,9 +299,9 @@ out:
             {
               dwCookie &= ~COOKIE_VARIABLE;
               bRedefineBlock = true;
-			  bDecIndex = true;
+              bDecIndex = true;
             }
-		  continue;
+          continue;
         }
 
       if (bFirstChar)

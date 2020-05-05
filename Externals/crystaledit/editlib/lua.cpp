@@ -196,7 +196,7 @@ out:
         {
           const int nEqualsSignCount = COOKIE_GET_LUA_EQUALS_SIGN_COUNT(dwCookie);
           if (I >= nEqualsSignCount + 1 && pszChars[I] == ']' && pszChars[I - nEqualsSignCount - 1] == ']' && 
-			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
+              std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
             {
               dwCookie &= ~COOKIE_RAWSTRING;
               COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, 0);
@@ -210,7 +210,7 @@ out:
         {
           const int nEqualsSignCount = COOKIE_GET_LUA_EQUALS_SIGN_COUNT(dwCookie);
           if (I >= nEqualsSignCount + 1 && pszChars[I] == ']' && pszChars[I - nEqualsSignCount - 1] == ']' && 
-			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
+              std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, 0);
@@ -257,7 +257,7 @@ out:
               continue;
             }
         }
-	  // Extended comment [[ ... ]], [=[ ... ]=], [==[ ... ]==], ...
+      // Extended comment [[ ... ]], [=[ ... ]=], [==[ ... ]==], ...
       if (pszChars[I] == '-' && I + 3 < nLength && pszChars[I + 1] == '-' && pszChars[I + 2] == '[' && (pszChars[I + 3] == '[' || pszChars[I + 3] == '='))
         {
           int nEqualsSignCount = 0;

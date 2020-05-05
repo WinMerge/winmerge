@@ -602,9 +602,9 @@ CCrystalTextView::CCrystalTextView ()
 {
 #ifdef _WIN64
   if (m_nRenderingMode == RENDERING_MODE_GDI)
-	  m_pCrystalRenderer.reset(new CCrystalRendererGDI());
+    m_pCrystalRenderer.reset(new CCrystalRendererGDI());
   else
-	  m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(m_nRenderingMode));
+    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(m_nRenderingMode));
 #else
   m_pCrystalRenderer.reset(new CCrystalRendererGDI());
 #endif
@@ -1168,7 +1168,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
                   RECT rcIntersect;
                   RECT rcTextBlock = {ptOrigin.x, ptOrigin.y, ptOrigin.x + nSumWidth + 2, ptOrigin.y + nLineHeight};
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
-				  m_pCrystalRenderer->DrawText(ptOrigin.x, ptOrigin.y, rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]);
+                  m_pCrystalRenderer->DrawText(ptOrigin.x, ptOrigin.y, rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]);
                   if (bdisphex)
                     {
                      // Draw rounded rectangles around control characters
@@ -1525,8 +1525,8 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
                   else
                     clrBkColor = crBkgnd;
                   CRect rc(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight());
-				  m_pCrystalRenderer->SetBkColor(clrBkColor);
-				  m_pCrystalRenderer->FillRectangle(rc);
+                  m_pCrystalRenderer->SetBkColor(clrBkColor);
+                  m_pCrystalRenderer->FillRectangle(rc);
                   ptOriginZeroWidthBlock = ptOrigin;
                   nBgColorIndexZeorWidthBlock = blk.m_nBgColorIndex;
                   bPrevZeroWidthBlock = true;
@@ -1569,8 +1569,8 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
               else
                 clrBkColor = crBkgnd;
               CRect rc(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight());
-			  m_pCrystalRenderer->SetBkColor(clrBkColor);
-			  m_pCrystalRenderer->FillRectangle(rc);
+              m_pCrystalRenderer->SetBkColor(clrBkColor);
+              m_pCrystalRenderer->FillRectangle(rc);
               bPrevZeroWidthBlock = true;
             }
         }
@@ -2149,7 +2149,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
   if (m_bViewLineNumbers && nLineNumber > 0)
     {
       m_pCrystalRenderer->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
-	  m_pCrystalRenderer->DrawMarginLineNumber(rect.right, rect.top, nLineNumber);
+      m_pCrystalRenderer->DrawMarginLineNumber(rect.right, rect.top, nLineNumber);
     }
 
   // Draw line revision mark (or background) whenever we have valid lineindex
@@ -2207,7 +2207,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
     }
   if (nImageIndex >= 0)
     {
-	  m_pCrystalRenderer->DrawMarginIcon(
+      m_pCrystalRenderer->DrawMarginIcon(
         rect.left + 2, rect.top + (GetLineHeight() - CCrystalRenderer::MARGIN_ICON_HEIGHT) / 2, nImageIndex);
     }
 
@@ -2218,7 +2218,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
       WrapLineCached( nLineIndex, GetScreenChars(), nullptr, nBreaks );
       for (int i = 0; i < nBreaks; i++)
         {
-	      m_pCrystalRenderer->DrawMarginIcon(
+          m_pCrystalRenderer->DrawMarginIcon(
               rect.right - CCrystalRenderer::MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
               - CCrystalRenderer::MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE);
         }
@@ -2289,11 +2289,11 @@ OnDraw (CDC * pdc)
 
   if (m_pTextBuffer == nullptr)
     {
-	  m_pCrystalRenderer->BindDC(*pdc, rcClient);
-	  m_pCrystalRenderer->BeginDraw();
-	  m_pCrystalRenderer->SetBkColor(GetSysColor(COLOR_WINDOW));
+      m_pCrystalRenderer->BindDC(*pdc, rcClient);
+      m_pCrystalRenderer->BeginDraw();
+      m_pCrystalRenderer->SetBkColor(GetSysColor(COLOR_WINDOW));
       m_pCrystalRenderer->FillRectangle(rcClient);
-	  m_pCrystalRenderer->EndDraw();
+      m_pCrystalRenderer->EndDraw();
       return;
     }
 
@@ -2338,9 +2338,9 @@ OnDraw (CDC * pdc)
          nSubLines = GetSubLines(nCurrentLine);
 
       rcLine.bottom = rcLine.top + nSubLines * nLineHeight;
-	  rcMargin.bottom = rcLine.bottom;
+      rcMargin.bottom = rcLine.bottom;
 
-	  CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
+      CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
       if (pdc->RectVisible(rcMarginAndLine))
         {
           if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
@@ -2368,7 +2368,7 @@ OnDraw (CDC * pdc)
   m_pCrystalRenderer->EndDraw();
 
   VERIFY (pdc->BitBlt (rcClient.left, rcClient.top, rcClient.Width (),
-		  rcClient.Height (), &cacheDC, 0, 0, SRCCOPY));
+          rcClient.Height (), &cacheDC, 0, 0, SRCCOPY));
 
   cacheDC.SelectObject (pOldBitmap);
   cacheDC.DeleteDC ();
@@ -4685,34 +4685,34 @@ PrepareDragData ()
 
 static const TCHAR *memstr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
 {
-	for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
-	{
-		if (*p == *str2)
-		{
-			if (memcmp(p, str2, str2len * sizeof(TCHAR)) == 0)
-				return p;
-		}
-	}
-	return nullptr;
+  for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
+    {
+      if (*p == *str2)
+        {
+          if (memcmp(p, str2, str2len * sizeof(TCHAR)) == 0)
+            return p;
+        }
+    }
+  return nullptr;
 }
 
 static const TCHAR *memistr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
 {
-	for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
-	{
-		if (toupper(*p) == toupper(*str2))
-		{
-			size_t i;
-			for (i = 0; i < str2len; ++i)
-			{
-				if (toupper(p[i]) != toupper(str2[i]))
-					break;
-			}
-			if (i == str2len)
-				return p;
-		}
-	}
-	return nullptr;
+  for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
+    {
+      if (toupper(*p) == toupper(*str2))
+        {
+          size_t i;
+          for (i = 0; i < str2len; ++i)
+            {
+              if (toupper(p[i]) != toupper(str2[i]))
+                break;
+            }
+          if (i == str2len)
+            return p;
+        }
+    }
+  return nullptr;
 }
 
 static ptrdiff_t

@@ -63,7 +63,7 @@ CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, nullptr)
 , m_sPreview(_T(""))
 {
     //{{AFX_DATA_INIT(CCharConvDlg)
-	//}}AFX_DATA_INIT
+    //}}AFX_DATA_INIT
 }
 
 void CCharConvDlg::
@@ -71,19 +71,19 @@ DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
     //{{AFX_DATA_MAP(CCharConvDlg)
-	DDX_Control(pDX, IDC_SRC, m_ctlSource);
-	DDX_Control(pDX, IDC_DEST, m_ctlDest);
-	DDX_CBIndex(pDX, IDC_SRC, m_nSource);
-	DDX_CBIndex(pDX, IDC_DEST, m_nDest);
-	DDX_Check(pDX, IDC_ALPHA_ONLY, m_bAlpha);
-	DDX_Text(pDX, IDC_PREVIEW, m_sPreview);
-	//}}AFX_DATA_MAP
+    DDX_Control(pDX, IDC_SRC, m_ctlSource);
+    DDX_Control(pDX, IDC_DEST, m_ctlDest);
+    DDX_CBIndex(pDX, IDC_SRC, m_nSource);
+    DDX_CBIndex(pDX, IDC_DEST, m_nDest);
+    DDX_Check(pDX, IDC_ALPHA_ONLY, m_bAlpha);
+    DDX_Text(pDX, IDC_PREVIEW, m_sPreview);
+    //}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP (CCharConvDlg, CDialog)
     //{{AFX_MSG_MAP(CCharConvDlg)
-	ON_BN_CLICKED(IDPREVIEW, OnPreview)
-	//}}AFX_MSG_MAP
+    ON_BN_CLICKED(IDPREVIEW, OnPreview)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -98,8 +98,8 @@ OnInitDialog ()
   CDialog::OnInitDialog ();
   FillComboBox (m_ctlSource, pszCodeNames);
   FillComboBox (m_ctlDest, pszCodeNames);
-	m_nSource = nSource;
-	m_nDest = nSource;
+  m_nSource = nSource;
+  m_nDest = nSource;
   m_sPreview = m_sOriginal;
   UpdateData (false);
   return true;
@@ -108,8 +108,8 @@ OnInitDialog ()
 void CCharConvDlg::OnOK ()
 {
   CDialog::OnOK ();
-	nSource = m_nSource;
-	nDest = m_nSource;
+  nSource = m_nSource;
+  nDest = m_nSource;
 }
 
 void CCharConvDlg::OnPreview() 

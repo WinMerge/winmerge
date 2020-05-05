@@ -492,7 +492,7 @@ OnEditReplaceAll ()
         if (m_ptFoundAt.y > m_ptFirstFound.y || (m_ptFoundAt.y == m_ptFirstFound.y && m_ptFoundAt.x >= m_ptFirstFound.x))
           break;
 
-	  bGroupWithPrevious = true;
+      bGroupWithPrevious = true;
     }
 
   // Let user know how many strings were replaced
