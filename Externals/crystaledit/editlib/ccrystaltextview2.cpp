@@ -51,8 +51,8 @@
 #include "SyntaxColors.h"
 #include "ccrystaltextmarkers.h"
 #include <malloc.h>
-#include "string_util.h"
-#include "icu.hpp"
+#include "utils/string_util.h"
+#include "utils/icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")

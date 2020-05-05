@@ -72,12 +72,12 @@
 #include "editreg.h"
 #include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
-#include "ceditreplacedlg.h"
-#include "registry.h"
-#include "cs2cs.h"
-#include "chcondlg.h"
-#include "string_util.h"
-#include "icu.hpp"
+#include "dialogs/ceditreplacedlg.h"
+#include "dialogs/chcondlg.h"
+#include "utils/registry.h"
+#include "utils/cs2cs.h"
+#include "utils/string_util.h"
+#include "utils/icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")

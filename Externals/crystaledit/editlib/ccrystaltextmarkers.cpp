@@ -8,8 +8,8 @@
 #include "stdafx.h"
 #include "ccrystaltextmarkers.h"
 #include "ccrystaltextview.h"
-#include "registry.h"
 #include "editreg.h"
+#include "utils/registry.h"
 #include <algorithm>
 
 CCrystalTextMarkers::CCrystalTextMarkers() :

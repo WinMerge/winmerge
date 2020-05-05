@@ -16,7 +16,7 @@
 #include "StdAfx.h"
 #include "crystalparser.h"
 #include "ccrystaltextview.h"
-#include "icu.hpp"
+#include "utils/icu.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

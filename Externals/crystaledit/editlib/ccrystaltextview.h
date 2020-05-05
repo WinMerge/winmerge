@@ -34,11 +34,11 @@
 #pragma once
 
 #include <vector>
-#include "cregexp.h"
 #include "crystalparser.h"
-#include "crystallineparser.h"
-#include "ccrystalrenderer.h"
-#include "icu.hpp"
+#include "parsers/crystallineparser.h"
+#include "renderers/ccrystalrenderer.h"
+#include "utils/cregexp.h"
+#include "utils/icu.hpp"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
