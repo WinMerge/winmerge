@@ -25,7 +25,7 @@ protected: // create from serialization only
 public:
 	CSampleDoc* GetDocument();
 
-	virtual CCrystalTextBuffer *LocateTextBuffer();
+	virtual CCrystalTextBuffer *LocateTextBuffer() override;
 
 protected:
 
@@ -36,8 +36,8 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSampleView)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void OnInitialUpdate();
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
+	virtual void OnInitialUpdate() override;
 	//}}AFX_VIRTUAL
 
 // Implementation
