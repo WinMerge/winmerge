@@ -2119,8 +2119,8 @@ OnEditAutoComplete ()
         }
       if (bFound)
         {
-          int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
-          int nFound = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          const int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          int nFound = nLineLength;
           pszText = m_pTextBuffer->GetLineChars (ptTextPos.y) + ptTextPos.x + m_nLastFindWhatLen;
           nFound -= ptTextPos.x + m_nLastFindWhatLen;
           pszBuffer = sText.GetBuffer (nFound + 1);
