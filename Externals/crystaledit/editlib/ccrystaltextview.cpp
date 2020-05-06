@@ -613,7 +613,7 @@ CCrystalTextView::CCrystalTextView ()
   m_panSubLineIndexCache->SetSize( 0, 4096 );
 
   //END SW
-  ResetView ();
+  CCrystalTextView::ResetView ();
   SetTextType (SRC_PLAIN);
 }
 
