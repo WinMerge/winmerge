@@ -99,9 +99,9 @@ CString GetPath (const CString & sString, bool bClose /*= false*/ )
   TCHAR test = sString.GetAt (posit - 1);
 
 #ifdef _UNICODE
-  if (test == _T (':') || test == _T ('\\') && (posit == 1 || posit != 1 && sString.GetAt (posit - 2) == _T (':')))
+  if (test == _T (':') || test == _T ('\\') && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
 #else
-  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(LPCTSTR)sString, (unsigned char *)(LPCTSTR)sString + posit)) && (posit == 1 || posit != 1 && sString.GetAt (posit - 2) == _T (':')))
+  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(LPCTSTR)sString, (unsigned char *)(LPCTSTR)sString + posit)) && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
 #endif
     return sString.Left (posit);
   return sString.Left (bClose ? posit : test == _T (':') ? posit : posit - 1);
