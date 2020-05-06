@@ -81,7 +81,7 @@ BOOL CTextMarkerDlg::OnInitDialog ()
 	LangTranslateDialog(m_hWnd);
 	CDialog::OnInitDialog ();
 
-	CString fmt = LoadResString(IDS_MARKER_COLOR_FMT).c_str();
+	CString fmt{LoadResString(IDS_MARKER_COLOR_FMT).c_str()};
 	for (int i = 0; i < 3; ++i)
 	{
 		CString str;
