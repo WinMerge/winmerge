@@ -50,7 +50,7 @@ private :
 
     // Construction
 public :
-    CEditReplaceDlg (CCrystalEditView * pBuddy);
+    explicit CEditReplaceDlg (CCrystalEditView * pBuddy);
     void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 

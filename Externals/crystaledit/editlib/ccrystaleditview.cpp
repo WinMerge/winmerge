@@ -105,7 +105,7 @@ class CEditDropTargetImpl : public COleDropTarget
 private :
     CCrystalEditView * m_pOwner;
 public :
-    CEditDropTargetImpl (CCrystalEditView * pOwner)
+    explicit CEditDropTargetImpl (CCrystalEditView * pOwner)
       : m_pOwner(pOwner), m_pAlternateDropTarget(nullptr)
     {
     };

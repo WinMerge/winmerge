@@ -31,7 +31,7 @@ private :
 
     // Construction
 public :
-    CGotoDlg (CCrystalTextView * pBuddy);
+    explicit CGotoDlg (CCrystalTextView * pBuddy);
 
     CPoint m_ptCurrentPos;
     // Dialog Data
