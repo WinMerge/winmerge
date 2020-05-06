@@ -556,11 +556,10 @@ static RxNode *RxComp(LPCTSTR *Regexp) {
     RxNode *F = 0;
     RxNode *N = 0;
     int C;
-    TCHAR Ch;
 
     while (**Regexp) {
         //        puts(*Regexp);
-        switch (Ch = (*(*Regexp)++)) {
+        switch (TCHAR Ch = (*(*Regexp)++)) {
         case _T('?'):
         case _T('*'):
         case _T('+'):
@@ -621,10 +620,8 @@ RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
 }
 
 void RxFree(RxNode *n) {
-    RxNode *p;
-
     while (n) {
-        p = n;
+        RxNode *p = n;
         n = n->fNext;
         switch (p->fWhat) {
         case RE_INSET:

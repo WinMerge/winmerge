@@ -110,13 +110,15 @@ skip_word (LPCTSTR s)
 ptrdiff_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
-  ptrdiff_t pos;
   for (int i = 0; i < codes_count; i++)
-    if ((pos = str_pos (name, codes[i].name)) >= 0)
-      {
-        *coding = i;
-        return pos;
-      }
+    {
+      ptrdiff_t pos = str_pos (name, codes[i].name);
+      if (pos >= 0)
+        {
+          *coding = i;
+          return pos;
+        }
+    }
   *coding = -2;
   return -2;
 }
