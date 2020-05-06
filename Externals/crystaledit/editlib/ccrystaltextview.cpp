@@ -2077,7 +2077,7 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
   strHTML += _T("><code>");
 
-  auto MakeSpan = [&](TEXTBLOCK& block, CString& strExpanded) {
+  auto MakeSpan = [&](const TEXTBLOCK& block, const CString& strExpanded) {
     CString strHTML;
     strHTML += _T("<span ");
     strHTML += GetHTMLAttribute (block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
