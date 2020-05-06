@@ -2731,7 +2731,7 @@ GetSiblingView (int nRow, int nCol)
                  ::GetDlgItem (pSplitter->m_hWnd, pSplitter->IdFromRowCol (nRow, nCol)));
   if (pWnd == nullptr || !pWnd->IsKindOf (RUNTIME_CLASS (CCrystalTextView)))
     return nullptr;
-  return (CCrystalTextView *) pWnd;
+  return static_cast<CCrystalTextView *>(pWnd);
 }
 
 void CCrystalTextView::

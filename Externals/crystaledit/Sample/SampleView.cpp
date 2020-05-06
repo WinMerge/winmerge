@@ -67,7 +67,7 @@ void CSampleView::Dump(CDumpContext& dc) const
 CSampleDoc* CSampleView::GetDocument() // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CSampleDoc)));
-	return (CSampleDoc*)m_pDocument;
+	return static_cast<CSampleDoc*>(m_pDocument);
 }
 #endif //_DEBUG
 

@@ -128,7 +128,7 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 CCrystalEditView::CCrystalEditView ()
 : m_pEditReplaceDlg(nullptr)
 {
-  memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
+  memset((static_cast<CCrystalTextView*>(this))+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
   m_bAutoIndent = true;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
@@ -2647,7 +2647,7 @@ void CCrystalEditView::OnEditGotoLastChange()
 
 int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   static TCHAR szBuffer[4096];
 
   if (pdata->nRow < pView->GetLineCount ())
@@ -2674,7 +2674,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 
 int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   CPoint ptStartPos, ptEndPos;
 
   switch (nEvent)
