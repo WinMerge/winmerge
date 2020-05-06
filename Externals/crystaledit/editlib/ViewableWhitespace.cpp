@@ -134,10 +134,7 @@ const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool di
 #else
 	// Use the [0] version by default, if lookup fails to find a better one
 	int offset = 0;
-	if (f_offset.Lookup(codepage, offset))
-	{
-		int d=9;
-	}
+	f_offset.Lookup(codepage, offset);
 	return &f_specialChars[offset];
 #endif
 }
