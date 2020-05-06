@@ -89,7 +89,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
   int nEols = 0;
   if (nLength > 1 && IsDosEol(&pszLine[nLength - 2]))
     nEols = 2;
-  else if (nLength && IsEol(pszLine[nLength - 1]))
+  else if (IsEol(pszLine[nLength - 1]))
     nEols = 1;
   ASSERT (static_cast<size_t>(nEols) <= m_nLength);
   m_nLength -= nEols;

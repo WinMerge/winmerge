@@ -5636,7 +5636,7 @@ OnMatchBrace ()
         {
           bAfter = false;
         }
-      else if (!nType && ptCursorPos.x > 0)
+      else if (ptCursorPos.x > 0)
         {
           nType = bracetype (pszEnd[-1]);
           bAfter = true;

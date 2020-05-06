@@ -1002,19 +1002,15 @@ out:
               else
                 {
                   bool bFunction = false;
-
-                  if (!bFunction)
+                  for (int j = I; j >= 0; j--)
                     {
-                      for (int j = I; j >= 0; j--)
+                      if (!xisspace (pszChars[j]))
                         {
-                          if (!xisspace (pszChars[j]))
+                          if (pszChars[j] == '$')
                             {
-                              if (pszChars[j] == '$')
-                                {
-                                  bFunction = true;
-                                }
-                              break;
+                              bFunction = true;
                             }
+                          break;
                         }
                     }
                   if (bFunction)
@@ -1046,19 +1042,15 @@ out:
       else
         {
           bool bFunction = false;
-
-          if (!bFunction)
+          for (int j = I; j >= 0; j--)
             {
-              for (int j = I; j >= 0; j--)
+              if (!xisspace (pszChars[j]))
                 {
-                  if (!xisspace (pszChars[j]))
+                  if (pszChars[j] == '$')
                     {
-                      if (pszChars[j] == '$')
-                        {
-                          bFunction = true;
-                        }
-                      break;
+                      bFunction = true;
                     }
+                  break;
                 }
             }
           if (bFunction)
