@@ -30,7 +30,7 @@
     <ClInclude Include="..\editlib\SyntaxColors.h">
       <Filter>Source Files\editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\crystallineparser.h">
+    <ClInclude Include="..\editlib\parsers\crystallineparser.h">
       <Filter>Source Files\editlib</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,13 +41,16 @@
     <ClCompile Include="unittest1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\lua.cpp">
-      <Filter>Source Files\editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\string_util.cpp">
-      <Filter>Source Files\editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\SyntaxColors.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\lua.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\string_util.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\isx.cpp">
       <Filter>Source Files\editlib</Filter>
     </ClCompile>
   </ItemGroup>
