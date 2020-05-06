@@ -72,7 +72,7 @@ static RxNode *NewChar(unsigned int Ch) {
 #ifdef _UNICODE
         A->fChar = (LPTSTR) malloc(2);
         A->fLen = 1;
-        A->fChar[0] = Ch;
+        A->fChar[0] = static_cast<TCHAR>(Ch);
 #else
         if (Ch > 0xff) {
             A->fChar = (LPTSTR) malloc(2);
@@ -192,7 +192,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
 #endif // _UNICODE
     int s = 0;
     int c = 0;
-    unsigned int i, xx;
+    unsigned int i;
 #ifdef _UNICODE
     TCHAR Ch, C1 = 0, C2 = 0;
 #else // _UNICODE
@@ -308,7 +308,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 SETOP(set, _T('\r'));
                 continue;
             case _T('S'):
-                for (xx = 0; xx <= 255; xx++) {
+                for (wint_t xx = 0; xx <= 255; xx++) {
                     if (xx != _T(' ') && xx != _T('\t') && xx != _T('\n') && xx != _T('\r')) {
                         c++;
                         SETOP(set, xx);
@@ -316,7 +316,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 }
                 continue;
             case _T('w'):
-                for (xx = 0; xx <= 255; xx++) {
+                for (wint_t xx = 0; xx <= 255; xx++) {
                     if (_istalnum(xx)) {
                         c++;
                         SETOP(set, xx);
@@ -324,7 +324,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 }
                 break;
             case _T('W'):
-                for (xx = 0; xx <= 255; xx++) {
+                for (wint_t xx = 0; xx <= 255; xx++) {
                     if (!_istalnum(xx)) {
                         c++;
                         SETOP(set, xx);
@@ -332,7 +332,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 }
                 break;
             case _T('d'):
-                for (xx = 0; xx <= 255; xx++) {
+                for (wint_t xx = 0; xx <= 255; xx++) {
                     if (_istdigit(xx)) {
                         c++;
                         SETOP(set, xx);
@@ -340,7 +340,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 }
                 break;
             case _T('D'):
-                for (xx = 0; xx <= 255; xx++) {
+                for (wint_t xx = 0; xx <= 255; xx++) {
                     if (!_istdigit(xx)) {
                         c++;
                         SETOP(set, xx);
@@ -348,13 +348,13 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 }
                 break;
             case _T('U'):
-                for (xx = _T('A'); xx <= _T('Z'); xx++) {
+                for (wint_t xx = _T('A'); xx <= _T('Z'); xx++) {
                     c++;
                     SETOP(set, xx);
                 }
                 continue;
             case _T('L'):
-                for (xx = _T('a'); xx <= _T('z'); xx++) {
+                for (wint_t xx = _T('a'); xx <= _T('z'); xx++) {
                     c++;
                     SETOP(set, xx);
                 }
@@ -731,7 +731,7 @@ int RxMatch(RxNode *rx) {
                 if (*n->fChar != *rex) return 0;
                 if (memcmp(rex, n->fChar, n->fLen) != 0) return 0;
             } else {
-                for (int i = 0; i < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
+                for (size_t i = 0; i < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
                     if (_totupper(mytcsnextc(&rex[i])) != _totupper(mytcsnextc(&n->fChar[i])))
                         return 0;
             }
