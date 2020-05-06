@@ -128,11 +128,11 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
 
     if (*s) {
         LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
-		if (p == nullptr)
-			return 0;
-		*s = p;
-		assert(*s != 0);
-		memcpy(*s + *len, a, alen * sizeof(TCHAR));
+        if (p == nullptr)
+            return 0;
+        *s = p;
+        assert(*s != 0);
+        memcpy(*s + *len, a, alen * sizeof(TCHAR));
     } else {
         *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
         assert(*s != 0);
@@ -222,7 +222,7 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -239,11 +239,11 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
-                    A = N * 10;
+                    A += N * 10;
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -260,11 +260,11 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
-                    A = N * 8;
+                    A += N * 8;
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -280,7 +280,7 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
         }
     }
     //    add(&dlen, &dest, Src + match.Close[0], len - match.Close[0]);
-	ASSERT(dlen < INT_MAX);
+    ASSERT(dlen < INT_MAX);
     *Dlen = static_cast<int>(dlen);
     *Dest = dest;
     return 0;

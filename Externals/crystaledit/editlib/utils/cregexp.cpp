@@ -910,9 +910,9 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
 #define FLAG_UP_NEXT     4
 #define FLAG_DOWN_NEXT   8
 
-static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
-    int NewLen = *len + alen;
-    int i;
+static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
+    size_t NewLen = *len + alen;
+    size_t i;
 
     NewLen = NewLen * 2;
 
@@ -920,12 +920,15 @@ static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
         return 0;
 
     if (*s) {
-        *s = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
-        assert(*s);
+        LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
+        if (p == nullptr)
+            return 0;
+        *s = p;
+        assert(*s != 0);
         memcpy(*s + *len, a, alen * sizeof(TCHAR));
     } else {
         *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
-        assert(*s);
+        assert(*s != 0);
         memcpy(*s, a, alen * sizeof(TCHAR));
         *len = 0;
     }
@@ -960,7 +963,7 @@ static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
 }
 
 int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR *Dest, int *Dlen) {
-    int dlen = 0;
+    size_t dlen = 0;
     LPTSTR dest = 0;
     TCHAR Ch;
     int n;
@@ -1012,7 +1015,7 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -1029,11 +1032,11 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
-                    A = N * 10;
+                    A += N * 10;
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -1050,11 +1053,11 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
-                    A = N * 8;
+                    A += N * 8;
                     if (*rep == 0) return 0;
                     N = _totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
-                    A = A + N;
+                    A += N;
                     Ch = (TCHAR)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
@@ -1070,7 +1073,8 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
         }
     }
     //    add(&dlen, &dest, Src + match.Close[0], len - match.Close[0]);
-    *Dlen = dlen;
+    ASSERT(dlen < INT_MAX);
+    *Dlen = static_cast<int>(dlen);
     *Dest = dest;
     return 0;
 }
