@@ -838,7 +838,7 @@ public :
 
     //  Operations
     virtual void EnsureVisible (CPoint pt);
-    void EnsureVisible (CPoint ptStart, CPoint ptEnd);
+    virtual void EnsureVisible (CPoint ptStart, CPoint ptEnd);
 
     //  Text search helpers
     CPoint GetSearchPos (DWORD dwSearchFlags);

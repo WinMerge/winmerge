@@ -179,6 +179,11 @@ public:
 	bool IsDiffVisible(int nDiff);
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
+	virtual void EnsureVisible(CPoint pt) override;
+	virtual void EnsureVisible(CPoint ptStart, CPoint ptEnd) override;
+	bool EnsureInDiff(CPoint& pt);
+	void SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView = true) override;
+	void ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true) override;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
