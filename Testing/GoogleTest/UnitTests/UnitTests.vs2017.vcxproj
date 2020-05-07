@@ -199,8 +199,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\icu.cpp" />
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\string_util.cpp" />
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\icu.cpp" />
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\..\Externals\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\..\..\Externals\gtest\src\gtest-death-test.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -620,8 +622,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\icu.hpp" />
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\string_util.h" />
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.h" />
     <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-death-test.h" />
     <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-message.h" />
     <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-param-test.h" />

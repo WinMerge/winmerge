@@ -2282,6 +2282,9 @@ msgstr ""
 "%1\n"
 "no es conflictivo."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 msgid "Save As"
 msgstr "Guardar Como"
 
@@ -3048,11 +3051,11 @@ msgstr "Panel de diferencias"
 msgid "Patch file successfully written."
 msgstr "Archivo de corrección escrito correctamente."
 
-msgid "1. item is not found or is directory!"
-msgstr "1. ¡elemento no encontrado o es una carpeta!"
+msgid "1. item is not found!"
+msgstr ""
 
-msgid "2. item is not found or is directory!"
-msgstr "2. ¡elemento no encontrado o es una carpeta!"
+msgid "2. item is not found!"
+msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "El archivo de corrección ya existe. ¿Desea sobreescribirlo?"

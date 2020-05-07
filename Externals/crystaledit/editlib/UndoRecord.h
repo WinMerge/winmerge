@@ -53,7 +53,7 @@ private:
     , m_paSavedRevisionNumbers(nullptr)
     , m_pszText(nullptr)
   {
-    Clone(src);
+    UndoRecord::Clone(src);
   }
 
   virtual void Clone(const UndoRecord &src);
@@ -67,8 +67,7 @@ private:
   virtual ~UndoRecord () // destructor
   {
     FreeText();
-    if (m_paSavedRevisionNumbers != nullptr)
-		delete m_paSavedRevisionNumbers;
+    delete m_paSavedRevisionNumbers;
   }
 
   void SetText (LPCTSTR pszText, size_t cchText);

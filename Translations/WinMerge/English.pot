@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-04-25 10:48+0000\n"
+"POT-Creation-Date: 2020-04-30 20:47+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2117,6 +2117,9 @@ msgstr ""
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 msgid "Save As"
 msgstr ""
 
@@ -2712,10 +2715,10 @@ msgstr ""
 msgid "Patch file successfully written."
 msgstr ""
 
-msgid "1. item is not found or is directory!"
+msgid "1. item is not found!"
 msgstr ""
 
-msgid "2. item is not found or is directory!"
+msgid "2. item is not found!"
 msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"

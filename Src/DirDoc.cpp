@@ -50,6 +50,9 @@
 #include "DirScan.h"
 #include "MessageBoxDialog.h"
 #include "DirCmpReport.h"
+#include "DiffWrapper.h"
+#include "FolderCmp.h"
+#include "DirViewColItems.h"
 #include <Poco/Semaphore.h>
 
 #ifdef _DEBUG
@@ -178,9 +181,6 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 		for (nIndex = 0; nIndex < m_nDirs; nIndex++)
 			m_pTempPathContext->m_strRoot[nIndex] = m_pCtxt->GetNormalizedPath(nIndex);
 	}
-	
-	// All plugin management is done by our plugin manager
-	m_pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 }
 
 
@@ -188,34 +188,73 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
  * @brief Load line filters to the compare context.
  * Loads linefilters, converts them to UTF-8 and sets them for compare context.
  */
-void CDirDoc::LoadLineFilterList()
+void CDirDoc::LoadLineFilterList(CDiffContext *pCtxt)
 {
-	ASSERT(m_pCtxt != nullptr);
+	ASSERT(pCtxt != nullptr);
 	
 	bool bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	String filters = theApp.m_pLineFilters->GetAsString();
 	if (!bFilters || filters.empty())
 	{
-		m_pCtxt->m_pFilterList.reset();
+		pCtxt->m_pFilterList.reset();
 		return;
 	}
 
-	if (m_pCtxt->m_pFilterList)
-		m_pCtxt->m_pFilterList->RemoveAllFilters();
+	if (pCtxt->m_pFilterList)
+		pCtxt->m_pFilterList->RemoveAllFilters();
 	else
-		m_pCtxt->m_pFilterList.reset(new FilterList());
+		pCtxt->m_pFilterList.reset(new FilterList());
 
 	std::string regexp_str = ucr::toUTF8(filters);
 
 	// Add every "line" of regexps to regexp list
 	StringTokenizer tokens(regexp_str, "\r\n");
 	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
-		m_pCtxt->m_pFilterList->AddRegExp(*it);
+		pCtxt->m_pFilterList->AddRegExp(*it);
 }
 
 void CDirDoc::DiffThreadCallback(int& state)
 {
 	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, false);
+}
+
+void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
+{
+	LoadLineFilterList(pCtxt);
+
+	DIFFOPTIONS options = {0};
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
+
+	pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
+
+	pCtxt->m_iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	if ((pCtxt->m_iGuessEncodingType >> 16) == 0)
+		pCtxt->m_iGuessEncodingType |= 50001 << 16;
+	pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
+	pCtxt->m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT);
+	pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
+	pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
+	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
+
+	m_imgfileFilter.UseMask(true);
+	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
+
+	pCtxt->m_pFilterCommentsManager = theApp.m_pFilterCommentsManager.get();
+
+	pCtxt->m_pCompareStats = m_pCompareStats.get();
+
+	// Make sure filters are up-to-date
+	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
+	pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
+	
+	// All plugin management is done by our plugin manager
+	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 }
 
 /**
@@ -246,27 +285,7 @@ void CDirDoc::Rescan()
 		m_pCtxt->InitDiffItemList();
 	}
 
-	LoadLineFilterList();
-
-	DIFFOPTIONS options = {0};
-	Options::DiffOptions::Load(GetOptionsMgr(), options);
-
-	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
-
-	m_pCtxt->m_iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-	if ((m_pCtxt->m_iGuessEncodingType >> 16) == 0)
-		m_pCtxt->m_iGuessEncodingType |= 50001 << 16;
-	m_pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
-	m_pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
-	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
-	m_pCtxt->m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT);
-	m_pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-	m_pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
-	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
-	m_pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
-	m_pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	m_pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
-	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
+	InitDiffContext(m_pCtxt.get());
 
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
 	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
@@ -282,16 +301,6 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->Resize();
 	int nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
 	m_pDirView->SetActivePane((nPane >= 0 && nPane < m_nDirs) ? nPane : 0);
-
-	// Make sure filters are up-to-date
-	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
-	m_pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
-
-	m_imgfileFilter.UseMask(true);
-	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
-	m_pCtxt->m_pImgfileFilter = &m_imgfileFilter;
-
-	m_pCtxt->m_pFilterCommentsManager = theApp.m_pFilterCommentsManager.get();
 
 	// Show current compare method name and active filter name in statusbar
 	pf->SetFilterStatusDisplay(theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str());
@@ -779,5 +788,84 @@ void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
 		m_pDirView->OpenPrevDiff();
 		GetMainFrame()->OnUpdateFrameTitle(FALSE);
 	}
+}
+
+bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifileloc[])
+{
+	DIFFITEM di;
+	bool bLargeFile = false;
+	for (int i = 0; i < nFiles; ++i)
+	{
+		di.diffFileInfo[i].SetFile(paths::FindFileName(ifileloc[i].filepath));
+		if (di.diffFileInfo[i].Update(ifileloc[i].filepath))
+			di.diffcode.setSideFlag(i);
+	}
+	if (nFiles == 3)
+		di.diffcode.diffcode |= DIFFCODE::THREEWAY;
+
+	size_t fileSizeThreshold = GetOptionsMgr()->GetInt(OPT_FILE_SIZE_THRESHOLD);
+	for (int i = 0; i < nFiles; ++i)
+	{
+		if (di.diffFileInfo[i].size != DirItem::FILE_SIZE_NONE && di.diffFileInfo[i].size > fileSizeThreshold)
+			bLargeFile = true;
+	}
+	if (!bLargeFile)
+		return false;
+
+	PathContext paths;
+	for (int i = 0; i < nFiles; ++i)
+		paths.SetPath(i, ifileloc[i].filepath.empty() ? _T("NUL") : paths::GetParentPath(ifileloc[i].filepath));
+	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
+	DirViewColItems ci(nFiles);
+	String msg = LoadResString(IDS_COMPARE_LARGE_FILES);
+	if (nFiles < 3)
+	{
+		String sidestr[] = { _("Left:"), _("Right:") };
+		for (int i = 0; i < nFiles; ++i)
+		{
+			if (ifileloc[i].filepath.empty())
+			{
+				msg += strutils::format(_T("%s %s\n\n"), sidestr[i], _("None"));
+			}
+			else
+			{
+				msg += strutils::format(_T("%s %s\n %s:  %s\n %s: %s (%s)\n\n"),
+					sidestr[i].c_str(), ifileloc[i].filepath.c_str(),
+					ci.GetColDisplayName(3 + i).c_str(), ci.ColGetTextToDisplay(&ctxt, 3 + i, di).c_str(),
+					ci.GetColDisplayName(8 + i).c_str(), ci.ColGetTextToDisplay(&ctxt, 8 + i, di).c_str(), ci.ColGetTextToDisplay(&ctxt, 10 + i, di).c_str());
+			}
+		}
+	}
+	else
+	{
+		String sidestr[] = { _("Left:"), _("Middle:"), _("Right:") };
+		for (int i = 0; i < nFiles; ++i)
+		{
+			if (ifileloc[i].filepath.empty())
+			{
+				msg += strutils::format(_T("%s %s\n\n"), sidestr[i], _("None"));
+			}
+			else
+			{
+				msg += strutils::format(_T("%s %s\n %s:  %s\n %s: %s (%s)\n\n"),
+					sidestr[i].c_str(), ifileloc[i].filepath.c_str(),
+					ci.GetColDisplayName(3 + i).c_str(), ci.ColGetTextToDisplay(&ctxt, 3 + i, di).c_str(),
+					ci.GetColDisplayName(10 + i).c_str(), ci.ColGetTextToDisplay(&ctxt, 10 + i, di).c_str(), ci.ColGetTextToDisplay(&ctxt, 13 + i, di).c_str());
+			}
+		}
+	}
+	int ans = AfxMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN);
+	if (ans == IDCANCEL)
+		return true;
+	else if (ans == IDNO)
+		return false;
+
+	InitDiffContext(&ctxt);
+	FolderCmp cmp(&ctxt);
+	CWaitCursor waitstatus;
+	di.diffcode.diffcode |= cmp.prepAndCompareFiles(di);
+	AfxMessageBox(ci.ColGetTextToDisplay(&ctxt, 2, di).c_str(), MB_OK | MB_ICONINFORMATION);
+	theApp.SetLastCompareResult(di.diffcode.isResultDiff() ? 1 : 0);
+	return true;
 }
 

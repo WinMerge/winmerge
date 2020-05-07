@@ -2830,6 +2830,9 @@ msgstr ""
 "%1\n"
 "не є файлом конфліктів"
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "Зберегти як..."
@@ -3665,13 +3668,11 @@ msgstr "Відмінності"
 msgid "Patch file successfully written."
 msgstr "Латка успішно записана."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. Елемент не знайдений або це тека"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. Елемент не знайдений або це тека"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

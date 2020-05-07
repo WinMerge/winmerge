@@ -16,7 +16,6 @@
 #pragma once
 
 #include "crystaltextblock.h"
-#include "icu.hpp"
 
 /**
 Objects of this class are used to describe language properties. At this time

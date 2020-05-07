@@ -72,12 +72,12 @@
 #include "editreg.h"
 #include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
-#include "ceditreplacedlg.h"
-#include "registry.h"
-#include "cs2cs.h"
-#include "chcondlg.h"
-#include "string_util.h"
-#include "icu.hpp"
+#include "dialogs/ceditreplacedlg.h"
+#include "dialogs/chcondlg.h"
+#include "utils/registry.h"
+#include "utils/cs2cs.h"
+#include "utils/string_util.h"
+#include "utils/icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -105,7 +105,7 @@ class CEditDropTargetImpl : public COleDropTarget
 private :
     CCrystalEditView * m_pOwner;
 public :
-    CEditDropTargetImpl (CCrystalEditView * pOwner)
+    explicit CEditDropTargetImpl (CCrystalEditView * pOwner)
       : m_pOwner(pOwner), m_pAlternateDropTarget(nullptr)
     {
     };
@@ -128,7 +128,7 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 CCrystalEditView::CCrystalEditView ()
 : m_pEditReplaceDlg(nullptr)
 {
-  memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
+  memset((static_cast<CCrystalTextView*>(this))+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
   m_bAutoIndent = true;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
@@ -621,9 +621,9 @@ OnEditDelete ()
         }
       else 
         {
-		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
           ptSelEnd.x = pIterChar->following(ptSelEnd.x);
-      }
+        }
     }
 
   if (!m_bColumnSelection)
@@ -836,7 +836,7 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptCursorPos.y), GetLineLength(ptCursorPos.y));
       ptCursorPos.x = pIterChar->preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
     }
@@ -1529,8 +1529,7 @@ OnEditReplace ()
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != nullptr);
 
-  if (m_pEditReplaceDlg != nullptr)
-    delete m_pEditReplaceDlg;
+  delete m_pEditReplaceDlg;
   m_pEditReplaceDlg = new CEditReplaceDlg(this);
   LastSearchInfos * lastSearch = m_pEditReplaceDlg->GetLastSearchInfos();
 
@@ -2107,7 +2106,7 @@ OnEditAutoComplete ()
       CString sText;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
-      _tcsncpy_s (pszBuffer + 1, nLength - 1, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer + 1, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2120,13 +2119,14 @@ OnEditAutoComplete ()
         }
       if (bFound)
         {
-          int nFound = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          const int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          int nFound = nLineLength;
           pszText = m_pTextBuffer->GetLineChars (ptTextPos.y) + ptTextPos.x + m_nLastFindWhatLen;
           nFound -= ptTextPos.x + m_nLastFindWhatLen;
           pszBuffer = sText.GetBuffer (nFound + 1);
           while (nFound-- && xisalnum (*pszText))
             *pszBuffer++ = *pszText++;
-          sText.ReleaseBuffer (nFound);
+          sText.ReleaseBuffer (nLineLength - (ptTextPos.x + m_nLastFindWhatLen) - nFound - 1);
           if (!sText.IsEmpty ())
             {
               m_pTextBuffer->BeginUndoGroup ();
@@ -2647,7 +2647,7 @@ void CCrystalEditView::OnEditGotoLastChange()
 
 int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   static TCHAR szBuffer[4096];
 
   if (pdata->nRow < pView->GetLineCount ())
@@ -2674,7 +2674,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 
 int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   CPoint ptStartPos, ptEndPos;
 
   switch (nEvent)

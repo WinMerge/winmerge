@@ -80,6 +80,7 @@ Localization:
 
 * Galician:
   Medulio
+  Luis A. Martínez Sobrino <luis.martinez.sobrino at gmail.com>
 
 * German:
   Tim Gerundt <tim@gerundt.de>

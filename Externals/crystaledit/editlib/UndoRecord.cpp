@@ -36,8 +36,8 @@ SetText (LPCTSTR pszText, size_t nLength)
   FreeText();
   if (nLength != 1)
     {
-	  ASSERT (nLength < INT_MAX);
-      m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + (nLength+2) * sizeof(TCHAR));
+      ASSERT (nLength < INT_MAX);
+      m_pszText = reinterpret_cast<TextBuffer *>(malloc(sizeof(TextBuffer) + (nLength+2) * sizeof(TCHAR)));
       if (m_pszText != nullptr)
         {
           m_pszText->size = nLength;

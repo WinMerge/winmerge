@@ -2784,6 +2784,9 @@ msgstr "解析冲突文件时失败."
 msgid "The file\n%1\nis not a conflict file."
 msgstr "文件\n%1\n不是一个冲突文件."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "另存为"
@@ -3587,13 +3590,11 @@ msgstr "差异窗格"
 msgid "Patch file successfully written."
 msgstr "补丁文件写入成功."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. 项目未找到或者它是一个文件夹!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. 项目未找到或者它是一个文件夹!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

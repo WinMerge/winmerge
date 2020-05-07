@@ -2855,6 +2855,9 @@ msgstr ""
 "%1\n"
 "ist keine Konfliktdatei."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "Speichern unter"
@@ -3697,13 +3700,11 @@ msgstr "Unterschiedsleiste"
 msgid "Patch file successfully written."
 msgstr "Die Patchdatei wurde erfolgreich geschrieben."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. Objekt ist nicht vorhanden oder ist ein Ordner!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. Objekt ist nicht vorhanden oder ist ein Ordner!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

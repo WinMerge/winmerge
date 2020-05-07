@@ -2818,6 +2818,9 @@ msgstr ""
 "%1\n"
 "δεν είναι αρχείο διενέξεων."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "Αποθήκευση Ως"
@@ -3639,13 +3642,11 @@ msgstr "Πεδίο Διαφορών"
 msgid "Patch file successfully written."
 msgstr "Η εγγραφή του αρχείου patch ολοκληρώθηκε επιτυχώς."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. το αντικείμενο δε βρέθηκε ή είναι φάκελος!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. το αντικείμενο δε βρέθηκε ή είναι φάκελος!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

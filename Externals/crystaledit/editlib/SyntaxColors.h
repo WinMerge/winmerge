@@ -9,7 +9,7 @@
 #pragma once
 
 #include <Windows.h>
-#include <vector>
+#include <array>
 
 /** 
  * @brief Indexes to color table
@@ -84,6 +84,6 @@ public:
 
 // Implementation data
 private:
-	std::vector<COLORREF> m_colors; /**< Syntax highlight colors */
-	std::vector<bool> m_bolds; /**< Bold font enable/disable */
+	std::array<COLORREF, COLORINDEX_COUNT> m_colors; /**< Syntax highlight colors */
+	std::array<bool, COLORINDEX_COUNT> m_bolds; /**< Bold font enable/disable */
 };

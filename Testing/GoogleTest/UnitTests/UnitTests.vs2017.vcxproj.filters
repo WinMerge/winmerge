@@ -282,10 +282,10 @@
     <ClCompile Include="..\..\..\Src\DirTravel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\icu.cpp">
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\string_util.cpp">
+    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\icu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -479,10 +479,10 @@
     <ClInclude Include="..\..\..\Src\DirTravel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\icu.hpp">
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\string_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\string_util.h">
+    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

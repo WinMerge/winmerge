@@ -34,11 +34,11 @@
 #pragma once
 
 #include <vector>
-#include "cregexp.h"
 #include "crystalparser.h"
-#include "crystallineparser.h"
-#include "ccrystalrenderer.h"
-#include "icu.hpp"
+#include "parsers/crystallineparser.h"
+#include "renderers/ccrystalrenderer.h"
+#include "utils/cregexp.h"
+#include "utils/icu.hpp"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -199,14 +199,14 @@ protected:
 public :
     enum RENDERING_MODE
     {
-	  RENDERING_MODE_GDI = -1,
-	  RENDERING_MODE_DWRITE_DFEAULT = 0,
-	  RENDERING_MODE_DWRITE_ALIASED = 1,
-	  RENDERING_MODE_DWRITE_GDI_CLASSIC = 2,
-	  RENDERING_MODE_DWRITE_GDI_NATURAL = 3,
-	  RENDERING_MODE_DWRITE_NATURAL = 4,
-	  RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC = 5,
-	};
+      RENDERING_MODE_GDI = -1,
+      RENDERING_MODE_DWRITE_DFEAULT = 0,
+      RENDERING_MODE_DWRITE_ALIASED = 1,
+      RENDERING_MODE_DWRITE_GDI_CLASSIC = 2,
+      RENDERING_MODE_DWRITE_GDI_NATURAL = 3,
+      RENDERING_MODE_DWRITE_NATURAL = 4,
+      RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC = 5,
+    };
 
     virtual void ResetView ();
     virtual int GetLineCount ();
@@ -692,10 +692,10 @@ public :
     bool GetDisableDragAndDrop () const;
     void SetDisableDragAndDrop (bool bDDAD);
 
-	static RENDERING_MODE GetRenderingModeDefault() { return s_nRenderingModeDefault;  }
-	static void SetRenderingModeDefault(RENDERING_MODE nRenderingMode) { s_nRenderingModeDefault = nRenderingMode;  }
-	RENDERING_MODE GetRenderingMode() const { return m_nRenderingMode;  }
-	void SetRenderingMode(RENDERING_MODE nRenderingMode);
+    static RENDERING_MODE GetRenderingModeDefault() { return s_nRenderingModeDefault;  }
+    static void SetRenderingModeDefault(RENDERING_MODE nRenderingMode) { s_nRenderingModeDefault = nRenderingMode;  }
+    RENDERING_MODE GetRenderingMode() const { return m_nRenderingMode;  }
+    void SetRenderingMode(RENDERING_MODE nRenderingMode);
 
     //BEGIN SW
     bool GetWordWrapping() const;
@@ -725,12 +725,12 @@ public :
     RxMatchRes m_rxmatch;
     LPTSTR m_pszMatched;
     static LOGFONT m_LogFont;
-	static RENDERING_MODE s_nRenderingModeDefault;
-	RENDERING_MODE m_nRenderingMode;
+    static RENDERING_MODE s_nRenderingModeDefault;
+    RENDERING_MODE m_nRenderingMode;
 
     ICUBreakIterator m_iterWord;
-	std::unique_ptr<CCrystalRenderer> m_pCrystalRenderer;
-	CCrystalRenderer *m_pCrystalRendererSaved;
+    std::unique_ptr<CCrystalRenderer> m_pCrystalRenderer;
+    CCrystalRenderer *m_pCrystalRendererSaved;
 
     typedef enum
     {

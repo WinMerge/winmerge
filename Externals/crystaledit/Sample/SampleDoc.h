@@ -21,17 +21,9 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	class CSampleTextBuffer : public CCrystalTextBuffer
-	{
-	private:
-		CSampleDoc *m_pOwnerDoc;
-	public:
-		CSampleTextBuffer(CSampleDoc *pDoc) { m_pOwnerDoc = pDoc; };
-		virtual void SetModified(bool bModified = true)
-			{ m_pOwnerDoc->SetModifiedFlag(bModified); };
-	};
-
-	CSampleTextBuffer m_xTextBuffer;
+	virtual BOOL IsModified() { return m_xTextBuffer.IsModified(); };
+	virtual void SetModified(BOOL bModified) { m_xTextBuffer.SetModified(bModified); };
+	CCrystalTextBuffer m_xTextBuffer;
 	LOGFONT m_lf;
 	SyntaxColors *m_pSyntaxColors;
 	CCrystalTextMarkers *m_pMarkers;

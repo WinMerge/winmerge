@@ -2762,6 +2762,9 @@ msgstr "Hiba a konfliktusfájl értelmezésekor."
 msgid "The file\n%1\nis not a conflict file."
 msgstr "A fájl\n%1\nnem egy konfliktus fájl."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "Mentés másként"
@@ -3566,13 +3569,11 @@ msgstr ""
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "Az 1. elem nem található vagy az egy könyvtár!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "A 2. elem nem található vagy az egy könyvtár!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"

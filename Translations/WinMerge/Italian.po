@@ -2273,6 +2273,9 @@ msgstr ""
 "%1\n"
 "non è un file del conflitto."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 msgid "Save As"
 msgstr "Salva con nome"
 
@@ -3024,11 +3027,11 @@ msgstr "Pannello differenze"
 msgid "Patch file successfully written."
 msgstr "Scrittura file patch completata."
 
-msgid "1. item is not found or is directory!"
-msgstr "1° elemento non trovato o è una cartella!"
+msgid "1. item is not found!"
+msgstr ""
 
-msgid "2. item is not found or is directory!"
-msgstr "2° elemento non trovato o è una cartella!"
+msgid "2. item is not found!"
+msgstr ""
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Il file di patch esiste già.\nVuoi sovrascriverlo?"

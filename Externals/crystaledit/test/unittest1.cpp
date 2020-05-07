@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../editlib/crystallineparser.h"
+#include "../editlib/parsers/crystallineparser.h"
 #include "../editlib/SyntaxColors.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

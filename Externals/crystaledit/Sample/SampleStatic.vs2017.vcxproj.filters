@@ -19,6 +19,15 @@
     <Filter Include="editlib\parsers">
       <UniqueIdentifier>{0fd2d655-aedc-48db-a5a1-7b0906cbe645}</UniqueIdentifier>
     </Filter>
+    <Filter Include="editlib\renderers">
+      <UniqueIdentifier>{9e66b30e-2533-465b-a307-24dfe02b73b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="editlib\dialogs">
+      <UniqueIdentifier>{44b18b11-2899-4f12-8157-7a29eb580001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="editlib\utils">
+      <UniqueIdentifier>{b0f8aaea-ace2-43e7-bf2f-75e2201d4396}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildFrm.cpp">
@@ -51,18 +60,6 @@
     <ClCompile Include="..\editlib\ccrystaltextview2.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ceditreplacedlg.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\cfindtextdlg.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\chcondlg.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\cregexp.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\crystaleditviewex.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
@@ -72,37 +69,10 @@
     <ClCompile Include="..\editlib\crystaltextblock.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\cs2cs.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\edtlib.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\filesup.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\fpattern.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\gotodlg.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\LineInfo.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\memcombo.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\registry.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\splash.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\statbar.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\string_util.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
     <ClCompile Include="..\editlib\SyntaxColors.cpp">
@@ -114,134 +84,170 @@
     <ClCompile Include="..\editlib\ViewableWhitespace.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\asp.cpp">
+    <ClCompile Include="..\editlib\parsers\cplusplus.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\basic.cpp">
+    <ClCompile Include="..\editlib\parsers\csharp.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\batch.cpp">
+    <ClCompile Include="..\editlib\parsers\css.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\cplusplus.cpp">
+    <ClCompile Include="..\editlib\parsers\dcl.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\csharp.cpp">
+    <ClCompile Include="..\editlib\parsers\fortran.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\css.cpp">
+    <ClCompile Include="..\editlib\parsers\html.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\dcl.cpp">
+    <ClCompile Include="..\editlib\parsers\ini.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\fortran.cpp">
+    <ClCompile Include="..\editlib\parsers\innosetup.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\html.cpp">
+    <ClCompile Include="..\editlib\parsers\is.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ini.cpp">
+    <ClCompile Include="..\editlib\parsers\java.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\innosetup.cpp">
+    <ClCompile Include="..\editlib\parsers\lisp.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\is.cpp">
+    <ClCompile Include="..\editlib\parsers\nsis.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\java.cpp">
+    <ClCompile Include="..\editlib\parsers\pascal.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\lisp.cpp">
+    <ClCompile Include="..\editlib\parsers\perl.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\nsis.cpp">
+    <ClCompile Include="..\editlib\parsers\php.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\pascal.cpp">
+    <ClCompile Include="..\editlib\parsers\po.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\perl.cpp">
+    <ClCompile Include="..\editlib\parsers\powershell.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\php.cpp">
+    <ClCompile Include="..\editlib\parsers\python.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\po.cpp">
+    <ClCompile Include="..\editlib\parsers\rexx.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\powershell.cpp">
+    <ClCompile Include="..\editlib\parsers\rsrc.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\python.cpp">
+    <ClCompile Include="..\editlib\parsers\ruby.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\rexx.cpp">
+    <ClCompile Include="..\editlib\parsers\sgml.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\rsrc.cpp">
+    <ClCompile Include="..\editlib\parsers\sh.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ruby.cpp">
+    <ClCompile Include="..\editlib\parsers\siod.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\sgml.cpp">
+    <ClCompile Include="..\editlib\parsers\sql.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\sh.cpp">
+    <ClCompile Include="..\editlib\parsers\tcl.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\siod.cpp">
+    <ClCompile Include="..\editlib\parsers\tex.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\sql.cpp">
+    <ClCompile Include="..\editlib\parsers\verilog.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\tcl.cpp">
+    <ClCompile Include="..\editlib\parsers\vhdl.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\tex.cpp">
+    <ClCompile Include="..\editlib\parsers\xml.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\verilog.cpp">
-      <Filter>editlib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\vhdl.cpp">
-      <Filter>editlib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\xml.cpp">
-      <Filter>editlib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\rust.cpp">
-      <Filter>editlib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\go.cpp">
+    <ClCompile Include="..\editlib\parsers\rust.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
     <ClCompile Include="..\editlib\ccrystaltextmarkers.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ctextmarkerdlg.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\wcwidth.cpp">
-      <Filter>editlib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\editlib\plain.cpp">
+    <ClCompile Include="..\editlib\parsers\plain.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\lua.cpp">
+    <ClCompile Include="..\editlib\parsers\lua.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\icu.cpp">
-      <Filter>editlib</Filter>
+    <ClCompile Include="..\editlib\parsers\isx.cpp">
+      <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ccrystalrenderergdi.cpp">
-      <Filter>editlib</Filter>
+    <ClCompile Include="..\editlib\parsers\go.cpp">
+      <Filter>editlib\parsers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\ccrystalrendererdirectwrite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\editlib\parsers\asp.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\batch.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\basic.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\renderers\ccrystalrendererdirectwrite.cpp">
+      <Filter>editlib\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\renderers\ccrystalrenderergdi.cpp">
+      <Filter>editlib\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\ceditreplacedlg.cpp">
+      <Filter>editlib\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\cfindtextdlg.cpp">
+      <Filter>editlib\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\chcondlg.cpp">
+      <Filter>editlib\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\ctextmarkerdlg.cpp">
+      <Filter>editlib\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\gotodlg.cpp">
+      <Filter>editlib\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\memcombo.cpp">
+      <Filter>editlib\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\cregexp.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\cs2cs.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\filesup.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\fpattern.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\icu.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\registry.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\string_util.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\utils\wcwidth.cpp">
+      <Filter>editlib\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,18 +286,6 @@
     <ClInclude Include="..\editlib\ccrystaltextview.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ceditreplacedlg.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\cfindtextdlg.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\chcondlg.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\cregexp.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\editlib\crystaleditviewex.h">
       <Filter>editlib</Filter>
     </ClInclude>
@@ -299,9 +293,6 @@
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\crystaltextblock.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\cs2cs.h">
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\editcmd.h">
@@ -313,31 +304,7 @@
     <ClInclude Include="..\editlib\edtlib.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\filesup.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\fpattern.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\gotodlg.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\editlib\LineInfo.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\memcombo.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\registry.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\splash.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\statbar.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\string_util.h">
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\SyntaxColors.h">
@@ -355,26 +322,59 @@
     <ClInclude Include="..\editlib\ccrystaltextmarkers.h">
       <Filter>editlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ctextmarkerdlg.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\wcwidth.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\editlib\crystallineparser.h">
+    <ClInclude Include="..\editlib\parsers\crystallineparser.h">
       <Filter>editlib\parsers</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\icu.hpp">
-      <Filter>editlib</Filter>
+    <ClInclude Include="..\editlib\renderers\ccrystalrenderer.h">
+      <Filter>editlib\renderers</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrenderer.h">
-      <Filter>editlib</Filter>
+    <ClInclude Include="..\editlib\renderers\ccrystalrendererdirectwrite.h">
+      <Filter>editlib\renderers</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrendererdirectdraw.h">
-      <Filter>editlib</Filter>
+    <ClInclude Include="..\editlib\renderers\ccrystalrenderergdi.h">
+      <Filter>editlib\renderers</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\ccrystalrenderergdi.h">
-      <Filter>editlib</Filter>
+    <ClInclude Include="..\editlib\dialogs\ceditreplacedlg.h">
+      <Filter>editlib\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\dialogs\chcondlg.h">
+      <Filter>editlib\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\dialogs\cfindtextdlg.h">
+      <Filter>editlib\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\dialogs\ctextmarkerdlg.h">
+      <Filter>editlib\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\dialogs\gotodlg.h">
+      <Filter>editlib\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\cregexp.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\cs2cs.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\filesup.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\fpattern.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\icu.hpp">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\registry.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\string_util.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\wcwidth.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\dialogs\memcombo.h">
+      <Filter>editlib\dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -390,25 +390,13 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\mg_icons.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Sample.rc2">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\editlib\ccrystaleditview.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\ccrystaltextbuffer.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\ccrystaltextview.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\filesup.inl">
-      <Filter>editlib</Filter>
-    </None>
-    <None Include="..\editlib\memcombo.inl">
-      <Filter>editlib</Filter>
     </None>
     <None Include="res\mg_cur.cur">
       <Filter>Resource Files</Filter>

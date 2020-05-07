@@ -1106,7 +1106,7 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditCut()
 {
-	if (IsReadOnly(m_nThisPane) || m_bDetailView)
+	if (!QueryEditable())
 		return;
 
 	CPoint ptSelStart, ptSelEnd;
@@ -1149,7 +1149,7 @@ void CMergeEditView::OnEditCut()
  */
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (QueryEditable())
 		CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
 	else
 		pCmdUI->Enable(false);
@@ -1160,7 +1160,7 @@ void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditPaste()
 {
-	if (IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (!QueryEditable())
 		return;
 
 	CCrystalEditViewEx::Paste();
@@ -1172,7 +1172,7 @@ void CMergeEditView::OnEditPaste()
  */
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (QueryEditable())
 		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
 	else
 		pCmdUI->Enable(false);
@@ -1188,7 +1188,7 @@ void CMergeEditView::OnEditUndo()
 	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
 	if(tgt==this)
 	{
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
@@ -2073,7 +2073,7 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnAutoMerge()
 {
 	// Check current pane is not readonly
-	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || IsReadOnly(m_nThisPane))
+	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || !QueryEditable())
 		return;
 
 	CWaitCursor waitstatus;
@@ -2089,7 +2089,7 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
 		!GetDocument()->IsModified() && 
 		!GetDocument()->GetAutoMerged() && 
-		!IsReadOnly(m_nThisPane));
+		QueryEditable());
 }
 
 /**
@@ -2125,7 +2125,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
 {
-	if (IsReadOnly(m_nThisPane))
+	if (!QueryEditable())
 	{
 		// We must not arrive here, and assert helps detect troubles
 		ASSERT(false);
@@ -2201,7 +2201,7 @@ void CMergeEditView::OnEditRedo()
 	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
 	if(tgt==this)
 	{
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
@@ -2355,7 +2355,7 @@ void CMergeEditView::OnTimer(UINT_PTR nIDEvent)
  */
 bool CMergeEditView::IsReadOnly(int pane) const
 {
-	return GetDocument()->m_ptBuf[pane]->GetReadOnly() != false;
+	return m_bDetailView ? true : (GetDocument()->m_ptBuf[pane]->GetReadOnly() != false);
 }
 
 /**
@@ -2933,7 +2933,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 		pCmdUI->SetRadio(false);
 
 		// Don't allow selecting other EOL style for protected pane
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			pCmdUI->Enable(false);
 	}
 	else
@@ -4093,6 +4093,11 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+}
+
+bool CMergeEditView::QueryEditable()
+{
+	return m_bDetailView ? false : !GetDocument()->m_ptBuf[m_nThisPane]->GetReadOnly();
 }
 
 /**

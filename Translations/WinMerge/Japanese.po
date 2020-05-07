@@ -2273,6 +2273,9 @@ msgstr ""
 "%1\n"
 "はコンフリクト ファイルではありません。"
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr "非常に大きなファイルを比較しようとしています。\n内容を表示するには大量のメモリが必要です。\n内容の表示はせずに、比較結果のみ表示しますか?\n\n"
+
 msgid "Save As"
 msgstr "名前を付けて保存"
 
@@ -3018,11 +3021,11 @@ msgstr "Diff ペイン"
 msgid "Patch file successfully written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
 
-msgid "1. item is not found or is directory!"
-msgstr "1. 項目が見つからないか、フォルダーです!"
+msgid "1. item is not found!"
+msgstr "1. 項目が見つかりません!"
 
-msgid "2. item is not found or is directory!"
-msgstr "2. 項目が見つからないか、フォルダーです!"
+msgid "2. item is not found!"
+msgstr "2. 項目が見つかりません!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "出力結果ファイルは既に存在します。上書きしますか?"

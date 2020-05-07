@@ -59,14 +59,12 @@
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
-    <XPDeprecationWarning>false</XPDeprecationWarning>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
-    <XPDeprecationWarning>false</XPDeprecationWarning>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -206,6 +204,7 @@
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -220,9 +219,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <OptimizeReferences>true</OptimizeReferences>
@@ -347,13 +343,14 @@
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -366,9 +363,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
@@ -396,12 +390,13 @@
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -414,9 +409,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
@@ -424,76 +416,76 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Externals\crystaledit\editlib\asp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\basic.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\asp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.cpp">
+    <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderergdi.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ceditreplacedlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\cfindtextdlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\cplusplus.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\ceditreplacedlg.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\cplusplus.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\cregexp_poco.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\cs2cs.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\csharp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\css.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dcl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\fpattern.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\icu.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\cs2cs.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\csharp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\css.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\ctextmarkerdlg.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\dcl.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\filesup.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\fortran.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\fpattern.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\go.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\gotodlg.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\html.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\icu.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\ini.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\innosetup.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\is.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\isx.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\java.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\lua.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\memcombo.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\nsis.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\perl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\php.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\po.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\powershell.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\python.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\rexx.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\rsrc.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ruby.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\lisp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\lua.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\memcombo.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\nsis.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\pascal.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\perl.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\php.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\plain.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\po.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\powershell.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\python.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\registry.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rexx.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rsrc.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\ruby.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rust.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sgml.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sh.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\siod.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sql.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\string_util.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\SyntaxColors.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\tcl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\tex.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\tcl.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\tex.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\verilog.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\vhdl.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\wcwidth.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\xml.cpp" />
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1059,38 +1051,37 @@
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderer.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrendererdirectwrite.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystalrenderergdi.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderer.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderergdi.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ceditreplacedlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\cfindtextdlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\chcondlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\cregexp.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\ceditreplacedlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\cregexp.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\cs2cs.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\cs2cs.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\ctextmarkerdlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\icu.hpp" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\filesup.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\fpattern.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\gotodlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\icu.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\registry.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\string_util.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\memcombo.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\registry.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\string_util.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\wcwidth.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
     <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>

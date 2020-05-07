@@ -152,15 +152,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\editlib\crystallineparser.h" />
+    <ClInclude Include="..\editlib\parsers\crystallineparser.h" />
     <ClInclude Include="..\editlib\string_util.h" />
     <ClInclude Include="..\editlib\SyntaxColors.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\editlib\lua.cpp" />
-    <ClCompile Include="..\editlib\string_util.cpp">
+    <ClCompile Include="..\editlib\parsers\isx.cpp" />
+    <ClCompile Include="..\editlib\parsers\lua.cpp" />
+    <ClCompile Include="..\editlib\utils\string_util.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

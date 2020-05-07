@@ -70,8 +70,8 @@
 #include "UndoRecord.h"
 #include "ccrystaltextbuffer.h"
 #include "ccrystaltextview.h"
-#include "filesup.h"
-#include "cs2cs.h"
+#include "utils/filesup.h"
+#include "utils/cs2cs.h"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -359,7 +359,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
 
   HANDLE hFile = nullptr;
   int nCurrentMax = 256;
-  TCHAR *pcLineBuf = new TCHAR[nCurrentMax];
+  char *pcLineBuf = new char[nCurrentMax];
 
   bool bSuccess = false;
 
@@ -428,7 +428,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       DWORD dwBufPtr = 0;
       while (dwBufPtr < dwCurSize)
         {
-          TCHAR c = pcBuf[dwBufPtr];
+          char c = pcBuf[dwBufPtr];
           dwBufPtr++;
           if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
             {
@@ -443,8 +443,8 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
             {
               //  Reallocate line buffer
               nCurrentMax += 256;
-              TCHAR *pcNewLineBuf = new TCHAR[nCurrentMax];
-              memcpy(pcNewLineBuf, pcLineBuf, sizeof(TCHAR) * (nCurrentMax - 256));
+              char *pcNewLineBuf = new char[nCurrentMax];
+              memcpy(pcNewLineBuf, pcLineBuf, sizeof(char) * (nCurrentMax - 256));
               delete [] pcLineBuf;
               pcLineBuf = pcNewLineBuf;
             }
@@ -455,15 +455,31 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
           if( c==0x0A )
             {
               pcLineBuf[nCurrentLength] = '\0';
-              nCurrentLength = 0;
+#ifdef _UNICODE
+              wchar_t *buf = new wchar_t[nCurrentLength];
+              int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
+              if (m_nSourceEncoding >= 0)
+                  iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+              InsertLine(buf, len);
+              delete[] buf;
+#else
               if (m_nSourceEncoding >= 0)
                 iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-              InsertLine (pcLineBuf, lstrlen(pcLineBuf));
+              InsertLine (pcLineBuf, nCurrentLength);
+#endif
+              nCurrentLength = 0;
             }
         }
 
       pcLineBuf[nCurrentLength] = 0;
+#ifdef _UNICODE
+      wchar_t *buf = new wchar_t[nCurrentLength];
+      int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
+      InsertLine(buf, len);
+      delete[] buf;
+#else
       InsertLine (&pcLineBuf[0], nCurrentLength);
+#endif
 
       ASSERT (m_aLines.size() > 0);   //  At least one empty line must present
 
@@ -506,7 +522,6 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
   TCHAR szTempFileName[_MAX_PATH + 1];
   TCHAR szBackupFileName[_MAX_PATH + 1];
   bool bSuccess = false;
-  __try
   {
     TCHAR drive[_MAX_PATH], dir[_MAX_PATH], name[_MAX_PATH], ext[_MAX_PATH];
 #ifdef _UNICODE
@@ -519,55 +534,75 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     _tcscpy_s (szBackupFileName, pszFileName);
     _tcscat_s (szBackupFileName, _T (".bak"));
 
-    if (::GetTempFileName (szTempFileDir, _T ("CRE"), 0, szTempFileName) == 0)
-      __leave;
+    if (::GetTempFileName(szTempFileDir, _T("CRE"), 0, szTempFileName) == 0)
+      goto EXIT;
 
       hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
-                               CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-      if (hTempFile == INVALID_HANDLE_VALUE)
-        __leave;
+        CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (hTempFile == INVALID_HANDLE_VALUE)
+      goto EXIT;
 
-        if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-          nCrlfStyle = m_nCRLFMode;
+    if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+      nCrlfStyle = m_nCRLFMode;
 
-          ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
-          LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-          int nCRLFLength = _tcslen (pszCRLF);
+    ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+    LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+    int nCRLFLength = static_cast<int>(_tcslen (pszCRLF));
 
-          int nLineCount = m_aLines.size();
-          for (int nLine = 0; nLine < nLineCount; nLine++)
-            {
-              int nLength = m_aLines[nLine].Length();
-              DWORD dwWrittenBytes;
-              if (nLength > 0)
-                {
-                  LPCTSTR pszLine = m_aLines[nLine].GetLine(0);
-                  if (m_nSourceEncoding >= 0)
-                    {
-                      LPTSTR pszBuf;
-                      iconvert_new (m_aLines[nLine].GetLine(0), &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
-                      if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, nullptr))
-                        {
-                          free (pszBuf);
-                          __leave;
-                        }
-                      free (pszBuf);
-                    }
-                  else
-                    if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, nullptr))
-                      __leave;
-                  if (nLength != (int) dwWrittenBytes)
-                    __leave;
-                }
-              if (nLine < nLineCount - 1)     //  Last line must not end with CRLF
+    int nLineCount = static_cast<int>(m_aLines.size());
+    for (int nLine = 0; nLine < nLineCount; nLine++)
+      {
+        int nLength = static_cast<int>(m_aLines[nLine].Length());
+        DWORD dwWrittenBytes;
+        if (nLength > 0)
+          {
+            LPCTSTR pszLine = m_aLines[nLine].GetLine(0);
+            if (m_nSourceEncoding >= 0)
+              {
+                LPTSTR pszBuf;
+                iconvert_new (m_aLines[nLine].GetLine(0), &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
+#ifdef _UNICODE
+                std::unique_ptr<char> abuf{ new char[nLength * 4] };
+                nLength = WideCharToMultiByte (CP_UTF8, 0, pszBuf, nLength, abuf.get(), nLength * 4, nullptr, nullptr);
+                if (!::WriteFile (hTempFile, abuf.get(), nLength, &dwWrittenBytes, nullptr))
+#else
+                if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, nullptr))
+#endif
+                  {
+                    free (pszBuf);
+                    goto EXIT;
+                  }
+                free (pszBuf);
+              }
+            else
+              {
+#ifdef _UNICODE
+                std::unique_ptr<char> abuf{ new char[nLength * 4] };
+                nLength = WideCharToMultiByte (CP_UTF8, 0, pszLine, nLength, abuf.get(), nLength * 4, nullptr, nullptr);
+                if (!::WriteFile (hTempFile, abuf.get(), nLength, &dwWrittenBytes, nullptr))
+#else
+                if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, nullptr))
+#endif
+                  goto EXIT;
+              }
+            if (nLength != (int)dwWrittenBytes)
+              goto EXIT;
+          }
+        if (nLine < nLineCount - 1)     //  Last line must not end with CRLF
 
-                {
-                  if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, nullptr))
-                    __leave;
-                  if (nCRLFLength != (int) dwWrittenBytes)
-                    __leave;
-                }
-            }
+          {
+#ifdef _UNICODE
+            std::unique_ptr<char> abuf{ new char[nCRLFLength * 4] };
+            nCRLFLength = WideCharToMultiByte (CP_UTF8, 0, pszCRLF, nCRLFLength, abuf.get(), nCRLFLength * 4, nullptr, nullptr);
+            if (!::WriteFile (hTempFile, abuf.get(), nCRLFLength, &dwWrittenBytes, nullptr))
+#else
+            if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, nullptr))
+#endif
+              goto EXIT;
+            if (nCRLFLength != (int) dwWrittenBytes)
+              goto EXIT;
+          }
+      }
     ::CloseHandle (hTempFile);
     hTempFile = INVALID_HANDLE_VALUE;
 
@@ -580,7 +615,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
             //  File exist - create backup file
             ::DeleteFile (szBackupFileName);
             if (!::MoveFile (pszFileName, szBackupFileName))
-              __leave;
+              goto EXIT;
             ::FindClose (hSearch);
             hSearch = INVALID_HANDLE_VALUE;
           }
@@ -592,30 +627,30 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
 
     //  Move temporary file to target name
     if (!::MoveFile (szTempFileName, pszFileName))
-      __leave;
+      goto EXIT;
 
-      if (bClearModifiedFlag)
-        {
+    if (bClearModifiedFlag)
+      {
           SetModified (false);
-          m_nSyncPosition = m_nUndoPosition;
-        }
+        m_nSyncPosition = m_nUndoPosition;
+      }
     bSuccess = true;
-    
+
     // remember revision number on save
     m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
-    
+
     // redraw line revision marks
     UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);
   }
-  __finally
+EXIT:
   {
     if (hSearch != INVALID_HANDLE_VALUE)
       ::FindClose (hSearch);
-      if (hTempFile != INVALID_HANDLE_VALUE)
-        ::CloseHandle (hTempFile);
-        ::DeleteFile (szTempFileName);
-      }
-      return bSuccess;
+    if (hTempFile != INVALID_HANDLE_VALUE)
+      ::CloseHandle (hTempFile);
+    ::DeleteFile (szTempFileName);
+  }
+  return bSuccess;
 }
 #endif // #if 0 savetofile
 
@@ -888,7 +923,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
     {
       nBufSize += m_aLines[L].Length();
       pszCurCRLF = pszCRLF ? pszCRLF : m_aLines[L].GetEol();
-      nCRLFLength = lstrlen(pszCurCRLF);
+      nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
       nBufSize += nCRLFLength;
     }
 
@@ -904,7 +939,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
           pszBuf += nCount;
         }
       pszCurCRLF = pszCRLF ? pszCRLF : startLine.GetEol();
-      nCRLFLength = lstrlen(pszCurCRLF);
+      nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
       memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
       pszBuf += nCRLFLength;
       for (int I = nStartLine + 1; I < nEndLine; I++)
@@ -919,7 +954,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
               pszBuf += nCount;
             }
           pszCurCRLF = pszCRLF ? pszCRLF : li.GetEol();
-          nCRLFLength = lstrlen(pszCurCRLF);
+          nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
           memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
           pszBuf += nCRLFLength;
         }

@@ -16,7 +16,7 @@
 #include "StdAfx.h"
 #include "crystalparser.h"
 #include "ccrystaltextview.h"
-#include "icu.hpp"
+#include "utils/icu.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -83,6 +83,12 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 			nLineCharCount+= (nTabWidth - nCharCount % nTabWidth);
 			nCharCount+= (nTabWidth - nCharCount % nTabWidth);
 			// remember whitespace
+			bBreakable = true;
+		}
+		else if (ch >= _T('\x00') && ch <= _T('\x1F'))
+		{
+			nLineCharCount+= 3;
+			nCharCount+= 3;
 			bBreakable = true;
 		}
 		else

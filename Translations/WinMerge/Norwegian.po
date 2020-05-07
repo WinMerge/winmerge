@@ -2829,6 +2829,9 @@ msgstr ""
 "%1\n"
 "er ikke en konfliktfil."
 
+msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgstr ""
+
 #, c-format
 msgid "Save As"
 msgstr "Lagre som"
@@ -3666,13 +3669,11 @@ msgstr "Forskjellspanel"
 msgid "Patch file successfully written."
 msgstr "Fil med rettelser vellykket skrevet."
 
-#, c-format
-msgid "1. item is not found or is directory!"
-msgstr "1. objekt ikke funnet eller er mappe!"
+msgid "1. item is not found!"
+msgstr ""
 
-#, c-format
-msgid "2. item is not found or is directory!"
-msgstr "2. objekt ikke funnet eller er mappe!"
+msgid "2. item is not found!"
+msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
