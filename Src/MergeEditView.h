@@ -178,6 +178,7 @@ public:
 	bool IsCursorInDiff() const;
 	bool IsDiffVisible(int nDiff);
 	void ZoomText(short amount);
+	virtual bool QueryEditable() override;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
