@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -442,11 +442,11 @@ msgstr "Sağı Fa&rklı Kaydet..."
 msgid "&Print..."
 msgstr "&Yazdır..."
 
-msgid "Page Set&up"
-msgstr "&Sayfa Ayarları"
+msgid "Page Set&up..."
+msgstr "&Sayfa Ayarları..."
 
-msgid "Print Previe&w"
-msgstr "&Yazdırma Ön İzleme"
+msgid "Print Previe&w..."
+msgstr "&Yazdırma Ön İzleme..."
 
 msgid "&Convert Line Endings to"
 msgstr "Sa&tır Sonlarını Dönüştür"
@@ -634,10 +634,10 @@ msgstr "Sol&dan Kopyala\tAlt+Shift+Sağ"
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Sağdan &Kopyala\tAlt+Shift+Sol"
 
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
 msgstr "Sağa Kopyala &ve İlerle\tAlt+Ctrl+Sağ"
 
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
 msgstr "Sola Kopyala ve İle&rle\tAlt+Ctrl+Sol"
 
 msgid "Copy &All to Right"
@@ -646,7 +646,7 @@ msgstr "Tü&münü Sağa Kopyala"
 msgid "Cop&y All to Left"
 msgstr "&Tümünü Sola Kopyala"
 
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr "Otomatik &Birleştir\tAlt+Ctrl+M"
 
 msgid "Add &Synchronization Point\tAlt+S"
@@ -978,7 +978,7 @@ msgstr "Genel"
 msgid "Automatically &scroll to first difference"
 msgstr "Otomatik olarak ilk &farka gidilsin"
 
-msgid "Cl&ose windows with ESC"
+msgid "Cl&ose windows with ESC:"
 msgstr "Pencereler ESC tuşu ile &kapatılsın"
 
 msgid "&Automatically verify paths in Open-dialog"
@@ -1759,8 +1759,8 @@ msgstr "&Hızlı karşılaştırma sınırı (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "&Binary karşılaştırma sınırı (MB):"
 
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "Karşılaştırma işlemleri&nin sayısı (eksi değerler kullanılabilecek işlemci çekirdeklerine eklenir):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "\nKarşılaştırma işlemleri&nin sayısı (eksi değerler kullanılabilecek işlemci çekirdeklerine eklenir):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3464,5 +3464,3 @@ msgstr "Uzaklık:%g,%g "
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Sayfa:%d/%d Yakınlaştırma:%d%% %dx%dpiksel %dbpp"
 
-#~ msgid "Disca&rd changes"
-#~ msgstr "Değişiklikleri kayde&tme"
