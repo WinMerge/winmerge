@@ -1128,7 +1128,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
                     bdisphex = true;
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
-                    int idx = i - ibegin;
+                    size_t idx = i - ibegin;
                     if (idx >= nWidths.size())
                         nWidths.resize(nWidths.size() * 2);
                     nSumWidth += nWidths[idx] = nCharWidthNarrowed;
@@ -1145,7 +1145,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
                   }
                   else
                   {
-                    int idx = i - ibegin;
+                    size_t idx = i - ibegin;
                     if (idx >= nWidths.size())
                         nWidths.resize(nWidths.size() * 2);
                     nSumWidth += nWidths[idx] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
