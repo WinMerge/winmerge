@@ -2234,6 +2234,8 @@ IsInsideSelBlock (CPoint ptTextPos)
     return false;
   if (ptTextPos.y > m_ptDrawSelEnd.y)
     return false;
+  if (m_bColumnSelection)
+    return ptTextPos.x >= m_ptDrawSelStart.x && ptTextPos.x < m_ptDrawSelEnd.x;
   if (ptTextPos.y < m_ptDrawSelEnd.y && ptTextPos.y > m_ptDrawSelStart.y)
     return true;
   if (m_ptDrawSelStart.y < m_ptDrawSelEnd.y)
