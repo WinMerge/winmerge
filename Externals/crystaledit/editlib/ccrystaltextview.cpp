@@ -1113,44 +1113,46 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
               int ibegin = i;
               int nSumWidth = 0;
 
-              // A raw estimate of the number of characters to display
-              // For wide characters, nCountFit may be overvalued
               int nWidth = rcClip.right - ptOrigin.x;
-              int nCount1 = lineLen - ibegin;
-              int nCountFit = nWidth / nCharWidth + 2/* wide char */;
-              if (nCount1 > nCountFit) {
-#ifndef _UNICODE
-                if (_ismbslead((unsigned char *)(LPCSTR)line, (unsigned char *)(LPCSTR)line + nCountFit - 1))
-                  nCountFit++;
-#endif
-                nCount1 = nCountFit;
-              }
 
               // Table of charwidths as CCrystalEditor thinks they are
               // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
               // same with some fonts and text is drawn only partially
               // if this table is not used.
-              vector<int> nWidths(nCount1 + 2);
+              vector<int> nWidths(nWidth / nCharWidth * 2 + 2);
               bool bdisphex = false;
-              for (int next = i; i < nCount1 + ibegin ; i = next)
+              for (int next = i; i < lineLen && nSumWidth < nWidth ; i = next)
                 {
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
                     bdisphex = true;
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
-                    nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
+                    int idx = i - ibegin;
+                    if (idx >= nWidths.size())
+                        nWidths.resize(nWidths.size() * 2);
+                    nSumWidth += nWidths[idx] = nCharWidthNarrowed;
                     // 1st hex digit has normal width.
-                    nSumWidth += nWidths[pIterChar->next() - ibegin] = nCharWidth;
+                    idx = pIterChar->next() - ibegin;
+                    if (idx >= nWidths.size())
+                        nWidths.resize(nWidths.size() * 2);
+                    nSumWidth += nWidths[idx] = nCharWidth;
                     // 2nd hex digit is padded by half the width of a character cell.
-                    nSumWidth += nWidths[pIterChar->next() - ibegin] = nCharWidthWidened;
+                    idx = pIterChar->next() - ibegin;
+                    if (idx >= nWidths.size())
+                        nWidths.resize(nWidths.size() * 2);
+                    nSumWidth += nWidths[idx] = nCharWidthWidened;
                   }
                   else
                   {
-                    nSumWidth += nWidths[i - ibegin] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
+                    int idx = i - ibegin;
+                    if (idx >= nWidths.size())
+                        nWidths.resize(nWidths.size() * 2);
+                    nSumWidth += nWidths[idx] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
                   }
                    next = pIterChar->next();
                 }
+              int nCount1 = i - ibegin;
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
