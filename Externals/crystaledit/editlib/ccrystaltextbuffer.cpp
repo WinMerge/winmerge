@@ -923,6 +923,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
     {
       nBufSize += m_aLines[L].Length();
       pszCurCRLF = pszCRLF ? pszCRLF : m_aLines[L].GetEol();
+      pszCurCRLF = pszCurCRLF ? pszCurCRLF : _T("");
       nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
       nBufSize += nCRLFLength;
     }
@@ -939,6 +940,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
           pszBuf += nCount;
         }
       pszCurCRLF = pszCRLF ? pszCRLF : startLine.GetEol();
+      pszCurCRLF = pszCurCRLF ? pszCurCRLF : _T("");
       nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
       memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
       pszBuf += nCRLFLength;
@@ -954,6 +956,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
               pszBuf += nCount;
             }
           pszCurCRLF = pszCRLF ? pszCRLF : li.GetEol();
+          pszCurCRLF = pszCurCRLF ? pszCurCRLF : _T("");
           nCRLFLength = static_cast<int>(_tcslen(pszCurCRLF));
           memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
           pszBuf += nCRLFLength;

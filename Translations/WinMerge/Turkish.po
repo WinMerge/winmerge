@@ -1,5 +1,10 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
+#
+# Translators:
+# * Afyonlu <afyonlu@users.sourceforge.net>
+# * Ozkan UNVER <turquaz37915 at users.sourceforge.net>
+# * Kaya Zeren <translator at zeron.net>
 #
 msgid ""
 msgstr ""
