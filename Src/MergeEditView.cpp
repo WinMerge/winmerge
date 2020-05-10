@@ -938,32 +938,20 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		newlineEnd = curDiff.dend;
 	}
 
-	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
-		return;
 	m_lineBegin = newlineBegin;
 	m_lineEnd = newlineEnd;
 
+	int nLineCount = GetLineCount();
+	if (m_lineBegin > nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd > nLineCount)
+		m_lineEnd = nLineCount - 1;
+
+	if (m_nTopLine == newlineBegin)
+		return;
+
 	// scroll to the first line of the diff
 	ScrollToLine(m_lineBegin);
-
-	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
-	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-
-	// pSplitterWnd is `nullptr` if WinMerge started minimized.
-	if (pSplitterWnd != nullptr)
-	{
-		int nRows = pSplitterWnd->GetRowCount ();
-		int nCols = pSplitterWnd->GetColumnCount ();
-		for (int nRow = 0; nRow < nRows; nRow++)
-		{
-			for (int nCol = 0; nCol < nCols; nCol++)
-			{
-				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				if (pSiblingView != nullptr)
-					pSiblingView->OnDisplayDiff(nDiff);
-			}
-		}
-	}
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -996,7 +984,7 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 	UpdateSiblingScrollPos(false);
 
 	// notify either side, as it will notify the other one
-	pd->ForEachView (0, [&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
@@ -4109,6 +4097,12 @@ bool CMergeEditView::QueryEditable()
  */
 bool CMergeEditView::EnsureInDiff(CPoint& pt)
 {
+	int nLineCount = GetLineCount();
+	if (m_lineBegin >= nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd >= nLineCount)
+		m_lineEnd = nLineCount - 1;
+
 	int diffLength = m_lineEnd - m_lineBegin + 1;
 	// first get the degenerate case out of the way
 	// no diff ?
@@ -4172,6 +4166,12 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 {
 	if (m_bDetailView)
 	{
+		int nLineCount = GetLineCount();
+		if (m_lineBegin >= nLineCount)
+			m_lineBegin = nLineCount - 1;
+		if (m_lineEnd >= nLineCount)
+			m_lineEnd = nLineCount - 1;
+
 		// ensure we remain in diff
 		int sublineBegin = GetSubLineIndex(m_lineBegin);
 		int sublineEnd = GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;

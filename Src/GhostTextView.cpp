@@ -97,6 +97,8 @@ void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
 		pt.y = GetLineCount()-1;
 		pt.x = GetLineLength(pt.y);
 	}
+	if (pt.y < 0)
+		pt.y = 0;
 }
 
 void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
