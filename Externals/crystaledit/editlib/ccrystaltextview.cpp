@@ -4615,7 +4615,8 @@ PrepareDragData ()
 
 static const TCHAR *memstr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
 {
-  for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
+  ASSERT(str1 && str2 && str2len > 0);
+  for (const TCHAR *p = str1; p < str1 + str1len; ++p)
     {
       if (*p == *str2)
         {
@@ -4628,7 +4629,8 @@ static const TCHAR *memstr(const TCHAR *str1, size_t str1len, const TCHAR *str2,
 
 static const TCHAR *memistr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
 {
-  for (const TCHAR *p = str1; p < str1 + str1len - str2len; ++p)
+  ASSERT(str1 && str2 && str2len > 0);
+  for (const TCHAR *p = str1; p < str1 + str1len; ++p)
     {
       if (toupper(*p) == toupper(*str2))
         {
