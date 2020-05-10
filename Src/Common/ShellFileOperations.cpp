@@ -26,9 +26,19 @@
 #include <tchar.h>
 #include <vector>
 #include <shellAPI.h>
+#pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"
+#pragma warning (disable:4091)	// VC bug when using XP enabled toolsets.
+#include <shlobj.h>
+#pragma warning (pop)
+#include <shlobj.h>
+#include <comip.h>
 #include "UnicodeString.h"
+#include "paths.h"
+#include "TFile.h"
 
 using std::vector;
+typedef _com_ptr_t<_com_IIID<IFileOperation, &__uuidof(IFileOperation)>> IFileOperationPtr;
+typedef _com_ptr_t<_com_IIID<IShellItem, &__uuidof(IShellItem)>> IShellItemPtr;
 
 /**
  * @brief Constructor.
@@ -178,7 +188,7 @@ bool ShellFileOperations::Run()
 		m_function != FO_DELETE ? &destStr[0] : nullptr, m_flags, FALSE, 0, 0};
 	int ret = SHFileOperation(&fileop);
 
-	if (ret == 0x75) // DE_OPCANCELLED
+	if (ret == 0x75 || fileop.fAnyOperationsAborted) // DE_OPCANCELLED
 		m_isCanceled = true;
 
 	bool anyAborted = !!fileop.fAnyOperationsAborted;
@@ -186,7 +196,94 @@ bool ShellFileOperations::Run()
 	// SHFileOperation returns 0 when succeeds
 	if (ret == 0 && !anyAborted)
 		return true;
-	return false;
+	if (anyAborted)
+		return false;
+
+	// If SHFileOperation() function fails, file operations are performed using the IFileOperation interface.
+	// Later, make this the default if Vista or higher
+	HRESULT hr;
+	IFileOperationPtr pFileOperation;
+	if (FAILED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, nullptr, CLSCTX_ALL)))
+		return false;
+	
+	auto CreateShellItemParseDisplayName = [](const String& path, IShellItem **psi)
+	{
+		HRESULT hr;
+		PIDLIST_ABSOLUTE pidl;
+		if (FAILED(hr = SHParseDisplayName(path.c_str(), nullptr, &pidl, 0, nullptr)))
+		{
+			TCHAR szShortPath[32768] = {};
+			if (GetShortPathName(TFile(path).wpath().c_str(), szShortPath, sizeof(szShortPath) / sizeof(szShortPath[0])) == 0)
+			{
+				hr = E_FAIL;
+			}
+			else
+			{
+				String shortPath = szShortPath;
+				strutils::replace(shortPath, _T("\\\\?\\UNC\\"), _T("\\\\"));
+				strutils::replace(shortPath, _T("\\\\?\\"), _T(""));
+				hr = SHParseDisplayName(shortPath.c_str(), nullptr, &pidl, 0, nullptr);
+			}
+		}
+		if (SUCCEEDED(hr))
+		{
+			hr = SHCreateShellItem(nullptr, nullptr, pidl, psi);
+			ILFree(pidl);
+		}
+		return hr;
+	};
+
+	pFileOperation->SetOperationFlags(m_flags);
+
+	auto itsrc = m_sources.begin();
+	auto itdst = m_destinations.begin();
+
+	while (itsrc != m_sources.end() || itdst != m_destinations.end())
+	{
+		IShellItemPtr pShellItemSrc;
+		IShellItemPtr pShellItemDst;
+		String dstFileName;
+		if (itsrc != m_sources.end())
+		{
+			if (FAILED(CreateShellItemParseDisplayName(*itsrc, &pShellItemSrc)))
+				return false;
+			++itsrc;
+		}
+		if (itdst != m_destinations.end())
+		{
+			String parent = paths::GetParentPath(*itdst);
+			if (FAILED(CreateShellItemParseDisplayName(parent, &pShellItemDst)))
+			{
+				TFile(parent).createDirectories();
+				if (FAILED(CreateShellItemParseDisplayName(parent, &pShellItemDst)))
+					return false;
+			}
+			dstFileName = paths::FindFileName(*itdst);
+			++itdst;
+		}
+		switch (m_function)
+		{
+		case FO_COPY:
+			hr = pFileOperation->CopyItem(pShellItemSrc, pShellItemDst, dstFileName.c_str(), nullptr);
+			break;
+		case FO_MOVE:
+			hr = pFileOperation->MoveItem(pShellItemSrc, pShellItemDst, dstFileName.c_str(), nullptr);
+			break;
+		case FO_DELETE:
+			hr = pFileOperation->DeleteItem(pShellItemSrc, nullptr);
+			break;
+		case FO_RENAME:
+			hr = pFileOperation->RenameItem(pShellItemSrc, dstFileName.c_str(), nullptr);
+			break;
+		}
+		if (FAILED(hr))
+			return false;
+	}
+	hr = pFileOperation->PerformOperations();
+	BOOL fAnyOperationsAborted = FALSE;
+	pFileOperation->GetAnyOperationsAborted(&fAnyOperationsAborted);
+	m_isCanceled = fAnyOperationsAborted;
+	return SUCCEEDED(hr) && !fAnyOperationsAborted;
 }
 
 /**

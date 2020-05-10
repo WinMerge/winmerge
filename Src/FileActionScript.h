@@ -130,6 +130,8 @@ public:
 	 */
 	FileActionItem GetHeadActionItem() const { return m_actions[0]; }
 
+	bool IsCanceled() const { return m_bCanceled; }
+
 	String m_destBase; /**< Base destination path for some operations */
 
 protected:
@@ -148,6 +150,7 @@ private:
 	bool m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	bool m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
+	bool m_bCanceled;
 };
 
 /**

@@ -921,6 +921,8 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
 		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
+	} catch (FileOperationException& e) {
+		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 	}
 }
 
@@ -1003,9 +1005,12 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 	actionScript.SetParentWindow(GetMainFrame()->GetSafeHwnd());
 
 	theApp.AddOperation();
-	if (actionScript.Run())
+	bool succeeded = actionScript.Run();
+	if (succeeded)
 		UpdateAfterFileScript(actionScript);
 	theApp.RemoveOperation();
+	if (!succeeded && !actionScript.IsCanceled())
+		throw FileOperationException(_T("File operation failed"));
 }
 
 /**

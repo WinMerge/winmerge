@@ -46,6 +46,7 @@ FileActionScript::FileActionScript()
 , m_pMoveOperations(new ShellFileOperations())
 , m_pRenameOperations(new ShellFileOperations())
 , m_pDelOperations(new ShellFileOperations())
+, m_bCanceled(false)
 {
 }
 
@@ -262,6 +263,8 @@ bool FileActionScript::Run()
 
 	if (!bFileOpSucceed || bUserCancelled)
 		bRetVal = false;
+
+	m_bCanceled = bUserCancelled;
 
 	return bRetVal;
 }
