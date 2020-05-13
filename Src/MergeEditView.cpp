@@ -539,6 +539,16 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
+std::vector<CrystalLineParser::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLineIndex) const
+{
+	if (m_bDetailView)
+	{
+		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
+			return std::vector<CrystalLineParser::TEXTBLOCK>();
+	}
+	return CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
+}
+
 std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 {
 	static const std::vector<TEXTBLOCK> emptyBlocks;
