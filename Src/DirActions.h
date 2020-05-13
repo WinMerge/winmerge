@@ -208,6 +208,12 @@ struct ContentsChangedException
 	String m_msg;
 };
 
+struct FileOperationException
+{
+	explicit FileOperationException(const String& msg);
+	String m_msg;
+};
+
 struct DirActions
 {
 	typedef bool (DirActions::*method_type2)(const DIFFITEM& di) const;

@@ -921,6 +921,8 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
 		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
+	} catch (FileOperationException& e) {
+		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 	}
 }
 
@@ -1003,9 +1005,12 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 	actionScript.SetParentWindow(GetMainFrame()->GetSafeHwnd());
 
 	theApp.AddOperation();
-	if (actionScript.Run())
+	bool succeeded = actionScript.Run();
+	if (succeeded)
 		UpdateAfterFileScript(actionScript);
 	theApp.RemoveOperation();
+	if (!succeeded && !actionScript.IsCanceled())
+		throw FileOperationException(_T("File operation failed"));
 }
 
 /**
@@ -2579,6 +2584,7 @@ std::vector<String> CDirView::GetCurrentColRegKeys()
 struct FileCmpReport: public IFileCmpReport
 {
 	explicit FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
+	~FileCmpReport() override {}
 	bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) override
 	{
 		const CDiffContext& ctxt = m_pDirView->GetDiffContext();

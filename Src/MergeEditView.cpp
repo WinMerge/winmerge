@@ -539,6 +539,16 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
+std::vector<CrystalLineParser::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLineIndex) const
+{
+	if (m_bDetailView)
+	{
+		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
+			return std::vector<CrystalLineParser::TEXTBLOCK>();
+	}
+	return CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
+}
+
 std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 {
 	static const std::vector<TEXTBLOCK> emptyBlocks;
@@ -938,32 +948,20 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		newlineEnd = curDiff.dend;
 	}
 
-	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
-		return;
 	m_lineBegin = newlineBegin;
 	m_lineEnd = newlineEnd;
 
+	int nLineCount = GetLineCount();
+	if (m_lineBegin > nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd > nLineCount)
+		m_lineEnd = nLineCount - 1;
+
+	if (m_nTopLine == newlineBegin)
+		return;
+
 	// scroll to the first line of the diff
 	ScrollToLine(m_lineBegin);
-
-	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
-	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-
-	// pSplitterWnd is `nullptr` if WinMerge started minimized.
-	if (pSplitterWnd != nullptr)
-	{
-		int nRows = pSplitterWnd->GetRowCount ();
-		int nCols = pSplitterWnd->GetColumnCount ();
-		for (int nRow = 0; nRow < nRows; nRow++)
-		{
-			for (int nCol = 0; nCol < nCols; nCol++)
-			{
-				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				if (pSiblingView != nullptr)
-					pSiblingView->OnDisplayDiff(nDiff);
-			}
-		}
-	}
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -996,7 +994,7 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 	UpdateSiblingScrollPos(false);
 
 	// notify either side, as it will notify the other one
-	pd->ForEachView (0, [&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
@@ -2267,7 +2265,7 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 		ptEnd.x = 0;
 		ptEnd.y = curDiff.dend;
 
-		if (bScroll)
+		if (bScroll && !m_bDetailView)
 		{
 			if (!IsDiffVisible(curDiff, CONTEXT_LINES_BELOW))
 			{
@@ -2631,7 +2629,9 @@ void CMergeEditView::OnUpdateCaret()
 	else
 		m_bCurrentLineIsDiff = false;
 
-	UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
+	CWnd* pWnd = GetFocus();
+	if (!m_bDetailView || (pWnd && pWnd->m_hWnd == this->m_hWnd))
+		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 }
 /**
  * @brief Select linedifference in the current line.
@@ -4098,6 +4098,115 @@ void CMergeEditView::ZoomText(short amount)
 bool CMergeEditView::QueryEditable()
 {
 	return m_bDetailView ? false : !GetDocument()->m_ptBuf[m_nThisPane]->GetReadOnly();
+}
+
+/**
+ * @brief Adjust the point to remain in the displayed diff
+ *
+ * @return Tells if the point has been changed
+ */
+bool CMergeEditView::EnsureInDiff(CPoint& pt)
+{
+	int nLineCount = GetLineCount();
+	if (m_lineBegin >= nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd >= nLineCount)
+		m_lineEnd = nLineCount - 1;
+
+	int diffLength = m_lineEnd - m_lineBegin + 1;
+	// first get the degenerate case out of the way
+	// no diff ?
+	if (diffLength == 0)
+	{
+		if (pt.y == m_lineBegin && pt.x == 0)
+			return false;
+		pt.y = m_lineBegin;
+		pt.x = 0;
+		return true;
+	}
+
+	// not above diff
+	if (pt.y < m_lineBegin)
+	{
+		pt.y = m_lineBegin;
+		pt.x = 0;
+		return true;
+	}
+	// diff is defined and not below diff
+	if (m_lineEnd > -1 && pt.y > m_lineEnd)
+	{
+		pt.y = m_lineEnd;
+		pt.x = GetLineLength(pt.y);
+		return true;
+	}
+	return false;
+}
+
+void CMergeEditView::EnsureVisible(CPoint pt)
+{
+	CPoint ptNew = pt;
+	if (m_bDetailView)
+	{
+		// ensure we remain in diff
+		if (EnsureInDiff(ptNew))
+			SetCursorPos(ptNew);
+	}
+	CCrystalTextView::EnsureVisible(ptNew);
+}
+
+void CMergeEditView::EnsureVisible(CPoint ptStart, CPoint ptEnd)
+{
+	CCrystalTextView::EnsureVisible(ptStart, ptEnd);
+}
+
+void CMergeEditView::SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView)
+{
+	CPoint ptStartNew = ptStart;
+	CPoint ptEndNew = ptEnd;
+	if (m_bDetailView)
+	{
+		// ensure we remain in diff
+		EnsureInDiff(ptStartNew);
+		EnsureInDiff(ptEndNew);
+	}
+	CCrystalTextView::SetSelection(ptStartNew, ptEndNew, bUpdateView);
+}
+
+void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= FALSE*/, bool bTrackScrollBar /*= TRUE*/)
+{
+	if (m_bDetailView)
+	{
+		int nLineCount = GetLineCount();
+		if (m_lineBegin >= nLineCount)
+			m_lineBegin = nLineCount - 1;
+		if (m_lineEnd >= nLineCount)
+			m_lineEnd = nLineCount - 1;
+
+		// ensure we remain in diff
+		int sublineBegin = GetSubLineIndex(m_lineBegin);
+		int sublineEnd = GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
+		int diffLength = sublineEnd - sublineBegin + 1;
+		int displayLength = GetScreenLines();
+		if (diffLength <= displayLength)
+			nNewTopLine = sublineBegin;
+		else
+		{
+			if (nNewTopLine < sublineBegin)
+				nNewTopLine = sublineBegin;
+			if (nNewTopLine + displayLength - 1 > sublineEnd)
+				nNewTopLine = GetSubLineIndex(sublineEnd - displayLength + 1);
+		}
+
+		CPoint pt = GetCursorPos();
+		if (EnsureInDiff(pt))
+			SetCursorPos(pt);
+
+		CPoint ptSelStart, ptSelEnd;
+		GetSelection(ptSelStart, ptSelEnd);
+		if (EnsureInDiff(ptSelStart) || EnsureInDiff(ptSelEnd))
+			SetSelection(ptSelStart, ptSelEnd);
+	}
+	CCrystalTextView::ScrollToSubLine(nNewTopLine, bNoSmoothScroll, bTrackScrollBar);
 }
 
 /**

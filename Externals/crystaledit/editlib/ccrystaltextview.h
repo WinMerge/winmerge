@@ -600,7 +600,7 @@ protected:
     //END SW
 
     std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
-    std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
+    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
@@ -838,7 +838,7 @@ public :
 
     //  Operations
     virtual void EnsureVisible (CPoint pt);
-    void EnsureVisible (CPoint ptStart, CPoint ptEnd);
+    virtual void EnsureVisible (CPoint ptStart, CPoint ptEnd);
 
     //  Text search helpers
     CPoint GetSearchPos (DWORD dwSearchFlags);

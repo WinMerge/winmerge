@@ -40,6 +40,11 @@ ContentsChangedException::ContentsChangedException(const String& failpath)
 {
 }
 
+FileOperationException::FileOperationException(const String& msg)
+	: m_msg(msg)
+{
+}
+
 /**
  * @brief Ask user a confirmation for copying item(s).
  * Shows a confirmation dialog for copy operation. Depending ont item count
