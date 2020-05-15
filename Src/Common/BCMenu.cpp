@@ -807,7 +807,7 @@ void BCMenu::SetIconSize (int width, int height)
 	m_iconY = height;
 }
 
-bool BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
+bool BCMenu::AppendODMenu(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
                            int nIconNormal)
 {
 	// Add the MF_OWNERDRAW flag if not specified:
@@ -849,7 +849,7 @@ bool BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
 	return returnflag;
 }
 
-bool BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
+bool BCMenu::AppendODMenu(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
                            CImageList *il,int xoffset)
 {
 	// Add the MF_OWNERDRAW flag if not specified:
@@ -890,14 +890,14 @@ bool BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
 	return !!CMenu::AppendMenu(nFlags, nID, (LPCTSTR)mdata);
 }
 
-bool BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
+bool BCMenu::InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
                            int nIconNormal)
 {
 	if((nFlags & MF_BYPOSITION) == 0){
 		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(nPosition,iPosition);
 		if(pMenu != nullptr){
-			return pMenu->InsertODMenuW(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,nIconNormal);
+			return pMenu->InsertODMenu(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,nIconNormal);
 		}
 		else return false;
 	}
@@ -943,14 +943,14 @@ bool BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PT
 	return returnflag;
 }
 
-bool BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
+bool BCMenu::InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
                            CImageList *il,int xoffset)
 {
 	if((nFlags & MF_BYPOSITION)==0){
 		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(nPosition,iPosition);
 		if(pMenu != nullptr){
-			return pMenu->InsertODMenuW(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,il,xoffset);
+			return pMenu->InsertODMenu(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,il,xoffset);
 		}
 		else return false;
 	}
@@ -988,7 +988,7 @@ bool BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PT
 	return !!CMenu::InsertMenu(nPosition,nFlags,nID,(LPCTSTR)mdata);
 }
 
-bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
+bool BCMenu::ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 {
 	UINT nLoc;
 	BCMenuData *mdata;
@@ -1031,7 +1031,7 @@ bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 	return !!CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags, static_cast<UINT>(nID),(LPCTSTR)mdata);
 }
 
-bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
+bool BCMenu::ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
 {
 	UINT nLoc;
 	BCMenuData *mdata;
@@ -1073,19 +1073,19 @@ bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xo
 	return !!CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags,nID,(LPCTSTR)mdata);
 }
 
-bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp)
+bool BCMenu::ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp)
 {
 	if(bmp){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
 		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
-		return ModifyODMenuW(lpstrText,nID,&temp,0);
+		return ModifyODMenu(lpstrText,nID,&temp,0);
 	}
-	return ModifyODMenuW(lpstrText,nID,nullptr,0);
+	return ModifyODMenu(lpstrText,nID,nullptr,0);
 }
 
-bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,
+bool BCMenu::ModifyODMenu(wchar_t *lpstrText,wchar_t *OptionText,
                            int nIconNormal)
 {
 	BCMenuData *mdata;
@@ -1117,7 +1117,7 @@ bool BCMenu::ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,
 	return false;
 }
 
-bool BCMenu::SetImageForPopupFromToolbarW (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from)
+bool BCMenu::SetImageForPopupFromToolbar (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from)
 {
 	CWnd* pWnd = AfxGetMainWnd();
 	if (pWnd == nullptr)pWnd = CWnd::GetDesktopWindow();
@@ -1466,13 +1466,13 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 			
 			// Append it to the top of the stack:
 			
-			stack[stack.GetUpperBound()]->AppendODMenuW(szCaption,uFlags,
+			stack[stack.GetUpperBound()]->AppendODMenu(szCaption,uFlags,
 				(UINT_PTR)pSubMenu->m_hMenu, -1);
 			stack.Add(pSubMenu);
 			stackEnd.Add(false);
 		}
 		else {
-			stack[stack.GetUpperBound()]->AppendODMenuW(szCaption, uFlags,
+			stack[stack.GetUpperBound()]->AppendODMenu(szCaption, uFlags,
 				dwID, -1);
 			if((dwFlags & MF_END)!=0)
 				stackEnd.SetAt(stack.GetUpperBound(),true);
@@ -2139,57 +2139,57 @@ bool BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 	return !!CMenu::DeleteMenu(uiId,nFlags);
 }
 
-bool BCMenu::AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,const wchar_t *lpszNewItem /*= nullitem*/,int nIconNormal /*= -1*/)
+bool BCMenu::AppendMenu(UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,const wchar_t *lpszNewItem /*= nullitem*/,int nIconNormal /*= -1*/)
 {
-	return AppendODMenuW(lpszNewItem,nFlags,nIDNewItem,nIconNormal);
+	return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,nIconNormal);
 }
 
-bool BCMenu::AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset)
+bool BCMenu::AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset)
 {
-	return AppendODMenuW(lpszNewItem,nFlags,nIDNewItem,il,xoffset);
+	return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,il,xoffset);
 }
 
-bool BCMenu::AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp)
+bool BCMenu::AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp)
 {
 	if(bmp != nullptr){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
 		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
-		return AppendODMenuW(lpszNewItem,nFlags,nIDNewItem,&temp,0);
+		return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,&temp,0);
 	}
-	return AppendODMenuW(lpszNewItem,nFlags,nIDNewItem,nullptr,0);
+	return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,nullptr,0);
 }
 
-bool BCMenu::InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,wchar_t *lpszNewItem /*= nullptr*/,int nIconNormal/*= -1*/)
+bool BCMenu::InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,wchar_t *lpszNewItem /*= nullptr*/,int nIconNormal/*= -1*/)
 {
-	return InsertODMenuW(nPosition,lpszNewItem,nFlags,nIDNewItem,nIconNormal);
+	return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,nIconNormal);
 }
 
-bool BCMenu::InsertMenuW(UINT nPosition, UINT nFlags, UINT_PTR nIDNewItem, wchar_t *lpszNewItem, CImageList *il, int xoffset)
+bool BCMenu::InsertMenu(UINT nPosition, UINT nFlags, UINT_PTR nIDNewItem, wchar_t *lpszNewItem, CImageList *il, int xoffset)
 {
-	return InsertODMenuW(nPosition,lpszNewItem,nFlags,nIDNewItem,il,xoffset);
+	return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,il,xoffset);
 }
 
-bool BCMenu::InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp)
+bool BCMenu::InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp)
 {
 	if(bmp != nullptr){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
 		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
-		return InsertODMenuW(nPosition,lpszNewItem,nFlags,nIDNewItem,&temp,0);
+		return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,&temp,0);
 	}
-	return InsertODMenuW(nPosition,lpszNewItem,nFlags,nIDNewItem,nullptr,0);
+	return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,nullptr,0);
 }
 
 //--------------------------------------------------------------------------
 //[21.06.99 rj]
-BCMenu* BCMenu::AppendODPopupMenuW(const wchar_t *lpstrText)
+BCMenu* BCMenu::AppendODPopupMenu(const wchar_t *lpstrText)
 {
 	BCMenu* pSubMenu = new BCMenu;
 	pSubMenu->CreatePopupMenu();
-	AppendODMenuW(lpstrText,MF_POPUP,(UINT_PTR)pSubMenu->m_hMenu, -1);
+	AppendODMenu(lpstrText,MF_POPUP,(UINT_PTR)pSubMenu->m_hMenu, -1);
 	return pSubMenu;
 }
 
