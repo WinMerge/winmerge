@@ -225,11 +225,10 @@ void CWindowsManagerDialog::OnCancel()
 void CWindowsManagerDialog::PostNcDestroy()
 {
 	// TODO: Add your specialized code here and/or call the base class
+	CDialog::PostNcDestroy();
 
 	if (m_bAutoCleanup)
 		delete this;
-
-	CDialog::PostNcDestroy();
 }
 
 void CWindowsManagerDialog::OnDestroy()
