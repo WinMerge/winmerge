@@ -37,7 +37,7 @@ public:
 	void SetWideString(const wchar_t *szWideString);
 	const wchar_t *GetWideString(void) {return m_szMenuText;};
 	~BCMenuData ();
-	CString GetString(void);//returns the menu text in ANSI or UNICODE
+	CString GetString(void);//returns the menu text
 	INT_PTR xoffset,global_offset;
 	int menuIconNormal;
 	UINT nFlags,syncflag;
