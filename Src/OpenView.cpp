@@ -496,7 +496,7 @@ void COpenView::OnButton(int index)
 		sfolder = paths::GetPathOnly(m_strPath[index]);
 		break;
 	case paths::DOES_NOT_EXIST:
-		// Do nothing, empty foldername will be passed to dialog
+		sfolder = paths::GetParentPath(m_strPath[index]);
 		break;
 	default:
 		_RPTF0(_CRT_ERROR, "Invalid return value from paths::DoesPathExist()");
