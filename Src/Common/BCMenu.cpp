@@ -310,7 +310,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		bool disableflag = false;
 		bool checkflag=false;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
-		int x0,y0,dy;
+		int dy;
 		int nIconNormal=-1;
 		INT_PTR xoffset=-1;
 		CImageList *bitmap=nullptr;
@@ -452,7 +452,6 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		
 		//This is needed always so that we can have the space for check marks
 		
-		x0=rect.left;y0=rect.top;
 		rect.left = rect.left + m_iconX + 8 + BCMENU_GAP; 
 		
 		if(!strText.IsEmpty()){
@@ -1401,7 +1400,6 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 	
 	// Variables needed during processing of Menu Item Templates:
 	
-	INT_PTR j=0;
 	WORD    dwFlags = 0;              // Flags of the Menu Item
 	WORD    dwID  = 0;              // ID of the Menu Item
 	CTypedPtrArray<CPtrArray, BCMenu*>  stack;    // Popup menu stack
@@ -1450,7 +1448,7 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 				dwID, -1);
 			if((dwFlags & MF_END)!=0)
 				stackEnd.SetAt(stack.GetUpperBound(),true);
-			j = stack.GetUpperBound();
+			INT_PTR j = stack.GetUpperBound();
 			while(j>=0 && stackEnd.GetAt(j)){
 				stack.RemoveAt(j);
 				stackEnd.RemoveAt(j);
@@ -1485,14 +1483,14 @@ int BCMenu::GetMenuStart(void)
 	if(!m_loadmenu)return 0;
 
 	CString name,str;
-	int menuloc=-1,listloc=-1,menustart=0,i=0,j=0;
+	int menuloc=-1,listloc=-1,menustart=0,i=0;
 	INT_PTR nummenulist=m_MenuList.GetSize();
 	int nummenu=GetMenuItemCount();
 
 	while(i<nummenu&&menuloc==-1){
 		GetMenuString (i, name, MF_BYPOSITION);
 		if(name.GetLength()>0){
-			for(j=0;j<nummenulist;++j){
+			for(int j=0;j<nummenulist;++j){
 				str=m_MenuList[j]->GetString();
 				if(name==str){
 					menuloc=i;
@@ -1510,12 +1508,11 @@ int BCMenu::GetMenuStart(void)
 void BCMenu::RemoveTopLevelOwnerDraw(void)
 {
 	CString str;
-	int i=0,j=0;
 	INT_PTR nummenulist=m_MenuList.GetSize();
 	int nummenu = GetMenuItemCount();
 
 	int menustart=GetMenuStart();
-	for(i=menustart,j=0;i<nummenu;++i,++j){
+	for(int i=menustart,j=0;i<nummenu;++i,++j){
 		if(j<nummenulist){
 			str=m_MenuList[j]->GetString();
 			if(GetSubMenu(i)){
