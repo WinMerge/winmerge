@@ -36,6 +36,8 @@ winmerge-cppcheck-build-dir/
 *.pch
 *.idb
 *.log
+*.diagsession
+*.asm
 
 Testing/Data/ShellFileOpTest/File1.txt
 Translations/WinMerge/MergeLang.lastbuild
