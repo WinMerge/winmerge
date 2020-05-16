@@ -1,8 +1,6 @@
 #
 # Makefile
 #
-# $Id: //poco/1.4/Net/testsuite/Makefile#2 $
-#
 # Makefile for Poco Net testsuite
 #
 
@@ -25,11 +23,19 @@ objects = \
 	MailTestSuite MailMessageTest MailStreamTest \
 	SMTPClientSessionTest POP3ClientSessionTest \
 	RawSocketTest ICMPClientTest ICMPSocketTest ICMPClientTestSuite \
+	NTPClientTest NTPClientTestSuite \
 	WebSocketTest WebSocketTestSuite \
-	SyslogTest
+	SyslogTest \
+	OAuth10CredentialsTest OAuth20CredentialsTest OAuthTestSuite \
+	PollSetTest UDPServerTest UDPServerTestSuite \
+	NTLMCredentialsTest
 
 target         = testrunner
 target_version = 1
 target_libs    = PocoNet PocoFoundation CppUnit
 
 include $(POCO_BASE)/build/rules/exec
+
+ifdef POCO_UNBUNDLED
+        SYSLIBS += -lz
+endif

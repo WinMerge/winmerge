@@ -3,7 +3,7 @@ Versions of external components
 
 This file lists versions of the external components we are using.
 
-POCO: 1.4.3p1
+POCO: 1.10.1
 boost: 1.72.0
 frhed: 0.10904.2017.4
 freeimage: 3.18.0

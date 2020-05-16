@@ -1,6 +1,4 @@
 #
-# $Id: //poco/1.4/build/rules/sample#3 $
-#
 # sample
 #
 # Global build configuration for samples
@@ -22,9 +20,6 @@ endif
 # Determine OS
 #
 POCO_HOST_OSNAME = $(shell uname)
-POCO_HOST_OSARCH = $(subst /,-,$(shell uname -m | tr ' ' _))
-OSNAME = $(POCO_HOST_OSNAME)
-OSARCH = $(POCO_HOST_OSARCH)
 
 #
 # If POCO_CONFIG is not set, use the OS name as configuration name
@@ -52,9 +47,6 @@ LIBPATH  = $(POCO_BASE)/$(LIBDIR)
 BINPATH  = $(BINDIR)
 OBJPATH  = $(OBJDIR)
 DEPPATH  = $(DEPDIR)
-
-LIBPREFIX = lib
-
 
 #
 # Determine link mode
