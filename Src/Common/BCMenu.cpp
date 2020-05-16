@@ -191,7 +191,7 @@ BCMenu::BCMenu()
 
 BCMenu::~BCMenu()
 {
-	DestroyMenu();
+	BCMenu::DestroyMenu();
 }
 
 BCMenuData::~BCMenuData()
