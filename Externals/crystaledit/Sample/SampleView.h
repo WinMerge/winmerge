@@ -54,6 +54,8 @@ protected:
 protected:
 	//{{AFX_MSG(CSampleView)
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnSelMargin();
+	afx_msg void OnWordWrap();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

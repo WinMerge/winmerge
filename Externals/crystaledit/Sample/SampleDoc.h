@@ -49,6 +49,12 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+	template <class Func>
+	void ForEachView(Func func)
+	{
+		for (POSITION pos = GetFirstViewPosition(); pos != nullptr; )
+			func(static_cast<CSampleView*>(GetNextView(pos)));
+	}
 
 protected:
 
