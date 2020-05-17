@@ -9,9 +9,6 @@
  * @brief MergeCmdLineInfo class declaration.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeCmdLineInfo.h 6940 2009-08-01 17:29:01Z kimmov $
-
 #pragma once
 
 #include "UnicodeString.h"

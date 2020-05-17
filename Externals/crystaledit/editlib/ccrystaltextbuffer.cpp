@@ -59,8 +59,6 @@
  *
  * @brief Code for CCrystalTextBuffer class
  */
-// line follows -- this is updated by SVN
-// $Id: ccrystaltextbuffer.cpp 7106 2010-01-14 21:29:10Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>

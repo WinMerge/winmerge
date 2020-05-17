@@ -3,8 +3,6 @@
  *
  * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: ViewableWhitespace.cpp 3410 2006-07-31 17:14:15Z kimmov $
 
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
