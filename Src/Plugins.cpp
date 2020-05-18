@@ -553,6 +553,23 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	}
 	VariantClear(&ret);
 
+	// get optional property PluginUnpackedFileExtenstion
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginUnpackedFileExtension"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginUnpackedFileExtension", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginUnpackedFileExtension property, but error getting its value"));
+			return -100; // error (Plugin had PluginUnpackedFileExtenstion property, but error getting its value)
+		}
+		m_ext = ucr::toTString(ret.bstrVal);
+	}
+	else
+	{
+		m_ext.clear();
+	}
+	VariantClear(&ret);
+
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 

@@ -12,6 +12,9 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginUnpackedFileExtension">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -349,6 +352,10 @@ End Function
 
 Function get_PluginIsAutomatic()
 	get_PluginIsAutomatic = True
+End Function
+
+Function get_PluginUnpackedFileExtension()
+	get_PluginUnpackedFileExtension = ".tsv"
 End Function
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)

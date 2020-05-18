@@ -94,6 +94,19 @@ const TCHAR *storageForPlugins::GetDestFileName()
 	if (m_tempFilenameDst.empty())
 	{
 		m_tempFilenameDst = env::GetTemporaryFileName(env::GetTemporaryPath(), _T ("_WM"));
+		if (!m_tempFileExtensionDst.empty())
+		{
+			String tempFilenameDstNew = m_tempFilenameDst + m_tempFileExtensionDst;
+			try
+			{
+				TFile(m_tempFilenameDst).renameTo(tempFilenameDstNew);
+				m_tempFilenameDst = tempFilenameDstNew;
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
+			}
+		}
 	}
 	return m_tempFilenameDst.c_str();
 }

@@ -117,6 +117,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	if (handler->m_bWithFile)
 	{
 		// use a temporary dest name
+		bufferData.SetDestFileExtension(plugin->m_ext);
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 		bHandled = plugin::InvokeUnpackFile(srcFileName,
@@ -182,6 +183,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		handler->m_PluginName = plugin->m_name;
 		handler->m_bWithFile = true;
 		// use a temporary dest name
+		bufferData.SetDestFileExtension(plugin->m_ext);
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 		bHandled = plugin::InvokeUnpackFile(srcFileName,

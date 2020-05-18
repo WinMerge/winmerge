@@ -61,6 +61,7 @@ public:
 	String      m_filepath;
 	LPDISPATCH  m_lpDispatch;
 	String      m_name; // usually filename, except for special cases (like auto or no)
+	String      m_ext;
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;

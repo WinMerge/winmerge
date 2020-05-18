@@ -104,6 +104,8 @@ public:
 	int & GetNChangedValid() { return m_nChangedValid; }
 	/// return format of original data
 	bool GetOriginalMode() const { return m_bOriginalIsUnicode; }
+	const String GetDestFileExtension() const { return m_tempFileExtensionDst; }
+	const void SetDestFileExtension(const String& ext) { m_tempFileExtensionDst = ext; }
 
 private:
 	void Initialize();
@@ -138,6 +140,8 @@ private:
 	int m_nChanged;
 	// temporary destination filename
 	String m_tempFilenameDst;
+	// temporary destination file extension
+	String m_tempFileExtensionDst;
 };
 
 
