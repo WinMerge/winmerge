@@ -54,9 +54,7 @@ void CSelectUnpackerDlg::Initialize()
 
 	// add the default unpackers to the unpackers list
 	m_UnpackerPlugins.Add(noPlugin.get());
-	m_bWithFileFlags.push_back(false);
 	m_UnpackerPlugins.Add(automaticPlugin.get());
-	m_bWithFileFlags.push_back(true);
 	// add the real unpackers to the unpackers list
 	size_t i;
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
@@ -66,7 +64,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(true);
 		}
 	}
 	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
@@ -76,7 +73,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(false);
 		}
 	}
 	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
@@ -86,7 +82,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(true);
 		}
 	}
 }
@@ -150,7 +145,6 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 			if (m_pPlugin == pPlugin)
 				break;
 		}
-		infoHandler.m_bWithFile = m_bWithFileFlags.at(i);
 		return infoHandler;
 	}
 }

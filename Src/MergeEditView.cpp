@@ -3229,7 +3229,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
-		prediffer.m_bWithFile = true;
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}
@@ -3238,7 +3237,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		pluginNumber -= piScriptArray->size();
 		if (pluginNumber >= piScriptArray2->size())
 			return;
-		prediffer.m_bWithFile = false;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}

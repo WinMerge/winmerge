@@ -58,7 +58,6 @@ public:
 protected:
 	/// arrays for string describing the available plugins
 	CPtrArray  m_UnpackerPlugins;
-	std::vector<bool> m_bWithFileFlags;
 
 	// const data "no plugin"
 	std::unique_ptr<PluginInfo> noPlugin;

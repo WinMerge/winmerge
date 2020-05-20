@@ -48,8 +48,6 @@ class PluginForFile
 public:
 	void Initialize(PLUGIN_MODE Mode)
 	{
-		// initialize functions with a valid "do nothing" unpacker
-		m_bWithFile = false;
 		// and init Plugin/Prediffer mode and Plugin name accordingly
 		m_PluginOrPredifferMode = Mode;
 		if (Mode != PLUGIN_AUTO)
@@ -71,9 +69,6 @@ public:
 
 	/// plugin name when it is defined
 	String		m_PluginName;
-
-	/// `true` if the plugins exchange data through a file, `false` is the data is passed as parameter (BSTR/ARRAY)
-	bool		m_bWithFile;
 };
 
 /**
