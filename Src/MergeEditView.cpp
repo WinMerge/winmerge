@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  * @file  MergeEditView.cpp
@@ -45,6 +31,7 @@
 #include "DropHandler.h"
 #include "DirDoc.h"
 #include "ShellContextMenu.h"
+#include "editcmd.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -218,8 +205,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
 	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND(ID_VIEW_FILEMARGIN, OnViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_FILEMARGIN, OnUpdateViewMargin)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
@@ -537,6 +524,16 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
+}
+
+std::vector<CrystalLineParser::TEXTBLOCK> CMergeEditView::GetMarkerTextBlocks(int nLineIndex) const
+{
+	if (m_bDetailView)
+	{
+		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
+			return std::vector<CrystalLineParser::TEXTBLOCK>();
+	}
+	return CCrystalTextView::GetMarkerTextBlocks(nLineIndex);
 }
 
 std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
@@ -938,32 +935,20 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		newlineEnd = curDiff.dend;
 	}
 
-	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
-		return;
 	m_lineBegin = newlineBegin;
 	m_lineEnd = newlineEnd;
 
+	int nLineCount = GetLineCount();
+	if (m_lineBegin > nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd > nLineCount)
+		m_lineEnd = nLineCount - 1;
+
+	if (m_nTopLine == newlineBegin)
+		return;
+
 	// scroll to the first line of the diff
 	ScrollToLine(m_lineBegin);
-
-	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
-	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-
-	// pSplitterWnd is `nullptr` if WinMerge started minimized.
-	if (pSplitterWnd != nullptr)
-	{
-		int nRows = pSplitterWnd->GetRowCount ();
-		int nCols = pSplitterWnd->GetColumnCount ();
-		for (int nRow = 0; nRow < nRows; nRow++)
-		{
-			for (int nCol = 0; nCol < nCols; nCol++)
-			{
-				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				if (pSiblingView != nullptr)
-					pSiblingView->OnDisplayDiff(nDiff);
-			}
-		}
-	}
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -996,7 +981,7 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 	UpdateSiblingScrollPos(false);
 
 	// notify either side, as it will notify the other one
-	pd->ForEachView (0, [&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+	pd->ForEachView ([&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
 }
 
 void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
@@ -1106,7 +1091,7 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditCut()
 {
-	if (IsReadOnly(m_nThisPane) || m_bDetailView)
+	if (!QueryEditable())
 		return;
 
 	CPoint ptSelStart, ptSelEnd;
@@ -1149,7 +1134,7 @@ void CMergeEditView::OnEditCut()
  */
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (QueryEditable())
 		CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
 	else
 		pCmdUI->Enable(false);
@@ -1160,7 +1145,7 @@ void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditPaste()
 {
-	if (IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (!QueryEditable())
 		return;
 
 	CCrystalEditViewEx::Paste();
@@ -1172,7 +1157,7 @@ void CMergeEditView::OnEditPaste()
  */
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_nThisPane) && !m_bDetailView)
+	if (QueryEditable())
 		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
 	else
 		pCmdUI->Enable(false);
@@ -1188,7 +1173,7 @@ void CMergeEditView::OnEditUndo()
 	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo-1));
 	if(tgt==this)
 	{
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
@@ -2073,7 +2058,7 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnAutoMerge()
 {
 	// Check current pane is not readonly
-	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || IsReadOnly(m_nThisPane))
+	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || !QueryEditable())
 		return;
 
 	CWaitCursor waitstatus;
@@ -2089,7 +2074,7 @@ void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
 		!GetDocument()->IsModified() && 
 		!GetDocument()->GetAutoMerged() && 
-		!IsReadOnly(m_nThisPane));
+		QueryEditable());
 }
 
 /**
@@ -2125,7 +2110,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
 {
-	if (IsReadOnly(m_nThisPane))
+	if (!QueryEditable())
 	{
 		// We must not arrive here, and assert helps detect troubles
 		ASSERT(false);
@@ -2201,7 +2186,7 @@ void CMergeEditView::OnEditRedo()
 	CMergeEditView *tgt = pDoc->GetView(m_nThisGroup, *(pDoc->curUndo));
 	if(tgt==this)
 	{
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			return;
 
 		GetParentFrame()->SetActiveView(this, true);
@@ -2267,7 +2252,7 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 		ptEnd.x = 0;
 		ptEnd.y = curDiff.dend;
 
-		if (bScroll)
+		if (bScroll && !m_bDetailView)
 		{
 			if (!IsDiffVisible(curDiff, CONTEXT_LINES_BELOW))
 			{
@@ -2355,7 +2340,7 @@ void CMergeEditView::OnTimer(UINT_PTR nIDEvent)
  */
 bool CMergeEditView::IsReadOnly(int pane) const
 {
-	return GetDocument()->m_ptBuf[pane]->GetReadOnly() != false;
+	return m_bDetailView ? true : (GetDocument()->m_ptBuf[pane]->GetReadOnly() != false);
 }
 
 /**
@@ -2631,7 +2616,9 @@ void CMergeEditView::OnUpdateCaret()
 	else
 		m_bCurrentLineIsDiff = false;
 
-	UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
+	CWnd* pWnd = GetFocus();
+	if (!m_bDetailView || (pWnd && pWnd->m_hWnd == this->m_hWnd))
+		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 }
 /**
  * @brief Select linedifference in the current line.
@@ -2933,7 +2920,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 		pCmdUI->SetRadio(false);
 
 		// Don't allow selecting other EOL style for protected pane
-		if (IsReadOnly(m_nThisPane))
+		if (!QueryEditable())
 			pCmdUI->Enable(false);
 	}
 	else
@@ -3242,7 +3229,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
-		prediffer.m_bWithFile = true;
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}
@@ -3251,7 +3237,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		pluginNumber -= piScriptArray->size();
 		if (pluginNumber >= piScriptArray2->size())
 			return;
-		prediffer.m_bWithFile = false;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}
@@ -4093,6 +4078,120 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+}
+
+bool CMergeEditView::QueryEditable()
+{
+	return m_bDetailView ? false : !GetDocument()->m_ptBuf[m_nThisPane]->GetReadOnly();
+}
+
+/**
+ * @brief Adjust the point to remain in the displayed diff
+ *
+ * @return Tells if the point has been changed
+ */
+bool CMergeEditView::EnsureInDiff(CPoint& pt)
+{
+	int nLineCount = GetLineCount();
+	if (m_lineBegin >= nLineCount)
+		m_lineBegin = nLineCount - 1;
+	if (m_lineEnd >= nLineCount)
+		m_lineEnd = nLineCount - 1;
+
+	int diffLength = m_lineEnd - m_lineBegin + 1;
+	// first get the degenerate case out of the way
+	// no diff ?
+	if (diffLength == 0)
+	{
+		if (pt.y == m_lineBegin && pt.x == 0)
+			return false;
+		pt.y = m_lineBegin;
+		pt.x = 0;
+		return true;
+	}
+
+	// not above diff
+	if (pt.y < m_lineBegin)
+	{
+		pt.y = m_lineBegin;
+		pt.x = 0;
+		return true;
+	}
+	// diff is defined and not below diff
+	if (m_lineEnd > -1 && pt.y > m_lineEnd)
+	{
+		pt.y = m_lineEnd;
+		pt.x = GetLineLength(pt.y);
+		return true;
+	}
+	return false;
+}
+
+void CMergeEditView::EnsureVisible(CPoint pt)
+{
+	CPoint ptNew = pt;
+	if (m_bDetailView)
+	{
+		// ensure we remain in diff
+		if (EnsureInDiff(ptNew))
+			SetCursorPos(ptNew);
+	}
+	CCrystalTextView::EnsureVisible(ptNew);
+}
+
+void CMergeEditView::EnsureVisible(CPoint ptStart, CPoint ptEnd)
+{
+	CCrystalTextView::EnsureVisible(ptStart, ptEnd);
+}
+
+void CMergeEditView::SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView)
+{
+	CPoint ptStartNew = ptStart;
+	CPoint ptEndNew = ptEnd;
+	if (m_bDetailView)
+	{
+		// ensure we remain in diff
+		EnsureInDiff(ptStartNew);
+		EnsureInDiff(ptEndNew);
+	}
+	CCrystalTextView::SetSelection(ptStartNew, ptEndNew, bUpdateView);
+}
+
+void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= FALSE*/, bool bTrackScrollBar /*= TRUE*/)
+{
+	if (m_bDetailView)
+	{
+		int nLineCount = GetLineCount();
+		if (m_lineBegin >= nLineCount)
+			m_lineBegin = nLineCount - 1;
+		if (m_lineEnd >= nLineCount)
+			m_lineEnd = nLineCount - 1;
+
+		// ensure we remain in diff
+		int sublineBegin = GetSubLineIndex(m_lineBegin);
+		int sublineEnd = m_lineEnd < 0 ? -1 : GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
+		int diffLength = sublineEnd - sublineBegin + 1;
+		int displayLength = GetScreenLines();
+		if (diffLength <= displayLength)
+			nNewTopLine = sublineBegin;
+		else
+		{
+			if (nNewTopLine < sublineBegin)
+				nNewTopLine = sublineBegin;
+			if (nNewTopLine + displayLength - 1 > sublineEnd)
+				nNewTopLine = GetSubLineIndex(sublineEnd - displayLength + 1);
+		}
+
+		CPoint pt = GetCursorPos();
+		if (EnsureInDiff(pt))
+			SetCursorPos(pt);
+
+		CPoint ptSelStart, ptSelEnd;
+		GetSelection(ptSelStart, ptSelEnd);
+		if (EnsureInDiff(ptSelStart) || EnsureInDiff(ptSelEnd))
+			SetSelection(ptSelStart, ptSelEnd);
+	}
+	CCrystalTextView::ScrollToSubLine(nNewTopLine, bNoSmoothScroll, bTrackScrollBar);
 }
 
 /**

@@ -3,8 +3,6 @@
  *
  * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: ViewableWhitespace.cpp 3410 2006-07-31 17:14:15Z kimmov $
 
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
@@ -134,10 +132,7 @@ const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool di
 #else
 	// Use the [0] version by default, if lookup fails to find a better one
 	int offset = 0;
-	if (f_offset.Lookup(codepage, offset))
-	{
-		int d=9;
-	}
+	f_offset.Lookup(codepage, offset);
 	return &f_specialChars[offset];
 #endif
 }

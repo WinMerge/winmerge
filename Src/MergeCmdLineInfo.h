@@ -1,22 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////
-//
 //    WinMerge: An interactive diff/merge utility
 //    Copyright (C) 1997 Dean P. Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /** 
  * @file  MergeCmdLineInfo.h
@@ -24,9 +9,6 @@
  * @brief MergeCmdLineInfo class declaration.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeCmdLineInfo.h 6940 2009-08-01 17:29:01Z kimmov $
-
 #pragma once
 
 #include "UnicodeString.h"
@@ -80,6 +62,7 @@ public:
 
 	String m_sFileFilter; /**< File filter mask. */
 	String m_sPreDiffer; /**< Pre-differ name. */
+	String m_sUnpacker; /**< Unpacker name. */
 
 	String m_sOutputpath;
 	String m_sReportFile;

@@ -1,13 +1,8 @@
-#if !defined(AFX_WINDOWSMANAGERDIALOG_H__9417C3AF_FE30_4749_A058_3461CD0BDCC6__INCLUDED_)
-#define AFX_WINDOWSMANAGERDIALOG_H__9417C3AF_FE30_4749_A058_3461CD0BDCC6__INCLUDED_
+// WindowsManagerDialog.h : header file
+
+#pragma once
 
 #include "MainFrm.h"
-
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// WindowsManagerDialog.h : header file
-//
 
 #define WMD_LISTCOLOR_BKG					RGB(255, 255, 213)
 #define WMD_LISTCOLOR_BKGSEL				RGB(255, 165, 0)
@@ -88,5 +83,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_WINDOWSMANAGERDIALOG_H__9417C3AF_FE30_4749_A058_3461CD0BDCC6__INCLUDED_)

@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  *  @file Plugins.cpp
@@ -564,6 +550,23 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 		}
 		// default to false when Plugin doesn't have property
 		m_bAutomatic = false;
+	}
+	VariantClear(&ret);
+
+	// get optional property PluginUnpackedFileExtenstion
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginUnpackedFileExtension"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginUnpackedFileExtension", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginUnpackedFileExtension property, but error getting its value"));
+			return -100; // error (Plugin had PluginUnpackedFileExtenstion property, but error getting its value)
+		}
+		m_ext = ucr::toTString(ret.bstrVal);
+	}
+	else
+	{
+		m_ext.clear();
 	}
 	VariantClear(&ret);
 

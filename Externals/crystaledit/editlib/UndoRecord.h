@@ -53,7 +53,7 @@ private:
     , m_paSavedRevisionNumbers(nullptr)
     , m_pszText(nullptr)
   {
-    Clone(src);
+    UndoRecord::Clone(src);
   }
 
   virtual void Clone(const UndoRecord &src);

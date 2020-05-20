@@ -63,21 +63,18 @@
  *
  * @brief Implementation of the CCrystalEditView class
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaleditview.cpp 6457 2009-02-15 14:08:50Z kimmov $
-
 
 #include "StdAfx.h"
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
-#include "ceditreplacedlg.h"
-#include "registry.h"
-#include "cs2cs.h"
-#include "chcondlg.h"
-#include "string_util.h"
-#include "icu.hpp"
+#include "dialogs/ceditreplacedlg.h"
+#include "dialogs/chcondlg.h"
+#include "utils/registry.h"
+#include "utils/cs2cs.h"
+#include "utils/string_util.h"
+#include "utils/icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -105,7 +102,7 @@ class CEditDropTargetImpl : public COleDropTarget
 private :
     CCrystalEditView * m_pOwner;
 public :
-    CEditDropTargetImpl (CCrystalEditView * pOwner)
+    explicit CEditDropTargetImpl (CCrystalEditView * pOwner)
       : m_pOwner(pOwner), m_pAlternateDropTarget(nullptr)
     {
     };
@@ -128,7 +125,7 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 CCrystalEditView::CCrystalEditView ()
 : m_pEditReplaceDlg(nullptr)
 {
-  memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
+  memset((static_cast<CCrystalTextView*>(this))+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
   m_bAutoIndent = true;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
@@ -621,9 +618,9 @@ OnEditDelete ()
         }
       else 
         {
-		  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
+          auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(GetLineChars(ptSelEnd.y), GetLineLength(ptSelEnd.y));
           ptSelEnd.x = pIterChar->following(ptSelEnd.x);
-      }
+        }
     }
 
   if (!m_bColumnSelection)
@@ -2119,8 +2116,8 @@ OnEditAutoComplete ()
         }
       if (bFound)
         {
-          int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
-          int nFound = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          const int nLineLength = m_pTextBuffer->GetLineLength (ptTextPos.y);
+          int nFound = nLineLength;
           pszText = m_pTextBuffer->GetLineChars (ptTextPos.y) + ptTextPos.x + m_nLastFindWhatLen;
           nFound -= ptTextPos.x + m_nLastFindWhatLen;
           pszBuffer = sText.GetBuffer (nFound + 1);
@@ -2647,7 +2644,7 @@ void CCrystalEditView::OnEditGotoLastChange()
 
 int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   static TCHAR szBuffer[4096];
 
   if (pdata->nRow < pView->GetLineCount ())
@@ -2674,7 +2671,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 
 int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
 {
-  CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
+  CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
   CPoint ptStartPos, ptEndPos;
 
   switch (nEvent)

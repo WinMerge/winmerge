@@ -11,6 +11,8 @@ public:
 	{
 	}
 
+	~IListCtrlImpl() override {}
+
 	int GetColumnCount() const override
 	{
 		return Header_GetItemCount(ListView_GetHeader(m_hwndListCtrl));

@@ -29,6 +29,7 @@ struct DiffFuncStruct;
 
 struct IFileCmpReport
 {
+	virtual ~IFileCmpReport() {}
 	virtual bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) = 0;
 };
 

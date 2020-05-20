@@ -7,7 +7,7 @@
 #pragma once
 
 #include <vector>
-#include "icu.hpp"
+#include "utils/icu.hpp"
 
 // Uncomment this to see stringdiff log messages
 // We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge

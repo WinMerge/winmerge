@@ -1,7 +1,5 @@
 #! /bin/sh
 #
-# $Id: //poco/1.4/build/script/makedepend.cxx#1 $
-#
 # makedepend.cxx
 #
 # Create dependency file, Compaq C++ version
@@ -21,4 +19,4 @@ shift
 dir4=$1
 shift
 
-cxx -M $@ $source | sed "s#\(.*\.o\)#$dir1/\1 $dir2/\1 $dir3/\1 $dir4/\1#" >$target
+cxx -M $@ $source | sed "s#\(.*\.o$\)#$dir1/\1 $dir2/\1 $dir3/\1 $dir4/\1#" >$target

@@ -2,12 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_SAMPLEVIEW_H__B1B69ED3_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_)
-#define AFX_SAMPLEVIEW_H__B1B69ED3_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 #include "CCrystalEditView.h"
 #include "CrystalEditViewEx.h"
@@ -25,7 +20,7 @@ protected: // create from serialization only
 public:
 	CSampleDoc* GetDocument();
 
-	virtual CCrystalTextBuffer *LocateTextBuffer();
+	virtual CCrystalTextBuffer *LocateTextBuffer() override;
 
 protected:
 
@@ -36,8 +31,8 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSampleView)
 	public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void OnInitialUpdate();
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
+	virtual void OnInitialUpdate() override;
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -54,6 +49,8 @@ protected:
 protected:
 	//{{AFX_MSG(CSampleView)
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnSelMargin();
+	afx_msg void OnWordWrap();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -67,5 +64,3 @@ inline CSampleDoc* CSampleView::GetDocument()
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_SAMPLEVIEW_H__B1B69ED3_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_)

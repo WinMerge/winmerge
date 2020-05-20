@@ -3,8 +3,6 @@
  *
  * @brief Implementation of LineInfo class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: LineInfo.cpp 5738 2008-08-05 20:30:02Z kimmov $
 
 #include "stdafx.h"
 #include "LineInfo.h"
@@ -89,7 +87,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
   int nEols = 0;
   if (nLength > 1 && IsDosEol(&pszLine[nLength - 2]))
     nEols = 2;
-  else if (nLength && IsEol(pszLine[nLength - 1]))
+  else if (IsEol(pszLine[nLength - 1]))
     nEols = 1;
   ASSERT (static_cast<size_t>(nEols) <= m_nLength);
   m_nLength -= nEols;
@@ -121,7 +119,7 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
-	  ASSERT (m_nMax < INT_MAX);
+      ASSERT (m_nMax < INT_MAX);
       ASSERT (m_nMax >= m_nLength + nLength);
       TCHAR *pcNewBuf = new TCHAR[m_nMax];
       if (FullLength() > 0)
@@ -220,16 +218,16 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
     }
   size_t nDelete = (nEndChar - nStartChar);
   if (nDelete <= m_nLength)
-  {
-	  m_nLength -= nDelete;
-  }
+    {
+      m_nLength -= nDelete;
+    }
   else
-  {
-	  ASSERT( (m_nLength + m_nEolChars) <= nDelete );
-	  nDelete -= m_nLength;
-	  m_nLength = 0;
-	  m_nEolChars -= static_cast<int>(nDelete);
-  }
+    {
+      ASSERT( (m_nLength + m_nEolChars) <= nDelete );
+      nDelete -= m_nLength;
+      m_nLength = 0;
+      m_nEolChars -= static_cast<int>(nDelete);
+    }
   ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
   if (m_pcLine != nullptr)
     m_pcLine[FullLength()] = '\0';

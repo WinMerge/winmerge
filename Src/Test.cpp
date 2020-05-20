@@ -6,7 +6,7 @@
 #include "MainFrm.h"
 #include "MergeDoc.h"
 #include "ccrystaltextview.h"
-#include "cfindtextdlg.h"
+#include "dialogs/cfindtextdlg.h"
 #include "MergeEditView.h"
 #include "DirDoc.h"
 #include "DirView.h"

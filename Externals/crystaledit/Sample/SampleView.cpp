@@ -6,6 +6,7 @@
 
 #include "SampleDoc.h"
 #include "SampleView.h"
+#include "editcmd.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,6 +27,8 @@ BEGIN_MESSAGE_MAP(CSampleView, CCrystalEditView)
 	ON_COMMAND(ID_FILE_PRINT, CCrystalEditView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CCrystalEditView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnSelMargin)
+	ON_COMMAND(ID_VIEW_WORDWRAP, OnWordWrap)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +70,7 @@ void CSampleView::Dump(CDumpContext& dc) const
 CSampleDoc* CSampleView::GetDocument() // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CSampleDoc)));
-	return (CSampleDoc*)m_pDocument;
+	return static_cast<CSampleDoc*>(m_pDocument);
 }
 #endif //_DEBUG
 
@@ -86,10 +89,23 @@ void CSampleView::OnInitialUpdate()
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
 	SetMarkersContext(GetDocument()->m_pMarkers);
-	SetWordWrapping(true);
 }
 
 void CSampleView::OnContextMenu(CWnd* pWnd, CPoint point) 
 {
 	AfxMessageBox(_T("Build your own context menu!"));
+}
+
+void CSampleView::OnSelMargin()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetSelectionMargin(!pView->GetSelectionMargin());
+	});
+}
+
+void CSampleView::OnWordWrap()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetWordWrapping(!pView->GetWordWrapping());
+	});
 }

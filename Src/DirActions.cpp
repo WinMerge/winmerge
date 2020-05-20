@@ -1,7 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-//    see Merge.cpp for license (GPLv2+) statement
-//
-/////////////////////////////////////////////////////////////////////////////
+// SPDX-License-Identifier: GPL-2.0-or-later
 /**
  *  @file DirActions.cpp
  *
@@ -37,6 +34,11 @@ ContentsChangedException::ContentsChangedException(const String& failpath)
 	: m_msg(strutils::format_string1(
 	        _("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
 	        failpath))
+{
+}
+
+FileOperationException::FileOperationException(const String& msg)
+	: m_msg(msg)
 {
 }
 

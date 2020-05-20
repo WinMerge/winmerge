@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  * @file  DirView.cpp
@@ -921,6 +907,8 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
 		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
+	} catch (FileOperationException& e) {
+		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 	}
 }
 
@@ -1003,9 +991,12 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 	actionScript.SetParentWindow(GetMainFrame()->GetSafeHwnd());
 
 	theApp.AddOperation();
-	if (actionScript.Run())
+	bool succeeded = actionScript.Run();
+	if (succeeded)
 		UpdateAfterFileScript(actionScript);
 	theApp.RemoveOperation();
+	if (!succeeded && !actionScript.IsCanceled())
+		throw FileOperationException(_T("File operation failed"));
 }
 
 /**
@@ -2579,6 +2570,7 @@ std::vector<String> CDirView::GetCurrentColRegKeys()
 struct FileCmpReport: public IFileCmpReport
 {
 	explicit FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
+	~FileCmpReport() override {}
 	bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) override
 	{
 		const CDiffContext& ctxt = m_pDirView->GetDiffContext();

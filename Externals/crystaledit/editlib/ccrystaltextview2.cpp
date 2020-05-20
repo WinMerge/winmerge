@@ -41,8 +41,6 @@
  *
  * @brief More functions for CCrystalTextView class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaltextview2.cpp 6457 2009-02-15 14:08:50Z kimmov $
 
 #include "StdAfx.h"
 #include "editcmd.h"
@@ -51,8 +49,8 @@
 #include "SyntaxColors.h"
 #include "ccrystaltextmarkers.h"
 #include <malloc.h>
-#include "string_util.h"
-#include "icu.hpp"
+#include "utils/string_util.h"
+#include "utils/icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -694,27 +692,24 @@ OnMouseMove (UINT nFlags, CPoint point)
             {
               ptEnd = m_ptAnchor;
 
-              CPoint	pos;
+              CPoint  pos;
               CharPosToPoint( ptEnd.y, ptEnd.x, pos );
               ptEnd.x = SubLineHomeToCharPos( ptEnd.y, pos.y );
 
               m_ptCursorPos = ptNewCursorPos;
               CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
               if( GetSubLineIndex( ptNewCursorPos.y ) + pos.y == GetSubLineCount() - 1 )
-                  ptNewCursorPos.x = SubLineEndToCharPos( ptNewCursorPos.y, pos.y );
+                ptNewCursorPos.x = SubLineEndToCharPos( ptNewCursorPos.y, pos.y );
               else
-              {
-                  int	nLine, nSubLine;
+                {
+                  int nLine, nSubLine;
                   GetLineBySubLine( GetSubLineIndex( ptNewCursorPos.y ) + pos.y + 1, nLine, nSubLine );
                   ptNewCursorPos.y = nLine;
                   ptNewCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
-              }
-
-              int nLine, nSubLine;
-              GetLineBySubLine( GetSubLineIndex( m_ptCursorPos.y ) + pos.y, nLine, nSubLine );
-              m_ptCursorPos.y = nLine;
-              m_ptCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
+                }
+              m_ptCursorPos = ptNewCursorPos;
             }
+          EnsureVisible(m_ptCursorPos);
           UpdateCaret ();
           SetSelection (ptNewCursorPos, ptEnd);
           return;
@@ -741,6 +736,7 @@ OnMouseMove (UINT nFlags, CPoint point)
         }
 
       m_ptCursorPos = ptEnd;
+      EnsureVisible(m_ptCursorPos);
       UpdateCaret ();
       SetSelection (ptStart, ptEnd);
     }
@@ -778,89 +774,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
 
   if (m_bDragSelection)
     {
-      AdjustTextPoint (point);
-      CPoint ptNewCursorPos = ClientToText (point);
-
-      CPoint ptStart;
-      if (m_bLineSelection)
-        {
-          CPoint ptEnd;
-          if (ptNewCursorPos.y < m_ptAnchor.y ||
-                ptNewCursorPos.y == m_ptAnchor.y && ptNewCursorPos.x < m_ptAnchor.x)
-            {
-              //BEGIN SW
-              CPoint  pos;
-              ptEnd = m_ptAnchor;
-              CharPosToPoint( ptEnd.y, ptEnd.x, pos );
-              if( GetSubLineIndex( ptEnd.y ) + pos.y == GetSubLineCount() - 1 )
-                ptEnd = SubLineEndToCharPos( ptEnd.y, pos.y );
-              else
-                {
-                  int nLine, nSubLine;
-                  GetLineBySubLine( GetSubLineIndex( ptEnd.y ) + pos.y + 1, nLine, nSubLine );
-                  ptEnd.y = nLine;
-                  ptEnd.x = SubLineHomeToCharPos( nLine, nSubLine );
-                }
-              CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
-              ptNewCursorPos.x = SubLineHomeToCharPos( ptNewCursorPos.y, pos.y );
-              m_ptCursorPos = ptNewCursorPos;
-            }
-          else
-            {
-              ptEnd = m_ptAnchor;
-              //BEGIN SW
-
-              CPoint  pos;
-              CharPosToPoint( ptEnd.y, ptEnd.x, pos );
-              ptEnd.x = SubLineHomeToCharPos( ptEnd.y, pos.y );
-
-              m_ptCursorPos = ptNewCursorPos;
-              CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
-              if( GetSubLineIndex( ptNewCursorPos.y ) + pos.y == GetSubLineCount() - 1 )
-                ptNewCursorPos.x = SubLineEndToCharPos( ptNewCursorPos.y, pos.y );
-              else
-                {
-                  int nLine, nSubLine;
-                  GetLineBySubLine( GetSubLineIndex( ptNewCursorPos.y ) + pos.y + 1, nLine, nSubLine );
-                  ptNewCursorPos.y = nLine;
-                  ptNewCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
-                }
-              m_ptCursorPos = ptNewCursorPos;
-            }
-          EnsureVisible (m_ptCursorPos);
-          UpdateCaret ();
-          SetSelection (ptNewCursorPos, ptEnd);
-        }
-      else
-        {
-          CPoint ptEnd;
-          if (m_bWordSelection)
-            {
-              if (ptNewCursorPos.y < m_ptAnchor.y ||
-                    ptNewCursorPos.y == m_ptAnchor.y && ptNewCursorPos.x < m_ptAnchor.x)
-                {
-                  ptStart = WordToLeft (ptNewCursorPos);
-                  ptEnd = WordToRight (m_ptAnchor);
-                }
-              else
-                {
-                  ptStart = WordToLeft (m_ptAnchor);
-                  ptEnd = WordToRight (ptNewCursorPos);
-                }
-            }
-          else
-            {
-              ptStart = m_ptAnchor;
-              ptEnd = m_ptCursorPos;
-            }
-
-          m_ptAnchor = ptStart;
-          m_ptCursorPos = ptEnd;
-          EnsureVisible (m_ptCursorPos);
-          UpdateCaret ();
-          SetSelection (ptStart, ptEnd);
-        }
-
+      m_ptAnchor = m_ptSelStart;
       m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
       ReleaseCapture ();
       KillTimer (m_nDragSelTimer);
