@@ -1,7 +1,6 @@
 
 **/.vs
 **/ipch
-
 **/BuildTmp
 **/Build
 **/obj64
@@ -12,6 +11,8 @@
 **/Release
 **/x64Debug
 **/Debug
+**/Unicode Debug
+**/Unicode Release
 winmerge-cppcheck-build-dir/
 
 *.exe
