@@ -4169,7 +4169,7 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 
 		// ensure we remain in diff
 		int sublineBegin = GetSubLineIndex(m_lineBegin);
-		int sublineEnd = GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
+		int sublineEnd = m_lineEnd < 0 ? -1 : GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
 		int diffLength = sublineEnd - sublineBegin + 1;
 		int displayLength = GetScreenLines();
 		if (diffLength <= displayLength)
