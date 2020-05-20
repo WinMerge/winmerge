@@ -594,7 +594,15 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 {
 	bool bCompared = false;
 	String strDesc[3];
+	std::unique_ptr<PackingInfo> infoUnpacker;
+
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
+
+	if (!cmdInfo.m_sUnpacker.empty())
+	{
+		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
+		infoUnpacker->m_PluginName = cmdInfo.m_sUnpacker;
+	}
 
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
@@ -642,14 +650,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer);
+				cmdInfo.m_sPreDiffer, infoUnpacker.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer);
+				cmdInfo.m_sPreDiffer, infoUnpacker.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -671,7 +679,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr, 
-					cmdInfo.m_sPreDiffer);
+					cmdInfo.m_sPreDiffer, infoUnpacker.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag

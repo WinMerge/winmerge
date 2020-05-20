@@ -260,6 +260,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
 			q = EatParam(q, m_sPreDiffer);
 		}
+		else if (param == _T("unpacker"))
+		{
+			// Get unpacker if specified (otherwise unpacker will be blank, which is default)
+			q = EatParam(q, m_sUnpacker);
+		}
 		else if (param == _T("wl"))
 		{
 			// -wl to open left path as read-only
