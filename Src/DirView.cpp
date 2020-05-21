@@ -90,10 +90,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 CDirView::CDirView()
 		: m_pList(nullptr)
 		, m_nHiddenItems(0)
-		, m_bNeedSearchFirstDiffItem(true)
-		, m_bNeedSearchLastDiffItem(true)
-		, m_firstDiffItem(-1)
-		, m_lastDiffItem(-1)
 		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
@@ -550,6 +546,8 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 			}
 		}
 	}
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /**
@@ -586,9 +584,6 @@ void CDirView::Redisplay()
 		GetParentFrame()->SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
-
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
 }
 
 /**
@@ -1104,8 +1099,8 @@ void CDirView::SortColumnsAppropriately()
 	CompareState cs(&GetDiffContext(), m_pColItems.get(), sortCol, bSortAscending, m_bTreeMode);
 	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD_PTR>(&cs));
 
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /// Do any last minute work as view closes
@@ -1634,6 +1629,9 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 	{
 		m_pList->DeleteItem(sel);
 	}
+
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -1641,6 +1639,9 @@ void CDirView::DeleteAllDisplayItems()
 	// item data are just positions (diffposes)
 	// that is, they contain no memory needing to be freed
 	m_pList->DeleteAllItems();
+
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /**
@@ -2056,28 +2057,24 @@ int CDirView::GetFocusedItem()
 
 int CDirView::GetFirstDifferentItem()
 {
-	if (!m_bNeedSearchFirstDiffItem)
-		return m_firstDiffItem;
-
-	DirItemIterator it =
-		std::find_if(Begin(), End(), MakeDirActions(&DirActions::IsItemNavigableDiff));
-	m_firstDiffItem = it.m_sel;
-	m_bNeedSearchFirstDiffItem = false;
-
-	return m_firstDiffItem;
+	if (!m_firstDiffItem.has_value())
+	{
+		DirItemIterator it =
+			std::find_if(Begin(), End(), MakeDirActions(&DirActions::IsItemNavigableDiff));
+		m_firstDiffItem = it.m_sel;
+	}
+	return m_firstDiffItem.value();
 }
 
 int CDirView::GetLastDifferentItem()
 {
-	if (!m_bNeedSearchLastDiffItem)
-		return m_lastDiffItem;
-
-	DirItemIterator it =
-		std::find_if(RevBegin(), RevEnd(), MakeDirActions(&DirActions::IsItemNavigableDiff));
-	m_lastDiffItem = it.m_sel;
-	m_bNeedSearchLastDiffItem = false;
-
-	return m_lastDiffItem;
+	if (!m_lastDiffItem.has_value())
+	{
+		DirItemIterator it =
+			std::find_if(RevBegin(), RevEnd(), MakeDirActions(&DirActions::IsItemNavigableDiff));
+		m_lastDiffItem = it.m_sel;
+	}
+	return m_lastDiffItem.value();
 }
 
 /**
@@ -4071,9 +4068,6 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	{
 		pParam->item.iImage = GetColImage(di);
 	}
-
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
 }
 
 /**

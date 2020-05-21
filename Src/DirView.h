@@ -14,6 +14,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <memory>
+#include <optional>
 #include "OptionsDirColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
@@ -198,10 +199,8 @@ protected:
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
-	int m_firstDiffItem;
-	int m_lastDiffItem;
-	bool m_bNeedSearchFirstDiffItem;
-	bool m_bNeedSearchLastDiffItem;
+	std::optional<int> m_firstDiffItem;
+	std::optional<int> m_lastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bUseColors;
 
