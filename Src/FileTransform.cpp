@@ -35,6 +35,36 @@ PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
 
+bool getPackUnpackPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+{
+	bWithFile = true;
+	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
+	if (plugin == nullptr)
+	{
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
+		if (plugin == nullptr)
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+				if (plugin == nullptr)
+				{
+					AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+				}
+				else
+				{
+					plugin = nullptr;
+					AppErrorMessageBox(strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName));
+				}
+				return false;
+			}
+			bWithFile = false;
+		}
+	}
+	return true;
+}
+
 // known handler
 bool Packing(String & filepath, PackingInfo handler)
 {
@@ -48,17 +78,10 @@ bool Packing(String & filepath, PackingInfo handler)
 	// control value
 	bool bHandled = false;
 	bool bWithFile = true;
+	PluginInfo* plugin = nullptr;
+	if (!getPackUnpackPlugin(handler.m_PluginName, plugin, bWithFile))
+		return false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.m_PluginName);
-	if (plugin == nullptr)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.m_PluginName);
-		if (plugin == nullptr)
-			return false;
-		bWithFile = false;
-	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (bWithFile)
 	{
@@ -111,17 +134,9 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	// control value
 	bool bHandled = false;
 	bool bWithFile = true;
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->m_PluginName);
-	if (plugin == nullptr)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->m_PluginName);
-		if (plugin == nullptr)
-			return false;
-		bWithFile = false;
-	}
+	PluginInfo* plugin = nullptr;
+	if (!getPackUnpackPlugin(handler->m_PluginName, plugin, bWithFile))
+		return false;
 
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (bWithFile)
@@ -254,7 +269,33 @@ bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredTex
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
-    
+
+bool getPrediffPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+{
+	bWithFile = true;
+	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
+	if (plugin == nullptr)
+	{
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
+		if (plugin == nullptr)
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+			if (plugin == nullptr)
+			{
+				AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+			}
+			else
+			{
+				plugin = nullptr;
+				AppErrorMessageBox(strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName));
+			}
+			return false;
+		}
+		bWithFile = false;
+	}
+	return true;
+}
+
 // known handler
 bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 {
@@ -271,15 +312,10 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	// control value
 	bool bHandled = false;
 	bool bWithFile = true;
+	PluginInfo* plugin = nullptr;
+	if (!getPrediffPlugin(handler.m_PluginName, plugin, bWithFile))
+		return false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.m_PluginName);
-	if (plugin == nullptr)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.m_PluginName);
-		if (plugin == nullptr)
-			return false;
-		bWithFile = false;
-	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (bWithFile)
 	{
