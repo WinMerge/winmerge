@@ -2867,8 +2867,8 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
-	OpenDocs(m_nBuffers, fileloc, bRO, strDesc);
-	MoveOnLoad(nBuffer, 0);
+	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
+		MoveOnLoad(nBuffer, 0);
 }
 
 /**
@@ -3118,8 +3118,8 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
-	MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
+	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
+		MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
 }
 
 /**
