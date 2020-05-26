@@ -1,5 +1,7 @@
 CppUnit
 Foundation
+Encodings
 XML
+JSON
 Util
 Net

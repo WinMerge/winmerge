@@ -28,8 +28,6 @@
  *
  * @brief Declaration file for CCrystalTextBuffer.
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaltextbuffer.h 6879 2009-06-29 10:00:33Z kimmov $
 
 #pragma once
 

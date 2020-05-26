@@ -943,7 +943,6 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_EDIT_MARK                    21406 // editcmd.h
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -1002,7 +1001,6 @@
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATISTICS          32821
 #define ID_VIEW_LINEDIFFS               32823
-#define ID_VIEW_WORDWRAP                32824
 #define ID_VIEW_LINENUMBERS             32825
 #define ID_VIEW_TAB_BAR                 32826
 #define ID_VIEW_TREEMODE                32827
@@ -1125,7 +1123,6 @@
 #define ID_EDIT_GOTO_NEXT_BOOKMARK      33146
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33147
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33148
-#define ID_VIEW_FILEMARGIN              33150
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
 #define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
@@ -1187,8 +1184,6 @@
 #define ID_VIEW_DIFFCONTEXT_7           33223
 #define ID_VIEW_DIFFCONTEXT_9           33224
 #define ID_VIEW_DIFFCONTEXT_TOGGLE      33225
-#define ID_EDIT_LOWERCASE               33226
-#define ID_EDIT_UPPERCASE               33227
 #define ID_VIEW_SPLITVERTICALLY         33228
 #define IDS_FRHED_NOTINSTALLED          33229
 #define ID_ADD_SYNCPOINT                33230

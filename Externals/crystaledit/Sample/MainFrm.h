@@ -2,12 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_MAINFRM_H__B1B69ECD_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_)
-#define AFX_MAINFRM_H__B1B69ECD_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 class CMainFrame : public CMDIFrameWnd
 {
@@ -53,5 +48,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_MAINFRM_H__B1B69ECD_9FCE_11D2_8CA4_0080ADB8683C__INCLUDED_)

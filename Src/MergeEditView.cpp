@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  * @file  MergeEditView.cpp
@@ -45,6 +31,7 @@
 #include "DropHandler.h"
 #include "DirDoc.h"
 #include "ShellContextMenu.h"
+#include "editcmd.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -218,8 +205,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
 	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND(ID_VIEW_FILEMARGIN, OnViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_FILEMARGIN, OnUpdateViewMargin)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
@@ -3242,7 +3229,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
-		prediffer.m_bWithFile = true;
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}
@@ -3251,7 +3237,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		pluginNumber -= piScriptArray->size();
 		if (pluginNumber >= piScriptArray2->size())
 			return;
-		prediffer.m_bWithFile = false;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
 		prediffer.m_PluginName = plugin->m_name;
 	}
@@ -4184,7 +4169,7 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 
 		// ensure we remain in diff
 		int sublineBegin = GetSubLineIndex(m_lineBegin);
-		int sublineEnd = GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
+		int sublineEnd = m_lineEnd < 0 ? -1 : GetSubLineIndex(m_lineEnd) + GetSubLines(m_lineEnd) - 1;
 		int diffLength = sublineEnd - sublineBegin + 1;
 		int displayLength = GetScreenLines();
 		if (diffLength <= displayLength)

@@ -1,8 +1,6 @@
 //
 // TestCase.cpp
 //
-// $Id: //poco/1.4/CppUnit/src/TestCase.cpp#1 $
-//
 
 
 #include <stdexcept>
@@ -11,6 +9,7 @@
 #include "CppUnit/TestResult.h"
 #include "CppUnit/estring.h"
 #include <typeinfo>
+#include <iostream>
 
 
 using namespace std;
@@ -36,15 +35,15 @@ void TestCase::assertImplementation(bool condition, const std::string& condition
 
 void TestCase::loop1assertImplementation(bool condition, const std::string& conditionExpression, long lineNumber, long data1lineNumber, const std::string& fileName)
 {
-    if (!condition)
-        throw CppUnitException(conditionExpression, lineNumber, data1lineNumber, fileName);
+	if (!condition)
+		throw CppUnitException(conditionExpression, lineNumber, data1lineNumber, fileName);
 }
 
 
 void TestCase::loop2assertImplementation(bool condition, const std::string& conditionExpression, long lineNumber, long data1lineNumber, long data2lineNumber, const std::string& fileName)
 {
-    if (!condition)
-        throw CppUnitException(conditionExpression, lineNumber, data1lineNumber, data2lineNumber, fileName);
+	if (!condition)
+		throw CppUnitException(conditionExpression, lineNumber, data1lineNumber, data2lineNumber, fileName);
 }
 
 
@@ -94,9 +93,15 @@ void TestCase::assertNull(const void* pointer, const std::string& pointerExpress
 }
 
 
-void TestCase::fail (const std::string& message, long lineNumber, const std::string& fileName)
+void TestCase::fail(const std::string& message, long lineNumber, const std::string& fileName)
 {
 	throw CppUnitException(std::string("fail: ") + message, lineNumber, fileName);
+}
+
+
+void TestCase::warn(const std::string& message, long lineNumber, const std::string& fileName)
+{
+	std::cout << "Warning [" << fileName << ':' << lineNumber << "]: " << message << std::endl;
 }
 
 
@@ -123,13 +128,11 @@ void TestCase::run(TestResult *result)
 		result->addError(this, new CppUnitException(msg));
 
 	}
-#if !defined(_WIN32)
 	catch (...)
 	{
 		CppUnitException *e = new CppUnitException ("unknown exception");
 		result->addError (this, e);
 	}
-#endif
 	tearDown ();
 	result->endTest(this);
 }

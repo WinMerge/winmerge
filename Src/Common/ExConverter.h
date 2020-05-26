@@ -13,6 +13,7 @@ struct CodePageInfo
 
 struct IExconverter
 {
+	virtual ~IExconverter() {}
 	virtual bool initialize() = 0;
 	virtual bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, size_t * srcbytes, unsigned char * dest, size_t * destbytes) = 0;
 	virtual bool convertFromUnicode(int dstCodepage, const wchar_t * src, size_t * srcchars, char * dest, size_t *destbytes) = 0;

@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  * @file  SelectUnpackerDlg.cpp
@@ -68,9 +54,7 @@ void CSelectUnpackerDlg::Initialize()
 
 	// add the default unpackers to the unpackers list
 	m_UnpackerPlugins.Add(noPlugin.get());
-	m_bWithFileFlags.push_back(false);
 	m_UnpackerPlugins.Add(automaticPlugin.get());
-	m_bWithFileFlags.push_back(true);
 	// add the real unpackers to the unpackers list
 	size_t i;
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
@@ -80,7 +64,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(true);
 		}
 	}
 	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
@@ -90,7 +73,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(false);
 		}
 	}
 	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
@@ -100,7 +82,6 @@ void CSelectUnpackerDlg::Initialize()
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());
-			m_bWithFileFlags.push_back(true);
 		}
 	}
 }
@@ -164,7 +145,6 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 			if (m_pPlugin == pPlugin)
 				break;
 		}
-		infoHandler.m_bWithFile = m_bWithFileFlags.at(i);
 		return infoHandler;
 	}
 }

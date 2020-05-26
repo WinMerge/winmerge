@@ -1,6 +1,4 @@
 #
-# $Id: //poco/1.4/build/config/Android#3 $
-#
 # Android
 #
 # Make settings for Android NDK
@@ -24,7 +22,7 @@ ARCHFLAGS = -march=armv7-a -mfloat-abi=softfp
 LINKFLAGS = -Wl,--fix-cortex-a8
 else
 ifeq ($(ANDROID_ABI),x86)
-TOOL      = i686-android-linux
+TOOL      = i686-linux-android
 ARCHFLAGS = -march=i686 -msse3 -mstackrealign -mfpmath=sse
 else
 $(error Invalid ABI specified in ANDROID_ABI)

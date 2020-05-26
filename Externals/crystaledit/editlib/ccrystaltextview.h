@@ -28,8 +28,6 @@
  *
  * @brief Declaration file for CCrystalTextView
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaltextview.h 6888 2009-06-30 10:36:28Z kimmov $
 
 #pragma once
 

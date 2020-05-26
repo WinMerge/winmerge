@@ -3,8 +3,6 @@
  *
  * @brief Implementation of LineInfo class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: LineInfo.cpp 5738 2008-08-05 20:30:02Z kimmov $
 
 #include "stdafx.h"
 #include "LineInfo.h"

@@ -84,8 +84,6 @@
  *
  * @brief Implementation of the CCrystalTextView class
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaltextview.cpp 7117 2010-02-01 14:24:51Z sdottaka $
 
 #include "StdAfx.h"
 #include <vector>

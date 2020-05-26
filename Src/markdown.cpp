@@ -92,12 +92,14 @@ DATE:		BY:					DESCRIPTION:
 #include "unicoder.h"
 #include "TFile.h"
 
+#ifndef MAKEWORD
 #define MAKEWORD(a, b)      ((unsigned short)(((unsigned char)((unsigned)(a) & 0xff)) | ((unsigned short)((unsigned char)((unsigned)(b) & 0xff))) << 8))
 #define MAKELONG(a, b)      ((unsigned)(((unsigned short)((unsigned)(a) & 0xffff)) | ((unsigned)((unsigned short)((unsigned)(b) & 0xffff))) << 16))
 #define LOWORD(l)           ((unsigned short)((unsigned)(l) & 0xffff))
 #define HIWORD(l)           ((unsigned short)((unsigned)(l) >> 16))
 #define LOBYTE(w)           ((unsigned char)((unsigned)(w) & 0xff))
 #define HIBYTE(w)           ((unsigned char)((unsigned)(w) >> 8))
+#endif
 
 using Poco::ByteOrder;
 using Poco::NumberParser;

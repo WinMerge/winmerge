@@ -1,6 +1,4 @@
 //WinMerge resource script (for English only).
-//
-// $Id: Merge2.rc 6021 2008-10-20 18:07:27Z kimmov $
 
 #include "resource.h"
 #include "afxres.h"
