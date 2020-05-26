@@ -376,8 +376,9 @@ TEST(FolderCompare, IgnoreEOL)
 
 TEST(CommandLineTest, Desc)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")).c_str()
 	);
@@ -392,8 +393,9 @@ TEST(CommandLineTest, Desc)
 
 TEST(CommandLineTest, Desc2)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -408,8 +410,9 @@ TEST(CommandLineTest, Desc2)
 
 TEST(CommandLineTest, Desc3)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -424,8 +427,9 @@ TEST(CommandLineTest, Desc3)
 
 TEST(CommandLineTest, Desc4)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
