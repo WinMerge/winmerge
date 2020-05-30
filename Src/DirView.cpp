@@ -2431,6 +2431,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
 	{
+		KillTimer(STATUSBAR_UPDATE);
 		int items = GetSelectedCount();
 		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
@@ -3058,9 +3059,10 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	if ((pNMListView->uOldState & LVIS_SELECTED) !=
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
-		int items = GetSelectedCount();
-		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
-		GetParentFrame()->SetStatus(msg.c_str());
+		if ((pNMListView->iItem % 5000) > 0)
+			SetTimer(STATUSBAR_UPDATE, 100, nullptr);
+		else
+			OnTimer(STATUSBAR_UPDATE);
 	}
 	*pResult = 0;
 }
