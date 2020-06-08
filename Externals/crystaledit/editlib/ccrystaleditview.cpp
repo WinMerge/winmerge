@@ -931,8 +931,8 @@ OnEditTab ()
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int x, y;
-          m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
-
+          if (m_pTextBuffer->IsIndentableLine (L))
+            m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
         }
       m_bHorzScrollBarLocked = false;
       RecalcHorzScrollBar ();
