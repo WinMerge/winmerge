@@ -599,6 +599,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[0]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[0]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -616,6 +622,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[0]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[0]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -636,6 +648,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[2]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[2]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -653,6 +671,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[2]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[2]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
