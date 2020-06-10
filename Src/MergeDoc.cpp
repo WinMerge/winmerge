@@ -539,7 +539,10 @@ void CMergeDoc::CheckFileChanged(void)
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			if (FileChange[nBuffer] == FileChanged)
-				ChangeFile(nBuffer, m_filePaths[nBuffer]);
+			{
+				CPoint pt = GetView(0, nBuffer)->GetCursorPos();
+				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
+			}
 		}
 	}
 }
@@ -2870,7 +2873,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
 }
 
-void CMergeDoc::ChangeFile(int nBuffer, const String& path)
+void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return;
@@ -2892,7 +2895,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
-		MoveOnLoad(nBuffer, 0);
+		MoveOnLoad(nBuffer, nLineIndex);
 }
 
 /**
