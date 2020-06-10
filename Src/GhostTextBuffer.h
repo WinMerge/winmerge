@@ -77,6 +77,7 @@ public :
 			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
 			bool bExcludeInvisibleLines = true) const override;
 
+	virtual bool IsIndentableLine(int nLine) const { return (GetLineFlags(nLine) & LF_GHOST) == 0; }
 
 	// Text modification functions
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,

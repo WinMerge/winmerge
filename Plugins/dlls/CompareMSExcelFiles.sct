@@ -186,11 +186,17 @@ Function getModuleExtension(cmp)
 	End Select
 End Function
 
+Sub Sleep(sec)
+	if sec = 0 Then Exit Sub
+	wsh.Run "ping.exe localhost -n " & sec, 0, True
+End Sub
+
 Function saveRangeAsImage(sht, rng, filename)
 	Dim obj
 	Dim shtNew
 	Dim wbkNew
 	Dim oldSheetsInNewWorkbook
+	Dim i
 
 	saveRangeAsImage = True
 
@@ -219,24 +225,34 @@ Function saveRangeAsImage(sht, rng, filename)
 		obj.Parent.Height = rng.Height
 	End If
 
-	If sht.Application.Version < 14 Then
-		rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
-		If Err.Number = 0 Then
-			obj.Paste
-			obj.Export filename, "PNG"
+	For i = 0 to 1
+		If sht.Application.Version < 14 Then
+			rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
+			If Err.Number = 0 Then
+				Sleep i
+				obj.Paste
+				obj.Export filename, "PNG"
+			ElseIf i = 0 Then
+				Sleep 1
+			End If
+		Else
+			rng.Copy
+			If Err.Number = 0 Then
+				Sleep i
+				shtNew.Pictures.Paste
+				obj.Export filename, "PNG"
+			ElseIf i = 0 Then
+				Sleep 1
+			End If
 		End If
-	Else
-		rng.Copy
-		If Err.Number = 0 Then
-			shtNew.Pictures.Paste
-			obj.Export filename, "PNG"
-		End If
-	End If
 
-	If Err.Number <> 0 Then
-		saveRangeAsImage = False
-	End If
+		If Err.Number = 0 Then Exit For
+		If i = 0 Then Err.Clear
+	Next
+
 	wbkNew.Close False
+
+	saveRangeAsImage = (Err.Number = 0)
 
 End Function
 

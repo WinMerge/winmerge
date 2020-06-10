@@ -539,7 +539,10 @@ void CMergeDoc::CheckFileChanged(void)
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			if (FileChange[nBuffer] == FileChanged)
-				ChangeFile(nBuffer, m_filePaths[nBuffer]);
+			{
+				CPoint pt = GetView(0, nBuffer)->GetCursorPos();
+				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
+			}
 		}
 	}
 }
@@ -599,6 +602,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[0]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[0]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -616,6 +625,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[0]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[0]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -636,6 +651,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[2]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[2]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -653,6 +674,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[2]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[2]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -2846,7 +2873,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
 }
 
-void CMergeDoc::ChangeFile(int nBuffer, const String& path)
+void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return;
@@ -2868,7 +2895,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
-		MoveOnLoad(nBuffer, 0);
+		MoveOnLoad(nBuffer, nLineIndex);
 }
 
 /**

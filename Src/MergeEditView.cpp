@@ -758,10 +758,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 			{
 				if (dwLineFlags & LF_MOVED)
 				{
-					if (dwLineFlags & LF_GHOST)
-						crBkgnd = m_cachedColors.clrSelMovedDeleted;
-					else
-						crBkgnd = m_cachedColors.clrSelMoved;
+					crBkgnd = m_cachedColors.clrSelMoved;
 					crText = m_cachedColors.clrSelMovedText;
 				}
 				else
@@ -775,10 +772,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 			{
 				if (dwLineFlags & LF_MOVED)
 				{
-					if (dwLineFlags & LF_GHOST)
-						crBkgnd = m_cachedColors.clrMovedDeleted;
-					else
-						crBkgnd = m_cachedColors.clrMoved;
+					crBkgnd = m_cachedColors.clrMoved;
 					crText = m_cachedColors.clrMovedText;
 				}
 				else
@@ -803,9 +797,19 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				crBkgnd = m_cachedColors.clrSelDiffDeleted;
+			{
+				if (dwLineFlags & LF_MOVED)
+					crBkgnd = m_cachedColors.clrSelMovedDeleted;
+				else
+					crBkgnd = m_cachedColors.clrSelDiffDeleted;
+			}
 			else
-				crBkgnd = m_cachedColors.clrDiffDeleted;
+			{
+				if (dwLineFlags & LF_MOVED)
+					crBkgnd = m_cachedColors.clrMovedDeleted;
+				else
+					crBkgnd = m_cachedColors.clrDiffDeleted;
+			}
 			return;
 		}
 	}

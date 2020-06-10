@@ -126,6 +126,7 @@ Localization:
 * Portuguese (Brazilian):
   Wender Firmino <wender@pta.com.br>
   Felipe Periard Lopes <felipefpl@ig.com.br>
+  Igor Rückert
 
 * Portuguese (Portugal):
   Nelson Simão

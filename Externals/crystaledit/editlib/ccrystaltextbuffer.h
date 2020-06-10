@@ -233,6 +233,7 @@ public :
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, CString &text,
             CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, bool bExcludeInvisibleLines = true) const;
+    virtual bool IsIndentableLine(int nLine) const { return true; }
 
     //  Attributes
     CRLFSTYLE GetCRLFMode () const;
