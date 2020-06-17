@@ -15,6 +15,8 @@
 #include <memory>
 #include "MDITabBar.h"
 #include "PathContext.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 class BCMenu;
 class CDirView;
@@ -148,14 +150,18 @@ protected:
 			{
 			case WM_MDICREATE:
 			case WM_MDIACTIVATE:
+			{
 				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
 				BOOL bMaximized;
-				if ((message == WM_MDICREATE || (SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized))
-					&& bMaximized)) && SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
+				HWND hwndActive = reinterpret_cast<HWND>(SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized)));
+				if ((bMaximized || (message == WM_MDICREATE && 
+					(!hwndActive || !GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK)))) &&
+					SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
 				{
 					SetRedraw(FALSE);
 				}
 				break;
+			}
 			case WM_TIMER:
 				if (wParam == m_nRedrawTimer)
 				{
