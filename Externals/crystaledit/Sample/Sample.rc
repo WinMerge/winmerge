@@ -187,6 +187,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR

@@ -49,6 +49,7 @@
 #define ID_EDIT_DISABLEBSATSOL          32796
 #define ID_EDIT_DISABLEDRAGANDDROP      32797
 #define ID_EDIT_FIND_PREVIOUS           32799
+#define ID_VIEW_WHITESPACE              32800
 #define ID_EDIT_INDICATOR_COL           37900
 #define ID_READ_ONLY                    37901
 #define ID_INDICATOR_ENCODING           37905
