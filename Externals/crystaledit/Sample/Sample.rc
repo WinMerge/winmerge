@@ -486,7 +486,7 @@ END
 STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "Sample"
-    IDR_SAMPLETYPE          "\nSample\nSample\nC++ Files (*.cpp)\n.cpp\nSample.Document\nSample Document"
+    IDR_SAMPLETYPE          "\nSample\nSample\nText Files (*.txt)\n.*\nSample.Document\nSample Document"
 END
 
 STRINGTABLE

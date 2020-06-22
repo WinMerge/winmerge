@@ -436,8 +436,9 @@ CrystalLineParser::ParseLineIS (DWORD dwCookie, const TCHAR *pszChars, int nLeng
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+  LPCTSTR pszCommentBegin = nullptr;
+  LPCTSTR pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
-  bool bWasCommentStart = false;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
@@ -524,17 +525,16 @@ out:
       //  Extended comment /*....*/
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          // if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*')
-          if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' /*&& *::CharPrev(pszChars, pszChars + nPrevI) != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+          if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
+              pszCommentEnd = pszChars + I + 1;
             }
-          bWasCommentStart = false;
           continue;
         }
 
-      if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
+      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/'))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
@@ -544,7 +544,7 @@ out:
       //  Preprocessor directive #....
       if (dwCookie & COOKIE_PREPROCESSOR)
         {
-          if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
+          if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
             {
               DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_EXT_COMMENT;
@@ -569,15 +569,13 @@ out:
               continue;
             }
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
+      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
-          bWasCommentStart = true;
+          pszCommentBegin = pszChars + I + 1;
           continue;
         }
-
-      bWasCommentStart = false;
 
       if (bFirstChar)
         {

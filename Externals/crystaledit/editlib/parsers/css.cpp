@@ -208,8 +208,9 @@ CrystalLineParser::ParseLineCss (DWORD dwCookie, const TCHAR *pszChars, int nLen
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
 
   bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE)) == 0;
+  LPCTSTR pszCommentBegin = nullptr;
+  LPCTSTR pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
-  bool bWasCommentStart = false;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
@@ -284,12 +285,12 @@ out:
       //  Extended comment /*....*/
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+          if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
+              pszCommentEnd = pszChars + I + 1;
             }
-          bWasCommentStart = false;
           continue;
         }
 
@@ -298,15 +299,13 @@ out:
         {
           dwCookie |= COOKIE_EXT_DEFINITION;
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
+      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
-          bWasCommentStart = true;
+          pszCommentBegin = pszChars + I + 1;
           continue;
         }
-
-      bWasCommentStart = false;
 
       if (bFirstChar)
         {
