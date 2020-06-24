@@ -364,7 +364,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
   int nExt = GetExtPosition (pszFileName);
   if (pszFileName[nExt] == _T ('.'))
     nExt++;
-  CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (pszFileName + nExt);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszFileName + nExt);
   if (def && def->encoding != -1)
     m_nSourceEncoding = def->encoding;
 
@@ -998,12 +998,12 @@ RemoveView (CCrystalTextView * pView)
   ASSERT (false);
 }
 
-CCrystalTextView::TextDefinition *CCrystalTextBuffer::
+CrystalLineParser::TextDefinition *CCrystalTextBuffer::
 RetypeViews (LPCTSTR lpszFileName)
 {
   POSITION pos = m_lpViews.GetHeadPosition ();
   CString sNew = GetExt (lpszFileName);
-  CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (sNew);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew);
   while (pos != nullptr)
     {
       CCrystalTextView *pView = m_lpViews.GetNext (pos);

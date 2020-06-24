@@ -420,6 +420,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

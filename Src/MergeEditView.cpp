@@ -3109,7 +3109,7 @@ void CMergeEditView::RefreshOptions()
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
-		SetTextType(CCrystalTextView::SRC_PLAIN);
+		SetTextType(CrystalLineParser::SRC_PLAIN);
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
@@ -3985,7 +3985,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 
 		if (pView != nullptr)
 		{
-			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
+			pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
 			pView->SetDisableBSAtSOL(false);
 		}
 	}

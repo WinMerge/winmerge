@@ -280,7 +280,7 @@ public :
     POSITION GetRedoDescription (CString & desc, POSITION pos = nullptr) const;
 
     //  Notify all connected views about changes in name of file
-    CCrystalTextView::TextDefinition *RetypeViews (LPCTSTR lpszFileName);
+    CrystalLineParser::TextDefinition *RetypeViews (LPCTSTR lpszFileName);
     //  Notify all connected views about changes in text
     void UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext,
                       DWORD dwUpdateFlags, int nLineIndex = -1);
