@@ -142,8 +142,8 @@ DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 bool IsItemCopyable(const DIFFITEM &di, int index);
 bool IsItemDeletable(const DIFFITEM &di, int index);
 bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM &di);
-bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM &di1, const DIFFITEM &di2);
-bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFITEM &di2, const DIFFITEM &di3);
+bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM &di1, const DIFFITEM &di2, bool openableForDir = true);
+bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFITEM &di2, const DIFFITEM &di3, bool openableForDir = true);
 bool IsItemOpenableOn(const DIFFITEM &di, int index);
 bool IsItemOpenableOnWith(const DIFFITEM &di, int index);
 bool IsItemCopyableToOn(const DIFFITEM &di, int index);
@@ -152,11 +152,11 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM &di);
 bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilterSettings& filter);
 
 bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, bool & isDir, int nPane[3], String& errmsg);
+		PathContext &paths, int & sel1, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFFITEM *pos1, DIFFITEM *pos2, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg);
+		PathContext &paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
 bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg);
+		PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
 
 void GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di, String& strLeft, String& strRight);
 PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di);
