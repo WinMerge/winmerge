@@ -286,84 +286,11 @@ EXPAND_PRIMITIVE (MoveCtrlHome, TextBegin)
 EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 #undef EXPAND_PRIMITIVE
 
-// Tabsize is commented out since we have only GUI setting for it now.
-// Not removed because we may later want to have per-filetype settings again.
-// See ccrystaltextview.h for table declaration.
-CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
-  {
-    CCrystalTextView::SRC_PLAIN, _T ("Plain"), _T ("txt,doc,diz"), &CrystalLineParser::ParseLinePlain, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_ASP, _T ("ASP"), _T ("asp,ascx"), &CrystalLineParser::ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (DWORD)-1,
-    CCrystalTextView::SRC_BASIC, _T ("Basic"), _T ("bas,vb,vbs,frm,dsm,cls,ctl,pag,dsr"), &CrystalLineParser::ParseLineBasic, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("\'"), (DWORD)-1,
-    CCrystalTextView::SRC_BATCH, _T ("Batch"), _T ("bat,btm,cmd"), &CrystalLineParser::ParseLineBatch, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("rem "), (DWORD)-1,
-    CCrystalTextView::SRC_C, _T ("C"), _T ("c,cc,cpp,cxx,h,hpp,hxx,hm,inl,rh,tlh,tli,xs"), &CrystalLineParser::ParseLineC, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_CSHARP, _T ("C#"), _T ("cs"), &CrystalLineParser::ParseLineCSharp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_CSS, _T ("CSS"), _T ("css"), &CrystalLineParser::ParseLineCss, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_DCL, _T ("DCL"), _T ("dcl,dcc"), &CrystalLineParser::ParseLineDcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_FORTRAN, _T ("Fortran"), _T ("f,f90,f9p,fpp,for,f77"), &CrystalLineParser::ParseLineFortran, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*8,*/ _T (""), _T (""), _T ("!"), (DWORD)-1,
-    CCrystalTextView::SRC_GO, _T ("Go"), _T ("go"), &CrystalLineParser::ParseLineGo, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_HTML, _T ("HTML"), _T ("html,htm,shtml,ihtml,ssi,stm,stml,jsp"), &CrystalLineParser::ParseLineHtml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_INI, _T ("INI"), _T ("ini,reg,vbp,isl"), &CrystalLineParser::ParseLineIni, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_INNOSETUP, _T ("InnoSetup"), _T ("iss"), &CrystalLineParser::ParseLineInnoSetup, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), &CrystalLineParser::ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_JAVA, _T ("Java"), _T ("java,jav,js"), &CrystalLineParser::ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_LISP, _T ("AutoLISP"), _T ("lsp,dsl"), &CrystalLineParser::ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_LUA, _T ("Lua"), _T ("lua"), &CrystalLineParser::ParseLineLua, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("--[["), _T ("]]"), _T ("--"), (DWORD)-1,
-    CCrystalTextView::SRC_NSIS, _T ("NSIS"), _T ("nsi,nsh"), &CrystalLineParser::ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_PASCAL, _T ("Pascal"), _T ("pas"), &CrystalLineParser::ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_PERL, _T ("Perl"), _T ("pl,pm,plx"), &CrystalLineParser::ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_PHP, _T ("PHP"), _T ("php,php3,php4,php5,phtml"), &CrystalLineParser::ParseLinePhp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_PO, _T ("PO"), _T ("po,pot"), &CrystalLineParser::ParseLinePo, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_POWERSHELL, _T ("PowerShell"), _T ("ps1"), &CrystalLineParser::ParseLinePowerShell, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_PYTHON, _T ("Python"), _T ("py"), &CrystalLineParser::ParseLinePython, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_REXX, _T ("REXX"), _T ("rex,rexx"), &CrystalLineParser::ParseLineRexx, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_RSRC, _T ("Resources"), _T ("rc,dlg,r16,r32,rc2"), &CrystalLineParser::ParseLineRsrc, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_RUBY, _T ("Ruby"), _T ("rb,rbw,rake,gemspec"), &CrystalLineParser::ParseLineRuby, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_RUST, _T ("Rust"), _T ("rs"), &CrystalLineParser::ParseLineRust, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_SGML, _T ("Sgml"), _T ("sgml"), &CrystalLineParser::ParseLineSgml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_SH, _T ("Shell"), _T ("sh,conf"), &CrystalLineParser::ParseLineSh, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_SIOD, _T ("SIOD"), _T ("scm"), &CrystalLineParser::ParseLineSiod, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_SQL, _T ("SQL"), _T ("sql"), &CrystalLineParser::ParseLineSql, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_TCL, _T ("TCL"), _T ("tcl"), &CrystalLineParser::ParseLineTcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_TEX, _T ("TEX"), _T ("tex,sty,clo,ltx,fd,dtx"), &CrystalLineParser::ParseLineTex, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("%"), (DWORD)-1,
-    CCrystalTextView::SRC_VERILOG, _T ("Verilog"), _T ("v,vh"), &CrystalLineParser::ParseLineVerilog, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_VHDL, _T ("VHDL"), _T ("vhd,vhdl,vho"), &CrystalLineParser::ParseLineVhdl, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("--"), (DWORD)-1,
-    CCrystalTextView::SRC_XML, _T ("XML"), _T ("xml"), &CrystalLineParser::ParseLineXml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1
-  };
-
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView construction/destruction
 
-bool
-MatchType (CString pattern, LPCTSTR lpszExt)
-{
-  CString part;
-  int pos, len = pattern.GetLength ();
-
-  while ((pos = pattern.Find (_T (','))) != -1)
-    {
-      part = pattern.Left (pos);
-      if (!part.IsEmpty () && fpattern_isvalid (part))
-        {
-          if (fpattern_matchn (part, lpszExt))
-            {
-              return true;
-            }
-        }
-      len -= pos + 1;
-      pattern = pattern.Right (len);
-    }
-  if (!pattern.IsEmpty () && fpattern_isvalid (pattern))
-    {
-      if (fpattern_matchn (pattern, lpszExt))
-        {
-          return true;
-        }
-    }
-  return false;
-}
-
 bool CCrystalTextView::
-DoSetTextType (TextDefinition *def)
+DoSetTextType (CrystalLineParser::TextDefinition *def)
 {
   m_CurSourceDef = def;
   SetFlags (def->flags);
@@ -399,37 +326,23 @@ DoSetTextType (TextDefinition *def)
   return true;
 }
 
-CCrystalTextView::TextDefinition* CCrystalTextView::
-GetTextType (LPCTSTR pszExt)
-{
-  TextDefinition *def;
-  CString sExt = pszExt;
-
-  def = CCrystalTextView::m_SourceDefs;
-  sExt.MakeLower ();
-  for (int i = 0; i < _countof (CCrystalTextView::m_SourceDefs); i++, def++)
-    if (MatchType (def->exts, sExt))
-      return def;
-  return nullptr;
-}
-
 bool CCrystalTextView::
 SetTextType (LPCTSTR pszExt)
 {
-  m_CurSourceDef = m_SourceDefs;
+  m_CurSourceDef = CrystalLineParser::m_SourceDefs;
 
-  TextDefinition *def = GetTextType (pszExt);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszExt);
 
   return SetTextType (def);
 }
 
 bool CCrystalTextView::
-SetTextType (CCrystalTextView::TextType enuType)
+SetTextType (CrystalLineParser::TextType enuType)
 {
-  TextDefinition *def;
+  CrystalLineParser::TextDefinition *def;
 
-  m_CurSourceDef = def = m_SourceDefs;
-  for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
+  m_CurSourceDef = def = CrystalLineParser::m_SourceDefs;
+  for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
     {
       if (def->type == enuType)
         {
@@ -440,7 +353,7 @@ SetTextType (CCrystalTextView::TextType enuType)
 }
 
 bool CCrystalTextView::
-SetTextType (CCrystalTextView::TextDefinition *def)
+SetTextType (CrystalLineParser::TextDefinition *def)
 {
   if (def)
     if (m_CurSourceDef != def)
@@ -453,13 +366,13 @@ SetTextType (CCrystalTextView::TextDefinition *def)
 void CCrystalTextView::
 LoadSettings ()
 {
-  TextDefinition *def = m_SourceDefs;
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
   bool bFontLoaded;
   CReg reg;
   if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
     {
       reg.LoadNumber (_T ("DefaultEncoding"), (DWORD*) &CCrystalTextBuffer::m_nDefaultEncoding);
-      for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
+      for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
         {
           CReg reg1;
           if (reg1.Open (reg.hKey, def->name, KEY_READ))
@@ -497,12 +410,12 @@ LoadSettings ()
 void CCrystalTextView::
 SaveSettings ()
 {
-  TextDefinition *def = m_SourceDefs;
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
   CReg reg;
   if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
     {
       VERIFY (reg.SaveNumber (_T ("DefaultEncoding"), (DWORD) CCrystalTextBuffer::m_nDefaultEncoding));
-      for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
+      for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
         {
           CReg reg1;
           if (reg1.Create (reg.hKey, def->name, KEY_WRITE))
@@ -525,7 +438,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_pFindTextDlg(nullptr)
 , m_CurSourceDef(nullptr)
 , m_dwLastDblClickTime(0)
-, m_iterWord(UBRK_WORD, "en", nullptr, 0)
 , m_rxnode(nullptr)
 , m_pszMatched(nullptr)
 , m_bSelMargin(true)
@@ -612,7 +524,7 @@ CCrystalTextView::CCrystalTextView ()
 
   //END SW
   CCrystalTextView::ResetView ();
-  SetTextType (SRC_PLAIN);
+  SetTextType (CrystalLineParser::SRC_PLAIN);
 }
 
 CCrystalTextView::~CCrystalTextView ()
@@ -5599,14 +5511,14 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
 void CCrystalTextView::
 OnSourceType (UINT nId)
 {
-  SetTextType ((CCrystalTextView::TextType) (nId - ID_SOURCE_PLAIN));
+  SetTextType ((CrystalLineParser::TextType) (nId - ID_SOURCE_PLAIN));
   Invalidate ();
 }
 
 void CCrystalTextView::
 OnUpdateSourceType (CCmdUI * pCmdUI)
 {
-  pCmdUI->SetRadio (m_SourceDefs + (pCmdUI->m_nID - ID_SOURCE_PLAIN) == m_CurSourceDef);
+  pCmdUI->SetRadio (CrystalLineParser::m_SourceDefs + (pCmdUI->m_nID - ID_SOURCE_PLAIN) == m_CurSourceDef);
 }
 
 int
@@ -5826,13 +5738,13 @@ OnEditGoTo ()
 void CCrystalTextView::
 OnUpdateToggleSourceHeader (CCmdUI * pCmdUI)
 {
-  pCmdUI->Enable (m_CurSourceDef->type == SRC_C);
+  pCmdUI->Enable (m_CurSourceDef->type == CrystalLineParser::SRC_C);
 }
 
 void CCrystalTextView::
 OnToggleSourceHeader ()
 {
-  if (m_CurSourceDef->type == SRC_C)
+  if (m_CurSourceDef->type == CrystalLineParser::SRC_C)
     {
       CDocument *pDoc = GetDocument ();
       ASSERT (pDoc != nullptr);
@@ -6474,7 +6386,7 @@ SetTextTypeByContent (LPCTSTR pszContent)
     {
       if (rxnode)
         RxFree (rxnode);
-      return SetTextType(CCrystalTextView::SRC_XML);
+      return SetTextType(CrystalLineParser::SRC_XML);
     }
   if (rxnode)
     RxFree (rxnode);

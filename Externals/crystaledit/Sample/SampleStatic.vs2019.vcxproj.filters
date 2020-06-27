@@ -249,6 +249,9 @@
     <ClCompile Include="..\editlib\utils\wcwidth.cpp">
       <Filter>editlib\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\parsers\crystallineparser.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">

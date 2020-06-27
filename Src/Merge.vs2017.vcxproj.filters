@@ -904,6 +904,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\css.cpp">
       <Filter>EditLib\Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">

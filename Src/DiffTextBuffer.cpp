@@ -247,8 +247,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Set encoding based on extension, if we know one
 	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
-	CCrystalTextView::TextDefinition *def = 
-		CCrystalTextView::GetTextType(sExt.c_str());
+	CrystalLineParser::TextDefinition *def = 
+		CrystalLineParser::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	

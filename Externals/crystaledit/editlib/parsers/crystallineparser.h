@@ -38,6 +38,19 @@ if (pBuf != nullptr)\
 #define COOKIE_GET_LUA_EQUALS_SIGN_COUNT(cookie) (((cookie) & 0xF0000000) >> 28)
 #define COOKIE_SET_LUA_EQUALS_SIGN_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFFFFFF) | ((count) << 28))
 
+#define SRCOPT_INSERTTABS 1
+#define SRCOPT_SHOWTABS 2
+#define SRCOPT_BSATBOL 4
+#define SRCOPT_SELMARGIN 8
+#define SRCOPT_AUTOINDENT 16
+#define SRCOPT_BRACEANSI 32
+#define SRCOPT_BRACEGNU 64
+#define SRCOPT_EOLNDOS 128
+#define SRCOPT_EOLNUNIX 256
+#define SRCOPT_EOLNMAC 512
+#define SRCOPT_FNBRACE 1024
+#define SRCOPT_WORDWRAP 2048
+
 namespace CrystalLineParser
 {
 //  Syntax coloring overrides
@@ -48,11 +61,74 @@ struct TEXTBLOCK
 	int m_nBgColorIndex;
 };
 
+typedef enum
+{
+	SRC_PLAIN,
+	SRC_ASP,
+	SRC_BASIC,
+	SRC_BATCH,
+	SRC_C,
+	SRC_CSHARP,
+	SRC_CSS,
+	SRC_DCL,
+	SRC_FORTRAN,
+	SRC_GO,
+	SRC_HTML,
+	SRC_INI,
+	SRC_INNOSETUP,
+	SRC_INSTALLSHIELD,
+	SRC_JAVA,
+	SRC_LISP,
+	SRC_LUA,
+	SRC_NSIS,
+	SRC_PASCAL,
+	SRC_PERL,
+	SRC_PHP,
+	SRC_PO,
+	SRC_POWERSHELL,
+	SRC_PYTHON,
+	SRC_REXX,
+	SRC_RSRC,
+	SRC_RUBY,
+	SRC_RUST,
+	SRC_SGML,
+	SRC_SH,
+	SRC_SIOD,
+	SRC_SQL,
+	SRC_TCL,
+	SRC_TEX,
+	SRC_VERILOG,
+	SRC_VHDL,
+	SRC_XML
+}
+TextType;
+
+// Tabsize is commented out since we have only GUI setting for it now.
+// Not removed because we may later want to have per-filetype settings again.
+// See ccrystaltextview.cpp for per filetype table initialization.
+struct TextDefinition
+{
+	TextType type;
+	TCHAR name[256];
+	TCHAR exts[256];
+	DWORD (* ParseLineX) (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+	DWORD flags;
+//        DWORD tabsize;
+	TCHAR opencomment[8];
+	TCHAR closecomment[8];
+	TCHAR commentline[8];
+	DWORD encoding;
+};
+
+extern TextDefinition m_SourceDefs[37];
+
 bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
 bool IsXNumber(const TCHAR* pszChars, int nLength);
 bool IsHtmlKeyword(const TCHAR *pszChars, int nLength);
 bool IsHtmlUser1Keyword(const TCHAR *pszChars, int nLength);
 bool IsHtmlUser2Keyword(const TCHAR *pszChars, int nLength);
+
+TextDefinition *GetTextType(const TCHAR *pszExt);
 
 DWORD ParseLinePlain(DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 DWORD ParseLineAsp(DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

@@ -29,6 +29,8 @@ BEGIN_MESSAGE_MAP(CSampleView, CCrystalEditView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
 	ON_COMMAND(ID_VIEW_SELMARGIN, OnSelMargin)
 	ON_COMMAND(ID_VIEW_WORDWRAP, OnWordWrap)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,3 +111,18 @@ void CSampleView::OnWordWrap()
 		pView->SetWordWrapping(!pView->GetWordWrapping());
 	});
 }
+
+void CSampleView::OnViewWhitespace()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		bool bViewTabs = pView->GetViewTabs();
+		pView->SetViewTabs(!bViewTabs);
+		pView->SetViewEols(!bViewTabs, true);
+	});
+}
+
+void CSampleView::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetViewTabs());
+}
+

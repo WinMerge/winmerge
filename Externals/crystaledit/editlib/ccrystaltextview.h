@@ -726,91 +726,16 @@ public :
     static RENDERING_MODE s_nRenderingModeDefault;
     RENDERING_MODE m_nRenderingMode;
 
-    ICUBreakIterator m_iterWord;
     std::unique_ptr<CCrystalRenderer> m_pCrystalRenderer;
     CCrystalRenderer *m_pCrystalRendererSaved;
 
-    typedef enum
-    {
-      SRC_PLAIN,
-      SRC_ASP,
-      SRC_BASIC,
-      SRC_BATCH,
-      SRC_C,
-      SRC_CSHARP,
-      SRC_CSS,
-      SRC_DCL,
-      SRC_FORTRAN,
-      SRC_GO,
-      SRC_HTML,
-      SRC_INI,
-      SRC_INNOSETUP,
-      SRC_INSTALLSHIELD,
-      SRC_JAVA,
-      SRC_LISP,
-      SRC_LUA,
-      SRC_NSIS,
-      SRC_PASCAL,
-      SRC_PERL,
-      SRC_PHP,
-      SRC_PO,
-      SRC_POWERSHELL,
-      SRC_PYTHON,
-      SRC_REXX,
-      SRC_RSRC,
-      SRC_RUBY,
-      SRC_RUST,
-      SRC_SGML,
-      SRC_SH,
-      SRC_SIOD,
-      SRC_SQL,
-      SRC_TCL,
-      SRC_TEX,
-      SRC_VERILOG,
-      SRC_VHDL,
-      SRC_XML
-    }
-    TextType;
-
-// Tabsize is commented out since we have only GUI setting for it now.
-// Not removed because we may later want to have per-filetype settings again.
-// See ccrystaltextview.cpp for per filetype table initialization.
-    struct TextDefinition
-      {
-        TextType type;
-        TCHAR name[256];
-        TCHAR exts[256];
-        DWORD (* ParseLineX) (DWORD dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
-        DWORD flags;
-//        DWORD tabsize;
-        TCHAR opencomment[8];
-        TCHAR closecomment[8];
-        TCHAR commentline[8];
-        DWORD encoding;
-      };
-
-#define SRCOPT_INSERTTABS 1
-#define SRCOPT_SHOWTABS 2
-#define SRCOPT_BSATBOL 4
-#define SRCOPT_SELMARGIN 8
-#define SRCOPT_AUTOINDENT 16
-#define SRCOPT_BRACEANSI 32
-#define SRCOPT_BRACEGNU 64
-#define SRCOPT_EOLNDOS 128
-#define SRCOPT_EOLNUNIX 256
-#define SRCOPT_EOLNMAC 512
-#define SRCOPT_FNBRACE 1024
-#define SRCOPT_WORDWRAP 2048
-
     //  Source type
-    TextDefinition *m_CurSourceDef;
-    static TextDefinition m_SourceDefs[];
+    CrystalLineParser::TextDefinition *m_CurSourceDef;
     bool m_bRememberLastPos;
-    virtual bool DoSetTextType (TextDefinition *def);
-    static TextDefinition *GetTextType (LPCTSTR pszExt);
+    virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (LPCTSTR pszExt);
-    virtual bool SetTextType (CCrystalTextView::TextType enuType);
-    virtual bool SetTextType (CCrystalTextView::TextDefinition *def);
+    virtual bool SetTextType (CrystalLineParser::TextType enuType);
+    virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextTypeByContent (LPCTSTR pszContent);
     static void LoadSettings ();
     static void SaveSettings ();

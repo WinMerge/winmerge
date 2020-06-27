@@ -162,10 +162,10 @@ MoveWordLeft (bool bSelect)
   if (m_ptCursorPos.x > 0)
     {
       const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
-      m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), GetLineLength(m_ptCursorPos.y));
-      int nPos = m_iterWord.preceding(m_ptCursorPos.x);
+      auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(pszChars), GetLineLength(m_ptCursorPos.y));
+      int nPos = pIterWord->preceding(m_ptCursorPos.x);
       if (xisspace(pszChars[nPos]))
-        nPos = m_iterWord.preceding(nPos);
+        nPos = pIterWord->preceding(nPos);
       m_ptCursorPos.x = nPos;
     }
 
@@ -195,8 +195,8 @@ MoveWordRight (bool bSelect)
     }
 
   const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
-  m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
-  int nPos = m_iterWord.following(m_ptCursorPos.x);
+  auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
+  int nPos = pIterWord->following(m_ptCursorPos.x);
   while (nPos < nLength && xisspace(pszChars[nPos]))
     ++nPos;
   m_ptCursorPos.x = nPos;
@@ -497,8 +497,8 @@ WordToRight (CPoint pt)
   int nLength = GetLineLength (pt.y);
   if (pt.x < nLength)
     {
-      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), nLength);
-      pt.x = m_iterWord.following(pt.x);
+      auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), nLength);
+      pt.x = pIterWord->following(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;
@@ -510,9 +510,9 @@ WordToLeft (CPoint pt)
   ASSERT_VALIDTEXTPOS (pt);
   if (pt.x > 0)
     {
-      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), GetLineLength(pt.y));
-      pt.x = m_iterWord.following(pt.x);
-      pt.x = m_iterWord.preceding(pt.x);
+      auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), GetLineLength(pt.y));
+      pt.x = pIterWord->following(pt.x);
+      pt.x = pIterWord->preceding(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;

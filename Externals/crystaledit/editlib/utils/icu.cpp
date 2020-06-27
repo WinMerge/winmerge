@@ -4,10 +4,11 @@
 
 static ICULoader m_ICULoader; 
 HMODULE ICULoader::m_hLibrary = nullptr;
-template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator<1>;
-template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator<2>;
-template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator<3>;
-template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator<4>;
+template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator<1>;
+template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator<2>;
+template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator<3>;
+template <> thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator<4>;
+thread_local std::unique_ptr<ICUBreakIterator> m_pWordBreakIterator;
 
 // This rule set is based on character-break iterator rules of ICU 63.1
   // <https://github.com/unicode-org/icu/blob/release-63-1/icu4c/source/data/brkitr/rules/char.txt>.
@@ -40,4 +41,84 @@ u"$Prepend [^$Control $CR $LF];"
 u"$Extended_Pict $Extend* $ZWJ $Extended_Pict;"
 u"^$Prepend* $Regional_Indicator $Regional_Indicator / $Regional_Indicator;"
 u"^$Prepend* $Regional_Indicator $Regional_Indicator;"
+u".;";
+
+const UChar* ICUBreakIterator::kCustomWordBreakRules =
+u"!!chain;"
+u"!!quoted_literals_only;"
+u"$CR                 = [\\p{Word_Break = CR}];"
+u"$LF                 = [\\p{Word_Break = LF}];"
+u"$Newline            = [\\p{Word_Break = Newline} ];"
+u"$Extend             = [\\p{Word_Break = Extend}];"
+u"$ZWJ                = [\\p{Word_Break = ZWJ}];"
+u"$Regional_Indicator = [\\p{Word_Break = Regional_Indicator}];"
+u"$Format             = [\\p{Word_Break = Format}];"
+u"$Katakana           = [\\p{Word_Break = Katakana}];"
+u"$Hebrew_Letter      = [\\p{Word_Break = Hebrew_Letter}];"
+u"$ALetter            = [\\p{Word_Break = ALetter}];"
+u"$Single_Quote       = [\\p{Word_Break = Single_Quote}];"
+u"$Double_Quote       = [\\p{Word_Break = Double_Quote}];"
+u"$MidNumLet          = [\\p{Word_Break = MidNumLet} - [.]];"
+u"$MidLetter          = [\\p{Word_Break = MidLetter} - [\\:]];"
+u"$MidNum             = [\\p{Word_Break = MidNum} [.]];"
+u"$Numeric            = [\\p{Word_Break = Numeric}];"
+u"$ExtendNumLet       = [\\p{Word_Break = ExtendNumLet}];"
+u"$WSegSpace          = [\\p{Word_Break = WSegSpace}];"
+u"$Extended_Pict      = [:ExtPict:];"
+u"$Han                = [:Han:];"
+u"$Hiragana           = [:Hiragana:];"
+u"$Control        = [\\p{Grapheme_Cluster_Break = Control}];"
+u"$HangulSyllable = [\\uac00-\\ud7a3];"
+u"$ComplexContext = [:LineBreak = Complex_Context:];"
+u"$KanaKanji      = [$Han $Hiragana $Katakana];"
+u"$dictionaryCJK  = [$KanaKanji $HangulSyllable];"
+u"$dictionary     = [$ComplexContext $dictionaryCJK];"
+u"$ALetterPlus  = [$ALetter-$dictionaryCJK [$ComplexContext-$Extend-$Control]];"
+u"$KatakanaEx           = $Katakana           ($Extend |  $Format | $ZWJ)*;"
+u"$Hebrew_LetterEx      = $Hebrew_Letter      ($Extend |  $Format | $ZWJ)*;"
+u"$ALetterEx            = $ALetterPlus        ($Extend |  $Format | $ZWJ)*;"
+u"$Single_QuoteEx       = $Single_Quote       ($Extend |  $Format | $ZWJ)*;"
+u"$Double_QuoteEx       = $Double_Quote       ($Extend |  $Format | $ZWJ)*;"
+u"$MidNumLetEx          = $MidNumLet          ($Extend |  $Format | $ZWJ)*;"
+u"$MidLetterEx          = $MidLetter          ($Extend |  $Format | $ZWJ)*;"
+u"$MidNumEx             = $MidNum             ($Extend |  $Format | $ZWJ)*;"
+u"$NumericEx            = $Numeric            ($Extend |  $Format | $ZWJ)*;"
+u"$ExtendNumLetEx       = $ExtendNumLet       ($Extend |  $Format | $ZWJ)*;"
+u"$Regional_IndicatorEx = $Regional_Indicator ($Extend |  $Format | $ZWJ)*;"
+u"$Ideographic    = [\\p{Ideographic}];"
+u"$HiraganaEx     = $Hiragana     ($Extend |  $Format | $ZWJ)*;"
+u"$IdeographicEx  = $Ideographic  ($Extend |  $Format | $ZWJ)*;"
+u"$CR $LF;"
+u"$ZWJ $Extended_Pict;"
+u"$WSegSpace $WSegSpace;"
+u"[^$CR $LF $Newline]? ($Extend |  $Format | $ZWJ)+;"
+u"$NumericEx {100};"
+u"$ALetterEx {200};"
+u"$HangulSyllable {200};"
+u"$Hebrew_LetterEx{200};"
+u"$KatakanaEx {400};"
+u"$HiraganaEx {400};"
+u"$IdeographicEx {400};"
+u"$Extended_Pict ($Extend | $Format | $ZWJ)*;"
+u"($ALetterEx | $Hebrew_LetterEx)  ($ALetterEx | $Hebrew_LetterEx) {200};"
+u"($ALetterEx | $Hebrew_LetterEx) ($MidLetterEx | $MidNumLetEx | $Single_QuoteEx) ($ALetterEx | $Hebrew_LetterEx) {200};"
+u"$Hebrew_LetterEx $Single_QuoteEx {200};"
+u"$Hebrew_LetterEx $Double_QuoteEx $Hebrew_LetterEx {200};"
+u"$NumericEx $NumericEx {100};"
+u"($ALetterEx | $Hebrew_LetterEx) $NumericEx {200};"
+u"$NumericEx ($ALetterEx | $Hebrew_LetterEx) {200};"
+u"$NumericEx ($MidNumEx | $MidNumLetEx | $Single_QuoteEx) $NumericEx {100};"
+u"$KatakanaEx  $KatakanaEx {400};"
+u"$ALetterEx       $ExtendNumLetEx {200};"
+u"$Hebrew_LetterEx $ExtendNumLetEx {200};"
+u"$NumericEx       $ExtendNumLetEx {100};"
+u"$KatakanaEx      $ExtendNumLetEx {400};"
+u"$ExtendNumLetEx  $ExtendNumLetEx {200};"
+u"$ExtendNumLetEx  $ALetterEx      {200};"
+u"$ExtendNumLetEx  $Hebrew_Letter  {200};"
+u"$ExtendNumLetEx  $NumericEx      {100};"
+u"$ExtendNumLetEx  $KatakanaEx     {400};"
+u"^$Regional_IndicatorEx $Regional_IndicatorEx;"
+u"$HangulSyllable $HangulSyllable {200};"
+u"$KanaKanji $KanaKanji {400};"
 u".;";
