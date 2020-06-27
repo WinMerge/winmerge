@@ -11,7 +11,7 @@ set GITHUB_REPO=winmerge-v2-jp
 echo virustotal.com's result:
 echo.
 for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
+  for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash ^| findstr -v SHA') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
 )
 @echo on
 ) > _tmp_.txt
