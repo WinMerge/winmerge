@@ -32,7 +32,8 @@ typedef struct UParseError {
 class ICUBreakIterator;
 
 template<int N>
-extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator;
+extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator;
+extern thread_local std::unique_ptr<ICUBreakIterator> m_pWordBreakIterator;
 
 typedef UBreakIterator* (*ubrk_open_type)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 ICU_EXTERN UBreakIterator* (*g_pubrk_open)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
@@ -140,6 +141,11 @@ public:
 				UParseError parseError;
 				m_iter = ubrk_openRules(kCustomRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomRules))), text, textLength, &parseError, &status);
 			}
+			else if (type == UBRK_WORD)
+			{
+				UParseError parseError;
+				m_iter = ubrk_openRules(kCustomWordBreakRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomWordBreakRules))), text, textLength, &parseError, &status);
+			}
 			else
 			{
 				m_iter = ubrk_open(type, locale, reinterpret_cast<const UChar *>(text), textLength, &status);
@@ -231,11 +237,20 @@ public:
 	template<int N>
 	static ICUBreakIterator *getCharacterBreakIterator(const UChar * text, int32_t textLength)
 	{
-		if (!m_pCharaterBreakIterator<N>)
-			m_pCharaterBreakIterator<N>.reset(new ICUBreakIterator(UBRK_CHARACTER, "en", text, textLength));
+		if (!m_pCharacterBreakIterator<N>)
+			m_pCharacterBreakIterator<N>.reset(new ICUBreakIterator(UBRK_CHARACTER, "en", text, textLength));
 		else
-			m_pCharaterBreakIterator<N>->setText(text, textLength);
-		return m_pCharaterBreakIterator<N>.get();
+			m_pCharacterBreakIterator<N>->setText(text, textLength);
+		return m_pCharacterBreakIterator<N>.get();
+	}
+
+	static ICUBreakIterator *getWordBreakIterator(const UChar * text, int32_t textLength)
+	{
+		if (!m_pWordBreakIterator)
+			m_pWordBreakIterator.reset(new ICUBreakIterator(UBRK_WORD, "en", text, textLength));
+		else
+			m_pWordBreakIterator->setText(text, textLength);
+		return m_pWordBreakIterator.get();
 	}
 
 private:
@@ -328,5 +343,6 @@ private:
 	int m_i;
 	int m_textLength;
 	static const UChar *kCustomRules;
+	static const UChar *kCustomWordBreakRules;
 };
 

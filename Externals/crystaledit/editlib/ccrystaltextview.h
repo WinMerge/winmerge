@@ -726,7 +726,6 @@ public :
     static RENDERING_MODE s_nRenderingModeDefault;
     RENDERING_MODE m_nRenderingMode;
 
-    ICUBreakIterator m_iterWord;
     std::unique_ptr<CCrystalRenderer> m_pCrystalRenderer;
     CCrystalRenderer *m_pCrystalRendererSaved;
 
