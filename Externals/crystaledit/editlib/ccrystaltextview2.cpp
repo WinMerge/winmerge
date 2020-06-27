@@ -155,8 +155,8 @@ MoveWordLeft (bool bSelect)
 
   if (m_ptCursorPos.x == 0)
     {
-       MoveLeft (bSelect);
-       return;
+      MoveLeft (bSelect);
+      return;
     }
 
   if (m_ptCursorPos.x > 0)
@@ -216,28 +216,30 @@ MoveUp (bool bSelect)
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     m_ptCursorPos = m_ptDrawSelStart;
 
-    //BEGIN SW
-    CPoint  subLinePos;
-    CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
+  //BEGIN SW
+  CPoint  subLinePos;
+  CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
-    int         nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
+  int         nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
 
-    if( nSubLine > 0 )
+  if( nSubLine > 0 )
     /*ORIGINAL
     if (m_ptCursorPos.y > 0)
     *///END SW
     {
       if (m_nIdealCharPos == -1)
         m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
-        //BEGIN SW
-        do {
-            nSubLine--;
-        } while (IsEmptySubLineIndex(nSubLine));
-        SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
-        /*ORIGINAL
-        m_ptCursorPos.y --;
-        m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
-        *///END SW
+      //BEGIN SW
+      do
+        {
+          nSubLine--;
+        }
+      while (IsEmptySubLineIndex(nSubLine));
+      SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+      /*ORIGINAL
+      m_ptCursorPos.y --;
+      m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
+      *///END SW
       if (m_ptCursorPos.x > GetLineLength (m_ptCursorPos.y))
         m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
     }
@@ -255,31 +257,33 @@ MoveDown (bool bSelect)
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     m_ptCursorPos = m_ptDrawSelEnd;
 
-    //BEGIN SW
-    CPoint	subLinePos;
-    CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
+  //BEGIN SW
+  CPoint	subLinePos;
+  CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
-    int			nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
+  int			nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
 
-    if( nSubLine < GetSubLineCount() - 1 )
+  if( nSubLine < GetSubLineCount() - 1 )
     /*ORIGINAL
     if (m_ptCursorPos.y < GetLineCount() - 1)
     */
     {
       if (m_nIdealCharPos == -1)
         m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
-        //BEGIN SW
-        if (GetLineVisible (m_ptCursorPos.y))
-          {
-            do {
+      //BEGIN SW
+      if (GetLineVisible (m_ptCursorPos.y))
+        {
+          do
+            {
               nSubLine++;
-            } while (IsEmptySubLineIndex(nSubLine));
-          }
-        SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
-        /*ORIGINAL
-        m_ptCursorPos.y ++;
-        m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
-        *///END SW
+            }
+          while (IsEmptySubLineIndex(nSubLine));
+        }
+      SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+      /*ORIGINAL
+      m_ptCursorPos.y ++;
+      m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
+      *///END SW
       if (m_ptCursorPos.x > GetLineLength (m_ptCursorPos.y))
         m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
     }
@@ -1034,7 +1038,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
             {
               memcpy (pszData, pszText, cbData);
               if (dwSize > cbData)
-                  memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
+                memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
               GlobalUnlock (hData);
               CLIPFORMAT fmt = GetClipTcharTextFormat();
               bOK = SetClipboardData (fmt, hData) != nullptr;

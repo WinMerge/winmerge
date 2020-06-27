@@ -196,12 +196,12 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, size_t nLength,
   m_aLines.insert(iter, nCount, line);
 
   // create text data for lines after the first one
-  for (int ic = 1; ic < nCount; ic++) 
-  {
-    LineInfo li ;
-    li.Create(pszLine, nLength);
-    m_aLines[nPosition + ic] = li;
-  }
+  for (int ic = 1; ic < nCount; ic++)
+    {
+      LineInfo li ;
+      li.Create(pszLine, nLength);
+      m_aLines[nPosition + ic] = li;
+    }
 
 #ifdef _DEBUG
   // Warning : this function is also used during rescan
@@ -343,11 +343,11 @@ void CCrystalTextBuffer::SetReadOnly (bool bReadOnly /*= true*/ )
 #ifdef CRYSTALEDIT_ENABLELOADER
 
 static LPCTSTR crlfs[] =
-  {
-    _T ("\x0d\x0a"), //  DOS/Windows style
-    _T ("\x0a"),     //  UNIX style
-    _T ("\x0a")      //  Macintosh style
-  };
+{
+  _T ("\x0d\x0a"), //  DOS/Windows style
+  _T ("\x0a"),     //  UNIX style
+  _T ("\x0a")      //  Macintosh style
+};
 
 bool CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
@@ -457,7 +457,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
               wchar_t *buf = new wchar_t[nCurrentLength];
               int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
               if (m_nSourceEncoding >= 0)
-                  iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+                iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
               InsertLine(buf, len);
               delete[] buf;
 #else
@@ -535,8 +535,8 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     if (::GetTempFileName(szTempFileDir, _T("CRE"), 0, szTempFileName) == 0)
       goto EXIT;
 
-      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
-        CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+    hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
+      CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (hTempFile == INVALID_HANDLE_VALUE)
       goto EXIT;
 
@@ -629,7 +629,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
 
     if (bClearModifiedFlag)
       {
-          SetModified (false);
+        SetModified (false);
         m_nSyncPosition = m_nUndoPosition;
       }
     bSuccess = true;
@@ -821,7 +821,7 @@ GetLineWithFlag (DWORD dwFlag) const
 }
 
 void CCrystalTextBuffer::
-SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/ , bool bUpdate /*= true*/)
+SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/, bool bUpdate /*= true*/)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -845,12 +845,12 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 
   DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;
   if (bSet)
-  {
-    if (dwFlag==0)
-      dwNewFlags=0;
-    else
-    dwNewFlags = dwNewFlags | dwFlag;
-  }
+    {
+      if (dwFlag==0)
+        dwNewFlags=0;
+      else
+        dwNewFlags = dwNewFlags | dwFlag;
+    }
   else
     dwNewFlags = dwNewFlags & ~dwFlag;
 
@@ -865,8 +865,8 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
                 {
                   ASSERT ((m_aLines[nPrevLine].m_dwFlags & dwFlag) != 0);
                   m_aLines[nPrevLine].m_dwFlags &= ~dwFlag;
-          if (bUpdate)
-          UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
+                  if (bUpdate)
+                    UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
                 }
             }
           else
@@ -877,7 +877,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 
       m_aLines[nLine].m_dwFlags = dwNewFlags;
       if (bUpdate)
-      UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
+        UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
     }
 }
 
@@ -897,7 +897,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-		CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
+         CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1215,10 +1215,10 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
           if (!sTail.IsEmpty())
             {
               if (haseol)
-              {
-                InsertLine(sTail, sTail.GetLength(), nEndLine);
-                nInsertedLines ++;
-              }
+                {
+                  InsertLine(sTail, sTail.GetLength(), nEndLine);
+                  nInsertedLines ++;
+                }
               else
                 AppendLine (nEndLine, sTail, nRestCount);
             }
@@ -1618,10 +1618,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
   (*paSavedRevisionNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
 
   if (!InternalInsertText (pSource, nLine, nPos, pszText, cchText, nEndLine, nEndChar))
-  {
-    delete paSavedRevisionNumbers;
-    return false;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return false;
+    }
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
@@ -1631,10 +1631,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (!bHistory)
-  {
-    delete paSavedRevisionNumbers;
-    return true;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return true;
+    }
 
   bool bGroupFlag = false;
   if (!m_bUndoGroup)
@@ -1749,20 +1749,20 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   CDWordArray *paSavedRevisionNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
-  {
-    delete paSavedRevisionNumbers;
-    return false;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return false;
+    }
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
   m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (!bHistory)
-  {
-    delete paSavedRevisionNumbers;
-    return true;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return true;
+    }
 
   AddUndoRecord (false, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine),
                  sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisionNumbers);
