@@ -743,11 +743,11 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
 			}
 			if ((m_nBuffers == 2 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetRight().empty() &&
-				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight())) == 0 ||
+				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0) ||
 				(m_nBuffers == 3 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetMiddle().empty() && !m_filePaths.GetRight().empty() &&
-				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0 ||
-				 strutils::compare_nocase(m_filePaths.GetMiddle(), m_filePaths.GetRight()) == 0 ||
-				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetMiddle()) == 0))
+				 (strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0 ||
+				  strutils::compare_nocase(m_filePaths.GetMiddle(), m_filePaths.GetRight()) == 0 ||
+				  strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetMiddle()) == 0)))
 			{
 				// compare file to itself, a custom message so user may hide the message in this case only
 				s = _("The same file is opened in both panels.");

@@ -363,7 +363,7 @@ DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
-      }
+        }
       return true;
     }
   return false;
@@ -374,7 +374,7 @@ DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
 {
   int nBufSize = 1;
   for (int L = nStartLine; L <= nEndLine; L++)
-      nBufSize += GetFullLineLength (L);
+    nBufSize += GetFullLineLength (L);
 
   CString text;
   LPTSTR p, pszBuf = text.GetBuffer (nBufSize);
