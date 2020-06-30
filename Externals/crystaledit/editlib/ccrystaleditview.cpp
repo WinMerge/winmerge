@@ -534,7 +534,7 @@ Paste ()
           EnsureVisible (ptCursorPos);*/
 
           // [JRT]:
-          if (!m_bColumnSelection)
+          if (!m_bRectangularSelection)
             m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
           else
             DeleteCurrentColumnSelection (CE_ACTION_PASTE, false, false);
@@ -578,13 +578,13 @@ Cut ()
   CPoint ptSelStart, ptSelEnd;
   GetSelection (ptSelStart, ptSelEnd);
   CString text;
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     GetText (ptSelStart, ptSelEnd, text);
   else
     GetTextInColumnSelection (text);
   PutToClipboard (text, text.GetLength());
 
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     {
       CPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -623,7 +623,7 @@ OnEditDelete ()
         }
     }
 
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     {
       CPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);

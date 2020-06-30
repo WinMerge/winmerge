@@ -1069,7 +1069,7 @@ void CMergeEditView::OnEditCopy()
 
 	CString text;
 
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 	{
 		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
@@ -1079,7 +1079,7 @@ void CMergeEditView::OnEditCopy()
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	PutToClipboard(text, text.GetLength(), m_bColumnSelection);
+	PutToClipboard(text, text.GetLength(), m_bRectangularSelection);
 }
 
 /**
@@ -1107,15 +1107,15 @@ void CMergeEditView::OnEditCut()
 		return;
 
 	CString text;
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 		pDoc->m_ptBuf[m_nThisPane]->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 			ptSelEnd.y, ptSelEnd.x, text);
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	PutToClipboard(text, text.GetLength(), m_bColumnSelection);
+	PutToClipboard(text, text.GetLength(), m_bRectangularSelection);
 
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 	{
 		CPoint ptCursorPos = ptSelStart;
 		ASSERT_VALIDTEXTPOS(ptCursorPos);
@@ -1849,7 +1849,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 
 	if (IsSelection())
 	{
-		if (!m_bColumnSelection)
+		if (!m_bRectangularSelection)
 		{
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
@@ -3454,7 +3454,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
 		strText += strNumLine;
  	}
-	PutToClipboard(strText, strText.GetLength(), m_bColumnSelection);
+	PutToClipboard(strText, strText.GetLength(), m_bRectangularSelection);
 }
 
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)

@@ -270,7 +270,7 @@ ON_COMMAND (ID_FORCE_REDRAW, OnForceRedraw)
 END_MESSAGE_MAP ()
 
 #define EXPAND_PRIMITIVE(impl, func)    \
-void CCrystalTextView::On##func() { m_bColumnSelection = false; impl(false); }  \
+void CCrystalTextView::On##func() { m_bRectangularSelection = false; impl(false); }  \
 void CCrystalTextView::OnExt##func() { impl(true); }
 EXPAND_PRIMITIVE (MoveLeft, CharLeft)
 EXPAND_PRIMITIVE (MoveRight, CharRight)
@@ -486,7 +486,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_bDragSelection(false)
 , m_bWordSelection(false)
 , m_bLineSelection(false)
-, m_bColumnSelection(false)
+, m_bRectangularSelection(false)
 , m_nDragSelTimer(0)
 , m_bOverrideCaret(false)
 , m_nLastFindWhatLen(0)
@@ -1122,7 +1122,7 @@ DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nB
       if (m_bFocused || m_bShowInactiveSelection)
         {
           int nSelBegin = 0, nSelEnd = 0;
-          if ( !m_bColumnSelection )
+          if ( !m_bRectangularSelection )
             {
               if (m_ptDrawSelStart.y > ptTextPos.y)
                 {
@@ -1496,7 +1496,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
   frect.left = ptOrigin.x + (bPrevZeroWidthBlock ? ZEROWIDTHBLOCK_WIDTH : 0);
 
   if ((m_bFocused || m_bShowInactiveSelection) 
-    && !m_bColumnSelection
+    && !m_bRectangularSelection
     && IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
     && (nOffset + nCount) == nLineLength )
     {
@@ -2141,7 +2141,7 @@ IsInsideSelBlock (CPoint ptTextPos)
     return false;
   if (ptTextPos.y > m_ptDrawSelEnd.y)
     return false;
-  if (m_bColumnSelection)
+  if (m_bRectangularSelection)
     return ptTextPos.x >= m_ptDrawSelStart.x && ptTextPos.x < m_ptDrawSelEnd.x;
   if (ptTextPos.y < m_ptDrawSelEnd.y && ptTextPos.y > m_ptDrawSelStart.y)
     return true;
@@ -3871,7 +3871,7 @@ SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView /* 
 {
   ASSERT_VALIDTEXTPOS (ptStart);
   ASSERT_VALIDTEXTPOS (ptEnd);
-  if (m_ptSelStart == ptStart && !m_bColumnSelection)
+  if (m_ptSelStart == ptStart && !m_bRectangularSelection)
     {
       if (m_ptSelEnd != ptEnd)
         InvalidateLines (ptEnd.y, m_ptSelEnd.y);
@@ -5864,7 +5864,7 @@ OnForceRedraw ()
 void CCrystalTextView::
 OnToggleColumnSelection ()
 {
-  m_bColumnSelection = !m_bColumnSelection;
+  m_bRectangularSelection = !m_bRectangularSelection;
   Invalidate ();
 }
 

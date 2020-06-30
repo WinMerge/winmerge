@@ -171,7 +171,7 @@ private:
 protected:
     bool m_bPreparingToDrag;
     bool m_bDraggingText;
-    bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
+    bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bRectangularSelection;
     UINT_PTR m_nDragSelTimer;
     DWORD m_dwLastDblClickTime;
 
