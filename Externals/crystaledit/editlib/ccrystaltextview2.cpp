@@ -595,7 +595,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetCapture ();
           m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
           ASSERT (m_nDragSelTimer != 0);
-          m_bColumnSelection = false;
+          m_bRectangularSelection = false;
           m_bWordSelection = false;
           m_bLineSelection = true;
           m_bDragSelection = true;
@@ -648,7 +648,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetCapture ();
           m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
           ASSERT (m_nDragSelTimer != 0);
-          m_bColumnSelection = bAlt;
+          m_bRectangularSelection = bAlt;
           m_bWordSelection = bControl;
           m_bLineSelection = false;
           m_bDragSelection = true;
@@ -929,7 +929,7 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
       SetCapture ();
       m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
       ASSERT (m_nDragSelTimer != 0);
-      m_bColumnSelection = false;
+      m_bRectangularSelection = false;
       m_bWordSelection = true;
       m_bLineSelection = false;
       m_bDragSelection = true;
@@ -1002,11 +1002,11 @@ Copy ()
 
   PrepareSelBounds ();
   CString text;
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     GetText (m_ptDrawSelStart, m_ptDrawSelEnd, text);
   else
     GetTextInColumnSelection (text);
-  PutToClipboard (text, text.GetLength(), m_bColumnSelection);
+  PutToClipboard (text, text.GetLength(), m_bRectangularSelection);
 }
 
 

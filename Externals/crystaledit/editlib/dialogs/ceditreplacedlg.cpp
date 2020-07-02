@@ -92,8 +92,8 @@ DoDataExchange (CDataExchange * pDX)
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
   DDX_Check (pDX, IDC_EDIT_WHOLE_WORD, m_bWholeWord);
   DDX_Check (pDX, IDC_EDIT_REGEXP, m_bRegExp);
-  DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
-  DDX_CBString (pDX, IDC_EDIT_REPLACE_WITH, m_sNewText);
+  DDX_CBStringExact (pDX, IDC_EDIT_FINDTEXT, m_sText);
+  DDX_CBStringExact (pDX, IDC_EDIT_REPLACE_WITH, m_sNewText);
   DDX_Radio (pDX, IDC_EDIT_SCOPE_SELECTION, m_nScope);
   DDX_Check (pDX, IDC_EDIT_SCOPE_DONT_WRAP, m_bDontWrap);
   //}}AFX_DATA_MAP
@@ -166,10 +166,10 @@ OnInitDialog ()
   CMemComboBox::LoadSettings();
   m_ctlReplText.m_sGroup = _T ("ReplaceText");
   m_ctlReplText.OnSetfocus ();
-  GetDlgItem (IDC_EDIT_REPLACE_WITH)->GetWindowText (m_sNewText);
-  UpdateData (false);
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
+  GetDlgItem (IDC_EDIT_REPLACE_WITH)->GetWindowText (m_sNewText);
+  UpdateData (false);
 
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
   m_bFound = false;
@@ -203,7 +203,7 @@ DoHighlightText ( bool bNotifyIfNotFound )
   if (m_nScope == 0)
     {
       //  Searching selection only
-      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
+      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptBlockBegin, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
