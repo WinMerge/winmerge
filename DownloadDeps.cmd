@@ -4,8 +4,8 @@ set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.17.12.0/ShellExtension-1.17.12.0.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.1/Merge7z1900.1-win32.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.1/Merge7z1900.1-x64.zip!Build\X64 ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.2/Merge7z1900.2-win32.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.2/Merge7z1900.2-x64.zip!Build\X64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.4-win32.zip!Build ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.4-x64.zip!Build\X64 ^
 https://github.com/WinMerge/winimerge/releases/download/1.0.18.0/winimerge-1-0-18-0-exe.zip!Build ^
