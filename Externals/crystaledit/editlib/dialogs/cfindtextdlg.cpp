@@ -60,7 +60,7 @@ DoDataExchange (CDataExchange * pDX)
   DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
-  DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
+  DDX_CBStringExact (pDX, IDC_EDIT_FINDTEXT, m_sText);
   DDX_Check (pDX, IDC_EDIT_WHOLE_WORD, m_bWholeWord);
   DDX_Check (pDX, IDC_EDIT_REGEXP, m_bRegExp);
   DDX_Check (pDX, IDC_FINDDLG_DONTWRAP, m_bNoWrap);
