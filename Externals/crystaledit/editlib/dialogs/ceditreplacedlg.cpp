@@ -203,7 +203,7 @@ DoHighlightText ( bool bNotifyIfNotFound )
   if (m_nScope == 0)
     {
       //  Searching selection only
-      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
+      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptBlockBegin, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
