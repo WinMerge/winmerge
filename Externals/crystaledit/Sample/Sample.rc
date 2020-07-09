@@ -186,6 +186,7 @@ BEGIN
         MENUITEM "To&ggle source/header",       ID_VIEW_TOGGLE_SRC_HDR
         MENUITEM SEPARATOR
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
+        MENUITEM "View T&op Margins",           ID_VIEW_TOPMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR

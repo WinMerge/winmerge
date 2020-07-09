@@ -13,7 +13,10 @@ CImageList* CCrystalRendererGDI::s_pIcons = nullptr;
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalRendererGDI construction/destruction
 
-CCrystalRendererGDI::CCrystalRendererGDI() : m_pDC(nullptr), m_lfBaseFont{}
+CCrystalRendererGDI::CCrystalRendererGDI() :
+  m_pDC(nullptr)
+, m_lfBaseFont{}
+, m_gridPen(PS_SOLID, 0, RGB(0xC0, 0xC0, 0xC0))
 {
 }
 
@@ -171,6 +174,22 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 	m_pDC->SelectObject(pOldPen);
 }
 
+void CCrystalRendererGDI::DrawHorizontalLine(int left, int right, int y)
+{
+	CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
+	m_pDC->MoveTo(left, y);
+	m_pDC->LineTo(right, y);
+	m_pDC->SelectObject(pOldPen);
+}
+
+void CCrystalRendererGDI::DrawVerticalLine(int x, int top, int bottom)
+{
+	CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
+	m_pDC->MoveTo(x, top);
+	m_pDC->LineTo(x, bottom);
+	m_pDC->SelectObject(pOldPen);
+}
+
 void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 {
 	CDC  dcMem;
@@ -189,5 +208,42 @@ void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 void CCrystalRendererGDI::DrawText(int x, int y, const CRect &rc, const TCHAR *text, size_t len, const int nWidths[])
 {
 	m_pDC->ExtTextOut(x, y, ETO_CLIPPED | ETO_OPAQUE, &rc, text, static_cast<UINT>(len), const_cast<int *>(nWidths));
+}
+
+void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, int charwidth, int offset)
+{
+	CFont *pOldFont = m_pDC->SelectObject(m_apFonts[0].get());
+	UINT uiOldAlign = m_pDC->SetTextAlign(TA_LEFT);
+	CPen *pOldPen = (CPen *)m_pDC->SelectStockObject(BLACK_PEN);
+	int bottom = top + height - 1;
+	int prev10 = (offset / 10) * 10;
+	TCHAR szNumbers[32];
+	int len = wsprintf(szNumbers, _T("%d"), prev10);
+	if ((offset % 10) != 0 && offset - prev10 < len)
+		m_pDC->TextOut(left, bottom - height, szNumbers + (offset - prev10), len - (offset - prev10));
+	for (int i = 0; i < width / charwidth; ++i)
+	{
+		int x = left + i * charwidth;
+		if (((i + offset) % 10) == 0)
+		{
+			len = wsprintf(szNumbers, _T("%d"), offset + i);
+			m_pDC->TextOut(x, bottom - height + 1, szNumbers, len);
+		}
+		float tickscale = [](int i, int offset) {
+			if (((i + offset) % 10) == 0)
+				return 0.6f;
+			else if (((i + offset) % 5) == 0)
+				return 0.4f;
+			else
+				return 0.2f;
+		}(i, offset);
+		m_pDC->MoveTo(x, bottom - static_cast<int>(height * tickscale));
+		m_pDC->LineTo(x, bottom);
+	}
+	m_pDC->MoveTo(left, bottom);
+	m_pDC->LineTo(left + width, bottom);
+	m_pDC->SelectObject(pOldPen);
+	m_pDC->SetTextAlign(uiOldAlign);
+	m_pDC->SelectObject(pOldFont);
 }
 

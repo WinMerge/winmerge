@@ -3111,7 +3111,7 @@ void CMergeEditView::RefreshOptions()
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
 
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP) && !GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
@@ -3867,6 +3867,17 @@ void CMergeEditView::OnHelp()
  */
 void CMergeEditView::DocumentsLoaded()
 {
+	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
+	{
+		SetTopMargin(true);
+		if (m_nThisPane == GetDocument()->m_nBuffers - 1)
+			AutoFitColumn();
+	}
+	else
+	{
+		SetTopMargin(false);
+	}
+
 	// Enable/disable automatic rescan (rescanning after edit)
 	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
 
@@ -3876,7 +3887,7 @@ void CMergeEditView::DocumentsLoaded()
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP) && !GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 

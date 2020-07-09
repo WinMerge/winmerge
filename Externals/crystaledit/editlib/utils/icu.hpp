@@ -253,12 +253,19 @@ public:
 		return m_pWordBreakIterator.get();
 	}
 
+#define GLEN(i) ((m_text[(i)] != '\r') ? \
+	(U16_IS_SURROGATE(m_text[(i)]) ? 2 : 1) : \
+	(((i) < m_textLength - 1 && m_text[(i) + 1] == '\n') ? 2 : 1))
+#define GLENP(i) ((m_text[(i)] != '\n') ? \
+	(U16_IS_SURROGATE(m_text[(i)]) ? 2 : 1) : \
+	(((i) > 0 && m_text[(i) - 1] == '\r') ? 2 : 1))
+
 private:
 	int mynext()
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i += U16_IS_SURROGATE(m_text[m_i]) ? 2 : 1;
+			m_i += GLEN(m_i);
 		}
 		else if (m_type == UBRK_WORD)
 		{
@@ -284,26 +291,26 @@ private:
 					m_i = UBRK_DONE;
 			}
 			else
-				m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
+				m_i = offset - GLENP(offset - 1);
 		}
 		else if (m_type == UBRK_WORD)
 		{
 			int nPos = offset;
 			int nPrevPos;
-			while (nPos > 0 && xisspace(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+			while (nPos > 0 && xisspace(m_text[nPrevPos = nPos - GLENP(nPos - 1)]))
 				nPos = nPrevPos;
 			if (nPos > 0)
 			{
-				nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1);
+				nPrevPos = nPos - GLENP(nPos - 1);
 				nPos = nPrevPos;
 				if (xisalnum(m_text[nPos]))
 				{
-					while (nPos > 0 && xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+					while (nPos > 0 && xisalnum(m_text[nPrevPos = nPos - GLENP(nPos - 1)]))
 						nPos = nPrevPos;
 				}
 				else
 				{
-					while (nPos > 0 && !xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)])
+					while (nPos > 0 && !xisalnum(m_text[nPrevPos = nPos - GLENP(nPos - 1)])
 						&& !xisspace(m_text[nPrevPos]))
 						nPos = nPrevPos;
 				}
@@ -317,7 +324,7 @@ private:
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i = offset + (U16_IS_SURROGATE(m_text[offset]) ? 2 : 1);
+			m_i = offset + GLEN(offset);
 		}
 		else if (m_type == UBRK_WORD)
 		{
@@ -325,13 +332,13 @@ private:
 			if (xisalnum(m_text[nPos]))
 			{
 				while (nPos < m_textLength && xisalnum(m_text[nPos]))
-					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+					nPos += GLEN(nPos);
 			}
 			else
 			{
 				while (nPos < m_textLength && !xisalnum(m_text[nPos])
 					&& !iswspace(m_text[nPos]))
-					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+					nPos += GLEN(nPos);
 			}
 			m_i = nPos;
 		}

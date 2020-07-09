@@ -4,8 +4,9 @@
 #include "stdafx.h"
 #include "Sample.h"
 #include "ceditcmd.h"
-
 #include "SampleDoc.h"
+#include "SampleView.h"
+#include "utils/filesup.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -112,7 +113,22 @@ BOOL CSampleDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return false;
 	
-	return m_xTextBuffer.LoadFromFile(lpszPathName);
+	bool result = m_xTextBuffer.LoadFromFile(lpszPathName);
+	if (result)
+	{
+		CString ext = GetExt(lpszPathName).MakeLower();
+		if (ext == "csv" || ext == "tsv")
+		{
+			m_xTextBuffer.SetTableEditing(true);
+			m_xTextBuffer.SetFieldDelimiter(ext == _T("csv") ? ',' : '\t');
+			m_xTextBuffer.JoinLinesForTableEditingMode();
+		}
+		else
+		{
+			m_xTextBuffer.SetTableEditing(false);
+		}
+	}
+	return result;
 }
 
 BOOL CSampleDoc::OnSaveDocument(LPCTSTR lpszPathName) 

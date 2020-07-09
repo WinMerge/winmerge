@@ -164,6 +164,17 @@ public :
     //  Connected views
     CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
 
+    // Table Editing
+    bool m_bTableEditing;
+    struct TableProperties
+    {
+        std::vector<int> m_aColumnWidths;
+        TCHAR m_cFieldDelimiter;
+        TCHAR m_cFieldEnclosure;
+        std::vector<CCrystalTextBuffer*> m_textBufferList;
+    };
+    std::shared_ptr<TableProperties> m_pTableProps;
+
     //  Helper methods
     void InsertLine (LPCTSTR pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
     void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength);
@@ -292,6 +303,28 @@ public :
     // Tabbing
     int  GetTabSize() const;
     void SetTabSize(int nTabSize);
+
+    // Table Editing
+    void ShareTableProperties (CCrystalTextBuffer& other)
+    {
+      if (this == &other)
+        return;
+      m_pTableProps = other.m_pTableProps;
+      m_pTableProps->m_textBufferList.push_back(this);
+    }
+    int  GetColumnWidth (int nColumnIndex) const;
+    void SetColumnWidth (int nColumnIndex, int nColumnWidth);
+    int  GetColumnCount (int nLineIndex) const;
+    void SetFieldDelimiter (TCHAR cFieldDelimiter) { m_pTableProps->m_cFieldDelimiter = cFieldDelimiter; }
+    TCHAR GetFieldDelimiter () const { return m_pTableProps->m_cFieldDelimiter; }
+    void SetFieldEnclosure (TCHAR cFieldEnclosure) { m_pTableProps->m_cFieldEnclosure = cFieldEnclosure; }
+    TCHAR GetFieldEnclosure () const { return m_pTableProps->m_cFieldEnclosure; }
+    bool GetTableEditing () const { return m_bTableEditing; }
+    void SetTableEditing (bool bTableEditing) { m_bTableEditing = bTableEditing; }
+    void JoinLinesForTableEditingMode ();
+    void SplitLinesForTableEditingMode ();
+    void InvalidateColumns ();
+    std::vector<CCrystalTextBuffer*> GetTextBufferList () const { return m_pTableProps->m_textBufferList; }
 
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0) const;

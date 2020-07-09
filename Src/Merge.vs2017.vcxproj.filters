@@ -907,6 +907,12 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp">
       <Filter>EditLib\Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropCompareTable.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenTableDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1628,6 +1634,12 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderergdi.h">
       <Filter>EditLib\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareTable.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenTableDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

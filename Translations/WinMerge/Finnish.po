@@ -598,6 +598,9 @@ msgstr "Vertaa uudelleen"
 msgid "&Text"
 msgstr "&Teksti"
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -2117,6 +2120,30 @@ msgstr "Testi"
 msgid "&Close"
 msgstr "Sulje"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Käytä mukautettuja tekstivärejä"
@@ -2276,6 +2303,18 @@ msgstr "&Binäärivertailuraja (Mt):"
 #, c-format
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nVertailusäikeide&n määrä (negatiivinen arvo merkitsee käytettävissä olevien CPU-ytimien määrän lisäämistä):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

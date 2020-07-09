@@ -110,6 +110,7 @@ private :
     bool m_bViewTabs;
     bool m_bViewEols;
     bool m_bDistinguishEols;
+    bool m_bTopMargin;
     bool m_bSelMargin;
     bool m_bViewLineNumbers;
     DWORD m_dwFlags;
@@ -171,7 +172,8 @@ private:
 protected:
     bool m_bPreparingToDrag;
     bool m_bDraggingText;
-    bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bRectangularSelection;
+    bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bRectangularSelection, m_bColumnSelection;
+    int m_nColumnResizing;
     UINT_PTR m_nDragSelTimer;
     DWORD m_dwLastDblClickTime;
 
@@ -182,13 +184,15 @@ protected:
     void PrepareSelBounds ();
 
     //  Helper functions
-    int ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nActualOffset);
+    int ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset);
+    int ExpandCharsTableEditingMode (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset);
+    void AutoFitColumn(int nColumn = -1);
 
     int ApproxActualOffset (int nLineIndex, int nOffset);
     void AdjustTextPoint (CPoint & point);
     void DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
  int nColorIndex,
-                             int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset);
+                             int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset);
     bool IsInsideSelBlock (CPoint ptTextPos);
 
     bool m_bBookmarkExist;        // More bookmarks
@@ -230,6 +234,7 @@ protected :
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
+    int GetTopMarginHeight ();
     int GetMarginWidth (CDC *pdc = nullptr);
     bool IsValidTextPos (const CPoint &point);
     bool IsValidTextPosX (const CPoint &point);
@@ -245,8 +250,12 @@ protected :
     CCrystalParser *m_pParser;
     //END SW
 
+    int ClientToIdealTextPos (int x);
     CPoint ClientToText (const CPoint & point);
+    int ClientToColumn (int x);
+    int ClientToColumnResizing (int x);
     CPoint TextToClient (const CPoint & point);
+    int ColumnToClient (int nColumn);
     void InvalidateLines (int nLine1, int nLine2, bool bInvalidateMargin = false);
     int CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate = false);
 
@@ -474,17 +483,23 @@ protected:
     virtual bool GetBold (int nColorIndex);
 
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
-                         COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
+                         COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
+    virtual void DrawTopMargin (const CRect & rect);
     virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber);
 
     inline int GetCharCellCountFromChar(const TCHAR *pch)
     {
         TCHAR ch = *pch;
         if (ch >= _T('\x00') && ch <= _T('\x7F'))
-        {
+          {
             if (ch <= _T('\x1F') && ch != '\t')
-                return 3;
+              {
+                if (ch == '\r' && pch[1] == '\n')
+                  return 6;
+                else
+                  return 3;
+              }
             else
                 return 1;
         } 
@@ -587,13 +602,10 @@ protected:
     // function to draw a single screen line
     // (a wrapped line can consist of many screen lines
     virtual void DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
- const std::vector<CrystalLineParser::TEXTBLOCK>& blocks,
-        int &nActualItem,
- COLORREF crText,
+         const std::vector<CrystalLineParser::TEXTBLOCK>& blocks,
+        int &nActualItem, COLORREF crText,
         COLORREF crBkgnd, bool bDrawWhitespace,
- LPCTSTR pszChars,
-
-        int nOffset,
+        int nLineIndex, int nOffset,
         int nCount, int &nActualOffset, CPoint ptTextPos );
     //END SW
 
@@ -676,6 +688,8 @@ public :
     void SetViewEols (bool bViewEols, bool bDistinguishEols);
     int GetTabSize ();
     void SetTabSize (int nTabSize);
+    bool GetTopMargin ();
+    void SetTopMargin (bool bTopMargin);
     bool GetSelectionMargin ();
     void SetSelectionMargin (bool bSelMargin);
     bool GetViewLineNumbers() const;
@@ -896,6 +910,8 @@ protected :
     afx_msg void OnEditGoTo ();
     afx_msg void OnUpdateToggleSourceHeader (CCmdUI * pCmdUI);
     afx_msg void OnToggleSourceHeader ();
+    afx_msg void OnUpdateTopMargin (CCmdUI * pCmdUI);
+    afx_msg void OnTopMargin ();
     afx_msg void OnUpdateSelMargin (CCmdUI * pCmdUI);
     afx_msg void OnSelMargin ();
     afx_msg void OnUpdateWordWrap (CCmdUI * pCmdUI);

@@ -41,11 +41,15 @@ public:
 	virtual void DrawMarginIcon(int x, int y, int iconIndex) override;
 	virtual void DrawMarginLineNumber(int x, int y, int number) override;
 	virtual void DrawBoundaryLine(int left, int right, int y) override;
+	virtual void DrawHorizontalLine(int left, int right, int y) override;
+	virtual void DrawVerticalLine(int x, int top, int bototm) override;
 	virtual void DrawLineCursor(int left, int right, int y, int height) override;
+	virtual void DrawRuler(int left, int top, int width, int height, int charwidth, int offset) override;
 
 private:
 	CDC *m_pDC;
 	LOGFONT m_lfBaseFont;
-    std::array<std::unique_ptr<CFont>, 4> m_apFonts;
+	CPen m_gridPen;
+	std::array<std::unique_ptr<CFont>, 4> m_apFonts;
 	static CImageList *s_pIcons;
 };

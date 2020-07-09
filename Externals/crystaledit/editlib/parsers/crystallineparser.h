@@ -50,6 +50,7 @@ if (pBuf != nullptr)\
 #define SRCOPT_EOLNMAC 512
 #define SRCOPT_FNBRACE 1024
 #define SRCOPT_WORDWRAP 2048
+#define SRCOPT_TOPMARGIN 4096
 
 namespace CrystalLineParser
 {

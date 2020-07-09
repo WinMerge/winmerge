@@ -420,6 +420,22 @@ void CCrystalRendererDirectWrite::DrawBoundaryLine(int left, int right, int y)
 		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get());
 }
 
+void  CCrystalRendererDirectWrite::DrawHorizontalLine(int left, int right, int y)
+{
+	m_pTempBrush->SetColor(ColorRefToColorF(0));
+	m_renderTarget.DrawLine(
+		{ static_cast<float>(left), static_cast<float>(y) },
+		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get(), 0.1F);
+}
+
+void  CCrystalRendererDirectWrite::DrawVerticalLine(int x, int top, int bottom)
+{
+	m_pTempBrush->SetColor(ColorRefToColorF(0));
+	m_renderTarget.DrawLine(
+		{ static_cast<float>(x), static_cast<float>(top) },
+		{ static_cast<float>(x), static_cast<float>(bottom) }, m_pTempBrush.get(), 0.1F);
+}
+
 void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int height)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(0));
@@ -604,4 +620,44 @@ STDMETHODIMP CCrystalRendererDirectWrite::DrawGlyphRun(void* pClientDrawingConte
 	return S_OK;
 }
 
+void CCrystalRendererDirectWrite::DrawRuler(int left, int top, int width, int height, int interval, int offset)
+{
+	m_pTempBrush->SetColor(ColorRefToColorF(0));
+	float bottom = static_cast<float>(top + height) - 0.5f;
+	int prev10 = (offset / 10) * 10;
+	TCHAR szNumbers[32];
+	int len = wsprintf(szNumbers, _T("%d"), prev10);
+	if ((offset % 10) != 0 && offset - prev10 < len)
+	{
+		m_renderTarget.DrawText(szNumbers + (offset - prev10),
+			{ static_cast<float>(left), bottom - height + 0.5f,
+			  static_cast<float>(left + (len - (offset - prev10)) * interval), bottom },
+			m_pTextBrush.get(), m_pTextFormat[0].get());
+	}
+	for (int i = 0; i < width / interval; ++i)
+	{
+		float x = static_cast<float>(left + i * interval);
+		if (((i + offset) % 10) == 0)
+		{
+			len = wsprintf(szNumbers, _T("%d"), offset + i);
+			m_renderTarget.DrawText(szNumbers,
+				{ x, bottom - height, x + len * interval, bottom },
+				m_pTextBrush.get(), m_pTextFormat[0].get());
+		}
+		float tickscale = [](int i, int offset) {
+			if (((i + offset) % 10) == 0)
+				return 0.6f;
+			else if (((i + offset) % 5) == 0)
+				return 0.4f;
+			else
+				return 0.2f;
+		}(i, offset);
+		m_renderTarget.DrawLine(
+			{ x, bottom - height * tickscale },
+			{ x, bottom }, m_pTempBrush.get());
+	}
+	m_renderTarget.DrawLine(
+		{ static_cast<float>(left), bottom },
+		{ static_cast<float>(left + width), bottom }, m_pTempBrush.get());
+}
 #endif

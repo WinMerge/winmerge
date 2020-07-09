@@ -229,8 +229,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	ASSERT(m_aLines.size() == 0);
 
 	// Unpacking the file here, save the result in a temporary file
-	String sFileName(pszFileNameInit);
-	if (!FileTransform::Unpacking(infoUnpacker, sFileName, sToFindUnpacker))
+	m_strTempFileName = pszFileNameInit;
+	if (!FileTransform::Unpacking(infoUnpacker, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -240,7 +240,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	// we use the same unpacker for both files, so it must be defined after first file
 	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_AUTO);
 	// we will load the transformed file
-	LPCTSTR pszFileName = sFileName.c_str();
+	LPCTSTR pszFileName = m_strTempFileName.c_str();
 
 	String sExt;
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
