@@ -35,7 +35,7 @@ END
 2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
-    "#include ""../Externals/crystaledit/editlib/ditcmd.h""\r\n"
+    "#include ""../Externals/crystaledit/editlib/editcmd.h""\r\n"
     "#define NC_(msgctxt, msgid) ""\\x01""msgctxt##msgid\r\n"
     "\0"
 END
