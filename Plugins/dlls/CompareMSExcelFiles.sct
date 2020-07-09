@@ -515,7 +515,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	No = 1
 	For Each sht In wbk.Worksheets
 		If regRead(RegKeyPath & "CompareCellValues", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".txt"), True, True)
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".tsv"), True, True)
 			writeCellValues fo, sht
 			fo.Close
 		End If
