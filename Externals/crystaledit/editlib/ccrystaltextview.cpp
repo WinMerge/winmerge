@@ -2310,7 +2310,7 @@ DrawTopMargin (const CRect& rect)
       for (int i = 0; ; ++i)
         {
           TCHAR c = 'A' + (nColumn % 26) - (i == 0 ? 0 : 1);
-          columnName.Insert(0, c);
+          columnName.Insert (0, c);
           nColumn /= 26;
           if (nColumn == 0)
             break;
@@ -2326,27 +2326,28 @@ DrawTopMargin (const CRect& rect)
       const int nCharWidth = GetCharWidth ();
       const int nMarginWidth = GetMarginWidth ();
       CString columnNames;
-      for (int nColumn = 0, x = nMarginWidth - m_nOffsetChar * nCharWidth; x < rect.Width(); ++nColumn)
+      for (int nColumn = 0, x = nMarginWidth - m_nOffsetChar * nCharWidth; x < rect.Width (); ++nColumn)
         {
           int nColumnWidth = m_pTextBuffer->GetColumnWidth (nColumn);
           CString columnName = getColumnName (nColumn);
           int columnNameLen = columnName.GetLength ();
           if (nColumnWidth < columnNameLen)
-            columnNames += columnName.Right(nColumnWidth);
+            columnNames += columnName.Right (nColumnWidth);
           else
             {
               int leftspaces = (nColumnWidth - columnNameLen) / 2;
-              columnNames += CString(' ', leftspaces) + columnName + CString(' ', nColumnWidth - leftspaces - columnNameLen);
+              columnNames += CString (' ', leftspaces) + columnName + CString (' ', nColumnWidth - leftspaces - columnNameLen);
             }
           x += nColumnWidth * nCharWidth;
         }
-      columnNames = columnNames.Mid(m_nOffsetChar).Left(rect.Width() / nCharWidth + 1);
+      columnNames = columnNames.Mid (m_nOffsetChar).Left(rect.Width () / nCharWidth + 1);
 
-      std::vector<int> nWidths(columnNames.GetLength (), nCharWidth);
-      m_pCrystalRenderer->DrawText(nMarginWidth, 0, rect, columnNames, columnNames.GetLength (), nWidths.data ());
+      std::vector<int> nWidths (columnNames.GetLength (), nCharWidth);
+      m_pCrystalRenderer->SwitchFont (false, false);
+      m_pCrystalRenderer->DrawText (nMarginWidth, 0, rect, columnNames, columnNames.GetLength (), nWidths.data ());
     }
   else
-    m_pCrystalRenderer->DrawRuler (GetMarginWidth(), 0, rect.Width(), rect.Height(), GetCharWidth(), m_nOffsetChar);
+    m_pCrystalRenderer->DrawRuler (GetMarginWidth (), 0, rect.Width (), rect.Height (), GetCharWidth (), m_nOffsetChar);
 }
 
 /**
@@ -2552,6 +2553,7 @@ OnDraw (CDC * pdc)
   m_pCrystalRenderer->BindDC(cacheDC, rcClient);
   m_pCrystalRenderer->BeginDraw();
 
+  int nLastLineBottom = 0;
   int nCurrentLine = m_nTopLine;
   while (rcLine.top < rcClient.bottom)
     {
@@ -2576,6 +2578,7 @@ OnDraw (CDC * pdc)
               if (nCurrentLine == m_ptCursorPos.y)
                 m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
                   nCursorY + nLineHeight - 1, 1);
+              nLastLineBottom = rcMargin.bottom;
             }
           else
             {
@@ -2589,19 +2592,19 @@ OnDraw (CDC * pdc)
       rcMargin.top = rcLine.top;
     }
 
-  if (pdc->RectVisible(rcTopMargin))
-    DrawTopMargin(rcTopMargin);
+  if (pdc->RectVisible (rcTopMargin))
+    DrawTopMargin (rcTopMargin);
 
   if (m_pTextBuffer->GetTableEditing ())
     {
-      int nCharWidth = GetCharWidth();
-      int nMarginWidth = GetMarginWidth();
+      int nCharWidth = GetCharWidth ();
+      int nMarginWidth = GetMarginWidth ();
       for (int nColumn = 0, x = nMarginWidth - m_nOffsetChar * nCharWidth;
            x < rcClient.Width();
            x += m_pTextBuffer->GetColumnWidth (nColumn++) * nCharWidth)
         {
           if (x >= nMarginWidth && nColumn > 0)
-            m_pCrystalRenderer->DrawVerticalLine(x, rcClient.top, rcClient.bottom);
+            m_pCrystalRenderer->DrawVerticalLine (x, rcClient.top, nLastLineBottom);
         }
     }
 
@@ -7036,7 +7039,7 @@ AutoFitColumn (int nColumn)
                 {
                   ++nColumnWidth;
                   if (static_cast<int>(aColumnWidths.size ()) < nColumn2 + 1)
-                      aColumnWidths.resize (nColumn2 + 1, 1);
+                      aColumnWidths.resize (nColumn2 + 1, nTabSize);
                   if (aColumnWidths[nColumn2] < nColumnWidth)
                       aColumnWidths[nColumn2] = nColumnWidth;
                   nColumnWidth = 0;
@@ -7062,8 +7065,9 @@ AutoFitColumn (int nColumn)
         }
     }
 
-  aColumnWidths.resize (nLastColumn + 1, 1);
-  aColumnWidths[nLastColumn] = nLastColumnWidth;
+  aColumnWidths.resize (nLastColumn + 1, nTabSize);
+  if (aColumnWidths[nLastColumn] < nLastColumnWidth)
+    aColumnWidths[nLastColumn] = nLastColumnWidth;
 
   for (size_t nColumn2 = 0; nColumn2 < aColumnWidths.size (); ++nColumn2)
     {
