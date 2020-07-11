@@ -781,21 +781,49 @@ OnNotifyLineHasBeenEdited(int nLine)
 	return;
 }
 
-static void CountEolAndLastLineLength(LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
+void CGhostTextBuffer::
+CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
+	bool bInQuote = false;
 	nLastLineLength = 0;
 	nEol = 0;
-	for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+	if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
 	{
-		if (LineInfo::IsEol(pszText[nTextPos]))
+		const TCHAR* pszLine = m_aLines[ptStartPos.y].GetLine();
+		for (int j = 0; j < ptStartPos.x; ++j)
 		{
-			if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
-				++nTextPos;
-			++nEol;
-			nLastLineLength = 0;
+			if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
+				bInQuote = !bInQuote;
 		}
-		else
-			++nLastLineLength;
+		for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+		{
+			if (pszText[nTextPos] == m_pTableProps->m_cFieldEnclosure)
+				bInQuote = !bInQuote;
+			if (!bInQuote && LineInfo::IsEol(pszText[nTextPos]))
+			{
+				if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
+					++nTextPos;
+				++nEol;
+				nLastLineLength = 0;
+			}
+			else
+				++nLastLineLength;
+		}
+	}
+	else
+	{
+		for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+		{
+			if (LineInfo::IsEol(pszText[nTextPos]))
+			{
+				if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
+					++nTextPos;
+				++nEol;
+				nLastLineLength = 0;
+			}
+			else
+				++nLastLineLength;
+		}
 	}
 }
 
@@ -807,7 +835,7 @@ AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	int nLastLineLength, nEol;
-	CountEolAndLastLineLength(pszText, cchText, nLastLineLength, nEol);
+	CountEolAndLastLineLength(ptStartPos, pszText, cchText, nLastLineLength, nEol);
 	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
 	if (ptEndPos.x == 0 && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
 		real_ptEndPos.x = nLastLineLength;

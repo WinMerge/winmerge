@@ -31,10 +31,12 @@ void CCrystalRendererGDI::BindDC(const CDC& dc, const CRect& rc)
 
 void CCrystalRendererGDI::BeginDraw()
 {
+	m_pDC->SaveDC();
 }
 
 bool CCrystalRendererGDI::EndDraw()
 {
+	m_pDC->RestoreDC(-1);
 	return true;
 }
 
@@ -114,16 +116,16 @@ void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, COLORREF color)
 
 void CCrystalRendererGDI::DrawRoundRectangle(int left, int top, int right, int bottom, int width, int height)
 {
-	HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
-	hBrush = ::SelectObject(m_pDC->m_hDC, hBrush);
-	HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(m_pDC->m_hDC));
-	hPen = ::SelectObject(m_pDC->m_hDC, hPen);
+	CBrush brush;
+	brush.CreateStockObject(NULL_BRUSH);
+	CBrush* pOldBrush = m_pDC->SelectObject(&brush);
+	CPen pen(PS_SOLID, 1, m_pDC->GetTextColor());
+	CPen *pOldPen = m_pDC->SelectObject(&pen);
 
 	m_pDC->RoundRect(left, top, right, bottom, width, height);
 
-	hPen = ::SelectObject(m_pDC->m_hDC, hPen);
-	::DeleteObject(hPen);
-	hBrush = ::SelectObject(m_pDC->m_hDC, hBrush);
+	m_pDC->SelectObject(pOldPen);
+	m_pDC->SelectObject(pOldBrush);
 }
 
 void CCrystalRendererGDI::PushAxisAlignedClip(const CRect & rc)

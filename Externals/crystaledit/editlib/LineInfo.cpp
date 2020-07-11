@@ -115,7 +115,7 @@ void LineInfo::CreateEmpty()
 void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
 {
   ASSERT (nLength <= INT_MAX);		// assert "positive int"
-  size_t nBufNeeded = m_nLength + nLength + 1;
+  size_t nBufNeeded = m_nLength + m_nEolChars + nLength + 1;
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
@@ -128,8 +128,8 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
       m_pcLine = pcNewBuf;
     }
 
-  memcpy (m_pcLine + m_nLength, pszChars, sizeof (TCHAR) * nLength);
-  m_nLength += nLength;
+  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (TCHAR) * nLength);
+  m_nLength += nLength + m_nEolChars;
   m_pcLine[m_nLength] = '\0';
 
   // Did line gain eol ? (We asserted above that it had none at start)

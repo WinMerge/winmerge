@@ -1084,7 +1084,7 @@ ExpandCharsTableEditingMode(int nLineIndex, int nOffset, int nCount, CString& li
   auto appendChars = [&](int i, int next, int pos, CString& text, int& textwidth)
     {
       TCHAR c = pszChars[i];
-      if ((c == '\r' || c == '\n') && i >= nLineLength - eollen)
+      if ((c == '\r' || c == '\n') && i >= nLineLength - nOffset - eollen)
         {
           if (m_bViewEols)
             {

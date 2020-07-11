@@ -2700,11 +2700,11 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			m_ptBuf[nBuffer]->ShareTableProperties(*m_ptBuf[0]);
 			if (nBuffer == 0)
 			{
+				m_ptBuf[nBuffer]->SetAllowNewlinesInQuotes(tableProps.allowNewlinesInQuotes);
 				m_ptBuf[nBuffer]->SetFieldDelimiter(tableProps.delimiter);
 				m_ptBuf[nBuffer]->SetFieldEnclosure(tableProps.quote);
 			}
-			if (tableProps.allowNewlinesInQuotes)
-				m_ptBuf[nBuffer]->JoinLinesForTableEditingMode();
+			m_ptBuf[nBuffer]->JoinLinesForTableEditingMode();
 		}
 		else
 		{

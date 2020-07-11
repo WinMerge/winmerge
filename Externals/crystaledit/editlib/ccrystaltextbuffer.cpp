@@ -160,6 +160,7 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
 
   // Table Editing
   m_pTableProps.reset(new TableProperties());
+  m_pTableProps->m_bAllowNewlinesInQuotes = true;
   m_pTableProps->m_cFieldDelimiter = '\t';
   m_pTableProps->m_cFieldEnclosure = '"';
   m_pTableProps->m_textBufferList.push_back(this);
@@ -1172,6 +1173,16 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       sTail = StripTail(nLine, nRestCount);
     }
 
+  bool bInQuote = false;
+  if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+    {
+      const TCHAR* pszLine = m_aLines[nLine].GetLine ();
+      for (int j = 0; j < nPos; ++j)
+        {
+          if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
+             bInQuote = !bInQuote;
+        }
+    }
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
@@ -1180,8 +1191,20 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       int haseol = 0;
       size_t nTextPos = 0;
       // advance to end of line
-      while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
-        nTextPos++;
+      if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+        {
+          while (nTextPos < cchText && (bInQuote || !LineInfo::IsEol(pszText[nTextPos])))
+            {
+              if (pszText[nTextPos] == m_pTableProps->m_cFieldEnclosure)
+                bInQuote = !bInQuote;
+              nTextPos++;
+            }
+        }
+      else
+        {
+          while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
+            nTextPos++;
+        }
       // advance after EOL of line
       if (nTextPos < cchText)
         {
@@ -1217,7 +1240,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
           else
             {
               nEndLine = nCurrentLine;
-              nEndChar = GetLineLength(nEndLine);
+              nEndChar = GetFullLineLength(nEndLine);
             }
           if (!sTail.IsEmpty())
             {
@@ -2014,6 +2037,8 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
 
 void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
 {
+  if (!m_pTableProps->m_bAllowNewlinesInQuotes)
+      return;
   size_t nLineCount = m_aLines.size ();
   size_t j = 0;
   bool bInQuote = false;

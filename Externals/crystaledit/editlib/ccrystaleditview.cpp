@@ -1859,7 +1859,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
       if (nAction == CE_ACTION_TYPING && (
           _tcsncmp (pszText, _T ("\r\n"), cchText) == 0 ||
           (cchText == 1 && (*pszText == '\r' || *pszText == '\n')))
-          && !m_bOvrMode)
+          && !m_bOvrMode && GetCursorPos ().x == 0)
         {
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();

@@ -171,6 +171,7 @@ public :
         std::vector<int> m_aColumnWidths;
         TCHAR m_cFieldDelimiter;
         TCHAR m_cFieldEnclosure;
+        bool m_bAllowNewlinesInQuotes;
         std::vector<CCrystalTextBuffer*> m_textBufferList;
     };
     std::shared_ptr<TableProperties> m_pTableProps;
@@ -315,6 +316,8 @@ public :
     int  GetColumnWidth (int nColumnIndex) const;
     void SetColumnWidth (int nColumnIndex, int nColumnWidth);
     int  GetColumnCount (int nLineIndex) const;
+    void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_pTableProps->m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
+    TCHAR GetAllowNewlinesInQuotes () const { return m_pTableProps->m_bAllowNewlinesInQuotes; }
     void SetFieldDelimiter (TCHAR cFieldDelimiter) { m_pTableProps->m_cFieldDelimiter = cFieldDelimiter; }
     TCHAR GetFieldDelimiter () const { return m_pTableProps->m_cFieldDelimiter; }
     void SetFieldEnclosure (TCHAR cFieldEnclosure) { m_pTableProps->m_cFieldEnclosure = cFieldEnclosure; }
