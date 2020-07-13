@@ -576,7 +576,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           const int nLineCount = GetLineCount ();
           for (int y = 0; y < nLineCount; ++y)
             {
-              if (x < GetLineLength (y))
+              if (x < CalculateActualOffset (y, GetLineLength (y)))
                 {
                   ptStart.x = ApproxActualOffset (y, x);
                   ptStart.y = y;
@@ -586,7 +586,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           ptEnd.y = nLineCount - 1;
           for (int y = nLineCount - 1; y >= 0; --y)
             {
-              if (x < GetLineLength (y))
+              if (x < CalculateActualOffset (y, GetLineLength (y)))
                 {
                   ptEnd.x = ApproxActualOffset (y, x);
                   ptEnd.y = y;
@@ -942,7 +942,7 @@ OnTimer (UINT_PTR nIDEvent)
         }
 
       //  Fix changes
-      if (bChanged)
+      if (bChanged && !m_nColumnResizing)
         {
           AdjustTextPoint (pt);
           CPoint ptNewCursorPos = ClientToText (pt);

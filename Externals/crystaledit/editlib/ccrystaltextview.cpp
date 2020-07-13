@@ -7023,6 +7023,8 @@ AutoFitColumn (int nColumn)
   const TCHAR sep = m_pTextBuffer->GetFieldDelimiter ();
   const int quote = m_pTextBuffer->GetFieldEnclosure ();
   std::vector<int> aColumnWidths;
+  const int nScreenChars = GetScreenChars ();
+  const int nMaxColumnWidth = nScreenChars < 1 ? 1 : nScreenChars - 1;
   for (auto& pbuf : m_pTextBuffer->GetTextBufferList())
   {
       const int nLineCount = pbuf->GetLineCount();
@@ -7038,6 +7040,8 @@ AutoFitColumn (int nColumn)
               if (!bInQuote && c == sep)
                 {
                   ++nColumnWidth;
+                  if (nColumnWidth > nMaxColumnWidth)
+                    nColumnWidth = nMaxColumnWidth;
                   if (static_cast<int>(aColumnWidths.size ()) < nColumn2 + 1)
                       aColumnWidths.resize (nColumn2 + 1, nTabSize);
                   if (aColumnWidths[nColumn2] < nColumnWidth)
