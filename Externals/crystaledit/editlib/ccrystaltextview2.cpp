@@ -556,10 +556,6 @@ OnLButtonDown (UINT nFlags, CPoint point)
       m_bDragSelection = true;
     };
 
-  m_bRectangularSelection = false;
-  m_bColumnSelection = false;
-  m_bWordSelection = false;
-  m_bLineSelection = false;
   m_nColumnResizing = -1;
 
   if (point.y < GetTopMarginHeight ())
@@ -594,6 +590,8 @@ OnLButtonDown (UINT nFlags, CPoint point)
                 }
             }
     
+          m_bWordSelection = false;
+          m_bLineSelection = false;
           m_bRectangularSelection = true;
           m_bColumnSelection = true;
     
@@ -652,6 +650,9 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
           startDragging();
 
+          m_bRectangularSelection = false;
+          m_bColumnSelection = false;
+          m_bWordSelection = false;
           m_bLineSelection = true;
         }
     }
@@ -701,6 +702,8 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
           startDragging();
 
+          m_bColumnSelection = false;
+          m_bLineSelection = false;
           m_bRectangularSelection = bAlt;
           m_bWordSelection = bControl;
         }

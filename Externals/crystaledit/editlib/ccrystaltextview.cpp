@@ -915,7 +915,6 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
   pszChars += nOffset;
   int nLength = nCount;
   int nTabs = 0;
-  int nCurColumn = -1;
   int nLineLength = GetLineLength(nLineIndex);
 
   for (int i = 0; i < nLineLength - nOffset; i++)
@@ -926,7 +925,6 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
       else if (c >= _T('\x00') && c <= _T('\x1F') && c != _T('\r') && c != _T('\n'))
           nCount += 3 - 1;
     }
-  int nTabCount = nTabs;
 
   // Preallocate line buffer, to avoid reallocations as we add characters
   line.GetBuffer(nCount + 1); // at least this many characters
@@ -7016,7 +7014,6 @@ SetTextTypeByContent (LPCTSTR pszContent)
 void CCrystalTextView::
 AutoFitColumn (int nColumn)
 {
-  bool bInQuote = false;
   int nLastColumn = 0;
   int nLastColumnWidth = 0;
   const int nTabSize = GetTabSize ();
@@ -7030,6 +7027,7 @@ AutoFitColumn (int nColumn)
       const int nLineCount = pbuf->GetLineCount();
       for (int i = 0; i < nLineCount; ++i)
         {
+          bool bInQuote = false;
           int nColumn2 = 0;
           int nColumnWidth = 0;
           const TCHAR* pszChars = pbuf->GetLineChars (i);
