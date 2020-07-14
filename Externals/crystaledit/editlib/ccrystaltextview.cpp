@@ -4066,7 +4066,6 @@ ClientToText (const CPoint & point)
 
   int nLine;
   int nSubLineOffset;
-  int nOffsetChar = m_nOffsetChar;
 
   GetLineBySubLine( pt.y, nLine, nSubLineOffset );
   pt.y = nLine;
@@ -4083,13 +4082,6 @@ ClientToText (const CPoint & point)
       pszLine = GetLineChars(pt.y);
       WrapLineCached( pt.y, GetScreenChars(), &anBreaks[0], nBreaks );
 
-      if (nSubLineOffset > 0)
-        {
-          if (nSubLineOffset < nBreaks)
-            nOffsetChar = anBreaks[nSubLineOffset - 1];
-          else if (nBreaks > 0)
-            nOffsetChar = anBreaks[nBreaks - 1];
-        }
       if (nBreaks > nSubLineOffset)
         nLength = anBreaks[nSubLineOffset] - 1;
     }
@@ -4114,7 +4106,7 @@ ClientToText (const CPoint & point)
         {
           if (nBreaks && nIndex == anBreaks[i])
             {
-              n = nIndex;
+              n = 0;
               i++;
             }
 
@@ -4147,7 +4139,7 @@ ClientToText (const CPoint & point)
         {
           if (nBreaks && nIndex == anBreaks[i])
             {
-              n = nIndex;
+              n = 0;
               i++;
             }
 
