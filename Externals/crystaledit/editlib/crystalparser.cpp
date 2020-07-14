@@ -49,7 +49,7 @@ static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
 	return next > current ? next : next + 1;
 }
 
-void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
+void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int> *anBreaks, int &nBreaks )
 {
 	// The parser must be attached to a view!
 	ASSERT( m_pTextView != nullptr );
@@ -144,7 +144,11 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 				nLastCharBreakPos = nCharCount;
 			}
 			if( anBreaks )
-				anBreaks[nBreaks++] = nLastBreakPos;
+			{
+				if (static_cast<int>(anBreaks->capacity()) <= nBreaks)
+					anBreaks->reserve(anBreaks->capacity() * 2);
+				(*anBreaks)[nBreaks++] = nLastBreakPos;
+			}
 			else
 				nBreaks++;
 

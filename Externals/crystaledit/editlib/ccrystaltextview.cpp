@@ -914,7 +914,6 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
 
   pszChars += nOffset;
   int nLength = nCount;
-  int nTabs = 0;
   int nLineLength = GetLineLength(nLineIndex);
 
   for (int i = 0; i < nLineLength - nOffset; i++)
@@ -1522,7 +1521,7 @@ GetAdditionalTextBlocks (int nLineIndex)
 }
 
 //BEGIN SW
-void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
+void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int> *anBreaks, int &nBreaks )
 {
   // There must be a parser attached to this view
   if( m_pParser == nullptr )
@@ -1533,7 +1532,7 @@ void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreak
 
 
 void CCrystalTextView::WrapLineCached( 
-                    int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
+                    int nLineIndex, int nMaxLineWidth, std::vector<int> *anBreaks, int &nBreaks )
 {
   if( !GetLineVisible (nLineIndex) )
     {
@@ -1967,10 +1966,10 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
   int nActualItem = 0;
   int nActualOffset = 0;
   // Wrap the line
-  IntArray anBreaks(nLength);
+  std::vector<int> anBreaks(nLength);
   int nBreaks = 0;
 
-  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks.GetData(), nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), &anBreaks, nBreaks );
 
   //  Draw the line text
   CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
@@ -2786,7 +2785,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
   vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
   int nBreaks = 0;
 
-  WrapLineCached (nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
+  WrapLineCached (nLineIndex, GetScreenChars(), &anBreaks, nBreaks);
 
   int i = (nBreaks <= 0) ? -1 : nBreaks - 1;
   for (; i >= 0 && nCharPos < anBreaks[i]; i--)
@@ -2821,7 +2820,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   vector<int> anBreaks(nLength + 1);
   int	nBreaks = 0;
 
-  WrapLineCached( nLineIndex, nScreenChars, &anBreaks[0], nBreaks );
+  WrapLineCached( nLineIndex, nScreenChars, &anBreaks, nBreaks );
 
   // find char pos that matches cursor position
   int nXPos = 0;
@@ -2940,7 +2939,7 @@ int CCrystalTextView::SubLineEndToCharPos(int nLineIndex, int nSubLineOffset)
   vector<int> anBreaks(nLength + 1);
   int nBreaks = 0;
 
-  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
+  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks, nBreaks);
 
   // if there is no break inside the line or the given subline is the last
   // one in this line...
@@ -2974,7 +2973,7 @@ int CCrystalTextView::SubLineHomeToCharPos(int nLineIndex, int nSubLineOffset)
   vector<int> anBreaks(nLength + 1);
   int nBreaks = 0;
 
-  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
+  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks, nBreaks);
 
   // if there is no break inside the line...
   if (nBreaks == 0)
@@ -4081,7 +4080,7 @@ ClientToText (const CPoint & point)
       nLength = GetLineLength( pt.y );
       anBreaks.resize(nLength + 1);
       pszLine = GetLineChars(pt.y);
-      WrapLineCached( pt.y, GetScreenChars(), &anBreaks[0], nBreaks );
+      WrapLineCached( pt.y, GetScreenChars(), &anBreaks, nBreaks );
 
       if (nBreaks > nSubLineOffset)
         nLength = anBreaks[nSubLineOffset] - 1;
@@ -4426,7 +4425,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
   int			nBreaks = 0;
 
   /*if( nLength > GetScreenChars() )*/
-  WrapLineCached( nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), &anBreaks, nBreaks );
 
   int	nPreOffset = 0;
   int	nPreBreak = 0;

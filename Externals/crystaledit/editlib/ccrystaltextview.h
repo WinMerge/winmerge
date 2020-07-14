@@ -547,7 +547,7 @@ protected:
 
     @see WrapLineCached()
     */
-    virtual void WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
+    virtual void WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int> *anBreaks, int &nBreaks );
 
     /**
     Called to wrap the line with the given index into sublines.
@@ -577,7 +577,7 @@ protected:
     @see WrapLine()
     @see m_anSubLines
     */
-    void WrapLineCached( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
+    void WrapLineCached( int nLineIndex, int nMaxLineWidth, std::vector<int> *anBreaks, int &nBreaks );
 
     /**
     Invalidates the cached data for the given lines.
