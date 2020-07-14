@@ -2828,6 +2828,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   int nYPos = 0;
   int	nCurPos = 0;
   const int nTabSize = GetTabSize();
+
   int nIndex=0, nPrevIndex = 0;
   auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(szLine, nLength);
   if (m_pTextBuffer && m_pTextBuffer->GetTableEditing ())
@@ -2905,7 +2906,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 
           nPrevIndex = nIndex;
         }
-   }
+    }
   return nIndex;
 }
 
@@ -4093,6 +4094,7 @@ ClientToText (const CPoint & point)
   int n = 0;
   int i = 0;
   const int nTabSize = GetTabSize();
+
   auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszLine, nLength);
   if (m_pTextBuffer && m_pTextBuffer->GetTableEditing ())
     {

@@ -858,7 +858,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
       if (m_nColumnResizing >= 0)
         {
           m_ptAnchor = m_ptSelStart;
-          m_nIdealCharPos = CalculateActualOffset(m_ptCursorPos.y, m_ptCursorPos.x);
+          m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
         }
       ReleaseCapture ();
       KillTimer (m_nDragSelTimer);
