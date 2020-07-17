@@ -8,83 +8,83 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2011-10-11 01:08+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: zh_CN\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_CHS"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtensionTemplate.rc:26
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
 msgstr "ShellExtension"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "WinMerge"
 msgstr "WinMerge"
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
 msgstr "用 WinMerge 打开"
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 2 items"
 msgstr "请不要选中超过2个项目"
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Compare"
-msgstr "对比"
+msgstr "比较"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare..."
+msgstr "比较..."
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare..."
-msgstr "对比..."
+msgid "Compare To"
+msgstr "与另一项比较"
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
-msgid "Compare To"
-msgstr "和另外一个对比"
+msgid "Save this path. Select another path to compare with this path."
+msgstr "保存此路径。然后选择另一个路径来与之比较。"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "保存这个路径。选择另外一个路径与之进行对比。"
+msgid "Compare to saved path (%1)"
+msgstr "与保存的路径（%1）比较"
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
-msgid "Compare to saved path (%1)"
-msgstr "与保存的路径(%1)进行对比"
-
-#: ShellExtensionTemplate.rc:51
-#, c-format
 msgid "Re-select First"
-msgstr "重新选择第一个路径"
+msgstr "重选第一个路径"
