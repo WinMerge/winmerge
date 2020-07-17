@@ -46,6 +46,7 @@ Localization:
   Liaobin <liaobin@jite. net>
   xmpdhml <xmpdhml at users.sourceforge.net>
   MaysWind <i at mayswind.net>
+  YFdyh000 <yfdyh000 at gmail.com>
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>
