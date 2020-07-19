@@ -2108,10 +2108,13 @@ InvalidateColumns ()
     {
       POSITION pos = buf->m_lpViews.GetHeadPosition ();
       while (pos != nullptr)
-        {
+      {
           POSITION thispos = pos;
-          CCrystalTextView *pvw = buf->m_lpViews.GetNext (pos);
-          pvw->InvalidateRect (nullptr);
+          CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
+          if (pView->GetWordWrapping ())
+            pView->InvalidateScreenRect ();
+          else
+            pView->InvalidateRect (nullptr);
         }
     }
 }

@@ -87,6 +87,7 @@ class EDITPADC_CLASS CCrystalTextView : public CView
     DECLARE_DYNCREATE (CCrystalTextView)
 
     friend CCrystalParser;
+    friend CCrystalTextBuffer;
 
 protected:
     //  Search parameters
@@ -185,8 +186,10 @@ protected:
 
     //  Helper functions
     int ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset);
-    int ExpandCharsTableEditingMode (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset);
+    int ExpandCharsTableEditingNoWrap (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset);
     void AutoFitColumn(int nColumn = -1);
+    enum TextLayoutMode { TEXTLAYOUT_NOWORDWRAP, TEXTLAYOUT_WORDWRAP, TEXTLAYOUT_TABLE_NOWORDWRAP, TEXTLAYOUT_TABLE_WORDWRAP };
+    TextLayoutMode GetTextLayoutMode() const;
 
     int ApproxActualOffset (int nLineIndex, int nOffset);
     void AdjustTextPoint (CPoint & point);
@@ -335,7 +338,7 @@ protected :
 
     @return The character position of the beginning of the subline charPoint.y.
     */
-    int CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint );
+    int CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint, int* pnColumn = nullptr );
 
     /**
     Converts the given cursor point for the given line to the character position

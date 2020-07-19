@@ -3111,7 +3111,7 @@ void CMergeEditView::RefreshOptions()
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
 
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP) && !GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
@@ -3887,7 +3887,7 @@ void CMergeEditView::DocumentsLoaded()
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP) && !GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing());
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 

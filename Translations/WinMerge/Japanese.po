@@ -1799,10 +1799,10 @@ msgstr ""
 "す。"
 
 msgid "&CSV File Patterns:"
-msgstr "&CSV ファイルパターン:"
+msgstr "&CSV ファイルとして扱うパターン:"
 
 msgid "&TSV File Patterns:"
-msgstr "&TSV ファイルパターン:"
+msgstr "&TSV ファイルとして扱うパターン:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値"

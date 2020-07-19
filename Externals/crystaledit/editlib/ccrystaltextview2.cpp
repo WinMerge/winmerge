@@ -650,8 +650,8 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
           startDragging();
 
-          m_bRectangularSelection = false;
           m_bColumnSelection = false;
+          m_bRectangularSelection = false;
           m_bWordSelection = false;
           m_bLineSelection = true;
         }
@@ -703,9 +703,9 @@ OnLButtonDown (UINT nFlags, CPoint point)
           startDragging();
 
           m_bColumnSelection = false;
-          m_bLineSelection = false;
           m_bRectangularSelection = bAlt;
           m_bWordSelection = bControl;
+          m_bLineSelection = false;
         }
     }
 
