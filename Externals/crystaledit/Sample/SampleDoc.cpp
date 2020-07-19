@@ -48,7 +48,9 @@ CSampleDoc::CSampleDoc()
 	m_pSyntaxColors = new SyntaxColors();
 	m_pMarkers = new CCrystalTextMarkers();
 	m_pMarkers->LoadFromRegistry();
+#ifdef _WIN64
 	CCrystalTextView::SetRenderingModeDefault(CCrystalTextView::RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC);
+#endif
 }
 
 CSampleDoc::~CSampleDoc()

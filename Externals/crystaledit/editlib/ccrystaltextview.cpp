@@ -714,6 +714,7 @@ GetLineActualLength (int nLineIndex)
       switch ( GetTextLayoutMode ())
         {
           case TEXTLAYOUT_TABLE_NOWORDWRAP:
+          case TEXTLAYOUT_TABLE_WORDWRAP:
             {
               int nColumnCount =  m_pTextBuffer->GetColumnCount (nLineIndex);
               int nColumnTotalWidth = 0;
@@ -4694,6 +4695,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   switch (GetTextLayoutMode ())
     {
       case TEXTLAYOUT_TABLE_NOWORDWRAP:
+      case TEXTLAYOUT_TABLE_WORDWRAP:
         {
           int nColumnCount = m_pTextBuffer->GetColumnCount (nLineIndex);
           int nColumnTotalWidth = 0;
