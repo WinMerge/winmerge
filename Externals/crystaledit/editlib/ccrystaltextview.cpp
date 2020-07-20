@@ -734,7 +734,7 @@ GetLineActualLength (int nLineIndex)
                       if (c == quote)
                         bInQuote = !bInQuote;
                       if (c == '\t')
-                        nActualLength += (nTabSize - nActualLength % nTabSize);
+                        nActualLength += 1;
                       else
                         nActualLength += GetCharCellCountFromChar(pszChars + i);
                       if (nColumn < nColumnCount && nActualLength > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -903,37 +903,36 @@ static void AppendEscapeAdv(CString & str, int & curpos, TCHAR c)
 int CCrystalTextView::
 ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset)
 {
-  if (GetTextLayoutMode () == TEXTLAYOUT_TABLE_NOWORDWRAP)
-    return ExpandCharsTableEditingNoWrap(nLineIndex, nOffset, nCount, line, nActualOffset);
-
-  if (nCount <= 0)
-      return 0;
-
-  LPCTSTR pszChars = GetLineChars(nLineIndex);
   line.Empty();
   // Request whitespace characters for codepage ACP
   // because that is the codepage used by ExtTextOut
   const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE_GDI);
 
+  if (nCount <= 0)
+    {
+      return 0;
+    }
+
   const int nTabSize = GetTabSize ();
 
+  LPCTSTR pszChars = GetLineChars(nLineIndex);
   pszChars += nOffset;
   int nLength = nCount;
-  int nLineLength = GetLineLength(nLineIndex);
 
-  for (int i = 0; i < nLineLength - nOffset; i++)
+  for (int i = 0; i < nLength; i++)
     {
       TCHAR c = pszChars[i];
       if (c == _T('\t'))
         nCount += nTabSize - 1;
       else if (c >= _T('\x00') && c <= _T('\x1F') && c != _T('\r') && c != _T('\n'))
-        nCount += 3 - 1;
+        nCount += 2;
     }
 
   // Preallocate line buffer, to avoid reallocations as we add characters
   line.GetBuffer(nCount + 1); // at least this many characters
   line.ReleaseBuffer(0);
   int nCurPos = 0;
+  const bool bTableEditing = m_pTextBuffer->GetTableEditing ();
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
@@ -943,7 +942,7 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
           next = pIterChar->next();
           if (pszChars[i] == _T('\t'))
             {
-              int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
+              int nSpaces = bTableEditing ? 1 : (nTabSize - (nActualOffset + nCurPos) % nTabSize);
               if (m_bViewTabs)
                 {
                   AppendStringAdv(line, nCurPos, lpspc->c_tab);
@@ -1054,7 +1053,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           nCount = nColumnTotalWidth;
         }
       else if (c == '\t')
-        nCount += nTabSize -  1;
+        nCount += 1 - 1;
       else if (c == quote)
         {
           bInQuote = !bInQuote;
@@ -1118,7 +1117,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           int nSpaces = 1;
           if (sep != '\t' || bInQuote)
             {
-              nSpaces = nTabSize - (pos % nTabSize);
+              nSpaces = 1;
               if (nSpaces > nextColumnDistance(pos))
                   nSpaces = nextColumnDistance(pos);
             }
@@ -1242,7 +1241,10 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
   if (nCount > 0)
     {
       CString line;
-      nActualOffset += ExpandChars (nLineIndex, nOffset, nCount, line, nActualOffset);
+      if (GetTextLayoutMode () == TEXTLAYOUT_TABLE_NOWORDWRAP)
+        nActualOffset += ExpandCharsTableEditingNoWrap (nLineIndex, nOffset, nCount, line, nActualOffset);
+      else
+        nActualOffset += ExpandChars (nLineIndex, nOffset, nCount, line, nActualOffset);
       const int lineLen = line.GetLength();
       const int nCharWidth = GetCharWidth();
       const int nCharWidthNarrowed = nCharWidth / 2;
@@ -2003,7 +2005,10 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
                 {
                   CRect frect( origin.x, originOrg.y + (j + 1) * GetLineHeight (),
                       origin.x + m_pTextBuffer->GetColumnWidth (nColumn) * nCharWidth, rc.bottom );
-                  m_pCrystalRenderer->FillSolidRectangle (frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
+                  if (frect.left < rc.left)
+                      frect.left = rc.left;
+                  if (frect.right > rc.left)
+                    m_pCrystalRenderer->FillSolidRectangle (frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
                 }
               origin.y = originOrg.y;
               origin.x += m_pTextBuffer->GetColumnWidth (nColumn++) * nCharWidth;
@@ -2917,7 +2922,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
                   if (szLine[nIndex] == quote)
                     bInQuote = !bInQuote;
                   if (szLine[nIndex] == '\t')
-                    nOffset = nTabSize - nCurPos % nTabSize;
+                    nOffset = 1;
                   else
                     nOffset = GetCharCellCountFromChar(szLine + nIndex);
                   if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -2962,7 +2967,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 
               int nOffset;
               if (szLine[nIndex] == _T('\t'))
-                nOffset = nTabSize - nCurPos % nTabSize;
+                nOffset = 1;
               else
                 nOffset = GetCharCellCountFromChar(szLine + nIndex);
               nXPos += nOffset;
@@ -2984,7 +2989,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         {
           for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next())
             {
-              if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
+              if( nBreaks > 0 && nYPos < static_cast<int>(anBreaks.size ()) && nIndex == anBreaks[nYPos] )
                 {
                   nXPos = 0;
                   nYPos++;
@@ -4186,7 +4191,7 @@ ClientToText (const CPoint & point)
       pszLine = GetLineChars(pt.y);
       WrapLineCached( pt.y, GetScreenChars(), &anBreaks, nBreaks );
 
-      if (nBreaks > nSubLineOffset && m_bWordWrap && !m_pTextBuffer->GetTableEditing ())
+      if (nBreaks > nSubLineOffset && GetTextLayoutMode () == TEXTLAYOUT_WORDWRAP)
         nLength = anBreaks[nSubLineOffset] - 1;
     }
 
@@ -4221,7 +4226,10 @@ ClientToText (const CPoint & point)
                 {
                   if (pszLine[nIndex] == quote)
                     bInQuote = !bInQuote;
-                  nOffset = GetCharCellCountFromChar(pszLine + nIndex);
+                  if (pszLine[nIndex] == '\t')
+                    nOffset = 1;
+                  else
+                    nOffset = GetCharCellCountFromChar(pszLine + nIndex);
                   if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nCurPos;
                 }
@@ -4231,7 +4239,7 @@ ClientToText (const CPoint & point)
               if (n > nPos && i == nSubLineOffset)
                 break;
 
-              nIndex = pIterChar->next();
+              nIndex = pIterChar->next ();
             }
         }
         break;
@@ -4259,7 +4267,7 @@ ClientToText (const CPoint & point)
       
               int nOffset;
               if (pszLine[nIndex] == '\t')
-                nOffset = nTabSize - nCurPos % nTabSize;
+                nOffset = 1;
               else
                 nOffset = GetCharCellCountFromChar(pszLine + nIndex);
               n += nOffset;
@@ -4276,7 +4284,7 @@ ClientToText (const CPoint & point)
         {
           while (nIndex < nLength)
             {
-              if (nBreaks && nIndex == anBreaks[i])
+              if (nBreaks && i < static_cast<int>(anBreaks.size ()) && nIndex == anBreaks[i])
                 {
                   n = 0;
                   i++;
@@ -4381,7 +4389,7 @@ TextToClient (const CPoint & point)
   charPoint.y+= GetSubLineIndex( point.y );
 
   // compute y-position
-  pt.y = (charPoint.y - m_nTopSubLine) * GetLineHeight() + GetTopMarginHeight();
+  pt.y = (charPoint.y - m_nTopSubLine) * GetLineHeight() + GetTopMarginHeight ();
 
   // if pt.x is null, we know the result
   if( charPoint.x == 0 && nColumnIndex == 0)
@@ -4421,7 +4429,7 @@ TextToClient (const CPoint & point)
                   if (pszLine[nIndex] == quote)
                     bInQuote = !bInQuote;
                   if (pszLine[nIndex] == _T ('\t'))
-                    pt.x += (nTabSize - pt.x % nTabSize);
+                    pt.x += 1;
                   else
                     pt.x += GetCharCellCountFromChar(pszLine + nIndex);
                   if (nColumn < nColumnCount && pt.x > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -4442,7 +4450,7 @@ TextToClient (const CPoint & point)
               if( nIndex >= nSubLineStart )
                 {
                   if (pszLine[nIndex] == _T ('\t'))
-                    pt.x += (nTabSize - pt.x % nTabSize);
+                    pt.x += 1;
                   else
                     pt.x += GetCharCellCountFromChar (pszLine + nIndex);
                 }
@@ -4464,7 +4472,6 @@ TextToClient (const CPoint & point)
               else
                 pt.x += GetCharCellCountFromChar(pszLine + nIndex);
             }
-
           //BEGIN SW
           pt.x-= nPreOffset;
           //END SW
@@ -4482,8 +4489,8 @@ ColumnToClient (int nColumn)
   GetClientRect (&rcClient);
   int nCharWidth = GetCharWidth ();
   int columnleft = GetMarginWidth () - m_nOffsetChar * nCharWidth;
-  for (int nColumn2 = 0; nColumn2 != nColumn && columnleft < rcClient.Width();
-      columnleft += m_pTextBuffer->GetColumnWidth(nColumn2++) * nCharWidth)
+  for (int nColumn2 = 0; nColumn2 != nColumn && columnleft < rcClient.Width ();
+      columnleft += m_pTextBuffer->GetColumnWidth (nColumn2++) * nCharWidth)
       ;
   return columnleft;
 }
@@ -4492,7 +4499,7 @@ void CCrystalTextView::
 InvalidateLines (int nLine1, int nLine2, bool bInvalidateMargin /*= false*/ )
 {
   bInvalidateMargin = true;
-  const int nTopMarginHeight = GetTopMarginHeight();
+  const int nTopMarginHeight = GetTopMarginHeight ();
   const int nLineHeight = GetLineHeight();
   if (nLine2 == -1)
     {
@@ -4606,8 +4613,8 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
                 {
                   if (pszChars[I] == quote)
                     bInQuote = !bInQuote;
-                  if (pszChars[I] == '\t')
-                    nOffset += (nTabSize - nOffset % nTabSize);
+                  else if (pszChars[I] == '\t')
+                    nOffset += 1;
                   else
                     nOffset += GetCharCellCountFromChar(pszChars + I);
                   if (nColumn < nColumnCount && nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -4629,7 +4636,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
               if( nIndex >= nSubLineStart )
                 {
                   if (pszChars[nIndex] == _T ('\t'))
-                    nOffset += (nTabSize - nOffset  % nTabSize);
+                    nOffset += 1;
                   else
                     nOffset += GetCharCellCountFromChar (pszChars + nIndex);
                 }

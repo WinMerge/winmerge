@@ -2108,7 +2108,7 @@ InvalidateColumns ()
     {
       POSITION pos = buf->m_lpViews.GetHeadPosition ();
       while (pos != nullptr)
-      {
+        {
           POSITION thispos = pos;
           CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
           if (pView->GetWordWrapping ())
