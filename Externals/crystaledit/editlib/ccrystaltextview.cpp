@@ -3050,6 +3050,21 @@ int CCrystalTextView::SubLineEndToCharPos(int nLineIndex, int nSubLineOffset)
 
   WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks, nBreaks);
 
+  if (GetTextLayoutMode() == TEXTLAYOUT_TABLE_WORDWRAP)
+    {
+      int nBreakLast = -1;
+      for (int i = 0, j = 1; i < static_cast<int>(anBreaks.size ()); ++i, ++j)
+        {
+          if (anBreaks[i] < 0)
+            j = 0;
+          if (j == nSubLineOffset)
+            nBreakLast = i;
+        }
+      if (nBreakLast < static_cast<int>(anBreaks.size ()) - 1)
+        return abs (anBreaks[nBreakLast + 1]) - 1;
+      return nLength;
+    }
+
   // if there is no break inside the line or the given subline is the last
   // one in this line...
   if (nBreaks <= 0 || nSubLineOffset == nBreaks)
@@ -3083,6 +3098,18 @@ int CCrystalTextView::SubLineHomeToCharPos(int nLineIndex, int nSubLineOffset)
   int nBreaks = 0;
 
   WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks, nBreaks);
+
+  if (GetTextLayoutMode() == TEXTLAYOUT_TABLE_WORDWRAP)
+    {
+      for (int i = 0, j = 1; i < static_cast<int>(anBreaks.size ()); ++i, ++j)
+        {
+          if (anBreaks[i] < 0)
+            j = 0;
+          if (j == nSubLineOffset)
+            return abs (anBreaks[i]);
+        }
+      return 0;
+    }
 
   // if there is no break inside the line...
   if (nBreaks == 0)

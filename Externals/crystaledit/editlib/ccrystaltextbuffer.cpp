@@ -2111,10 +2111,8 @@ InvalidateColumns ()
         {
           POSITION thispos = pos;
           CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
-          if (pView->GetWordWrapping ())
-            pView->InvalidateScreenRect ();
-          else
-            pView->InvalidateRect (nullptr);
+          pView->InvalidateScreenRect ();
+          pView->UpdateView (nullptr, nullptr, UPDATE_HORZRANGE | UPDATE_VERTRANGE, -1);
         }
     }
 }

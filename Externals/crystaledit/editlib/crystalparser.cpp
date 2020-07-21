@@ -91,6 +91,8 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 			if (ch == quote)
 			{
 				bInQuote = !bInQuote;
+				nLineCharCount++;
+				nCharCount++;
 			}
 			// increment char counter (evtl. expand tab)
 			else if (sep != _T('\t') && ch == _T('\t'))
