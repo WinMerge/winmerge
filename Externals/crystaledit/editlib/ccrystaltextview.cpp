@@ -734,9 +734,9 @@ GetLineActualLength (int nLineIndex)
                       if (c == quote)
                         bInQuote = !bInQuote;
                       if (c == '\t')
-                        nActualLength += 1;
+                        nActualLength ++;
                       else
-                        nActualLength += GetCharCellCountFromChar(pszChars + i);
+                        nActualLength += GetCharCellCountFromChar (pszChars + i);
                       if (nColumn < nColumnCount && nActualLength > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                         nActualLength = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                     }
@@ -1046,7 +1046,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           bInQuoteBegin = bInQuote;
         }
       if (nLineIndex == m_ptCursorPos.y && i == m_ptCursorPos.x)
-          nCurColumn = nColumn;
+        nCurColumn = nColumn;
       if (!bInQuote && c == sep)
         {
           nColumnTotalWidth += m_pTextBuffer->GetColumnWidth (nColumn++);
@@ -1064,8 +1064,8 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
   nColumnCount = nColumn + 1;
 
   // Preallocate line buffer, to avoid reallocations as we add characters
-  line.GetBuffer(nCount + 1); // at least this many characters
-  line.ReleaseBuffer(0);
+  line.GetBuffer (nCount + 1); // at least this many characters
+  line.ReleaseBuffer (0);
   int nCurPos = nActualOffset;
 
   pszChars += nOffset;
@@ -1077,7 +1077,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
   nColumn = nColumnBegin;
   nColumnTotalWidth = nColumnTotalWidthBegin;
   bInQuote = bInQuoteBegin;
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator(pszChars, nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator (pszChars, nLength);
   auto nextColumnDistance = [&](int nCurPos)
     {
       return (nColumn == nColumnCount - 1) ? INT_MAX : nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nCurPos;
@@ -1097,18 +1097,18 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
                 {
                   int prevtextwidth = textwidth;
                   if (c == '\r' && i < nLength - 1 && pszChars[i+1] == '\n' && m_bDistinguishEols)
-                    AppendStringAdv(text, textwidth, lpspc->c_eol);
+                    AppendStringAdv (text, textwidth, lpspc->c_eol);
                   else if (c == '\r' && m_bDistinguishEols)
-                    AppendStringAdv(text, textwidth, lpspc->c_cr);
+                    AppendStringAdv (text, textwidth, lpspc->c_cr);
                   else if (c == '\n' && m_bDistinguishEols)
                     {
                       if (i == 0 || pszChars[i - 1] != '\r')
-                        AppendStringAdv(text, textwidth, lpspc->c_lf);
+                        AppendStringAdv (text, textwidth, lpspc->c_lf);
                     }
                   else
-                    AppendStringAdv(text, textwidth, lpspc->c_eol);
+                    AppendStringAdv (text, textwidth, lpspc->c_eol);
                   if (textwidth - prevtextwidth > 0)
-                    curColumnByteLenCellWidth.push_back({ textwidth - prevtextwidth, textwidth - prevtextwidth});
+                    curColumnByteLenCellWidth.push_back ({ textwidth - prevtextwidth, textwidth - prevtextwidth});
                 }
             }
         }
@@ -1118,18 +1118,18 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           if (sep != '\t' || bInQuote)
             {
               nSpaces = 1;
-              if (nSpaces > nextColumnDistance(pos))
-                  nSpaces = nextColumnDistance(pos);
+              if (nSpaces > nextColumnDistance (pos))
+                  nSpaces = nextColumnDistance (pos);
             }
           if (nSpaces >= 1 && m_bViewTabs)
             {
-              curColumnByteLenCellWidth.push_back({ 1, 1 });
-              AppendStringAdv(text, textwidth, lpspc->c_tab);
+              curColumnByteLenCellWidth.push_back ({ 1, 1 });
+              AppendStringAdv (text, textwidth, lpspc->c_tab);
               nSpaces--;
             }
           while (nSpaces > 0)
             {
-              curColumnByteLenCellWidth.push_back({ 1, 1 });
+              curColumnByteLenCellWidth.push_back ({ 1, 1 });
               textwidth++;
               text += ' ';
               nSpaces--;
@@ -1137,63 +1137,63 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
         }
       else if (c == ' ' && m_bViewTabs)
         {
-          curColumnByteLenCellWidth.push_back({ 1, 1 });
-          AppendStringAdv(text, textwidth, lpspc->c_space);
+          curColumnByteLenCellWidth.push_back ({ 1, 1 });
+          AppendStringAdv (text, textwidth, lpspc->c_space);
        }
       else if (c >= '\x00' && c <= '\x1F')
         {
-          curColumnByteLenCellWidth.push_back({ 3, 3 });
-          AppendEscapeAdv(text, textwidth, c);
+          curColumnByteLenCellWidth.push_back ({ 3, 3 });
+          AppendEscapeAdv (text, textwidth, c);
           if (c == '\r' && pszChars[i + 1] == '\n')
-            AppendEscapeAdv(text, textwidth, pszChars[i + 1]);
+            AppendEscapeAdv (text, textwidth, pszChars[i + 1]);
         }
       else
         {
-          int nLen = GetCharCellCountFromChar(pszChars + i);
-          curColumnByteLenCellWidth.push_back({ nLen, next - i });
+          int nLen = GetCharCellCountFromChar (pszChars + i);
+          curColumnByteLenCellWidth.push_back ({ nLen, next - i });
           textwidth += nLen;
           for (; i < next; ++i)
-              text += pszChars[i];
+            text += pszChars[i];
         }
       if (!bInQuote && c == sep)
         {
-          int nSpaces = nextColumnDistance(pos + 1);
+          int nSpaces = nextColumnDistance (pos + 1);
           while (nSpaces > 0)
             {
               text += ' ';
               ++textwidth;
               --nSpaces;
             }
-          nColumnTotalWidth += m_pTextBuffer->GetColumnWidth(nColumn);
+          nColumnTotalWidth += m_pTextBuffer->GetColumnWidth (nColumn);
           ++nColumn;
         }
     };
   for (int i = 0, next = 0; i < nLength; i = next)
     {
-      next = pIterChar->next();
+      next = pIterChar->next ();
       const TCHAR c = pszChars[i];
       if (c == quote)
         bInQuote = !bInQuote;
-      int nLen = GetCharCellCountFromChar(pszChars + i);
+      int nLen = GetCharCellCountFromChar (pszChars + i);
       if (nColumn == nCurColumn && beforeCursorPos)
         {
-          appendChars(i, next, nCurPos + curColumnTextCellWidth, curColumnText, curColumnTextCellWidth);
+          appendChars (i, next, nCurPos + curColumnTextCellWidth, curColumnText, curColumnTextCellWidth);
           if (next + nOffset == m_ptCursorPos.x || next >= nLength)
             {
               beforeCursorPos = false;
-              if (curColumnTextCellWidth > nextColumnDistance(nCurPos))
+              if (curColumnTextCellWidth > nextColumnDistance (nCurPos))
                 {
-                  for (size_t k = 0; k < curColumnByteLenCellWidth.size() && curColumnTextCellWidth > nextColumnDistance(nCurPos); ++k)
+                  for (size_t k = 0; k < curColumnByteLenCellWidth.size () && curColumnTextCellWidth > nextColumnDistance (nCurPos); ++k)
                     {
                       curColumnTextCellWidth -= curColumnByteLenCellWidth[k].first;
-                      curColumnText = curColumnText.Mid(curColumnByteLenCellWidth[k].second);
+                      curColumnText = curColumnText.Mid (curColumnByteLenCellWidth[k].second);
                     }
-                  int nSpaces = nextColumnDistance(nCurPos) - curColumnTextCellWidth;
+                  int nSpaces = nextColumnDistance (nCurPos) - curColumnTextCellWidth;
                   if (nSpaces > 0)
                     {
-                      CString spaces(' ', nSpaces);
-                      curColumnText.Insert(0, spaces);
-                      curColumnTextCellWidth = m_pTextBuffer->GetColumnWidth(nColumn);
+                      CString spaces (' ', nSpaces);
+                      curColumnText.Insert (0, spaces);
+                      curColumnTextCellWidth = m_pTextBuffer->GetColumnWidth (nColumn);
                     }
                 }
               line += curColumnText;
@@ -1202,14 +1202,14 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
         }
       else
         {
-          if (nLen <= nextColumnDistance(nCurPos))
+          if (nLen <= nextColumnDistance (nCurPos))
             {
-              appendChars(i, next, nCurPos, line, nCurPos);
-              curColumnByteLenCellWidth.clear();
+              appendChars (i, next, nCurPos, line, nCurPos);
+              curColumnByteLenCellWidth.clear ();
             }
           else
             {
-              int nSpaces = nextColumnDistance(nCurPos);
+              int nSpaces = nextColumnDistance (nCurPos);
               while (nSpaces > 0)
                 {
                   line += ' ';
@@ -2004,9 +2004,9 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
               if (j < nBreaks)
                 {
                   CRect frect( origin.x, originOrg.y + (j + 1) * GetLineHeight (),
-                      origin.x + m_pTextBuffer->GetColumnWidth (nColumn) * nCharWidth, rc.bottom );
+                    origin.x + m_pTextBuffer->GetColumnWidth (nColumn) * nCharWidth, rc.bottom );
                   if (frect.left < rc.left)
-                      frect.left = rc.left;
+                    frect.left = rc.left;
                   if (frect.right > rc.left)
                     m_pCrystalRenderer->FillSolidRectangle (frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
                 }
@@ -2836,7 +2836,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
       int nColumn = 0;
       int j = 0;
       size_t i = 0;
-      for (; i < anBreaks.size() && abs(anBreaks[i]) <= nCharPos ; ++i)
+      for (; i < anBreaks.size () && abs (anBreaks[i]) <= nCharPos ; ++i)
         {
           if (anBreaks[i] < 0)
             {
@@ -2844,14 +2844,14 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
               j = 0;
             }
           else
-              ++j;
+            ++j;
         }
-      charPoint.x = (i > 0) ? nCharPos - abs(anBreaks[i - 1]) : nCharPos;
+      charPoint.x = (i > 0) ? nCharPos - abs (anBreaks[i - 1]) : nCharPos;
       charPoint.y = j;
       if (pnColumn)
         *pnColumn = nColumn;
 
-      return (i > 0)? abs(anBreaks[i - 1]) : 0;
+      return (i > 0)? abs (anBreaks[i - 1]) : 0;
     }
   else
     {
@@ -2924,7 +2924,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
                   if (szLine[nIndex] == '\t')
                     nOffset = 1;
                   else
-                    nOffset = GetCharCellCountFromChar(szLine + nIndex);
+                    nOffset = GetCharCellCountFromChar (szLine + nIndex);
                   if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nXPos;
                 }
@@ -2948,9 +2948,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
           int i = 0;
           int nColumn = 0;
           int nColumnSumWidth = 0;
-          for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next())
+          for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next ())
             {
-              if (i < static_cast<int>(anBreaks.size()) && nIndex == abs(anBreaks[i]))
+              if (i < static_cast<int>(anBreaks.size ()) && nIndex == abs (anBreaks[i]))
                 {
                   if (anBreaks[i++] < 0)
                     {
@@ -2966,10 +2966,10 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
                 }
 
               int nOffset;
-              if (szLine[nIndex] == _T('\t'))
+              if (szLine[nIndex] == '\t')
                 nOffset = 1;
               else
-                nOffset = GetCharCellCountFromChar(szLine + nIndex);
+                nOffset = GetCharCellCountFromChar (szLine + nIndex);
               nXPos += nOffset;
               nCurPos += nOffset;
 
@@ -4173,8 +4173,8 @@ int CCrystalTextView::
 ClientToIdealTextPos (int x)
 {
   int nPos;
-  if (x > GetMarginWidth())
-    nPos = m_nOffsetChar + (x - GetMarginWidth()) / GetCharWidth();
+  if (x > GetMarginWidth ())
+    nPos = m_nOffsetChar + (x - GetMarginWidth ()) / GetCharWidth ();
   else
     nPos = 0;
   return nPos;
@@ -4194,7 +4194,7 @@ ClientToText (const CPoint & point)
   const int nLineCount = GetLineCount();
 
   CPoint pt;
-  pt.y = m_nTopSubLine + (point.y - GetTopMarginHeight()) / GetLineHeight();
+  pt.y = m_nTopSubLine + (point.y - GetTopMarginHeight ()) / GetLineHeight();
   if (pt.y >= nSubLineCount)
     pt.y = nSubLineCount - 1;
   if (pt.y < 0)
@@ -4256,7 +4256,7 @@ ClientToText (const CPoint & point)
                   if (pszLine[nIndex] == '\t')
                     nOffset = 1;
                   else
-                    nOffset = GetCharCellCountFromChar(pszLine + nIndex);
+                    nOffset = GetCharCellCountFromChar (pszLine + nIndex);
                   if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nCurPos;
                 }
@@ -4456,7 +4456,7 @@ TextToClient (const CPoint & point)
                   if (pszLine[nIndex] == quote)
                     bInQuote = !bInQuote;
                   if (pszLine[nIndex] == _T ('\t'))
-                    pt.x += 1;
+                    pt.x ++;
                   else
                     pt.x += GetCharCellCountFromChar(pszLine + nIndex);
                   if (nColumn < nColumnCount && pt.x > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -4476,8 +4476,8 @@ TextToClient (const CPoint & point)
             {
               if( nIndex >= nSubLineStart )
                 {
-                  if (pszLine[nIndex] == _T ('\t'))
-                    pt.x += 1;
+                  if (pszLine[nIndex] == '\t')
+                    pt.x ++;
                   else
                     pt.x += GetCharCellCountFromChar (pszLine + nIndex);
                 }
@@ -4641,9 +4641,9 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
                   if (pszChars[I] == quote)
                     bInQuote = !bInQuote;
                   else if (pszChars[I] == '\t')
-                    nOffset += 1;
+                    nOffset ++;
                   else
-                    nOffset += GetCharCellCountFromChar(pszChars + I);
+                    nOffset += GetCharCellCountFromChar (pszChars + I);
                   if (nColumn < nColumnCount && nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                 }
@@ -4662,8 +4662,8 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
             {
               if( nIndex >= nSubLineStart )
                 {
-                  if (pszChars[nIndex] == _T ('\t'))
-                    nOffset += 1;
+                  if (pszChars[nIndex] == '\t')
+                    nOffset ++;
                   else
                     nOffset += GetCharCellCountFromChar (pszChars + nIndex);
                 }
@@ -4748,7 +4748,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
                   if (pszChars[I] == quote)
                     bInQuote = !bInQuote;
                   if (pszChars[I] == '\t')
-                    nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
+                    nCurrentOffset ++;
                   else
                     nCurrentOffset += GetCharCellCountFromChar (pszChars + I);
                   if (nColumn < nColumnCount && nCurrentOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
@@ -4758,7 +4758,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
                 {
                   if (nOffset <= nCurrentOffset - nTabSize / 2)
                     return I;
-                  return pIterChar->next();
+                  return pIterChar->next ();
                 }
             }
         }
@@ -4767,10 +4767,12 @@ ApproxActualOffset (int nLineIndex, int nOffset)
         {
           for (int I = 0; I < nLength; I = pIterChar->next())
             {
-              if (pszChars[I] == _T('\t'))
+              if (pszChars[I] == _T ('\t'))
                 nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
               else
-                nCurrentOffset += GetCharCellCountFromChar(pszChars + I);
+                {
+                  nCurrentOffset += GetCharCellCountFromChar(pszChars + I);
+                }
               if (nCurrentOffset >= nOffset)
                 {
                   if (nOffset <= nCurrentOffset - nTabSize / 2)
@@ -7238,9 +7240,9 @@ AutoFitColumn (int nColumn)
   std::vector<int> aColumnWidths;
   const int nScreenChars = GetScreenChars ();
   const int nMaxColumnWidth = nScreenChars < 1 ? 1 : nScreenChars - 1;
-  for (auto& pbuf : m_pTextBuffer->GetTextBufferList())
+  for (auto& pbuf : m_pTextBuffer->GetTextBufferList ())
   {
-      const int nLineCount = pbuf->GetLineCount();
+      const int nLineCount = pbuf->GetLineCount ();
       for (int i = 0; i < nLineCount; ++i)
         {
           bool bInQuote = false;
@@ -7248,7 +7250,7 @@ AutoFitColumn (int nColumn)
           int nColumnWidth = 0;
           const TCHAR* pszChars = pbuf->GetLineChars (i);
           const size_t nLineLength = pbuf->GetFullLineLength (i);
-          for (size_t j = 0; j < nLineLength; j += U16_IS_SURROGATE(pszChars[j]) ? 2 : 1)
+          for (size_t j = 0; j < nLineLength; j += U16_IS_SURROGATE (pszChars[j]) ? 2 : 1)
             {
               bool bDelimiterOrNewLine = false;
               TCHAR c = pszChars[j];
@@ -7284,7 +7286,7 @@ AutoFitColumn (int nColumn)
                     nColumnWidth += GetCharCellCountFromChar (pszChars + j);
                 }
               else if (c == '\t')
-                nColumnWidth += nTabSize;
+                nColumnWidth ++;
               else
                 nColumnWidth += GetCharCellCountFromChar (pszChars + j);
 

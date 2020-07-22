@@ -311,7 +311,7 @@ public :
       if (this == &other)
         return;
       m_pTableProps = other.m_pTableProps;
-      m_pTableProps->m_textBufferList.push_back(this);
+      m_pTableProps->m_textBufferList.push_back (this);
     }
     int  GetColumnWidth (int nColumnIndex) const;
     void SetColumnWidth (int nColumnIndex, int nColumnWidth);

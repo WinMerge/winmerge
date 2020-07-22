@@ -68,9 +68,9 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 	if (anBreaks)
 		anBreaks->resize(0);
 
-	if (m_pTextView->m_pTextBuffer && m_pTextView->m_pTextBuffer->GetTableEditing())
+	if (m_pTextView->m_pTextBuffer && m_pTextView->m_pTextBuffer->GetTableEditing ())
 	{
-		nMaxLineWidth = m_pTextView->m_pTextBuffer->GetColumnWidth(0);
+		nMaxLineWidth = m_pTextView->m_pTextBuffer->GetColumnWidth (0);
 		int nMaxBreaks = 0;
 		int nColumn = 0;
 		bool bInQuote = false;
@@ -97,8 +97,8 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 			// increment char counter (evtl. expand tab)
 			else if (sep != _T('\t') && ch == _T('\t'))
 			{
-				nLineCharCount += (nTabWidth - nCharCount % nTabWidth);
-				nCharCount += (nTabWidth - nCharCount % nTabWidth);
+				nLineCharCount ++;
+				nCharCount ++;
 				// remember whitespace
 				bBreakable = true;
 			}

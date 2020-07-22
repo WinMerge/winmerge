@@ -1180,7 +1180,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       for (int j = 0; j < nPos; ++j)
         {
           if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
-             bInQuote = !bInQuote;
+            bInQuote = !bInQuote;
         }
     }
 

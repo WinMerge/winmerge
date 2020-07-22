@@ -728,7 +728,7 @@ OnMouseMove (UINT nFlags, CPoint point)
           int columnleft = ColumnToClient (m_nColumnResizing);
           int nWidth = (point.x - columnleft) / GetCharWidth();
           if (nWidth <= 0)
-              nWidth = 1;
+            nWidth = 1;
           m_pTextBuffer->SetColumnWidth (m_nColumnResizing, nWidth);
           int nOffsetChar = m_nOffsetChar;
           m_pTextBuffer->InvalidateColumns ();
@@ -973,7 +973,7 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
 {
   CView::OnLButtonDblClk (nFlags, point);
 
-  if (point.y < GetTopMarginHeight())
+  if (point.y < GetTopMarginHeight ())
     {
       int nColumnResizing = ClientToColumnResizing (point.x);
       AutoFitColumn (nColumnResizing);
