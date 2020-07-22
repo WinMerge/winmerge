@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-03-21 06:12+0100\n"
+"PO-Revision-Date: 2020-07-22 06:11+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -135,7 +135,7 @@ msgstr "Po&večava"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -175,10 +175,10 @@ msgid "&Adjust Offset"
 msgstr "Prila&godi odmik"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "Obriši na&vpično"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "Obriši vodo&ravno"
 
 #, c-format
 msgid "&Set Background Color"
@@ -1422,7 +1422,7 @@ msgid "Colors"
 msgstr "Barve"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Barvna shema:"
 
 #, c-format
 msgid "Background"
@@ -1814,7 +1814,7 @@ msgid "Sa&ve changes"
 msgstr "S&hrani spremembe"
 
 msgid "Discard c&hanges"
-msgstr ""
+msgstr "Za&vrzi spremembe"
 
 #, c-format
 msgid "Right side file"
@@ -2309,7 +2309,7 @@ msgid "Image File &Patterns:"
 msgstr "V&zorci slikovnih datotek:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Omogoči primerjavo &slik v primerjanju map"
 
 #, c-format
 msgid "&Hex View"
@@ -2364,7 +2364,7 @@ msgstr ""
 "Shrani (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file"
-msgstr ""
+msgstr "Neznana napaka pri poskusu odpiranja datoteke projekta"
 
 #, c-format
 msgid "Unknown error attempting to save project file"
@@ -2498,7 +2498,7 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "Za ponovni prikaz tega sporočila, pritisnite 'Ponastavi' na strani 'Splošno' pogovornega okna 'Možnosti'."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Barvne sheme"
 
 #, c-format
 msgid "Syntax"
@@ -2636,7 +2636,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"V mapo filtrov ni mogoče kopirati datoteke predloge filtra::\n"
+"V mapo filtrov ni mogoče kopirati datoteke predloge filtra:\n"
 "%1\n"
 "\n"
 "Prosim preverite, če mapa obstaja in je zapisljiva."
@@ -2854,8 +2854,16 @@ msgstr ""
 "%1\n"
 "ni datoteka v sporu."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"Primerjate zelo velike datoteke.\n"
+"Prikazovanje vsebine datotek zahteva zelo veliko pomnilnika.\n"
+"Ali želite prikazati samo rezultate primerjave, ne pa tudi vsebine datotek?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2923,11 +2931,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
+"Vtičnik '%2' ne more pakirati vaših sprememb nazaj v pravo datoteko '%1'.\n"
 "\n"
-"The original file will not be changed.\n"
+"Izvirna datoteka se ne bo spremenila.\n"
 "\n"
-"Do you want to save the unpacked version to another file?"
+"Ali želite shraniti nepakirano različico v drugo datoteko?"
 
 #, c-format
 msgid ""
@@ -3375,10 +3383,10 @@ msgid "Text files are different"
 msgstr "Besedilne datoteke so različne"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Slikovne datoteke so enake"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Slikovne datoteke so različne"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3709,10 +3717,10 @@ msgid "Patch file successfully written."
 msgstr "Datoteka Poročila bila uspešno zapisana."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. vnosa ni mogoče najti!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. vnosa ni mogoče najti!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3775,8 +3783,8 @@ msgid ""
 "See manual for more info about archive support and how to enable it."
 msgstr ""
 "Podpora arhivov ni omogočena.\n"
-"Vseh potrebnih komponent (7-zip in/ali Merge7z*.dll) za podporo arhivov mogoče najti.\n"
-"Za več informacij o podpori za arhiviranje in kako ga omogočiti si oglejte priročnik."
+"Ni mogoče najti veh potrebnih komponent (7-zip in/ali Merge7z*.dll) za podporo arhivov.\n"
+"Za več informacij o podpori za arhiviranje in kako jo omogočiti si oglejte priročnik."
 
 #, c-format
 msgid "Select file for export"
@@ -3826,7 +3834,7 @@ msgstr "Brez"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Barva označevalca %d"
 
 #, c-format
 msgid "Type"
@@ -4153,85 +4161,85 @@ msgstr "Le podrejeno okno MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Razlika"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Označi"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Utripaj"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Velikost bloka"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Blok Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Prag CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Zaznavanje Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Brez"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Navpično"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Vodoravno"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Prekrivanje"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa mešanje"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa animacija"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Povečava"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Stran:"
 
 #, c-format
 msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr ""
+msgstr "Tč:(%d, %d) RGBA : (%d, %d, %d, %d) "
 
 #, c-format
 msgid "Dist:%g "
-msgstr ""
+msgstr "Razdalja:%g "
 
 #, c-format
 msgid "Dist:%g,%g "
-msgstr ""
+msgstr "Razdalja:%g,%g "
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-msgstr ""
+msgstr "Stran:%d/%d Povečava:%d%% %dx%dpx %dbpp"
 
