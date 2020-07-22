@@ -2948,6 +2948,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
           int i = 0;
           int nColumn = 0;
           int nColumnSumWidth = 0;
+          int nColumnCurPoint = INT_MAX;
+          if (curPoint.x < m_pTextBuffer->GetColumnWidth (0))
+            nColumnCurPoint = 0;
           for( nIndex = 0; nIndex < nLength; nIndex = pIterChar->next ())
             {
               if (i < static_cast<int>(anBreaks.size ()) && nIndex == abs (anBreaks[i]))
@@ -2957,6 +2960,8 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
                       nYPos = 0;
                       nColumnSumWidth += m_pTextBuffer->GetColumnWidth (nColumn++);
                       nXPos = nColumnSumWidth;
+                      if (nColumnSumWidth <= curPoint.x && curPoint.x < nColumnSumWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                        nColumnCurPoint = nColumn;
                     }
                   else
                     {
@@ -2975,14 +2980,16 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 
               if( nXPos > curPoint.x && nYPos == curPoint.y )
                 break;
-              else if( nYPos > curPoint.y && nColumnSumWidth <= nXPos && nXPos < nColumnSumWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+              else if( nColumnCurPoint < nColumn && nPrevIndex != 0)
                 {
                   nIndex = nPrevIndex;
                   break;
                 }
-
-              nPrevIndex = nIndex;
+              else if ( nYPos == curPoint.y)
+                nPrevIndex = nIndex;
             }
+          if (nIndex == nLength)
+            nIndex = nPrevIndex;
         }
         break;
       default:
