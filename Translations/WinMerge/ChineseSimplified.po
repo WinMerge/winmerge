@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Liaobin <liaobin at jite. net>
@@ -3483,3 +3483,4 @@ msgstr ""
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "页:%d/%d 缩放:%d%% %dx%dpx %dbpp"
+
