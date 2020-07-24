@@ -7,7 +7,7 @@ setlocal
 call BuildBin.vs2019.cmd x64
 endlocal
 pushd Testing\GoogleTest\UnitTests
-UnitTests.exe || exit
+UnitTests.exe || goto :eof
 popd
 call BuildInstaller.cmd %1 %2
 call BuildArc.cmd %1 %2
