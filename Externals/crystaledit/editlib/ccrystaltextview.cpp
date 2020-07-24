@@ -2988,7 +2988,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
               else if ( nYPos == curPoint.y)
                 nPrevIndex = nIndex;
             }
-          if (nIndex == nLength)
+          if (nIndex == nLength && nYPos != curPoint.y)
             nIndex = nPrevIndex;
         }
         break;
@@ -4325,7 +4325,7 @@ ClientToText (const CPoint & point)
 
               nIndex = pIterChar->next();
             }
-          if (nIndex == nLength)
+          if (nIndex == nLength && j != nSubLineOffset)
             nIndex = nPrevIndex;
         }
         break;
