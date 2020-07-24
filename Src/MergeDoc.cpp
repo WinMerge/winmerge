@@ -2691,19 +2691,17 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
 
-		if (nBuffer == 0)
-			tableProps = getTablePropsByFileName(m_ptBuf[0]->GetTempFileName(), m_bEnableTableEditing);
+		if (nBuffer == 0 ||
+		    paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
+			tableProps = getTablePropsByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
 
 		if (m_bEnableTableEditing.value_or(true) && tableProps.delimiter != 0)
 		{
 			m_ptBuf[nBuffer]->SetTableEditing(true);
-			m_ptBuf[nBuffer]->ShareTableProperties(*m_ptBuf[0]);
-			if (nBuffer == 0)
-			{
-				m_ptBuf[nBuffer]->SetAllowNewlinesInQuotes(tableProps.allowNewlinesInQuotes);
-				m_ptBuf[nBuffer]->SetFieldDelimiter(tableProps.delimiter);
-				m_ptBuf[nBuffer]->SetFieldEnclosure(tableProps.quote);
-			}
+			m_ptBuf[nBuffer]->ShareColumnWidths(*m_ptBuf[0]);
+			m_ptBuf[nBuffer]->SetAllowNewlinesInQuotes(tableProps.allowNewlinesInQuotes);
+			m_ptBuf[nBuffer]->SetFieldDelimiter(tableProps.delimiter);
+			m_ptBuf[nBuffer]->SetFieldEnclosure(tableProps.quote);
 			m_ptBuf[nBuffer]->JoinLinesForTableEditingMode();
 		}
 		else

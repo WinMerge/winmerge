@@ -1717,7 +1717,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
       ASSERT(blocks[nActualItem].m_nCharPos >= 0 &&
         blocks[nActualItem].m_nCharPos <= nLineLength);
 
-      if (nOffset + nCount - blocks[nActualItem].m_nCharPos > 0)
+      if (nOffset + nCount - blocks[nActualItem].m_nCharPos > 0 || nOffset + blocks[nActualItem].m_nCharPos < nLineLength)
         {
           int nOldActualOffset = nActualOffset;
           DrawLineHelper(ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
@@ -4282,6 +4282,10 @@ ClientToText (const CPoint & point)
           int j = 0;
           int nColumn = 0;
           int nColumnSumWidth = 0;
+          int nColumnCurPoint = INT_MAX;
+          int nPrevIndex = 0;
+          if (nPos < m_pTextBuffer->GetColumnWidth (0))
+            nColumnCurPoint = 0;
           while (nIndex < nLength)
             {
               if (i < static_cast<int>(anBreaks.size()) && nIndex == abs(anBreaks[i]))
@@ -4291,6 +4295,8 @@ ClientToText (const CPoint & point)
                       j = 0;
                       nColumnSumWidth += m_pTextBuffer->GetColumnWidth (nColumn++);
                       n = nColumnSumWidth;
+                      if (nColumnSumWidth <= nPos && nPos < nColumnSumWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                        nColumnCurPoint = nColumn;
                     }
                   else
                     {
@@ -4309,9 +4315,18 @@ ClientToText (const CPoint & point)
 
               if (n > nPos && j == nSubLineOffset)
                 break;
+              else if( nColumnCurPoint < nColumn && nPrevIndex != 0)
+                {
+                  nIndex = nPrevIndex;
+                  break;
+                }
+              else if ( j == nSubLineOffset)
+                nPrevIndex = nIndex;
 
               nIndex = pIterChar->next();
             }
+          if (nIndex == nLength)
+            nIndex = nPrevIndex;
         }
         break;
       default:
@@ -7242,13 +7257,13 @@ AutoFitColumn (int nColumn)
   int nLastColumn = 0;
   int nLastColumnWidth = 0;
   const int nTabSize = GetTabSize ();
-  const TCHAR sep = m_pTextBuffer->GetFieldDelimiter ();
-  const int quote = m_pTextBuffer->GetFieldEnclosure ();
   std::vector<int> aColumnWidths;
   const int nScreenChars = GetScreenChars ();
   const int nMaxColumnWidth = nScreenChars < 1 ? 1 : nScreenChars - 1;
   for (auto& pbuf : m_pTextBuffer->GetTextBufferList ())
   {
+      const TCHAR sep = pbuf->GetFieldDelimiter ();
+      const int quote = pbuf->GetFieldEnclosure ();
       const int nLineCount = pbuf->GetLineCount ();
       for (int i = 0; i < nLineCount; ++i)
         {

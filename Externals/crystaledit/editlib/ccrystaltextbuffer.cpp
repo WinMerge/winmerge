@@ -159,12 +159,12 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_bUndoGroup = m_bUndoBeginGroup = false;
 
   // Table Editing
-  m_pTableProps.reset(new TableProperties());
-  m_pTableProps->m_bAllowNewlinesInQuotes = true;
-  m_pTableProps->m_cFieldDelimiter = '\t';
-  m_pTableProps->m_cFieldEnclosure = '"';
-  m_pTableProps->m_textBufferList.push_back(this);
+  m_bAllowNewlinesInQuotes = true;
+  m_cFieldDelimiter = '\t';
+  m_cFieldEnclosure = '"';
   m_bTableEditing = false;
+  m_pSharedTableProps.reset(new SharedTableProperties());
+  m_pSharedTableProps->m_textBufferList.push_back(this);
 }
 
 CCrystalTextBuffer:: ~ CCrystalTextBuffer ()
@@ -1174,12 +1174,12 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
     }
 
   bool bInQuote = false;
-  if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+  if (m_bTableEditing && m_bAllowNewlinesInQuotes)
     {
       const TCHAR* pszLine = m_aLines[nLine].GetLine ();
       for (int j = 0; j < nPos; ++j)
         {
-          if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
+          if (pszLine[j] == m_cFieldEnclosure)
             bInQuote = !bInQuote;
         }
     }
@@ -1191,11 +1191,11 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       int haseol = 0;
       size_t nTextPos = 0;
       // advance to end of line
-      if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+      if (m_bTableEditing && m_bAllowNewlinesInQuotes)
         {
           while (nTextPos < cchText && (bInQuote || !LineInfo::IsEol(pszText[nTextPos])))
             {
-              if (pszText[nTextPos] == m_pTableProps->m_cFieldEnclosure)
+              if (pszText[nTextPos] == m_cFieldEnclosure)
                 bInQuote = !bInQuote;
               nTextPos++;
             }
@@ -2003,8 +2003,8 @@ void CCrystalTextBuffer::SetTabSize(int nTabSize)
 int CCrystalTextBuffer::GetColumnWidth (int nColumnIndex) const
 {
   ASSERT( nColumnIndex >= 0 );
-  if (nColumnIndex < static_cast<int>(m_pTableProps->m_aColumnWidths.size ()))
-    return m_pTableProps->m_aColumnWidths[nColumnIndex];
+  if (nColumnIndex < static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    return m_pSharedTableProps->m_aColumnWidths[nColumnIndex];
   else
     return m_nTabSize;
 }
@@ -2013,9 +2013,9 @@ void CCrystalTextBuffer::SetColumnWidth (int nColumnIndex, int nColumnWidth)
 {
   ASSERT( nColumnIndex >= 0 );
   ASSERT( nColumnWidth >= 0 );
-  if (nColumnIndex >= static_cast<int>(m_pTableProps->m_aColumnWidths.size ()))
-    m_pTableProps->m_aColumnWidths.resize (nColumnIndex + 1, m_nTabSize);
-  m_pTableProps->m_aColumnWidths[nColumnIndex] = nColumnWidth;
+  if (nColumnIndex >= static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    m_pSharedTableProps->m_aColumnWidths.resize (nColumnIndex + 1, m_nTabSize);
+  m_pSharedTableProps->m_aColumnWidths[nColumnIndex] = nColumnWidth;
 }
 
 int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
@@ -2027,9 +2027,9 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
   bool bInQuote = false;
   for (int j = 0; j < nLength; ++j)
     {
-      if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
+      if (pszLine[j] == m_cFieldEnclosure)
         bInQuote = !bInQuote;
-      else if (!bInQuote && pszLine[j] == m_pTableProps->m_cFieldDelimiter)
+      else if (!bInQuote && pszLine[j] == m_cFieldDelimiter)
         ++nColumnCount;
     }
   return nColumnCount;
@@ -2037,7 +2037,7 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
 
 void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
 {
-  if (!m_pTableProps->m_bAllowNewlinesInQuotes)
+  if (!m_bAllowNewlinesInQuotes)
       return;
   size_t nLineCount = m_aLines.size ();
   size_t j = 0;
@@ -2048,7 +2048,7 @@ void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
       const size_t nLineLength = m_aLines[i].FullLength ();
       for (; j < nLineLength; ++j)
         {
-          if (pszChars[j] == m_pTableProps->m_cFieldEnclosure)
+          if (pszChars[j] == m_cFieldEnclosure)
             bInQuote = !bInQuote;
         }
       m_aLines[i].m_dwRevisionNumber = 0;
@@ -2104,7 +2104,7 @@ void CCrystalTextBuffer::SplitLinesForTableEditingMode ()
 void CCrystalTextBuffer::
 InvalidateColumns ()
 {
-  for (auto& buf : m_pTableProps->m_textBufferList)
+  for (auto& buf : m_pSharedTableProps->m_textBufferList)
     {
       POSITION pos = buf->m_lpViews.GetHeadPosition ();
       while (pos != nullptr)

@@ -50,7 +50,7 @@ static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
 	return next > current ? next : next + 1;
 }
 
-void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int>* anBreaks, int& nBreaks)
+void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int>* anBreaks, int& nBreaks )
 {
 	// The parser must be attached to a view!
 	ASSERT( m_pTextView != nullptr );
@@ -80,6 +80,9 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 		for (int i = 0; i < nLineLength; )
 		{
 			TCHAR ch = szLine[i];
+			int previ = i;
+			int nCharCountPrev = nCharCount;
+
 			// remember position of whitespace for wrap
 			if (bBreakable)
 			{
@@ -95,7 +98,7 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 				nCharCount++;
 			}
 			// increment char counter (evtl. expand tab)
-			else if (sep != _T('\t') && ch == _T('\t'))
+			else if (ch == _T('\t'))
 			{
 				nLineCharCount ++;
 				nCharCount ++;
@@ -150,14 +153,25 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 #endif
 			}
 
+#ifndef _UNICODE
+			i++;
+			if (IsDBCSLeadByte((BYTE)ch))
+				i++;
+#else
 			i += U16_IS_SURROGATE(szLine[i]) ? 2 : 1;
+#endif
+			if (ch == '\r' && i < nLineLength && szLine[i] == '\n')
+				i++;
 
-			if ((!bInQuote && ch == sep))
+			int nLastBreakPosSaved = -1;
+
+			if (!bInQuote && ch == sep)
 			{
 				nLastCharBreakPos = nCharCount;
 				
 				if (anBreaks)
 					anBreaks->push_back(-i);
+				nLastBreakPosSaved = -i;
 
 				if (nBreaks > nMaxBreaks)
 					nMaxBreaks = nBreaks;
@@ -167,30 +181,56 @@ void CCrystalParser::WrapLine(int nLineIndex, int nMaxLineWidth, std::vector<int
 				nMaxLineWidth = m_pTextView->m_pTextBuffer->GetColumnWidth(++nColumn);
 			}
 			// wrap line
-			else if( nLineCharCount >= nMaxLineWidth ||
-			       ((ch == '\r' && (i > nLineLength - 1 || szLine[i] != '\n')) || ch == '\n'))
+			else if( nLineCharCount >= nMaxLineWidth )
 			{
 				// if no wrap position found, but line is to wide, 
 				// wrap at current position
-				if( nLastBreakPos == 0  || ch == '\r' || ch == '\n' )
+				if( nLastBreakPos == 0 || nLineCharCount > nMaxLineWidth )
 				{
-					nLastBreakPos = i;
-					nLastCharBreakPos = nCharCount;
+					if (nLineCharCount <= nMaxLineWidth || nCharCount - nCharCountPrev > nMaxLineWidth)
+					{
+						nLastBreakPos = i;
+						nLastCharBreakPos = nCharCount;
+						nLineCharCount = nCharCount - nLastCharBreakPos;
+					}
+					else
+					{
+						nLastBreakPos = previ;
+						nLastCharBreakPos = nCharCountPrev;
+						nLineCharCount = nCharCountPrev - nLastCharBreakPos;
+					}
+				}
+				else
+				{
+					nLineCharCount = nCharCount - nLastCharBreakPos;
 				}
 				if( anBreaks )
 					anBreaks->push_back(nLastBreakPos);
+				nLastBreakPosSaved = nLastBreakPos;
 				nBreaks++;
 
 				if (nBreaks > nMaxBreaks)
 					nMaxBreaks = nBreaks;
-				nLineCharCount = nCharCount - nLastCharBreakPos;
 				nLastBreakPos = 0;
+				bBreakable = false;
 			}
 
-#ifndef _UNICODE
-			if (IsDBCSLeadByte((BYTE)ch))
-				i++;
-#endif
+			if(ch == '\r' || ch == '\n')
+			{
+				if (nLastBreakPosSaved != i)
+				{
+					nLastCharBreakPos = nCharCount;
+					nLineCharCount = 0;
+					if (anBreaks)
+						anBreaks->push_back(i);
+					nBreaks++;
+
+					if (nBreaks > nMaxBreaks)
+						nMaxBreaks = nBreaks;
+					nLastBreakPos = 0;
+				}
+				bBreakable = false;
+			}
 		}
 		nBreaks = nMaxBreaks;
 	}

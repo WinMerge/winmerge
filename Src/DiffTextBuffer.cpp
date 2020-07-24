@@ -499,7 +499,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		else
 			sLine = _T("");
 
-		if (bTempFile && m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+		if (bTempFile && m_bTableEditing && m_bAllowNewlinesInQuotes)
 		{
 			strutils::replace(sLine, _T("\x1b"), _T("\x1b\x1b"));
 			strutils::replace(sLine, _T("\r"), _T("\x1br"));

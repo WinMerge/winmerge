@@ -787,17 +787,17 @@ CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchT
 	bool bInQuote = false;
 	nLastLineLength = 0;
 	nEol = 0;
-	if (m_bTableEditing && m_pTableProps->m_bAllowNewlinesInQuotes)
+	if (m_bTableEditing && m_bAllowNewlinesInQuotes)
 	{
 		const TCHAR* pszLine = m_aLines[ptStartPos.y].GetLine();
 		for (int j = 0; j < ptStartPos.x; ++j)
 		{
-			if (pszLine[j] == m_pTableProps->m_cFieldEnclosure)
+			if (pszLine[j] == m_cFieldEnclosure)
 				bInQuote = !bInQuote;
 		}
 		for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
 		{
-			if (pszText[nTextPos] == m_pTableProps->m_cFieldEnclosure)
+			if (pszText[nTextPos] == m_cFieldEnclosure)
 				bInQuote = !bInQuote;
 			if (!bInQuote && LineInfo::IsEol(pszText[nTextPos]))
 			{
