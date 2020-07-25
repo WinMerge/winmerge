@@ -784,11 +784,11 @@ OnNotifyLineHasBeenEdited(int nLine)
 void CGhostTextBuffer::
 CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
-	bool bInQuote = false;
 	nLastLineLength = 0;
 	nEol = 0;
 	if (m_bTableEditing && m_bAllowNewlinesInQuotes)
 	{
+		bool bInQuote = false;
 		const TCHAR* pszLine = m_aLines[ptStartPos.y].GetLine();
 		for (int j = 0; j < ptStartPos.x; ++j)
 		{

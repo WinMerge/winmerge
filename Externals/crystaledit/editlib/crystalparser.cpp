@@ -191,19 +191,14 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 					{
 						nLastBreakPos = i;
 						nLastCharBreakPos = nCharCount;
-						nLineCharCount = nCharCount - nLastCharBreakPos;
 					}
 					else
 					{
 						nLastBreakPos = previ;
 						nLastCharBreakPos = nCharCountPrev;
-						nLineCharCount = nCharCountPrev - nLastCharBreakPos;
 					}
 				}
-				else
-				{
-					nLineCharCount = nCharCount - nLastCharBreakPos;
-				}
+				nLineCharCount = nCharCount - nLastCharBreakPos;
 				if( anBreaks )
 					anBreaks->push_back(nLastBreakPos);
 				nLastBreakPosSaved = nLastBreakPos;

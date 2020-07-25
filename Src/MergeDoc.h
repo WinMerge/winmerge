@@ -301,6 +301,7 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	void SetTableProperties();
 
 // Implementation data
 protected:
