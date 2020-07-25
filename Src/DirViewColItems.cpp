@@ -54,7 +54,7 @@ const char *COLHDR_REOL_TYPE    = N_("Right EOL");
 const char *COLHDR_LENCODING    = N_("Left Encoding");
 const char *COLHDR_RENCODING    = N_("Right Encoding");
 const char *COLHDR_MENCODING    = N_("Middle Encoding");
-const char *COLHDR_NIDIFFS      = N_("Ignored Diff.");
+const char *COLHDR_NIDIFFS      = N_("Ignored Diff");
 const char *COLHDR_NSDIFFS      = N_("Differences");
 const char *COLHDR_BINARY       = NC_("DirView|ColumnHeader", "Binary");
 
