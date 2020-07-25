@@ -223,7 +223,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, size_t nLength,
 // Add characters to end of specified line
 // Specified line must not have any EOL characters
 void CCrystalTextBuffer::
-AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
+AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT(nLength != -1);
 
@@ -231,7 +231,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
     return;
 
   LineInfo & li = m_aLines[nLineIndex];
-  li.Append(pszChars, nLength);
+  li.Append(pszChars, nLength, bDetectEol);
 }
 
 /**
@@ -1219,7 +1219,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       // All succeeding lines are inserted
       if (nCurrentLine == nLine)
         {
-          AppendLine (nLine, pszText, nTextPos);
+          AppendLine (nLine, pszText, nTextPos, !bInQuote);
         }
       else
         {

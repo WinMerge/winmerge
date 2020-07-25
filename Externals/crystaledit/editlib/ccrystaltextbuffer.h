@@ -178,7 +178,7 @@ public :
 
     //  Helper methods
     void InsertLine (LPCTSTR pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
-    void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength);
+    void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength, bool bDetectEol = true);
     void MoveLine(int line1, int line2, int newline1);
     void SetEmptyLine(int nPosition, int nCount = 1);
 

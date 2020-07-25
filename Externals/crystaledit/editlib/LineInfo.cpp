@@ -112,7 +112,7 @@ void LineInfo::CreateEmpty()
  * @param [in] pszChars String to append to the line.
  * @param [in] nLength Length of the string to append.
  */
-void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
+void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT (nLength <= INT_MAX);		// assert "positive int"
   size_t nBufNeeded = m_nLength + m_nEolChars + nLength + 1;
@@ -131,6 +131,9 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
   memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (TCHAR) * nLength);
   m_nLength += nLength + m_nEolChars;
   m_pcLine[m_nLength] = '\0';
+
+  if (!bDetectEol)
+    return;
 
   // Did line gain eol ? (We asserted above that it had none at start)
    if (nLength > 1 && IsDosEol(&m_pcLine[m_nLength - 2]))
