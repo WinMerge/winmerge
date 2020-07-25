@@ -1692,7 +1692,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
             }
           else
             {
-              if (!bPrevZeroWidthBlock)
+              if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
                   COLORREF clrBkColor;
@@ -1714,31 +1714,32 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
 
       nActualItem = static_cast<int>(I);
 
-      ASSERT(blocks[nActualItem].m_nCharPos >= 0 &&
-        blocks[nActualItem].m_nCharPos <= nLineLength);
+      const TEXTBLOCK& blk = blocks[nActualItem];
+      ASSERT(blk.m_nCharPos >= 0 &&
+        blk.m_nCharPos <= nLineLength);
 
-      if (nOffset + nCount - blocks[nActualItem].m_nCharPos > 0 || nOffset + blocks[nActualItem].m_nCharPos < nLineLength)
+      if (nOffset + nCount - blk.m_nCharPos > 0)
         {
           int nOldActualOffset = nActualOffset;
-          DrawLineHelper(ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
-                  crText, crBkgnd, nLineIndex, blocks[nActualItem].m_nCharPos,
-                  nOffset + nCount - blocks[nActualItem].m_nCharPos,
-                  nActualOffset, CPoint(blocks[nActualItem].m_nCharPos, ptTextPos.y));
+          DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex,
+                  crText, crBkgnd, nLineIndex, blk.m_nCharPos,
+                  nOffset + nCount - blk.m_nCharPos,
+                  nActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y));
           if (bPrevZeroWidthBlock)
             {
               CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
-              DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blocks[nActualItem].m_nColorIndex, nBgColorIndexZeorWidthBlock,
-                  crText, crBkgnd, nLineIndex, blocks[nActualItem].m_nCharPos,
-                  nOffset + nCount - blocks[nActualItem].m_nCharPos,
-                  nOldActualOffset, CPoint(blocks[nActualItem].m_nCharPos, ptTextPos.y));
+              DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock,
+                  crText, crBkgnd, nLineIndex, blk.m_nCharPos,
+                  nOffset + nCount - blk.m_nCharPos,
+                  nOldActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y));
               bPrevZeroWidthBlock = false;
             }
         }
       else
         {
-          if (!bPrevZeroWidthBlock)
+          if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
             {
-              int nBgColorIndex = blocks[nActualItem].m_nBgColorIndex;
+              int nBgColorIndex = blk.m_nBgColorIndex;
               COLORREF clrBkColor;
               if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                 clrBkColor = GetColor(nBgColorIndex);
