@@ -185,7 +185,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 			{
 				// if no wrap position found, but line is to wide, 
 				// wrap at current position
-				if( nLastBreakPos == 0 || nLineCharCount > nMaxLineWidth )
+				if( nLastBreakPos == 0 || bBreakable)
 				{
 					if (nLineCharCount <= nMaxLineWidth || nCharCount - nCharCountPrev > nMaxLineWidth)
 					{
@@ -198,16 +198,20 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 						nLastCharBreakPos = nCharCountPrev;
 					}
 				}
-				nLineCharCount = nCharCount - nLastCharBreakPos;
-				if( anBreaks )
-					anBreaks->push_back(nLastBreakPos);
-				nLastBreakPosSaved = nLastBreakPos;
-				nBreaks++;
 
-				if (nBreaks > nMaxBreaks)
-					nMaxBreaks = nBreaks;
-				nLastBreakPos = 0;
-				bBreakable = false;
+				if (nLastBreakPos < nLineLength)
+				{
+					nLineCharCount = nCharCount - nLastCharBreakPos;
+					if (anBreaks)
+						anBreaks->push_back(nLastBreakPos);
+					nLastBreakPosSaved = nLastBreakPos;
+					nBreaks++;
+
+					if (nBreaks > nMaxBreaks)
+						nMaxBreaks = nBreaks;
+					nLastBreakPos = 0;
+					bBreakable = false;
+				}
 			}
 
 			if(ch == '\r' || ch == '\n')

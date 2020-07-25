@@ -3870,7 +3870,7 @@ void CMergeEditView::DocumentsLoaded()
 	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
 	{
 		SetTopMargin(true);
-		if (m_nThisPane == GetDocument()->m_nBuffers - 1)
+		if (m_nThisPane == GetDocument()->m_nBuffers - 1 && !m_bDetailView)
 			AutoFitColumn();
 	}
 	else
