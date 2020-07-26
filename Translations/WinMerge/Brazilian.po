@@ -1,4 +1,3 @@
-﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Wender Firmino <wender at pta.com.br>
@@ -13,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-01-15 20:39+0000\n"
-"PO-Revision-Date: 2020-06-07 16:11-0300\n"
+"PO-Revision-Date: 2020-07-26 17:08-0300\n"
 "Last-Translator: Felipe <felipefplzx@gmail.com>\n"
 "Language-Team: Felipe\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: pt_BR\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -602,7 +601,7 @@ msgid "&Text"
 msgstr "&Texto"
 
 msgid "&Table"
-msgstr ""
+msgstr "&Tabela"
 
 #, c-format
 msgid "&XML"
@@ -2120,28 +2119,28 @@ msgid "&Close"
 msgstr "&Fechar"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 msgid "File type"
-msgstr ""
+msgstr "Tipo de arquivo"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Valores Separados por &Delimitadores personalizados"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Caractere d&elimitador:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Permitir nov&as linhas em citações"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Caractere de &citação:"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2307,16 +2306,16 @@ msgstr ""
 "&Número dos threads de comparação (um valor negativo implica em adição do número de cores da CPU disponíveis):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo &CSV:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Valores Separados por Delimitadores personalizados"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -4284,4 +4283,3 @@ msgstr "Dist: %g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Página: %d/%d Zoom: %d%% %dx%dpx %dbpp"
-
