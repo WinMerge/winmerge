@@ -19,7 +19,7 @@
 COpenTableDlg::COpenTableDlg(CWnd* pParent /*= nullptr*/)
 : CTrDialog(COpenTableDlg::IDD, pParent)
 , m_nFileType(0)
-, m_sDelimiterChar(_T(","))
+, m_sDelimiterChar(_T(";"))
 , m_sQuoteChar(_T("\""))
 , m_bAllowNewlinesInQuotes(true)
 {

@@ -420,20 +420,12 @@ void CCrystalRendererDirectWrite::DrawBoundaryLine(int left, int right, int y)
 		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get());
 }
 
-void  CCrystalRendererDirectWrite::DrawHorizontalLine(int left, int right, int y)
+void  CCrystalRendererDirectWrite::DrawGridLine(int x1, int y1, int x2, int y2)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	m_renderTarget.DrawLine(
-		{ static_cast<float>(left), static_cast<float>(y) },
-		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get(), 0.1F);
-}
-
-void  CCrystalRendererDirectWrite::DrawVerticalLine(int x, int top, int bottom)
-{
-	m_pTempBrush->SetColor(ColorRefToColorF(0));
-	m_renderTarget.DrawLine(
-		{ static_cast<float>(x), static_cast<float>(top) },
-		{ static_cast<float>(x), static_cast<float>(bottom) }, m_pTempBrush.get(), 0.1F);
+		{ static_cast<float>(x1), static_cast<float>(y1) },
+		{ static_cast<float>(x2), static_cast<float>(y2) }, m_pTempBrush.get(), 0.1F);
 }
 
 void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int height)

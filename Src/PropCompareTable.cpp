@@ -21,7 +21,7 @@
 PropCompareTable::PropCompareTable(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareTable::IDD)
 , m_bAllowNewlinesInQuotes(true)
-, m_sDSVDelimiterChar(_T(","))
+, m_sDSVDelimiterChar(_T(";"))
 , m_sQuoteChar(_T("\""))
 {
 }

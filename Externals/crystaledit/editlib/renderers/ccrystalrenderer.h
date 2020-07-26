@@ -41,8 +41,7 @@ struct CCrystalRenderer
 	virtual void DrawMarginIcon(int x, int y, int iconIndex) = 0;
 	virtual void DrawMarginLineNumber(int x, int y, int number) = 0;
 	virtual void DrawBoundaryLine(int left, int right, int y) = 0;
-	virtual void DrawHorizontalLine(int left, int right, int y) = 0;
-	virtual void DrawVerticalLine(int x, int top, int bototm) = 0;
+	virtual void DrawGridLine(int x1, int y1, int x2, int y2) = 0;
 	virtual void DrawLineCursor(int left, int right, int y, int height) = 0;
 	virtual void DrawRuler(int left, int top, int width, int height, int charwidth, int offset) = 0;
 };

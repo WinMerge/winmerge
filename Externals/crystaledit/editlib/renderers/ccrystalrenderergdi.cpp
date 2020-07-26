@@ -176,19 +176,11 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 	m_pDC->SelectObject(pOldPen);
 }
 
-void CCrystalRendererGDI::DrawHorizontalLine(int left, int right, int y)
+void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2)
 {
 	CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
-	m_pDC->MoveTo(left, y);
-	m_pDC->LineTo(right, y);
-	m_pDC->SelectObject(pOldPen);
-}
-
-void CCrystalRendererGDI::DrawVerticalLine(int x, int top, int bottom)
-{
-	CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
-	m_pDC->MoveTo(x, top);
-	m_pDC->LineTo(x, bottom);
+	m_pDC->MoveTo(x1, y1);
+	m_pDC->LineTo(x2, y2);
 	m_pDC->SelectObject(pOldPen);
 }
 

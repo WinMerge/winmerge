@@ -2616,7 +2616,7 @@ OnDraw (CDC * pdc)
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
                 m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.bottom-1);
               if (m_pTextBuffer->GetTableEditing ())
-                m_pCrystalRenderer->DrawHorizontalLine (rcMargin.left, rcLine.right, rcMargin.bottom-1);
+                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.bottom-1, rcLine.right, rcMargin.bottom-1);
               if (nCurrentLine == m_ptCursorPos.y)
                 m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
                   nCursorY + nLineHeight - 1, 1);
@@ -2646,7 +2646,7 @@ OnDraw (CDC * pdc)
            x += m_pTextBuffer->GetColumnWidth (nColumn++) * nCharWidth)
         {
           if (x >= nMarginWidth && nColumn > 0)
-            m_pCrystalRenderer->DrawVerticalLine (x, rcClient.top, nLastLineBottom);
+            m_pCrystalRenderer->DrawGridLine (x, rcClient.top, x, nLastLineBottom);
         }
     }
 
