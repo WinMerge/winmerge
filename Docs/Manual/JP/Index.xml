@@ -14,6 +14,7 @@
 <!ENTITY Compare_dirs SYSTEM "Compare_dirs.xml">
 <!ENTITY Compare_files SYSTEM "Compare_files.xml">
 <!ENTITY Compare_bin SYSTEM "Compare_bin.xml">
+<!ENTITY Compare_table SYSTEM "Compare_table.xml">
 <!ENTITY Compare_images SYSTEM "Compare_images.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
@@ -117,6 +118,8 @@
   &Compare_files;
 
   &Compare_bin;
+
+  &Compare_table;
 
   &Compare_images;
 

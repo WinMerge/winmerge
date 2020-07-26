@@ -157,6 +157,14 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_dwCurrentRevisionNumber = 0;
   m_dwRevisionNumberOnSave = 0;
   m_bUndoGroup = m_bUndoBeginGroup = false;
+
+  // Table Editing
+  m_bAllowNewlinesInQuotes = true;
+  m_cFieldDelimiter = '\t';
+  m_cFieldEnclosure = '"';
+  m_bTableEditing = false;
+  m_pSharedTableProps.reset(new SharedTableProperties());
+  m_pSharedTableProps->m_textBufferList.push_back(this);
 }
 
 CCrystalTextBuffer:: ~ CCrystalTextBuffer ()
@@ -215,7 +223,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, size_t nLength,
 // Add characters to end of specified line
 // Specified line must not have any EOL characters
 void CCrystalTextBuffer::
-AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
+AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT(nLength != -1);
 
@@ -223,7 +231,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
     return;
 
   LineInfo & li = m_aLines[nLineIndex];
-  li.Append(pszChars, nLength);
+  li.Append(pszChars, nLength, bDetectEol);
 }
 
 /**
@@ -1165,6 +1173,16 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       sTail = StripTail(nLine, nRestCount);
     }
 
+  bool bInQuote = false;
+  if (m_bTableEditing && m_bAllowNewlinesInQuotes)
+    {
+      const TCHAR* pszLine = m_aLines[nLine].GetLine ();
+      for (int j = 0; j < nPos; ++j)
+        {
+          if (pszLine[j] == m_cFieldEnclosure)
+            bInQuote = !bInQuote;
+        }
+    }
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
@@ -1173,8 +1191,20 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       int haseol = 0;
       size_t nTextPos = 0;
       // advance to end of line
-      while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
-        nTextPos++;
+      if (m_bTableEditing && m_bAllowNewlinesInQuotes)
+        {
+          while (nTextPos < cchText && (bInQuote || !LineInfo::IsEol(pszText[nTextPos])))
+            {
+              if (pszText[nTextPos] == m_cFieldEnclosure)
+                bInQuote = !bInQuote;
+              nTextPos++;
+            }
+        }
+      else
+        {
+          while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
+            nTextPos++;
+        }
       // advance after EOL of line
       if (nTextPos < cchText)
         {
@@ -1189,7 +1219,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       // All succeeding lines are inserted
       if (nCurrentLine == nLine)
         {
-          AppendLine (nLine, pszText, nTextPos);
+          AppendLine (nLine, pszText, nTextPos, !bInQuote);
         }
       else
         {
@@ -1210,7 +1240,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
           else
             {
               nEndLine = nCurrentLine;
-              nEndChar = GetLineLength(nEndLine);
+              nEndChar = GetFullLineLength(nEndLine);
             }
           if (!sTail.IsEmpty())
             {
@@ -1968,5 +1998,122 @@ void CCrystalTextBuffer::SetTabSize(int nTabSize)
 {
   ASSERT( nTabSize >= 0 && nTabSize <= 64 );
   m_nTabSize = nTabSize;
+}
+
+int CCrystalTextBuffer::GetColumnWidth (int nColumnIndex) const
+{
+  ASSERT( nColumnIndex >= 0 );
+  if (nColumnIndex < static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    return m_pSharedTableProps->m_aColumnWidths[nColumnIndex];
+  else
+    return m_nTabSize;
+}
+
+void CCrystalTextBuffer::SetColumnWidth (int nColumnIndex, int nColumnWidth)
+{
+  ASSERT( nColumnIndex >= 0 );
+  ASSERT( nColumnWidth >= 0 );
+  if (nColumnIndex >= static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    m_pSharedTableProps->m_aColumnWidths.resize (nColumnIndex + 1, m_nTabSize);
+  m_pSharedTableProps->m_aColumnWidths[nColumnIndex] = nColumnWidth;
+}
+
+int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
+{
+  ASSERT( nLineIndex >= 0 );
+  int nColumnCount = 0;
+  const TCHAR* pszLine = GetLineChars (nLineIndex);
+  int nLength = GetLineLength (nLineIndex);
+  bool bInQuote = false;
+  for (int j = 0; j < nLength; ++j)
+    {
+      if (pszLine[j] == m_cFieldEnclosure)
+        bInQuote = !bInQuote;
+      else if (!bInQuote && pszLine[j] == m_cFieldDelimiter)
+        ++nColumnCount;
+    }
+  return nColumnCount;
+}
+
+void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
+{
+  if (!m_bAllowNewlinesInQuotes)
+      return;
+  size_t nLineCount = m_aLines.size ();
+  size_t j = 0;
+  bool bInQuote = false;
+  for (size_t i = 0; i < nLineCount;)
+    {
+      const TCHAR* pszChars = m_aLines[i].GetLine ();
+      const size_t nLineLength = m_aLines[i].FullLength ();
+      for (; j < nLineLength; ++j)
+        {
+          if (pszChars[j] == m_cFieldEnclosure)
+            bInQuote = !bInQuote;
+        }
+      m_aLines[i].m_dwRevisionNumber = 0;
+      if (bInQuote && i < nLineCount - 1)
+        {
+          std::basic_string<TCHAR> line(m_aLines[i].GetLine (), m_aLines[i].FullLength ());
+          line.append (m_aLines[i + 1].GetLine (), m_aLines[i + 1].FullLength ());
+          m_aLines[i].FreeBuffer ();
+          m_aLines[i].Create (line.c_str (), line.size ());
+          m_aLines[i + 1].FreeBuffer ();
+          m_aLines.erase (m_aLines.begin () + i + 1);
+          --nLineCount;
+          continue;
+        }
+      ++i;
+      j = 0;
+      bInQuote = false;
+    }
+  m_aUndoBuf.clear();
+  m_nUndoPosition = 0;
+  m_bModified = false;
+}
+
+void CCrystalTextBuffer::SplitLinesForTableEditingMode ()
+{
+  size_t nLineCount = m_aLines.size ();
+  for (size_t i = 0; i < nLineCount; ++i)
+    {
+      const TCHAR* pszChars = m_aLines[i].GetLine ();
+      const size_t nLineLength = m_aLines[i].FullLength ();
+      for (size_t j = 0; j < nLineLength; ++j)
+        {
+          int eols = 0;
+          if (pszChars[j] == '\r')
+            eols = (j < nLineLength - 1 && pszChars[j + 1] == '\n') ? 2 : 1;
+          else if (pszChars[j] == '\n')
+            eols = 1;
+          if (eols > 0)
+            {
+              LineInfo lineInfo;
+              lineInfo.Create (pszChars + j + eols, nLineLength - (j + eols));
+              m_aLines.insert (m_aLines.begin () + i + 1, lineInfo);
+              m_aLines[i].DeleteEnd (j + eols);
+              m_aLines[i].m_dwRevisionNumber = 0;
+            }
+        }
+    }
+  m_aUndoBuf.clear ();
+  m_nUndoPosition = 0;
+  m_bModified = false;
+}
+
+void CCrystalTextBuffer::
+InvalidateColumns ()
+{
+  for (auto& buf : m_pSharedTableProps->m_textBufferList)
+    {
+      POSITION pos = buf->m_lpViews.GetHeadPosition ();
+      while (pos != nullptr)
+        {
+          POSITION thispos = pos;
+          CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
+          pView->InvalidateScreenRect ();
+          pView->UpdateView (nullptr, nullptr, UPDATE_HORZRANGE | UPDATE_VERTRANGE, -1);
+        }
+    }
 }
 

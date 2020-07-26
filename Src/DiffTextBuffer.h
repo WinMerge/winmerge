@@ -22,6 +22,7 @@ private :
 	CMergeDoc * m_pOwnerDoc; /**< Merge document owning this buffer. */
 	int m_nThisPane; /**< Left/Right side */
 	String m_strTempPath; /**< Temporary files folder. */
+	String m_strTempFileName; /**< Temporary file name. */
 	int m_unpackerSubcode; /**< Plugin information. */
 	bool m_bMixedEOL; /**< EOL style of this buffer is mixed? */
 
@@ -42,6 +43,7 @@ public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
 	void SetTempPath(const String &path);
+	String GetTempFileName() const { return m_strTempFileName; }
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,

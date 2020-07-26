@@ -126,6 +126,7 @@ public:
 
 private:
 	void RecomputeRealityMapping();
+	void CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int& nLastLineLength, int& nEol);
 	/** For debugging purpose */
 	void checkFlagsFromReality() const;
 

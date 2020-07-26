@@ -89,7 +89,7 @@ struct CThreadArchiveOpen
 {
 	UString Path;
 	CInFileStream* File;
-	NFile::NFind::CFileInfo FileInfo;
+	NFile::NFind::CFileInfo* FileInfo;
 	IInArchive* Archive;
 	CMyComPtr<IProgress> OpenCallback;
 	COpenArchiveCallback* OpenCallbackSpec;
@@ -99,7 +99,7 @@ struct CThreadArchiveOpen
 	{
 		CProgressCloser closer(OpenCallbackSpec->ProgressDialog);
 
-		if COMPLAIN(!NFile::NFind::CFindFile().FindFirst(Path, FileInfo))
+		if COMPLAIN(!NFile::NFind::CFindFile().FindFirst(Path, *FileInfo))
 		{
 			Result = ERROR_FILE_NOT_FOUND;
 			return;
@@ -150,7 +150,7 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 	(file = new CInFileStream)->AddRef();
 	t.File = file;
 	t.Path = path;
-	t.FileInfo = fileInfo;
+	t.FileInfo = &fileInfo;
 	t.Archive = archive;
 
 	UString progressTitle = LangString(IDS_OPENNING);

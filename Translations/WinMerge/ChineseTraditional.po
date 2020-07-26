@@ -607,6 +607,9 @@ msgstr "重新比較"
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -2125,6 +2128,30 @@ msgstr "測試(&T)"
 msgid "&Close"
 msgstr "關閉(&C)"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "使用自訂文字色彩(&U)"
@@ -2283,6 +2310,18 @@ msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n比較進程數(&N)(負數表示附加可用的CPU內核數量)："
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

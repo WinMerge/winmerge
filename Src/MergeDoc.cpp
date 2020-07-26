@@ -31,6 +31,7 @@
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
+#include "OpenTableDlg.h"
 #include "DiffList.h"
 #include "paths.h"
 #include "OptionsMgr.h"
@@ -103,6 +104,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_TEXT, OnFileRecompareAsText)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
+	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
@@ -2594,6 +2597,78 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	return loadSuccess;
 }
 
+void CMergeDoc::SetTableProperties()
+{
+	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
+	auto getTablePropsByFileName = [](const String& path, const std::optional<bool>& enableTableEditing)-> TableProps
+	{
+		const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
+		FileFilterHelper filterCSV, filterTSV, filterDSV;
+		bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
+		const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+		if (!csvFilePattern.empty())
+		{
+			filterCSV.UseMask(true);
+			filterCSV.SetMask(csvFilePattern);
+			if (filterCSV.includeFile(path))
+				return { true, ',', quote, allowNewlineIQuotes };
+		}
+		const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
+		if (!tsvFilePattern.empty())
+		{
+			filterTSV.UseMask(true);
+			filterTSV.SetMask(tsvFilePattern);
+			if (filterTSV.includeFile(path))
+				return { true, '\t', quote, allowNewlineIQuotes };
+		}
+		const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
+		if (!dsvFilePattern.empty())
+		{
+			filterDSV.UseMask(true);
+			filterDSV.SetMask(dsvFilePattern);
+			if (filterDSV.includeFile(path))
+				return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+		}
+		if (enableTableEditing.value_or(false))
+		{
+			COpenTableDlg dlg;
+			if (dlg.DoModal() == IDOK)
+				return { true, dlg.m_sDelimiterChar.c_str()[0], dlg.m_sQuoteChar.c_str()[0], dlg.m_bAllowNewlinesInQuotes };
+		}
+		return { false, 0, 0, false };
+	};
+
+	TableProps tableProps[3] = {};
+	int nTableFileIndex = -1;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (nBuffer == 0 ||
+			paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
+			tableProps[nBuffer] = getTablePropsByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
+		else
+			tableProps[nBuffer] = tableProps[nBuffer - 1];
+		if (tableProps[nBuffer].istable)
+			nTableFileIndex = nBuffer;
+	}
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (m_bEnableTableEditing.value_or(true) && nTableFileIndex >= 0)
+		{
+			int i = tableProps[nBuffer].istable ? nBuffer : nTableFileIndex;
+			m_ptBuf[nBuffer]->SetTableEditing(true);
+			m_ptBuf[nBuffer]->ShareColumnWidths(*m_ptBuf[0]);
+			m_ptBuf[nBuffer]->SetAllowNewlinesInQuotes(tableProps[i].allowNewlinesInQuotes);
+			m_ptBuf[nBuffer]->SetFieldDelimiter(tableProps[i].delimiter);
+			m_ptBuf[nBuffer]->SetFieldEnclosure(tableProps[i].quote);
+			m_ptBuf[nBuffer]->JoinLinesForTableEditingMode();
+		}
+		else
+		{
+			m_ptBuf[nBuffer]->SetTableEditing(false);
+		}
+	}
+}
+
 /**
  * @brief Loads files and does initial rescan.
  * @param fileloc [in] File to open to left/middle/right side (path & encoding info)
@@ -2646,6 +2721,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
 	}
+
+	SetTableProperties();
+
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 
 	// scratchpad : we don't call LoadFile, so
@@ -3198,6 +3276,7 @@ void CMergeDoc::OnOK()
 
 void CMergeDoc::OnFileRecompareAsText()
 {
+	m_bEnableTableEditing = false;
 	PackingInfo infoUnpacker;
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();
@@ -3205,11 +3284,26 @@ void CMergeDoc::OnFileRecompareAsText()
 
 void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML);
+	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML ||
+		m_ptBuf[0]->GetTableEditing());
+}
+
+void CMergeDoc::OnFileRecompareAsTable()
+{
+	m_bEnableTableEditing = true;
+	PackingInfo infoUnpacker;
+	SetUnpacker(&infoUnpacker);
+	OnFileReload();
+}
+
+void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
 }
 
 void CMergeDoc::OnFileRecompareAsXML()
 {
+	m_bEnableTableEditing = false;
 	PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();

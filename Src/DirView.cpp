@@ -1454,12 +1454,12 @@ void CDirView::OpenSelectionAs(UINT id)
 	CDirDoc * pDoc = GetDocument();
 	const CDiffContext& ctxt = GetDiffContext();
 
-	// First, figure out what was selected (store into pos1 & pos2)
-	DIFFITEM *pos1 = nullptr, *pos2 = nullptr;
+	// First, figure out what was selected (store into pos1 & pos2 & pos3)
+	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
-		// Must have 1 or 2 items selected
+		// Must have 1 or 2 or 3 items selected
 		// Not valid action
 		return;
 	}
@@ -1467,7 +1467,12 @@ void CDirView::OpenSelectionAs(UINT id)
 	pos1 = GetItemKey(sel1);
 	ASSERT(pos1);
 	if (sel2 != -1)
+	{
 		pos2 = GetItemKey(sel2);
+		ASSERT(pos2 != nullptr);
+		if (sel3 != -1)
+			pos3 = GetItemKey(sel3);
+	}
 
 	// Now handle the various cases of what was selected
 
@@ -1484,9 +1489,12 @@ void CDirView::OpenSelectionAs(UINT id)
 	int nPane[3];
 	String errmsg;
 	bool success;
-	if (pos2)
+	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
 				paths, sel1, sel2, isdir, nPane, errmsg, false);
+	else if (pos2 && pos3)
+		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
+				paths, sel1, sel2, sel3, isdir, nPane, errmsg, false);
 	else
 	{
 		// Only one item selected, so perform diff on its sides

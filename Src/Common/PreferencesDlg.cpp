@@ -54,6 +54,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageBackups(regOptions)
 , m_pageShell(regOptions)
 , m_pageCompareFolder(regOptions)
+, m_pageCompareTable(regOptions)
 , m_pageCompareBinary(regOptions)
 , m_pageCompareImage(regOptions)
 {
@@ -100,6 +101,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageGeneral, IDS_OPTIONSPG_GENERAL);
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_GENCOMPARE);
 	AddPage(&m_pageCompareFolder, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_FOLDERCOMPARE);
+	AddPage(&m_pageCompareTable, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_TABLECOMPARE);
 	AddPage(&m_pageCompareBinary, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_BINARYCOMPARE);
 	AddPage(&m_pageCompareImage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_IMAGECOMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
@@ -270,6 +272,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageSystem.ReadOptions();
 	m_pageCompare.ReadOptions();
 	m_pageCompareFolder.ReadOptions();
+	m_pageCompareTable.ReadOptions();
 	m_pageCompareBinary.ReadOptions();
 	m_pageCompareImage.ReadOptions();
 	m_pageEditor.ReadOptions();
@@ -290,6 +293,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageSystem, false);
 		SafeUpdatePage(&m_pageCompare, false);
 		SafeUpdatePage(&m_pageCompareFolder, false);
+		SafeUpdatePage(&m_pageCompareTable, false);
 		SafeUpdatePage(&m_pageCompareBinary, false);
 		SafeUpdatePage(&m_pageCompareImage, false);
 		SafeUpdatePage(&m_pageEditor, false);
@@ -309,6 +313,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSystem.WriteOptions();
 	m_pageCompare.WriteOptions();
 	m_pageCompareFolder.WriteOptions();
+	m_pageCompareTable.WriteOptions();
 	m_pageCompareBinary.WriteOptions();
 	m_pageCompareImage.WriteOptions();
 	m_pageEditor.WriteOptions();

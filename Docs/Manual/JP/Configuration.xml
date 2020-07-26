@@ -970,19 +970,49 @@
   <section id="Configuration_compare_binary">
     <title>比較/バイナリ ページ</title>
     <section>
-      <title>Binary File Patterns<indexterm>
+      <title>バイナリファイルとして扱うパターン<indexterm>
           <primary>binary files</primary>
         </indexterm></title>
       <para>TBD</para>
     </section>
   </section>
 
-  <section id="Configuration_compare_image">
-    <title>比較/画像 ページ</title>
+  <section id="Configuration_compare_table">
+    <title>比較/テーブル ページ<indexterm>
+          <primary>table files</primary>
+        </indexterm></title>
     <section>
-      <title>Image File Patterns<indexterm>
+      <title>CSV ファイルとして扱うパターン</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>TSV ファイルとして扱うパターン</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>ユーザ指定文字区切り値</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>引用符内の改行文字を値として扱う</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>引用符文字</title>
+      <para>TBD</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>比較/画像 ページ<indexterm>
           <primary>image files</primary>
         </indexterm></title>
+    <section>
+      <title>画像ファイルとして扱うパターン</title>
       <para>TBD</para>
     </section>
   </section>

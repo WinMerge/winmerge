@@ -51,3 +51,4 @@ Translations/WinMerge/TranslationsStatus.wiki
 Translations/WinMerge/TranslationsStatus.xml
 Docs/Manual/Tools/ReadMe_ENG.html
 *.orig
+*.asm

@@ -14,6 +14,7 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <optional>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "TempFile.h"
@@ -300,6 +301,7 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	void SetTableProperties();
 
 // Implementation data
 protected:
@@ -321,6 +323,7 @@ protected:
 	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
+	std::optional<bool> m_bEnableTableEditing;
 // friend access
 	friend class RescanSuppress;
 
@@ -350,8 +353,10 @@ protected:
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
+	afx_msg void OnFileRecompareAsTable();
 	afx_msg void OnFileRecompareAsXML();
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
 	//}}AFX_MSG

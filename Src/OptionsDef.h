@@ -222,8 +222,16 @@ extern const String OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE OP("Settings/Ima
 extern const String OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO OP("Settings/ImageVectorImageZoomRatio");
 extern const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP OP("Settings/EnableImageCompareInFolderCompare");
 
-// Image Binary options
+// Binary options
 extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");
+
+// Table options
+extern const String OPT_CMP_CSV_FILEPATTERNS OP("Settings/CSVFilePatternsExperimental");
+extern const String OPT_CMP_TSV_FILEPATTERNS OP("Settings/TSVFilePatternsExperimental");
+extern const String OPT_CMP_DSV_FILEPATTERNS OP("Settings/DSVFilePatterns");
+extern const String OPT_CMP_DSV_DELIM_CHAR   OP("Settings/DSVDelimiterCharacter");
+extern const String OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES OP("Settings/TableAllowNewlinesInQuotes");
+extern const String OPT_CMP_TBL_QUOTE_CHAR   OP("Settings/TableQuoteCharacter");
 
 /// Are regular expression linefilters enabled?
 extern const String OPT_LINEFILTER_ENABLED OP("Settings/IgnoreRegExp");

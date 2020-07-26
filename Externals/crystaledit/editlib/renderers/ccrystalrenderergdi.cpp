@@ -13,7 +13,10 @@ CImageList* CCrystalRendererGDI::s_pIcons = nullptr;
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalRendererGDI construction/destruction
 
-CCrystalRendererGDI::CCrystalRendererGDI() : m_pDC(nullptr), m_lfBaseFont{}
+CCrystalRendererGDI::CCrystalRendererGDI() :
+  m_pDC(nullptr)
+, m_lfBaseFont{}
+, m_gridPen(PS_SOLID, 0, RGB(0xC0, 0xC0, 0xC0))
 {
 }
 
@@ -28,10 +31,12 @@ void CCrystalRendererGDI::BindDC(const CDC& dc, const CRect& rc)
 
 void CCrystalRendererGDI::BeginDraw()
 {
+	m_pDC->SaveDC();
 }
 
 bool CCrystalRendererGDI::EndDraw()
 {
+	m_pDC->RestoreDC(-1);
 	return true;
 }
 
@@ -111,16 +116,16 @@ void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, COLORREF color)
 
 void CCrystalRendererGDI::DrawRoundRectangle(int left, int top, int right, int bottom, int width, int height)
 {
-	HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
-	hBrush = ::SelectObject(m_pDC->m_hDC, hBrush);
-	HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(m_pDC->m_hDC));
-	hPen = ::SelectObject(m_pDC->m_hDC, hPen);
+	CBrush brush;
+	brush.CreateStockObject(NULL_BRUSH);
+	CBrush* pOldBrush = m_pDC->SelectObject(&brush);
+	CPen pen(PS_SOLID, 1, m_pDC->GetTextColor());
+	CPen *pOldPen = m_pDC->SelectObject(&pen);
 
 	m_pDC->RoundRect(left, top, right, bottom, width, height);
 
-	hPen = ::SelectObject(m_pDC->m_hDC, hPen);
-	::DeleteObject(hPen);
-	hBrush = ::SelectObject(m_pDC->m_hDC, hBrush);
+	m_pDC->SelectObject(pOldPen);
+	m_pDC->SelectObject(pOldBrush);
 }
 
 void CCrystalRendererGDI::PushAxisAlignedClip(const CRect & rc)
@@ -171,6 +176,37 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 	m_pDC->SelectObject(pOldPen);
 }
 
+void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2)
+{
+	if (x1 == x2 || y1 == y2)
+	{
+		CDC  dcMem;
+		dcMem.CreateCompatibleDC(m_pDC);
+		CBitmap bitmap;
+		if (x1 == x2)
+			bitmap.CreateCompatibleBitmap(m_pDC, 1, y2 - y1);
+		else
+			bitmap.CreateCompatibleBitmap(m_pDC, x2 - x1, 1);
+		CBitmap *pOldBitmap = dcMem.SelectObject(&bitmap);
+		dcMem.SetBkColor(RGB(0, 255, 0));
+		BLENDFUNCTION blend = { 0 };
+		blend.BlendOp = AC_SRC_OVER;
+		blend.SourceConstantAlpha = 24;
+		if (x1 == x2)
+			m_pDC->AlphaBlend(x1, y1, 1, y2 - y1, &dcMem, 0, 0, 1, y2 - y1, blend);
+		else
+			m_pDC->AlphaBlend(x1, y1, x2 - x1, 1, &dcMem, 0, 0, x2 - x1, 1, blend);
+		dcMem.SelectObject(pOldBitmap);
+	}
+	else
+	{
+		CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
+		m_pDC->MoveTo(x1, y1);
+		m_pDC->LineTo(x2, y2);
+		m_pDC->SelectObject(pOldPen);
+	}
+}
+
 void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 {
 	CDC  dcMem;
@@ -189,5 +225,42 @@ void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 void CCrystalRendererGDI::DrawText(int x, int y, const CRect &rc, const TCHAR *text, size_t len, const int nWidths[])
 {
 	m_pDC->ExtTextOut(x, y, ETO_CLIPPED | ETO_OPAQUE, &rc, text, static_cast<UINT>(len), const_cast<int *>(nWidths));
+}
+
+void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, int charwidth, int offset)
+{
+	CFont *pOldFont = m_pDC->SelectObject(m_apFonts[0].get());
+	UINT uiOldAlign = m_pDC->SetTextAlign(TA_LEFT);
+	CPen *pOldPen = (CPen *)m_pDC->SelectStockObject(BLACK_PEN);
+	int bottom = top + height - 1;
+	int prev10 = (offset / 10) * 10;
+	TCHAR szNumbers[32];
+	int len = wsprintf(szNumbers, _T("%d"), prev10);
+	if ((offset % 10) != 0 && offset - prev10 < len)
+		m_pDC->TextOut(left, bottom - height, szNumbers + (offset - prev10), len - (offset - prev10));
+	for (int i = 0; i < width / charwidth; ++i)
+	{
+		int x = left + i * charwidth;
+		if (((i + offset) % 10) == 0)
+		{
+			len = wsprintf(szNumbers, _T("%d"), offset + i);
+			m_pDC->TextOut(x, bottom - height + 1, szNumbers, len);
+		}
+		float tickscale = [](int i, int offset) {
+			if (((i + offset) % 10) == 0)
+				return 0.6f;
+			else if (((i + offset) % 5) == 0)
+				return 0.4f;
+			else
+				return 0.2f;
+		}(i, offset);
+		m_pDC->MoveTo(x, bottom - static_cast<int>(height * tickscale));
+		m_pDC->LineTo(x, bottom);
+	}
+	m_pDC->MoveTo(left, bottom);
+	m_pDC->LineTo(left + width, bottom);
+	m_pDC->SelectObject(pOldPen);
+	m_pDC->SetTextAlign(uiOldAlign);
+	m_pDC->SelectObject(pOldFont);
 }
 

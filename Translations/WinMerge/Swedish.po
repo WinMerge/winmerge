@@ -604,6 +604,9 @@ msgstr "Återjämför som"
 msgid "&Text"
 msgstr "Text"
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "XML"
@@ -2117,6 +2120,30 @@ msgstr "Testa"
 msgid "&Close"
 msgstr "Stäng"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Använd anpassade TextFärger"
@@ -2275,6 +2302,18 @@ msgstr "Högsta Binär JämförelseStorlek (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nAntal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

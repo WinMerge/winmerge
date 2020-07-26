@@ -35,7 +35,7 @@ END
 2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
-    "#include ""../Externals/crystaledit/editlib/ditcmd.h""\r\n"
+    "#include ""../Externals/crystaledit/editlib/editcmd.h""\r\n"
     "#define NC_(msgctxt, msgid) ""\\x01""msgctxt##msgid\r\n"
     "\0"
 END
@@ -444,6 +444,7 @@ BEGIN
         POPUP "Recompare As"
         BEGIN
             MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+            MENUITEM "&Table",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
@@ -1682,6 +1683,26 @@ BEGIN
     PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
 END
 
+IDD_OPEN_TABLE DIALOGEX 0, 0, 239, 151
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Table"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "File type",IDC_STATIC,6,6,222,78
+    CONTROL         "&CSV",IDC_COMPARETABLE_CSV,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,18,210,10
+    CONTROL         "&TSV",IDC_COMPARETABLE_TSV,"Button",BS_AUTORADIOBUTTON,12,30,210,10
+    CONTROL         "Custom &Delimiter-Separated Values",IDC_COMPARETABLE_DSV,
+                    "Button",BS_AUTORADIOBUTTON,12,42,210,10
+    LTEXT           "D&elimiter character:",IDC_STATIC,24,54,198,10
+    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,24,66,30,14,ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,90,222,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,102,222,10
+    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,114,30,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,93,126,66,18
+    PUSHBUTTON      "Cancel",IDCANCEL,165,126,66,18
+END
+
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 255, 157
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
@@ -1790,6 +1811,27 @@ BEGIN
     LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
     EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,186,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,208,70,14
+END
+
+IDD_PROPPAGE_COMPARE_TABLE DIALOGEX 0, 0, 255, 205
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Table"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,200,10
+    EDITTEXT        IDC_COMPARETABLE_CSV_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
+    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,200,10
+    EDITTEXT        IDC_COMPARETABLE_TSV_PATTERNS,7,48,240,14,ES_AUTOHSCROLL
+    GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,66,240,72
+    LTEXT           "File Patterns:",IDC_STATIC,12,78,200,10
+    EDITTEXT        IDC_COMPARETABLE_DSV_PATTERNS,12,90,228,14,ES_AUTOHSCROLL
+    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,200,10
+    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,120,30,14,ES_AUTOHSCROLL
+    CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,144,240,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,156,200,10
+    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,168,30,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_COMPARETABLE_DEFAULTS,7,198,70,14
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 205
@@ -2134,6 +2176,7 @@ BEGIN
     IDS_OPTIONSPG_FOLDERCOMPARE NC_("Options dialog|Categories", "Folder")
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
+    IDS_OPTIONSPG_TABLECOMPARE "Table"
 END
 
 // WINMERGE CUSTOM STRINGS

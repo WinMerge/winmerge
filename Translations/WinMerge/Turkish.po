@@ -469,6 +469,9 @@ msgstr "Farklı Karşılaştır"
 msgid "&Text"
 msgstr "Me&tin"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1629,6 +1632,30 @@ msgstr "&Sına"
 msgid "&Close"
 msgstr "&Kapat"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "Özel metin renkleri k&ullanılsın"
 
@@ -1752,6 +1779,18 @@ msgstr "&Binary karşılaştırma sınırı (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nKarşılaştırma işlemleri&nin sayısı (eksi değerler kullanılabilecek işlemci çekirdeklerine eklenir):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
