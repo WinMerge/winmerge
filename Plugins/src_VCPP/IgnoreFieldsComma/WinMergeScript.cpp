@@ -215,6 +215,10 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	// change this to change the delimiter between fields
 	const WCHAR delimiter = L',';
 
+	const WCHAR quote = RegReadString(_T("Software\\Thingamahoochie\\WinMerge\\Settings"), _T("TableQuoteCharacter"), _T("\""))[0];
+	const bool allowNewlinesInQuotes =
+		_ttoi(RegReadString(_T("Software\\Thingamahoochie\\WinMerge\\Settings"), _T("TableAllowNewlinesInQuotes"), _T("1"))) != 0;
+
 	// order of the column in the current line
 	int iColumn = 0;
 	// next excluded column range in the current line
@@ -222,14 +226,29 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 
 	for (columnBegin = pBeginText; columnBegin < pEndText ; )
 	{
-
+		bool inQuote = false;
 		// search for the end of the column (columnEnd = first excluded character)
 		WCHAR * columnEnd = columnBegin;
-		while (columnEnd < pEndText &&
-				*columnEnd != L'\n' &&
-				*columnEnd != L'\r' &&
-				*columnEnd != delimiter)
-			columnEnd ++;
+		if (allowNewlinesInQuotes)
+		{
+			while (columnEnd < pEndText &&
+				!(!inQuote && (*columnEnd == L'\n' || *columnEnd == L'\r' || *columnEnd == delimiter)))
+			{
+				if (*columnEnd == quote)
+					inQuote = !inQuote;
+				columnEnd++;
+			}
+		}
+		else
+		{
+			while (columnEnd < pEndText &&
+				!(*columnEnd == L'\n' || *columnEnd == L'\r' || (!inQuote && *columnEnd == delimiter)))
+			{
+				if (*columnEnd == quote)
+					inQuote = !inQuote;
+				columnEnd++;
+			}
+		}
 
 		// determine the status of this column
 		if (nextExcludedRange < nExcludedRanges && iColumn > aExcludedRanges[nextExcludedRange][1])

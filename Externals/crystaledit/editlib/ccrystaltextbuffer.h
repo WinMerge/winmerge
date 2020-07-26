@@ -164,9 +164,21 @@ public :
     //  Connected views
     CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
 
+    // Table Editing
+    bool m_bTableEditing;
+    TCHAR m_cFieldDelimiter;
+    TCHAR m_cFieldEnclosure;
+    bool m_bAllowNewlinesInQuotes;
+    struct SharedTableProperties
+    {
+        std::vector<int> m_aColumnWidths;
+        std::vector<CCrystalTextBuffer*> m_textBufferList;
+    };
+    std::shared_ptr<SharedTableProperties> m_pSharedTableProps;
+
     //  Helper methods
     void InsertLine (LPCTSTR pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
-    void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength);
+    void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength, bool bDetectEol = true);
     void MoveLine(int line1, int line2, int newline1);
     void SetEmptyLine(int nPosition, int nCount = 1);
 
@@ -292,6 +304,30 @@ public :
     // Tabbing
     int  GetTabSize() const;
     void SetTabSize(int nTabSize);
+
+    // Table Editing
+    void ShareColumnWidths (CCrystalTextBuffer& other)
+    {
+      if (this == &other)
+        return;
+      m_pSharedTableProps = other.m_pSharedTableProps;
+      m_pSharedTableProps->m_textBufferList.push_back (this);
+    }
+    int  GetColumnWidth (int nColumnIndex) const;
+    void SetColumnWidth (int nColumnIndex, int nColumnWidth);
+    int  GetColumnCount (int nLineIndex) const;
+    void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
+    TCHAR GetAllowNewlinesInQuotes () const { return m_bAllowNewlinesInQuotes; }
+    void SetFieldDelimiter (TCHAR cFieldDelimiter) { m_cFieldDelimiter = cFieldDelimiter; }
+    TCHAR GetFieldDelimiter () const { return m_cFieldDelimiter; }
+    void SetFieldEnclosure (TCHAR cFieldEnclosure) { m_cFieldEnclosure = cFieldEnclosure; }
+    TCHAR GetFieldEnclosure () const { return m_cFieldEnclosure; }
+    bool GetTableEditing () const { return m_bTableEditing; }
+    void SetTableEditing (bool bTableEditing) { m_bTableEditing = bTableEditing; }
+    void JoinLinesForTableEditingMode ();
+    void SplitLinesForTableEditingMode ();
+    void InvalidateColumns ();
+    std::vector<CCrystalTextBuffer*> GetTextBufferList () const { return m_pSharedTableProps->m_textBufferList; }
 
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0) const;

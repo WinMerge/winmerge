@@ -112,6 +112,7 @@
 #define ID_VIEW_TOGGLE_SRC_HDR          21401
 #define ID_VIEW_SELMARGIN               21402
 #define ID_VIEW_WORDWRAP                21403
+#define ID_VIEW_TOPMARGIN               21404
 #define ID_SOURCE_PLAIN                 21500
 #define ID_SOURCE_ASP                   21501
 #define ID_SOURCE_BASIC                 21502

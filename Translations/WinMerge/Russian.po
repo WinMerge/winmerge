@@ -471,6 +471,9 @@ msgstr "Пересравнить как"
 msgid "&Text"
 msgstr "Текст"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1631,6 +1634,30 @@ msgstr "&Тестировать"
 msgid "&Close"
 msgstr "&Закрыть"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "Использовать особые цвета"
 
@@ -1754,6 +1781,18 @@ msgstr "Ограничение двоичного сравнения (МБ):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

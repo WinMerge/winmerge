@@ -3867,6 +3867,17 @@ void CMergeEditView::OnHelp()
  */
 void CMergeEditView::DocumentsLoaded()
 {
+	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
+	{
+		SetTopMargin(true);
+		if (m_nThisPane == GetDocument()->m_nBuffers - 1 && !m_bDetailView)
+			AutoFitColumn();
+	}
+	else
+	{
+		SetTopMargin(false);
+	}
+
 	// Enable/disable automatic rescan (rescanning after edit)
 	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
 

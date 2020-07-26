@@ -602,6 +602,9 @@ msgstr "Voltar a Comparar Como"
 msgid "&Text"
 msgstr "&Texto"
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -2117,6 +2120,30 @@ msgstr "Testar"
 msgid "&Close"
 msgstr "Fechar"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Utilizar cores de texto personalizadas"
@@ -2275,6 +2302,18 @@ msgstr "&Limite da comparação binária (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n&Número de tópicos de comparação (um valor negativo implica a adição do número de núcleos de CPU disponíveis)"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

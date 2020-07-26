@@ -470,6 +470,9 @@ msgstr "Recomparar como"
 msgid "&Text"
 msgstr "&Texto"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1644,6 +1647,30 @@ msgstr "&Probar"
 msgid "&Close"
 msgstr "&Cerrar"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "&Usar colores personalizados para el texto"
 
@@ -1769,6 +1796,18 @@ msgid ""
 "\n"
 "&Number of compare threads (a negative value implies addition of the number "
 "of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"

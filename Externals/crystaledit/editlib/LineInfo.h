@@ -28,7 +28,7 @@ public:
     void FreeBuffer();
     void Create(LPCTSTR pszLine, size_t nLength);
     void CreateEmpty();
-    void Append(LPCTSTR pszChars, size_t nLength);
+    void Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol = true);
     void Delete(size_t nStartChar, size_t nEndChar);
     void DeleteEnd(size_t nStartChar);
     void CopyFrom(const LineInfo &li);

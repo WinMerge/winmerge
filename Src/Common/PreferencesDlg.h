@@ -25,6 +25,7 @@
 #include "PropBackups.h"
 #include "PropShell.h"
 #include "PropCompareFolder.h"
+#include "PropCompareTable.h"
 #include "PropCompareBinary.h"
 #include "PropCompareImage.h"
 
@@ -68,6 +69,7 @@ protected:
 	PropBackups m_pageBackups;
 	PropShell m_pageShell;
 	PropCompareFolder m_pageCompareFolder;
+	PropCompareTable m_pageCompareTable;
 	PropCompareBinary m_pageCompareBinary;
 	PropCompareImage m_pageCompareImage;
 

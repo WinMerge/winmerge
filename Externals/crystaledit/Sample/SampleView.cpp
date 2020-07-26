@@ -28,6 +28,7 @@ BEGIN_MESSAGE_MAP(CSampleView, CCrystalEditView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CCrystalEditView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
 	ON_COMMAND(ID_VIEW_SELMARGIN, OnSelMargin)
+	ON_COMMAND(ID_VIEW_TOPMARGIN, OnTopMargin)
 	ON_COMMAND(ID_VIEW_WORDWRAP, OnWordWrap)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
@@ -91,6 +92,11 @@ void CSampleView::OnInitialUpdate()
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
 	SetMarkersContext(GetDocument()->m_pMarkers);
+	if (GetDocument()->m_xTextBuffer.GetTableEditing())
+	{
+		SetTopMargin(true);
+		AutoFitColumn();
+	}
 }
 
 void CSampleView::OnContextMenu(CWnd* pWnd, CPoint point) 
@@ -102,6 +108,13 @@ void CSampleView::OnSelMargin()
 {
 	GetDocument()->ForEachView([](CSampleView* pView) {
 		pView->SetSelectionMargin(!pView->GetSelectionMargin());
+	});
+}
+
+void CSampleView::OnTopMargin()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetTopMargin(!pView->GetTopMargin());
 	});
 }
 

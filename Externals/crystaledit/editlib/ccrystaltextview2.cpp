@@ -548,7 +548,63 @@ OnLButtonDown (UINT nFlags, CPoint point)
   bool bControl = (GetKeyState (VK_CONTROL) & 0x8000) != 0;
   bool bAlt = (GetKeyState (VK_MENU) & 0x8000) != 0;
 
-  if (point.x < GetMarginWidth ())
+  auto startDragging = [this]()
+    {
+      SetCapture ();
+      m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
+      ASSERT (m_nDragSelTimer != 0);
+      m_bDragSelection = true;
+    };
+
+  m_nColumnResizing = -1;
+
+  if (point.y < GetTopMarginHeight ())
+    {
+      const int nColumn = ClientToColumnResizing (point.x);
+      if (nColumn >= 0)
+        {
+          m_nColumnResizing = nColumn;
+        }
+      else
+        {
+          int x = ClientToIdealTextPos (point.x);
+          CPoint ptStart, ptEnd;
+          const int nLineCount = GetLineCount ();
+          for (int y = 0; y < nLineCount; ++y)
+            {
+              if (x < CalculateActualOffset (y, GetLineLength (y)))
+                {
+                  ptStart.x = ApproxActualOffset (y, x);
+                  ptStart.y = y;
+                  break;
+                }
+            }
+          ptEnd.y = nLineCount - 1;
+          for (int y = nLineCount - 1; y >= 0; --y)
+            {
+              if (x < CalculateActualOffset (y, GetLineLength (y)))
+                {
+                  ptEnd.x = ApproxActualOffset (y, x);
+                  ptEnd.y = y;
+                  break;
+                }
+            }
+    
+          m_bWordSelection = false;
+          m_bLineSelection = false;
+          m_bRectangularSelection = true;
+          m_bColumnSelection = true;
+    
+          SetSelection (ptStart, ptEnd);
+          m_ptAnchor = ptStart;
+          m_nIdealCharPos = x;
+        }
+
+      startDragging();
+
+      return;
+    }
+  else if (point.x < GetMarginWidth ())
     {
       AdjustTextPoint (point);
       if (bControl)
@@ -592,13 +648,12 @@ OnLButtonDown (UINT nFlags, CPoint point)
           EnsureVisible (m_ptCursorPos);
           SetSelection (ptStart, ptEnd);
 
-          SetCapture ();
-          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
-          ASSERT (m_nDragSelTimer != 0);
+          startDragging();
+
+          m_bColumnSelection = false;
           m_bRectangularSelection = false;
           m_bWordSelection = false;
           m_bLineSelection = true;
-          m_bDragSelection = true;
         }
     }
   else
@@ -645,13 +700,12 @@ OnLButtonDown (UINT nFlags, CPoint point)
           EnsureVisible (m_ptCursorPos);
           SetSelection (ptStart, ptEnd);
 
-          SetCapture ();
-          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
-          ASSERT (m_nDragSelTimer != 0);
+          startDragging();
+
+          m_bColumnSelection = false;
           m_bRectangularSelection = bAlt;
           m_bWordSelection = bControl;
           m_bLineSelection = false;
-          m_bDragSelection = true;
         }
     }
 
@@ -668,7 +722,30 @@ OnMouseMove (UINT nFlags, CPoint point)
   if (m_bDragSelection)
     {
       AdjustTextPoint (point);
+
+      if (m_nColumnResizing >= 0)
+      {
+          int columnleft = ColumnToClient (m_nColumnResizing);
+          int nWidth = (point.x - columnleft) / GetCharWidth();
+          if (nWidth <= 0)
+            nWidth = 1;
+          m_pTextBuffer->SetColumnWidth (m_nColumnResizing, nWidth);
+          int nOffsetChar = m_nOffsetChar;
+          m_pTextBuffer->InvalidateColumns ();
+          m_nOffsetChar = nOffsetChar;
+          return;
+      }
+
       CPoint ptNewCursorPos = ClientToText (point);
+      if (m_bColumnSelection)
+        {
+          int x = ClientToIdealTextPos (point.x);
+          ptNewCursorPos.x = ApproxActualOffset (m_ptSelEnd.y, x);
+          ptNewCursorPos.y = m_ptSelEnd.y;
+          SetSelection (m_ptAnchor, ptNewCursorPos);
+          m_nIdealCharPos = x;
+          return;
+        }
 
       CPoint ptStart, ptEnd;
       if (m_bLineSelection)
@@ -778,8 +855,11 @@ OnLButtonUp (UINT nFlags, CPoint point)
 
   if (m_bDragSelection)
     {
-      m_ptAnchor = m_ptSelStart;
-      m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
+      if (m_nColumnResizing >= 0)
+        {
+          m_ptAnchor = m_ptSelStart;
+          m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
+        }
       ReleaseCapture ();
       KillTimer (m_nDragSelTimer);
       m_bDragSelection = false;
@@ -865,7 +945,7 @@ OnTimer (UINT_PTR nIDEvent)
         }
 
       //  Fix changes
-      if (bChanged)
+      if (bChanged && !m_nColumnResizing)
         {
           AdjustTextPoint (pt);
           CPoint ptNewCursorPos = ClientToText (pt);
@@ -892,6 +972,13 @@ void CCrystalTextView::
 OnLButtonDblClk (UINT nFlags, CPoint point)
 {
   CView::OnLButtonDblClk (nFlags, point);
+
+  if (point.y < GetTopMarginHeight ())
+    {
+      int nColumnResizing = ClientToColumnResizing (point.x);
+      AutoFitColumn (nColumnResizing);
+      return;
+    }
 
   if (point.x < GetMarginWidth ())
     {

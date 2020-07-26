@@ -1,4 +1,5 @@
-﻿# Released under the "GNU General Public License"
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * Liaobin <liaobin at jite. net>
@@ -468,6 +469,10 @@ msgstr "重新比较"
 msgid "&Text"
 msgstr "文本(&T)"
 
+msgid "&Table"
+msgstr ""
+
+#, c-format
 msgid "&XML"
 msgstr "&XML"
 
@@ -1639,6 +1644,30 @@ msgstr "测试(&T)"
 msgid "&Close"
 msgstr "关闭(&C)"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "使用自定义的文字颜色(&U)"
 
@@ -1767,6 +1796,18 @@ msgid ""
 msgstr ""
 "\n"
 "比较使用的线程数 (负数则使用可用的所有 CPU 核心) (&N):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
