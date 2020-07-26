@@ -1,3 +1,91 @@
+WinMerge 2.16.7
+  General:
+  - Bugfix: The icons on a 43" 4K screen are too small.(GitHub #276)
+  - BugFix: GUI glitches/bugs (GitHub #316)
+  - BugFix: Several issues regarding i18n (GitHub #314)
+  - Add Solarized Dark/Light color scheme (GitHub #287)
+  - Compile WinMerge with ASLR and CFG enabled (GitHub #315)
+  File compare:
+  - Bugfix: Diff Pane issues (GitHub #307)
+  - Bugfix: Codepage not updated on refresh (GitHub #320)
+  - Bugfix: Crashes when comparing large files (GitHub #325)
+  - Bugfix: WinMerge does not recognize the same files (GitHub #332)
+  - Bugfix: Moved ghost lines are shown in the wrong color (GitHub #358)
+  - Bugfix: opening same file (GitHub #362)
+  - Bugfix: Find dialog sometimes remembers old text to start a new find
+      instead of the new text. (GitHub #368)
+  - Bugfix: Fix a problem where markers that are out of the range of the 
+     current difference appear in the difference pane. (osdn.net 40407)
+  - Bugfix: HTML5 encoding (<meta charset="..." >) is ignored. (osdn.net #40476)
+  - '=' should be included in word separator (osdn.net #40224)
+  - Allow specifying default for EOL warning checkbox (GitHub #297)
+  - Only indent existing lines (GitHub #356)
+  Table compare:
+  - Made it possible to display the contents of CSV and TSV files like
+      spreadsheet software.
+  Folder compare:
+  - Bugfix: DST causes incorrect dates shown in Date column (GitHub #299)
+  - Bugfix: Long filename issue (GitHub #339)
+  - Bugfix: Winmerge Freeze if large number of files are listed in Window View
+      (GitHub #348)
+  - Bugfix: Change to disable some menu items that should not be executed for
+      directories, when directories are selected in the folder compare window. 
+      (GitHub PR #366)
+  - Bugfix: Update DirViewColItems.cpp (GitHub #376)
+  - Bugfix: Fix the problem that not 3 panes but 2 panes file compare window
+      displays when executing "Compare As" > "Binary" or "Compare As" > "Image"
+      in the context menu in the folder compare window with selecting 3 items.
+      (GitHub PR #381)
+  - Bugfix: Fix a problem where a text file could be considered a binary file.
+      (osdn.net #40296)
+  - Bugfix: crash when clicking [Merge]-> [Delete] menu item while renaming a
+      file
+  - Add a feature generating a patch from directories (#283) (GitHub PR #331)
+  - added bin and obj directories to C# filter (GitHub PR #365)
+  Image compare:
+  - Bugfix: Scrolling behavior when dragging images is wrong (osdn.net #40205)
+  Open dialog:
+  - Bugfix: Open dialogs are sometimes left as garbage (osdn.net #40487)
+  - Browse button in the file/dir selection show wrong path (GitHub #346)
+  Options dialog:
+  - Bugfix: Pressing the [Compare/Binary] category button in the Options dialog
+      twice will cause a crash. (osdn.net #40308)
+  Plugins
+  - Bugfix: Fix handling of line breaks in SortAscending, SortDescending
+      (osdn.net PR #40266)
+  - Bugfix: Error when comparing images in the CompareMSExcelFiles.sct plugin
+      (osdn.net #40472)
+  - CompareMSExcelFiles.sct: Include Excel Addin files (*.xlam) (GitHub PR #269)
+  - Add support for C# and TypeScript (GitHub PR #382)
+  - Add a plugin for Visio (osdn.net PR #40473)
+  - Plugin fixes for the new Table Compare
+    (CompareMSExcelFiles.sct, IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)
+  Archive support:
+  - Bugfix: Crash when comparing encrypted 7z files (GitHub #367)
+  Installer:
+  - Create the installer with Inno Setup 5.x since installers created with Inno
+      Setup 6.0.x are identified as malware by multiple virus scanning engines
+  Translations:
+  - Translation updates:
+    - Brazilian (GitHub #360)
+    - Chinese Simplified (GitHub PR #303,377)
+    - Galician (GitHub PR #292,293,308,313,326)
+    - German (GitHub PR #312,357)
+    - Lithuanian (GitHub PR #291,298,333)
+    - Polish (GitHub PR #280)
+    - Portuguese (GitHub PR #305)
+    - Russian (GitHub PR #270,271,272,302,327,328)
+    - Slovak (GitHub PR #300)
+    - Slovenian (GitHub #285)
+    - Spanish (GitHub PR #292,293,304,308)
+    - Turkish (GitHub PR #335,336,337,338)
+  Manual:
+    - Minor changes to translations README.md file (GitHub #289)
+    - Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)
+  Internals:
+    - BugFix: Src\Common\MyCom.h unused? (GitHub #284)
+    - BugFix: Error on git repository cloning (GitHub #288)
+
 WinMerge 2.16.6
   General:
   - Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab,

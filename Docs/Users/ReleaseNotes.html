@@ -49,24 +49,139 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.6 Release Notes</h2>
+<h2>WinMerge 2.16.7 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2166">What Is New in 2.16.6?</a></li>
+  <li><a href="#new2167">What Is New in 2.16.7?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>February 2020</p>
+<p>July 2020</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.16.6 stable release. This release replaces earlier WinMerge 
-stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2167">What Is New in 2.16.7 Beta?</a></h3>
+
+<h4>General</h4>
+<ul>
+  <li>Bugfix: The icons on a 43" 4K screen are too small.(GitHub #276)</li>
+  <li>BugFix: GUI glitches/bugs (GitHub #316)</li>
+  <li>BugFix: Several issues regarding i18n (GitHub #314)</li>
+  <li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
+  <li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: Diff Pane issues (GitHub #307)</li>
+  <li>Bugfix: Codepage not updated on refresh (GitHub #320)</li>
+  <li>Bugfix: Crashes when comparing large files (GitHub #325)</li>
+  <li>Bugfix: WinMerge does not recognize the same files (GitHub #332)</li>
+  <li>Bugfix: Moved ghost lines are shown in the wrong color (GitHub #358)</li>
+  <li>Bugfix: opening same file (GitHub #362)</li>
+  <li>Bugfix: Find dialog sometimes remembers old text to start a new find instead of the new text. (GitHub #368)</li>
+  <li>Bugfix: Fix a problem where markers that are out of the range of the current difference appear in the difference pane. (osdn.net 40407)</li>
+  <li>Bugfix: HTML5 encoding (&lt;meta charset="..." &gt;) is ignored. (osdn.net #40476)</li>
+  <li>'=' should be included in word separator (osdn.net #40224)</li>
+  <li>Allow specifying default for EOL warning checkbox (GitHub #297)</li>
+  <li>Only indent existing lines (GitHub #356)</li>
+</ul>
+
+<h4>Table compare</h4>
+<ul>
+  <li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Bugfix: DST causes incorrect dates shown in Date column (GitHub #299)</li>
+  <li>Bugfix: Long filename issue (GitHub #339)</li>
+  <li>Bugfix: Winmerge Freeze if large number of files are listed in Window View (GitHub #348)</li>
+  <li>Bugfix: Change to disable some menu items that should not be executed for directories, when directories are selected in the folder compare window. (GitHub PR #366)</li>
+  <li>Bugfix: Update DirViewColItems.cpp (GitHub #376)</li>
+  <li>Bugfix: Fix the problem that not 3 panes but 2 panes file compare window displays when executing "Compare As" &gt; "Binary" or "Compare As" &gt; "Image" in the context menu in the folder compare window with selecting 3 items. (GitHub PR #381)</li>
+  <li>Bugfix: Fix a problem where a text file could be considered a binary file. (osdn.net #40296)</li>
+  <li>Bugfix: crash when clicking [Merge]-&gt; [Delete] menu item while renaming a file</li>
+  <li>Add a feature generating a patch from directories (#283) (GitHub PR #331)</li>
+  <li>added bin and obj directories to C# filter (GitHub PR #365)</li>
+</ul>
+
+<h4>Image compare</h4>
+<ul>
+  <li>Bugfix: Scrolling behavior when dragging images is wrong (osdn.net #40205)</li>
+</ul>
+
+<h4>Open dialog</h4>
+<ul>
+  <li>Bugfix: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
+  <li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
+</ul>
+
+<h4>Options dialog</h4>
+<ul>
+  <li>Bugfix: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>Bugfix: Fix handling of line breaks in SortAscending, SortDescending (osdn.net PR #40266)</li>
+  <li>Bugfix: Error when comparing images in the CompareMSExcelFiles.sct plugin (osdn.net #40472)</li>
+  <li>CompareMSExcelFiles.sct: Include Excel Addin files (*.xlam) (GitHub PR #269)</li>
+  <li>Add support for C# and TypeScript (GitHub PR #382)</li>
+  <li>Add a plugin for Visio (osdn.net PR #40473)</li>
+  <li>Plugin fixes for the new Table Compare (CompareMSExcelFiles.sct, IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)</li>
+</ul>
+
+<h4>Archive support</h4>
+<ul>
+  <li>Bugfix: Crash when comparing encrypted 7z files (GitHub #367)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>
+    Translation updates:
+    <ul>
+      <li>Brazilian (GitHub #360)</li>
+      <li>Chinese Simplified (GitHub PR #303,377)</li>
+      <li>Galician (GitHub PR #292,293,308,313,326)</li>
+      <li>German (GitHub PR #312,357)</li>
+      <li>Lithuanian (GitHub PR #291,298,333)</li>
+      <li>Polish (GitHub PR #280)</li>
+      <li>Portuguese (GitHub PR #305)</li>
+      <li>Russian (GitHub PR #270,271,272,302,327,328)</li>
+      <li>Slovak (GitHub PR #300)</li>
+      <li>Slovenian (GitHub #285)</li>
+      <li>Spanish (GitHub PR #292,293,304,308)</li>
+      <li>Turkish (GitHub PR #335,336,337,338)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li>Minor changes to translations README.md file (GitHub #289)</li>
+  <li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li>BugFix: Src\Common\MyCom.h unused? (GitHub #284)</li>
+  <li>BugFix: Error on git repository cloning (GitHub #288)</li>
+</ul>
 
 <h3><a name="#new2166">What Is New in 2.16.6?</a></h3>
 
