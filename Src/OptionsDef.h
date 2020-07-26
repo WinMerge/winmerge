@@ -226,8 +226,8 @@ extern const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP OP("Settings/EnableImageComp
 extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");
 
 // Table options
-extern const String OPT_CMP_CSV_FILEPATTERNS OP("Settings/CSVFilePatternsExperimental");
-extern const String OPT_CMP_TSV_FILEPATTERNS OP("Settings/TSVFilePatternsExperimental");
+extern const String OPT_CMP_CSV_FILEPATTERNS OP("Settings/CSVFilePatterns");
+extern const String OPT_CMP_TSV_FILEPATTERNS OP("Settings/TSVFilePatterns");
 extern const String OPT_CMP_DSV_FILEPATTERNS OP("Settings/DSVFilePatterns");
 extern const String OPT_CMP_DSV_DELIM_CHAR   OP("Settings/DSVDelimiterCharacter");
 extern const String OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES OP("Settings/TableAllowNewlinesInQuotes");

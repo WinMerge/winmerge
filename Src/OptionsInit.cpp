@@ -134,8 +134,8 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 
-	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T(""/*"*.csv"*/));
-	pOptions->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T(""/*"*.tsv"*/));
+	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+	pOptions->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
 	pOptions->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
 	pOptions->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
 	pOptions->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
