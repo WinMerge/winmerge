@@ -617,7 +617,9 @@
             class="extension">*.hxx</filename>, <filename
             class="extension">*.c</filename>, <filename
             class="extension">*.php</filename>, <filename
-            class="extension">*.js</filename>,</seg>
+            class="extension">*.js</filename>, <filename
+            class="extension">*.cs</filename>, <filename
+            class="extension">*.ts</filename>,</seg>
 
             <seg>No</seg>
           </seglistitem>
