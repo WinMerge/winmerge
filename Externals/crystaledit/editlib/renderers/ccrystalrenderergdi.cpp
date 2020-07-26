@@ -178,10 +178,33 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 
 void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2)
 {
-	CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
-	m_pDC->MoveTo(x1, y1);
-	m_pDC->LineTo(x2, y2);
-	m_pDC->SelectObject(pOldPen);
+	if (x1 == x2 || y1 == y2)
+	{
+		CDC  dcMem;
+		dcMem.CreateCompatibleDC(m_pDC);
+		CBitmap bitmap;
+		if (x1 == x2)
+			bitmap.CreateCompatibleBitmap(m_pDC, 1, y2 - y1);
+		else
+			bitmap.CreateCompatibleBitmap(m_pDC, x2 - x1, 1);
+		CBitmap *pOldBitmap = dcMem.SelectObject(&bitmap);
+		dcMem.SetBkColor(RGB(0, 255, 0));
+		BLENDFUNCTION blend = { 0 };
+		blend.BlendOp = AC_SRC_OVER;
+		blend.SourceConstantAlpha = 24;
+		if (x1 == x2)
+			m_pDC->AlphaBlend(x1, y1, 1, y2 - y1, &dcMem, 0, 0, 1, y2 - y1, blend);
+		else
+			m_pDC->AlphaBlend(x1, y1, x2 - x1, 1, &dcMem, 0, 0, x2 - x1, 1, blend);
+		dcMem.SelectObject(pOldBitmap);
+	}
+	else
+	{
+		CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
+		m_pDC->MoveTo(x1, y1);
+		m_pDC->LineTo(x2, y2);
+		m_pDC->SelectObject(pOldPen);
+	}
 }
 
 void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
