@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-04-30 20:47+0000\n"
-"PO-Revision-Date: 2020-05-04 08:35+0300\n"
+"POT-Creation-Date: 2020-07-09 20:49+0000\n"
+"PO-Revision-Date: 2020-07-27 13:13+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -470,7 +470,7 @@ msgid "&Text"
 msgstr "&Tekstas"
 
 msgid "&Table"
-msgstr ""
+msgstr "&Lentelė"
 
 msgid "&XML"
 msgstr "&XML"
@@ -1633,34 +1633,34 @@ msgid "&Close"
 msgstr "&Užverti"
 
 msgid "Table"
-msgstr ""
+msgstr "Lentelių"
 
 msgid "File type"
-msgstr ""
+msgstr "Failo tipas"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Pasirinkt. &skirtukais atskirtos reikšmės"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "S&kirtuko simbolis:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Leisti n&aujas eilutes kabutėse"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "&Kabučių simbolis"
 
 msgid "&Use customized text colors"
-msgstr "Na&udoti pasirinktines teksto spalvas"
+msgstr "Na&udoti pasirinkt. teksto spalvas"
 
 msgid "Custom text colors"
-msgstr "Pasirinktinės teksto spalvos"
+msgstr "Pasirinkt. teksto spalvos"
 
 msgid "Whitespace:"
 msgstr "Tarpas:"
@@ -1781,16 +1781,16 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "&CSV failų šablonai:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "&TSV failų šablonai:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Pasirinkt. skirtukais atskirtos reikšmės"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
