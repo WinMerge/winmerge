@@ -1,3 +1,5 @@
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * Wender Firmino <wender at pta.com.br>
@@ -4283,3 +4285,4 @@ msgstr "Dist: %g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Página: %d/%d Zoom: %d%% %dx%dpx %dbpp"
+

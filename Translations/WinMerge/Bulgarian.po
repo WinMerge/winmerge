@@ -1,4 +1,5 @@
-﻿# Released under the "GNU General Public License"
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * sld <sld at mail.bg>
