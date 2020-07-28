@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-30 01:00+0300\n"
+"PO-Revision-Date: 2020-07-28 01:00+0300\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -472,7 +472,7 @@ msgid "&Text"
 msgstr "Текст"
 
 msgid "&Table"
-msgstr ""
+msgstr "Таблица"
 
 msgid "&XML"
 msgstr "&XML"
@@ -1635,10 +1635,10 @@ msgid "&Close"
 msgstr "&Закрыть"
 
 msgid "Table"
-msgstr ""
+msgstr "Таблица"
 
 msgid "File type"
-msgstr ""
+msgstr "Тип файла"
 
 msgid "&CSV"
 msgstr ""
@@ -1647,16 +1647,16 @@ msgid "&TSV"
 msgstr ""
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Свои значения разделителей"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Символ разделителя"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Разрешить новые строки в кавычках"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Символ кавычки:"
 
 msgid "&Use customized text colors"
 msgstr "Использовать особые цвета"
@@ -1783,16 +1783,16 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Шаблоны CSV-файлов:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Шаблоны TSV-файлов:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Свои значения разделителей"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Шаблоны файлов"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2763,10 +2763,10 @@ msgid "Patch file successfully written."
 msgstr "Патч успешно записан."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. элемент не найден!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. элемент не найден!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Патч уже существует. Перезаписать?"
