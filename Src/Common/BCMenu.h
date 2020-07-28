@@ -34,15 +34,10 @@ class BCMenuData
 public:
 	BCMenuData () {menuIconNormal=-1;xoffset=-1;bitmap=nullptr;pContext=nullptr;
 	nFlags=0;nID=0;syncflag=0;m_szMenuText=nullptr;global_offset=-1;};
-	void SetAnsiString(LPCSTR szAnsiString)
-	{
-		USES_CONVERSION;
-		SetWideString(A2W(szAnsiString));  //SK:  see MFC Tech Note 059
-	}
 	void SetWideString(const wchar_t *szWideString);
 	const wchar_t *GetWideString(void) {return m_szMenuText;};
 	~BCMenuData ();
-	CString GetString(void);//returns the menu text in ANSI or UNICODE
+	CString GetString(void);//returns the menu text
 	INT_PTR xoffset,global_offset;
 	int menuIconNormal;
 	UINT nFlags,syncflag;
@@ -61,25 +56,6 @@ struct CMenuItemInfo : public MENUITEMINFO
 // how seperators are handled when removing a menu (Tongzhe Cui)
 typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 
-// defines for unicode support
-#ifndef UNICODE
-#define AppendMenu AppendMenuA
-#define InsertMenu InsertMenuA
-#define InsertODMenu InsertODMenuA
-#define AppendODMenu AppendODMenuA
-#define AppendODPopupMenu AppendODPopupMenuA
-#define ModifyODMenu ModifyODMenuA
-#define SetImageForPopupFromToolbar SetImageForPopupFromToolbarA
-#else
-#define AppendMenu AppendMenuW
-#define InsertMenu InsertMenuW
-#define InsertODMenu InsertODMenuW
-#define AppendODMenu AppendODMenuW
-#define ModifyODMenu ModifyODMenuW
-#define AppendODPopupMenu AppendODPopupMenuW
-#define SetImageForPopupFromToolbar SetImageForPopupFromToolbarW
-#endif
-
 class BCMenu : public CMenu
 {
 	DECLARE_DYNAMIC( BCMenu )
@@ -96,116 +72,30 @@ public:
 	bool AddBitmapToImageList(CImageList *list,UINT nResourceID,bool bDisabled=false);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	
-	// functions for appending a menu option, use the AppendMenu call (see above define)
-	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem=0,const char *lpszNewItem=nullptr,int nIconNormal=-1)
-	{
-		USES_CONVERSION;
-		return AppendMenuW(nFlags, nIDNewItem, A2W(lpszNewItem), nIconNormal);
-	}
-	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
-	{
-		USES_CONVERSION;
-		return AppendMenuW(nFlags,nIDNewItem,A2W(lpszNewItem),il,xoffset);
-	}
-	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
-	{
-		USES_CONVERSION;
-		return AppendMenuW(nFlags,nIDNewItem,A2W(lpszNewItem),bmp);
-	}
-	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
-	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
-	bool AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
-							   int nIconNormal)
-	{
-		USES_CONVERSION;
-		return AppendODMenuW(A2W(lpstrText),nFlags,nID,nIconNormal);//SK: See MFC Tech Note 059
-	}
-	bool AppendODMenuW(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	bool AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
-							   CImageList *il,int xoffset)
-	{
-		USES_CONVERSION;
-		return AppendODMenuW(A2W(lpstrText),nFlags,nID,il,xoffset);
-	}
-	bool AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
+	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
+	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
+	bool AppendODMenu(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
+	bool AppendODMenu(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
 	bool AppendMenu (BCMenu* pMenuToAdd, bool add_separator = true, int num_items_to_remove_at_end = 0);
 	
 	// for appending a popup menu (see example application)
-	BCMenu* AppendODPopupMenuA(LPCSTR lpstrText)
-	{
-		USES_CONVERSION;
-		return AppendODPopupMenuW(A2W(lpstrText));
-	}
-	BCMenu* AppendODPopupMenuW(const wchar_t *lpstrText);
+	BCMenu* AppendODPopupMenu(const wchar_t *lpstrText);
 
 	// functions for inserting a menu option, use the InsertMenu call (see above define)
-	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
-	{
-		USES_CONVERSION;
-		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),il,xoffset);
-	}
-	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
-	{
-		USES_CONVERSION;
-		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),bmp);
-	}
-	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,int nIconNormal)
-	{
-		USES_CONVERSION;
-		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),nIconNormal);
-	}
-	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
-	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
-	bool InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
-							   int nIconNormal)
-	{
-		USES_CONVERSION;
-		return InsertODMenuW(nPosition,A2W(lpstrText),nFlags,nID,nIconNormal);
-	}
-	bool InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	bool InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
-							   CImageList *il,int xoffset)
-	{
-		USES_CONVERSION;
-		return InsertODMenuW(nPosition,A2W(lpstrText),nFlags,nID,il,xoffset);
-	}
-	bool InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
+	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
+	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
+	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
+	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
 	
 	// functions for modifying a menu option, use the ModifyODMenu call (see above define)
-	bool ModifyODMenuA(const char * lpstrText,UINT_PTR nID,int nIconNormal)
-	{
-		USES_CONVERSION;
-		return ModifyODMenuW(A2W(lpstrText),nID,nIconNormal);//SK: see MFC Tech Note 059
-	}
-	bool ModifyODMenuA(const char * lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
-	{
-		USES_CONVERSION;
-		return ModifyODMenuW(A2W(lpstrText),nID,il,xoffset);
-	}
-	bool ModifyODMenuA(const char *lpstrText,UINT_PTR nID,CBitmap *bmp)
-	{
-		USES_CONVERSION;
-		return ModifyODMenuW(A2W(lpstrText),nID,bmp);
-	}
-	bool ModifyODMenuA(const char *lpstrText,const char *OptionText,
-							   int nIconNormal)
-	{
-		USES_CONVERSION;
-		return ModifyODMenuW(A2W(lpstrText),A2W(OptionText),nIconNormal);//SK: see MFC  Tech Note 059
-	}
-	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
-	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset);
-	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp);
-	bool ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
+	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
+	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset);
+	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp);
+	bool ModifyODMenu(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
 
-	bool SetImageForPopupFromToolbarA (const char *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from)
-	{
-		USES_CONVERSION;
-		return SetImageForPopupFromToolbarW(A2W(strPopUpText),toolbarID,command_id_to_extract_icon_from);
-	}
-	bool SetImageForPopupFromToolbarW (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
+	bool SetImageForPopupFromToolbar (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
 
 	// for deleting and removing menu options
 	bool	RemoveMenu(UINT uiId,UINT nFlags);
@@ -217,17 +107,7 @@ public:
 	//       = Tail  seperator right after this menu item;
 	//       = Both  seperators at both ends;
 	// remove the menu item based on their text, return -1 if not found, otherwise return the menu position;
-	int RemoveMenu(char* pText, BC_Seperator sPos)
-	{
-		USES_CONVERSION;
-		return RemoveMenu(A2W(pText), sPos);
-	}
 	int RemoveMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
-	int DeleteMenu(char* pText, BC_Seperator sPos)
-	{
-		USES_CONVERSION;
-		return DeleteMenu(A2W(pText), sPos);
-	}
 	int DeleteMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
 	
 	// Destoying
@@ -239,19 +119,9 @@ public:
 	bool SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
 
 	// Getting a submenu from it's name or position
-	BCMenu* GetSubBCMenu(char* pText)
-	{
-		USES_CONVERSION;
-		return GetSubBCMenu(A2W(pText));
-	}
 	BCMenu* GetSubBCMenu(wchar_t* lpszSubMenuName);
 	CMenu* GetSubMenu (LPCTSTR lpszSubMenuName);
 	CMenu* GetSubMenu (int nPos);
-	int GetMenuPosition(char* pText)
-	{
-		USES_CONVERSION;
-		return GetMenuPosition(A2W(pText));
-	}
 	int GetMenuPosition(wchar_t* pText);
 
 	// Drawing: 

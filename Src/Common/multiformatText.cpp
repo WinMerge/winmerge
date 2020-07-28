@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  * @file multiformatText.cpp
@@ -108,6 +94,19 @@ const TCHAR *storageForPlugins::GetDestFileName()
 	if (m_tempFilenameDst.empty())
 	{
 		m_tempFilenameDst = env::GetTemporaryFileName(env::GetTemporaryPath(), _T ("_WM"));
+		if (!m_tempFileExtensionDst.empty())
+		{
+			String tempFilenameDstNew = m_tempFilenameDst + m_tempFileExtensionDst;
+			try
+			{
+				TFile(m_tempFilenameDst).renameTo(tempFilenameDstNew);
+				m_tempFilenameDst = tempFilenameDstNew;
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
+			}
+		}
 	}
 	return m_tempFilenameDst.c_str();
 }

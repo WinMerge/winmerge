@@ -6,6 +6,7 @@
 
 #include "SampleDoc.h"
 #include "SampleView.h"
+#include "editcmd.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,6 +27,11 @@ BEGIN_MESSAGE_MAP(CSampleView, CCrystalEditView)
 	ON_COMMAND(ID_FILE_PRINT, CCrystalEditView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CCrystalEditView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CCrystalEditView::OnFilePrintPreview)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnSelMargin)
+	ON_COMMAND(ID_VIEW_TOPMARGIN, OnTopMargin)
+	ON_COMMAND(ID_VIEW_WORDWRAP, OnWordWrap)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,10 +92,50 @@ void CSampleView::OnInitialUpdate()
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
 	SetMarkersContext(GetDocument()->m_pMarkers);
-	SetWordWrapping(true);
+	if (GetDocument()->m_xTextBuffer.GetTableEditing())
+	{
+		SetTopMargin(true);
+		AutoFitColumn();
+	}
 }
 
 void CSampleView::OnContextMenu(CWnd* pWnd, CPoint point) 
 {
 	AfxMessageBox(_T("Build your own context menu!"));
 }
+
+void CSampleView::OnSelMargin()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetSelectionMargin(!pView->GetSelectionMargin());
+	});
+}
+
+void CSampleView::OnTopMargin()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetTopMargin(!pView->GetTopMargin());
+	});
+}
+
+void CSampleView::OnWordWrap()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		pView->SetWordWrapping(!pView->GetWordWrapping());
+	});
+}
+
+void CSampleView::OnViewWhitespace()
+{
+	GetDocument()->ForEachView([](CSampleView* pView) {
+		bool bViewTabs = pView->GetViewTabs();
+		pView->SetViewTabs(!bViewTabs);
+		pView->SetViewEols(!bViewTabs, true);
+	});
+}
+
+void CSampleView::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetViewTabs());
+}
+

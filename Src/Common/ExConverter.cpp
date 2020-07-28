@@ -44,7 +44,7 @@ public:
 	{
 	}
 
-	~CExconverterMLang()
+	virtual ~CExconverterMLang() override
 	{
 		if (m_pmlang != nullptr)
 			m_pmlang->Release();

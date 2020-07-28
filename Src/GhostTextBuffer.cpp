@@ -7,21 +7,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /** 
  * @file  GhostTextBuffer.cpp
@@ -795,21 +781,49 @@ OnNotifyLineHasBeenEdited(int nLine)
 	return;
 }
 
-static void CountEolAndLastLineLength(LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
+void CGhostTextBuffer::
+CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
 	nLastLineLength = 0;
 	nEol = 0;
-	for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+	if (m_bTableEditing && m_bAllowNewlinesInQuotes)
 	{
-		if (LineInfo::IsEol(pszText[nTextPos]))
+		bool bInQuote = false;
+		const TCHAR* pszLine = m_aLines[ptStartPos.y].GetLine();
+		for (int j = 0; j < ptStartPos.x; ++j)
 		{
-			if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
-				++nTextPos;
-			++nEol;
-			nLastLineLength = 0;
+			if (pszLine[j] == m_cFieldEnclosure)
+				bInQuote = !bInQuote;
 		}
-		else
-			++nLastLineLength;
+		for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+		{
+			if (pszText[nTextPos] == m_cFieldEnclosure)
+				bInQuote = !bInQuote;
+			if (!bInQuote && LineInfo::IsEol(pszText[nTextPos]))
+			{
+				if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
+					++nTextPos;
+				++nEol;
+				nLastLineLength = 0;
+			}
+			else
+				++nLastLineLength;
+		}
+	}
+	else
+	{
+		for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
+		{
+			if (LineInfo::IsEol(pszText[nTextPos]))
+			{
+				if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
+					++nTextPos;
+				++nEol;
+				nLastLineLength = 0;
+			}
+			else
+				++nLastLineLength;
+		}
 	}
 }
 
@@ -821,7 +835,7 @@ AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	int nLastLineLength, nEol;
-	CountEolAndLastLineLength(pszText, cchText, nLastLineLength, nEol);
+	CountEolAndLastLineLength(ptStartPos, pszText, cchText, nLastLineLength, nEol);
 	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
 	if (ptEndPos.x == 0 && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
 		real_ptEndPos.x = nLastLineLength;

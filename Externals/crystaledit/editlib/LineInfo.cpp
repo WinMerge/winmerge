@@ -3,8 +3,6 @@
  *
  * @brief Implementation of LineInfo class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: LineInfo.cpp 5738 2008-08-05 20:30:02Z kimmov $
 
 #include "stdafx.h"
 #include "LineInfo.h"
@@ -114,10 +112,10 @@ void LineInfo::CreateEmpty()
  * @param [in] pszChars String to append to the line.
  * @param [in] nLength Length of the string to append.
  */
-void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
+void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT (nLength <= INT_MAX);		// assert "positive int"
-  size_t nBufNeeded = m_nLength + nLength + 1;
+  size_t nBufNeeded = m_nLength + m_nEolChars + nLength + 1;
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
@@ -130,9 +128,12 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
       m_pcLine = pcNewBuf;
     }
 
-  memcpy (m_pcLine + m_nLength, pszChars, sizeof (TCHAR) * nLength);
-  m_nLength += nLength;
+  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (TCHAR) * nLength);
+  m_nLength += nLength + m_nEolChars;
   m_pcLine[m_nLength] = '\0';
+
+  if (!bDetectEol)
+    return;
 
   // Did line gain eol ? (We asserted above that it had none at start)
    if (nLength > 1 && IsDosEol(&m_pcLine[m_nLength - 2]))

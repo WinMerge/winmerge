@@ -467,6 +467,9 @@ msgstr "إعادة مقارنة بصيغة أخرى"
 msgid "&Text"
 msgstr "&نص"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1641,6 +1644,30 @@ msgstr "الا&ختبار"
 msgid "&Close"
 msgstr "إ&غلاق"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "ا&ستخدام ألوان مخصصة للنص"
 
@@ -1765,6 +1792,18 @@ msgstr "الح&د الأقصى للمقارنة الثنائية (ميجاباي
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 "عدد سلاسل المقارنة (القيمة السالبة تعني إضافة عدد أنوية المعالج المتوفرة):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

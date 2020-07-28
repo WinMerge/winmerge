@@ -59,7 +59,9 @@
 #define IDD_PROPPAGE_COLORS_DIR         246
 #define IDD_SELECT_FILES_OR_FOLDERS     247
 #define IDD_PROPPAGE_COLOR_SCHEMES      248
+#define IDD_PROPPAGE_COMPARE_TABLE      249
 #define IDD_DIALOG_WINDOWSMANAGER       251
+#define IDD_OPEN_TABLE                  252
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -594,6 +596,7 @@
 #define IDS_OPTIONSPG_BINARYCOMPARE     9058
 #define IDS_OPTIONSPG_DIRCOLORS         9059
 #define IDS_OPTIONSPG_COLOR_SCHEMES     9060
+#define IDS_OPTIONSPG_TABLECOMPARE      9061
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -943,7 +946,6 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_EDIT_MARK                    21406 // editcmd.h
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -1002,7 +1004,6 @@
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATISTICS          32821
 #define ID_VIEW_LINEDIFFS               32823
-#define ID_VIEW_WORDWRAP                32824
 #define ID_VIEW_LINENUMBERS             32825
 #define ID_VIEW_TAB_BAR                 32826
 #define ID_VIEW_TREEMODE                32827
@@ -1041,13 +1042,14 @@
 #define ID_TOOLS_GENERATEREPORT         32868
 #define ID_MERGE_COMPARE                32869
 #define ID_MERGE_COMPARE_TEXT           32870
-#define ID_MERGE_COMPARE_XML            32871
-#define ID_MERGE_COMPARE_HEX            32872
-#define ID_MERGE_COMPARE_IMAGE          32873
-#define ID_MERGE_COMPARE_LEFT1_LEFT2    32874
-#define ID_MERGE_COMPARE_RIGHT1_RIGHT2  32875
-#define ID_MERGE_COMPARE_LEFT1_RIGHT2   32876
-#define ID_MERGE_COMPARE_LEFT2_RIGHT1   32877
+#define ID_MERGE_COMPARE_TABLE          32871
+#define ID_MERGE_COMPARE_XML            32872
+#define ID_MERGE_COMPARE_HEX            32873
+#define ID_MERGE_COMPARE_IMAGE          32874
+#define ID_MERGE_COMPARE_LEFT1_LEFT2    32875
+#define ID_MERGE_COMPARE_RIGHT1_RIGHT2  32876
+#define ID_MERGE_COMPARE_LEFT1_RIGHT2   32877
+#define ID_MERGE_COMPARE_LEFT2_RIGHT1   32878
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882
@@ -1125,7 +1127,6 @@
 #define ID_EDIT_GOTO_NEXT_BOOKMARK      33146
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33147
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33148
-#define ID_VIEW_FILEMARGIN              33150
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
 #define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
@@ -1187,8 +1188,6 @@
 #define ID_VIEW_DIFFCONTEXT_7           33223
 #define ID_VIEW_DIFFCONTEXT_9           33224
 #define ID_VIEW_DIFFCONTEXT_TOGGLE      33225
-#define ID_EDIT_LOWERCASE               33226
-#define ID_EDIT_UPPERCASE               33227
 #define ID_VIEW_SPLITVERTICALLY         33228
 #define IDS_FRHED_NOTINSTALLED          33229
 #define ID_ADD_SYNCPOINT                33230
@@ -1329,6 +1328,16 @@
 #define IDS_IMGCMP_STATUS_DIST2_FMT     34151
 #define IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT 34152
 #define IDS_COMPARE_LARGE_FILES         34153
+#define IDC_COMPARETABLE_CSV            34154
+#define IDC_COMPARETABLE_TSV            34155
+#define IDC_COMPARETABLE_DSV            34156
+#define IDC_COMPARETABLE_CSV_PATTERNS   34157
+#define IDC_COMPARETABLE_TSV_PATTERNS   34158
+#define IDC_COMPARETABLE_DSV_PATTERNS   34159
+#define IDC_COMPARETABLE_DSV_DELIM_CHAR 34160
+#define IDC_COMPARETABLE_ALLOWNEWLINE   34161
+#define IDC_COMPARETABLE_QUOTE_CHAR     34162
+#define IDC_COMPARETABLE_DEFAULTS       34163
 
 // Next default values for new objects
 // 
@@ -1336,7 +1345,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34154
+#define _APS_NEXT_COMMAND_VALUE         34164
 #define _APS_NEXT_CONTROL_VALUE         8831
 #define _APS_NEXT_SYMED_VALUE           116
 #endif

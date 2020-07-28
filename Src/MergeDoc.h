@@ -1,21 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997  Dean P. Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /** 
  * @file  MergeDoc.h
@@ -28,6 +14,7 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <optional>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "TempFile.h"
@@ -166,7 +153,7 @@ public:
 		const bool bRO[], const String strDesc[]);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
 	void MoveOnLoad(int nPane = -1, int nLinIndex = -1);
-	void ChangeFile(int nBuffer, const String& path);
+	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
 	void CheckFileChanged(void) override;
@@ -314,6 +301,7 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	void SetTableProperties();
 
 // Implementation data
 protected:
@@ -335,6 +323,7 @@ protected:
 	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
+	std::optional<bool> m_bEnableTableEditing;
 // friend access
 	friend class RescanSuppress;
 
@@ -364,8 +353,10 @@ protected:
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
+	afx_msg void OnFileRecompareAsTable();
 	afx_msg void OnFileRecompareAsXML();
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
 	//}}AFX_MSG

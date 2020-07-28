@@ -1,6 +1,4 @@
 #
-# $Id: //poco/1.4/build/config/SunOS-GCC#2 $
-#
 # SunOS-GCC
 #
 # Make settings for SunOS/gcc
@@ -68,4 +66,4 @@ SYSFLAGS = -D_XOPEN_SOURCE=500 -D_REENTRANT -D_THREAD_SAFE -D_FILE_OFFSET_BITS=6
 #
 # System Specific Libraries
 #
-SYSLIBS  = -lpthread -ldl -lrt
+SYSLIBS  = -lpthread -lrt -lxnet -lsocket -lnsl -lresolv -ldl

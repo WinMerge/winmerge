@@ -22,7 +22,7 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
-  *pVal = SysAllocString(L"\\.cpp$;\\.cxx$;\\.h$;\\.hxx$;\\.c$;\\.php$;\\.js$");
+  *pVal = SysAllocString(L"\\.cpp$;\\.cxx$;\\.h$;\\.hxx$;\\.c$;\\.php$;\\.js$;\\.cs$;\\.ts$");
   return S_OK;
 }
 

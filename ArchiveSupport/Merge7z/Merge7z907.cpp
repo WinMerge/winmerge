@@ -33,6 +33,7 @@ DATE:		BY:					DESCRIPTION:
 
 #include "7zip/UI/FileManager/OpenCallback.h"
 #include "7zip/UI/FileManager/ExtractCallback.h"
+#include "7zip/UI/FileManager/resourceGui.h"
 
 #include "7zip/UI/Common/ArchiveExtractCallback.h"
 #include "7zip/UI/GUI/UpdateCallbackGUI.h"
@@ -84,6 +85,46 @@ public:
 	}
 };
 
+struct CThreadArchiveOpen
+{
+	UString Path;
+	CInFileStream* File;
+	NFile::NFind::CFileInfo* FileInfo;
+	IInArchive* Archive;
+	CMyComPtr<IProgress> OpenCallback;
+	COpenArchiveCallback* OpenCallbackSpec;
+	HRESULT Result;
+
+	void Process()
+	{
+		CProgressCloser closer(OpenCallbackSpec->ProgressDialog);
+
+		if COMPLAIN(!NFile::NFind::CFindFile().FindFirst(Path, *FileInfo))
+		{
+			Result = ERROR_FILE_NOT_FOUND;
+			return;
+		}
+		if COMPLAIN(!File->Open(Path))
+		{
+			Result = ERROR_OPEN_FAILED;
+			return;
+		}
+		static const UInt64 maxCheckStartPosition = ULLONG_MAX;
+		if COMPLAIN(Archive->Open(File, &maxCheckStartPosition, OpenCallbackSpec) != S_OK)
+		{
+			Result = ERROR_CANT_ACCESS_FILE;
+			return;
+		}
+		Result = ERROR_SUCCESS;
+	}
+
+	static THREAD_FUNC_DECL MyThreadFunction(void* param)
+	{
+		((CThreadArchiveOpen*)param)->Process();
+		return 0;
+	}
+};
+
 /**
  * @brief Initialize Inspector
  */
@@ -98,30 +139,36 @@ Format7zDLL::Interface::Inspector::Inspector(Format7zDLL::Interface *format, LPC
 void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 {
 	format->GetDefaultName(hwndParent, ustrDefaultName);
-	COpenArchiveCallback *callbackImpl = new COpenArchiveCallback;
-	//COpenCallbackImp *callbackImpl = new COpenCallbackImp;
-	(archive = format->GetInArchive()) -> AddRef();
-	(file = new CInFileStream) -> AddRef();
-	(callback = callbackImpl) -> AddRef();
-	callbackImpl->PasswordIsDefined = false;
-	callbackImpl->ParentWindow = hwndParent;
-	/*CMyComBSTR password;
-	callback->CryptoGetTextPassword(&password);*/
-	if COMPLAIN(!NFile::NFind::CFindFile().FindFirst(path, fileInfo))
+
+	CThreadArchiveOpen t;
+	t.OpenCallbackSpec = new COpenArchiveCallback;
+	t.OpenCallback = t.OpenCallbackSpec;
+	t.OpenCallbackSpec->PasswordIsDefined = false;
+	t.OpenCallbackSpec->ParentWindow = hwndParent;
+
+	(archive = format->GetInArchive())->AddRef();
+	(file = new CInFileStream)->AddRef();
+	t.File = file;
+	t.Path = path;
+	t.FileInfo = &fileInfo;
+	t.Archive = archive;
+
+	UString progressTitle = LangString(IDS_OPENNING);
+	t.OpenCallbackSpec->ProgressDialog.MainWindow = hwndParent;
+	t.OpenCallbackSpec->ProgressDialog.MainTitle = "7-Zip"; // LangString(IDS_APP_TITLE);
+	t.OpenCallbackSpec->ProgressDialog.MainAddTitle = progressTitle + L' ';
+	t.OpenCallbackSpec->ProgressDialog.WaitMode = true;
+
 	{
-		Complain(ERROR_FILE_NOT_FOUND, path);
+		NWindows::CThread thread;
+		thread.Create(CThreadArchiveOpen::MyThreadFunction, &t);
+		t.OpenCallbackSpec->StartProgressDialog(progressTitle, thread);
 	}
-	if COMPLAIN(!file->Open(path))
-	{
-		Complain(ERROR_OPEN_FAILED, path);
-	}
-	static const UInt64 maxCheckStartPosition = ULLONG_MAX;
-	if COMPLAIN(archive->Open(file, &maxCheckStartPosition, callback) != S_OK)
-	{
-		Complain(ERROR_CANT_ACCESS_FILE, path);
-	}
-	passwordIsDefined = callbackImpl->PasswordIsDefined;
-	password = callbackImpl->Password;
+	if (t.Result != ERROR_SUCCESS)
+		Complain(t.Result, path);
+
+	passwordIsDefined = t.OpenCallbackSpec->PasswordIsDefined;
+	password = t.OpenCallbackSpec->Password;
 }
 
 /**

@@ -1,7 +1,6 @@
 
 **/.vs
 **/ipch
-
 **/BuildTmp
 **/Build
 **/obj64
@@ -12,6 +11,8 @@
 **/Release
 **/x64Debug
 **/Debug
+**/Unicode Debug
+**/Unicode Release
 winmerge-cppcheck-build-dir/
 
 *.exe
@@ -36,6 +37,8 @@ winmerge-cppcheck-build-dir/
 *.pch
 *.idb
 *.log
+*.diagsession
+*.asm
 
 Testing/Data/ShellFileOpTest/File1.txt
 Translations/WinMerge/MergeLang.lastbuild
@@ -47,3 +50,4 @@ Translations/WinMerge/TranslationsStatus.html
 Translations/WinMerge/TranslationsStatus.wiki
 Translations/WinMerge/TranslationsStatus.xml
 Docs/Manual/Tools/ReadMe_ENG.html
+*.asm

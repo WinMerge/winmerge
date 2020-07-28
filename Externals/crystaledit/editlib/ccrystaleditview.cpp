@@ -63,9 +63,6 @@
  *
  * @brief Implementation of the CCrystalEditView class
  */
-// ID line follows -- this is updated by SVN
-// $Id: ccrystaleditview.cpp 6457 2009-02-15 14:08:50Z kimmov $
-
 
 #include "StdAfx.h"
 #include "editcmd.h"
@@ -142,7 +139,7 @@ CCrystalEditView:: ~CCrystalEditView ()
 }
 
 bool CCrystalEditView::
-DoSetTextType (TextDefinition *def)
+DoSetTextType (CrystalLineParser::TextDefinition *def)
 {
   m_CurSourceDef = def;
   SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != 0);
@@ -366,7 +363,7 @@ DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
-      }
+        }
       return true;
     }
   return false;
@@ -377,7 +374,7 @@ DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
 {
   int nBufSize = 1;
   for (int L = nStartLine; L <= nEndLine; L++)
-      nBufSize += GetFullLineLength (L);
+    nBufSize += GetFullLineLength (L);
 
   CString text;
   LPTSTR p, pszBuf = text.GetBuffer (nBufSize);
@@ -537,7 +534,7 @@ Paste ()
           EnsureVisible (ptCursorPos);*/
 
           // [JRT]:
-          if (!m_bColumnSelection)
+          if (!m_bRectangularSelection)
             m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
           else
             DeleteCurrentColumnSelection (CE_ACTION_PASTE, false, false);
@@ -581,13 +578,13 @@ Cut ()
   CPoint ptSelStart, ptSelEnd;
   GetSelection (ptSelStart, ptSelEnd);
   CString text;
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     GetText (ptSelStart, ptSelEnd, text);
   else
     GetTextInColumnSelection (text);
   PutToClipboard (text, text.GetLength());
 
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     {
       CPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -626,7 +623,7 @@ OnEditDelete ()
         }
     }
 
-  if (!m_bColumnSelection)
+  if (!m_bRectangularSelection)
     {
       CPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -934,8 +931,8 @@ OnEditTab ()
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int x, y;
-          m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
-
+          if (m_pTextBuffer->IsIndentableLine (L))
+            m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
         }
       m_bHorzScrollBarLocked = false;
       RecalcHorzScrollBar ();

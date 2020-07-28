@@ -976,12 +976,42 @@
     </section>
   </section>
 
-  <section id="Configuration_compare_image">
-    <title>Compare Image page</title>
+  <section id="Configuration_compare_table">
+    <title>Compare Table page<indexterm>
+          <primary>table files</primary>
+        </indexterm></title>
     <section>
-      <title>Image File Patterns<indexterm>
+      <title>CSV File Patterns</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>TSV File Patterns</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>Custom Delimiter-Separated Values</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>Allow newlines in quotes</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>Quote character</title>
+      <para>TBD</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>Compare Image page<indexterm>
           <primary>image files</primary>
         </indexterm></title>
+    <section>
+      <title>Image File Patterns</title>
       <para>TBD</para>
     </section>
   </section>

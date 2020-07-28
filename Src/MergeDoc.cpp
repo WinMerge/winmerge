@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /** 
  * @file  MergeDoc.cpp
@@ -45,6 +31,7 @@
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
+#include "OpenTableDlg.h"
 #include "DiffList.h"
 #include "paths.h"
 #include "OptionsMgr.h"
@@ -117,6 +104,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_TEXT, OnFileRecompareAsText)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
+	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
@@ -553,7 +542,10 @@ void CMergeDoc::CheckFileChanged(void)
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			if (FileChange[nBuffer] == FileChanged)
-				ChangeFile(nBuffer, m_filePaths[nBuffer]);
+			{
+				CPoint pt = GetView(0, nBuffer)->GetCursorPos();
+				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
+			}
 		}
 	}
 }
@@ -613,6 +605,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[0]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[0]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -630,6 +628,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[0]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[0]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -650,6 +654,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[2]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[2]->ComputeApparentLine(j);
+					if (m_ptBuf[1]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -667,6 +677,12 @@ void CMergeDoc::FlagMovedLines(void)
 			if (m_ptBuf[2]->FlagIsSet(apparent, LF_DIFF))
 			{
 				m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				if (m_ptBuf[1]->FlagIsSet(apparent, LF_GHOST))
+				{
+					int apparentJ = m_ptBuf[1]->ComputeApparentLine(j);
+					if (m_ptBuf[2]->FlagIsSet(apparentJ, LF_GHOST))
+						m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, true, false, false);
+				}
 			}
 		}
 	}
@@ -718,14 +734,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	// Files are not binaries, but they are identical
 	if (identical != IDENTLEVEL_NONE)
 	{
-		if (!m_filePaths.GetLeft().empty() && !m_filePaths.GetMiddle().empty() && !m_filePaths.GetRight().empty() && 
-			m_filePaths.GetLeft() == m_filePaths.GetRight() && m_filePaths.GetMiddle() == m_filePaths.GetRight())
-		{
-			// compare file to itself, a custom message so user may hide the message in this case only
-			s = _("The same file is opened in both panels.");
-			ShowMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
-		}
-		else if (identical == IDENTLEVEL_ALL)
+		if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 		{
 			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
 
@@ -736,13 +745,26 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 				// of the "exit no diff".
 				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
 			}
-
-			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
+			if ((m_nBuffers == 2 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetRight().empty() &&
+				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0) ||
+				(m_nBuffers == 3 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetMiddle().empty() && !m_filePaths.GetRight().empty() &&
+				 (strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0 ||
+				  strutils::compare_nocase(m_filePaths.GetMiddle(), m_filePaths.GetRight()) == 0 ||
+				  strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetMiddle()) == 0)))
+			{
+				// compare file to itself, a custom message so user may hide the message in this case only
+				s = _("The same file is opened in both panels.");
+				ShowMessageBox(s, nFlags, IDS_FILE_TO_ITSELF);
+			}
+			else if (identical == IDENTLEVEL_ALL)
 			{
 				s = _("The selected files are identical.");
 				ShowMessageBox(s, nFlags, IDS_FILESSAME);
 			}
+		}
 
+		if (identical == IDENTLEVEL_ALL)
+		{
 			// Exit application if files are identical.
 			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
 				theApp.m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
@@ -2575,6 +2597,78 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	return loadSuccess;
 }
 
+void CMergeDoc::SetTableProperties()
+{
+	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
+	auto getTablePropsByFileName = [](const String& path, const std::optional<bool>& enableTableEditing)-> TableProps
+	{
+		const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
+		FileFilterHelper filterCSV, filterTSV, filterDSV;
+		bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
+		const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+		if (!csvFilePattern.empty())
+		{
+			filterCSV.UseMask(true);
+			filterCSV.SetMask(csvFilePattern);
+			if (filterCSV.includeFile(path))
+				return { true, ',', quote, allowNewlineIQuotes };
+		}
+		const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
+		if (!tsvFilePattern.empty())
+		{
+			filterTSV.UseMask(true);
+			filterTSV.SetMask(tsvFilePattern);
+			if (filterTSV.includeFile(path))
+				return { true, '\t', quote, allowNewlineIQuotes };
+		}
+		const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
+		if (!dsvFilePattern.empty())
+		{
+			filterDSV.UseMask(true);
+			filterDSV.SetMask(dsvFilePattern);
+			if (filterDSV.includeFile(path))
+				return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+		}
+		if (enableTableEditing.value_or(false))
+		{
+			COpenTableDlg dlg;
+			if (dlg.DoModal() == IDOK)
+				return { true, dlg.m_sDelimiterChar.c_str()[0], dlg.m_sQuoteChar.c_str()[0], dlg.m_bAllowNewlinesInQuotes };
+		}
+		return { false, 0, 0, false };
+	};
+
+	TableProps tableProps[3] = {};
+	int nTableFileIndex = -1;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (nBuffer == 0 ||
+			paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
+			tableProps[nBuffer] = getTablePropsByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
+		else
+			tableProps[nBuffer] = tableProps[nBuffer - 1];
+		if (tableProps[nBuffer].istable)
+			nTableFileIndex = nBuffer;
+	}
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (m_bEnableTableEditing.value_or(true) && nTableFileIndex >= 0)
+		{
+			int i = tableProps[nBuffer].istable ? nBuffer : nTableFileIndex;
+			m_ptBuf[nBuffer]->SetTableEditing(true);
+			m_ptBuf[nBuffer]->ShareColumnWidths(*m_ptBuf[0]);
+			m_ptBuf[nBuffer]->SetAllowNewlinesInQuotes(tableProps[i].allowNewlinesInQuotes);
+			m_ptBuf[nBuffer]->SetFieldDelimiter(tableProps[i].delimiter);
+			m_ptBuf[nBuffer]->SetFieldEnclosure(tableProps[i].quote);
+			m_ptBuf[nBuffer]->JoinLinesForTableEditingMode();
+		}
+		else
+		{
+			m_ptBuf[nBuffer]->SetTableEditing(false);
+		}
+	}
+}
+
 /**
  * @brief Loads files and does initial rescan.
  * @param fileloc [in] File to open to left/middle/right side (path & encoding info)
@@ -2627,6 +2721,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
 	}
+
+	SetTableProperties();
+
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 
 	// scratchpad : we don't call LoadFile, so
@@ -2785,7 +2882,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		if (syntaxHLEnabled)
 		{
-			CCrystalTextView::TextDefinition *enuType = GetView(0, paneTyped)->GetTextType(sext[paneTyped].c_str());
+			CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
 			ForEachView([&bTyped, enuType](auto& pView) {
 				if (!bTyped[pView->m_nThisPane])
 					pView->SetTextType(enuType);
@@ -2860,7 +2957,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
 }
 
-void CMergeDoc::ChangeFile(int nBuffer, const String& path)
+void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return;
@@ -2881,8 +2978,8 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
-	OpenDocs(m_nBuffers, fileloc, bRO, strDesc);
-	MoveOnLoad(nBuffer, 0);
+	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
+		MoveOnLoad(nBuffer, nLineIndex);
 }
 
 /**
@@ -3132,8 +3229,8 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
-	MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
+	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
+		MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
 }
 
 /**
@@ -3179,6 +3276,7 @@ void CMergeDoc::OnOK()
 
 void CMergeDoc::OnFileRecompareAsText()
 {
+	m_bEnableTableEditing = false;
 	PackingInfo infoUnpacker;
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();
@@ -3186,11 +3284,26 @@ void CMergeDoc::OnFileRecompareAsText()
 
 void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML);
+	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML ||
+		m_ptBuf[0]->GetTableEditing());
+}
+
+void CMergeDoc::OnFileRecompareAsTable()
+{
+	m_bEnableTableEditing = true;
+	PackingInfo infoUnpacker;
+	SetUnpacker(&infoUnpacker);
+	OnFileReload();
+}
+
+void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
 }
 
 void CMergeDoc::OnFileRecompareAsXML()
 {
+	m_bEnableTableEditing = false;
 	PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();

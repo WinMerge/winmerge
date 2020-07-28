@@ -5,11 +5,9 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
 #define IDR_SAMPLETYPE                  129
-#define IDB_BITMAP1                     130
 #define IDR_MARGIN_ICONS                131
 #define IDR_MARGIN_CURSOR               132
 #define IDR_MARGIN_ICONS_PNG            133
-#define IDD_MESSAGE_BOX                 219
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
 #define IDD_EDIT_MARKER                 222
@@ -34,22 +32,6 @@
 #define IDC_FINDDLG_DONTWRAP            8620
 #define IDC_EDIT_FINDPREV               8621
 #define IDC_FINDDLG_DONTCLOSE           8622
-#define IDS_MESSAGEBOX_OK               9001
-#define IDS_MESSAGEBOX_CANCEL           9002
-#define IDS_MESSAGEBOX_ABORT            9003
-#define IDS_MESSAGEBOX_RETRY            9004
-#define IDS_MESSAGEBOX_IGNORE           9005
-#define IDS_MESSAGEBOX_IGNOREALL        9006
-#define IDS_MESSAGEBOX_YES              9007
-#define IDS_MESSAGEBOX_YES_TO_ALL       9008
-#define IDS_MESSAGEBOX_NO               9009
-#define IDS_MESSAGEBOX_NO_TO_ALL        9010
-#define IDS_MESSAGEBOX_CONTINUE         9011
-#define IDS_MESSAGEBOX_SKIP             9012
-#define IDS_MESSAGEBOX_SKIPALL          9013
-#define IDS_MESSAGEBOX_HELP             9014
-#define IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 9015
-#define IDS_MESSAGEBOX_DONT_ASK_AGAIN   9016
 #define IDC_EDIT_MARKER_NEW             12322
 #define IDC_EDIT_MARKER_DELETE          12323
 #define IDS_NUM_REPLACED                18032
@@ -67,10 +49,9 @@
 #define ID_EDIT_DISABLEBSATSOL          32796
 #define ID_EDIT_DISABLEDRAGANDDROP      32797
 #define ID_EDIT_FIND_PREVIOUS           32799
-#define ID_VIEW_WORDWRAP                32824
-#define ID_EDIT_LOWERCASE               33185
-#define ID_EDIT_UPPERCASE               33186
+#define ID_VIEW_WHITESPACE              32800
 #define ID_EDIT_INDICATOR_COL           37900
+#define ID_READ_ONLY                    37901
 #define ID_INDICATOR_ENCODING           37905
 #define IDS_OLE_INIT_FAILED             57608
 

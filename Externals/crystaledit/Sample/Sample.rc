@@ -186,7 +186,9 @@ BEGIN
         MENUITEM "To&ggle source/header",       ID_VIEW_TOGGLE_SRC_HDR
         MENUITEM SEPARATOR
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
+        MENUITEM "View T&op Margins",           ID_VIEW_TOPMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
@@ -283,7 +285,7 @@ CAPTION "Replace"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Fi&nd what:",IDC_STATIC,7,9,65,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Re&place with:",IDC_STATIC,7,24,65,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
@@ -486,7 +488,7 @@ END
 STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "Sample"
-    IDR_SAMPLETYPE          "\nSample\nSample\nC++ Files (*.cpp)\n.cpp\nSample.Document\nSample Document"
+    IDR_SAMPLETYPE          "\nSample\nSample\nText Files (*.txt)\n.*\nSample.Document\nSample Document"
 END
 
 STRINGTABLE
@@ -608,30 +610,6 @@ END
 STRINGTABLE
 BEGIN
     ID_EDIT_INDICATOR_COL   "========="
-END
-
-STRINGTABLE
-BEGIN
-    IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Cancel"
-    IDS_MESSAGEBOX_ABORT    "&Abort"
-    IDS_MESSAGEBOX_RETRY    "&Retry"
-    IDS_MESSAGEBOX_IGNORE   "&Ignore"
-    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
-    IDS_MESSAGEBOX_YES      "&Yes"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
-    IDS_MESSAGEBOX_NO       "&No"
-    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
-    IDS_MESSAGEBOX_CONTINUE "&Continue"
-    IDS_MESSAGEBOX_SKIP     "&Skip"
-    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
-    IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
 STRINGTABLE

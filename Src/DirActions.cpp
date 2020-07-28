@@ -1,7 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-//    see Merge.cpp for license (GPLv2+) statement
-//
-/////////////////////////////////////////////////////////////////////////////
+// SPDX-License-Identifier: GPL-2.0-or-later
 /**
  *  @file DirActions.cpp
  *
@@ -37,6 +34,11 @@ ContentsChangedException::ContentsChangedException(const String& failpath)
 	: m_msg(strutils::format_string1(
 	        _("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
 	        failpath))
+{
+}
+
+FileOperationException::FileOperationException(const String& msg)
+	: m_msg(msg)
 {
 }
 
@@ -387,13 +389,15 @@ bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM &di)
 }
 
 /// is it possible to compare these two items?
-bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM &di1, const DIFFITEM &di2)
+bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM &di1, const DIFFITEM &di2, bool openableForDir /*= true*/)
 {
 	String sLeftBasePath = ctxt.GetPath(0);
 	String sRightBasePath = ctxt.GetPath(1);
 
 	// Must be both directory or neither
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory()) return false;
+
+	if (!openableForDir && di1.diffcode.isDirectory()) return false;
 
 	switch (selectionType)
 	{
@@ -436,7 +440,7 @@ bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, con
 	return false;
 }
 /// is it possible to compare these three items?
-bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFITEM &di2, const DIFFITEM &di3)
+bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFITEM &di2, const DIFFITEM &di3, bool openableForDir /*= true*/)
 {
 	String sLeftBasePath = ctxt.GetPath(0);
 	String sMiddleBasePath = ctxt.GetPath(1);
@@ -470,6 +474,8 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFI
 
 	// Must be both directory or neither
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory() && di1.diffcode.isDirectory() != di3.diffcode.isDirectory()) return false;
+
+	if (!openableForDir && di1.diffcode.isDirectory()) return false;
 
 	// Must be on different sides, or one on one side & one on both
 	if (di1.diffcode.exists(0) && di2.diffcode.exists(1) && di3.diffcode.exists(2))
@@ -711,14 +717,17 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
  * @param [out] paths First/Second/Third paths.
  * @param [out] sel1 Item's selection index in listview.
  * @param [in,out] isDir Is item folder?
+ * @param [in] openableForDir Are items openable if the items are directories?
  * return false if there was error or item was completely processed.
  */
 bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, bool & isdir, int nPane[3], String& errmsg)
+		PathContext & paths, int & sel1, bool & isdir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	pdi[0] = &ctxt.GetDiffAt(pos1);
 	pdi[1] = pdi[0];
 	pdi[2] = pdi[0];
+
+	if (!openableForDir && pdi[0]->diffcode.isDirectory()) return false;
 
 	paths = GetItemFileNames(ctxt, *pdi[0]);
 
@@ -758,10 +767,11 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
  * @param [out] sel1 First item's selection index in listview.
  * @param [out] sel2 Second item's selection index in listview.
  * @param [in,out] isDir Is item folder?
+ * @param [in] openableForDir Are items openable if the items are directories?
  * return false if there was error or item was completely processed.
  */
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFFITEM *pos1, DIFFITEM *pos2, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg)
+		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	// Two items selected, get their info
 	pdi[0] = &ctxt.GetDiffAt(pos1);
@@ -770,7 +780,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
 	nPane[1] = 1;
 
 	// Check for binary & side compatibility & file/dir compatibility
-	if (!AreItemsOpenable(ctxt, selectionType, *pdi[0], *pdi[1]))
+	if (!AreItemsOpenable(ctxt, selectionType, *pdi[0], *pdi[1], openableForDir))
 	{
 		return false;
 	}
@@ -832,10 +842,11 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
  * @param [out] sel2 Second item's selection index in listview.
  * @param [out] sel3 Third item's selection index in listview.
  * @param [in,out] isDir Is item folder?
+ * @param [in] openableForDir Are items openable if the items are directories?
  * return false if there was error or item was completely processed.
  */
 bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3, const DIFFITEM *pdi[3],
-	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg)
+	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	String pathLeft, pathMiddle, pathRight;
 
@@ -849,8 +860,8 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2,
 		pdi[1] = &ctxt.GetDiffAt(pos2);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[1]) && 
-			!::AreItemsOpenable(ctxt, *pdi[0], *pdi[0], *pdi[1]))
+		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[1], openableForDir) &&
+			!::AreItemsOpenable(ctxt, *pdi[0], *pdi[0], *pdi[1], openableForDir))
 		{
 			return false;
 		}
@@ -904,7 +915,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2,
 		pdi[2] = &ctxt.GetDiffAt(pos3);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[2]))
+		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[2], openableForDir))
 		{
 			return false;
 		}

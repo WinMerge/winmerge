@@ -1,21 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997  Dean P. Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  *  @file DirView.h
@@ -28,6 +14,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <memory>
+#include <optional>
 #include "OptionsDirColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
@@ -136,7 +123,7 @@ private:
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void DoOpenParentFolder(SIDE_TYPE stype);
-	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI);
+	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir = true);
 	void ConfirmAndPerformActions(FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
@@ -212,10 +199,8 @@ protected:
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
-	int m_firstDiffItem;
-	int m_lastDiffItem;
-	bool m_bNeedSearchFirstDiffItem;
-	bool m_bNeedSearchLastDiffItem;
+	std::optional<int> m_firstDiffItem;
+	std::optional<int> m_lastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bUseColors;
 
@@ -395,7 +380,7 @@ protected:
 
 private:
 	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);
-	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr);
+	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
 	void OpenParentDirectory();

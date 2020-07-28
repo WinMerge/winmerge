@@ -484,6 +484,7 @@
     <ClCompile Include="..\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\editlib\ccrystaleditview.cpp" />
+    <ClCompile Include="..\editlib\parsers\crystallineparser.cpp" />
     <ClCompile Include="..\editlib\renderers\ccrystalrendererdirectwrite.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

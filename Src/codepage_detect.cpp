@@ -82,31 +82,38 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 	//markdown.Move("html").Pop().Move("head").Pop();
 	while (markdown.Move("meta"))
 	{
-		std::string http_equiv(markdown.GetAttribute("http-equiv"));
-		if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
+		std::string charset(markdown.GetAttribute("charset"));
+		if (charset.empty())
 		{
-			std::string content(markdown.GetAttribute("content"));
-			if (!content.empty())
+			std::string http_equiv(markdown.GetAttribute("http-equiv"));
+			if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
 			{
-				char *pchKey = &content[0];
-				while (size_t cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
+				std::string content(markdown.GetAttribute("content"));
+				if (!content.empty())
 				{
-					char *pchValue = pchKey + cchKey;
-					size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-					if (cchKey >= 7 && _strnicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					char *pchKey = &content[0];
+					while (size_t cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
 					{
-						pchValue[cchValue] = '\0';
-						// Is it an encoding name known to charsets module ?
-						unsigned encodingId = FindEncodingIdFromNameOrAlias(pchValue);
-						if (encodingId)
+						char *pchValue = pchKey + cchKey;
+						size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
+						if (cchKey >= 7 && _strnicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 						{
-							return GetEncodingCodePageFromId(encodingId);
+							pchValue[cchValue] = '\0';
+							charset = pchValue;
+							break;
 						}
-						return defcodepage;
+						pchKey = pchValue + cchValue;
 					}
-					pchKey = pchValue + cchValue;
 				}
 			}
+		}
+		if (!charset.empty())
+		{
+			// Is it an encoding name known to charsets module ?
+			int encodingId = FindEncodingIdFromNameOrAlias(charset.c_str());
+			if (encodingId)
+				return GetEncodingCodePageFromId(encodingId);
+			return defcodepage;
 		}
 	}
 	return defcodepage;

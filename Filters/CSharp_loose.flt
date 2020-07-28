@@ -27,8 +27,9 @@ f: \.bak$ ## backup
 d: \\\.svn$ ## Subversion working copy
 d: \\_svn$  ## Subversion working copy ASP.NET Hack
 d: \\cvs$   ## CVS control directory
+d: \\bin$	## binary files directory
+d: \\obj$	## object files directory
 d: \\\.git$ ## Git directory
 d: \\\.bzr$ ## Bazaar branch
 d: \\\.hg$ ## Mercurial repository
 d: \\\.vs$ ## A hidden folder that stores .suo and *.db files
-

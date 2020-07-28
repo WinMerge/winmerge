@@ -4,6 +4,7 @@
 
 struct IListCtrl
 {
+	virtual ~IListCtrl() {};
 	virtual int GetColumnCount() const = 0;
 	virtual int GetRowCount() const = 0;
 	virtual String GetColumnName(int col) const = 0;

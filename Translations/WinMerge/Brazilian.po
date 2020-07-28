@@ -1,5 +1,3 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
-# Released under the "GNU General Public License"
 #
 # Translators:
 # * Wender Firmino <wender at pta.com.br>
@@ -14,17 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-01-15 20:39+0000\n"
-"PO-Revision-Date: 2018-12-01 16:55-0200\n"
+"PO-Revision-Date: 2020-07-26 17:08-0300\n"
 "Last-Translator: Felipe <felipefplzx@gmail.com>\n"
 "Language-Team: Felipe\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Brazilian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: pt_BR\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -92,7 +89,7 @@ msgid "&with..."
 msgstr "&com..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Menu de Conte&xto"
 
 #, c-format
 msgid "View &Differences"
@@ -107,17 +104,17 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "& Ignorar a Diferença de Cor (Limite da Distância da Cor)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "D&etecção de Inserção/Exclusão"
 
 #, c-format
 msgid "&None"
 msgstr "&Nenhum"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "&Vertical"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Horizontal"
 
 #, c-format
 msgid "&Previous Page"
@@ -137,7 +134,7 @@ msgstr "&Zoom"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -177,17 +174,17 @@ msgid "&Adjust Offset"
 msgstr "&Ajustar Offset"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "Limpeza &Vertical"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "Limpeza &Horizontal"
 
 #, c-format
 msgid "&Set Background Color"
 msgstr "&Definir a Cor do 2º Plano"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "Escala de Imagem &Vetorial"
 
 #, c-format
 msgid "&File"
@@ -433,13 +430,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Só &Mostrar Itens Diferentes a Direita"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Mostrar Somente Itens Faltando na &Esquerda"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Mostrar Somente Itens Faltando no &Meio"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Mostrar Somente Itens Faltando na &Direita"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -602,6 +599,9 @@ msgstr "Recomparar Como"
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
+
+msgid "&Table"
+msgstr "&Tabela"
 
 #, c-format
 msgid "&XML"
@@ -869,7 +869,7 @@ msgid "Comp&are"
 msgstr "Comp&arar"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Comparação Não-hor&izontal..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1367,7 +1367,7 @@ msgid "Wh&ole file"
 msgstr "No &arquivo inteiro"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Localizar An&terior"
 
 #, c-format
 msgid "&Replace"
@@ -1422,7 +1422,7 @@ msgid "Colors"
 msgstr "Cores"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Esquema de Cor:"
 
 #, c-format
 msgid "Background"
@@ -1473,19 +1473,19 @@ msgid "Selected Word Diff:"
 msgstr "Diferença das Palavras Selecionadas:"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "&Usar cores para comparar pastas"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Itens iguais:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Itens diferentes:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "Itens não existentes:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Itens filtrados:"
 
 #, c-format
 msgid "Margin:"
@@ -1700,10 +1700,10 @@ msgid "&Match similar lines"
 msgstr "&Combinar com linhas similares"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "&Algoritmo diff (Experimental):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "Ativar &heurística de recuo"
 
 #, c-format
 msgid "Comments"
@@ -1766,7 +1766,7 @@ msgid "W&ord break characters:"
 msgstr "C&aracters da quebra de linha:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "Modo de &Renderização:"
 
 #, c-format
 msgid "Filefilters"
@@ -2118,6 +2118,30 @@ msgstr "&Teste"
 msgid "&Close"
 msgstr "&Fechar"
 
+msgid "Table"
+msgstr "Tabela"
+
+msgid "File type"
+msgstr "Tipo de arquivo"
+
+msgid "&CSV"
+msgstr "&CSV"
+
+msgid "&TSV"
+msgstr "&TSV"
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "Valores Separados por &Delimitadores personalizados"
+
+msgid "D&elimiter character:"
+msgstr "Caractere d&elimitador:"
+
+msgid "&Allow newlines in quotes"
+msgstr "Permitir nov&as linhas em citações"
+
+msgid "&Quote character:"
+msgstr "Caractere de &citação:"
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Usar cores de texto personalizadas"
@@ -2211,7 +2235,7 @@ msgid "&Enable plugins"
 msgstr "&Ativar plugins"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Filtros de arquivo:"
 
 #, c-format
 msgid "Shell Integration"
@@ -2238,10 +2262,10 @@ msgid "&Unregister shell extension"
 msgstr "&Tirar o registro da extensão do shell"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "Registrar extensão do menu de c&ontexto somente para usual atual"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "Remover registro da extensão do menu de c&ontexto somente para usual atual"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2272,10 +2296,26 @@ msgid "&Quick compare limit (MB):"
 msgstr "&Limite de comparação rápida (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "Limite de comparação de &binários (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\n&Número dos threads de comparação (um valor negativo implica em adição do número de cores da CPU disponíveis):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+"\n"
+"&Número dos threads de comparação (um valor negativo implica em adição do número de cores da CPU disponíveis):"
+
+msgid "&CSV File Patterns:"
+msgstr "Padrões de Arquivo &CSV:"
+
+msgid "&TSV File Patterns:"
+msgstr "Padrões de Arquivo &TSV:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "Valores Separados por Delimitadores personalizados"
+
+msgid "File Patterns:"
+msgstr "Padrões de Arquivo:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2309,7 +2349,7 @@ msgid "Image File &Patterns:"
 msgstr "Modelos dos Arquivos de &Imagens:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Habilitar comparação de imag&ens na comparação de pastas"
 
 #, c-format
 msgid "&Hex View"
@@ -2431,7 +2471,9 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "Comparação das Pastas do WinMerge"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Desenvolvedores:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
@@ -2497,14 +2539,14 @@ msgid "To make this messagebox visible again, press the Reset button on the Gene
 msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Resetar na página Geral do diálogo das Opções."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Esquemas de Cor"
 
 #, c-format
 msgid "Syntax"
 msgstr "Sintaxe"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "Comparar Pastas"
 
 #, c-format
 msgid "Differences"
@@ -2853,8 +2895,16 @@ msgstr ""
 "%1\n"
 "não é um arquivo de conflito."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"Você está prestes a comparar arquivos muito grandes.\n"
+"Mostrar o conteúdo dos arquivos necessita de uma grande quantidade de memória.\n"
+"Você deseja mostrar somente os resultados da comparação, não o conteúdo dos arquivos?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2885,7 +2935,13 @@ msgstr ""
 "Continuar de qualquer maneira?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press Ok)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Falhou em salvar o arquivo.\n"
 "%1\n"
@@ -3368,10 +3424,10 @@ msgid "Text files are different"
 msgstr "Os arquivos texto são diferentes"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Os arquivos de imagem são iguais"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Os arquivos de imagem são diferentes"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3488,7 +3544,7 @@ msgid "Right side file EOL type."
 msgstr "Tipo de EOL do arquivo do lado direito."
 
 msgid "Middle side file EOL type."
-msgstr ""
+msgstr "Tipo EOL do arquivo do meio."
 
 #, c-format
 msgid "Left side encoding."
@@ -3619,7 +3675,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Você quer mover para a página anterior?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Códigos de páginas diferentes achados nos arquivos da esquerda (cp%d) e direita (cp%d).\n"
 "Exibir cada arquivo na sua página de código dará uma melhor exibição mas unir/copiar será perigoso.\n"
@@ -3698,10 +3757,10 @@ msgid "Patch file successfully written."
 msgstr "Arquivo do patch gravado com sucesso."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. item não encontrado!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. item não encontrado!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3815,7 +3874,7 @@ msgstr "Nenhum"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Cor do Marcador %d"
 
 #, c-format
 msgid "Type"
@@ -4046,7 +4105,7 @@ msgid "Batch"
 msgstr "Batch"
 
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4103,125 +4162,124 @@ msgstr ""
 "$linenum: O número da linha da posição atual do cursor"
 
 msgid "default"
-msgstr ""
+msgstr "padrão"
 
 msgid "minimal"
-msgstr ""
+msgstr "mínimo"
 
 msgid "patience"
-msgstr ""
+msgstr "paciência"
 
 msgid "histogram"
-msgstr ""
+msgstr "histograma"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite Padrão"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite com Suavização"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Clássico"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Simétrico"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "Janela adjacente ou janela principal MDI"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Somente janela adjacente MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Destaque"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Piscar"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Tamanho do Bloco"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Bloco Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Limite de CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Detecção de Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Sobreposição"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Mistura Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Animação Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Página:"
 
 #, c-format
 msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr ""
+msgstr "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
 
 #, c-format
 msgid "Dist:%g "
-msgstr ""
+msgstr "Dist :%g "
 
 #, c-format
 msgid "Dist:%g,%g "
-msgstr ""
+msgstr "Dist: %g,%g "
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-msgstr ""
-
+msgstr "Página: %d/%d Zoom: %d%% %dx%dpx %dbpp"

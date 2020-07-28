@@ -1,8 +1,6 @@
 #
 # Makefile
 #
-# $Id: //poco/1.4/Foundation/samples/Makefile#1 $
-#
 # Makefile for Poco Foundation Samples
 #
 
@@ -13,6 +11,7 @@ projects:
 	$(MAKE) -C Activity $(MAKECMDGOALS)
 	$(MAKE) -C Timer $(MAKECMDGOALS)
 	$(MAKE) -C BinaryReaderWriter $(MAKECMDGOALS)
+	$(MAKE) -C LineEndingConverter $(MAKECMDGOALS)
 	$(MAKE) -C base64decode $(MAKECMDGOALS)
 	$(MAKE) -C base64encode $(MAKECMDGOALS)
 	$(MAKE) -C deflate $(MAKECMDGOALS)

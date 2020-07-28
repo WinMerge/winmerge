@@ -5,35 +5,99 @@
 #
 
 sinclude config.make
+sinclude config.build
 
 ifndef POCO_BASE
 $(warning WARNING: POCO_BASE is not defined. Assuming current directory.)
 export POCO_BASE=$(shell pwd)
 endif
-
-ifndef POCO_PREFIX
-export POCO_PREFIX=/usr/local
+ifdef POCO_VERBOSE
+$(info POCO_BASE           = $(POCO_BASE))
 endif
 
 ifndef POCO_BUILD
 export POCO_BUILD=$(POCO_BASE)
 endif
+ifdef POCO_VERBOSE
+$(info POCO_BUILD          = $(POCO_BUILD))
+endif
 
-.PHONY: all libexecs cppunit tests samples clean distclean install
+#
+# Determine OS
+#
+POCO_HOST_OSNAME = $(shell uname)
+ifeq ($(findstring CYGWIN,$(POCO_HOST_OSNAME)),CYGWIN)
+POCO_HOST_OSNAME = CYGWIN
+endif
 
+ifeq ($(findstring MINGW,$(POCO_HOST_OSNAME)),MINGW)
+POCO_HOST_OSNAME = MinGW
+endif
+ifdef POCO_VERBOSE
+$(info POCO_HOST_OSNAME    = $(POCO_HOST_OSNAME))
+endif
+
+POCO_HOST_OSARCH ?= $(subst /,-,$(shell uname -m | tr ' ' _))
+ifdef POCO_VERBOSE
+$(info POCO_HOST_OSARCH    = $(POCO_HOST_OSARCH))
+endif
+
+#
+# If POCO_CONFIG is not set, use the OS name as configuration name
+#
+ifndef POCO_CONFIG
+POCO_CONFIG = $(POCO_HOST_OSNAME)
+endif
+ifdef POCO_VERBOSE
+$(info POCO_CONFIG         = $(POCO_CONFIG))
+endif
+
+#
+# Include System Specific Settings
+#
+include $(POCO_BASE)/build/config/$(POCO_CONFIG)
+
+#
+# Determine operating system
+#
+ifndef POCO_TARGET_OSNAME
+OSNAME   := $(POCO_HOST_OSNAME)
+else
+OSNAME   := $(POCO_TARGET_OSNAME)
+endif
+ifdef POCO_VERBOSE
+$(info OSNAME              = $(OSNAME))
+endif
+
+ifndef POCO_TARGET_OSARCH
+OSARCH   := $(POCO_HOST_OSARCH)
+else
+OSARCH   := $(POCO_TARGET_OSARCH)
+endif
+ifdef POCO_VERBOSE
+$(info OSARCH              = $(OSARCH))
+endif
+
+.PHONY: poco all libexecs cppunit tests samples cleans clean distclean install
+
+# TESTS and SAMPLES are set in config.make
+poco: libexecs $(if $(TESTS),tests) $(if $(SAMPLES),samples)
 all: libexecs tests samples
 
 INSTALLDIR = $(DESTDIR)$(POCO_PREFIX)
-COMPONENTS = Foundation XML Util Net
+COMPONENTS = Foundation Encodings XML JSON Util Net
 
 cppunit:
-	$(MAKE) -C $(POCO_BASE)/CppUnit 
+	$(MAKE) -C $(POCO_BASE)/CppUnit
+
+CppUnit-clean:
+	$(MAKE) -C $(POCO_BASE)/CppUnit clean
 
 install: libexecs
 	mkdir -p $(INSTALLDIR)/include/Poco
 	mkdir -p $(INSTALLDIR)/lib
 	mkdir -p $(INSTALLDIR)/bin
-	for comp in $(COMPONENTS) ; do \
+	for comp in $(filter-out $(foreach f,$(OMIT),$f%),$(COMPONENTS)) ; do \
 		if [ -d "$(POCO_BASE)/$$comp/include" ] ; then \
 			cp -Rf $(POCO_BASE)/$$comp/include/* $(INSTALLDIR)/include/ ; \
 		fi ; \
@@ -41,71 +105,113 @@ install: libexecs
 			find $(POCO_BUILD)/$$comp/bin -perm -700 -type f -exec cp -f {} $(INSTALLDIR)/bin \; ; \
 		fi ; \
 	done
-	find $(POCO_BUILD)/lib -name "libPoco*" -type f -exec cp -f {} $(INSTALLDIR)/lib \;
-	find $(POCO_BUILD)/lib -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib \;
+ifeq ($(OSNAME), CYGWIN)
+	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "cygPoco*" -type f -exec cp -f  {} $(INSTALLDIR)/bin \;
+	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "cygPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/bin \;
+endif
+	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "libPoco*" -type f -exec cp -f  {} $(INSTALLDIR)/lib \;
+	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib \;
 
-libexecs =  Foundation-libexec XML-libexec Util-libexec Net-libexec
-tests    =  Foundation-tests XML-tests Util-tests Net-tests
-samples  =  Foundation-samples XML-samples Util-samples Net-samples
+libexecs =  Foundation-libexec Encodings-libexec XML-libexec JSON-libexec Util-libexec Net-libexec
+tests    =  Foundation-tests Encodings-tests XML-tests JSON-tests Util-tests Net-tests
+samples  =  Foundation-samples Encodings-samples XML-samples JSON-samples Util-samples Net-samples
+cleans   =  Foundation-clean Encodings-clean XML-clean JSON-clean Util-clean Net-clean
 
 .PHONY: $(libexecs)
 .PHONY: $(tests)
 .PHONY: $(samples)
+.PHONY: $(cleans)
 
 libexecs: $(filter-out $(foreach f,$(OMIT),$f%),$(libexecs))
 tests: $(filter-out $(foreach f,$(OMIT),$f%),$(tests))
 samples: $(filter-out $(foreach f,$(OMIT),$f%),$(samples))
+cleans: $(filter-out $(foreach f,$(OMIT),$f%),$(cleans))
 
 Foundation-libexec: 
 	$(MAKE) -C $(POCO_BASE)/Foundation
 
 Foundation-tests: Foundation-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Foundation/testsuite
-	
+
 Foundation-samples: Foundation-libexec 
 	$(MAKE) -C $(POCO_BASE)/Foundation/samples
+
+Foundation-clean:
+	$(MAKE) -C $(POCO_BASE)/Foundation clean
+	$(MAKE) -C $(POCO_BASE)/Foundation/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Foundation/samples clean
+
+Encodings-libexec:  Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/Encodings
+
+Encodings-tests: Encodings-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Encodings/testsuite
+
+Encodings-samples: Encodings-libexec 
+	$(MAKE) -C $(POCO_BASE)/Encodings/samples
+
+Encodings-clean:
+	$(MAKE) -C $(POCO_BASE)/Encodings clean
+	$(MAKE) -C $(POCO_BASE)/Encodings/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Encodings/samples clean
 
 XML-libexec:  Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/XML
 
 XML-tests: XML-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/XML/testsuite
-	
+
 XML-samples: XML-libexec 
 	$(MAKE) -C $(POCO_BASE)/XML/samples
 
-Util-libexec:  Foundation-libexec XML-libexec
+XML-clean:
+	$(MAKE) -C $(POCO_BASE)/XML clean
+	$(MAKE) -C $(POCO_BASE)/XML/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/XML/samples clean
+
+JSON-libexec:  Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/JSON
+
+JSON-tests: JSON-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/JSON/testsuite
+
+JSON-samples: JSON-libexec 
+	$(MAKE) -C $(POCO_BASE)/JSON/samples
+
+JSON-clean:
+	$(MAKE) -C $(POCO_BASE)/JSON clean
+	$(MAKE) -C $(POCO_BASE)/JSON/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/JSON/samples clean
+
+Util-libexec:  Foundation-libexec XML-libexec JSON-libexec
 	$(MAKE) -C $(POCO_BASE)/Util
 
 Util-tests: Util-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Util/testsuite
-	
+
 Util-samples: Util-libexec 
 	$(MAKE) -C $(POCO_BASE)/Util/samples
+
+Util-clean:
+	$(MAKE) -C $(POCO_BASE)/Util clean
+	$(MAKE) -C $(POCO_BASE)/Util/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Util/samples clean
 
 Net-libexec:  Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/Net
 
 Net-tests: Net-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Net/testsuite
-	
-Net-samples: Net-libexec  Foundation-libexec XML-libexec Util-libexec
+
+Net-samples: Net-libexec  Foundation-libexec XML-libexec JSON-libexec Util-libexec
 	$(MAKE) -C $(POCO_BASE)/Net/samples
 
-clean:
-	$(MAKE) -C $(POCO_BASE)/Foundation clean
-	$(MAKE) -C $(POCO_BASE)/Foundation/testsuite clean
-	$(MAKE) -C $(POCO_BASE)/Foundation/samples clean
-	$(MAKE) -C $(POCO_BASE)/XML clean
-	$(MAKE) -C $(POCO_BASE)/XML/testsuite clean
-	$(MAKE) -C $(POCO_BASE)/XML/samples clean
-	$(MAKE) -C $(POCO_BASE)/Util clean
-	$(MAKE) -C $(POCO_BASE)/Util/testsuite clean
-	$(MAKE) -C $(POCO_BASE)/Util/samples clean
+Net-clean:
 	$(MAKE) -C $(POCO_BASE)/Net clean
 	$(MAKE) -C $(POCO_BASE)/Net/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/Net/samples clean
-	$(MAKE) -C $(POCO_BASE)/CppUnit clean
+
+clean: cleans CppUnit-clean
 
 distclean:
 	rm -rf $(POCO_BUILD)/lib

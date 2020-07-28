@@ -604,6 +604,9 @@ msgstr "다시 비교"
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -2119,6 +2122,30 @@ msgstr "테스트(&T)"
 msgid "&Close"
 msgstr "닫기(&C)"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "사용자 텍스트 색상 사용하기(&U)"
@@ -2277,6 +2304,18 @@ msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

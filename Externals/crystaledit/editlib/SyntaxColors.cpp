@@ -3,8 +3,6 @@
  *
  * @brief Implementation for SyntaxColors class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: SyntaxColors.cpp 6727 2009-05-10 08:25:18Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>

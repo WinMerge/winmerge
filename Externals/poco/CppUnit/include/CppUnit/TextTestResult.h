@@ -1,8 +1,6 @@
 //
 // TextTestResult.h
 //
-// $Id: //poco/1.4/CppUnit/include/CppUnit/TextTestResult.h#1 $
-//
 
 
 #ifndef CppUnit_TextTestResult_INCLUDED
@@ -11,6 +9,7 @@
 
 #include "CppUnit/CppUnit.h"
 #include "CppUnit/TestResult.h"
+#include <set>
 #include <ostream>
 
 
@@ -21,8 +20,10 @@ class CppUnit_API TextTestResult: public TestResult
 {
 public:
 	TextTestResult();
+	TextTestResult(const std::string& ignore);
 	TextTestResult(std::ostream& ostr);
-	
+	TextTestResult(std::ostream& ostr, const std::string& ignore);
+
 	virtual void addError(Test* test, CppUnitException* e);
 	virtual void addFailure(Test* test, CppUnitException* e);
 	virtual void startTest(Test* test);
@@ -33,9 +34,12 @@ public:
 	
 protected:
 	std::string shortName(const std::string& testName);
-	
+	void setup();
+	void ignoring(const std::string ignore);
+
 private:
 	std::ostream& _ostr;
+	std::set<std::string> _ignored;
 };
 
 

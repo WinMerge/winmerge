@@ -2,21 +2,7 @@
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
 //    Author: Dean Grimm
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-//
+//    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
  *  @file FileTransform.cpp
@@ -49,6 +35,36 @@ PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
 
+bool getPackUnpackPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+{
+	bWithFile = true;
+	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
+	if (plugin == nullptr)
+	{
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
+		if (plugin == nullptr)
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+				if (plugin == nullptr)
+				{
+					AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+				}
+				else
+				{
+					plugin = nullptr;
+					AppErrorMessageBox(strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName));
+				}
+				return false;
+			}
+			bWithFile = false;
+		}
+	}
+	return true;
+}
+
 // known handler
 bool Packing(String & filepath, PackingInfo handler)
 {
@@ -61,14 +77,13 @@ bool Packing(String & filepath, PackingInfo handler)
 
 	// control value
 	bool bHandled = false;
+	bool bWithFile = true;
+	PluginInfo* plugin = nullptr;
+	if (!getPackUnpackPlugin(handler.m_PluginName, plugin, bWithFile))
+		return false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.m_PluginName);
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler.m_bWithFile)
+	if (bWithFile)
 	{
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
@@ -118,19 +133,16 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 
 	// control value
 	bool bHandled = false;
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->m_PluginName);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->m_PluginName);
-	if (plugin == nullptr)
+	bool bWithFile = true;
+	PluginInfo* plugin = nullptr;
+	if (!getPackUnpackPlugin(handler->m_PluginName, plugin, bWithFile))
 		return false;
 
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler->m_bWithFile)
+	if (bWithFile)
 	{
 		// use a temporary dest name
+		bufferData.SetDestFileExtension(plugin->m_ext);
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 		bHandled = plugin::InvokeUnpackFile(srcFileName,
@@ -194,8 +206,8 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	if (plugin != nullptr)
 	{
 		handler->m_PluginName = plugin->m_name;
-		handler->m_bWithFile = true;
 		// use a temporary dest name
+		bufferData.SetDestFileExtension(plugin->m_ext);
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 		bHandled = plugin::InvokeUnpackFile(srcFileName,
@@ -215,7 +227,6 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		if (plugin != nullptr)
 		{
 			handler->m_PluginName = plugin->m_name;
-			handler->m_bWithFile = false;
 			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 				bufferData.GetNChanged(),
 				plugin->m_lpDispatch, handler->m_subcode);
@@ -258,7 +269,33 @@ bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredTex
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
-    
+
+bool getPrediffPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+{
+	bWithFile = true;
+	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
+	if (plugin == nullptr)
+	{
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
+		if (plugin == nullptr)
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+			if (plugin == nullptr)
+			{
+				AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+			}
+			else
+			{
+				plugin = nullptr;
+				AppErrorMessageBox(strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName));
+			}
+			return false;
+		}
+		bWithFile = false;
+	}
+	return true;
+}
+
 // known handler
 bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 {
@@ -274,16 +311,13 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 
 	// control value
 	bool bHandled = false;
+	bool bWithFile = true;
+	PluginInfo* plugin = nullptr;
+	if (!getPrediffPlugin(handler.m_PluginName, plugin, bWithFile))
+		return false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.m_PluginName);
-	if (plugin == nullptr)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.m_PluginName);
-		if (plugin == nullptr)
-			return false;
-	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler.m_bWithFile)
+	if (bWithFile)
 	{
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
@@ -337,7 +371,6 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	if (plugin != nullptr)
 	{
 		handler->m_PluginName = plugin->m_name;
-		handler->m_bWithFile = true;
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
@@ -355,7 +388,6 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 		if (plugin != nullptr)
 		{
 			handler->m_PluginName = plugin->m_name;
-			handler->m_bWithFile = false;
 			// probably it is for VB/VBscript so use a BSTR as argument
 			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 				bufferData.GetNChanged(),

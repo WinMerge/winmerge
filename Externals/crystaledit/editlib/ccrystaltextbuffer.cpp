@@ -59,8 +59,6 @@
  *
  * @brief Code for CCrystalTextBuffer class
  */
-// line follows -- this is updated by SVN
-// $Id: ccrystaltextbuffer.cpp 7106 2010-01-14 21:29:10Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -159,6 +157,14 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_dwCurrentRevisionNumber = 0;
   m_dwRevisionNumberOnSave = 0;
   m_bUndoGroup = m_bUndoBeginGroup = false;
+
+  // Table Editing
+  m_bAllowNewlinesInQuotes = true;
+  m_cFieldDelimiter = '\t';
+  m_cFieldEnclosure = '"';
+  m_bTableEditing = false;
+  m_pSharedTableProps.reset(new SharedTableProperties());
+  m_pSharedTableProps->m_textBufferList.push_back(this);
 }
 
 CCrystalTextBuffer:: ~ CCrystalTextBuffer ()
@@ -198,12 +204,12 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, size_t nLength,
   m_aLines.insert(iter, nCount, line);
 
   // create text data for lines after the first one
-  for (int ic = 1; ic < nCount; ic++) 
-  {
-    LineInfo li ;
-    li.Create(pszLine, nLength);
-    m_aLines[nPosition + ic] = li;
-  }
+  for (int ic = 1; ic < nCount; ic++)
+    {
+      LineInfo li ;
+      li.Create(pszLine, nLength);
+      m_aLines[nPosition + ic] = li;
+    }
 
 #ifdef _DEBUG
   // Warning : this function is also used during rescan
@@ -217,7 +223,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, size_t nLength,
 // Add characters to end of specified line
 // Specified line must not have any EOL characters
 void CCrystalTextBuffer::
-AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
+AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT(nLength != -1);
 
@@ -225,7 +231,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
     return;
 
   LineInfo & li = m_aLines[nLineIndex];
-  li.Append(pszChars, nLength);
+  li.Append(pszChars, nLength, bDetectEol);
 }
 
 /**
@@ -345,11 +351,11 @@ void CCrystalTextBuffer::SetReadOnly (bool bReadOnly /*= true*/ )
 #ifdef CRYSTALEDIT_ENABLELOADER
 
 static LPCTSTR crlfs[] =
-  {
-    _T ("\x0d\x0a"), //  DOS/Windows style
-    _T ("\x0a"),     //  UNIX style
-    _T ("\x0a")      //  Macintosh style
-  };
+{
+  _T ("\x0d\x0a"), //  DOS/Windows style
+  _T ("\x0a"),     //  UNIX style
+  _T ("\x0a")      //  Macintosh style
+};
 
 bool CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
@@ -366,7 +372,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
   int nExt = GetExtPosition (pszFileName);
   if (pszFileName[nExt] == _T ('.'))
     nExt++;
-  CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (pszFileName + nExt);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszFileName + nExt);
   if (def && def->encoding != -1)
     m_nSourceEncoding = def->encoding;
 
@@ -459,7 +465,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
               wchar_t *buf = new wchar_t[nCurrentLength];
               int len = MultiByteToWideChar(CP_UTF8, 0, pcLineBuf, nCurrentLength, buf, nCurrentLength);
               if (m_nSourceEncoding >= 0)
-                  iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+                iconvert(buf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
               InsertLine(buf, len);
               delete[] buf;
 #else
@@ -537,8 +543,8 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     if (::GetTempFileName(szTempFileDir, _T("CRE"), 0, szTempFileName) == 0)
       goto EXIT;
 
-      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
-        CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+    hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
+      CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (hTempFile == INVALID_HANDLE_VALUE)
       goto EXIT;
 
@@ -631,7 +637,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
 
     if (bClearModifiedFlag)
       {
-          SetModified (false);
+        SetModified (false);
         m_nSyncPosition = m_nUndoPosition;
       }
     bSuccess = true;
@@ -823,7 +829,7 @@ GetLineWithFlag (DWORD dwFlag) const
 }
 
 void CCrystalTextBuffer::
-SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/ , bool bUpdate /*= true*/)
+SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/, bool bUpdate /*= true*/)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -847,12 +853,12 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 
   DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;
   if (bSet)
-  {
-    if (dwFlag==0)
-      dwNewFlags=0;
-    else
-    dwNewFlags = dwNewFlags | dwFlag;
-  }
+    {
+      if (dwFlag==0)
+        dwNewFlags=0;
+      else
+        dwNewFlags = dwNewFlags | dwFlag;
+    }
   else
     dwNewFlags = dwNewFlags & ~dwFlag;
 
@@ -867,8 +873,8 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
                 {
                   ASSERT ((m_aLines[nPrevLine].m_dwFlags & dwFlag) != 0);
                   m_aLines[nPrevLine].m_dwFlags &= ~dwFlag;
-          if (bUpdate)
-          UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
+                  if (bUpdate)
+                    UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
                 }
             }
           else
@@ -879,7 +885,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 
       m_aLines[nLine].m_dwFlags = dwNewFlags;
       if (bUpdate)
-      UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
+        UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
     }
 }
 
@@ -899,7 +905,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-		CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
+         CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1000,12 +1006,12 @@ RemoveView (CCrystalTextView * pView)
   ASSERT (false);
 }
 
-CCrystalTextView::TextDefinition *CCrystalTextBuffer::
+CrystalLineParser::TextDefinition *CCrystalTextBuffer::
 RetypeViews (LPCTSTR lpszFileName)
 {
   POSITION pos = m_lpViews.GetHeadPosition ();
   CString sNew = GetExt (lpszFileName);
-  CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (sNew);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew);
   while (pos != nullptr)
     {
       CCrystalTextView *pView = m_lpViews.GetNext (pos);
@@ -1167,6 +1173,16 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       sTail = StripTail(nLine, nRestCount);
     }
 
+  bool bInQuote = false;
+  if (m_bTableEditing && m_bAllowNewlinesInQuotes)
+    {
+      const TCHAR* pszLine = m_aLines[nLine].GetLine ();
+      for (int j = 0; j < nPos; ++j)
+        {
+          if (pszLine[j] == m_cFieldEnclosure)
+            bInQuote = !bInQuote;
+        }
+    }
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
@@ -1175,8 +1191,20 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       int haseol = 0;
       size_t nTextPos = 0;
       // advance to end of line
-      while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
-        nTextPos++;
+      if (m_bTableEditing && m_bAllowNewlinesInQuotes)
+        {
+          while (nTextPos < cchText && (bInQuote || !LineInfo::IsEol(pszText[nTextPos])))
+            {
+              if (pszText[nTextPos] == m_cFieldEnclosure)
+                bInQuote = !bInQuote;
+              nTextPos++;
+            }
+        }
+      else
+        {
+          while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
+            nTextPos++;
+        }
       // advance after EOL of line
       if (nTextPos < cchText)
         {
@@ -1191,7 +1219,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       // All succeeding lines are inserted
       if (nCurrentLine == nLine)
         {
-          AppendLine (nLine, pszText, nTextPos);
+          AppendLine (nLine, pszText, nTextPos, !bInQuote);
         }
       else
         {
@@ -1212,15 +1240,15 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
           else
             {
               nEndLine = nCurrentLine;
-              nEndChar = GetLineLength(nEndLine);
+              nEndChar = GetFullLineLength(nEndLine);
             }
           if (!sTail.IsEmpty())
             {
               if (haseol)
-              {
-                InsertLine(sTail, sTail.GetLength(), nEndLine);
-                nInsertedLines ++;
-              }
+                {
+                  InsertLine(sTail, sTail.GetLength(), nEndLine);
+                  nInsertedLines ++;
+                }
               else
                 AppendLine (nEndLine, sTail, nRestCount);
             }
@@ -1620,10 +1648,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
   (*paSavedRevisionNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
 
   if (!InternalInsertText (pSource, nLine, nPos, pszText, cchText, nEndLine, nEndChar))
-  {
-    delete paSavedRevisionNumbers;
-    return false;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return false;
+    }
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
@@ -1633,10 +1661,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (!bHistory)
-  {
-    delete paSavedRevisionNumbers;
-    return true;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return true;
+    }
 
   bool bGroupFlag = false;
   if (!m_bUndoGroup)
@@ -1751,20 +1779,20 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   CDWordArray *paSavedRevisionNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
-  {
-    delete paSavedRevisionNumbers;
-    return false;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return false;
+    }
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
   m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (!bHistory)
-  {
-    delete paSavedRevisionNumbers;
-    return true;
-  }
+    {
+      delete paSavedRevisionNumbers;
+      return true;
+    }
 
   AddUndoRecord (false, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine),
                  sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisionNumbers);
@@ -1970,5 +1998,122 @@ void CCrystalTextBuffer::SetTabSize(int nTabSize)
 {
   ASSERT( nTabSize >= 0 && nTabSize <= 64 );
   m_nTabSize = nTabSize;
+}
+
+int CCrystalTextBuffer::GetColumnWidth (int nColumnIndex) const
+{
+  ASSERT( nColumnIndex >= 0 );
+  if (nColumnIndex < static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    return m_pSharedTableProps->m_aColumnWidths[nColumnIndex];
+  else
+    return m_nTabSize;
+}
+
+void CCrystalTextBuffer::SetColumnWidth (int nColumnIndex, int nColumnWidth)
+{
+  ASSERT( nColumnIndex >= 0 );
+  ASSERT( nColumnWidth >= 0 );
+  if (nColumnIndex >= static_cast<int>(m_pSharedTableProps->m_aColumnWidths.size ()))
+    m_pSharedTableProps->m_aColumnWidths.resize (nColumnIndex + 1, m_nTabSize);
+  m_pSharedTableProps->m_aColumnWidths[nColumnIndex] = nColumnWidth;
+}
+
+int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
+{
+  ASSERT( nLineIndex >= 0 );
+  int nColumnCount = 0;
+  const TCHAR* pszLine = GetLineChars (nLineIndex);
+  int nLength = GetLineLength (nLineIndex);
+  bool bInQuote = false;
+  for (int j = 0; j < nLength; ++j)
+    {
+      if (pszLine[j] == m_cFieldEnclosure)
+        bInQuote = !bInQuote;
+      else if (!bInQuote && pszLine[j] == m_cFieldDelimiter)
+        ++nColumnCount;
+    }
+  return nColumnCount;
+}
+
+void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
+{
+  if (!m_bAllowNewlinesInQuotes)
+      return;
+  size_t nLineCount = m_aLines.size ();
+  size_t j = 0;
+  bool bInQuote = false;
+  for (size_t i = 0; i < nLineCount;)
+    {
+      const TCHAR* pszChars = m_aLines[i].GetLine ();
+      const size_t nLineLength = m_aLines[i].FullLength ();
+      for (; j < nLineLength; ++j)
+        {
+          if (pszChars[j] == m_cFieldEnclosure)
+            bInQuote = !bInQuote;
+        }
+      m_aLines[i].m_dwRevisionNumber = 0;
+      if (bInQuote && i < nLineCount - 1)
+        {
+          std::basic_string<TCHAR> line(m_aLines[i].GetLine (), m_aLines[i].FullLength ());
+          line.append (m_aLines[i + 1].GetLine (), m_aLines[i + 1].FullLength ());
+          m_aLines[i].FreeBuffer ();
+          m_aLines[i].Create (line.c_str (), line.size ());
+          m_aLines[i + 1].FreeBuffer ();
+          m_aLines.erase (m_aLines.begin () + i + 1);
+          --nLineCount;
+          continue;
+        }
+      ++i;
+      j = 0;
+      bInQuote = false;
+    }
+  m_aUndoBuf.clear();
+  m_nUndoPosition = 0;
+  m_bModified = false;
+}
+
+void CCrystalTextBuffer::SplitLinesForTableEditingMode ()
+{
+  size_t nLineCount = m_aLines.size ();
+  for (size_t i = 0; i < nLineCount; ++i)
+    {
+      const TCHAR* pszChars = m_aLines[i].GetLine ();
+      const size_t nLineLength = m_aLines[i].FullLength ();
+      for (size_t j = 0; j < nLineLength; ++j)
+        {
+          int eols = 0;
+          if (pszChars[j] == '\r')
+            eols = (j < nLineLength - 1 && pszChars[j + 1] == '\n') ? 2 : 1;
+          else if (pszChars[j] == '\n')
+            eols = 1;
+          if (eols > 0)
+            {
+              LineInfo lineInfo;
+              lineInfo.Create (pszChars + j + eols, nLineLength - (j + eols));
+              m_aLines.insert (m_aLines.begin () + i + 1, lineInfo);
+              m_aLines[i].DeleteEnd (j + eols);
+              m_aLines[i].m_dwRevisionNumber = 0;
+            }
+        }
+    }
+  m_aUndoBuf.clear ();
+  m_nUndoPosition = 0;
+  m_bModified = false;
+}
+
+void CCrystalTextBuffer::
+InvalidateColumns ()
+{
+  for (auto& buf : m_pSharedTableProps->m_textBufferList)
+    {
+      POSITION pos = buf->m_lpViews.GetHeadPosition ();
+      while (pos != nullptr)
+        {
+          POSITION thispos = pos;
+          CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
+          pView->InvalidateScreenRect ();
+          pView->UpdateView (nullptr, nullptr, UPDATE_HORZRANGE | UPDATE_VERTRANGE, -1);
+        }
+    }
 }
 

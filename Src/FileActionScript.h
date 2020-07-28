@@ -1,19 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-//    License (GPLv2+):
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful, but
-//    WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//    General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-/////////////////////////////////////////////////////////////////////////////
+// SPDX-License-Identifier: GPL-2.0-or-later
 /**
  * @file  FileActionScript.h
  *
@@ -130,6 +115,8 @@ public:
 	 */
 	FileActionItem GetHeadActionItem() const { return m_actions[0]; }
 
+	bool IsCanceled() const { return m_bCanceled; }
+
 	String m_destBase; /**< Base destination path for some operations */
 
 protected:
@@ -148,6 +135,7 @@ private:
 	bool m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	bool m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
+	bool m_bCanceled;
 };
 
 /**
