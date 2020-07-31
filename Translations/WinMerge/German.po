@@ -601,7 +601,7 @@ msgid "&Text"
 msgstr "&Text"
 
 msgid "&Table"
-msgstr ""
+msgstr "&Tabelle"
 
 #, c-format
 msgid "&XML"
@@ -2111,28 +2111,28 @@ msgid "&Close"
 msgstr "&Schließen"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabelle"
 
 msgid "File type"
-msgstr ""
+msgstr "Dateityp"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "&Benutzerdefinierte, durch Trennzeichen getrennte Werte"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "T&rennzeichen:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "&Zeilenumbrüche in Zitaten zulassen"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "&Anführungszeichen:"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2294,16 +2294,16 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "\nAnzahl der &Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "&CSV-Dateimuster:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "&TSV-Dateimuster:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Benutzerdefinierte, durch Trennzeichen getrennte Werte"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "&Dateimuster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
