@@ -1670,8 +1670,7 @@ msgstr "&Joan Hona"
 msgid "Compare"
 msgstr "Alderatu"
 
-#, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "&Zurigunea"
 
 #, c-format
@@ -1935,10 +1934,6 @@ msgid "Bold"
 msgstr "Lodia"
 
 #, c-format
-msgid "Marker colors"
-msgstr ""
-
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
@@ -2144,10 +2139,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Erabili norbere idazki margoak"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Norbere idazki margoak"
 
 #, c-format
 msgid "Whitespace:"
@@ -3972,9 +3963,8 @@ msgstr "Ezgaituta"
 msgid "From file system"
 msgstr "Agiri sistematik"
 
-#, c-format
-msgid "From MRU list"
-msgstr "MRU zerrendatik"
+msgid "From Most Recently Used list"
+msgstr ""
 
 #, c-format
 msgid "No Highlighting"

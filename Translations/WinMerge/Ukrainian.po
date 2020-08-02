@@ -1669,7 +1669,7 @@ msgid "Compare"
 msgstr "Порівняння"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Пропуски"
 
 #, c-format
@@ -1933,10 +1933,6 @@ msgid "Bold"
 msgstr "Грубий"
 
 #, c-format
-msgid "Marker colors"
-msgstr ""
-
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
@@ -2142,10 +2138,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Використати особливі кольори"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Налаштувати кольори"
 
 #, c-format
 msgid "Whitespace:"
@@ -3970,7 +3962,7 @@ msgid "From file system"
 msgstr "Як на диску"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Як в списку нещодавніх документів"
 
 #, c-format

@@ -1678,7 +1678,7 @@ msgid "Compare"
 msgstr "比較"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "空白處"
 
 #, c-format
@@ -1943,10 +1943,6 @@ msgid "Bold"
 msgstr "粗體"
 
 #, c-format
-msgid "Marker colors"
-msgstr "標記顏色"
-
-#, c-format
 msgid "Search Marker:"
 msgstr "搜尋標記"
 
@@ -2152,10 +2148,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "使用自訂文字色彩(&U)"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "自訂文字色彩"
 
 #, c-format
 msgid "Whitespace:"
@@ -3985,7 +3977,7 @@ msgid "From file system"
 msgstr "從檔案系統"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "從 MRU 表"
 
 #, c-format

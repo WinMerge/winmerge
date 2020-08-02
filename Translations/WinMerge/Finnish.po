@@ -1668,7 +1668,7 @@ msgid "Compare"
 msgstr "Vertaa"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Välilyönti"
 
 #, c-format
@@ -1937,10 +1937,6 @@ msgid "Bold"
 msgstr "Lihavoitu"
 
 #, c-format
-msgid "Marker colors"
-msgstr "Merkintävärit"
-
-#, c-format
 msgid "Search Marker:"
 msgstr "Hakumerkki:"
 
@@ -2147,10 +2143,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Käytä mukautettuja tekstivärejä"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Mukautetut tekstivärit"
 
 #, c-format
 msgid "Whitespace:"
@@ -4068,7 +4060,7 @@ msgid "From file system"
 msgstr "Tiedostojärjestelmästä"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "MRU listalta"
 
 #, c-format

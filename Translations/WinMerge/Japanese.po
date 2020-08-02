@@ -1302,7 +1302,7 @@ msgstr "移動(&G)"
 msgid "Compare"
 msgstr "比較"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "空白"
 
 msgid "&Compare"
@@ -1509,9 +1509,6 @@ msgstr "ユーザー 2:"
 msgid "Bold"
 msgstr "太字"
 
-msgid "Marker colors"
-msgstr "マーカーの色"
-
 msgid "Search Marker:"
 msgstr "検索マーカー:"
 
@@ -1673,9 +1670,6 @@ msgstr "引用符文字(&Q)"
 
 msgid "&Use customized text colors"
 msgstr "テキストの色をカスタマイズする(&U)"
-
-msgid "Custom text colors"
-msgstr "テキストの色"
 
 msgid "Whitespace:"
 msgstr "空白:"
@@ -3347,7 +3341,7 @@ msgstr "無効"
 msgid "From file system"
 msgstr "ファイル システム"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "最近使ったリスト"
 
 msgid "No Highlighting"

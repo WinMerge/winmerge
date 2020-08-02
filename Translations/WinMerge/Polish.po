@@ -1293,7 +1293,7 @@ msgstr "Idź do"
 msgid "Compare"
 msgstr "Porównaj"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Białe znaki"
 
 msgid "&Compare"
@@ -1492,9 +1492,6 @@ msgstr "Użytkownik 2:"
 msgid "Bold"
 msgstr "Pogrubienie"
 
-msgid "Marker colors"
-msgstr "Kolory markerów"
-
 msgid "Search Marker:"
 msgstr "Znaleziony marker:"
 
@@ -1656,9 +1653,6 @@ msgstr ""
 
 msgid "&Use customized text colors"
 msgstr "Użyj niestandardowych kolorów tekstu"
-
-msgid "Custom text colors"
-msgstr "Niestandardowe kolory tekstu"
 
 msgid "Whitespace:"
 msgstr "Odstęp:"
@@ -2952,7 +2946,7 @@ msgstr "Wyłączone"
 msgid "From file system"
 msgstr "Z systemu plików"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Z listy MRU"
 
 msgid "No Highlighting"

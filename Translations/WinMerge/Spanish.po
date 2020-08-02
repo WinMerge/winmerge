@@ -1301,7 +1301,7 @@ msgstr "Ir &a"
 msgid "Compare"
 msgstr "Comparar"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Espacios en blanco"
 
 msgid "&Compare"
@@ -1509,9 +1509,6 @@ msgstr "Usuario 2:"
 msgid "Bold"
 msgstr "Negrita"
 
-msgid "Marker colors"
-msgstr "Colores de marcador"
-
 msgid "Search Marker:"
 msgstr "De búsqueda:"
 
@@ -1673,9 +1670,6 @@ msgstr ""
 
 msgid "&Use customized text colors"
 msgstr "&Usar colores personalizados para el texto"
-
-msgid "Custom text colors"
-msgstr "Colores elegidos para texto normal"
 
 msgid "Whitespace:"
 msgstr "Espacio:"
@@ -3378,7 +3372,7 @@ msgstr "Deshabilitado"
 msgid "From file system"
 msgstr "Del sistema de archivos"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "De la lista MRU"
 
 msgid "No Highlighting"

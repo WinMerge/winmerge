@@ -1670,7 +1670,7 @@ msgid "Compare"
 msgstr "Comparar"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Espaço"
 
 #, c-format
@@ -1938,10 +1938,6 @@ msgid "Bold"
 msgstr "Negrito"
 
 #, c-format
-msgid "Marker colors"
-msgstr "Cor do marcador"
-
-#, c-format
 msgid "Search Marker:"
 msgstr "Procurar marcador:"
 
@@ -2147,10 +2143,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Utilizar cores de texto personalizadas"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Personalizar cores do texto"
 
 #, c-format
 msgid "Whitespace:"
@@ -4072,7 +4064,7 @@ msgid "From file system"
 msgstr "Do sistema de ficheiros"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Da lista MRU"
 
 #, c-format

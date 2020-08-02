@@ -1300,7 +1300,7 @@ msgstr "转到(&G)"
 msgid "Compare"
 msgstr "比较"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "空白"
 
 msgid "&Compare"
@@ -1506,9 +1506,6 @@ msgstr "用户定义 2:"
 msgid "Bold"
 msgstr "加粗"
 
-msgid "Marker colors"
-msgstr "标记颜色"
-
 msgid "Search Marker:"
 msgstr "搜索标记:"
 
@@ -1670,9 +1667,6 @@ msgstr ""
 
 msgid "&Use customized text colors"
 msgstr "使用自定义的文字颜色(&U)"
-
-msgid "Custom text colors"
-msgstr "自定义文字颜色"
 
 msgid "Whitespace:"
 msgstr "空白:"
@@ -3347,7 +3341,7 @@ msgstr "禁用"
 msgid "From file system"
 msgstr "由文件系统提供"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "匹配最近使用记录"
 
 msgid "No Highlighting"

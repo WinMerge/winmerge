@@ -42,7 +42,7 @@ void PropCompareTable::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropCompareTable, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompareTable)
-	ON_BN_CLICKED(IDC_COMPARETABLE_DEFAULTS, OnDefaults)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 

@@ -35,7 +35,7 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropCompareImage, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompareImage)
-	ON_BN_CLICKED(IDC_COMPAREIMAGE_DEFAULTS, OnDefaults)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 

@@ -1296,7 +1296,7 @@ msgstr "&Pereiti į"
 msgid "Compare"
 msgstr "Lyginimo"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Tarpai"
 
 msgid "&Compare"
@@ -1494,9 +1494,6 @@ msgstr "Naudotojas 2:"
 msgid "Bold"
 msgstr "Pastorintas"
 
-msgid "Marker colors"
-msgstr "Žymeklio spalvos"
-
 msgid "Search Marker:"
 msgstr "Paieškos žymeklis:"
 
@@ -1658,9 +1655,6 @@ msgstr "&Kabučių simbolis"
 
 msgid "&Use customized text colors"
 msgstr "Na&udoti pasirinkt. teksto spalvas"
-
-msgid "Custom text colors"
-msgstr "Pasirinkt. teksto spalvos"
 
 msgid "Whitespace:"
 msgstr "Tarpas:"
@@ -2959,7 +2953,7 @@ msgstr "Išjungta"
 msgid "From file system"
 msgstr "Iš sistemos"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Iš dažniausiai naudojamų sąrašo"
 
 msgid "No Highlighting"

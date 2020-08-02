@@ -1668,7 +1668,7 @@ msgid "Compare"
 msgstr "Összehasonlítás"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Szóközök"
 
 #, c-format
@@ -1928,10 +1928,6 @@ msgid "Bold"
 msgstr "Félkövér"
 
 #, c-format
-msgid "Marker colors"
-msgstr ""
-
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
@@ -2137,10 +2133,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Egyéni szövegszínek használata"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Egyéni szövegszínek"
 
 #, c-format
 msgid "Whitespace:"
@@ -3870,7 +3862,7 @@ msgid "From file system"
 msgstr ""
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr ""
 
 #, c-format

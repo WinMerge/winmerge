@@ -1297,7 +1297,7 @@ msgstr "&Git"
 msgid "Compare"
 msgstr "Karşılaştırma"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Beyaz boşluklar"
 
 msgid "&Compare"
@@ -1503,9 +1503,6 @@ msgstr "2. kullanıcı:"
 msgid "Bold"
 msgstr "Koyu"
 
-msgid "Marker colors"
-msgstr "İşaretleyici renkleri"
-
 msgid "Search Marker:"
 msgstr "Arama işaretleyicisi:"
 
@@ -1667,9 +1664,6 @@ msgstr "&Tırnak karakteri:"
 
 msgid "&Use customized text colors"
 msgstr "Özel metin renkleri k&ullanılsın"
-
-msgid "Custom text colors"
-msgstr "Özel metin renkleri"
 
 msgid "Whitespace:"
 msgstr "Beyaz boşluk:"
@@ -3373,7 +3367,7 @@ msgstr "Etkisizleştirildi"
 msgid "From file system"
 msgstr "Dosya sisteminden"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Sık kullanılanlar listesinden"
 
 msgid "No Highlighting"

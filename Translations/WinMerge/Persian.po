@@ -1675,7 +1675,7 @@ msgid "Compare"
 msgstr " مقايسه کردن "
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr " فاصله سفيد "
 
 #, c-format
@@ -1941,10 +1941,6 @@ msgid "Bold"
 msgstr " تيره "
 
 #, c-format
-msgid "Marker colors"
-msgstr ""
-
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
@@ -2150,10 +2146,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&U  استفاده از رنگهاي متن سفارشي "
-
-#, c-format
-msgid "Custom text colors"
-msgstr " رنگهاي متن سفارشي "
 
 #, c-format
 msgid "Whitespace:"
@@ -4024,7 +4016,7 @@ msgid "From file system"
 msgstr " از دستگاه (سيستم) پرونده ها  "
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr " از فهرست آخرين پرونده ها "
 
 #, c-format

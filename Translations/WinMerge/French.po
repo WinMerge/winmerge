@@ -1679,7 +1679,7 @@ msgid "Compare"
 msgstr "Comparaison"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Caractères d'espacement"
 
 #, c-format
@@ -1949,10 +1949,6 @@ msgid "Bold"
 msgstr "Surbrillance"
 
 #, c-format
-msgid "Marker colors"
-msgstr "Couleurs des marqueurs"
-
-#, c-format
 msgid "Search Marker:"
 msgstr "Chercher marqueur :"
 
@@ -2158,10 +2154,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Utiliser les couleurs de texte ajustées"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Couleurs de texte ajustées"
 
 #, c-format
 msgid "Whitespace:"
@@ -4157,7 +4149,7 @@ msgid "From file system"
 msgstr "A partir du système de fichier"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "A partir de la liste des fichiers récents"
 
 #, c-format

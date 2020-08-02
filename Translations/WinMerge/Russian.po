@@ -1298,7 +1298,7 @@ msgstr "Перейт&и"
 msgid "Compare"
 msgstr "Сравнение"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Невидимые"
 
 msgid "&Compare"
@@ -1496,9 +1496,6 @@ msgstr "Пользователь 2:"
 msgid "Bold"
 msgstr "Жирный"
 
-msgid "Marker colors"
-msgstr "Цвета маркера"
-
 msgid "Search Marker:"
 msgstr "Маркер поиска:"
 
@@ -1660,9 +1657,6 @@ msgstr "Символ кавычки:"
 
 msgid "&Use customized text colors"
 msgstr "Использовать особые цвета"
-
-msgid "Custom text colors"
-msgstr "Настроить цвета"
 
 msgid "Whitespace:"
 msgstr "Невидимые:"
@@ -2956,7 +2950,7 @@ msgstr "Отключен"
 msgid "From file system"
 msgstr "Как в файловой системе"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Как в истории"
 
 msgid "No Highlighting"

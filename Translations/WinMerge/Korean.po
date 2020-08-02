@@ -1672,7 +1672,7 @@ msgid "Compare"
 msgstr "비교"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "공백 문자"
 
 #, c-format
@@ -1940,10 +1940,6 @@ msgid "Bold"
 msgstr "굵게"
 
 #, c-format
-msgid "Marker colors"
-msgstr "마커 색상"
-
-#, c-format
 msgid "Search Marker:"
 msgstr "마커 검색:"
 
@@ -2149,10 +2145,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "사용자 텍스트 색상 사용하기(&U)"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "사용자 텍스트 색상"
 
 #, c-format
 msgid "Whitespace:"
@@ -4074,7 +4066,7 @@ msgid "From file system"
 msgstr "파일 시스템에서"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "최근 목록에서"
 
 #, c-format
