@@ -3964,7 +3964,7 @@ msgid "From file system"
 msgstr "Agiri sistematik"
 
 msgid "From Most Recently Used list"
-msgstr ""
+msgstr "MRU zerrendatik"
 
 #, c-format
 msgid "No Highlighting"

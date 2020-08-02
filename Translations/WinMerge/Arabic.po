@@ -3338,7 +3338,7 @@ msgid "From file system"
 msgstr "من ملف النظام"
 
 msgid "From Most Recently Used list"
-msgstr ""
+msgstr "من قائمة MRU"
 
 msgid "No Highlighting"
 msgstr "بدون تظليل"
