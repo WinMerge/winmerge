@@ -75,6 +75,7 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
+	ON_WM_SIZE()
 	ON_WM_DESTROY()
 	ON_COMMAND(ID_HELP, OnHelpButton)
 	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
@@ -125,7 +126,12 @@ BOOL CPreferencesDlg::OnInitDialog()
 
 	if (m_pphost.Create(rPPHost, this))
 		SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("OptStartPage"), 0));
-
+ 
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.DisallowHeightGrowth();
+	m_constraint.SubclassWnd(); // install subclassing
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OptionsDlg"), false); // persist size via registry
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -138,6 +144,19 @@ void CPreferencesDlg::OnOK()
 	SaveOptions();
 }
 
+void CPreferencesDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CWnd::OnSize(nType, cx, cy);
+
+	if (CWnd *pPPHostWnd = GetDlgItem(IDC_TREEOPT_HOSTFRAME))
+	{
+		CRect rPPHost;
+		pPPHostWnd->GetWindowRect(rPPHost);
+		ScreenToClient(rPPHost);
+		m_pphost.MoveWindow(&rPPHost);
+	}
+}
+	
 void CPreferencesDlg::OnDestroy() 
 {
 	CDialog::OnDestroy();

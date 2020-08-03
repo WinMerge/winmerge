@@ -30,6 +30,7 @@
 #include "PropCompareImage.h"
 
 #include "PropertyPageHost.h"
+#include "CMoveConstraint.h"
 
 class COptionsMgr;
 class SyntaxColors;
@@ -89,6 +90,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPreferencesDlg)
 	virtual BOOL OnInitDialog() override;
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnDestroy();
 	afx_msg void OnHelpButton();
 	afx_msg void OnImportButton();
@@ -111,4 +113,5 @@ protected:
 private:
 	COptionsMgr *m_pOptionsMgr;
 	SyntaxColors *m_pSyntaxColors;
+	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
 };

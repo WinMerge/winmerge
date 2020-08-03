@@ -984,14 +984,14 @@ BEGIN
     CONTROL         "&Options...",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
 END
 
-IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,240,10
-    LTEXT           "Cl&ose windows with ESC:",IDC_STATIC,7,16,200,10
+    LTEXT           "Cl&ose windows with ESC:",IDC_STATIC,7,16,240,10
     COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,27,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,240,10
@@ -1004,13 +1004,13 @@ BEGIN
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,102,240,20
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,102,240,10
     LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,122,240,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,134,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Language:",IDC_STATIC,7,152,80,10
+    LTEXT           "Language:",IDC_STATIC,7,152,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,164,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",IDC_STATIC,7,198,193,40
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,191,217,57,14,NOT WS_TABSTOP
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",IDC_STATIC,7,192,240,30
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 293, 96
@@ -1103,16 +1103,16 @@ BEGIN
     PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
-IDD_PROPPAGE_COLOR_SCHEMES DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLOR_SCHEMES DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Color Scheme:",IDC_STATIC,7,10,230,10
-    COMBOBOX        IDC_COLOR_SCHEMES,7,22,230,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Color Scheme:",IDC_STATIC,7,10,233,10
+    COMBOBOX        IDC_COLOR_SCHEMES,7,22,233,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1167,13 +1167,13 @@ BEGIN
     CONTROL         "",IDC_SEL_WORDDIFF_TEXT_COLOR,"Button",BS_OWNERDRAW,214,189,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_COLORS_DIR DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLORS_DIR DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Use folder compare colors",IDC_USE_DIR_COMPARE_COLORS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,152,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,234,8
     CTEXT           "Background",IDC_STATIC,144,30,50,10
     CTEXT           "Text",IDC_STATIC,197,30,29,10
     RTEXT           "Items equal:",IDC_STATIC,6,48,144,11
@@ -1192,22 +1192,22 @@ BEGIN
     CONTROL         "",IDC_DIR_MARGIN_COLOR,"Button",BS_OWNERDRAW,162,120,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_SYSTEM DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_SYSTEM DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "System"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Send deleted files to Recycle Bin",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,222,10
-    LTEXT           "&External editor:",IDC_STATIC,7,18,222,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,239,10
+    LTEXT           "&External editor:",IDC_STATIC,7,18,239,10
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,30,187,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_EXT_EDITOR_BROWSE,199,30,50,14
-    LTEXT           "&Filter folder:",IDC_STATIC,7,54,166,10
+    LTEXT           "&Filter folder:",IDC_STATIC,7,54,239,10
     EDITTEXT        IDC_FILTER_USER_PATH,7,66,187,14,ES_AUTOHSCROLL
     PUSHBUTTON      "B&rowse...",IDC_FILTER_USER_BROWSE,199,66,50,14
     GROUPBOX        "Temporary files folder",IDC_STATIC,7,90,241,56
-    CONTROL         "S&ystem's temp folder",IDC_TMPFOLDER_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,102,199,10
-    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,17,114,219,10
+    CONTROL         "S&ystem's temp folder",IDC_TMPFOLDER_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,102,223,10
+    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,17,114,223,10
     EDITTEXT        IDC_TMPFOLDER_NAME,27,126,161,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Br&owse...",IDC_TMPFOLDER_BROWSE,194,126,50,14
 END
@@ -1323,52 +1323,52 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Whitespaces",IDC_STATIC,7,7,241,50
-    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
-    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,206,10
-    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,241,10
-    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,241,10
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,226,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,226,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,226,10
+    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,239,10
+    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,239,10
     CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_EOL_SENSITIVE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,241,10
-    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,241,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,241,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,241,10
-    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,132,140,20
-    COMBOBOX        IDC_DIFF_ALGORITHM,145,130,100,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,146,241,10
-    GROUPBOX        "Comments",IDC_STATIC,7,164,241,32
-    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,239,10
+    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,239,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,239,10
+    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
+    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,132,239,10
+    COMBOBOX        IDC_DIFF_ALGORITHM,6,144,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,162,239,10
+    GROUPBOX        "Comments",IDC_STATIC,6,180,241,32
+    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,193,226,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,215,10
-    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
-    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,215,10
+    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,239,10
+    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,239,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,239,10
     GROUPBOX        "Tabs",IDC_STATIC,7,42,241,72,WS_GROUP
-    LTEXT           "&Tab size:",IDC_STATIC,14,54,201,10
+    LTEXT           "&Tab size:",IDC_STATIC,14,54,226,10
     EDITTEXT        IDC_TAB_EDIT,24,66,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,201,10
-    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,96,201,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,241,102,WS_GROUP
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,201,10
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,24,138,194,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",BS_AUTORADIOBUTTON,24,150,194,10
-    COMBOBOX        IDC_BREAK_TYPE,38,162,183,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
-    LTEXT           "W&ord break characters:",IDC_STATIC,24,180,194,10
-    EDITTEXT        IDC_BREAK_CHARS,24,192,198,14,ES_AUTOHSCROLL
-    LTEXT           "&Rendering Mode:",IDC_STATIC,7,220,90,10
-    COMBOBOX        IDC_RENDERING_MODE,100,220,148,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,226,10
+    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,96,226,10
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,241,96,WS_GROUP
+    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,226,10
+    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,24,138,216,10
+    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",BS_AUTORADIOBUTTON,24,150,216,10
+    COMBOBOX        IDC_BREAK_TYPE,36,162,204,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "W&ord break characters:",IDC_STATIC,24,180,216,10
+    EDITTEXT        IDC_BREAK_CHARS,24,192,216,14,ES_AUTOHSCROLL
+    LTEXT           "&Rendering Mode:",IDC_STATIC,6,216,240,10
+    COMBOBOX        IDC_RENDERING_MODE,6,228,240,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1412,7 +1412,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,205,195,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1423,22 +1423,22 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,105,230,30
     CONTROL         "Detect codepage for text files using mlang.dll\nneed to restart session",IDC_DETECT_CODEPAGE2,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,230,34
-    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,125,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,217,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,230,10
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",BS_AUTORADIOBUTTON,13,55,230,10
-    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,120,10
+    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,230,10
     COMBOBOX        IDC_CUSTOM_CP_NUMBER,12,80,229,130,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 384, 280
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,219,257,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,273,257,50,14
     PUSHBUTTON      "Help",IDC_TREEOPT_HELP,327,257,50,14
-    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,108,222
+    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,7,20,108,222
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE | WS_DISABLED,122,0,255,242
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,250,370,1
     LTEXT           " Categories",IDC_STATIC,7,7,108,13,SS_CENTERIMAGE | SS_SUNKEN
@@ -1446,7 +1446,7 @@ BEGIN
     PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,257,50,14
 END
 
-IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1481,7 +1481,7 @@ BEGIN
     CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,192,55,10
 END
 
-IDD_PROPPAGE_COLORS_MARKER DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLORS_MARKER DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1699,13 +1699,13 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,165,126,66,18
 END
 
-IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Use customized text colors",IDC_DEFAULT_STANDARD_COLORS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,161,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,234,8
     RTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,6,48,144,10
     RTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,6,66,144,10
     RTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,6,84,144,10
@@ -1720,22 +1720,22 @@ BEGIN
     CONTROL         "",IDC_MARGIN_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,162,102,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,6,222,10
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,42,222,10
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,212,10
+    LTEXT           "Create backup files in:",IDC_STATIC,7,6,239,10
+    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,229,10
+    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,229,10
+    LTEXT           "Create backup files into:",IDC_STATIC,7,42,239,10
+    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,229,10
+    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,229,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,78,165,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,199,78,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,96,222,10
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,120,212,10
+    LTEXT           "Backup filename:",IDC_STATIC,7,96,239,10
+    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,229,10
+    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,120,229,10
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
@@ -1768,7 +1768,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,413,210,50,14
 END
 
-IDD_PROPPAGE_SHELL DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_SHELL DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1782,59 +1782,59 @@ BEGIN
     PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,96,220,14
 END
 
-IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Folder")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Compare method:",IDC_STATIC,7,6,100,10
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,130,6,114,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Compare method:",IDC_STATIC,7,6,239,10
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,6,18,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,24,202,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,239,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,222,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,239,10
     CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,202,10
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,239,10
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,239,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,202,10
-    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,96,200,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL
-    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,7,126,200,10
-    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,7,138,30,14,ES_AUTOHSCROLL
-    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,186,30,14,ES_AUTOHSCROLL
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,239,10
+    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,239,10
+    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,6,108,239,10
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,6,138,239,10
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
+    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,6,166,239,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,198,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_TABLE DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COMPARE_TABLE DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Table"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,200,10
+    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,240,10
     EDITTEXT        IDC_COMPARETABLE_CSV_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
-    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,200,10
+    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,240,10
     EDITTEXT        IDC_COMPARETABLE_TSV_PATTERNS,7,48,240,14,ES_AUTOHSCROLL
     GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,66,240,72
-    LTEXT           "File Patterns:",IDC_STATIC,12,78,200,10
+    LTEXT           "File Patterns:",IDC_STATIC,12,78,228,10
     EDITTEXT        IDC_COMPARETABLE_DSV_PATTERNS,12,90,228,14,ES_AUTOHSCROLL
-    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,200,10
+    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,228,10
     EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,120,30,14,ES_AUTOHSCROLL
     CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,144,240,10
-    LTEXT           "&Quote character:",IDC_STATIC,6,156,200,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,156,240,10
     EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,168,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Binary")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,200,10
+    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,239,10
     EDITTEXT        IDC_COMPAREBINARY_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
     GROUPBOX        "Frhed settings",IDC_STATIC,7,40,241,88
     PUSHBUTTON      "View &Settings...",IDC_COMPAREBINARY_VIEWSETTINGS,37,58,170,14
@@ -1843,15 +1843,15 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_IMAGE DIALOGEX 0, 0, 255, 222
+IDD_PROPPAGE_COMPARE_IMAGE DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Image"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,200,10
+    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,239,10
     EDITTEXT        IDC_COMPAREIMAGE_PATTERNS,7,18,240,14,ES_AUTOHSCROLL
     CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,239,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 
@@ -1910,7 +1910,39 @@ BEGIN
         BOTTOMMARGIN, 264
     END
 
+    IDD_PROPPAGE_GENERAL, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COLOR_SCHEMES, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COLORS_WINMERGE, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COLORS_DIR, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_SYSTEM, DIALOG
+    BEGIN
+    END
+
     IDD_DIRCOMP_PROGRESS, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COMPARE, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_EDITOR, DIALOG
     BEGIN
     END
 
@@ -1918,11 +1950,60 @@ BEGIN
     BEGIN
     END
 
+    IDD_PROPPAGE_CODEPAGE, DIALOG
+    BEGIN
+    END
+
+    IDD_PREFERENCES, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COLORS_SYNTAX, DIALOG
+    BEGIN
+    END
+
     IDD_PROPPAGE_COLORS_MARKER, DIALOG
     BEGIN
     END
 
+    IDD_DIRCMP_REPORT, DIALOG
+    BEGIN
+    END
+
+    IDD_PROP_ARCHIVE, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COLORS_TEXT, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_BACKUPS, DIALOG
+    BEGIN
+    END
+
     IDD_CONFIRM_COPY, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_SHELL, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COMPARE_FOLDER, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COMPARE_TABLE, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_PROPPAGE_COMPARE_BINARY, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_COMPARE_IMAGE, DIALOG
     BEGIN
     END
 END
@@ -1951,7 +2032,16 @@ END
 
 IDD_PROPPAGE_COLORS_MARKER AFX_DIALOG_LAYOUT
 BEGIN
-    0
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 IDD_EDIT_MARKER AFX_DIALOG_LAYOUT
@@ -2047,6 +2137,341 @@ END
 IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT
 BEGIN
     0
+END
+
+IDD_PREFERENCES AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+END
+
+IDD_PROPPAGE_GENERAL AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROP_ARCHIVE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_BACKUPS AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_CODEPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_COLOR_SCHEMES AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_COLORS_DIR AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COLORS_SYNTAX AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COLORS_TEXT AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COLORS_WINMERGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COMPARE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COMPARE_BINARY AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COMPARE_FOLDER AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COMPARE_IMAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_COMPARE_TABLE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_EDITOR AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
+IDD_PROPPAGE_SHELL AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 
