@@ -1450,9 +1450,6 @@ msgstr "Niestandardowa strona kodowa:"
 msgid "Options"
 msgstr "Opcje"
 
-msgid " Categories"
-msgstr " Kategorie"
-
 msgid "Import..."
 msgstr "Importuj..."
 

@@ -1886,10 +1886,6 @@ msgid "Options"
 msgstr "選項"
 
 #, c-format
-msgid " Categories"
-msgstr "種類"
-
-#, c-format
 msgid "Import..."
 msgstr "匯入..."
 

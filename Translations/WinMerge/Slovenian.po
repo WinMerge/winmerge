@@ -1880,10 +1880,6 @@ msgid "Options"
 msgstr "Možnosti"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategorije"
-
-#, c-format
 msgid "Import..."
 msgstr "Uvozi..."
 

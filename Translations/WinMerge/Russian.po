@@ -1454,9 +1454,6 @@ msgstr "Пользовательская:"
 msgid "Options"
 msgstr "Настройки"
 
-msgid " Categories"
-msgstr " Категории"
-
 msgid "Import..."
 msgstr "Импорт..."
 

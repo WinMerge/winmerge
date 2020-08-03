@@ -1881,10 +1881,6 @@ msgid "Options"
 msgstr "Asetukset"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategoriat"
-
-#, c-format
 msgid "Import..."
 msgstr "Tuo..."
 

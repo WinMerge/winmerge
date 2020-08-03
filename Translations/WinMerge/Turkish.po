@@ -1461,9 +1461,6 @@ msgstr "Özel kod sayfası:"
 msgid "Options"
 msgstr "Ayarlar"
 
-msgid " Categories"
-msgstr " Gruplar"
-
 msgid "Import..."
 msgstr "İçe aktar..."
 

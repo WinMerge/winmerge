@@ -1872,10 +1872,6 @@ msgid "Options"
 msgstr "Opciók"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategóriák"
-
-#, c-format
 msgid "Import..."
 msgstr "Importálás..."
 

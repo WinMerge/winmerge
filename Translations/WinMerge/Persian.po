@@ -1885,10 +1885,6 @@ msgid "Options"
 msgstr " خيارات  "
 
 #, c-format
-msgid " Categories"
-msgstr " رسته ها : "
-
-#, c-format
 msgid "Import..."
 msgstr " ورود ... "
 

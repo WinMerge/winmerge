@@ -1464,9 +1464,6 @@ msgstr "自定义代码页:"
 msgid "Options"
 msgstr "选项"
 
-msgid " Categories"
-msgstr " 分类"
-
 msgid "Import..."
 msgstr "导入..."
 

@@ -1859,10 +1859,6 @@ msgid "Options"
 msgstr "Поставке"
 
 #, c-format
-msgid " Categories"
-msgstr "Категорије"
-
-#, c-format
 msgid "Import..."
 msgstr "Увези..."
 

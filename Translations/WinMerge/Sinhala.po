@@ -1871,10 +1871,6 @@ msgid "Options"
 msgstr "විකල්ප"
 
 #, c-format
-msgid " Categories"
-msgstr "ප්‍රවර්ග"
-
-#, c-format
 msgid "Import..."
 msgstr "ආනයනය..."
 

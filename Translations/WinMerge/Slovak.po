@@ -1876,10 +1876,6 @@ msgid "Options"
 msgstr "Nastavenia"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategórie"
-
-#, c-format
 msgid "Import..."
 msgstr "Importovať..."
 

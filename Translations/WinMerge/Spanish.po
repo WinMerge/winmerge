@@ -1467,9 +1467,6 @@ msgstr "Página de códigos:"
 msgid "Options"
 msgstr "Configuración"
 
-msgid " Categories"
-msgstr " Categorías"
-
 msgid "Import..."
 msgstr "Importar..."
 

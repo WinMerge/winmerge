@@ -1876,10 +1876,6 @@ msgid "Options"
 msgstr "Innstillinger"
 
 #, c-format
-msgid " Categories"
-msgstr "Kategorier"
-
-#, c-format
 msgid "Import..."
 msgstr "Importer..."
 

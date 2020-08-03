@@ -1878,10 +1878,6 @@ msgid "Options"
 msgstr "Aukerak"
 
 #, c-format
-msgid " Categories"
-msgstr "  Kategoriak"
-
-#, c-format
 msgid "Import..."
 msgstr "Inportatu"
 

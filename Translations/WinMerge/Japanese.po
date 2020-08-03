@@ -1467,9 +1467,6 @@ msgstr "指定したコードページ:"
 msgid "Options"
 msgstr "オプション"
 
-msgid " Categories"
-msgstr " カテゴリ"
-
 msgid "Import..."
 msgstr "インポート..."
 

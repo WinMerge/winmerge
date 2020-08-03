@@ -1871,10 +1871,6 @@ msgid "Options"
 msgstr "Επιλογές"
 
 #, c-format
-msgid " Categories"
-msgstr " Κατηγορίες"
-
-#, c-format
 msgid "Import..."
 msgstr "Εισαγωγή..."
 

@@ -1463,9 +1463,6 @@ msgstr "Codice pagina personalizzato:"
 msgid "Options"
 msgstr "Opzioni"
 
-msgid " Categories"
-msgstr " Categorie"
-
 msgid "Import..."
 msgstr "Importa..."
 

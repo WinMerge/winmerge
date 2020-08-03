@@ -1452,9 +1452,6 @@ msgstr "Pasirinkt. koduotė:"
 msgid "Options"
 msgstr "Nuostatos"
 
-msgid " Categories"
-msgstr " Kategorijos"
-
 msgid "Import..."
 msgstr "Importuoti..."
 

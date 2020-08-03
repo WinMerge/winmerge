@@ -1464,9 +1464,6 @@ msgstr "صفحة ترميز مخصصة:"
 msgid "Options"
 msgstr "الخيارات"
 
-msgid " Categories"
-msgstr " التصنيفات"
-
 msgid "Import..."
 msgstr "استيراد..."
 

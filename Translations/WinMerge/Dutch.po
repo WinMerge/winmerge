@@ -1465,9 +1465,6 @@ msgstr "Aangepaste tekenset:"
 msgid "Options"
 msgstr "Opties"
 
-msgid " Categories"
-msgstr " Categorieën"
-
 msgid "Import..."
 msgstr "Importeren..."
 

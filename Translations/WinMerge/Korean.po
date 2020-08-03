@@ -1884,10 +1884,6 @@ msgid "Options"
 msgstr "옵션"
 
 #, c-format
-msgid " Categories"
-msgstr " 카테고리"
-
-#, c-format
 msgid "Import..."
 msgstr "가져오기..."
 

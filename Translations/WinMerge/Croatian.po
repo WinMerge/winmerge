@@ -1876,10 +1876,6 @@ msgid "Options"
 msgstr "Postavke"
 
 #, c-format
-msgid " Categories"
-msgstr " Skupina"
-
-#, c-format
 msgid "Import..."
 msgstr "Uvoz..."
 

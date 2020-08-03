@@ -1874,10 +1874,6 @@ msgid "Options"
 msgstr "Možnosti"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategorie"
-
-#, c-format
 msgid "Import..."
 msgstr "&Načíst..."
 
