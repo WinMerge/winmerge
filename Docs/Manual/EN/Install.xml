@@ -25,6 +25,14 @@
 	
 	<itemizedlist>
 	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(64 bit)</ulink> 
+		supports Windows 7 and later. It runs on 64 bit Windows.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(32 bit)</ulink> 
+		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
+	  </listitem>
+	  <listitem>
 	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge 2.16.0</ulink> 
 		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
 	  </listitem>
