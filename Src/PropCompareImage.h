@@ -26,6 +26,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompareImage)
 	enum { IDD = IDD_PROPPAGE_COMPARE_IMAGE };
+	CComboBox m_comboPatterns;
 	String m_sFilePatterns;
 	bool m_bEnableImageCompare;
 	//}}AFX_DATA
@@ -43,6 +44,8 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareImage)
 	afx_msg void OnDefaults();
+	afx_msg void OnDropDownPatterns();
+	afx_msg void OnCloseUpPatterns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
