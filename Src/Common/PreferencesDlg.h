@@ -91,7 +91,6 @@ protected:
 	//{{AFX_MSG(CPreferencesDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnDestroy();
 	afx_msg void OnHelpButton();
 	afx_msg void OnImportButton();
 	afx_msg void OnExportButton();

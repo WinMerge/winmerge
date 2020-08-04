@@ -76,7 +76,6 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
 	ON_WM_SIZE()
-	ON_WM_DESTROY()
 	ON_COMMAND(ID_HELP, OnHelpButton)
 	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
@@ -142,6 +141,8 @@ void CPreferencesDlg::OnOK()
 	m_pphost.OnOK();
 
 	SaveOptions();
+
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("OptStartPage"), m_pphost.GetActiveIndex());
 }
 
 void CPreferencesDlg::OnSize(UINT nType, int cx, int cy)
@@ -157,13 +158,6 @@ void CPreferencesDlg::OnSize(UINT nType, int cx, int cy)
 	}
 }
 	
-void CPreferencesDlg::OnDestroy() 
-{
-	CDialog::OnDestroy();
-	
-	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("OptStartPage"), m_pphost.GetActiveIndex());
-}
-
 void CPreferencesDlg::OnHelpButton() 
 {
 	theApp.ShowHelp(OptionsHelpLocation);
