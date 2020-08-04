@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "PropCompareImage.h"
+#include "WildcardDropList.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -27,6 +28,7 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareImage)
+	DDX_Control(pDX, IDC_COMPAREIMAGE_PATTERNS, m_comboPatterns);
 	DDX_Text(pDX, IDC_COMPAREIMAGE_PATTERNS, m_sFilePatterns);
 	DDX_Check(pDX, IDC_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
 	//}}AFX_DATA_MAP
@@ -36,6 +38,8 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropCompareImage, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompareImage)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_DROPDOWN(IDC_COMPAREIMAGE_PATTERNS, OnDropDownPatterns)
+	ON_CBN_CLOSEUP(IDC_COMPAREIMAGE_PATTERNS, OnCloseUpPatterns)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -68,4 +72,21 @@ void PropCompareImage::OnDefaults()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS);
 	UpdateData(FALSE);
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PropCompareImage::OnDropDownPatterns()
+{
+	WildcardDropList::OnDropDown(m_comboPatterns, 6,
+		GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS).c_str());
+}
+
+/**
+ * @brief Finishes drop list multi-selection
+ */
+void PropCompareImage::OnCloseUpPatterns()
+{
+	WildcardDropList::OnCloseUp(m_comboPatterns);
 }
