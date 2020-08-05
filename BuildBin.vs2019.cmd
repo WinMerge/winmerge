@@ -12,10 +12,10 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 )
 
 if "%1" == "" (
-  call :BuildBin
-  call :BuildBin x64
+  call :BuildBin || goto :eof
+  call :BuildBin x64 || goto :eof
 ) else (
-  call :BuildBin %1 
+  call :BuildBin %1 || goto :eof
 )
 
 goto :eof
@@ -27,7 +27,7 @@ if "%1" == "" (
 ) else (
   set PLATFORM_VS=%1
 )
-MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
+MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
