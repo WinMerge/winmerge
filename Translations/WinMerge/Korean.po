@@ -604,6 +604,9 @@ msgstr "다시 비교"
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1669,7 +1672,7 @@ msgid "Compare"
 msgstr "비교"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "공백 문자"
 
 #, c-format
@@ -1881,10 +1884,6 @@ msgid "Options"
 msgstr "옵션"
 
 #, c-format
-msgid " Categories"
-msgstr " 카테고리"
-
-#, c-format
 msgid "Import..."
 msgstr "가져오기..."
 
@@ -1935,10 +1934,6 @@ msgstr "사용자 2:"
 #, c-format
 msgid "Bold"
 msgstr "굵게"
-
-#, c-format
-msgid "Marker colors"
-msgstr "마커 색상"
 
 #, c-format
 msgid "Search Marker:"
@@ -2119,13 +2114,33 @@ msgstr "테스트(&T)"
 msgid "&Close"
 msgstr "닫기(&C)"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "사용자 텍스트 색상 사용하기(&U)"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "사용자 텍스트 색상"
 
 #, c-format
 msgid "Whitespace:"
@@ -2277,6 +2292,18 @@ msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -4035,7 +4062,7 @@ msgid "From file system"
 msgstr "파일 시스템에서"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "최근 목록에서"
 
 #, c-format

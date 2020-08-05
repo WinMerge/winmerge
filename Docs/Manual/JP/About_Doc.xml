@@ -127,6 +127,14 @@
       </varlistentry>
 
       <varlistentry>
+        <term><xref linkend="Compare_table" /></term>
+
+        <listitem>
+          <para>TBD</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>

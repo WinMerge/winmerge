@@ -601,6 +601,9 @@ msgstr ""
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1672,7 +1675,7 @@ msgid "Compare"
 msgstr " مقايسه کردن "
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr " فاصله سفيد "
 
 #, c-format
@@ -1882,10 +1885,6 @@ msgid "Options"
 msgstr " خيارات  "
 
 #, c-format
-msgid " Categories"
-msgstr " رسته ها : "
-
-#, c-format
 msgid "Import..."
 msgstr " ورود ... "
 
@@ -1936,10 +1935,6 @@ msgstr " کاربر 2 : "
 #, c-format
 msgid "Bold"
 msgstr " تيره "
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2120,13 +2115,33 @@ msgstr "&T آزمايش "
 msgid "&Close"
 msgstr "&C بستن "
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&U  استفاده از رنگهاي متن سفارشي "
-
-#, c-format
-msgid "Custom text colors"
-msgstr " رنگهاي متن سفارشي "
 
 #, c-format
 msgid "Whitespace:"
@@ -2277,6 +2292,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3985,7 +4012,7 @@ msgid "From file system"
 msgstr " از دستگاه (سيستم) پرونده ها  "
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr " از فهرست آخرين پرونده ها "
 
 #, c-format

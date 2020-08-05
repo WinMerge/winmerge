@@ -128,7 +128,7 @@ public :
 
     virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText) override;
 
-    virtual bool DoSetTextType (TextDefinition *def) override;
+    virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def) override;
 
     // Overrides
     // ClassWizard generated virtual function overrides

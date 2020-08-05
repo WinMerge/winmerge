@@ -758,10 +758,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 			{
 				if (dwLineFlags & LF_MOVED)
 				{
-					if (dwLineFlags & LF_GHOST)
-						crBkgnd = m_cachedColors.clrSelMovedDeleted;
-					else
-						crBkgnd = m_cachedColors.clrSelMoved;
+					crBkgnd = m_cachedColors.clrSelMoved;
 					crText = m_cachedColors.clrSelMovedText;
 				}
 				else
@@ -775,10 +772,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 			{
 				if (dwLineFlags & LF_MOVED)
 				{
-					if (dwLineFlags & LF_GHOST)
-						crBkgnd = m_cachedColors.clrMovedDeleted;
-					else
-						crBkgnd = m_cachedColors.clrMoved;
+					crBkgnd = m_cachedColors.clrMoved;
 					crText = m_cachedColors.clrMovedText;
 				}
 				else
@@ -803,9 +797,19 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				crBkgnd = m_cachedColors.clrSelDiffDeleted;
+			{
+				if (dwLineFlags & LF_MOVED)
+					crBkgnd = m_cachedColors.clrSelMovedDeleted;
+				else
+					crBkgnd = m_cachedColors.clrSelDiffDeleted;
+			}
 			else
-				crBkgnd = m_cachedColors.clrDiffDeleted;
+			{
+				if (dwLineFlags & LF_MOVED)
+					crBkgnd = m_cachedColors.clrMovedDeleted;
+				else
+					crBkgnd = m_cachedColors.clrDiffDeleted;
+			}
 			return;
 		}
 	}
@@ -1065,7 +1069,7 @@ void CMergeEditView::OnEditCopy()
 
 	CString text;
 
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 	{
 		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
@@ -1075,7 +1079,7 @@ void CMergeEditView::OnEditCopy()
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	PutToClipboard(text, text.GetLength(), m_bColumnSelection);
+	PutToClipboard(text, text.GetLength(), m_bRectangularSelection);
 }
 
 /**
@@ -1103,15 +1107,15 @@ void CMergeEditView::OnEditCut()
 		return;
 
 	CString text;
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 		pDoc->m_ptBuf[m_nThisPane]->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 			ptSelEnd.y, ptSelEnd.x, text);
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	PutToClipboard(text, text.GetLength(), m_bColumnSelection);
+	PutToClipboard(text, text.GetLength(), m_bRectangularSelection);
 
-	if (!m_bColumnSelection)
+	if (!m_bRectangularSelection)
 	{
 		CPoint ptCursorPos = ptSelStart;
 		ASSERT_VALIDTEXTPOS(ptCursorPos);
@@ -1845,7 +1849,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 
 	if (IsSelection())
 	{
-		if (!m_bColumnSelection)
+		if (!m_bRectangularSelection)
 		{
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
@@ -3105,7 +3109,7 @@ void CMergeEditView::RefreshOptions()
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
-		SetTextType(CCrystalTextView::SRC_PLAIN);
+		SetTextType(CrystalLineParser::SRC_PLAIN);
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
@@ -3450,7 +3454,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
 		strText += strNumLine;
  	}
-	PutToClipboard(strText, strText.GetLength(), m_bColumnSelection);
+	PutToClipboard(strText, strText.GetLength(), m_bRectangularSelection);
 }
 
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
@@ -3863,6 +3867,17 @@ void CMergeEditView::OnHelp()
  */
 void CMergeEditView::DocumentsLoaded()
 {
+	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
+	{
+		SetTopMargin(true);
+		if (m_nThisPane == GetDocument()->m_nBuffers - 1 && !m_bDetailView)
+			AutoFitColumn();
+	}
+	else
+	{
+		SetTopMargin(false);
+	}
+
 	// Enable/disable automatic rescan (rescanning after edit)
 	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
 
@@ -3981,7 +3996,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 
 		if (pView != nullptr)
 		{
-			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
+			pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
 			pView->SetDisableBSAtSOL(false);
 		}
 	}

@@ -53,7 +53,7 @@ BOOL PropGeneral::OnInitDialog()
 
 	pWnd->AddString(_("Disabled").c_str());
 	pWnd->AddString(_("From file system").c_str());
-	pWnd->AddString(_("From MRU list").c_str());
+	pWnd->AddString(_("From Most Recently Used list").c_str());
 
 	pWnd->SetCurSel(m_nAutoCompleteSource);
 

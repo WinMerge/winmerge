@@ -134,6 +134,13 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 
+	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+	pOptions->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
+	pOptions->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
+	pOptions->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
+	pOptions->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);
+	pOptions->InitOption(OPT_CMP_TBL_QUOTE_CHAR, _T("\""));
+
 	pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
 	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);

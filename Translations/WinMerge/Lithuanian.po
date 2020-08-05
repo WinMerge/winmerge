@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-04-30 20:47+0000\n"
-"PO-Revision-Date: 2020-05-04 08:35+0300\n"
+"POT-Creation-Date: 2020-08-03 23:40+0000\n"
+"PO-Revision-Date: 2020-08-03 23:40+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -468,6 +468,9 @@ msgstr "Palyginti iš naujo kaip"
 
 msgid "&Text"
 msgstr "&Tekstas"
+
+msgid "&Table"
+msgstr "&Lentelė"
 
 msgid "&XML"
 msgstr "&XML"
@@ -1293,7 +1296,7 @@ msgstr "&Pereiti į"
 msgid "Compare"
 msgstr "Lyginimo"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Tarpai"
 
 msgid "&Compare"
@@ -1449,9 +1452,6 @@ msgstr "Pasirinkt. koduotė:"
 msgid "Options"
 msgstr "Nuostatos"
 
-msgid " Categories"
-msgstr " Kategorijos"
-
 msgid "Import..."
 msgstr "Importuoti..."
 
@@ -1490,9 +1490,6 @@ msgstr "Naudotojas 2:"
 
 msgid "Bold"
 msgstr "Pastorintas"
-
-msgid "Marker colors"
-msgstr "Žymeklio spalvos"
 
 msgid "Search Marker:"
 msgstr "Paieškos žymeklis:"
@@ -1629,11 +1626,32 @@ msgstr "&Testuoti"
 msgid "&Close"
 msgstr "&Užverti"
 
-msgid "&Use customized text colors"
-msgstr "Na&udoti pasirinktines teksto spalvas"
+msgid "Table"
+msgstr "Lentelių"
 
-msgid "Custom text colors"
-msgstr "Pasirinktinės teksto spalvos"
+msgid "File type"
+msgstr "Failo tipas"
+
+msgid "&CSV"
+msgstr "&CSV"
+
+msgid "&TSV"
+msgstr "&TSV"
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "Pasirinkt. &skirtukais atskirtos reikšmės"
+
+msgid "D&elimiter character:"
+msgstr "S&kirtuko simbolis:"
+
+msgid "&Allow newlines in quotes"
+msgstr "Leisti n&aujas eilutes kabutėse"
+
+msgid "&Quote character:"
+msgstr "&Kabučių simbolis"
+
+msgid "&Use customized text colors"
+msgstr "Na&udoti pasirinkt. teksto spalvas"
 
 msgid "Whitespace:"
 msgstr "Tarpas:"
@@ -1752,6 +1770,18 @@ msgstr "Binarinio palyginimo limitas (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
+
+msgid "&CSV File Patterns:"
+msgstr "&CSV failų šablonai:"
+
+msgid "&TSV File Patterns:"
+msgstr "&TSV failų šablonai:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "Pasirinkt. skirtukais atskirtos reikšmės"
+
+msgid "File Patterns:"
+msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2920,7 +2950,7 @@ msgstr "Išjungta"
 msgid "From file system"
 msgstr "Iš sistemos"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Iš dažniausiai naudojamų sąrašo"
 
 msgid "No Highlighting"

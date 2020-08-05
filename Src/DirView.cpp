@@ -90,10 +90,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 CDirView::CDirView()
 		: m_pList(nullptr)
 		, m_nHiddenItems(0)
-		, m_bNeedSearchFirstDiffItem(true)
-		, m_bNeedSearchLastDiffItem(true)
-		, m_firstDiffItem(-1)
-		, m_lastDiffItem(-1)
 		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
@@ -550,6 +546,8 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 			}
 		}
 	}
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /**
@@ -586,9 +584,6 @@ void CDirView::Redisplay()
 		GetParentFrame()->SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
-
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
 }
 
 /**
@@ -1104,8 +1099,8 @@ void CDirView::SortColumnsAppropriately()
 	CompareState cs(&GetDiffContext(), m_pColItems.get(), sortCol, bSortAscending, m_bTreeMode);
 	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD_PTR>(&cs));
 
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /// Do any last minute work as view closes
@@ -1382,7 +1377,7 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * in
  * This handles the case that one item is selected
  * and the case that two items are selected (one on each side)
  */
-void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/)
+void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
 {
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 	CDirDoc * pDoc = GetDocument();
@@ -1425,15 +1420,15 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	bool success;
 	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, selectionType, pos1, pos2, pdi,
-				paths, sel1, sel2, isdir, nPane, errmsg);
+				paths, sel1, sel2, isdir, nPane, errmsg, openableForDir);
 	else if (pos2 && pos3)
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
-				paths, sel1, sel2, sel3, isdir, nPane, errmsg);
+				paths, sel1, sel2, sel3, isdir, nPane, errmsg, openableForDir);
 	else
 	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi, 
-				paths, sel1, isdir, nPane, errmsg);
+				paths, sel1, isdir, nPane, errmsg, openableForDir);
 		if (isdir)
 			CreateFoldersPair(paths);
 	}
@@ -1459,12 +1454,12 @@ void CDirView::OpenSelectionAs(UINT id)
 	CDirDoc * pDoc = GetDocument();
 	const CDiffContext& ctxt = GetDiffContext();
 
-	// First, figure out what was selected (store into pos1 & pos2)
-	DIFFITEM *pos1 = nullptr, *pos2 = nullptr;
+	// First, figure out what was selected (store into pos1 & pos2 & pos3)
+	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
-		// Must have 1 or 2 items selected
+		// Must have 1 or 2 or 3 items selected
 		// Not valid action
 		return;
 	}
@@ -1472,7 +1467,12 @@ void CDirView::OpenSelectionAs(UINT id)
 	pos1 = GetItemKey(sel1);
 	ASSERT(pos1);
 	if (sel2 != -1)
+	{
 		pos2 = GetItemKey(sel2);
+		ASSERT(pos2 != nullptr);
+		if (sel3 != -1)
+			pos3 = GetItemKey(sel3);
+	}
 
 	// Now handle the various cases of what was selected
 
@@ -1489,14 +1489,17 @@ void CDirView::OpenSelectionAs(UINT id)
 	int nPane[3];
 	String errmsg;
 	bool success;
-	if (pos2)
+	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
-				paths, sel1, sel2, isdir, nPane, errmsg);
+				paths, sel1, sel2, isdir, nPane, errmsg, false);
+	else if (pos2 && pos3)
+		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
+				paths, sel1, sel2, sel3, isdir, nPane, errmsg, false);
 	else
 	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi,
-				paths, sel1, isdir, nPane, errmsg);
+				paths, sel1, isdir, nPane, errmsg, false);
 	}
 	if (!success)
 	{
@@ -1634,6 +1637,9 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 	{
 		m_pList->DeleteItem(sel);
 	}
+
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -1641,6 +1647,9 @@ void CDirView::DeleteAllDisplayItems()
 	// item data are just positions (diffposes)
 	// that is, they contain no memory needing to be freed
 	m_pList->DeleteAllItems();
+
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /**
@@ -1825,7 +1834,7 @@ void CDirView::OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI)
 }
 
 // Used for Open
-void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
+void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir /*= true*/)
 {
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
@@ -1842,13 +1851,22 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 			pCmdUI->Enable(FALSE);
 			return;
 		}
+		if (!openableForDir)
+		{
+			const DIFFITEM& di1 = GetDiffItem(sel1);
+			if (di1.diffcode.isDirectory())
+			{
+				pCmdUI->Enable(FALSE);
+				return;
+			}
+		}
 	}
 	else if (sel3 == -1)
 	{
 		// Two items selected
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
-		if (!AreItemsOpenable(GetDiffContext(), selectionType, di1, di2))
+		if (!AreItemsOpenable(GetDiffContext(), selectionType, di1, di2, openableForDir))
 		{
 			pCmdUI->Enable(FALSE);
 			return;
@@ -1860,7 +1878,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		const DIFFITEM& di3 = GetDiffItem(sel3);
-		if (selectionType != SELECTIONTYPE_NORMAL || !::AreItemsOpenable(GetDiffContext(), di1, di2, di3))
+		if (selectionType != SELECTIONTYPE_NORMAL || !::AreItemsOpenable(GetDiffContext(), di1, di2, di3, openableForDir))
 		{
 			pCmdUI->Enable(FALSE);
 			return;
@@ -2056,28 +2074,24 @@ int CDirView::GetFocusedItem()
 
 int CDirView::GetFirstDifferentItem()
 {
-	if (!m_bNeedSearchFirstDiffItem)
-		return m_firstDiffItem;
-
-	DirItemIterator it =
-		std::find_if(Begin(), End(), MakeDirActions(&DirActions::IsItemNavigableDiff));
-	m_firstDiffItem = it.m_sel;
-	m_bNeedSearchFirstDiffItem = false;
-
-	return m_firstDiffItem;
+	if (!m_firstDiffItem.has_value())
+	{
+		DirItemIterator it =
+			std::find_if(Begin(), End(), MakeDirActions(&DirActions::IsItemNavigableDiff));
+		m_firstDiffItem = it.m_sel;
+	}
+	return m_firstDiffItem.value();
 }
 
 int CDirView::GetLastDifferentItem()
 {
-	if (!m_bNeedSearchLastDiffItem)
-		return m_lastDiffItem;
-
-	DirItemIterator it =
-		std::find_if(RevBegin(), RevEnd(), MakeDirActions(&DirActions::IsItemNavigableDiff));
-	m_lastDiffItem = it.m_sel;
-	m_bNeedSearchLastDiffItem = false;
-
-	return m_lastDiffItem;
+	if (!m_lastDiffItem.has_value())
+	{
+		DirItemIterator it =
+			std::find_if(RevBegin(), RevEnd(), MakeDirActions(&DirActions::IsItemNavigableDiff));
+		m_lastDiffItem = it.m_sel;
+	}
+	return m_lastDiffItem.value();
 }
 
 /**
@@ -2434,6 +2448,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
 	{
+		KillTimer(STATUSBAR_UPDATE);
 		int items = GetSelectedCount();
 		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
@@ -2526,7 +2541,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 		if (dlg.DoModal() == IDOK)
 		{
 			infoUnpacker = dlg.GetInfoHandler();
-			OpenSelection(SELECTIONTYPE_NORMAL, &infoUnpacker);
+			OpenSelection(SELECTIONTYPE_NORMAL, &infoUnpacker, false);
 		}
 	}
 
@@ -2548,6 +2563,11 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 		int sel = -1;
 		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode.isDirectory())
+		{
+			pCmdUI->Enable(FALSE);
+			return;
+		}
 		pCmdUI->Enable(IsItemDeletableOnBoth(GetDiffContext(), di));
 	}
 }
@@ -3061,9 +3081,10 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	if ((pNMListView->uOldState & LVIS_SELECTED) !=
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
-		int items = GetSelectedCount();
-		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
-		GetParentFrame()->SetStatus(msg.c_str());
+		if ((pNMListView->iItem % 5000) > 0)
+			SetTimer(STATUSBAR_UPDATE, 100, nullptr);
+		else
+			OnTimer(STATUSBAR_UPDATE);
 	}
 	*pResult = 0;
 }
@@ -3527,7 +3548,7 @@ void CDirView::OnMergeCompareXML()
 {
 	CWaitCursor waitstatus;
 	PackingInfo packingInfo(PLUGIN_BUILTIN_XML);
-	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo);
+	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo, false);
 }
 
 void CDirView::OnMergeCompareAs(UINT nID)
@@ -3538,7 +3559,11 @@ void CDirView::OnMergeCompareAs(UINT nID)
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
-	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI);
+	bool openableForDir = (pCmdUI->m_nID != ID_MERGE_COMPARE_XML &&
+						   pCmdUI->m_nID != ID_MERGE_COMPARE_HEX &&
+						   pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
+
+	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);
 }
 
 template<SELECTIONTYPE seltype>
@@ -4071,9 +4096,6 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	{
 		pParam->item.iImage = GetColImage(di);
 	}
-
-	m_bNeedSearchLastDiffItem = true;
-	m_bNeedSearchFirstDiffItem = true;
 }
 
 /**

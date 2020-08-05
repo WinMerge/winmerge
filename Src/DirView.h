@@ -14,6 +14,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <memory>
+#include <optional>
 #include "OptionsDirColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
@@ -122,7 +123,7 @@ private:
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void DoOpenParentFolder(SIDE_TYPE stype);
-	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI);
+	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir = true);
 	void ConfirmAndPerformActions(FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
@@ -198,10 +199,8 @@ protected:
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
-	int m_firstDiffItem;
-	int m_lastDiffItem;
-	bool m_bNeedSearchFirstDiffItem;
-	bool m_bNeedSearchLastDiffItem;
+	std::optional<int> m_firstDiffItem;
+	std::optional<int> m_lastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
 	bool m_bUseColors;
 
@@ -381,7 +380,7 @@ protected:
 
 private:
 	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);
-	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr);
+	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
 	void OpenParentDirectory();

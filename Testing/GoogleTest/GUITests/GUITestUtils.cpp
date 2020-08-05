@@ -6,7 +6,6 @@
 namespace GUITestUtils
 {
 
-
 time_t getStartTime()
 {
 	static time_t g_startTime = time(nullptr);
@@ -134,10 +133,25 @@ void selectMenu(HWND hwnd, unsigned id, bool async)
 	}
 }
 
+std::filesystem::path getExecutablePath()
+{
+	int argc;
+	wchar_t** argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+	for (int arg = 0; arg < argc; ++arg)
+	{
+		auto argstr = std::wstring(argv[arg]);
+		size_t pos = argstr.find(_T("--exepath="), 0);
+		if (pos != std::wstring::npos)
+			return argstr.substr(pos + std::size("--exepath=") - 1);
+	}
+	return "C:\\Program Files\\WinMerge\\WinMergeU.exe";
+}
+
 HWND execWinMerge(const std::string& args)
 {
 	HWND hwndWinMerge = nullptr;
-	system(("start \"\" \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" " + args).c_str());
+	auto command = "start \"\" \"" + getExecutablePath().string() + "\" " + args;
+	system(command.c_str());
 	for (int i = 0; i < 50 && !hwndWinMerge; ++i)
 	{
 		hwndWinMerge = FindWindow(L"WinMergeWindowClassW", nullptr);

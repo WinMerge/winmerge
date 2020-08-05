@@ -1,4 +1,5 @@
-﻿# Released under the "GNU General Public License"
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * sld <sld at mail.bg>
@@ -461,6 +462,9 @@ msgstr "Сравняване като"
 
 msgid "&Text"
 msgstr "&Текстови файлове"
+
+msgid "&Table"
+msgstr ""
 
 msgid "&XML"
 msgstr "Файлове на &XML"
@@ -1290,7 +1294,7 @@ msgstr "&Отиване"
 msgid "Compare"
 msgstr "Сравняване"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Интервали"
 
 msgid "&Compare"
@@ -1454,9 +1458,6 @@ msgstr "Потребителска кодова страница:"
 msgid "Options"
 msgstr "Настройки"
 
-msgid " Categories"
-msgstr " Категории"
-
 msgid "Import..."
 msgstr "Внасяне…"
 
@@ -1495,9 +1496,6 @@ msgstr "Потребител 2:"
 
 msgid "Bold"
 msgstr "Получер"
-
-msgid "Marker colors"
-msgstr "&Цветове на маркера"
 
 msgid "Search Marker:"
 msgstr "При търсене:"
@@ -1634,11 +1632,32 @@ msgstr "&Изпробване"
 msgid "&Close"
 msgstr "&Затваряне"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "&Използвай зададени цветове за текста"
-
-msgid "Custom text colors"
-msgstr "Зададени цветове на текст"
 
 msgid "Whitespace:"
 msgstr "Интервали:"
@@ -1757,6 +1776,18 @@ msgstr "Ограничение на &двоичното сравняване (М
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nБрой на нишки извършващи сравняване (отрицателна стойност  се отнася за CPU ядра) "
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3268,7 +3299,7 @@ msgstr "Забранено"
 msgid "From file system"
 msgstr "От файловата система"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "От последно отваряните"
 
 msgid "No Highlighting"

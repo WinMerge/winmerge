@@ -598,6 +598,9 @@ msgstr ""
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1648,7 +1651,7 @@ msgid "Compare"
 msgstr "Упоређивање"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Размак"
 
 #, c-format
@@ -1856,10 +1859,6 @@ msgid "Options"
 msgstr "Поставке"
 
 #, c-format
-msgid " Categories"
-msgstr "Категорије"
-
-#, c-format
 msgid "Import..."
 msgstr "Увези..."
 
@@ -1910,10 +1909,6 @@ msgstr "Корисник 2:"
 #, c-format
 msgid "Bold"
 msgstr "Подебљано"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2094,13 +2089,33 @@ msgstr "&Провера"
 msgid "&Close"
 msgstr "&Затвори"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Користи жељене боје текста"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Жељене боје текста"
 
 #, c-format
 msgid "Whitespace:"
@@ -2251,6 +2266,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3902,7 +3929,7 @@ msgid "From file system"
 msgstr "Од система"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Из MRU списка"
 
 #, c-format

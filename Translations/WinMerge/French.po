@@ -605,6 +605,9 @@ msgstr "Recompare comme"
 msgid "&Text"
 msgstr "&Texte"
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1676,7 +1679,7 @@ msgid "Compare"
 msgstr "Comparaison"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Caractères d'espacement"
 
 #, c-format
@@ -1890,10 +1893,6 @@ msgid "Options"
 msgstr "Préférences"
 
 #, c-format
-msgid " Categories"
-msgstr " Catégories"
-
-#, c-format
 msgid "Import..."
 msgstr "Importer..."
 
@@ -1944,10 +1943,6 @@ msgstr "Utilisateur 2 :"
 #, c-format
 msgid "Bold"
 msgstr "Surbrillance"
-
-#, c-format
-msgid "Marker colors"
-msgstr "Couleurs des marqueurs"
 
 #, c-format
 msgid "Search Marker:"
@@ -2128,13 +2123,33 @@ msgstr "&Tester"
 msgid "&Close"
 msgstr "&Fermer"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Utiliser les couleurs de texte ajustées"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Couleurs de texte ajustées"
 
 #, c-format
 msgid "Whitespace:"
@@ -2294,6 +2309,18 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr ""
 "\n&Nombre de threads de comparaison (une valeur négative implique "
 "l'utilisation de tous les cœurs CPU disponibles) :"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -4118,7 +4145,7 @@ msgid "From file system"
 msgstr "A partir du système de fichier"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "A partir de la liste des fichiers récents"
 
 #, c-format

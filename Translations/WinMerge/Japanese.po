@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-12-22 07:42+0000\n"
-"PO-Revision-Date: 2018-12-30 12:00+0900\n"
+"PO-Revision-Date: 2020-07-09 21:53+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -466,6 +466,9 @@ msgstr "形式を指定して再比較"
 
 msgid "&Text"
 msgstr "テキスト(&T)"
+
+msgid "&Table"
+msgstr "テーブル(&T)"
 
 msgid "&XML"
 msgstr "XML(&X)"
@@ -1299,7 +1302,7 @@ msgstr "移動(&G)"
 msgid "Compare"
 msgstr "比較"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "空白"
 
 msgid "&Compare"
@@ -1464,9 +1467,6 @@ msgstr "指定したコードページ:"
 msgid "Options"
 msgstr "オプション"
 
-msgid " Categories"
-msgstr " カテゴリ"
-
 msgid "Import..."
 msgstr "インポート..."
 
@@ -1505,9 +1505,6 @@ msgstr "ユーザー 2:"
 
 msgid "Bold"
 msgstr "太字"
-
-msgid "Marker colors"
-msgstr "マーカーの色"
 
 msgid "Search Marker:"
 msgstr "検索マーカー:"
@@ -1644,11 +1641,32 @@ msgstr "テスト(&T)"
 msgid "&Close"
 msgstr "閉じる(&C)"
 
+msgid "Table"
+msgstr "テーブル"
+
+msgid "File type"
+msgstr "ファイルタイプ"
+
+msgid "&CSV"
+msgstr "&CSV"
+
+msgid "&TSV"
+msgstr "&TSV"
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "ユーザ指定文字区切り値(&D)"
+
+msgid "D&elimiter character:"
+msgstr "区切り文字(&E)"
+
+msgid "&Allow newlines in quotes"
+msgstr "引用符内の改行を値として扱う(&A)"
+
+msgid "&Quote character:"
+msgstr "引用符文字(&Q)"
+
 msgid "&Use customized text colors"
 msgstr "テキストの色をカスタマイズする(&U)"
-
-msgid "Custom text colors"
-msgstr "テキストの色"
 
 msgid "Whitespace:"
 msgstr "空白:"
@@ -1770,6 +1788,18 @@ msgstr ""
 "比較スレッドの数(&N):\n"
 "負の値を指定した場合、スレッド数は使用可能な CPU コア数を加算した値になりま"
 "す。"
+
+msgid "&CSV File Patterns:"
+msgstr "&CSV ファイルとして扱うパターン:"
+
+msgid "&TSV File Patterns:"
+msgstr "&TSV ファイルとして扱うパターン:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "ユーザー指定文字区切り値"
+
+msgid "File Patterns:"
+msgstr "ファイルパターン:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3308,7 +3338,7 @@ msgstr "無効"
 msgid "From file system"
 msgstr "ファイル システム"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "最近使ったリスト"
 
 msgid "No Highlighting"

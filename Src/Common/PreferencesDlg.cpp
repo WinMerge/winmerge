@@ -54,6 +54,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageBackups(regOptions)
 , m_pageShell(regOptions)
 , m_pageCompareFolder(regOptions)
+, m_pageCompareTable(regOptions)
 , m_pageCompareBinary(regOptions)
 , m_pageCompareImage(regOptions)
 {
@@ -74,7 +75,7 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
-	ON_WM_DESTROY()
+	ON_WM_SIZE()
 	ON_COMMAND(ID_HELP, OnHelpButton)
 	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
@@ -100,6 +101,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageGeneral, IDS_OPTIONSPG_GENERAL);
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_GENCOMPARE);
 	AddPage(&m_pageCompareFolder, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_FOLDERCOMPARE);
+	AddPage(&m_pageCompareTable, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_TABLECOMPARE);
 	AddPage(&m_pageCompareBinary, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_BINARYCOMPARE);
 	AddPage(&m_pageCompareImage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_IMAGECOMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
@@ -123,7 +125,12 @@ BOOL CPreferencesDlg::OnInitDialog()
 
 	if (m_pphost.Create(rPPHost, this))
 		SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("OptStartPage"), 0));
-
+ 
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.DisallowHeightGrowth();
+	m_constraint.SubclassWnd(); // install subclassing
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OptionsDlg"), false); // persist size via registry
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -134,15 +141,23 @@ void CPreferencesDlg::OnOK()
 	m_pphost.OnOK();
 
 	SaveOptions();
-}
 
-void CPreferencesDlg::OnDestroy() 
-{
-	CDialog::OnDestroy();
-	
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("OptStartPage"), m_pphost.GetActiveIndex());
 }
 
+void CPreferencesDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CWnd::OnSize(nType, cx, cy);
+
+	if (CWnd *pPPHostWnd = GetDlgItem(IDC_TREEOPT_HOSTFRAME))
+	{
+		CRect rPPHost;
+		pPPHostWnd->GetWindowRect(rPPHost);
+		ScreenToClient(rPPHost);
+		m_pphost.MoveWindow(&rPPHost);
+	}
+}
+	
 void CPreferencesDlg::OnHelpButton() 
 {
 	theApp.ShowHelp(OptionsHelpLocation);
@@ -270,6 +285,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageSystem.ReadOptions();
 	m_pageCompare.ReadOptions();
 	m_pageCompareFolder.ReadOptions();
+	m_pageCompareTable.ReadOptions();
 	m_pageCompareBinary.ReadOptions();
 	m_pageCompareImage.ReadOptions();
 	m_pageEditor.ReadOptions();
@@ -290,6 +306,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageSystem, false);
 		SafeUpdatePage(&m_pageCompare, false);
 		SafeUpdatePage(&m_pageCompareFolder, false);
+		SafeUpdatePage(&m_pageCompareTable, false);
 		SafeUpdatePage(&m_pageCompareBinary, false);
 		SafeUpdatePage(&m_pageCompareImage, false);
 		SafeUpdatePage(&m_pageEditor, false);
@@ -309,6 +326,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSystem.WriteOptions();
 	m_pageCompare.WriteOptions();
 	m_pageCompareFolder.WriteOptions();
+	m_pageCompareTable.WriteOptions();
 	m_pageCompareBinary.WriteOptions();
 	m_pageCompareImage.WriteOptions();
 	m_pageEditor.WriteOptions();

@@ -116,8 +116,9 @@ CrystalLineParser::ParseLinePhp (DWORD dwCookie, const TCHAR *pszChars, int nLen
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1);
 
   bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_USER1)) == 0;
+  LPCTSTR pszCommentBegin = nullptr;
+  LPCTSTR pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
-  bool bWasCommentStart = false;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
@@ -210,12 +211,12 @@ out:
         {
           if (dwCookie & COOKIE_EXT_USER1)
             {
-              if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' /*&& *::CharPrev(pszChars, pszChars + nPrevI) != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+              if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
                 {
                   dwCookie &= ~COOKIE_EXT_COMMENT;
                   bRedefineBlock = true;
+                  pszCommentEnd = pszChars + I + 1;
                 }
-              bWasCommentStart = false;
             }
           else
             {
@@ -228,7 +229,7 @@ out:
           continue;
         }
 
-      if ((dwCookie & COOKIE_EXT_USER1) && I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
+      if ((dwCookie & COOKIE_EXT_USER1) && (pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/'))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
@@ -274,14 +275,13 @@ out:
 
       if (dwCookie & COOKIE_EXT_USER1)
         {
-          if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
+          if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
             {
               DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_EXT_COMMENT;
-              bWasCommentStart = true;
+              pszCommentBegin = pszChars + I + 1;
               continue;
             }
-          bWasCommentStart = false;
         }
       else
         {

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-04-30 20:47+0000\n"
+"POT-Creation-Date: 2020-08-03 23:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -458,6 +458,9 @@ msgid "Recompare As"
 msgstr ""
 
 msgid "&Text"
+msgstr ""
+
+msgid "&Table"
 msgstr ""
 
 msgid "&XML"
@@ -1284,7 +1287,7 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr ""
 
 msgid "&Compare"
@@ -1440,9 +1443,6 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-msgid " Categories"
-msgstr ""
-
 msgid "Import..."
 msgstr ""
 
@@ -1480,9 +1480,6 @@ msgid "User 2:"
 msgstr ""
 
 msgid "Bold"
-msgstr ""
-
-msgid "Marker colors"
 msgstr ""
 
 msgid "Search Marker:"
@@ -1620,10 +1617,31 @@ msgstr ""
 msgid "&Close"
 msgstr ""
 
-msgid "&Use customized text colors"
+msgid "Table"
 msgstr ""
 
-msgid "Custom text colors"
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
+msgid "&Use customized text colors"
 msgstr ""
 
 msgid "Whitespace:"
@@ -1742,6 +1760,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2906,7 +2936,7 @@ msgstr ""
 msgid "From file system"
 msgstr ""
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr ""
 
 msgid "No Highlighting"

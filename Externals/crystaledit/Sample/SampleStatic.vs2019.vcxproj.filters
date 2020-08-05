@@ -207,9 +207,6 @@
     <ClCompile Include="..\editlib\renderers\ccrystalrenderergdi.cpp">
       <Filter>editlib\renderers</Filter>
     </ClCompile>
-    <ClCompile Include="..\editlib\dialogs\ceditreplacedlg.cpp">
-      <Filter>editlib\renderers</Filter>
-    </ClCompile>
     <ClCompile Include="..\editlib\dialogs\cfindtextdlg.cpp">
       <Filter>editlib\dialogs</Filter>
     </ClCompile>
@@ -248,6 +245,12 @@
     </ClCompile>
     <ClCompile Include="..\editlib\utils\wcwidth.cpp">
       <Filter>editlib\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\crystallineparser.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\dialogs\ceditreplacedlg.cpp">
+      <Filter>editlib\dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

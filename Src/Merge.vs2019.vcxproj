@@ -420,6 +420,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -592,6 +593,7 @@
     </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp" />
     <ClCompile Include="MergeStatusBar.cpp" />
+    <ClCompile Include="OpenTableDlg.cpp" />
     <ClCompile Include="OptionsDef.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -889,6 +891,7 @@
     <ClCompile Include="PropBackups.cpp" />
     <ClCompile Include="PropCodepage.cpp" />
     <ClCompile Include="PropColorSchemes.cpp" />
+    <ClCompile Include="PropCompareTable.cpp" />
     <ClCompile Include="PropMergeColors.cpp" />
     <ClCompile Include="PropCompare.cpp" />
     <ClCompile Include="PropCompareBinary.cpp" />
@@ -979,6 +982,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
     <ClCompile Include="diffutils\src\analyze.c">
@@ -1135,6 +1139,7 @@
     <ClInclude Include="Merge7zFormatShellImpl.h" />
     <ClInclude Include="MergeEditSplitterView.h" />
     <ClInclude Include="MergeStatusBar.h" />
+    <ClInclude Include="OpenTableDlg.h" />
     <ClInclude Include="OptionsCustomColors.h" />
     <ClInclude Include="Diff3.h" />
     <ClInclude Include="DiffContext.h" />
@@ -1240,6 +1245,7 @@
     <ClInclude Include="PropBackups.h" />
     <ClInclude Include="PropCodepage.h" />
     <ClInclude Include="PropColorSchemes.h" />
+    <ClInclude Include="PropCompareTable.h" />
     <ClInclude Include="PropMergeColors.h" />
     <ClInclude Include="PropCompare.h" />
     <ClInclude Include="PropCompareBinary.h" />
@@ -1281,6 +1287,7 @@
     <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
+    <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />

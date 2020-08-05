@@ -466,6 +466,9 @@ msgstr "Ponownie porównaj jako"
 msgid "&Text"
 msgstr "Tekst"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "XML"
 
@@ -1290,7 +1293,7 @@ msgstr "Idź do"
 msgid "Compare"
 msgstr "Porównaj"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Białe znaki"
 
 msgid "&Compare"
@@ -1447,9 +1450,6 @@ msgstr "Niestandardowa strona kodowa:"
 msgid "Options"
 msgstr "Opcje"
 
-msgid " Categories"
-msgstr " Kategorie"
-
 msgid "Import..."
 msgstr "Importuj..."
 
@@ -1488,9 +1488,6 @@ msgstr "Użytkownik 2:"
 
 msgid "Bold"
 msgstr "Pogrubienie"
-
-msgid "Marker colors"
-msgstr "Kolory markerów"
 
 msgid "Search Marker:"
 msgstr "Znaleziony marker:"
@@ -1627,11 +1624,32 @@ msgstr "Testuj"
 msgid "&Close"
 msgstr "Zamknij"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "Użyj niestandardowych kolorów tekstu"
-
-msgid "Custom text colors"
-msgstr "Niestandardowe kolory tekstu"
 
 msgid "Whitespace:"
 msgstr "Odstęp:"
@@ -1750,6 +1768,18 @@ msgstr "Limit porównywania binarnego (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "Liczba porównywanych wątków (wartość ujemna oznacza dodanie liczby dostępnych rdzeni procesora):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2913,7 +2943,7 @@ msgstr "Wyłączone"
 msgid "From file system"
 msgstr "Z systemu plików"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Z listy MRU"
 
 msgid "No Highlighting"

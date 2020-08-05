@@ -32,7 +32,8 @@ typedef struct UParseError {
 class ICUBreakIterator;
 
 template<int N>
-extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharaterBreakIterator;
+extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator;
+extern thread_local std::unique_ptr<ICUBreakIterator> m_pWordBreakIterator;
 
 typedef UBreakIterator* (*ubrk_open_type)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 ICU_EXTERN UBreakIterator* (*g_pubrk_open)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
@@ -140,6 +141,11 @@ public:
 				UParseError parseError;
 				m_iter = ubrk_openRules(kCustomRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomRules))), text, textLength, &parseError, &status);
 			}
+			else if (type == UBRK_WORD)
+			{
+				UParseError parseError;
+				m_iter = ubrk_openRules(kCustomWordBreakRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomWordBreakRules))), text, textLength, &parseError, &status);
+			}
 			else
 			{
 				m_iter = ubrk_open(type, locale, reinterpret_cast<const UChar *>(text), textLength, &status);
@@ -231,19 +237,35 @@ public:
 	template<int N>
 	static ICUBreakIterator *getCharacterBreakIterator(const UChar * text, int32_t textLength)
 	{
-		if (!m_pCharaterBreakIterator<N>)
-			m_pCharaterBreakIterator<N>.reset(new ICUBreakIterator(UBRK_CHARACTER, "en", text, textLength));
+		if (!m_pCharacterBreakIterator<N>)
+			m_pCharacterBreakIterator<N>.reset(new ICUBreakIterator(UBRK_CHARACTER, "en", text, textLength));
 		else
-			m_pCharaterBreakIterator<N>->setText(text, textLength);
-		return m_pCharaterBreakIterator<N>.get();
+			m_pCharacterBreakIterator<N>->setText(text, textLength);
+		return m_pCharacterBreakIterator<N>.get();
 	}
+
+	static ICUBreakIterator *getWordBreakIterator(const UChar * text, int32_t textLength)
+	{
+		if (!m_pWordBreakIterator)
+			m_pWordBreakIterator.reset(new ICUBreakIterator(UBRK_WORD, "en", text, textLength));
+		else
+			m_pWordBreakIterator->setText(text, textLength);
+		return m_pWordBreakIterator.get();
+	}
+
+#define GLEN(i) ((m_text[(i)] != '\r') ? \
+	(U16_IS_SURROGATE(m_text[(i)]) ? 2 : 1) : \
+	(((i) < m_textLength - 1 && m_text[(i) + 1] == '\n') ? 2 : 1))
+#define GLENP(i) ((m_text[(i)] != '\n') ? \
+	(U16_IS_SURROGATE(m_text[(i)]) ? 2 : 1) : \
+	(((i) > 0 && m_text[(i) - 1] == '\r') ? 2 : 1))
 
 private:
 	int mynext()
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i += U16_IS_SURROGATE(m_text[m_i]) ? 2 : 1;
+			m_i += GLEN(m_i);
 		}
 		else if (m_type == UBRK_WORD)
 		{
@@ -269,26 +291,26 @@ private:
 					m_i = UBRK_DONE;
 			}
 			else
-				m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
+				m_i = offset - GLENP(offset - 1);
 		}
 		else if (m_type == UBRK_WORD)
 		{
 			int nPos = offset;
 			int nPrevPos;
-			while (nPos > 0 && xisspace(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+			while (nPos > 0 && xisspace(m_text[nPrevPos = nPos - GLENP(nPos - 1)]))
 				nPos = nPrevPos;
 			if (nPos > 0)
 			{
-				nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1);
+				nPrevPos = nPos - GLENP(nPos - 1);
 				nPos = nPrevPos;
 				if (xisalnum(m_text[nPos]))
 				{
-					while (nPos > 0 && xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+					while (nPos > 0 && xisalnum(m_text[nPrevPos = nPos - GLENP(nPos - 1)]))
 						nPos = nPrevPos;
 				}
 				else
 				{
-					while (nPos > 0 && !xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)])
+					while (nPos > 0 && !xisalnum(m_text[nPrevPos = nPos - GLENP(nPos - 1)])
 						&& !xisspace(m_text[nPrevPos]))
 						nPos = nPrevPos;
 				}
@@ -302,7 +324,7 @@ private:
 	{
 		if (m_type == UBRK_CHARACTER)
 		{
-			m_i = offset + (U16_IS_SURROGATE(m_text[offset]) ? 2 : 1);
+			m_i = offset + GLEN(offset);
 		}
 		else if (m_type == UBRK_WORD)
 		{
@@ -310,13 +332,13 @@ private:
 			if (xisalnum(m_text[nPos]))
 			{
 				while (nPos < m_textLength && xisalnum(m_text[nPos]))
-					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+					nPos += GLEN(nPos);
 			}
 			else
 			{
 				while (nPos < m_textLength && !xisalnum(m_text[nPos])
 					&& !iswspace(m_text[nPos]))
-					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+					nPos += GLEN(nPos);
 			}
 			m_i = nPos;
 		}
@@ -328,5 +350,6 @@ private:
 	int m_i;
 	int m_textLength;
 	static const UChar *kCustomRules;
+	static const UChar *kCustomWordBreakRules;
 };
 

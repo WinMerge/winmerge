@@ -184,7 +184,11 @@ BOOL CMergeApp::InitInstance()
 	env::LoadRegistryFromFile(paths::ConcatPath(env::GetProgPath(), _T("WinMerge.reg")));
 
 	// Parse command-line arguments.
+#ifdef TEST_WINMERGE
+	MergeCmdLineInfo cmdInfo(_T(""));
+#else
 	MergeCmdLineInfo cmdInfo(GetCommandLine());
+#endif
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 

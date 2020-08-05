@@ -600,6 +600,9 @@ msgstr ""
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1665,7 +1668,7 @@ msgid "Compare"
 msgstr "Comparare"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Blanc"
 
 #, c-format
@@ -1869,10 +1872,6 @@ msgid "Options"
 msgstr "Opţiuni"
 
 #, c-format
-msgid " Categories"
-msgstr "Categorii"
-
-#, c-format
 msgid "Import..."
 msgstr "Importă..."
 
@@ -1923,10 +1922,6 @@ msgstr "Utilizator 2:"
 #, c-format
 msgid "Bold"
 msgstr "Aldine"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2107,13 +2102,33 @@ msgstr "&Testează"
 msgid "&Close"
 msgstr "În&chide"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "&Use customized text colors"
 msgstr "Foloseşte c&ulori ale textului personalizate"
-
-#, fuzzy, c-format
-msgid "Custom text colors"
-msgstr "Culori ale textului personalizate"
 
 #, c-format
 msgid "Whitespace:"
@@ -2264,6 +2279,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3905,7 +3932,7 @@ msgid "From file system"
 msgstr "Din sistemul de fişiere"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Din lista de recent utilizate"
 
 #, c-format

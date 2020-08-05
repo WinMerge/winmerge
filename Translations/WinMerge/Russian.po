@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-30 01:00+0300\n"
+"PO-Revision-Date: 2020-07-28 01:00+0300\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -470,6 +470,9 @@ msgstr "Пересравнить как"
 
 msgid "&Text"
 msgstr "Текст"
+
+msgid "&Table"
+msgstr "Таблица"
 
 msgid "&XML"
 msgstr "&XML"
@@ -1295,7 +1298,7 @@ msgstr "Перейт&и"
 msgid "Compare"
 msgstr "Сравнение"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Невидимые"
 
 msgid "&Compare"
@@ -1451,9 +1454,6 @@ msgstr "Пользовательская:"
 msgid "Options"
 msgstr "Настройки"
 
-msgid " Categories"
-msgstr " Категории"
-
 msgid "Import..."
 msgstr "Импорт..."
 
@@ -1492,9 +1492,6 @@ msgstr "Пользователь 2:"
 
 msgid "Bold"
 msgstr "Жирный"
-
-msgid "Marker colors"
-msgstr "Цвета маркера"
 
 msgid "Search Marker:"
 msgstr "Маркер поиска:"
@@ -1631,11 +1628,32 @@ msgstr "&Тестировать"
 msgid "&Close"
 msgstr "&Закрыть"
 
+msgid "Table"
+msgstr "Таблица"
+
+msgid "File type"
+msgstr "Тип файла"
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "Свои значения разделителей"
+
+msgid "D&elimiter character:"
+msgstr "Символ разделителя"
+
+msgid "&Allow newlines in quotes"
+msgstr "Разрешить новые строки в кавычках"
+
+msgid "&Quote character:"
+msgstr "Символ кавычки:"
+
 msgid "&Use customized text colors"
 msgstr "Использовать особые цвета"
-
-msgid "Custom text colors"
-msgstr "Настроить цвета"
 
 msgid "Whitespace:"
 msgstr "Невидимые:"
@@ -1754,6 +1772,18 @@ msgstr "Ограничение двоичного сравнения (МБ):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
+
+msgid "&CSV File Patterns:"
+msgstr "Шаблоны CSV-файлов:"
+
+msgid "&TSV File Patterns:"
+msgstr "Шаблоны TSV-файлов:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "Свои значения разделителей"
+
+msgid "File Patterns:"
+msgstr "Шаблоны файлов"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2724,10 +2754,10 @@ msgid "Patch file successfully written."
 msgstr "Патч успешно записан."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. элемент не найден!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. элемент не найден!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Патч уже существует. Перезаписать?"
@@ -2917,7 +2947,7 @@ msgstr "Отключен"
 msgid "From file system"
 msgstr "Как в файловой системе"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Как в истории"
 
 msgid "No Highlighting"

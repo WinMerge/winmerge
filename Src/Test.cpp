@@ -87,7 +87,7 @@ TEST(SyntaxHighlight, Verilog)
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v"),
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v")
 	};
-	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	CMessageBoxDialog dlg(nullptr, IDS_FILE_TO_ITSELF, 0U, 0U, IDS_FILE_TO_ITSELF);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
 	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
@@ -114,7 +114,7 @@ TEST(SyntaxHighlight, Verilog)
 TEST(FileCompare, FindText)
 {
 	String projectRoot = getProjectRoot();
-	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	CMessageBoxDialog dlg(nullptr, IDS_FILE_TO_ITSELF, 0U, 0U, IDS_FILE_TO_ITSELF);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
 	CMergeDoc *pDoc = nullptr;
 	CFrameWnd *pFrame = nullptr;
@@ -205,7 +205,9 @@ TEST(FileCompare, LastLineEOL)
 		_T("2-3CRLF.txt")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	CMessageBoxDialog dlg2(nullptr, IDS_FILE_TO_ITSELF, 0U, 0U, IDS_FILE_TO_ITSELF);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	const int nPrevFormerResult2 = dlg2.SetFormerResult(IDOK);
 	CMergeDoc *pDoc = nullptr;
 	CFrameWnd *pFrame = nullptr;
 	for (bool bIgnoreBlankLines: { true, false })
@@ -283,6 +285,7 @@ TEST(FileCompare, LastLineEOL)
 	}
 	pFrame->PostMessage(WM_CLOSE);
 	dlg.SetFormerResult(nPrevFormerResult);
+	dlg2.SetFormerResult(nPrevFormerResult2);
 }
 
 TEST(FolderCompare, IgnoreEOL)
@@ -376,8 +379,9 @@ TEST(FolderCompare, IgnoreEOL)
 
 TEST(CommandLineTest, Desc)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")).c_str()
 	);
@@ -392,8 +396,9 @@ TEST(CommandLineTest, Desc)
 
 TEST(CommandLineTest, Desc2)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -408,8 +413,9 @@ TEST(CommandLineTest, Desc2)
 
 TEST(CommandLineTest, Desc3)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dr TestR " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dr TestR " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -424,8 +430,9 @@ TEST(CommandLineTest, Desc3)
 
 TEST(CommandLineTest, Desc4)
 {
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
 	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL " + 
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL " + 
 		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
 	);
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());

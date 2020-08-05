@@ -604,6 +604,9 @@ msgstr "重新比較"
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1675,7 +1678,7 @@ msgid "Compare"
 msgstr "比較"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "空白處"
 
 #, c-format
@@ -1883,10 +1886,6 @@ msgid "Options"
 msgstr "選項"
 
 #, c-format
-msgid " Categories"
-msgstr "種類"
-
-#, c-format
 msgid "Import..."
 msgstr "匯入..."
 
@@ -1938,10 +1937,6 @@ msgstr "使用者 2："
 #, c-format
 msgid "Bold"
 msgstr "粗體"
-
-#, c-format
-msgid "Marker colors"
-msgstr "標記顏色"
 
 #, c-format
 msgid "Search Marker:"
@@ -2122,13 +2117,33 @@ msgstr "測試(&T)"
 msgid "&Close"
 msgstr "關閉(&C)"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "使用自訂文字色彩(&U)"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "自訂文字色彩"
 
 #, c-format
 msgid "Whitespace:"
@@ -2280,6 +2295,18 @@ msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n比較進程數(&N)(負數表示附加可用的CPU內核數量)："
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3946,7 +3973,7 @@ msgid "From file system"
 msgstr "從檔案系統"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "從 MRU 表"
 
 #, c-format

@@ -50,7 +50,10 @@ protected:
 	//{{AFX_MSG(CSampleView)
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnSelMargin();
+	afx_msg void OnTopMargin();
 	afx_msg void OnWordWrap();
+	afx_msg void OnViewWhitespace();
+	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -600,6 +600,9 @@ msgstr ""
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -1665,7 +1668,7 @@ msgid "Compare"
 msgstr "Összehasonlítás"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Szóközök"
 
 #, c-format
@@ -1869,10 +1872,6 @@ msgid "Options"
 msgstr "Opciók"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategóriák"
-
-#, c-format
 msgid "Import..."
 msgstr "Importálás..."
 
@@ -1923,10 +1922,6 @@ msgstr "Felhasználó 2:"
 #, c-format
 msgid "Bold"
 msgstr "Félkövér"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2107,13 +2102,33 @@ msgstr ""
 msgid "&Close"
 msgstr "Bezár"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Egyéni szövegszínek használata"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Egyéni szövegszínek"
 
 #, c-format
 msgid "Whitespace:"
@@ -2264,6 +2279,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3831,7 +3858,7 @@ msgid "From file system"
 msgstr ""
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr ""
 
 #, c-format

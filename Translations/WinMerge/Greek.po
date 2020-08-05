@@ -599,6 +599,9 @@ msgstr ""
 msgid "&Text"
 msgstr ""
 
+msgid "&Table"
+msgstr ""
+
 #, c-format
 msgid "&XML"
 msgstr ""
@@ -1664,7 +1667,7 @@ msgid "Compare"
 msgstr "Σύγκριση"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Χαρακτήρες Διαστήματος"
 
 #, c-format
@@ -1868,10 +1871,6 @@ msgid "Options"
 msgstr "Επιλογές"
 
 #, c-format
-msgid " Categories"
-msgstr " Κατηγορίες"
-
-#, c-format
 msgid "Import..."
 msgstr "Εισαγωγή..."
 
@@ -1922,10 +1921,6 @@ msgstr "από Χρήστη 2:"
 #, c-format
 msgid "Bold"
 msgstr "Έντονα"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2106,13 +2101,33 @@ msgstr "&Δοκιμή"
 msgid "&Close"
 msgstr "Κ&λείσιμο"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Χρήση προ&τιμωμένων χρωματισμών κειμένου"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Προτιμώμενοι χρωματισμοί κειμένου"
 
 #, c-format
 msgid "Whitespace:"
@@ -2263,6 +2278,18 @@ msgid "&Binary compare limit (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3904,7 +3931,7 @@ msgid "From file system"
 msgstr "Από Αρχειοσύστημα"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Από Κατάλογο προσφάτως χρησιμοποιηθέντων"
 
 #, c-format

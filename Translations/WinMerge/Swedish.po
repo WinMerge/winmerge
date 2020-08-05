@@ -1,4 +1,5 @@
-﻿# Released under the "GNU General Public License"
+﻿# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * Göran Håkansson <goran.x.hakansson at telia.com>
@@ -600,6 +601,9 @@ msgstr "Återjämför som"
 #, c-format
 msgid "&Text"
 msgstr "Text"
+
+msgid "&Table"
+msgstr ""
 
 #, c-format
 msgid "&XML"
@@ -1665,7 +1669,7 @@ msgid "Compare"
 msgstr "Jämför"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Mellanrum"
 
 #, c-format
@@ -1876,10 +1880,6 @@ msgid "Options"
 msgstr "Inställningar"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategorier"
-
-#, c-format
 msgid "Import..."
 msgstr "Importera ..."
 
@@ -1930,10 +1930,6 @@ msgstr "Användare 2:"
 #, c-format
 msgid "Bold"
 msgstr "Fet"
-
-#, c-format
-msgid "Marker colors"
-msgstr "MarkeringsFärger"
 
 #, c-format
 msgid "Search Marker:"
@@ -2114,13 +2110,33 @@ msgstr "Testa"
 msgid "&Close"
 msgstr "Stäng"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Använd anpassade TextFärger"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Anpassade TextFärger"
 
 #, c-format
 msgid "Whitespace:"
@@ -2272,6 +2288,18 @@ msgstr "Högsta Binär JämförelseStorlek (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nAntal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -4007,7 +4035,7 @@ msgid "From file system"
 msgstr "Från Filsystem"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Från MRU listan (senast använda filer)"
 
 #, c-format

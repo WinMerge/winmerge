@@ -467,6 +467,9 @@ msgstr "إعادة مقارنة بصيغة أخرى"
 msgid "&Text"
 msgstr "&نص"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1297,7 +1300,7 @@ msgstr "الذها&ب إلى"
 msgid "Compare"
 msgstr "مقارنة"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "مساحة بيضاء (خالية)"
 
 msgid "&Compare"
@@ -1461,9 +1464,6 @@ msgstr "صفحة ترميز مخصصة:"
 msgid "Options"
 msgstr "الخيارات"
 
-msgid " Categories"
-msgstr " التصنيفات"
-
 msgid "Import..."
 msgstr "استيراد..."
 
@@ -1502,9 +1502,6 @@ msgstr "المستخدم 2:"
 
 msgid "Bold"
 msgstr "الخط العريض"
-
-msgid "Marker colors"
-msgstr "لون العلامات"
 
 msgid "Search Marker:"
 msgstr "علامات البحث:"
@@ -1641,11 +1638,32 @@ msgstr "الا&ختبار"
 msgid "&Close"
 msgstr "إ&غلاق"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "ا&ستخدام ألوان مخصصة للنص"
-
-msgid "Custom text colors"
-msgstr "ألوان مخصصة للنص"
 
 msgid "Whitespace:"
 msgstr "مساحة بيضاء (فارغة):"
@@ -1765,6 +1783,18 @@ msgstr "الح&د الأقصى للمقارنة الثنائية (ميجاباي
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 "عدد سلاسل المقارنة (القيمة السالبة تعني إضافة عدد أنوية المعالج المتوفرة):"
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3304,7 +3334,7 @@ msgstr "معطل"
 msgid "From file system"
 msgstr "من ملف النظام"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "من قائمة MRU"
 
 msgid "No Highlighting"

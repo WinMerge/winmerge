@@ -2,7 +2,7 @@ set workdir=BuildTmp\Src
 if "%1" == "vs2017" (
   set vsversion=vs2017
 ) else (
-  set vsversion=vs2019
+  set vsversion=vs2019x64_vs2017Win32
 )
 
 pushd "%~dp0"

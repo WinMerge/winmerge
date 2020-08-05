@@ -470,6 +470,9 @@ msgstr "Recomparar como"
 msgid "&Text"
 msgstr "&Texto"
 
+msgid "&Table"
+msgstr ""
+
 msgid "&XML"
 msgstr "&XML"
 
@@ -1298,7 +1301,7 @@ msgstr "Ir &a"
 msgid "Compare"
 msgstr "Comparar"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Espacios en blanco"
 
 msgid "&Compare"
@@ -1464,9 +1467,6 @@ msgstr "Página de códigos:"
 msgid "Options"
 msgstr "Configuración"
 
-msgid " Categories"
-msgstr " Categorías"
-
 msgid "Import..."
 msgstr "Importar..."
 
@@ -1505,9 +1505,6 @@ msgstr "Usuario 2:"
 
 msgid "Bold"
 msgstr "Negrita"
-
-msgid "Marker colors"
-msgstr "Colores de marcador"
 
 msgid "Search Marker:"
 msgstr "De búsqueda:"
@@ -1644,11 +1641,32 @@ msgstr "&Probar"
 msgid "&Close"
 msgstr "&Cerrar"
 
+msgid "Table"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "&CSV"
+msgstr ""
+
+msgid "&TSV"
+msgstr ""
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr ""
+
+msgid "D&elimiter character:"
+msgstr ""
+
+msgid "&Allow newlines in quotes"
+msgstr ""
+
+msgid "&Quote character:"
+msgstr ""
+
 msgid "&Use customized text colors"
 msgstr "&Usar colores personalizados para el texto"
-
-msgid "Custom text colors"
-msgstr "Colores elegidos para texto normal"
 
 msgid "Whitespace:"
 msgstr "Espacio:"
@@ -1769,6 +1787,18 @@ msgid ""
 "\n"
 "&Number of compare threads (a negative value implies addition of the number "
 "of available CPU cores):"
+msgstr ""
+
+msgid "&CSV File Patterns:"
+msgstr ""
+
+msgid "&TSV File Patterns:"
+msgstr ""
+
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -3339,7 +3369,7 @@ msgstr "Deshabilitado"
 msgid "From file system"
 msgstr "Del sistema de archivos"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "De la lista MRU"
 
 msgid "No Highlighting"

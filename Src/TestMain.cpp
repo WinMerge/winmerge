@@ -15,6 +15,7 @@ void TestAll()
 	for (const auto& key : GetOptionsMgr()->GetNameList())
 		GetOptionsMgr()->Reset(key);
 	RUN_ALL_TESTS();
+	PostQuitMessage(0);
 }
 
 }
