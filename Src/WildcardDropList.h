@@ -7,6 +7,6 @@ class WildcardDropList
 private:
 	static LRESULT CALLBACK LbWndProc(HWND, UINT, WPARAM, LPARAM);
 public:
-	static void OnDropDown(HWND, int columns, LPCTSTR);
+	static void OnDropDown(HWND, int columns, LPCTSTR, bool allowUserAddedPattrens = true);
 	static void OnCloseUp(HWND);
 };

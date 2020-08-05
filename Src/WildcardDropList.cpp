@@ -91,8 +91,9 @@ LRESULT WildcardDropList::LbWndProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
  * @param [in] hCb Handle to ComboBox control.
  * @param [in] columns Number of columns to fit in one line.
  * @param [in] pch Semicolon delimited list of wildcard patterns.
+ * @param [in] allowUserAddedPatterns Whether to allow user-added patterns
  */
-void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch)
+void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch, bool allowUserAddedPattrens)
 {
 	COMBOBOXINFO info;
 	info.cbSize = sizeof info;
@@ -120,9 +121,10 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch)
 		::ReleaseDC(hTc, hDC);
 	}
 	int const len = ::GetWindowTextLength(hCb) + 1;
-	TCHAR *const patterns = static_cast<TCHAR *>(_alloca(len * sizeof(TCHAR)));
+	TCHAR *patterns = static_cast<TCHAR *>(_alloca(len * sizeof(TCHAR)));
 	::GetWindowText(hCb, patterns, len);
 	int i = 0;
+	String patternsInList;
 	while (size_t const cch = _tcscspn(pch += _tcsspn(pch, _T("; ")), _T("; ")))
 	{
 		TCHAR text[20];
@@ -137,6 +139,31 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch)
 		TabCtrl_SetItem(hTc, i, &item);
 		++i;
 		pch += cch;
+		patternsInList += text;
+		patternsInList += ';';
+	}
+	if (allowUserAddedPattrens)
+	{
+		while (size_t const cch = _tcscspn(patterns += _tcsspn(patterns, _T("; ")), _T("; ")))
+		{
+			TCHAR text[20];
+			*std::copy<>(patterns, patterns + std::min<>(cch, _countof(text) - 1), text) = _T('\0');
+			if (!PathMatchSpec(text, patternsInList.c_str()))
+			{
+				TCITEM item;
+				item.dwStateMask = TCIS_HIGHLIGHTED;
+				item.dwState = TCIS_HIGHLIGHTED;
+				item.pszText = text;
+				item.mask = TCIF_TEXT;
+				TabCtrl_InsertItem(hTc, i, &item);
+				item.mask = TCIF_STATE;
+				TabCtrl_SetItem(hTc, i, &item);
+				++i;
+				patternsInList += text;
+				patternsInList += ';';
+			}
+			patterns += cch;
+		}
 	}
 	TabCtrl_SetCurSel(hTc, -1);
 	TabCtrl_AdjustRect(hTc, FALSE, &rc);

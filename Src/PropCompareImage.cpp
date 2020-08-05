@@ -79,8 +79,13 @@ void PropCompareImage::OnDefaults()
  */
 void PropCompareImage::OnDropDownPatterns()
 {
-	WildcardDropList::OnDropDown(m_comboPatterns, 6,
-		GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS).c_str());
+	String patterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS)
+#ifdef _WIN64
+		+ _T(";*.pdf;*.svg;*.wmf;*.emf");
+#else
+		+ _T(";*.wmf;*.emf");
+#endif
+	WildcardDropList::OnDropDown(m_comboPatterns, 6, patterns.c_str());
 }
 
 /**
