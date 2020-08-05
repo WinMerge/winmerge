@@ -42,7 +42,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOpenContributors();
-	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 
@@ -56,7 +56,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
-	ON_WM_DRAWITEM()
+	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
 	ON_NOTIFY(NM_CLICK, IDC_WWW, OnBnClickedWWW)
 END_MESSAGE_MAP()
@@ -104,7 +104,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
-	if (nCtlColor == CTLCOLOR_STATIC && pWnd != GetDlgItem(IDC_WWW))
+	if (nCtlColor == CTLCOLOR_STATIC)
 	{
 		pDC->SetBkMode(TRANSPARENT);
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -112,15 +112,20 @@ HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return CTrDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
-void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 {
+	if (!m_image)
+		return FALSE;
 	CRect rc;
-	GetDlgItem(nIDCtl)->GetClientRect(&rc);
-	m_image.Draw(lpDrawItemStruct->hDC, rc, Gdiplus::InterpolationModeBicubic);
-	GetDlgItem(IDC_DEVELOPERS)->Invalidate();
-	GetDlgItem(IDC_VERSION)->Invalidate();
-	GetDlgItem(IDC_COMPANY)->Invalidate();
+	GetClientRect(&rc);
+	rc.top = MulDiv(rc.right, m_image.GetHeight(), m_image.GetWidth());
+	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
+	rc.bottom = rc.top;
+	rc.top = 0;
+	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
+	return TRUE;
 }
+
 /**
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.
