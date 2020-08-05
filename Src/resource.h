@@ -168,10 +168,7 @@
 #define IDC_PATH0_COMBO                 1004
 #define IDC_PATH1_COMBO                 1005
 #define IDC_PATH2_COMBO                 1006
-#define IDC_MESSAGE                     1008
 #define IDC_EXT_COMBO                   1009
-#define IDC_PATH_EDIT                   1010
-#define IDC_BROWSE_BUTTON               1011
 #define IDC_SCROLL_CHECK                1012
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
@@ -181,7 +178,6 @@
 #define IDC_IGNCASE_CHECK               1020
 #define IDC_COMPANY                     1021
 #define IDC_DEVELOPERS                  1022
-#define IDC_VER_SYS                     1024
 #define IDC_HILITE_CHECK                1025
 #define IDC_IGNOREREGEXP                1026
 #define IDC_ALL_WHITE                   1027
@@ -263,7 +259,6 @@
 #define IDC_OPEN_CONTRIBUTORS           1115
 #define IDC_COMPAREMETHODCOMBO          1116
 #define IDC_USE_RECYCLE_BIN             1117
-#define IDC_COLORDEFAULTS_BTN           1118
 #define IDC_COMPARE_DEFAULTS            1119
 #define IDC_DIFF_DEFAULTS               1122
 #define IDC_MOVED_BLOCKS                1123
@@ -453,7 +448,6 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
-#define IDC_ABOUTBOX_ICON               1325
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
 #define IDC_PRESERVE_FILETIME           1328
@@ -473,7 +467,6 @@
 #define IDC_SWAP01_BUTTON               1343
 #define IDC_SWAP12_BUTTON               1344
 #define IDC_SWAP02_BUTTON               1345
-#define IDC_COLORSCHEME_GITHUBBITBUCKET 1346
 #define IDC_FINDDLG_DONTCLOSE           1347
 #define IDC_PATH_COMPARING              1348
 #define IDC_REGISTER_SHELLEXTENSION     1349
@@ -536,7 +529,6 @@
 #define IDC_PATH0_READONLY              8806
 #define IDC_PATH1_READONLY              8807
 #define IDC_PATH2_READONLY              8808
-#define IDC_MARKER_COLORS_GROUP         8810
 #define IDC_MARKER0_COLOR_LABEL         8811
 #define IDC_MARKER1_COLOR_LABEL         8812
 #define IDC_MARKER2_COLOR_LABEL         8813
@@ -1061,7 +1053,6 @@
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914
-#define ID_HELP_SEARCH                  32916
 #define ID_PREDIFF_MANUAL               32929
 #define ID_PREDIFF_AUTO                 32930
 #define ID_NO_EDIT_SCRIPTS              32931
@@ -1177,8 +1168,6 @@
 #define ID_PLUGINS_LIST                 33203
 #define ID_PREDIFFER_MANUAL             33204
 #define ID_PREDIFFER_AUTO               33205
-#define ID_VIEW_EXPAND                  33206
-#define ID_VIEW_COLLAPSE                33207
 #define ID_VIEW_DIFFCONTEXT_ALL         33208
 #define ID_VIEW_DIFFCONTEXT_0           33209
 #define ID_VIEW_DIFFCONTEXT_1           33210
@@ -1281,7 +1270,6 @@
 #define ID_FILE_SHELLMENU               33659
 #define ID_MERGE_COMPARE_NONHORIZONTALLY 33660
 #define ID_ACCEL_QUIT                   33661
-#define ID_OPENCONTAININGFOLDER         33663
 #define IDS_DIFF_ALGORITHM_DEFAULT      33700
 #define IDS_DIFF_ALGORITHM_MINIMAL      33701
 #define IDS_DIFF_ALGORITHM_PATIENCE     33702
