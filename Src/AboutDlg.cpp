@@ -116,9 +116,11 @@ BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 {
 	if (!m_image)
 		return FALSE;
-	CRect rc;
+	CRect rc, rcCompany;
 	GetClientRect(&rc);
-	rc.top = MulDiv(rc.right, m_image.GetHeight(), m_image.GetWidth());
+	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
+	ScreenToClient(&rcCompany);
+	rc.top = rcCompany.bottom;
 	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
 	rc.bottom = rc.top;
 	rc.top = 0;
