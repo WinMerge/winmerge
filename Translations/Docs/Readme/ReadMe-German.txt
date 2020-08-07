@@ -1,54 +1,54 @@
 WINMERGE
 
-WinMerge ist ein Open-Source-Tool zum Vergleichen und ZusammenfÃ¼hren fÃ¼r
+WinMerge ist ein Open-Source-Tool zum Vergleichen und Zusammenführen für
 Windows. WinMerge kann sowohl Ordner als auch Dateien vergleichen und
 Unterschiede in einem visuellen Textformat darstellen, das leicht zu
 verstehen und zu handhaben ist. WinMerge kann als externes Unterscheidungs-
-und ZusammenfÃ¼hrungswerkzeug oder als eigenstÃ¤ndige Anwendung genutzt werden.
+und Zusammenführungswerkzeug oder als eigenständige Anwendung genutzt werden.
 
-WinMerge hat viele hilfreiche unterstÃ¼tzende Funktionen, um das Vergleichen,
-Synchronisieren und ZusammenfÃ¼hren so einfach wie mÃ¶glich zu machen.
-FÃ¼r mehrere Programmiersprachen und andere Dateiformate gibt es eine
+WinMerge hat viele hilfreiche unterstützende Funktionen, um das Vergleichen,
+Synchronisieren und Zusammenführen so einfach wie möglich zu machen.
+Für mehrere Programmiersprachen und andere Dateiformate gibt es eine
 Syntaxhervorhebung.
 
-Die neueste WinMerge-Version und WinMerge-Informationen sind verfÃ¼gbar unter
+Die neueste WinMerge-Version und WinMerge-Informationen sind verfügbar unter
 https://winmerge.org/.
 
 Schnellstart
 ============
 Um zu erfahren, wie Sie grundlegende Operationen nach der Installation von
-WinMerge ausfÃ¼hren kÃ¶nnen, klicken Sie Hilfe > WinMerge-Hilfe und navigieren
+WinMerge ausführen können, klicken Sie Hilfe > WinMerge-Hilfe und navigieren
 zum Thema "Quick start". Oder Sie gehen zur Webversion unter
 https://manual.winmerge.org/en/Quick_start.html.
 
 WinMerge-Hilfe
 ==============
 Als WinMerge-Hilfe wird lokal die Microsoft-HTML-Datei WinMerge.chm
-installiert. Um die Hilfe zu Ã¶ffnen, klicken Sie auf Hilfe > WinMerge-Hilfe
-oder drÃ¼cken F1. Auf der Befehlszeile starten Sie die ausfÃ¼hrbare WinMerge-
+installiert. Um die Hilfe zu öffnen, klicken Sie auf Hilfe > WinMerge-Hilfe
+oder drücken F1. Auf der Befehlszeile starten Sie die ausführbare WinMerge-
 Datei mit dem Hilfe-Schalter /?.
 
-Sie kÃ¶nnen auch die HTML-Version der WinMerge-Hilfe durchsuchen unter
+Sie können auch die HTML-Version der WinMerge-Hilfe durchsuchen unter
 https://manual.winmerge.org/.
 
-WinMerge-UnterstÃ¼tzung
+WinMerge-Unterstützung
 ======================
-Fragen oder VorschlÃ¤ge zu WinMerge? Ein guter Ort, um zu beginnen, ist das
+Fragen oder Vorschläge zu WinMerge? Ein guter Ort, um zu beginnen, ist das
 WinMerge-Community-Board unter https://forums.winmerge.org/. Entwickler lesen
-hÃ¤ufig und antworten auf Fragen in beiden Foren. Nutzen Sie das offene
-Diskussionsforum fÃ¼r allgemeine WinMerge-Probleme, wie Fragen zur Benutzung.
-Verwenden Sie das Entwicklerforum fÃ¼r WinMerge-Entwicklungsprobleme.
+häufig und antworten auf Fragen in beiden Foren. Nutzen Sie das offene
+Diskussionsforum für allgemeine WinMerge-Probleme, wie Fragen zur Benutzung.
+Verwenden Sie das Entwicklerforum für WinMerge-Entwicklungsprobleme.
 
-Fehler und FunktionswÃ¼nsche
+Fehler und Funktionswünsche
 ===========================
-Wenn ein Problem in den WinMerge-Foren nicht gelÃ¶st wird, gehen Sie zu
-https://project.winmerge.org/ und klicken im MenÃ¼ auf einen Link wie "Bugs"
-oder "Feature Requests", wo Sie BeitrÃ¤ge durchsuchen oder einreichen kÃ¶nnen.
+Wenn ein Problem in den WinMerge-Foren nicht gelöst wird, gehen Sie zu
+https://project.winmerge.org/ und klicken im Menü auf einen Link wie "Bugs"
+oder "Feature Requests", wo Sie Beiträge durchsuchen oder einreichen können.
 
 Wenn Sie einen Fehler einreichen, geben Sie bitte die WinMerge-Versionsnummer
-in Ihrem Bericht an. Sie kÃ¶nnen ein Konfigurationsprotokoll erstellen, indem
-Sie auf Hilfe > Konfiguration klicken. Bitte hÃ¤ngen Sie das Protokoll an den
-Fehlerbericht an. Es enthÃ¤lt viele nÃ¼tzliche Informationen fÃ¼r Entwickler.
+in Ihrem Bericht an. Sie können ein Konfigurationsprotokoll erstellen, indem
+Sie auf Hilfe > Konfiguration klicken. Bitte hängen Sie das Protokoll an den
+Fehlerbericht an. Es enthält viele nützliche Informationen für Entwickler.
 
 
 - Die WinMerge-Entwickler
