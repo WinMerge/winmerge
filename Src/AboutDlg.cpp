@@ -12,6 +12,20 @@
 #include "Bitmap.h"
 #include "resource.h" // IDD_ABOUTBOX
 
+ // https://www.gnu.org/graphics/gnu-ascii.html
+ // Copyright (c) 2001 Free Software Foundation, Inc.
+ // Converted with https://tomeko.net/online_tools/cpp_text_escape.php
+static const char gnu_ascii[] =
+"  ,           ,\n"
+" /             \\\n"
+"((__-^^-,-^^-__))\n"
+" `-_---' `---_-'\n"
+"  `--|o` 'o|--'\n"
+"     \\  `  /\n"
+"      ): :(\n"
+"      :o_o:\n"
+"       \"-\"";
+
 /** 
  * @brief About-dialog class.
  * 
@@ -47,9 +61,10 @@ public:
 	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 
 private:
-	CAboutDlg *m_p;
+	CAboutDlg *const m_p;
 	ATL::CImage m_image;
 	CFont m_font;
+	CFont m_font_gnu_ascii;
 };
 
 BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CTrDialog)
@@ -65,13 +80,18 @@ CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CAboutDlg::Impl::IDD)
 	, m_p(p)
 {
+	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
+	LOGFONT lf = { 0 };
+	lf.lfHeight = 14 * 10;
+	lf.lfWeight = FW_BOLD;
+	_tcscpy_s(lf.lfFaceName, _T("Courier New"));
+	m_font_gnu_ascii.CreatePointFontIndirect(&lf);
 }
 
 void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
-	DDX_Text(pDX, IDC_DEVELOPERS, m_p->m_info.developers);
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
 	//}}AFX_DATA_MAP
@@ -86,10 +106,9 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 	LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE"));
 
-	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
-
-	GetDlgItem(IDC_DEVELOPERS)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
+	GetDlgItem(IDC_GNU_ASCII)->SetFont(&m_font_gnu_ascii);
+	::SetDlgItemTextA(m_hWnd, IDC_GNU_ASCII, gnu_ascii);
 
 	String link;
 	GetDlgItemText(IDC_WWW, link);
@@ -106,6 +125,8 @@ HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	if (nCtlColor == CTLCOLOR_STATIC)
 	{
+		if (pWnd->GetDlgCtrlID() == IDC_GNU_ASCII)
+			pDC->SetTextColor(RGB(128, 128, 128));
 		pDC->SetBkMode(TRANSPARENT);
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
