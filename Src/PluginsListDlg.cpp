@@ -186,6 +186,7 @@ void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
 	if (plugin)
 	{
 		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		WildcardRemoveDuplicatePatterns(plugin->m_filtersText);
 		plugin->LoadFilterString();
 	}
 }

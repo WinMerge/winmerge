@@ -97,6 +97,7 @@ void PropCompareBinary::ReadOptions()
  */
 void PropCompareBinary::WriteOptions()
 {
+	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_BIN_FILEPATTERNS, m_sFilePatterns);
 }
 

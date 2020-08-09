@@ -78,8 +78,11 @@ void PropCompareTable::ReadOptions()
  */
 void PropCompareTable::WriteOptions()
 {
+	WildcardRemoveDuplicatePatterns(m_sCSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns);
+	WildcardRemoveDuplicatePatterns(m_sTSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns);
+	WildcardRemoveDuplicatePatterns(m_sDSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_FILEPATTERNS, m_sDSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_DELIM_CHAR, m_sDSVDelimiterChar.substr(0, 1));
 	GetOptionsMgr()->SaveOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, m_bAllowNewlinesInQuotes);
