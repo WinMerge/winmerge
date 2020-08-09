@@ -8,7 +8,7 @@ https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.2/Merge7z1900
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.2/Merge7z1900.2-x64.zip!Build\X64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.4-win32.zip!Build ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.4-x64.zip!Build\X64 ^
-https://github.com/WinMerge/winimerge/releases/download/1.0.18.0/winimerge-1-0-18-0-exe.zip!Build ^
+https://github.com/WinMerge/winimerge/releases/download/1.0.19.0/winimerge-1-0-19-0-exe.zip!Build ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
