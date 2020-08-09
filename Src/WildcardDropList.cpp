@@ -90,10 +90,10 @@ LRESULT WildcardDropList::LbWndProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
  * @brief Handles the CBN_DROPDOWN notification.
  * @param [in] hCb Handle to ComboBox control.
  * @param [in] columns Number of columns to fit in one line.
- * @param [in] pch Semicolon delimited list of wildcard patterns.
+ * @param [in] fixedPatterns Semicolon delimited list of wildcard patterns.
  * @param [in] allowUserAddedPatterns Whether to allow user-added patterns
  */
-void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch, bool allowUserAddedPattrens)
+void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns)
 {
 	COMBOBOXINFO info;
 	info.cbSize = sizeof info;
@@ -121,10 +121,10 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch, bool allow
 		::ReleaseDC(hTc, hDC);
 	}
 	int const len = ::GetWindowTextLength(hCb) + 1;
-	TCHAR *patterns = static_cast<TCHAR *>(_alloca(len * sizeof(TCHAR)));
+	TCHAR *const patterns = static_cast<TCHAR *>(_alloca(len * sizeof(TCHAR)));
 	::GetWindowText(hCb, patterns, len);
 	int i = 0;
-	String patternsInList;
+	LPCTSTR pch = fixedPatterns;
 	while (size_t const cch = _tcscspn(pch += _tcsspn(pch, _T("; ")), _T("; ")))
 	{
 		TCHAR text[20];
@@ -139,16 +139,15 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch, bool allow
 		TabCtrl_SetItem(hTc, i, &item);
 		++i;
 		pch += cch;
-		patternsInList += text;
-		patternsInList += ';';
 	}
-	if (allowUserAddedPattrens)
+	if (allowUserAddedPatterns)
 	{
-		while (size_t const cch = _tcscspn(patterns += _tcsspn(patterns, _T("; ")), _T("; ")))
+		pch = patterns;
+		while (size_t const cch = _tcscspn(pch += _tcsspn(pch, _T("; ")), _T("; ")))
 		{
 			TCHAR text[20];
-			*std::copy<>(patterns, patterns + std::min<>(cch, _countof(text) - 1), text) = _T('\0');
-			if (patternsInList.empty() || !PathMatchSpec(text, patternsInList.c_str()))
+			*std::copy<>(pch, pch + std::min<>(cch, _countof(text) - 1), text) = _T('\0');
+			if (!fixedPatterns[0] || !PathMatchSpec(text, fixedPatterns))
 			{
 				TCITEM item;
 				item.dwStateMask = TCIS_HIGHLIGHTED;
@@ -159,10 +158,8 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR pch, bool allow
 				item.mask = TCIF_STATE;
 				TabCtrl_SetItem(hTc, i, &item);
 				++i;
-				patternsInList += text;
-				patternsInList += ';';
 			}
-			patterns += cch;
+			pch += cch;
 		}
 	}
 	TabCtrl_SetCurSel(hTc, -1);
