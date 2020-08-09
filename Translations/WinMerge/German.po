@@ -379,7 +379,7 @@ msgstr "&Rechts schreibgeschützt"
 
 #, c-format
 msgid "File En&coding..."
-msgstr "Dateik&odierung..."
+msgstr "Dateic&odierung..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -492,7 +492,7 @@ msgstr "&Nächster Unterschied\tAlt+Runter"
 
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "&Voriger Unterschied\tAlt+Hoch"
+msgstr "&Vorheriger Unterschied\tAlt+Hoch"
 
 #, c-format
 msgid "&First Difference\tAlt+Home"
@@ -590,7 +590,7 @@ msgstr "Neu &laden\tStrg+F5"
 
 #, c-format
 msgid "&File Encoding..."
-msgstr "Dateik&odierung..."
+msgstr "Dateic&odierung..."
 
 #, c-format
 msgid "Recompare As"
@@ -1057,7 +1057,7 @@ msgstr "&Vollständigen Pfad kopieren"
 
 #, c-format
 msgid "Copy &Filename"
-msgstr "&Dateiname kopieren"
+msgstr "&Dateinamen kopieren"
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1442,7 +1442,7 @@ msgstr "Unterschied:"
 
 #, c-format
 msgid "Selected Difference:"
-msgstr "Selektierter Unterschied:"
+msgstr "Markierter Unterschied:"
 
 #, c-format
 msgid "Ignored Difference:"
@@ -1470,7 +1470,7 @@ msgstr "Wortunterschied:"
 
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Wortunterschied (markiert):"
+msgstr "Markierter Wortunterschied:"
 
 msgid "&Use folder compare colors"
 msgstr "&Ordnervergleichsfarben verwenden"
@@ -1485,7 +1485,7 @@ msgid "Items not exists all:"
 msgstr "Nicht existierende Objekte:"
 
 msgid "Items filtered:"
-msgstr "Objekte gefiltert:"
+msgstr "Gefilterte Objekte:"
 
 #, c-format
 msgid "Margin:"
@@ -2069,7 +2069,7 @@ msgstr "Datei &speichern:"
 
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "&Gleiche Codeseite für beide verwenden"
+msgstr "&Gleiche Codeseite für beides verwenden"
 
 #, c-format
 msgid "&Cancel"
@@ -2084,7 +2084,7 @@ msgstr "Filter testen..."
 
 #, c-format
 msgid "&Enter text to test:"
-msgstr "&Text zum Testen:"
+msgstr "Te&xt zum Testen:"
 
 #, c-format
 msgid "&Folder Name"
@@ -2610,7 +2610,7 @@ msgstr "Regulärer Ausdruck"
 
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr "Filter wurden aktualisiert. Wollen Sie alle geöffneten Ordnervergleiche aktualisieren?\n\nWenn Sie jetzt nicht alle Vergleiche aktualisieren möchten, können Sie Nein wählen und die Vergleiche später aktualisieren."
+msgstr "Filter wurden aktualisiert. Wollen Sie alle geöffneten Ordnervergleiche aktualisieren?\n\nWenn Sie jetzt nicht alle Vergleiche aktualisieren möchten, können Sie 'Nein' wählen und die Vergleiche später aktualisieren."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -3068,15 +3068,15 @@ msgstr "Rechtes Zeilenende"
 
 #, c-format
 msgid "Left Encoding"
-msgstr "Linke Kodierung"
+msgstr "Linke Codierung"
 
 #, c-format
 msgid "Right Encoding"
-msgstr "Rechte Kodierung"
+msgstr "Rechte Codierung"
 
 #, c-format
 msgid "Middle Encoding"
-msgstr "Mittlere Kodierung"
+msgstr "Mittlere Codierung"
 
 msgid "Ignored Diff"
 msgstr "Ignorierter Unterschied"
@@ -3306,15 +3306,15 @@ msgstr "Mittlerer Zeilenende-Typ."
 
 #, c-format
 msgid "Left side encoding."
-msgstr "Linke Zeichensatz-Kodierung."
+msgstr "Linke Zeichensatzcodierung."
 
 #, c-format
 msgid "Right side encoding."
-msgstr "Rechte Zeichensatz-Kodierung."
+msgstr "Rechte Zeichensatzcodierung."
 
 #, c-format
 msgid "Middle side encoding."
-msgstr "Mittlere Zeichensatz-Kodierung."
+msgstr "Mittlere Zeichensatzcodierung."
 
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
@@ -3378,7 +3378,7 @@ msgstr "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre E
 
 #, c-format
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruch-Format.\n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln?\n\nHinweis: Wenn Sie immer alle Zeilenumbruch-Formate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede ignorieren' unter 'Vergleichen' im Einstellungsdialog (erreichbar unter Bearbeiten/Einstellungen)."
+msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruchformat.\n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln?\n\nHinweis: Wenn Sie immer alle Zeilenumbruchformate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede ignorieren' unter 'Vergleichen' im Einstellungsdialog (erreichbar unter Bearbeiten/Einstellungen)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3414,19 +3414,19 @@ msgstr "Verschiedene Codeseiten in linker (cp%d) und rechter (cp%d) Datei gefund
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "Informationsverlust wegen Kodierungsfehlern: Beide Dateien"
+msgstr "Informationsverlust wegen Codierungsfehlern: Beide Dateien"
 
 #, c-format
 msgid "Information lost due to encoding errors: first file"
-msgstr "Informationsverlust wegen Kodierungsfehlern: Erste Datei"
+msgstr "Informationsverlust wegen Codierungsfehlern: Erste Datei"
 
 #, c-format
 msgid "Information lost due to encoding errors: second file"
-msgstr "Informationsverlust wegen Kodierungsfehlern: Zweite Datei"
+msgstr "Informationsverlust wegen Codierungsfehlern: Zweite Datei"
 
 #, c-format
 msgid "Information lost due to encoding errors: third file"
-msgstr "Informationsverlust wegen Kodierungsfehlern: Dritte Datei"
+msgstr "Informationsverlust wegen Codierungsfehlern: Dritte Datei"
 
 #, c-format
 msgid "No difference"
@@ -3568,7 +3568,7 @@ msgstr "Sie sind im Begriff, mehrere Vergleichsfenster zu schließen.\n\nMöchte
 
 #, c-format
 msgid "Mixed"
-msgstr "Gemischt"
+msgstr "Gemixt"
 
 msgctxt "EOL Type"
 msgid "Binary"
@@ -3668,7 +3668,7 @@ msgstr "\nAutomatisch mischen (Strg+Alt+M)"
 
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Der passende Entpacker wird auf beide Dateien angewendet (nur eine Datei benötigt die Erweiterung)."
+msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."
 
 #, c-format
 msgid "No prediffer (normal)"
@@ -3724,7 +3724,7 @@ msgstr "Deaktiviert"
 
 #, c-format
 msgid "From file system"
-msgstr "Von Dateisystem"
+msgstr "Vom Dateisystem"
 
 #, c-format
 msgid "From Most Recently Used list"
