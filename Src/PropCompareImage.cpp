@@ -51,7 +51,7 @@ END_MESSAGE_MAP()
 void PropCompareImage::ReadOptions()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
-    m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 }
 
 /** 
@@ -61,8 +61,9 @@ void PropCompareImage::ReadOptions()
  */
 void PropCompareImage::WriteOptions()
 {
+	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns);
-    GetOptionsMgr()->SaveOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
+	GetOptionsMgr()->SaveOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
 }
 
 /** 
