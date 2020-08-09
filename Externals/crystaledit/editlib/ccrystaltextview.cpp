@@ -1692,11 +1692,13 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
             }
           else
             {
-              if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
+              if (!bPrevZeroWidthBlock)
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
                   COLORREF clrBkColor;
-                  if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+                  if (IsInsideSelBlock (CPoint{nOffsetToUse, ptTextPos.y}))
+                    clrBkColor = GetColor(COLORINDEX_SELBKGND);
+                  else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     clrBkColor = GetColor(nBgColorIndex);
                   else
                     clrBkColor = crBkgnd;
@@ -1737,11 +1739,13 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
         }
       else
         {
-          if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
+          if (!bPrevZeroWidthBlock)
             {
               int nBgColorIndex = blk.m_nBgColorIndex;
               COLORREF clrBkColor;
-              if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+              if (IsInsideSelBlock (CPoint{blk.m_nCharPos, ptTextPos.y}))
+                clrBkColor = GetColor(COLORINDEX_SELBKGND);
+              else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                 clrBkColor = GetColor(nBgColorIndex);
               else
                 clrBkColor = crBkgnd;
