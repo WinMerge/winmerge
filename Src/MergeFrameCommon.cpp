@@ -9,6 +9,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
+#include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 
@@ -65,6 +66,17 @@ void CMergeFrameCommon::SaveWindowState()
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
+	}
+}
+
+void CMergeFrameCommon::RemoveBarBorder()
+{
+	afxData.cxBorder2 = 0;
+	afxData.cyBorder2 = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
+		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
 	}
 }
 

@@ -209,6 +209,8 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	ShowWindow(nCmdShow);
 	BringToTop(nCmdShow);
 
+	GetParent()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_DRAWFRAME);
+
 	OnRefresh();
 
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
@@ -466,11 +468,12 @@ void CImgMergeFrame::TranslateLocationPane(int id, const wchar_t *org, size_t ds
 
 int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-
 	if (CMergeFrameCommon::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+	CMergeFrameCommon::RemoveBarBorder();
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
