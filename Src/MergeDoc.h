@@ -104,6 +104,15 @@ struct WordDiff {
 	}
 };
 
+struct CurrentWordDiff
+{
+	int nDiff;
+	size_t nWordDiff;
+	int nPane;
+	CPoint ptStart;
+	CPoint ptEnd;
+};
+
 struct DiffFileInfo;
 class CMergeEditView;
 class PackingInfo;
@@ -173,7 +182,7 @@ public:
 	int RightLineInMovedBlock(int pane, int line);
 	int LeftLineInMovedBlock(int pane, int line);
 	void SetEditedAfterRescan(int nBuffer);
-	bool IsEditedAfterRescan(int nBuffer) { return m_bEditAfterRescan[nBuffer]; }
+	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
 	void SetUnpacker(const PackingInfo * infoUnpacker);
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
@@ -272,6 +281,11 @@ public:
 	void FlushAndRescan(bool bForced = false);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
+	const CurrentWordDiff& GetCurrentWordDiff() const { return m_CurWordDiff; }
+	bool EqualCurrentWordDiff(int nBuffer, const CPoint& ptStart, const CPoint& ptEnd) const
+	{
+		return (m_CurWordDiff.nPane == nBuffer && m_CurWordDiff.ptStart == ptStart && m_CurWordDiff.ptEnd == ptEnd);
+	}
 	virtual ~CMergeDoc();
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
@@ -306,6 +320,7 @@ private:
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
+	CurrentWordDiff m_CurWordDiff;
 	CMergeEditView * m_pView[3][3]; /**< Pointer to left/middle/right view */
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
 	CDirDoc * m_pDirDoc;

@@ -121,6 +121,7 @@ END_MESSAGE_MAP()
 CMergeDoc::CMergeDoc()
 : m_bEnableRescan(true)
 , m_nCurDiff(-1)
+, m_CurWordDiff{ -1, static_cast<size_t>(-1), -1 }
 , m_pDirDoc(nullptr)
 , m_bMixedEol(false)
 , m_pInfoUnpacker(new PackingInfo)
@@ -144,7 +145,6 @@ CMergeDoc::CMergeDoc()
 		m_bEditAfterRescan[nBuffer] = false;
 	}
 
-	m_nCurDiff=-1;
 	m_bEnableRescan = true;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
@@ -356,6 +356,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// Clear diff list
 	m_diffList.Clear();
 	m_nCurDiff = -1;
+	m_CurWordDiff = { -1, static_cast<size_t>(-1), -1 };
 	// Clear moved lines lists
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
@@ -3073,6 +3074,20 @@ bool CMergeDoc::IsMixedEOL(int nBuffer) const
 void CMergeDoc::SetEditedAfterRescan(int nBuffer)
 {
 	m_bEditAfterRescan[nBuffer] = true;
+}
+
+bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
+{
+	if (nBuffer >= 0 && nBuffer < m_nBuffers)
+		return m_bEditAfterRescan[nBuffer];
+
+	for (nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		if (m_bEditAfterRescan[nBuffer])
+			return true;
+	}
+
+	return false;
 }
 
 /**

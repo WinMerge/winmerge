@@ -152,7 +152,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
-	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
 	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
 	ON_WM_CONTEXTMENU()
@@ -393,7 +393,11 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 	{
 		DIFFRANGE di;
 		
-		if (ptStart != ptEnd)
+		if (pd->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
+		{
+			firstWordDiff = lastWordDiff = pd->GetCurrentWordDiff().nWordDiff;
+		}
+		else if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
 			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
@@ -1847,7 +1851,9 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 		}
 	}
 
-	if (IsSelection())
+	CPoint ptStart, ptEnd;
+	GetSelection(ptStart, ptEnd);
+	if (IsSelection() || pDoc->EqualCurrentWordDiff(srcPane, ptStart, ptEnd))
 	{
 		if (!m_bRectangularSelection)
 		{
@@ -1885,7 +1891,9 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		// If one or more diffs inside selection OR
 		// there is an active diff OR
 		// cursor is inside diff
-		if (IsSelection())
+		CPoint ptStart, ptEnd;
+		GetSelection(ptStart, ptEnd);
+		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
 			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
 			{
@@ -2640,11 +2648,7 @@ void CMergeEditView::OnSelectLineDiff()
 /// Enable select difference menuitem if current line is inside difference.
 void CMergeEditView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI)
 {
-	int line = GetCursorPos().y;
-	bool enable = ((GetLineFlags(line) & (LF_DIFF | LF_GHOST)) != 0);
-	if (GetDocument()->IsEditedAfterRescan(m_nThisPane))
-		enable = false;
-	pCmdUI->Enable(enable);
+	pCmdUI->Enable(!GetDocument()->IsEditedAfterRescan());
 }
 
 /**
