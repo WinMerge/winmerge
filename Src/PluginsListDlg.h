@@ -42,8 +42,11 @@ protected:
 	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnDropDownPatterns();
+	afx_msg void OnCloseUpPatterns();
 	DECLARE_MESSAGE_MAP()
 
 public:
+	CComboBox m_comboPatterns;
 	CListCtrl m_list; /**< A list control for plugins. */	
 };
