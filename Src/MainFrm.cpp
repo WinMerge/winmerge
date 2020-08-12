@@ -172,6 +172,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_WM_TIMER()
 	ON_WM_DESTROY()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
@@ -353,6 +354,26 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		pMDIChildWnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
+}
+
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
+{
+	CMDIFrameWnd::OnTimer(nIDEvent);
+
+	if (nIDEvent == IDT_UPDATEMAINMENU)
+	{
+		KillTimer(nIDEvent);
+
+		BOOL bMaximized;
+		MDIGetActive(&bMaximized);
+
+		// When MDI maximized the window icon is drawn on the menu bar, so we
+		// need to notify it that our icon has changed.
+		if (bMaximized)
+			DrawMenuBar();
+
+		OnUpdateFrameTitle(FALSE);
+	}
 }
 
 void CMainFrame::OnDestroy(void)

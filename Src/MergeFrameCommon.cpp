@@ -93,16 +93,7 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	{
 		SetIcon(hReplace, TRUE);
 
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
+		AfxGetMainWnd()->SetTimer(IDT_UPDATEMAINMENU, 500, nullptr);
 	}
 
 	theApp.SetLastCompareResult(nResult);
