@@ -395,7 +395,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		
 		if (pd->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
-			firstWordDiff = lastWordDiff = pd->GetCurrentWordDiff().nWordDiff;
+			firstWordDiff = lastWordDiff = static_cast<int>(pd->GetCurrentWordDiff().nWordDiff);
 		}
 		else if (ptStart != ptEnd)
 		{
