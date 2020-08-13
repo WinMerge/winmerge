@@ -11,6 +11,10 @@
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "Merge.h"
+
+/** @brief Location for plugins specific help to open. */
+static TCHAR PluginsHelpLocation[] = _T("::/htmlhelp/Plugins.html");
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
@@ -23,6 +27,7 @@ BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
 	ON_NOTIFY(LVN_ITEMCHANGING, IDC_PLUGINSLIST_LIST, OnLVNItemChanging)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_PLUGINSLIST_LIST, OnLVNItemChanged)
+	ON_COMMAND(ID_HELP, OnHelp)
 END_MESSAGE_MAP()
 
 /**
@@ -218,3 +223,12 @@ void PluginsListDlg::OnCloseUpPatterns()
 {
 	WildcardDropList::OnCloseUp(m_comboPatterns);
 }
+
+/**
+ * @brief Open help from mainframe when user presses F1.
+ */
+void PluginsListDlg::OnHelp()
+{
+	theApp.ShowHelp(PluginsHelpLocation);
+}
+

@@ -44,6 +44,7 @@ protected:
 	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDropDownPatterns();
 	afx_msg void OnCloseUpPatterns();
+	afx_msg void OnHelp();
 	DECLARE_MESSAGE_MAP()
 
 public:
