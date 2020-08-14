@@ -601,7 +601,7 @@ msgid "&Text"
 msgstr "&Text"
 
 msgid "&Table"
-msgstr "&Tabelle"
+msgstr "T&abelle"
 
 #, c-format
 msgid "&XML"
@@ -1069,7 +1069,7 @@ msgstr "&Kein Prediffer"
 
 #, c-format
 msgid "Auto prediffer"
-msgstr "&Auto Prediffer"
+msgstr "&Auto-Prediffer"
 
 #, c-format
 msgid "G&oto Diff"
@@ -2333,15 +2333,15 @@ msgstr "&Hex-Ansicht"
 
 #, c-format
 msgid "EXT"
-msgstr "ER"
+msgstr "Erw"
 
 #, c-format
 msgid "CAP"
-msgstr "FEST"
+msgstr "Fest"
 
 #, c-format
 msgid "NUM"
-msgstr "NUM"
+msgstr "Num"
 
 #, c-format
 msgid "SCRL"
@@ -2349,7 +2349,7 @@ msgstr "RF"
 
 #, c-format
 msgid "OVR"
-msgstr "ÜB"
+msgstr "Üb"
 
 #, c-format
 msgid "REC"
@@ -2404,7 +2404,7 @@ msgstr "Entwickler:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim 
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben; für Details sehen Sie sich die GNU General Public License unter dem Hilfe-Menü an."
+msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben. Für Details sehen Sie sich die GNU General Public License unter dem Hilfe-Menü an."
 
 #, c-format
 msgid "&Abort"
@@ -2502,7 +2502,7 @@ msgstr "Version %1 - Deutsch"
 
 #, c-format
 msgid "X64"
-msgstr "X64"
+msgstr "x64"
 
 #, c-format
 msgid "Options (%1)"
@@ -2691,7 +2691,7 @@ msgstr "Ordnerauswahl"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr "Zwei (oder drei) Ordner oder Dateien zum Vergleichen auswählen."
+msgstr "Zwei (oder drei) Dateien oder Ordner zum Vergleichen auswählen."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
@@ -3854,7 +3854,7 @@ msgstr "CD Threshold"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Einf.-/Lö.-Erkennung"
+msgstr "Einfg/Entf-Erkennung"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
@@ -3898,17 +3898,17 @@ msgstr "Seite:"
 
 #, c-format
 msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Pt: (%d, %d) RGBA: (%d, %d, %d, %d) "
+msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist:%g "
-msgstr "Dist: %g "
+msgstr "Dist: %g  "
 
 #, c-format
 msgid "Dist:%g,%g "
-msgstr "Dist: %g,%g "
+msgstr "Dist: %g,%g  "
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-msgstr "Seite: %d/%d Zoom: %d%% %dx%dpx %dbpp"
+msgstr "Seite: %d/%d  Zoom: %d%% %dx%dpx %dbpp"
 
