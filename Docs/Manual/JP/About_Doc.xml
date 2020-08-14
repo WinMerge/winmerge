@@ -192,7 +192,7 @@
           </para>
 
           <para>質問を<ulink
-          url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>,
+          url="https://github.com/winmerge/winmerge/">GitHub</ulink>,
           にする前に、<xref linkend="Faq" />トピックで質問が回答されていないか確認してください。
           </para>
         </listitem>
@@ -258,7 +258,7 @@
                 <guimenu>ファイル</guimenu>
 
                 <guimenuitem>開く</guimenuitem>
-            </menuchoice>をクリックしてください。</entry>
+              </menuchoice>をクリックしてください。</entry>
 
             <entry>矢印は、メニューを表します。この例では、WinMergeの
             <guimenu>ファイル</guimenu>メニューの中の
@@ -319,7 +319,8 @@
                 </listitem>
 
                 <listitem>
-                  <para>フォームかコマンドライン上で入力する情報</para>
+                  <para>フォームかコマンドライン上で入力する情報
+                  </para>
                 </listitem>
               </itemizedlist></entry>
           </row>
