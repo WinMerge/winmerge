@@ -2,6 +2,9 @@ if "%1" == "" (
   call :BuildInstaller
   call :BuildInstaller x64
   call :BuildInstaller x64NonAdmin
+) else if "%1" == "x64" (
+  call :BuildInstaller x64
+  call :BuildInstaller x64NonAdmin
 ) else (
   call :BuildInstaller %1 
 )
