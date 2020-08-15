@@ -2087,8 +2087,8 @@ msgstr "Avbryt"
 msgid "Test Filter"
 msgstr "Testa Filter"
 
-msgid "Testing filter..."
-msgstr "Testar filter..."
+msgid "Testing filter:"
+msgstr "Testar filter:"
 
 #, c-format
 msgid "&Enter text to test:"

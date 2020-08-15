@@ -2081,8 +2081,8 @@ msgstr "Storno"
 msgid "Test Filter"
 msgstr "Zkouška filtru"
 
-msgid "Testing filter..."
-msgstr "Zkouška filtru..."
+msgid "Testing filter:"
+msgstr "Zkouška filtru:"
 
 #, c-format
 msgid "&Enter text to test:"

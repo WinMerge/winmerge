@@ -2078,8 +2078,8 @@ msgstr "Ά&κυρο"
 msgid "Test Filter"
 msgstr "Δοκιμή Φίλτρου"
 
-msgid "Testing filter..."
-msgstr "Δοκιμή Φίλτρου..."
+msgid "Testing filter:"
+msgstr "Δοκιμή Φίλτρου:"
 
 #, c-format
 msgid "&Enter text to test:"

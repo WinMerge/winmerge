@@ -1619,8 +1619,8 @@ msgstr "Annu&lla"
 msgid "Test Filter"
 msgstr "Verifica filtro"
 
-msgid "Testing filter..."
-msgstr "Verifica filtro in corso..."
+msgid "Testing filter:"
+msgstr "Verifica filtro in corso:"
 
 msgid "&Enter text to test:"
 msgstr "&Inserire il testo di prova:"

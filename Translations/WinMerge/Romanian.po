@@ -2079,8 +2079,8 @@ msgstr "&Renunţă"
 msgid "Test Filter"
 msgstr "Testează filtru"
 
-msgid "Testing filter..."
-msgstr "Testare filtru..."
+msgid "Testing filter:"
+msgstr "Testare filtru:"
 
 #, c-format
 msgid "&Enter text to test:"

@@ -2084,8 +2084,8 @@ msgstr "&Скасувати"
 msgid "Test Filter"
 msgstr "Випробування фільтра"
 
-msgid "Testing filter..."
-msgstr "Випробувати фільтр..."
+msgid "Testing filter:"
+msgstr "Випробувати фільтр:"
 
 #, c-format
 msgid "&Enter text to test:"

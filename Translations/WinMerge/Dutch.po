@@ -1621,8 +1621,8 @@ msgstr "Annuleren"
 msgid "Test Filter"
 msgstr "Filter testen"
 
-msgid "Testing filter..."
-msgstr "Filter testen..."
+msgid "Testing filter:"
+msgstr "Filter testen:"
 
 msgid "&Enter text to test:"
 msgstr "Tekst opgeven om te testen:"

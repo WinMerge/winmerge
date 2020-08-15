@@ -1606,8 +1606,8 @@ msgstr "Anuluj"
 msgid "Test Filter"
 msgstr "Testuj filtr"
 
-msgid "Testing filter..."
-msgstr "Testowanie filtra ..."
+msgid "Testing filter:"
+msgstr "Testowanie filtra:"
 
 msgid "&Enter text to test:"
 msgstr "Podaj tekst do sprawdzenia:"

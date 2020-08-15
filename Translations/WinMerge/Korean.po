@@ -2091,8 +2091,8 @@ msgstr "취소(&C)"
 msgid "Test Filter"
 msgstr "필터 테스트"
 
-msgid "Testing filter..."
-msgstr "필터 테스트 중..."
+msgid "Testing filter:"
+msgstr "필터 테스트 중:"
 
 #, c-format
 msgid "&Enter text to test:"

@@ -1614,8 +1614,8 @@ msgstr "&Отменяне"
 msgid "Test Filter"
 msgstr "Изпробване на филтър"
 
-msgid "Testing filter..."
-msgstr "Изпробване на филтър…"
+msgid "Testing filter:"
+msgstr "Изпробване на филтър:"
 
 msgid "&Enter text to test:"
 msgstr "&Въведете текст за изпробване:"

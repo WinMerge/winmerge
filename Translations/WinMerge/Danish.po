@@ -2090,8 +2090,8 @@ msgstr "&Annuller"
 msgid "Test Filter"
 msgstr "Test Filter"
 
-msgid "Testing filter..."
-msgstr "Tester filter..."
+msgid "Testing filter:"
+msgstr "Tester filter:"
 
 #, c-format
 msgid "&Enter text to test:"

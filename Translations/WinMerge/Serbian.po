@@ -2066,8 +2066,8 @@ msgstr "Откажи"
 msgid "Test Filter"
 msgstr "Провера филтера"
 
-msgid "Testing filter..."
-msgstr "Проверавање филтера..."
+msgid "Testing filter:"
+msgstr "Проверавање филтера:"
 
 #, c-format
 msgid "&Enter text to test:"

@@ -1617,8 +1617,8 @@ msgstr "İ&ptal"
 msgid "Test Filter"
 msgstr "Süzgeci Sına"
 
-msgid "Testing filter..."
-msgstr "Süzgeç sınanıyor..."
+msgid "Testing filter:"
+msgstr "Süzgeç sınanıyor:"
 
 msgid "&Enter text to test:"
 msgstr "Sınanacak m&etni yazın:"

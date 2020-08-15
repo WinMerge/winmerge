@@ -1620,8 +1620,8 @@ msgstr "إل&غاء"
 msgid "Test Filter"
 msgstr "فحص المرشح"
 
-msgid "Testing filter..."
-msgstr "يتم فحص المرشح..."
+msgid "Testing filter:"
+msgstr "يتم فحص المرشح:"
 
 msgid "&Enter text to test:"
 msgstr "إدخال ا&لنص للفحص:"

@@ -2078,8 +2078,8 @@ msgstr "&අවලංගු කරන්න"
 msgid "Test Filter"
 msgstr "පෙරනය අත්හදා බැලීම"
 
-msgid "Testing filter..."
-msgstr "පෙරනය පරීක්ෂා කිරීම..."
+msgid "Testing filter:"
+msgstr "පෙරනය පරීක්ෂා කිරීම:"
 
 #, c-format
 msgid "&Enter text to test:"

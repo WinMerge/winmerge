@@ -2086,8 +2086,8 @@ msgstr "Pre&kliči"
 msgid "Test Filter"
 msgstr "Preizkusi filter"
 
-msgid "Testing filter..."
-msgstr "Preizkus filtra..."
+msgid "Testing filter:"
+msgstr "Preizkus filtra:"
 
 #, c-format
 msgid "&Enter text to test:"

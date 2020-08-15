@@ -2083,8 +2083,8 @@ msgstr "&Odustajem"
 msgid "Test Filter"
 msgstr "Test filtar"
 
-msgid "Testing filter..."
-msgstr "Testiranje filtra..."
+msgid "Testing filter:"
+msgstr "Testiranje filtra:"
 
 #, c-format
 msgid "&Enter text to test:"

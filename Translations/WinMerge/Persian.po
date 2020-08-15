@@ -2092,8 +2092,8 @@ msgstr "&C لغو "
 msgid "Test Filter"
 msgstr " آزمايش صافي "
 
-msgid "Testing filter..."
-msgstr " آزمايش صافي... "
+msgid "Testing filter:"
+msgstr " آزمايش صافي: "
 
 #, c-format
 msgid "&Enter text to test:"

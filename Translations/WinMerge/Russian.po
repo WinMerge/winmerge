@@ -1610,8 +1610,8 @@ msgstr "&Отмена"
 msgid "Test Filter"
 msgstr "Тест фильтра"
 
-msgid "Testing filter..."
-msgstr "Тестировать фильтр ..."
+msgid "Testing filter:"
+msgstr "Тестировать фильтр:"
 
 msgid "&Enter text to test:"
 msgstr "Введите тестовый текст:"

@@ -2083,8 +2083,8 @@ msgstr "&Avbryt"
 msgid "Test Filter"
 msgstr "Test filter"
 
-msgid "Testing filter..."
-msgstr "Tester filter..."
+msgid "Testing filter:"
+msgstr "Tester filter:"
 
 #, c-format
 msgid "&Enter text to test:"

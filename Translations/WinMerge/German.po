@@ -2079,8 +2079,8 @@ msgstr "&Abbrechen"
 msgid "Test Filter"
 msgstr "Filter testen"
 
-msgid "Testing filter..."
-msgstr "Filter testen..."
+msgid "Testing filter:"
+msgstr "Filter testen:"
 
 #, c-format
 msgid "&Enter text to test:"

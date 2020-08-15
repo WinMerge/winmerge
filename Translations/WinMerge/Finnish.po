@@ -2089,8 +2089,8 @@ msgid "Test Filter"
 msgstr "Testaa suodin"
 
 #, c-format
-msgid "Testing filter..."
-msgstr "Testataan suodinta..."
+msgid "Testing filter:"
+msgstr "Testataan suodinta:"
 
 #, c-format
 msgid "&Enter text to test:"

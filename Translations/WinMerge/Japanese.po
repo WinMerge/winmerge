@@ -1623,8 +1623,8 @@ msgstr "キャンセル(&C)"
 msgid "Test Filter"
 msgstr "フィルタのテスト"
 
-msgid "Testing filter..."
-msgstr "テストするフィル..."
+msgid "Testing filter:"
+msgstr "テストするフィルタ:"
 
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"

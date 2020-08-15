@@ -1608,8 +1608,8 @@ msgstr "&Atsisakyti"
 msgid "Test Filter"
 msgstr "Testuoti filtrą"
 
-msgid "Testing filter..."
-msgstr "Testuojamas filtras..."
+msgid "Testing filter:"
+msgstr "Testuojamas filtras:"
 
 msgid "&Enter text to test:"
 msgstr "Įv&eskite tekstą patikrinimui:"

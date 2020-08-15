@@ -2079,7 +2079,7 @@ msgstr "&Mégsem"
 msgid "Test Filter"
 msgstr ""
 
-msgid "Testing filter..."
+msgid "Testing filter:"
 msgstr ""
 
 #, c-format

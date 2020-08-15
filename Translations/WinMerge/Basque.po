@@ -2085,8 +2085,8 @@ msgstr "E&zeztatu"
 msgid "Test Filter"
 msgstr "Azterketa Iragazkia"
 
-msgid "Testing filter..."
-msgstr "Iragazkia aztertzen..."
+msgid "Testing filter:"
+msgstr "Iragazkia aztertzen:"
 
 #, c-format
 msgid "&Enter text to test:"

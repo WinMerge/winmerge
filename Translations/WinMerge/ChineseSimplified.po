@@ -1620,8 +1620,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "测试过滤器"
 
-msgid "Testing filter..."
-msgstr "正在测试过滤器..."
+msgid "Testing filter:"
+msgstr "正在测试过滤器:"
 
 msgid "&Enter text to test:"
 msgstr "输入用以测试的文本(&E):"

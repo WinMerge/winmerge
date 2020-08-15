@@ -1599,7 +1599,7 @@ msgstr ""
 msgid "Test Filter"
 msgstr ""
 
-msgid "Testing filter..."
+msgid "Testing filter:"
 msgstr ""
 
 msgid "&Enter text to test:"

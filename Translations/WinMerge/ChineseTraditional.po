@@ -2094,8 +2094,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "測試篩選器"
 
-msgid "Testing filter..."
-msgstr "測試篩選器..."
+msgid "Testing filter:"
+msgstr "測試篩選器:"
 
 #, c-format
 msgid "&Enter text to test:"
