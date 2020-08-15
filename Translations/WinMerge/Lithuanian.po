@@ -454,7 +454,7 @@ msgstr "Spaudinio peržiūr&a..."
 msgid "&Convert Line Endings to"
 msgstr "Keisti eilučių pabaigos formatą į"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Sulieji&mo režimas\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -463,13 +463,13 @@ msgstr "&Atnaujinti\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "&Failo koduotė..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Palyginti iš naujo kaip"
 
 msgid "&Text"
 msgstr "&Tekstas"
 
-msgid "&Table"
+msgid "T&able"
 msgstr "&Lentelė"
 
 msgid "&XML"

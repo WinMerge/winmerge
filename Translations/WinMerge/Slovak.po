@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Konvertovať konce riadkov na"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Zlučovací režim\tF9"
 
 #, c-format
@@ -593,14 +593,14 @@ msgid "&File Encoding..."
 msgstr "&Kódovanie súboru..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

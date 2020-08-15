@@ -451,7 +451,7 @@ msgstr "Anteprima &di stampa..."
 msgid "&Convert Line Endings to"
 msgstr "&Converti caratteri di fine linea in"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modalità unione\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -460,13 +460,13 @@ msgstr "&Ricarica\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Codifica &file..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Riconfronta come"
 
 msgid "&Text"
 msgstr "&Testo"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

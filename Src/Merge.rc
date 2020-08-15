@@ -435,14 +435,14 @@ BEGIN
             MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Merge Mode\tF9",             ID_FILE_MERGINGMODE
+        MENUITEM "Mer&ge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
-        POPUP "Recompare As"
+        POPUP "Reco&mpare As"
         BEGIN
             MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
-            MENUITEM "&Table",                      ID_MERGE_COMPARE_TABLE
+            MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE

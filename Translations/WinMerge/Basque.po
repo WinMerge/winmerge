@@ -584,7 +584,7 @@ msgid "&Convert Line Endings to"
 msgstr "Bihurtu &Lerro Amaierak hona"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Batu &Modua\tF9"
 
 #, c-format
@@ -596,14 +596,14 @@ msgid "&File Encoding..."
 msgstr "&Agiria Kodeatzen..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

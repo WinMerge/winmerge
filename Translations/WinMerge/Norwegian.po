@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Konverter linjeslutt til"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Sammenslå-&modus\tF9"
 
 #, c-format
@@ -593,14 +593,14 @@ msgid "&File Encoding..."
 msgstr "Filko&ding..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

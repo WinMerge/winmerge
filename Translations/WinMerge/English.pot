@@ -445,7 +445,7 @@ msgstr ""
 msgid "&Convert Line Endings to"
 msgstr ""
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr ""
 
 msgid "Re&load\tCtrl+F5"
@@ -454,13 +454,13 @@ msgstr ""
 msgid "&File Encoding..."
 msgstr ""
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

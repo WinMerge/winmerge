@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "Sorvégek átalakítása"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Olvasztási mód\tF9"
 
 #, c-format
@@ -593,14 +593,14 @@ msgid "&File Encoding..."
 msgstr "&Fájl kódolás..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

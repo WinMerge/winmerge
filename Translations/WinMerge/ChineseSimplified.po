@@ -454,8 +454,8 @@ msgstr "打印预览(&W)..."
 msgid "&Convert Line Endings to"
 msgstr "将换行符转换为(&C)"
 
-msgid "&Merge Mode\tF9"
-msgstr "合并模式(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "合并模式(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "重新加载(&L)\tCtrl+F5"
@@ -463,13 +463,13 @@ msgstr "重新加载(&L)\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "文件编码(&F)..."
 
-msgid "Recompare As"
-msgstr "重新比较"
+msgid "Reco&mpare As"
+msgstr "重新比较(&M)"
 
 msgid "&Text"
 msgstr "文本(&T)"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

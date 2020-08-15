@@ -452,8 +452,8 @@ msgstr "印刷プレビュー(&W)..."
 msgid "&Convert Line Endings to"
 msgstr "改行コードの変換(&C)"
 
-msgid "&Merge Mode\tF9"
-msgstr "マージモード(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "マージモード(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
@@ -461,14 +461,14 @@ msgstr "再読み込み(&L)\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "ファイル エンコーディング(&F)..."
 
-msgid "Recompare As"
-msgstr "形式を指定して再比較"
+msgid "Reco&mpare As"
+msgstr "形式を指定して再比較(&M)"
 
 msgid "&Text"
 msgstr "テキスト(&T)"
 
-msgid "&Table"
-msgstr "テーブル(&T)"
+msgid "T&able"
+msgstr "テーブル(&A)"
 
 msgid "&XML"
 msgstr "XML(&X)"

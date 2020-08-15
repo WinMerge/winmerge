@@ -452,7 +452,7 @@ msgstr "Afdrukvoorbeeld..."
 msgid "&Convert Line Endings to"
 msgstr "Regeleindes converteren naar"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Samenvoegmodus\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -461,13 +461,13 @@ msgstr "Opnieuw laden\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Bestandscodering..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
 msgid "&Text"
 msgstr "Tekst"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

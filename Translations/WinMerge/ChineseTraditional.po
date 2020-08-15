@@ -585,8 +585,8 @@ msgid "&Convert Line Endings to"
 msgstr "轉換換行字元(&C)"
 
 #, c-format
-msgid "&Merge Mode\tF9"
-msgstr "開/關合併模式(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "開/關合併模式(&G)\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
@@ -597,14 +597,14 @@ msgid "&File Encoding..."
 msgstr "檔案編碼(&F)..."
 
 #, c-format
-msgid "Recompare As"
-msgstr "重新比較"
+msgid "Reco&mpare As"
+msgstr "重新比較(&M)"
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

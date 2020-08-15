@@ -452,7 +452,7 @@ msgstr "&معاينة قبل الطباعة..."
 msgid "&Convert Line Endings to"
 msgstr "&تحويل نهاية الأسطر إلى"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&وضع الدمج\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -461,13 +461,13 @@ msgstr "إ&عادة تحميل\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "ترمي&ز الملف..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
 
 msgid "&Text"
 msgstr "&نص"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

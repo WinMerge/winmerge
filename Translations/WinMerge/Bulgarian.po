@@ -448,7 +448,7 @@ msgstr "П&реглед преди отпечатване..."
 msgid "&Convert Line Endings to"
 msgstr "Про&меняне на знака за нов ред"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Режим на &сливане\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -457,13 +457,13 @@ msgstr "Пре&зареждане\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Избиране на &кодировка…"
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Сравняване като"
 
 msgid "&Text"
 msgstr "&Текстови файлове"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

@@ -451,7 +451,7 @@ msgstr "&Yazdırma Ön İzleme..."
 msgid "&Convert Line Endings to"
 msgstr "Sa&tır Sonlarını Dönüştür"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Birleştir&me Kipi\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -460,14 +460,14 @@ msgstr "Yeniden Yük&le\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "&Dosya Kodlaması..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Farklı Karşılaştır"
 
 msgid "&Text"
 msgstr "Me&tin"
 
-msgid "&Table"
-msgstr "&Tablo"
+msgid "T&able"
+msgstr "T&ablo"
 
 msgid "&XML"
 msgstr "&XML"

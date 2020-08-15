@@ -578,7 +578,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Convert Line Endings to"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
 
 #, c-format
@@ -590,14 +590,14 @@ msgid "&File Encoding..."
 msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

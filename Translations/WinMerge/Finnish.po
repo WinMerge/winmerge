@@ -579,7 +579,7 @@ msgid "&Convert Line Endings to"
 msgstr "Muunna &rivinloput >"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Yhdistäminen\tF9"
 
 #, c-format
@@ -591,14 +591,14 @@ msgid "&File Encoding..."
 msgstr "Tiedoston koodaus..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
 #, c-format
 msgid "&Text"
 msgstr "&Teksti"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

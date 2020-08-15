@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "Converter salt&os de liña a"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modo mestura\tF9"
 
 #, c-format
@@ -593,15 +593,15 @@ msgid "&File Encoding..."
 msgstr "Codificación do ar&quivo…"
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Volver comparar como"
 
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
 
-msgid "&Table"
-msgstr "&Táboa"
+msgid "T&able"
+msgstr "Tábo&a"
 
 #, c-format
 msgid "&XML"

@@ -585,8 +585,8 @@ msgid "&Convert Line Endings to"
 msgstr "줄 끝 변환(&C)"
 
 #, c-format
-msgid "&Merge Mode\tF9"
-msgstr "병합 모드\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "병합 모드(&G)\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
@@ -597,14 +597,14 @@ msgid "&File Encoding..."
 msgstr "파일 인코딩(&F)..."
 
 #, c-format
-msgid "Recompare As"
-msgstr "다시 비교"
+msgid "Reco&mpare As"
+msgstr "다시 비교(&M)"
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format

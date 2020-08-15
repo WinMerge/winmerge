@@ -451,7 +451,7 @@ msgstr "Podgląd wydruku..."
 msgid "&Convert Line Endings to"
 msgstr "Konwertuj końce linii do"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Tryb scalania\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -460,13 +460,13 @@ msgstr "Odśwież\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
 
 msgid "&Text"
 msgstr "Tekst"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"

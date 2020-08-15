@@ -582,8 +582,7 @@ msgstr "Pré-Visualização da Impressã&o..."
 msgid "&Convert Line Endings to"
 msgstr "&Converter os Finais das Linhas para"
 
-#, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modo de União\tF9"
 
 #, c-format
@@ -594,16 +593,15 @@ msgstr "Re&carregar\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "&Codificação do Arquivo..."
 
-#, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Recomparar Como"
 
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
 
-msgid "&Table"
-msgstr "&Tabela"
+msgid "T&able"
+msgstr "T&abela"
 
 #, c-format
 msgid "&XML"

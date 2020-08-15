@@ -582,7 +582,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Pretvori konce vrstic v"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Združevalni način\tF9"
 
 #, c-format
@@ -594,14 +594,14 @@ msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
 #, c-format
 msgid "&Text"
 msgstr "&Besedilo"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
