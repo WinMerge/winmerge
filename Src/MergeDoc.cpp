@@ -3117,14 +3117,13 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
-	CString str;
-	int nBuffer;
-
-	m_strDesc[0] = _("Untitled left");
-	m_strDesc[m_nBuffers - 1] = _("Untitled right");
-	if (m_nBuffers == 3)
+	if (m_nBufferType[0] == BUFFER_UNNAMED)
+		m_strDesc[0] = _("Untitled left");
+	if (m_nBufferType[m_nBuffers - 1] == BUFFER_UNNAMED)
+		m_strDesc[m_nBuffers - 1] = _("Untitled right");
+	if (m_nBuffers == 3 && m_nBufferType[1] == BUFFER_UNNAMED)
 		m_strDesc[1] = _("Untitled middle");
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		UpdateHeaderPath(nBuffer);
 
 	GetParentFrame()->UpdateResources();
