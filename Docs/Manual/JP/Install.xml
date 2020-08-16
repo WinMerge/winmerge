@@ -14,8 +14,8 @@
       最新リリースのためのホームページ更新に、遅れが生じることに注意してください。
       しかし、<ulink url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>の、プロジェクトステータスページは、
       最新のファイルを表示します。
-      メーリングリストにも、リリースのお知らせがあります。
-      安定リリースは、いくつかのファイルダウンロードサイトより入手可能です。</para>
+      安定リリースは、いくつかのファイルダウンロードサイトより入手可能です。
+      </para>
   </section>
 
   <section>
@@ -52,8 +52,9 @@
     <title>インストーラを使用する (推奨)</title>
 
     <note>
-      <para>Windows NT4/2000/XPにおいて、インストーラは、Administrator権限を必要とします。
-      あなたが、Administrator権限を持っていないなら、アーカイブファイルより展開することで、
+      <para>インストーラは、Administrator権限を必要とします。
+      Administrator権限を持っていないなら、アーカイブファイルより展開するか、
+      ユーザー単位インストーラ(WinMerge-x.x.x-x64-PerUser-Setup.exe)を使用することで、
       WinMergeをインストールできます(<xref
       linkend="InstallFromArchive" />を参照してください).</para>
     </note>
@@ -96,13 +97,12 @@
         <variablelist>
           <varlistentry>
             <term>WinMergeコアファイル<indexterm>
-                <primary>WinMerge executables, Unicode and ANSI</primary>
+                <primary>WinMerge 実行ファイル</primary>
               </indexterm></term>
 
             <listitem>
-                <!-- FIXME: オカシイ -->
-                <para>WinMergeの実行ファイル(Windows 9XとMeでは、<filename>WinMerge.exe</filename>。
-                  他の、すべてのバージョンのWindowsでは、<filename>WinMergeU.exe</filename>)、ヘルプ、そして、他の必要なファイル。チェックOFFにできません。</para>
+              <para>WinMerge実行ファイル、ヘルプ、その他必要なファイル。
+              チェックを外すことはできません。</para>
             </listitem>
           </varlistentry>
 
@@ -127,7 +127,7 @@
             <term>Frhed</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>Frhedを使用すると、ファイルをHEX形式で表示できます。</para>
             </listitem>
           </varlistentry>
 
@@ -135,7 +135,7 @@
             <term>WinIMerge</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>WinIMergeを使用すると、イメージファイル間の違いを表示できます。</para>
             </listitem>
           </varlistentry>
 
@@ -143,7 +143,7 @@
             <term>Archive Support</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>圧縮ファイルを手動で解凍せずに比較したい場合はインストールしてください。</para>
             </listitem>
           </varlistentry>
 
@@ -151,7 +151,7 @@
             <term>GnuWin32 Patch for Windows</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>これとApplyPatch.sctプラグインを使用するとパッチが適用できます。</para>
             </listitem>
           </varlistentry>
 

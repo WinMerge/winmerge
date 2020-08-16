@@ -15,9 +15,8 @@
     delays can occur in updating home pages for the latest releases, but the
     project status page at <ulink
     url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
-    shows the latest files. There is also a mailing list for release
-    announcements. Stable releases are also available in several file download
-    sites.</para>
+    shows the latest files. Stable releases are also available in several file 
+    download sites.</para>
   </section>
 
   <section>
@@ -54,10 +53,9 @@
     <title>Using the installer (recommended)</title>
 
     <note>
-      <para>The installer requires Administrator user privileges in Windows
-      2000 or newer. If you don't have admin user privileges, you can install
+      <para>The installer requires Administrator user privileges. If you don't have admin user privileges, you can install
       WinMerge by unzipping from an archive file (see <xref
-      linkend="InstallFromArchive" />).</para>
+      linkend="InstallFromArchive" />) or by using per-user installer (WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
     </note>
 
     <para>Using the installer is recommended for most users. The installer
@@ -100,7 +98,7 @@
         <variablelist>
           <varlistentry>
             <term>WinMerge core files<indexterm>
-                <primary>WinMerge executables, Unicode and ANSI</primary>
+                <primary>WinMerge executables</primary>
               </indexterm></term>
 
             <listitem>
@@ -132,7 +130,7 @@
             <term>Frhed</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>Frhed enable you to show files in hex format.</para>
             </listitem>
           </varlistentry>
 
@@ -140,7 +138,7 @@
             <term>WinIMerge</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>WinIMerge enables you to show the differences between image files.</para>
             </listitem>
           </varlistentry>
 
@@ -148,7 +146,7 @@
             <term>Archive Support</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>Install it if you want to compare the files contained in a compressed file without having to decompress them manually.</para>
             </listitem>
           </varlistentry>
 
@@ -156,7 +154,7 @@
             <term>GnuWin32 Patch for Windows</term>
 
             <listitem>
-              <para>TBD</para>
+              <para>You can use it and ApplyPatch.sct plugin to apply a patch.</para>
             </listitem>
           </varlistentry>
 

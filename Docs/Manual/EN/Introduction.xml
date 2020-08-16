@@ -51,7 +51,7 @@
       url="https://sourceforge.net/projects/winmerge/files/stable/">Stable
       versions</ulink> are recommended for most users. If you are unsure about
       what version to use, use the latest stable version. Stable versions have
-      an even second number, for example, 2.4, 2.6 and 2.8.</para>
+      an even last number, for example, 2.14.0, 2.16.2 and 2.16.4.</para>
     </section>
 
     <section>
@@ -64,7 +64,7 @@
       versions</ulink> are for people who want to test latest features and
       improvements made after last stable version. Beta versions are not tested
       as extensively as stable versions and probably have some bugs. Beta
-      versions have an odd second number, for example 2.5 and 2.7. Beta versions
+      versions have an odd last number, for example 2.16.3 and 2.16.5. Beta versions
       can be used in production, because they are not expected to have major
       bugs. But there is always a risk with using beta-level releases, so
       consider it carefully. We have tried to release a new stable series once a
