@@ -104,7 +104,7 @@
       <itemizedlist>
         <listitem>
           <para>If you are using the Select Files or Folders dialog, after
-          choosing the <guilabel>Left</guilabel> and <guilabel>Right</guilabel>
+          choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel>
           folders, enter one or more file masks in the
           <guilabel>Filter</guilabel> field. The masks are applied when you
           start the folder compare operation.</para>
@@ -252,8 +252,8 @@
 
           <orderedlist>
             <listitem>
-              <para>After choosing the <guilabel>Left</guilabel> and
-              <guilabel>Right</guilabel> folders, click
+              <para>After choosing the <guilabel>1st</guilabel> and
+              <guilabel>2nd</guilabel> folders, click
               <guibutton>Select</guibutton> next to the
               <guilabel>Filter</guilabel> field.</para>
             </listitem>
@@ -530,8 +530,8 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
 
           <orderedlist>
             <listitem>
-              <para>After choosing the <guilabel>Left</guilabel> and
-              <guilabel>Right</guilabel> files, click
+              <para>After choosing the <guilabel>1st</guilabel> and
+              <guilabel>2nd</guilabel> files, click
               <guibutton>Select</guibutton> next to the
               <guilabel>Filter</guilabel> field.</para>
             </listitem>
