@@ -1369,8 +1369,10 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	PathContext tFiles(dropped_files);
 	const size_t fileCount = tFiles.GetSize();
 
-	// If Ctrl pressed, do recursive compare
-	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
+	if (!!::GetAsyncKeyState(VK_CONTROL))
+		recurse = !recurse;
 
 	// If user has <Shift> pressed with one file selected,
 	// assume it is an archive and set filenames to same
