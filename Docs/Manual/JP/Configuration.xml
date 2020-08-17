@@ -145,7 +145,7 @@
       <itemizedlist>
         <listitem>
           <para>
-          <option>有効</option>(デフォルト): 
+          <option>MDI子ウインドウまたはメインウインドウ</option>(デフォルト): 
           <keycap>ESC</keycap>キーでWinMergeウィンドウを閉じられるようにします。
           <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
           <keycap>
@@ -154,6 +154,11 @@
           <para>注) WinMergeのコマンドラインの
           <parameter>-e</parameter>パラメータは、WinMergeを
           <keycap>ESC</keycap>1回で終了することを可能にします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>MDI子ウインドウのみ</option>: <keycap>ESC</keycap>を押下すると
+          子ウインドウは閉じますが、最後に残ったメインウインドウは閉じません。</para>
         </listitem>
 
         <listitem>
@@ -289,11 +294,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option> (デフォルト): TBD</para>
+          <para><option>無効</option> (デフォルト): <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログは閉じずに開いたままになります。</para>
         </listitem>
 
         <listitem>
-          <para><option>有効</option>: TBD</para>
+          <para><option>有効</option>: <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログが閉じます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -408,7 +413,7 @@
 
     <section>
       <title>空白<indexterm>
-          <primary>whitespace</primary>
+          <primary>whitespaces</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -565,11 +570,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): ファイルのエンコーディングの違いを検出します。 UTF-8 BOMの有無の違いも検出します。</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Codepage differences are ignored.</para>
+          <para><option>Enabled</option>: ファイルエンコーディングの違いは無視されます。</para>
         </listitem>
       </itemizedlist>
     </section>

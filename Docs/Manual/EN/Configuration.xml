@@ -144,7 +144,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): Lets you use the
+          <para><option>MDI child window or main window</option> (default): Lets you use the
           <keycap>ESC</keycap> key to close WinMerge windows. Pressing
           <keycap>ESC</keycap> once closes one window, so with one File Compare
           window open, it takes three key presses to close WinMerge: first the
@@ -154,6 +154,11 @@
           <para>Note that in the WinMerge command line, the
           <parameter>-e</parameter> parameter enables you to close WinMerge by
           pressing <keycap>ESC</keycap> just once.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>MDI child window only</option>: Pressing <keycap>ESC</keycap>
+          closes a child window, but not the last remaining main window.</para>
         </listitem>
 
         <listitem>
@@ -290,11 +295,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): When you click <guilabel>Compare</guilabel> button, the Select File or Folder dialog will remain open instead of closing.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: Clicking <guilabel>Compare</guilabel> button closes the Select Files or Folders dialog.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -320,7 +325,7 @@
         </listitem>
 
         <listitem>
-          <para><guilabel>From MRU list</guilabel>: Checks paths only from the
+          <para><guilabel>From Most Recent Used list</guilabel>: Checks paths only from the
           most recently used (MRU) list. This is handy when you have a limited
           set of paths to compare.</para>
         </listitem>
@@ -408,8 +413,8 @@
     </section>
 
     <section>
-      <title>Whitespace<indexterm>
-          <primary>whitespace</primary>
+      <title>Whitespaces<indexterm>
+          <primary>whitespaces</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -566,11 +571,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): Codepage differences are ignored.</para>
+          <para><option>Disabled</option> (default): File encoding differences are detected. Also, differences between the presence and absence of BOM are detected.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Enabled</option>: File encoding differences are ignored.</para>
         </listitem>
       </itemizedlist>
     </section>
