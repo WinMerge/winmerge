@@ -540,9 +540,9 @@
 
     <section>
       <title>改行文字の違いを無視する (Windows/Unix/Mac)<indexterm>
-        <primary>EOL</primary>
+          <primary>EOL</primary>
 
-        <secondary>detecting and ignoring differences</secondary>
+          <secondary>detecting and ignoring differences</secondary>
       </indexterm></title>
 
       <itemizedlist>
@@ -748,16 +748,23 @@
           <term>バイナリコンテンツ</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>この比較方法は、クイックコンテンツの比較方法よりも高速です。
+            ただし、プラグインや行フィルタ、「大文字と小文字を区別しない」
+            オプションなどは適用されません。まず、ファイルサイズを比較し、
+            ファイルサイズが異なる場合は、内容を比較せずにファイルの内容を異なるもの
+            として扱います。ファイルサイズが一致していれば、単にファイルの内容を
+            バイト単位で比較します。
+            ファイルのエンコード検出、EOL検出、バイナリファイルの検出は行われません。
+            この比較方法は、バックアップされたファイルとの比較に適しています。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>更新日時<indexterm>
-            <primary>timestamps</primary>
+              <primary>timestamps</primary>
 
-            <secondary>comparing</secondary>
-          </indexterm></term>
+              <secondary>comparing</secondary>
+            </indexterm></term>
 
           <listitem>
             <para>ファイルの更新日時のみを比較するため、他のどの比較方法よりもずっと高速です。
@@ -767,7 +774,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term><guilabel>更新日時とサイズ</guilabel></term>
+          <term>更新日時とサイズ</term>
 
           <listitem>
             <para><guilabel>更新日時</guilabel>と似ていますが、
@@ -963,6 +970,24 @@
     </section>
 
     <section>
+      <title>Binary compare limit (MB)<indexterm>
+          <primary>Binary compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>比較スレッドの数<indexterm>
           <primary>compare threads</primary>
         </indexterm></title>
@@ -1018,6 +1043,11 @@
         </indexterm></title>
     <section>
       <title>画像ファイルとして扱うパターン</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>フォルダ比較で画像比較を有効にする</title>
       <para>TBD</para>
     </section>
   </section>

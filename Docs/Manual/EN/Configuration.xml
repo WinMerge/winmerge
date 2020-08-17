@@ -747,7 +747,14 @@
           <term>Binary Contents</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>This method is faster than the Quick contents
+            compare method. However, it does not apply any plugins, line filters,
+            'Ignore case' option, etc. First, it compares the file sizes, and 
+            if they are different, it treats the contents of the file as 
+            different without comparing them. If the file sizes match, 
+            it simply compares the contents of the file in bytes. 
+            No file encoding detection, EOL detection, or binary file detection is performed.
+            This compare method is good for comparing files against backed up files.</para>
           </listitem>
         </varlistentry>
 
@@ -766,7 +773,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term><guilabel>Modified Date and Size</guilabel></term>
+          <term>Modified Date and Size</term>
 
           <listitem>
             <para>Similar to <guilabel>Modified Date</guilabel>, but also checks
@@ -962,6 +969,24 @@
     </section>
 
     <section>
+      <title>Binary compare limit (MB)<indexterm>
+          <primary>Binary compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Number of compare threads<indexterm>
           <primary>compare threads</primary>
         </indexterm></title>
@@ -1017,6 +1042,11 @@
         </indexterm></title>
     <section>
       <title>Image File Patterns</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>Enable image compare in folder compare</title>
       <para>TBD</para>
     </section>
   </section>
