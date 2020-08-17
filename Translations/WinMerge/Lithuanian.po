@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-08-03 23:40+0000\n"
-"PO-Revision-Date: 2020-08-03 23:40+0300\n"
+"PO-Revision-Date: 2020-08-17 08:48+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -464,7 +464,7 @@ msgid "&File Encoding..."
 msgstr "&Failo koduotė..."
 
 msgid "Reco&mpare As"
-msgstr "Palyginti iš naujo kaip"
+msgstr "Paly&ginti iš naujo kaip"
 
 msgid "&Text"
 msgstr "&Tekstas"
