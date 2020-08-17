@@ -128,7 +128,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1);
 	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
-	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, true);
+	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
 	pOptions->InitOption(OPT_CMP_INCLUDE_SUBDIRS, true);
 	pOptions->InitOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, false);
 
