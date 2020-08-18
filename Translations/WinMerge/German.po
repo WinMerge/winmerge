@@ -468,7 +468,7 @@ msgstr "Ausschnitte v&ertauschen"
 
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "V&ergleichsstatistik"
+msgstr "V&ergleichsstatistik..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -594,7 +594,7 @@ msgstr "Dateic&odierung..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr "Erneut ver&gleichen"
+msgstr "Erneut ver&gleichen als"
 
 #, c-format
 msgid "&Text"
@@ -969,11 +969,11 @@ msgstr "Links ö&ffnen"
 
 #, c-format
 msgid "with &External Editor"
-msgstr "Mit &externem Editor"
+msgstr "Mit &externem Editor\tStrg+Alt+E"
 
 #, c-format
 msgid "&Parent Folder"
-msgstr "&Elternordner"
+msgstr "&Elternordner öffnen"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1033,7 +1033,7 @@ msgstr "Unterschiede nach... (%1 von %2)"
 
 #, c-format
 msgid "&Refresh"
-msgstr "Ak&tualisieren"
+msgstr "Ak&tualisieren\tF5"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2924,11 +2924,11 @@ msgstr "Wollen Sie wirklich\n\n%1\nlöschen?"
 
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Wollen Sie wirklich kopieren:"
+msgstr "Wollen Sie wirklich kopieren?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Wollen Sie wirklich %d Objekte kopieren:"
+msgstr "Wollen Sie wirklich %d Objekte kopieren?"
 
 #, c-format
 msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
@@ -2936,11 +2936,11 @@ msgstr "Operation abgebrochen!\n\nOrdnerinhalte auf der Festplatte haben sich ge
 
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr "Wollen Sie wirklich verschieben:"
+msgstr "Wollen Sie wirklich verschieben?"
 
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr "Wollen Sie wirklich %d Objekte verschieben:"
+msgstr "Wollen Sie wirklich %d Objekte verschieben?"
 
 #, c-format
 msgid "Confirm Move"
@@ -3000,15 +3000,15 @@ msgstr "Mittlere Größe"
 
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Rechte Größe (Kurz)"
+msgstr "Rechte Größe (kurz)"
 
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Linke Größe (Kurz)"
+msgstr "Linke Größe (kurz)"
 
 #, c-format
 msgid "Middle Size (Short)"
-msgstr "Mittlere Größe (Kurz)"
+msgstr "Mittlere Größe (kurz)"
 
 #, c-format
 msgid "Left Creation Time"
@@ -3318,7 +3318,7 @@ msgstr "Mittlere Zeichensatzcodierung."
 
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Anzahl der ignorierten Unterschiede in der Datei. Diese Unterschiede werden von WinMerge ignoriert und können nicht vermischt werden."
+msgstr "Anzahl der ignorierten Unterschiede in der Datei. Diese Unterschiede werden von WinMerge ignoriert und können nicht gemischt werden."
 
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
@@ -3600,7 +3600,7 @@ msgstr "Editor-Skript"
 
 #, c-format
 msgid "\nDifference in the Current Line"
-msgstr "\nDifferenz in aktueller Zeile"
+msgstr "\nZeilenunterschied markieren (F4)"
 
 #, c-format
 msgid "\nOptions"
@@ -3692,7 +3692,7 @@ msgstr "Ihre Software ist aktuell."
 
 #, c-format
 msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
-msgstr "Eine neue Version von WinMerge ist verfügbar.\n%1 ist jetzt verfügbar (Sie haben %2). Möchten Sie sie jetzt herunterladen?"
+msgstr "Eine neue Version von WinMerge ist verfügbar.\n%1 ist jetzt verfügbar, Sie haben %2. Möchten Sie sie jetzt herunterladen?"
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -3910,5 +3910,5 @@ msgstr "Dist: %g,%g  "
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-msgstr "Seite: %d/%d  Zoom: %d%% %dx%dpx %dbpp"
+msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
