@@ -472,8 +472,8 @@ msgid "Sw&ap Panes"
 msgstr "&Intervertir les panneaux"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Statistiques de comparaison"
+msgid "Com&pare Statistics..."
+msgstr "Statistiques de comparaison..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1035,10 +1035,6 @@ msgstr "Tous vers... (%1 de %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Différences vers... (%1 de %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Actualiser"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2590,6 +2586,12 @@ msgstr "De la Droite :"
 msgid "To right:"
 msgstr "Vers la Droite :"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Version %1"
@@ -3923,6 +3925,9 @@ msgstr "Aucun"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Type"
@@ -4321,7 +4326,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

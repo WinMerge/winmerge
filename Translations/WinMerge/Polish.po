@@ -364,8 +364,8 @@ msgstr "Użyj domyślnej czcionki"
 msgid "Sw&ap Panes"
 msgstr "Zamień panele"
 
-msgid "Compa&re Statistics"
-msgstr "Statystyki porównania"
+msgid "Com&pare Statistics..."
+msgstr "Statystyki porównania..."
 
 msgid "Refre&sh\tF5"
 msgstr "Odśwież\tF5"
@@ -809,9 +809,6 @@ msgstr "Wszystkie do... (%1 z %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Różnice do... (%1 z %2)"
-
-msgid "&Refresh"
-msgstr "Odśwież"
 
 msgid "Left Shell menu"
 msgstr "Menu powłoki po lewej"
@@ -1938,6 +1935,12 @@ msgstr "Z prawej:"
 msgid "To right:"
 msgstr "Na prawą:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Wersja %1"
@@ -2832,6 +2835,9 @@ msgstr "Brak"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Typ"
 
@@ -3100,7 +3106,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

@@ -469,8 +469,8 @@ msgid "Sw&ap Panes"
 msgstr "Växla Rutor"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Jämför Statistik"
+msgid "Com&pare Statistics..."
+msgstr "Jämför Statistik..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1032,10 +1032,6 @@ msgstr "Samtliga till ... (%1 of %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Skillnader till ... (%1 of %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "Aktualisera"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2553,6 +2549,12 @@ msgstr "Från höger:"
 msgid "To right:"
 msgstr "Till höger:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Version %1"
@@ -3836,6 +3838,9 @@ msgstr "Ingen"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Typ"
@@ -4210,7 +4215,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

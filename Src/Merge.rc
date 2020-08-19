@@ -325,7 +325,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Refre&sh\tF5",                ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
@@ -746,7 +746,7 @@ BEGIN
             MENUITEM "Differences to... (%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Refresh",                    ID_RESCAN
+        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
         MENUITEM SEPARATOR
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
@@ -1657,7 +1657,7 @@ BEGIN
     COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,86,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Use same codepage for both",IDC_LOAD_SAVE_SAME_CODEPAGE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,107,250,10
-    DEFPUSHBUTTON   "&Apply",IDOK,165,128,50,14
+    DEFPUSHBUTTON   "&Ok",IDOK,165,128,50,14
     PUSHBUTTON      "&Cancel",IDCANCEL,221,128,50,14
 END
 
@@ -2606,6 +2606,8 @@ BEGIN
     IDS_TO_LEFT             "To left:"
     IDS_FROM_RIGHT          "From right:"
     IDS_TO_RIGHT            "To right:"
+    IDS_FROM_MIDDLE         "From middle:"
+    IDS_TO_MIDDLE           "To middle:"
 END
 
 // WINMERGE INFORMATION
@@ -3185,6 +3187,7 @@ BEGIN
     IDS_EOL_CRLF            "CRLF"
     IDS_EOL_NONE            "None"
     IDS_MARKER_COLOR_FMT    "Marker Color %d"
+    IDS_MARKER_NEW_PATTERN  "New Pattern"
 END
 
 STRINGTABLE
@@ -3399,7 +3402,7 @@ BEGIN
     IDS_OVERLAY_MODE_ALPHA_ANIMATION NC_("ImgMergeFrame|LocationPane", "Alpha Animation")
     IDS_ZOOM                NC_("ImgMergeFrame|LocationPane", "Zoom")
     IDS_PAGE                NC_("ImgMergeFrame|LocationPane", "Page:")
-    IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+    IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist:%g "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist:%g,%g "
     IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"

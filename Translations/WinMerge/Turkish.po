@@ -364,8 +364,8 @@ msgstr "Varsayılan Yazı &Türü Kullanılsın"
 msgid "Sw&ap Panes"
 msgstr "&Panoların Yerini Değiştir"
 
-msgid "Compa&re Statistics"
-msgstr "İstatistikleri Ka&rşılaştır"
+msgid "Com&pare Statistics..."
+msgstr "İstatistikleri Ka&rşılaştır..."
 
 msgid "Refre&sh\tF5"
 msgstr "Ye&nile\tF5"
@@ -809,9 +809,6 @@ msgstr "Tümünü... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "&Farklı Olanları... (%1 / %2)"
-
-msgid "&Refresh"
-msgstr "&Yenile"
 
 msgid "Left Shell menu"
 msgstr "Sol Pano Sağ Tık Menüsü"
@@ -2019,6 +2016,12 @@ msgstr "Sağdan:"
 msgid "To right:"
 msgstr "Sağa:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Sürüm %1"
@@ -3177,6 +3180,9 @@ msgstr "Yok"
 msgid "Marker Color %d"
 msgstr "İşaretleyici Rengi %d"
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Tür"
 
@@ -3527,8 +3533,8 @@ msgid "Page:"
 msgstr "Sayfa:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Nokta:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Nokta:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

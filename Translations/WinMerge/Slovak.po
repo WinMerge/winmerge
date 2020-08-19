@@ -467,8 +467,8 @@ msgid "Sw&ap Panes"
 msgstr "&Vymeniť panely"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Štatistika po&rovnania"
+msgid "Com&pare Statistics..."
+msgstr "Štatistika po&rovnania..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1030,10 +1030,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Obnoviť"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2530,6 +2526,12 @@ msgstr "Sprava:"
 msgid "To right:"
 msgstr "Doprava:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Verzia %1 - Slovenský preklad"
@@ -3813,6 +3815,9 @@ msgstr "Žiadny"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Typ"
@@ -4128,7 +4133,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

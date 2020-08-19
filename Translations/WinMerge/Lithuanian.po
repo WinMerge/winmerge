@@ -367,8 +367,8 @@ msgstr "Naud&oti numatytąjį šriftą"
 msgid "Sw&ap Panes"
 msgstr "Sukeisti pol&angius"
 
-msgid "Compa&re Statistics"
-msgstr "Ly&ginimo statistika"
+msgid "Com&pare Statistics..."
+msgstr "Ly&ginimo statistika..."
 
 msgid "Refre&sh\tF5"
 msgstr "Atnaujin&ti\tF5"
@@ -812,9 +812,6 @@ msgstr "Viską į... (%1 iš %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Skirtumus į... (%1 iš %2)"
-
-msgid "&Refresh"
-msgstr "&Atnaujinti"
 
 msgid "Left Shell menu"
 msgstr "Kairysis sistemos meniu"
@@ -1945,6 +1942,12 @@ msgstr "Iš dešinės:"
 msgid "To right:"
 msgstr "Į dešinę:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "Versija %1"
@@ -2839,6 +2842,9 @@ msgstr "Nėra"
 msgid "Marker Color %d"
 msgstr "Žymeklio spalva %d"
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipas"
 
@@ -3107,8 +3113,8 @@ msgid "Page:"
 msgstr "Psl.:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Tšk.:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Tšk.:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

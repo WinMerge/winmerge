@@ -367,8 +367,8 @@ msgstr "使用默认字体(&O)"
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
 
-msgid "Compa&re Statistics"
-msgstr "比较结果统计(&R)"
+msgid "Com&pare Statistics..."
+msgstr "比较结果统计(&P)..."
 
 msgid "Refre&sh\tF5"
 msgstr "刷新(&S)\tF5"
@@ -813,9 +813,6 @@ msgstr "全部到... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差异到... (%1 / %2)"
-
-msgid "&Refresh"
-msgstr "刷新(&R)"
 
 msgid "Left Shell menu"
 msgstr "左侧系统外壳菜单"
@@ -2019,6 +2016,12 @@ msgstr "从右侧:"
 msgid "To right:"
 msgstr "到右侧:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "版本 %1"
@@ -3153,6 +3156,9 @@ msgstr "无"
 msgid "Marker Color %d"
 msgstr "标记颜色 %d"
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "类型"
 
@@ -3501,7 +3507,7 @@ msgid "Page:"
 msgstr "页:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

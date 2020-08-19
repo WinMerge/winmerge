@@ -593,6 +593,8 @@
 #define IDS_TO_LEFT                     16002
 #define IDS_FROM_RIGHT                  16003
 #define IDS_TO_RIGHT                    16004
+#define IDS_FROM_MIDDLE                 16005
+#define IDS_TO_MIDDLE                   16006
 #define IDS_VERSION_FMT                 16385
 #define IDS_WINX64                      16388
 #define IDS_OPTIONS_TITLE               16400
@@ -947,6 +949,7 @@
 #define IDS_EOL_CRLF                    30407
 #define IDS_EOL_NONE                    30408
 #define IDS_MARKER_COLOR_FMT            30409
+#define IDS_MARKER_NEW_PATTERN          30410
 #define IDS_PLUGINSLIST_NAME            30432
 #define IDS_PLUGINSLIST_TYPE            30433
 #define IDS_PLUGINSLIST_DESC            30434

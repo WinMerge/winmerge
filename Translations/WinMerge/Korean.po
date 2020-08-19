@@ -471,8 +471,8 @@ msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "통계 비교(&R)"
+msgid "Com&pare Statistics..."
+msgstr "통계 비교(&P)..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1034,10 +1034,6 @@ msgstr "전부... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "차이점... (%1 / %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "새로 고침(&R)"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2558,6 +2554,12 @@ msgstr "오른쪽에서:"
 msgid "To right:"
 msgstr "오른쪽으로:"
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "버전 %1"
@@ -3845,6 +3847,9 @@ msgstr "없음"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "형식"
@@ -4238,7 +4243,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

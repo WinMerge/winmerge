@@ -471,8 +471,8 @@ msgid "Sw&ap Panes"
 msgstr "窗格交換(&A)"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "統計比較結果(&R)"
+msgid "Com&pare Statistics..."
+msgstr "統計比較結果(&P)"
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -1038,10 +1038,6 @@ msgstr "全部到... (%2 之 %1)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差異到... (%2 之 %1)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "重整(&R)"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2541,6 +2537,12 @@ msgstr "從右邊："
 msgid "To right:"
 msgstr "到右邊："
 
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
+
 #, c-format
 msgid "Version %1"
 msgstr "版本 %1"
@@ -3826,6 +3828,9 @@ msgstr "無"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "類型"
@@ -4143,7 +4148,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format
