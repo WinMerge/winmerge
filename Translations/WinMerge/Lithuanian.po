@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-08-03 23:40+0000\n"
-"PO-Revision-Date: 2020-08-17 15:20+0300\n"
+"POT-Creation-Date: 2020-08-20 06:48+0000\n"
+"PO-Revision-Date: 2020-08-20 07:27+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1943,10 +1943,10 @@ msgid "To right:"
 msgstr "Į dešinę:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Iš vidurio:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Į vidurį:"
 
 #, c-format
 msgid "Version %1"
@@ -2843,7 +2843,7 @@ msgid "Marker Color %d"
 msgstr "Žymeklio spalva %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Naujas šablonas"
 
 msgid "Type"
 msgstr "Tipas"
