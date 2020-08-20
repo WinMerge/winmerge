@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-10-18 22:26+0200\n"
-"Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
+"PO-Revision-Date: 2020-08-20 22:26+0200\n"
+"Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2493,10 +2493,10 @@ msgid "To right:"
 msgstr "Nach rechts:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Von der Mitte:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "In die Mitte:"
 
 #, c-format
 msgid "Version %1"
@@ -3585,7 +3585,7 @@ msgid "Marker Color %d"
 msgstr "Markierungsfarbe %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Neues Muster"
 
 #, c-format
 msgid "Type"
@@ -3772,7 +3772,7 @@ msgstr "&Rechte Tabs schließen"
 
 #, c-format
 msgid "Close &Other Tabs"
-msgstr "&Andere Tabs schließen"
+msgstr "&Alle anderen Tabs schließen"
 
 #, c-format
 msgid "Enable &Auto Max Width"
@@ -3903,16 +3903,15 @@ msgstr "Seite:"
 
 #, c-format
 msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
-msgstr ""
+msgstr "Pt.: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
-#, c-format
 msgid "Dist:%g "
-msgstr "Dist: %g  "
+msgstr "Dist.: %g  "
 
 #, c-format
 msgid "Dist:%g,%g "
-msgstr "Dist: %g,%g  "
+msgstr "Dist.: %g, %g  "
 
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
