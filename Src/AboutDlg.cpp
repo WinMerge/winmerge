@@ -138,6 +138,8 @@ HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 {
+	if (!m_image)
+		return FALSE;
 	CRect rc, rcCompany;
 	GetClientRect(&rc);
 	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
@@ -146,8 +148,7 @@ BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
 	rc.bottom = rc.top;
 	rc.top = 0;
-	if (m_image)
-		m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
+	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
 	return TRUE;
 }
 
