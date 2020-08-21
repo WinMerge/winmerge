@@ -104,7 +104,10 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE"));
+	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE")))
+	{
+		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
+	}
 
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 	GetDlgItem(IDC_GNU_ASCII)->SetFont(&m_font_gnu_ascii);
@@ -135,8 +138,6 @@ HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 {
-	if (!m_image)
-		return FALSE;
 	CRect rc, rcCompany;
 	GetClientRect(&rc);
 	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
@@ -145,7 +146,8 @@ BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
 	rc.bottom = rc.top;
 	rc.top = 0;
-	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
+	if (m_image)
+		m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
 	return TRUE;
 }
 
