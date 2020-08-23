@@ -9,8 +9,8 @@ User documentation is in [Users](Users/README.md)-subfolder.
 ### Important files in user documentation:
 
  * [ReadMe.txt](Users/ReadMe.txt)
- * [ChangeLog.txt](Users/ChangeLog.txt)
- * [ReleaseNotes.html](Users/ReleaseNotes.html)
+ * [ChangeLog.md](Users/ChangeLog.md)
+ * [ReleaseNotes.md](Users/ReleaseNotes.md)
  * [User manual in own folder](Manual/) note that it is XML files and needs to be processed into HTML files.
 
 ## Developer Documentation
