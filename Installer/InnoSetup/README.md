@@ -58,7 +58,7 @@ These files are produced by compiling WinMerge, documentation etc, but that's no
        * `WinMergeU.exe`
  * `Docs/`
    * `Users/`
-     * `ChangeLog.txt`
+     * `ChangeLog.html`
      * `Contributors.txt`
      * `GPL.rtf`
      * `ReadMe.txt`
