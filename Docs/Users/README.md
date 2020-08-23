@@ -13,7 +13,7 @@ User's manual is not directly readable from our source tree. It must be first co
 ### Other files in user documentation:
 
  * [ReadMe.txt](ReadMe.txt) is shown in end of the installer. It lists most important links for help, installing archive support etc.
- * [ChangeLog.txt](ChangeLog.txt) contains general list of changes between WinMerge versions.
- * [ReleaseNotes.html](ReleaseNotes.html) has release-specific information, like known issues.
+ * [ChangeLog.md](ChangeLog.md) contains general list of changes between WinMerge versions.
+ * [ReleaseNotes.md](ReleaseNotes.md) has release-specific information, like known issues.
  * [Contributors list](Contributors.txt) lists people in development group and other people who have helped in development.
  * [GPL.rtf](GPL.rtf) contains GPL license in RTF format.
