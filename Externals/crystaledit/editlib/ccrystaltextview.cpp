@@ -1692,7 +1692,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
             }
           else
             {
-              if (!bPrevZeroWidthBlock)
+              if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
                   COLORREF clrBkColor;
@@ -1739,7 +1739,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
         }
       else
         {
-          if (!bPrevZeroWidthBlock)
+          if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
             {
               int nBgColorIndex = blk.m_nBgColorIndex;
               COLORREF clrBkColor;
