@@ -40,5 +40,5 @@ if exist "%SIGNBAT_PATH%" (
 )
 
 mkdir Build\%PLATFORM_DIR%\Release\%APPVER% 2> NUL
-copy Build\%PlATFORM_DIR%\Release\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
+copy Build\%PlATFORM_DIR%\Release\*.pdb "Build\%PLATFORM_DIR%\Release\%APPVER%\"
 goto :eof
