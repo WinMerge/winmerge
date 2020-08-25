@@ -46,6 +46,7 @@
 #define IDS_EOL_CRLF                    30407
 #define IDS_EOL_NONE                    30408
 #define IDS_MARKER_COLOR_FMT            30409
+#define IDS_MARKER_NEW_PATTERN          30410
 #define ID_EDIT_DISABLEBSATSOL          32796
 #define ID_EDIT_DISABLEDRAGANDDROP      32797
 #define ID_EDIT_FIND_PREVIOUS           32799
