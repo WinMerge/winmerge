@@ -1711,7 +1711,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
                 }
             }
           if (ptOrigin.x > rcClip.right)
-            break;
+            {
+              if (GetTextLayoutMode () == TEXTLAYOUT_TABLE_WORDWRAP)
+                {
+                  while (I < blocks.size () - 1 && blocks[I + 1].m_nCharPos <= nOffset + nCount)
+                    I++;
+                }
+              break;
+            }
         }
 
       nActualItem = static_cast<int>(I);
