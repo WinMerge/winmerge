@@ -1012,27 +1012,58 @@
         </indexterm></title>
     <section>
       <title>CSV File Patterns</title>
-      <para>TBD</para>
+      <para>
+      Specifies file name pattern for comma-separated values files to open in table format.
+      To specify multiple items, separate them with a semicolon.
+      By default, *.csv is specified. If you do not want to open the files with the extension .csv in table format. Delete the *.csv.
+      </para>
     </section>
 
     <section>
       <title>TSV File Patterns</title>
-      <para>TBD</para>
+      <para>
+      Specifies file name pattern for tab-separated values files to open in table format.
+      To specify multiple items, separate them with a semicolon.
+      By default, *.tsv is specified. If you do not want to open the files with the extension .tsv in table format. Delete the *.tsv.
+      </para>
     </section>
 
     <section>
       <title>Custom Delimiter-Separated Values</title>
-      <para>TBD</para>
+      <para>
+      If you want to open text files, with values separated by characters other than commas or tabs, in tabular format,
+      specify the file name pattern and delimiter.
+      </para>
     </section>
 
     <section>
       <title>Allow newlines in quotes</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default):
+          If there is a newline character between the quote character and the next quote character,
+          the newline character is treated as part of a value.
+          Enable this option if you want to process CSV/TSV files that contain multiple lines in one field.          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>:
+          Disable the above.
+          Disable this option when opening files with incorrect quotes.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>Quote character</title>
-      <para>TBD</para>
+      <para>
+      Specifies the character that is treated as quotation marks.
+      Delimiters within the text range enclosed by the characters specified here are treated as part of a value.
+      This field can be empty.
+      To open files in which the quotation marks are mere values, 
+      leave it empty or specify a character that does not exist in the file.
+      </para>
     </section>
   </section>
 

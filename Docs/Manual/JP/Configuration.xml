@@ -1013,27 +1013,61 @@
         </indexterm></title>
     <section>
       <title>CSV ファイルとして扱うパターン</title>
-      <para>TBD</para>
+      <para>
+      テーブル形式で比較したいカンマ区切り値のファイルのファイル名パターンを指定します。
+      セミコロン区切りで複数指定することが可能です。
+      デフォルトでは、*.csv が指定されています。拡張子.csvのファイルをテーブル形式
+      で比較したくない場合は、*.csv を取り除いてください。
+      </para>
     </section>
 
     <section>
       <title>TSV ファイルとして扱うパターン</title>
-      <para>TBD</para>
+      <para>
+      テーブル形式で比較したいタブ区切り値のファイルのファイル名パターンを指定します。
+      セミコロン区切りで複数指定することが可能です。
+      デフォルトでは、*.tsv が指定されています。拡張子.tsvのファイルをテーブル形式
+      で比較したくない場合は、*.tsv を取り除いてください。
+      </para>
     </section>
 
     <section>
       <title>ユーザ指定文字区切り値</title>
-      <para>TBD</para>
+      <para>
+      カンマやタブ文字ではなく、別の文字で区切られた値のテキストファイルをテーブル形式で開きたい場合、
+      そのファイルのファイル名パターンと区切り文字を指定します。
+      </para>
     </section>
 
     <section>
       <title>引用符内の改行文字を値として扱う</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>有効</option> (デフォルト):
+          テキストに引用符文字が現れてから次の引用符文字が現れる前に改行文字が現れた場合、
+          この改行文字を値とみなします。
+          一つのフィールドに複数の行が格納されているCSV/TSVファイルを処理する場合は、このオプションを有効にします。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>無効</option>:
+          上記を無効にします。引用符の数に誤りのあるファイルを開く場合は、
+          このオプションを無効にしてください。
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>引用符文字</title>
-      <para>TBD</para>
+      <para>
+      引用符として扱われる文字を指定します。
+      ここで指定した文字で括られたテキスト範囲内にある区切り文字は値として扱われます。
+      この入力エリアを空にすることが可能です。
+      引用符が単なる値でしかないファイルを開く場合、
+      空にするか、そのファイルに存在しない文字を指定してください。
+      </para>
     </section>
   </section>
 
@@ -1595,10 +1629,11 @@
 
   <section id="Configuration_codepage">
     <title>コードページページ<indexterm>
-      <primary>codepage</primary>
+        <primary>codepage</primary>
 
-      <secondary>options</secondary>
-    </indexterm></title>
+        <secondary>options</secondary>
+      </indexterm></title>
+
     <para>このページは、ANSI版 WinMerge
     が、ANSIファイルに対して使うコードページを指定します。
     また、あるファイル形式のコードページは、

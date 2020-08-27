@@ -102,7 +102,7 @@
       all others are excluded from the selection when the compare operation
       starts:</para>
 
-      <screen>*.h;*.cpp *.txt,*.ini</screen>
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
 
       <para>File masks are practical for simple filtering; for more advanced
       selecting, use filter files. Filter files are collections of regular
