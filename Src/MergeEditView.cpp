@@ -37,6 +37,10 @@
 #define new DEBUG_NEW
 #endif
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
+
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
 
@@ -211,6 +215,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
 	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
@@ -4055,6 +4060,30 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	}
 
 	return CGhostTextView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+/**
+ * @brief Called when mouse's horizontal wheel is scrolled.
+ */
+void CMergeEditView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	SCROLLINFO si = { sizeof SCROLLINFO };
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+	VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+	// new horz pos
+	si.nPos += zDelta / 40;
+	if (si.nPos > si.nMax) si.nPos = si.nMax;
+	if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+	SetScrollInfo(SB_HORZ, &si);
+
+	// for update
+	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+
+	// no default CCrystalTextView
+	CView::OnMouseHWheel(nFlags, zDelta, pt);
 }
 
 /**
