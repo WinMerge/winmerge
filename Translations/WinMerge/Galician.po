@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-08-05 16:55+0200\n"
+"PO-Revision-Date: 2020-08-27 20:59+0200\n"
 "Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: gl\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -468,7 +468,7 @@ msgstr "Interc&ambiar paneis"
 
 #, c-format
 msgid "Com&pare Statistics..."
-msgstr "Estatísticas da comparación..."
+msgstr "Estatísticas da comparación…"
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -2557,10 +2557,10 @@ msgid "To right:"
 msgstr "Para a dereita:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Dende o centro:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Para o centro:"
 
 #, c-format
 msgid "Version %1"
@@ -3867,7 +3867,7 @@ msgid "Marker Color %d"
 msgstr "Cor de marcador %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Novo patrón"
 
 #, c-format
 msgid "Type"
@@ -4276,4 +4276,3 @@ msgstr "Dist:%g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Páx:%d/%d Zoom:%d%% %dx%dpx %dbpp"
-
