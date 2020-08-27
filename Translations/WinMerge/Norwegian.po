@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -467,8 +467,8 @@ msgid "Sw&ap Panes"
 msgstr "&Bytt om paneler"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Sammen&lign statistikker"
+msgid "Com&pare Statistics..."
+msgstr "Sammen&lign statistikker..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Konverter linjeslutt til"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Sammenslå-&modus\tF9"
 
 #, c-format
@@ -593,14 +593,14 @@ msgid "&File Encoding..."
 msgstr "Filko&ding..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1030,10 +1030,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Gjenoppfrisk"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2083,8 +2079,8 @@ msgstr "&Avbryt"
 msgid "Test Filter"
 msgstr "Test filter"
 
-msgid "Testing filter..."
-msgstr "Tester filter..."
+msgid "Testing filter:"
+msgstr "Tester filter:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2529,6 +2525,12 @@ msgstr "Fra høyre:"
 #, c-format
 msgid "To right:"
 msgstr "Til høyre:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3813,6 +3815,9 @@ msgstr "Ingen"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Type"
@@ -4128,7 +4133,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

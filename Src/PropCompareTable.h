@@ -26,6 +26,9 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompareTable)
 	enum { IDD = IDD_PROPPAGE_COMPARE_TABLE };
+	CComboBox m_comboCSVPatterns;
+	CComboBox m_comboTSVPatterns;
+	CComboBox m_comboDSVPatterns;
 	String m_sCSVFilePatterns;
 	String m_sTSVFilePatterns;
 	String m_sDSVFilePatterns;
@@ -47,6 +50,12 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareTable)
 	afx_msg void OnDefaults();
+	afx_msg void OnDropDownCSVPatterns();
+	afx_msg void OnCloseUpCSVPatterns();
+	afx_msg void OnDropDownTSVPatterns();
+	afx_msg void OnCloseUpTSVPatterns();
+	afx_msg void OnDropDownDSVPatterns();
+	afx_msg void OnCloseUpDSVPatterns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

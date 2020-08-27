@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -365,8 +365,8 @@ msgstr "デフォルト フォントを使用(&O)"
 msgid "Sw&ap Panes"
 msgstr "ペインの交換(&A)"
 
-msgid "Compa&re Statistics"
-msgstr "比較統計(&R)"
+msgid "Com&pare Statistics..."
+msgstr "比較統計(&P)..."
 
 msgid "Refre&sh\tF5"
 msgstr "最新の情報に更新(&S)\tF5"
@@ -452,8 +452,8 @@ msgstr "印刷プレビュー(&W)..."
 msgid "&Convert Line Endings to"
 msgstr "改行コードの変換(&C)"
 
-msgid "&Merge Mode\tF9"
-msgstr "マージモード(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "マージモード(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
@@ -461,14 +461,14 @@ msgstr "再読み込み(&L)\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "ファイル エンコーディング(&F)..."
 
-msgid "Recompare As"
-msgstr "形式を指定して再比較"
+msgid "Reco&mpare As"
+msgstr "形式を指定して再比較(&M)"
 
 msgid "&Text"
 msgstr "テキスト(&T)"
 
-msgid "&Table"
-msgstr "テーブル(&T)"
+msgid "T&able"
+msgstr "テーブル(&A)"
 
 msgid "&XML"
 msgstr "XML(&X)"
@@ -810,9 +810,6 @@ msgstr "すべてを... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
-
-msgid "&Refresh"
-msgstr "選択項目を再比較(&R)"
 
 msgid "Left Shell menu"
 msgstr "左側シェルメニュー"
@@ -1623,8 +1620,8 @@ msgstr "キャンセル(&C)"
 msgid "Test Filter"
 msgstr "フィルタのテスト"
 
-msgid "Testing filter..."
-msgstr "テストするフィル..."
+msgid "Testing filter:"
+msgstr "テストするフィルタ:"
 
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"
@@ -2018,6 +2015,12 @@ msgstr "右側から:"
 
 msgid "To right:"
 msgstr "右側へ:"
+
+msgid "From middle:"
+msgstr "中央から:"
+
+msgid "To middle:"
+msgstr "中央へ:"
 
 #, c-format
 msgid "Version %1"
@@ -3151,6 +3154,9 @@ msgstr "なし"
 msgid "Marker Color %d"
 msgstr "マーカー色 %d"
 
+msgid "New Pattern"
+msgstr "新しいパターン"
+
 msgid "Type"
 msgstr "タイプ"
 
@@ -3501,8 +3507,8 @@ msgid "Page:"
 msgstr "ページ:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

@@ -145,7 +145,7 @@
       <itemizedlist>
         <listitem>
           <para>
-          <option>有効</option>(デフォルト): 
+          <option>MDI子ウインドウまたはメインウインドウ</option>(デフォルト): 
           <keycap>ESC</keycap>キーでWinMergeウィンドウを閉じられるようにします。
           <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
           <keycap>
@@ -154,6 +154,11 @@
           <para>注) WinMergeのコマンドラインの
           <parameter>-e</parameter>パラメータは、WinMergeを
           <keycap>ESC</keycap>1回で終了することを可能にします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>MDI子ウインドウのみ</option>: <keycap>ESC</keycap>を押下すると
+          子ウインドウは閉じますが、最後に残ったメインウインドウは閉じません。</para>
         </listitem>
 
         <listitem>
@@ -289,11 +294,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option> (デフォルト): TBD</para>
+          <para><option>無効</option> (デフォルト): <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログは閉じずに開いたままになります。</para>
         </listitem>
 
         <listitem>
-          <para><option>有効</option>: TBD</para>
+          <para><option>有効</option>: <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログが閉じます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -408,7 +413,7 @@
 
     <section>
       <title>空白<indexterm>
-          <primary>whitespace</primary>
+          <primary>whitespaces</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -535,9 +540,9 @@
 
     <section>
       <title>改行文字の違いを無視する (Windows/Unix/Mac)<indexterm>
-        <primary>EOL</primary>
+          <primary>EOL</primary>
 
-        <secondary>detecting and ignoring differences</secondary>
+          <secondary>detecting and ignoring differences</secondary>
       </indexterm></title>
 
       <itemizedlist>
@@ -565,11 +570,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): ファイルのエンコーディングの違いを検出します。 UTF-8 BOMの有無の違いも検出します。</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Codepage differences are ignored.</para>
+          <para><option>Enabled</option>: ファイルエンコーディングの違いは無視されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -743,16 +748,23 @@
           <term>バイナリコンテンツ</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>この比較方法は、クイックコンテンツの比較方法よりも高速です。
+            ただし、プラグインや行フィルタ、「大文字と小文字を区別しない」
+            オプションなどは適用されません。まず、ファイルサイズを比較し、
+            ファイルサイズが異なる場合は、内容を比較せずにファイルの内容を異なるもの
+            として扱います。ファイルサイズが一致していれば、単にファイルの内容を
+            バイト単位で比較します。
+            ファイルのエンコード検出、EOL検出、バイナリファイルの検出は行われません。
+            この比較方法は、バックアップされたファイルとの比較に適しています。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>更新日時<indexterm>
-            <primary>timestamps</primary>
+              <primary>timestamps</primary>
 
-            <secondary>comparing</secondary>
-          </indexterm></term>
+              <secondary>comparing</secondary>
+            </indexterm></term>
 
           <listitem>
             <para>ファイルの更新日時のみを比較するため、他のどの比較方法よりもずっと高速です。
@@ -762,7 +774,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term><guilabel>更新日時とサイズ</guilabel></term>
+          <term>更新日時とサイズ</term>
 
           <listitem>
             <para><guilabel>更新日時</guilabel>と似ていますが、
@@ -958,6 +970,24 @@
     </section>
 
     <section>
+      <title>Binary compare limit (MB)<indexterm>
+          <primary>Binary compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>比較スレッドの数<indexterm>
           <primary>compare threads</primary>
         </indexterm></title>
@@ -983,27 +1013,61 @@
         </indexterm></title>
     <section>
       <title>CSV ファイルとして扱うパターン</title>
-      <para>TBD</para>
+      <para>
+      テーブル形式で比較したいカンマ区切り値のファイルのファイル名パターンを指定します。
+      セミコロン区切りで複数指定することが可能です。
+      デフォルトでは、*.csv が指定されています。拡張子.csvのファイルをテーブル形式
+      で比較したくない場合は、*.csv を取り除いてください。
+      </para>
     </section>
 
     <section>
       <title>TSV ファイルとして扱うパターン</title>
-      <para>TBD</para>
+      <para>
+      テーブル形式で比較したいタブ区切り値のファイルのファイル名パターンを指定します。
+      セミコロン区切りで複数指定することが可能です。
+      デフォルトでは、*.tsv が指定されています。拡張子.tsvのファイルをテーブル形式
+      で比較したくない場合は、*.tsv を取り除いてください。
+      </para>
     </section>
 
     <section>
       <title>ユーザ指定文字区切り値</title>
-      <para>TBD</para>
+      <para>
+      カンマやタブ文字ではなく、別の文字で区切られた値のテキストファイルをテーブル形式で開きたい場合、
+      そのファイルのファイル名パターンと区切り文字を指定します。
+      </para>
     </section>
 
     <section>
       <title>引用符内の改行文字を値として扱う</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>有効</option> (デフォルト):
+          テキストに引用符文字が現れてから次の引用符文字が現れる前に改行文字が現れた場合、
+          この改行文字を値とみなします。
+          一つのフィールドに複数の行が格納されているCSV/TSVファイルを処理する場合は、このオプションを有効にします。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>無効</option>:
+          上記を無効にします。引用符の数に誤りのあるファイルを開く場合は、
+          このオプションを無効にしてください。
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>引用符文字</title>
-      <para>TBD</para>
+      <para>
+      引用符として扱われる文字を指定します。
+      ここで指定した文字で括られたテキスト範囲内にある区切り文字は値として扱われます。
+      この入力エリアを空にすることが可能です。
+      引用符が単なる値でしかないファイルを開く場合、
+      空にするか、そのファイルに存在しない文字を指定してください。
+      </para>
     </section>
   </section>
 
@@ -1013,6 +1077,11 @@
         </indexterm></title>
     <section>
       <title>画像ファイルとして扱うパターン</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>フォルダ比較で画像比較を有効にする</title>
       <para>TBD</para>
     </section>
   </section>
@@ -1560,10 +1629,11 @@
 
   <section id="Configuration_codepage">
     <title>コードページページ<indexterm>
-      <primary>codepage</primary>
+        <primary>codepage</primary>
 
-      <secondary>options</secondary>
-    </indexterm></title>
+        <secondary>options</secondary>
+      </indexterm></title>
+
     <para>このページは、ANSI版 WinMerge
     が、ANSIファイルに対して使うコードページを指定します。
     また、あるファイル形式のコードページは、

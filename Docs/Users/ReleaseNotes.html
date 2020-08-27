@@ -1,981 +1,437 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
-  <title>Release Notes</title>
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  <style type="text/css">
-  <!--
-    body {
-      font-family: Verdana,Helvetica,Arial,sans-serif;
-      font-size: small;
-    }
-    code,pre {
-      font-family: "Courier New",Courier,monospace;
-      font-size: 1em;
-    }
-    h3 {
-      padding: 2px;
-      border-left: 4px solid #FFCC00;
-      border-bottom: 1px solid #FFCC00;
-    }
-    h4 {
-      padding: 2px;
-      border-left: 8px solid #FF9933;
-      border-bottom: 1px solid #FF9933;
-    }
-    h5 {
-      font-size: small;
-    }
-    pre {
-      margin-left: 25px;
-      margin-right: 25px;
-      padding: 5px;
-      background-color: #EEEEEE;
-      border: 1px solid black;
-    }
-    p.note {
-      padding: 5px;
-      background-color: #DDDDFF;
-      border: 1px solid blue;
-    }
-    acronym {
-      cursor: help;
-      border-bottom: 1px dotted black;
-    }
-  -->
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ReleaseNotes</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
+  <style type="text/css">
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+display: block;
+}
+
+audio,
+canvas,
+video {
+display: inline-block;
+}
+
+audio:not([controls]) {
+display: none;
+height: 0;
+}
+
+[hidden],
+template {
+display: none;
+}
+
+
+html {
+font-family: sans-serif; 
+-ms-text-size-adjust: 100%; 
+-webkit-text-size-adjust: 100%; 
+}
+
+body {
+margin: 0;
+}
+
+
+a {
+background: transparent;
+}
+
+a:focus {
+outline: thin dotted;
+}
+
+a:active,
+a:hover {
+outline: 0;
+}
+
+
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+
+abbr[title] {
+border-bottom: 1px dotted;
+}
+
+b,
+strong {
+font-weight: bold;
+}
+
+dfn {
+font-style: italic;
+}
+
+hr {
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+height: 0;
+}
+
+mark {
+background: #ff0;
+color: #000;
+}
+
+code,
+kbd,
+pre,
+samp {
+font-family: monospace, serif;
+font-size: 1em;
+}
+
+pre {
+white-space: pre-wrap;
+}
+
+q {
+quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+small {
+font-size: 80%;
+}
+
+sub,
+sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+
+
+img {
+border: 0;
+}
+
+svg:not(:root) {
+overflow: hidden;
+}
+
+
+figure {
+margin: 0;
+}
+
+
+fieldset {
+border: 1px solid #c0c0c0;
+margin: 0 2px;
+padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+border: 0; 
+padding: 0; 
+}
+
+button,
+input,
+select,
+textarea {
+font-family: inherit; 
+font-size: 100%; 
+margin: 0; 
+}
+
+button,
+input {
+line-height: normal;
+}
+
+button,
+select {
+text-transform: none;
+}
+
+button,
+html input[type="button"], 
+input[type="reset"],
+input[type="submit"] {
+-webkit-appearance: button; 
+cursor: pointer; 
+}
+
+button[disabled],
+html input[disabled] {
+cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+box-sizing: border-box; 
+padding: 0; 
+}
+
+input[type="search"] {
+-webkit-appearance: textfield; 
+-moz-box-sizing: content-box;
+-webkit-box-sizing: content-box; 
+box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+-webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+border: 0;
+padding: 0;
+}
+
+textarea {
+overflow: auto; 
+vertical-align: top; 
+}
+
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+.go-top {
+position: fixed;
+bottom: 2em;
+right: 2em;
+text-decoration: none;
+background-color: #E0E0E0;
+font-size: 12px;
+padding: 1em;
+display: inline;
+}
+
+html,body{ margin: auto;
+padding-right: 1em;
+padding-left: 1em;
+max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:13.34px helvetica,arial,freesans,clean,sans-serif;-webkit-font-smoothing:subpixel-antialiased;line-height:1.4;padding:3px;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}p{margin:1em 0}a{color:#4183c4;text-decoration:none}body{background-color:#fff;padding:30px;margin:15px;font-size:14px;line-height:1.6}body>*:first-child{margin-top:0!important}body>*:last-child{margin-bottom:0!important}@media screen{body{box-shadow:0 0 0 1px #cacaca,0 0 0 4px #eee}}h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:bold;-webkit-font-smoothing:subpixel-antialiased;cursor:text}h1{font-size:28px;color:#000}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h3{font-size:18px;color:#333}h4{font-size:16px;color:#333}h5{font-size:14px;color:#333}h6{color:#777;font-size:14px}p,blockquote,table,pre{margin:15px 0}ul{padding-left:30px}ol{padding-left:30px}ol li ul:first-of-type{margin-top:0}hr{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:4px;padding:0}body>h2:first-child{margin-top:0;padding-top:0}body>h1:first-child{margin-top:0;padding-top:0}body>h1:first-child+h2{margin-top:0;padding-top:0}body>h3:first-child,body>h4:first-child,body>h5:first-child,body>h6:first-child{margin-top:0;padding-top:0}a:first-child h1,a:first-child h2,a:first-child h3,a:first-child h4,a:first-child h5,a:first-child h6{margin-top:0;padding-top:0}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p,ul li>:first-child,ol li>:first-child{margin-top:0}dl{padding:0}dl dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt>:first-child{margin-top:0}dl dt>:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd>:first-child{margin-top:0}dl dd>:last-child{margin-bottom:0}blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777}blockquote>:first-child{margin-top:0}blockquote>:last-child{margin-bottom:0}table{border-collapse:collapse;border-spacing:0;font-size:100%;font:inherit}table th{font-weight:bold;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}img{max-width:100%}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px;font-family:Consolas,'Liberation Mono',Courier,monospace;font-size:12px;color:#333}pre>code{margin:0;padding:0;white-space:pre;border:0;background:transparent}.highlight pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre code,pre tt{background-color:transparent;border:0}.poetry pre{font-family:Georgia,Garamond,serif!important;font-style:italic;font-size:110%!important;line-height:1.6em;display:block;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;vertical-align:super;position:relative}sub{vertical-align:sub;top:-1px}@media print{body{background:#fff}img,pre,blockquote,table,figure{page-break-inside:avoid}body{background:#fff;border:0}code{background-color:#fff;color:#333!important;padding:0 .2em;border:1px solid #dedede}pre{background:#fff}pre code{background-color:white!important;overflow:visible}}@media screen{body.inverted{color:#eee!important;border-color:#555;box-shadow:none}.inverted body,.inverted hr .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt,.inverted blockquote{color:#eee!important;border-color:#555;box-shadow:none}.inverted td,.inverted th{background:#333}.inverted h2{border-color:#555}.inverted hr{border-color:#777;border-width:1px!important}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}.inverted{background:#0b2531;background:#252a2a}.inverted body{background:#252a2a}.inverted a{color:#acd1d5}}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k,.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne,.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:#008080}.highlight .il{color:#099}.highlight .gc{color:#999;background-color:#eaf2f5}.type-csharp .highlight .k,.type-csharp .highlight .kt{color:#00F}.type-csharp .highlight .nf{color:#000;font-weight:normal}.type-csharp .highlight .nc{color:#2b91af}.type-csharp .highlight .nn{color:#000}.type-csharp .highlight .s,.type-csharp .highlight .sc{color:#a31515}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-
-<h2>WinMerge 2.16.7 Release Notes</h2>
+<h1 id="winmerge-2168-release-notes">WinMerge 2.16.8 Release Notes</h1>
 <ul>
-  <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2167">What Is New in 2.16.7?</a></li>
-  <li><a href="#issues">Known Issues</a></li>
+<li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-2168">What Is New in 2.16.8?</a></li>
+<li><a href="#what-is-new-in-2167-beta">What Is New in 2.16.7 Beta?</a></li>
+<li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>July 2020</p>
-
-<h3><a name="about">About This Release</a></h3>
-
-<p>
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
-</p>
-
-<p>
-Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
-</p>
-
-<h3><a name="#new2167">What Is New in 2.16.7 Beta?</a></h3>
-
-<h4>General</h4>
+<p>August 2020</p>
+<h2 id="about-this-release">About This Release</h2>
+<p>This is a WinMerge 2.16.8 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
+<h2 id="what-is-new-in-2168">What Is New in 2.16.8?</h2>
+<h3 id="general">General</h3>
 <ul>
-  <li>Bugfix: The icons on a 43" 4K screen are too small.(GitHub #276)</li>
-  <li>BugFix: GUI glitches/bugs (GitHub #316)</li>
-  <li>BugFix: Several issues regarding i18n (GitHub #314)</li>
-  <li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
-  <li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
+<li>BugFix: More space for some internationalized strings (GitHub #402)</li>
+<li>BugFix: Some improvements (GitHub #405,411)</li>
 </ul>
-
-<h4>File compare</h4>
+<h3 id="file-compare">File compare</h3>
 <ul>
-  <li>Bugfix: Diff Pane issues (GitHub #307)</li>
-  <li>Bugfix: Codepage not updated on refresh (GitHub #320)</li>
-  <li>Bugfix: Crashes when comparing large files (GitHub #325)</li>
-  <li>Bugfix: WinMerge does not recognize the same files (GitHub #332)</li>
-  <li>Bugfix: Moved ghost lines are shown in the wrong color (GitHub #358)</li>
-  <li>Bugfix: opening same file (GitHub #362)</li>
-  <li>Bugfix: Find dialog sometimes remembers old text to start a new find instead of the new text. (GitHub #368)</li>
-  <li>Bugfix: Fix a problem where markers that are out of the range of the current difference appear in the difference pane. (osdn.net 40407)</li>
-  <li>Bugfix: HTML5 encoding (&lt;meta charset="..." &gt;) is ignored. (osdn.net #40476)</li>
-  <li>'=' should be included in word separator (osdn.net #40224)</li>
-  <li>Allow specifying default for EOL warning checkbox (GitHub #297)</li>
-  <li>Only indent existing lines (GitHub #356)</li>
+<li>BugFix: Ignore case option did not work when Diff algorithm was other than default</li>
+<li>BugFix: A white vertical rectangle was sometimes drawn in the selected area</li>
+<li>BugFix: The title of the file comparison window after changing the language was accidentally changed to &quot;Untitled left/right&quot;</li>
+<li>Extended F4 key movement range to the whole file</li>
+<li>Don&#39;t treat UTF-8 and UTF-8 with BOM the same when the &quot;Ignore codepage differences&quot; option is disabled</li>
 </ul>
-
-<h4>Table compare</h4>
+<h3 id="folder-compare">Folder compare</h3>
 <ul>
-  <li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
+<li>BugFix: Appropriate error messages were not displayed when the file to be deleted no longer existed</li>
+<li>CTRL+Drag folders now has the opposite behavior of the current Include Subfolders option</li>
 </ul>
-
-<h4>Folder compare</h4>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
-  <li>Bugfix: DST causes incorrect dates shown in Date column (GitHub #299)</li>
-  <li>Bugfix: Long filename issue (GitHub #339)</li>
-  <li>Bugfix: Winmerge Freeze if large number of files are listed in Window View (GitHub #348)</li>
-  <li>Bugfix: Change to disable some menu items that should not be executed for directories, when directories are selected in the folder compare window. (GitHub PR #366)</li>
-  <li>Bugfix: Update DirViewColItems.cpp (GitHub #376)</li>
-  <li>Bugfix: Fix the problem that not 3 panes but 2 panes file compare window displays when executing "Compare As" &gt; "Binary" or "Compare As" &gt; "Image" in the context menu in the folder compare window with selecting 3 items. (GitHub PR #381)</li>
-  <li>Bugfix: Fix a problem where a text file could be considered a binary file. (osdn.net #40296)</li>
-  <li>Bugfix: crash when clicking [Merge]-&gt; [Delete] menu item while renaming a file</li>
-  <li>Add a feature generating a patch from directories (#283) (GitHub PR #331)</li>
-  <li>added bin and obj directories to C# filter (GitHub PR #365)</li>
+<li>BugFix: Fix scrolling glitches (GitHub WinMerge/winimerge PR #8)</li>
+<li>Reduce flicker on resize (GitHub WinMerge/winimerge PR #9)</li>
 </ul>
-
-<h4>Image compare</h4>
+<h3 id="options-dialog">Options dialog</h3>
 <ul>
-  <li>Bugfix: Scrolling behavior when dragging images is wrong (osdn.net #40205)</li>
-</ul>
-
-<h4>Open dialog</h4>
-<ul>
-  <li>Bugfix: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
-  <li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
-</ul>
-
-<h4>Options dialog</h4>
-<ul>
-  <li>Bugfix: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
-</ul>
-
-<h4>Plugins</h4>
-<ul>
-  <li>Bugfix: Fix handling of line breaks in SortAscending, SortDescending (osdn.net PR #40266)</li>
-  <li>Bugfix: Error when comparing images in the CompareMSExcelFiles.sct plugin (osdn.net #40472)</li>
-  <li>CompareMSExcelFiles.sct: Include Excel Addin files (*.xlam) (GitHub PR #269)</li>
-  <li>Add support for C# and TypeScript (GitHub PR #382)</li>
-  <li>Add a plugin for Visio (osdn.net PR #40473)</li>
-  <li>Plugin fixes for the new Table Compare (CompareMSExcelFiles.sct, IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)</li>
-</ul>
-
-<h4>Archive support</h4>
-<ul>
-  <li>Bugfix: Crash when comparing encrypted 7z files (GitHub #367)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>
-    Translation updates:
-    <ul>
-      <li>Brazilian (GitHub #360)</li>
-      <li>Chinese Simplified (GitHub PR #303,377)</li>
-      <li>Galician (GitHub PR #292,293,308,313,326)</li>
-      <li>German (GitHub PR #312,357)</li>
-      <li>Lithuanian (GitHub PR #291,298,333)</li>
-      <li>Polish (GitHub PR #280)</li>
-      <li>Portuguese (GitHub PR #305)</li>
-      <li>Russian (GitHub PR #270,271,272,302,327,328)</li>
-      <li>Slovak (GitHub PR #300)</li>
-      <li>Slovenian (GitHub #285)</li>
-      <li>Spanish (GitHub PR #292,293,304,308)</li>
-      <li>Turkish (GitHub PR #335,336,337,338)</li>
-    </ul>
-  </li>
-</ul>
-
-<h4>Manual</h4>
-<ul>
-  <li>Minor changes to translations README.md file (GitHub #289)</li>
-  <li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
-</ul>
-
-<h4>Internals</h4>
-<ul>
-  <li>BugFix: Src\Common\MyCom.h unused? (GitHub #284)</li>
-  <li>BugFix: Error on git repository cloning (GitHub #288)</li>
-</ul>
-
-<h3><a name="#new2166">What Is New in 2.16.6?</a></h3>
-
-<h4>General</h4>
-<ul>
-  <li>Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab, now the application is behave just like professional editors (Visual Studio, Notepad++, etc.) to switch and activate the open tabs. (GitHub #247)
-  </li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: GhostTextBuffer: Don't unexpectedly bring back empty lines user wants to delete (GitHub #244)</li>
-  <li>Bugfix: Prevent silent abort with File Comparison of files whose size is an exact multiple of 2^32 bytes (GitHub #257)</li>
-  <li>Bugfix: WinMerge 2.16.4.0 crashes after de-selecting Split Vertically (GitHub #259)</li>
-  <li>Bugfix: "Replace All" may not replace all text</li>
-  <li>Bugfix: An error message is shown when pressing Enter key in Diff pane (osdn.net #39924)</li>
-  <li>Bugfix: Non-moved lines are treated as moved lines (osdn.net #39851)</li>
-  <li>Add support for touchpad horizontal scroll (GitHub #254)</li>
-</ul>
-
-<h4>Image compare</h4>
-<ul>
-  <li>Bugfix: Support 16-bit images (GitHub WinMerge/winimerge issue #6)</li>
-  <li>Add support for SVG, PDF, WMF and EMF file types
-    (Only available in WinMerge 64bit version on Windows 10)
-    <a href="https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa">Demo1</a>
-    <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">Demo2</a>
-</ul>
-
-<h4>Archive support</h4>
-<ul>
-  <li>Bugfix: Third tgz doesn't get fully extracted (first two do) (GitHub #263)</li>
-</ul>
-
-<h4>Patch generator dialog</h4>
-<ul>
-  <li>Bugfix: Crash when generating patch for multiple files and a file only on one side (GitHub #252)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Bugfix: Fix spelling of Git (GitHub #246)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>New translation: Arabic (sf.net #3038)</li>
-  <li>Translation updates:
-    <ul>
-      <li>Bulgarian (GitHub #236, #268)</li>
-      <li>French (GitHub #251)</li>
-      <li>German (GitHub #239, #245, #258)</li>
-      <li>Lithuanian (GitHub #233, #267)</li>
-      <li>Portuguese (GitHub #237)</li>
-      <li>Spanish (GitHub #266)</li>
-    </ul>
-  </li>
-</ul>
-
-<h4>Manual</h4>
-<ul>
-  <li>Bugfix: Fix spelling of Git (GitHub #246)</li>
-  <li>Update Configuration.xml (GitHub #262)</li>
-</ul>
-
-<h3><a name="#new2165">What Is New in 2.16.5 Beta?</a></h3>
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)</li>
-  <li>Bugfix: Performance using Unpacker (GitHub #180)</li>
-  <li>Bugfix: WinMerge toolbar appears too small on UHD and should default to the conforming Windows 10 scaling/DPI accessibility setting (GitHub #182)</li>
-  <li>Bugfix: "Recompare as" menu option doesn't follow current choice (GitHub #191)</li>
-  <li>Bugfix: Switching between "Find Next" and "Find Prev" need to click twice (GitHub #202)</li>
-  <li>Bugfix: Program is crashed! (GitHub #229)</li>
-  <li>Switch "Find" buttons in Find dialog (GitHub #201)</li>
-  <li>Improve UNICODE character support using icu.dll usable from Windows 10 Creators Update </li>
-  <li>Add support for color emoji (Only available in 64bit version) To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog. <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">Demo</a></li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Bugfix: Crash when clicking Next Difference button after unchecking Show Different Items menu item</li>
-  <li>Changed symbols in Newer/Older column for better visual clarity (GitHub #169)</li>
-  <li>Add "Ignore codepage differences" to quick options (GitHub #197)</li>
-  <li>Limit the window flashing count. (GitHub #206)</li>
-</ul>
-
-<h4>Image compare</h4>
-<ul>
-  <li>Bugfix: Image compare breaks when zoomed too much with large pictures (GitHub #188)</li>
-  <li>Bugfix: [Image compare] Zoom-in focuses on top-left corner instead of cursor position (GitHub #211)</li>
-</ul>
-
-<h4>Shell extension</h4>
-<ul>
-  <li>Bugfix: "Run as Administrator" incompatible with "Shell integration" (ver 2.16.4) (sf.net #2234)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Bugfix: Installer russian translation (#168)</li>
-  <li>Bugfix: Windows 10 shell integration not working (GitHub #176)</li>
-  <li>Installer - Proposal - Separate Inno Setup strings from WinMerge installer strings (GitHub #167)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Italian translation (GitHub #164, #165)</li>
-  <li>Update Russian translation (GitHub #166)</li>
-  <li>Update Bulgarian translation (GitHub #170, #175, #179, #212)</li>
-  <li>Update Portuguese translation (GitHub #185, #199)</li>
-  <li>Update French translation (GitHub #187)</li>
-  <li>Update Lithuanian translation (GitHub #189, #208, #217, #225)</li>
-  <li>Update Swedish translation (GitHub #194, #196)</li>
-  <li>Update German translation (GitHub #204, #205, #215)</li>
-  <li>Update Polish translation (GitHub #218)</li>
-  <li>Update Simplified Chinese translation (GitHub #228)</li>
-  <li>Update Finnish translation (sf.net #3037)</li>
-  <li>Update English.pot (#216)</li>
-  <li>Add Japanese manual (GitHub #183)</li>
-</ul>
-
-<h4>Manual</h4>
-<ul>
-  <li>Small Manual tweaks (GitHub #190)</li>
-</ul>
-
-<h3><a name="#new2164">What Is New in 2.16.4?</a></h3>
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: coretools.cpp: linelen() should not truncate lines with embedded NULs (GitHub #156)</li>
-  <li>Bugfix: file compare : right-click doesn't select the diff under the mouse (GitHub #159)</li>
-  <li>Bugfix: Avoid an exception in GuessCodepageEncoding() when filepath equals "NUL" (GitHub #162)</li>
-  <li>Bugfix: Auto-indent did not work if the EOL-style was not CRLF</li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Bugfix: Generating HTML Folder Compare report including File Compare report did not complete (Bitbucket #15)</li>
-  <li>Bugfix: Compare Statistics dialog: The number of diff folders was counted in the number of diff files</li>
-</ul>
-
-<h4>Plugins</h4>
-<ul>
-  <li>Bugfix: PrediffLineFilter.sct: Wrong encoding for settings dialog (Bitbucket #16)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Russian translation (Bitbucket PR #51)</li>
-  <li>Update Italian translation (Bitbucket PR #52)</li>
-</ul>
-
-<h4>Internals</h4>
-<ul>
-  <li>Favor PathContext::GetSize() over PathContext::size() (GitHub #157)</li>
-  <li>Consolidate FolderCmp (GitHub #158, #160, #161)</li>
-  <li>Avoid some InnoSetup compiler warnings (Bitbucket PR #53)</li>
-</ul>
-
-<h3><a name="#new2163">What Is New in 2.16.3 Beta?</a></h3>
-<h4>General</h4>
-<ul>
-  <li>Bugfix: Slow startup with documents folder redirected to high-latency network drive (Bitbucket #155)</li>
-  <li>Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)</li>
-  <li>Reduce the size of the executable file</li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: Location and Diff pane visibility broken in 2.16.1 (GitHub #138, Bitbucket #163, sf.net #2228)</li>
-  <li>Bugfix: Temporary files could not be created (GitHub #143, sf.net #2220)</li>
-  <li>Bugfix: Trivial bugfix (GitHub #155)</li>
-  <li>Bugfix: Regression: Incorrectly shows 'no changes' for large portions of certain binary files! (Bitbucket #162)</li>
-  <li>Small tweaks for HTML file reports (Bitbucket PR #44, #45)</li>
-  <li>Made diff algorithm selectable by using libXDiff. algorithms: default(Myers), minimal, patience, histogram</li>
-  <li>triple click to select whole line (Bitbucket #144)</li>
-  <li>Add support for merging word level diffs in selection. <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">demo</a></li>
-  <li>Use own colors settings for folder compare (Bitbucket PR #49)</li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Bugfix: WinMerge 3-Way Compare Bugs: Always Shows Unique Items.  (GitHub #154)</li>
-  <li>Bugfix: WinMerge could not compare files that are opened in other applications</li>
-  <li>Show progress bar while generating Folder Compare Report</li>
-</ul>
-
-<h4>Project file</h4>
-<ul>
-  <li>Bugfix: Possible Bugs in 2.16.2 (sf.net #2221)</li>
-  <li>Supporting relative path in project file (Bitbucket #158)</li>
-  <li>Allow multiple &lt;paths&gt; in project file</li>
-</ul>
-
-<h4>Image compare</h4>
-<ul>
-  <li>Bugfix: no message was displayed when file saving failed</li>
-  <li>Implement Insertion/Deletion Detection. <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">demo</a></li>
-</ul>
-
-<h4>Options dialog</h4>
-<ul>
-  <li>Tweak size of combobox "codepage" in options (GitHub #144)</li>
-  <li>Sort combobox codepage and add manual codepage (GitHub #145)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Allow per-user installation (only x64 installer)</li>
-  <li>Don't install Files.txt and don't add "Uninstall WinMerge" to the start menu (Bitbuket #38)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update French translation (GitHub #149, #150)</li>
-  <li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)</li>
-  <li>Update Russian translation (Bitbucket PR #41, #42)</li>
-</ul>
-
-<h3><a name="#new2162">What Is New in 2.16.2?</a></h3>
-
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)</li>
-  <li>Bugfix: Save As: default directory should be file's original directory (sf.net #2163)</li>
-  <li>Bugfix: Strings with embedded 0 bytes are handled incorrectly (sf.net #2187)</li>
-  <li>Bugfix: Removed word level merge support due to unstable behavior</li>
-  <li>Bugfix: Menu item "File-&gt;File Encoding" moves main window (Bitbucket #150)</li>
-  <li>Bugfix: Crash when maximizing MDI child window</li>
-  <li>bugfix: Crash when failed to load file</li>
-  <li>Add syntax highlight for Lua (Bitbucket #114)</li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Bugfix: Compare results refresh incorrectly after deletions (sf.net #2217)</li>
-</ul>
-
-<h4>Archive Support</h4>
-<ul>
-  <li>Upgraded to 7-zip 19.00</li>
-</ul>
-
-<h4>Tab bar</h4>
-<ul>
-  <li>Improve icon display at 120DPI</li>
-</ul>
-
-<h4>Image compare</h4>
-<ul>
-  <li>Bugfix: Zoom In/Out shortcuts don't update zoom level in location pane (Bitbucket #149)</li>
-  <li>Zoom In/Out menu items for image compare (Bitbucket #148)</li>
-</ul>
-
-<h4>Open dialog</h4>
-<ul>
-  <li>Allow quoted filenames in "Select Files or Folders" (sf.net #1240, GitHub #137)</li>
-</ul>
-
-<h4>Manual</h4>
-<ul>
-  <li>Some tweaks for the manual (Bitbucket PR #35)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Bugfix: Gibberish language during installation (Bitbucket #147)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Catalan translation (Bitbucket PR #29)</li>
-  <li>Update Italian translation (Bitbucket PR #32)</li>
-  <li>Update Lithuanian translation (Bitbucket PR #33)</li>
-  <li>Update Simplified Chinese translation (Bitbucket PR #34)</li>
-</ul>
-
-<h3><a name="#new2161">What Is New in 2.16.1?</a></h3>
-
-<h4>Open dialog</h4>
-<ul>
-  <li> Alternatively to Swap buttons, allow drag &amp; drop between filetype icons (GitHub #118)</li>
-  <li> Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
-  <li> Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li> Bugfix: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
-  <li> Bugfix: Click doesn't trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
-  <li> Bugfix: Frustrating text selection bug (GitHub #109)</li>
-  <li> Bugfix: Left and Right files swap after losing focus v2.16.0.0 (sf.net #2213)</li>
-  <li> Bugfix: WinMerge 2.16.0.0 Unicoe X64 version displaying Microsoft Visual C++ Runtime Library Asset in DiffWraper.CPP line 984 (sf.net #2214)</li>
-  <li> Bugfix: Cancelation of selection range with reverse indent (sf.net #2215)</li>
-  <li> Bugfix: upward and downward search not work correctly</li>
-  <li> Bugifx: Fix menu accelerator conflict</li>
-  <li> Add File/Recompare As/Image menu item</li>
-  <li> Add support for merging word level diffs in selection <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">Demo</a></li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li> Bugfix: Unique files are not shown (Bitbucket #138)</li>
-  <li> Bugfix: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
-</ul>
-
-<h4>Archive Support</h4>
-<ul>
-  <li> Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
-</ul>
-
-<h4>Options dialog</h4>
-<ul>
-  <li> Bugfix: Widen the width of labels in Options dialog (GitHub#108)</li>
-  <li> Bugfix: view settings make winmerge crash (Bitbucket #109)</li>
-  <li> Bugfix: 64bit version can't browse between option pages (Bitbucket #128)</li>
-  <li> Bugfix: Shell Integration "Enable Advanced Menu" disabled on new install (Bitbucket #137)</li>
-  <li> Bugfix: Binary File options don't change from default (Bitbucket #135)</li>
-</ul>
-
-<h4>Shell extension</h4>
-<ul>
-  <li> Bugfix: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li> Update Brazilian Portuguese translation (GitHub #108)</li>
-  <li> Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
-  <li> Update Lithuanian translation (Bitbucket PR #7, #8, #27)</li>
-  <li> Update Russian translation (Bitbucket PR #9-#26, #139)</li>
-  <li> Update Bulgarian translation (Bitbucket PR #28)</li>
-  <li> Update Turkish translation (sf.net #3036)</li>
-  <li> Update Japanese translation</li>
-  <li> Remove now unneeded MergeLang.dll</li>
-</ul>
-
-<h4>Manual</h4>
-<ul>
-  <li> Bugfix: Some fixes in the manual (GitHub #116)</li>
-  <li> Bugifx: end of line documentation (sf.net #2211)</li>
-  <li> Clarification as per https://github.com/WinMerge/winmerge-v2/issues/41 (GitHub #126)</li>
-</ul>
-
-<h4>Internals</h4>
-<ul>
-  <li> Remove `nFinalNullLines` checking, disabled by an earlier commit (GitHub #111)</li>
-  <li> Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
-  <li> DiffTextBuffer: Create Unicode temp files (makes EscapeControlChars() obsolete) (GitHub #123)</li>
-  <li> Don't pass `DIFFITEM *` by casting to `uintptr_t` (GitHub #124, #125)</li>
-</ul>
-
-<h3><a name="#new2160">What Is New in 2.16.0?</a></h3>
-
-<h4>General</h4>
-<ul>
-  <li>Bugfix: Disabled icon on toolbar not gray out when running on XP</li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li>Bugfix: Copy to X and Advance" not work in 3way-compare (Bitbucket #123)</li>
-  <li>Bugfix: File compare always showing different ending (GitHub #106)</li>
-  <li>Bugfix: Scrolling issue (GitHub #105)</li>
-  <li>Bugfix: A crash (GitHub #104)</li>
-  <li>Add separators to "Zoom" and "Diff Context" menus (Bitbucket PR #5)</li>
-</ul>
-
-<h4>Open dialog</h4>
-<ul>
-  <li>Bugfix: Drag&amp;Drop in Open Dialog won't work correct (Bitbucket #125)</li>
-</ul>
-
-<h4>Installer</h4>
-<ul>
-  <li>Drop ClearCase integration (Bitbucket PR #6)</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Add Lithuanian translation (Bitbucket #124)</li>
-  <li>Update Portuguese translation (GitHub #102,103)</li>
-</ul>
-
-<h3><a name="#new2155">What Is New in 2.15.5 Beta?</a></h3>
-
-<h4>General</h4>
-<ul>
-  <li>Add support for very long path and file names (GitHub #87,95,99)</li>
-  <li>Enable Ctrl+C shortcut key on the file path bar</li>
-  <li>Remove support for old version control system (GitHub #96)</li>
-  <li>Improve Options &gt; Color &gt; Differences dialog layout (GitHub #89)</li>
-  <li>Improve information and formatting in Help &gt; Configuration reporting (GitHub #92)</li>
-  <li>Improve visual layout of Open dialog (GitHub #97)</li>
-  <li>Add icon for "New (3 panes)" menu item (GitHub #97)</li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li>Add Window/Split menu item</li>
-  <li>Improve handling of last lines in files (GitHub #89,90,93)</li>
-  <li>Improve "Visual C++ Loose" filter (GitHub #95)</li>
-  <li>BugFix: Crash when saving a file if the active pane is diff detail pane</li>
-  <li>BugFix: Crash when pressing Alt+Down key while loading large files</li>
-  <li>BugFix: Crash when "mousing over" Plugin Setting context menu if Plugins are disabled</li>
-  <li>BugFix: Various problems reading of files > 2GB (GitHub #81)</li>
-  <li>BugFix: Selecting files "From MRU list" again works correctly</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Italian translation (GitHub #86)</li>
-  <li>Update Japanese translation (Bitbucket #3)</li>
-  <li>Update Dutch translation</li>
-  <li>Update German translation</li>
-  <li>Bugfix Spanish translation error (Bitbucket Issue #108)</li>
-</ul>
-
-<h4>Internals</h4>
-<ul>
-  <li> Various diffengine and compilation/build fixes (GitHub #89,90,91,92,94)</li>
-</ul>
-
-<h3><a name="#new2154">What Is New in 2.15.4 Beta?</a></h3>
-
-<h4>Appearance</h4>
-<ul>
-  <li>BugFix: Dot icon in a drop-down menu is not drawn correctly</li>
-</ul>
-
-<h4>File compare</h4>
-<ul>
-  <li>BugFix: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
-  <li>BugFix: Crash when removing ghost lines (GitHub #80)</li>
-  <li>BugFix: Lines without EOL appears even though it is not the last line</li>
-  <li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
-  <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
-  <li>Re-detect the file encoding when opening files (sf.net#2131)</li>
-</ul>
- 
-<h4>Open dialog</h4>
-<ul>
-  <li>Add Options button to Open dialog</li>
-  <li>Add Save Project button to Open dialog</li>
-</ul>
-
-<h4>Patch generator dialog</h4>
-<ul>
-  <li>BugFix: File1/File2 fields don't remember manual input (sf.net#1949)</li>
-</ul>
-
-<h4>Reports</h4>
-<ul>
-  <li>BugFix: Garbled text was copied to the clipboard when generating a report
-  on the clipboard (sf.net#2200)</li>
-</ul>
-
-<h4>Plugins</h4>
-<ul>
-  <li>Add PrediffLineFilter.sct plugin</li>
-  <li>Make ignored lines by Prediffer plugin colored</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Slovak translation (sf.net#2902)</li>
-  <li>Update Portuguese translation (GitHub #84,#85)</li>
-</ul>
-
-<h4>Internals</h4>
-<ul>
-  <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
-</ul>
-
-<h3><a name="#new2153">What Is New in 2.15.3 Beta?</a></h3>
-
-<h4>File compare</h4>
-<ul>
-  <li>Fix assertion error when started on Windows XP</li>
-  <li>Fix a problem that moved blocks are sometimes shown as normal diff blocks</li>
-  <li>Fix a problem that EOL is removed unexpectedly when removing lines
-    included ghost lines</li>
-  <li>Fix reverse search to search last line correctly</li>
-  <li>Fix infinite loop when replacing ^ (sf.net#2094)</li>
-  <li>Fix to show text that contains &amp; on message box, correctly (sf.net#2067)</li>
-</ul>
-
-<h4>Folder compare</h4>
-<ul>
-  <li>Fix a problem that unique files are invisible when comparing files using
-    'Date' compare method</li>
-  <li>Remove trailing garbage from a dragged text (Github#75)</li>
-</ul>
-
-<h4>Patch generator dialog</h4>
-<ul>
-  <li>Fix a problem that typed-in Context in Generate Patch is not applied
-    (sf.net#2179)</li>
-</ul>
-
-<h4>Location pane</h4>
-<ul>
-  <li>Add support for HiDPI screens (Github #54)</li>
-</ul>
-
-<h4>Plugins</h4>
-<ul>
-  <li>CompareMSExcelFiles.sct: Add "Compare headers and footers" checkbox to
-    settings dialog (sf.net#2102)</li>
-</ul>
-
-<h4>Installer</h4>
+<li>Allow choosing image filename patterns from a multi-selection dropdown list (GitHub PR #391)</li>
+<li>WildcardDropList: Avoid the String instance as it could throw std::bad_alloc (GitHub PR #397)</li>
+<li>Remove duplicate filename patterns without relying on WildcardDropList (GitHub PR #400)</li>
+<li>Made Options dialog resizable</li>
+<li>Changed the default values for the following options:
 <ul>
-  <li>Remove extra space in installer: " Launch WinMerge" (sf.net#2144)</li>
-  <li>Add "How to Apply These Terms to Your New Programs" section into GPL.rtf
-    (sf.net#2098)</li>
+<li>Ignore codepage differences -&gt; disabled</li>
+<li>Include unique subfolders contents -&gt; enabled</li>
+</ul></li>
 </ul>
-
-<h4>Translations</h4>
+<h3 id="about-dialog">About dialog</h3>
 <ul>
-  <li>Add Finnish translation (sf.net#3031)</li>
-  <li>Add Sinhala translation (sf.net#3032)</li>
-  <li>Update Korean translation (Github #61)</li>
-  <li>Update Portuguese translation (GitHub #56-78)</li>
-  <li>Update Polish translation (sf.net#2177)</li>
-  <li>Update Turkish translation (Bitbucket#85, #86)</li>
-  <li>Change the file encodings of all .po files of WinMerge GUI to UTF-8</li>
+<li>Rework the fix for Github issue #316: GUI glitches/bugs #2 (GitHub PR #392)</li>
+<li>Replace outdated list of developers in AboutBox with ascii-art gnu from FSF (GitHub PR #394)</li>
 </ul>
-
-<h3><a name="#new2152">What Is New in 2.15.2 Beta?</a></h3>
-<p>
-WinMerge 2.15.2 is a beta release which mainly adds support for experimental 3-way comparison and image comparison.
-</p>
-
-<h4>Appearance</h4>
+<h3 id="installer">Installer</h3>
 <ul>
-  <li>Flatten GUI pane edges</li>
-  <li>Partial support for HiDPI (not Per-Monitor DPI Aware)</li>
-  <li>Remove splash screen. The splash screen image is now displayed in About dialog</li>
+<li>BugFix: Installation - Internal error: Failed to expand shell folder constant &quot;userdesktop&quot; (GitHub #354)</li>
+<li>BugFix: Lithuanian.po is missing (GitHub PR #415)</li>
+<li>New installer for per-user installation (WinMerge-2.16.8-x64-PerUser-Setup.exe)</li>
 </ul>
-
-<h4>Tool bar</h4>
+<h3 id="translations">Translations</h3>
 <ul>
-  <li>Add "View-&gt;Toolbar-&gt;Huge" menu item</li>
-  <li>Add drop down menu to Options icon</li>
-  <li>Add icons for 3-way merge functions</li>
-</ul>
-
-<h4>Open dialog</h4>
-<ul>
-  <li>Change window type of Open dialog from modal window to MDI child window</li>
-  <li>Add Read-only checkbox to Open dialog</li>
-  <li>Add buttons to swap items</li>
-  <li>Add the third path combobox for 3-way comparison</li>
-  <li>Allow file name patterns like not only *.ext but file*.ext</li>
-</ul>
-
-<h4>Tab bar</h4>
+<li>Translation updates:
 <ul>
-  <li>Make Tabbar reorderable by using drag-and-drop</li>
-  <li>Add "Close Other Tabs", "Close Right Tabs" and "Close Left Tabs" menu items
-      to system menu</li>
-  <li>Add "Enable Auto Max Width" menu item to Tab Bar context menu</li>
-  <li>Show close button when hovering over tabs</li>
-  <li>Add icons to each tab</li>
+<li>Brazilian (GitHub PR #383)</li>
+<li>Galician (GitHub PR #393)</li>
+<li>German (GitHub PR #388,389,398,399,401,406,412,414, WinMerge/frhed PR #2)</li>
+<li>Lithuanian (GitHub PR #385,390,407,408,413,415)</li>
+<li>Turkish (GitHub PR #386)</li>
+<li>Russian (GitHub PR #387)</li>
+</ul></li>
 </ul>
-<h4>Options dialog</h4>
+<h3 id="manual">Manual</h3>
 <ul>
-  <li>Add "Close Select Files or Folders Dialog on clicking OK button" checkbox
-     to "General" page</li>
-  <li>Add "Language" combobox to "General" page and remove Language dialog</li>
-  <li>Add "Ignore codepage differences" checkbox to "Compare/General" page</li>
-  <li>Remove checkboxes in "Enable multiple compare windows for" group from
-      "General" page (Now always enabled multi compare windows)</li>
-  <li>Add "Include Subfolders" checkbox to "Compare/Folder" page</li>
-  <li>Add "Automatically expand all subfolders" checkbox to "Compare/Folder" page</li>
-  <li>Add "Ignore Reparse Points" checkbox to "Compare/Folder" page</li>
-  <li>Add "Number of compare threads" textbox to "Compare/Folder" page</li>
-  <li>Add "Compare/Binary" page</li>
-  <li>Add "Compare/Image" page</li>
-  <li>Add checkboxes whether to use custom colors for text to
-      "Colors/Differences" page</li>
-  <li>Add "GitHub/Bitbucket" button to "Colors/Differences" page</li>
-  <li>Add "Margin" color button to "Colors/Text" page</li>
-  <li>Add "Colors/Markers" page</li>
-  <li>Remove "Use stand-alone 7-Zip if available" and
-      "Use local 7-Zip from WinMerge folder" radio button from
-      "Archive Support" page
-      (Now always use local 7-Zip from WinMerge folder)</li>
-  <li>Make $file and $linenum parameters available in External editor textbox
-      on "System" page</li>
-  <li>Make Custom codepage on "Codepage" page selectable from dropdown list </li>
-  <li>Add "Detect codepage for text files using mlang.dll" checkbox to
-      "Codepage" page</li>
-  <li>Remove "Include subfolders by default" checkbox from
-      "Shell Integration" page
-      (ShellExtension now refers to "Include subfolders" checkbox
-        on "Compare/Folder" page or on "Select Files or Folders" dialog)</li>
-  <li>Remove "Add Shell menu to context menu" from "Shell Integration" page
-      (WinMerge now always adds shell menu to context menu in Folder window)</li>
-  <li>Add "Register shell extension" button to "Shell Integration" page</li>
+<li>Update manual for IgnoreCommentsC change (GitHub PR #384)</li>
+<li>Update Shortcut_keys.xml (GitHub PR #410)</li>
 </ul>
-
-<h4>Folder Compare</h4>
+<h2 id="what-is-new-in-2167-beta">What Is New in 2.16.7 Beta?</h2>
+<h3 id="general-1">General</h3>
 <ul>
-  <li>Add Multi-thread compare support for Full Contents or Quick Contents
-      method</li>
-  <li>Color the background of items in list view</li>
-  <li>Restore collapse/expand state of folder tree after re-comparison </li>
-  <li>Make comparing window closeable</li>
-  <li>Make sub-folder re-comparable</li>
-  <li>Display folder items in list view during comparison</li>
-  <li>Display the file name currently being compared in progress window</li>
-  <li>Add "Parent Folder" menu item in 'Open Left/Middle/Right' menu</li>
-  <li>Add "Compare Non-horizontally" menu item to context menu</li>
-  <li>Add "Copy items To Clipboard" menu item to context menu</li>
-  <li>Add "Swap panes" menu item to View menu</li>
-  <li>Add "Auto/Manual Prediffer" menu item to Plugin menu</li>
-  <li>Open selected folders in new tab when clicking "Compare" menu item with
-    pressing Ctrl key</li>
-  <li>Cleanup Date column alignment (GitHub #25)</li>
-  <li>Bugfix: Version column not sorted correctly</li>
-  <li>Bugfix: A unique item that is a binary file was not detected
-      as a binary file</li>
-  <li>Bugfix: Properly handle 3-way comparison of Binary files (Github #23)</li>
-  <li>Bugfix: Use proper font for View&gt;Use Default Font menu item (GitHub #24)</li>
+<li>BugFix: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
+<li>BugFix: GUI glitches/bugs (GitHub #316)</li>
+<li>BugFix: Several issues regarding i18n (GitHub #314)</li>
+<li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
+<li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
 </ul>
-
-<h4>File Compare</h4>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
-  <li>Add support for 3-way compare/merge</li>
-  <li>Add "Diff Context" menu to View menu to adjust the number of displayed
-    diff context lines</li>
-  <li>Add "Split Vertically" menu item to View menu</li>
-  <li>Add "Add Synchronization Point" to Merge menu</li>
-  <li>Add "Auto/Manual Prediffer" menu item to Plugin menu</li>
-  <li>Show the name of the applied plugin in the status bar</li>
-  <li>Add shortcut(Ctrl+Alt+E) to open with external editor</li>
-  <li>Add Go and Rust highlighter</li>
-  <li>Add VHDL syntax highlighter (Bitbucket #2)</li>
-  <li>Add C++11 keywords</li>
-  <li>Make merge editor window D&amp;Dable</li>
-  <li>Highlight the search text and implement Marker</li>
-  <li>Highlight the EOL pane in status bar if there is a difference
-      in the EOL of files</li>
-  <li>Reload files when another application changes files opened by WinMerge</li>
-  <li>Improve in-line diff algorithm</li>
-  <li>Bugfix: More on Issue #73 Fixed the -dl -dm and -dr description parameters
-    for conflict files
-    (for both 2 way and 3 way conflict files).(Bitbucket #1)</li>
-  <li>Bugfix: Fix Memory Leak with Drop Targets (GitHub #26)</li>
+<li>BugFix: Diff Pane issues (GitHub #307)</li>
+<li>BugFix: Codepage not updated on refresh (GitHub #320)</li>
+<li>BugFix: Crashes when comparing large files (GitHub #325)</li>
+<li>BugFix: WinMerge does not recognize the same files (GitHub #332)</li>
+<li>BugFix: Moved ghost lines are shown in the wrong color (GitHub #358)</li>
+<li>BugFix: opening same file (GitHub #362)</li>
+<li>BugFix: Find dialog sometimes remembers old text to start a new find instead of the new text. (GitHub #368)</li>
+<li>BugFix: Fix a problem where markers that are out of the range of the current difference appear in the difference pane. (osdn.net 40407)</li>
+<li>BugFix: HTML5 encoding (<meta charset="...">) is ignored. (osdn.net #40476)</li>
+<li>&#39;=&#39; should be included in word separator (osdn.net #40224)</li>
+<li>Allow specifying default for EOL warning checkbox (GitHub #297)</li>
+<li>Only indent existing lines (GitHub #356)</li>
 </ul>
-
-<h4>Binary Compare</h4>
+<h3 id="table-compare">Table compare</h3>
 <ul>
-  <li>Install binary file editor (frhed) component again by default</li>
-  <li>Make binary file editor undoable</li>
+<li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
 </ul>
-
-<h4>Image Compare</h4>
+<h3 id="folder-compare-2">Folder compare</h3>
 <ul>
-  <li>Add image file compare/merge support</li>
+<li>BugFix: DST causes incorrect dates shown in Date column (GitHub #299)</li>
+<li>BugFix: Long filename issue (GitHub #339)</li>
+<li>BugFix: Winmerge Freeze if large number of files are listed in Window View (GitHub #348)</li>
+<li>BugFix: Change to disable some menu items that should not be executed for directories, when directories are selected in the folder compare window. (GitHub PR #366)</li>
+<li>BugFix: Update DirViewColItems.cpp (GitHub #376)</li>
+<li>BugFix: Fix the problem that not 3 panes but 2 panes file compare window displays when executing &quot;Compare As&quot; &gt; &quot;Binary&quot; or &quot;Compare As&quot; &gt; &quot;Image&quot; in the context menu in the folder compare window with selecting 3 items. (GitHub PR #381)</li>
+<li>BugFix: Fix a problem where a text file could be considered a binary file. (osdn.net #40296)</li>
+<li>BugFix: crash when clicking [Merge]-&gt; [Delete] menu item while renaming a file</li>
+<li>Add a feature generating a patch from directories (#283) (GitHub PR #331)</li>
+<li>added bin and obj directories to C# filter (GitHub PR #365)</li>
 </ul>
-
-<h4>Reports</h4>
+<h3 id="image-compare">Image compare</h3>
 <ul>
-  <li>Add "Include File Compare Report" checkbox to "Folder Compare Report"
-      dialog</li>
-  <li>Change the encoding of HTML folder compare report from ANSI to UTF-8</li>
-  <li>Add icons to the HTML folder compare report</li>
-  <li>Change visual style of HTML report</li>
+<li>BugFix: Scrolling behavior when dragging images is wrong (osdn.net #40205)</li>
 </ul>
-
-<h4>Archive Support</h4>
+<h3 id="open-dialog">Open dialog</h3>
 <ul>
-  <li>Install 7-zip plugin by default</li>
+<li>BugFix: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
+<li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
 </ul>
-
-<h4>Drag and Drop</h4>
+<h3 id="options-dialog-1">Options dialog</h3>
 <ul>
-  <li>Accept drag&amp;droped files or folders from various places like:
-    Zip folder, FTP folder, Recycle bin, images in Web browser</li>
+<li>BugFix: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
 </ul>
-
-<h4>Plugins</h4>
+<h3 id="plugins">Plugins</h3>
 <ul>
-  <li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER
-    which allows unpacking data in a file to multiple files in a folder</li>
-  <li>Use FILE_FOLDER_PACK_UNPACKER plugin for decompressing archives</li>
-  <li>Add support for unpacker plugin written in VBScript/Javascript.</li>
-  <li>Add WinMerge32BitPluginProxy.exe to make 32-bit plugins usable in 64-bit
-    WinMerge </li>
-  <li>Rewrite some plugins in VBScript</li>
-  <li>Add CompareMSPowerPointFiles.sct plugin</li>
-  <li>Add ApplyPatch.sct plugin</li>
-  <li>Add SortAscending, SortDescending and ExecFilterCommand menu item to
-    Plugin-&gt;Script menu</li>
-  <li>Make plugins configurable with settings dialog of each plugin</li>
+<li>BugFix: Fix handling of line breaks in SortAscending, SortDescending (osdn.net PR #40266)</li>
+<li>BugFix: Error when comparing images in the CompareMSExcelFiles.sct plugin (osdn.net #40472)</li>
+<li>CompareMSExcelFiles.sct: Include Excel Addin files (*.xlam) (GitHub PR #269)</li>
+<li>Add support for C# and TypeScript (GitHub PR #382)</li>
+<li>Add a plugin for Visio (osdn.net PR #40473)</li>
+<li>Plugin fixes for the new Table Compare (CompareMSExcelFiles.sct, IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)</li>
 </ul>
-
-<h4>Filters</h4>
+<h3 id="archive-support">Archive support</h3>
 <ul>
-  <li>Update *.flt files for Visual Studio 2015 and 2017</li>
+<li>BugFix: Crash when comparing encrypted 7z files (GitHub #367)</li>
 </ul>
-
-<h4>Shell extension</h4>
+<h3 id="installer-1">Installer</h3>
 <ul>
-  <li>Display another WinMerge icon in Explorer's context menu 
-    when a folder is selected</li>
+<li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
 </ul>
-
-<h4>Installer</h4>
+<h3 id="translations-1">Translations</h3>
 <ul>
-  <li>64-bit version of WinMerge is available</li>
-  <li>Install plugins by default</li>
-</ul>
-
-<h4>Translations</h4>
-<ul>
-  <li>Update Portuguese translation (GitHub #2-17)</li>
-  <li>Update Korean translation (GitHub #45)</li>
-  <li>Update Traditional Chinese translation (GitHub #53)</li>
-  <li>Remove "Language" menu item from View menu
-    (You can specify UI language at Options dialog)</li>
-</ul>
-
-<h4>Command line</h4>
+<li>Translation updates:
 <ul>
-  <li>Incompatible change: The third file path is now treated as a right path
-    for 3-way comparison, not output path
-    Use /o option for ouput path instead</li>
-  <li>Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison</li>
+<li>Brazilian (GitHub #360)</li>
+<li>Chinese Simplified (GitHub PR #303,377)</li>
+<li>Galician (GitHub PR #292,293,308,313,326)</li>
+<li>German (GitHub PR #312,357)</li>
+<li>Lithuanian (GitHub PR #291,298,333)</li>
+<li>Polish (GitHub PR #280)</li>
+<li>Portuguese (GitHub PR #305)</li>
+<li>Russian (GitHub PR #270,271,272,302,327,328)</li>
+<li>Slovak (GitHub PR #300)</li>
+<li>Slovenian (GitHub #285)</li>
+<li>Spanish (GitHub PR #292,293,304,308)</li>
+<li>Turkish (GitHub PR #335,336,337,338)</li>
+</ul></li>
 </ul>
-
-<h4>Other changes</h4>
+<h3 id="manual-1">Manual</h3>
 <ul>
-  <li>Add support for jump list introduced in Windows 7</li>
+<li>Minor changes to translations README.md file (GitHub #289)</li>
+<li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
 </ul>
-
-<h4>Internals</h4>
+<h3 id="internals">Internals</h3>
 <ul>
-  <li>Use POCO C++ libraries instead of pcre, expat and scew.
-    They use pcre, expat internally</li>
-  <li>Link statically with MFC and VC runtime libraries</li>
-  <li>Various compilation/build fixes
-    (GitHub #1,19,21,29,31-33,36-38,42-44,49-52)</li>
+<li>BugFix: Src\Common\MyCom.h unused? (GitHub #284)</li>
+<li>BugFix: Error on git repository cloning (GitHub #288)</li>
 </ul>
-
-<h3><a name="issues">Known Issues</a></h3>
+<h2 id="known-issues">Known issues</h2>
 <ul>
-  <li>
-    <p><strong>Old IE version can cause crashes when handling archive files.</strong></p>
-    <p><i>Workaround</i>: If WinMerge crashes when handling archives, consider
-      updating IE to version 6.0 or later.</p>
-  </li>
-  <li>
-    <p><strong>Supercopier application causes WinMerge to hang.</strong></p>
-    <p><a href="http://supercopier.sfxteam.org/modules/mydownloads/">Supercopier</a>
-    application causes WinMerge to not exit properly and leaves WinMerge process
-    hang. See the bug reports:
-    <ul>
-      <li><a href="http://winmerge.org/bug/1976241">#1976241</a> the winmerge.exe
-        process doesn't stop itself</li>
-      <li><a href="http://winmerge.org/bug/1602313">#1602313</a> WinMerge stays
-        in tasklist after closing</li>
-    </ul>
-    <p><i>Workaround</i>: Disable the Supercopier when using WinMerge.</p>
-  </li>
-  <li>
-    <p><strong>Filters only applied when using full compare.</strong></p>
-    <p>Line filtering is only applied in folder compare when using <i>Full Contents</i>-compare method.</p>
-    <p>If you are using any other compare method, line filters are not applied. Files marked different
-    in folder compare can get status changed to identical when opening them to file compare.</p>
-  </li>
-  <li>
-    <p><strong>Unset WinMerge integration from ClearCase</strong></p>
-    <p>To remove WinMerge integration, you'll need to edit one file by hand:</p>
-    <ol>
-      <li>Find ClearCase installation folder<br>
-          Usually it is something like <code>C:\Program Files\Rational\ClearCase</code></li>
-      <li>Go to subfolder <code>lib\mgrs\</code></li>
-      <li>Open file <code>map</code> in there to editor program</li>
-      <li>Comment-out the line starting with "<code>text_file_delta xcompare</code>", containing "<code>WinMergeU.exe</code>"</li>
-      <li>Uncomment the line starting with "<code>text_file_delta xcompare</code>", containing "<code>cleardiffmrg.exe</code>"</li>
-    </ol>
-  </li>
+<li>Bug: Line Filters aren&#39;t applied when using a 3rd file (GitHub #395)</li>
+<li>Pausing comparing doesn&#39;t pause immediately (GitHub #342)</li>
+<li>Crashes when comparing large files (GitHub #325)</li>
+<li>Very slow to compare significantly different directories (GitHub #322)</li>
+<li>Vertical scrollbar breaks after pasting text (GitHub #296)</li>
+<li>When the &quot;Filter comments&quot; option is enabled, the difference between the parts that do not comment blocks may be ignored. (osdn.net #40488)</li>
 </ul>
 </body>
 </html>
-
- 	  	 

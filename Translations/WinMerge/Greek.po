@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -466,8 +466,8 @@ msgid "Sw&ap Panes"
 msgstr "Αντι&μετάθεση Πεδίων"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Στατιστικά Συγκρίσεως"
+msgid "Com&pare Statistics..."
+msgstr "Στατιστικά Συγκρίσεως..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -580,7 +580,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Μετατροπή Χαρακτήρων Τερματισμού"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Λειτουργία Συγ&χωνεύσεως\tF9"
 
 #, c-format
@@ -592,14 +592,14 @@ msgid "&File Encoding..."
 msgstr "&Κωδικοσελίδα Αρχείου..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1029,10 +1029,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "Ανα&νέωση"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2078,8 +2074,8 @@ msgstr "Ά&κυρο"
 msgid "Test Filter"
 msgstr "Δοκιμή Φίλτρου"
 
-msgid "Testing filter..."
-msgstr "Δοκιμή Φίλτρου..."
+msgid "Testing filter:"
+msgstr "Δοκιμή Φίλτρου:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2524,6 +2520,12 @@ msgstr "Εκ δεξιών:"
 #, c-format
 msgid "To right:"
 msgstr "Προς τα δεξιά:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3786,6 +3788,9 @@ msgstr "Χωρίς"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Τύπος"
@@ -4101,7 +4106,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

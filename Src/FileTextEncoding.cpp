@@ -114,5 +114,9 @@ int FileTextEncoding::Collate(const FileTextEncoding & fte1, const FileTextEncod
 		return 1;
 	if (fte1.m_codepage < fte2.m_codepage)
 		return -1;
+	if (fte1.m_bom > fte2.m_bom)
+		return 1;
+	if (fte1.m_bom < fte2.m_bom)
+		return -1;
 	return 0;
 }

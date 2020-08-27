@@ -84,6 +84,8 @@ private:
 	SCursorPushed m_ptSavedSelStartPushed, m_ptSavedSelEndPushed;
 	/// memorize top line positions
 	int m_nTopSubLinePushed;
+	/// memorize X offset positions
+	int m_nOffsetCharPushed;
 	/** last change position, in the buffer ; used in insertText
 	 * initialized with (-1,-1), so don't assert for this invalid value
 	 */

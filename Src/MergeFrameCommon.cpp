@@ -9,6 +9,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
+#include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 
@@ -68,6 +69,17 @@ void CMergeFrameCommon::SaveWindowState()
 	}
 }
 
+void CMergeFrameCommon::RemoveBarBorder()
+{
+	afxData.cxBorder2 = 0;
+	afxData.cyBorder2 = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
+		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
+	}
+}
+
 /**
  * @brief Reflect comparison result in window's icon.
  * @param nResult [in] Last comparison result which the application returns.
@@ -81,16 +93,7 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	{
 		SetIcon(hReplace, TRUE);
 
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
+		AfxGetMainWnd()->SetTimer(IDT_UPDATEMAINMENU, 500, nullptr);
 	}
 
 	theApp.SetLastCompareResult(nResult);

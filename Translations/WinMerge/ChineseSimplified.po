@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -367,8 +367,8 @@ msgstr "使用默认字体(&O)"
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
 
-msgid "Compa&re Statistics"
-msgstr "比较结果统计(&R)"
+msgid "Com&pare Statistics..."
+msgstr "比较结果统计(&P)..."
 
 msgid "Refre&sh\tF5"
 msgstr "刷新(&S)\tF5"
@@ -454,8 +454,8 @@ msgstr "打印预览(&W)..."
 msgid "&Convert Line Endings to"
 msgstr "将换行符转换为(&C)"
 
-msgid "&Merge Mode\tF9"
-msgstr "合并模式(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "合并模式(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "重新加载(&L)\tCtrl+F5"
@@ -463,13 +463,13 @@ msgstr "重新加载(&L)\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "文件编码(&F)..."
 
-msgid "Recompare As"
-msgstr "重新比较"
+msgid "Reco&mpare As"
+msgstr "重新比较(&M)"
 
 msgid "&Text"
 msgstr "文本(&T)"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -813,9 +813,6 @@ msgstr "全部到... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差异到... (%1 / %2)"
-
-msgid "&Refresh"
-msgstr "刷新(&R)"
 
 msgid "Left Shell menu"
 msgstr "左侧系统外壳菜单"
@@ -1620,8 +1617,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "测试过滤器"
 
-msgid "Testing filter..."
-msgstr "正在测试过滤器..."
+msgid "Testing filter:"
+msgstr "正在测试过滤器:"
 
 msgid "&Enter text to test:"
 msgstr "输入用以测试的文本(&E):"
@@ -2018,6 +2015,12 @@ msgstr "从右侧:"
 
 msgid "To right:"
 msgstr "到右侧:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3153,6 +3156,9 @@ msgstr "无"
 msgid "Marker Color %d"
 msgstr "标记颜色 %d"
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "类型"
 
@@ -3501,7 +3507,7 @@ msgid "Page:"
 msgstr "页:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

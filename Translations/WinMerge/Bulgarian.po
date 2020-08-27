@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -361,8 +361,8 @@ msgstr "Използване на стандартен ш&рифт"
 msgid "Sw&ap Panes"
 msgstr "Раз&меняне на панелите"
 
-msgid "Compa&re Statistics"
-msgstr "Статистика на &сравнението"
+msgid "Com&pare Statistics..."
+msgstr "Статистика на &сравнението..."
 
 msgid "Refre&sh\tF5"
 msgstr "&Презареждане\tF5"
@@ -448,7 +448,7 @@ msgstr "П&реглед преди отпечатване..."
 msgid "&Convert Line Endings to"
 msgstr "Про&меняне на знака за нов ред"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Режим на &сливане\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -457,13 +457,13 @@ msgstr "Пре&зареждане\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Избиране на &кодировка…"
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Сравняване като"
 
 msgid "&Text"
 msgstr "&Текстови файлове"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"
@@ -806,9 +806,6 @@ msgstr "Всички към… (%1 от %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Разликите към… (%1 от %2)"
-
-msgid "&Refresh"
-msgstr "&Презареждане"
 
 msgid "Left Shell menu"
 msgstr ""
@@ -1614,8 +1611,8 @@ msgstr "&Отменяне"
 msgid "Test Filter"
 msgstr "Изпробване на филтър"
 
-msgid "Testing filter..."
-msgstr "Изпробване на филтър…"
+msgid "Testing filter:"
+msgstr "Изпробване на филтър:"
 
 msgid "&Enter text to test:"
 msgstr "&Въведете текст за изпробване:"
@@ -1995,6 +1992,12 @@ msgstr "От дясно:"
 
 msgid "To right:"
 msgstr "Вдясно:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3128,6 +3131,9 @@ msgstr "Няма"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Вид"
 
@@ -3459,7 +3465,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

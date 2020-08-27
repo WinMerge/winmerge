@@ -467,8 +467,8 @@ msgid "Sw&ap Panes"
 msgstr "Interc&ambiar paneis"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Estatísticas da comparación"
+msgid "Com&pare Statistics..."
+msgstr "Estatísticas da comparación..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -581,7 +581,7 @@ msgid "&Convert Line Endings to"
 msgstr "Converter salt&os de liña a"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modo mestura\tF9"
 
 #, c-format
@@ -593,15 +593,15 @@ msgid "&File Encoding..."
 msgstr "Codificación do ar&quivo…"
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Volver comparar como"
 
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
 
-msgid "&Table"
-msgstr "&Táboa"
+msgid "T&able"
+msgstr "Tábo&a"
 
 #, c-format
 msgid "&XML"
@@ -1030,10 +1030,6 @@ msgstr "Todos para… (%1 de %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Diferenzas para… (%1 de %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Actualizar"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2087,8 +2083,8 @@ msgstr "&Cancelar"
 msgid "Test Filter"
 msgstr "Probar filtro"
 
-msgid "Testing filter..."
-msgstr "Probando filtro…"
+msgid "Testing filter:"
+msgstr "Probando filtro:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2559,6 +2555,12 @@ msgstr "Desde a dereita:"
 #, c-format
 msgid "To right:"
 msgstr "Para a dereita:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3864,6 +3866,9 @@ msgstr "Nada"
 msgid "Marker Color %d"
 msgstr "Cor de marcador %d"
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Tipo"
@@ -4257,8 +4262,8 @@ msgid "Page:"
 msgstr "Páxina:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Pto:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Pto:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "
@@ -4271,3 +4276,4 @@ msgstr "Dist:%g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Páx:%d/%d Zoom:%d%% %dx%dpx %dbpp"
+

@@ -2,7 +2,7 @@
 <article id="Compare_table">
   <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
 
-  <title>テーブルファイルの比較</title>
+  <title>テーブル形式比較</title>
 
   <indexterm>
     <primary>ファイルの比較</primary>
@@ -10,6 +10,120 @@
     <secondary>テーブル</secondary>
   </indexterm>
 
-  <para>TBD</para>
+  <para>バージョン2.16.8からCSVやTSVなどの区切り値テキストファイルを表計算ソフトのようにテーブル形式で表示し、編集することができるようになりました。
+  この形式での編集操作、差異への移動操作、マージ操作は、通常のテキストファイルウインドウと同じです。
+  </para>
+
+  <mediaobject>
+    <imageobject>
+      <imagedata contentwidth="600" fileref="screenshots/tblcomp1.png"
+                 format="PNG" />
+    </imageobject>
+
+    <textobject>
+      <phrase>テーブル形式比較</phrase>
+    </textobject>
+  </mediaobject>
   
+  <section id="Compare_files_in_table_format">
+    <title>テーブル形式で開く<indexterm>
+        <primary>テーブル形式で開く</primary>
+      </indexterm></title>
+
+    <para>ファイルがテーブル形式で開かれるかどうかは、ファイル名が定義されたパターンに一致するかどうかで決まります。
+    デフォルトでは、ファイル名が、～.csv、～.tsv ならばテーブル形式で開かれます。
+    このパターンを変更したい場合は、オプションダイアログの比較/テーブルページでパターンを指定します。
+    </para>
+
+    <para>通常のテキストとして開かれた後、一時的にテーブル形式で開きたい場合は、
+      <menuchoice>
+        <guimenu>ファイル</guimenu>
+        <guimenuitem>形式を指定して再比較</guimenuitem>
+        <guimenuitem>テーブル</guimenuitem>
+      </menuchoice>
+    をクリックします。テーブルダイアログが表示された場合は、形式を指定して
+    <guilabel>OK</guilabel>をクリックします。
+    </para>
+    
+    <para>
+    逆にテーブル形式で開かれたファイルを一時的に通常のテキストファイルとして開きたい場合は、
+      <menuchoice>
+        <guimenu>ファイル</guimenu>
+        <guimenuitem>形式を指定して再比較</guimenuitem>
+        <guimenuitem>テキスト</guimenuitem>
+      </menuchoice>
+    をクリックします。
+    </para>
+  </section>
+
+  <section id="Table_settings">
+    <title>ファイル読み込みの調整<indexterm>
+        <primary>テーブル形式で開く</primary>
+      </indexterm></title>
+
+    <para>
+      デフォルトでは、区切りテキストファイルのデータは、以下のように扱われます。
+      <itemizedlist>
+        <listitem>
+          <para>CSVファイルはカンマ、TSVファイルはタブを区切り文字として値が区切られ、値は列ごとに表示される。
+          </para>
+        </listitem>
+        <listitem>
+          <para>ただし、引用符文字(ダブルクォーテーション)で括られた範囲にある区切り文字は値として扱われる。
+          </para>
+        </listitem>
+        <listitem>
+          <para>また、引用符文字で括られた範囲にある改行文字(CR, LF)は値として扱われる。
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+      上記から変更したい場合は、オプションダイアログの比較/テーブルページや、
+      <menuchoice>
+        <guimenu>ファイル</guimenu>
+        <guimenuitem>形式を指定して再比較</guimenuitem>
+        <guimenuitem>テーブル</guimenuitem>
+      </menuchoice>
+      で表示されるテーブルダイアログで調整します。
+      詳細については、<xref linkend="Configuration_compare_table" />を参照してください。
+    </para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>テーブル形式固有の操作<indexterm>
+        <primary>テーブル形式固有の操作</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>列見出しの列の境界をマウスでドラッグすると列幅が変更されます。
+          </para>
+        </listitem>
+        <listitem>
+          <para>列見出しの列の境界をダブルクリックすると自動的に列の内容に応じて列幅が調整されます。
+          </para>
+        </listitem>
+        <listitem>
+          <para>列見出しの列をドラッグすると垂直方向にテキストが選択されます。
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <menuchoice>
+              <guimenu>表示</guimenu>
+              <guimenuitem>行を右端で折り返す</guimenuitem>
+            </menuchoice>
+            にチェックを入れると列ごとにテキストが折り返して表示されます。
+            セル内改行されたテキストを表示するにはこのメニューにチェックを入れてください。
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
 </article>

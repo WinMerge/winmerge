@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "PropCompareBinary.h"
+#include "WildcardDropList.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -62,6 +63,7 @@ void PropCompareBinary::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareBinary)
+	DDX_Control(pDX, IDC_COMPAREBINARY_PATTERNS, m_comboPatterns);
 	DDX_Text(pDX, IDC_COMPAREBINARY_PATTERNS, m_sFilePatterns);
 	//}}AFX_DATA_MAP
 }
@@ -73,6 +75,8 @@ BEGIN_MESSAGE_MAP(PropCompareBinary, CPropertyPage)
 	ON_BN_CLICKED(IDC_COMPAREBINARY_BINARYMODE, OnBinaryMode)
 	ON_BN_CLICKED(IDC_COMPAREBINARY_CHARACTERSET, OnCharacterSet)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_DROPDOWN(IDC_COMPAREBINARY_PATTERNS, OnDropDownPatterns)
+	ON_CBN_CLOSEUP(IDC_COMPAREBINARY_PATTERNS, OnCloseUpPatterns)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -93,6 +97,7 @@ void PropCompareBinary::ReadOptions()
  */
 void PropCompareBinary::WriteOptions()
 {
+	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_BIN_FILEPATTERNS, m_sFilePatterns);
 }
 
@@ -133,4 +138,21 @@ void PropCompareBinary::OnDefaults()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_BIN_FILEPATTERNS);
 	UpdateData(FALSE);
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PropCompareBinary::OnDropDownPatterns()
+{
+	String patterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_BIN_FILEPATTERNS);
+	WildcardDropList::OnDropDown(m_comboPatterns, 6, patterns.c_str());
+}
+
+/**
+ * @brief Finishes drop list multi-selection
+ */
+void PropCompareBinary::OnCloseUpPatterns()
+{
+	WildcardDropList::OnCloseUp(m_comboPatterns);
 }

@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -364,8 +364,8 @@ msgstr "Użyj domyślnej czcionki"
 msgid "Sw&ap Panes"
 msgstr "Zamień panele"
 
-msgid "Compa&re Statistics"
-msgstr "Statystyki porównania"
+msgid "Com&pare Statistics..."
+msgstr "Statystyki porównania..."
 
 msgid "Refre&sh\tF5"
 msgstr "Odśwież\tF5"
@@ -451,7 +451,7 @@ msgstr "Podgląd wydruku..."
 msgid "&Convert Line Endings to"
 msgstr "Konwertuj końce linii do"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Tryb scalania\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -460,13 +460,13 @@ msgstr "Odśwież\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
 
 msgid "&Text"
 msgstr "Tekst"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"
@@ -809,9 +809,6 @@ msgstr "Wszystkie do... (%1 z %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Różnice do... (%1 z %2)"
-
-msgid "&Refresh"
-msgstr "Odśwież"
 
 msgid "Left Shell menu"
 msgstr "Menu powłoki po lewej"
@@ -1606,8 +1603,8 @@ msgstr "Anuluj"
 msgid "Test Filter"
 msgstr "Testuj filtr"
 
-msgid "Testing filter..."
-msgstr "Testowanie filtra ..."
+msgid "Testing filter:"
+msgstr "Testowanie filtra:"
 
 msgid "&Enter text to test:"
 msgstr "Podaj tekst do sprawdzenia:"
@@ -1937,6 +1934,12 @@ msgstr "Z prawej:"
 
 msgid "To right:"
 msgstr "Na prawą:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -2832,6 +2835,9 @@ msgstr "Brak"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Typ"
 
@@ -3100,7 +3106,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

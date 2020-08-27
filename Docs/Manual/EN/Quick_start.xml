@@ -36,6 +36,10 @@
           <para>In a Command Prompt window, cd to the WinMerge installation
           folder and enter <command>WinMergeU</command>.</para>
         </listitem>
+
+        <listitem>
+          <para>Press <keycombo><keycap>Windows</keycap><keycap>R</keycap></keycombo> and enter <command>winmerge</command>.</para>
+        </listitem>
       </itemizedlist>
     </section>
 

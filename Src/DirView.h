@@ -251,6 +251,9 @@ protected:
 	afx_msg void OnUpdateCtxtDirCopyTo(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateCtxtDirCopyBothTo(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateCtxtDirCopyBothDiffsOnlyTo(CCmdUI* pCmdUI);
+	template<SIDE_TYPE stype>
+	afx_msg void OnUpdateCtxtDirCopy2(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyBoth2(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);

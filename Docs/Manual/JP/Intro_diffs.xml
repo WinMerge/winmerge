@@ -88,9 +88,9 @@ Believe it or not.</screen></para>
 
         <listitem>
           <para>ファイルとフォルダの選択ダイアログで、
-            <filename>File1</filename>を<guilabel>1</guilabel>に、
-          <filename>File2</filename>を<guilabel>2</guilabel>のファイルに指定し、
-          <guibutton>OK</guibutton>をクリックしてください。このように、左と右のファイルペインに二つのファイルが開かれ、
+            <filename>File1</filename>を<guilabel>1番目</guilabel>に、
+          <filename>File2</filename>を<guilabel>2番目</guilabel>のファイルに指定し、
+          <guibutton>比較</guibutton>をクリックしてください。このように、左と右のファイルペインに二つのファイルが開かれ、
           ファイル比較ウィンドウが表示されます。</para>
 
           <mediaobject>

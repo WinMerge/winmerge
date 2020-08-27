@@ -114,7 +114,7 @@
         <term><xref linkend="Compare_images" /></term>
 
         <listitem>
-          <para>TBD</para>
+          <para>Explains the image comparison/merge window.</para>
         </listitem>
       </varlistentry>
 
@@ -122,7 +122,7 @@
         <term><xref linkend="Compare_bin" /></term>
 
         <listitem>
-          <para>TBD</para>
+          <para>Explains the hex comparison/merge window.</para>
         </listitem>
       </varlistentry>
 
@@ -130,7 +130,7 @@
         <term><xref linkend="Compare_table" /></term>
 
         <listitem>
-          <para>TBD</para>
+          <para>Explains the table comparison/merge window.</para>
         </listitem>
       </varlistentry>
 
@@ -192,7 +192,7 @@
           developers.</para>
 
           <para>Before submitting questions to <ulink
-          url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>,
+          url="https://github.com/winmerge/winmerge/">GitHub</ulink>,
           please check the <xref linkend="Faq" /> topic first to see if your
           question is answered there.</para>
         </listitem>

@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -368,8 +368,8 @@ msgstr "Usar F&uente del Sistema"
 msgid "Sw&ap Panes"
 msgstr "&Intercambiar paneles"
 
-msgid "Compa&re Statistics"
-msgstr "Estadísticas de &comparación"
+msgid "Com&pare Statistics..."
+msgstr "Estadísticas de &comparación..."
 
 msgid "Refre&sh\tF5"
 msgstr "Ac&tualizar\tF5"
@@ -455,7 +455,7 @@ msgstr "&Vista preliminar..."
 msgid "&Convert Line Endings to"
 msgstr "&Convertir Saltos de Línea a"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modo Combinación\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -464,13 +464,13 @@ msgstr ""
 msgid "&File Encoding..."
 msgstr "Codi&ficación de archivo..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Recomparar como"
 
 msgid "&Text"
 msgstr "&Texto"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 msgid "&XML"
@@ -813,9 +813,6 @@ msgstr "Todo a... (%1 de %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Diferencias a... (%1 de %2)"
-
-msgid "&Refresh"
-msgstr "Actualiza&r"
 
 msgid "Left Shell menu"
 msgstr "Menú Izquierda"
@@ -1623,8 +1620,8 @@ msgstr "&Cancelar"
 msgid "Test Filter"
 msgstr "Prueba de filtro"
 
-msgid "Testing filter..."
-msgstr "Probando filtro..."
+msgid "Testing filter:"
+msgstr "Probando filtro:"
 
 msgid "&Enter text to test:"
 msgstr "&Texto a probar:"
@@ -2021,6 +2018,12 @@ msgstr "De la derecha:"
 
 msgid "To right:"
 msgstr "A la derecha:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3184,6 +3187,9 @@ msgstr "Ninguno"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipo"
 
@@ -3532,7 +3538,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

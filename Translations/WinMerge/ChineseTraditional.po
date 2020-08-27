@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -471,8 +471,8 @@ msgid "Sw&ap Panes"
 msgstr "窗格交換(&A)"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "統計比較結果(&R)"
+msgid "Com&pare Statistics..."
+msgstr "統計比較結果(&P)"
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -585,8 +585,8 @@ msgid "&Convert Line Endings to"
 msgstr "轉換換行字元(&C)"
 
 #, c-format
-msgid "&Merge Mode\tF9"
-msgstr "開/關合併模式(&M)\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "開/關合併模式(&G)\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
@@ -597,14 +597,14 @@ msgid "&File Encoding..."
 msgstr "檔案編碼(&F)..."
 
 #, c-format
-msgid "Recompare As"
-msgstr "重新比較"
+msgid "Reco&mpare As"
+msgstr "重新比較(&M)"
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1038,10 +1038,6 @@ msgstr "全部到... (%2 之 %1)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差異到... (%2 之 %1)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "重整(&R)"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2094,8 +2090,8 @@ msgstr "取消(&C)"
 msgid "Test Filter"
 msgstr "測試篩選器"
 
-msgid "Testing filter..."
-msgstr "測試篩選器..."
+msgid "Testing filter:"
+msgstr "測試篩選器:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2540,6 +2536,12 @@ msgstr "從右邊："
 #, c-format
 msgid "To right:"
 msgstr "到右邊："
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3826,6 +3828,9 @@ msgstr "無"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "類型"
@@ -4143,7 +4148,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

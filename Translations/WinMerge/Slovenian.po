@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -468,8 +468,8 @@ msgid "Sw&ap Panes"
 msgstr "Zam&enjaj okna"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "&Statistika primerjave"
+msgid "Com&pare Statistics..."
+msgstr "&Statistika primerjave..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -582,7 +582,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Pretvori konce vrstic v"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Združevalni način\tF9"
 
 #, c-format
@@ -594,14 +594,14 @@ msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
 #, c-format
 msgid "&Text"
 msgstr "&Besedilo"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1031,10 +1031,6 @@ msgstr "Vse v... (%1 od %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Razlike v... (%1 od %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Osveži"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2086,8 +2082,8 @@ msgstr "Pre&kliči"
 msgid "Test Filter"
 msgstr "Preizkusi filter"
 
-msgid "Testing filter..."
-msgstr "Preizkus filtra..."
+msgid "Testing filter:"
+msgstr "Preizkus filtra:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2557,6 +2553,12 @@ msgstr "Iz desne:"
 #, c-format
 msgid "To right:"
 msgstr "Na desno:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3863,6 +3865,9 @@ msgstr "Brez"
 msgid "Marker Color %d"
 msgstr "Barva označevalca %d"
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Vrsta"
@@ -4255,8 +4260,8 @@ msgid "Page:"
 msgstr "Stran:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Tč:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Tč:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

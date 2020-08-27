@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -465,8 +465,8 @@ msgid "Sw&ap Panes"
 msgstr "Vaihda ruudut"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Vertaa tilastoja"
+msgid "Com&pare Statistics..."
+msgstr "Vertaa tilastoja..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -579,7 +579,7 @@ msgid "&Convert Line Endings to"
 msgstr "Muunna &rivinloput >"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Yhdistäminen\tF9"
 
 #, c-format
@@ -591,14 +591,14 @@ msgid "&File Encoding..."
 msgstr "Tiedoston koodaus..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
 #, c-format
 msgid "&Text"
 msgstr "&Teksti"
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1030,10 +1030,6 @@ msgstr "Kaikki... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Eroavaisuudet... (%1 / %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "Päivitä"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2089,8 +2085,8 @@ msgid "Test Filter"
 msgstr "Testaa suodin"
 
 #, c-format
-msgid "Testing filter..."
-msgstr "Testataan suodinta..."
+msgid "Testing filter:"
+msgstr "Testataan suodinta:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2558,6 +2554,12 @@ msgstr "Oikealta:"
 #, c-format
 msgid "To right:"
 msgstr "Oikealle:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3839,6 +3841,9 @@ msgstr "Ei mitään"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Tyyppi"
@@ -4232,7 +4237,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -468,8 +468,8 @@ msgid "Sw&ap Panes"
 msgstr "Пом&іняти панелі місцями"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Порівняти статистики"
+msgid "Com&pare Statistics..."
+msgstr "Порівняти статистики..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -582,7 +582,7 @@ msgid "&Convert Line Endings to"
 msgstr "Замінити перенесення &рядків на"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Режим &злиття\tF9"
 
 #, c-format
@@ -594,14 +594,14 @@ msgid "&File Encoding..."
 msgstr "&Кодування файлу..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1031,10 +1031,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Поновити"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2084,8 +2080,8 @@ msgstr "&Скасувати"
 msgid "Test Filter"
 msgstr "Випробування фільтра"
 
-msgid "Testing filter..."
-msgstr "Випробувати фільтр..."
+msgid "Testing filter:"
+msgstr "Випробувати фільтр:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2530,6 +2526,12 @@ msgstr "Справа:"
 #, c-format
 msgid "To right:"
 msgstr "Праворуч:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3813,6 +3815,9 @@ msgstr "Нема"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Тип"
@@ -4128,7 +4133,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -471,8 +471,8 @@ msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "통계 비교(&R)"
+msgid "Com&pare Statistics..."
+msgstr "통계 비교(&P)..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -585,8 +585,8 @@ msgid "&Convert Line Endings to"
 msgstr "줄 끝 변환(&C)"
 
 #, c-format
-msgid "&Merge Mode\tF9"
-msgstr "병합 모드\tF9"
+msgid "Mer&ge Mode\tF9"
+msgstr "병합 모드(&G)\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
@@ -597,14 +597,14 @@ msgid "&File Encoding..."
 msgstr "파일 인코딩(&F)..."
 
 #, c-format
-msgid "Recompare As"
-msgstr "다시 비교"
+msgid "Reco&mpare As"
+msgstr "다시 비교(&M)"
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1034,10 +1034,6 @@ msgstr "전부... (%1 / %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "차이점... (%1 / %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "새로 고침(&R)"
 
 #, c-format
 msgid "Left Shell menu"
@@ -2091,8 +2087,8 @@ msgstr "취소(&C)"
 msgid "Test Filter"
 msgstr "필터 테스트"
 
-msgid "Testing filter..."
-msgstr "필터 테스트 중..."
+msgid "Testing filter:"
+msgstr "필터 테스트 중:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2557,6 +2553,12 @@ msgstr "오른쪽에서:"
 #, c-format
 msgid "To right:"
 msgstr "오른쪽으로:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3845,6 +3847,9 @@ msgstr "없음"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "형식"
@@ -4238,7 +4243,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

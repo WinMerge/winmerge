@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "PropCompareTable.h"
+#include "WildcardDropList.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -30,8 +31,11 @@ void PropCompareTable::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareTable)
+	DDX_Control(pDX, IDC_COMPARETABLE_CSV_PATTERNS, m_comboCSVPatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_CSV_PATTERNS, m_sCSVFilePatterns);
+	DDX_Control(pDX, IDC_COMPARETABLE_TSV_PATTERNS, m_comboTSVPatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_TSV_PATTERNS, m_sTSVFilePatterns);
+	DDX_Control(pDX, IDC_COMPARETABLE_DSV_PATTERNS, m_comboDSVPatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_DSV_PATTERNS, m_sDSVFilePatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_DSV_DELIM_CHAR, m_sDSVDelimiterChar);
 	DDX_Check(pDX, IDC_COMPARETABLE_ALLOWNEWLINE, m_bAllowNewlinesInQuotes);
@@ -43,6 +47,12 @@ void PropCompareTable::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropCompareTable, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompareTable)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_DROPDOWN(IDC_COMPARETABLE_CSV_PATTERNS, OnDropDownCSVPatterns)
+	ON_CBN_CLOSEUP(IDC_COMPARETABLE_CSV_PATTERNS, OnCloseUpCSVPatterns)
+	ON_CBN_DROPDOWN(IDC_COMPARETABLE_TSV_PATTERNS, OnDropDownTSVPatterns)
+	ON_CBN_CLOSEUP(IDC_COMPARETABLE_TSV_PATTERNS, OnCloseUpTSVPatterns)
+	ON_CBN_DROPDOWN(IDC_COMPARETABLE_DSV_PATTERNS, OnDropDownDSVPatterns)
+	ON_CBN_CLOSEUP(IDC_COMPARETABLE_DSV_PATTERNS, OnCloseUpDSVPatterns)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -68,8 +78,11 @@ void PropCompareTable::ReadOptions()
  */
 void PropCompareTable::WriteOptions()
 {
+	WildcardRemoveDuplicatePatterns(m_sCSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns);
+	WildcardRemoveDuplicatePatterns(m_sTSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns);
+	WildcardRemoveDuplicatePatterns(m_sDSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_FILEPATTERNS, m_sDSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_DELIM_CHAR, m_sDSVDelimiterChar.substr(0, 1));
 	GetOptionsMgr()->SaveOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, m_bAllowNewlinesInQuotes);
@@ -88,4 +101,55 @@ void PropCompareTable::OnDefaults()
 	m_bAllowNewlinesInQuotes = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
 	m_sQuoteChar = GetOptionsMgr()->GetDefault<String>(OPT_CMP_TBL_QUOTE_CHAR);
 	UpdateData(FALSE);
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PropCompareTable::OnDropDownCSVPatterns()
+{
+	String patterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_CSV_FILEPATTERNS);
+	WildcardDropList::OnDropDown(m_comboCSVPatterns, 6, patterns.c_str());
+}
+
+/**
+ * @brief Finishes drop list multi-selection
+ */
+void PropCompareTable::OnCloseUpCSVPatterns()
+{
+	WildcardDropList::OnCloseUp(m_comboCSVPatterns);
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PropCompareTable::OnDropDownTSVPatterns()
+{
+	String patterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_TSV_FILEPATTERNS);
+	WildcardDropList::OnDropDown(m_comboTSVPatterns, 6, patterns.c_str());
+}
+
+/**
+ * @brief Finishes drop list multi-selection
+ */
+void PropCompareTable::OnCloseUpTSVPatterns()
+{
+	WildcardDropList::OnCloseUp(m_comboTSVPatterns);
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PropCompareTable::OnDropDownDSVPatterns()
+{
+	String patterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_DSV_FILEPATTERNS);
+	WildcardDropList::OnDropDown(m_comboDSVPatterns, 6, patterns.c_str());
+}
+
+/**
+ * @brief Finishes drop list multi-selection
+ */
+void PropCompareTable::OnCloseUpDSVPatterns()
+{
+	WildcardDropList::OnCloseUp(m_comboDSVPatterns);
 }
