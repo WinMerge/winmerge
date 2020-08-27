@@ -6353,7 +6353,7 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
   si.fMask = SIF_POS | SIF_RANGE;
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
-  int nCurPos = si.nPos + zDelta;
+  int nCurPos = si.nPos + zDelta / 40;
   if (nCurPos < si.nMin)
     nCurPos = si.nMin;
   else if (nCurPos > si.nMax)
