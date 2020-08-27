@@ -2,7 +2,7 @@
 <article id="Compare_bin">
   <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
 
-  <title>Comparing binary files</title>
+  <title>Comparing in hexadecimal format</title>
 
   <indexterm>
     <primary>comparing files</primary>
@@ -10,9 +10,8 @@
     <secondary>binary</secondary>
   </indexterm>
 
-  <para>WinMerge can detect whether files are in text or binary format. When you
-  launch a file compare operation on two binary files, WinMerge opens each file
-  in the binary file editor.</para>
+  <para>If you had selected Frhed on Select Component page of the installer, WinMerge can view and edit your files in hexadecimal format.
+  </para>
   
   <mediaobject>
     <imageobject>
@@ -23,4 +22,8 @@
       <phrase>HEX Compare Window</phrase>
     </textobject>
   </mediaobject>
+  
+  <para>
+  Whether files are opened in hexadecimal format depends on whether the file name matches defined patterns. By default, if the file extension is .bin or .frx, it will be opened in hexadecimal format. If you want to change the patterns, specify it on the Compare/Binary page in the Options dialog. 
+  </para>
 </article>
