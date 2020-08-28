@@ -1,4 +1,5 @@
-﻿# Released under the "GNU General Public License"
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * Wender Firmino <wender at pta.com.br>
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-01-15 20:39+0000\n"
-"PO-Revision-Date: 2020-06-07 16:11-0300\n"
+"PO-Revision-Date: 2020-07-26 17:08-0300\n"
 "Last-Translator: Felipe <felipefplzx@gmail.com>\n"
 "Language-Team: Felipe\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +23,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: pt_BR\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -471,8 +472,8 @@ msgid "Sw&ap Panes"
 msgstr "Tr&ocar os Painéis"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Compa&rar as Estatísticas"
+msgid "Com&pare Statistics..."
+msgstr "Compa&rar as Estatísticas..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -584,8 +585,7 @@ msgstr "Pré-Visualização da Impressã&o..."
 msgid "&Convert Line Endings to"
 msgstr "&Converter os Finais das Linhas para"
 
-#, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modo de União\tF9"
 
 #, c-format
@@ -596,16 +596,15 @@ msgstr "Re&carregar\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "&Codificação do Arquivo..."
 
-#, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Recomparar Como"
 
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
 
-msgid "&Table"
-msgstr ""
+msgid "T&able"
+msgstr "T&abela"
 
 #, c-format
 msgid "&XML"
@@ -1034,10 +1033,6 @@ msgstr "De Todos para... (%1 de %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Das Diferenças para... (%1 de %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Atualizar"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1672,7 +1667,7 @@ msgid "Compare"
 msgstr "Comparar"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Espaço em Branco"
 
 #, c-format
@@ -1884,10 +1879,6 @@ msgid "Options"
 msgstr "Opções"
 
 #, c-format
-msgid " Categories"
-msgstr " Categorias"
-
-#, c-format
 msgid "Import..."
 msgstr "Importar..."
 
@@ -1938,10 +1929,6 @@ msgstr "Usuário 2:"
 #, c-format
 msgid "Bold"
 msgstr "Negrito"
-
-#, c-format
-msgid "Marker colors"
-msgstr "Cores dos marcadores"
 
 #, c-format
 msgid "Search Marker:"
@@ -2099,8 +2086,8 @@ msgstr "&Cancelar"
 msgid "Test Filter"
 msgstr "Testar Filtro"
 
-msgid "Testing filter..."
-msgstr "Testando o filtro..."
+msgid "Testing filter:"
+msgstr "Testando o filtro:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2123,36 +2110,32 @@ msgid "&Close"
 msgstr "&Fechar"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 msgid "File type"
-msgstr ""
+msgstr "Tipo de arquivo"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Valores Separados por &Delimitadores personalizados"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Caractere d&elimitador:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Permitir nov&as linhas em citações"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Caractere de &citação:"
 
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Usar cores de texto personalizadas"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Cores de texto personalizadas"
 
 #, c-format
 msgid "Whitespace:"
@@ -2310,16 +2293,16 @@ msgstr ""
 "&Número dos threads de comparação (um valor negativo implica em adição do número de cores da CPU disponíveis):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo &CSV:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Valores Separados por Delimitadores personalizados"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Padrões de Arquivo:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2575,6 +2558,12 @@ msgstr "Da direita:"
 #, c-format
 msgid "To right:"
 msgstr "Para a direita:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3880,6 +3869,9 @@ msgstr "Nenhum"
 msgid "Marker Color %d"
 msgstr "Cor do Marcador %d"
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Tipo"
@@ -4097,7 +4089,7 @@ msgid "From file system"
 msgstr "Do sistema de arquivos"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Da lista das MRUs"
 
 #, c-format
@@ -4273,8 +4265,8 @@ msgid "Page:"
 msgstr "Página:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

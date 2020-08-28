@@ -121,6 +121,7 @@ END_MESSAGE_MAP()
 CMergeDoc::CMergeDoc()
 : m_bEnableRescan(true)
 , m_nCurDiff(-1)
+, m_CurWordDiff{ -1, static_cast<size_t>(-1), -1 }
 , m_pDirDoc(nullptr)
 , m_bMixedEol(false)
 , m_pInfoUnpacker(new PackingInfo)
@@ -144,7 +145,6 @@ CMergeDoc::CMergeDoc()
 		m_bEditAfterRescan[nBuffer] = false;
 	}
 
-	m_nCurDiff=-1;
 	m_bEnableRescan = true;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
@@ -356,6 +356,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// Clear diff list
 	m_diffList.Clear();
 	m_nCurDiff = -1;
+	m_CurWordDiff = { -1, static_cast<size_t>(-1), -1 };
 	// Clear moved lines lists
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
@@ -3075,6 +3076,20 @@ void CMergeDoc::SetEditedAfterRescan(int nBuffer)
 	m_bEditAfterRescan[nBuffer] = true;
 }
 
+bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
+{
+	if (nBuffer >= 0 && nBuffer < m_nBuffers)
+		return m_bEditAfterRescan[nBuffer];
+
+	for (nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		if (m_bEditAfterRescan[nBuffer])
+			return true;
+	}
+
+	return false;
+}
+
 /**
  * @brief Update document filenames to title
  */
@@ -3102,14 +3117,13 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
-	CString str;
-	int nBuffer;
-
-	m_strDesc[0] = _("Untitled left");
-	m_strDesc[m_nBuffers - 1] = _("Untitled right");
-	if (m_nBuffers == 3)
+	if (m_nBufferType[0] == BUFFER_UNNAMED)
+		m_strDesc[0] = _("Untitled left");
+	if (m_nBufferType[m_nBuffers - 1] == BUFFER_UNNAMED)
+		m_strDesc[m_nBuffers - 1] = _("Untitled right");
+	if (m_nBuffers == 3 && m_nBufferType[1] == BUFFER_UNNAMED)
 		m_strDesc[1] = _("Untitled middle");
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		UpdateHeaderPath(nBuffer);
 
 	GetParentFrame()->UpdateResources();

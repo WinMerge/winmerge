@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -471,8 +471,8 @@ msgid "Sw&ap Panes"
 msgstr "&a تعويض چهارگوشها "
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "&r مقايسه آمارها "
+msgid "Com&pare Statistics..."
+msgstr "&r مقايسه آمارها ... "
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -585,7 +585,7 @@ msgid "&Convert Line Endings to"
 msgstr "&C تبديل پايان خط به "
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&M سبک پيوند \tF9"
 
 #, c-format
@@ -597,14 +597,14 @@ msgid "&File Encoding..."
 msgstr "&F کدبندي پرونده ... "
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1034,10 +1034,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&R بازسازي "
 
 #, c-format
 msgid "Left Shell menu"
@@ -1678,7 +1674,7 @@ msgid "Compare"
 msgstr " مقايسه کردن "
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr " فاصله سفيد "
 
 #, c-format
@@ -1888,10 +1884,6 @@ msgid "Options"
 msgstr " خيارات  "
 
 #, c-format
-msgid " Categories"
-msgstr " رسته ها : "
-
-#, c-format
 msgid "Import..."
 msgstr " ورود ... "
 
@@ -1942,10 +1934,6 @@ msgstr " کاربر 2 : "
 #, c-format
 msgid "Bold"
 msgstr " تيره "
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2103,8 +2091,8 @@ msgstr "&C لغو "
 msgid "Test Filter"
 msgstr " آزمايش صافي "
 
-msgid "Testing filter..."
-msgstr " آزمايش صافي... "
+msgid "Testing filter:"
+msgstr " آزمايش صافي: "
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2153,10 +2141,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&U  استفاده از رنگهاي متن سفارشي "
-
-#, c-format
-msgid "Custom text colors"
-msgstr " رنگهاي متن سفارشي "
 
 #, c-format
 msgid "Whitespace:"
@@ -2559,6 +2543,12 @@ msgstr " از راست : "
 #, c-format
 msgid "To right:"
 msgstr " به راست : "
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3880,6 +3870,9 @@ msgstr " هيچيک "
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr " نوع "
@@ -4027,7 +4020,7 @@ msgid "From file system"
 msgstr " از دستگاه (سيستم) پرونده ها  "
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr " از فهرست آخرين پرونده ها "
 
 #, c-format
@@ -4197,7 +4190,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

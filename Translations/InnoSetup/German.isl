@@ -11,14 +11,14 @@ CompactInstallation=Kompakte Installation
 CustomInstallation=Benutzerdefinierte Installation
 
 ;Components
-AppCoreFiles=WinMerge Hauptdateien
+AppCoreFiles=WinMerge-Hauptdateien
 Filters=Filter
 Plugins=Plugins
 Frhed=Frhed (Freier Hex-Editor)
 WinIMerge=WinIMerge (Bildvergleich)
-ArchiveSupport=Archiv-Support
-ShellExtension32bit=32-Bit WinMerge Shell-Integration
-Patch=GnuWin32 Patch für Windows
+ArchiveSupport=Archivsupport
+ShellExtension32bit=32-Bit-WinMerge-Shellintegration
+Patch=GnuWin32-Patch für Windows
 
 ;Localization Components
 Languages=Sprachen
@@ -26,8 +26,8 @@ ArabicLanguage=Arabische Menüs und Dialoge
 BasqueLanguage=Baskische Menüs und Dialoge
 BulgarianLanguage=Bulgarische Menüs und Dialoge
 CatalanLanguage=Katalanische Menüs und Dialoge
-ChineseSimplifiedLanguage=Chinesische (Vereinfacht) Menüs und Dialoge
-ChineseTraditionalLanguage=Chinesische (Traditionell) Menüs und Dialoge
+ChineseSimplifiedLanguage=Chinesische (vereinfacht) Menüs und Dialoge
+ChineseTraditionalLanguage=Chinesische (traditionell) Menüs und Dialoge
 CroatianLanguage=Kroatische Menüs und Dialoge
 CzechLanguage=Tschechische Menüs und Dialoge
 DanishLanguage=Dänische Menüs und Dialoge
@@ -59,10 +59,10 @@ TurkishLanguage=Türkische Menüs und Dialoge
 UkrainianLanguage=Ukrainische Menüs und Dialoge
 
 ;Tasks
-ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
-IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
-IntegrateTortoiseGit=Integrieren in To&rtoiseGit
-IntegrateTortoiseSVN=Integrieren in T&ortoiseSVN
+ExplorerContextMenu=&Explorer-Kontextmenüintegration aktivieren
+IntegrateTortoiseCVS=In &TortoiseCVS integrieren
+IntegrateTortoiseGit=In To&rtoiseGit integrieren
+IntegrateTortoiseSVN=In T&ortoiseSVN integrieren
 AddToPath=WinMerge-Ordner zum &Systempfad hinzufügen
 
 ; 3-way merge wizard page
@@ -75,7 +75,7 @@ MergeAtLeftPane=Im linken Bereich zusammenführen
 AutoMergeAtStartup=Beim Start automatisch zusammenführen
 
 ;Icon Labels
-ReadMe=LIESMICH-Datei
+ReadMe=Liesmich-Datei
 UsersGuide=Benutzerhandbuch
 ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
 
@@ -83,4 +83,4 @@ ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
 
 ; Project file description
-ProjectFileDesc=WinMerge Projektdatei
+ProjectFileDesc=WinMerge-Projektdatei

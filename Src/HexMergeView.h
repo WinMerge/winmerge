@@ -85,6 +85,7 @@ protected:
 	afx_msg void OnLastdiff();
 	afx_msg void OnNextdiff();
 	afx_msg void OnPrevdiff();
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

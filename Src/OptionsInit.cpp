@@ -126,16 +126,16 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 	pOptions->InitOption(OPT_CMP_BINARY_LIMIT, 64 * 1024 * 1024); // 64 Megs
 	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1);
-	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
+	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
-	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, true);
+	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
 	pOptions->InitOption(OPT_CMP_INCLUDE_SUBDIRS, true);
 	pOptions->InitOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, false);
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 
-	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T(""/*"*.csv"*/));
-	pOptions->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T(""/*"*.tsv"*/));
+	pOptions->InitOption(OPT_CMP_CSV_FILEPATTERNS, _T("*.csv"));
+	pOptions->InitOption(OPT_CMP_TSV_FILEPATTERNS, _T("*.tsv"));
 	pOptions->InitOption(OPT_CMP_DSV_FILEPATTERNS, _T(""));
 	pOptions->InitOption(OPT_CMP_DSV_DELIM_CHAR, _T(";"));
 	pOptions->InitOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, true);

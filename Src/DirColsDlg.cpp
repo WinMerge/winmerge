@@ -62,7 +62,7 @@ void CDirColsDlg::InitList()
 	// Show selection across entire row.
 	// Also enable infotips.
 	m_listColumns.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
-	m_listColumns.InsertColumn(0, _T(""), LVCFMT_LEFT, pointToPixel(112));
+	m_listColumns.InsertColumn(0, _T(""), LVCFMT_LEFT, pointToPixel(148));
 }
 
 /**

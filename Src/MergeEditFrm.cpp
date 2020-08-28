@@ -21,7 +21,6 @@
 #include "DiffViewBar.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -168,13 +167,7 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT);
 
-	afxData.cxBorder2 = 0;
-	afxData.cyBorder2 = 0;
-	for (int i = 0; i < 4; ++i)
-	{
-		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
-		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
-	}
+	RemoveBarBorder();
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))

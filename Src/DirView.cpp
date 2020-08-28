@@ -233,11 +233,11 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyPathnames<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_ALL, OnCopyBothPathnames)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_LEFT, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_MIDDLE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_RIGHT, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBothTo)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_LEFT, OnUpdateCtxtDirCopy2<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_MIDDLE, OnUpdateCtxtDirCopy2<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_RIGHT, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBoth2)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBoth2)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_LEFT>)
@@ -245,11 +245,11 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnCopyBothToClipboard)
 	ON_COMMAND(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnCopyBothToClipboard)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
 	ON_COMMAND(ID_DIR_ITEM_RENAME, OnItemRename)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ITEM_RENAME, OnUpdateItemRename)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
@@ -1353,7 +1353,7 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * in
 		// Open identical and different files
 		FileLocation fileloc[3];
 		String strDesc[3];
-		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
+		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
 		for (int i = 0; i < paths.GetSize(); ++i)
 		{
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
@@ -1577,6 +1577,24 @@ void CDirView::OnUpdateCtxtDirCopyBothDiffsOnlyTo(CCmdUI* pCmdUI)
 	pCmdUI->SetText(FormatMenuItemStringDifferencesTo(counts.count, counts.total).c_str());
 }
 	
+/**
+ * @brief Update "Copy | Left/Right/Both " item
+ */
+template<SIDE_TYPE stype>
+void CDirView::OnUpdateCtxtDirCopy2(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemCopyableToOn<stype>);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemString(stype, counts.count, counts.total).c_str());
+}
+
+void CDirView::OnUpdateCtxtDirCopyBoth2(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemCopyableBothToOn);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemStringAll(GetDocument()->m_nDirs, counts.count, counts.total).c_str());
+}
+
 /**
  * @brief Get keydata associated with item in given index.
  * @param [in] idx Item's index to list in UI.

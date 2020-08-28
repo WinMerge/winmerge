@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -473,8 +473,8 @@ msgid "Sw&ap Panes"
 msgstr "&Trukatu Panelak"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Alderatu Esta&tistikak"
+msgid "Com&pare Statistics..."
+msgstr "Alderatu Esta&tistikak..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -587,7 +587,7 @@ msgid "&Convert Line Endings to"
 msgstr "Bihurtu &Lerro Amaierak hona"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Batu &Modua\tF9"
 
 #, c-format
@@ -599,14 +599,14 @@ msgid "&File Encoding..."
 msgstr "&Agiria Kodeatzen..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1036,10 +1036,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Berritu"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1673,8 +1669,7 @@ msgstr "&Joan Hona"
 msgid "Compare"
 msgstr "Alderatu"
 
-#, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "&Zurigunea"
 
 #, c-format
@@ -1882,10 +1877,6 @@ msgid "Options"
 msgstr "Aukerak"
 
 #, c-format
-msgid " Categories"
-msgstr "  Kategoriak"
-
-#, c-format
 msgid "Import..."
 msgstr "Inportatu"
 
@@ -1936,10 +1927,6 @@ msgstr "2 Erabiltzailea:"
 #, c-format
 msgid "Bold"
 msgstr "Lodia"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2097,8 +2084,8 @@ msgstr "E&zeztatu"
 msgid "Test Filter"
 msgstr "Azterketa Iragazkia"
 
-msgid "Testing filter..."
-msgstr "Iragazkia aztertzen..."
+msgid "Testing filter:"
+msgstr "Iragazkia aztertzen:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2147,10 +2134,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Erabili norbere idazki margoak"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Norbere idazki margoak"
 
 #, c-format
 msgid "Whitespace:"
@@ -2547,6 +2530,12 @@ msgstr "Eskuinetik:"
 #, c-format
 msgid "To right:"
 msgstr "Eskuinera:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3831,6 +3820,9 @@ msgstr "Bat ere ez"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Mota"
@@ -3975,8 +3967,7 @@ msgstr "Ezgaituta"
 msgid "From file system"
 msgstr "Agiri sistematik"
 
-#, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "MRU zerrendatik"
 
 #, c-format
@@ -4146,7 +4137,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

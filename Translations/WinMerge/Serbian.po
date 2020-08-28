@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -469,8 +469,8 @@ msgid "Sw&ap Panes"
 msgstr "З&амени табле"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Упореди статистику"
+msgid "Com&pare Statistics..."
+msgstr "Упореди статистику..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -583,7 +583,7 @@ msgid "&Convert Line Endings to"
 msgstr "Заврши ред према"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Начин поређења\tF9"
 
 #, c-format
@@ -595,13 +595,13 @@ msgid "&File Encoding..."
 msgstr "Де&кодирање датотеке..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1030,10 +1030,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Освежи"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1654,7 +1650,7 @@ msgid "Compare"
 msgstr "Упоређивање"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Размак"
 
 #, c-format
@@ -1862,10 +1858,6 @@ msgid "Options"
 msgstr "Поставке"
 
 #, c-format
-msgid " Categories"
-msgstr "Категорије"
-
-#, c-format
 msgid "Import..."
 msgstr "Увези..."
 
@@ -1916,10 +1908,6 @@ msgstr "Корисник 2:"
 #, c-format
 msgid "Bold"
 msgstr "Подебљано"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2077,8 +2065,8 @@ msgstr "Откажи"
 msgid "Test Filter"
 msgstr "Провера филтера"
 
-msgid "Testing filter..."
-msgstr "Проверавање филтера..."
+msgid "Testing filter:"
+msgstr "Проверавање филтера:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2127,10 +2115,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Користи жељене боје текста"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Жељене боје текста"
 
 #, c-format
 msgid "Whitespace:"
@@ -2527,6 +2511,12 @@ msgstr "С десна:"
 #, c-format
 msgid "To right:"
 msgstr "У десно:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3799,6 +3789,9 @@ msgstr "Ништа"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr "Врста"
@@ -3944,7 +3937,7 @@ msgid "From file system"
 msgstr "Од система"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Из MRU списка"
 
 #, c-format
@@ -4114,7 +4107,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

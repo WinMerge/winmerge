@@ -26,6 +26,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompareBinary)
 	enum { IDD = IDD_PROPPAGE_COMPARE_BINARY };
+	CComboBox m_comboPatterns;
 	String m_sFilePatterns;
 	//}}AFX_DATA
 
@@ -45,6 +46,8 @@ protected:
 	afx_msg void OnBinaryMode();
 	afx_msg void OnCharacterSet();
 	afx_msg void OnDefaults();
+	afx_msg void OnDropDownPatterns();
+	afx_msg void OnCloseUpPatterns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

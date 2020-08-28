@@ -6,94 +6,89 @@
     <title><indexterm>
         <primary>WinMergeを始めよう</primary>
       </indexterm><indexterm>
-        <primary>ファイルとフォルダを開く</primary>
+        <primary>ファイルとフォルダの選択</primary>
 
         <secondary>getting started</secondary>
-      </indexterm>ファイルとフォルダを開く</title>
+      </indexterm>比較するファイルとフォルダの選択</title>
 
     <para>WinMergeをインストールしたら、トピック中の手順と議論を通じて、
       基本的なWinMergeの操作と概念を学んでください。
-      その方法は、一つではありません。各タスクを実行するための方法が、いくつかあります。
-      それを完了したら、他のヘルプトピックでカバーされる他の方法と、より高度な技能を学び続けることができます。
+      その方法は、一つではありません。各タスクを実行するには、通常いくつの方法があります。
+      これが完了したら、他のヘルプトピックでカバーされる他の方法やより高度なスキルを学ぶことができます。
     </para>
 
-    <orderedlist>
-      <listitem>
-        <para>WinMergeのウィンドウを開いてください。ここに、あなたが使用できる、いくつかの方法があります:
-          <indexterm>
-            <primary>WinMerge window</primary>
-          </indexterm></para>
+    <section>
+      <title><indexterm><primary>WinMerge window</primary></indexterm>WinMerge ウインドウの起動</title>
 
-        <itemizedlist>
-          <listitem>
-            <para>デスクトップにあるWinMergeのショートカットをダブルクリックしてください。</para>
-          </listitem>
+      <para>いくつかの方法をご紹介します:</para>
 
-          <listitem>
-            <para>スタートメニューにあるWinMergeのランチャから操作してください。</para>
-          </listitem>
+      <itemizedlist>
+        <listitem>
+          <para>デスクトップにあるWinMergeのショートカットをダブルクリックします。</para>
+        </listitem>
 
-          <listitem>
-            <para>コマンドプロンプトで、WinMergeをインストールしたディレクトリへ移動し、
-              <command>WinMergeU</command>と入力してください。</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
+        <listitem>
+          <para>スタートメニューにあるWinMergeのランチャから操作します。</para>
+        </listitem>
 
-      <listitem>
-        <para>WinMergeのウィンドウ内で、あなたが操作したいファイル、または、フォルダを選択してください。例えば
-        </para>
+        <listitem>
+          <para>コマンドプロンプトで、WinMergeをインストールしたディレクトリへ移動し、
+            <command>WinMergeU</command>と入力します。</para>
+        </listitem>
 
-        <itemizedlist>
-          <listitem>
-            <para><menuchoice>
-                <guimenu>ファイル(F)</guimenu>
+        <listitem>
+          <para><keycombo><keycap>Windows</keycap><keycap>R</keycap></keycombo>キーを押下し、<command>winmerge</command>と入力します。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-                <guimenuitem>開く(O)</guimenuitem>
-              </menuchoice>をクリックしてください。</para>
-          </listitem>
+    <section>
+      <title><guilabel>ファイルまたはフォルダの選択</guilabel> ダイアログを開く</title>
 
-          <listitem>
-            <para>ツールバーの開くボタン<inlinemediaobject>
-                <imageobject>
-                  <imagedata contentwidth="16"
-                    fileref="screenshots/open_icon.png" />
-                </imageobject>
+      <para>WinMergeウィンドウにて以下の方法で、<guilabel>ファイルまたはフォルダの選択</guilabel> ダイアログを開きます:</para>
 
-                <textobject>
-                  <phrase>WinMerge open button</phrase>
-                </textobject>
-            </inlinemediaobject>をクリックしてください。</para>
-          </listitem>
+      <itemizedlist>
+        <listitem>
+          <para><menuchoice><guimenu>ファイル(F)</guimenu><guimenuitem>開く(O)</guimenuitem></menuchoice>をクリックします。</para>
+        </listitem>
 
-          <listitem>
-            <para><keycombo>
-                <keycap>Ctrl</keycap>
+        <listitem>
+          <para>ツールバーの開くボタン
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata contentwidth="16" fileref="screenshots/open_icon.png" />
+              </imageobject>
+              <textobject><phrase>WinMerge open button</phrase></textobject>
+            </inlinemediaobject>
+            をクリックします。
+          </para>
+        </listitem>
 
-                <keycap>O</keycap>
-              </keycombo>を押下してください。</para>
-          </listitem>
-        </itemizedlist>
+        <listitem>
+          <para><keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>を押下します。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-        <para><indexterm>
-            <primary>ファイルまたはフォルダの選択ダイアログ</primary>
+    <section>
+      <title><indexterm><primary>ファイルまたはフォルダの選択ダイアログ</primary></indexterm>
+        <guilabel>ファイルまたはフォルダの選択</guilabel> ダイアログ</title>
 
-            <secondary>さあ、はじめよう</secondary>
-          </indexterm>ファイルまたはフォルダ選択ダイアログを開く</para>
-
+      <para>
         <mediaobject>
           <imageobject>
             <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
           </imageobject>
-
           <textobject>
             <phrase>ファイルまたはフォルダ選択画面</phrase>
           </textobject>
         </mediaobject>
-      </listitem>
+      </para>
 
-      <listitem>
-        <para><guilabel>左(1)</guilabel>と<guilabel>右(2)</guilabel>
+      <section>
+        <title>ファイルとフォルダの指定</title>
+
+        <para><guilabel>1番目</guilabel>と<guilabel>2番目</guilabel>
           のフィールドに、次のいくつかの方法で、比較するファイルやフォルダを指定してください。
         </para>
 
@@ -124,8 +119,8 @@
                 </listitem>
               </itemizedlist>
 
-            <para><guibutton>開く</guibutton>ボタンをクリックして、開くダイアログを閉じ、
-              選択した項目を<guilabel>左(1)</guilabel>、または、<guilabel>右(2)</guilabel>フィールドに読み込んでください。
+              <para><guibutton>開く</guibutton>ボタンをクリックして、開くダイアログを閉じ、
+              選択した項目を<guilabel>1番目</guilabel>、または、<guilabel>2番目</guilabel>フィールドに読み込んでください。
               もし、フォルダを選択したなら、パスの最後にバックスラッシュ ( \ )を含んでいます。</para>
             </listitem>
 
@@ -142,24 +137,26 @@
             </listitem>
 
             <listitem>
-              <para>ファイル、フォルダをダイアログ、または、<guilabel>左(1)</guilabel>、
-              または、<guilabel>右(2)</guilabel>のフィールドへドラッグ・アンド・ドロップしてください。
-                </para>
+              <para>ファイル、フォルダをダイアログ、または、<guilabel>1番目</guilabel>、
+              または、<guilabel>2番目</guilabel>のフィールドへドラッグ・アンド・ドロップしてください。
+              </para>
             </listitem>
           </itemizedlist></para>
 
         <para><note>
             <para>あなたは、一組のファイル、または、フォルダを比較することができます。
               もし、ファイルとフォルダを選択するか、または、ファイルやフォルダが存在しない場合、
-              WinMergeは、ダイアログの<guibutton>OK</guibutton>ボタンを使用不可にします。
+              WinMergeは、ダイアログの<guibutton>比較</guibutton>ボタンを使用不可にします。
               </para>
 
             <para>ダイアログ下部のステータス・メッセージでも、
               もし、パスが不正な場合は、通知します。</para>
           </note></para>
-      </listitem>
+      </section>
 
-      <listitem>
+      <section>
+        <title>フォルダ比較範囲の制御</title>
+
         <para>もし、フォルダを比較しているなら、その操作からファイルを除外するために、
           <guilabel>フィルタ</guilabel>フィールドを使用することができます。
           そのフィールドには、選択されたパスの中にあるファイルの一部を指定します。
@@ -181,62 +178,20 @@
         <para>ファイル・マスクとファイル・フィルタについての、完全な詳細は、<xref linkend="Filters" />
           を参照してください。</para>
 
-        <!--
-        <variablelist>
-          <varlistentry>
-            <term>File masks</term>
-
-            <listitem>
-              <para>In this method, you specify the types of files to include in
-              the operation; all other files are excluded (filtered). With no
-              file mask or the default mask of <literal>*.*</literal>, all files
-              in the paths are included, so no filtering is performed. To add
-              filtering, enter one or more masks. Separate multiple masks with
-              spaces, commas, colons or semicolons.</para>
-
-              <para>For example, this expression filters all files from the
-              operation except C and C++ source files:</para>
-
-              <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
-
-              <para>File names cannot be filtered: they are represented in the
-              masks only by the <literal>*</literal> wildcard character. For
-              example, these expressions are not valid masks:</para>
-
-              <para><userinput>mybook.xml</userinput></para>
-
-              <para><userinput>yourbook.*</userinput></para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>File filtering</term>
-
-            <listitem>
-              <para>File filtering is more powerful than extension filtering.
-              Click the <guibutton>Select</guibutton> button next to the
-              <guilabel>Filters</guilabel> field to choose from a list of
-              available filters. </para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
--->
-      </listitem>
-
-      <listitem>
         <para><guilabel>サブフォルダを含む(I)</guilabel>チェックボックスは、
         フォルダ比較の範囲を制御する、もう一つの方法です。
         このオプションをチェックすると、WinMergeは、サブフォルダを再帰的に比較し、すべてのファイルとフォルダを一覧表示します。
         このオプションを無効にした場合は、カレントフォルダのみが比較されます。
         サブフォルダは名前で一覧表示(フォルダの中身は除く)され、フォルダの中を閲覧することができます。
         </para>
-      </listitem>
+      </section>
 
-      <listitem>
+      <section>
+        <title>展開プラグインの使用</title>
         <para>展開プラグイン(U)フィールドは、プラグインを使用した比較操作を可能にします。
         </para>
-      </listitem>
-    </orderedlist>
+      </section>
+    </section>
 
     <section>
       <title>ファイルとフォルダを開く他の方法<indexterm>
@@ -247,40 +202,13 @@
           <secondary>opening files and folders</secondary>
         </indexterm></title>
 
-      <para>「ファイルまたはフォルダの選択...」ダイアログは、ファイルやフォルダを開くための主要なインターフェースです。
+      <para><guilabel>ファイルまたはフォルダの選択</guilabel>ダイアログは、ファイルやフォルダを開くための主要なインターフェースです。
       しかし、他の多くの方法も使用することができます。</para>
 
       <itemizedlist>
         <listitem>
-          <para><xref linkend="OpenPaths_project" />は、よく使うパスを、もっとも簡単かつ高速に開く方法です。
-            これらの方法のうちのどれかで、プロジェクトファイルを開いてください。
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para>WinMergeのウィンドウの、<menuchoice>
-                  <guimenuitem>ファイル(F)</guimenuitem>
-
-                  <guimenuitem>プロジェクトを開く(J)</guimenuitem>
-                </menuchoice>とクリックしてください。</para>
-            </listitem>
-
-            <listitem>
-              <para>コマンドラインから。</para>
-            </listitem>
-
-            <listitem>
-            <para>「ファイルまたはフォルダの選択」ダイアログから、プロジェクトファイルを、
-              <guilabel>左(1)</guilabel>フィールドに指定してください。</para>
-
-              <note>
-                <para>プロジェクトファイルを
-                <guilabel>左(1)</guilabel>と<guilabel>右(2)</guilabel>フィールドの両方に指定した場合、
-                WinMergeは、どちらのプロジェクトファイルも開きません。(単に2つのXMLファイルの中身を比較します)
-                </para>
-              </note>
-            </listitem>
-          </itemizedlist>
+          <simpara><xref linkend="OpenPaths_project" />は、よく使うパスを、もっとも簡単かつ高速に開く方法です。
+          </simpara>
         </listitem>
 
         <listitem>
@@ -290,8 +218,7 @@
         <listitem>
           <simpara><xref linkend="Command_line" />インターフェイスを使用して、
             他のアプリケーション、コマンド・プロンプト、バッチ、または、スクリプトファイルから
-            WinMergeを起動してください。
-          </simpara>
+            WinMergeを起動してください。</simpara>
         </listitem>
 
         <listitem>

@@ -88,9 +88,9 @@ Believe it or not.</screen></para>
 
         <listitem>
           <para>In the Select Files and Folders dialog, specify
-          <filename>File1</filename> as the <guilabel>Left</guilabel> file and
-          <filename>File2</filename> as the <guilabel>Right</guilabel> file,
-          then click <guibutton>OK</guibutton>. The File Compare window displays
+          <filename>File1</filename> as the <guilabel>1st</guilabel> file and
+          <filename>File2</filename> as the <guilabel>2nd</guilabel> file,
+          then click <guibutton>Compare</guibutton>. The File Compare window displays
           the two files in the left and right File pane, like this:</para>
 
           <mediaobject>

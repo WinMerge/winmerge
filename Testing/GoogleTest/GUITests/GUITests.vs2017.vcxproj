@@ -267,6 +267,7 @@
     </ClCompile>
     <ClCompile Include="DirFrameTest.cpp" />
     <ClCompile Include="GUITestUtils.cpp" />
+    <ClCompile Include="InstallerTest.cpp" />
     <ClCompile Include="MainFrameTest.cpp" />
     <ClCompile Include="OptionsDialogTest.cpp" />
     <ClCompile Include="pch.cpp">

@@ -210,6 +210,7 @@ private:
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

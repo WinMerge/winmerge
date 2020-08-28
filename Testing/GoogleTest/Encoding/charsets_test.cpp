@@ -52,8 +52,8 @@ namespace
 
 	TEST_F(CharsetsTest, codepage_to_name)
 	{
-		EXPECT_STREQ("utf-8", GetEncodingNameFromId(GetEncodingIdFromCodePage(65001)));
-		EXPECT_STREQ("utf-8", GetEncodingNameFromCodePage(65001));
+		EXPECT_STREQ("UTF-8", GetEncodingNameFromId(GetEncodingIdFromCodePage(65001)));
+		EXPECT_STREQ("UTF-8", GetEncodingNameFromCodePage(65001));
 		EXPECT_EQ(0, GetEncodingNameFromId(GetEncodingIdFromCodePage(99999)));
 		EXPECT_EQ(NULL, GetEncodingNameFromCodePage(99999));
 	}

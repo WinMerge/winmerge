@@ -134,7 +134,13 @@
         <row>
           <entry><keycap>F4</keycap></entry>
 
-          <entry>Show line difference</entry>
+          <entry>Show next line difference</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F4</keycap></entry>
+
+          <entry>Show previous line difference</entry>
         </row>
 
         <row>
@@ -241,8 +247,8 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Alt</keycap>
               <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
 
               <keycap>E</keycap>
             </keycombo></entry>
@@ -252,8 +258,8 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Alt</keycap>
               <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
 
               <keycap>M</keycap>
             </keycombo></entry>
@@ -263,8 +269,8 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Shift</keycap>
               <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
 
               <keycap>M</keycap>
             </keycombo></entry>

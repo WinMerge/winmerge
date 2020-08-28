@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-04-30 20:47+0000\n"
-"PO-Revision-Date: 2020-05-04 08:35+0300\n"
+"POT-Creation-Date: 2020-08-20 06:48+0000\n"
+"PO-Revision-Date: 2020-08-24 07:30+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -370,8 +370,8 @@ msgstr "Naud&oti numatytąjį šriftą"
 msgid "Sw&ap Panes"
 msgstr "Sukeisti pol&angius"
 
-msgid "Compa&re Statistics"
-msgstr "Ly&ginimo statistika"
+msgid "Com&pare Statistics..."
+msgstr "Ly&ginimo statistika..."
 
 msgid "Refre&sh\tF5"
 msgstr "Atnaujin&ti\tF5"
@@ -457,7 +457,7 @@ msgstr "Spaudinio peržiūr&a..."
 msgid "&Convert Line Endings to"
 msgstr "Keisti eilučių pabaigos formatą į"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Sulieji&mo režimas\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -466,14 +466,14 @@ msgstr "&Atnaujinti\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "&Failo koduotė..."
 
-msgid "Recompare As"
-msgstr "Palyginti iš naujo kaip"
+msgid "Reco&mpare As"
+msgstr "Paly&ginti iš naujo kaip"
 
 msgid "&Text"
 msgstr "&Tekstas"
 
-msgid "&Table"
-msgstr ""
+msgid "T&able"
+msgstr "&Lentelė"
 
 msgid "&XML"
 msgstr "&XML"
@@ -815,9 +815,6 @@ msgstr "Viską į... (%1 iš %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Skirtumus į... (%1 iš %2)"
-
-msgid "&Refresh"
-msgstr "&Atnaujinti"
 
 msgid "Left Shell menu"
 msgstr "Kairysis sistemos meniu"
@@ -1299,7 +1296,7 @@ msgstr "&Pereiti į"
 msgid "Compare"
 msgstr "Lyginimo"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Tarpai"
 
 msgid "&Compare"
@@ -1455,9 +1452,6 @@ msgstr "Pasirinkt. koduotė:"
 msgid "Options"
 msgstr "Nuostatos"
 
-msgid " Categories"
-msgstr " Kategorijos"
-
 msgid "Import..."
 msgstr "Importuoti..."
 
@@ -1496,9 +1490,6 @@ msgstr "Naudotojas 2:"
 
 msgid "Bold"
 msgstr "Pastorintas"
-
-msgid "Marker colors"
-msgstr "Žymeklio spalvos"
 
 msgid "Search Marker:"
 msgstr "Paieškos žymeklis:"
@@ -1617,8 +1608,8 @@ msgstr "&Atsisakyti"
 msgid "Test Filter"
 msgstr "Testuoti filtrą"
 
-msgid "Testing filter..."
-msgstr "Testuojamas filtras..."
+msgid "Testing filter:"
+msgstr "Testuojamas filtras:"
 
 msgid "&Enter text to test:"
 msgstr "Įv&eskite tekstą patikrinimui:"
@@ -1636,34 +1627,31 @@ msgid "&Close"
 msgstr "&Užverti"
 
 msgid "Table"
-msgstr ""
+msgstr "Lentelių"
 
 msgid "File type"
-msgstr ""
+msgstr "Failo tipas"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Pasirinkt. &skirtukais atskirtos reikšmės"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "S&kirtuko simbolis:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Leisti n&aujas eilutes kabutėse"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "&Kabučių simbolis:"
 
 msgid "&Use customized text colors"
-msgstr "Na&udoti pasirinktines teksto spalvas"
-
-msgid "Custom text colors"
-msgstr "Pasirinktinės teksto spalvos"
+msgstr "Na&udoti pasirinkt. teksto spalvas"
 
 msgid "Whitespace:"
 msgstr "Tarpas:"
@@ -1784,16 +1772,16 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "&CSV failų šablonai:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "&TSV failų šablonai:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Pasirinkt. skirtukais atskirtos reikšmės"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -1956,6 +1944,12 @@ msgstr "Iš dešinės:"
 
 msgid "To right:"
 msgstr "Į dešinę:"
+
+msgid "From middle:"
+msgstr "Iš vidurio:"
+
+msgid "To middle:"
+msgstr "Į vidurį:"
 
 #, c-format
 msgid "Version %1"
@@ -2851,6 +2845,9 @@ msgstr "Nėra"
 msgid "Marker Color %d"
 msgstr "Žymeklio spalva %d"
 
+msgid "New Pattern"
+msgstr "Naujas šablonas"
+
 msgid "Type"
 msgstr "Tipas"
 
@@ -2962,7 +2959,7 @@ msgstr "Išjungta"
 msgid "From file system"
 msgstr "Iš sistemos"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Iš dažniausiai naudojamų sąrašo"
 
 msgid "No Highlighting"
@@ -3119,8 +3116,8 @@ msgid "Page:"
 msgstr "Psl.:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Tšk.:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Tšk.:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "

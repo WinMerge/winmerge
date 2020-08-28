@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -470,8 +470,8 @@ msgid "Sw&ap Panes"
 msgstr "Interschimbă p&anourile"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Statistici de compa&rare"
+msgid "Com&pare Statistics..."
+msgstr "Statistici de compa&rare..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -584,7 +584,7 @@ msgid "&Convert Line Endings to"
 msgstr "Converteşte sfârşiturile de linie la"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Modul fuziune\tF9"
 
 #, c-format
@@ -596,14 +596,14 @@ msgid "&File Encoding..."
 msgstr "Codar&e caractere fişiere..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1033,10 +1033,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Reîmprospătează"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1671,7 +1667,7 @@ msgid "Compare"
 msgstr "Comparare"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Blanc"
 
 #, c-format
@@ -1875,10 +1871,6 @@ msgid "Options"
 msgstr "Opţiuni"
 
 #, c-format
-msgid " Categories"
-msgstr "Categorii"
-
-#, c-format
 msgid "Import..."
 msgstr "Importă..."
 
@@ -1929,10 +1921,6 @@ msgstr "Utilizator 2:"
 #, c-format
 msgid "Bold"
 msgstr "Aldine"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2090,8 +2078,8 @@ msgstr "&Renunţă"
 msgid "Test Filter"
 msgstr "Testează filtru"
 
-msgid "Testing filter..."
-msgstr "Testare filtru..."
+msgid "Testing filter:"
+msgstr "Testare filtru:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2140,10 +2128,6 @@ msgstr ""
 #, fuzzy, c-format
 msgid "&Use customized text colors"
 msgstr "Foloseşte c&ulori ale textului personalizate"
-
-#, fuzzy, c-format
-msgid "Custom text colors"
-msgstr "Culori ale textului personalizate"
 
 #, c-format
 msgid "Whitespace:"
@@ -2540,6 +2524,12 @@ msgstr "De la dreapta:"
 #, c-format
 msgid "To right:"
 msgstr "Către dreapta:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3802,6 +3792,9 @@ msgstr "Nici unul"
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr ""
@@ -3947,7 +3940,7 @@ msgid "From file system"
 msgstr "Din sistemul de fişiere"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Din lista de recent utilizate"
 
 #, c-format
@@ -4117,7 +4110,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

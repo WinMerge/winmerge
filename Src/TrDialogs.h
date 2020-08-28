@@ -5,8 +5,14 @@
 #undef GetDlgItemText
 #undef SetDlgItemText
 
+class StaticDlgUtils
+{
+protected:
+	static void WildcardRemoveDuplicatePatterns(String& patterns);
+};
+
 template<class T>
-class DlgUtils
+class DlgUtils : public StaticDlgUtils
 {
 	T *dlg() { return static_cast<T *>(this); }
 

@@ -658,10 +658,17 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 		// left/right filters
 		if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
 			return false;
-		if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
-			return false;
-		if (ctxt.GetCompareDirs() > 2)
+		if (ctxt.GetCompareDirs() < 3)
 		{
+			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+				return false;
+		}
+		else
+		{
+			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_middle)
+				return false;
+			if (di.diffcode.isSideThirdOnly() && !filter.show_unique_right)
+				return false;
 			if (di.diffcode.isMissingFirstOnly() && !filter.show_missing_left_only)
 				return false;
 			if (di.diffcode.isMissingSecondOnly() && !filter.show_missing_middle_only)

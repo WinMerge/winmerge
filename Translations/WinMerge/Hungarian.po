@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -470,8 +470,8 @@ msgid "Sw&ap Panes"
 msgstr "Panelek megcserélése"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "Összehasonlítási statisztika"
+msgid "Com&pare Statistics..."
+msgstr "Összehasonlítási statisztika..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -584,7 +584,7 @@ msgid "&Convert Line Endings to"
 msgstr "Sorvégek átalakítása"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "&Olvasztási mód\tF9"
 
 #, c-format
@@ -596,14 +596,14 @@ msgid "&File Encoding..."
 msgstr "&Fájl kódolás..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
 msgid "&Text"
 msgstr ""
 
-msgid "&Table"
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -1033,10 +1033,6 @@ msgstr ""
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr ""
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Frissítés"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1671,7 +1667,7 @@ msgid "Compare"
 msgstr "Összehasonlítás"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Szóközök"
 
 #, c-format
@@ -1875,10 +1871,6 @@ msgid "Options"
 msgstr "Opciók"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategóriák"
-
-#, c-format
 msgid "Import..."
 msgstr "Importálás..."
 
@@ -1929,10 +1921,6 @@ msgstr "Felhasználó 2:"
 #, c-format
 msgid "Bold"
 msgstr "Félkövér"
-
-#, c-format
-msgid "Marker colors"
-msgstr ""
 
 #, c-format
 msgid "Search Marker:"
@@ -2090,7 +2078,7 @@ msgstr "&Mégsem"
 msgid "Test Filter"
 msgstr ""
 
-msgid "Testing filter..."
+msgid "Testing filter:"
 msgstr ""
 
 #, c-format
@@ -2140,10 +2128,6 @@ msgstr ""
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Egyéni szövegszínek használata"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Egyéni szövegszínek"
 
 #, c-format
 msgid "Whitespace:"
@@ -2510,6 +2494,12 @@ msgstr "Jobbról:"
 #, c-format
 msgid "To right:"
 msgstr "Jobbra:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -3728,6 +3718,9 @@ msgstr ""
 msgid "Marker Color %d"
 msgstr ""
 
+msgid "New Pattern"
+msgstr ""
+
 #, c-format
 msgid "Type"
 msgstr ""
@@ -3873,7 +3866,7 @@ msgid "From file system"
 msgstr ""
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr ""
 
 #, c-format
@@ -4043,7 +4036,7 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

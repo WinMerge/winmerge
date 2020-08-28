@@ -244,7 +244,7 @@ WinMerge includes code from:
 * Andrei Stcherbatchenko (CrystalEditor)
 
 *** NOTE ***
-If your name is missing please email us at:
-winmerge-support@lists.sourceforge.net
+If your name is missing please let us know (or create a pull request).
+https://github.com/WinMerge/winmerge
 
 Thanks!

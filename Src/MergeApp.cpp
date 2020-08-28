@@ -190,7 +190,4 @@ AboutInfo::AboutInfo()
 	copyright += _T(" - All rights reserved.");
 
 	website = WinMergeURL;
-
-	developers = _("Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner");
-	strutils::replace(developers, _T(", "), _T("\n"));
 }

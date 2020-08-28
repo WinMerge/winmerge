@@ -636,6 +636,7 @@ BEGIN
     IDS_EOL_CRLF            "CRLF"
     IDS_EOL_NONE            "None"
     IDS_MARKER_COLOR_FMT    "Marker Color %d"
+    IDS_MARKER_NEW_PATTERN  "New Pattern"
 END
 
 #endif    // English (United States) resources
