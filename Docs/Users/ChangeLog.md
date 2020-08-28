@@ -19,6 +19,8 @@
 ### Folder compare
   - BugFix: Appropriate error messages were not displayed when the file to be
       deleted no longer existed
+  - BugFix: 'Show Middle/Right Unique items' menu item does not work properly
+      in 3-way folder compare (osdn.net #40672)
   - CTRL+Drag folders now has the opposite behavior of the current
       Include Subfolders option
 
