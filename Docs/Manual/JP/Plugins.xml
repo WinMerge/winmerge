@@ -466,6 +466,49 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles.sct<indexterm>
+          <primary>CompareMSVisioFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>Visio</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+            class="extension">*.vsdx</filename>, <filename
+            class="extension">*.vsdm</filename>, <filename
+            class="extension">*.vss</filename>, <filename
+            class="extension">*.vssx</filename>, <filename
+            class="extension">*.vssm</filename>, <filename
+            class="extension">*.vst</filename>, <filename
+            class="extension">*.vstx</filename>, <filename
+            class="extension">*.vstm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="EditorAddin">
       <title><filename>editor addin.sct<indexterm>
           <primary>editor addin.sct plugin file</primary>
