@@ -26,6 +26,8 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - BugFix: A white vertical rectangle was sometimes drawn in the selected area
   - BugFix: The title of the file comparison window after changing the language
       was accidentally changed to "Untitled left/right"
+  - BugFix: Wrong merging (GitHub #420)
+      (minimal/patience/histogram diff algorithm did not work on Windows XP)
   - Extended F4 key movement range to the whole file
   - Don't treat UTF-8 and UTF-8 with BOM the same when the 
       "Ignore codepage differences" option is disabled
