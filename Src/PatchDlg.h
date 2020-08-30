@@ -85,6 +85,10 @@ protected:
 	afx_msg void OnSelchangeDiffStyle();
 	afx_msg void OnDiffSwapFiles();
 	afx_msg void OnDefaultSettings();
+	afx_msg void OnSelchangeFile1();
+	afx_msg void OnSelchangeFile2();
+	afx_msg void OnEditchangeFile1();
+	afx_msg void OnEditchangeFile2();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

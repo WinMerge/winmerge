@@ -78,6 +78,10 @@ BEGIN_MESSAGE_MAP(CPatchDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_DIFF_DEFAULTS, OnDefaultSettings)
 	ON_CBN_SELCHANGE(IDC_DIFF_STYLE, OnSelchangeDiffStyle)
 	ON_BN_CLICKED(IDC_DIFF_SWAPFILES, OnDiffSwapFiles)
+	ON_CBN_SELCHANGE(IDC_DIFF_FILE1, OnSelchangeFile1)
+	ON_CBN_SELCHANGE(IDC_DIFF_FILE2, OnSelchangeFile2)
+	ON_CBN_EDITCHANGE(IDC_DIFF_FILE1, OnEditchangeFile1)
+	ON_CBN_EDITCHANGE(IDC_DIFF_FILE2, OnEditchangeFile2)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -262,7 +266,14 @@ void CPatchDlg::OnDiffBrowseFile1()
 
 	folder = m_file1;
 	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
+	{
 		m_ctlFile1.SetWindowText(s.c_str());
+		if (m_fileList.size() > 1)
+		{
+			m_ctlFile2.SetWindowText(_T(""));
+			ClearItems();
+		}
+	}
 }
 
 /** 
@@ -275,7 +286,14 @@ void CPatchDlg::OnDiffBrowseFile2()
 
 	folder = m_file2;
 	if (SelectFileOrFolder(GetSafeHwnd(), s, folder.c_str()))
+	{
 		m_ctlFile2.SetWindowText(s.c_str());
+		if (m_fileList.size() > 1)
+		{
+			m_ctlFile1.SetWindowText(_T(""));
+			ClearItems();
+		}
+	}
 }
 
 /** 
@@ -428,6 +446,43 @@ void CPatchDlg::OnDefaultSettings()
 
 	UpdateSettings();
 }
+
+void CPatchDlg::OnSelchangeFile1()
+{
+	if (m_fileList.size() > 1)
+	{
+		m_ctlFile2.SetWindowText(_T(""));
+		ClearItems();
+	}
+}
+
+void CPatchDlg::OnSelchangeFile2()
+{
+	if (m_fileList.size() > 1)
+	{
+		m_ctlFile1.SetWindowText(_T(""));
+		ClearItems();
+	}
+}
+
+void CPatchDlg::OnEditchangeFile1()
+{
+	if (m_fileList.size() > 1)
+	{
+		m_ctlFile2.SetWindowText(_T(""));
+		ClearItems();
+	}
+}
+
+void CPatchDlg::OnEditchangeFile2()
+{
+	if (m_fileList.size() > 1)
+	{
+		m_ctlFile1.SetWindowText(_T(""));
+		ClearItems();
+	}
+}
+
 
 /**
  * @brief Swap sides.
