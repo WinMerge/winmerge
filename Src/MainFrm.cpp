@@ -222,6 +222,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
+	ON_MESSAGE(0x02E0/*WM_DPICHANGED*/, OnDpiChanged)
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -2572,6 +2573,13 @@ void CMainFrame::OnAccelQuit()
 	// TODO: Add your command handler code here
 
 	SendMessage(WM_CLOSE);
+}
+
+LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	int dpi = HIWORD(wParam);
+	RECT* const prcNewWindow = (RECT*)lParam;
+	return 0;
 }
 
 LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)

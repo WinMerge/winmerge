@@ -6,6 +6,10 @@ IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
+BEGIN_MESSAGE_MAP(CTrDialog, CDialog)
+	ON_MESSAGE(0x02E0/*WM_DPICHANGED*/, OnDpiChanged)
+END_MESSAGE_MAP()
+
 void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
 {
 	size_t i = 0, j = 0, k = 0;
@@ -31,6 +35,13 @@ BOOL CTrDialog::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	return TRUE;
+}
+
+LRESULT CTrDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	int dpi = HIWORD(wParam);
+	RECT* const prcNewWindow = (RECT*)lParam;
+	return 0;
 }
 
 BOOL CTrPropertyPage::OnInitDialog()

@@ -50,6 +50,9 @@ public:
 	explicit CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = nullptr) : CDialog(lpszTemplateName, pParentWnd) {}
 
 	virtual BOOL OnInitDialog();
+
+	DECLARE_MESSAGE_MAP()
+	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 };
 
 class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>

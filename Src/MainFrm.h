@@ -293,6 +293,7 @@ protected:
     afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
+	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
