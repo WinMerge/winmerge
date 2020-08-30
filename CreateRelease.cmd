@@ -36,7 +36,7 @@ for /d %%d in (Build\Release\?.*.*) do (
   mkdir ..\..\Build\Releases\PDB\%%~nxd\Win32 2> NUL
   xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\Win32\
 )
-for /d %%d in (Build\Release\?.*.*) do (
+for /d %%d in (Build\x64\Release\?.*.*) do (
   mkdir ..\..\Build\Releases\PDB\%%~nxd\x64 2> NUL
   xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\x64\
 )
