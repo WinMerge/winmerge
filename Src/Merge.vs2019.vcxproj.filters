@@ -1757,4 +1757,7 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="WinMergeU.manifest" />
+  </ItemGroup>
 </Project>

@@ -2578,7 +2578,10 @@ void CMainFrame::OnAccelQuit()
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	int dpi = HIWORD(wParam);
-	RECT* const prcNewWindow = (RECT*)lParam;
+	RECT* const prcNew = (RECT*)lParam;
+	SetWindowPos(nullptr, 
+		prcNew->left, prcNew->top, prcNew->right - prcNew->left, prcNew->bottom - prcNew->top,
+		SWP_NOZORDER | SWP_NOACTIVATE);
 	return 0;
 }
 
