@@ -673,6 +673,17 @@ bool CDiffWrapper::RunFileDiff()
 		}
 	}
 
+	if (m_options.m_filterCommentsLines)
+	{
+		for (file = 0; file < aFiles.GetSize(); file++)
+		{
+			if (!FileTransform::DoFilterComments(strFileTemp[file], strFileTemp[file], m_bPathsAreTemp))
+			{
+
+			}
+		}
+	}
+
 	struct change *script = nullptr;
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
