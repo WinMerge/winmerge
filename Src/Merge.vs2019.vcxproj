@@ -1146,6 +1146,7 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="DpiUtil.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />

@@ -25,6 +25,7 @@
 
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
+#include "DpiUtil.h"
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 
 #pragma comment(lib, "uxtheme.lib")
@@ -569,8 +570,8 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		bitmap = &m_AllImages;
 	}
 	
-	int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
-	int cySMIcon = GetSystemMetrics(SM_CYSMICON);
+	int cxSMIcon = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CXSMICON);
+	int cySMIcon = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CYSMICON);
 
 	if(nIconNormal != -1 && bitmap != nullptr){
 		CImage bitmapstandard;
@@ -744,10 +745,20 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	}
 	else{
 		CFont fontMenu;
-		NONCLIENTMETRICS nm = { sizeof NONCLIENTMETRICS };
-		VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
-			nm.cbSize,&nm,0)); 
-		fontMenu.CreateFontIndirect (&nm.lfMenuFont);
+		if (DpiUtil::SystemParametersInfoForDpi)
+		{
+			DpiUtil::NONCLIENTMETRICS6 nm = { sizeof DpiUtil::NONCLIENTMETRICS6 };
+			VERIFY(DpiUtil::SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS,
+				nm.cbSize, &nm, 0, DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd)));
+			fontMenu.CreateFontIndirect (&nm.lfMenuFont);
+		}
+		else
+		{
+			NONCLIENTMETRICS nm = { sizeof NONCLIENTMETRICS };
+			VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
+				nm.cbSize,&nm,0)); 
+			fontMenu.CreateFontIndirect (&nm.lfMenuFont);
+		}
 		
 		// Obtain the width of the text:
 		CClientDC dc(AfxGetMainWnd() ? AfxGetMainWnd() : CWnd::GetDesktopWindow());     // Get device context
@@ -773,7 +784,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
 		else
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
-		int temp = GetSystemMetrics(SM_CYMENU);
+		int temp = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CYMENU);
 		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
 	}
 }

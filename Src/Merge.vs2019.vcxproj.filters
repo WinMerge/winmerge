@@ -1647,6 +1647,9 @@
     <ClInclude Include="WildcardDropList.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DpiUtil.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
