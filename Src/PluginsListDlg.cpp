@@ -11,6 +11,7 @@
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "DpiUtil.h"
 #include "Merge.h"
 
 /** @brief Location for plugins specific help to open. */
@@ -79,8 +80,7 @@ void PluginsListDlg::InitList()
 	// Also enable infotips.
 	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
 
 	String title = _("Name");
 	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));

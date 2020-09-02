@@ -8,6 +8,7 @@
 #include "MergeFrameCommon.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "DpiUtil.h"
 #include "Merge.h"
 #include <../src/mfc/afximpl.h>
 
@@ -97,6 +98,11 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	}
 
 	theApp.SetLastCompareResult(nResult);
+}
+
+int CMergeFrameCommon::GetDpi()
+{
+	return DpiUtil::GetDpiForCWnd(this);
 }
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

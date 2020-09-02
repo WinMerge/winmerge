@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DDXHelper.h"
+#include "DpiUtil.h"
 
 #undef GetDlgItemText
 #undef SetDlgItemText
@@ -38,6 +39,11 @@ public:
 	void SetDlgItemText(unsigned id, const String& text)
 	{
 		return dlg()->SetDlgItemTextW(id, text.c_str());
+	}
+
+	int GetDpi()
+	{
+		return DpiUtil::GetDpiForCWnd(dlg());
 	}
 };
 

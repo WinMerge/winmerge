@@ -73,8 +73,8 @@ CHexMergeFrame::~CHexMergeFrame()
  */
 void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
 {
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
+
 	wndStatusBar.Create(pwndPane, WS_CHILD|WS_VISIBLE);
 	wndStatusBar.SetIndicators(0, 3);
 	wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH, 0);

@@ -56,8 +56,7 @@ END_MESSAGE_MAP()
  */
 void CDirColsDlg::InitList()
 {
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
 
 	// Show selection across entire row.
 	// Also enable infotips.

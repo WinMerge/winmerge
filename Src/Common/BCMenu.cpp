@@ -170,23 +170,7 @@ BCMenu::BCMenu()
 	m_bitmapBackgroundFlag=false;
 	m_loadmenu=false;
 	if (m_hTheme==nullptr && IsThemeActive())
-	{
-		m_hTheme = OpenThemeData(nullptr, _T("MENU"));
-		if (m_hTheme != nullptr)
-		{
-			MARGINS marginCheckBg, marginArrow;	
-			GetThemePartSize(m_hTheme, nullptr, MENU_POPUPCHECK, 0, nullptr, TS_TRUE, &m_sizeCheck);
-			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECK, 0, TMT_CONTENTMARGINS, nullptr, &m_marginCheck);
-			GetThemePartSize(m_hTheme, nullptr, MENU_POPUPSEPARATOR, 0, nullptr, TS_TRUE, &m_sizeSeparator); 
-			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSEPARATOR, 0, TMT_SIZINGMARGINS, nullptr, &m_marginSeparator);
-			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
-			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
-			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
-			m_checkBgWidth = m_marginCheck.cxLeftWidth + m_sizeCheck.cx + m_marginCheck.cxRightWidth;
-			m_gutterWidth = marginCheckBg.cxLeftWidth + m_checkBgWidth + marginCheckBg.cxRightWidth;
-			m_arrowWidth = marginArrow.cxRightWidth;
-		}
-	}
+		ReopenTheme(DpiUtil::GetDpiForCWnd(AfxGetMainWnd()));
 }
 
 
@@ -217,6 +201,32 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
     }
 	else
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs
+}
+
+bool BCMenu::ReopenTheme(int dpi)
+{
+	if (!IsThemeActive())
+		return false;
+	if (m_hTheme != nullptr)
+		CloseThemeData(m_hTheme);
+	if (DpiUtil::OpenThemeDataForDpi)
+		m_hTheme = DpiUtil::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
+	else
+		m_hTheme = OpenThemeData(nullptr, _T("MENU"));
+	if (m_hTheme == nullptr)
+		return false;
+	MARGINS marginCheckBg, marginArrow;	
+	GetThemePartSize(m_hTheme, nullptr, MENU_POPUPCHECK, 0, nullptr, TS_TRUE, &m_sizeCheck);
+	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECK, 0, TMT_CONTENTMARGINS, nullptr, &m_marginCheck);
+	GetThemePartSize(m_hTheme, nullptr, MENU_POPUPSEPARATOR, 0, nullptr, TS_TRUE, &m_sizeSeparator); 
+	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSEPARATOR, 0, TMT_SIZINGMARGINS, nullptr, &m_marginSeparator);
+	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
+	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
+	GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+	m_checkBgWidth = m_marginCheck.cxLeftWidth + m_sizeCheck.cx + m_marginCheck.cxRightWidth;
+	m_gutterWidth = marginCheckBg.cxLeftWidth + m_checkBgWidth + marginCheckBg.cxRightWidth;
+	m_arrowWidth = marginArrow.cxRightWidth;
+	return true;
 }
 
 bool BCMenu::IsMenu(CMenu *submenu)

@@ -24,12 +24,14 @@ private:
 	bool  m_bAutoMaxWidth;
 	int   m_nDraggingTabItemIndex;
 	CFont m_font;
+	int m_cxSMIcon;
 
 public:
-	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
+	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1), m_cxSMIcon(0) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
+	void UpdateFont(int dpi);
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_bAutoMaxWidth = bAutoMaxWidth; }
 
@@ -71,6 +73,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
+	int determineIconSize() const;
 	CRect GetCloseButtonRect(int nItem) const;
 	int GetItemIndexFromPoint(CPoint pt) const;
 	void SwapTabs(int nIndexA, int nIndexB);

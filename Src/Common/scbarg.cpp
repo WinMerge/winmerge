@@ -30,6 +30,7 @@
 //
 
 #include "StdAfx.h"
+#include "DpiUtil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,8 +86,7 @@ void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     bool bHorz = (nDockBarID == AFX_IDW_DOCKBAR_TOP) ||
                  (nDockBarID == AFX_IDW_DOCKBAR_BOTTOM);
 
-    const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    auto pointToPixel = [dpi = DpiUtil::GetDpiForCWnd(this)](double point) { return static_cast<int>(point * dpi / 72); };
 
     if (bHorz)
         rc.DeflateRect(pointToPixel(m_dblGripper), 0, 0, 0);

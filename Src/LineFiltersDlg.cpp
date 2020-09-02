@@ -87,8 +87,7 @@ void LineFiltersDlg::InitList()
 	// Also enable infotips.
 	m_filtersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
 
 	String title = _("Regular expression");
 	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(375));

@@ -59,8 +59,8 @@
 #include "VersionInfo.h"
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
-
 #include "WindowsManagerDialog.h"
+#include "DpiUtil.h"
 
 using std::vector;
 using boost::begin;
@@ -337,8 +337,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
 			static_cast<int>(std::size(StatusbarIndicators)));
 
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [dpi = DpiUtil::GetDpiForCWnd(this)](int point) { return MulDiv(point, dpi, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, pointToPixel(225));
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
@@ -2579,6 +2578,11 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	int dpi = HIWORD(wParam);
 	RECT* const prcNew = (RECT*)lParam;
+
+	BCMenu::ReopenTheme(dpi);
+
+	m_wndTabBar.UpdateFont(dpi);
+
 	SetWindowPos(nullptr, 
 		prcNew->left, prcNew->top, prcNew->right - prcNew->left, prcNew->bottom - prcNew->top,
 		SWP_NOZORDER | SWP_NOACTIVATE);

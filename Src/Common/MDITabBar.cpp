@@ -6,6 +6,7 @@
 
 #include "StdAfx.h"
 #include "MDITabBar.h"
+#include "DpiUtil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,11 +32,6 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-static int determineIconSize()
-{
-	return GetSystemMetrics(SM_CXSMICON);
-}
-
 /** 
  * @brief Create tab bar.
  * @param pParentWnd [in] main frame window pointer
@@ -48,12 +44,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	if (!CWnd::Create(WC_TABCONTROL, nullptr, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
-	TabCtrl_SetPadding(m_hWnd, determineIconSize(), 4);
-
-	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
-	m_font.CreateFontIndirect(&ncm.lfMenuFont);
-	SetFont(&m_font);
+	UpdateFont(DpiUtil::GetDpiForCWnd(this));
 
 	return TRUE;
 }
@@ -292,6 +283,22 @@ void CMDITabBar::UpdateTabs()
 	}
 }
 
+void CMDITabBar::UpdateFont(int dpi)
+{
+	if (DpiUtil::GetSystemMetricsForDpi)
+		m_cxSMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CXSMICON, dpi);
+	else
+		m_cxSMIcon = GetSystemMetrics(SM_CXSMICON);
+
+	TabCtrl_SetPadding(m_hWnd, m_cxSMIcon, 4);
+
+	LOGFONT lfMenuFont;
+	DpiUtil::GetMenuLogFont(dpi, lfMenuFont);
+	m_font.DeleteObject();
+	m_font.CreateFontIndirect(&lfMenuFont);
+	SetFont(&m_font);
+}
+
 /**
  * @brief Called when middle mouse button is pressed.
  * This function closes the tab when the middle mouse button is pressed.
@@ -342,7 +349,7 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		rc.top += 3;
 		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
 	}
-	CSize iconsize(determineIconSize(), determineIconSize());
+	CSize iconsize(m_cxSMIcon, m_cxSMIcon);
 	rc.left += iconsize.cx;
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
 	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
@@ -450,7 +457,7 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 CRect CMDITabBar::GetCloseButtonRect(int nItem) const
 {
 	CRect rc;
-	CSize size(determineIconSize(), determineIconSize());
+	CSize size(m_cxSMIcon, m_cxSMIcon);
 	GetItemRect(nItem, &rc);
 	rc.left = rc.right - size.cx - 4;
 	rc.right = rc.left + size.cx;

@@ -28,6 +28,7 @@
 
 #include "StdAfx.h"
 #include "scbarcf.h"
+#include "DpiUtil.h"
 
 /////////////////////////////////////////////////////////////////////////
 // CSizingControlBarCF
@@ -94,8 +95,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
     // compute the caption rectangle
     bool bHorz = IsHorzDocked();
     CRect rcGrip = rcClient;
-    const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
-    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    auto pointToPixel = [dpi = DpiUtil::GetDpiForCWnd(this)](double point) { return static_cast<int>(point * dpi / 72); };
     CRect rcBtn(m_biHide.ptOrg, CSize(pointToPixel(m_biHide.dblBoxSize), pointToPixel(m_biHide.dblBoxSize)));
     if (bHorz)
     {   // right side gripper
