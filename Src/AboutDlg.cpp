@@ -61,6 +61,8 @@ public:
 	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 
 private:
+	virtual void UpdateDpi(int dpi) override;
+
 	CAboutDlg *const m_p;
 	ATL::CImage m_image;
 	CFont m_font;
@@ -80,12 +82,6 @@ CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CAboutDlg::Impl::IDD)
 	, m_p(p)
 {
-	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
-	LOGFONT lf = { 0 };
-	lf.lfHeight = 14 * 10;
-	lf.lfWeight = FW_BOLD;
-	_tcscpy_s(lf.lfFaceName, _T("Courier New"));
-	m_font_gnu_ascii.CreatePointFontIndirect(&lf);
 }
 
 void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
@@ -109,6 +105,8 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 	}
 
+	UpdateDpi(GetDpi());
+	
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 	GetDlgItem(IDC_GNU_ASCII)->SetFont(&m_font_gnu_ascii);
 	::SetDlgItemTextA(m_hWnd, IDC_GNU_ASCII, gnu_ascii);
@@ -166,6 +164,27 @@ void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	PNMLINK pNMLink = (PNMLINK)pNMHDR;
 	ShellExecute(nullptr, _T("open"), pNMLink->item.szUrl, nullptr, nullptr, SW_SHOWNORMAL);
+}
+
+void CAboutDlg::Impl::UpdateDpi(int dpi)
+{
+	m_dpi = dpi;
+
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
+
+	LOGFONT lfv = { 0 };
+	lfv.lfHeight = -pointToPixel(10);
+	lfv.lfWeight = FW_NORMAL;
+	_tcscpy_s(lfv.lfFaceName, _T("Tahoma"));
+	m_font.DeleteObject();
+	m_font.CreateFontIndirect(&lfv);
+
+	LOGFONT lf = { 0 };
+	lf.lfHeight = -pointToPixel(14);
+	lf.lfWeight = FW_BOLD;
+	_tcscpy_s(lf.lfFaceName, _T("Courier New"));
+	m_font_gnu_ascii.DeleteObject();
+	m_font_gnu_ascii.CreateFontIndirect(&lf);
 }
 
 CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}

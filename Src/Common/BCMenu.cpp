@@ -170,7 +170,7 @@ BCMenu::BCMenu()
 	m_bitmapBackgroundFlag=false;
 	m_loadmenu=false;
 	if (m_hTheme==nullptr && IsThemeActive())
-		ReopenTheme(DpiUtil::GetDpiForCWnd(AfxGetMainWnd()));
+		ReopenTheme(DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd));
 }
 
 
@@ -209,10 +209,7 @@ bool BCMenu::ReopenTheme(int dpi)
 		return false;
 	if (m_hTheme != nullptr)
 		CloseThemeData(m_hTheme);
-	if (DpiUtil::OpenThemeDataForDpi)
-		m_hTheme = DpiUtil::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
-	else
-		m_hTheme = OpenThemeData(nullptr, _T("MENU"));
+	m_hTheme = DpiUtil::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
 	if (m_hTheme == nullptr)
 		return false;
 	MARGINS marginCheckBg, marginArrow;	
@@ -580,8 +577,9 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		bitmap = &m_AllImages;
 	}
 	
-	int cxSMIcon = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CXSMICON);
-	int cySMIcon = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CYSMICON);
+	const int dpi = DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd);
+	const int cxSMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CXSMICON, dpi);
+	const int cySMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CYSMICON, dpi);
 
 	if(nIconNormal != -1 && bitmap != nullptr){
 		CImage bitmapstandard;
@@ -755,10 +753,10 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	}
 	else{
 		CFont fontMenu;
-		if (DpiUtil::SystemParametersInfoForDpi)
+		if (DpiUtil::UnsafeSystemParametersInfoForDpi)
 		{
 			DpiUtil::NONCLIENTMETRICS6 nm = { sizeof DpiUtil::NONCLIENTMETRICS6 };
-			VERIFY(DpiUtil::SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS,
+			VERIFY(DpiUtil::UnsafeSystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS,
 				nm.cbSize, &nm, 0, DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd)));
 			fontMenu.CreateFontIndirect (&nm.lfMenuFont);
 		}
@@ -794,7 +792,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
 		else
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
-		int temp = DpiUtil::GetSystemMetricsForWindow(AfxGetMainWnd(), SM_CYMENU);
+		int temp = DpiUtil::GetSystemMetricsForDpi(SM_CYMENU, DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd));
 		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
 	}
 }

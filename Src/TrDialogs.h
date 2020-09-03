@@ -40,14 +40,9 @@ public:
 	{
 		return dlg()->SetDlgItemTextW(id, text.c_str());
 	}
-
-	int GetDpi()
-	{
-		return DpiUtil::GetDpiForCWnd(dlg());
-	}
 };
 
-class CTrDialog : public CDialog, public DlgUtils<CTrDialog>
+class CTrDialog : public CDialog, public DlgUtils<CTrDialog>, public DpiUtil::PerMonitorDpiAwareWindow<CTrDialog>
 {
 	DECLARE_DYNAMIC(CTrDialog)
 public:
@@ -61,7 +56,7 @@ public:
 	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 };
 
-class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>
+class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>, public DpiUtil::PerMonitorDpiAwareWindow<CTrPropertyPage>
 {
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
@@ -74,7 +69,7 @@ public:
 	virtual BOOL OnInitDialog();
 };
 
-class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>
+class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>, public DpiUtil::PerMonitorDpiAwareWindow<CTrDialogBar>
 {
 	DECLARE_DYNAMIC(CTrDialogBar)
 public:

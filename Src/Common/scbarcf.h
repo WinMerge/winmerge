@@ -32,6 +32,8 @@
 /////////////////////////////////////////////////////////////////////////
 // CSizingControlBarCF
 
+#include "DpiUtil.h"
+
 #ifndef baseCSizingControlBarCF
 #define baseCSizingControlBarCF CSizingControlBarG
 #endif

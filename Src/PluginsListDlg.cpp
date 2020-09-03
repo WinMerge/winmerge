@@ -11,7 +11,6 @@
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "DpiUtil.h"
 #include "Merge.h"
 
 /** @brief Location for plugins specific help to open. */

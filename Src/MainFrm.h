@@ -17,6 +17,7 @@
 #include "PathContext.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "DpiUtil.h"
 
 class BCMenu;
 class CDirView;
@@ -49,7 +50,7 @@ CMainFrame * GetMainFrame(); // access to the singleton main frame object
 /**
  * @brief Frame class containing save-routines etc
  */
-class CMainFrame : public CMDIFrameWnd
+class CMainFrame : public CMDIFrameWnd, public DpiUtil::PerMonitorDpiAwareWindow<CMainFrame>
 {
 	friend CLanguageSelect;
 	DECLARE_DYNAMIC(CMainFrame)

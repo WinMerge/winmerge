@@ -6,10 +6,12 @@
  */
 #pragma once
 
+#include "DpiUtil.h"
+
 /**
  * @brief Class for Tab bar.
  */
-class CMDITabBar : public CControlBar
+class CMDITabBar : public CControlBar, public DpiUtil::PerMonitorDpiAwareWindow<CMDITabBar>
 {
 	DECLARE_DYNAMIC(CMDITabBar)
 
@@ -31,7 +33,7 @@ public:
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
-	void UpdateFont(int dpi);
+	virtual void UpdateDpi(int dpi) override;
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_bAutoMaxWidth = bAutoMaxWidth; }
 

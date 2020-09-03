@@ -14,8 +14,9 @@
 #include "MergeEditStatus.h"
 #include "OptionsDiffColors.h"
 #include "UnicodeString.h"
+#include "DpiUtil.h"
 
-class CMergeStatusBar : public CStatusBar
+class CMergeStatusBar : public CStatusBar, public DpiUtil::PerMonitorDpiAwareWindow<CMergeStatusBar>
 {
 public : 
 	CMergeStatusBar();

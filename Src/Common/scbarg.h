@@ -27,6 +27,8 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma once
 
+#include "DpiUtil.h"
+
 // MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
 #ifndef NCHITTEST_RESULT
 #if _MFC_VER >= 0x0800
@@ -60,7 +62,7 @@ public:
 #define baseCSizingControlBarG CSizingControlBar
 #endif
 
-class CSizingControlBarG : public baseCSizingControlBarG
+class CSizingControlBarG : public baseCSizingControlBarG, public DpiUtil::PerMonitorDpiAwareWindow<CSizingControlBarG>
 {
     DECLARE_DYNAMIC(CSizingControlBarG);
 

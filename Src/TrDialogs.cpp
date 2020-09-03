@@ -39,12 +39,10 @@ BOOL CTrDialog::OnInitDialog()
 
 LRESULT CTrDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
-	int dpi = HIWORD(wParam);
-	theApp.ChangeDialogFont(m_hWnd, dpi);
-	RECT* const prcNew = (RECT*)lParam;
-	SetWindowPos(nullptr, 
-		prcNew->left, prcNew->top, prcNew->right - prcNew->left, prcNew->bottom - prcNew->top,
-		SWP_NOZORDER | SWP_NOACTIVATE);
+	DefWindowProc(0x02e0/*WM_DPICHANGED*/, wParam, lParam);
+
+	UpdateDpi(HIWORD(wParam));
+	theApp.ChangeDialogFont(m_hWnd, GetDpi());
 	return 0;
 }
 

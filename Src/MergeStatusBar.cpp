@@ -15,7 +15,6 @@
 #include "charsets.h"
 #include "unicoder.h"
 #include "SyntaxColors.h"
-#include "DpiUtil.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -169,7 +168,7 @@ void CMergeStatusBar::Resize(int widths[])
 	// Set bottom statusbar panel widths
 	// Kimmo - I don't know why 4 seems to be right for me
 	int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-	auto pointToPixel = [dpi = DpiUtil::GetDpiForCWnd(this)](int point) { return MulDiv(point, dpi, 72); };
+	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
 
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{

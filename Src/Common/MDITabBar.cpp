@@ -6,7 +6,6 @@
 
 #include "StdAfx.h"
 #include "MDITabBar.h"
-#include "DpiUtil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,7 +43,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	if (!CWnd::Create(WC_TABCONTROL, nullptr, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
-	UpdateFont(DpiUtil::GetDpiForCWnd(this));
+	UpdateDpi(GetDpi());
 
 	return TRUE;
 }
@@ -283,12 +282,11 @@ void CMDITabBar::UpdateTabs()
 	}
 }
 
-void CMDITabBar::UpdateFont(int dpi)
+void CMDITabBar::UpdateDpi(int dpi)
 {
-	if (DpiUtil::GetSystemMetricsForDpi)
-		m_cxSMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CXSMICON, dpi);
-	else
-		m_cxSMIcon = GetSystemMetrics(SM_CXSMICON);
+	m_dpi = dpi;
+
+	m_cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 
 	TabCtrl_SetPadding(m_hWnd, m_cxSMIcon, 4);
 

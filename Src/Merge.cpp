@@ -56,7 +56,6 @@
 #include "CompareStats.h"
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
-#include "DpiUtil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1191,7 +1190,7 @@ void CMergeApp::TranslateMenu(HMENU h) const
  */
 void CMergeApp::TranslateDialog(HWND h) const
 {
-	const int dpi = DpiUtil::GetDpiForCWnd(CWnd::FromHandle(h));
+	const int dpi = DpiUtil::GetDpiForWindow(h);
 	ChangeDialogFont(h, dpi);
 	m_pLangDlg->TranslateDialog(h);
 }

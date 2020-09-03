@@ -30,7 +30,6 @@
 //
 
 #include "StdAfx.h"
-#include "DpiUtil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -86,7 +85,7 @@ void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     bool bHorz = (nDockBarID == AFX_IDW_DOCKBAR_TOP) ||
                  (nDockBarID == AFX_IDW_DOCKBAR_BOTTOM);
 
-    auto pointToPixel = [dpi = DpiUtil::GetDpiForCWnd(this)](double point) { return static_cast<int>(point * dpi / 72); };
+    auto pointToPixel = [dpi = GetDpi()](double point) { return static_cast<int>(point * dpi / 72); };
 
     if (bHorz)
         rc.DeflateRect(pointToPixel(m_dblGripper), 0, 0, 0);
@@ -112,8 +111,7 @@ void CSizingControlBarG::NcPaintGripper(CDC* pDC, CRect rcClient)
 
     // paints a simple "two raised lines" gripper
     // override this if you want a more sophisticated gripper
-    const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
-    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    auto pointToPixel = [dpi = GetDpi()](double point) { return static_cast<int>(point * dpi / 72); };
     CRect gripper = rcClient;
     CRect rcbtn(m_biHide.ptOrg, CSize(pointToPixel(m_biHide.dblBoxSize), pointToPixel(m_biHide.dblBoxSize)));
     bool bHorz = IsHorzDocked();
@@ -152,8 +150,7 @@ NCHITTEST_RESULT CSizingControlBarG::OnNcHitTest(CPoint point)
     if (nRet != HTCLIENT)
         return nRet;
 
-    const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    auto pointToPixel = [dpi = GetDpi()](double point) { return static_cast<int>(point * dpi / 72); };
     CRect rc(m_biHide.ptOrg, CSize(pointToPixel(m_biHide.dblBoxSize), pointToPixel(m_biHide.dblBoxSize)));
     rc.OffsetRect(rcBar.TopLeft());
     if (rc.PtInRect(point))
@@ -205,8 +202,7 @@ CSCBButton::CSCBButton()
 
 void CSCBButton::Paint(CDC* pDC)
 {
-    const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
-    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    auto pointToPixel = [dpi = DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd)](double point) { return static_cast<int>(point * dpi / 72); };
     CRect rc(ptOrg, CSize(pointToPixel(dblBoxSize), pointToPixel(dblBoxSize)));
 
     if (bPushed)

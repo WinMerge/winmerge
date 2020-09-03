@@ -6,7 +6,9 @@
  */
 #pragma once
 
-class CMergeFrameCommon: public CMDIChildWnd
+#include "DpiUtil.h"
+
+class CMergeFrameCommon: public CMDIChildWnd, public DpiUtil::PerMonitorDpiAwareWindow<CMergeFrameCommon>
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
 public:
@@ -17,7 +19,6 @@ public:
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();
-	int GetDpi();
 	virtual BOOL IsTabbedMDIChild()
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window

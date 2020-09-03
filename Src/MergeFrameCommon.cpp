@@ -100,11 +100,6 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	theApp.SetLastCompareResult(nResult);
 }
 
-int CMergeFrameCommon::GetDpi()
-{
-	return DpiUtil::GetDpiForCWnd(this);
-}
-
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
