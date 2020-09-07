@@ -87,10 +87,8 @@ void LineFiltersDlg::InitList()
 	// Also enable infotips.
 	m_filtersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
-
 	String title = _("Regular expression");
-	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(375));
+	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, PointToPixel(375));
 
 	size_t count = m_pList->GetCount();
 	for (size_t i = 0; i < count; i++)

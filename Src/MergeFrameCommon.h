@@ -6,9 +6,9 @@
  */
 #pragma once
 
-#include "DpiUtil.h"
+#include "utils/DpiAware.h"
 
-class CMergeFrameCommon: public CMDIChildWnd, public DpiUtil::PerMonitorDpiAwareWindow<CMergeFrameCommon>
+class CMergeFrameCommon: public CMDIChildWnd, public DpiAware::PerMonitorDpiAwareWindow<CMergeFrameCommon>
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
 public:
@@ -23,6 +23,10 @@ public:
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
 	}
+	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
+		CalcWindowRectImpl(lpClientRect, nAdjustType);
+	}
+
 protected:
 	int m_nLastSplitPos[2];
 private:
@@ -38,6 +42,8 @@ protected:
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg void OnDestroy();
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

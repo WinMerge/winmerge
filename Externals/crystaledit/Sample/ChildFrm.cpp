@@ -18,10 +18,8 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CChildFrame, CMDIChildWnd)
 
 BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
-	//{{AFX_MSG_MAP(CChildFrame)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
-	//}}AFX_MSG_MAP
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+	ON_WM_GETMINMAXINFO()
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,4 +65,26 @@ void CChildFrame::Dump(CDumpContext& dc) const
 BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
 {
 	return m_wndSplitter.Create(this, 2, 2, CSize(30, 30), pContext);
+}
+
+void CChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	__super::OnGetMinMaxInfo(lpMMI);
+	if (IsDpiChanged())
+	{
+		CRect rc;
+		CFrameWnd* pFrameWnd = GetParentFrame();
+		pFrameWnd->GetClientRect(rc);
+		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
+		lpMMI->ptMaxPosition.x = rc.left;
+		lpMMI->ptMaxPosition.y = rc.top;
+		lpMMI->ptMaxSize.x = rc.right - rc.left;
+		lpMMI->ptMaxSize.y = rc.bottom - rc.top;
+	}
+}
+
+LRESULT CChildFrame::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDpi();
+	return 0;
 }

@@ -916,6 +916,9 @@
     <ClCompile Include="WildcardDropList.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\DpiAware.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1647,8 +1650,8 @@
     <ClInclude Include="WildcardDropList.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DpiUtil.h">
-      <Filter>MFCGui\Header Files</Filter>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\DpiAware.h">
+      <Filter>EditLib\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

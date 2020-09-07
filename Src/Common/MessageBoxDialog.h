@@ -32,6 +32,7 @@
 
 #include "resource.h"
 #include "UnicodeString.h"
+#include "utils/DpiAware.h"
 #include <vector>
 
 //////////////////////////////////////////////////////////////////////////////
@@ -85,7 +86,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // Class definition.
 
-class CMessageBoxDialog : public CDialog
+class CMessageBoxDialog : public CDialog, public DpiAware::PerMonitorDpiAwareWindow<CMessageBoxDialog>
 {
 
 	DECLARE_DYNAMIC(CMessageBoxDialog)
@@ -183,10 +184,13 @@ public:
 	// Method for handling messages before dispatching them.
 	virtual BOOL PreTranslateMessage ( MSG* pMsg );
 
+	virtual void CallWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) { CalcWindowRectImpl(lpClientRect, nAdjustType); }
+
 	// Method for handling a timer event.
 	afx_msg void OnTimer ( UINT_PTR nIDEvent );
 	afx_msg BOOL OnEraseBkgnd( CDC* pDC );
 	afx_msg HBRUSH OnCtlColor( CDC* pDC, CWnd* pWnd, UINT nCtlColor );
+	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 
 protected:
 
@@ -287,5 +291,7 @@ private:
 
 	// Method for defining the layout of the dialog.
 	void DefineLayout ( );
+
+	void UpdateResources (int dpi);
 
 };

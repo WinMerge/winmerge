@@ -6,12 +6,12 @@
  */
 #pragma once
 
-#include "DpiUtil.h"
+#include "utils/DpiAware.h"
 
 /**
  * @brief Class for Tab bar.
  */
-class CMDITabBar : public CControlBar, public DpiUtil::PerMonitorDpiAwareWindow<CMDITabBar>
+class CMDITabBar : public CControlBar, public DpiAware::PerMonitorDpiAwareWindow<CMDITabBar>
 {
 	DECLARE_DYNAMIC(CMDITabBar)
 
@@ -33,7 +33,6 @@ public:
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
-	virtual void UpdateDpi(int dpi) override;
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_bAutoMaxWidth = bAutoMaxWidth; }
 
@@ -71,6 +70,7 @@ protected:
 	afx_msg void OnMouseLeave();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM, LPARAM);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

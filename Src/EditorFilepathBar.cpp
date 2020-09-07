@@ -21,6 +21,7 @@
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
 	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
+	ON_MESSAGE(WM_DPICHANGED_AFTERPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 
@@ -51,9 +52,9 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
 
-	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
-		m_font.CreateFontIndirect(&ncm.lfStatusFont);
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+		m_font.CreateFontIndirect(&lfStatusFont);
 
 	// subclass the two custom edit boxes
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
@@ -175,6 +176,21 @@ void CEditorFilePathBar::OnSetFocusEdit(UINT id)
 {
 	if (m_callbackfunc)
 		m_callbackfunc(id - IDC_STATIC_TITLE_PANE0);
+}
+
+LRESULT CEditorFilePathBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDpi();
+
+	m_font.DeleteObject();
+
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+		m_font.CreateFontIndirect(&lfStatusFont);
+
+	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
+		m_Edit[pane].SetFont(&m_font);
+	return 0;
 }
 
 /** 

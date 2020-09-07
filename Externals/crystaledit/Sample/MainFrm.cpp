@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	ON_WM_CREATE()
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -83,6 +84,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
+	return 0;
+}
+
+LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDpi();
+	DpiAware::UpdateAfxDataSysMetrics(GetDpi());
+	Default();
 	return 0;
 }
 

@@ -7,7 +7,7 @@ IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
 BEGIN_MESSAGE_MAP(CTrDialog, CDialog)
-	ON_MESSAGE(0x02E0/*WM_DPICHANGED*/, OnDpiChanged)
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 END_MESSAGE_MAP()
 
 void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
@@ -39,9 +39,8 @@ BOOL CTrDialog::OnInitDialog()
 
 LRESULT CTrDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
-	DefWindowProc(0x02e0/*WM_DPICHANGED*/, wParam, lParam);
-
-	UpdateDpi(HIWORD(wParam));
+	UpdateDpi();
+	Default();
 	theApp.ChangeDialogFont(m_hWnd, GetDpi());
 	return 0;
 }

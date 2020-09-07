@@ -108,23 +108,8 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
 	m_aButtons.clear();
 
-	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
-	m_font.CreateFontIndirect(&ncm.lfMessageFont);
-
-	LOGFONT lf = { 0 };
-	HTHEME hTheme = OpenThemeData(nullptr, _T("TEXTSTYLE"));
-	if (hTheme != nullptr && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
-	{
-		m_fontMainInstruction.CreateFontIndirect(&lf);
-		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);
-		CloseThemeData(hTheme);
-	}
-	else
-	{
-		m_fontMainInstruction.CreateFontIndirect(&ncm.lfMessageFont);
-		m_clrMainInstructionFont = GetSysColor(COLOR_WINDOWTEXT);
-	}
+	const int dpi = DpiAware::GetDpiForWindow((pParent ? pParent : AfxGetMainWnd())->m_hWnd);
+	UpdateResources(dpi);
 }
 
 /*
@@ -814,6 +799,22 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
+LRESULT CMessageBoxDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	const int dpi = HIWORD(wParam);
+	UpdateDpi();
+	UpdateResources(dpi);
+	Default();
+	if (!GetDlgItem(IDCHECKBOX))
+		return 0;
+	for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
+		GetDlgItem(iter->nID)->SetFont(&m_font);
+	GetDlgItem(IDCHECKBOX)->SetFont(&m_font);
+	m_stcMessage.SetFont(&m_fontMainInstruction);
+	Invalidate();
+	return 0;
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Other dialog handling methods.
 
@@ -852,6 +853,7 @@ BEGIN_MESSAGE_MAP(CMessageBoxDialog, CDialog)
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 END_MESSAGE_MAP()
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1597,4 +1599,27 @@ void CMessageBoxDialog::DefineLayout ( )
 
 	// Center the window.
 	CenterWindow();
+}
+
+void CMessageBoxDialog::UpdateResources(int dpi)
+{
+	LOGFONT lfMessageFont;
+	DpiAware::GetNonClientLogFont(lfMessageFont, offsetof(NONCLIENTMETRICS, lfMessageFont), dpi);
+	m_font.DeleteObject();
+	m_font.CreateFontIndirect(&lfMessageFont);
+
+	m_fontMainInstruction.DeleteObject();
+	LOGFONT lf = { 0 };
+	HTHEME hTheme = DpiAware::OpenThemeDataForDpi(nullptr, _T("TEXTSTYLE"), dpi);
+	if (hTheme != nullptr && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
+	{
+		m_fontMainInstruction.CreateFontIndirect(&lf);
+		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);
+		CloseThemeData(hTheme);
+	}
+	else
+	{
+		m_fontMainInstruction.CreateFontIndirect(&lfMessageFont);
+		m_clrMainInstructionFont = GetSysColor(COLOR_WINDOWTEXT);
+	}
 }

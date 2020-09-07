@@ -269,6 +269,7 @@ ON_COMMAND (ID_FORCE_REDRAW, OnForceRedraw)
   ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnUpdateEditFindIncrementalBackward)
   //END SW
   ON_COMMAND (ID_EDIT_TOGGLE_COLUMNSELECTION, OnToggleColumnSelection)
+  ON_MESSAGE (WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP ()
 
 #define EXPAND_PRIMITIVE(impl, func)    \
@@ -3224,6 +3225,7 @@ void CCrystalTextView::
 OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
+  UpdateDpi ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
   if (!sExt.IsEmpty())
     SetTextType (sExt);
@@ -6740,6 +6742,19 @@ OnToggleColumnSelection ()
 {
   m_bRectangularSelection = !m_bRectangularSelection;
   Invalidate ();
+}
+
+LRESULT CCrystalTextView::
+OnDpiChangedBeforeParent (WPARAM wParam, LPARAM lParam)
+{
+  const int oldDpi = m_dpi;
+  UpdateDpi ();
+  if (m_dpi != oldDpi)
+    {
+      m_lfBaseFont.lfHeight = MulDiv(m_lfBaseFont.lfHeight, m_dpi, oldDpi);
+      SetFont (m_lfBaseFont);
+    }
+  return 0;
 }
 
 void CCrystalTextView::SetRenderingMode(RENDERING_MODE nRenderingMode)

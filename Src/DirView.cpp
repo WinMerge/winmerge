@@ -353,7 +353,7 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 
 void CDirView::OnInitialUpdate()
 {
-	const int iconCX = []() {
+	const int iconCX = [this]() {
 		const int cx = GetSystemMetrics(SM_CXSMICON);
 		if (cx < 24)
 			return 16;

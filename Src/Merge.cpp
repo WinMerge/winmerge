@@ -1190,7 +1190,7 @@ void CMergeApp::TranslateMenu(HMENU h) const
  */
 void CMergeApp::TranslateDialog(HWND h) const
 {
-	const int dpi = DpiUtil::GetDpiForWindow(h);
+	const int dpi = DpiAware::GetDpiForWindow(h);
 	ChangeDialogFont(h, dpi);
 	m_pLangDlg->TranslateDialog(h);
 }
@@ -1211,7 +1211,7 @@ CFont* CMergeApp::GetGUIFont(int dpi) const
 	if (m_mapFontGUI.find(dpi) == m_mapFontGUI.end())
 	{
 		LOGFONT lfMenuFont;
-		DpiUtil::GetMenuLogFont(dpi, lfMenuFont);
+		DpiAware::GetNonClientLogFont(lfMenuFont, offsetof(NONCLIENTMETRICS, lfMenuFont), dpi);
 		const int lfHeight = -MulDiv(9, dpi, 72);
 		if (abs(lfMenuFont.lfHeight) > abs(lfHeight))
 			lfMenuFont.lfHeight = lfHeight;

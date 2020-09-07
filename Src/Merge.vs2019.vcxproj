@@ -475,6 +475,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\css.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\ctextmarkerdlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\dcl.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\DpiAware.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\filesup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\fortran.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\fpattern.cpp" />
@@ -1106,6 +1107,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\DpiAware.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\filesup.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\fpattern.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\gotodlg.h" />
@@ -1146,7 +1148,6 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
-    <ClInclude Include="DpiUtil.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />

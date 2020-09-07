@@ -221,7 +221,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
-	ON_MESSAGE(0x02E0/*WM_DPICHANGED*/, OnDpiChanged)
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -336,11 +336,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
 			static_cast<int>(std::size(StatusbarIndicators)));
 
-	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
 	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, pointToPixel(225));
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
-	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, PointToPixel(225));
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, PointToPixel(75)); 
+	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, PointToPixel(112)); 
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
@@ -2575,14 +2574,14 @@ void CMainFrame::OnAccelQuit()
 
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
-	DefWindowProc(0x2e0/*WM_DPICHANGED*/, wParam, lParam);
+	Default();
 
 	int dpi = HIWORD(wParam);
 	RECT* const prcNew = (RECT*)lParam;
 
+	UpdateDpi();
+	DpiAware::UpdateAfxDataSysMetrics(dpi);
 	BCMenu::ReopenTheme(dpi);
-
-	m_wndTabBar.UpdateDpi(dpi);
 
 	return 0;
 }

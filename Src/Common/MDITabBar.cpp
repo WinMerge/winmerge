@@ -28,6 +28,7 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_MOUSELEAVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+	ON_MESSAGE(WM_DPICHANGED_AFTERPARENT, OnDpiChangedBeforeParent)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -43,7 +44,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	if (!CWnd::Create(WC_TABCONTROL, nullptr, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
-	UpdateDpi(GetDpi());
+	OnDpiChangedBeforeParent(0, 0);
 
 	return TRUE;
 }
@@ -282,19 +283,20 @@ void CMDITabBar::UpdateTabs()
 	}
 }
 
-void CMDITabBar::UpdateDpi(int dpi)
+LRESULT CMDITabBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 {
-	m_dpi = dpi;
+	UpdateDpi();
 
 	m_cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 
 	TabCtrl_SetPadding(m_hWnd, m_cxSMIcon, 4);
 
 	LOGFONT lfMenuFont;
-	DpiUtil::GetMenuLogFont(dpi, lfMenuFont);
+	DpiAware::GetNonClientLogFont(lfMenuFont, offsetof(NONCLIENTMETRICS, lfMenuFont), m_dpi);
 	m_font.DeleteObject();
 	m_font.CreateFontIndirect(&lfMenuFont);
 	SetFont(&m_font);
+	return 0;
 }
 
 /**

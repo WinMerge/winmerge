@@ -20,6 +20,7 @@
 #include "UnicodeString.h"
 #include "DirItemIterator.h"
 #include "DirActions.h"
+#include "utils/DpiAware.h"
 
 class FileActionScript;
 
@@ -59,7 +60,7 @@ const UINT DefColumnWidth = 150;
  * CDiffContext items are linked by storing POSITION of CDiffContext item
  * as CDirView listitem key.
  */
-class CDirView : public CListView
+class CDirView : public CListView, public DpiAware::PerMonitorDpiAwareWindow<CDirView>
 {
 	friend struct FileCmpReport;
 	friend DirItemEnumerator;

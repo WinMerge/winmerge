@@ -567,9 +567,11 @@ void CSuperComboBox::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (!pEdit->GetModify() || GetFocus() != pEdit)
 			GetWindowText(sText);
 		int iIcon = GetFileTypeIconIndex(pvText);
+		const int cxsmicon = GetSystemMetrics(SM_CXSMICON);
+		const int cysmicon = GetSystemMetrics(SM_CYSMICON);
 		ImageList_DrawEx(m_himlSystem, iIcon, lpDrawItemStruct->hDC,
 			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,
-			0, 0, GetSysColor(COLOR_WINDOW), CLR_NONE, ILD_NORMAL);
+			cxsmicon, cysmicon, GetSysColor(COLOR_WINDOW), CLR_NONE, ILD_NORMAL);
 		return;
 	}
 	CComboBoxEx::OnDrawItem(nIDCtl, lpDrawItemStruct);

@@ -37,6 +37,7 @@
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
+#include "utils/DpiAware.h"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -82,7 +83,7 @@ enum : unsigned
  * not implement text editing. There are classes inherited from this
  * class which implement text editing.
  */
-class EDITPADC_CLASS CCrystalTextView : public CView
+class EDITPADC_CLASS CCrystalTextView : public CView, public DpiAware::PerMonitorDpiAwareWindow<CCrystalTextView>
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
@@ -813,6 +814,10 @@ protected :
     virtual void OnBeginPrinting (CDC * pDC, CPrintInfo * pInfo);
     virtual void OnEndPrinting (CDC * pDC, CPrintInfo * pInfo);
     virtual void OnPrint (CDC * pDC, CPrintInfo * pInfo);
+    virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
+        CalcWindowRectImpl(lpClientRect, nAdjustType);
+    }
+
     //}}AFX_VIRTUAL
 
     // Implementation
@@ -930,6 +935,7 @@ protected :
     //END SW
 
     afx_msg void OnToggleColumnSelection ();
+    afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP ()
   };

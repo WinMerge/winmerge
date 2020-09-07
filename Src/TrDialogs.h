@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DDXHelper.h"
-#include "DpiUtil.h"
+#include "utils/DpiAware.h"
 
 #undef GetDlgItemText
 #undef SetDlgItemText
@@ -42,7 +42,7 @@ public:
 	}
 };
 
-class CTrDialog : public CDialog, public DlgUtils<CTrDialog>, public DpiUtil::PerMonitorDpiAwareWindow<CTrDialog>
+class CTrDialog : public CDialog, public DlgUtils<CTrDialog>, public DpiAware::PerMonitorDpiAwareWindow<CTrDialog>
 {
 	DECLARE_DYNAMIC(CTrDialog)
 public:
@@ -56,7 +56,7 @@ public:
 	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 };
 
-class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>, public DpiUtil::PerMonitorDpiAwareWindow<CTrPropertyPage>
+class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>, public DpiAware::PerMonitorDpiAwareWindow<CTrPropertyPage>
 {
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
@@ -69,7 +69,7 @@ public:
 	virtual BOOL OnInitDialog();
 };
 
-class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>, public DpiUtil::PerMonitorDpiAwareWindow<CTrDialogBar>
+class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>, public DpiAware::PerMonitorDpiAwareWindow<CTrDialogBar>
 {
 	DECLARE_DYNAMIC(CTrDialogBar)
 public:

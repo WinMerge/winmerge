@@ -4,7 +4,9 @@
 
 #pragma once
 
-class CChildFrame : public CMDIChildWnd
+#include "utils/DpiAware.h"
+
+class CChildFrame : public CMDIChildWnd, DpiAware::PerMonitorDpiAwareWindow<CChildFrame>
 {
 	DECLARE_DYNCREATE(CChildFrame)
 public:
@@ -24,6 +26,9 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
+		CalcWindowRectImpl(lpClientRect, nAdjustType);
+	}
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -36,11 +41,10 @@ public:
 
 // Generated message map functions
 protected:
-	//{{AFX_MSG(CChildFrame)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 };
 
 /////////////////////////////////////////////////////////////////////////////

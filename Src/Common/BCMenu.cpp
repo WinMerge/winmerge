@@ -25,7 +25,7 @@
 
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
-#include "DpiUtil.h"
+#include "utils/DpiAware.h"
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 
 #pragma comment(lib, "uxtheme.lib")
@@ -170,7 +170,7 @@ BCMenu::BCMenu()
 	m_bitmapBackgroundFlag=false;
 	m_loadmenu=false;
 	if (m_hTheme==nullptr && IsThemeActive())
-		ReopenTheme(DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd));
+		ReopenTheme(DpiAware::GetDpiForWindow(AfxGetMainWnd()->m_hWnd));
 }
 
 
@@ -209,7 +209,7 @@ bool BCMenu::ReopenTheme(int dpi)
 		return false;
 	if (m_hTheme != nullptr)
 		CloseThemeData(m_hTheme);
-	m_hTheme = DpiUtil::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
+	m_hTheme = DpiAware::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
 	if (m_hTheme == nullptr)
 		return false;
 	MARGINS marginCheckBg, marginArrow;	
@@ -577,9 +577,9 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		bitmap = &m_AllImages;
 	}
 	
-	const int dpi = DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd);
-	const int cxSMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CXSMICON, dpi);
-	const int cySMIcon = DpiUtil::GetSystemMetricsForDpi(SM_CYSMICON, dpi);
+	const int dpi = DpiAware::GetDpiForWindow(AfxGetMainWnd()->m_hWnd);
+	const int cxSMIcon = DpiAware::GetSystemMetricsForDpi(SM_CXSMICON, dpi);
+	const int cySMIcon = DpiAware::GetSystemMetricsForDpi(SM_CYSMICON, dpi);
 
 	if(nIconNormal != -1 && bitmap != nullptr){
 		CImage bitmapstandard;
@@ -753,20 +753,10 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	}
 	else{
 		CFont fontMenu;
-		if (DpiUtil::UnsafeSystemParametersInfoForDpi)
-		{
-			DpiUtil::NONCLIENTMETRICS6 nm = { sizeof DpiUtil::NONCLIENTMETRICS6 };
-			VERIFY(DpiUtil::UnsafeSystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS,
-				nm.cbSize, &nm, 0, DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd)));
-			fontMenu.CreateFontIndirect (&nm.lfMenuFont);
-		}
-		else
-		{
-			NONCLIENTMETRICS nm = { sizeof NONCLIENTMETRICS };
-			VERIFY(::SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
-				nm.cbSize,&nm,0)); 
-			fontMenu.CreateFontIndirect (&nm.lfMenuFont);
-		}
+		LOGFONT lfMenuFont;
+		const int dpi = DpiAware::GetDpiForWindow(AfxGetMainWnd()->m_hWnd);
+		DpiAware::GetNonClientLogFont(lfMenuFont, offsetof(NONCLIENTMETRICS, lfMenuFont), dpi);
+		fontMenu.CreateFontIndirect (&lfMenuFont);
 		
 		// Obtain the width of the text:
 		CClientDC dc(AfxGetMainWnd() ? AfxGetMainWnd() : CWnd::GetDesktopWindow());     // Get device context
@@ -782,18 +772,19 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		VERIFY(::GetTextExtentPoint32W(dc.m_hDC,lpstrText,
 			lstrlenW(lpstrText),&size)); //SK should also work on 95
-		CSize t = CSize(size);
+		CSize t = size;
 		dc.SelectObject (pFont);  // Select old font in
 		
 		// Set width and height:
 		
 		const int BCMENU_PAD=4;
 		if (m_hTheme == nullptr)
-			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
+			lpMIS->itemWidth = MulDiv(m_iconX+BCMENU_PAD+8, dpi, 96) +t.cx;
 		else
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
-		int temp = DpiUtil::GetSystemMetricsForDpi(SM_CYMENU, DpiUtil::GetDpiForWindow(AfxGetMainWnd()->m_hWnd));
-		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
+		int temp = DpiAware::GetSystemMetricsForDpi(SM_CYMENU, dpi);
+		int temp2 = MulDiv(m_iconY + BCMENU_PAD, dpi, 96);
+		lpMIS->itemHeight = temp>temp2 ? temp : temp2;
 	}
 }
 

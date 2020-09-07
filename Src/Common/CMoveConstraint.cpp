@@ -651,6 +651,12 @@ CMoveConstraint::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam, L
 	} else if (msg==WM_NOTIFY && TTN_NEEDTEXT==((NMHDR*)lParam)->code) {
 		if (OnTtnNeedText((TOOLTIPTEXT*)lParam, plresult))
 			return true;
+/*	} else if (WM_DPICHANGED == msg) {
+		const int dpi = HIWORD(wParam);
+		const RECT *prcNew = reinterpret_cast<RECT *>(lParam);
+		m_nMaxX = prcNew->right - prcNew->left;
+		m_nMaxY = prcNew->bottom - prcNew->top;
+		return true;*/
 	}
 
 	return false;

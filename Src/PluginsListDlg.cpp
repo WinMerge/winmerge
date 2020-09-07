@@ -79,14 +79,12 @@ void PluginsListDlg::InitList()
 	// Also enable infotips.
 	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	auto pointToPixel = [dpi = GetDpi()](int point) { return MulDiv(point, dpi, 72); };
-
 	String title = _("Name");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, PointToPixel(150));
 	title = _("Type");
-	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(75));
+	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, PointToPixel(75));
 	title = _("Description");
-	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(225));
+	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, PointToPixel(225));
 }
 
 /**

@@ -5,13 +5,14 @@
 
 #include <vector>
 #include "UnicodeString.h"
+#include "utils/DpiAware.h"
 
 class DropHandler;
 
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox window
 
-class CSuperComboBox : public CComboBoxEx
+class CSuperComboBox : public CComboBoxEx, DpiAware::PerMonitorDpiAwareWindow<CSuperComboBox>
 {
 // Construction
 public:

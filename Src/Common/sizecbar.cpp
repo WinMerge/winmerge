@@ -96,6 +96,7 @@ BEGIN_MESSAGE_MAP(CSizingControlBar, baseCSizingControlBar)
     ON_WM_SIZE()
     //}}AFX_MSG_MAP
     ON_MESSAGE(WM_SETTEXT, OnSetText)
+    ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
@@ -183,6 +184,12 @@ LRESULT CSizingControlBar::OnSetText(WPARAM wParam, LPARAM lParam)
     }
 
     return lResult;
+}
+
+LRESULT CSizingControlBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDpi();
+	return 0;
 }
 
 const bool CSizingControlBar::IsFloating() const

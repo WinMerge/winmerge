@@ -70,26 +70,13 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
   if(!cnt)
     return;
   CClientDC      dc(&Control);
-  NONCLIENTMETRICS  info = { 0 };
-  CFont        oFont, *oldFont;
+  CFont        *oldFont;
   int          width = 0, nMax = ::GetSystemMetrics(SM_CXSCREEN) - 48;
   CRect        rc;
   CSize        size;
 
-  SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
-  info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
-  info.lfMenuFont.lfWidth = 0;
-  info.lfMenuFont.lfWeight = FW_THIN;
-  info.lfMenuFont.lfItalic = false;
-  info.lfMenuFont.lfUnderline = false;
-  info.lfMenuFont.lfCharSet = DEFAULT_CHARSET;
-  info.lfMenuFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
-  info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-  info.lfMenuFont.lfQuality = DEFAULT_QUALITY;
-  info.lfMenuFont.lfPitchAndFamily = FF_SWISS;
-  _tcscpy_s(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
-  oFont.CreateFontIndirect(&info.lfMenuFont);
-  oldFont = dc.SelectObject(&oFont);
+  CFont *pFont = Control.GetFont();
+  oldFont = dc.SelectObject(pFont);
   if(lpszText != nullptr && *lpszText != 0) {
     size = dc.GetTextExtent(lpszText);
     width = size.cx;

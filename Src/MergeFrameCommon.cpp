@@ -8,7 +8,7 @@
 #include "MergeFrameCommon.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "DpiUtil.h"
+#include "utils/DpiAware.h"
 #include "Merge.h"
 #include <../src/mfc/afximpl.h>
 
@@ -19,6 +19,7 @@ BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
 	ON_WM_GETMINMAXINFO()
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -103,6 +104,17 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
+	if (IsDpiChanged())
+	{
+		CRect rc;
+		CFrameWnd* pFrameWnd = GetParentFrame();
+		pFrameWnd->GetClientRect(rc);
+		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
+		lpMMI->ptMaxPosition.x = rc.left;
+		lpMMI->ptMaxPosition.y = rc.top;
+		lpMMI->ptMaxSize.x = rc.right - rc.left;
+		lpMMI->ptMaxSize.y = rc.bottom - rc.top;
+	}
 	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
 #if _MFC_VER >= 0x0800
@@ -125,4 +137,10 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 
 	if (bActivate)
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));
+}
+
+LRESULT CMergeFrameCommon::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	UpdateDpi();
+	return 0;
 }
