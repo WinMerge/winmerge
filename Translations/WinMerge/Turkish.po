@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-07-09 20:49+0000\n"
-"PO-Revision-Date: 2020-07-28 08:50+0300\n"
+"POT-Creation-Date: 2020-08-20 06:48+0000\n"
+"PO-Revision-Date: 2020-09-08 10:22+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -365,7 +365,7 @@ msgid "Sw&ap Panes"
 msgstr "&Panoların Yerini Değiştir"
 
 msgid "Com&pare Statistics..."
-msgstr "İstatistikleri Ka&rşılaştır..."
+msgstr "Karşılaştırma İstatistikleri..."
 
 msgid "Refre&sh\tF5"
 msgstr "Ye&nile\tF5"
@@ -461,7 +461,7 @@ msgid "&File Encoding..."
 msgstr "&Dosya Kodlaması..."
 
 msgid "Reco&mpare As"
-msgstr "Farklı Karşılaştır"
+msgstr "&Farklı Karşılaştır"
 
 msgid "&Text"
 msgstr "Me&tin"
@@ -2017,10 +2017,10 @@ msgid "To right:"
 msgstr "Sağa:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Ortadan:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Ortaya:"
 
 #, c-format
 msgid "Version %1"
@@ -3181,7 +3181,7 @@ msgid "Marker Color %d"
 msgstr "İşaretleyici Rengi %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Yeni Örnek"
 
 msgid "Type"
 msgstr "Tür"
@@ -3534,7 +3534,7 @@ msgstr "Sayfa:"
 
 #, c-format
 msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
-msgstr "Nokta:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Nokta:(%d, %d) RGBA : (%d, %d, %d, %d) "
 
 #, c-format
 msgid "Dist:%g "
@@ -3548,3 +3548,23 @@ msgstr "Uzaklık:%g,%g "
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Sayfa:%d/%d Yakınlaştırma:%d%% %dx%dpiksel %dbpp"
 
+#~ msgid "Compa&re Statistics"
+#~ msgstr "İstatistikleri Ka&rşılaştır"
+
+#~ msgid "&Table"
+#~ msgstr "&Tablo"
+
+#~ msgid "&Refresh"
+#~ msgstr "&Yenile"
+
+#~ msgid "Whitespace"
+#~ msgstr "Beyaz boşluklar"
+
+#~ msgid " Categories"
+#~ msgstr " Gruplar"
+
+#~ msgid "Marker colors"
+#~ msgstr "İşaretleyici renkleri"
+
+#~ msgid "Custom text colors"
+#~ msgstr "Özel metin renkleri"
