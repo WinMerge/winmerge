@@ -3548,23 +3548,3 @@ msgstr "Uzaklık:%g,%g "
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Sayfa:%d/%d Yakınlaştırma:%d%% %dx%dpiksel %dbpp"
 
-#~ msgid "Compa&re Statistics"
-#~ msgstr "İstatistikleri Ka&rşılaştır"
-
-#~ msgid "&Table"
-#~ msgstr "&Tablo"
-
-#~ msgid "&Refresh"
-#~ msgstr "&Yenile"
-
-#~ msgid "Whitespace"
-#~ msgstr "Beyaz boşluklar"
-
-#~ msgid " Categories"
-#~ msgstr " Gruplar"
-
-#~ msgid "Marker colors"
-#~ msgstr "İşaretleyici renkleri"
-
-#~ msgid "Custom text colors"
-#~ msgstr "Özel metin renkleri"
