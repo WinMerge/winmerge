@@ -430,6 +430,9 @@ struct DirActions
 				{
 					FileActionItem act;
 					act.src = GetItemFileName(m_ctxt, di, i);
+					// We must first check that paths still exists
+					if (paths::DoesPathExist(act.src) == paths::DOES_NOT_EXIST)
+						throw ContentsChangedException(act.src);
 					act.UIResult = FileActionItem::UI_DEL;
 					act.dirflag = di.diffcode.isDirectory();
 					act.context = it.first;

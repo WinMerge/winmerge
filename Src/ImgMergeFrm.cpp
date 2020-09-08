@@ -36,6 +36,9 @@
 #define new DEBUG_NEW
 #endif
 
+/** @brief Location for image compare specific help to open. */
+static const TCHAR ImgMergeFrameHelpLocation[] = _T("::/htmlhelp/Compare_images.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // CImgMergeFrame
 
@@ -138,6 +141,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_WM_SETFOCUS ()
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -208,6 +212,8 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		nCmdShow = SW_SHOWMAXIMIZED;
 	ShowWindow(nCmdShow);
 	BringToTop(nCmdShow);
+
+	GetParent()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_DRAWFRAME);
 
 	OnRefresh();
 
@@ -466,11 +472,12 @@ void CImgMergeFrame::TranslateLocationPane(int id, const wchar_t *org, size_t ds
 
 int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-
 	if (CMergeFrameCommon::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+	CMergeFrameCommon::RemoveBarBorder();
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -2079,4 +2086,13 @@ void CImgMergeFrame::OnSetFocus(CWnd* pNewWnd)
 {
 	if (m_nActivePane != -1)
 		m_pImgMergeWindow->SetActivePane(m_nActivePane);
+}
+
+
+/**
+ * @brief Open help from mainframe when user presses F1
+ */
+void CImgMergeFrame::OnHelp()
+{
+	theApp.ShowHelp(ImgMergeFrameHelpLocation);
 }

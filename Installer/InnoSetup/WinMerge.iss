@@ -132,7 +132,7 @@ Name: Dutch; MessagesFile: compiler:Languages\Dutch.isl,..\..\Translations\InnoS
 Name: Finnish; MessagesFile: compiler:Languages\Finnish.isl,..\..\Translations\InnoSetup\Finnish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Finnish.txt
 Name: French; MessagesFile: compiler:Languages\French.isl,..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-French.txt
 Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Galician.isl,..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
-Name: German; MessagesFile: compiler:Languages\German.isl,..\..\Translations\InnoSetup\German.isl
+Name: German; MessagesFile: compiler:Languages\German.isl,..\..\Translations\InnoSetup\German.isl;InfoAfterFile:..\..\Translations\Docs\Readme\ReadMe-German.txt
 Name: Greek; MessagesFile: compiler:Languages\Greek.isl,..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: compiler:Languages\Italian.isl,..\..\Translations\InnoSetup\Italian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
@@ -149,7 +149,7 @@ Name: Russian; MessagesFile: compiler:Languages\Russian.isl,..\..\Translations\I
 Name: Serbian; MessagesFile: compiler:Languages\SerbianCyrillic.isl,..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
 Name: Sinhala; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Sinhala.islu,..\..\Translations\InnoSetup\Sinhala.islu
 Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Slovak.isl,..\..\Translations\InnoSetup\Slovak.isl
-Name: Slovenian; MessagesFile: compiler:Languages\Slovenian.isl,..\..\Translations\InnoSetup\Slovenian.isl
+Name: Slovenian; MessagesFile: compiler:Languages\Slovenian.isl,..\..\Translations\InnoSetup\Slovenian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt
 Name: Spanish; MessagesFile: compiler:Languages\Spanish.isl,..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
 Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Swedish.isl,..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: compiler:Languages\Turkish.isl,..\..\Translations\InnoSetup\Turkish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt
@@ -474,6 +474,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-French.txt; DestDir: {app}\Docs; C
 Source: ..\..\Translations\WinMerge\Galician.po; DestDir: {app}\Languages; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt; DestDir: {app}\Docs; Components: Languages\Galician
 Source: ..\..\Translations\WinMerge\German.po; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-German.txt; DestDir: {app}\Docs; Components: Languages\German
 Source: ..\..\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
@@ -483,6 +484,7 @@ Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Compo
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMergeJapanese.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\WinMerge\Lithuanian.po; DestDir: {app}\Languages; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt; DestDir: {app}\Docs; Components: Languages\Lithuanian
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
@@ -497,6 +499,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt; DestDir: {app}\Docs; 
 Source: ..\..\Translations\WinMerge\Sinhala.po; DestDir: {app}\Languages; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt; DestDir: {app}\Docs; Components: Languages\Slovenian
 Source: ..\..\Translations\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
 Source: ..\..\Translations\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
@@ -517,7 +520,7 @@ Source: ..\..\ColorSchemes\*.ini; DestDir: {app}\ColorSchemes; Flags: sortfilesb
 Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\ChangeLog.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 

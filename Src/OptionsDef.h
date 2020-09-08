@@ -61,6 +61,10 @@ extern const String OPT_DIRVIEW_SORT_COLUMN OP("Settings/DirViewSortCol");
 extern const String OPT_DIRVIEW_SORT_COLUMN3 OP("Settings/DirViewSortCol3");
 extern const String OPT_DIRVIEW_SORT_ASCENDING OP("Settings/DirViewSortAscending");
 extern const String OPT_DIRVIEW_EXPAND_SUBDIRS OP("Settings/DirViewExpandSubdirs");
+extern const String OPT_DIRVIEW_COLUMN_ORDERS OP("DirView/ColumnOrders");
+extern const String OPT_DIRVIEW_COLUMN_WIDTHS OP("DirView/ColumnWidths");
+extern const String OPT_DIRVIEW3_COLUMN_ORDERS OP("DirView3/ColumnOrders");
+extern const String OPT_DIRVIEW3_COLUMN_WIDTHS OP("DirView3/ColumnWidths");
 
 // Window/Pane
 extern const String OPT_ACTIVE_FRAME_MAX OP("Settings/ActiveFrameMax");

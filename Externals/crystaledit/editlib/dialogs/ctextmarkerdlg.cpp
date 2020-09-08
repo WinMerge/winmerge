@@ -180,7 +180,7 @@ void CTextMarkerDlg::OnBnclickedEditRegExp()
 void CTextMarkerDlg::OnBnClickedEditMarkerNew()
 {
 	CString name = m_tempMarkers.MakeNewId();
-	CString sFindWhat = _T("New Pattern");
+	CString sFindWhat = LoadResString(IDS_MARKER_NEW_PATTERN).c_str();
 	m_tempMarkers.SetMarker(name, sFindWhat, GetLastSearchFlags(), 
 		static_cast<COLORINDEX>(static_cast<int>(COLORINDEX_MARKERBKGND1) + (m_tempMarkers.GetMarkers().size() % 3)));
 	int i = GetSelectedItemIndex();

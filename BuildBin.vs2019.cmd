@@ -12,10 +12,10 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 )
 
 if "%1" == "" (
-  call :BuildBin
-  call :BuildBin x64
+  call :BuildBin || goto :eof
+  call :BuildBin x64 || goto :eof
 ) else (
-  call :BuildBin %1 
+  call :BuildBin %1 || goto :eof
 )
 
 goto :eof
@@ -27,13 +27,18 @@ if "%1" == "" (
 ) else (
   set PLATFORM_VS=%1
 )
-MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
+if "%PLATFORM_VS%" == "Win32" (
+  set PLATFORM_DIR=
+) else (
+  set PLATFORM_DIR=%PLATFORM_VS%
+)
+MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\%PLATFORM%\Release\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\%PLATFORM_DIR%\Release\WinMergeU.exe
 )
 
-mkdir Build\%PLATFORM%\Release\%APPVER% 2> NUL
-copy Build\%PlATFORM%\Release\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
+mkdir Build\%PLATFORM_DIR%\Release\%APPVER% 2> NUL
+copy Build\%PlATFORM_DIR%\Release\*.pdb "Build\%PLATFORM_DIR%\Release\%APPVER%\"
 goto :eof

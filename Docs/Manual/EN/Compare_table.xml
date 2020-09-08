@@ -2,7 +2,7 @@
 <article id="Compare_table">
   <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
 
-  <title>Comparing table files</title>
+  <title>Comparing in table format</title>
 
   <indexterm>
     <primary>comparing files</primary>
@@ -10,6 +10,120 @@
     <secondary>table</secondary>
   </indexterm>
 
-  <para>TBD</para>
+  <para>In version 2.16.7 or later, it is possible to display and edit delimiter-separated values files such as CSV and TSV in table format like spreadsheet software.
+   Editing operations, moving to differences, and merging operations in this format are the same as in a normal text file window.
+  </para>
+
+  <mediaobject>
+    <imageobject>
+      <imagedata contentwidth="600" fileref="screenshots/tblcomp1.png"
+                 format="PNG" />
+    </imageobject>
+
+    <textobject>
+      <phrase>Comparing in table format</phrase>
+    </textobject>
+  </mediaobject>
   
+  <section id="Compare_files_in_table_format">
+    <title>Comparing in table format<indexterm>
+        <primary>comparing in table format</primary>
+      </indexterm></title>
+
+    <para>Whether files are opened in table format depends on whether the file name matches defined patterns.
+     By default, if the file extension is .csv or .tsv, it will be opened in table format.
+     If you want to change the patterns, specify it on the Compare/Table page in the Options dialog.
+    </para>
+
+    <para>If you want to temporarily open it in table format after opening it as plain text, click 
+      <menuchoice>
+        <guimenu>File</guimenu>
+        <guimenuitem>Recompare As</guimenuitem>
+        <guimenuitem>Table</guimenuitem>
+      </menuchoice>.
+    If the Table dialog appears, select the File type and click <guilabel>OK</guilabel>.
+    </para>
+    
+    <para>
+    If you want to temporarily open files that have been opened in table format as regular text files, click 
+      <menuchoice>
+        <guimenu>File</guimenu>
+        <guimenuitem>Recompare As</guimenuitem>
+        <guimenuitem>Text</guimenuitem>
+      </menuchoice>.
+    </para>
+  </section>
+
+  <section id="Table_settings">
+    <title>Table format settings<indexterm>
+        <primary>table format settings</primary>
+      </indexterm></title>
+
+    <para>
+      By default, data in delimiter-separated values text files are treated as follows
+      <itemizedlist>
+        <listitem>
+          <para>CSV files are separated by commas and TSV files are separated by tabs, and values are displayed by columns.
+          </para>
+        </listitem>
+        <listitem>
+          <para>However, delimiter characters within the quoted range (double quotes) are treated as values.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Also, EOL characters (CR or LF) within the quoted range are treated as values.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+      If you want to change the above settings, 
+      you can do so in the Compare/Table page in the Options dialog or 
+      in the table dialog that appears when clicking 
+      <menuchoice>
+        <guimenu>File</guimenu>
+        <guimenuitem>Recompare As</guimenuitem>
+        <guimenuitem>Table</guimenuitem>
+      </menuchoice>.
+      See <xref linkend="Configuration_compare_table" /> for details.
+    </para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>Table format-specific operations<indexterm>
+        <primary>table format-specific operations</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>You can change the column width by dragging the column boundary of a column heading.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Double-clicking on a column boundary in a column heading automatically adjusts the column width according to the content of the column.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Text is selected vertically by dragging a column in the column heading.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+          When 
+            <menuchoice>
+              <guimenu>View</guimenu>
+              <guimenuitem>Wrap Lines</guimenuitem>
+            </menuchoice>
+            menu item is checked, the text will be wrapped in each column.
+            Check this menu item if you want to see multiline field values.  
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
 </article>

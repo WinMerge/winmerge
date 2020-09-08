@@ -66,6 +66,11 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
 }
 
+static inline bool IsDiffPerLine(bool bTableEditing, const DIFFRANGE& cd)
+{
+	const int LineLimit = 20;
+	return (bTableEditing || (cd.dend - cd.dbegin > LineLimit)) ? true : false;
+}
 
 /**
  * @brief Returns rectangles to highlight in both views (to show differences in line specified)
@@ -76,51 +81,163 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 	for (file = 0; file < m_nBuffers; file++)
 		rc[file].top = -1;
 
+	const int nActivePane = pView->m_nThisPane;
+	if (m_diffList.GetSize() == 0 || IsEditedAfterRescan())
+		return;
+
 	CPoint ptStart, ptEnd;
 	pView->GetSelection(ptStart, ptEnd);
 
-	vector<WordDiff> worddiffs = GetWordDiffArray(ptStart.y);
+	const int nLineCount = m_ptBuf[nActivePane]->GetLineCount();
+	size_t nWordDiff = 0;
+	DIFFRANGE di;
+	vector<WordDiff> worddiffs;
+	int nDiff = m_diffList.LineToDiff(ptStart.y);
+	if (nDiff != -1)
+		worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
 
-	if (worddiffs.empty())
-		return;
-
-	int nActivePane = pView->m_nThisPane;
-
-	std::vector<WordDiff>::iterator it;
-	for (it = worddiffs.begin(); it != worddiffs.end(); ++it)
+	if (!worddiffs.empty())
 	{
-		if ((*it).beginline[nActivePane] <= ptStart.y && ptStart.y <= (*it).endline[nActivePane])
+		bool bGoToNextWordDiff = true;
+		if (EqualCurrentWordDiff(nActivePane, ptStart, ptEnd))
 		{
-			int begin = ((*it).beginline[nActivePane] < ptStart.y) ? 0 : (*it).begin[nActivePane];
-			int end   = ((*it).endline[nActivePane]   > ptStart.y) ? m_ptBuf[nActivePane]->GetLineLength(ptStart.y) : (*it).end[nActivePane];
-			if (begin <= ptStart.x && ptStart.x <= end)
-				break;
+			nWordDiff = m_CurWordDiff.nWordDiff;
+		}
+		else
+		{
+			if (!bReversed)
+			{
+				for (nWordDiff = 0; nWordDiff < worddiffs.size(); ++nWordDiff)
+				{
+					auto& worddiff = worddiffs[nWordDiff];
+					if (worddiff.beginline[nActivePane] <= ptStart.y && ptStart.y <= worddiff.endline[nActivePane])
+					{
+						int begin = (worddiff.beginline[nActivePane] < ptStart.y) ? 0 : worddiff.begin[nActivePane];
+						int end = (worddiff.endline[nActivePane] > ptStart.y) ? m_ptBuf[nActivePane]->GetLineLength(ptStart.y) : worddiff.end[nActivePane];
+						if (ptStart.x <= begin || (begin <= ptStart.x && ptStart.x <= end))
+						{
+							bGoToNextWordDiff = false;
+							break;
+						}
+					}
+				}
+			}
+			else
+			{
+				for (nWordDiff = worddiffs.size() - 1; nWordDiff != static_cast<size_t>(-1); --nWordDiff)
+				{
+					auto& worddiff = worddiffs[nWordDiff];
+					if (worddiff.beginline[nActivePane] <= ptStart.y && ptStart.y <= worddiff.endline[nActivePane])
+					{
+						int begin = (worddiff.beginline[nActivePane] < ptStart.y) ? 0 : worddiff.begin[nActivePane];
+						int end = (worddiff.endline[nActivePane] > ptStart.y) ? m_ptBuf[nActivePane]->GetLineLength(ptStart.y) : worddiff.end[nActivePane];
+						if (ptStart.x >= end || (begin <= ptStart.x && ptStart.x <= end))
+						{
+							bGoToNextWordDiff = false;
+							break;
+						}
+					}
+				}
+			}
+		}
+		if (bGoToNextWordDiff)
+		{
+			if (!bReversed)
+			{
+				if (nWordDiff < worddiffs.size())
+					++nWordDiff;
+
+				if (nWordDiff == worddiffs.size())
+				{
+					m_diffList.GetDiff(nDiff, di);
+					ptStart.y = (di.dend + 1) % nLineCount;
+					worddiffs.clear();
+				}
+			}
+			else
+			{
+				if (nWordDiff == 0)
+				{
+					m_diffList.GetDiff(nDiff, di);
+					ptStart.y = (di.dbegin - 1) % nLineCount;
+					worddiffs.clear();
+				}
+				else
+					--nWordDiff;
+			}
+		}
+	}
+	if (worddiffs.empty())
+	{
+		if (!bReversed)
+		{
+			nDiff = m_diffList.LineToDiff(ptStart.y);
+			if (nDiff == -1)
+			{
+				m_diffList.GetNextDiff(ptStart.y, nDiff);
+				if (nDiff == -1)
+					nDiff = 0;
+			}
+			else
+			{
+				nDiff = (nDiff + 1) % m_diffList.GetSize();
+			}
+			worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
+			nWordDiff = 0;
+		}
+		else
+		{
+			nDiff = m_diffList.LineToDiff(ptStart.y);
+			if (nDiff == -1)
+			{
+				m_diffList.GetPrevDiff(ptStart.y, nDiff);
+				if (nDiff == -1)
+					nDiff = m_diffList.GetSize() - 1;
+			}
+			else
+			{
+				nDiff = (nDiff - 1) % m_diffList.GetSize();
+			}
+			worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
+			nWordDiff = worddiffs.size() - 1;
+		}
+		if (worddiffs.empty())
+		{
+			if (nDiff == -1)
+				return;
+			for (file = 0; file < m_nBuffers; file++)
+			{
+				rc[file].left = 0;
+				rc[file].top = di.dbegin;
+				rc[file].right = 0;
+				if (di.dbegin < nLineCount - 1)
+					rc[file].bottom = di.dbegin + 1;
+				else
+					rc[file].bottom = di.dbegin;
+			}
+			nWordDiff = static_cast<size_t>(-1);
 		}
 	}
 
-	if (!bReversed)
+	if (nWordDiff != static_cast<size_t>(-1))
 	{
-		if (it != worddiffs.end())
-			++it;
-	
-		if (it == worddiffs.end())
-			it = worddiffs.begin();
-	}
-	else
-	{
-		if (it == worddiffs.begin() || it == worddiffs.end())
-			it = worddiffs.end() - 1;
-		else
-			--it;
+		auto& worddiff = worddiffs[nWordDiff];
+		for (file = 0; file < m_nBuffers; file++)
+		{
+			rc[file].left = worddiff.begin[file];
+			rc[file].top = worddiff.beginline[file];
+			rc[file].right = worddiff.end[file];
+			rc[file].bottom = worddiff.endline[file];
+		}
 	}
 
-	for (file = 0; file < m_nBuffers; file++)
-	{
-		rc[file].left = (*it).begin[file];
-		rc[file].top = (*it).beginline[file];
-		rc[file].right =(*it).end[file];
-		rc[file].bottom = (*it).endline[file];
-	}
+	m_CurWordDiff.nPane = nActivePane;
+	m_CurWordDiff.ptStart.x = rc[nActivePane].left;
+	m_CurWordDiff.ptStart.y = rc[nActivePane].top;
+	m_CurWordDiff.ptEnd.x = rc[nActivePane].right;
+	m_CurWordDiff.ptEnd.y = rc[nActivePane].bottom;
+	m_CurWordDiff.nDiff = nDiff;
+	m_CurWordDiff.nWordDiff = nWordDiff;
 }
 
 void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
@@ -140,10 +257,9 @@ void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
 std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInDiffBlock(int nDiff)
 {
 	DIFFRANGE cd;
-	const int LineLimit = 20;
 	m_diffList.GetDiff(nDiff, cd);
 
-	bool diffPerLine = (cd.dend - cd.dbegin > LineLimit) ? true : false;
+	bool diffPerLine = IsDiffPerLine(m_ptBuf[0]->GetTableEditing(), cd);
 	if (!diffPerLine)
 		return GetWordDiffArray(cd.dbegin);
 
@@ -190,8 +306,7 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
 	std::unique_ptr<int[]> nOffsets[3];
-	const int LineLimit = 20;
-	bool diffPerLine = (cd.dend - cd.dbegin > LineLimit) ? true : false;
+	bool diffPerLine = IsDiffPerLine(m_ptBuf[0]->GetTableEditing(), cd);
 
 	int nLineBegin, nLineEnd;
 	if (!diffPerLine)
@@ -246,7 +361,17 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 			wd.beginline[file] = nLine;
 			wd.begin[file] = it->begin[file] - nOffsets[file][nLine-nLineBegin];
 			if (m_ptBuf[file]->GetLineLength(nLine) < wd.begin[file])
-				wd.begin[file] = m_ptBuf[file]->GetLineLength(nLine);
+			{
+				if (wd.beginline[file] < m_ptBuf[file]->GetLineCount() - 1)
+				{
+					wd.begin[file] = 0;
+					wd.beginline[file]++;
+				}
+				else
+				{
+					wd.begin[file] = m_ptBuf[file]->GetLineLength(nLine);
+				}
+			}
 
 			for (; nLine < nLineEnd; nLine++)
 			{
@@ -256,7 +381,17 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 			wd.endline[file] = nLine;
 			wd.end[file] = it->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
 			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[file])
-				wd.end[file] = m_ptBuf[file]->GetLineLength(nLine);
+			{
+				if (wd.endline[file] < m_ptBuf[file]->GetLineCount() - 1)
+				{
+					wd.end[file] = 0;
+					wd.endline[file]++;
+				}
+				else
+				{
+					wd.end[file] = m_ptBuf[file]->GetLineLength(nLine);
+				}
+			}
 		}
 		wd.op = it->op;
 

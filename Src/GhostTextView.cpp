@@ -38,6 +38,7 @@ CGhostTextView::CGhostTextView()
 , m_ptSavedSelEndPushed{}
 , m_ptLastChangePushed{}
 , m_nTopSubLinePushed(0)
+, m_nOffsetCharPushed(0)
 {
 }
 
@@ -153,6 +154,8 @@ void CGhostTextView::PopCursors ()
 		m_nTopSubLine = 0;
 	int nDummy;
 	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
+	const int nMaxLineLength = GetMaxLineLength(m_nTopLine, GetScreenLines());
+	m_nOffsetChar = (m_nOffsetCharPushed < nMaxLineLength) ? m_nOffsetCharPushed : nMaxLineLength;
     RecalcVertScrollBar(true);
     RecalcHorzScrollBar();
 }
@@ -182,6 +185,7 @@ void CGhostTextView::PushCursors ()
 
 	// and top line positions
 	m_nTopSubLinePushed = m_nTopSubLine;
+	m_nOffsetCharPushed = m_nOffsetChar;
 }
 
 

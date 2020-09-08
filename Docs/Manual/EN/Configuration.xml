@@ -144,7 +144,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): Lets you use the
+          <para><option>MDI child window or main window</option> (default): Lets you use the
           <keycap>ESC</keycap> key to close WinMerge windows. Pressing
           <keycap>ESC</keycap> once closes one window, so with one File Compare
           window open, it takes three key presses to close WinMerge: first the
@@ -154,6 +154,11 @@
           <para>Note that in the WinMerge command line, the
           <parameter>-e</parameter> parameter enables you to close WinMerge by
           pressing <keycap>ESC</keycap> just once.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>MDI child window only</option>: Pressing <keycap>ESC</keycap>
+          closes a child window, but not the last remaining main window.</para>
         </listitem>
 
         <listitem>
@@ -290,11 +295,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): When you click <guilabel>Compare</guilabel> button, the Select File or Folder dialog will remain open instead of closing.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: Clicking <guilabel>Compare</guilabel> button closes the Select Files or Folders dialog.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -320,7 +325,7 @@
         </listitem>
 
         <listitem>
-          <para><guilabel>From MRU list</guilabel>: Checks paths only from the
+          <para><guilabel>From Most Recent Used list</guilabel>: Checks paths only from the
           most recently used (MRU) list. This is handy when you have a limited
           set of paths to compare.</para>
         </listitem>
@@ -408,8 +413,8 @@
     </section>
 
     <section>
-      <title>Whitespace<indexterm>
-          <primary>whitespace</primary>
+      <title>Whitespaces<indexterm>
+          <primary>whitespaces</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -566,11 +571,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): Codepage differences are ignored.</para>
+          <para><option>Disabled</option> (default): File encoding differences are detected. Also, differences between the presence and absence of BOM are detected.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Enabled</option>: File encoding differences are ignored.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -742,7 +747,14 @@
           <term>Binary Contents</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>This method is faster than the Quick contents
+            compare method. However, it does not apply any plugins, line filters,
+            'Ignore case' option, etc. First, it compares the file sizes, and 
+            if they are different, it treats the contents of the file as 
+            different without comparing them. If the file sizes match, 
+            it simply compares the contents of the file in bytes. 
+            No file encoding detection, EOL detection, or binary file detection is performed.
+            This compare method is good for comparing files against backed up files.</para>
           </listitem>
         </varlistentry>
 
@@ -761,7 +773,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term><guilabel>Modified Date and Size</guilabel></term>
+          <term>Modified Date and Size</term>
 
           <listitem>
             <para>Similar to <guilabel>Modified Date</guilabel>, but also checks
@@ -957,6 +969,24 @@
     </section>
 
     <section>
+      <title>Binary compare limit (MB)<indexterm>
+          <primary>Binary compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Number of compare threads<indexterm>
           <primary>compare threads</primary>
         </indexterm></title>
@@ -982,27 +1012,58 @@
         </indexterm></title>
     <section>
       <title>CSV File Patterns</title>
-      <para>TBD</para>
+      <para>
+      Specifies file name pattern for comma-separated values files to open in table format.
+      To specify multiple items, separate them with a semicolon.
+      By default, *.csv is specified. If you do not want to open the files with the extension .csv in table format. Delete the *.csv.
+      </para>
     </section>
 
     <section>
       <title>TSV File Patterns</title>
-      <para>TBD</para>
+      <para>
+      Specifies file name pattern for tab-separated values files to open in table format.
+      To specify multiple items, separate them with a semicolon.
+      By default, *.tsv is specified. If you do not want to open the files with the extension .tsv in table format. Delete the *.tsv.
+      </para>
     </section>
 
     <section>
       <title>Custom Delimiter-Separated Values</title>
-      <para>TBD</para>
+      <para>
+      If you want to open text files, with values separated by characters other than commas or tabs, in tabular format,
+      specify the file name pattern and delimiter.
+      </para>
     </section>
 
     <section>
       <title>Allow newlines in quotes</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default):
+          If there is a newline character between the quote character and the next quote character,
+          the newline character is treated as part of a value.
+          Enable this option if you want to process CSV/TSV files that contain multiple lines in one field.          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>:
+          Disable the above.
+          Disable this option when opening files with incorrect quotes.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>Quote character</title>
-      <para>TBD</para>
+      <para>
+      Specifies the character that is treated as quotation marks.
+      Delimiters within the text range enclosed by the characters specified here are treated as part of a value.
+      This field can be empty.
+      To open files in which the quotation marks are mere values, 
+      leave it empty or specify a character that does not exist in the file.
+      </para>
     </section>
   </section>
 
@@ -1012,6 +1073,11 @@
         </indexterm></title>
     <section>
       <title>Image File Patterns</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>Enable image compare in folder compare</title>
       <para>TBD</para>
     </section>
   </section>

@@ -468,6 +468,49 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles.sct<indexterm>
+          <primary>CompareMSVisioFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Displays the text content of a <trademark
+      class="registered">Microsoft</trademark> <application>Visio</application>
+      file, stripping away all formatting and embedded objects.</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+            class="extension">*.vsdx</filename>, <filename
+            class="extension">*.vsdm</filename>, <filename
+            class="extension">*.vss</filename>, <filename
+            class="extension">*.vssx</filename>, <filename
+            class="extension">*.vssm</filename>, <filename
+            class="extension">*.vst</filename>, <filename
+            class="extension">*.vstx</filename>, <filename
+            class="extension">*.vstm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="EditorAddin">
       <title><filename>editor addin.sct<indexterm>
           <primary>editor addin.sct plugin file</primary>

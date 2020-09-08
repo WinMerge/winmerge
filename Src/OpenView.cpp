@@ -167,7 +167,10 @@ void COpenView::OnInitialUpdate()
 	theApp.TranslateDialog(m_hWnd);
 
 	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
-		return;
+	{
+		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
+		m_image.Create(1, 1, 24, 0);
+	}
 
 	CFormView::OnInitialUpdate();
 
@@ -496,7 +499,8 @@ void COpenView::OnButton(int index)
 		sfolder = paths::GetPathOnly(m_strPath[index]);
 		break;
 	case paths::DOES_NOT_EXIST:
-		sfolder = paths::GetParentPath(m_strPath[index]);
+		if (!m_strPath[index].empty())
+			sfolder = paths::GetParentPath(m_strPath[index]);
 		break;
 	default:
 		_RPTF0(_CRT_ERROR, "Invalid return value from paths::DoesPathExist()");

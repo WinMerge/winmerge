@@ -233,11 +233,11 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyPathnames<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_ALL, OnCopyBothPathnames)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_LEFT, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_MIDDLE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_RIGHT, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBothTo)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_LEFT, OnUpdateCtxtDirCopy2<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_MIDDLE, OnUpdateCtxtDirCopy2<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_RIGHT, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBoth2)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBoth2)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_LEFT>)
@@ -245,11 +245,11 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnCopyBothToClipboard)
 	ON_COMMAND(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnCopyBothToClipboard)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
 	ON_COMMAND(ID_DIR_ITEM_RENAME, OnItemRename)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ITEM_RENAME, OnUpdateItemRename)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
@@ -417,7 +417,7 @@ void CDirView::OnInitialUpdate()
 
 	// Restore column orders as they had them last time they ran
 	m_pColItems->LoadColumnOrders(
-		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnOrders")));
+		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();
@@ -495,7 +495,7 @@ void CDirView::ReloadColumns()
 
 	UpdateColumnNames();
 	m_pColItems->LoadColumnWidths(
-		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
+		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
 		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 	SetColAlignments();
 }
@@ -1108,10 +1108,15 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
-		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
+	{
+		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
+		GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
+	}
+	{
+		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+		GetOptionsMgr()->SaveOption(keyname,
+			m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)));
+	}
 
 	CListView::OnDestroy();
 
@@ -1353,7 +1358,7 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * in
 		// Open identical and different files
 		FileLocation fileloc[3];
 		String strDesc[3];
-		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
+		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
 		for (int i = 0; i < paths.GetSize(); ++i)
 		{
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
@@ -1577,6 +1582,24 @@ void CDirView::OnUpdateCtxtDirCopyBothDiffsOnlyTo(CCmdUI* pCmdUI)
 	pCmdUI->SetText(FormatMenuItemStringDifferencesTo(counts.count, counts.total).c_str());
 }
 	
+/**
+ * @brief Update "Copy | Left/Right/Both " item
+ */
+template<SIDE_TYPE stype>
+void CDirView::OnUpdateCtxtDirCopy2(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemCopyableToOn<stype>);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemString(stype, counts.count, counts.total).c_str());
+}
+
+void CDirView::OnUpdateCtxtDirCopyBoth2(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemCopyableBothToOn);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemStringAll(GetDocument()->m_nDirs, counts.count, counts.total).c_str());
+}
+
 /**
  * @brief Get keydata associated with item in given index.
  * @param [in] idx Item's index to list in UI.
@@ -2351,8 +2374,8 @@ bool CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	GetOptionsMgr()->SaveOption(keyname,
 		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 	return true;
 }
@@ -2442,7 +2465,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		// Now redraw screen
 		UpdateColumnNames();
 		m_pColItems->LoadColumnWidths(
-			(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
+			GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
 			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 		Redisplay();
 	}
@@ -2522,8 +2545,8 @@ void CDirView::OnCustomizeColumns()
 {
 	// Located in DirViewColHandler.cpp
 	OnEditColumns();
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
+	GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
 }
 
 void CDirView::OnCtxtOpenWithUnpacker()
@@ -4130,10 +4153,10 @@ void CDirView::OnEditColumns()
 	if (dlg.DoModal() != IDOK)
 		return;
 
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	GetOptionsMgr()->SaveOption(keyname,
 		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(DefColumnWidth) :
-		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))).c_str());
+		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
 
 	// Reset our data to reflect the new data from the dialog
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();

@@ -24,6 +24,9 @@
 #define new DEBUG_NEW
 #endif
 
+/** @brief Location for hex compare specific help to open. */
+static TCHAR HexMergeViewHelpLocation[] = _T("::/htmlhelp/Compare_bin.html");
+
 /**
  * @brief Turn bool api result into success/error code
  */
@@ -61,6 +64,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_NCCALCSIZE()
+	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_FIND, OnEditFind)
 	ON_COMMAND(ID_EDIT_REPLACE, OnEditReplace)
 	ON_COMMAND(ID_EDIT_REPEAT, OnEditRepeat)
@@ -533,6 +537,12 @@ void CHexMergeView::OnNextdiff()
 void CHexMergeView::OnPrevdiff()
 {
 	m_pif->select_prev_diff(FALSE);
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void CHexMergeView::OnHelp()
+{
+	theApp.ShowHelp(HexMergeViewHelpLocation);
 }
 
 void CHexMergeView::ZoomText(int amount)

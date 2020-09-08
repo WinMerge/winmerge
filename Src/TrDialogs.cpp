@@ -6,6 +6,26 @@ IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
+void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
+{
+	size_t i = 0, j = 0, k = 0;
+	while ((j = patterns.find_first_of(L"; ", i)) != String::npos &&
+		(k = patterns.find_last_of(L"; ", j) + 1) != patterns.length())
+	{
+		TCHAR const sep = patterns[j];
+		patterns[j] = L'\0';
+		if (PathMatchSpec(patterns.c_str() + i, patterns.c_str() + k))
+		{
+			patterns.erase(i, k - i);
+		}
+		else
+		{
+			patterns[j] = sep;
+			i = k;
+		}
+	}
+}
+
 BOOL CTrDialog::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);

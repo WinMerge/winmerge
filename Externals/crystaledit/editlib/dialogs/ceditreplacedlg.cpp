@@ -518,10 +518,9 @@ OnRegExp ()
 void CEditReplaceDlg::
 UpdateControls()
 {
-  GetDlgItem(IDC_EDIT_SKIP)->EnableWindow( !m_sText.IsEmpty() );
-  GetDlgItem(IDC_EDIT_REPLACE)->EnableWindow( !m_sText.IsEmpty() );
-  GetDlgItem(IDC_EDIT_REPLACE_ALL)->EnableWindow( !m_sText.IsEmpty() );
-  
+  for (auto id: {IDC_EDIT_FINDPREV, IDC_EDIT_SKIP, IDC_EDIT_REPLACE, IDC_EDIT_REPLACE_ALL})
+    GetDlgItem(id)->EnableWindow( !m_sText.IsEmpty() );
+ 
   UpdateRegExp();
 }
 

@@ -12,6 +12,20 @@
 #include "Bitmap.h"
 #include "resource.h" // IDD_ABOUTBOX
 
+ // https://www.gnu.org/graphics/gnu-ascii.html
+ // Copyright (c) 2001 Free Software Foundation, Inc.
+ // Converted with https://tomeko.net/online_tools/cpp_text_escape.php
+static const char gnu_ascii[] =
+"  ,           ,\n"
+" /             \\\n"
+"((__-^^-,-^^-__))\n"
+" `-_---' `---_-'\n"
+"  `--|o` 'o|--'\n"
+"     \\  `  /\n"
+"      ): :(\n"
+"      :o_o:\n"
+"       \"-\"";
+
 /** 
  * @brief About-dialog class.
  * 
@@ -42,21 +56,22 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOpenContributors();
-	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 
 private:
-	CAboutDlg *m_p;
+	CAboutDlg *const m_p;
 	ATL::CImage m_image;
 	CFont m_font;
+	CFont m_font_gnu_ascii;
 };
 
 BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
-	ON_WM_DRAWITEM()
+	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
 	ON_NOTIFY(NM_CLICK, IDC_WWW, OnBnClickedWWW)
 END_MESSAGE_MAP()
@@ -65,13 +80,18 @@ CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CAboutDlg::Impl::IDD)
 	, m_p(p)
 {
+	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
+	LOGFONT lf = { 0 };
+	lf.lfHeight = 14 * 10;
+	lf.lfWeight = FW_BOLD;
+	_tcscpy_s(lf.lfFaceName, _T("Courier New"));
+	m_font_gnu_ascii.CreatePointFontIndirect(&lf);
 }
 
 void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
-	DDX_Text(pDX, IDC_DEVELOPERS, m_p->m_info.developers);
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
 	//}}AFX_DATA_MAP
@@ -84,12 +104,14 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE"));
+	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE")))
+	{
+		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
+	}
 
-	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
-
-	GetDlgItem(IDC_DEVELOPERS)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
+	GetDlgItem(IDC_GNU_ASCII)->SetFont(&m_font_gnu_ascii);
+	::SetDlgItemTextA(m_hWnd, IDC_GNU_ASCII, gnu_ascii);
 
 	String link;
 	GetDlgItemText(IDC_WWW, link);
@@ -104,23 +126,32 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
-	if (nCtlColor == CTLCOLOR_STATIC && pWnd != GetDlgItem(IDC_WWW))
+	if (nCtlColor == CTLCOLOR_STATIC)
 	{
+		if (pWnd->GetDlgCtrlID() == IDC_GNU_ASCII)
+			pDC->SetTextColor(RGB(128, 128, 128));
 		pDC->SetBkMode(TRANSPARENT);
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
 	return CTrDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
-void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 {
-	CRect rc;
-	GetDlgItem(nIDCtl)->GetClientRect(&rc);
-	m_image.Draw(lpDrawItemStruct->hDC, rc, Gdiplus::InterpolationModeBicubic);
-	GetDlgItem(IDC_DEVELOPERS)->Invalidate();
-	GetDlgItem(IDC_VERSION)->Invalidate();
-	GetDlgItem(IDC_COMPANY)->Invalidate();
+	if (!m_image)
+		return FALSE;
+	CRect rc, rcCompany;
+	GetClientRect(&rc);
+	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
+	ScreenToClient(&rcCompany);
+	rc.top = rcCompany.bottom;
+	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
+	rc.bottom = rc.top;
+	rc.top = 0;
+	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);
+	return TRUE;
 }
+
 /**
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.

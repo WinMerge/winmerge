@@ -184,7 +184,7 @@ public class PoFileUpdater
         File.Move(sPoPath, sBakPath);
         //--------------------------------------------------------------------------------
 
-        using (var oPoFile = new StreamWriter(sPoPath, false, System.Text.Encoding.UTF8))
+        using (var oPoFile = new StreamWriter(sPoPath, false, new System.Text.UTF8Encoding(false)))
         {
             var oLanguage = oLanguagePoContent["__head__"];
             oPoFile.Write(oLanguage.sTranslatorComments);

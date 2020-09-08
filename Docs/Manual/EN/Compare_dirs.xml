@@ -24,7 +24,7 @@
               <guimenuitem>Open</guimenuitem>
             </menuchoice>. Use the Select Files or Folders dialog to specify the
           left and right folders to compare. By default, the compare includes
-          all files in the folders, and is nonrecursive (does not include
+          all files in the folders, and is recursive (does include
           subfolders). To change any of these options and for more details about
           the Select Files or Folder dialog, see <xref
           linkend="Open_paths" />.</para>

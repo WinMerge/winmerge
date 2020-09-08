@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-04-30 01:00+0300\n"
+"PO-Revision-Date: 2020-07-28 01:00+0300\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -369,8 +369,8 @@ msgstr "Шрифт по &умолчанию"
 msgid "Sw&ap Panes"
 msgstr "Поменять панели местами"
 
-msgid "Compa&re Statistics"
-msgstr "Статистика сравнения"
+msgid "Com&pare Statistics..."
+msgstr "Статистика сравнения..."
 
 msgid "Refre&sh\tF5"
 msgstr "&Обновить\tF5"
@@ -456,7 +456,7 @@ msgstr "Предпросмотр..."
 msgid "&Convert Line Endings to"
 msgstr "&Заменить концы строк на"
 
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
 msgid "Re&load\tCtrl+F5"
@@ -465,14 +465,14 @@ msgstr "Обновить\tCtrl+F5"
 msgid "&File Encoding..."
 msgstr "Кодировка файла..."
 
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
 msgid "&Text"
 msgstr "Текст"
 
-msgid "&Table"
-msgstr ""
+msgid "T&able"
+msgstr "Таблица"
 
 msgid "&XML"
 msgstr "&XML"
@@ -814,9 +814,6 @@ msgstr "Все на... (%1 из %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Отличия на... (%1 из %2)"
-
-msgid "&Refresh"
-msgstr "&Обновить"
 
 msgid "Left Shell menu"
 msgstr "Меню оболочки слева"
@@ -1298,7 +1295,7 @@ msgstr "Перейт&и"
 msgid "Compare"
 msgstr "Сравнение"
 
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Невидимые"
 
 msgid "&Compare"
@@ -1454,9 +1451,6 @@ msgstr "Пользовательская:"
 msgid "Options"
 msgstr "Настройки"
 
-msgid " Categories"
-msgstr " Категории"
-
 msgid "Import..."
 msgstr "Импорт..."
 
@@ -1495,9 +1489,6 @@ msgstr "Пользователь 2:"
 
 msgid "Bold"
 msgstr "Жирный"
-
-msgid "Marker colors"
-msgstr "Цвета маркера"
 
 msgid "Search Marker:"
 msgstr "Маркер поиска:"
@@ -1616,8 +1607,8 @@ msgstr "&Отмена"
 msgid "Test Filter"
 msgstr "Тест фильтра"
 
-msgid "Testing filter..."
-msgstr "Тестировать фильтр ..."
+msgid "Testing filter:"
+msgstr "Тестировать фильтр:"
 
 msgid "&Enter text to test:"
 msgstr "Введите тестовый текст:"
@@ -1635,10 +1626,10 @@ msgid "&Close"
 msgstr "&Закрыть"
 
 msgid "Table"
-msgstr ""
+msgstr "Таблица"
 
 msgid "File type"
-msgstr ""
+msgstr "Тип файла"
 
 msgid "&CSV"
 msgstr ""
@@ -1647,22 +1638,19 @@ msgid "&TSV"
 msgstr ""
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Свои значения разделителей"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Символ разделителя"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Разрешить новые строки в кавычках"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Символ кавычки:"
 
 msgid "&Use customized text colors"
 msgstr "Использовать особые цвета"
-
-msgid "Custom text colors"
-msgstr "Настроить цвета"
 
 msgid "Whitespace:"
 msgstr "Невидимые:"
@@ -1783,16 +1771,16 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Шаблоны CSV-файлов:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Шаблоны TSV-файлов:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Свои значения разделителей"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Шаблоны файлов"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -1950,6 +1938,12 @@ msgstr "Справа:"
 
 msgid "To right:"
 msgstr "Направо:"
+
+msgid "From middle:"
+msgstr ""
+
+msgid "To middle:"
+msgstr ""
 
 #, c-format
 msgid "Version %1"
@@ -2763,10 +2757,10 @@ msgid "Patch file successfully written."
 msgstr "Патч успешно записан."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. элемент не найден!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. элемент не найден!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Патч уже существует. Перезаписать?"
@@ -2844,6 +2838,9 @@ msgstr "Нет"
 #, c-format
 msgid "Marker Color %d"
 msgstr "Цвет маркера %d"
+
+msgid "New Pattern"
+msgstr ""
 
 msgid "Type"
 msgstr "Тип"
@@ -2956,7 +2953,7 @@ msgstr "Отключен"
 msgid "From file system"
 msgstr "Как в файловой системе"
 
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Как в истории"
 
 msgid "No Highlighting"
@@ -3113,7 +3110,7 @@ msgid "Page:"
 msgstr "Страница:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
 msgstr ""
 
 #, c-format

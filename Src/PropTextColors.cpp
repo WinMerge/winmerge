@@ -215,7 +215,6 @@ void PropTextColors::OnDefaultsStandardColors()
  */
 void PropTextColors::EnableColorButtons(bool bEnable)
 {
-	EnableDlgItem(IDC_CUSTOM_COLORS_GROUP, bEnable);
 	EnableDlgItem(IDC_WHITESPACE_COLOR_LABEL, bEnable);
 	EnableDlgItem(IDC_TEXT_COLOR_LABEL, bEnable);
 	EnableDlgItem(IDC_SELECTION_COLOR_LABEL, bEnable);

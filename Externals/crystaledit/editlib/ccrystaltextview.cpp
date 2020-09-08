@@ -1696,7 +1696,9 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
                   COLORREF clrBkColor;
-                  if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+                  if (IsInsideSelBlock (CPoint{nOffsetToUse, ptTextPos.y}))
+                    clrBkColor = GetColor(COLORINDEX_SELBKGND);
+                  else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     clrBkColor = GetColor(nBgColorIndex);
                   else
                     clrBkColor = crBkgnd;
@@ -1709,7 +1711,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
                 }
             }
           if (ptOrigin.x > rcClip.right)
-            break;
+            {
+              if (GetTextLayoutMode () == TEXTLAYOUT_TABLE_WORDWRAP)
+                {
+                  while (I < blocks.size () - 1 && blocks[I + 1].m_nCharPos <= nOffset + nCount)
+                    I++;
+                }
+              break;
+            }
         }
 
       nActualItem = static_cast<int>(I);
@@ -1741,7 +1750,9 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
             {
               int nBgColorIndex = blk.m_nBgColorIndex;
               COLORREF clrBkColor;
-              if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+              if (IsInsideSelBlock (CPoint{blk.m_nCharPos, ptTextPos.y}))
+                clrBkColor = GetColor(COLORINDEX_SELBKGND);
+              else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                 clrBkColor = GetColor(nBgColorIndex);
               else
                 clrBkColor = crBkgnd;
@@ -6342,7 +6353,7 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
   si.fMask = SIF_POS | SIF_RANGE;
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
-  int nCurPos = si.nPos + zDelta;
+  int nCurPos = si.nPos + zDelta / 40;
   if (nCurPos < si.nMin)
     nCurPos = si.nMin;
   else if (nCurPos > si.nMax)

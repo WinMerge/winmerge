@@ -11,6 +11,8 @@ namespace GUITestUtils
 	void typeText(const wchar_t *text);
 	void typeAltPlusKey(char key);
 	void typeKey(unsigned char vk);
+	void nextControl();
+	void prevControl();
 	std::filesystem::path getModuleFileName();
 	std::filesystem::path getModuleFolder();
 	bool isMenuItemChecked(HWND hwnd, int id);
@@ -20,7 +22,9 @@ namespace GUITestUtils
 	void selectMenu(HWND hwnd, unsigned id, bool async = false);
 	inline void selectMenuAsync(HWND hwnd, unsigned id) { selectMenu(hwnd, id, true); };
 	HWND execWinMerge(const std::string& args = "/noprefs /maxmize");
+	HWND execInstaller(const std::string& args = "");
 	const std::set<int> languages();
+	const char * languageIdToName(int id);
 }
 
 #define selectMenuAndSaveWindowImage(id) selectMenuAndSaveWindowImageHelper(id, #id)
@@ -72,7 +76,7 @@ public:
 		time_t t = GUITestUtils::getStartTime();
 		localtime_s(&tm, &t);
 		strftime(buf, sizeof buf, "%FT%H%M%S", &tm);
-		screenshotFolder = GUITestUtils::getModuleFolder() / L"..\\..\\..\\Build\\GUITests\\Screenshots" / buf / std::to_wstring(GetParam());
+		screenshotFolder = GUITestUtils::getModuleFolder() / "..\\..\\..\\Build\\GUITests\\Screenshots" / buf / GUITestUtils::languageIdToName(GetParam());
 		std::error_code ec;
 		std::filesystem::create_directories(screenshotFolder, ec);
 		return screenshotFolder;
@@ -80,7 +84,9 @@ public:
 
 	std::filesystem::path getScreenshotFilePath(const char *id = nullptr)
 	{
-		std::string basename = ::testing::UnitTest::GetInstance()->current_test_info()->test_case_name();
+		std::string basename = GUITestUtils::languageIdToName(GetParam());
+		basename.append(".");
+		basename.append(::testing::UnitTest::GetInstance()->current_test_info()->test_case_name());
 		basename.append(".");
 		basename.append(::testing::UnitTest::GetInstance()->current_test_info()->name());
 		if (id && id[0])

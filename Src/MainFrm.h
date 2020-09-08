@@ -290,6 +290,7 @@ protected:
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnMRUs(UINT nID);
 	afx_msg void OnUpdateNoMRUs(CCmdUI* pCmdUI);
+    afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
 	//}}AFX_MSG

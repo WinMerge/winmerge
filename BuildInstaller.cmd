@@ -1,6 +1,10 @@
 if "%1" == "" (
   call :BuildInstaller
   call :BuildInstaller x64
+  call :BuildInstaller x64NonAdmin
+) else if "%1" == "x64" (
+  call :BuildInstaller x64
+  call :BuildInstaller x64NonAdmin
 ) else (
   call :BuildInstaller %1 
 )
@@ -22,6 +26,10 @@ rem       )
 rem     )
 rem   )
 rem ) else (
+  echo.
+  echo ============================================================
+  echo Build WinMerge%PLATFORM%.iss with Inno Setup 5
+  echo ============================================================
   for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
     if exist "%%~i\Inno Setup 5\iscc.exe" (
       "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause

@@ -2,7 +2,7 @@
 <article id="Compare_bin">
   <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
 
-  <title>バイナリファイルの比較</title>
+  <title>Hex形式比較</title>
 
   <indexterm>
     <primary>ファイルの比較</primary>
@@ -10,8 +10,7 @@
     <secondary>バイナリ</secondary>
   </indexterm>
 
-  <para>WinMergeは、比較するファイルがテキストなのか、バイナリ形式なのかを自動で検出することができます。
-  ２つのバイナリファイル比較するときは、WinMergeはそれぞれのファイルをバイナリファイルエディタで開きます。
+  <para>インストールオプションとしてFrhedを選択していたならば、WinMergeは、ファイルをHex形式で表示・編集することができます。
   </para>
   
   <mediaobject>
@@ -23,4 +22,8 @@
       <phrase>HEX Compare Window</phrase>
     </textobject>
   </mediaobject>
+  
+  <para>
+    ファイルがHex形式で開かれるかどうかは、ファイル名が定義されたパターンと一致するかどうかに依存します。デフォルトでは、ファイル拡張子が.binまたは.frxの場合、Hex形式で開かれます。パターンを変更したい場合は、オプションダイアログの比較/バイナリページで指定してください。
+  </para>
 </article>

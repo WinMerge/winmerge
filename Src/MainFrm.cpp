@@ -172,6 +172,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_WM_TIMER()
 	ON_WM_DESTROY()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
@@ -353,6 +354,26 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		pMDIChildWnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
+}
+
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
+{
+	CMDIFrameWnd::OnTimer(nIDEvent);
+
+	if (nIDEvent == IDT_UPDATEMAINMENU)
+	{
+		KillTimer(nIDEvent);
+
+		BOOL bMaximized;
+		MDIGetActive(&bMaximized);
+
+		// When MDI maximized the window icon is drawn on the menu bar, so we
+		// need to notify it that our icon has changed.
+		if (bMaximized)
+			DrawMenuBar();
+
+		OnUpdateFrameTitle(FALSE);
+	}
 }
 
 void CMainFrame::OnDestroy(void)
@@ -1348,8 +1369,10 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	PathContext tFiles(dropped_files);
 	const size_t fileCount = tFiles.GetSize();
 
-	// If Ctrl pressed, do recursive compare
-	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
+	if (!!::GetAsyncKeyState(VK_CONTROL))
+		recurse = !recurse;
 
 	// If user has <Shift> pressed with one file selected,
 	// assume it is an archive and set filenames to same

@@ -332,6 +332,7 @@ protected:
 	afx_msg void OnChangeScheme(UINT nID);
 	afx_msg void OnUpdateChangeScheme(CCmdUI* pCmdUI);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();

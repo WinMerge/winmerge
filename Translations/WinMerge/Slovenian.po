@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-07-22 06:11+0200\n"
+"PO-Revision-Date: 2020-08-28 20:06+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -468,8 +468,8 @@ msgid "Sw&ap Panes"
 msgstr "Zam&enjaj okna"
 
 #, c-format
-msgid "Compa&re Statistics"
-msgstr "&Statistika primerjave"
+msgid "Com&pare Statistics..."
+msgstr "&Statistika primerjave..."
 
 #, c-format
 msgid "Refre&sh\tF5"
@@ -582,7 +582,7 @@ msgid "&Convert Line Endings to"
 msgstr "&Pretvori konce vrstic v"
 
 #, c-format
-msgid "&Merge Mode\tF9"
+msgid "Mer&ge Mode\tF9"
 msgstr "Združevalni način\tF9"
 
 #, c-format
@@ -594,15 +594,15 @@ msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
 
 #, c-format
-msgid "Recompare As"
+msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
 #, c-format
 msgid "&Text"
 msgstr "&Besedilo"
 
-msgid "&Table"
-msgstr ""
+msgid "T&able"
+msgstr "Ta&bela"
 
 #, c-format
 msgid "&XML"
@@ -1031,10 +1031,6 @@ msgstr "Vse v... (%1 od %2)"
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Razlike v... (%1 od %2)"
-
-#, c-format
-msgid "&Refresh"
-msgstr "&Osveži"
 
 #, c-format
 msgid "Left Shell menu"
@@ -1670,7 +1666,7 @@ msgid "Compare"
 msgstr "Primerjaj"
 
 #, c-format
-msgid "Whitespace"
+msgid "Whitespaces"
 msgstr "Prazen znak"
 
 #, c-format
@@ -1880,10 +1876,6 @@ msgid "Options"
 msgstr "Možnosti"
 
 #, c-format
-msgid " Categories"
-msgstr " Kategorije"
-
-#, c-format
 msgid "Import..."
 msgstr "Uvozi..."
 
@@ -1934,10 +1926,6 @@ msgstr "Uporabnik 2:"
 #, c-format
 msgid "Bold"
 msgstr "Krepko"
-
-#, c-format
-msgid "Marker colors"
-msgstr "Barve označevalcev"
 
 #, c-format
 msgid "Search Marker:"
@@ -2094,8 +2082,8 @@ msgstr "Pre&kliči"
 msgid "Test Filter"
 msgstr "Preizkusi filter"
 
-msgid "Testing filter..."
-msgstr "Preizkus filtra..."
+msgid "Testing filter:"
+msgstr "Preizkus filtra:"
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2118,36 +2106,32 @@ msgid "&Close"
 msgstr "&Zapri"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 msgid "File type"
-msgstr ""
+msgstr "Vrsta datoteke"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "&Ločila po meri-Ločene vrednosti"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Z&nak ločila:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Do&voli nove vrstice med dvojnimi narekovaji"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Znak na&rekovajev:"
 
 #, c-format
 msgid "&Use customized text colors"
 msgstr "&Uporabi prilagojene barve besedila"
-
-#, c-format
-msgid "Custom text colors"
-msgstr "Barve besedila po meri"
 
 #, c-format
 msgid "Whitespace:"
@@ -2305,16 +2289,16 @@ msgstr ""
 "Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek &CSV:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Ločila po meri-Ločene vrednosti"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2569,6 +2553,12 @@ msgstr "Iz desne:"
 #, c-format
 msgid "To right:"
 msgstr "Na desno:"
+
+msgid "From middle:"
+msgstr "Od sredine:"
+
+msgid "To middle:"
+msgstr "Do sredine:"
 
 #, c-format
 msgid "Version %1"
@@ -3875,6 +3865,9 @@ msgstr "Brez"
 msgid "Marker Color %d"
 msgstr "Barva označevalca %d"
 
+msgid "New Pattern"
+msgstr "Nov vzorec"
+
 #, c-format
 msgid "Type"
 msgstr "Vrsta"
@@ -4092,7 +4085,7 @@ msgid "From file system"
 msgstr "Iz datotečnega sistema"
 
 #, c-format
-msgid "From MRU list"
+msgid "From Most Recently Used list"
 msgstr "Iz seznama nedavnih (MRU)"
 
 #, c-format
@@ -4267,8 +4260,8 @@ msgid "Page:"
 msgstr "Stran:"
 
 #, c-format
-msgid "Pt:(%d, %d) RGBA : (%d, %d, %d, %d) "
-msgstr "Tč:(%d, %d) RGBA : (%d, %d, %d, %d) "
+msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgstr "Tč:(%d,%d) RGBA:(%d,%d,%d,%d) "
 
 #, c-format
 msgid "Dist:%g "
