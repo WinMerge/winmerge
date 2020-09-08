@@ -45,9 +45,7 @@ class CTrDialog : public CDialog, public DlgUtils<CTrDialog>
 {
 	DECLARE_DYNAMIC(CTrDialog)
 public:
-	CTrDialog() : CDialog() {}
-	explicit CTrDialog(UINT nIDTemplate, CWnd *pParent = nullptr) : CDialog(nIDTemplate, pParent) {}
-	explicit CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = nullptr) : CDialog(lpszTemplateName, pParentWnd) {}
+	using CDialog::CDialog;
 
 	virtual BOOL OnInitDialog();
 };
@@ -56,11 +54,7 @@ class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>
 {
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
-	CTrPropertyPage() : CPropertyPage() {}
-	explicit CTrPropertyPage(UINT nIDTemplate, UINT nIDCaption = 0, DWORD dwSize = sizeof(PROPSHEETPAGE))
-		: CPropertyPage(nIDTemplate, nIDCaption, dwSize) {}
-	explicit CTrPropertyPage(LPCTSTR lpszTemplateName, UINT nIDCaption = 0, DWORD dwSize = sizeof(PROPSHEETPAGE))
-		: CPropertyPage(lpszTemplateName, nIDCaption, dwSize) {}
+	using CPropertyPage::CPropertyPage;
 
 	virtual BOOL OnInitDialog();
 };
