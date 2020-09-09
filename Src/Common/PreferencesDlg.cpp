@@ -73,7 +73,7 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
+BEGIN_MESSAGE_MAP(CPreferencesDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_HELP, OnHelpButton)

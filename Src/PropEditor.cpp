@@ -57,7 +57,7 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropEditor, CDialog)
+BEGIN_MESSAGE_MAP(PropEditor, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditor)
 	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)

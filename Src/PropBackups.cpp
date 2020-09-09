@@ -42,7 +42,7 @@ void PropBackups::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropBackups, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropBackups, OptionsPanel)
 	ON_BN_CLICKED(IDC_BACKUP_BROWSE, OnBnClickedBackupBrowse)
 END_MESSAGE_MAP()
 

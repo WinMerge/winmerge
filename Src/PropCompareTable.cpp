@@ -44,7 +44,7 @@ void PropCompareTable::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCompareTable, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCompareTable, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompareTable)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_CBN_DROPDOWN(IDC_COMPARETABLE_CSV_PATTERNS, OnDropDownCSVPatterns)

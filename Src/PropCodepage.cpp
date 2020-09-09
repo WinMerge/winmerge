@@ -48,7 +48,7 @@ void PropCodepage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCodepage, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCodepage, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCodepage)
 	ON_BN_CLICKED(IDC_CP_SYSTEM, OnCpSystem)
 	ON_BN_CLICKED(IDC_CP_CUSTOM, OnCpCustom)

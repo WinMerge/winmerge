@@ -35,7 +35,7 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCompareImage, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCompareImage, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompareImage)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_CBN_DROPDOWN(IDC_COMPAREIMAGE_PATTERNS, OnDropDownPatterns)

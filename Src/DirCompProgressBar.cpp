@@ -57,7 +57,7 @@ DirCompProgressBar::~DirCompProgressBar()
 #endif
 }
 
-BEGIN_MESSAGE_MAP(DirCompProgressBar, CDialogBar)
+BEGIN_MESSAGE_MAP(DirCompProgressBar, CTrDialogBar)
 	//{{AFX_MSG_MAP(DirCompProgressBar)
 	ON_WM_WINDOWPOSCHANGING()
 	ON_WM_TIMER()
