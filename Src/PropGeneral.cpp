@@ -94,7 +94,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropGeneral, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropGeneral, OptionsPanel)
 	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	ON_MESSAGE(WM_APP, OnLoadLanguages)

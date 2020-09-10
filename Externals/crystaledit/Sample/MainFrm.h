@@ -6,7 +6,7 @@
 
 #include "utils/DpiAware.h"
 
-class CMainFrame : public CMDIFrameWnd, DpiAware::PerMonitorDpiAwareWindow<CMainFrame>
+class CMainFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>
 {
 	DECLARE_DYNAMIC(CMainFrame)
 public:
@@ -23,9 +23,6 @@ public:
 	//{{AFX_VIRTUAL(CMainFrame)
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	//}}AFX_VIRTUAL
-	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
-		CalcWindowRectImpl(lpClientRect, nAdjustType);
-	}
 
 // Implementation
 public:
@@ -43,6 +40,7 @@ protected:  // control bar embedded members
 protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg LRESULT OnNcCalcSize(WPARAM wParam, LPARAM lParam);
 		// NOTE - the ClassWizard will add and remove member functions here.
 		//    DO NOT EDIT what you see in these blocks of generated code!
 	//}}AFX_MSG

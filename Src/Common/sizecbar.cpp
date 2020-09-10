@@ -75,7 +75,7 @@ CSizingControlBar::~CSizingControlBar()
 {
 }
 
-BEGIN_MESSAGE_MAP(CSizingControlBar, baseCSizingControlBar)
+BEGIN_MESSAGE_MAP(CSizingControlBar, DpiAware::PerMonitorDpiAwareCWnd<baseCSizingControlBar>)
     //{{AFX_MSG_MAP(CSizingControlBar)
     ON_WM_CREATE()
     ON_WM_PAINT()
@@ -122,6 +122,8 @@ BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
     if (!CWnd::Create(wndclass, lpszWindowName, dwStyle,
         CRect(0, 0, 0, 0), pParentWnd, nID))
         return FALSE;
+
+	UpdateDpi();
 
     return TRUE;
 }
@@ -184,12 +186,6 @@ LRESULT CSizingControlBar::OnSetText(WPARAM wParam, LPARAM lParam)
     }
 
     return lResult;
-}
-
-LRESULT CSizingControlBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
-{
-	UpdateDpi();
-	return 0;
 }
 
 const bool CSizingControlBar::IsFloating() const

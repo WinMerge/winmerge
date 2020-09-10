@@ -85,11 +85,13 @@ CCrystalTextBuffer *CSampleView::LocateTextBuffer()
 	return &GetDocument()->m_xTextBuffer;
 }
 
-void CSampleView::OnInitialUpdate() 
+void CSampleView::OnInitialUpdate()
 {
 	CCrystalEditViewEx::OnInitialUpdate();
 
-	SetFont(GetDocument()->m_lf);
+	LOGFONT lf{ GetDocument()->m_lf };
+	lf.lfHeight = MulDiv(lf.lfHeight, m_dpi, 96);
+	SetFont(lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
 	SetMarkersContext(GetDocument()->m_pMarkers);
 	if (GetDocument()->m_xTextBuffer.GetTableEditing())

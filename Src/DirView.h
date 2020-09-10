@@ -60,7 +60,7 @@ const UINT DefColumnWidth = 150;
  * CDiffContext items are linked by storing POSITION of CDiffContext item
  * as CDirView listitem key.
  */
-class CDirView : public CListView, public DpiAware::PerMonitorDpiAwareWindow<CDirView>
+class CDirView : public DpiAware::PerMonitorDpiAwareCWnd<CListView>
 {
 	friend struct FileCmpReport;
 	friend DirItemEnumerator;
@@ -381,6 +381,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	bool OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
+	LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
 private:
 	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);

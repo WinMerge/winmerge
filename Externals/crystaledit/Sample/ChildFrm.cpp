@@ -15,10 +15,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
 
-IMPLEMENT_DYNCREATE(CChildFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(CChildFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
 
-BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
-	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+BEGIN_MESSAGE_MAP(CChildFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
 	ON_WM_GETMINMAXINFO()
 END_MESSAGE_MAP()
 
@@ -40,7 +39,7 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
 
-	return CMDIChildWnd::PreCreateWindow(cs);
+	return __super::PreCreateWindow(cs);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,12 +48,12 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 #ifdef _DEBUG
 void CChildFrame::AssertValid() const
 {
-	CMDIChildWnd::AssertValid();
+	__super::AssertValid();
 }
 
 void CChildFrame::Dump(CDumpContext& dc) const
 {
-	CMDIChildWnd::Dump(dc);
+	__super::Dump(dc);
 }
 
 #endif //_DEBUG
@@ -64,13 +63,14 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
 {
+	UpdateDpi();
 	return m_wndSplitter.Create(this, 2, 2, CSize(30, 30), pContext);
 }
 
 void CChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	__super::OnGetMinMaxInfo(lpMMI);
-	if (IsDpiChanged())
+	if (IsDifferentDpiFromSystemDpi())
 	{
 		CRect rc;
 		CFrameWnd* pFrameWnd = GetParentFrame();
@@ -81,10 +81,4 @@ void CChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 		lpMMI->ptMaxSize.x = rc.right - rc.left;
 		lpMMI->ptMaxSize.y = rc.bottom - rc.top;
 	}
-}
-
-LRESULT CChildFrame::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
-{
-	UpdateDpi();
-	return 0;
 }

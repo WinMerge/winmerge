@@ -16,7 +16,7 @@
 #include "UnicodeString.h"
 #include "utils/DpiAware.h"
 
-class CMergeStatusBar : public CStatusBar, public DpiAware::PerMonitorDpiAwareWindow<CMergeStatusBar>
+class CMergeStatusBar : public DpiAware::PerMonitorDpiAwareCWnd<CStatusBar>
 {
 public : 
 	CMergeStatusBar();

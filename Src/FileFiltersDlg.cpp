@@ -33,7 +33,7 @@ static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
-IMPLEMENT_DYNCREATE(FileFiltersDlg, CPropertyPage)
+IMPLEMENT_DYNCREATE(FileFiltersDlg, CTrPropertyPage)
 
 /**
  * @brief Constructor.
@@ -56,7 +56,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
+BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)

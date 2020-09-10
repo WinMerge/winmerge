@@ -6,7 +6,7 @@
 
 #include "utils/DpiAware.h"
 
-class CChildFrame : public CMDIChildWnd, DpiAware::PerMonitorDpiAwareWindow<CChildFrame>
+class CChildFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>
 {
 	DECLARE_DYNCREATE(CChildFrame)
 public:
@@ -26,9 +26,6 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
-		CalcWindowRectImpl(lpClientRect, nAdjustType);
-	}
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -44,7 +41,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -48,7 +48,7 @@ void LineFiltersDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(LineFiltersDlg, CPropertyPage)
+BEGIN_MESSAGE_MAP(LineFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(LineFiltersDlg)
 	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP

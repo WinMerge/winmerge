@@ -68,7 +68,7 @@ static UINT indicatorsBottom[] =
 	ID_SEPARATOR,
 };
 
-BEGIN_MESSAGE_MAP(CMergeStatusBar, CStatusBar)
+BEGIN_MESSAGE_MAP(CMergeStatusBar, DpiAware::PerMonitorDpiAwareCWnd<CStatusBar>)
 END_MESSAGE_MAP()
 
 /**
@@ -93,8 +93,10 @@ CMergeStatusBar::~CMergeStatusBar()
 
 BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 {
-	if (! CStatusBar::Create(pParentWnd))
+	if (! __super::Create(pParentWnd))
 		return FALSE;
+
+	UpdateDpi();
 
 	SetIndicators(indicatorsBottom, sizeof(indicatorsBottom) / sizeof(UINT));
 

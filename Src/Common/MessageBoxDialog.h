@@ -86,7 +86,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // Class definition.
 
-class CMessageBoxDialog : public CDialog, public DpiAware::PerMonitorDpiAwareWindow<CMessageBoxDialog>
+class CMessageBoxDialog : public DpiAware::PerMonitorDpiAwareCWnd<CDialog>
 {
 
 	DECLARE_DYNAMIC(CMessageBoxDialog)
@@ -183,8 +183,6 @@ public:
 
 	// Method for handling messages before dispatching them.
 	virtual BOOL PreTranslateMessage ( MSG* pMsg );
-
-	virtual void CallWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) { CalcWindowRectImpl(lpClientRect, nAdjustType); }
 
 	// Method for handling a timer event.
 	afx_msg void OnTimer ( UINT_PTR nIDEvent );

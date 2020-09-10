@@ -42,39 +42,74 @@ public:
 	}
 };
 
-class CTrDialog : public CDialog, public DlgUtils<CTrDialog>, public DpiAware::PerMonitorDpiAwareWindow<CTrDialog>
+void DpiChangedImplHelper(HWND hwnd, int olddpi, int newdpi);
+
+template <class T>
+class DpiChangedImpl
 {
+public:
+	LRESULT OnDpiChangedImpl(WPARAM wParam, LPARAM lParam)
+	{
+		T* pwnd = static_cast<T*>(this);
+		int olddpi = pwnd->m_dpi;
+		pwnd->UpdateDpi();
+		pwnd->Default();
+		if (olddpi != pwnd->m_dpi)
+			DpiChangedImplHelper(pwnd->m_hWnd, olddpi, pwnd->m_dpi);
+		return 0;
+	}
+};
+
+class CTrDialog
+	: public DpiAware::PerMonitorDpiAwareCWnd<CDialog>
+	, public DlgUtils<CTrDialog>
+	, public DpiChangedImpl<CTrDialog>
+{
+	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrDialog)
 public:
-	CTrDialog() : CDialog() {}
-	explicit CTrDialog(UINT nIDTemplate, CWnd *pParent = nullptr) : CDialog(nIDTemplate, pParent) {}
-	explicit CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = nullptr) : CDialog(lpszTemplateName, pParentWnd) {}
+	using DpiAware::PerMonitorDpiAwareCWnd<CDialog>::PerMonitorDpiAwareCWnd;
 
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
-	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam)
+	{
+		return OnDpiChangedImpl(wParam, lParam);
+	}
 };
 
-class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>, public DpiAware::PerMonitorDpiAwareWindow<CTrPropertyPage>
+class CTrPropertyPage
+	: public DpiAware::PerMonitorDpiAwareCWnd<CPropertyPage>
+	, public DlgUtils<CTrPropertyPage>
+	, public DpiChangedImpl<CTrPropertyPage>
 {
+	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
-	CTrPropertyPage() : CPropertyPage() {}
-	explicit CTrPropertyPage(UINT nIDTemplate, UINT nIDCaption = 0, DWORD dwSize = sizeof(PROPSHEETPAGE))
-		: CPropertyPage(nIDTemplate, nIDCaption, dwSize) {}
-	explicit CTrPropertyPage(LPCTSTR lpszTemplateName, UINT nIDCaption = 0, DWORD dwSize = sizeof(PROPSHEETPAGE))
-		: CPropertyPage(lpszTemplateName, nIDCaption, dwSize) {}
+	using DpiAware::PerMonitorDpiAwareCWnd<CPropertyPage>::PerMonitorDpiAwareCWnd;
 
 	virtual BOOL OnInitDialog();
+
+	DECLARE_MESSAGE_MAP()
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam) {
+		return OnDpiChangedImpl(wParam, lParam);
+	}
 };
 
-class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>, public DpiAware::PerMonitorDpiAwareWindow<CTrDialogBar>
+class CTrDialogBar
+	: public DpiAware::PerMonitorDpiAwareCWnd<CDialogBar>
+	, public DlgUtils<CTrDialogBar>
+	, public DpiChangedImpl<CTrDialogBar>
 {
+	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrDialogBar)
 public:
 	virtual BOOL Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 		UINT nStyle, UINT nID);
 	virtual BOOL Create(CWnd* pParentWnd, UINT nIDTemplate,
 		UINT nStyle, UINT nID);
+
+	DECLARE_MESSAGE_MAP()
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam) { return OnDpiChangedImpl(wParam, lParam); }
 };

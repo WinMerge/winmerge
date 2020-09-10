@@ -14,12 +14,12 @@
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 
-BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CMergeFrameCommon, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
 	//{{AFX_MSG_MAP(CMergeFrameCommon)
 	ON_WM_GETMINMAXINFO()
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
-	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+//	ON_MESSAGE(WM_GETICON, OnGetIcon)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -35,6 +35,14 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 CMergeFrameCommon::~CMergeFrameCommon()
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
+}
+
+BOOL CMergeFrameCommon::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CMDIFrameWnd* pParentWnd, CCreateContext* pContext)
+{
+	if (!__super::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, pContext))
+		return FALSE;
+	UpdateDpi();
+	return TRUE;
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -55,7 +63,7 @@ void CMergeFrameCommon::ActivateFrame(int nCmdShow)
 			nCmdShow = SW_SHOWNORMAL;
 	}
 
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	__super::ActivateFrame(nCmdShow);
 }
 
 void CMergeFrameCommon::SaveWindowState()
@@ -103,8 +111,8 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	if (IsDpiChanged())
+	__super::OnGetMinMaxInfo(lpMMI);
+	if (IsDifferentDpiFromSystemDpi())
 	{
 		CRect rc;
 		CFrameWnd* pFrameWnd = GetParentFrame();
@@ -133,14 +141,15 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 {
 	// call the base class to let standard processing switch to
 	// the top-level menu associated with this window
-	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+	__super::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	if (bActivate)
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));
 }
 
-LRESULT CMergeFrameCommon::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+/*
+LRESULT CMergeFrameCommon::OnGetIcon(WPARAM wParam, LPARAM lParam)
 {
-	UpdateDpi();
 	return 0;
 }
+*/

@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "DpiAware.h"
+#include <commoncontrols.h>
 #include <../src/mfc/afximpl.h>
 
 namespace DpiAware
@@ -11,11 +12,11 @@ namespace DpiAware
 	AdjustWindowRectExForDpiType AdjustWindowRectExForDpi = nullptr;
 	LoadIconWithScaleDownType LoadIconWithScaleDown = nullptr;
 
-	short SMIconOnInit = 0;
+	int DPIOnInit = 0;
 
 	bool DpiAwareSupport = []()
 	{
-		SMIconOnInit = static_cast<short>(::GetSystemMetrics(SM_CXSMICON));
+		DPIOnInit = MulDiv(96, ::GetSystemMetrics(SM_CXSMICON), 16);
 		HMODULE hLibraryUser32 = GetModuleHandleW(L"user32.dll");
 		if (hLibraryUser32)
 		{
@@ -43,7 +44,7 @@ namespace DpiAware
 			GetSystemMetricsForDpi = [](int nIndex, UINT dpi) -> int { return GetSystemMetrics(nIndex); };
 		if (!LoadIconWithScaleDown)
 			LoadIconWithScaleDown = [](HINSTANCE hinst, PCWSTR pszName, int cx, int cy, HICON *phico) -> HRESULT
-			  { *phico = LoadIcon(hinst, pszName); return *phico != nullptr ? S_OK : E_FAIL; };
+			  { *phico = LoadIconW(hinst, pszName); return *phico != nullptr ? S_OK : E_FAIL; };
 		if (!OpenThemeDataForDpi)
 		{
 			OpenThemeDataForDpi = [](HWND hwnd, LPCWSTR pszClassList, UINT dpi) -> HTHEME { return OpenThemeData(hwnd, pszClassList); };
@@ -63,20 +64,13 @@ namespace DpiAware
 
 	bool GetNonClientLogFont(LOGFONT& logFont, size_t memberOffset, int dpi)
 	{
+		DpiAware::NONCLIENTMETRICS6 ncm{};
+		ncm.cbSize = sizeof(NONCLIENTMETRICS);
 		if (DpiAware::DpiAwareSupport)
-		{
-			DpiAware::NONCLIENTMETRICS6 ncm = { sizeof DpiAware::NONCLIENTMETRICS6 };
-			if (!SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, sizeof DpiAware::NONCLIENTMETRICS6, &ncm, 0, dpi))
-				return false;
-			memcpy(&logFont, (char*)&ncm + memberOffset, sizeof(LOGFONT));
-		}
-		else
-		{
-			NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-			if (!SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
-				return false;
-			memcpy(&logFont, (char*)&ncm + memberOffset, sizeof(LOGFONT));
-		}
+			ncm.cbSize = sizeof DpiAware::NONCLIENTMETRICS6;
+		if (!SystemParametersInfoForDpi(SPI_GETNONCLIENTMETRICS, ncm.cbSize, static_cast<NONCLIENTMETRICS *>(&ncm), 0, dpi))
+			return false;
+		memcpy(&logFont, (char*)&ncm + memberOffset, sizeof(LOGFONT));
 		return true;
 	}
 
@@ -90,5 +84,52 @@ namespace DpiAware
 		afxData.cyPixelsPerInch = dpi;
 	}
 
+	void ListView_UpdateColumnWidths(HWND hwnd, int olddpi, int newdpi)
+	{
+		HWND hwndHeader = ListView_GetHeader(hwnd);
+		const int nColumns = Header_GetItemCount(hwndHeader);
+		for (int i = 0; i < nColumns; ++i)
+		{
+			const int nColumnWidth = MulDiv(ListView_GetColumnWidth(hwnd, i), newdpi, olddpi);
+			ListView_SetColumnWidth(hwnd, i, nColumnWidth);
+		}
+	}
+
+	void Dialog_UpdateControlInnerWidths(HWND hwnd, int olddpi, int newdpi)
+	{
+		struct Dpis { int olddpi, newdpi; HWND hwndParent; } dpis{ olddpi, newdpi, hwnd };
+		auto enumfunc = [](HWND hwnd, LPARAM lParam) -> BOOL
+		{
+			const Dpis *pdpis = (const Dpis *)lParam;
+			TCHAR name[256];
+			GetClassName(hwnd, name, sizeof(name) / sizeof(TCHAR));
+			if (_tcsicmp(name, _T("SysListView32")) == 0 && pdpis->hwndParent == GetParent(hwnd))
+				ListView_UpdateColumnWidths(hwnd, pdpis->olddpi, pdpis->newdpi);
+			return TRUE;
+		};
+		EnumChildWindows(hwnd, enumfunc, (LPARAM)&dpis);
+	}
+
+	HIMAGELIST LoadShellImageList(int dpi)
+	{
+		SHFILEINFO sfi{};
+		if (dpi == DpiAware::DPIOnInit)
+		{
+			return (HIMAGELIST)SHGetFileInfo(_T(""), 0,
+				&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
+		}
+		else
+		{
+			int size = SHIL_EXTRALARGE;
+			if (dpi < 96 * 2)
+				size = SHIL_SMALL;
+			else if (dpi < 96 * 3)
+				size = SHIL_LARGE;
+			IImageList *pImageList = nullptr;
+			if (FAILED(SHGetImageList(size, IID_IImageList, (void**)&pImageList)))
+				return nullptr;
+			return IImageListToHIMAGELIST(pImageList);
+		}
+	}
 }
 

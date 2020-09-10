@@ -8,11 +8,17 @@
 
 #include "utils/DpiAware.h"
 
-class CMergeFrameCommon: public CMDIChildWnd, public DpiAware::PerMonitorDpiAwareWindow<CMergeFrameCommon>
+class CMergeFrameCommon: public DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
 public:
 	CMergeFrameCommon(int nIdenticalIcon  = -1, int nDifferentIcon = -1);
+	virtual BOOL Create(LPCTSTR lpszClassName,
+				LPCTSTR lpszWindowName,
+				DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
+				const RECT& rect = rectDefault,
+				CMDIFrameWnd* pParentWnd = NULL,
+				CCreateContext* pContext = NULL);
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
@@ -22,9 +28,6 @@ public:
 	virtual BOOL IsTabbedMDIChild()
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
-	}
-	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder) {
-		CalcWindowRectImpl(lpClientRect, nAdjustType);
 	}
 
 protected:
@@ -42,7 +45,7 @@ protected:
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg void OnDestroy();
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
+//	afx_msg LRESULT OnGetIcon(WPARAM wParam, LPARAM lParam);
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

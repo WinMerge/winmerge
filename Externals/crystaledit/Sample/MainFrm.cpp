@@ -16,13 +16,14 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 
-IMPLEMENT_DYNAMIC(CMainFrame, CMDIFrameWnd)
+IMPLEMENT_DYNAMIC(CMainFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>)
 
-BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
+BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>)
 	//{{AFX_MSG_MAP(CMainFrame)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	ON_WM_CREATE()
+	ON_MESSAGE(WM_NCCALCSIZE, OnNcCalcSize)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -56,8 +57,10 @@ CMainFrame::~CMainFrame()
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
+	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	UpdateDpi();
 	
 	if (!m_wndToolBar.Create(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
@@ -87,9 +90,24 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+LRESULT CMainFrame::OnNcCalcSize(WPARAM wParam, LPARAM lParam)
+{
+	BOOL bCalcValidRects = wParam;
+	NCCALCSIZE_PARAMS* lpncsp = (NCCALCSIZE_PARAMS*)lParam;
+	RECT *lprect = (RECT *)lParam;
+
+	LRESULT ret = Default();
+	if (bCalcValidRects)
+	{
+//		lpncsp->rgrc->top -= 10;
+		return ret;
+	}
+	return ret;
+}
+
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
-	UpdateDpi();
+	__super::OnDpiChanged(wParam, lParam);
 	DpiAware::UpdateAfxDataSysMetrics(GetDpi());
 	Default();
 	return 0;
@@ -100,7 +118,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
 
-	return CMDIFrameWnd::PreCreateWindow(cs);
+	return __super::PreCreateWindow(cs);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,12 +127,12 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
 {
-	CMDIFrameWnd::AssertValid();
+	__super::AssertValid();
 }
 
 void CMainFrame::Dump(CDumpContext& dc) const
 {
-	CMDIFrameWnd::Dump(dc);
+	__super::Dump(dc);
 }
 
 #endif //_DEBUG

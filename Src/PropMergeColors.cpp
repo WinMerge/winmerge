@@ -61,7 +61,7 @@ void PropMergeColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
+BEGIN_MESSAGE_MAP(PropMergeColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropMergeColors)
 	ON_BN_CLICKED(IDC_DIFFERENCE_COLOR, OnDifferenceColor)
 	ON_BN_CLICKED(IDC_DIFFERENCE_DELETED_COLOR, OnDifferenceDeletedColor)

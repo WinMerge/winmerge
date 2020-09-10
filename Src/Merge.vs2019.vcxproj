@@ -1115,6 +1115,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\memcombo.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\registry.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\string_util.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h" />

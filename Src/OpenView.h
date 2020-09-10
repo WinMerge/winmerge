@@ -34,7 +34,7 @@ class DropHandler;
  * The dialog shows also a status of the selected paths (found/not found),
  * if enabled in the options (enabled by default).
  */
-class COpenView : public CFormView, public DlgUtils<COpenView>, public DpiAware::PerMonitorDpiAwareWindow<COpenView>
+class COpenView : public DpiAware::PerMonitorDpiAwareCWnd<CFormView>, public DlgUtils<COpenView>
 {
 protected: // create from serialization only
 	COpenView();

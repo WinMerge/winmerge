@@ -36,7 +36,7 @@ public:
  * The bar looks like a statusBar (font, height). The control
  * displays a tip for each path (as a tooltip). 
  */
-class CEditorFilePathBar : public CDialogBar, public DpiAware::PerMonitorDpiAwareWindow<CEditorFilePathBar>, public IHeaderBar
+class CEditorFilePathBar : public DpiAware::PerMonitorDpiAwareCWnd<CDialogBar>, public IHeaderBar
 {
 public : 
 	CEditorFilePathBar();

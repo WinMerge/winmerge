@@ -50,7 +50,7 @@ CMainFrame * GetMainFrame(); // access to the singleton main frame object
 /**
  * @brief Frame class containing save-routines etc
  */
-class CMainFrame : public CMDIFrameWnd, public DpiAware::PerMonitorDpiAwareWindow<CMainFrame>
+class CMainFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>
 {
 	friend CLanguageSelect;
 	DECLARE_DYNAMIC(CMainFrame)
@@ -122,10 +122,6 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder)
-	{
-		CalcWindowRectImpl(lpClientRect, nAdjustType);
-	}
 
 	//}}AFX_VIRTUAL
 
@@ -147,7 +143,7 @@ protected:
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
 
 	// Tweak MDI client window behavior
-	class CMDIClient : public CWnd, public DpiAware::PerMonitorDpiAwareWindow<CMainFrame>
+	class CMDIClient : public DpiAware::PerMonitorDpiAwareCWnd<CWnd>
 	{
 		static UINT_PTR const m_nRedrawTimer = 1612;
 		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -183,10 +179,6 @@ protected:
 				break;
 			}
 			return CWnd::WindowProc(message, wParam, lParam);
-		}
-		virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder)
-		{
-			CalcWindowRectImpl(lpClientRect, nAdjustType);
 		}
 	} m_wndMDIClient;
 

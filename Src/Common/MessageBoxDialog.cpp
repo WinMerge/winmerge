@@ -85,7 +85,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  */
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
 	CString strTitle, UINT nStyle, UINT nHelp ) 
-	: CDialog ( CMessageBoxDialog::IDD, pParent )
+	: DpiAware::PerMonitorDpiAwareCWnd<CDialog> ( CMessageBoxDialog::IDD, pParent )
 	, m_strMessage(strMessage)
 	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
 	, m_nStyle(nStyle)
@@ -421,7 +421,7 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 	}
 
 	// Call the parent method.
-	return CDialog::DoModal();
+	return __super::DoModal();
 }
 
 /*
@@ -456,7 +456,7 @@ void CMessageBoxDialog::EndDialog ( int nResult )
 	}
 	
 	// Call the parent method.
-	CDialog::EndDialog(nResult);
+	__super::EndDialog(nResult);
 }
 
 /*
@@ -468,8 +468,10 @@ void CMessageBoxDialog::EndDialog ( int nResult )
  */
 BOOL CMessageBoxDialog::OnInitDialog ( )
 {
+	UpdateDpi();
+
 	// Call the parent method.
-	if ( !CDialog::OnInitDialog() )
+	if ( !__super::OnInitDialog() )
 	{
 		// Return with an error.
 		return FALSE;
@@ -614,7 +616,7 @@ BOOL CMessageBoxDialog::OnCmdMsg ( UINT nID, int nCode, void* pExtra,
 	}
 
 	// Call the parent method.
-	return CDialog::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+	return __super::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 /*
@@ -692,7 +694,7 @@ BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
 	}
 
 	// Call the parent method.
-	return CDialog::PreTranslateMessage(pMsg);
+	return __super::PreTranslateMessage(pMsg);
 }
 
 /*
@@ -774,7 +776,7 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 	}
 
 	// Call the parent method.
-	CDialog::OnTimer(nIDEvent);
+	__super::OnTimer(nIDEvent);
 }
 
 BOOL CMessageBoxDialog::OnEraseBkgnd(CDC* pDC)
@@ -796,7 +798,7 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 		pDC->SetTextColor(m_clrMainInstructionFont);
 		return static_cast<HBRUSH>(GetSysColorBrush(COLOR_WINDOW));
 	}
-	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+	return __super::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
 LRESULT CMessageBoxDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
@@ -846,10 +848,10 @@ BOOL CMessageBoxDialog::OnWndMsg ( UINT message, WPARAM wParam, LPARAM lParam,
 	}
 
 	// Call the parent method.
-	return CDialog::OnWndMsg(message, wParam, lParam, pResult);
+	return __super::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-BEGIN_MESSAGE_MAP(CMessageBoxDialog, CDialog)
+BEGIN_MESSAGE_MAP(CMessageBoxDialog, DpiAware::PerMonitorDpiAwareCWnd<CDialog>)
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
