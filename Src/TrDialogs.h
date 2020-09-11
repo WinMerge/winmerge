@@ -61,14 +61,14 @@ public:
 };
 
 class CTrDialog
-	: public DpiAware::PerMonitorDpiAwareCWnd<CDialog>
+	: public DpiAware::CDpiAwareWnd<CDialog>
 	, public DlgUtils<CTrDialog>
 	, public DpiChangedImpl<CTrDialog>
 {
 	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrDialog)
 public:
-	using DpiAware::PerMonitorDpiAwareCWnd<CDialog>::PerMonitorDpiAwareCWnd;
+	using DpiAware::CDpiAwareWnd<CDialog>::CDpiAwareWnd;
 
 	virtual BOOL OnInitDialog();
 
@@ -80,14 +80,14 @@ public:
 };
 
 class CTrPropertyPage
-	: public DpiAware::PerMonitorDpiAwareCWnd<CPropertyPage>
+	: public DpiAware::CDpiAwareWnd<CPropertyPage>
 	, public DlgUtils<CTrPropertyPage>
 	, public DpiChangedImpl<CTrPropertyPage>
 {
 	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
-	using DpiAware::PerMonitorDpiAwareCWnd<CPropertyPage>::PerMonitorDpiAwareCWnd;
+	using DpiAware::CDpiAwareWnd<CPropertyPage>::CDpiAwareWnd;
 
 	virtual BOOL OnInitDialog();
 
@@ -98,7 +98,7 @@ public:
 };
 
 class CTrDialogBar
-	: public DpiAware::PerMonitorDpiAwareCWnd<CDialogBar>
+	: public DpiAware::CDpiAwareWnd<CDialogBar>
 	, public DlgUtils<CTrDialogBar>
 	, public DpiChangedImpl<CTrDialogBar>
 {

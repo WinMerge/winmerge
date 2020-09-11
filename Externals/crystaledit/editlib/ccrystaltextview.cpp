@@ -171,7 +171,7 @@ CCrystalTextView::RENDERING_MODE CCrystalTextView::s_nRenderingModeDefault = REN
 
 static ptrdiff_t FindStringHelper(LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
-BEGIN_MESSAGE_MAP (CCrystalTextView, DpiAware::PerMonitorDpiAwareCWnd<CView>)
+BEGIN_MESSAGE_MAP (CCrystalTextView, DpiAware::CDpiAwareWnd<CView>)
 //{{AFX_MSG_MAP(CCrystalTextView)
 ON_WM_DESTROY ()
 ON_WM_ERASEBKGND ()
@@ -3225,7 +3225,6 @@ void CCrystalTextView::
 OnInitialUpdate ()
 {
   __super::OnInitialUpdate ();
-  UpdateDpi ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
   if (!sExt.IsEmpty())
     SetTextType (sExt);
@@ -5040,7 +5039,6 @@ GetResourceHandle ()
 int CCrystalTextView::
 OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
-  UpdateDpi ();
   m_lfBaseFont = {};
   _tcscpy_s (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
   m_lfBaseFont.lfHeight = 0;

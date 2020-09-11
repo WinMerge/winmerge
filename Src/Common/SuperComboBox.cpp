@@ -75,7 +75,6 @@ END_MESSAGE_MAP()
 
 void CSuperComboBox::PreSubclassWindow()
 {
-	UpdateDpi();
 	__super::PreSubclassWindow();
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);

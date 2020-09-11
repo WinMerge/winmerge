@@ -14,7 +14,7 @@
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 
-BEGIN_MESSAGE_MAP(CMergeFrameCommon, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
+BEGIN_MESSAGE_MAP(CMergeFrameCommon, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 	//{{AFX_MSG_MAP(CMergeFrameCommon)
 	ON_WM_GETMINMAXINFO()
 	ON_WM_DESTROY()
@@ -35,14 +35,6 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 CMergeFrameCommon::~CMergeFrameCommon()
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
-}
-
-BOOL CMergeFrameCommon::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CMDIFrameWnd* pParentWnd, CCreateContext* pContext)
-{
-	if (!__super::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, pContext))
-		return FALSE;
-	UpdateDpi();
-	return TRUE;
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -146,10 +138,3 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 	if (bActivate)
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));
 }
-
-/*
-LRESULT CMergeFrameCommon::OnGetIcon(WPARAM wParam, LPARAM lParam)
-{
-	return 0;
-}
-*/

@@ -50,7 +50,7 @@ CMainFrame * GetMainFrame(); // access to the singleton main frame object
 /**
  * @brief Frame class containing save-routines etc
  */
-class CMainFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>
+class CMainFrame : public DpiAware::CDpiAwareWnd<CMDIFrameWnd>
 {
 	friend CLanguageSelect;
 	DECLARE_DYNAMIC(CMainFrame)
@@ -143,7 +143,7 @@ protected:
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
 
 	// Tweak MDI client window behavior
-	class CMDIClient : public DpiAware::PerMonitorDpiAwareCWnd<CWnd>
+	class CMDIClient : public DpiAware::CDpiAwareWnd<CWnd>
 	{
 		static UINT_PTR const m_nRedrawTimer = 1612;
 		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam)

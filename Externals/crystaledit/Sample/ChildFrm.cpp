@@ -15,10 +15,14 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
 
-IMPLEMENT_DYNCREATE(CChildFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
+IMPLEMENT_DYNCREATE(CChildFrame, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 
-BEGIN_MESSAGE_MAP(CChildFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>)
+BEGIN_MESSAGE_MAP(CChildFrame, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
+	//{{AFX_MSG_MAP(CChildFrame)
 	ON_WM_GETMINMAXINFO()
+		// NOTE - the ClassWizard will add and remove mapping macros here.
+		//    DO NOT EDIT what you see in these blocks of generated code !
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +67,6 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
 {
-	UpdateDpi();
 	return m_wndSplitter.Create(this, 2, 2, CSize(30, 30), pContext);
 }
 

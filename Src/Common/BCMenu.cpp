@@ -772,7 +772,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		VERIFY(::GetTextExtentPoint32W(dc.m_hDC,lpstrText,
 			lstrlenW(lpstrText),&size)); //SK should also work on 95
-		CSize t = size;
+		CSize t = CSize(size);
 		dc.SelectObject (pFont);  // Select old font in
 		
 		// Set width and height:

@@ -220,4 +220,3 @@ LRESULT CSizingControlBarCF::OnSetText(WPARAM wParam, LPARAM lParam)
 
     return lResult;
 }
-

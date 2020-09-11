@@ -54,7 +54,7 @@ static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
 IMPLEMENT_DYNCREATE(COpenView, CFormView)
 
-BEGIN_MESSAGE_MAP(COpenView, DpiAware::PerMonitorDpiAwareCWnd<CFormView>)
+BEGIN_MESSAGE_MAP(COpenView, DpiAware::CDpiAwareWnd<CFormView>)
 	//{{AFX_MSG_MAP(COpenView)
 	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPathButton<0>)
 	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPathButton<1>)
@@ -104,7 +104,7 @@ END_MESSAGE_MAP()
 // COpenView construction/destruction
 
 COpenView::COpenView()
-	: DpiAware::PerMonitorDpiAwareCWnd<CFormView>(COpenView::IDD)
+	: DpiAware::CDpiAwareWnd<CFormView>(COpenView::IDD)
 	, m_pUpdateButtonStatusThread(nullptr)
 	, m_bRecurse(false)
 	, m_pDropHandler(nullptr)
@@ -155,8 +155,6 @@ BOOL COpenView::PreCreateWindow(CREATESTRUCT& cs)
 
 void COpenView::OnInitialUpdate()
 {
-	UpdateDpi();
-
 	if (!IsVista_OrGreater())
 	{
 		// fallback for XP 

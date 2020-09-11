@@ -86,7 +86,7 @@
 //////////////////////////////////////////////////////////////////////////////
 // Class definition.
 
-class CMessageBoxDialog : public DpiAware::PerMonitorDpiAwareCWnd<CDialog>
+class CMessageBoxDialog : public DpiAware::CDpiAwareWnd<CDialog>
 {
 
 	DECLARE_DYNAMIC(CMessageBoxDialog)

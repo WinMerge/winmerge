@@ -12,7 +12,7 @@ class DropHandler;
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox window
 
-class CSuperComboBox : public DpiAware::PerMonitorDpiAwareCWnd<CComboBoxEx>
+class CSuperComboBox : public DpiAware::CDpiAwareWnd<CComboBoxEx>
 {
 // Construction
 public:

@@ -11,7 +11,7 @@
 /**
  * @brief Class for Tab bar.
  */
-class CMDITabBar : public DpiAware::PerMonitorDpiAwareCWnd<CControlBar>
+class CMDITabBar : public DpiAware::CDpiAwareWnd<CControlBar>
 {
 	DECLARE_DYNAMIC(CMDITabBar)
 

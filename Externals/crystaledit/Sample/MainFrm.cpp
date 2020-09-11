@@ -16,9 +16,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 
-IMPLEMENT_DYNAMIC(CMainFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>)
+IMPLEMENT_DYNAMIC(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 
-BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>)
+BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 	//{{AFX_MSG_MAP(CMainFrame)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
@@ -59,8 +59,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
-
-	UpdateDpi();
 	
 	if (!m_wndToolBar.Create(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))

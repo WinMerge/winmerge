@@ -1,6 +1,7 @@
 #pragma once
 
 #include <afxwin.h>
+#include <type_traits>
 #include "mfc_templ_defines.h"
 
 #ifndef WM_DPICHANGED
@@ -41,10 +42,10 @@ namespace DpiAware
 	HIMAGELIST LoadShellImageList(int dpi);
 
 	template<class Base>
-	class PerMonitorDpiAwareCWnd : public Base
+	class CDpiAwareWnd : public Base
 	{
 	public:
-		using this_type = PerMonitorDpiAwareCWnd;
+		using this_type = CDpiAwareWnd;
 		using base_type = Base;
 		using Base::Base;
 		
@@ -77,6 +78,12 @@ namespace DpiAware
 			return DPIOnInit != m_dpi;
 		}
 
+		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct)
+		{
+			UpdateDpi();
+			return __super::OnCreate(lpCreateStruct);
+		}
+
 		afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam)
 		{
 			UpdateDpi();
@@ -92,6 +99,8 @@ namespace DpiAware
 		int m_dpi = DPIOnInit;
 
 		BEGIN_MESSAGE_MAP_INLINE(this_type, base_type)
+			ON_WM_CREATE()
+			ON_WM_CREATE()
 			ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 			ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 		END_MESSAGE_MAP_INLINE()

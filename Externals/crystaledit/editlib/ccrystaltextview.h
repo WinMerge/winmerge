@@ -83,7 +83,7 @@ enum : unsigned
  * not implement text editing. There are classes inherited from this
  * class which implement text editing.
  */
-class EDITPADC_CLASS CCrystalTextView : public DpiAware::PerMonitorDpiAwareCWnd<CView>
+class EDITPADC_CLASS CCrystalTextView : public DpiAware::CDpiAwareWnd<CView>
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
@@ -814,7 +814,6 @@ protected :
     virtual void OnBeginPrinting (CDC * pDC, CPrintInfo * pInfo);
     virtual void OnEndPrinting (CDC * pDC, CPrintInfo * pInfo);
     virtual void OnPrint (CDC * pDC, CPrintInfo * pInfo);
-
     //}}AFX_VIRTUAL
 
     // Implementation

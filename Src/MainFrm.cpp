@@ -156,7 +156,7 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 
 IMPLEMENT_DYNAMIC(CMainFrame, CMDIFrameWnd)
 
-BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>)
+BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_WM_MENUCHAR()
 	ON_WM_MEASUREITEM()
@@ -309,8 +309,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
-
-	UpdateDpi();
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 	m_wndMDIClient.UpdateDpi();
@@ -1194,10 +1192,10 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 	CRect dsk_rc,rc(wp.rcNormalPosition);
 
-	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
-	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
-	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
-	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
+	dsk_rc.left = GetSystemMetrics(SM_XVIRTUALSCREEN);
+	dsk_rc.top = GetSystemMetrics(SM_YVIRTUALSCREEN);
+	dsk_rc.right = dsk_rc.left + GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	dsk_rc.bottom = dsk_rc.top + GetSystemMetrics(SM_CYVIRTUALSCREEN);
 	if (rc.Width() != 0 && rc.Height() != 0)
 	{
 		// Ensure top-left corner is on visible area,

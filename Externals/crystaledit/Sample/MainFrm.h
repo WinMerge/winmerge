@@ -6,7 +6,7 @@
 
 #include "utils/DpiAware.h"
 
-class CMainFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIFrameWnd>
+class CMainFrame : public DpiAware::CDpiAwareWnd<CMDIFrameWnd>
 {
 	DECLARE_DYNAMIC(CMainFrame)
 public:

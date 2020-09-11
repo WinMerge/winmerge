@@ -6,7 +6,7 @@
 
 #include "utils/DpiAware.h"
 
-class CChildFrame : public DpiAware::PerMonitorDpiAwareCWnd<CMDIChildWnd>
+class CChildFrame : public DpiAware::CDpiAwareWnd<CMDIChildWnd>
 {
 	DECLARE_DYNCREATE(CChildFrame)
 public:
@@ -38,9 +38,12 @@ public:
 
 // Generated message map functions
 protected:
-	DECLARE_MESSAGE_MAP()
-public:
+	//{{AFX_MSG(CChildFrame)
+		// NOTE - the ClassWizard will add and remove member functions here.
+		//    DO NOT EDIT what you see in these blocks of generated code!
+	//}}AFX_MSG
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -75,7 +75,7 @@ CSizingControlBar::~CSizingControlBar()
 {
 }
 
-BEGIN_MESSAGE_MAP(CSizingControlBar, DpiAware::PerMonitorDpiAwareCWnd<baseCSizingControlBar>)
+BEGIN_MESSAGE_MAP(CSizingControlBar, DpiAware::CDpiAwareWnd<baseCSizingControlBar>)
     //{{AFX_MSG_MAP(CSizingControlBar)
     ON_WM_CREATE()
     ON_WM_PAINT()
@@ -96,7 +96,6 @@ BEGIN_MESSAGE_MAP(CSizingControlBar, DpiAware::PerMonitorDpiAwareCWnd<baseCSizin
     ON_WM_SIZE()
     //}}AFX_MSG_MAP
     ON_MESSAGE(WM_SETTEXT, OnSetText)
-    ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
@@ -122,8 +121,6 @@ BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
     if (!CWnd::Create(wndclass, lpszWindowName, dwStyle,
         CRect(0, 0, 0, 0), pParentWnd, nID))
         return FALSE;
-
-	UpdateDpi();
 
     return TRUE;
 }
@@ -1100,7 +1097,7 @@ void CSizingControlBar::LoadState(LPCTSTR lpszProfileName)
                 // found this bar - offset origin and save settings
                 pInfo->m_pointPos.x++;
                 pInfo->m_pointPos.y +=
-                    ::GetSystemMetrics(SM_CYSMCAPTION) + 1;
+                    GetSystemMetrics(SM_CYSMCAPTION) + 1;
                 pInfo->SaveState(lpszProfileName, i);
             }
     }

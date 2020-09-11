@@ -60,7 +60,7 @@ const UINT DefColumnWidth = 150;
  * CDiffContext items are linked by storing POSITION of CDiffContext item
  * as CDirView listitem key.
  */
-class CDirView : public DpiAware::PerMonitorDpiAwareCWnd<CListView>
+class CDirView : public DpiAware::CDpiAwareWnd<CListView>
 {
 	friend struct FileCmpReport;
 	friend DirItemEnumerator;

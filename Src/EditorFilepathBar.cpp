@@ -17,7 +17,7 @@
 #define new DEBUG_NEW
 #endif
 
-BEGIN_MESSAGE_MAP(CEditorFilePathBar, DpiAware::PerMonitorDpiAwareCWnd<CDialogBar>)
+BEGIN_MESSAGE_MAP(CEditorFilePathBar, DpiAware::CDpiAwareWnd<CDialogBar>)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
 	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
@@ -50,8 +50,6 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 	if (! __super::Create(pParentWnd, CEditorFilePathBar::IDD, 
 			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
-
-	UpdateDpi();
 
 	LOGFONT lfStatusFont;
 	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))

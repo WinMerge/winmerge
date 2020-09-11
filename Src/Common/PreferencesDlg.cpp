@@ -118,21 +118,19 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageShell, IDS_OPTIONSPG_SHELL);
 
 	ReadOptions();
-
+	
 	CRect rPPHost;
 	GetDlgItem(IDC_TREEOPT_HOSTFRAME)->GetWindowRect(rPPHost);
 	ScreenToClient(rPPHost);
 
 	if (m_pphost.Create(rPPHost, this))
 		SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("OptStartPage"), 0));
-
+ 
 	// setup handler for resizing this dialog	
-	/*
 	m_constraint.InitializeCurrentSize(this);
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OptionsDlg"), false); // persist size via registry
-*/
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

@@ -73,7 +73,7 @@ class CSCBDockBar : public CDockBar
 class CSizingControlBar;
 typedef CTypedPtrArray <CPtrArray, CSizingControlBar*> CSCBArray;
 
-class CSizingControlBar : public DpiAware::PerMonitorDpiAwareCWnd<baseCSizingControlBar>
+class CSizingControlBar : public DpiAware::CDpiAwareWnd<baseCSizingControlBar>
 {
     DECLARE_DYNAMIC(CSizingControlBar);
 

@@ -85,7 +85,7 @@ CCrystalTextBuffer *CSampleView::LocateTextBuffer()
 	return &GetDocument()->m_xTextBuffer;
 }
 
-void CSampleView::OnInitialUpdate()
+void CSampleView::OnInitialUpdate() 
 {
 	CCrystalEditViewEx::OnInitialUpdate();
 

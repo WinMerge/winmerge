@@ -118,7 +118,7 @@ CDirView::~CDirView()
 {
 }
 
-BEGIN_MESSAGE_MAP(CDirView, DpiAware::PerMonitorDpiAwareCWnd<CListView>)
+BEGIN_MESSAGE_MAP(CDirView, DpiAware::CDpiAwareWnd<CListView>)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
@@ -354,7 +354,6 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 
 void CDirView::OnInitialUpdate()
 {
-	UpdateDpi();
 	const int iconCX = [this]() {
 		const int cx = GetSystemMetrics(SM_CXSMICON);
 		if (cx < 24)

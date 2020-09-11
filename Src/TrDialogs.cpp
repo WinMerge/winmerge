@@ -6,15 +6,15 @@ IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
-BEGIN_MESSAGE_MAP(CTrDialog, DpiAware::PerMonitorDpiAwareCWnd<CDialog>)
+BEGIN_MESSAGE_MAP(CTrDialog, DpiAware::CDpiAwareWnd<CDialog>)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 END_MESSAGE_MAP()
 
-BEGIN_MESSAGE_MAP(CTrPropertyPage, DpiAware::PerMonitorDpiAwareCWnd<CPropertyPage>)
+BEGIN_MESSAGE_MAP(CTrPropertyPage, DpiAware::CDpiAwareWnd<CPropertyPage>)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
-BEGIN_MESSAGE_MAP(CTrDialogBar, DpiAware::PerMonitorDpiAwareCWnd<CDialogBar>)
+BEGIN_MESSAGE_MAP(CTrDialogBar, DpiAware::CDpiAwareWnd<CDialogBar>)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
@@ -46,7 +46,6 @@ void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
 
 BOOL CTrDialog::OnInitDialog()
 {
-	UpdateDpi();
 	theApp.TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	return TRUE;
@@ -54,7 +53,6 @@ BOOL CTrDialog::OnInitDialog()
 
 BOOL CTrPropertyPage::OnInitDialog()
 {
-	UpdateDpi();
 	theApp.TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	return TRUE;
@@ -63,7 +61,6 @@ BOOL CTrPropertyPage::OnInitDialog()
 BOOL CTrDialogBar::Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 	UINT nStyle, UINT nID)
 {
-	UpdateDpi();
 	BOOL bSucceeded = __super::Create(pParentWnd, lpszTemplateName, nStyle, nID);
 	if (bSucceeded)
 		theApp.TranslateDialog(m_hWnd);
@@ -73,7 +70,6 @@ BOOL CTrDialogBar::Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 BOOL CTrDialogBar::Create(CWnd* pParentWnd, UINT nIDTemplate,
 	UINT nStyle, UINT nID)
 {
-	UpdateDpi();
 	BOOL bSucceeded = __super::Create(pParentWnd, nIDTemplate, nStyle, nID);
 	if (bSucceeded)
 		theApp.TranslateDialog(m_hWnd);

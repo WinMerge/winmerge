@@ -85,7 +85,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  */
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
 	CString strTitle, UINT nStyle, UINT nHelp ) 
-	: DpiAware::PerMonitorDpiAwareCWnd<CDialog> ( CMessageBoxDialog::IDD, pParent )
+	: DpiAware::CDpiAwareWnd<CDialog> ( CMessageBoxDialog::IDD, pParent )
 	, m_strMessage(strMessage)
 	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
 	, m_nStyle(nStyle)
@@ -468,8 +468,6 @@ void CMessageBoxDialog::EndDialog ( int nResult )
  */
 BOOL CMessageBoxDialog::OnInitDialog ( )
 {
-	UpdateDpi();
-
 	// Call the parent method.
 	if ( !__super::OnInitDialog() )
 	{
@@ -851,7 +849,7 @@ BOOL CMessageBoxDialog::OnWndMsg ( UINT message, WPARAM wParam, LPARAM lParam,
 	return __super::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-BEGIN_MESSAGE_MAP(CMessageBoxDialog, DpiAware::PerMonitorDpiAwareCWnd<CDialog>)
+BEGIN_MESSAGE_MAP(CMessageBoxDialog, DpiAware::CDpiAwareWnd<CDialog>)
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
@@ -1275,8 +1273,12 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	// Select the new font and store the old one.
 	CFont* pOldFont = dcDisplay.SelectObject(&m_fontMainInstruction);
 
+	HMONITOR monitor = MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONEAREST);
+	MONITORINFO info{ sizeof MONITORINFO };
+	GetMonitorInfo(monitor, &info);
+
 	// Define the maximum width of the message.
-	int nMaxWidth = ( GetSystemMetrics(SM_CXSCREEN) / 2 ) + 100;
+	int nMaxWidth = ( info.rcMonitor.right / 2 ) + 100;
 
 	// Check whether an icon is displayed.
 	if ( m_hIcon != nullptr )
