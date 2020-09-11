@@ -2401,7 +2401,7 @@ bool CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 LRESULT CDirView::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 {
 	int olddpi = m_dpi;
-	UpdateDpi();
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
 	DpiAware::ListView_UpdateColumnWidths(m_hWnd, olddpi, m_dpi);
 	return 0;
 }

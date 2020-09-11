@@ -285,7 +285,7 @@ void CMDITabBar::UpdateTabs()
 
 LRESULT CMDITabBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 {
-	UpdateDpi();
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
 
 	m_cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 

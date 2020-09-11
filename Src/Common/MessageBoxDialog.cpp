@@ -801,9 +801,8 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 LRESULT CMessageBoxDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
-	const int dpi = HIWORD(wParam);
-	UpdateDpi();
-	UpdateResources(dpi);
+	__super::OnDpiChanged(wParam, lParam);
+	UpdateResources(m_dpi);
 	Default();
 	if (!GetDlgItem(IDCHECKBOX))
 		return 0;

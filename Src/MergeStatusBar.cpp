@@ -69,6 +69,7 @@ static UINT indicatorsBottom[] =
 };
 
 BEGIN_MESSAGE_MAP(CMergeStatusBar, DpiAware::CDpiAwareWnd<CStatusBar>)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 /**
@@ -297,3 +298,19 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		Update();
 	}
 }
+
+LRESULT CMergeStatusBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	
+	if (m_font.m_hObject == GetFont()->m_hObject)
+		m_font.DeleteObject();
+
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+		m_font.CreateFontIndirect(&lfStatusFont);
+
+	SetFont(&m_font);
+	return 0;
+}
+

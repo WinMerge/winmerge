@@ -179,13 +179,14 @@ void CEditorFilePathBar::OnSetFocusEdit(UINT id)
 
 LRESULT CEditorFilePathBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 {
-	UpdateDpi();
-
-	m_font.DeleteObject();
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
 
 	LOGFONT lfStatusFont;
 	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+	{
+		m_font.DeleteObject();
 		m_font.CreateFontIndirect(&lfStatusFont);
+	}
 
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 		m_Edit[pane].SetFont(&m_font);

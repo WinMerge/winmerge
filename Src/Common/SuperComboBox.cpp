@@ -75,6 +75,7 @@ END_MESSAGE_MAP()
 
 void CSuperComboBox::PreSubclassWindow()
 {
+	UpdateDpi();
 	__super::PreSubclassWindow();
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -200,11 +201,17 @@ int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
  */
 bool CSuperComboBox::AttachSystemImageList()
 {
+	HIMAGELIST hImageList = nullptr;
 	ASSERT(m_bComboBoxEx);
-	HIMAGELIST hImageList = DpiAware::LoadShellImageList(m_dpi);
-	if (hImageList==nullptr)
-		return false;
-	m_himlSystemMap.emplace(m_dpi, hImageList);
+	if (m_himlSystemMap.find(m_dpi) == m_himlSystemMap.end())
+	{
+		hImageList = DpiAware::LoadShellImageList(m_dpi);
+		if (hImageList == nullptr)
+			return false;
+		m_himlSystemMap.emplace(m_dpi, hImageList);
+	}
+	else
+		hImageList = m_himlSystemMap[m_dpi];
 	SetImageList(CImageList::FromHandle(hImageList));
 	m_bHasImageList = true;
 	return true;
@@ -592,12 +599,14 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 
 LRESULT CSuperComboBox::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 {
-	UpdateDpi();
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
 	if (m_bHasImageList)
 	{
 		if (m_himlSystemMap.find(m_dpi) == m_himlSystemMap.end())
 		{
 			HIMAGELIST hImageList = DpiAware::LoadShellImageList(m_dpi);
+			if (!hImageList)
+				return 0;
 			m_himlSystemMap.emplace(m_dpi, hImageList);
 		}
 		SetImageList(CImageList::FromHandle(m_himlSystemMap[m_dpi]));

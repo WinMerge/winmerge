@@ -120,14 +120,19 @@ namespace DpiAware
 		}
 		else
 		{
+			int cxsmicon = ::GetSystemMetrics(SM_CXSMICON);
+			int iconsize = MulDiv(16, dpi, 96);
 			int size = SHIL_EXTRALARGE;
-			if (dpi < 96 * 2)
+			if (iconsize < cxsmicon * 2)
 				size = SHIL_SMALL;
-			else if (dpi < 96 * 3)
+			else if (iconsize < cxsmicon * 3)
 				size = SHIL_LARGE;
 			IImageList *pImageList = nullptr;
 			if (FAILED(SHGetImageList(size, IID_IImageList, (void**)&pImageList)))
 				return nullptr;
+			CComQIPtr<IImageList2> pImageList2(pImageList);
+			if (pImageList2)
+				pImageList2->Resize(iconsize, iconsize);
 			return IImageListToHIMAGELIST(pImageList);
 		}
 	}

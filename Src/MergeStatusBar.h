@@ -30,6 +30,10 @@ public :
 	void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 
 protected:
+
+	//{{AFX_MSG(CEditorFilePathBar)
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM, LPARAM);
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
 
 private:
@@ -69,4 +73,5 @@ protected:
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_status[3];
+	CFont m_font;
 };

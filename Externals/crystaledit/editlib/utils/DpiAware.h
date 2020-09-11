@@ -100,7 +100,6 @@ namespace DpiAware
 
 		BEGIN_MESSAGE_MAP_INLINE(this_type, base_type)
 			ON_WM_CREATE()
-			ON_WM_CREATE()
 			ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 			ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 		END_MESSAGE_MAP_INLINE()

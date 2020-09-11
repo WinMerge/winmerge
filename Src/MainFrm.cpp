@@ -2579,12 +2579,12 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 
 	Default();
 
-	int dpi = HIWORD(wParam);
+	__super::OnDpiChanged(wParam, lParam);
+
 	RECT* const prcNew = (RECT*)lParam;
 
-	UpdateDpi();
-	DpiAware::UpdateAfxDataSysMetrics(dpi);
-	BCMenu::ReopenTheme(dpi);
+	DpiAware::UpdateAfxDataSysMetrics(m_dpi);
+	BCMenu::ReopenTheme(m_dpi);
 
 	m_lfDiff.lfHeight = MulDiv(m_lfDiff.lfHeight, m_dpi, olddpi);
 	m_lfDir.lfHeight = MulDiv(m_lfDir.lfHeight, m_dpi, olddpi);

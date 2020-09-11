@@ -152,7 +152,7 @@ void CSizingControlBar::EnableDocking(DWORD dwDockStyle)
 
 int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-    if (baseCSizingControlBar::OnCreate(lpCreateStruct) == -1)
+    if (__super::OnCreate(lpCreateStruct) == -1)
         return -1;
 
     // query SPI_GETDRAGFULLWINDOWS system parameter
@@ -263,7 +263,7 @@ CSize CSizingControlBar::CalcDynamicLayout(int nLength, DWORD dwMode)
         if (nLength == -1)
             m_bParentSizing = true;
 
-        return baseCSizingControlBar::CalcDynamicLayout(nLength, dwMode);
+        return __super::CalcDynamicLayout(nLength, dwMode);
     }
 
     if (dwMode & LM_MRUWIDTH) return m_szFloat;
@@ -318,7 +318,7 @@ void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
     // force non-client recalc if moved or resized
     lpwndpos->flags |= SWP_FRAMECHANGED;
 
-    baseCSizingControlBar::OnWindowPosChanging(lpwndpos);
+    __super::OnWindowPosChanging(lpwndpos);
 
     // find on which side are we docked
     m_nDockBarID = GetParent()->GetDlgCtrlID();
@@ -372,7 +372,7 @@ void CSizingControlBar::OnLButtonUp(UINT nFlags, CPoint point)
     if (m_bTracking)
         StopTracking();
 
-    baseCSizingControlBar::OnLButtonUp(nFlags, point);
+    __super::OnLButtonUp(nFlags, point);
 }
 
 void CSizingControlBar::OnRButtonDown(UINT nFlags, CPoint point)
@@ -380,7 +380,7 @@ void CSizingControlBar::OnRButtonDown(UINT nFlags, CPoint point)
     if (m_bTracking)
         StopTracking();
 
-    baseCSizingControlBar::OnRButtonDown(nFlags, point);
+    __super::OnRButtonDown(nFlags, point);
 }
 
 void CSizingControlBar::OnMouseMove(UINT nFlags, CPoint point)
@@ -393,7 +393,7 @@ void CSizingControlBar::OnMouseMove(UINT nFlags, CPoint point)
         OnTrackUpdateSize(ptScreen);
     }
 
-    baseCSizingControlBar::OnMouseMove(nFlags, point);
+    __super::OnMouseMove(nFlags, point);
 }
 
 void CSizingControlBar::OnCaptureChanged(CWnd *pWnd)
@@ -401,7 +401,7 @@ void CSizingControlBar::OnCaptureChanged(CWnd *pWnd)
     if (m_bTracking && (pWnd != this))
         StopTracking();
 
-    baseCSizingControlBar::OnCaptureChanged(pWnd);
+    __super::OnCaptureChanged(pWnd);
 }
 
 void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
@@ -558,7 +558,7 @@ NCHITTEST_RESULT CSizingControlBar::OnNcHitTest(CPoint point)
 
 void CSizingControlBar::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
-    baseCSizingControlBar::OnSettingChange(uFlags, lpszSection);
+    __super::OnSettingChange(uFlags, lpszSection);
 
     BOOL bDragShowContent = m_bDragShowContent = false;
     ::SystemParametersInfo(SPI_GETDRAGFULLWINDOWS, 0,
