@@ -779,11 +779,11 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		const int BCMENU_PAD=4;
 		if (m_hTheme == nullptr)
-			lpMIS->itemWidth = MulDiv(m_iconX+BCMENU_PAD+8, dpi, 96) +t.cx;
+			lpMIS->itemWidth = MulDiv(m_iconX+BCMENU_PAD+8, dpi, USER_DEFAULT_SCREEN_DPI) +t.cx;
 		else
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
 		int temp = DpiAware::GetSystemMetricsForDpi(SM_CYMENU, dpi);
-		int temp2 = MulDiv(m_iconY + BCMENU_PAD, dpi, 96);
+		int temp2 = MulDiv(m_iconY + BCMENU_PAD, dpi, USER_DEFAULT_SCREEN_DPI);
 		lpMIS->itemHeight = temp>temp2 ? temp : temp2;
 	}
 }

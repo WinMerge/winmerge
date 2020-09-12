@@ -811,6 +811,7 @@ LRESULT CMessageBoxDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 	GetDlgItem(IDCHECKBOX)->SetFont(&m_font);
 	m_stcMessage.SetFont(&m_fontMainInstruction);
 	Invalidate();
+	m_sDialogUnit = {};
 	return 0;
 }
 
@@ -1178,37 +1179,44 @@ void CMessageBoxDialog::ParseStyle ( )
 	if ( ( m_nStyle & MB_ICONMASK ) && ( m_hIcon == nullptr ) )
 	{
 		// Switch the icon.
+		LPTSTR icon = nullptr;
 		switch ( m_nStyle & MB_ICONMASK )
 		{
 
 			case MB_ICONEXCLAMATION:
 
 				// Load the icon with the exclamation mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_EXCLAMATION);
+				icon = IDI_EXCLAMATION;
 
 				break;
 
 			case MB_ICONHAND:
 
 				// Load the icon with the error symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_HAND);
+				icon = IDI_HAND;
 
 				break;
 
 			case MB_ICONQUESTION:
 
 				// Load the icon with the question mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_QUESTION);
+				icon = IDI_QUESTION;
 
 				break;
 
 			case MB_ICONASTERISK:
 
 				// Load the icon with the information symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_ASTERISK);
+				icon = IDI_ASTERISK;
 
 				break;
 
+		}
+		if (icon)
+		{
+			const int cx = GetSystemMetrics(SM_CXICON);
+			const int cy = GetSystemMetrics(SM_CYICON);
+			DpiAware::LoadIconWithScaleDown(nullptr, icon, cx, cy, &m_hIcon);
 		}
 	}
 }

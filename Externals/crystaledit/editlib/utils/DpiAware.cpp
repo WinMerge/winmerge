@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: BSL-1.0
+// Copyright (c) 2020 Takashi Sawanaka
+
 #include "StdAfx.h"
 #include "DpiAware.h"
 #include <commoncontrols.h>
@@ -16,7 +19,7 @@ namespace DpiAware
 
 	bool DpiAwareSupport = []()
 	{
-		DPIOnInit = MulDiv(96, ::GetSystemMetrics(SM_CXSMICON), 16);
+		DPIOnInit = MulDiv(USER_DEFAULT_SCREEN_DPI, ::GetSystemMetrics(SM_CXSMICON), 16);
 		HMODULE hLibraryUser32 = GetModuleHandleW(L"user32.dll");
 		if (hLibraryUser32)
 		{
@@ -121,7 +124,7 @@ namespace DpiAware
 		else
 		{
 			int cxsmicon = ::GetSystemMetrics(SM_CXSMICON);
-			int iconsize = MulDiv(16, dpi, 96);
+			int iconsize = MulDiv(16, dpi, USER_DEFAULT_SCREEN_DPI);
 			int size = SHIL_EXTRALARGE;
 			if (iconsize < cxsmicon * 2)
 				size = SHIL_SMALL;

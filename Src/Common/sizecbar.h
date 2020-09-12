@@ -179,6 +179,7 @@ protected:
     afx_msg void OnSize(UINT nType, int cx, int cy);
     //}}AFX_MSG
     afx_msg LRESULT OnSetText(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
 

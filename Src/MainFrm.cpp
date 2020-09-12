@@ -2577,11 +2577,7 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	int olddpi = m_dpi;
 
-	Default();
-
 	__super::OnDpiChanged(wParam, lParam);
-
-	RECT* const prcNew = (RECT*)lParam;
 
 	DpiAware::UpdateAfxDataSysMetrics(m_dpi);
 	BCMenu::ReopenTheme(m_dpi);
@@ -2591,6 +2587,11 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 	
 	UpdateFont(FRAME_FILE);
 	UpdateFont(FRAME_FOLDER);
+
+	const RECT* pRect = reinterpret_cast<RECT*>(lParam);
+	SetWindowPos(nullptr, pRect->left, pRect->top,
+		pRect->right - pRect->left,
+		pRect->bottom - pRect->top, SWP_NOZORDER | SWP_NOACTIVATE);
 
 	return 0;
 }

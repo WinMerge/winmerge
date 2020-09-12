@@ -6,6 +6,7 @@
 
 #include "MainFrm.h"
 #include "ceditcmd.h"
+#include <commoncontrols.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -61,7 +62,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	
 	if (!m_wndToolBar.Create(this) ||
-		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+		!LoadToolBar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
@@ -107,6 +108,11 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	__super::OnDpiChanged(wParam, lParam);
 	DpiAware::UpdateAfxDataSysMetrics(GetDpi());
+	LoadToolBar();
+	const RECT* pRect = reinterpret_cast<RECT *>(lParam);
+	SetWindowPos(nullptr, pRect->left, pRect->top,
+		pRect->right - pRect->left,
+		pRect->bottom - pRect->top, SWP_NOZORDER | SWP_NOACTIVATE);
 	Default();
 	return 0;
 }
@@ -117,6 +123,26 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	//  the CREATESTRUCT cs
 
 	return __super::PreCreateWindow(cs);
+}
+
+BOOL CMainFrame::LoadToolBar()
+{
+	m_wndToolBar.LoadToolBar(IDR_MAINFRAME);
+	CToolBarCtrl& toolbarCtrl = m_wndToolBar.GetToolBarCtrl();
+	int cx = 16;
+	int cy = 15;
+	m_imgListToolBar.DeleteImageList();
+	m_imgListToolBar.Create(IDR_MAINFRAME, cx, 0, RGB(192, 192, 192));
+	CComQIPtr<IImageList2> pImageList2(reinterpret_cast<IImageList *>(m_imgListToolBar.m_hImageList));
+	if (pImageList2)
+	{
+		cx = 16 * m_dpi / 96;
+		cy = 15 * m_dpi / 96;
+		HRESULT hr = pImageList2->Resize(cx, cy);
+	}
+	toolbarCtrl.SetImageList(&m_imgListToolBar);
+	toolbarCtrl.SetButtonSize({ cx + 8, cy + 8 });
+	return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////

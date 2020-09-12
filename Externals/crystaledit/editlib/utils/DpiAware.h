@@ -1,5 +1,8 @@
 #pragma once
 
+// SPDX-License-Identifier: BSL-1.0
+// Copyright (c) 2020 Takashi Sawanaka
+
 #include <afxwin.h>
 #include <type_traits>
 #include "mfc_templ_defines.h"
@@ -9,13 +12,13 @@
 #define WM_DPICHANGED_BEFOREPARENT 0x02E2
 #define WM_DPICHANGED_AFTERPARENT 0x02E3
 #endif
+#ifndef USER_DEFAULT_SCREEN_DPI
+#define USER_DEFAULT_SCREEN_DPI 96
+#endif
 
 namespace DpiAware
 {
-	struct NONCLIENTMETRICS6 : public NONCLIENTMETRICS
-	{
-		int     iPaddedBorderWidth;
-	};
+	struct NONCLIENTMETRICS6 : public NONCLIENTMETRICS { int iPaddedBorderWidth; };
 
 	using AdjustWindowRectExForDpiType = BOOL(__stdcall*)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
 	using GetDpiForWindowType = UINT(__stdcall*)(HWND hwnd);

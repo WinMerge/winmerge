@@ -96,6 +96,7 @@ BEGIN_MESSAGE_MAP(CSizingControlBar, DpiAware::CDpiAwareWnd<baseCSizingControlBa
     ON_WM_SIZE()
     //}}AFX_MSG_MAP
     ON_MESSAGE(WM_SETTEXT, OnSetText)
+    ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
@@ -1174,6 +1175,23 @@ void CSizingControlBar::GlobalSaveState(CFrameWnd* pFrame,
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->SaveState(lpszProfileName);
     }
+}
+
+LRESULT CSizingControlBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+    int olddpi = m_dpi;
+
+    __super::OnDpiChangedBeforeParent(wParam, lParam);
+
+    for (auto& size : { &m_szHorz, &m_szVert, &m_szFloat })
+    {
+        size->cx = MulDiv(size->cx, m_dpi, olddpi);
+        size->cy = MulDiv(size->cy, m_dpi, olddpi);
+    }
+
+    m_pDockSite->DelayRecalcLayout();
+
+    return 0;
 }
 
 #ifdef _SCB_REPLACE_MINIFRAME
