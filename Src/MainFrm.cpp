@@ -59,6 +59,7 @@
 #include "VersionInfo.h"
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
+
 #include "WindowsManagerDialog.h"
 
 using std::vector;
@@ -2023,8 +2024,8 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarNewImgSize = MulDiv(16, m_dpi, USER_DEFAULT_SCREEN_DPI) << GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
-	const int toolbarOrgImgSize = toolbarNewImgSize == 16 ? 16 : 32;
+	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * (1 + GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 
 	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();

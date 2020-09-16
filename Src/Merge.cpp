@@ -150,7 +150,7 @@ BOOL CMergeApp::InitInstance()
 	InitCommonControls();    // initialize common control library
 	CWinApp::InitInstance(); // call parent class method
 
-	m_imageForInitializingGdiplus.Load((IStream*)nullptr);
+	m_imageForInitializingGdiplus.Load((IStream*)nullptr); // initialize GDI+
 
 	// Runtime switch so programmer may set this in interactive debugger
 	int dbgmem = 0;

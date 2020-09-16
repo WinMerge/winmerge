@@ -61,8 +61,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	pOptions->InitOption(OPT_SHOW_TABBAR, true);
-	const int cxsmicon = GetSystemMetrics(SM_CXSMICON);
-	pOptions->InitOption(OPT_TOOLBAR_SIZE, (cxsmicon < 28) ? 0 : (cxsmicon < 40 ? 1 : 2));
+	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
