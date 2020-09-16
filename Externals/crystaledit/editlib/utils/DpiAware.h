@@ -1,7 +1,11 @@
-#pragma once
-
 // SPDX-License-Identifier: BSL-1.0
 // Copyright (c) 2020 Takashi Sawanaka
+//
+// Use, modification and distribution are subject to the 
+// Boost Software License, Version 1.0. (See accompanying file 
+// LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+#pragma once
 
 #include <afxwin.h>
 #include <type_traits>
@@ -43,6 +47,16 @@ namespace DpiAware
 	void ListView_UpdateColumnWidths(HWND hwnd, int olddpi, int newdpi);
 	void Dialog_UpdateControlInnerWidths(HWND hwnd, int olddpi, int newdpi);
 	HIMAGELIST LoadShellImageList(int dpi);
+	template <class T>
+	T MulDivRect(const T* p, int nNumerator, int nDenominator)
+	{
+		T rc;
+		rc.left   = MulDiv(p->left,   nNumerator, nDenominator);
+		rc.top    = MulDiv(p->top,    nNumerator, nDenominator);
+		rc.right  = MulDiv(p->right,  nNumerator, nDenominator);
+		rc.bottom = MulDiv(p->bottom, nNumerator, nDenominator);
+		return rc;
+	}
 
 	template<class Base>
 	class CDpiAwareWnd : public Base
@@ -89,6 +103,7 @@ namespace DpiAware
 
 		afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam)
 		{
+			int olddpi = m_dpi;
 			UpdateDpi();
 			return 0;
 		}
@@ -108,5 +123,63 @@ namespace DpiAware
 		END_MESSAGE_MAP_INLINE()
 	};
 
+	template<class Base>
+	class CDpiAwareDialog : public CDpiAwareWnd<Base>
+	{
+	public:
+		using this_type = CDpiAwareDialog;
+		using base_type = CDpiAwareWnd<Base>;
+		using CDpiAwareWnd<Base>::CDpiAwareWnd;
+
+		CRect m_rcInit;
+
+		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct)
+		{
+			GetClientRect(m_rcInit);
+			return __super::OnCreate(lpCreateStruct);
+		}
+
+		afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam)
+		{
+			int olddpi = m_dpi;
+			bool bDynamicLayoutEnabled = IsDynamicLayoutEnabled();
+			CSize sizeMin;
+			if (bDynamicLayoutEnabled)
+			{
+//				sizeMin = GetDynamicLayout()->GetMinSize();
+//				CRect rc = m_rcInit;
+//				AdjustWindowRectEx(&rc, GetStyle(), false, GetExStyle());
+//				SetWindowPos(nullptr, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+//				GetDynamicLayout()->Adjust();
+				EnableDynamicLayout(FALSE);
+			}
+			UpdateDpi();
+			Default();
+			/*
+			if (bDynamicLayoutEnabled)
+			{
+				m_rcInit = DpiAware::MulDivRect(&m_rcInit, m_dpi, olddpi);
+				sizeMin.cx = MulDiv(sizeMin.cx, m_dpi, olddpi);
+				sizeMin.cy = MulDiv(sizeMin.cy, m_dpi, olddpi);
+				CRect rc = m_rcInit;
+				AdjustWindowRectEx(&rc, GetStyle(), false, GetExStyle());
+				SetWindowPos(nullptr, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+				LoadDynamicLayoutResource(m_lpszTemplateName);
+			}
+			*/
+			return 0;
+		}
+
+		afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+		{
+			return OnDpiChanged(wParam, lParam);
+		}
+
+		BEGIN_MESSAGE_MAP_INLINE(this_type, base_type)
+			ON_WM_CREATE()
+			ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
+			ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+		END_MESSAGE_MAP_INLINE()
+	};
 }
 

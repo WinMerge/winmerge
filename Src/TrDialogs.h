@@ -44,65 +44,49 @@ public:
 
 void DpiChangedImplHelper(HWND hwnd, int olddpi, int newdpi);
 
-template <class T>
-class DpiChangedImpl
-{
-public:
-	LRESULT OnDpiChangedImpl(WPARAM wParam, LPARAM lParam)
-	{
-		T* pwnd = static_cast<T*>(this);
-		int olddpi = pwnd->m_dpi;
-		pwnd->UpdateDpi();
-		pwnd->Default();
-		if (olddpi != pwnd->m_dpi)
-			DpiChangedImplHelper(pwnd->m_hWnd, olddpi, pwnd->m_dpi);
-		return 0;
-	}
-};
-
 class CTrDialog
-	: public DpiAware::CDpiAwareWnd<CDialog>
+	: public DpiAware::CDpiAwareDialog<CDialog>
 	, public DlgUtils<CTrDialog>
-	, public DpiChangedImpl<CTrDialog>
 {
-	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrDialog)
 public:
-	using DpiAware::CDpiAwareWnd<CDialog>::CDpiAwareWnd;
+	using DpiAware::CDpiAwareDialog<CDialog>::CDpiAwareDialog;
 
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
 	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam)
 	{
-		return OnDpiChangedImpl(wParam, lParam);
+		int olddpi = m_dpi;
+		LRESULT result = __super::OnDpiChanged(wParam, lParam);
+		DpiChangedImplHelper(m_hWnd, olddpi, m_dpi);
+		return result;
 	}
 };
 
 class CTrPropertyPage
-	: public DpiAware::CDpiAwareWnd<CPropertyPage>
+	: public DpiAware::CDpiAwareDialog<CPropertyPage>
 	, public DlgUtils<CTrPropertyPage>
-	, public DpiChangedImpl<CTrPropertyPage>
 {
-	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
-	using DpiAware::CDpiAwareWnd<CPropertyPage>::CDpiAwareWnd;
+	using DpiAware::CDpiAwareDialog<CPropertyPage>::CDpiAwareDialog;
 
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()
 	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam) {
-		return OnDpiChangedImpl(wParam, lParam);
+		int olddpi = m_dpi;
+		LRESULT result = __super::OnDpiChangedBeforeParent(wParam, lParam);
+		DpiChangedImplHelper(m_hWnd, olddpi, m_dpi);
+		return result;
 	}
 };
 
 class CTrDialogBar
-	: public DpiAware::CDpiAwareWnd<CDialogBar>
+	: public DpiAware::CDpiAwareDialog<CDialogBar>
 	, public DlgUtils<CTrDialogBar>
-	, public DpiChangedImpl<CTrDialogBar>
 {
-	friend DpiChangedImpl;
 	DECLARE_DYNAMIC(CTrDialogBar)
 public:
 	virtual BOOL Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
@@ -111,5 +95,11 @@ public:
 		UINT nStyle, UINT nID);
 
 	DECLARE_MESSAGE_MAP()
-	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam) { return OnDpiChangedImpl(wParam, lParam); }
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+	{
+		int olddpi = m_dpi;
+		LRESULT result = __super::OnDpiChangedBeforeParent(wParam, lParam);
+		DpiChangedImplHelper(m_hWnd, olddpi, m_dpi);
+		return result;
+	}
 };

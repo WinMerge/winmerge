@@ -125,8 +125,6 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
-#define IDB_TOOLBAR_ENABLED_MASK        379
-#define IDB_TOOLBAR_ENABLED_MASK32      380
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502

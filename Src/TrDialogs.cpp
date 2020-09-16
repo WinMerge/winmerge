@@ -6,15 +6,15 @@ IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
-BEGIN_MESSAGE_MAP(CTrDialog, DpiAware::CDpiAwareWnd<CDialog>)
+BEGIN_MESSAGE_MAP(CTrDialog, DpiAware::CDpiAwareDialog<CDialog>)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 END_MESSAGE_MAP()
 
-BEGIN_MESSAGE_MAP(CTrPropertyPage, DpiAware::CDpiAwareWnd<CPropertyPage>)
+BEGIN_MESSAGE_MAP(CTrPropertyPage, DpiAware::CDpiAwareDialog<CPropertyPage>)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
-BEGIN_MESSAGE_MAP(CTrDialogBar, DpiAware::CDpiAwareWnd<CDialogBar>)
+BEGIN_MESSAGE_MAP(CTrDialogBar, DpiAware::CDpiAwareDialog<CDialogBar>)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 

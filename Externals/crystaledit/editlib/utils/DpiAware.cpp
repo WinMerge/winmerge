@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: BSL-1.0
 // Copyright (c) 2020 Takashi Sawanaka
+//
+// Use, modification and distribution are subject to the 
+// Boost Software License, Version 1.0. (See accompanying file 
+// LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include "StdAfx.h"
 #include "DpiAware.h"
@@ -43,6 +47,8 @@ namespace DpiAware
 				{ return AdjustWindowRectEx(lpRect, dwStyle, bMenu, dwExStyle); };
 		if (!GetDpiForWindow)
 			GetDpiForWindow = [](HWND hwnd) -> UINT { return CClientDC(CWnd::FromHandle(hwnd)).GetDeviceCaps(LOGPIXELSX); };
+		if (!SystemParametersInfoForDpi)
+			SystemParametersInfoForDpi = [](UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni, UINT dpi) -> BOOL { return SystemParametersInfo(uiAction, uiParam, pvParam, fWinIni); };
 		if (!GetSystemMetricsForDpi)
 			GetSystemMetricsForDpi = [](int nIndex, UINT dpi) -> int { return GetSystemMetrics(nIndex); };
 		if (!LoadIconWithScaleDown)
@@ -87,6 +93,12 @@ namespace DpiAware
 		afxData.cyPixelsPerInch = dpi;
 	}
 
+	void TreeView_UpdateIndent(HWND hwnd, int olddpi, int newdpi)
+	{
+		int indent = TreeView_GetIndent(hwnd);
+		TreeView_SetIndent(hwnd, MulDiv(indent, newdpi, olddpi));
+	}
+
 	void ListView_UpdateColumnWidths(HWND hwnd, int olddpi, int newdpi)
 	{
 		HWND hwndHeader = ListView_GetHeader(hwnd);
@@ -108,6 +120,8 @@ namespace DpiAware
 			GetClassName(hwnd, name, sizeof(name) / sizeof(TCHAR));
 			if (_tcsicmp(name, _T("SysListView32")) == 0 && pdpis->hwndParent == GetParent(hwnd))
 				ListView_UpdateColumnWidths(hwnd, pdpis->olddpi, pdpis->newdpi);
+			else if (_tcsicmp(name, _T("SysTreeView32")) == 0 && pdpis->hwndParent == GetParent(hwnd))
+				TreeView_UpdateIndent(hwnd, pdpis->olddpi, pdpis->newdpi);
 			return TRUE;
 		};
 		EnumChildWindows(hwnd, enumfunc, (LPARAM)&dpis);

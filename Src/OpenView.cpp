@@ -91,6 +91,7 @@ BEGIN_MESSAGE_MAP(COpenView, DpiAware::CDpiAwareWnd<CFormView>)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditAction<WM_UNDO>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
@@ -1118,6 +1119,21 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	
 	SetStatus(LOWORD(lParam));
 
+	return 0;
+}
+
+LRESULT COpenView::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	const int olddpi = m_dpi;
+	CRect rc;
+	GetWindowRect(&rc);
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	rc.left = MulDiv(rc.left, m_dpi, olddpi);
+	rc.right = MulDiv(rc.right, m_dpi, olddpi);
+	rc.top = MulDiv(rc.top, m_dpi, olddpi);
+	rc.bottom = MulDiv(rc.bottom, m_dpi, olddpi);
+	DefWindowProc(WM_DPICHANGED, (WPARAM)m_dpi, (LPARAM)&rc);
+	SetWindowPos(nullptr, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
 	return 0;
 }
 

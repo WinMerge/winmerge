@@ -213,6 +213,7 @@ protected:
 private:
 	HWND m_hwndDlg; // parent of controls - could be FormView or PropertyPage or whatever as well
 	CRect m_rectDlgOriginal;
+	CRect m_rectDlgOriginalIncludingNonClient;
 	int m_nOrigX;
 	int m_nOrigY;
 	EGRIP m_nGrip;
@@ -222,6 +223,7 @@ private:
 	int m_nMaxX;
 	int m_nMaxY;
 	int m_nDelayed; // CWnds without HWND
+	int m_dpi;
 	bool m_bSubclassed;
 	WNDPROC m_oldWndProc;
 // formview stuff

@@ -291,7 +291,7 @@ LRESULT CMDITabBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
 
 	TabCtrl_SetPadding(m_hWnd, m_cxSMIcon, 4);
 
-	LOGFONT lfMenuFont;
+	LOGFONT lfMenuFont{};
 	DpiAware::GetNonClientLogFont(lfMenuFont, offsetof(NONCLIENTMETRICS, lfMenuFont), m_dpi);
 	m_font.DeleteObject();
 	m_font.CreateFontIndirect(&lfMenuFont);

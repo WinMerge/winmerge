@@ -172,6 +172,7 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	mutable std::map<int, CFont> m_mapFontGUI;
+	ATL::CImage m_imageForInitializingGdiplus;
 };
 
 extern CMergeApp theApp;

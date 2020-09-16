@@ -69,7 +69,7 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale, CImageList& ImgList);
+static void LoadToolbarImageList(int orgImageWidth, int newImageHeight, UINT nIDResource, bool bGrayscale, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
@@ -2023,22 +2023,22 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarSize = 16 << GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	const int toolbarNewImgSize = MulDiv(16, m_dpi, USER_DEFAULT_SCREEN_DPI) << GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	const int toolbarOrgImgSize = toolbarNewImgSize == 16 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 
 	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
 	CSize sizeButton(0, 0);
 
-	LoadToolbarImageList(toolbarSize,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
+	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
+		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
 		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	LoadToolbarImageList(toolbarSize,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
+	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
+		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
 		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-	sizeButton = CSize(toolbarSize + 8, toolbarSize + 8);
+
+	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
 	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
@@ -2055,29 +2055,111 @@ void CMainFrame::LoadToolbarImages()
 
 
 /**
- * @brief Load a transparent 24-bit color image list.
+ * @brief Load a transparent 32-bit color image list.
  */
-static void LoadHiColImageList(UINT nIDResource, UINT nIDResourceMask, int nWidth, int nHeight, int nCount, bool bGrayscale, CImageList& ImgList)
+static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, int nCount, bool bGrayscale, CImageList& ImgList)
 {
-	CBitmap bm, bmMask;
-	bm.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_DEFAULTCOLOR));
-	bmMask.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResourceMask), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_MONOCHROME));
-	if (bGrayscale)
-		GrayScale(&bm);
-	VERIFY(ImgList.Create(nWidth, nHeight, ILC_COLORDDB|ILC_MASK, nCount, 0));
-	int nIndex = ImgList.Add(&bm, &bmMask);
-	ASSERT(-1 != nIndex);
+	auto convert24bitImageTo32bit = [](int width, int height, bool grayscale, const BYTE* src, BYTE* dst)
+	{
+		for (int y = 0; y < height; ++y)
+		{
+			const BYTE* pSrc = src + y * ((width * 3 * 4 + 3) / 4);
+			BYTE* pDst = dst + (height - 1 - y) * ((width * 4 * 4 + 3) / 4);
+			if (!grayscale)
+			{
+				for (int x = 0; x < width; ++x)
+				{
+					if (pSrc[x * 3] == 0xff && pSrc[x * 3 + 1] == 0 && pSrc[x * 3 + 2] == 0xff) // rgb(0xff, 0, 0xff) == mask color
+					{
+						pDst[x * 4] = 0;
+						pDst[x * 4 + 1] = 0;
+						pDst[x * 4 + 2] = 0;
+						pDst[x * 4 + 3] = 0;
+					}
+					else
+					{
+						pDst[x * 4 + 0] = pSrc[x * 3 + 0];
+						pDst[x * 4 + 1] = pSrc[x * 3 + 1];
+						pDst[x * 4 + 2] = pSrc[x * 3 + 2];
+						pDst[x * 4 + 3] = 0xff;
+					}
+				}
+			}
+			else
+			{
+				for (int x = 0; x < width; ++x)
+				{
+					if (pSrc[x * 3] == 0xff && pSrc[x * 3 + 1] == 0 && pSrc[x * 3 + 2] == 0xff) // rgb(0xff, 0, 0xff) == mask color
+					{
+						pDst[x * 4] = 0;
+						pDst[x * 4 + 1] = 0;
+						pDst[x * 4 + 2] = 0;
+						pDst[x * 4 + 3] = 0;
+					}
+					else
+					{
+						const BYTE b = pSrc[x * 3];
+						const BYTE g = pSrc[x * 3 + 1];
+						const BYTE r = pSrc[x * 3 + 2];
+						const BYTE gray = static_cast<BYTE>(
+							(static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
+								+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
+								+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
+						pDst[x * 4 + 0] = gray;
+						pDst[x * 4 + 1] = gray;
+						pDst[x * 4 + 2] = gray;
+						pDst[x * 4 + 3] = 0xff;
+					}
+				}
+			}
+		}
+	};
+
+	auto createImageListFromBitmap = [](CImageList& imgList, Gdiplus::Bitmap& bitmap, int width, int height, int count)
+	{
+		CBitmap bm;
+		HBITMAP hBitmap;
+		bitmap.GetHBITMAP(Gdiplus::Color::Transparent, &hBitmap);
+		bm.Attach(hBitmap);
+
+		VERIFY(imgList.Create(width, height, ILC_COLOR32, count, 0));
+		int nIndex = imgList.Add(&bm, nullptr);
+		ASSERT(-1 != nIndex);
+	};
+
+	ATL::CImage img;
+	img.Attach((HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_CREATEDIBSECTION), ATL::CImage::DIBOR_TOPDOWN);
+	const int stride = (nWidth * nCount * 4 * 4 + 3) / 4;
+	std::vector<BYTE> buf(stride * nHeight);
+	convert24bitImageTo32bit(nWidth * nCount, nHeight, bGrayscale, reinterpret_cast<BYTE*>(img.GetBits()), buf.data());
+
+	if (nWidth != nNewWidth && nHeight != nNewHeight)
+	{
+		Gdiplus::Bitmap bitmapSrc(nWidth * nCount, nHeight, stride, PixelFormat32bppPARGB, buf.data());
+		Gdiplus::Bitmap bitmapDst(nNewWidth * nCount, nNewHeight, PixelFormat32bppPARGB);
+		Gdiplus::Graphics dcDst(&bitmapDst);
+		dcDst.SetInterpolationMode(Gdiplus::InterpolationMode::InterpolationModeHighQualityBicubic);
+		dcDst.DrawImage(&bitmapSrc, 0, 0, nNewWidth * nCount, nNewHeight);
+
+		createImageListFromBitmap(ImgList, bitmapDst, nNewWidth, nNewHeight, nCount);
+	}
+	else
+	{
+		Gdiplus::Bitmap bitmapDst(nWidth * nCount, nHeight, stride, PixelFormat32bppPARGB, buf.data());
+
+		createImageListFromBitmap(ImgList, bitmapDst, nNewWidth, nNewHeight, nCount);
+	}
 }
 
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale,
-		CImageList& ImgList)
+static void LoadToolbarImageList(int orgImageWidth, int newImageWidth, UINT nIDResource, bool bGrayscale, CImageList& ImgList)
 {
 	const int ImageCount = 22;
-	const int imageHeight = imageWidth - 1;
-	LoadHiColImageList(nIDResource, nIDResourceMask, imageWidth, imageHeight, ImageCount, bGrayscale, ImgList);
+	const int orgImageHeight = orgImageWidth - 1;
+	const int newImageHeight = newImageWidth - 1;
+	LoadHiColImageList(nIDResource, orgImageWidth, orgImageHeight, newImageWidth, newImageHeight, ImageCount, bGrayscale, ImgList);
 }
 
 /**
@@ -2587,6 +2669,8 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 	
 	UpdateFont(FRAME_FILE);
 	UpdateFont(FRAME_FOLDER);
+
+	LoadToolbarImages();
 
 	const RECT* pRect = reinterpret_cast<RECT*>(lParam);
 	SetWindowPos(nullptr, pRect->left, pRect->top,

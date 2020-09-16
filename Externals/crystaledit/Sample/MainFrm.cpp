@@ -136,8 +136,8 @@ BOOL CMainFrame::LoadToolBar()
 	CComQIPtr<IImageList2> pImageList2(reinterpret_cast<IImageList *>(m_imgListToolBar.m_hImageList));
 	if (pImageList2)
 	{
-		cx = 16 * m_dpi / 96;
-		cy = 15 * m_dpi / 96;
+		cx = MulDiv(16, m_dpi, USER_DEFAULT_SCREEN_DPI);
+		cy = MulDiv(15, m_dpi, USER_DEFAULT_SCREEN_DPI);
 		HRESULT hr = pImageList2->Resize(cx, cy);
 	}
 	toolbarCtrl.SetImageList(&m_imgListToolBar);

@@ -133,6 +133,7 @@ protected:
 	afx_msg void OnHelp();
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
