@@ -104,6 +104,11 @@ CMoveConstraint::GrabCurrentDimensionsAsOriginal(HWND hwndDlg)
 	GetClientRect(hwndDlg, m_rectDlgOriginal);
 	CRect rect;
 	GetWindowRect(hwndDlg, &rect);
+	LOGFONT lf;
+	CFont* pFont = CWnd::FromHandle(hwndDlg)->GetFont();
+	pFont->GetLogFont(&lf);
+	m_fontFace = lf.lfFaceName;
+	m_fontSize = MulDiv(abs(lf.lfHeight), 72, m_dpi);
 
 	// (min/max code)
 	// remember original width & heighth in case a disallow function called
@@ -667,25 +672,30 @@ CMoveConstraint::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam, L
 		const int newnonclientsx = rc.Width() - rcClient.Width();
 		const int newnonclientsy = rc.Height() - rcClient.Height();
 		const RECT* pRect = reinterpret_cast<RECT*>(lParam);
-		m_rectDlgOriginal = DpiAware::MulDivRect(&m_rectDlgOriginal, m_dpi, olddpi);
+		CSize sizeOld = { m_rectDlgOriginal.right, m_rectDlgOriginal.bottom };
+		CSize sizeNew = DpiAware::Dialog_CalcUpdatedSize(m_fontFace.c_str(), m_fontSize, sizeOld, olddpi, m_dpi);
+		m_rectDlgOriginal.right = sizeNew.cx;
+		m_rectDlgOriginal.bottom = sizeNew.cx;
 		for (auto& pval : { &m_nMaxX, &m_nMinX, &m_nOrigX })
 		{
 			if (*pval)
-				*pval = MulDiv(*pval - oldnonclientsx, m_dpi, olddpi) + newnonclientsx;
+				*pval = MulDiv(*pval - oldnonclientsx, sizeNew.cx, sizeOld.cx) + newnonclientsx;
 		}
 		for (auto& pval : { &m_nMaxY, &m_nMinY, &m_nOrigY })
 		{
 			if (*pval)
-				*pval = MulDiv(*pval - oldnonclientsy, m_dpi, olddpi) + newnonclientsy;
+				*pval = MulDiv(*pval - oldnonclientsy, sizeNew.cy, sizeOld.cy) + newnonclientsy;
 		}
 		ConstraintList & constraintList = m_ConstraintList;
 		for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
 		{
 			Constraint & constraint = constraintList.GetAt(pos);
 			for (auto& pval :
-				{ &constraint.m_rectChildOriginal.left,&constraint.m_rectChildOriginal.top,
-				  &constraint.m_rectChildOriginal.right, &constraint.m_rectChildOriginal.bottom })
-				*pval = MulDiv(*pval, m_dpi, olddpi);
+				{ &constraint.m_rectChildOriginal.left, &constraint.m_rectChildOriginal.right })
+				*pval = MulDiv(*pval, sizeNew.cx, sizeOld.cx);
+			for (auto& pval :
+				{ &constraint.m_rectChildOriginal.top, &constraint.m_rectChildOriginal.bottom })
+				*pval = MulDiv(*pval, sizeNew.cy, sizeOld.cy);
 		}
 	}
 

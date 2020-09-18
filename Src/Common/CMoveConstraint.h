@@ -213,7 +213,8 @@ protected:
 private:
 	HWND m_hwndDlg; // parent of controls - could be FormView or PropertyPage or whatever as well
 	CRect m_rectDlgOriginal;
-	CRect m_rectDlgOriginalIncludingNonClient;
+	String m_fontFace;
+	double m_fontSize;
 	int m_nOrigX;
 	int m_nOrigY;
 	EGRIP m_nGrip;

@@ -46,6 +46,8 @@ namespace DpiAware
 	void UpdateAfxDataSysMetrics(int dpi);
 	void ListView_UpdateColumnWidths(HWND hwnd, int olddpi, int newdpi);
 	void Dialog_UpdateControlInnerWidths(HWND hwnd, int olddpi, int newdpi);
+	CSize Dialog_CalcUpdatedSize(const TCHAR* pszFontFace, int nFontSize, const CSize& oldsize, int olddpi, int newdpi);
+	CSize Dialog_GetSizeFromTemplate(const TCHAR* pTemplateID, const TCHAR* pszFaceName, int nFontSize);
 	HIMAGELIST LoadShellImageList(int dpi);
 	template <class T>
 	T MulDivRect(const T* p, int nNumerator, int nDenominator)
@@ -155,18 +157,17 @@ namespace DpiAware
 			}
 			UpdateDpi();
 			Default();
-			/*
 			if (bDynamicLayoutEnabled)
 			{
-				m_rcInit = DpiAware::MulDivRect(&m_rcInit, m_dpi, olddpi);
-				sizeMin.cx = MulDiv(sizeMin.cx, m_dpi, olddpi);
-				sizeMin.cy = MulDiv(sizeMin.cy, m_dpi, olddpi);
-				CRect rc = m_rcInit;
-				AdjustWindowRectEx(&rc, GetStyle(), false, GetExStyle());
-				SetWindowPos(nullptr, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+				/*
+				CFont *pFont = GetFont();
+				LOGFONT lfFont;
+				pFont->GetLogFont(&lfFont);
+				CSize size = Dialog_GetSizeFromTemplate(m_lpszTemplateName, lfFont.lfFaceName, MulDiv(abs(lfFont.lfHeight), 72, m_dpi));
+				SetWindowPos(nullptr, 0, 0, size.cx, size.cy, SWP_NOMOVE | SWP_NOZORDER);
 				LoadDynamicLayoutResource(m_lpszTemplateName);
+				*/
 			}
-			*/
 			return 0;
 		}
 

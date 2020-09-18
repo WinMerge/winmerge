@@ -127,6 +127,47 @@ namespace DpiAware
 		EnumChildWindows(hwnd, enumfunc, (LPARAM)&dpis);
 	}
 
+	CSize Dialog_GetSizeFromTemplate(const TCHAR *pTemplateID, const TCHAR *pszFaceName, int nFontSize)
+	{
+		CDialogTemplate tmpl;
+		CSize size;
+		tmpl.Load(pTemplateID);
+		tmpl.SetFont(pszFaceName, nFontSize);
+		tmpl.GetSizeInPixels(&size);
+		return size;
+	}
+
+	CSize Dialog_CalcUpdatedSize(const TCHAR *pszFontFace, int nFontSize, const CSize& oldsize, int olddpi, int newdpi)
+	{
+		UINT cxSysChar[2], cySysChar[2];
+		LOGFONT lf[2] = {};
+		CClientDC dc(nullptr);
+		lf[0].lfHeight = -MulDiv(nFontSize, olddpi, 72);
+		lf[0].lfWeight = FW_NORMAL;
+		lf[0].lfCharSet = DEFAULT_CHARSET;
+		_tcscpy_s(lf[0].lfFaceName, pszFontFace);
+		lf[1] = lf[0];
+		lf[1].lfHeight = -MulDiv(nFontSize, newdpi, 72);
+
+		for (int i = 0; i < 2; ++i)
+		{
+			CFont font;
+			font.CreateFontIndirect(&lf[i]);
+			HFONT hFontOld = (HFONT)SelectObject(dc, font);
+			TEXTMETRIC tm;
+			dc.GetTextMetrics(&tm);
+			cySysChar[i] = tm.tmHeight + tm.tmExternalLeading;
+			SIZE size;
+			GetTextExtentPoint32(dc, _T("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"), 52, &size);
+			cxSysChar[i] = (size.cx + 26) / 52;
+			dc.SelectObject(hFontOld);
+		}
+
+		int newcx = MulDiv(oldsize.cx, cxSysChar[1], cxSysChar[0]);
+		int newcy = MulDiv(oldsize.cy, cySysChar[1], cySysChar[0]);
+		return { newcx, newcy };
+	}
+
 	HIMAGELIST LoadShellImageList(int dpi)
 	{
 		SHFILEINFO sfi{};
