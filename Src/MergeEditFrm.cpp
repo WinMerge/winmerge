@@ -449,7 +449,7 @@ LRESULT CMergeEditFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 
 void CMergeEditFrame::OnSize(UINT nType, int cx, int cy) 
 {
-	CMDIChildWnd::OnSize(nType, cx, cy);
+	__super::OnSize(nType, cx, cy);
 	
 	UpdateHeaderSizes();
 }

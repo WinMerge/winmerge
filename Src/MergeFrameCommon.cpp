@@ -17,6 +17,7 @@ IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 BEGIN_MESSAGE_MAP(CMergeFrameCommon, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 	//{{AFX_MSG_MAP(CMergeFrameCommon)
 	ON_WM_GETMINMAXINFO()
+	ON_WM_SIZE()
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 //	ON_MESSAGE(WM_GETICON, OnGetIcon)
@@ -104,23 +105,26 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	__super::OnGetMinMaxInfo(lpMMI);
-	if (IsDifferentDpiFromSystemDpi())
-	{
-		CRect rc;
-		CFrameWnd* pFrameWnd = GetParentFrame();
-		pFrameWnd->GetClientRect(rc);
-		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
-		lpMMI->ptMaxPosition.x = rc.left;
-		lpMMI->ptMaxPosition.y = rc.top;
-		lpMMI->ptMaxSize.x = rc.right - rc.left;
-		lpMMI->ptMaxSize.y = rc.bottom - rc.top;
-	}
 	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
 #if _MFC_VER >= 0x0800
 	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
 	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
 #endif
+}
+
+void CMergeFrameCommon::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	if (nType == SIZE_MAXIMIZED && IsDifferentDpiFromSystemDpi())
+	{
+		// This is a workaround of the problem that the maximized MDI child window is in the wrong position when the DPI changes
+		// I don't think MDI-related processing inside Windows fully supports per-monitor dpi awareness
+		CRect rc;
+		GetParent()->GetClientRect(rc);
+		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
+		SetWindowPos(nullptr, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOACTIVATE);
+	}
 }
 
 void CMergeFrameCommon::OnDestroy()

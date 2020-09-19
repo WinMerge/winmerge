@@ -36,6 +36,7 @@ protected:
 protected:
 	//{{AFX_MSG(CMergeFrameCommon)
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnDestroy();
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	//}}AFX_MSG

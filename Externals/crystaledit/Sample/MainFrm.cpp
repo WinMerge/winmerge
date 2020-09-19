@@ -24,7 +24,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	ON_WM_CREATE()
-	ON_MESSAGE(WM_NCCALCSIZE, OnNcCalcSize)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -87,21 +86,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndToolBar);
 
 	return 0;
-}
-
-LRESULT CMainFrame::OnNcCalcSize(WPARAM wParam, LPARAM lParam)
-{
-	BOOL bCalcValidRects = wParam;
-	NCCALCSIZE_PARAMS* lpncsp = (NCCALCSIZE_PARAMS*)lParam;
-	RECT *lprect = (RECT *)lParam;
-
-	LRESULT ret = Default();
-	if (bCalcValidRects)
-	{
-//		lpncsp->rgrc->top -= 10;
-		return ret;
-	}
-	return ret;
 }
 
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)

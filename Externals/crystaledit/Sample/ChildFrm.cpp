@@ -19,7 +19,7 @@ IMPLEMENT_DYNCREATE(CChildFrame, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 
 BEGIN_MESSAGE_MAP(CChildFrame, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 	//{{AFX_MSG_MAP(CChildFrame)
-	ON_WM_GETMINMAXINFO()
+	ON_WM_SIZE()
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	//}}AFX_MSG_MAP
@@ -70,18 +70,17 @@ BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 	return m_wndSplitter.Create(this, 2, 2, CSize(30, 30), pContext);
 }
 
-void CChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+void CChildFrame::OnSize(UINT nType, int cx, int cy)
 {
-	__super::OnGetMinMaxInfo(lpMMI);
-	if (IsDifferentDpiFromSystemDpi())
+	__super::OnSize(nType, cx, cy);
+	if (nType == SIZE_MAXIMIZED && IsDifferentDpiFromSystemDpi())
 	{
+		// This is a workaround of the problem that the maximized MDI child window is in the wrong position when the DPI changes
+		// I don't think MDI-related processing inside Windows fully supports per-monitor dpi awareness
 		CRect rc;
-		CFrameWnd* pFrameWnd = GetParentFrame();
-		pFrameWnd->GetClientRect(rc);
+		GetParent()->GetClientRect(rc);
 		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
-		lpMMI->ptMaxPosition.x = rc.left;
-		lpMMI->ptMaxPosition.y = rc.top;
-		lpMMI->ptMaxSize.x = rc.right - rc.left;
-		lpMMI->ptMaxSize.y = rc.bottom - rc.top;
+		SetWindowPos(nullptr, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOACTIVATE);
 	}
 }
+
