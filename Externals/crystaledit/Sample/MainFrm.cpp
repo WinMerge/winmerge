@@ -24,6 +24,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	ON_WM_CREATE()
+	ON_WM_SIZE()
+	ON_COMMAND_EX(ID_WINDOW_ARRANGE, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_CASCADE, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_TILE_HORZ, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_TILE_VERT, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_SPLIT_VERTICALLY, OnWindowSplit)
+	ON_COMMAND_EX(ID_WINDOW_SPLIT_HORIZONTALLY, OnWindowSplit)
+	ON_COMMAND(ID_WINDOW_COMBINE, OnWindowCombine)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -45,7 +53,7 @@ static UINT indicators[] =
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
 
-CMainFrame::CMainFrame()
+CMainFrame::CMainFrame() : m_layoutManager(this)
 {
 	// TODO: add member initialization code here
 	
@@ -85,19 +93,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
-	return 0;
-}
-
-LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
-{
-	__super::OnDpiChanged(wParam, lParam);
-	DpiAware::UpdateAfxDataSysMetrics(GetDpi());
-	LoadToolBar();
-	const RECT* pRect = reinterpret_cast<RECT *>(lParam);
-	SetWindowPos(nullptr, pRect->left, pRect->top,
-		pRect->right - pRect->left,
-		pRect->bottom - pRect->top, SWP_NOZORDER | SWP_NOACTIVATE);
-	Default();
 	return 0;
 }
 
@@ -147,3 +142,54 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
+
+BOOL CMainFrame::OnMDIWindowCmd(UINT nID)
+{
+	switch (nID)
+	{
+	case ID_WINDOW_TILE_HORZ:
+	case ID_WINDOW_TILE_VERT:
+	{
+		bool bHorizontal = (nID == ID_WINDOW_TILE_HORZ);
+		m_layoutManager.SetTileLayoutEnabled(true);
+		m_layoutManager.Tile(bHorizontal);
+		break;
+	}
+	case ID_WINDOW_CASCADE:
+		m_layoutManager.SetTileLayoutEnabled(false);
+		__super::OnMDIWindowCmd(nID);
+		break;
+	}
+	return 0;
+}
+
+BOOL CMainFrame::OnWindowSplit(UINT nID)
+{
+	m_layoutManager.SplitActivePane(nID == ID_WINDOW_SPLIT_HORIZONTALLY, 0.5);
+	return 0;
+}
+
+void CMainFrame::OnWindowCombine()
+{
+	m_layoutManager.CombineActivePane();
+}
+
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	m_layoutManager.NotifyMainResized();
+}
+
+LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChanged(wParam, lParam);
+	DpiAware::UpdateAfxDataSysMetrics(GetDpi());
+	LoadToolBar();
+	const RECT* pRect = reinterpret_cast<RECT *>(lParam);
+	SetWindowPos(nullptr, pRect->left, pRect->top,
+		pRect->right - pRect->left,
+		pRect->bottom - pRect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+	Default();
+	return 0;
+}
+

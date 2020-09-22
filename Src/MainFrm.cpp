@@ -223,6 +223,11 @@ BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
+	ON_COMMAND_EX(ID_WINDOW_ARRANGE, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_CASCADE, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_TILE_HORZ, OnMDIWindowCmd)
+	ON_COMMAND_EX(ID_WINDOW_TILE_VERT, OnMDIWindowCmd)
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -270,7 +275,9 @@ CMainFrame::CMainFrame()
 , m_bShowErrors(false)
 , m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
 , m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
+, m_layoutManager(this)
 {
+	m_layoutManager.SetTileLayoutEnabled(true);
 }
 
 CMainFrame::~CMainFrame()
@@ -2656,6 +2663,12 @@ void CMainFrame::OnAccelQuit()
 	SendMessage(WM_CLOSE);
 }
 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	m_layoutManager.NotifyMainResized();
+}
+
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	int olddpi = m_dpi;
@@ -2683,6 +2696,8 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 {
+	m_layoutManager.NotifyChildOpened(reinterpret_cast<CMDIChildWnd*>(lParam));
+
 	for (int i = 0; i < m_arrChild.GetSize(); ++i)
 	{
 		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
@@ -2698,6 +2713,8 @@ LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnChildFrameRemoved(WPARAM wParam, LPARAM lParam)
 {
+	m_layoutManager.NotifyChildClosed(reinterpret_cast<CMDIChildWnd*>(lParam));
+
 	for (int i = 0; i < m_arrChild.GetSize(); ++i)
 	{
 		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
@@ -2742,3 +2759,24 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 
 	return 1;
 }
+
+BOOL CMainFrame::OnMDIWindowCmd(UINT nID)
+{
+	switch (nID)
+	{
+	case ID_WINDOW_TILE_HORZ:
+	case ID_WINDOW_TILE_VERT:
+	{
+		bool bHorizontal = (nID == ID_WINDOW_TILE_HORZ);
+		m_layoutManager.SetTileLayoutEnabled(true);
+		m_layoutManager.Tile(bHorizontal);
+		break;
+	}
+	case ID_WINDOW_CASCADE:
+		m_layoutManager.SetTileLayoutEnabled(false);
+		__super::OnMDIWindowCmd(nID);
+		break;
+	}
+	return 0;
+}
+

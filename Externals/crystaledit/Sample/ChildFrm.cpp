@@ -5,6 +5,7 @@
 #include "Sample.h"
 
 #include "ChildFrm.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,8 +43,21 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-
-	return __super::PreCreateWindow(cs);
+	MDITileLayout::LayoutManager& layoutManager = static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager();
+	if (!layoutManager.GetTileLayoutEnabled())
+		return __super::PreCreateWindow(cs);
+	__super::PreCreateWindow(cs);
+	cs.style &= ~WS_CAPTION;
+	CRect rcMain;
+	CWnd* pWndMDIClient = AfxGetMainWnd()->FindWindowEx(AfxGetMainWnd()->m_hWnd, nullptr, _T("MDIClient"), nullptr);
+	pWndMDIClient->GetWindowRect(rcMain);
+	CRect rc = layoutManager.GetDefaultOpenPaneRect();
+	AdjustWindowRectEx(rc, cs.style, false, cs.dwExStyle);
+	cs.x = rc.left - rcMain.left;
+	cs.y = rc.top - rcMain.top;
+	cs.cx = rc.Width();
+	cs.cy = rc.Height();
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +81,14 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext) 
 {
+	static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager().NotifyChildOpened(this);
 	return m_wndSplitter.Create(this, 2, 2, CSize(30, 30), pContext);
+}
+
+BOOL CChildFrame::DestroyWindow()
+{
+	static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager().NotifyChildClosed(this);
+	return __super::DestroyWindow();
 }
 
 void CChildFrame::OnSize(UINT nType, int cx, int cy)
@@ -82,5 +103,6 @@ void CChildFrame::OnSize(UINT nType, int cx, int cy)
 		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
 		SetWindowPos(nullptr, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOACTIVATE);
 	}
+	static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager().NotifyChildResized(this);
 }
 

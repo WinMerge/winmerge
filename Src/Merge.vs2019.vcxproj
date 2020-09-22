@@ -500,6 +500,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\po.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\powershell.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\python.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\registry.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rexx.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rsrc.cpp" />
@@ -1115,6 +1116,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\memcombo.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\registry.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\string_util.h" />

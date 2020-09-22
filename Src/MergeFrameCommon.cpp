@@ -10,6 +10,7 @@
 #include "OptionsMgr.h"
 #include "utils/DpiAware.h"
 #include "Merge.h"
+#include "MainFrm.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -36,6 +37,27 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 CMergeFrameCommon::~CMergeFrameCommon()
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
+}
+
+BOOL CMergeFrameCommon::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Modify the Window class or styles here by modifying
+	//  the CREATESTRUCT cs
+	MDITileLayout::LayoutManager& layoutManager = static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager();
+	if (!layoutManager.GetTileLayoutEnabled())
+		return __super::PreCreateWindow(cs);
+	__super::PreCreateWindow(cs);
+	cs.style &= ~WS_CAPTION;
+	CRect rcMain;
+	CWnd* pWndMDIClient = AfxGetMainWnd()->FindWindowEx(AfxGetMainWnd()->m_hWnd, nullptr, _T("MDIClient"), nullptr);
+	pWndMDIClient->GetWindowRect(rcMain);
+	CRect rc = layoutManager.GetDefaultOpenPaneRect();
+	AdjustWindowRectEx(rc, cs.style, false, cs.dwExStyle);
+	cs.x = rc.left - rcMain.left;
+	cs.y = rc.top - rcMain.top;
+	cs.cx = rc.Width();
+	cs.cy = rc.Height();
+	return true;
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -125,6 +147,7 @@ void CMergeFrameCommon::OnSize(UINT nType, int cx, int cy)
 		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
 		SetWindowPos(nullptr, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOACTIVATE);
 	}
+	GetMainFrame()->GetLayoutManager().NotifyChildResized(this);
 }
 
 void CMergeFrameCommon::OnDestroy()

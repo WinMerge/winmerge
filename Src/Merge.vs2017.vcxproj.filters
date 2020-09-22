@@ -919,6 +919,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\DpiAware.cpp">
       <Filter>EditLib\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1654,6 +1657,9 @@
       <Filter>EditLib\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h">
       <Filter>EditLib\Utils</Filter>
     </ClInclude>
   </ItemGroup>

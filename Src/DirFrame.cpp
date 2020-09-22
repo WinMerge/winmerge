@@ -160,7 +160,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	CDockState dockState;
 	dockState.LoadState(_T("Settings-DirFrame"));
 	SetDockState(dockState);
-	CMergeFrameCommon::ActivateFrame(nCmdShow);
+	__super::ActivateFrame(nCmdShow);
 }
 
 /**
@@ -172,7 +172,7 @@ void CDirFrame::UpdateResources()
 
 void CDirFrame::OnClose() 
 {	
-	CMDIChildWnd::OnClose();
+	__super::OnClose();
 }
 
 /**
@@ -185,12 +185,12 @@ BOOL CDirFrame::DestroyWindow()
 	GetDockState(dockState);
 	dockState.SaveState(_T("Settings-DirFrame"));
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	return __super::DestroyWindow();
 }
 
 void CDirFrame::OnSize(UINT nType, int cx, int cy) 
 {
-	CMDIChildWnd::OnSize(nType, cx, cy);
+	__super::OnSize(nType, cx, cy);
 	
 	m_wndFilePathBar.Resize();
 }

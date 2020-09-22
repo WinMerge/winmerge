@@ -404,7 +404,7 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 
 void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
-	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0)
+	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0 && !GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
 		CFrameWnd *const pFrameWnd = GetParentFrame();
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())

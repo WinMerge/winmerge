@@ -26,6 +26,7 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+    virtual BOOL DestroyWindow();
 	//}}AFX_VIRTUAL
 
 // Implementation

@@ -18,6 +18,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "utils/DpiAware.h"
+#include "utils/MDITileLayout.h"
 
 class BCMenu;
 class CDirView;
@@ -112,6 +113,7 @@ public:
 	void ReloadMenu();
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
+	MDITileLayout::LayoutManager& GetLayoutManager() { return m_layoutManager; };
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -141,6 +143,7 @@ protected:
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
+	MDITileLayout::LayoutManager m_layoutManager;
 
 	// Tweak MDI client window behavior
 	class CMDIClient : public DpiAware::CDpiAwareWnd<CWnd>
@@ -230,6 +233,7 @@ protected:
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 
+
 // Generated message map functions
 protected:
 	//{{AFX_MSG(CMainFrame)
@@ -298,7 +302,9 @@ protected:
     afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
+	afx_msg BOOL OnMDIWindowCmd(UINT nID);
 	//}}AFX_MSG
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
