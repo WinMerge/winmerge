@@ -145,10 +145,6 @@ using CrystalLineParser::TEXTBLOCK;
 
 /** @brief Width of revision marks. */
 const UINT MARGIN_REV_WIDTH = 3;
-/** @brief Width of icons printed in the margin. */
-const UINT MARGIN_ICON_WIDTH = 12;
-/** @brief Height of icons printed in the margin. */
-const UINT MARGIN_ICON_HEIGHT = 12;
 
 /** @brief Color of unsaved line revision mark (dark yellow). */
 const COLORREF UNSAVED_REVMARK_CLR = RGB(0xD7, 0xD7, 0x00);
@@ -2481,20 +2477,22 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
     }
   if (nImageIndex >= 0)
     {
+      const int iconsize = GetMarginIconSize();
       m_pCrystalRenderer->DrawMarginIcon(
-        rect.left + 2, rect.top + (GetLineHeight() - CCrystalRenderer::MARGIN_ICON_HEIGHT) / 2, nImageIndex);
+        rect.left + 2, rect.top + (GetLineHeight() - iconsize) / 2, nImageIndex, iconsize);
     }
 
   // draw wrapped-line-icon
   if (nLineNumber > 0)
     {
+      const int iconsize = GetMarginIconSize();
       int nBreaks = 0;
       WrapLineCached( nLineIndex, GetScreenChars(), nullptr, nBreaks );
       for (int i = 0; i < nBreaks; i++)
         {
           m_pCrystalRenderer->DrawMarginIcon(
-              rect.right - CCrystalRenderer::MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
-              - CCrystalRenderer::MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE);
+              rect.right - iconsize, rect.top + (GetLineHeight()
+              - iconsize) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE, iconsize);
         }
     }
 }
@@ -6263,8 +6261,8 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
 
   if (m_bSelMargin)
     {
-      if (pdc == nullptr || !pdc->IsPrinting ())
-        nMarginWidth += MARGIN_ICON_WIDTH  + 7;  // Width for icon markers and some margin
+      if (pdc == nullptr || !pdc->IsPrinting())
+        nMarginWidth += GetMarginIconSize() + 7;  // Width for icon markers and some margin
     }
   else
     {

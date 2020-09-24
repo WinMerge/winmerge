@@ -7,8 +7,9 @@
 #include "StdAfx.h"
 #include "ccrystalrenderergdi.h"
 #include "resource.h"
+#include <commoncontrols.h>
 
-CImageList* CCrystalRendererGDI::s_pIcons = nullptr;
+std::map<int, std::unique_ptr<CImageList>> CCrystalRendererGDI::s_mapIcons;
 
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalRendererGDI construction/destruction
@@ -139,21 +140,25 @@ void CCrystalRendererGDI::PopAxisAlignedClip()
 	m_pDC->RestoreDC(-1);
 }
 
-void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex)
+void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex, int iconsize)
 {
-	if (s_pIcons == nullptr)
+	const int iconsize2 = (iconsize / MARGIN_ICON_SIZE) * MARGIN_ICON_SIZE;
+	CImageList* pIcons = nullptr;
+	if (s_mapIcons.find(iconsize2) == s_mapIcons.end())
 	{
-		s_pIcons = new CImageList;
-		VERIFY(s_pIcons->Create(MARGIN_ICON_WIDTH, MARGIN_ICON_HEIGHT,
+		s_mapIcons.emplace(iconsize2, new CImageList);
+		pIcons = s_mapIcons[iconsize2].get();
+		VERIFY(pIcons->Create(iconsize2, iconsize2,
 			ILC_COLOR32 | ILC_MASK, 0, 1));
 		CBitmap bmp;
-		bmp.LoadBitmap(IDR_MARGIN_ICONS);
-		s_pIcons->Add(&bmp, RGB(255, 255, 255));
+		bmp.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_MARGIN_ICONS), IMAGE_BITMAP,
+			iconsize2 * MARGIN_ICON_COUNT, iconsize2, LR_CREATEDIBSECTION));
+		pIcons->Add(&bmp, RGB(255, 255, 255));
 	}
 	if (iconIndex >= 0)
 	{
-		CPoint pt(x, y);
-		VERIFY(s_pIcons->Draw(m_pDC, iconIndex, pt, ILD_TRANSPARENT));
+		CPoint pt(x + (iconsize - iconsize2) / 2, y + (iconsize - iconsize2) / 2);
+		VERIFY(s_mapIcons[iconsize2]->Draw(m_pDC, iconIndex, pt, ILD_TRANSPARENT));
 	}
 }
 

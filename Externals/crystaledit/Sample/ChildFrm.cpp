@@ -43,18 +43,19 @@ BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-	MDITileLayout::LayoutManager& layoutManager = static_cast<CMainFrame*>(AfxGetMainWnd())->GetLayoutManager();
+	CMainFrame* pMainFrame = static_cast<CMainFrame*>(AfxGetMainWnd());
+	MDITileLayout::LayoutManager& layoutManager = pMainFrame->GetLayoutManager();
 	if (!layoutManager.GetTileLayoutEnabled())
 		return __super::PreCreateWindow(cs);
 	__super::PreCreateWindow(cs);
 	cs.style &= ~WS_CAPTION;
-	CRect rcMain;
-	CWnd* pWndMDIClient = AfxGetMainWnd()->FindWindowEx(AfxGetMainWnd()->m_hWnd, nullptr, _T("MDIClient"), nullptr);
-	pWndMDIClient->GetWindowRect(rcMain);
 	CRect rc = layoutManager.GetDefaultOpenPaneRect();
+	rc.right -= rc.left;
+	rc.bottom -= rc.top;
+	rc.left = rc.top = 0;
 	AdjustWindowRectEx(rc, cs.style, false, cs.dwExStyle);
-	cs.x = rc.left - rcMain.left;
-	cs.y = rc.top - rcMain.top;
+	cs.x = rc.left - rc.left;
+	cs.y = rc.top - rc.top;
 	cs.cx = rc.Width();
 	cs.cy = rc.Height();
 	return true;
