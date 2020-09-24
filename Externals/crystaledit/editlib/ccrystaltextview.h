@@ -515,6 +515,11 @@ protected:
 #endif
     }
 
+    int GetMarginIconSize() const
+    {
+        return MulDiv(CCrystalRenderer::MARGIN_ICON_SIZE, GetSystemMetrics(SM_CXSMICON), 16);
+    }
+
 #ifdef _UNICODE
     bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];

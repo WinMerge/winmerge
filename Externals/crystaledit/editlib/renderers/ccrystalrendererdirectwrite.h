@@ -38,7 +38,7 @@ public:
 	virtual void DrawRoundRectangle(int left, int top , int right, int bottom, int width, int height) override;
 	virtual void PushAxisAlignedClip(const CRect &rc) override;
 	virtual void PopAxisAlignedClip() override;
-	virtual void DrawMarginIcon(int x, int y, int iconIndex) override;
+	virtual void DrawMarginIcon(int x, int y, int iconIndex, int iconsize) override;
 	virtual void DrawMarginLineNumber(int x, int y, int number) override;
 	virtual void DrawBoundaryLine(int left, int right, int y) override;
 	virtual void DrawGridLine(int x1, int y1, int x2, int y2) override;
