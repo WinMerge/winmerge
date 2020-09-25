@@ -434,6 +434,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\cplusplus.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\cregexp_poco.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp" />
@@ -1065,6 +1066,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\ceditreplacedlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\cregexp.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h" />
