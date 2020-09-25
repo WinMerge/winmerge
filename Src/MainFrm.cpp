@@ -59,6 +59,7 @@
 #include "VersionInfo.h"
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
+#include "utils/hqbitmap.h"
 
 #include "WindowsManagerDialog.h"
 
@@ -2067,96 +2068,12 @@ void CMainFrame::LoadToolbarImages()
  */
 static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, int nCount, bool bGrayscale, CImageList& ImgList)
 {
-	auto convert24bitImageTo32bit = [](int width, int height, bool grayscale, const BYTE* src, BYTE* dst)
-	{
-		for (int y = 0; y < height; ++y)
-		{
-			const BYTE* pSrc = src + y * ((width * 3 * 4 + 3) / 4);
-			BYTE* pDst = dst + (height - 1 - y) * ((width * 4 * 4 + 3) / 4);
-			if (!grayscale)
-			{
-				for (int x = 0; x < width; ++x)
-				{
-					if (pSrc[x * 3] == 0xff && pSrc[x * 3 + 1] == 0 && pSrc[x * 3 + 2] == 0xff) // rgb(0xff, 0, 0xff) == mask color
-					{
-						pDst[x * 4] = 0;
-						pDst[x * 4 + 1] = 0;
-						pDst[x * 4 + 2] = 0;
-						pDst[x * 4 + 3] = 0;
-					}
-					else
-					{
-						pDst[x * 4 + 0] = pSrc[x * 3 + 0];
-						pDst[x * 4 + 1] = pSrc[x * 3 + 1];
-						pDst[x * 4 + 2] = pSrc[x * 3 + 2];
-						pDst[x * 4 + 3] = 0xff;
-					}
-				}
-			}
-			else
-			{
-				for (int x = 0; x < width; ++x)
-				{
-					if (pSrc[x * 3] == 0xff && pSrc[x * 3 + 1] == 0 && pSrc[x * 3 + 2] == 0xff) // rgb(0xff, 0, 0xff) == mask color
-					{
-						pDst[x * 4] = 0;
-						pDst[x * 4 + 1] = 0;
-						pDst[x * 4 + 2] = 0;
-						pDst[x * 4 + 3] = 0;
-					}
-					else
-					{
-						const BYTE b = pSrc[x * 3];
-						const BYTE g = pSrc[x * 3 + 1];
-						const BYTE r = pSrc[x * 3 + 2];
-						const BYTE gray = static_cast<BYTE>(
-							(static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
-								+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
-								+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
-						pDst[x * 4 + 0] = gray;
-						pDst[x * 4 + 1] = gray;
-						pDst[x * 4 + 2] = gray;
-						pDst[x * 4 + 3] = 0xff;
-					}
-				}
-			}
-		}
-	};
+	CBitmap bm;
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nWidth * nCount, nHeight, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
 
-	auto createImageListFromBitmap = [](CImageList& imgList, Gdiplus::Bitmap& bitmap, int width, int height, int count)
-	{
-		CBitmap bm;
-		HBITMAP hBitmap;
-		bitmap.GetHBITMAP(Gdiplus::Color::Transparent, &hBitmap);
-		bm.Attach(hBitmap);
-
-		VERIFY(imgList.Create(width, height, ILC_COLOR32, count, 0));
-		int nIndex = imgList.Add(&bm, nullptr);
-		ASSERT(-1 != nIndex);
-	};
-
-	ATL::CImage img;
-	img.Attach((HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_CREATEDIBSECTION), ATL::CImage::DIBOR_TOPDOWN);
-	const int stride = (nWidth * nCount * 4 * 4 + 3) / 4;
-	std::vector<BYTE> buf(stride * nHeight);
-	convert24bitImageTo32bit(nWidth * nCount, nHeight, bGrayscale, reinterpret_cast<BYTE*>(img.GetBits()), buf.data());
-
-	if (nWidth != nNewWidth && nHeight != nNewHeight)
-	{
-		Gdiplus::Bitmap bitmapSrc(nWidth * nCount, nHeight, stride, PixelFormat32bppPARGB, buf.data());
-		Gdiplus::Bitmap bitmapDst(nNewWidth * nCount, nNewHeight, PixelFormat32bppPARGB);
-		Gdiplus::Graphics dcDst(&bitmapDst);
-		dcDst.SetInterpolationMode(Gdiplus::InterpolationMode::InterpolationModeHighQualityBicubic);
-		dcDst.DrawImage(&bitmapSrc, 0, 0, nNewWidth * nCount, nNewHeight);
-
-		createImageListFromBitmap(ImgList, bitmapDst, nNewWidth, nNewHeight, nCount);
-	}
-	else
-	{
-		Gdiplus::Bitmap bitmapDst(nWidth * nCount, nHeight, stride, PixelFormat32bppPARGB, buf.data());
-
-		createImageListFromBitmap(ImgList, bitmapDst, nNewWidth, nNewHeight, nCount);
-	}
+	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
+	int nIndex = ImgList.Add(&bm, nullptr);
+	ASSERT(-1 != nIndex);
 }
 
 /**

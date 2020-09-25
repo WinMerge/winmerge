@@ -258,6 +258,9 @@
     <ClCompile Include="..\editlib\utils\MDITileLayout.cpp">
       <Filter>editlib\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\utils\hqbitmap.cpp">
+      <Filter>editlib\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">
@@ -389,6 +392,9 @@
       <Filter>editlib\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\utils\MDITileLayout.h">
+      <Filter>editlib\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\utils\hqbitmap.h">
       <Filter>editlib\utils</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,7 @@
 
 #include "MainFrm.h"
 #include "ceditcmd.h"
-#include <commoncontrols.h>
+#include "utils/hqbitmap.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -106,20 +106,18 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 
 BOOL CMainFrame::LoadToolBar()
 {
+	const int ICON_COUNT = 17;
 	m_wndToolBar.LoadToolBar(IDR_MAINFRAME);
 	CToolBarCtrl& toolbarCtrl = m_wndToolBar.GetToolBarCtrl();
-	int cx = 16;
-	int cy = 15;
-	m_imgListToolBar.DeleteImageList();
-	m_imgListToolBar.Create(IDR_MAINFRAME, cx, 0, RGB(192, 192, 192));
-	CComQIPtr<IImageList2> pImageList2(reinterpret_cast<IImageList *>(m_imgListToolBar.m_hImageList));
-	if (pImageList2)
-	{
-		cx = MulDiv(16, m_dpi, USER_DEFAULT_SCREEN_DPI);
-		cy = MulDiv(15, m_dpi, USER_DEFAULT_SCREEN_DPI);
-		HRESULT hr = pImageList2->Resize(cx, cy);
-	}
-	toolbarCtrl.SetImageList(&m_imgListToolBar);
+	const int cx = MulDiv(16, m_dpi, USER_DEFAULT_SCREEN_DPI);
+	const int cy = MulDiv(15, m_dpi, USER_DEFAULT_SCREEN_DPI);
+	m_imgListToolBar.Detach();
+	m_imgListToolBar.Create(cx, cy, ILC_COLOR32, ICON_COUNT, 0);
+	CBitmap bm;
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), IDR_MAINFRAME, 16 * ICON_COUNT, 15, cx * ICON_COUNT, cy, false, RGB(0xc0, 0xc0, 0xc0)));
+	m_imgListToolBar.Add(&bm, nullptr);
+	if (CImageList* pImgList = toolbarCtrl.SetImageList(&m_imgListToolBar))
+		pImgList->DeleteImageList();
 	toolbarCtrl.SetButtonSize({ cx + 8, cy + 8 });
 	return TRUE;
 }

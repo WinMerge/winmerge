@@ -6261,8 +6261,8 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
 
   if (m_bSelMargin)
     {
-      if (pdc == nullptr || !pdc->IsPrinting())
-        nMarginWidth += GetMarginIconSize() + 7;  // Width for icon markers and some margin
+      if (pdc == nullptr || !pdc->IsPrinting ())
+        nMarginWidth += GetMarginIconSize () + 7;  // Width for icon markers and some margin
     }
   else
     {

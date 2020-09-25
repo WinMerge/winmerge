@@ -922,6 +922,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.cpp">
       <Filter>EditLib\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1660,6 +1663,9 @@
       <Filter>EditLib\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h">
       <Filter>EditLib\Utils</Filter>
     </ClInclude>
   </ItemGroup>
