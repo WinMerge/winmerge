@@ -140,6 +140,7 @@ public:
 	// set the color in the bitmaps that is the background transparent color
 	void SetBitmapBackground(COLORREF color);
 	void UnSetBitmapBackground(void);
+	COLORREF GetBitmapBackground() const { return m_bitmapBackgroundFlag ? m_bitmapBackground : GetSysColor(COLOR_3DFACE); }
 	// obsolete functions for setting how menu images are dithered for disabled menu options
 	static inline COLORREF LightenColor(COLORREF col,double factor);
 

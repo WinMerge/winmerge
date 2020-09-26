@@ -1055,8 +1055,7 @@ bool BCMenu::ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp)
 	if(bmp){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
-		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
+		temp.Add(bmp,GetBitmapBackground());
 		return ModifyODMenu(lpstrText,nID,&temp,0);
 	}
 	return ModifyODMenu(lpstrText,nID,nullptr,0);
@@ -1820,12 +1819,7 @@ bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, bool bDi
 		bmp.Attach(hbmp);
 		if (bDisabled)
 			GetDisabledBitmap(bmp);
-		if(m_bitmapBackgroundFlag){
-			if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=true;
-		}
-		else{
-			if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=true;
-		}
+		if(bmplist->Add(&bmp,GetBitmapBackground())>=0)bReturn=true;
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
@@ -1835,12 +1829,7 @@ bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, bool bDi
 				GetDisabledBitmap(mybmp, GetSysColor(COLOR_3DFACE));
 			else
 				GetTransparentBitmap(mybmp);
-			if(m_bitmapBackgroundFlag){
-				if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=true;
-			}
-			else{
-				if(bmplist->Add(&mybmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=true;
-			}
+			if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
 		}
 	}
 	return bReturn;
@@ -2117,8 +2106,7 @@ bool BCMenu::AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewIt
 	if(bmp != nullptr){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
-		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
+		temp.Add(bmp,GetBitmapBackground());
 		return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,&temp,0);
 	}
 	return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,nullptr,0);
@@ -2139,8 +2127,7 @@ bool BCMenu::InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *
 	if(bmp != nullptr){
 		CImageList temp;
 		temp.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-		if(m_bitmapBackgroundFlag)temp.Add(bmp,m_bitmapBackground);
-		else temp.Add(bmp,GetSysColor(COLOR_3DFACE));
+		temp.Add(bmp,GetBitmapBackground());
 		return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,&temp,0);
 	}
 	return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,nullptr,0);
@@ -2334,7 +2321,6 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 	}
 	HICON hIcon = il->ExtractIcon(xoffset);
 	if(hIcon != nullptr){
-		CBitmap bmp,bmp2,bmp3;
 		INT_PTR numcurrent=m_AllImagesID.GetSize();
 		int existsloc = -1;
 		for(INT_PTR i=0;i<numcurrent;++i){
