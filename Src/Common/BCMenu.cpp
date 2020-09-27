@@ -216,11 +216,6 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs
 }
 
-bool BCMenu::IsMenu(CMenu *submenu)
-{
-	return IsMenu(submenu->m_hMenu);
-}
-
 bool BCMenu::IsMenu(HMENU submenu)
 {
 	INT_PTR m;
@@ -758,12 +753,6 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	}
 }
 
-void BCMenu::SetIconSize (int width, int height)
-{
-	m_iconX = width;
-	m_iconY = height;
-}
-
 bool BCMenu::AppendODMenu(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
                            int nIconNormal)
 {
@@ -1052,12 +1041,6 @@ BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 	}
 	return nullptr;
 }
-
-
-BOOL BCMenu::LoadMenu(int nResource)
-{
-	return BCMenu::LoadMenu(MAKEINTRESOURCE(nResource));
-};
 
 BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 {
@@ -1540,17 +1523,6 @@ bool BCMenu::ReplaceBitmapInImageList(CImageList* bmplist, int xoffset, UINT nRe
 	return result;
 }
 
-void BCMenu::SetBitmapBackground(COLORREF color)
-{
-	m_bitmapBackground=color;
-	m_bitmapBackgroundFlag=true;
-}
-
-void BCMenu::UnSetBitmapBackground(void)
-{
-	m_bitmapBackgroundFlag=false;
-}
-
 bool BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
                              bool bSelected, HBITMAP hbmCheck)
 {
@@ -1794,16 +1766,6 @@ bool BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 	}
 
 	return !!CMenu::DeleteMenu(uiId,nFlags);
-}
-
-bool BCMenu::AppendMenu(UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,const wchar_t *lpszNewItem /*= nullitem*/,int nIconNormal /*= -1*/)
-{
-	return AppendODMenu(lpszNewItem,nFlags,nIDNewItem,nIconNormal);
-}
-
-bool BCMenu::InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem /*= 0*/,wchar_t *lpszNewItem /*= nullptr*/,int nIconNormal/*= -1*/)
-{
-	return InsertODMenu(nPosition,lpszNewItem,nFlags,nIDNewItem,nIconNormal);
 }
 
 // Larry Antram

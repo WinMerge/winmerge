@@ -660,12 +660,6 @@ EXIT:
 }
 #endif // #if 0 savetofile
 
-CRLFSTYLE CCrystalTextBuffer::
-GetCRLFMode () const
-{
-  return m_nCRLFMode;
-}
-
 // Default EOL to use if editor has to manufacture one
 // (this occurs with ghost lines)
 void CCrystalTextBuffer::
@@ -1591,11 +1585,6 @@ AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
     }
   m_aUndoBuf.push_back (ur);
   m_nUndoPosition = (int) m_aUndoBuf.size ();
-}
-
-UndoRecord CCrystalTextBuffer::GetUndoRecord(int nUndoPos) const
-{
-  return m_aUndoBuf[nUndoPos];
 }
 
 /**

@@ -60,19 +60,29 @@ public:
 
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
-	virtual BOOL LoadMenu(int nResource);
+	virtual BOOL LoadMenu(int nResource)
+	{
+		return BCMenu::LoadMenu(MAKEINTRESOURCE(nResource));
+	}
+
 	bool LoadToolbar(UINT nToolBar);
 	bool AddBitmapToImageList(CImageList *list,UINT nResourceID);
 	bool ReplaceBitmapInImageList(CImageList *list,int xoffset,UINT nResourceID);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	
-	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool AppendMenu(UINT nFlags, UINT_PTR nIDNewItem = 0, const wchar_t* lpszNewItem = nullptr, int nIconNormal = -1)
+	{
+		return AppendODMenu(lpszNewItem, nFlags, nIDNewItem, nIconNormal);
+	}
 	bool AppendODMenu(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
 	
 	// functions for inserting a menu option, use the InsertMenu call (see above define)
-	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool InsertMenu(UINT nPosition, UINT nFlags, UINT_PTR nIDNewItem = 0, wchar_t* lpszNewItem = nullptr, int nIconNormal= -1)
+	{
+		return InsertODMenu(nPosition, lpszNewItem, nFlags, nIDNewItem, nIconNormal);
+	}
 	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	
+
 	// functions for modifying a menu option, use the ModifyODMenu call (see above define)
 	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
 
@@ -94,16 +104,32 @@ public:
 
 	// Static functions used for handling menu's in the mainframe
 	static void UpdateMenu(CMenu *pmenu);
-	static bool IsMenu(CMenu *submenu);
+	static bool IsMenu(CMenu *submenu)
+	{
+		return IsMenu(submenu->m_hMenu);
+	}
 	static bool IsMenu(HMENU submenu);
 	static LRESULT FindKeyboardShortcut(UINT nChar,UINT nFlags,CMenu *pMenu);
 
 	// Customizing:
 	// Set icon size
-	static void SetIconSize (int, int); 
+	static void SetIconSize (int width, int height)
+	{
+		m_iconX = width;
+		m_iconY = height;
+	}
+
 	// set the color in the bitmaps that is the background transparent color
-	void SetBitmapBackground(COLORREF color);
-	void UnSetBitmapBackground(void);
+	void SetBitmapBackground(COLORREF color)
+	{
+		m_bitmapBackground=color;
+		m_bitmapBackgroundFlag=true;
+	}
+	void UnSetBitmapBackground(void)
+	{
+		m_bitmapBackgroundFlag=false;
+	}
+
 	COLORREF GetBitmapBackground() const { return m_bitmapBackgroundFlag ? m_bitmapBackground : GetSysColor(COLOR_3DFACE); }
 	// obsolete functions for setting how menu images are dithered for disabled menu options
 	static inline COLORREF LightenColor(COLORREF col,double factor);
