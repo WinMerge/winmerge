@@ -39,6 +39,7 @@ extern const String OPT_RESIZE_PANES OP("Settings/AutoResizePanes");
 
 extern const String OPT_SYNTAX_HIGHLIGHT OP("Settings/HiliteSyntax");
 extern const String OPT_VIEW_WHITESPACE OP("Settings/ViewWhitespace");
+extern const String OPT_VIEW_EOL OP("Settings/ViewEOL");
 extern const String OPT_CONNECT_MOVED_BLOCKS OP("Settings/ConnectMovedBlocks");
 extern const String OPT_SCROLL_TO_FIRST OP("Settings/ScrollToFirst");
 extern const String OPT_RENDERING_MODE OP("Settings/RenderingMode");
@@ -61,6 +62,10 @@ extern const String OPT_DIRVIEW_SORT_COLUMN OP("Settings/DirViewSortCol");
 extern const String OPT_DIRVIEW_SORT_COLUMN3 OP("Settings/DirViewSortCol3");
 extern const String OPT_DIRVIEW_SORT_ASCENDING OP("Settings/DirViewSortAscending");
 extern const String OPT_DIRVIEW_EXPAND_SUBDIRS OP("Settings/DirViewExpandSubdirs");
+extern const String OPT_DIRVIEW_COLUMN_ORDERS OP("DirView/ColumnOrders");
+extern const String OPT_DIRVIEW_COLUMN_WIDTHS OP("DirView/ColumnWidths");
+extern const String OPT_DIRVIEW3_COLUMN_ORDERS OP("DirView3/ColumnOrders");
+extern const String OPT_DIRVIEW3_COLUMN_WIDTHS OP("DirView3/ColumnWidths");
 
 // Window/Pane
 extern const String OPT_ACTIVE_FRAME_MAX OP("Settings/ActiveFrameMax");

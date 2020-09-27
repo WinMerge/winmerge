@@ -463,7 +463,7 @@ msgid "Select &Font..."
 msgstr "&F انتخاب قلم  "
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "&o استفاده از قلم پيش فرض "
 
 #, c-format
@@ -734,6 +734,9 @@ msgstr "&L قفل کردن چهارگوشها "
 #, c-format
 msgid "&View Whitespace"
 msgstr "&V مشاهده فاصله سفيد "
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

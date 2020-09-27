@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "Betűtípus..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Alapértelmezett betűtípus használata"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "Pane&lek rögzítése"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Szóközök mutatása"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "Seleccionar &fonte…"
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Empregar fonte predef&inida"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "B&loquear paneis"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Ver &espazos en branco"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -4279,3 +4282,4 @@ msgstr "Dist:%g,%g "
 #, c-format
 msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
 msgstr "Páx:%d/%d Zoom:%d%% %dx%dpx %dbpp"
+

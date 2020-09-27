@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "&Zvoliť písmo..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Použiť základné písm&o"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "&Zamknúť panely"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Zobraziť prázdne miesto"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

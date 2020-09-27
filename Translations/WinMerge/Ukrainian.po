@@ -463,7 +463,7 @@ msgid "Select &Font..."
 msgstr "Вибрати &шрифт..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Використовувати &звичайний шрифт "
 
 #, c-format
@@ -734,6 +734,9 @@ msgstr "За&блокувати панелі"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Показу&вати пропуски"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

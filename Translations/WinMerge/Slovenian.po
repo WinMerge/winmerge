@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-07-22 06:11+0200\n"
+"PO-Revision-Date: 2020-08-28 20:06+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -463,7 +463,7 @@ msgid "Select &Font..."
 msgstr "Izberi &pisavo..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Uporabi privzeto pi&savo"
 
 #, c-format
@@ -605,7 +605,7 @@ msgid "&Text"
 msgstr "&Besedilo"
 
 msgid "T&able"
-msgstr ""
+msgstr "Ta&bela"
 
 #, c-format
 msgid "&XML"
@@ -734,6 +734,9 @@ msgstr "Za&kleni podokna"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Prikaži presledke"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -2109,28 +2112,28 @@ msgid "&Close"
 msgstr "&Zapri"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 msgid "File type"
-msgstr ""
+msgstr "Vrsta datoteke"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "&Ločila po meri-Ločene vrednosti"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Z&nak ločila:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Do&voli nove vrstice med dvojnimi narekovaji"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Znak na&rekovajev:"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2292,16 +2295,16 @@ msgstr ""
 "Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek &CSV:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Ločila po meri-Ločene vrednosti"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Vzorci datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2558,10 +2561,10 @@ msgid "To right:"
 msgstr "Na desno:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Od sredine:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Do sredine:"
 
 #, c-format
 msgid "Version %1"
@@ -3869,7 +3872,7 @@ msgid "Marker Color %d"
 msgstr "Barva označevalca %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Nov vzorec"
 
 #, c-format
 msgid "Type"

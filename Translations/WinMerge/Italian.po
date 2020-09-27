@@ -361,7 +361,7 @@ msgstr "C&ontrai tutte le sotto cartelle"
 msgid "Select &Font..."
 msgstr "Seleziona &font..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "&Usa carattere predefinito"
 
 msgid "Sw&ap Panes"
@@ -567,6 +567,9 @@ msgstr "B&locca pannelli"
 
 msgid "&View Whitespace"
 msgstr "&Visualizza spazi"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Visualizza &differenze linee"

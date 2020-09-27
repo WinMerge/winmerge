@@ -119,7 +119,7 @@ void PropShell::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(PropShell, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropShell, OptionsPanel)
 	//{{AFX_MSG_MAP(PropShell)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_REGISTER_SHELLEXTENSION, OnRegisterShellExtension)

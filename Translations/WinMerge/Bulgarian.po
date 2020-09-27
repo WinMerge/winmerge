@@ -358,7 +358,7 @@ msgstr "&Свиване на всички възли"
 msgid "Select &Font..."
 msgstr "Избиране на &шрифт…"
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Използване на стандартен ш&рифт"
 
 msgid "Sw&ap Panes"
@@ -564,6 +564,9 @@ msgstr "Заключване на &панелите"
 
 msgid "&View Whitespace"
 msgstr "&Интервали"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Показване на &различията на реда"

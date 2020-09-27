@@ -515,6 +515,7 @@
     <ClCompile Include="..\editlib\dialogs\gotodlg.cpp" />
     <ClCompile Include="..\editlib\parsers\html.cpp" />
     <ClCompile Include="..\editlib\parsers\isx.cpp" />
+    <ClCompile Include="..\editlib\utils\hqbitmap.cpp" />
     <ClCompile Include="..\editlib\utils\icu.cpp" />
     <ClCompile Include="..\editlib\parsers\ini.cpp" />
     <ClCompile Include="..\editlib\parsers\innosetup.cpp" />
@@ -589,6 +590,7 @@
     <ClInclude Include="..\editlib\utils\filesup.h" />
     <ClInclude Include="..\editlib\utils\fpattern.h" />
     <ClInclude Include="..\editlib\dialogs\gotodlg.h" />
+    <ClInclude Include="..\editlib\utils\hqbitmap.h" />
     <ClInclude Include="..\editlib\utils\icu.hpp" />
     <ClInclude Include="..\editlib\LineInfo.h" />
     <ClInclude Include="..\editlib\parsers\crystallineparser.h" />

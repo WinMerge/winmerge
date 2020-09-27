@@ -387,7 +387,7 @@ void CCrystalRendererDirectWrite::PopAxisAlignedClip()
 	m_renderTarget.PopAxisAlignedClip();
 }
 
-void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex)
+void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex, int iconsize)
 {
 	if (!m_pIconBitmap)
 	{
@@ -395,10 +395,10 @@ void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex)
 		m_pIconBitmap->Create(&m_renderTarget);
 	}
 	auto size = m_pIconBitmap->GetPixelSize();
-	CD2DRectF rcSrc{static_cast<float>(iconIndex * MARGIN_ICON_WIDTH), 0.0f, static_cast<float>((iconIndex + 1) * MARGIN_ICON_WIDTH), static_cast<float>(MARGIN_ICON_HEIGHT)};
+	CD2DRectF rcSrc{static_cast<float>(iconIndex * MARGIN_ICON_SIZE), 0.0f, static_cast<float>((iconIndex + 1) * MARGIN_ICON_SIZE), static_cast<float>(MARGIN_ICON_SIZE)};
 	m_renderTarget.DrawBitmap(m_pIconBitmap.get(),
 		{ static_cast<float>(x), static_cast<float>(y),
-		 static_cast<float>(x + MARGIN_ICON_WIDTH), static_cast<float>(y + MARGIN_ICON_HEIGHT) },
+		 static_cast<float>(x + iconsize), static_cast<float>(y + iconsize) },
 		1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &rcSrc);
 }
 

@@ -36,7 +36,7 @@ void PropColorSchemes::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropColorSchemes, CDialog)
+BEGIN_MESSAGE_MAP(PropColorSchemes, OptionsPanel)
 	//{{AFX_MSG_MAP(PropColorSchemes)
 	ON_CBN_SELCHANGE(IDC_COLOR_SCHEMES, OnCbnSelchangeColorSchemes)
 	//}}AFX_MSG_MAP

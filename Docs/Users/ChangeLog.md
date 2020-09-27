@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.8
+## WinMerge 2.16.8 - 2020-08-28
 
 ### General
   - BugFix: More space for some internationalized strings (GitHub #402)
@@ -39,8 +39,8 @@
       (GitHub PR #400)
   - Made Options dialog resizable
   - Changed the default values for the following options:
-    - Ignore codepage differences -> disabled
-    - Include unique subfolders contents -> enabled
+    - Ignore codepage differences -&gt; disabled
+    - Include unique subfolders contents -&gt; enabled
 
 ### About dialog
   - Rework the fix for Github issue #316: GUI glitches/bugs #2 (GitHub PR #392)
@@ -67,7 +67,7 @@
   - Update manual for IgnoreCommentsC change (GitHub PR #384)
   - Update Shortcut_keys.xml (GitHub PR #410)
 
-## WinMerge 2.16.7
+## WinMerge 2.16.7 - 2020-07-26
 ### General
   - BugFix: The icons on a 43" 4K screen are too small (GitHub #276)
   - BugFix: GUI glitches/bugs (GitHub #316)
@@ -105,12 +105,12 @@
       (GitHub PR #366)
   - BugFix: Update DirViewColItems.cpp (GitHub #376)
   - BugFix: Fix the problem that not 3 panes but 2 panes file compare window
-      displays when executing "Compare As" > "Binary" or "Compare As" > "Image"
+      displays when executing "Compare As" &gt; "Binary" or "Compare As" &gt; "Image"
       in the context menu in the folder compare window with selecting 3 items.
       (GitHub PR #381)
   - BugFix: Fix a problem where a text file could be considered a binary file.
       (osdn.net #40296)
-  - BugFix: crash when clicking [Merge]-> [Delete] menu item while renaming a
+  - BugFix: crash when clicking [Merge]-&gt; [Delete] menu item while renaming a
       file
   - Add a feature generating a patch from directories (#283) (GitHub PR #331)
   - added bin and obj directories to C# filter (GitHub PR #365)
@@ -167,7 +167,7 @@
   - BugFix: Src\Common\MyCom.h unused? (GitHub #284)
   - BugFix: Error on git repository cloning (GitHub #288)
 
-## WinMerge 2.16.6
+## WinMerge 2.16.6 - 2020-02-23
 
 ### General
   - Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab,
@@ -224,7 +224,7 @@
   - Avoid some back and forth file path transcoding between UTF16 and UTF8
       (GitHub #243)
 
-## WinMerge 2.16.5
+## WinMerge 2.16.5 - 2019-12-09
 
 ### File compare
   - BugFix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)
@@ -287,7 +287,7 @@
 ### Manual
   - Small Manual tweaks (GitHub #190)
 
-## WinMerge 2.16.4
+## WinMerge 2.16.4 - 2019-07-28
 
 ### File compare
   - BugFix: coretools.cpp: linelen() should not truncate lines with embedded
@@ -317,7 +317,7 @@
   - Consolidate FolderCmp (GitHub #158, #160, #161)
   - Avoid some InnoSetup compiler warnings (Bitbucket PR #53)
 
-## WinMerge 2.16.3
+## WinMerge 2.16.3 - 2019-06-29
 
 ### General
   - BugFix: Slow startup with documents folder redirected to high-latency
@@ -350,7 +350,7 @@
 ### Project file
   - BugFix: Possible Bugs in 2.16.2 (sf.net #2221)
   - Supporting relative path in project file (Bitbucket #158)
-  - Allow multiple <paths> in project file
+  - Allow multiple &lt;paths&gt; in project file
 
 ### Image compare
   - BugFix: no message was displayed when file saving failed
@@ -371,16 +371,16 @@
   - Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)
   - Update Russian translation (Bitbucket PR #41, #42)
 
-## WinMerge 2.16.2
+## WinMerge 2.16.2 - 2019-04-04
 
 ### File compare
-  - BugFix: Edit > Replace > All, Undo: should undo all (sf.net #2113)
+  - BugFix: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)
   - BugFix: Save As: default directory should be file's original
       directory (sf.net #2163)
   - BugFix: Strings with embedded 0 bytes are handled incorrectly (sf.net
       #2187)
   - BugFix: Removed word level merge support due to unstable behavior
-  - BugFix: Menu item "File->File Encoding" moves main window (Bitbucket #150)
+  - BugFix: Menu item "File-&gt;File Encoding" moves main window (Bitbucket #150)
   - BugFix: Crash when maximizing MDI child window
   - BugFix: Crash when failed to load file
   - Add syntax highlight for Lua (Bitbucket #114)
@@ -415,7 +415,7 @@
   - Update Lithuanian translation (Bitbucket PR #33)
   - Update Simplified Chinese translation (Bitbucket PR #34)
 
-## WinMerge 2.16.1
+## WinMerge 2.16.1 - 2019-02-24
 
 ### General
   - Updated the copyright year to 2019, actually (GitHub #110)
@@ -491,7 +491,7 @@
       obsolete) (GitHub #123)
   - Don't pass `DIFFITEM *` by casting to `uintptr_t` (GitHub #124, #125)
 
-## WinMerge 2.16.0
+## WinMerge 2.16.0 - 2018-11-23
 
 ### General
   - BugFix: Disabled icon on toolbar not gray out when running on XP
@@ -513,14 +513,14 @@
   - Add Lithuanian translation (Bitbucket #124)
   - Update Portuguese translation (GitHub #102,103)
 
-## WinMerge 2.15.5
+## WinMerge 2.15.5 - 2018-10-28
 
 ### General
   - Add support for very long path and file names (GitHub #87,95,99)
   - Enable Ctrl+C shortcut key on the file path bar
   - Remove support for old version control system (GitHub #96)
-  - Improve Options > Color > Differences dialog layout (GitHub #89)
-  - Improve information and formatting in Help > Configuration reporting (GitHub #92)
+  - Improve Options &gt; Color &gt; Differences dialog layout (GitHub #89)
+  - Improve information and formatting in Help &gt; Configuration reporting (GitHub #92)
   - Improve visual layout of Open dialog (GitHub #97)
   - Add icon for "New (3 panes)" menu item (GitHub #97)
 
@@ -531,7 +531,7 @@
   - BugFix: Crash when saving a file if the active pane is diff detail pane
   - BugFix: Crash when pressing Alt+Down key while loading large files
   - BugFix: Crash when "mousing over" Plugin Setting context menu if Plugins are disabled
-  - BugFix: Various problems reading of files > 2GB (GitHub #81)
+  - BugFix: Various problems reading of files &gt; 2GB (GitHub #81)
   - BugFix: Selecting files "From MRU list" again works correctly
 
 ### Translations
@@ -545,7 +545,7 @@
   - Various diffengine and compilation/build fixes
       (GitHub #89,90,91,92,94)
 
-## WinMerge 2.15.4
+## WinMerge 2.15.4 - 2018-04-28
 
 ### Appearance
   - BugFix: Dot icon in a drop-down menu is not drawn correctly
@@ -583,7 +583,7 @@
 ### Internals
   - Adapt to VS2017 version 15.6.1 (GitHub #79)
 
-## WinMerge 2.15.3
+## WinMerge 2.15.3 - 2018-03-04
 
 ### File compare
   - Fix assertion error when started on Windows XP
@@ -627,7 +627,7 @@
   - Update Turkish translation (Bitbucket#85, #86)
   - Change the file encodings of all .po files of WinMerge GUI to UTF-8 
 
-## WinMerge 2.15.2
+## WinMerge 2.15.2 - 2018-01-28
 
 ### Appearance
   - Flatten GUI pane edges
@@ -636,7 +636,7 @@
       dialog
 
 ### Tool bar
-  - Add "View->Toolbar->Huge" menu item
+  - Add "View-&gt;Toolbar-&gt;Huge" menu item
   - Add drop down menu to Options icon
   - Add icons for 3-way merge functions
 
@@ -711,7 +711,7 @@
   - BugFix: A unique item that is a binary file was not detected
       as a binary file
   - BugFix: Properly handle 3-way comparison of Binary files (Github #23)
-  - BugFix: Use proper font for View>Use Default Font menu item (GitHub #24)
+  - BugFix: Use proper font for View&gt;Use Default Font menu item (GitHub #24)
 
 ### File Compare
   - Add support for 3-way compare/merge
@@ -768,7 +768,7 @@
   - Add CompareMSPowerPointFiles.sct plugin
   - Add ApplyPatch.sct plugin
   - Add SortAscending, SortDescending and ExecFilterCommand menu item to 
-      Plugin->Script menu
+      Plugin-&gt;Script menu
   - Make plugins configurable with settings dialog of each plugin
 
 ### Filters
@@ -1060,7 +1060,7 @@
   - Add icon for "Open Conflict File" menu item (#2047054)
   - Include unique subfolder contents in recursive folder compare (#2034259)
   - Installer: Use -u switch in TortoiseSVN command line (#2060782)
-  - Add icon for "Plugins->List" menu item (#2060771)
+  - Add icon for "Plugins-&gt;List" menu item (#2060771)
   - BugFix: External editor command line switches did not work (#2037862)
   - BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
   - BugFix: Lost focus after folder compare operations (#2046002)
@@ -1413,7 +1413,7 @@
 
 ## WinMerge 2.7.4 - 2007-06-27 (r4352)
   - Batch-file syntax highlighting keywords cleanup (#1743504)
-  - BugFix: Archivesupport Zip-->both didn't work correctly (#1734439)
+  - BugFix: Archivesupport Zip--&gt;both didn't work correctly (#1734439)
   - BugFix: Linediff didn't highlight whitespace differences (#1698781)
   - BugFix: Copy confirmation dialog did show wrong To-path (#1740024)
   - Translation updates

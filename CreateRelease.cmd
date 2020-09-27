@@ -29,14 +29,18 @@ pushd %workdir%
 call DownloadDeps.cmd
 call BuildAll.%vsversion%.cmd
 
-mkdir "%DISTDIR%\PDB\%APPVER%\Win32" 2> NUL
-mkdir "%DISTDIR%\PDB\%APPVER%\x64" 2> NUL
-for /F %%f in ("%DISTDIR%\files.txt") do (
-  copy %%f "%DISTDIR%"
+for /F %%f in (Build\Releases\files.txt) do (
+  copy %%f ..\..\Build\Releases\
 )
 copy Build\Releases\files.txt ..\..\Build\Releases\
-copy  Build\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\Win32\"
-copy  Build\x64\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\x64\"
+for /d %%d in (Build\Release\?.*.*) do (
+  mkdir ..\..\Build\Releases\PDB\%%~nxd\Win32 2> NUL
+  xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\Win32\
+)
+for /d %%d in (Build\x64\Release\?.*.*) do (
+  mkdir ..\..\Build\Releases\PDB\%%~nxd\x64 2> NUL
+  xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\x64\
+)
 popd
 
 call UploadToVirusTotal.cmd

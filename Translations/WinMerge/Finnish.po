@@ -460,7 +460,7 @@ msgid "Select &Font..."
 msgstr "Valitse &fontti..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Käytä oletusfonttia"
 
 #, c-format
@@ -730,6 +730,9 @@ msgstr "Lukitse ruudut"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Välilyönnit"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

@@ -125,8 +125,6 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
-#define IDB_TOOLBAR_ENABLED_MASK        379
-#define IDB_TOOLBAR_ENABLED_MASK32      380
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502
@@ -991,6 +989,7 @@
 #define ID_OPTIONS_SHOWMISSINGLEFTONLY  32810
 #define ID_OPTIONS_SHOWMISSINGMIDDLEONLY 32811
 #define ID_OPTIONS_SHOWMISSINGRIGHTONLY 32812
+#define ID_VIEW_EOL                     32815
 #define ID_VIEW_SELECTFONT              32816
 #define ID_VIEW_USEDEFAULTFONT          32817
 #define ID_VIEW_WHITESPACE              32818

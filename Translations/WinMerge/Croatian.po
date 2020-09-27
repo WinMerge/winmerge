@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "Izbor &fonta..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Koristi standardni f&ont"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "Za&ključaj panele"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Skriv&eni znaci i razmaci"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

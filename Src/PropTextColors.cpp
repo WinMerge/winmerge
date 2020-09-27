@@ -46,7 +46,7 @@ void PropTextColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropTextColors, CDialog)
+BEGIN_MESSAGE_MAP(PropTextColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropTextColors)
 	ON_BN_CLICKED(IDC_DEFAULT_STANDARD_COLORS, OnDefaultsStandardColors)
 	ON_BN_CLICKED(IDC_WHITESPACE_BKGD_COLOR, OnWhitespaceBackgroundColor)

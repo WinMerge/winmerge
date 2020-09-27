@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "Selectează &font..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Utilizează font im&plicit"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "B&lochează panourile"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Afişează blanc&urile"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"
