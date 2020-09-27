@@ -458,7 +458,7 @@ msgid "Select &Font..."
 msgstr "Изабери &слова..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Користи подразумевана слова"
 
 #, c-format
@@ -728,6 +728,9 @@ msgstr "Закључај табле"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Прика&з размака"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

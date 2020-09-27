@@ -462,7 +462,7 @@ msgid "Select &Font..."
 msgstr "Hautatu &Hizkia..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Erabili Berezko H&izkia"
 
 #, c-format
@@ -733,6 +733,9 @@ msgstr "Bl&okeatu Panelak"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Ikusi Zurigu&nea"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

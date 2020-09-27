@@ -463,8 +463,8 @@ msgid "Select &Font..."
 msgstr "글꼴 선택(&F)..."
 
 #, c-format
-msgid "Use Default F&ont"
-msgstr "기본 글꼴 사용(&O)"
+msgid "Use Default Font"
+msgstr "기본 글꼴 사용"
 
 #, c-format
 msgid "Sw&ap Panes"
@@ -734,6 +734,9 @@ msgstr "창 잠금(&L)"
 #, c-format
 msgid "&View Whitespace"
 msgstr "공백 보기(&V)"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

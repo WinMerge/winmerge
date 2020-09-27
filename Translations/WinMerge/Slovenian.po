@@ -460,7 +460,7 @@ msgid "Select &Font..."
 msgstr "Izberi &pisavo..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Uporabi privzeto pi&savo"
 
 #, c-format
@@ -731,6 +731,9 @@ msgstr "Za&kleni podokna"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Prikaži presledke"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

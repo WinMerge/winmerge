@@ -458,7 +458,7 @@ msgid "Select &Font..."
 msgstr "Επιλογή &Γραμματοσειράς..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Χρήση Προκα&θορισμένης Γραμματοσειράς"
 
 #, c-format
@@ -729,6 +729,9 @@ msgstr "&Πάγωμα Πεδίων"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Εμ&φάνιση Χαρακτήρων Διαστήματος"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

@@ -361,7 +361,7 @@ msgstr "Sus&kleisti visus pakatalogius"
 msgid "Select &Font..."
 msgstr "Parinkti &šriftą..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Naud&oti numatytąjį šriftą"
 
 msgid "Sw&ap Panes"
@@ -567,6 +567,9 @@ msgstr "Užrakinti po&langius"
 
 msgid "&View Whitespace"
 msgstr "&Rodyti tarpus"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Ro&dyti skirtumus eilutėse"

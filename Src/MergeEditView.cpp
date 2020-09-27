@@ -201,6 +201,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -3124,7 +3126,7 @@ void CMergeEditView::RefreshOptions()
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
 		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
@@ -3616,6 +3618,17 @@ void CMergeEditView::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(GetViewTabs());
 }
 
+void CMergeEditView::OnViewEOL() 
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_EOL, !GetViewEols());
+	GetDocument()->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewEOL(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetViewEols());
+}
+
 void CMergeEditView::OnSize(UINT nType, int cx, int cy) 
 {
 	if (!IsInitialized())
@@ -3895,7 +3908,7 @@ void CMergeEditView::DocumentsLoaded()
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL), mixedEOLs);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));

@@ -461,7 +461,7 @@ msgid "Select &Font..."
 msgstr "Selecionar a &Fonte..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Usar a Fonte P&adrão"
 
 #, c-format
@@ -730,6 +730,9 @@ msgstr "&Trancar os Painéis"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Visualizar os Espaços em Branco"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

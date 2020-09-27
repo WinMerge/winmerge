@@ -361,7 +361,7 @@ msgstr "&Fechar Todas as Subpastas"
 msgid "Select &Font..."
 msgstr "Selecionar &Fonte..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Usar Fonte Pre&definida"
 
 msgid "Sw&ap Panes"
@@ -567,6 +567,9 @@ msgstr "Trancar Janelas"
 
 msgid "&View Whitespace"
 msgstr "&Ver Espaços"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Ver Diferenças de Linha"

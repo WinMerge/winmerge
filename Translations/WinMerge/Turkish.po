@@ -358,7 +358,7 @@ msgstr "Tüm Alt Klasörleri &Daralt"
 msgid "Select &Font..."
 msgstr "Ya&zı Türünü Değiştir..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Varsayılan Yazı &Türü Kullanılsın"
 
 msgid "Sw&ap Panes"
@@ -564,6 +564,9 @@ msgstr "Pano&lar Kilitlensin"
 
 msgid "&View Whitespace"
 msgstr "Beyaz B&oşluklar Görüntülensin"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Satır &Farklılıkları Görüntülensin"

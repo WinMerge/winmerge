@@ -693,6 +693,7 @@ public :
     void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
     bool GetViewTabs () const { return m_bViewTabs; }
     void SetViewTabs (bool bViewTabs);
+    bool GetViewEols () const { return m_bViewEols; }
     void SetViewEols (bool bViewEols, bool bDistinguishEols);
     int GetTabSize ();
     void SetTabSize (int nTabSize);
