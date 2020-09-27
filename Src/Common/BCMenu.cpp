@@ -1848,12 +1848,14 @@ INT_PTR BCMenu::AddToGlobalImageList(int nIconNormal,int nID)
 	INT_PTR numcurrent=m_AllImagesID.size();
 	int existsloc = GlobalImageListOffset(nID);
 	if(existsloc>=0){
-		m_AllImagesID[existsloc].resourceId = nIconNormal & 0xffff;
+		m_AllImagesID[existsloc].resourceId = (nIconNormal & 0x40000000) ? (nIconNormal & 0xffff) : nIconNormal;
 		m_AllImagesID[existsloc].bitmapIndex = (nIconNormal & 0x40000000) ? ((nIconNormal & 0x3fff0000) >> 16) : -1;
 		loc = existsloc;
 	}
 	else{
-		m_AllImagesID.push_back({ nID, nIconNormal & 0xffff, (nIconNormal & 0x40000000) ? ((nIconNormal & 0x3fff0000) >> 16) : -1 });
+		m_AllImagesID.push_back({ nID, 
+			(nIconNormal & 0x40000000) ? (nIconNormal & 0xffff) : nIconNormal, 
+			(nIconNormal & 0x40000000) ? ((nIconNormal & 0x3fff0000) >> 16) : -1 });
 		loc=numcurrent;
 	}
 	m_bHasNotLoadedImages = true;
