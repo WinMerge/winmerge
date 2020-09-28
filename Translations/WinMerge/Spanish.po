@@ -362,7 +362,7 @@ msgstr "&Contraer Todas las Subcarpetas"
 msgid "Select &Font..."
 msgstr "Seleccionar &Fuente..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Usar F&uente del Sistema"
 
 msgid "Sw&ap Panes"
@@ -568,6 +568,9 @@ msgstr "B&loquear paneles"
 
 msgid "&View Whitespace"
 msgstr "Mostrar &espacios"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "M&ostrar diferencias de línea"

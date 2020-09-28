@@ -48,10 +48,13 @@ BOOL CMergeFrameCommon::PreCreateWindow(CREATESTRUCT& cs)
 		return __super::PreCreateWindow(cs);
 	__super::PreCreateWindow(cs);
 	cs.style &= ~WS_CAPTION;
+	CRect rcMain;
+	::GetWindowRect(GetMainFrame()->m_hWndMDIClient, rcMain);
 	CRect rc = layoutManager.GetDefaultOpenPaneRect();
-	rc.right -= rc.left;
-	rc.bottom -= rc.top;
-	rc.left = rc.top = 0;
+	rc.right -= rcMain.left;
+	rc.bottom -= rcMain.top;
+	rc.left -= rcMain.left;
+	rc.top -= rcMain.top;
 	AdjustWindowRectEx(rc, cs.style, false, cs.dwExStyle);
 	cs.x = rc.left;
 	cs.y = rc.top;

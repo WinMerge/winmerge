@@ -361,8 +361,8 @@ msgstr "折叠所有子文件夹(&C)"
 msgid "Select &Font..."
 msgstr "选择字体(&F)..."
 
-msgid "Use Default F&ont"
-msgstr "使用默认字体(&O)"
+msgid "Use Default Font"
+msgstr "使用默认字体"
 
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
@@ -568,6 +568,9 @@ msgstr "锁定窗格(&L)"
 
 msgid "&View Whitespace"
 msgstr "显示空白字符&V)"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "显示行内差异(&W)"

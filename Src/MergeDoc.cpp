@@ -412,6 +412,33 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			diffSuccess = m_diffWrapper.RunFileDiff();
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nRealLine[nBuffer] = m_ptBuf[nBuffer]->ComputeRealLine(nStartLine[nBuffer]);
+
+			// Correct the comparison results made by diffutils if the first file separated by the sync point is an empty file.
+			if (i == 0 && templist.GetSize() > 0)
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+					if (nStartLine[nBuffer] == 0)
+					{
+						bool isEmptyFile = true;
+						for (int j = 0; j < nLines[nBuffer]; j++)
+						{
+							if (!(m_ptBuf[nBuffer]->GetLineFlags(nStartLine[nBuffer] + j) & LF_GHOST))
+							{
+								isEmptyFile = false;
+								break;
+							}
+						}
+						if (isEmptyFile)
+						{
+							DIFFRANGE di;
+							templist.GetDiff(0, di);
+							if (di.begin[nBuffer] == 0 && di.end[nBuffer] == 0)
+							{
+								di.end[nBuffer] = -1;
+								templist.SetDiff(0, di);
+							}
+						}
+					}
+
 			m_diffList.AppendDiffList(templist, nRealLine);
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nStartLine[nBuffer] += nLines[nBuffer];

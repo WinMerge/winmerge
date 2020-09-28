@@ -464,7 +464,7 @@ msgid "Select &Font..."
 msgstr "Choisir une &police..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "&Utiliser la police par défaut"
 
 #, c-format
@@ -735,6 +735,9 @@ msgstr "&Verrouiller les panneaux"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Afficher les &espaces"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

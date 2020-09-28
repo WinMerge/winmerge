@@ -359,7 +359,7 @@ msgstr "إخفاء محتويات المجلدات الفرعية"
 msgid "Select &Font..."
 msgstr "اختيار نوع الخط..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "اختيار نوع الخط الإفتراضي"
 
 msgid "Sw&ap Panes"
@@ -565,6 +565,9 @@ msgstr "&قفل الأجزاء"
 
 msgid "&View Whitespace"
 msgstr "&عرض المسافة البيضاء (الفارغة)"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "عرض الا&ختلاف في السطر"

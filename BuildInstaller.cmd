@@ -26,6 +26,10 @@ rem       )
 rem     )
 rem   )
 rem ) else (
+  echo.
+  echo ============================================================
+  echo Build WinMerge%PLATFORM%.iss with Inno Setup 5
+  echo ============================================================
   for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
     if exist "%%~i\Inno Setup 5\iscc.exe" (
       "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause

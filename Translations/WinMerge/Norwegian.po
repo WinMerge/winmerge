@@ -459,7 +459,7 @@ msgid "Select &Font..."
 msgstr "Velg &skrifttype..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Bruk standard s&krifttype"
 
 #, c-format
@@ -730,6 +730,9 @@ msgstr "&Lås paneler"
 #, c-format
 msgid "&View Whitespace"
 msgstr "&Vis blanktegn"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

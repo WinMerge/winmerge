@@ -357,9 +357,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 
-	CWnd *pMDIChildWnd = FindWindowExW(m_hWnd, nullptr, _T("MDIClient"), nullptr);
-	if (pMDIChildWnd)
-		pMDIChildWnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
 }
@@ -2069,7 +2067,7 @@ void CMainFrame::LoadToolbarImages()
 static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, int nCount, bool bGrayscale, CImageList& ImgList)
 {
 	CBitmap bm;
-	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nWidth * nCount, nHeight, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
 
 	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
 	int nIndex = ImgList.Add(&bm, nullptr);

@@ -2810,11 +2810,6 @@ int CCrystalTextView::GetSubLines( int nLineIndex )
   return GetEmptySubLines(nLineIndex) + nBreaks + 1;
 }
 
-int CCrystalTextView::GetEmptySubLines( int nLineIndex )
-{
-  return 0;
-}
-
 bool CCrystalTextView::IsEmptySubLineIndex( int nSubLineIndex )
 {
   int nLineIndex;
@@ -5094,12 +5089,6 @@ PreTranslateMessage (MSG * pMsg)
   return __super::PreTranslateMessage (pMsg);
 }
 
-CPoint CCrystalTextView::
-GetCursorPos () const
-{
-  return m_ptCursorPos;
-}
-
 void CCrystalTextView::
 SetCursorPos (const CPoint & ptCursorPos)
 {
@@ -5178,12 +5167,6 @@ SetViewLineNumbers (bool bViewLineNumbers)
           UpdateCaret ();
         }
     }
-}
-
-void CCrystalTextView::
-GetFont (LOGFONT & lf)
-{
-  lf = m_lfBaseFont;
 }
 
 void CCrystalTextView::
@@ -5323,12 +5306,6 @@ HideCursor ()
 {
   m_bCursorHidden = true;
   UpdateCaret ();
-}
-
-DROPEFFECT CCrystalTextView::
-GetDropEffect ()
-{
-  return DROPEFFECT_COPY;
 }
 
 void CCrystalTextView::
@@ -6162,12 +6139,6 @@ OnUpdateClearAllBookmarks (CCmdUI * pCmdUI)
   pCmdUI->Enable (m_bBookmarkExist);
 }
 
-bool CCrystalTextView::
-GetViewTabs ()
-{
-  return m_bViewTabs;
-}
-
 void CCrystalTextView::
 SetViewTabs (bool bViewTabs)
 {
@@ -6191,12 +6162,6 @@ SetViewEols (bool bViewEols, bool bDistinguishEols)
     }
 }
 
-DWORD CCrystalTextView::
-GetFlags ()
-{
-  return m_dwFlags;
-}
-
 void CCrystalTextView::
 SetFlags (DWORD dwFlags)
 {
@@ -6206,24 +6171,6 @@ SetFlags (DWORD dwFlags)
       if (::IsWindow (m_hWnd))
         Invalidate ();
     }
-}
-
-bool CCrystalTextView::
-GetTopMargin ()
-{
-  return m_bTopMargin;
-}
-
-bool CCrystalTextView::
-GetSelectionMargin ()
-{
-  return m_bSelMargin;
-}
-
-bool CCrystalTextView::
-GetViewLineNumbers () const
-{
-  return m_bViewLineNumbers;
 }
 
 int CCrystalTextView::
@@ -6271,32 +6218,6 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
     }
 
   return nMarginWidth;
-}
-
-bool CCrystalTextView::
-GetSmoothScroll ()
-const
-{
-  return m_bSmoothScroll;
-}
-
-void CCrystalTextView::SetSmoothScroll (bool bSmoothScroll)
-{
-  m_bSmoothScroll = bSmoothScroll;
-}
-
-//  [JRT]
-bool CCrystalTextView::
-GetDisableDragAndDrop ()
-const
-{
-  return m_bDisableDragAndDrop;
-}
-
-//  [JRT]
-void CCrystalTextView::SetDisableDragAndDrop (bool bDDAD)
-{
-  m_bDisableDragAndDrop = bDDAD;
 }
 
 void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
@@ -6795,16 +6716,6 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
   return pOldParser;
 }
 //END SW
-
-bool CCrystalTextView::GetEnableHideLines () const
-{
-  return m_bHideLines;
-}
-
-void CCrystalTextView::SetEnableHideLines (bool bHideLines)
-{
-  m_bHideLines = bHideLines;
-}
 
 /**
  * @brief Return whether a line is visible.

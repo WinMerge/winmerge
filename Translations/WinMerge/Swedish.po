@@ -461,7 +461,7 @@ msgid "Select &Font..."
 msgstr "Välj Teckensnitt ..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Använd FörvalsTeckensnitt"
 
 #, c-format
@@ -732,6 +732,9 @@ msgstr "Lås Placering"
 #, c-format
 msgid "&View Whitespace"
 msgstr "Visa Mellanrum"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

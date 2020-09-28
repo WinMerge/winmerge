@@ -363,7 +363,7 @@ msgstr "С&вернуть подпапки"
 msgid "Select &Font..."
 msgstr "Выбрать &шрифт..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Шрифт по &умолчанию"
 
 msgid "Sw&ap Panes"
@@ -569,6 +569,9 @@ msgstr "Заблокировать панели"
 
 msgid "&View Whitespace"
 msgstr "Показы&вать невидимые"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Показывать отличия строк"

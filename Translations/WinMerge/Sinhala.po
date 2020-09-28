@@ -456,8 +456,8 @@ msgid "Select &Font..."
 msgstr " මුද්‍රණ අකුරු &වර්ගය තෝරන්න..."
 
 #, c-format
-msgid "Use Default F&ont"
-msgstr "Use Default F&ont"
+msgid "Use Default Font"
+msgstr "Use Default Font"
 
 #, fuzzy, c-format
 msgid "Sw&ap Panes"
@@ -727,6 +727,9 @@ msgstr "&Lock Panes"
 #, fuzzy, c-format
 msgid "&View Whitespace"
 msgstr "&View Whitespace"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

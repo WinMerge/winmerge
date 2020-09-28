@@ -463,8 +463,8 @@ msgid "Select &Font..."
 msgstr "選取字型(&F)..."
 
 #, c-format
-msgid "Use Default F&ont"
-msgstr "使用預設字型(&O)"
+msgid "Use Default Font"
+msgstr "使用預設字型"
 
 #, c-format
 msgid "Sw&ap Panes"
@@ -734,6 +734,9 @@ msgstr "鎖住窗格(&L)"
 #, c-format
 msgid "&View Whitespace"
 msgstr "檢視空白和跳格(&V)"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

@@ -55,11 +55,13 @@ echo ============================================================
 rmdir /q /s "%DISTDIR%\%PLATFORMH%zip-version" > NUL 2> NUL
 mkdir "%DISTDIR%" 2> NUL
 
-copy "Build\WinMerge-%RCVER%-%PLATFORMH%Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe"
+rem Copy platform setups
+copy "Build\WinMerge-%RCVER%-%PLATFORMH%Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe" > NUL
 if not "%1" == "" (
-  copy "Build\WinMerge-%RCVER%-%PLATFORMH%PerUser-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe"
+  copy "Build\WinMerge-%RCVER%-%PLATFORMH%PerUser-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe" > NUL
 )
 
+rem Create folder structure
 for %%i in (ColorSchemes Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge Merge7z\Lang GnuWin32) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )

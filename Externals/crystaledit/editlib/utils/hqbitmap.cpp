@@ -1,3 +1,10 @@
+// SPDX-License-Identifier: BSL-1.0
+// Copyright (c) 2020 Takashi Sawanaka
+//
+// Use, modification and distribution are subject to the 
+// Boost Software License, Version 1.0. (See accompanying file 
+// LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
 #include "StdAfx.h"
 #include "hqbitmap.h"
 #include <atlimage.h>
@@ -5,9 +12,9 @@
 
 static void convert24bitImageTo32bit(int width, int height, bool grayscale, COLORREF mask, const BYTE* src, BYTE* dst)
 {
-	BYTE maskR = GetRValue(mask);
-	BYTE maskG = GetGValue(mask);
-	BYTE maskB = GetBValue(mask);
+	const BYTE maskR = GetRValue(mask);
+	const BYTE maskG = GetGValue(mask);
+	const BYTE maskB = GetBValue(mask);
 	for (int y = 0; y < height; ++y)
 	{
 		const BYTE* pSrc = src + y * ((width * 3 * 4 + 3) / 4);
@@ -18,10 +25,7 @@ static void convert24bitImageTo32bit(int width, int height, bool grayscale, COLO
 			{
 				if (pSrc[x * 3] == maskR && pSrc[x * 3 + 1] == maskG && pSrc[x * 3 + 2] == maskB)
 				{
-					pDst[x * 4] = 0;
-					pDst[x * 4 + 1] = 0;
-					pDst[x * 4 + 2] = 0;
-					pDst[x * 4 + 3] = 0;
+					pDst[x * 4] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = pDst[x * 4 + 3] = 0;
 				}
 				else
 				{
@@ -38,10 +42,7 @@ static void convert24bitImageTo32bit(int width, int height, bool grayscale, COLO
 			{
 				if (pSrc[x * 3] == 0xff && pSrc[x * 3 + 1] == 0 && pSrc[x * 3 + 2] == 0xff) // rgb(0xff, 0, 0xff) == mask color
 				{
-					pDst[x * 4] = 0;
-					pDst[x * 4 + 1] = 0;
-					pDst[x * 4 + 2] = 0;
-					pDst[x * 4 + 3] = 0;
+					pDst[x * 4] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = pDst[x * 4 + 3] = 0;
 				}
 				else
 				{
@@ -52,9 +53,7 @@ static void convert24bitImageTo32bit(int width, int height, bool grayscale, COLO
 						(static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
 							+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
 							+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
-					pDst[x * 4 + 0] = gray;
-					pDst[x * 4 + 1] = gray;
-					pDst[x * 4 + 2] = gray;
+					pDst[x * 4 + 0] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = gray;
 					pDst[x * 4 + 3] = 0xff;
 				}
 			}
@@ -79,10 +78,7 @@ static void convert4bitImageTo32bit(int width, int height, bool grayscale, COLOR
 				RGBQUAD rgba = ((x % 2) == 0) ? rgbColors[pSrc[x / 2] >> 4] : rgbColors[pSrc[x / 2] & 0xf];
 				if (*((DWORD *)&rgba) == *((DWORD *)&rgbMask))
 				{
-					pDst[x * 4] = 0;
-					pDst[x * 4 + 1] = 0;
-					pDst[x * 4 + 2] = 0;
-					pDst[x * 4 + 3] = 0;
+					pDst[x * 4] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = pDst[x * 4 + 3] = 0;
 				}
 				else
 				{
@@ -100,10 +96,7 @@ static void convert4bitImageTo32bit(int width, int height, bool grayscale, COLOR
 				RGBQUAD rgba = ((x % 2) == 0) ? rgbColors[pSrc[x / 2] >> 4] : rgbColors[pSrc[x / 2] & 0xf];
 				if (*((DWORD *)&rgba) == *((DWORD *)&rgbMask))
 				{
-					pDst[x * 4] = 0;
-					pDst[x * 4 + 1] = 0;
-					pDst[x * 4 + 2] = 0;
-					pDst[x * 4 + 3] = 0;
+					pDst[x * 4] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = pDst[x * 4 + 3] = 0;
 				}
 				else
 				{
@@ -111,9 +104,7 @@ static void convert4bitImageTo32bit(int width, int height, bool grayscale, COLOR
 						(static_cast<int>(0.114 * 256) * (((255 - rgba.rgbBlue) >> 1) + rgba.rgbBlue)
 							+ static_cast<int>(0.587 * 256) * (((255 - rgba.rgbGreen) >> 1) + rgba.rgbGreen)
 							+ static_cast<int>(0.299 * 256) * (((255 - rgba.rgbRed) >> 1) + rgba.rgbRed)) >> 8);
-					pDst[x * 4 + 0] = gray;
-					pDst[x * 4 + 1] = gray;
-					pDst[x * 4 + 2] = gray;
+					pDst[x * 4 + 0] = pDst[x * 4 + 1] = pDst[x * 4 + 2] = gray;
 					pDst[x * 4 + 3] = 0xff;
 				}
 			}
@@ -121,10 +112,12 @@ static void convert4bitImageTo32bit(int width, int height, bool grayscale, COLOR
 	}
 };
 
-HBITMAP LoadBitmapAndConvertTo32bit(HINSTANCE hInstance, int nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, bool bGrayscale, COLORREF clrMask)
+HBITMAP LoadBitmapAndConvertTo32bit(HINSTANCE hInstance, int nIDResource, int nNewWidth, int nNewHeight, bool bGrayscale, COLORREF clrMask)
 {
 	ATL::CImage img;
-	img.Attach((HBITMAP)LoadImage(hInstance, MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth, nHeight, LR_CREATEDIBSECTION), ATL::CImage::DIBOR_TOPDOWN);
+	img.Attach((HBITMAP)LoadImage(hInstance, MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION), ATL::CImage::DIBOR_TOPDOWN);
+	const int nWidth = img.GetWidth();
+	const int nHeight= img.GetHeight();
 	const int stride = (nWidth * 4 * 4 + 3) / 4; std::vector<BYTE> buf(stride * nHeight);
 	switch (img.GetBPP())
 	{

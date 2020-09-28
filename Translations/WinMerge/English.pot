@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-08-20 06:48+0000\n"
+"POT-Creation-Date: 2020-09-27 23:38+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -352,7 +352,7 @@ msgstr ""
 msgid "Select &Font..."
 msgstr ""
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr ""
 
 msgid "Sw&ap Panes"
@@ -557,6 +557,9 @@ msgid "&Lock Panes"
 msgstr ""
 
 msgid "&View Whitespace"
+msgstr ""
+
+msgid "View E&OL"
 msgstr ""
 
 msgid "Vie&w Line Differences"

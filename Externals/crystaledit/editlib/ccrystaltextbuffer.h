@@ -190,7 +190,7 @@ public :
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
                                 LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr);
-    virtual UndoRecord GetUndoRecord (int nUndoPos) const;
+    virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
 
     virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
     virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *psaSavedRevisionNumbers);
@@ -248,7 +248,7 @@ public :
     virtual bool IsIndentableLine(int nLine) const { return true; }
 
     //  Attributes
-    CRLFSTYLE GetCRLFMode () const;
+    CRLFSTYLE GetCRLFMode () const { return m_nCRLFMode; }
     void SetCRLFMode (CRLFSTYLE nCRLFMode);
     /// Adjust all the lines in the buffer to the buffer default EOL Mode
     virtual bool applyEOLMode();

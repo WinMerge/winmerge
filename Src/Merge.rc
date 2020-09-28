@@ -312,7 +312,7 @@ BEGIN
         MENUITEM "&Collapse All Subfolders",    ID_VIEW_COLLAPSE_ALLSUBDIRS
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
-        MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Use Default Font",            ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -491,7 +491,7 @@ BEGIN
     POPUP "&View"
     BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
-        MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Use Default Font",            ID_VIEW_USEDEFAULTFONT
         POPUP "&Zoom"
         BEGIN
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
@@ -520,6 +520,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
+        MENUITEM "View E&OL",                   ID_VIEW_EOL
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN

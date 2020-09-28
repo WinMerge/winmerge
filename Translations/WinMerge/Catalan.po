@@ -458,7 +458,7 @@ msgid "Select &Font..."
 msgstr "&Tipus de lletra..."
 
 #, c-format
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Empra el tipus de lletra del &sistema"
 
 #, c-format
@@ -729,6 +729,9 @@ msgstr ""
 #, c-format
 msgid "&View Whitespace"
 msgstr "Mostra els es&pais"
+
+msgid "View E&OL"
+msgstr ""
 
 #, c-format
 msgid "Vie&w Line Differences"

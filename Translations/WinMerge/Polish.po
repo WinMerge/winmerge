@@ -358,7 +358,7 @@ msgstr "Zwiń wszystkie podfoldery"
 msgid "Select &Font..."
 msgstr "Wybierz czcionkę..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Użyj domyślnej czcionki"
 
 msgid "Sw&ap Panes"
@@ -564,6 +564,9 @@ msgstr "Zablokuj panele"
 
 msgid "&View Whitespace"
 msgstr "Pokaż białe znaki"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Pokaż różniące się linie"

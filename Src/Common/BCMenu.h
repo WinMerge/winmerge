@@ -32,17 +32,15 @@ class BCMenuData
 {
 	wchar_t *m_szMenuText;
 public:
-	BCMenuData () {menuIconNormal=-1;xoffset=-1;bitmap=nullptr;pContext=nullptr;
+	BCMenuData () {pContext=nullptr;
 	nFlags=0;nID=0;syncflag=0;m_szMenuText=nullptr;global_offset=-1;};
 	void SetWideString(const wchar_t *szWideString);
 	const wchar_t *GetWideString(void) {return m_szMenuText;};
 	~BCMenuData ();
 	CString GetString(void);//returns the menu text
-	INT_PTR xoffset,global_offset;
-	int menuIconNormal;
+	INT_PTR global_offset;
 	UINT nFlags,syncflag;
 	UINT_PTR nID;
-	CImageList *bitmap;
 	void *pContext; // used to attach user data
 };
 
@@ -53,9 +51,6 @@ struct CMenuItemInfo : public MENUITEMINFO
 	}
 };
 
-// how seperators are handled when removing a menu (Tongzhe Cui)
-typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
-
 class BCMenu : public CMenu
 {
 	DECLARE_DYNAMIC( BCMenu )
@@ -65,50 +60,35 @@ public:
 
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
-	virtual BOOL LoadMenu(int nResource);
+	virtual BOOL LoadMenu(int nResource)
+	{
+		return BCMenu::LoadMenu(MAKEINTRESOURCE(nResource));
+	}
+
 	bool LoadToolbar(UINT nToolBar);
-	bool LoadToolbars(const UINT *arID,int n);
-	bool LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset);
-	bool AddBitmapToImageList(CImageList *list,UINT nResourceID,bool bDisabled=false);
+	bool AddBitmapToImageList(CImageList *list,UINT nResourceID);
+	bool ReplaceBitmapInImageList(CImageList *list,int xoffset,UINT nResourceID);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	
-	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
-	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	bool AppendMenu(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
+	bool AppendMenu(UINT nFlags, UINT_PTR nIDNewItem = 0, const wchar_t* lpszNewItem = nullptr, int nIconNormal = -1)
+	{
+		return AppendODMenu(lpszNewItem, nFlags, nIDNewItem, nIconNormal);
+	}
 	bool AppendODMenu(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	bool AppendODMenu(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
-	bool AppendMenu (BCMenu* pMenuToAdd, bool add_separator = true, int num_items_to_remove_at_end = 0);
 	
-	// for appending a popup menu (see example application)
-	BCMenu* AppendODPopupMenu(const wchar_t *lpstrText);
-
 	// functions for inserting a menu option, use the InsertMenu call (see above define)
-	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
-	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	bool InsertMenu(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
+	bool InsertMenu(UINT nPosition, UINT nFlags, UINT_PTR nIDNewItem = 0, wchar_t* lpszNewItem = nullptr, int nIconNormal= -1)
+	{
+		return InsertODMenu(nPosition, lpszNewItem, nFlags, nIDNewItem, nIconNormal);
+	}
 	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
-	
+
 	// functions for modifying a menu option, use the ModifyODMenu call (see above define)
 	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
-	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset);
-	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp);
-	bool ModifyODMenu(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
-
-	bool SetImageForPopupFromToolbar (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
 
 	// for deleting and removing menu options
 	bool	RemoveMenu(UINT uiId,UINT nFlags);
 	bool	DeleteMenu(UINT uiId,UINT nFlags);
-	// sPos means Seperator's position, since we have no way to find the seperator's position in the menu
-	// we have to specify them when we call the RemoveMenu to make sure the unused seperators are removed;
-	// sPos  = None no seperator removal;
-	//       = Head  seperator in front of this menu item;
-	//       = Tail  seperator right after this menu item;
-	//       = Both  seperators at both ends;
-	// remove the menu item based on their text, return -1 if not found, otherwise return the menu position;
-	int RemoveMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
-	int DeleteMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
 	
 	// Destoying
 	virtual BOOL DestroyMenu();
@@ -118,12 +98,6 @@ public:
 	bool GetMenuText(UINT id,CString &string,UINT nFlags = MF_BYPOSITION);
 	bool SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
 
-	// Getting a submenu from it's name or position
-	BCMenu* GetSubBCMenu(wchar_t* lpszSubMenuName);
-	CMenu* GetSubMenu (LPCTSTR lpszSubMenuName);
-	CMenu* GetSubMenu (int nPos);
-	int GetMenuPosition(wchar_t* pText);
-
 	// Drawing: 
 	virtual void DrawItem( LPDRAWITEMSTRUCT);  // Draw an item
 	virtual void MeasureItem( LPMEASUREITEMSTRUCT );  // Measure an item
@@ -131,16 +105,33 @@ public:
 	// Static functions used for handling menu's in the mainframe
 	static bool ReopenTheme(int dpi);
 	static void UpdateMenu(CMenu *pmenu);
-	static bool IsMenu(CMenu *submenu);
+	static bool IsMenu(CMenu *submenu)
+	{
+		return IsMenu(submenu->m_hMenu);
+	}
 	static bool IsMenu(HMENU submenu);
 	static LRESULT FindKeyboardShortcut(UINT nChar,UINT nFlags,CMenu *pMenu);
 
 	// Customizing:
 	// Set icon size
-	static void SetIconSize (int, int); 
+	static void SetIconSize (int width, int height)
+	{
+		m_iconX = width;
+		m_iconY = height;
+	}
+
 	// set the color in the bitmaps that is the background transparent color
-	void SetBitmapBackground(COLORREF color);
-	void UnSetBitmapBackground(void);
+	void SetBitmapBackground(COLORREF color)
+	{
+		m_bitmapBackground=color;
+		m_bitmapBackgroundFlag=true;
+	}
+	void UnSetBitmapBackground(void)
+	{
+		m_bitmapBackgroundFlag=false;
+	}
+
+	COLORREF GetBitmapBackground() const { return m_bitmapBackgroundFlag ? m_bitmapBackground : GetSysColor(COLOR_3DFACE); }
 	// obsolete functions for setting how menu images are dithered for disabled menu options
 	static inline COLORREF LightenColor(COLORREF col,double factor);
 
@@ -166,18 +157,17 @@ protected:
 		int nHeight, CBitmap &bmp, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp,COLORREF bgcolor);
-	bool GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp);
-	bool GetBitmapFromImageList(CDC* pDC, CImageList *imglist, int nIndex, CImage &bmp);
-	bool ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist);
+	bool GetBitmapFromImageList(CDC* pDC,int nIndex,CBitmap &bmp);
+	bool GetBitmapFromImageList(CDC* pDC,int nIndex,CImage &bmp);
 	static WORD NumBitmapColors(LPBITMAPINFOHEADER lpBitmap);
 	void RemoveTopLevelOwnerDraw(void);
 	int GetMenuStart(void);
 	void GetTransparentBitmap(CBitmap &bmp);
 	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
 	void GetDisabledBitmap(CImage &bmp);
-	INT_PTR AddToGlobalImageList(CImageList *il,int xoffset,int nID);
 	INT_PTR AddToGlobalImageList(int nIconNormal,int nID);
 	int GlobalImageListOffset(int nID);
+	void LoadImages();
 	
 // Member Variables
 protected:
@@ -190,7 +180,9 @@ protected:
 	static CTypedPtrArray<CPtrArray, HMENU>  m_AllSubMenus;
 	// Global ImageList
 	static CImageList m_AllImages;
-	static CArray<int,int&> m_AllImagesID;
+	struct ImageData { int id; int resourceId; int bitmapIndex; };
+	static std::vector<ImageData> m_AllImagesID;
+	static bool m_bHasNotLoadedImages;
 	// icon size
 	static int m_iconX;
 	static int m_iconY;

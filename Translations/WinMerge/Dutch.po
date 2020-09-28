@@ -359,7 +359,7 @@ msgstr "Alle submappen inklappen"
 msgid "Select &Font..."
 msgstr "Lettertype kiezen..."
 
-msgid "Use Default F&ont"
+msgid "Use Default Font"
 msgstr "Standaard lettertype gebruiken"
 
 msgid "Sw&ap Panes"
@@ -565,6 +565,9 @@ msgstr "Vensters vergrendelen"
 
 msgid "&View Whitespace"
 msgstr "Witruimte weergeven"
+
+msgid "View E&OL"
+msgstr ""
 
 msgid "Vie&w Line Differences"
 msgstr "Regelverschillen weergeven"

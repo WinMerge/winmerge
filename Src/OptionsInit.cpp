@@ -68,6 +68,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_WORDWRAP, false);
 	pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
 	pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
+	pOptions->InitOption(OPT_VIEW_EOL, false);
 	pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
@@ -165,7 +166,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
 	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
-	pOptions->InitOption(OPT_FILTER_USERPATH, paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath));
+	pOptions->InitOption(OPT_FILTER_USERPATH, _T(""));
+	if (pOptions->GetString(OPT_FILTER_USERPATH).empty())
+		pOptions->SaveOption(OPT_FILTER_USERPATH, paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath));
 	pOptions->InitOption(OPT_FILEFILTER_SHARED, false);
 
 	pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
