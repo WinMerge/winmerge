@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-08-20 22:26+0200\n"
+"PO-Revision-Date: 2020-09-28 22:27+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -735,7 +735,7 @@ msgid "&View Whitespace"
 msgstr "&Leerzeichen anzeigen"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Zeilenende anzei&gen"
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -2410,7 +2410,7 @@ msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Si
 
 #, c-format
 msgid "&Abort"
-msgstr "&Abbruch"
+msgstr "&Abbrechen"
 
 #, c-format
 msgid "&Retry"
@@ -2691,7 +2691,7 @@ msgstr "Objekte: %1"
 
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus"
+msgstr "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus."
 
 #, c-format
 msgid "Folder Selection"
@@ -2699,7 +2699,7 @@ msgstr "Ordnerauswahl"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr "Zwei (oder drei) Dateien oder Ordner zum Vergleichen auswählen."
+msgstr "Wählen Sie zwei (oder drei) Dateien oder Ordner zum Vergleichen aus."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
@@ -3370,7 +3370,7 @@ msgstr "Der Bericht wurde erfolgreich geschrieben."
 
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Die gleiche Datei ist in beiden Feldern ausgewählt."
+msgstr "Die gleiche Datei ist in beiden Bereichen ausgewählt."
 
 #, c-format
 msgid "The selected files are identical."
