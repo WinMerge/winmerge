@@ -75,8 +75,8 @@ LRESULT COpenFrame::OnNcHitTest(CPoint point)
 void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
 	// Retain frame sizes during tile operations (tolerate overlapping)
-	if ((lpwndpos->flags & (SWP_NOSIZE | SWP_NOOWNERZORDER)) == 0 && !IsZoomed() &&
-	    !GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
+	if ((lpwndpos->flags & (SWP_NOSIZE | SWP_NOOWNERZORDER)) == 0 &&
+	    !(IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled()))
 	{
 		if (CScrollView *const pView = static_cast<CScrollView*>(GetActiveView()))
 		{
@@ -92,18 +92,21 @@ void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
 	__super::ActivateFrame(nCmdShow);
-	if (CView *const pView = GetActiveView())
+	if (!GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof wp;
-		GetWindowPlacement(&wp);
-		CRect rc;
-		pView->GetWindowRect(&rc);
-		CalcWindowRect(&rc, CWnd::adjustOutside);
-		wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
-		wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
-		SetWindowPlacement(&wp);
-		pView->ShowWindow(SW_SHOW);
+		if (CView* const pView = GetActiveView())
+		{
+			WINDOWPLACEMENT wp;
+			wp.length = sizeof wp;
+			GetWindowPlacement(&wp);
+			CRect rc;
+			pView->GetWindowRect(&rc);
+			CalcWindowRect(&rc, CWnd::adjustOutside);
+			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+			SetWindowPlacement(&wp);
+			pView->ShowWindow(SW_SHOW);
+		}
 	}
 }
 

@@ -404,10 +404,10 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 
 void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
-	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0 && !GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
+	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0)
 	{
 		CFrameWnd *const pFrameWnd = GetParentFrame();
-		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 		{
 			CRect rc;
 			pFrameWnd->GetClientRect(&rc);
@@ -421,7 +421,7 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 				if (lpwndpos->y < 0)
 					lpwndpos->y = 0;
 			}
-			else if (pFrameWnd->IsZoomed())
+			else if (pFrameWnd->IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 			{
 				lpwndpos->cx = m_totalLog.cx;
 				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
@@ -448,15 +448,18 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			WINDOWPLACEMENT wp;
-			wp.length = sizeof wp;
-			pFrameWnd->GetWindowPlacement(&wp);
-			CRect rc;
-			GetWindowRect(&rc);
-			pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
-			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
-			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
-			pFrameWnd->SetWindowPlacement(&wp);
+			if (!GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
+			{
+				WINDOWPLACEMENT wp;
+				wp.length = sizeof wp;
+				pFrameWnd->GetWindowPlacement(&wp);
+				CRect rc;
+				GetWindowRect(&rc);
+				pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
+				wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+				wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+				pFrameWnd->SetWindowPlacement(&wp);
+			}
 		}
 	}
 	__super::OnWindowPosChanged(lpwndpos);
@@ -472,7 +475,7 @@ void COpenView::OnDestroy()
 
 LRESULT COpenView::OnNcHitTest(CPoint point)
 {
-	if (GetParentFrame()->IsZoomed())
+	if (GetParentFrame()->IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
 		CRect rc;
 		GetWindowRect(&rc);
