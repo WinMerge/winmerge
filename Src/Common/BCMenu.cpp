@@ -1525,7 +1525,7 @@ bool BCMenu::ReplaceBitmapInImageList(CImageList* bmplist, int xoffset, UINT nRe
 {
 	bool result = AddBitmapToImageList(bmplist, nResourceID);
 	const int cnt = bmplist->GetImageCount();
-	if (cnt - 1 < xoffset)
+	if (xoffset < cnt - 1)
 	{
 		bmplist->Copy(xoffset, cnt - 1);
 		bmplist->Remove(cnt - 1);

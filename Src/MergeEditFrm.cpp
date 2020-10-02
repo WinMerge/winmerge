@@ -204,6 +204,15 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 
+	// load docking positions and sizes
+	CDockState pDockState;
+	pDockState.LoadState(_T("Settings"));
+	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+		SetDockState(pDockState);
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings"));
+	m_wndDetailBar.LoadState(_T("Settings"));
+
 	return 0;
 }
 
@@ -241,15 +250,6 @@ bool CMergeEditFrame::EnsureValidDockState(CDockState& state)
 
 void CMergeEditFrame::ActivateFrame(int nCmdShow) 
 {
-	// load docking positions and sizes
-	CDockState pDockState;
-	pDockState.LoadState(_T("Settings"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
-		SetDockState(pDockState);
-	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-	m_wndLocationBar.LoadState(_T("Settings"));
-	m_wndDetailBar.LoadState(_T("Settings"));
-
 	CMergeFrameCommon::ActivateFrame(nCmdShow);
 }
 
