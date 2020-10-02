@@ -508,6 +508,13 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
+	CDockState pDockState;
+	pDockState.LoadState(_T("Settings-ImgMergeFrame"));
+	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+		SetDockState(pDockState);
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
+
 	return 0;
 }
 
@@ -616,16 +623,6 @@ void CImgMergeFrame::SaveActivePane()
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
 {
-	if (bActivate)
-	{
-		CDockState pDockState;
-		pDockState.LoadState(_T("Settings-ImgMergeFrame"));
-		if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
-			SetDockState(pDockState);
-		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-		m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
-	}
-
 	CMergeFrameCommon::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	if (bActivate)
