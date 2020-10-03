@@ -154,8 +154,7 @@ protected:
 				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
 				BOOL bMaximized;
 				HWND hwndActive = reinterpret_cast<HWND>(SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized)));
-				if ((bMaximized || (message == WM_MDICREATE && 
-					(!hwndActive || !GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK)))) &&
+				if ((bMaximized || (message == WM_MDICREATE && !hwndActive)) &&
 					SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
 				{
 					SetRedraw(FALSE);
