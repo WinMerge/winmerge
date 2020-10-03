@@ -168,8 +168,6 @@ protected:
 					KillTimer(m_nRedrawTimer);
 					SetRedraw(TRUE);
 					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
-					GetMainFrame()->GetActiveFrame()->OnUpdateFrameTitle(TRUE);
-					GetMainFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0, TRUE, TRUE);
 				}
 				break;
 			}

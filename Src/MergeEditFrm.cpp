@@ -305,40 +305,37 @@ void CMergeEditFrame::UpdateHeaderSizes()
 	if(!::IsWindow(m_wndFilePathBar.m_hWnd) || !::IsWindow(m_wndSplitter.m_hWnd))
 		return;
 	
-	if(IsWindowVisible())
+	int w[3];
+	int pane;
+	CMergeDoc * pDoc = GetMergeDoc();
+	auto& wndSplitter = GetMergeEditSplitterWnd(0);
+	if (wndSplitter.GetColumnCount() > 1)
 	{
-		int w[3];
-		int pane;
-		CMergeDoc * pDoc = GetMergeDoc();
-		auto& wndSplitter = GetMergeEditSplitterWnd(0);
-		if (wndSplitter.GetColumnCount() > 1)
+		for (pane = 0; pane < wndSplitter.GetColumnCount(); pane++)
 		{
-			for (pane = 0; pane < wndSplitter.GetColumnCount(); pane++)
-			{
-				int wmin;
-				wndSplitter.GetColumnInfo(pane, w[pane], wmin);
-				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
-			}
+			int wmin;
+			wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 		}
-		else
+	}
+	else
+	{
+		CRect rect;
+		wndSplitter.GetWindowRect(&rect);
+		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
-			CRect rect;
-			wndSplitter.GetWindowRect(&rect);
-			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-			{
-				w[pane] = rect.Width() /  pDoc->m_nBuffers;
-			}
+			w[pane] = rect.Width() /  pDoc->m_nBuffers;
 		}
+	}
 
-		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))
-		{
-			std::copy_n(w, pDoc->m_nBuffers - 1, m_nLastSplitPos);
+	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))
+	{
+		std::copy_n(w, pDoc->m_nBuffers - 1, m_nLastSplitPos);
 
-			// resize controls in header dialog bar
-			m_wndFilePathBar.Resize(w);
+		// resize controls in header dialog bar
+		m_wndFilePathBar.Resize(w);
 
-			m_wndStatusBar.Resize(w);
-		}
+		m_wndStatusBar.Resize(w);
 	}
 }
 
