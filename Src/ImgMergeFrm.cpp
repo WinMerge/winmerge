@@ -645,6 +645,8 @@ void CImgMergeFrame::OnClose()
 
 void CImgMergeFrame::OnDestroy()
 {
+	if (!m_pImgMergeWindow)
+		return;
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 }
