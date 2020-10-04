@@ -32,11 +32,13 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	, m_nLastSplitPos{0}
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEADDED, 0, reinterpret_cast<LPARAM>(this));
+	GetMainFrame()->GetLayoutManager().NotifyChildOpened(this);
 }
 
 CMergeFrameCommon::~CMergeFrameCommon()
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
+	GetMainFrame()->GetLayoutManager().NotifyChildClosed(this);
 }
 
 BOOL CMergeFrameCommon::PreCreateWindow(CREATESTRUCT& cs)

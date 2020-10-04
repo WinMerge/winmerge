@@ -29,6 +29,7 @@ namespace MDITileLayout
 		Pane* GetDefaultOpenPane() const;
 		bool AddWindow(CWnd* pWnd);
 		bool RemoveWindow(CWnd* pWnd);
+		size_t GetWindowCount() const { return m_wndList.size(); }
 		bool MoveWindow(Pane *pDstPane, CWnd* pWnd);
 		Pane* FindPaneByWindow(CWnd* pWnd) const;
 		void UpdateSizeRatio(const CRect& rcMainWnd, const CRect& rcChildWnd);

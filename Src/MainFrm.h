@@ -174,6 +174,10 @@ protected:
 					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
 				}
 				break;
+			case WM_SIZE:
+				if (AfxGetMainWnd())
+					GetMainFrame()->GetLayoutManager().NotifyMainResized();
+				break;
 			case WM_DPICHANGED_BEFOREPARENT:
 				UpdateDpi();
 				break;
@@ -299,7 +303,6 @@ protected:
     afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg LRESULT OnDpiChanged(WPARAM wParam, LPARAM lParam);
 	afx_msg BOOL OnMDIWindowCmd(UINT nID);
 	//}}AFX_MSG

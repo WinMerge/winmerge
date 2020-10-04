@@ -407,7 +407,7 @@ private:
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const;
-	int GetDefColumnWidth() const { return MulDiv(DefColumnWidth, CClientDC(const_cast<CDirView *>(this)).GetDeviceCaps(LOGPIXELSX), 72); };
+	int GetDefColumnWidth() const { return PointToPixel(DefColumnWidth); };
 
 public:
 	DirItemIterator Begin() const { return DirItemIterator(m_pIList.get()); }

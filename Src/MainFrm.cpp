@@ -228,7 +228,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 	ON_COMMAND_EX(ID_WINDOW_CASCADE, OnMDIWindowCmd)
 	ON_COMMAND_EX(ID_WINDOW_TILE_HORZ, OnMDIWindowCmd)
 	ON_COMMAND_EX(ID_WINDOW_TILE_VERT, OnMDIWindowCmd)
-	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -2578,12 +2577,6 @@ void CMainFrame::OnAccelQuit()
 	SendMessage(WM_CLOSE);
 }
 
-void CMainFrame::OnSize(UINT nType, int cx, int cy)
-{
-	__super::OnSize(nType, cx, cy);
-	m_layoutManager.NotifyMainResized();
-}
-
 LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 {
 	int olddpi = m_dpi;
@@ -2611,8 +2604,6 @@ LRESULT CMainFrame::OnDpiChanged(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 {
-	m_layoutManager.NotifyChildOpened(reinterpret_cast<CMDIChildWnd*>(lParam));
-
 	for (int i = 0; i < m_arrChild.GetSize(); ++i)
 	{
 		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
@@ -2628,8 +2619,6 @@ LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnChildFrameRemoved(WPARAM wParam, LPARAM lParam)
 {
-	m_layoutManager.NotifyChildClosed(reinterpret_cast<CMDIChildWnd*>(lParam));
-
 	for (int i = 0; i < m_arrChild.GetSize(); ++i)
 	{
 		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))

@@ -343,7 +343,14 @@ namespace MDITileLayout
 	void LayoutManager::NotifyChildClosed(CWnd* pChildWnd)
 	{
 		if (Pane* pPane = m_pPane->FindPaneByWindow(pChildWnd))
+		{
 			pPane->RemoveWindow(pChildWnd);
+			if (pPane->GetWindowCount() == 0)
+			{
+				pPane->Combine();
+				UpdateChildWindows();
+			}
+		}
 	}
 
 	void LayoutManager::NotifyChildResized(CWnd* pChildWnd)
@@ -401,8 +408,10 @@ namespace MDITileLayout
 				CRect rcChild = pPane->GetRect(rc);
 				CRect rcChildOrg = rcChild;
 				DpiAware::AdjustWindowRectExForDpi(rcChild, pWnd->GetStyle(), false, pWnd->GetExStyle(), dpi);
-				rcChild.right = rcChildOrg.right;
-				rcChild.bottom = rcChildOrg.bottom;
+				if (rcChildOrg.right < rc.right)
+					rcChild.right = rcChildOrg.right;
+				if (rcChildOrg.bottom < rc.bottom)
+					rcChild.bottom = rcChildOrg.bottom;
 				DeferWindowPos(hdwp, pWnd->m_hWnd, nullptr,
 					rcChild.left - rc.left + rcMainMargin.left,
 					rcChild.top - rc.top + rcMainMargin.top,
