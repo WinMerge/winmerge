@@ -9,4 +9,6 @@ for /F "usebackq" %%f in (`powershell -command [System.Diagnostics.FileVersionIn
   powershell -command $^(measure-command { cmd '/c for /L %%i in ^(1,1,10^) do "%exepath%" /noninteractive /noprefs c:\progra~1\winmerge\docs\readme.txt c:\progra~1\winmerge\docs\readme.txt' }^).TotalSeconds
   echo [DirFrame]
   powershell -command $^(measure-command { cmd '/c for /L %%i in ^(1,1,10^) do "%exepath%" /noninteractive /noprefs c:\progra~1\winmerge\docs\ c:\progra~1\winmerge\docs\' }^).TotalSeconds
+  echo [Report]
+  powershell -command $^(measure-command { cmd '/c %~dp0\ReportTest.cmd' }^).TotalSeconds
 ) > "%resultpath%"
