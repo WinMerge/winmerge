@@ -46,7 +46,7 @@ struct IListCtrl;
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
-const UINT DefColumnWidth = 150;
+const UINT DefColumnWidth = 111;
 
 /**
  * @brief Directory compare results view.
@@ -405,6 +405,8 @@ private:
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const;
+	int GetDefColumnWidth() const { return MulDiv(DefColumnWidth, CClientDC(const_cast<CDirView *>(this)).GetDeviceCaps(LOGPIXELSX), 72); };
+
 public:
 	DirItemIterator Begin() const { return DirItemIterator(m_pIList.get()); }
 	DirItemIterator End() const { return DirItemIterator(); }
