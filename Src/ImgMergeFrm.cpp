@@ -943,7 +943,7 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CImgMergeFrame::UpdateHeaderSizes()
 {
-	if (IsWindowVisible() && m_pImgMergeWindow != nullptr)
+	if (m_pImgMergeWindow != nullptr)
 	{
 		int w[3];
 		CRect rc, rcMergeWindow;

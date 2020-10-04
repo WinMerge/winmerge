@@ -497,7 +497,7 @@ void CDirView::ReloadColumns()
 	UpdateColumnNames();
 	m_pColItems->LoadColumnWidths(
 		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
-		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 	SetColAlignments();
 }
 
@@ -2475,7 +2475,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		UpdateColumnNames();
 		m_pColItems->LoadColumnWidths(
 			GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
-			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 		Redisplay();
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
@@ -4164,7 +4164,7 @@ void CDirView::OnEditColumns()
 
 	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
 	GetOptionsMgr()->SaveOption(keyname,
-		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(DefColumnWidth) :
+		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
 		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
 
 	// Reset our data to reflect the new data from the dialog
