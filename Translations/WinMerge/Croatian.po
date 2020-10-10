@@ -2190,6 +2190,10 @@ msgid "To right"
 msgstr "U desno"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Ne &pitaj ponovo."
+
+#, c-format
 msgid "Yes"
 msgstr "Da"
 
@@ -2472,10 +2476,6 @@ msgstr "Izostavi &sve"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Ne prikazuj više ovu poruku."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Ne &pitaj ponovo."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
@@ -3082,8 +3082,8 @@ msgid "Are you sure you want to copy?"
 msgstr "Kopirati? -"
 
 #, c-format
-msgid "Are you sure you want to copy %d items:"
-msgstr "Kopirati %d stavku?"
+msgid "Are you sure you want to copy %d items?"
+msgstr ""
 
 #, c-format
 msgid ""

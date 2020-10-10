@@ -2201,6 +2201,10 @@ msgid "To right"
 msgstr "到右邊"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "不要再提示這個問題(&Q)"
+
+#, c-format
 msgid "Yes"
 msgstr "是"
 
@@ -2483,10 +2487,6 @@ msgstr "全部略過(&A)"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "不要再顯示這個訊息(&M)"
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "不要再提示這個問題(&Q)"
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁面點擊重設按鈕"

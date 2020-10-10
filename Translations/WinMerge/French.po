@@ -2203,6 +2203,10 @@ msgid "To right"
 msgstr "Vers la Droite"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Ne plus poser cette &question."
+
+#, c-format
 msgid "Yes"
 msgstr "Oui"
 
@@ -2524,10 +2528,6 @@ msgstr "Ignorer &tout"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Ne plus afficher ce &message."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Ne plus poser cette &question."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

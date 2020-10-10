@@ -1710,6 +1710,9 @@ msgstr "从左侧"
 msgid "To right"
 msgstr "到右侧"
 
+msgid "Don't ask this &question again."
+msgstr "不再询问此问题(&Q)"
+
 msgid "Yes"
 msgstr "是"
 
@@ -1976,9 +1979,6 @@ msgstr "全部跳过(&A)"
 
 msgid "Don't display this &message again."
 msgstr "不再显示此消息(&M)"
-
-msgid "Don't ask this &question again."
-msgstr "不再询问此问题(&Q)"
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

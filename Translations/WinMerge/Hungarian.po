@@ -2188,6 +2188,10 @@ msgid "To right"
 msgstr "Jobbra"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "&Ne jelenjen meg többet ez a kérdés."
+
+#, c-format
 msgid "Yes"
 msgstr "Igen"
 
@@ -2440,10 +2444,6 @@ msgstr "Kihagy &mindent"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "&Ne jelenjen meg többet ez a kérdés."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

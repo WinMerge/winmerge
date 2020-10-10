@@ -1704,6 +1704,9 @@ msgstr "От ляво"
 msgid "To right"
 msgstr "Към дясно"
 
+msgid "Don't ask this &question again."
+msgstr "Без &повторно задаване на този въпрос"
+
 msgid "Yes"
 msgstr "Да"
 
@@ -1952,9 +1955,6 @@ msgstr "Прескачане на &всички"
 
 msgid "Don't display this &message again."
 msgstr "Без &повторно показване на това съобщение"
-
-msgid "Don't ask this &question again."
-msgstr "Без &повторно задаване на този въпрос"
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

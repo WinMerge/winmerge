@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-09-27 23:38+0000\n"
+"POT-Creation-Date: 2020-10-11 06:39+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1695,6 +1695,9 @@ msgstr ""
 msgid "To right"
 msgstr ""
 
+msgid "Don't ask this &question again."
+msgstr ""
+
 msgid "Yes"
 msgstr ""
 
@@ -1896,9 +1899,6 @@ msgid "Skip &all"
 msgstr ""
 
 msgid "Don't display this &message again."
-msgstr ""
-
-msgid "Don't ask this &question again."
 msgstr ""
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."

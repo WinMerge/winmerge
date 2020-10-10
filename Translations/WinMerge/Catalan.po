@@ -2187,6 +2187,10 @@ msgid "To right"
 msgstr "A dreta"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "No tornis a preguntar-ho."
+
+#, c-format
 msgid "Yes"
 msgstr "Sí"
 
@@ -2439,10 +2443,6 @@ msgstr "Omet-ho &tot"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "No tornis amostrar aquest missatge."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "No tornis a preguntar-ho."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

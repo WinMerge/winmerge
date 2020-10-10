@@ -2194,6 +2194,10 @@ msgid "To right"
 msgstr "Oikealle"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Älä tee tätä kysymystä vastaisuudessa."
+
+#, c-format
 msgid "Yes"
 msgstr "Kyllä"
 
@@ -2499,10 +2503,6 @@ msgstr "Ohita kaikki"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Älä näytä tätä ilmoitusta uudestaan."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Älä tee tätä kysymystä vastaisuudessa."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Jos haluat, että tämä sanomaruutu on jälleen näkyvissä, paina Asetukset-ikkunan Yleiset-sivun Palauta-painiketta."

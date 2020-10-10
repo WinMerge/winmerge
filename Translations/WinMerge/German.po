@@ -2188,6 +2188,10 @@ msgid "To right"
 msgstr "Nach rechts"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Diese &Frage nicht erneut stellen."
+
+#, c-format
 msgid "Yes"
 msgstr "Ja"
 
@@ -2440,10 +2444,6 @@ msgstr "&Alle überspringen"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Diese &Meldung nicht erneut anzeigen."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Diese &Frage nicht erneut stellen."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."

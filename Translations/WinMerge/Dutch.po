@@ -1711,6 +1711,9 @@ msgstr "Van links"
 msgid "To right"
 msgstr "Naar rechts"
 
+msgid "Don't ask this &question again."
+msgstr "Deze vraag niet meer stellen."
+
 msgid "Yes"
 msgstr "Ja"
 
@@ -1973,9 +1976,6 @@ msgstr "Alles overslaan"
 
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
-
-msgid "Don't ask this &question again."
-msgstr "Deze vraag niet meer stellen."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

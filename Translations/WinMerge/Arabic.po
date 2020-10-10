@@ -1710,6 +1710,9 @@ msgstr "من اليسار"
 msgid "To right"
 msgstr "من اليمين"
 
+msgid "Don't ask this &question again."
+msgstr "لا ت&سأل هذا السؤال مجددا."
+
 msgid "Yes"
 msgstr "نعم"
 
@@ -1973,9 +1976,6 @@ msgstr "تخط&ي الكل"
 
 msgid "Don't display this &message again."
 msgstr "لا تع&رض هذه الرسالة مجددا."
-
-msgid "Don't ask this &question again."
-msgstr "لا ت&سأل هذا السؤال مجددا."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

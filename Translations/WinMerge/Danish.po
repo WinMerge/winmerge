@@ -2195,6 +2195,10 @@ msgid "To right"
 msgstr "Til højre"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Stil ikke dette sp&ørgsmål igen."
+
+#, c-format
 msgid "Yes"
 msgstr "Ja"
 
@@ -2484,10 +2488,6 @@ msgstr "Spring over all&e"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Vis ikke denne &besked igen."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Stil ikke dette sp&ørgsmål igen."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""

@@ -2191,6 +2191,10 @@ msgid "To right"
 msgstr "Eskuinera"
 
 #, c-format
+msgid "Don't ask this &question again."
+msgstr "Ez egin ga&ldera hau berriro."
+
+#, c-format
 msgid "Yes"
 msgstr "Bai"
 
@@ -2473,10 +2477,6 @@ msgstr "Jauzi &guztiak"
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Ez erakutsi &mezu hau berriro."
-
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Ez egin ga&ldera hau berriro."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
