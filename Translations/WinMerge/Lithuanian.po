@@ -1704,6 +1704,9 @@ msgstr "Iš kairės"
 msgid "To right"
 msgstr "Į dešinę"
 
+msgid "Don't ask this &question again."
+msgstr "Daugiau neklausti šio &klausimo."
+
 msgid "Yes"
 msgstr "Taip"
 
@@ -1907,9 +1910,6 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-msgid "Don't ask this &question again."
-msgstr "Daugiau neklausti šio &klausimo."
-
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
 
@@ -2036,8 +2036,8 @@ msgstr "Filtro failas jau yra. Perrašyti esamą filtrą?"
 msgid "Regular expression"
 msgstr "Reguliarioji išraiška"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr "Filtrai buvo pakeisti. Ar norite atnaujinti visus atvertus katalogų palyginimus?\n\nJei nenorite atnaujinti visų palyginimų dabar, galite pasirinkti Ne ir atnaujinti palyginimus vėliau."
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgstr "Filtrai buvo pakeisti. Ar norite atnaujinti visus atvertus katalogų palyginimus?\n\nJei nenorite atnaujinti visų palyginimų dabar, galite pasirinkti 'Ne' ir atnaujinti palyginimus vėliau."
 
 msgid "Folder Comparison Results"
 msgstr "Katalogų lyginimo rezultatai"
@@ -3125,3 +3125,4 @@ msgstr "Dist: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
+
