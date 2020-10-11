@@ -1633,7 +1633,7 @@ msgstr "Gehe zu"
 
 #, c-format
 msgid "G&oto:"
-msgstr "Zeile:"
+msgstr "Zeile/Unt.:"
 
 #, c-format
 msgid "File"
@@ -3364,7 +3364,7 @@ msgid "Temporary files could not be created. Check your temporary path settings.
 msgstr "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
 
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruchformat.\n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln?\n\nHinweis: Wenn Sie immer alle Zeilenumbruchformate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren' unter 'Vergleichen' im Einstellungsdialog (erreichbar unter Bearbeiten/Einstellungen)."
+msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruchformat.\n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln?\n\nHinweis: Wenn Sie immer alle Zeilenumbruchformate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren' unter Einstellungen/Vergleichen/Allgemein."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3428,7 +3428,7 @@ msgstr "%1 Vorkommen ersetzt."
 
 #, c-format
 msgid "Cannot find string \"%s\"."
-msgstr "Kann \"%s\."
+msgstr "Kann \"%s\" nicht finden."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
 msgstr "Sie wechseln jetzt in den Merge-Modus. Wenn Sie den Merge-Modus deaktivieren möchten, drücken Sie die Taste F9."
