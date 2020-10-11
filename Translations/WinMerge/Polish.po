@@ -1433,10 +1433,10 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wybierz domyślne kodowanie dla otwieranych plików nie będących plikami Unicode:"
 
 msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nwymagany restart sesji."
+msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
 
 msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
-msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nwymagany restart sesji."
+msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
 
 msgid "System codepage"
 msgstr "Strona kodowa systemu"

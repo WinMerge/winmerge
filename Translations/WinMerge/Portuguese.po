@@ -1444,12 +1444,12 @@ msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart s
 msgstr ""
 "Detetar informação da página de código para estes ficheiros: .html, .rc, ."
 "xml\n"
-"necessário para reiniciar sessão."
+"Necessário para reiniciar sessão."
 
 msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
 msgstr ""
 "Detetar página de código para ficheiros de texto que utilizam mlang.dll\n"
-"necessário para reiniciar sessão."
+"Necessário para reiniciar sessão."
 
 msgid "System codepage"
 msgstr "Página de código do sistema"
