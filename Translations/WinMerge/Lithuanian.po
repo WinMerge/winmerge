@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-09-27 23:38+0000\n"
-"PO-Revision-Date: 2020-10-06 20:10+0300\n"
+"POT-Creation-Date: 2020-10-11 06:39+0000\n"
+"PO-Revision-Date: 2020-10-12 09:09+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2037,7 +2037,7 @@ msgid "Regular expression"
 msgstr "Reguliarioji išraiška"
 
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
-msgstr "Filtrai buvo pakeisti. Ar norite atnaujinti visus atvertus katalogų palyginimus?\n\nJei nenorite atnaujinti visų palyginimų dabar, galite pasirinkti 'Ne' ir atnaujinti palyginimus vėliau."
+msgstr "Filtrai buvo pakeisti. Ar norite atnaujinti visus atvertus katalogų palyginimus?\n\nJei nenorite atnaujinti visų palyginimų dabar, galite pasirinkti „Ne“ ir atnaujinti palyginimus vėliau."
 
 msgid "Folder Comparison Results"
 msgstr "Katalogų lyginimo rezultatai"
@@ -3004,37 +3004,37 @@ msgid "You can specify the following parameters to the path:\n$file: Path name o
 msgstr "Galite nurodyti šiuos parametrus į kelią:\n$file: Esamo failo kelio pavadinimas\n$linenum: Esamos žymeklio pozicijos eilutės numeris"
 
 msgid "default"
-msgstr ""
+msgstr "numatytasis"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimalus"
 
 msgid "patience"
-msgstr ""
+msgstr "kantrus"
 
 msgid "histogram"
-msgstr ""
+msgstr "histograma"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite numatytasis"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite dantytasis"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI klasikinis"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI naturalus"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite naturalus"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite naturalus simetrinis"
 
 msgid "MDI child window or main window"
 msgstr "MDI antrinį arba pagrindinį langą"
