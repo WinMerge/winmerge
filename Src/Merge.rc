@@ -230,7 +230,6 @@ BEGIN
     BEGIN
         MENUITEM "Cl&ose",                      ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
-        MENUITEM "New Window",                  ID_WINDOW_NEW
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -372,7 +371,6 @@ BEGIN
     BEGIN
         MENUITEM "Cl&ose",                      ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
-        MENUITEM "New Window",                  ID_WINDOW_NEW
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -627,7 +625,6 @@ BEGIN
     BEGIN
         MENUITEM "Cl&ose",                      ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
-        MENUITEM "New Window",                  ID_WINDOW_NEW
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR

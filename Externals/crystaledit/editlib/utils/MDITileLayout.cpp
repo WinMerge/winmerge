@@ -360,9 +360,9 @@ namespace MDITileLayout
 		Pane* pPane = m_pPane->FindPaneByWindow(pChildWnd);
 		if (pPane == nullptr)
 			return;
-		CRect rc = GetMainRect();
-		CRect rcChild = GetChildRect(pChildWnd);
-		pPane->UpdateSizeRatio(rc, rcChild);
+		CRect rcMain = GetMainRect();
+		CRect rcChild = GetChildRect(pChildWnd, rcMain);
+		pPane->UpdateSizeRatio(rcMain, rcChild);
 
 		UpdateChildWindows();
 	}
@@ -390,6 +390,18 @@ namespace MDITileLayout
 		return nullptr;
 	}
 
+	CRect LayoutManager::AdjustChildRect(const CRect& rcMain, const CRect& rc, DWORD dwStyle, DWORD dwExStyle, int dpi) const
+	{
+		CRect rcChild = rc;
+		CRect rcChildOrg = rcChild;
+		DpiAware::AdjustWindowRectExForDpi(rcChild, dwStyle, false, dwExStyle, dpi);
+		if (rcChildOrg.right < rcMain.right)
+			rcChild.right = rcChildOrg.right;
+		if (rcChildOrg.bottom < rcMain.bottom)
+			rcChild.bottom = rcChildOrg.bottom;
+		return rcChild;
+	}
+
 	void LayoutManager::UpdateChildWindows()
 	{
 		if (!m_bEnabled || m_pMDIFrameWnd->MDIGetActive()->GetSafeHwnd() == nullptr)
@@ -405,13 +417,7 @@ namespace MDITileLayout
 		{
 			if (Pane* pPane = m_pPane->FindPaneByWindow(pWnd))
 			{
-				CRect rcChild = pPane->GetRect(rc);
-				CRect rcChildOrg = rcChild;
-				DpiAware::AdjustWindowRectExForDpi(rcChild, pWnd->GetStyle(), false, pWnd->GetExStyle(), dpi);
-				if (rcChildOrg.right < rc.right)
-					rcChild.right = rcChildOrg.right;
-				if (rcChildOrg.bottom < rc.bottom)
-					rcChild.bottom = rcChildOrg.bottom;
+				CRect rcChild = AdjustChildRect(rc, pPane->GetRect(rc), pWnd->GetStyle(), pWnd->GetExStyle(), dpi);
 				DeferWindowPos(hdwp, pWnd->m_hWnd, nullptr,
 					rcChild.left - rc.left + rcMainMargin.left,
 					rcChild.top - rc.top + rcMainMargin.top,
@@ -430,12 +436,17 @@ namespace MDITileLayout
 		return rc;
 	}
 
-	CRect LayoutManager::GetChildRect(CWnd* pChildWnd) const
+	CRect LayoutManager::GetChildRect(CWnd* pChildWnd, const CRect& rcMain) const
 	{
 		const int dpi = DpiAware::GetDpiForWindow(pChildWnd->m_hWnd);
 		CRect rc, rcOuter;
 		pChildWnd->GetWindowRect(rc);
 		DpiAware::AdjustWindowRectExForDpi(rcOuter, pChildWnd->GetStyle(), false, pChildWnd->GetExStyle(), dpi);
-		return { rc.left - rcOuter.left, rc.top - rcOuter.top, rc.right - rcOuter.right, rc.bottom - rcOuter.bottom };
+		CRect rcChild { rc.left - rcOuter.left, rc.top - rcOuter.top, rc.right - rcOuter.right, rc.bottom - rcOuter.bottom};
+		if (rc.right < rcMain.right)
+			rcChild.right = rc.right;
+		if (rc.bottom < rcMain.bottom)
+			rcChild.bottom = rc.bottom;
+		return rcChild;
 	}
 }

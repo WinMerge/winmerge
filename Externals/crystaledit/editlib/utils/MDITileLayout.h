@@ -70,13 +70,14 @@ namespace MDITileLayout
 		void  NotifyChildOpened(CWnd* pChlidWnd);
 		void  NotifyChildClosed(CWnd* pChlidWnd);
 		void  NotifyChildResized(CWnd* pChlidWnd);
+		CRect AdjustChildRect(const CRect& rcMain, const CRect& rc, DWORD dwStyle, DWORD dwExStyle, int dpi) const;
 
 	protected:
 		Pane* FindPaneByPosition(CPoint& pt) const;
 		Pane* GetActivePane() const;
 		void  UpdateChildWindows();
 		CRect GetMainRect() const;
-		CRect GetChildRect(CWnd* pChildWnd) const;
+		CRect GetChildRect(CWnd* pChildWnd, const CRect& rcMain) const;
 
 		bool m_bInResizing = false;
 		bool m_bEnabled = false;
