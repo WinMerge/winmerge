@@ -547,6 +547,7 @@
 #define IDC_DIFF_ALGORITHM              8828
 #define IDC_INDENT_HEURISTIC            8829
 #define IDC_LIST_FILE                   8830
+#define IDC_FLDCONFIRM_DONTASKAGAIN     8831
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1332,7 +1333,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
 #define _APS_NEXT_COMMAND_VALUE         34164
-#define _APS_NEXT_CONTROL_VALUE         8831
+#define _APS_NEXT_CONTROL_VALUE         8832
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif
