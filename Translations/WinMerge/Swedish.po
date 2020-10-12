@@ -1844,7 +1844,7 @@ msgstr "Välj FörvalsTextKod att användas när icke-Unicodefiler öppnas:"
 msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Urskilj TextKodning info för dessa filer: .html, .rc, .xml\n"
-"- behöver omstartning av sessionen"
+"- behöver omstartning av sessionen."
 
 msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
 msgstr ""
@@ -2701,7 +2701,7 @@ msgid "Filters were updated. Do you want to refresh all open folder compares?\n\
 msgstr ""
 "Filtren blev aktualiserade Vill Ni aktualisera alla öppna MappJämförelser?\n"
 "\n"
-"Om Ni inte vill göra detta nu kan Ni välja 'Nej' och aktualisera jämförelser senare."
+"Om Ni inte vill göra detta nu kan Ni välja ''Nej'' och aktualisera jämförelser senare."
 
 #, c-format
 msgid "Folder Comparison Results"
