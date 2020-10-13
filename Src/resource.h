@@ -16,6 +16,7 @@
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
+#define IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL 116
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
@@ -1334,6 +1335,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        253
 #define _APS_NEXT_COMMAND_VALUE         34164
 #define _APS_NEXT_CONTROL_VALUE         8832
-#define _APS_NEXT_SYMED_VALUE           116
+#define _APS_NEXT_SYMED_VALUE           117
 #endif
 #endif

@@ -828,6 +828,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Windows (CRLF)",             ID_EOL_TO_DOS
+        MENUITEM "&Unix (LF)",                  ID_EOL_TO_UNIX
+        MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
