@@ -21,7 +21,6 @@ CompareOptions::CompareOptions()
 , m_bIgnoreEOLDifference(false)
 , m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 , m_bIndentHeuristic(true)
-, m_bCopyFullLine(false)
 {
 }
 
@@ -35,7 +34,6 @@ CompareOptions::CompareOptions(const CompareOptions & options)
 , m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
 , m_diffAlgorithm(options.m_diffAlgorithm)
 , m_bIndentHeuristic(options.m_bIndentHeuristic)
-, m_bCopyFullLine(options.m_bCopyFullLine)
 {
 }
 
@@ -76,7 +74,6 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
 	m_bIndentHeuristic = options.bIndentHeuristic;
-	m_bCopyFullLine = options.bCopyFullLine;
 	switch (options.nDiffAlgorithm)
 	{
 	case 0:
