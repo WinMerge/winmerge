@@ -79,6 +79,8 @@ extern const String OPT_REPORTFILES_INCLUDEFILECMPREPORT OP("ReportFiles/Include
 // File compare
 extern const String OPT_AUTOMATIC_RESCAN OP("Settings/AutomaticRescan");
 extern const String OPT_ALLOW_MIXED_EOL OP("Settings/AllowMixedEOL");
+// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+extern const String OPT_COPY_FULL_LINE OP("Settings/CopyFullLine");
 extern const String OPT_TAB_SIZE OP("Settings/TabSize");
 extern const String OPT_TAB_TYPE OP("Settings/TabType");
 extern const String OPT_WORDWRAP OP("Settings/WordWrap");
@@ -210,8 +212,6 @@ extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoin
 extern const String OPT_CMP_INCLUDE_SUBDIRS OP("Settings/Recurse");
 extern const String OPT_CMP_DIFF_ALGORITHM OP("Settings/DiffAlgorithm");
 extern const String OPT_CMP_INDENT_HEURISTIC OP("Settings/IndentHeuristic");
-// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-extern const String OPT_CMP_COPY_FULL_LINE OP("Settings/CopyFullLine");
 
 // Image Compare options
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
