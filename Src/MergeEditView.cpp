@@ -1871,9 +1871,9 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 			{
 				CWaitCursor waitstatus;
 				
-				// Setting CopyFullLine (OPT_CMP_COPY_FULL_LINE)
+				// Setting CopyFullLine (OPT_COPY_FULL_LINE)
 				// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-				if (GetOptionsMgr()->GetBool(OPT_CMP_COPY_FULL_LINE))
+				if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
 				{
 					// old behaviour: copy full line
 					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
