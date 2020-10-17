@@ -3607,6 +3607,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Le rapport a été créé avec succès."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Le même fichier est ouvert dans les deux volets."
