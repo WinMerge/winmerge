@@ -9,7 +9,7 @@ extern "C" {
 static bool read_mmfile(int fd, mmfile_t& mmfile)
 {
 	struct _stat64 st;
-	if (_fstat64(fd, &st) == -1)
+	if (myfstat(fd, &st) == -1)
 		return false;
 	if (st.st_size < 0 || st.st_size > INT32_MAX)
 		return false;

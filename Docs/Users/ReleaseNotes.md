@@ -26,6 +26,8 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - BugFix: A white vertical rectangle was sometimes drawn in the selected area
   - BugFix: The title of the file comparison window after changing the language
       was accidentally changed to "Untitled left/right"
+  - BugFix: Wrong merging (GitHub #420)
+      (minimal/patience/histogram diff algorithm did not work on Windows XP)
   - Extended F4 key movement range to the whole file
   - Don't treat UTF-8 and UTF-8 with BOM the same when the 
       "Ignore codepage differences" option is disabled
@@ -33,10 +35,12 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
 ### Folder compare
   - BugFix: Appropriate error messages were not displayed when the file to be
       deleted no longer existed
+  - BugFix: 'Show Middle/Right Unique items' menu item does not work properly
+      in 3-way folder compare (osdn.net #40672)
   - CTRL+Drag folders now has the opposite behavior of the current
       Include Subfolders option
 
-### Folder compare
+### Image compare
   - BugFix: Fix scrolling glitches (GitHub WinMerge/winimerge PR #8)
   - Reduce flicker on resize (GitHub WinMerge/winimerge PR #9)
 
@@ -97,7 +101,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
       instead of the new text. (GitHub #368)
   - BugFix: Fix a problem where markers that are out of the range of the 
       current difference appear in the difference pane. (osdn.net 40407)
-  - BugFix: HTML5 encoding (<meta charset="..." >) is ignored. (osdn.net #40476)
+  - BugFix: HTML5 encoding (&lt;meta charset="..." &gt;) is ignored. (osdn.net #40476)
   - '=' should be included in word separator (osdn.net #40224)
   - Allow specifying default for EOL warning checkbox (GitHub #297)
   - Only indent existing lines (GitHub #356)

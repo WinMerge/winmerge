@@ -15,6 +15,7 @@
 #define U_IS_SURROGATE(c) (((c)&0xfffff800)==0xd800)
 #define U16_IS_SURROGATE(c) U_IS_SURROGATE(c)
 #define UBRK_DONE ((int32_t) -1)
+#define U_MAX_VERSION_LENGTH 4
 
 typedef enum UBreakIteratorType { UBRK_CHARACTER = 0, UBRK_WORD = 1, UBRK_LINE = 2, UBRK_SENTENCE = 3 } UBreakIteratorType;
 typedef int32_t UChar32;
@@ -28,6 +29,7 @@ typedef struct UParseError {
 	UChar   preContext[U_PARSE_CONTEXT_LEN];
 	UChar   postContext[U_PARSE_CONTEXT_LEN];
 } UParseError;
+typedef uint8_t UVersionInfo[U_MAX_VERSION_LENGTH];
 
 class ICUBreakIterator;
 
@@ -35,68 +37,29 @@ template<int N>
 extern thread_local std::unique_ptr<ICUBreakIterator> m_pCharacterBreakIterator;
 extern thread_local std::unique_ptr<ICUBreakIterator> m_pWordBreakIterator;
 
+typedef void (*u_getVersion_type)(UVersionInfo versionArray);
 typedef UBreakIterator* (*ubrk_open_type)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
-ICU_EXTERN UBreakIterator* (*g_pubrk_open)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
-inline UBreakIterator* ubrk_open(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status)
-{
-	return g_pubrk_open(type, locale, text, textLength, status);
-}
-
 typedef UBreakIterator* (*ubrk_openRules_type)(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status);
-ICU_EXTERN UBreakIterator* (*g_pubrk_openRules)(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status);
-inline UBreakIterator* ubrk_openRules(const UChar *rules, int32_t rulesLength, const UChar *text, int32_t textLength, UParseError *parseErr, UErrorCode *status)
-{
-	return g_pubrk_openRules(rules, rulesLength, text, textLength, parseErr, status);
-}
-
+typedef UBreakIterator* (*ubrk_openBinaryRules_type)(const uint8_t *binaryRules, int32_t rulesLength, const UChar *  text, int32_t textLength, UErrorCode *status);
 typedef void (*ubrk_setText_type)(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status);
-ICU_EXTERN void (*g_pubrk_setText)(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status);
-inline void ubrk_setText(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status)
-{
-	g_pubrk_setText(bi, text, textLength, status);
-}
-
 typedef void (*ubrk_close_type)(UBreakIterator* bi);
-ICU_EXTERN void (*g_pubrk_close)(UBreakIterator* bi);
-inline void ubrk_close(UBreakIterator* bi)
-{
-	g_pubrk_close(bi);
-}
-
 typedef int32_t (*ubrk_first_type)(UBreakIterator* bi);
-ICU_EXTERN int32_t (*g_pubrk_first)(UBreakIterator* bi);
-inline int32_t ubrk_first(UBreakIterator* bi)
-{
-	return g_pubrk_first(bi);
-}
-
 typedef int32_t (*ubrk_previous_type)(UBreakIterator* bi);
-ICU_EXTERN int32_t (*g_pubrk_previous)(UBreakIterator* bi);
-inline int32_t ubrk_previous(UBreakIterator* bi)
-{
-	return g_pubrk_previous(bi);
-}
-
 typedef int32_t (*ubrk_next_type)(UBreakIterator* bi);
-ICU_EXTERN int32_t (*g_pubrk_next)(UBreakIterator* bi);
-inline int32_t ubrk_next(UBreakIterator* bi)
-{
-	return g_pubrk_next(bi);
-}
-
 typedef int32_t (*ubrk_preceding_type)(UBreakIterator* bi, int32_t offset);
-ICU_EXTERN int32_t (*g_pubrk_preceding)(UBreakIterator* bi, int32_t offset);
-inline int32_t ubrk_preceding(UBreakIterator* bi, int32_t offset)
-{
-	return g_pubrk_preceding(bi, offset);
-}
-
 typedef int32_t (*ubrk_following_type)(UBreakIterator* bi, int32_t offset);
-ICU_EXTERN int32_t (*g_pubrk_following)(UBreakIterator* bi, int32_t offset);
-inline int32_t ubrk_following(UBreakIterator* bi, int32_t offset)
-{
-	return g_pubrk_following(bi, offset);
-}
+
+ICU_EXTERN u_getVersion_type u_getVersion;
+ICU_EXTERN ubrk_open_type ubrk_open;
+ICU_EXTERN ubrk_openRules_type ubrk_openRules;
+ICU_EXTERN ubrk_openBinaryRules_type ubrk_openBinaryRules;
+ICU_EXTERN ubrk_setText_type ubrk_setText;
+ICU_EXTERN ubrk_close_type ubrk_close;
+ICU_EXTERN ubrk_first_type ubrk_first;
+ICU_EXTERN ubrk_previous_type ubrk_previous;
+ICU_EXTERN ubrk_next_type ubrk_next;
+ICU_EXTERN ubrk_preceding_type ubrk_preceding;
+ICU_EXTERN ubrk_following_type ubrk_following;
 
 class ICULoader {
 public:
@@ -105,16 +68,18 @@ public:
 		m_hLibrary = LoadLibraryW(L"icu.dll");
 		if (!m_hLibrary)
 			return;
-		g_pubrk_open = reinterpret_cast<ubrk_open_type>(GetProcAddress(m_hLibrary, "ubrk_open"));
-		g_pubrk_openRules = reinterpret_cast<ubrk_openRules_type>(GetProcAddress(m_hLibrary, "ubrk_openRules"));
-		g_pubrk_setText = reinterpret_cast<ubrk_setText_type>(GetProcAddress(m_hLibrary, "ubrk_setText"));
-		g_pubrk_close = reinterpret_cast<ubrk_close_type>(GetProcAddress(m_hLibrary, "ubrk_close"));
-		g_pubrk_first = reinterpret_cast<ubrk_first_type>(GetProcAddress(m_hLibrary, "ubrk_first"));
-		g_pubrk_previous = reinterpret_cast<ubrk_previous_type>(GetProcAddress(m_hLibrary, "ubrk_previous"));
-		g_pubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
-		g_pubrk_preceding = reinterpret_cast<ubrk_preceding_type>(GetProcAddress(m_hLibrary, "ubrk_preceding"));
-		g_pubrk_following = reinterpret_cast<ubrk_following_type>(GetProcAddress(m_hLibrary, "ubrk_following"));
-		g_pubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
+		u_getVersion = reinterpret_cast<u_getVersion_type>(GetProcAddress(m_hLibrary, "u_getVersion"));
+		ubrk_open = reinterpret_cast<ubrk_open_type>(GetProcAddress(m_hLibrary, "ubrk_open"));
+		ubrk_openRules = reinterpret_cast<ubrk_openRules_type>(GetProcAddress(m_hLibrary, "ubrk_openRules"));
+		ubrk_openBinaryRules = reinterpret_cast<ubrk_openBinaryRules_type>(GetProcAddress(m_hLibrary, "ubrk_openBinaryRules"));
+		ubrk_setText = reinterpret_cast<ubrk_setText_type>(GetProcAddress(m_hLibrary, "ubrk_setText"));
+		ubrk_close = reinterpret_cast<ubrk_close_type>(GetProcAddress(m_hLibrary, "ubrk_close"));
+		ubrk_first = reinterpret_cast<ubrk_first_type>(GetProcAddress(m_hLibrary, "ubrk_first"));
+		ubrk_previous = reinterpret_cast<ubrk_previous_type>(GetProcAddress(m_hLibrary, "ubrk_previous"));
+		ubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
+		ubrk_preceding = reinterpret_cast<ubrk_preceding_type>(GetProcAddress(m_hLibrary, "ubrk_preceding"));
+		ubrk_following = reinterpret_cast<ubrk_following_type>(GetProcAddress(m_hLibrary, "ubrk_following"));
+		ubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
 
 	}
 	~ICULoader()
@@ -122,7 +87,7 @@ public:
 		if (m_hLibrary)
 			FreeLibrary(m_hLibrary);
 	}
-	static bool IsLoaded() { return m_hLibrary != nullptr && g_pubrk_open != nullptr; }
+	static bool IsLoaded() { return m_hLibrary != nullptr && ubrk_open != nullptr; }
 private:
 	static HMODULE m_hLibrary;
 };
@@ -139,12 +104,22 @@ public:
 			if (type == UBRK_CHARACTER)
 			{
 				UParseError parseError;
-				m_iter = ubrk_openRules(kCustomRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomRules))), text, textLength, &parseError, &status);
+				UVersionInfo ver;
+				u_getVersion(ver);
+				if (ver[0] == 64)
+					m_iter = ubrk_openBinaryRules(kCustomBinaryRules, kCustomBinaryRules_size, text, textLength, &status);
+				else
+					m_iter = ubrk_openRules(kCustomRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomRules))), text, textLength, &parseError, &status);
 			}
 			else if (type == UBRK_WORD)
 			{
 				UParseError parseError;
-				m_iter = ubrk_openRules(kCustomWordBreakRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomWordBreakRules))), text, textLength, &parseError, &status);
+				UVersionInfo ver;
+				u_getVersion(ver);
+				if (ver[0] == 64)
+					m_iter = ubrk_openBinaryRules(kCustomWordBreakBinaryRules, kCustomWordBreakBinaryRules_size, text, textLength, &status);
+				else
+					m_iter = ubrk_openRules(kCustomWordBreakRules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(kCustomWordBreakRules))), text, textLength, &parseError, &status);
 			}
 			else
 			{
@@ -351,5 +326,9 @@ private:
 	int m_textLength;
 	static const UChar *kCustomRules;
 	static const UChar *kCustomWordBreakRules;
+	static const uint8_t kCustomBinaryRules[];
+	static const uint8_t kCustomWordBreakBinaryRules[];
+	static const uint32_t kCustomBinaryRules_size;
+	static const uint32_t kCustomWordBreakBinaryRules_size;
 };
 

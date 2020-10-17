@@ -417,7 +417,7 @@ void CDirView::OnInitialUpdate()
 
 	// Restore column orders as they had them last time they ran
 	m_pColItems->LoadColumnOrders(
-		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnOrders")));
+		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();
@@ -495,8 +495,8 @@ void CDirView::ReloadColumns()
 
 	UpdateColumnNames();
 	m_pColItems->LoadColumnWidths(
-		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
-		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
+		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 	SetColAlignments();
 }
 
@@ -1108,10 +1108,15 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
-		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
+	{
+		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
+		GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
+	}
+	{
+		const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+		GetOptionsMgr()->SaveOption(keyname,
+			m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)));
+	}
 
 	CListView::OnDestroy();
 
@@ -2369,8 +2374,8 @@ bool CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	GetOptionsMgr()->SaveOption(keyname,
 		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 	return true;
 }
@@ -2460,8 +2465,8 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		// Now redraw screen
 		UpdateColumnNames();
 		m_pColItems->LoadColumnWidths(
-			(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
-			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+			GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
+			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 		Redisplay();
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
@@ -2540,8 +2545,8 @@ void CDirView::OnCustomizeColumns()
 {
 	// Located in DirViewColHandler.cpp
 	OnEditColumns();
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS;
+	GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
 }
 
 void CDirView::OnCtxtOpenWithUnpacker()
@@ -4148,10 +4153,10 @@ void CDirView::OnEditColumns()
 	if (dlg.DoModal() != IDOK)
 		return;
 
-	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
-	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
-		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(DefColumnWidth) :
-		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))).c_str());
+	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
+	GetOptionsMgr()->SaveOption(keyname,
+		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
+		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
 
 	// Reset our data to reflect the new data from the dialog
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();

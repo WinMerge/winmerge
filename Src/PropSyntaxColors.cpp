@@ -55,7 +55,7 @@ void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropSyntaxColors, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropSyntaxColors, OptionsPanel)
 	ON_BN_CLICKED(IDC_SCOLOR_KEYWORDS, OnBnClickedEcolor<COLORINDEX_KEYWORD>)
 	ON_BN_CLICKED(IDC_SCOLOR_FUNCTIONS, OnBnClickedEcolor<COLORINDEX_FUNCNAME>)
 	ON_BN_CLICKED(IDC_SCOLOR_COMMENTS, OnBnClickedEcolor<COLORINDEX_COMMENT>)

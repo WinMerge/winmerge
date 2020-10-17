@@ -169,6 +169,7 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	CFont m_fontGUI;
+	ATL::CImage m_imageForInitializingGdiplus;
 };
 
 extern CMergeApp theApp;

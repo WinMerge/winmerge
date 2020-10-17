@@ -43,7 +43,7 @@ void PropDirColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropDirColors, CDialog)
+BEGIN_MESSAGE_MAP(PropDirColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropDirColors)
 	ON_BN_CLICKED(IDC_DIR_ITEM_EQUAL_COLOR, OnDirItemEqualColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_EQUAL_TEXT_COLOR, OnDirItemEqualTextColor)

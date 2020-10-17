@@ -150,6 +150,8 @@ BOOL CMergeApp::InitInstance()
 	InitCommonControls();    // initialize common control library
 	CWinApp::InitInstance(); // call parent class method
 
+	m_imageForInitializingGdiplus.Load((IStream*)nullptr); // initialize GDI+
+
 	// Runtime switch so programmer may set this in interactive debugger
 	int dbgmem = 0;
 	if (dbgmem)
@@ -397,9 +399,8 @@ BOOL CMergeApp::InitInstance()
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
 	pMainFrame->MDISetMenu(pNewMenu, nullptr);
 
-	// The main window has been initialized, so activate and update it.
+	// The main window has been initialized, so activate it.
 	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
-	pMainFrame->UpdateWindow();
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!

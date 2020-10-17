@@ -69,7 +69,7 @@ void PropCompareBinary::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCompareBinary, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCompareBinary, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompareBinary)
 	ON_BN_CLICKED(IDC_COMPAREBINARY_VIEWSETTINGS, OnViewSettings)
 	ON_BN_CLICKED(IDC_COMPAREBINARY_BINARYMODE, OnBinaryMode)

@@ -54,7 +54,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCompareFolder, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompareFolder)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP

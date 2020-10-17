@@ -37,6 +37,10 @@
 #define new DEBUG_NEW
 #endif
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
+
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
 
@@ -197,6 +201,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -211,11 +217,13 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
 	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3119,7 +3127,7 @@ void CMergeEditView::RefreshOptions()
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
 		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
@@ -3611,6 +3619,17 @@ void CMergeEditView::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(GetViewTabs());
 }
 
+void CMergeEditView::OnViewEOL() 
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_EOL, !GetViewEols());
+	GetDocument()->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewEOL(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetViewEols());
+}
+
 void CMergeEditView::OnSize(UINT nType, int cx, int cy) 
 {
 	if (!IsInitialized())
@@ -3890,7 +3909,7 @@ void CMergeEditView::DocumentsLoaded()
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL), mixedEOLs);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
@@ -4055,6 +4074,30 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	}
 
 	return CGhostTextView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+/**
+ * @brief Called when mouse's horizontal wheel is scrolled.
+ */
+void CMergeEditView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	SCROLLINFO si = { sizeof SCROLLINFO };
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+	VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+	// new horz pos
+	si.nPos += zDelta / 40;
+	if (si.nPos > si.nMax) si.nPos = si.nMax;
+	if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+	SetScrollInfo(SB_HORZ, &si);
+
+	// for update
+	SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+
+	// no default CCrystalTextView
+	CView::OnMouseHWheel(nFlags, zDelta, pt);
 }
 
 /**
@@ -4276,5 +4319,38 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(!m_bDetailView);
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
+}
+
+void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	*pResult = 0;
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	const int pane = pNMItemActivate->iItem / 4;
+
+	switch (pNMItemActivate->iItem % 4)
+	{
+	case 0:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		break;
+	case 1:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		break;
+	case 2:
+	{
+		CPoint point;
+		::GetCursorPos(&point);
+
+		BCMenu menu;
+		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
+		theApp.TranslateMenu(menu.m_hMenu);
+		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
+		break;
+	}
+	case 3:
+		GetDocument()->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
+		break;
+	default:
+		break;
+	}
 }
 
