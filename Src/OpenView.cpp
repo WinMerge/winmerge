@@ -831,6 +831,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
+		paths::PATH_EXISTENCE pathType[3] = {paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST};
 		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
 		UpdateButtonStatesThreadParams *pParams = reinterpret_cast<UpdateButtonStatesThreadParams *>(msg.wParam);
@@ -847,18 +848,18 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		if (!bProject)
 		{
-			if (paths::DoesPathExist(paths[0], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[0] = true;
-			if (paths::DoesPathExist(paths[1], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[1] = true;
-			if (paths.GetSize() > 2 && paths::DoesPathExist(paths[2], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[2] = true;
+			for (int i = 0; i < paths.GetSize(); ++i)
+			{
+				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
+				if (pathType[i] == paths::DOES_NOT_EXIST)
+					bInvalid[i] = true;
+			}
 		}
 
 		// Enable buttons as appropriate
 		if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 		{
-			paths::PATH_EXISTENCE pathsType = paths::DOES_NOT_EXIST;
+			paths::PATH_EXISTENCE pathsType = pathType[0];
 
 			if (paths.GetSize() <= 2)
 			{
@@ -870,8 +871,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 					iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
-					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == paths::DOES_NOT_EXIST)
+					if (pathType[0] != pathType[1])
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
@@ -895,13 +895,14 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
 				{
-					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == paths::DOES_NOT_EXIST)
+					if (pathType[0] != pathType[1] || pathType[0] != pathType[2])
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
+			if (iStatusMsgId != IDS_OPEN_FILESDIRS)
+				pathsType = paths::DOES_NOT_EXIST;
 			bIsaFileCompare = (pathsType == paths::IS_EXISTING_FILE);
 			bIsaFolderCompare = (pathsType == paths::IS_EXISTING_DIR);
 			// Both will be `false` if incompatibilities or something is missing
@@ -973,7 +974,6 @@ void COpenView::TerminateThreadIfRunning()
  */
 void COpenView::OnSelchangePathCombo(UINT nId) 
 {
-	return;
 	const int index = nId - IDC_PATH0_COMBO;
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
@@ -1086,9 +1086,10 @@ void COpenView::OnSelectUnpacker()
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
-	bool bIsaFolderCompare = LOWORD(wParam) != 0;
-	bool bIsaFileCompare = HIWORD(wParam) != 0;
-	bool bProject = HIWORD(lParam) != 0;
+	const bool bIsaFolderCompare = LOWORD(wParam) != 0;
+	const bool bIsaFileCompare = HIWORD(wParam) != 0;
+	const bool bProject = HIWORD(lParam) != 0;
+	const int iStatusMsgId = LOWORD(lParam);
 
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 
@@ -1096,13 +1097,12 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	EnableDlgItem(IDC_UNPACKER_EDIT, bIsaFileCompare);
 	EnableDlgItem(IDC_SELECT_UNPACKER, bIsaFileCompare);
 
-	
 	EnableDlgItem(IDC_FILES_DIRS_GROUP3,  bIsaFolderCompare);
 	EnableDlgItem(IDC_EXT_COMBO, bIsaFolderCompare);
 	EnableDlgItem(IDC_SELECT_FILTER, bIsaFolderCompare);
 	EnableDlgItem(IDC_RECURS_CHECK, bIsaFolderCompare);
 	
-	SetStatus(LOWORD(lParam));
+	SetStatus(iStatusMsgId);
 
 	return 0;
 }
