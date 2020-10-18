@@ -3560,7 +3560,7 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Rapporten blev oprettet succesfuldt."
 
-msgid "Cannot add a synchronization point after the last block."
+msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 #, c-format

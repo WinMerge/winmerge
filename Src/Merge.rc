@@ -3083,7 +3083,7 @@ END
 // FILE COMPARE : SYNC POINT
 STRINGTABLE
 BEGIN
-    IDS_SYNCPOINT_LASTBLOCK "Cannot add a synchronization point after the last block."
+    IDS_SYNCPOINT_LASTBLOCK "Cannot add a synchronization point at this line."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
