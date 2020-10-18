@@ -56,18 +56,12 @@ IMPLEMENT_DYNCREATE(COpenView, CFormView)
 
 BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	//{{AFX_MSG_MAP(COpenView)
-	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPathButton<0>)
-	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPathButton<1>)
-	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPathButton<2>)
+	ON_CONTROL_RANGE(BN_CLICKED, IDC_PATH0_BUTTON, IDC_PATH2_BUTTON, OnPathButton)
 	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP12_BUTTON, (OnSwapButton<IDC_PATH1_COMBO, IDC_PATH2_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
-	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePathCombo<0>)
-	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePathCombo<1>)
-	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePathCombo<2>)
-	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent<0>)
-	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent<1>)
-	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent<2>)
+	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSelchangePathCombo)
+	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnEditEvent)
 	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
@@ -314,7 +308,7 @@ void COpenView::OnPaint()
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
 	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
-    dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+	dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
 	// Draw the resize gripper in the Lower Right corner.
 	CRect rcGrip = rc;
@@ -483,8 +477,12 @@ LRESULT COpenView::OnNcHitTest(CPoint point)
 	return CFormView::OnNcHitTest(point);
 }
 
-void COpenView::OnButton(int index)
+/** 
+ * @brief Called when "Browse..." button is selected for N path.
+ */
+void COpenView::OnPathButton(UINT nId)
 {
+	const int index = nId - IDC_PATH0_BUTTON;
 	String s;
 	String sfolder;
 	UpdateData(TRUE); 
@@ -516,17 +514,7 @@ void COpenView::OnButton(int index)
 	}	
 }
 
-/** 
- * @brief Called when "Browse..." button is selected for N path.
- */
-template <int N>
-void COpenView::OnPathButton()
-{
-	OnButton(N);
-}
-
-template<int id1, int id2>
-void COpenView::OnSwapButton() 
+void COpenView::OnSwapButton(int id1, int id2)
 {
 	String s1, s2;
 	GetDlgItemText(id1, s1);
@@ -534,6 +522,12 @@ void COpenView::OnSwapButton()
 	std::swap(s1, s2);
 	SetDlgItemText(id1, s1);
 	SetDlgItemText(id2, s2);
+}
+
+template<int id1, int id2>
+void COpenView::OnSwapButton() 
+{
+	OnSwapButton(id1, id2);
 }
 
 /** 
@@ -837,8 +831,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
-		int iStatusMsgId = 0;
-		int iUnpackerStatusMsgId = 0;
+		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
 		UpdateButtonStatesThreadParams *pParams = reinterpret_cast<UpdateButtonStatesThreadParams *>(msg.wParam);
 		PathContext paths = pParams->m_paths;
@@ -954,10 +947,7 @@ void COpenView::UpdateButtonStates()
 
 	UpdateButtonStatesThreadParams *pParams = new UpdateButtonStatesThreadParams;
 	pParams->m_hWnd = this->m_hWnd;
-	if (m_strPath[2].empty())
-		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1]);
-	else
-		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1], m_strPath[2]);
+	pParams->m_paths = PathContext(std::vector<String>(&m_strPath[0], &m_strPath[m_strPath[2].empty() ? 2 : 3]));
 
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER + 2, (WPARAM)pParams, 0);
 }
@@ -981,8 +971,10 @@ void COpenView::TerminateThreadIfRunning()
 /**
  * @brief Called when user changes selection in left/middle/right path's combo box.
  */
-void COpenView::OnSelchangeCombo(int index) 
+void COpenView::OnSelchangePathCombo(UINT nId) 
 {
+	return;
+	const int index = nId - IDC_PATH0_COMBO;
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
@@ -993,12 +985,6 @@ void COpenView::OnSelchangeCombo(int index)
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
-}
-
-template <int N>
-void COpenView::OnSelchangePathCombo() 
-{
-	OnSelchangeCombo(N);
 }
 
 void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult) 
@@ -1023,9 +1009,9 @@ void COpenView::OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
 /**
  * @brief Called every time paths are edited.
  */
-template <int N>
-void COpenView::OnEditEvent()
+void COpenView::OnEditEvent(UINT nID)
 {
+	const int N = nID - IDC_PATH0_COMBO;
 	if (CEdit *const edit = m_ctlPath[N].GetEditCtrl())
 	{
 		int const len = edit->GetWindowTextLength();
@@ -1263,12 +1249,17 @@ void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 		UpdateButtonStates();
 }
 
-template <int MSG, int WPARAM, int LPARAM>
-void COpenView::OnEditAction()
+void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
 {
 	CWnd *pCtl = GetFocus();
 	if (pCtl != nullptr)
-		pCtl->PostMessage(MSG, WPARAM, LPARAM);
+		pCtl->PostMessage(msg, wParam, lParam);
+}
+
+template <int MSG, int WPARAM, int LPARAM>
+void COpenView::OnEditAction()
+{
+	OnEditAction(MSG, WPARAM, LPARAM);
 }
 
 /**
