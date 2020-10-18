@@ -2920,6 +2920,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "El informe se ha creado correctamente."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "El mismo archivo está abierto en ambos paneles."
 

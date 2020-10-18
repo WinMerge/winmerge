@@ -2664,6 +2664,9 @@ msgstr "Ошибка создания отчета:\n%1"
 msgid "The report has been created successfully."
 msgstr "Отчет успешно создан."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "На обоих панелях открыт один и тот же файл"
 

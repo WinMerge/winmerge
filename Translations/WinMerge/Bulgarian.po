@@ -2881,6 +2881,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Отчетът беше създаден успешно."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "Еднакви файлове са отворени в двата панела."
 

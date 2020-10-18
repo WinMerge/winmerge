@@ -879,6 +879,7 @@
 #define IDS_REPORT_FILEOVERWRITE        17967
 #define IDS_REPORT_ERROR                17968
 #define IDS_REPORT_SUCCESS              17969
+#define IDS_SYNCPOINT_LASTBLOCK         17970
 #define IDS_FILE_TO_ITSELF              18100
 #define IDS_FILESSAME                   18101
 #define IDS_FILEERROR                   18103

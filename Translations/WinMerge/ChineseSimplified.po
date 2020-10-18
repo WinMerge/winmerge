@@ -2904,6 +2904,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "报告创建成功."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "两侧打开的是同一个文件。"
 

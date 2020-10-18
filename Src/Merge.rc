@@ -3080,6 +3080,12 @@ BEGIN
     IDS_REPORT_SUCCESS      "The report has been created successfully."
 END
 
+// FILE COMPARE : SYNC POINT
+STRINGTABLE
+BEGIN
+    IDS_SYNCPOINT_LASTBLOCK "Cannot add a synchronization point after the last block."
+END
+
 // FILE COMPARISON RESULT : MESSAGES
 STRINGTABLE
 BEGIN

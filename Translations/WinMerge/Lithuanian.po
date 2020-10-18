@@ -2662,6 +2662,9 @@ msgstr "Klaida kuriant ataskaitą:\n%1"
 msgid "The report has been created successfully."
 msgstr "Ataskaita sukurta sėkmingai."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "Tas pats failas pasirinktas abiejose pusėse."
 

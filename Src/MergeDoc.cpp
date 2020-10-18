@@ -3601,13 +3601,22 @@ void CMergeDoc::AddSyncPoint()
 	int nLine[3];
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
-		 int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
-		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+		int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
+		nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+	}
 
+	// If adding a sync point by selecting a ghost line that is after the last block, Cancel the process adding a sync point.
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		if (nLine[nBuffer] >= m_ptBuf[nBuffer]->GetLineCount())
+		{
+			LangMessageBox(IDS_SYNCPOINT_LASTBLOCK, MB_ICONSTOP);
+			return;
+		}
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)
 			DeleteSyncPoint(nBuffer, nLine[nBuffer], false);
-	}
-	
+
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, false);
 

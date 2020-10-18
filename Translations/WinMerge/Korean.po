@@ -3557,6 +3557,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "보고서를 성공적으로 만들었습니다."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "같은 파일을 양쪽 창에 열었습니다."
