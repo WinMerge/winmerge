@@ -223,6 +223,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1869,7 +1870,19 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 			if (firstDiff != -1 && lastDiff != -1)
 			{
 				CWaitCursor waitstatus;
-				pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				
+				// Setting CopyFullLine (OPT_COPY_FULL_LINE)
+				// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+				if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
+				{
+					// old behaviour: copy full line
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+				}
+				else
+				{
+					// new behaviour: copy selected text only
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				}
 			}
 		}
 		else
@@ -4318,5 +4331,38 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(!m_bDetailView);
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
+}
+
+void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	*pResult = 0;
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	const int pane = pNMItemActivate->iItem / 4;
+
+	switch (pNMItemActivate->iItem % 4)
+	{
+	case 0:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		break;
+	case 1:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		break;
+	case 2:
+	{
+		CPoint point;
+		::GetCursorPos(&point);
+
+		BCMenu menu;
+		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
+		theApp.TranslateMenu(menu.m_hMenu);
+		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
+		break;
+	}
+	case 3:
+		GetDocument()->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
+		break;
+	default:
+		break;
+	}
 }
 

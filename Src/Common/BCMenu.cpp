@@ -1836,14 +1836,14 @@ void BCMenu::LoadImages()
 				}
 				HICON hIcon = mapImageList[resourceId]->ExtractIcon(m_AllImagesID[i].bitmapIndex);
 				if (static_cast<int>(i) < m_AllImages.GetImageCount())
-					m_AllImages.Replace(i, hIcon);
+					m_AllImages.Replace(static_cast<int>(i), hIcon);
 				else
 					m_AllImages.Add(hIcon);
 				DestroyIcon(hIcon);
 			}
 			else
 			{
-				ReplaceBitmapInImageList(&m_AllImages, i, resourceId);
+				ReplaceBitmapInImageList(&m_AllImages, static_cast<int>(i), resourceId);
 			}
 			m_AllImagesID[i].resourceId = -1;
 			m_AllImagesID[i].bitmapIndex = -1;

@@ -16,6 +16,7 @@
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
+#define IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL 116
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
@@ -878,6 +879,7 @@
 #define IDS_REPORT_FILEOVERWRITE        17967
 #define IDS_REPORT_ERROR                17968
 #define IDS_REPORT_SUCCESS              17969
+#define IDS_SYNCPOINT_LASTBLOCK         17970
 #define IDS_FILE_TO_ITSELF              18100
 #define IDS_FILESSAME                   18101
 #define IDS_FILEERROR                   18103
@@ -1334,6 +1336,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        253
 #define _APS_NEXT_COMMAND_VALUE         34164
 #define _APS_NEXT_CONTROL_VALUE         8832
-#define _APS_NEXT_SYMED_VALUE           116
+#define _APS_NEXT_SYMED_VALUE           117
 #endif
 #endif

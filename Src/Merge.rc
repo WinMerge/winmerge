@@ -828,6 +828,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Windows (CRLF)",             ID_EOL_TO_DOS
+        MENUITEM "&Unix (LF)",                  ID_EOL_TO_UNIX
+        MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3069,6 +3078,12 @@ STRINGTABLE
 BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "The report has been created successfully."
+END
+
+// FILE COMPARE : SYNC POINT
+STRINGTABLE
+BEGIN
+    IDS_SYNCPOINT_LASTBLOCK "Cannot add a synchronization point after the last block."
 END
 
 // FILE COMPARISON RESULT : MESSAGES

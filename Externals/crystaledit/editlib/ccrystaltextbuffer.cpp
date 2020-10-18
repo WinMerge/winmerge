@@ -762,6 +762,12 @@ GetLineFlags (int nLine) const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
+  if (nLine < 0 || nLine >= m_aLines.size())
+    {
+      ASSERT(false);      //  nLine is out of range.
+      return 0;
+    }
+
   return m_aLines[nLine].m_dwFlags;
 }
 
@@ -843,6 +849,12 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
       if (nLine == -1)
         return;
       bRemoveFromPreviousLine = false;
+    }
+
+  if (nLine < 0 || nLine >= m_aLines.size())
+    {
+      ASSERT(false);    //  nLine is out of range.
+      return;
     }
 
   DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;

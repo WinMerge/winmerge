@@ -2908,6 +2908,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Craezione rapporto completata."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "Lo stesso file è aperto in entrambi i pannelli."
 

@@ -3474,6 +3474,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "L'informe s'ha creat satisfactòriament."
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "El mateix fitxer és obert a ambdues subfinestres."

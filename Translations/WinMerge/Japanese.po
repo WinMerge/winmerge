@@ -2894,6 +2894,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "レポートの生成に成功しました。"
 
+msgid "Cannot add a synchronization point after the last block."
+msgstr "最終ブロックの後ろには同期ポイントを追加できません。"
+
 msgid "The same file is opened in both panels."
 msgstr "同じファイルが両側のパネルで開かれています。"
 
