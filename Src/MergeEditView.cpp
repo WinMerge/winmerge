@@ -1870,7 +1870,19 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 			if (firstDiff != -1 && lastDiff != -1)
 			{
 				CWaitCursor waitstatus;
-				pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				
+				// Setting CopyFullLine (OPT_COPY_FULL_LINE)
+				// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+				if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
+				{
+					// old behaviour: copy full line
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+				}
+				else
+				{
+					// new behaviour: copy selected text only
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				}
 			}
 		}
 		else
