@@ -171,6 +171,7 @@ public:
 	bool EnsureInDiff(CPoint& pt);
 	void SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView = true) override;
 	void ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true) override;
+	void SetActivePane();
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

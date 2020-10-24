@@ -3376,15 +3376,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
 	if (GetGroupView(pane) != pCurrentView)
-	{
-		if (pSplitterWnd != nullptr)
-		{
-			if (pSplitterWnd->GetColumnCount() > 1)
-				pSplitterWnd->SetActivePane(0, pane);
-			else
-				pSplitterWnd->SetActivePane(pane, 0);
-		}
-	}
+		GetGroupView(pane)->SetActivePane();
 }
 
 /**
@@ -4268,6 +4260,17 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 	CCrystalTextView::ScrollToSubLine(nNewTopLine, bNoSmoothScroll, bTrackScrollBar);
 }
 
+void CMergeEditView::SetActivePane()
+{
+	auto* pwndSplitterChild = GetParentSplitter(this, false);
+	if (!pwndSplitterChild)
+		return;
+	if (pwndSplitterChild->GetColumnCount() > 1)
+		pwndSplitterChild->SetActivePane(0, m_nThisPane);
+	else
+		pwndSplitterChild->SetActivePane(m_nThisPane, 0);
+}
+
 /**
  * @brief Called when user selects View/Zoom In from menu.
  */
@@ -4320,10 +4323,7 @@ void CMergeEditView::OnWindowSplit()
 	{
 		wndSplitter.SetActivePane(0, 0);
 		wndSplitter.DeleteRow(1);
-		if (pwndSplitterChild->GetColumnCount() > 1)
-			pwndSplitterChild->SetActivePane(0, nBuffer);
-		else
-			pwndSplitterChild->SetActivePane(nBuffer, 0);
+		pDoc->GetView(0, nBuffer)->SetActivePane();
 	}
 }
 

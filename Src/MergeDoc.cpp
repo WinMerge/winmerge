@@ -2979,7 +2979,8 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
 			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
-			nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
+			m_pView[0][nPane]->SetActivePane();
+			return;
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
