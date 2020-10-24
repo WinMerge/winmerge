@@ -2978,7 +2978,8 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			m_diffList.HasSignificantDiffs())
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
-			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+			if (nDiff != -1)
+				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
 			m_pView[0][nPane]->SetActivePane();
 			return;
 		}

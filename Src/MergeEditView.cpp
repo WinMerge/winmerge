@@ -964,7 +964,11 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		return;
 
 	// scroll to the first line of the diff
-	ScrollToLine(m_lineBegin);
+	vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+	CPoint pt = worddiffs.size() > 0 ?
+		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+		CPoint{ 0, m_lineBegin };
+	EnsureVisible(pt);
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -2305,16 +2309,27 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 						GetGroupView(nPane)->ScrollToSubLine(nLine);
 				}
 			}
-			GetGroupView(m_nThisPane)->SetCursorPos(ptStart);
-			GetGroupView(m_nThisPane)->SetAnchor(ptStart);
-			GetGroupView(m_nThisPane)->SetSelection(ptStart, ptStart);
+
+			vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+			CPoint pt = worddiffs.size() > 0 ?
+				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+				ptStart;
+			GetGroupView(m_nThisPane)->SetCursorPos(pt);
+			GetGroupView(m_nThisPane)->SetAnchor(pt);
+			GetGroupView(m_nThisPane)->SetSelection(pt, pt);
+			GetGroupView(m_nThisPane)->EnsureVisible(pt);
 			for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
 			{
 				if (nPane != m_nThisPane)
 				{
-					GetGroupView(nPane)->SetCursorPos(ptStart);
-					GetGroupView(nPane)->SetAnchor(ptStart);
-					GetGroupView(nPane)->SetSelection(ptStart, ptStart);
+					if (worddiffs.size() > 0)
+					{
+						pt.x = worddiffs[0].begin[nPane];
+						pt.y = worddiffs[0].beginline[nPane];
+					}
+					GetGroupView(nPane)->SetCursorPos(pt);
+					GetGroupView(nPane)->SetAnchor(pt);
+					GetGroupView(nPane)->SetSelection(pt, pt);
 				}
 			}
 		}
