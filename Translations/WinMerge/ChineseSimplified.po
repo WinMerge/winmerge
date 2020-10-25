@@ -3527,3 +3527,4 @@ msgstr "色距: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
+
