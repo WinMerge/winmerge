@@ -79,10 +79,10 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 
 		String strDontAskAgain = LoadResString(IDS_MESSAGEBOX_DONT_ASK_AGAIN);
 		GetDlgItem(IDC_FLDCONFIRM_DONTASKAGAIN)->SetWindowText(strDontAskAgain.c_str());
-
-		return TRUE;  // return TRUE unless you set the focus to a control
-					  // EXCEPTION: OCX Property Pages should return FALSE
 	}
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /**
