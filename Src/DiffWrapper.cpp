@@ -341,7 +341,7 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
 bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
+	int QtyLinesInBlock, OP_TYPE &Op, const file_data *pinf,
 	FilterCommentsSet& filtercommentsset) const
 {
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
@@ -356,8 +356,8 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 			OpShouldBeTrivial = true;
 			break;
 		}
-		size_t len = files[FileNo].linbuf[i + 1] - files[FileNo].linbuf[i];
-		const char *LineStr = files[FileNo].linbuf[i];
+		size_t len = pinf->linbuf[i + 1] - pinf->linbuf[i];
+		const char *LineStr = pinf->linbuf[i];
 		std::string LineData(LineStr, linelen(LineStr, len));
 
 		const char * StartOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.StartMarker.c_str());
@@ -423,8 +423,8 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				int TrivLinePos = i+1;
 				for(; TrivLinePos != (StartPos + QtyLinesInBlock);++TrivLinePos)
 				{
-					size_t len1 = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
-					const char *LineStrTrvCk = files[FileNo].linbuf[TrivLinePos];
+					size_t len1 = pinf->linbuf[TrivLinePos + 1] - pinf->linbuf[TrivLinePos];
+					const char *LineStrTrvCk = pinf->linbuf[TrivLinePos];
 					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len1));
 					if (LineDataTrvCk.size() &&
 						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
@@ -440,7 +440,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				}
 				if (TrivLinePos != (StartPos + QtyLinesInBlock) )
 				{
-					return PostFilter(TrivLinePos, EndPos, Direction, QtyLinesInBlock - (TrivLinePos - StartPos), Op, FileNo, filtercommentsset);
+					return PostFilter(TrivLinePos, EndPos, Direction, QtyLinesInBlock - (TrivLinePos - StartPos), Op, pinf, filtercommentsset);
 				}
 			}
 		}
@@ -462,7 +462,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const
+	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt, const file_data *file_data_ary) const
 {
 	if (Op == OP_TRIVIAL || m_pFilterCommentsManager == nullptr)
 		return;
@@ -481,21 +481,21 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 
 	if (QtyLinesRight == 0)
 	{	//Only check left side
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
+		if (PostFilter(LineNumberLeft, file_data_ary[0].valid_lines, 1, QtyLinesLeft, LeftOp, &file_data_ary[0], filtercommentsset))
+			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, &file_data_ary[0], filtercommentsset);
 	}
 	else if (QtyLinesLeft == 0)
 	{	//Only check right side
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
+		if (PostFilter(LineNumberRight, file_data_ary[1].valid_lines, 1, QtyLinesRight, RightOp, &file_data_ary[1], filtercommentsset))
+			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, &file_data_ary[1], filtercommentsset);
 	}
 	else
 	{
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
+		if (PostFilter(LineNumberLeft, file_data_ary[0].valid_lines, 1, QtyLinesLeft, LeftOp, &file_data_ary[0], filtercommentsset))
+			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, &file_data_ary[0], filtercommentsset);
 
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
+		if (PostFilter(LineNumberRight, file_data_ary[1].valid_lines, 1, QtyLinesRight, RightOp, &file_data_ary[1], filtercommentsset))
+			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, &file_data_ary[1], filtercommentsset);
 	}
 
 	std::list<std::string> LeftLines, RightLines;
@@ -508,13 +508,13 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 		const char *	EndLineRight = LineStrRight;
 		if(i < QtyLinesLeft)
 		{
-			LineStrLeft = files[0].linbuf[LineNumberLeft + i];
-			EndLineLeft = files[0].linbuf[LineNumberLeft + i + 1];
+			LineStrLeft = file_data_ary[0].linbuf[LineNumberLeft + i];
+			EndLineLeft = file_data_ary[0].linbuf[LineNumberLeft + i + 1];
 		}
 		if(i < QtyLinesRight)
 		{
-			LineStrRight = files[1].linbuf[LineNumberRight + i];
-			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
+			LineStrRight = file_data_ary[1].linbuf[LineNumberRight + i];
+			EndLineRight = file_data_ary[1].linbuf[LineNumberRight + i + 1];
 		}
 			
 		if (EndLineLeft != nullptr && EndLineRight != nullptr)
@@ -1085,7 +1085,7 @@ CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
+bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
 {
 	if (m_pFilterList == nullptr)
 	{	
@@ -1098,8 +1098,8 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 
 	while (line <= EndPos && linesMatch)
 	{
-		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
-		const char *string = files[FileNo].linbuf[line];
+		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
+		const char *string = pinf->linbuf[line];
 		size_t stringlen = linelen(string, len);
 		if (!m_pFilterList->Match(std::string(string, stringlen)))
 
@@ -1115,7 +1115,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
 void
-CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf)
+CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * file_data_ary)
 {
 	//Logic needed for Ignore comment option
 	DIFFOPTIONS options;
@@ -1154,7 +1154,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 		{					
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
-			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, inf);
+			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, file_data_ary);
 			if (deletes || inserts || thisob->trivial)
 			{
 				OP_TYPE op = OP_NONE;
@@ -1167,8 +1167,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				
 				/* Print the lines that the first file has.  */
 				int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
-				translate_range(&inf[0], first0, last0, &trans_a0, &trans_b0);
-				translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
+				translate_range(&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
+				translate_range(&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
 
 				// Store information about these blocks in moved line info
 				if (GetDetectMovedBlocks())
@@ -1199,7 +1199,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt);
+					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt, file_data_ary);
 				}
 
 				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1212,9 +1212,9 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					// Our strategy is that every line in both sides must
 					// match regexp before we mark difference as ignored.
 					bool match2 = false;
-					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
+					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, &file_data_ary[0]);
 					if (match1)
-						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
+						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, &file_data_ary[1]);
 					if (match1 && match2)
 						op = OP_TRIVIAL;
 				}
@@ -1267,6 +1267,22 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	const file_data * inf10, 
 	const file_data * inf12)
 {
+	//Logic needed for Ignore comment option
+	DIFFOPTIONS options;
+	GetOptions(&options);
+	String asLwrCaseExt;
+	if (options.bFilterCommentsLines)
+	{
+		String LowerCaseExt = m_originalFile.GetLeft();
+		String::size_type PosOfDot = LowerCaseExt.rfind('.');
+		if (PosOfDot != String::npos)
+		{
+			LowerCaseExt.erase(0, PosOfDot + 1);
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
+			asLwrCaseExt = LowerCaseExt;
+		}
+	}
+
 	DiffList diff10, diff12;
 	diff10.Clear();
 	diff12.Clear();
@@ -1357,6 +1373,30 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
+					if (options.bFilterCommentsLines)
+					{
+						int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+						int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+						PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt, pinf);
+					}
+
+					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
+					{
+						 //Determine quantity of lines in this block for both sides
+						int QtyLinesLeft = (trans_b0 - trans_a0);
+						int QtyLinesRight = (trans_b1 - trans_a1);
+						
+						// Match lines against regular expression filters
+						// Our strategy is that every line in both sides must
+						// match regexp before we mark difference as ignored.
+						bool match2 = false;
+						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, &pinf[0]);
+						if (match1)
+							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, &pinf[1]);
+						if (match1 && match2)
+							op = OP_TRIVIAL;
+					}
+
 					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				}
 			}
@@ -1367,7 +1407,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	}
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
-		Comp02Functor(inf10, inf12), (m_pFilterList != nullptr && m_pFilterList->HasRegExps()));
+		Comp02Functor(inf10, inf12), 
+		(m_pFilterList != nullptr && m_pFilterList->HasRegExps()) || options.bIgnoreBlankLines || options.bFilterCommentsLines);
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)
@@ -1600,6 +1641,17 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 	StringTokenizer tokens(regexp_str, "\r\n");
 	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
 		m_pFilterList->AddRegExp(*it);
+}
+
+void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
+{
+	if (!pFilterList)
+		m_pFilterList.reset();
+	else
+	{
+		m_pFilterList.reset(new FilterList());
+		*m_pFilterList = *pFilterList;
+	}
 }
 
 /**

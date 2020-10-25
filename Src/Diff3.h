@@ -7,7 +7,7 @@
 /* diff3 algorithm. It is almost the same as GNU diff3's algorithm */
 template<typename Element, typename Comp02Func>
 size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& diff10, const std::vector<Element>& diff12,
-	Comp02Func cmpfunc, bool ignore_regexp_list)
+	Comp02Func cmpfunc, bool has_trivial_diffs)
 {
 	size_t diff10count = diff10.size();
 	size_t diff12count = diff12.size();
@@ -176,7 +176,7 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 				dr3.op = OP_2NDONLY;
 		}
 
-		if (ignore_regexp_list)
+		if (has_trivial_diffs)
 		{
 			bool bTrivialDiff10 = true;
 			bool bTrivialDiff12 = true;
