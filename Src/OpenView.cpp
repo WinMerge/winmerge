@@ -44,7 +44,9 @@
 
 // Timer ID and timeout for delaying path validity check
 const UINT IDT_CHECKFILES = 1;
+const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
+const int RETRY_MAX = 3;
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /** @brief Location for Open-dialog specific help to open. */
@@ -107,6 +109,7 @@ COpenView::COpenView()
 	, m_bReadOnly {false, false, false}
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
 	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
+	, m_retryCount(0)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -588,6 +591,7 @@ void COpenView::OnOK()
 
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
+	KillTimer(IDT_RETRY);
 
 	String filter(strutils::trim_ws(m_strExt));
 
@@ -1041,7 +1045,7 @@ void COpenView::OnEditEvent(UINT nID)
  */
 void COpenView::OnTimer(UINT_PTR nIDEvent)
 {
-	if (nIDEvent == IDT_CHECKFILES)
+	if (nIDEvent == IDT_CHECKFILES || nIDEvent == IDT_RETRY)
 		UpdateButtonStates();
 
 	CFormView::OnTimer(nIDEvent);
@@ -1104,6 +1108,17 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	
 	SetStatus(iStatusMsgId);
 
+	if (iStatusMsgId != IDS_OPEN_FILESDIRS && m_retryCount <= RETRY_MAX)
+	{
+		if (m_retryCount == 0)
+			SetTimer(IDT_RETRY, CHECKFILES_TIMEOUT, nullptr);
+		m_retryCount++;
+	}
+	else
+	{
+		KillTimer(IDT_RETRY);
+		m_retryCount = 0;
+	}
 	return 0;
 }
 

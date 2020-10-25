@@ -80,6 +80,7 @@ private:
 	HCURSOR const m_hCursorNo;
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
+	int m_retryCount;
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
