@@ -995,21 +995,21 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		DoMergeValue(m_ptBuf[0]->getEncoding(), m_ptBuf[1]->getEncoding(), m_ptBuf[2]->getEncoding(), dstPane);
 	if (mergedEncoding.first == Merged)
 	{
-		ShowMessageBox(_("The change of codepage has been merged"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of codepage has been merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->setEncoding(mergedEncoding.second);
 	}
 	else if (mergedEncoding.first == Conflict)
-		ShowMessageBox(_("The changes of codepage are conflicting"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of codepage are conflicting."), MB_ICONINFORMATION);
 
 	std::pair<MergeResult, CRLFSTYLE> mergedEOLStyle = 
 		DoMergeValue(m_ptBuf[0]->GetCRLFMode(), m_ptBuf[1]->GetCRLFMode(), m_ptBuf[2]->GetCRLFMode(), dstPane);
 	if (mergedEOLStyle.first == Merged)
 	{
-		ShowMessageBox(_("The change of EOL has been merged"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of EOL has been merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->SetCRLFMode(mergedEOLStyle.second);
 	}
 	else if (mergedEOLStyle.first == Conflict)
-		ShowMessageBox(_("The changes of EOL are conflicting"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of EOL are conflicting."), MB_ICONINFORMATION);
 
 	RescanSuppress suppressRescan(*this);
 
@@ -1424,7 +1424,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	}
 	else
 	{
-		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), strPath, sError);
+		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), strPath, sError);
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
