@@ -105,7 +105,7 @@ BOOL CMainFrame::LoadToolBar()
 	m_imgListToolBar.Detach();
 	m_imgListToolBar.Create(cx, cy, ILC_COLOR32, ICON_COUNT, 0);
 	CBitmap bm;
-	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), IDR_MAINFRAME, 16 * ICON_COUNT, 15, cx * ICON_COUNT, cy, false, RGB(0xc0, 0xc0, 0xc0)));
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), IDR_MAINFRAME, cx * ICON_COUNT, cy, false, RGB(0xc0, 0xc0, 0xc0)));
 	m_imgListToolBar.Add(&bm, nullptr);
 	if (CImageList* pImgList = toolbarCtrl.SetImageList(&m_imgListToolBar))
 		pImgList->DeleteImageList();

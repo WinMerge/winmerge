@@ -79,16 +79,13 @@ msgstr "&Joan hona..."
 msgid "Op&en"
 msgstr "Ire&ki"
 
-#, c-format
-msgid "with &Registered Application"
+msgid "With &Registered Application"
 msgstr "&Erregistratutako Aplikazioarekin"
 
-#, c-format
-msgid "with &External Editor\tCtrl+Alt+E"
+msgid "With &External Editor\tCtrl+Alt+E"
 msgstr ""
 
-#, c-format
-msgid "&with..."
+msgid "&With..."
 msgstr "&Honekin..."
 
 msgid "S&hell Menu"
@@ -976,12 +973,10 @@ msgstr "&Ezkutatu Gaiak"
 msgid "&Open Left"
 msgstr "&Ireki Ezkerrekoa"
 
-#, c-format
 msgid "with &External Editor"
 msgstr "&Kanpoko Editorearekin"
 
-#, c-format
-msgid "&Parent Folder"
+msgid "Open &Parent Folder..."
 msgstr ""
 
 #, c-format
@@ -1263,9 +1258,8 @@ msgstr "Orokorra"
 msgid "Automatically &scroll to first difference"
 msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
 
-#, c-format
-msgid "Cl&ose windows with ESC:"
-msgstr "Itxi leihoak ES&C-rekin:"
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Itxi leihoak 'Es&c'-rekin:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
@@ -1299,8 +1293,7 @@ msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
 msgid "Language:"
 msgstr ""
 
-#, c-format
-msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
 
 #, c-format
@@ -1604,9 +1597,8 @@ msgstr "Hautatu Despaketatzailea"
 msgid "File unpacker:"
 msgstr "Agiri Despaketatzailea:"
 
-#, c-format
-msgid "Display all unpackers, don't check the extension"
-msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena"
+msgid "Display all unpackers, don't check the extension."
+msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
 
 #, c-format
 msgid "Extensions list:"
@@ -1851,16 +1843,12 @@ msgstr "Berezko Kode-orrialdea"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
 
-#, c-format
-msgid ""
-"Detect codepage info for these files: .html, .rc, .xml \n"
-"need to restart session"
+msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
 " .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
 
-#, c-format
-msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
+msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2182,9 +2170,8 @@ msgstr "&Babeskopia agiritegi globala:"
 msgid "Backup filename:"
 msgstr "Babeskopia agirizena:"
 
-#, c-format
-msgid "&Append .bak -extension"
-msgstr "&Erantsi .bak -luzapena"
+msgid "&Append .bak extension"
+msgstr "&Erantsi .bak luzapena"
 
 #, c-format
 msgid "A&ppend timestamp"
@@ -2205,6 +2192,10 @@ msgstr "Ezkerretik"
 #, c-format
 msgid "To right"
 msgstr "Eskuinera"
+
+#, c-format
+msgid "Don't ask this &question again."
+msgstr "Ez egin ga&ldera hau berriro."
 
 #, c-format
 msgid "Yes"
@@ -2375,13 +2366,11 @@ msgstr ""
 msgid "\nSave (Ctrl+S)"
 msgstr ""
 
-#, c-format
-msgid "Unknown error attempting to open project file"
-msgstr "Akats ezezagun bat egitasmo agiria irekitzen saiatzean"
+msgid "Unknown error attempting to open project file."
+msgstr "Akats ezezagun bat egitasmo agiria irekitzen saiatzean."
 
-#, c-format
-msgid "Unknown error attempting to save project file"
-msgstr "Akats ezezagun bat egitasmo agiria gordetzen saiatzean"
+msgid "Unknown error attempting to save project file."
+msgstr "Akats ezezagun bat egitasmo agiria gordetzen saiatzean."
 
 #, c-format
 msgid "Project file successfully loaded."
@@ -2492,12 +2481,7 @@ msgstr "Jauzi &guztiak"
 msgid "Don't display this &message again."
 msgstr "Ez erakutsi &mezu hau berriro."
 
-#, c-format
-msgid "Don't ask this &question again."
-msgstr "Ez egin ga&ldera hau berriro."
-
-#, c-format
-msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
 msgid "Color Schemes"
@@ -2694,11 +2678,7 @@ msgstr "Iragazki agiria jadanik badago. Gainidatzi dagoen iragazkia?"
 msgid "Regular expression"
 msgstr "Adierazpen arrunta"
 
-#, c-format
-msgid ""
-"Filters were updated. Do you want to refresh all open folder compares?\n"
-"\n"
-"If you do not want to refresh all compares now you can select No and refresh compares later."
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "Iragazkiak eguneratuak izan dira. Nahi duzu irekita dituzun alderaketa agiritegi guztiak berritzea?\n"
 "\n"
@@ -2773,9 +2753,8 @@ msgstr "Gaiak %1 %2-tik"
 msgid "Items: %1"
 msgstr "Gaiak:%1"
 
-#, c-format
-msgid "Select two existing folders or files to compare"
-msgstr "Hautatu badauden bi agiritegi edo agiri alderatzeko"
+msgid "Select two existing folders or files to compare."
+msgstr "Hautatu badauden bi agiritegi edo agiri alderatzeko."
 
 #, c-format
 msgid "Folder Selection"
@@ -2821,8 +2800,7 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#, c-format
-msgid "Only enabled for File comparisons"
+msgid "Only enabled for file comparisons"
 msgstr ""
 
 #, c-format
@@ -2875,7 +2853,7 @@ msgid "Save changes to %1?"
 msgstr "Gorde aldaketak %1-ri?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
 msgstr "%1 markatuta dago irrakurtzeko-bakarrik bezala. Nahi duzu ezabatzea irakurtzeko-bakarrik agiria? (Ez gordetzeko agirizen berri bezala.)"
 
 #, c-format
@@ -2895,7 +2873,7 @@ msgstr ""
 "Jarraitu horrela ere?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Agiri gordetze hutsegitea.\n"
 "%1\n"
@@ -3104,13 +3082,12 @@ msgstr ""
 "\n"
 "%1?"
 
-#, c-format
-msgid "Are you sure you want to copy:"
-msgstr "Zihur zaude hona kopiatzea nahi duzula:"
+msgid "Are you sure you want to copy?"
+msgstr "Zihur zaude hona kopiatzea nahi duzula?"
 
 #, c-format
-msgid "Are you sure you want to copy %d items:"
-msgstr "Zihur zaude %d gaiak kopiatzea nahi dituzula:"
+msgid "Are you sure you want to copy %d items?"
+msgstr "Zihur zaude %d gaiak kopiatzea nahi dituzula?"
 
 #, c-format
 msgid ""
@@ -3130,13 +3107,12 @@ msgstr ""
 "\n"
 "Mesedez berritu alderaketa."
 
-#, c-format
-msgid "Are you sure you want to move:"
-msgstr "Zihur zaude mugitzea nahi duzula:"
+msgid "Are you sure you want to move?"
+msgstr "Zihur zaude mugitzea nahi duzula?"
 
 #, c-format
-msgid "Are you sure you want to move %d items:"
-msgstr "Zihur zaude %d gaiak mugitzea nahi dituzula:"
+msgid "Are you sure you want to move %d items?"
+msgstr "Zihur zaude %d gaiak mugitzea nahi dituzula?"
 
 #, c-format
 msgid "Confirm Move"
@@ -3560,6 +3536,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Jakinarazpena ongi sortu da."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Agiri berdina dago irekita bi paneletan."
@@ -3576,19 +3555,13 @@ msgstr "Akats bat gertatu da agiriak alderatzerakoan."
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Aldibaterako agiriak ezin izan dira sortu. Egiaztatu zure aldibaterako helburu ezarpenak."
 
-#, c-format
-msgid ""
-"These files use different carriage return types.\n"
-"\n"
-"Do you want to treat all carriage return types as equivalent for this comparison?\n"
-"\n"
-"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Agiri hauek gurdi itzulera mota ezberdinak erabiltzen dituzte.\n"
 "\n"
 "Nahi ditutzu gurdi itzulera mota guztiak tratatzea alderaketa honekiko berdin bezala?\n"
 "\n"
-"Oharra: Gurdi itzulera mota guztiak berdin bezala tratatzea nahi badituzu, ezarri 'Ezikusi gurdi itzulera ezberdintasunak...' aukera Alderaketa fitxan aukeren elkarrizketan (eskuragarri hemen: Editatu/Aukerak)."
+"Oharra: Gurdi itzulera mota guztiak berdin bezala tratatzea nahi badituzu, ezarri 'Ezikusi gurdi itzulera ezberdintasunak (Windows/Unix/Mac)' aukera Alderaketa fitxan aukeren elkarrizketan (eskuragarri hemen: Editatu/Aukerak)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3664,31 +3637,26 @@ msgid "Replaced %1 string(s)."
 msgstr "Ordeztuta %1 kate."
 
 #, c-format
-msgid "Cannot find string \"%s\""
-msgstr "Ezin da kate hau aurkitu: \"%s\""
+msgid "Cannot find string \"%s\"."
+msgstr "Ezin da kate hau aurkitu: \"%s\"."
 
-#, c-format
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
 msgstr ""
 
 #, c-format
 msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
 msgstr ""
 
-#, c-format
-msgid "The change of codepage has been merged"
+msgid "The change of codepage has been merged."
 msgstr ""
 
-#, c-format
-msgid "The changes of codepage are conflicting"
+msgid "The changes of codepage are conflicting."
 msgstr ""
 
-#, c-format
-msgid "The change of EOL has been merged"
+msgid "The change of EOL has been merged."
 msgstr ""
 
-#, c-format
-msgid "The changes of EOL are conflicting"
+msgid "The changes of EOL are conflicting."
 msgstr ""
 
 #, c-format
@@ -3737,9 +3705,8 @@ msgstr "Ezin da %1 agirira idatzi."
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Adierazitako irteera helburua ez helburu osoa: %1"
 
-#, c-format
-msgid "Specify an output file"
-msgstr "Adierazi irteera agiri bat"
+msgid "Specify an output file."
+msgstr "Adierazi irteera agiri bat."
 
 #, c-format
 msgid "Cannot create a patch file from binary files."
@@ -3910,9 +3877,8 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
-#, c-format
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Egokitutako despaketatzailea bi agiriei ezartzen zaie (agiri batek bakarrik behar du luzapena)"
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
+msgstr "Egokitutako despaketatzailea bi agiriei ezartzen zaie (agiri batek bakarrik behar du luzapena)."
 
 #, c-format
 msgid "No prediffer (normal)"
@@ -3930,8 +3896,7 @@ msgstr "Beste pluginak"
 msgid "Private Build: %1"
 msgstr "Bilduma Pribatua: %1"
 
-#, c-format
-msgid "Your software is up to date"
+msgid "Your software is up to date."
 msgstr ""
 
 #, c-format
@@ -4140,18 +4105,18 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr ""
 
 #, c-format
-msgid "Dist:%g "
+msgid "Dist: %g  "
 msgstr ""
 
 #, c-format
-msgid "Dist:%g,%g "
+msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr ""
 

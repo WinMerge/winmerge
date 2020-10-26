@@ -177,6 +177,7 @@ public:
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
+	void SetFilterList(const FilterList *pFilterList);
 	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager) { m_pFilterCommentsManager = pFilterCommentsManager; };
 	void EnablePlugins(bool enable);
 	bool IsTrivialBytes(const char* Start, const char* End,
@@ -185,10 +186,10 @@ public:
 	   const char * EndOfComment, const char * InLineComment,
 	   const FilterCommentsSet& filtercommentsset) const;
 	bool PostFilter(int StartPos, int EndPos, int Direction,
-		int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
+		int QtyLinesInBlock, OP_TYPE &Op, const file_data *pinf,
 		FilterCommentsSet& filtercommentsset) const;
 	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const;
+		int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt, const file_data *file_data_ary) const;
 
 protected:
 	String FormatSwitchString() const;
@@ -201,7 +202,7 @@ public:
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
 	static void FreeDiffUtilsScript(struct change * & script);
-	bool RegExpFilter(int StartPos, int EndPos, int FileNo) const;
+	bool RegExpFilter(int StartPos, int EndPos, const file_data * pinf) const;
 
 private:
 	DiffutilsOptions m_options;

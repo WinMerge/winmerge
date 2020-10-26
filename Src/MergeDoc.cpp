@@ -2978,8 +2978,10 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			m_diffList.HasSignificantDiffs())
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
-			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
-			nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
+			if (nDiff != -1)
+				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+			m_pView[0][nPane]->SetActivePane();
+			return;
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
@@ -3601,13 +3603,22 @@ void CMergeDoc::AddSyncPoint()
 	int nLine[3];
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
-		 int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
-		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+		int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
+		nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+	}
 
+	// If adding a sync point by selecting a ghost line that is after the last block, Cancel the process adding a sync point.
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		if (nLine[nBuffer] >= m_ptBuf[nBuffer]->GetLineCount())
+		{
+			LangMessageBox(IDS_SYNCPOINT_LASTBLOCK, MB_ICONSTOP);
+			return;
+		}
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)
 			DeleteSyncPoint(nBuffer, nLine[nBuffer], false);
-	}
-	
+
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, false);
 
