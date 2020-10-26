@@ -310,7 +310,8 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	LONG retValReg;
 	if (hKey)
 	{
-		BYTE dataBuf[MAX_PATH_FULL] = {0};
+		BYTE dataBuf[MAX_PATH_FULL];
+		dataBuf[0] = 0;
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 			0, &type, dataBuf, &size);
 	}

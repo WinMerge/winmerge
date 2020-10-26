@@ -39,7 +39,9 @@ public:
 	String m_caption;
 	afx_msg void OnBnClickedNo();
 	afx_msg void OnBnClickedYes();
+	afx_msg void OnBnClickedDontAskAgain();
 
 private:
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
+	bool m_dontAskAgain;
 };

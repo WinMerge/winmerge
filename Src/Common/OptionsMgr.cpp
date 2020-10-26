@@ -369,7 +369,7 @@ int COptionsMgr::AddOption(const String& name, const varprop::VariantValue& defa
 	COption tmpOption;
 	int retVal = tmpOption.Init(name, defaultValue);
 	if (retVal == COption::OPT_OK)
-		m_optionsMap[name] = tmpOption;
+		m_optionsMap.insert_or_assign(name, tmpOption);
 
 	return retVal;
 }
@@ -432,7 +432,7 @@ int COptionsMgr::Set(const String& name, const varprop::VariantValue& value)
 		COption tmpOption = found->second;
 		retVal = tmpOption.Set(value, true);
 		if (retVal == COption::OPT_OK)
-			m_optionsMap[name] = tmpOption;
+			m_optionsMap.insert_or_assign(name, tmpOption);
 	}
 	else
 	{
@@ -532,7 +532,7 @@ int COptionsMgr::Reset(const String& name)
 	{
 		COption tmpOption = found->second;
 		tmpOption.Reset();
-		m_optionsMap[name] = tmpOption;
+		m_optionsMap.insert_or_assign(name, tmpOption);
 	}
 	else
 	{

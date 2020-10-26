@@ -56,6 +56,8 @@ BOOL CSampleApp::InitInstance()
 	//  of your final executable, you should remove from the following
 	//  the specific initialization routines you do not need.
 
+	m_imageForInitializingGdipllus.Load((IStream *)nullptr);
+
 	// initialized OLE 2.0 libraries
 	if (!AfxOleInit())
 	{

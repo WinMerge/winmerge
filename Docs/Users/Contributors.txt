@@ -123,6 +123,7 @@ Localization:
   Skiff <skiffatsf@users.sourceforge.net>
   Pawel Wawrzysko <traduc@kki.pl>
   Mirosław Żylewicz
+  Michał Lipok
 
 * Portuguese (Brazilian):
   Wender Firmino <wender@pta.com.br>
@@ -158,11 +159,11 @@ Localization:
   Jadran Rudec <jrudec@gmail.com>
 
 * Spanish:
-  Mario Angel <marioangel70@gmail.com>
-  Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
   Dean Grimm <grimmdp@yahoo.com>
+  Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
+  Mario Angel <marioangel70@gmail.com>
+  Nelson Ariza <njarizas@hotmail.com>
   borjafg
-  Mario Angel <marioangel70 at gmail.com>
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>

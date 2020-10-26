@@ -6,6 +6,7 @@
 
 #include "MainFrm.h"
 #include "ceditcmd.h"
+#include "utils/hqbitmap.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,7 +60,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	
 	if (!m_wndToolBar.Create(this) ||
-		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+		!LoadToolBar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
@@ -92,6 +93,24 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	//  the CREATESTRUCT cs
 
 	return CMDIFrameWnd::PreCreateWindow(cs);
+}
+
+BOOL CMainFrame::LoadToolBar()
+{
+	const int ICON_COUNT = 17;
+	m_wndToolBar.LoadToolBar(IDR_MAINFRAME);
+	CToolBarCtrl& toolbarCtrl = m_wndToolBar.GetToolBarCtrl();
+	const int cx = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16);
+	const int cy = MulDiv(15, GetSystemMetrics(SM_CYSMICON), 16);
+	m_imgListToolBar.Detach();
+	m_imgListToolBar.Create(cx, cy, ILC_COLOR32, ICON_COUNT, 0);
+	CBitmap bm;
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), IDR_MAINFRAME, cx * ICON_COUNT, cy, false, RGB(0xc0, 0xc0, 0xc0)));
+	m_imgListToolBar.Add(&bm, nullptr);
+	if (CImageList* pImgList = toolbarCtrl.SetImageList(&m_imgListToolBar))
+		pImgList->DeleteImageList();
+	toolbarCtrl.SetButtonSize({ cx + 8, cy + 8 });
+	return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////

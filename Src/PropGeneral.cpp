@@ -145,6 +145,8 @@ void PropGeneral::WriteOptions()
 void PropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
+	// The "don't show again" checkbox of the Confirm Copy dialog uses the same registry key
+	// as CMessageBoxDialog does, so its state will also be reset
 	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);
 }
 

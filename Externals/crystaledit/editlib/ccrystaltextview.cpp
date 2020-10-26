@@ -145,10 +145,6 @@ using CrystalLineParser::TEXTBLOCK;
 
 /** @brief Width of revision marks. */
 const UINT MARGIN_REV_WIDTH = 3;
-/** @brief Width of icons printed in the margin. */
-const UINT MARGIN_ICON_WIDTH = 12;
-/** @brief Height of icons printed in the margin. */
-const UINT MARGIN_ICON_HEIGHT = 12;
 
 /** @brief Color of unsaved line revision mark (dark yellow). */
 const COLORREF UNSAVED_REVMARK_CLR = RGB(0xD7, 0xD7, 0x00);
@@ -2480,20 +2476,22 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
     }
   if (nImageIndex >= 0)
     {
+      const int iconsize = GetMarginIconSize();
       m_pCrystalRenderer->DrawMarginIcon(
-        rect.left + 2, rect.top + (GetLineHeight() - CCrystalRenderer::MARGIN_ICON_HEIGHT) / 2, nImageIndex);
+        rect.left + 2, rect.top + (GetLineHeight() - iconsize) / 2, nImageIndex, iconsize);
     }
 
   // draw wrapped-line-icon
   if (nLineNumber > 0)
     {
+      const int iconsize = GetMarginIconSize();
       int nBreaks = 0;
       WrapLineCached( nLineIndex, GetScreenChars(), nullptr, nBreaks );
       for (int i = 0; i < nBreaks; i++)
         {
           m_pCrystalRenderer->DrawMarginIcon(
-              rect.right - CCrystalRenderer::MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
-              - CCrystalRenderer::MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE);
+              rect.right - iconsize, rect.top + (GetLineHeight()
+              - iconsize) / 2 + (i+1) * GetLineHeight(), ICON_INDEX_WRAPLINE, iconsize);
         }
     }
 }
@@ -2809,11 +2807,6 @@ int CCrystalTextView::GetSubLines( int nLineIndex )
   WrapLineCached( nLineIndex, GetScreenChars(), nullptr, nBreaks );
 
   return GetEmptySubLines(nLineIndex) + nBreaks + 1;
-}
-
-int CCrystalTextView::GetEmptySubLines( int nLineIndex )
-{
-  return 0;
 }
 
 bool CCrystalTextView::IsEmptySubLineIndex( int nSubLineIndex )
@@ -5095,12 +5088,6 @@ PreTranslateMessage (MSG * pMsg)
   return CView::PreTranslateMessage (pMsg);
 }
 
-CPoint CCrystalTextView::
-GetCursorPos () const
-{
-  return m_ptCursorPos;
-}
-
 void CCrystalTextView::
 SetCursorPos (const CPoint & ptCursorPos)
 {
@@ -5179,12 +5166,6 @@ SetViewLineNumbers (bool bViewLineNumbers)
           UpdateCaret ();
         }
     }
-}
-
-void CCrystalTextView::
-GetFont (LOGFONT & lf)
-{
-  lf = m_lfBaseFont;
 }
 
 void CCrystalTextView::
@@ -5324,12 +5305,6 @@ HideCursor ()
 {
   m_bCursorHidden = true;
   UpdateCaret ();
-}
-
-DROPEFFECT CCrystalTextView::
-GetDropEffect ()
-{
-  return DROPEFFECT_COPY;
 }
 
 void CCrystalTextView::
@@ -6163,12 +6138,6 @@ OnUpdateClearAllBookmarks (CCmdUI * pCmdUI)
   pCmdUI->Enable (m_bBookmarkExist);
 }
 
-bool CCrystalTextView::
-GetViewTabs ()
-{
-  return m_bViewTabs;
-}
-
 void CCrystalTextView::
 SetViewTabs (bool bViewTabs)
 {
@@ -6192,12 +6161,6 @@ SetViewEols (bool bViewEols, bool bDistinguishEols)
     }
 }
 
-DWORD CCrystalTextView::
-GetFlags ()
-{
-  return m_dwFlags;
-}
-
 void CCrystalTextView::
 SetFlags (DWORD dwFlags)
 {
@@ -6207,24 +6170,6 @@ SetFlags (DWORD dwFlags)
       if (::IsWindow (m_hWnd))
         Invalidate ();
     }
-}
-
-bool CCrystalTextView::
-GetTopMargin ()
-{
-  return m_bTopMargin;
-}
-
-bool CCrystalTextView::
-GetSelectionMargin ()
-{
-  return m_bSelMargin;
-}
-
-bool CCrystalTextView::
-GetViewLineNumbers () const
-{
-  return m_bViewLineNumbers;
 }
 
 int CCrystalTextView::
@@ -6263,7 +6208,7 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
   if (m_bSelMargin)
     {
       if (pdc == nullptr || !pdc->IsPrinting ())
-        nMarginWidth += MARGIN_ICON_WIDTH  + 7;  // Width for icon markers and some margin
+        nMarginWidth += GetMarginIconSize () + 7;  // Width for icon markers and some margin
     }
   else
     {
@@ -6272,32 +6217,6 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
     }
 
   return nMarginWidth;
-}
-
-bool CCrystalTextView::
-GetSmoothScroll ()
-const
-{
-  return m_bSmoothScroll;
-}
-
-void CCrystalTextView::SetSmoothScroll (bool bSmoothScroll)
-{
-  m_bSmoothScroll = bSmoothScroll;
-}
-
-//  [JRT]
-bool CCrystalTextView::
-GetDisableDragAndDrop ()
-const
-{
-  return m_bDisableDragAndDrop;
-}
-
-//  [JRT]
-void CCrystalTextView::SetDisableDragAndDrop (bool bDDAD)
-{
-  m_bDisableDragAndDrop = bDDAD;
 }
 
 void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
@@ -6783,16 +6702,6 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
   return pOldParser;
 }
 //END SW
-
-bool CCrystalTextView::GetEnableHideLines () const
-{
-  return m_bHideLines;
-}
-
-void CCrystalTextView::SetEnableHideLines (bool bHideLines)
-{
-  m_bHideLines = bHideLines;
-}
 
 /**
  * @brief Return whether a line is visible.

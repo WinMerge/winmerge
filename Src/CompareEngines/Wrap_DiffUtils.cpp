@@ -174,7 +174,7 @@ int DiffUtils::diffutils_compare_files()
 						options.bIgnoreCase = m_pOptions->m_bIgnoreCase;
 						options.bIgnoreEol = m_pOptions->m_bIgnoreEOLDifference;
 						m_pDiffWrapper->SetOptions(&options);
-  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, asLwrCaseExt);
+  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, asLwrCaseExt, m_inf);
 						if(op == OP_TRIVIAL)
 						{
 							thisob->trivial = 1;
@@ -187,9 +187,9 @@ int DiffUtils::diffutils_compare_files()
 					if(m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 					{
 						bool match2 = false;
-						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
+						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, &m_inf[0]);
 						if (match1)
-							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
+							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, &m_inf[1]);
 						if (match1 && match2)
 							thisob->trivial = 1;
 					}
@@ -266,7 +266,7 @@ int DiffUtils::diffutils_compare_files()
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
+bool DiffUtils::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
 {
 	if (m_pFilterList == nullptr)
 	{
@@ -279,8 +279,8 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 
 	while (line <= EndPos && linesMatch)
 	{
-		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
-		const char *string = files[FileNo].linbuf[line];
+		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
+		const char *string = pinf->linbuf[line];
 		size_t stringlen = linelen(string, len);
 		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
 		{

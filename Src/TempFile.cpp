@@ -8,17 +8,13 @@
 #include "pch.h"
 #include "TempFile.h"
 #include <windows.h>
-#include <tlhelp32.h> 
 #include "paths.h"
 #include "TFile.h"
 #include "Environment.h"
 #include "Constants.h"
 #include "unicoder.h"
 
-using std::vector;
-
-static bool CleanupWMtempfolder(const vector <int>& processIDs);
-static bool WMrunning(const vector<int>& processIDs, int iPI);
+static bool WMrunning(int iPI);
 
 /**
  * @brief Delete the temp file when instance is deleted.
@@ -82,43 +78,6 @@ bool TempFile::Delete()
  */
 void CleanupWMtemp()
 {
-	vector<int> processIDs;
-
-	// Get the snapshot of the system
-	HANDLE hSnapShot;
-	hSnapShot = CreateToolhelp32Snapshot (TH32CS_SNAPALL, 0);
-	PROCESSENTRY32 pEntry;
-	pEntry.dwSize = sizeof(pEntry);
-
-	// Get first process
-	bool bRes = !!Process32First (hSnapShot, &pEntry);
-
-	// Iterate through all processes to get
-	// the ProcessIDs of all running WM instances
-	while (bRes)
-	{
-		size_t exeFileLen = _tcslen(pEntry.szExeFile);
-		if ((exeFileLen >= sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1 && _tcsicmp(pEntry.szExeFile + exeFileLen - (sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1), ExecutableFilenameU) == 0) ||
-			(exeFileLen >= sizeof(ExecutableFilename )/sizeof(TCHAR)-1 && _tcsicmp(pEntry.szExeFile + exeFileLen - (sizeof(ExecutableFilename )/sizeof(TCHAR)-1), ExecutableFilename ) == 0))
-		{
-			processIDs.push_back(pEntry.th32ProcessID);
-		}
-		bRes = !!Process32Next (hSnapShot, &pEntry);
-	}
-
-	// Now remove temp folders that are not used.
-	CleanupWMtempfolder(processIDs);
-}
-
-/** 
- * @brief Remove temp folders having process Ids in name.
- * This function removes temp folders whose name contains process ID from the
- * given list. These folders must have been earlier detected as unused.
- * @param [in] processIDs List of process IDs.
- * @return `true` if all temp folders were deleted, `false` otherwise.
- */
-static bool CleanupWMtempfolder(const vector <int>& processIDs)
-{
 	String foldername;
 	String tempfolderPID;
 	String filepattern(TempFolderPrefix);
@@ -129,7 +88,6 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	HANDLE h;
 	bool res = true;
 	bool bok = true;
-
 	
 	h = FindFirstFile (TFile(pattern).wpath().c_str(), &ff);
 	if (h == INVALID_HANDLE_VALUE)
@@ -147,7 +105,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 			try
 			{
 				int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
-				if (!WMrunning(processIDs, pid))
+				if (!WMrunning(pid))
 				{
 					tempfolderPID = paths::ConcatPath(paths::GetParentPath(pattern), ff.cFileName); 
 					res = ClearTempfolder(tempfolderPID);
@@ -164,7 +122,6 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	}
 	if (h != INVALID_HANDLE_VALUE)
 		FindClose(h);
-	return res;
 }
 
 /**
@@ -173,9 +130,13 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
  * @param [in] iPI ProcessID to check.
  * @return true if processID was found from the list, `false` otherwise.
  */
-static bool WMrunning(const vector<int>& processIDs, int iPI)
+static bool WMrunning(int iPI)
 {
-	return std::find(processIDs.begin(), processIDs.end(), iPI) != processIDs.end();
+	HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, false, iPI);
+	if (!hProcess)
+		return (GetLastError() == ERROR_ACCESS_DENIED);
+	CloseHandle(hProcess);
+	return true;
 }
 
 /**
