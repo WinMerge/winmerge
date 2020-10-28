@@ -2903,7 +2903,7 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Het rapport is met succes aangemaakt."
 
-msgid "Cannot add a synchronization point after the last block."
+msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 msgid "The same file is opened in both panels."

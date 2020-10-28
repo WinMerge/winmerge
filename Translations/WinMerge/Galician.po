@@ -3581,7 +3581,7 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "O informe creouse satisfactoriamente."
 
-msgid "Cannot add a synchronization point after the last block."
+msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 #, c-format
@@ -4255,3 +4255,4 @@ msgstr "Dist: %g, %g "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+

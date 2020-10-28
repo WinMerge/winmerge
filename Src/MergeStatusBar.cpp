@@ -286,7 +286,7 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		m_nChars = nChars;
 		m_sEol = szEol;
 		m_sEolDisplay = EolString(m_sEol);
-		if (m_nCodepage != nCodepage)
+		if (m_nCodepage != nCodepage || m_bHasBom != bHasBom)
 		{
 			const char *pszCodepageName = GetEncodingNameFromCodePage(nCodepage);
 			m_sCodepageName = pszCodepageName ? ucr::toTString(pszCodepageName) : _T("");

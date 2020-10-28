@@ -116,11 +116,7 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
-		auto& wndSplitter = GetMergeEditSplitterWnd(0);
-		if (wndSplitter.GetColumnCount() > 1)
-			wndSplitter.SetActivePane(0, pane);
-		else
-			wndSplitter.SetActivePane(pane, 0);
+		m_pMergeDoc->GetView(0, pane)->SetActivePane();
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	

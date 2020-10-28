@@ -762,7 +762,7 @@ GetLineFlags (int nLine) const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  if (nLine < 0 || nLine >= m_aLines.size())
+  if (nLine < 0 || nLine >= static_cast<int>(m_aLines.size()))
     {
       ASSERT(false);      //  nLine is out of range.
       return 0;
@@ -851,7 +851,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
       bRemoveFromPreviousLine = false;
     }
 
-  if (nLine < 0 || nLine >= m_aLines.size())
+  if (nLine < 0 || nLine >= static_cast<int>(m_aLines.size()))
     {
       ASSERT(false);    //  nLine is out of range.
       return;

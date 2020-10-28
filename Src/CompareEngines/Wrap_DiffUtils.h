@@ -37,7 +37,7 @@ public:
 	void ClearFilterList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();
-	bool RegExpFilter(int StartPos, int EndPos, int FileNo) const;
+	bool RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const;
 	void GetDiffCounts(int & diffs, int & trivialDiffs) const;
 	void GetTextStats(int side, FileTextStats *stats) const;
 	bool Diff2Files(struct change ** diffs, int depth,
