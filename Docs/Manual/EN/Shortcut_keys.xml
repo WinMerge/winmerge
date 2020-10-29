@@ -152,7 +152,13 @@
         <row>
           <entry><keycap>F6</keycap></entry>
 
-          <entry>Change pane (active file)</entry>
+          <entry>Change to next pane (active file)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F6</keycap></entry>
+
+          <entry>Change to previous pane (active file)</entry>
         </row>
 
         <row>

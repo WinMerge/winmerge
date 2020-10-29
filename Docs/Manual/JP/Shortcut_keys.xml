@@ -133,7 +133,13 @@
         <row>
           <entry><keycap>F4</keycap></entry>
 
-          <entry>行内差異を表示</entry>
+          <entry>次の行内差異を表示</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F4</keycap></entry>
+
+          <entry>前の行内差異を表示</entry>
         </row>
 
         <row>

@@ -412,6 +412,33 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			diffSuccess = m_diffWrapper.RunFileDiff();
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nRealLine[nBuffer] = m_ptBuf[nBuffer]->ComputeRealLine(nStartLine[nBuffer]);
+
+			// Correct the comparison results made by diffutils if the first file separated by the sync point is an empty file.
+			if (i == 0 && templist.GetSize() > 0)
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+					if (nStartLine[nBuffer] == 0)
+					{
+						bool isEmptyFile = true;
+						for (int j = 0; j < nLines[nBuffer]; j++)
+						{
+							if (!(m_ptBuf[nBuffer]->GetLineFlags(nStartLine[nBuffer] + j) & LF_GHOST))
+							{
+								isEmptyFile = false;
+								break;
+							}
+						}
+						if (isEmptyFile)
+						{
+							DIFFRANGE di;
+							templist.GetDiff(0, di);
+							if (di.begin[nBuffer] == 0 && di.end[nBuffer] == 0)
+							{
+								di.end[nBuffer] = -1;
+								templist.SetDiff(0, di);
+							}
+						}
+					}
+
 			m_diffList.AppendDiffList(templist, nRealLine);
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nStartLine[nBuffer] += nLines[nBuffer];
@@ -968,21 +995,21 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		DoMergeValue(m_ptBuf[0]->getEncoding(), m_ptBuf[1]->getEncoding(), m_ptBuf[2]->getEncoding(), dstPane);
 	if (mergedEncoding.first == Merged)
 	{
-		ShowMessageBox(_("The change of codepage has been merged"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of codepage has been merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->setEncoding(mergedEncoding.second);
 	}
 	else if (mergedEncoding.first == Conflict)
-		ShowMessageBox(_("The changes of codepage are conflicting"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of codepage are conflicting."), MB_ICONINFORMATION);
 
 	std::pair<MergeResult, CRLFSTYLE> mergedEOLStyle = 
 		DoMergeValue(m_ptBuf[0]->GetCRLFMode(), m_ptBuf[1]->GetCRLFMode(), m_ptBuf[2]->GetCRLFMode(), dstPane);
 	if (mergedEOLStyle.first == Merged)
 	{
-		ShowMessageBox(_("The change of EOL has been merged"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of EOL has been merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->SetCRLFMode(mergedEOLStyle.second);
 	}
 	else if (mergedEOLStyle.first == Conflict)
-		ShowMessageBox(_("The changes of EOL are conflicting"), MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of EOL are conflicting."), MB_ICONINFORMATION);
 
 	RescanSuppress suppressRescan(*this);
 
@@ -1397,7 +1424,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	}
 	else
 	{
-		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), strPath, sError);
+		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), strPath, sError);
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
@@ -2951,8 +2978,10 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			m_diffList.HasSignificantDiffs())
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
-			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
-			nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
+			if (nDiff != -1)
+				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+			m_pView[0][nPane]->SetActivePane();
+			return;
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
@@ -3574,13 +3603,22 @@ void CMergeDoc::AddSyncPoint()
 	int nLine[3];
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
-		 int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
-		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+		int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
+		nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+	}
 
+	// If adding a sync point by selecting a ghost line that is after the last block, Cancel the process adding a sync point.
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		if (nLine[nBuffer] >= m_ptBuf[nBuffer]->GetLineCount())
+		{
+			LangMessageBox(IDS_SYNCPOINT_LASTBLOCK, MB_ICONSTOP);
+			return;
+		}
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)
 			DeleteSyncPoint(nBuffer, nLine[nBuffer], false);
-	}
-	
+
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, false);
 

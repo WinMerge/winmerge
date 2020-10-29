@@ -29,7 +29,7 @@ in a visual format that is easy to understand and manipulate.
 Source code for the WinMerge program, its plugins, filters, setup program,
 and various utilities are all kept in the subfolders listed below.
 
-The changelog file is in `Docs/Users/ChangeLog.txt` and it documents 
+The changelog file is in `Docs/Users/ChangeLog.md` and it documents 
 both user-visible and significant changes.
 
 Subfolders include:

@@ -99,8 +99,9 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, 
 	info.cbSize = sizeof info;
 	if (!::GetComboBoxInfo(hCb, &info))
 		return;
-	RECT rc;
+	RECT rc, rcCombo;
 	::GetClientRect(info.hwndList, &rc);
+	::GetWindowRect(hCb, &rcCombo);
 	int const cxCross = ::GetSystemMetrics(SM_CXVSCROLL);
 	::CreateWindow(WC_BUTTON, NULL,
 		WS_CHILD | WS_VISIBLE | BS_OWNERDRAW,
@@ -113,13 +114,7 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, 
 		info.hwndList, reinterpret_cast<HMENU>(100), NULL, NULL);
 	::SetWindowLongPtr(hTc, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(hCb));
 	::SendMessage(hTc, WM_SETFONT, ::SendMessage(hCb, WM_GETFONT, 0, 0), 0);
-	if (HDC const hDC = ::GetDC(hTc))
-	{
-		SIZE size;
-		::GetTextExtentPoint(hDC, _T("0"), 1, &size);
-		TabCtrl_SetItemSize(hTc, (rc.right - cxCross) / columns - 3, size.cy + 4);
-		::ReleaseDC(hTc, hDC);
-	}
+	TabCtrl_SetItemSize(hTc, (rc.right - cxCross) / columns - 3, (rcCombo.bottom - rcCombo.top));
 	int const len = ::GetWindowTextLength(hCb) + 1;
 	TCHAR *const patterns = static_cast<TCHAR *>(_alloca(len * sizeof(TCHAR)));
 	::GetWindowText(hCb, patterns, len);

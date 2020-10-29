@@ -149,6 +149,8 @@ public:
 		DiffItemList::Swap(idx1, idx2);
 	}
 
+	const DIFFOPTIONS *GetOptions() const { return m_pOptions.get(); }
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IDiffFilter * m_pImgfileFilter; /**< Interface for image file filtering */
 	IPluginInfos * m_piPluginInfos;

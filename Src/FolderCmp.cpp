@@ -256,6 +256,10 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				DIFFSTATUS status;
 
 				diffList.Clear();
+				dw.SetCompareFiles(tFiles);
+				dw.SetOptions(m_pCtxt->GetOptions());
+				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
+				dw.SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 					script10, script12,

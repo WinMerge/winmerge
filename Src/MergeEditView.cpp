@@ -201,6 +201,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -221,6 +223,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -961,7 +964,11 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		return;
 
 	// scroll to the first line of the diff
-	ScrollToLine(m_lineBegin);
+	vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+	CPoint pt = worddiffs.size() > 0 ?
+		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+		CPoint{ 0, m_lineBegin };
+	EnsureVisible(pt);
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -1867,7 +1874,19 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 			if (firstDiff != -1 && lastDiff != -1)
 			{
 				CWaitCursor waitstatus;
-				pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				
+				// Setting CopyFullLine (OPT_COPY_FULL_LINE)
+				// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+				if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
+				{
+					// old behaviour: copy full line
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+				}
+				else
+				{
+					// new behaviour: copy selected text only
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				}
 			}
 		}
 		else
@@ -2290,16 +2309,27 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 						GetGroupView(nPane)->ScrollToSubLine(nLine);
 				}
 			}
-			GetGroupView(m_nThisPane)->SetCursorPos(ptStart);
-			GetGroupView(m_nThisPane)->SetAnchor(ptStart);
-			GetGroupView(m_nThisPane)->SetSelection(ptStart, ptStart);
+
+			vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+			CPoint pt = worddiffs.size() > 0 ?
+				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+				ptStart;
+			GetGroupView(m_nThisPane)->SetCursorPos(pt);
+			GetGroupView(m_nThisPane)->SetAnchor(pt);
+			GetGroupView(m_nThisPane)->SetSelection(pt, pt);
+			GetGroupView(m_nThisPane)->EnsureVisible(pt);
 			for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
 			{
 				if (nPane != m_nThisPane)
 				{
-					GetGroupView(nPane)->SetCursorPos(ptStart);
-					GetGroupView(nPane)->SetAnchor(ptStart);
-					GetGroupView(nPane)->SetSelection(ptStart, ptStart);
+					if (worddiffs.size() > 0)
+					{
+						pt.x = worddiffs[0].begin[nPane];
+						pt.y = worddiffs[0].beginline[nPane];
+					}
+					GetGroupView(nPane)->SetCursorPos(pt);
+					GetGroupView(nPane)->SetAnchor(pt);
+					GetGroupView(nPane)->SetSelection(pt, pt);
 				}
 			}
 		}
@@ -3124,7 +3154,7 @@ void CMergeEditView::RefreshOptions()
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL),
 		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
@@ -3361,15 +3391,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
 	if (GetGroupView(pane) != pCurrentView)
-	{
-		if (pSplitterWnd != nullptr)
-		{
-			if (pSplitterWnd->GetColumnCount() > 1)
-				pSplitterWnd->SetActivePane(0, pane);
-			else
-				pSplitterWnd->SetActivePane(pane, 0);
-		}
-	}
+		GetGroupView(pane)->SetActivePane();
 }
 
 /**
@@ -3614,6 +3636,17 @@ void CMergeEditView::OnViewWhitespace()
 void CMergeEditView::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(GetViewTabs());
+}
+
+void CMergeEditView::OnViewEOL() 
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_EOL, !GetViewEols());
+	GetDocument()->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewEOL(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetViewEols());
 }
 
 void CMergeEditView::OnSize(UINT nType, int cx, int cy) 
@@ -3895,7 +3928,7 @@ void CMergeEditView::DocumentsLoaded()
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL), mixedEOLs);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
@@ -4242,6 +4275,17 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 	CCrystalTextView::ScrollToSubLine(nNewTopLine, bNoSmoothScroll, bTrackScrollBar);
 }
 
+void CMergeEditView::SetActivePane()
+{
+	auto* pwndSplitterChild = GetParentSplitter(this, false);
+	if (!pwndSplitterChild)
+		return;
+	if (pwndSplitterChild->GetColumnCount() > 1)
+		pwndSplitterChild->SetActivePane(0, m_nThisPane);
+	else
+		pwndSplitterChild->SetActivePane(m_nThisPane, 0);
+}
+
 /**
  * @brief Called when user selects View/Zoom In from menu.
  */
@@ -4294,10 +4338,7 @@ void CMergeEditView::OnWindowSplit()
 	{
 		wndSplitter.SetActivePane(0, 0);
 		wndSplitter.DeleteRow(1);
-		if (pwndSplitterChild->GetColumnCount() > 1)
-			pwndSplitterChild->SetActivePane(0, nBuffer);
-		else
-			pwndSplitterChild->SetActivePane(nBuffer, 0);
+		pDoc->GetView(0, nBuffer)->SetActivePane();
 	}
 }
 
@@ -4305,5 +4346,38 @@ void CMergeEditView::OnUpdateWindowSplit(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(!m_bDetailView);
 	pCmdUI->SetCheck(GetDocument()->m_nGroups > 2);
+}
+
+void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	*pResult = 0;
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	const int pane = pNMItemActivate->iItem / 4;
+
+	switch (pNMItemActivate->iItem % 4)
+	{
+	case 0:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		break;
+	case 1:
+		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		break;
+	case 2:
+	{
+		CPoint point;
+		::GetCursorPos(&point);
+
+		BCMenu menu;
+		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
+		theApp.TranslateMenu(menu.m_hMenu);
+		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
+		break;
+	}
+	case 3:
+		GetDocument()->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
+		break;
+	default:
+		break;
+	}
 }
 

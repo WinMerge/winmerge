@@ -94,7 +94,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropGeneral, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropGeneral, OptionsPanel)
 	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	ON_MESSAGE(WM_APP, OnLoadLanguages)
@@ -145,6 +145,8 @@ void PropGeneral::WriteOptions()
 void PropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
+	// The "don't show again" checkbox of the Confirm Copy dialog uses the same registry key
+	// as CMessageBoxDialog does, so its state will also be reset
 	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);
 }
 

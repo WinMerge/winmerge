@@ -508,6 +508,13 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
+	CDockState pDockState;
+	pDockState.LoadState(_T("Settings-ImgMergeFrame"));
+	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+		SetDockState(pDockState);
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
+
 	return 0;
 }
 
@@ -616,16 +623,6 @@ void CImgMergeFrame::SaveActivePane()
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
 {
-	if (bActivate)
-	{
-		CDockState pDockState;
-		pDockState.LoadState(_T("Settings-ImgMergeFrame"));
-		if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
-			SetDockState(pDockState);
-		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-		m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
-	}
-
 	CMergeFrameCommon::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	if (bActivate)
@@ -648,6 +645,8 @@ void CImgMergeFrame::OnClose()
 
 void CImgMergeFrame::OnDestroy()
 {
+	if (!m_pImgMergeWindow)
+		return;
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 }
@@ -667,7 +666,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			theApp.CreateBackup(false, filename);
 			if (!m_pImgMergeWindow->SaveImage(pane))
 			{
-				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), filename, GetSysError());
+				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), filename, GetSysError());
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 				if (answer == IDOK)
 					return DoFileSaveAs(pane);
@@ -697,7 +696,7 @@ RETRY:
 		std::wstring filename = ucr::toUTF16(strPath);
 		if (!m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 		{
-			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), strPath, GetSysError());
+			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), strPath, GetSysError());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 			if (answer == IDOK)
 				goto RETRY;
@@ -944,7 +943,7 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CImgMergeFrame::UpdateHeaderSizes()
 {
-	if (IsWindowVisible() && m_pImgMergeWindow != nullptr)
+	if (m_pImgMergeWindow != nullptr)
 	{
 		int w[3];
 		CRect rc, rcMergeWindow;

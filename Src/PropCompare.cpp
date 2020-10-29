@@ -52,7 +52,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropCompare, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_CBN_SELCHANGE(IDC_DIFF_ALGORITHM, OnCbnSelchangeDiffAlgorithm)

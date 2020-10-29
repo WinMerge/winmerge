@@ -124,6 +124,11 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
 
+	// load docking positions and sizes
+	CDockState dockState;
+	dockState.LoadState(_T("Settings-DirFrame"));
+	SetDockState(dockState);
+
 	return 0;
 }
 
@@ -158,10 +163,6 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
  */
 void CDirFrame::ActivateFrame(int nCmdShow) 
 {
-	// load docking positions and sizes
-	CDockState dockState;
-	dockState.LoadState(_T("Settings-DirFrame"));
-	SetDockState(dockState);
 	CMergeFrameCommon::ActivateFrame(nCmdShow);
 }
 
