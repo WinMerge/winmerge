@@ -727,11 +727,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="FilterCommentsManager.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1186,7 +1181,6 @@
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />
     <ClInclude Include="FileVersion.h" />
-    <ClInclude Include="FilterCommentsManager.h" />
     <ClInclude Include="FilterList.h" />
     <ClInclude Include="FolderCmp.h" />
     <ClInclude Include="GhostTextBuffer.h" />

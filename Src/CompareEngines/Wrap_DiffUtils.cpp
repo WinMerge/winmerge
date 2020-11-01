@@ -19,7 +19,6 @@
 #include "coretools.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
-#include "FilterCommentsManager.h"
 #include "unicoder.h"
 
 namespace CompareEngines
@@ -76,11 +75,6 @@ void DiffUtils::SetFilterList(FilterList * list)
 	m_pFilterList = list;
 }
 
-void DiffUtils::SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager)
-{
-	m_pDiffWrapper->SetFilterCommentsManager(pFilterCommentsManager);
-}
-
 /**
  * @brief Set filedata.
  * @param [in] items Count of filedata items to set.
@@ -118,17 +112,18 @@ int DiffUtils::diffutils_compare_files()
 
 	if (script != nullptr)
 	{
-		struct change *next = script;
-
-		String asLwrCaseExt;
-		String LowerCaseExt = ucr::toTString(m_inf[0].name);
-		size_t PosOfDot = LowerCaseExt.rfind('.');
+		PostFilterContext ctxt{};
+		String Ext = ucr::toTString(m_inf[0].name);
+		size_t PosOfDot = Ext.rfind('.');
 		if (PosOfDot != String::npos)
-		{
-			LowerCaseExt.erase(0, PosOfDot + 1);
-			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
-			asLwrCaseExt = LowerCaseExt;
-		}
+			Ext.erase(0, PosOfDot + 1);
+
+		DIFFOPTIONS options = {0};
+		m_pOptions->GetAsDiffOptions(options);
+		m_pDiffWrapper->SetOptions(&options);
+		m_pDiffWrapper->SetFilterCommentsSourceDef(Ext);
+
+		struct change *next = script;
 
 		while (next != nullptr)
 		{
@@ -154,11 +149,11 @@ int DiffUtils::diffutils_compare_files()
 					int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
 					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
 					translate_range(&m_inf[1], first1, last1, &trans_a1, &trans_b1);
-
+	
 					//Determine quantity of lines in this block for both sides
-					int QtyLinesLeft = (trans_b0 - trans_a0);
-					int QtyLinesRight = (trans_b1 - trans_a1);
-
+					int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
+					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
+	
 					if(m_pOptions->m_filterCommentsLines)
 					{
 						OP_TYPE op = OP_NONE;
@@ -166,30 +161,22 @@ int DiffUtils::diffutils_compare_files()
 							op = OP_TRIVIAL;
 						else
 							op = OP_DIFF;
-
-						DIFFOPTIONS options = {0};
-						options.nIgnoreWhitespace = m_pOptions->m_ignoreWhitespace;
-						options.bIgnoreBlankLines = m_pOptions->m_bIgnoreBlankLines;
-						options.bFilterCommentsLines = m_pOptions->m_filterCommentsLines;
-						options.bIgnoreCase = m_pOptions->m_bIgnoreCase;
-						options.bIgnoreEol = m_pOptions->m_bIgnoreEOLDifference;
-						m_pDiffWrapper->SetOptions(&options);
-  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, asLwrCaseExt, m_inf);
+						m_pDiffWrapper->PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, m_inf);
 						if(op == OP_TRIVIAL)
 						{
 							thisob->trivial = 1;
 						}
 					}
-
+	
 					// Match lines against regular expression filters
 					// Our strategy is that every line in both sides must
 					// match regexp before we mark difference as ignored.
 					if(m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 					{
 						bool match2 = false;
-						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, &m_inf[0]);
+						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &m_inf[0]);
 						if (match1)
-							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, &m_inf[1]);
+							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &m_inf[1]);
 						if (match1 && match2)
 							thisob->trivial = 1;
 					}

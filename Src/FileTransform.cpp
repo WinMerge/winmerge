@@ -538,33 +538,6 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	return (nChanged != 0);
 }
 
-BSTR DoFilterCommentsBuffer(BSTR text)
-{
-	return SysAllocStringLen(text, SysStringLen(text));
-}
-
-bool DoFilterComments(String & filepath, const String& filteredText, bool bMayOverwrite)
-{
-	storageForPlugins bufferData;
-	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
-
-	BSTR *bstr = bufferData.GetDataBufferUnicode();
-	*bstr = DoFilterCommentsBuffer(*bstr);
-	bufferData.GetNChanged() = SysStringLen(*bstr);
-	bufferData.ValidateNewBuffer();
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		// bufferData changes filepath here to temp filepath
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////

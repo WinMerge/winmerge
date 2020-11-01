@@ -20,7 +20,6 @@ class IAbortable;
 class CDiffWrapper;
 class CompareOptions;
 struct DIFFOPTIONS;
-class FilterCommentsManager;
 
 /** Interface to a provider of plugin info */
 class IPluginInfos
@@ -195,7 +194,6 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
-	FilterCommentsManager *m_pFilterCommentsManager;
 
 private:
 	/**

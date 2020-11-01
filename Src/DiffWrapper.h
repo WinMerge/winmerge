@@ -22,10 +22,9 @@ class PrediffingInfo;
 struct DiffFileData;
 class PathContext;
 struct file_data;
-class FilterCommentsManager;
-struct FilterCommentsSet;
 class MovedLines;
 class FilterList;
+namespace CrystalLineParser { struct TextDefinition; };
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -139,7 +138,13 @@ struct DIFFSTATUS
 	}
 };
 
-class FilterCommentsManager;
+struct PostFilterContext
+{
+	int nParsedLineEndLeft = -1;
+	int nParsedLineEndRight = -1;
+	unsigned dwCookieLeft = 0;
+	unsigned dwCookieRight = 0;
+};
 
 /**
  * @brief Wrapper class for diffengine (diffutils and ByteComparator).
@@ -178,18 +183,11 @@ public:
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
-	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager) { m_pFilterCommentsManager = pFilterCommentsManager; };
+	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
+	void SetFilterCommentsSourceDef(const String& ext);
 	void EnablePlugins(bool enable);
-	bool IsTrivialBytes(const char* Start, const char* End,
-		const FilterCommentsSet& filtercommentsset) const;
-	bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
-	   const char * EndOfComment, const char * InLineComment,
-	   const FilterCommentsSet& filtercommentsset) const;
-	bool PostFilter(int StartPos, int EndPos, int Direction,
-		int QtyLinesInBlock, OP_TYPE &Op, const file_data *pinf,
-		FilterCommentsSet& filtercommentsset) const;
-	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt, const file_data *file_data_ary) const;
+	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
 
 protected:
 	String FormatSwitchString() const;
@@ -225,7 +223,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	const FilterCommentsManager* m_pFilterCommentsManager; /**< Comments filtering manager */
+	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
 

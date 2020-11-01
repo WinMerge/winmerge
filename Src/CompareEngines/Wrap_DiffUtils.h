@@ -12,7 +12,6 @@ class FilterList;
 class DiffutilsOptions;
 struct file_data;
 struct FileTextStats;
-class FilterCommentsManager;
 class CDiffWrapper;
 
 namespace CompareEngines
@@ -33,7 +32,6 @@ public:
 	~DiffUtils();
 	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
-	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager);
 	void ClearFilterList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();

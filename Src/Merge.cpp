@@ -38,7 +38,6 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
-#include "FilterCommentsManager.h"
 #include "SyntaxColors.h"
 #include "CCrystalTextMarkers.h"
 #include "OptionsSyntaxColors.h"
@@ -106,7 +105,6 @@ CMergeApp::CMergeApp() :
 , m_bEscShutdown(false)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
-, m_pFilterCommentsManager(new FilterCommentsManager())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)

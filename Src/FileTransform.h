@@ -220,5 +220,4 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  */
 bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
 
-bool DoFilterComments(String & filepath, const String& filteredText, bool bMayOverwrite);
 }
