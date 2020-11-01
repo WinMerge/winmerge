@@ -231,8 +231,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
 
-	pCtxt->m_pFilterCommentsManager = theApp.m_pFilterCommentsManager.get();
-
 	pCtxt->m_pCompareStats = m_pCompareStats.get();
 
 	// Make sure filters are up-to-date

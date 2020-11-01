@@ -211,7 +211,6 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
-				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
 			}
 			if (tFiles.GetSize() == 2)
 			{
@@ -251,6 +250,11 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 				code = DIFFCODE::FILE;
 
+				String Ext = tFiles[0];
+				size_t PosOfDot = Ext.rfind('.');
+				if (PosOfDot != String::npos)
+					Ext.erase(0, PosOfDot + 1);
+
 				CDiffWrapper dw;
 				DiffList diffList;
 				DIFFSTATUS status;
@@ -259,7 +263,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				dw.SetCompareFiles(tFiles);
 				dw.SetOptions(m_pCtxt->GetOptions());
 				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
-				dw.SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 					script10, script12,
