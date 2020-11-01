@@ -310,7 +310,10 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	{
 		m_diffWrapper.SetFilterList(_T(""));
 	}
-	m_diffWrapper.SetFilterCommentsManager(theApp.m_pFilterCommentsManager.get());
+	if (GetView(0, 0)->m_CurSourceDef->type != 0)
+		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
+	else
+		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_filePaths[0].c_str(), m_strDesc[0].c_str()));
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{

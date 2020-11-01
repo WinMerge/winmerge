@@ -57,7 +57,6 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_nBinaryCompareLimit(0)
 , m_bEnableImageCompare(false)
 , m_dColorDistanceThreshold(0.0)
-, m_pFilterCommentsManager(nullptr)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)

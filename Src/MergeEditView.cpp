@@ -4043,7 +4043,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 		}
 	}
 
-	pDoc->UpdateAllViews(nullptr);
+	OnRefresh();
 }
 
 /**
