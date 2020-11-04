@@ -152,6 +152,7 @@ Localization:
 * Slovak:
   Majvan <vancojur@decef.elf.stuba.sk>
   Ivan Masár <helix84@centrum.sk>
+  Jozef Matta <jozef.m923@gmail.com>
 
 * Slovenian:
   Iztok Osredkar <iztok.osredkar@institut-oko.si>
