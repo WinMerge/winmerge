@@ -239,11 +239,12 @@ WinMerge includes code from:
 * Francis Irving (original conflict file parser)
 * Michael P. Mehl (CMessageBoxDialog)
 * Cristi Posea (CSizingControlBar)
-* Ferdinand Prantl (CrystalEditor syntax rules)
+* Ferdinand Prantl (Crystal Edit syntax rules)
 * Keith Rule (CMemDC - memory DC)
 * Paul Senzee (String formatting)
 * Henry Spencer (CRegExp)
-* Andrei Stcherbatchenko (CrystalEditor)
+* Andrei Stcherbatchenko (Author of Crystal Edit)
+* Sven Wiegand (Crystal Edit)
 
 *** NOTE ***
 If your name is missing please let us know (or create a pull request).
