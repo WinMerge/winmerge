@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszShKeywordList[] =
+static const TCHAR * s_apszShKeywordList[] =
   {
     _T ("alias"),
     _T ("break"),
@@ -56,7 +56,7 @@ static LPCTSTR s_apszShKeywordList[] =
     _T ("while"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("chmod"),
     _T ("chown"),
@@ -69,19 +69,19 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsShKeyword (LPCTSTR pszChars, int nLength)
+IsShKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszShKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineSh (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineSh (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

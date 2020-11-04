@@ -14,7 +14,7 @@ namespace test
 		{
 			std::unique_ptr<CrystalLineParser::TEXTBLOCK[]> pblocks(new CrystalLineParser::TEXTBLOCK[256]);
 			struct TestData {
-				DWORD dwCookie;
+				unsigned dwCookie;
 				TCHAR *pszChars;
 			} data[] = {
 				//                                             1         2         3         4         5
@@ -34,7 +34,7 @@ namespace test
 				{COOKIE_RAWSTRING | (2 << 28),   _T("]==];") },
 			};
 			struct Expected {
-				DWORD dwCookie;
+				unsigned dwCookie;
 				CrystalLineParser::TEXTBLOCK pblocks[10];
 				size_t nblocks;
 			} expected[] = {
@@ -86,8 +86,8 @@ namespace test
 				int nActualItems = 0;
 				std::wstring msg = L"index: " + std::to_wstring(i);
 				Assert::AreEqual(
-					static_cast<DWORD>(expected[i].dwCookie),
-					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, _tcslen(data[i].pszChars), pblocks.get(), nActualItems), msg.c_str());
+					static_cast<unsigned>(expected[i].dwCookie),
+					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, static_cast<int>(_tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
 				Assert::AreEqual(static_cast<int>(expected[i].nblocks), nActualItems, msg.c_str());
 				for (int j = 0; j < nActualItems; ++j)
 				{

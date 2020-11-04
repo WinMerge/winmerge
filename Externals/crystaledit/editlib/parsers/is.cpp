@@ -35,7 +35,7 @@
 #endif
 
 //  InstallShield keywords (IS3.0)
-static LPCTSTR s_apszISKeywordList[] =
+static const TCHAR * s_apszISKeywordList[] =
   {
     _T ("BOOL"),
     _T ("BYREF"),
@@ -83,7 +83,7 @@ static LPCTSTR s_apszISKeywordList[] =
     _T ("while"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("AFTER"),
     _T ("APPEND"),
@@ -117,7 +117,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("YES"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T ("CMDLINE"),
     _T ("ERRORFILENAME"),
@@ -412,32 +412,32 @@ static LPCTSTR s_apszUser2KeywordList[] =
 */
 
 static bool
-IsISKeyword (LPCTSTR pszChars, int nLength)
+IsISKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszISKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineIS (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineIS (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

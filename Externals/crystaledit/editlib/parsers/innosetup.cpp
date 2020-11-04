@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszInnoSetupKeywordList[] =
+static const TCHAR * s_apszInnoSetupKeywordList[] =
   {
     _T ("AdminPrivilegesRequired"),
     _T ("AfterInstall"),
@@ -229,7 +229,7 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("xor"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("alwaysoverwrite"),
     _T ("alwaysskipifsameorolder"),
@@ -313,19 +313,19 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsInnoSetupKeyword (LPCTSTR pszChars, int nLength)
+IsInnoSetupKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszInnoSetupKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineInnoSetup (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);

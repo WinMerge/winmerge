@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszRexxKeywordList[] =
+static const TCHAR * s_apszRexxKeywordList[] =
   {
     _T ("ADDRESS"),
     _T ("ARG"),
@@ -85,7 +85,7 @@ static LPCTSTR s_apszRexxKeywordList[] =
     _T ("WITH"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("BOOLEAN"),
     _T ("CATCH"),
@@ -100,26 +100,26 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsRexxKeyword (LPCTSTR pszChars, int nLength)
+IsRexxKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszRexxKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineRexx (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineRexx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

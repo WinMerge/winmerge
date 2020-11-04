@@ -66,7 +66,7 @@ public:
 
 	@return The calculated flags for this line (see dwCookie).
 	*/
-	virtual DWORD ParseLine( DWORD dwCookie, int nLineIndex, CCrystalTextBlock *pBlock );
+	virtual unsigned ParseLine( unsigned dwCookie, int nLineIndex, CCrystalTextBlock *pBlock );
 
 	/**
 	Called by CCrystalTextView-object to wrap the line with the given index into sublines.

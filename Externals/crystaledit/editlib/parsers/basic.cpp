@@ -24,7 +24,7 @@
 #endif
 
 //  (Visual) Basic keywords
-static LPCTSTR s_apszBasicKeywordList[] =
+static const TCHAR * s_apszBasicKeywordList[] =
   {
     _T ("Abs"),
     _T ("AddHandler"),
@@ -308,7 +308,7 @@ static LPCTSTR s_apszBasicKeywordList[] =
   };
 
 static bool
-IsBasicKeyword (LPCTSTR pszChars, int nLength)
+IsBasicKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszBasicKeywordList, pszChars, nLength);
 }
@@ -346,8 +346,8 @@ DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXT
     }
 }
 
-DWORD
-CrystalLineParser::ParseLineBasic (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineBasic (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

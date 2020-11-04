@@ -34,7 +34,7 @@ void Init(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 		// with default value. And since InitOption() reads stored value
 		// from storage we must set that valu1Ge to array we use.
 		int color = 0;
-		COLORREF ref;
+		::SyntaxColors::COLORREF ref;
 		color = pSyntaxColors->GetColor(i);
 
 		// Special handling for themable colors
@@ -70,7 +70,7 @@ void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 	{
 		valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
 		int color = pOptionsMgr->GetInt(valuename);
-		COLORREF ref = color;
+		::SyntaxColors::COLORREF ref = color;
 		pSyntaxColors->SetColor(i, ref);
 	
 		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);

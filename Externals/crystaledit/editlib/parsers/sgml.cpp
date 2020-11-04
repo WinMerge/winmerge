@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszSgmlKeywordList[] =
+static const TCHAR * s_apszSgmlKeywordList[] =
   {
     _T ("ABSTRACT"),
     _T ("ARTICLE"),
@@ -83,7 +83,7 @@ static LPCTSTR s_apszSgmlKeywordList[] =
     _T ("VERSION"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("COMPACT"),
     _T ("ID"),
@@ -92,19 +92,19 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsSgmlKeyword (LPCTSTR pszChars, int nLength)
+IsSgmlKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszSgmlKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineSgml (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineSgml (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

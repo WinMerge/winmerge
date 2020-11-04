@@ -24,7 +24,7 @@
 #endif
 
 //  Verilog keywords
-static LPCTSTR s_apszVerilogKeywordList[] =
+static const TCHAR * s_apszVerilogKeywordList[] =
   {
     _T ("always"),
     _T ("and"),
@@ -152,7 +152,7 @@ static LPCTSTR s_apszVerilogKeywordList[] =
   };
 
 //  Verilog functions
-static LPCTSTR s_apszVerilogFunctionList[] =
+static const TCHAR * s_apszVerilogFunctionList[] =
   {
     _T ("$async$and$array"),
     _T ("$async$and$plane"),
@@ -303,19 +303,19 @@ static LPCTSTR s_apszVerilogFunctionList[] =
   };
 
 static bool
-IsVerilogKeyword (LPCTSTR pszChars, int nLength)
+IsVerilogKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszVerilogKeywordList, pszChars, nLength);
 }
 
 static bool
-IsVerilogFunction (LPCTSTR pszChars, int nLength)
+IsVerilogFunction (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszVerilogFunctionList, pszChars, nLength);
 }
 
 static bool
-IsVerilogNumber (LPCTSTR pszChars, int nLength)
+IsVerilogNumber (const TCHAR *pszChars, int nLength)
 {
   if (!_istdigit (pszChars[0]))
     return false;
@@ -331,15 +331,15 @@ IsVerilogNumber (LPCTSTR pszChars, int nLength)
   return true;
 }
 
-DWORD
-CrystalLineParser::ParseLineVerilog (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineVerilog (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

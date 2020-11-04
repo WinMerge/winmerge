@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszDclKeywordList[] =
+static const TCHAR * s_apszDclKeywordList[] =
   {
     _T ("boxed_column"),
     _T ("boxed_radio_column"),
@@ -48,7 +48,7 @@ static LPCTSTR s_apszDclKeywordList[] =
     _T ("toggle"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("cancel_button"),
     _T ("default_button"),
@@ -70,7 +70,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("spacer_1"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T ("action"),
     _T ("alignment"),
@@ -106,32 +106,32 @@ static LPCTSTR s_apszUser2KeywordList[] =
   };
 
 static bool
-IsDclKeyword (LPCTSTR pszChars, int nLength)
+IsDclKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszDclKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineDcl (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineDcl (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

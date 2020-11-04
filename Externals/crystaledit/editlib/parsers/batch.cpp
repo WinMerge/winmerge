@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszBatKeywordList[] =
+static const TCHAR * s_apszBatKeywordList[] =
   {
     _T (".AND."),
     _T (".OR."),
@@ -221,7 +221,7 @@ static LPCTSTR s_apszBatKeywordList[] =
     _T ("Y"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("APPEND"),
     _T ("ATTRIB"),
@@ -291,7 +291,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("XCOPY"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T ("@ABS"),
     _T ("@AFSCELL"),
@@ -646,13 +646,13 @@ static LPCTSTR s_apszUser2KeywordList[] =
   };
 
 static bool
-IsBatKeyword (LPCTSTR pszChars, int nLength)
+IsBatKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszBatKeywordList, pszChars, (size_t)nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
@@ -681,13 +681,13 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
 
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
     return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineBatch (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineBatch (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

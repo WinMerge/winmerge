@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-static LPCTSTR s_apszPhpKeywordList[] =
+static const TCHAR * s_apszPhpKeywordList[] =
   {
     _T ("array"),
     _T ("as"),
@@ -75,14 +75,14 @@ static LPCTSTR s_apszPhpKeywordList[] =
     _T ("while"),
   };
 
-static LPCTSTR s_apszPhp1KeywordList[] =
+static const TCHAR * s_apszPhp1KeywordList[] =
   {
     _T ("AND"),
     _T ("OR"),
     _T ("XOR"),
   };
 
-static LPCTSTR s_apszPhp2KeywordList[] =
+static const TCHAR * s_apszPhp2KeywordList[] =
   {
     _T ("__CLASS__"),
     _T ("__FILE__"),
@@ -92,32 +92,32 @@ static LPCTSTR s_apszPhp2KeywordList[] =
   };
 
 static bool
-IsPhpKeyword (LPCTSTR pszChars, int nLength)
+IsPhpKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPhpKeywordList, pszChars, nLength);
 }
 
 static bool
-IsPhp1Keyword (LPCTSTR pszChars, int nLength)
+IsPhp1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPhp1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsPhp2Keyword (LPCTSTR pszChars, int nLength)
+IsPhp2Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPhp2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePhp (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePhp (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1);
 
   bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_USER1)) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

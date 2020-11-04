@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-static LPCTSTR s_apszAspKeywordList[] =
+static const TCHAR * s_apszAspKeywordList[] =
   {
     _T ("Abs"),
     _T ("AppActivate"),
@@ -187,13 +187,13 @@ static LPCTSTR s_apszAspKeywordList[] =
   };
 
 static bool
-IsAspKeyword (LPCTSTR pszChars, int nLength)
+IsAspKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszAspKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineAsp (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineAsp (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1);
