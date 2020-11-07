@@ -27,7 +27,7 @@ unsigned
 CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE);
+    return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
 
   bool bRedefineBlock = true;
   if (!(dwCookie & COOKIE_ELEMENT))
@@ -91,7 +91,7 @@ out:
           if (dwCookie & COOKIE_BLOCK_SCRIPT)
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</script>"));
-              int nextI = pszEnd ? (pszEnd - pszChars) : nLength;
+              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
               dwCookie = ParseLineJava(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf, nActualItems);
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
@@ -105,7 +105,7 @@ out:
           else if (dwCookie & COOKIE_BLOCK_STYLE)
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</style>"));
-              int nextI = pszEnd ? (pszEnd - pszChars) : nLength;
+              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
               dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf, nActualItems);
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_STYLE;
@@ -121,8 +121,7 @@ out:
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("?>"));
               if (!pszEnd)
                 pszEnd = _tcsstr(pszChars + I, _T("%>"));
-              int nextI = pszEnd ? (pszEnd - pszChars) : nLength;
-              
+              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
               unsigned (*pParseLineFunc)(unsigned, const TCHAR *, int, TEXTBLOCK *, int &);
               switch (nEmbeddedLanguage)
               {
@@ -231,9 +230,9 @@ out:
                   if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                      if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof(_T("<script") - 1)) == 0)
+                      if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
                         dwCookie |= COOKIE_BLOCK_SCRIPT;
-                      else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof(_T("<style") - 1)) == 0)
+                      else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
                         dwCookie |= COOKIE_BLOCK_STYLE;
                     }
                   else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
@@ -335,7 +334,7 @@ next:
         }
     }
 
-  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE);
+  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE);
   return dwCookie;
 }
 
