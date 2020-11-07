@@ -376,12 +376,12 @@ LoadSettings ()
           if (reg1.Open (reg.hKey, def->name, KEY_READ))
             {
               reg1.LoadString (_T ("Extensions"), def->exts, _countof (def->exts));
-              reg1.LoadNumber (_T ("Flags"), &def->flags);
+              reg1.LoadNumber (_T ("Flags"), reinterpret_cast<DWORD *>(&def->flags));
 //              reg1.LoadNumber (_T ("TabSize"), &def->tabsize);
               reg1.LoadString (_T ("OpenComment"), def->opencomment, _countof (def->opencomment));
               reg1.LoadString (_T ("CloseComment"), def->closecomment, _countof (def->closecomment));
               reg1.LoadString (_T ("CommentLine"), def->commentline, _countof (def->commentline));
-              reg1.LoadNumber (_T ("DefaultEncoding"), &def->encoding);
+              reg1.LoadNumber (_T ("DefaultEncoding"), reinterpret_cast<DWORD *>(&def->encoding));
             }
         }
       bFontLoaded = reg.LoadBinary (_T ("LogFont"), (LPBYTE) &m_LogFont, sizeof (m_LogFont));
@@ -1505,7 +1505,7 @@ GetParseCookie (int nLineIndex)
   int nBlocks;
   while (L <= nLineIndex)
     {
-      DWORD dwCookie = 0;
+      unsigned dwCookie = 0;
       if (L > 0)
         dwCookie = (*m_ParseCookies)[L - 1];
       ASSERT (dwCookie != - 1);
@@ -1938,7 +1938,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   int nLength = GetViewableLineLength (nLineIndex);
 
   //  Parse the line
-  DWORD dwCookie = GetParseCookie(nLineIndex - 1);
+  unsigned dwCookie = GetParseCookie(nLineIndex - 1);
   std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
   int nBlocks = 0;
   // insert at least one textblock of normal color at the beginning
@@ -4630,8 +4630,8 @@ OnSetFocus (CWnd * pOldWnd)
   UpdateCaret ();
 }
 
-DWORD CCrystalTextView::
-ParseLine (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned CCrystalTextView::
+ParseLine (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   return m_CurSourceDef->ParseLineX (dwCookie, pszChars, nLength, pBuf, nActualItems);
 }

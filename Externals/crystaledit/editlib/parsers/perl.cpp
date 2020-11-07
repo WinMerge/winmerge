@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszPerlKeywordList[] =
+static const TCHAR * s_apszPerlKeywordList[] =
   {
     _T ("abs"),
     _T ("accept"),
@@ -251,13 +251,13 @@ static LPCTSTR s_apszPerlKeywordList[] =
   };
 
 static bool
-IsPerlKeyword (LPCTSTR pszChars, int nLength)
+IsPerlKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPerlKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePerl (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePerl (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

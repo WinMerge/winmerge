@@ -24,7 +24,7 @@
 #endif
 
 // Ruby reserved words.
-static LPCTSTR s_apszRubyKeywordList[] =
+static const TCHAR * s_apszRubyKeywordList[] =
   {
     _T ("BEGIN"),
     _T ("END"),
@@ -77,7 +77,7 @@ static LPCTSTR s_apszRubyKeywordList[] =
   };
 
 // Ruby constants (preprocessor color).
-static LPCTSTR s_apszRubyConstantsList[] =
+static const TCHAR * s_apszRubyConstantsList[] =
   {
     _T ("$defout"),
     _T ("$deferr"),
@@ -109,7 +109,7 @@ static LPCTSTR s_apszRubyConstantsList[] =
   };
 
 static bool
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
+IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
 {
   for (int L = 0; apszKeywords[L] != nullptr; L++)
     {
@@ -121,19 +121,19 @@ IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 }
 
 static bool
-IsRubyKeyword (LPCTSTR pszChars, int nLength)
+IsRubyKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszRubyKeywordList, pszChars, nLength);
 }
 
 static bool
-IsRubyConstant (LPCTSTR pszChars, int nLength)
+IsRubyConstant (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszRubyConstantsList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineRuby(DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineRuby(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

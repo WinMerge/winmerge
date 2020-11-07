@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszJavaKeywordList[] =
+static const TCHAR * s_apszJavaKeywordList[] =
   {
     _T ("abstract"),
     _T ("boolean"),
@@ -79,20 +79,20 @@ static LPCTSTR s_apszJavaKeywordList[] =
   };
 
 static bool
-IsJavaKeyword (LPCTSTR pszChars, int nLength)
+IsJavaKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszJavaKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineJava (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineJava (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

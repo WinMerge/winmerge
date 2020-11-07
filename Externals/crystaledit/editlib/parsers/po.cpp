@@ -25,7 +25,7 @@
 #endif
 
 //  PO keywords
-static LPTSTR s_apszPoKeywordList[] =
+static const TCHAR *s_apszPoKeywordList[] =
   {
     _T ("msgctxt"),
     _T ("msgid"),
@@ -35,7 +35,7 @@ static LPTSTR s_apszPoKeywordList[] =
   };
 
 static bool
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
+IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
 {
   for (int L = 0; apszKeywords[L] != nullptr; L++)
     {
@@ -47,13 +47,13 @@ IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 }
 
 static bool
-IsPoKeyword (LPCTSTR pszChars, int nLength)
+IsPoKeyword (const TCHAR *pszChars, int nLength)
 {
   return IsXKeyword (s_apszPoKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePo (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePo (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

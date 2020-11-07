@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-static LPTSTR s_apszCss1KeywordList[] =
+static const TCHAR *s_apszCss1KeywordList[] =
   {
     // CSS 1
     _T ("background"),
@@ -82,7 +82,7 @@ static LPTSTR s_apszCss1KeywordList[] =
     nullptr
   };
 
-static LPTSTR s_apszCss2KeywordList[] =
+static const TCHAR *s_apszCss2KeywordList[] =
   {
     // CSS 2
     _T ("ascent"),
@@ -178,7 +178,7 @@ static LPTSTR s_apszCss2KeywordList[] =
   };
 
 static bool
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
+IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
 {
   for (int L = 0; apszKeywords[L] != nullptr; L++)
     {
@@ -190,26 +190,26 @@ IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 }
 
 static bool
-IsCss1Keyword (LPCTSTR pszChars, int nLength)
+IsCss1Keyword (const TCHAR *pszChars, int nLength)
 {
   return IsXKeyword (s_apszCss1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsCss2Keyword (LPCTSTR pszChars, int nLength)
+IsCss2Keyword (const TCHAR *pszChars, int nLength)
 {
   return IsXKeyword (s_apszCss2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineCss (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineCss (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
 
   bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE)) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

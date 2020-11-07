@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszTclKeywordList[] =
+static const TCHAR * s_apszTclKeywordList[] =
   {
     _T ("case"),
     _T ("do"),
@@ -43,13 +43,13 @@ static LPCTSTR s_apszTclKeywordList[] =
   };
 
 static bool
-IsTclKeyword (LPCTSTR pszChars, int nLength)
+IsTclKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszTclKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineTcl (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineTcl (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

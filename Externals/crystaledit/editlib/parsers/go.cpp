@@ -24,7 +24,7 @@
 #endif
 
 //  Go keywords
-static LPCTSTR s_apszGoKeywordList[] =
+static const TCHAR * s_apszGoKeywordList[] =
   {
     _T ("break"),
     _T ("case"),
@@ -53,7 +53,7 @@ static LPCTSTR s_apszGoKeywordList[] =
     _T ("var"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("append"),
     _T ("bool"),
@@ -97,25 +97,25 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsGoKeyword (LPCTSTR pszChars, int nLength)
+IsGoKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszGoKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineGo (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineGo (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
 
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

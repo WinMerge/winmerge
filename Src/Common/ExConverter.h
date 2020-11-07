@@ -7,8 +7,9 @@ struct CodePageInfo
 {
 	int codepage;
 	String desc;
-    String fixedWidthFont;
-    char bGDICharset;
+	String proportionalFont;
+	String fixedWidthFont;
+	char bGDICharset;
 };
 
 struct IExconverter

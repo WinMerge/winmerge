@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszTexKeywordList[] =
+static const TCHAR * s_apszTexKeywordList[] =
   {
     _T ("above"),
     _T ("acute"),
@@ -549,7 +549,7 @@ static LPCTSTR s_apszTexKeywordList[] =
     _T ("zeta"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("addcontentsline"),
     _T ("addpenalty"),
@@ -845,19 +845,19 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsTexKeyword (LPCTSTR pszChars, int nLength)
+IsTexKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszTexKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineTex (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineTex (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
