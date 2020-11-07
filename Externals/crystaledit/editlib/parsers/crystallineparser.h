@@ -17,11 +17,14 @@ if (pBuf != nullptr)\
 
 #define COOKIE_COMMENT          0x0001
 #define COOKIE_PREPROCESSOR     0x0002
+#define COOKIE_ELEMENT          0x0002
 #define COOKIE_EXT_COMMENT      0x0004
 #define COOKIE_STRING           0x0008
 #define COOKIE_CHAR             0x0010
 #define COOKIE_USER1            0x0020
 #define COOKIE_EXT_USER1        0x0040
+#define COOKIE_BLOCK_STYLE      0x0080
+#define COOKIE_BLOCK_SCRIPT     0x0100
 #define COOKIE_SECTION          0x0080
 #define COOKIE_KEY              0x0100
 #define COOKIE_EXT_COMMENT2     0x0200
@@ -142,6 +145,7 @@ unsigned ParseLineDcl(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEX
 unsigned ParseLineFortran(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineGo(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineHtml(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineHtmlEx(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage);
 unsigned ParseLineIni(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineInnoSetup(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineIS(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
@@ -152,6 +156,7 @@ unsigned ParseLineNsis(unsigned dwCookie, const TCHAR *pszChars, int nLength, TE
 unsigned ParseLinePascal(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePerl(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePhp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLinePhpLanguage(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePo(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePowerShell(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePython(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
