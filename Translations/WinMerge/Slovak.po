@@ -277,6 +277,9 @@ msgstr "&Poznámky k vydaniu"
 msgid "&Translations"
 msgstr "&Preklady"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "K&onfigurácia"
 
