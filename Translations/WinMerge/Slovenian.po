@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-08-28 20:06+0200\n"
+"PO-Revision-Date: 2020-11-08 18:46+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -456,13 +456,12 @@ msgstr "S&trni vse podmape"
 msgid "Select &Font..."
 msgstr "Izberi &pisavo..."
 
-#, c-format
 msgid "Use Default Font"
 msgstr "Uporabi privzeto pi&savo"
 
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Zam&enjaj okna"
+msgstr "Zam&enjaj podokni"
 
 #, c-format
 msgid "Com&pare Statistics..."
@@ -599,7 +598,7 @@ msgid "&Text"
 msgstr "&Besedilo"
 
 msgid "T&able"
-msgstr "Ta&bela"
+msgstr "T&abela"
 
 #, c-format
 msgid "&XML"
@@ -973,7 +972,7 @@ msgid "with &External Editor"
 msgstr "z &zunanjim urejevalnikom"
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "Nad&rejena mapa..."
 
 #, c-format
 msgid "Open Midd&le"
@@ -1263,7 +1262,7 @@ msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
 
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Dovoli &samo en primerek programa za izvajanje"
+msgstr "Dovoli zagon &samo enega primerka programa"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1279,7 +1278,7 @@ msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
 
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Ob kliku na 'Vredu', zapri pogovorno okno 'Izberi datoteke ali mape'"
+msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb Vredu"
 
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
@@ -1500,7 +1499,7 @@ msgstr "&Zunanji urejevalnik:"
 
 #, c-format
 msgid "&Filter folder:"
-msgstr "&Filtriraj mapo:"
+msgstr "Mapa &Filtrov:"
 
 #, c-format
 msgid "Temporary files folder"
@@ -1846,8 +1845,8 @@ msgstr ""
 
 msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
 msgstr ""
-"Zaznavanje kodne strani besedilnih datotek z uporabo mlang.dll\n"
-"zahteva ponovni zagon seje)"
+"Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
+"zahtevan je ponovni zagon seje"
 
 #, c-format
 msgid "System codepage"
@@ -2108,16 +2107,16 @@ msgid "&TSV"
 msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr "&Ločila po meri-Ločene vrednosti"
+msgstr "Ločilo &po meri-Ločene vrednosti"
 
 msgid "D&elimiter character:"
-msgstr "Z&nak ločila:"
+msgstr "Znak &ločila:"
 
 msgid "&Allow newlines in quotes"
-msgstr "Do&voli nove vrstice med dvojnimi narekovaji"
+msgstr "&Dovoli nove vrstice v narekovajih"
 
 msgid "&Quote character:"
-msgstr "Znak na&rekovajev:"
+msgstr "Z&nak narekovaja:"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2149,7 +2148,7 @@ msgstr "Primerjava &map"
 
 #, c-format
 msgid "Fil&e compare"
-msgstr "Primerjavi &datotek"
+msgstr "Primerjava &datotek"
 
 #, c-format
 msgid "Create backup files into:"
@@ -2288,10 +2287,10 @@ msgid "&TSV File Patterns:"
 msgstr "Vzorci datotek &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr "Ločila po meri-Ločene vrednosti"
+msgstr "Ločilo po meri-Ločene vrednosti"
 
 msgid "File Patterns:"
-msgstr "Vzorci datotek:"
+msgstr "Vrste datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2545,7 +2544,7 @@ msgid "From middle:"
 msgstr "Od sredine:"
 
 msgid "To middle:"
-msgstr "Do sredine:"
+msgstr "V sredino:"
 
 #, c-format
 msgid "Version %1"
@@ -2569,7 +2568,7 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Vrednost v polju Velikost zavihka ni v območju, ki ga WinMerge sprejema.\n"
+"Vrednost v polju 'Velikost zavihka' -polje ni v razponu, ki ga WinMerge sprejema.\n"
 "\n"
 "Prosimo, uporabite vrednosti 1 - %1."
 
@@ -2689,9 +2688,9 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"Namestitev filter datoteke je spodletela.\n"
+"Ni uspela namestitev datoteke filtra.\n"
 "\n"
-"Ni mogoče kopirati nove filter datoteke v filter mapo."
+"Ni mogoče kopirati nove datoteke filtrov v mapo filtrov."
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
@@ -3151,7 +3150,7 @@ msgstr "Potrdi premik"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "Zaklenili boste okno, ki bo primerjalo mape. Ali ste prepričani, da želite zapreti okno?"
+msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3580,7 +3579,7 @@ msgstr "Izbrani datoteki sta enaki."
 
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Prišlo je do napake med primerjanjem datotek."
+msgstr "Prišlo je do napake med primerjavo datotek."
 
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
@@ -3592,7 +3591,7 @@ msgstr ""
 "\n"
 "Ali želite obe vrsti obravnavati kot enaki, za trenutno primerjavo?\n"
 "\n"
-"Opomba: Če jih želite vedno obravnavati kot enaki, nastavite možnost 'Prezri različnost vrste znakov za konec vrstice (EOL)' na zavihku 'Primerjava' pogovornega okna 'Nastavitve' (dostopen pod Urejanje/Možnosti)."
+"Opomba: Če jih želite vedno obravnavati kot enaki, nastavite možnost 'Prezri različnost vrste znakov za koncev vrstic' na zavihku 'Primerjava' pogovornega okna 'Nastavitve' (dostopen pod Urejanje/Možnosti)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3684,7 +3683,7 @@ msgid ""
 "The number of unresolved conflicts: %2"
 msgstr ""
 "Število samodejno združenih sprememb: %1\n"
-"Število nerešenih konfliktov: %2"
+"Število nerešenih sporov: %2"
 
 msgid "The change of codepage has been merged."
 msgstr "Sprememba kodne strani je bila združena."
@@ -4236,4 +4235,3 @@ msgstr "Razdalja: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
-
