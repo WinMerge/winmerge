@@ -1,51 +1,52 @@
 WINMERGE
 
-WinMerge is an Open Source comparing and merging tool for Windows. WinMerge can
-compare both folders and files, presenting differences in a visual text format
-that is easy to understand and handle. WinMerge can be used as an external
-differencing/merging tool or as a standalone application.
+WinMerge je odprtokodno orodje za primerjanje in združevanje za Windows. WinMerge lahko
+primerja mape in datoteke ter predstavlja razlike v vizualni obliki besedila, ki je
+enostavna za razumevanje in upravljanje. WinMerge se lahko uporablja kot zunanje orodje
+za loèevanje/združevanje ali kot samostojna aplikacija.
 
-WinMerge has many helpful supporting features to make comparing, synchronising,
-and merging as easy and useful as possible. Several programming languages and
-other file formats are syntax-highlighted.
+WinMerge ima veliko koristnih podpornih funkcij, s katerimi je primerjava, sinhronizacija
+in združevanje èim bolj enostavna in uporabna. Številni programski jeziki in drugi formati
+datotek so poudarjene v sintaksi.
 
-The latest WinMerge version and WinMerge information is available at
+Najnovejša razlièica WinMerge in informacije o WinMerge so na voljo na
 https://winmerge.org/.
 
-Quick start
-===========
-To learn how to perform basic operations after installing WinMerge, click
-Help>WinMerge Help and navigate to the Quick start topic.  Or, go to the Web
-version at https://manual.winmerge.org/QuickStart.html.
+Hiter zaèetek
+=============
+Èe želite izvedeti, kako izvajati osnovne operacije po namestitvi WinMerge, kliknite na
+Pomoè -> Pomoè za WinMerge in se pomaknite do teme 'Hitri zaèetek', ali pa pojdite na
+spletno razlièico na naslovu https://manual.winmerge.org/QuickStart.html.
 
-WinMerge Help
-============= 
-WinMerge Help is installed locally as a Microsoft HTML Help file, WinMerge.chm,
-when you install WinMerge. To open Help, click Help>WinMerge Help or press F1 in
-the WinMerge window. On the command line, run the WinMerge executable with the 
-/? help switch.
+Pomoè za WinMerge
+=================
+Pomoè za WinMerge je namešèena lokalno kot datoteka s pomoèjo Microsoft HTML, WinMerge.chm,
+ko namestite WinMerge. Èe želite odpreti pomoè, kliknite na Pomoè -> Pomoè za WinMerge ali
+pritisnite na F1 v oknu WinMerge. V ukazni vrstici zaženite izvedljivo datoteko WinMerge s
+stikalom /?.
 
-You can also browse the HTML version of WinMerge Help at 
+Po HTML razlièici pomoèi za WinMerge lahko brskate tudi na naslovu
 https://manual.winmerge.org/.
 
-WinMerge Support
-================
-Questions or suggestions about WinMerge? A good place to start is the WinMerge
-community bulletin board at https://forums.winmerge.org/. Developers frequently
-read and respond to questions in both forums. Use the Open Discussion forum for
-general WinMerge issues, such as questions about usage. Use the Developers forum
-for WinMerge development issues.
+Podpora za WinMerge
+===================
+Vprašanja ali predlogi o WinMerge? Dober zaèetek je oglasna deska skupnosti WinMerge
+na naslovu https://forums.winmerge.org/. Razvijalci pogosto berejo in odgovarjajo na
+vprašanja na obeh forumih. Za splošne težave z WinMerge, kot so vprašanja o uporabi,
+uporabite forum 'Odprta razprava'. Uporabite 'Forum za razvijalce' za razvojna vprašanja
+WinMerge.
 
-Bugs and feature requests
-=========================
-If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to https://project.winmerge.org/, and click a link in the Trackers
-menu, like Bugs and Feature Requests, where you can browse or submit items.
+Prijava programskih napak in zahteve funkcij
+============================================
+Èe težava ni odpravljena na forumih WinMerge, preverite sledilce projektov: pojdite
+na naslov https://project.winmerge.org/ in v meniju 'Sledilci' kliknite na povezavo,
+kot so 'Programske napake (Bugs) in 'Zahteve za funkcije', kjer lahko brskate ali
+pošiljate vnose.
 
-If you submit a bug, please include the WinMerge version number in your
-report. You can generate a configuration log by clicking Help>Configuration.
-Please attach the configuration log to the bug report; it has lots of useful
-information for developers.
+Èe oddate prijavo programske napake, v poroèilo vkljuèite številko razlièice WinMerge.
+Dnevnik konfiguracije lahko ustvarite s klikom na Pomoè -> Konfiguracija.
+K prijavi programske napake priložite Dnevnik konfiguracije, ker ta vsebuje veliko
+koristnih informacij za razvijalce.
 
 
-- The WinMerge Developers
+- Razvijalci WinMerge
