@@ -44,8 +44,8 @@ kot so 'Programske napake (Bugs) in 'Zahteve za funkcije', kjer lahko brskate al
 pošiljate vnose.
 
 Èe oddate prijavo programske napake, v poroèilo vkljuèite številko razlièice WinMerge.
-Dnevnik konfiguracije lahko ustvarite s klikom na Pomoè -> Konfiguracija.
-K prijavi programske napake priložite Dnevnik konfiguracije, ker ta vsebuje veliko
+Dnevnik nastavitev lahko ustvarite s klikom na Pomoè -> Nastavitve.
+K prijavi programske napake priložite Dnevnik nastavitev, ker ta vsebuje veliko
 koristnih informacij za razvijalce.
 
 
