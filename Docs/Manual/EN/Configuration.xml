@@ -694,10 +694,6 @@
           <para><option>Enabled</option>: This option optimizes comparisons by
           detecting comments in certain programming language file types (such as
           C++ and Java), and ignoring them.</para>
-
-          <para>The recognized file types and their comment markers are defined
-          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
-          of the WinMerge installation directory.</para>
         </listitem>
       </itemizedlist>
     </section>

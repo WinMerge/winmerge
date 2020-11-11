@@ -696,9 +696,6 @@
           <para><option>有効</option>: このオプションは、(C++ や Java
           のような)プログラミング言語のコメントを検出し、それらを無視することにより、
           比較を最適化します。</para>
-
-          <para>既知のファイル形式と、それらのコメント記号は WinMerge インストールフォルダ直下の 
-          <filename>IgnoreSectionMarkers.ini</filename>ファイルに定義されています。
           </para>
         </listitem>
       </itemizedlist>
