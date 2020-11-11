@@ -696,7 +696,6 @@
           <para><option>有効</option>: このオプションは、(C++ や Java
           のような)プログラミング言語のコメントを検出し、それらを無視することにより、
           比較を最適化します。</para>
-          </para>
         </listitem>
       </itemizedlist>
     </section>
