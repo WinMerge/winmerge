@@ -143,7 +143,7 @@ Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Hungar
 Name: Italian; MessagesFile: compiler:Languages\Italian.isl,..\..\Translations\InnoSetup\Italian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
 Name: Japanese; MessagesFile: compiler:Languages\Japanese.isl,..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Korean.isl,..\..\Translations\InnoSetup\Korean.isl
-Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.isl
+Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt
 Name: Norwegian; MessagesFile: compiler:Languages\Norwegian.isl,..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Farsi.isl,..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: compiler:Languages\Polish.isl,..\..\Translations\InnoSetup\Polish.isl
