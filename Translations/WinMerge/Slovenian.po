@@ -4235,3 +4235,4 @@ msgstr "Razdalja: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
+
