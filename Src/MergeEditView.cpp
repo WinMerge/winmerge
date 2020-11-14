@@ -3372,7 +3372,8 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
 	{
-		CMergeEditView *pView = GetGroupView(nPane);
+		int nGroup = m_bDetailView ? 0 : m_nThisGroup;
+		CMergeEditView* pView = GetDocument()->GetView(nGroup, nPane);
 		pView->ScrollToSubLine(nScrollLine);
 		if (ptPos.y < pView->GetLineCount())
 		{
@@ -3390,7 +3391,9 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// If goto target is another view - activate another view.
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
-	if (GetGroupView(pane) != pCurrentView)
+	if (m_bDetailView)
+		GetDocument()->GetView(0, pane)->SetActivePane();
+	else if (GetGroupView(pane) != pCurrentView)
 		GetGroupView(pane)->SetActivePane();
 }
 
