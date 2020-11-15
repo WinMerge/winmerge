@@ -7,7 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace test
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(LuaTests)
 	{
 	public:
 		TEST_METHOD(LuaSyntax)
