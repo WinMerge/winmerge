@@ -1313,6 +1313,9 @@ msgstr "Ign&ora le linee vuote"
 msgid "Ignore &case"
 msgstr "Ig&nora differenze maiuscole/minuscole"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Attiva rilevamento blocc&hi spostati"
 
@@ -1324,12 +1327,6 @@ msgstr "&Algoritmo differenze (sperimentale):"
 
 msgid "Enable indent &heuristic"
 msgstr "Abilita rientro &euristico"
-
-msgid "Comments"
-msgstr "Commenti"
-
-msgid "Filter Comments"
-msgstr "Filtra commenti"
 
 msgid "Editor"
 msgstr "Editor"

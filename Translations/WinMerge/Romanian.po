@@ -1683,6 +1683,9 @@ msgstr "Ignoră li&nii goale"
 msgid "Ignore &case"
 msgstr "Ignoră minus&cule/majuscule"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"
@@ -1696,14 +1699,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Comentarii"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Comentarii filtre"
 
 #, c-format
 msgid "Editor"

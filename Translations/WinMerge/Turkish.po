@@ -1313,6 +1313,9 @@ msgstr "Boş satırlar yo&k sayılsın"
 msgid "Ignore &case"
 msgstr "BÜYÜK-küçük &harf ayrımı yapılmasın"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
 
@@ -1324,12 +1327,6 @@ msgstr "&Fark algortiması (Deneysel):"
 
 msgid "Enable indent &heuristic"
 msgstr "&Sezgisel girinti kullanılsın"
-
-msgid "Comments"
-msgstr "Açıklamalar"
-
-msgid "Filter Comments"
-msgstr "Açıklamalar süzülsün"
 
 msgid "Editor"
 msgstr "Düzenleyici"

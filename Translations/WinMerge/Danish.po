@@ -1686,6 +1686,9 @@ msgstr "Ignorer blan&ke linjer"
 msgid "Ignore &case"
 msgstr "Ignorer store/små &bogstaver"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&Aktiver detektion af flyttede blokke"
@@ -1699,14 +1702,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Filter Kommentarer"
 
 #, c-format
 msgid "Editor"

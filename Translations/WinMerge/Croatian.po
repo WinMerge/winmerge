@@ -1683,6 +1683,9 @@ msgstr "Zanemari prazne &retke"
 msgid "Ignore &case"
 msgstr "Zanemari V/m &slova"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Omogući &razlikovanje premještenih blokova"
@@ -1696,14 +1699,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Komentari"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Filtriraj komentare"
 
 #, c-format
 msgid "Editor"

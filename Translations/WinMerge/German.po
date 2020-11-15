@@ -1683,6 +1683,9 @@ msgstr "&Leerzeilen ignorieren"
 msgid "Ignore &case"
 msgstr "&Groß-/Kleinschreibung ignorieren"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
@@ -1696,14 +1699,6 @@ msgstr "&Diff-Algorithmus (experimentell):"
 
 msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
-
-#, c-format
-msgid "Comments"
-msgstr "Kommentare"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "&Kommentare filtern"
 
 #, c-format
 msgid "Editor"

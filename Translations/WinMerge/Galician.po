@@ -1683,6 +1683,9 @@ msgstr "Ignorar &liñas en branco"
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas e minúsculas"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "A&ctivar detección de bloques movidos"
@@ -1696,14 +1699,6 @@ msgstr "Algoritmo de diferenciación (exper.):"
 
 msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
-
-#, c-format
-msgid "Comments"
-msgstr "Comentarios"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Filtrar comentarios"
 
 #, c-format
 msgid "Editor"

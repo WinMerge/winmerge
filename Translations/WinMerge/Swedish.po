@@ -1685,6 +1685,9 @@ msgstr "Åsidosätt blanka rader"
 msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Möjliggör urskiljning av flyttade block"
@@ -1698,14 +1701,6 @@ msgstr "SkillnadsAlgo (experimentell):"
 
 msgid "Enable indent &heuristic"
 msgstr "Möjliggör IndragUppfinningsrikhet"
-
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "FilterKommentarer"
 
 #, c-format
 msgid "Editor"

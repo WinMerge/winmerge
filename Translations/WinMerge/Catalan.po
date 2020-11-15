@@ -1682,6 +1682,9 @@ msgstr "&Ignora les línies en blanc"
 msgid "Ignore &case"
 msgstr "Ignora &majúscules/minúscules"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&Habilita detecció de blocs desplaçats"
@@ -1695,14 +1698,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Comentaris"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "&Filtra els comentaris"
 
 #, c-format
 msgid "Editor"

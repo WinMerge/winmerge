@@ -1680,6 +1680,9 @@ msgstr "හිස් පේළි නොසලකා හරින්න"
 msgid "Ignore &case"
 msgstr "Ignore &case"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "E&nable moved block detection"
 msgstr "E&nable moved block detection"
@@ -1693,14 +1696,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "විවේචන"
-
-#, fuzzy, c-format
-msgid "Filter Comments"
-msgstr "Filter Comments"
 
 #, c-format
 msgid "Editor"

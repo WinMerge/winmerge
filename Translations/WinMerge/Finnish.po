@@ -1683,6 +1683,9 @@ msgstr "Ohita tyhjät rivit"
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Ota siirretyn lohkon tunnistus käyttöön"
@@ -1696,14 +1699,6 @@ msgstr "Ero&algoritmi (kokeellinen):"
 
 msgid "Enable indent &heuristic"
 msgstr "Ota käyttöön &heuristinen sisennys"
-
-#, c-format
-msgid "Comments"
-msgstr "Kommentit"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Suodatin kommentit"
 
 #, c-format
 msgid "Editor"

@@ -1688,6 +1688,9 @@ msgstr "&k چشم پوشي از خطوط خالي "
 msgid "Ignore &case"
 msgstr "&c چشم پوشي از اندازه حروف "
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
@@ -1701,14 +1704,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr " يادداشتها "
-
-#, c-format
-msgid "Filter Comments"
-msgstr " پالايه توضيحات "
 
 #, c-format
 msgid "Editor"

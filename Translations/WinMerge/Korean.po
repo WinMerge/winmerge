@@ -1687,6 +1687,9 @@ msgstr "공백 줄 무시하기(&K)"
 msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "이동된 블럭 감지 사용하기"
@@ -1700,14 +1703,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "코멘트"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "코멘트 필터링하기"
 
 #, c-format
 msgid "Editor"

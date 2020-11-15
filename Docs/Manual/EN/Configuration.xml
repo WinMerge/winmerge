@@ -581,6 +581,29 @@
     </section>
 
     <section>
+      <title>Ignore comment differences<indexterm>
+          <primary>filters</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge compares comments
+          in code, along with other content.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: This option optimizes comparisons by
+          detecting comments in certain programming language file types (such as
+          C++ and Java), and ignoring them.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Enable moved block detection<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
@@ -671,29 +694,6 @@
 
         <listitem>
           <para><option>Disabled</option> Disable the heuristic.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>Filter Comments<indexterm>
-          <primary>filters</primary>
-
-          <secondary>comments</secondary>
-        </indexterm></title>
-
-      <!--Just guessing what this does - ask a developer.-->
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): WinMerge compares comments
-          in code, along with other content.</para>
-        </listitem>
-
-        <listitem>
-          <para><option>Enabled</option>: This option optimizes comparisons by
-          detecting comments in certain programming language file types (such as
-          C++ and Java), and ignoring them.</para>
         </listitem>
       </itemizedlist>
     </section>

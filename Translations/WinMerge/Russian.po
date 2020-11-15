@@ -1316,6 +1316,9 @@ msgstr "Игнорировать пуст&ые строки"
 msgid "Ignore &case"
 msgstr "Игнорировать р&егистр"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"
 
@@ -1327,12 +1330,6 @@ msgstr "Алгоритм сравнения (эксперимент.):"
 
 msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"
-
-msgid "Comments"
-msgstr "Комментарии"
-
-msgid "Filter Comments"
-msgstr "Фильтр комментариев"
 
 msgid "Editor"
 msgstr "Редактор"

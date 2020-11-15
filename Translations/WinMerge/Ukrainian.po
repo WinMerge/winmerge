@@ -1684,6 +1684,9 @@ msgstr "Нехтувати порожніми &лініями"
 msgid "Ignore &case"
 msgstr "Нехтувати р&егістр"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
@@ -1697,14 +1700,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Коментарі"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Фільтр коментарів"
 
 #, c-format
 msgid "Editor"

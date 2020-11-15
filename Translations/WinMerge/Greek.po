@@ -1682,6 +1682,9 @@ msgstr "Οι &κενές γραμμές να αγνοούνται"
 msgid "Ignore &case"
 msgstr "Διάκριση μεταξύ Πεζών/&Κεφαλαίων ανενεργός"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέντων τμημάτων"
@@ -1695,14 +1698,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Σχόλια"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Σχόλια Φίλτρων"
 
 #, c-format
 msgid "Editor"

@@ -1684,6 +1684,9 @@ msgstr "Ezikusi &lerro zuriak"
 msgid "Ignore &case"
 msgstr "Ezikusi &kasua"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Gaitu bloke &mugitu atzematea"
@@ -1697,14 +1700,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Aipamenak"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "&Iragazki Aipamenak"
 
 #, c-format
 msgid "Editor"

@@ -1314,6 +1314,9 @@ msgstr "Nepaisyti &tuščių eilučių"
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
 
@@ -1325,12 +1328,6 @@ msgstr "Lyginimo &algoritmas (Bandymai):"
 
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
-
-msgid "Comments"
-msgstr "Komentarai"
-
-msgid "Filter Comments"
-msgstr "Filtro komentarai"
 
 msgid "Editor"
 msgstr "Redaktoriaus"

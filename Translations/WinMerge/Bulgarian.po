@@ -1310,6 +1310,9 @@ msgstr "Пренебрегване на пра&зните редове"
 msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 
@@ -1321,12 +1324,6 @@ msgstr "&Алгоритъм за различия (експер.):"
 
 msgid "Enable indent &heuristic"
 msgstr "П&редполагане на отстъпа"
-
-msgid "Comments"
-msgstr "Коментари"
-
-msgid "Filter Comments"
-msgstr "Филтър за коментари"
 
 msgid "Editor"
 msgstr "Редактор"

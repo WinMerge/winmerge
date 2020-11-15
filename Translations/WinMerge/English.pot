@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-10-18 17:28+0000\n"
+"POT-Creation-Date: 2020-11-15 10:49+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1305,6 +1305,9 @@ msgstr ""
 msgid "Ignore &case"
 msgstr ""
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr ""
 
@@ -1315,12 +1318,6 @@ msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Comments"
-msgstr ""
-
-msgid "Filter Comments"
 msgstr ""
 
 msgid "Editor"

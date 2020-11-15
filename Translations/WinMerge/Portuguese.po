@@ -1314,6 +1314,9 @@ msgstr "Ignorar linhas em branco"
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas/minúsculas"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Ativar deteção de bloco movido"
 
@@ -1325,12 +1328,6 @@ msgstr "Diff &algoritmo (Experimental):"
 
 msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"
-
-msgid "Comments"
-msgstr "Comentários"
-
-msgid "Filter Comments"
-msgstr "Filtrar comentários"
 
 msgid "Editor"
 msgstr "Editor"

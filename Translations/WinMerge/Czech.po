@@ -1685,6 +1685,9 @@ msgstr "Ignorovat prázdné řá&dky"
 msgid "Ignore &case"
 msgstr "Ignorovat &malá a velká písmena"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Povolit zjišťování přesunutých &bloků"
@@ -1698,14 +1701,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Komentáře"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Filtrovat kom&entáře"
 
 #, c-format
 msgid "Editor"

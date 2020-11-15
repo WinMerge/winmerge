@@ -1683,6 +1683,9 @@ msgstr "&Üres sorok kihagyása"
 msgid "Ignore &case"
 msgstr "&Kis-nagybetű különbségek kihagyása"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Mozgatott &blokk észlelés bekapcsolása"
@@ -1695,14 +1698,6 @@ msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 msgid "Enable indent &heuristic"
-msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Megjegyzések"
-
-#, c-format
-msgid "Filter Comments"
 msgstr ""
 
 #, c-format

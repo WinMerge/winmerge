@@ -1316,6 +1316,9 @@ msgstr "تجاهل الأسطر الفارغة"
 msgid "Ignore &case"
 msgstr "تجاهل حالة الحرف (للغة الإنجليزية)"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "&تفعيل كشف المجموعات التي نقلها"
 
@@ -1327,12 +1330,6 @@ msgstr "خوارزمية المقارنة (تجريبي):"
 
 msgid "Enable indent &heuristic"
 msgstr "تفعيل الم&سافة البادئة الإرشادية"
-
-msgid "Comments"
-msgstr "تعليقات"
-
-msgid "Filter Comments"
-msgstr "مرشح التعليقات"
 
 msgid "Editor"
 msgstr "المحرر"

@@ -1684,6 +1684,9 @@ msgstr "Prezri prazne &vrstice"
 msgid "Ignore &case"
 msgstr "Prezri &velikost znakov"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Omogoči Zazna&vanje premaknjenih blokov"
@@ -1697,14 +1700,6 @@ msgstr "Al&goritem razlik (eksperimen):"
 
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
-
-#, c-format
-msgid "Comments"
-msgstr "Komentarji"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Komentarji filtrov"
 
 msgid "Editor"
 msgstr "Urejevalnik"

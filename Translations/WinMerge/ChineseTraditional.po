@@ -1693,6 +1693,9 @@ msgstr "忽略空白行(&K)"
 msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "偵測移位的區塊(&N)"
@@ -1706,14 +1709,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "備註"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "篩選器註解"
 
 #, c-format
 msgid "Editor"

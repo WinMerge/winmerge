@@ -1666,6 +1666,9 @@ msgstr "Занемари пра&зне редове"
 msgid "Ignore &case"
 msgstr "Занемари под&ударност"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
@@ -1679,14 +1682,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Напомене"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Филтрирај напомене"
 
 #, c-format
 msgid "Editor"

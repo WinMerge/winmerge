@@ -1315,6 +1315,9 @@ msgstr "Lege regels negeren"
 msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 
@@ -1326,12 +1329,6 @@ msgstr "Vergelijkingsalgoritme (experimenteel):"
 
 msgid "Enable indent &heuristic"
 msgstr "Inspringing-heuristiek inschakelen"
-
-msgid "Comments"
-msgstr "Opmerkingen"
-
-msgid "Filter Comments"
-msgstr "Filter-opmerkingen"
 
 msgid "Editor"
 msgstr "Editor"

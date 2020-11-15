@@ -1318,6 +1318,9 @@ msgstr "Ignorovať prázdne riad&ky"
 msgid "Ignore &case"
 msgstr "Ignorovať m&alé/VEĽKÉ"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Povoliť &zisťovanie presunu bloku"
 
@@ -1329,12 +1332,6 @@ msgstr "&Algoritmus rozdielov (experimentálne):"
 
 msgid "Enable indent &heuristic"
 msgstr "Povoliť &heuristické odsadenie"
-
-msgid "Comments"
-msgstr "Komentáre"
-
-msgid "Filter Comments"
-msgstr "Filtrovať komentáre"
 
 msgid "Editor"
 msgstr "Editor"

@@ -580,6 +580,29 @@
     </section>
 
     <section>
+      <title>コメントの違いを無視する<indexterm>
+          <primary>filters</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
+
+      <itemizedlist>
+        <listitem>
+          <para><option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>有効</option>: このオプションは、(C++ や Java
+          のような)プログラミング言語のコメントを検出し、それらを無視することにより、
+          比較を最適化します。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>移動ブロックの検出を有効にする<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
@@ -673,29 +696,6 @@
 
         <listitem>
           <para><option>無効</option> ヒューリスティックを無効にします。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>フィルタコメント<indexterm>
-          <primary>filters</primary>
-
-          <secondary>comments</secondary>
-        </indexterm></title>
-
-      <!--Just guessing what this does - ask a developer.-->
-
-      <itemizedlist>
-        <listitem>
-          <para><option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。
-          </para>
-        </listitem>
-
-        <listitem>
-          <para><option>有効</option>: このオプションは、(C++ や Java
-          のような)プログラミング言語のコメントを検出し、それらを無視することにより、
-          比較を最適化します。</para>
         </listitem>
       </itemizedlist>
     </section>
