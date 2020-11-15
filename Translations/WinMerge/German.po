@@ -166,7 +166,7 @@ msgstr "Ziehen-&Modus"
 msgid "&Move"
 msgstr "&Verschieben"
 
-#, fuzzy, c-format
+#, c-format
 msgid "&Adjust Offset"
 msgstr "&Versatz einstellen"
 
@@ -410,19 +410,19 @@ msgstr "Übersprun&gene Objekte anzeigen"
 msgid "S&how Binary Files"
 msgstr "Binär&dateien anzeigen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "&3-way Compare"
 msgstr "&3-Wege-Vergleich"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Show &Left Only Different Items"
 msgstr "Unterschiedliche Objekte &links anzeigen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Show &Middle Only Different Items"
 msgstr "Unterschiedliche Objekte &Mitte anzeigen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Show &Right Only Different Items"
 msgstr "Unterschiedliche Objekte &rechts anzeigen"
 
@@ -684,7 +684,7 @@ msgstr "&Gehe zu...\tStrg+G"
 msgid "Syntax Highlight"
 msgstr "S&yntaxhervorhebung"
 
-#, fuzzy, c-format
+#, c-format
 msgid "&Diff Context"
 msgstr "&Diff-Kontext"
 
@@ -716,7 +716,7 @@ msgstr "&7 Zeilen"
 msgid "&9 Lines"
 msgstr "&9 Zeilen"
 
-#, fuzzy, c-format
+#, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Zwischen allen und 0-9 Zeilen &wechseln\tStrg+D"
 
@@ -1684,7 +1684,7 @@ msgid "Ignore &case"
 msgstr "&Groß-/Kleinschreibung ignorieren"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Kommentarunterschiede ignorieren"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -3343,7 +3343,7 @@ msgid "The report has been created successfully."
 msgstr "Der Bericht wurde erfolgreich geschrieben."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "An dieser Linie kann kein Synchronisationspunkt hinzugefügt werden."
 
 #, c-format
 msgid "The same file is opened in both panels."
