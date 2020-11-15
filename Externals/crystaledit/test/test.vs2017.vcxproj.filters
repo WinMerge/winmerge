@@ -167,5 +167,8 @@
     <ClCompile Include="..\editlib\parsers\xml.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="htmlTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
