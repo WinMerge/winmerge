@@ -1,18 +1,18 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
-#
+# 
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
-# * Thomas De Rocker, 2019
+# * Thomas De Rocker, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-06-02 20:02+0000\n"
+"POT-Creation-Date: 2020-11-15 10:49+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
-"Last-Translator: Thomas De Rocker, 2019\n"
+"Last-Translator: Thomas De Rocker, 2020\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +110,7 @@ msgstr "Zoomen"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25 %"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Inzoomen\tCtrl++"
@@ -141,16 +141,16 @@ msgid "&Adjust Offset"
 msgstr "Offset aanpassen"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "&Verticaal uitvegen"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "&Horizontaal uitvegen"
 
 msgid "&Set Background Color"
 msgstr "Achtergrondkleur instellen"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "Vectorafbeeldingsschaling"
 
 msgid "&File"
 msgstr "Bestand"
@@ -336,13 +336,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Alleen rechts verschillende items weergeven"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Alleen links ontbrekende items weergeven"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Alleen midden ontbrekende items weergeven"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Alleen rechts ontbrekende items weergeven"
 
 msgid "Show Hidd&en Items"
 msgstr "Verborgen items weergeven"
@@ -468,7 +468,7 @@ msgid "&Text"
 msgstr "Tekst"
 
 msgid "T&able"
-msgstr ""
+msgstr "Tabel"
 
 msgid "&XML"
 msgstr "XML"
@@ -567,7 +567,7 @@ msgid "&View Whitespace"
 msgstr "Witruimte weergeven"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Regeleindes weergeven"
 
 msgid "Vie&w Line Differences"
 msgstr "Regelverschillen weergeven"
@@ -675,7 +675,7 @@ msgid "Comp&are"
 msgstr "Vergelijken"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Niet-horizontaal vergelijken..."
 
 msgid "Compare Non-hor&izontally"
 msgstr "Niet-horizontaal vergelijken"
@@ -762,7 +762,7 @@ msgid "with &External Editor"
 msgstr "met externe editor"
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "Bovenliggende map openen..."
 
 msgid "Open Midd&le"
 msgstr "Midden openen"
@@ -1009,7 +1009,9 @@ msgstr "Auto-aanvullen openen-venster:"
 msgid "Language:"
 msgstr "Language:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
 msgstr ""
 "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
 " Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
@@ -1067,7 +1069,7 @@ msgid "Wh&ole file"
 msgstr "Volledig bestand"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Vorige zoeken"
 
 msgid "&Replace"
 msgstr "Vervangen"
@@ -1109,7 +1111,7 @@ msgid "Colors"
 msgstr "Kleuren"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Kleurenschema:"
 
 msgid "Background"
 msgstr "Achtergrond"
@@ -1148,19 +1150,19 @@ msgid "Selected Word Diff:"
 msgstr "Geselecteerd woordverschil:"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "Mapvergelijkingskleuren gebruiken"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Gelijke items:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Verschillende items:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "Items bestaan niet allemaal:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Gefilterde items:"
 
 msgid "Margin:"
 msgstr "Marge:"
@@ -1298,7 +1300,7 @@ msgid "Compare"
 msgstr "Vergelijken"
 
 msgid "Whitespaces"
-msgstr "Witruimte"
+msgstr "Witruimtes"
 
 msgid "&Compare"
 msgstr "Vergelijken"
@@ -1316,7 +1318,7 @@ msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Opmerkingsverschillen negeren"
 
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
@@ -1370,7 +1372,7 @@ msgid "W&ord break characters:"
 msgstr "Woordsplitsingstekens:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "Rendermodus:"
 
 msgid "Filefilters"
 msgstr "Bestandsfilters"
@@ -1434,12 +1436,16 @@ msgstr ""
 "Selecteer de standaard veronderstelde tekenset bij laden van niet-"
 "Unicodebestanden:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml\n"
+"Need to restart session."
 msgstr ""
 "Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml\n"
 "Herstarten sessie noodzakelijk."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid ""
+"Detect codepage for text files using mlang.dll\n"
+"Need to restart session."
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
 "Herstarten sessie noodzakelijk."
@@ -1631,28 +1637,28 @@ msgid "&Close"
 msgstr "Sluiten"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabel"
 
 msgid "File type"
-msgstr ""
+msgstr "Bestandstype"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Aangepaste door scheidingsteken gescheiden waarden"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Scheidingsteken:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Witregels in citaten toestaan"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Citaat-teken:"
 
 msgid "&Use customized text colors"
 msgstr "Aangepaste tekstkleuren gebruiken"
@@ -1724,7 +1730,7 @@ msgid "&Enable plugins"
 msgstr "Plugins inschakelen"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Bestandsfilters:"
 
 msgid "Shell Integration"
 msgstr "Shell-integratie"
@@ -1775,22 +1781,24 @@ msgstr "Limiet snelvergelijking (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "Binaire vergelijkingslimiet (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
-"\nAantal vergelijkingsthreads (een negatieve waarde impliceert optelling van "
-"het aantal beschikbare CPU-kernen):"
+"\n"
+"Aantal vergelijkingsthreads (een negatieve waarde impliceert optelling van het aantal beschikbare CPU-kernen):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "&CSV-bestand-patronen:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "&TSV-bestand-patronen:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Aangepaste door scheidingsteken gescheiden waarden"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Bestandspatronen:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -1818,7 +1826,7 @@ msgid "Image File &Patterns:"
 msgstr "Afbeeldingsbestand-patronen:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Afbeeldingsvergelijking in mapvergelijking inschakelen"
 
 msgid "&Hex View"
 msgstr "Hex-weergave"
@@ -1974,19 +1982,21 @@ msgstr "Alles overslaan"
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"General page of the Options dialog."
 msgstr ""
-"Om dit berichtvenster opnieuw zichtbaar te maken, druk op de herstellen-knop"
-" op de pagina \"algemeen\" van het venster \"opties\"."
+"Druk op de herstellen-knop op de pagina \"algemeen\" van het venster "
+"\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Kleurenschema's"
 
 msgid "Syntax"
 msgstr "Syntax"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "Mapvergelijking"
 
 msgid "Differences"
 msgstr "Verschillen"
@@ -2007,10 +2017,10 @@ msgid "To right:"
 msgstr "Naar rechts:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Van midden:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Naar midden:"
 
 #, c-format
 msgid "Version %1"
@@ -2148,11 +2158,14 @@ msgstr "Filterbestand bestaat reeds. Bestaande filter overschrijven?"
 msgid "Regular expression"
 msgstr "Reguliere expressie"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "Filters werden bijgewerkt. Wilt u alle geopende mapvergelijkingen vernieuwen?\n"
 "\n"
-"Indien u dit nu niet wilt doen, kunt u nee selecteren en de vergelijkingen later vernieuwen."
+"Indien u dit nu niet wilt doen, kunt u 'nee' selecteren en de vergelijkingen later vernieuwen."
 
 msgid "Folder Comparison Results"
 msgstr "Resultaten mapvergelijking"
@@ -2290,8 +2303,16 @@ msgstr ""
 "%1\n"
 "is geen conflictbestand."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"U staat op het punt om zeer grote bestanden te vergelijken.\n"
+"Het weergeven van de inhoud van de bestanden vereist een zeer grote hoeveelheid geheugen.\n"
+"Wilt u alleen de vergelijkingsresultaten weergeven, en niet de inhoud van de bestanden?\n"
+"\n"
 
 msgid "Save As"
 msgstr "Opslaan als"
@@ -2301,10 +2322,12 @@ msgid "Save changes to %1?"
 msgstr "Wijzigingen opslaan in %1?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
+msgid ""
+"%1 is marked read-only. Would you like to override the read-only file? (No "
+"to save as new filename.)"
 msgstr ""
 "%1 is gemarkeerd als alleen lezen. Wilt u dit alleen-lezen bestand "
-"overschrijven? (Niet opslaan onder nieuwe naam.)"
+"overschrijven? (Nee om op te slaan als nieuwe bestandsnaam)"
 
 msgid "Error backing up file"
 msgstr "Fout bij maken van reservekopie van bestand"
@@ -2322,14 +2345,20 @@ msgstr ""
 "Toch doorgaan?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Bestand opslaan is mislukt.\n"
 "%1\n"
 "%2\n"
 "Wilt u \n"
-"\t- een andere bestandsnaam gebruiken (druk op ok)\n"
-"\t- de huidige handeling afbreken (druk op annuleren)?"
+"\t- een andere bestandsnaam gebruiken? (Op 'ok' drukken)\n"
+"\t- de huidige handeling afbreken? (Op 'annuleren' drukken)"
 
 #, c-format
 msgid ""
@@ -2522,7 +2551,7 @@ msgid ""
 msgstr "Weet u zeker dat u %1 wilt verwijderen?"
 
 msgid "Are you sure you want to copy?"
-msgstr "Weet u zeker dat u dit wilt kopiëren?"
+msgstr "Weet u zeker dat u wilt kopiëren?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
@@ -2745,10 +2774,10 @@ msgid "Text files are different"
 msgstr "Tekstbestanden zijn verschillend"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Afbeeldingsbestanden zijn identiek"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Afbeeldingsbestanden zijn verschillend"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -2901,7 +2930,7 @@ msgid "The report has been created successfully."
 msgstr "Het rapport is met succes aangemaakt."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Kan geen synchronisatiepunt toevoegen op deze regel."
 
 msgid "The same file is opened in both panels."
 msgstr "Hetzelfde bestand is in beide vensters geopend."
@@ -2918,7 +2947,12 @@ msgstr ""
 "Tijdelijke bestanden konden niet aangemaakt worden. Controleer de instelling"
 " voor het pad van tijdelijke bestanden."
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Deze bestanden gebruiken verschillende regeleinde-types.\n"
 "\n"
@@ -2959,7 +2993,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Wilt u naar de vorige pagina gaan?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Verschillende tekensets gevonden in linker (%d) en rechter (%d) bestanden.\n"
 "Elk bestand in zijn eigen tekenset weergeven zal resulteren in een betere weergave, maar samenvoegen/kopiëren zal gevaarlijk zijn.\n"
@@ -2991,7 +3028,9 @@ msgstr "%1 tekenreeks(en) vervangen."
 msgid "Cannot find string \"%s\"."
 msgstr "Kan tekenreeks \"%s\" niet vinden."
 
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
+msgid ""
+"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
+"F9 key."
 msgstr ""
 "U start nu de samenvoegmodus. Als u de samenvoegmodus wilt uitschakelen, "
 "drukt u op F9."
@@ -3026,10 +3065,10 @@ msgid "Patch file successfully written."
 msgstr "Patch-bestand succesvol geschreven."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. item is niet teruggevonden!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. item is niet teruggevonden!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Het patch-bestand bestaat al. Wilt u het overschrijven?"
@@ -3124,10 +3163,10 @@ msgstr "Geen"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Markeringskleur %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Nieuw patroon"
 
 msgid "Type"
 msgstr "Type"
@@ -3260,7 +3299,9 @@ msgstr ""
 "\n"
 "Automatisch samenvoegen (Ctrl+Alt+M)"
 
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
+msgid ""
+"The adapted unpacker is applied to both files (one file only needs the "
+"extension)."
 msgstr ""
 "De overgenomen uitpakker wordt toegepast op beide bestanden (één bestand "
 "heeft alleen maar de extensie nodig)."
@@ -3315,7 +3356,7 @@ msgid "From file system"
 msgstr "Van bestandssysteem"
 
 msgid "From Most Recently Used list"
-msgstr "Van MRU-lijst"
+msgstr "Uit lijst van recent gebruikt"
 
 msgid "No Highlighting"
 msgstr "Geen markering"
@@ -3370,125 +3411,124 @@ msgstr ""
 "$linenum: regelnummer van de huidige cursorpositie"
 
 msgid "default"
-msgstr ""
+msgstr "standaard"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimaal"
 
 msgid "patience"
-msgstr ""
+msgstr "geduld"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite standaard"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI-dochtervenster of hoofdvenster"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Alleen MDI-dochtervenster"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Verschil"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Markeren"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Knipperen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blokgrootte"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Alpha van blok"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD-drempel"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Ins/Del-detectie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Overlay"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa-blend"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa-animatie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoomen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Pagina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Afstand: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Afstand: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr ""
-
+msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
