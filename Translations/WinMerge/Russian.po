@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-07-28 01:00+0300\n"
+"POT-Creation-Date: 2020-11-15 10:49+0000\n"
+"PO-Revision-Date: 2020-11-16 09:09+0200\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "&Масштаб"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
@@ -229,7 +229,7 @@ msgid "&Plugins"
 msgstr "Плагины"
 
 msgid "P&lugin Settings..."
-msgstr "Настройки плагинов"
+msgstr "Настройки плагинов..."
 
 msgid "Ma&nual Prediffer"
 msgstr "Ручное предсравнение"
@@ -942,7 +942,7 @@ msgid "Swap 2nd | 3rd"
 msgstr "Поменять 2-й | 3-й"
 
 msgid "B&rowse..."
-msgstr "Обзор"
+msgstr "Обзор..."
 
 msgid "&3rd File or Folder (Optional)"
 msgstr "&3-й файл или папка (необязательно)"
@@ -966,7 +966,7 @@ msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
 
 msgid "Se&lect..."
-msgstr "Выбрать"
+msgstr "Выбрать..."
 
 msgid "Co&mpare"
 msgstr "Сравнить"
@@ -987,7 +987,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Автоматически &установить на первое отличие"
 
 msgid "Cl&ose windows with 'Esc':"
-msgstr "За&крывать окна клавишей 'Esc'"
+msgstr "За&крывать окна клавишей 'Esc':"
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Автоматически проверять пути в диалоге открытия файлов"
@@ -1110,7 +1110,7 @@ msgid "Colors"
 msgstr "Цвета"
 
 msgid "Color Scheme:"
-msgstr "Цветовая схема"
+msgstr "Цветовая схема:"
 
 msgid "Background"
 msgstr "Фон"
@@ -1371,7 +1371,7 @@ msgid "W&ord break characters:"
 msgstr "Символы разрыва слов:"
 
 msgid "&Rendering Mode:"
-msgstr "Режим отрисовки"
+msgstr "Режим отрисовки:"
 
 msgid "Filefilters"
 msgstr "Фильтры файлов"
@@ -1632,16 +1632,16 @@ msgid "File type"
 msgstr "Тип файла"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
 
 msgid "D&elimiter character:"
-msgstr "Символ разделителя"
+msgstr "Символ разделителя:"
 
 msgid "&Allow newlines in quotes"
 msgstr "Разрешить новые строки в кавычках"
@@ -1704,7 +1704,7 @@ msgid "To right"
 msgstr "Направо"
 
 msgid "Don't ask this &question again."
-msgstr "Не справшивать &больше"
+msgstr "Не справшивать &больше."
 
 msgid "Yes"
 msgstr "Да"
@@ -1783,7 +1783,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
 
 msgid "File Patterns:"
-msgstr "Шаблоны файлов"
+msgstr "Шаблоны файлов:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -1907,7 +1907,7 @@ msgid "Skip &all"
 msgstr "Проп&устить все"
 
 msgid "Don't display this &message again."
-msgstr "Не показывать &больше"
+msgstr "Не показывать &больше."
 
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие."
@@ -1940,10 +1940,10 @@ msgid "To right:"
 msgstr "Направо:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Из середины:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "На середину:"
 
 #, c-format
 msgid "Version %1"
@@ -2036,7 +2036,7 @@ msgid "Regular expression"
 msgstr "Регулярное выражение"
 
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
-msgstr "Фильтры были обновлены. Обновить все открытые сравниваемые папки?\nЕсли не хотите обновлять сейчас, нажмите \"Нет\"."
+msgstr "Фильтры были обновлены. Обновить все открытые сравниваемые папки?\n\nЕсли не хотите обновлять сейчас, нажмите \"Нет\"."
 
 msgid "Folder Comparison Results"
 msgstr "Результаты сравнения папок"
@@ -2119,7 +2119,7 @@ msgid "Right (3rd) path is invalid!"
 msgstr "Путь справа (3-й) указан неверно!"
 
 msgid "Both paths are invalid!"
-msgstr "Оба пути указаны неверно"
+msgstr "Оба пути указаны неверно!"
 
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "Пути слева (1-й) и посередине (2-й) указаны неверно!"
@@ -2131,7 +2131,7 @@ msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "Пути посередине (2-й) и справа (3-й) указаны неверно!"
 
 msgid "All paths are invalid!"
-msgstr "Все пути указаны неверно"
+msgstr "Все пути указаны неверно!"
 
 msgid "Only enabled for file comparisons"
 msgstr "Включено только для сравнения файлов"
@@ -2152,17 +2152,17 @@ msgid "Cannot open file\n%1\n\n%2"
 msgstr "Не удается открыть файл\n%1\n\n%2"
 
 msgid "Failed to parse conflict file."
-msgstr "Сбой разбора файла конфликтов"
+msgstr "Сбой разбора файла конфликтов."
 
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr "Файл\n%1\nне является файлом конфликтов"
+msgstr "Файл\n%1\nне является файлом конфликтов."
 
 msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
 msgstr "Вы собираетесь сравнить очень большие файлы.\nОтображение содержимого этих файлов требует очень много памяти.\nХотите увидеть только результаты сравнения, а не содержимое файлов?\n\n"
 
 msgid "Save As"
-msgstr "Сохранить как..."
+msgstr "Сохранить как"
 
 #, c-format
 msgid "Save changes to %1?"
@@ -2204,13 +2204,13 @@ msgid "Another application has updated file\n%1\nsince WinMerge scanned it last 
 msgstr "Другое приложение обновило файл\n%1\nуже проверенный WinMerge.\n\nПерезагрузить файл?"
 
 msgid "Save Left File As"
-msgstr "Сохранить файл слева как..."
+msgstr "Сохранить файл слева как"
 
 msgid "Save Middle File As"
-msgstr "Сохранить файл посередине как..."
+msgstr "Сохранить файл посередине как"
 
 msgid "Save Right File As"
-msgstr "Сохранить файл справа как..."
+msgstr "Сохранить файл справа как"
 
 #, c-format
 msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
@@ -2585,7 +2585,7 @@ msgid "Middle side creation time."
 msgstr "Время создания файла посередине."
 
 msgid "Tells which side has newer modification date."
-msgstr "Показать с какой из сторон дата изменения файла новее"
+msgstr "Показать с какой из сторон дата изменения файла новее."
 
 msgid "Left side file version, only for some filetypes."
 msgstr "Версия файла слева, только для некоторых типов файлов."
@@ -2609,13 +2609,13 @@ msgid "Middle side attributes."
 msgstr "Атрибуты посередине."
 
 msgid "Left side file EOL type."
-msgstr "Тип конца строки для файла слева"
+msgstr "Тип конца строки для файла слева."
 
 msgid "Right side file EOL type."
-msgstr "Тип конца строки для файла справа"
+msgstr "Тип конца строки для файла справа."
 
 msgid "Middle side file EOL type."
-msgstr "Тип конца строки для файла посередине"
+msgstr "Тип конца строки для файла посередине."
 
 msgid "Left side encoding."
 msgstr "Кодировка слева."
@@ -2665,7 +2665,7 @@ msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 msgid "The same file is opened in both panels."
-msgstr "На обоих панелях открыт один и тот же файл"
+msgstr "На обоих панелях открыт один и тот же файл."
 
 msgid "The selected files are identical."
 msgstr "Выбранные файлы идентичны."
@@ -2843,7 +2843,7 @@ msgid "Marker Color %d"
 msgstr "Цвет маркера %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Новый шаблон"
 
 msgid "Type"
 msgstr "Тип"
@@ -2858,7 +2858,7 @@ msgid "Editor script"
 msgstr "Редактор скриптов"
 
 msgid "\nDifference in the Current Line"
-msgstr "Отличия в текущей строке"
+msgstr "\nОтличие в текущей строке"
 
 msgid "\nOptions"
 msgstr "\nНастройки"
