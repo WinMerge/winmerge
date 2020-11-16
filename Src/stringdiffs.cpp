@@ -560,9 +560,28 @@ stringdiffs::onp(std::vector<char> &edscript)
 		exchanged = true;
 	}
 	int *fp = (new int[(M+1) + 1 + (N+1)]) + (M+1);
-	std::vector<char> *es = (new std::vector<char>[(M+1) + 1 + (N+1)]) + (M+1);
+	struct EditScriptElem { int op; int neq; int pk; int pi; };
+	std::vector<EditScriptElem> *es = (new std::vector<EditScriptElem>[(M+1) + 1 + (N+1)]) + (M+1);
 	int DELTA = N - M;
 	
+	auto addEditScriptElem = [&es, &fp](int k) {
+		EditScriptElem ese;
+		if (fp[k - 1] + 1 > fp[k + 1])
+		{
+			ese.op = '+';
+			ese.neq = fp[k] - (fp[k - 1] + 1);
+			ese.pk = k - 1;
+		}
+		else
+		{
+			ese.op = '-';
+			ese.neq = fp[k] - fp[k + 1];
+			ese.pk = k + 1;
+		}
+		ese.pi = static_cast<int>(es[ese.pk].size() - 1);
+		es[k].push_back(ese);
+	};
+
 	int k;
 	for (k = -(M+1); k <= (N+1); k++)
 		fp[k] = -1; 
@@ -573,32 +592,35 @@ stringdiffs::onp(std::vector<char> &edscript)
 		for (k = -p; k <= DELTA-1; k++)
 		{
 			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
-	
-			es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
-			es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-			es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
+			addEditScriptElem(k);
 		}
 		for (k = DELTA + p; k >= DELTA+1; k--)
 		{
 			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
-	
-			es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
-			es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-			es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
+			addEditScriptElem(k);
 		}
 		k = DELTA;
 		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
-	
-		es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
-		es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-		es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
+		addEditScriptElem(k);
 	} while (fp[k] != N);
 
-	std::vector<char> &ses = es[DELTA]; // Shortest edit script
 	edscript.clear();
 
+	std::vector<char> ses;
+	int i;
+	for (k = DELTA, i = static_cast<int>(es[DELTA].size() - 1); i >= 0;)
+	{
+		EditScriptElem& esi = es[k][i];
+		for (int j = 0; j < esi.neq; ++j)
+			ses.push_back('=');
+		ses.push_back(static_cast<char>(esi.op));
+		i = esi.pi;
+		k = esi.pk;
+	}
+	std::reverse(ses.begin(), ses.end());
+
 	int D = 0;
-	for (size_t i = 1; i < ses.size(); i++)
+	for (i = 1; i < static_cast<int>(ses.size()); i++)
 	{
 		switch (ses[i])
 		{
