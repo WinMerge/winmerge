@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2020-11-15</update>
+  <update>2020-11-17</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -211,10 +211,10 @@
       <file>Dutch.po</file>
       <update>2018-09-06</update>
       <strings>
-        <count>994</count>
-        <translated>914</translated>
+        <count>993</count>
+        <translated>993</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>80</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -225,7 +225,7 @@
           <name>Michel Coene</name>
         </translator>
         <translator>
-          <name>Thomas De Rocker, 2019</name>
+          <name>Thomas De Rocker, 2020</name>
         </translator>
       </translators>
     </translation>
@@ -303,9 +303,9 @@
       <update>2020-09-28</update>
       <strings>
         <count>994</count>
-        <translated>985</translated>
-        <fuzzy>7</fuzzy>
-        <untranslated>2</untranslated>
+        <translated>994</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -438,12 +438,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2020-10-12</update>
+      <update>2020-11-16</update>
       <strings>
         <count>994</count>
-        <translated>992</translated>
+        <translated>994</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -561,12 +561,12 @@
     <translation>
       <language>Russian</language>
       <file>Russian.po</file>
-      <update>2020-07-28</update>
+      <update>2020-11-16</update>
       <strings>
         <count>994</count>
-        <translated>980</translated>
+        <translated>986</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>14</untranslated>
+        <untranslated>8</untranslated>
       </strings>
       <translators>
         <translator>
