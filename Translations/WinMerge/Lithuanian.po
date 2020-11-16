@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-10-11 06:39+0000\n"
-"PO-Revision-Date: 2020-10-12 09:09+0300\n"
+"POT-Creation-Date: 2020-11-15 10:49+0000\n"
+"PO-Revision-Date: 2020-11-16 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1315,7 +1315,7 @@ msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Nepaisyti k&omentarų skirtumų"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -2012,7 +2012,7 @@ msgstr "Nepavyko rasti failų filtro šablono failo!\n\nNukopijuokit %1 failą �
 
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
-msgstr "Nepavyko kopijuoti filtro šablono failo į filtrų katalogą:\n%1\n\nĮsitikinkite, kad katalogas egzistuoja ir yra įrašomas."
+msgstr "Nepavyko nukopijuoti filtro šablono failo į filtrų katalogą:\n%1\n\nĮsitikinkite, kad katalogas egzistuoja ir yra įrašomas."
 
 msgid "User's filter file folder is not defined!\n\nPlease select filter folder in Options/System."
 msgstr "Vartotojo filtrų failų katalotgas nėra apibrėžtas!\n\nNurodykite filtrų katalogą „Nuostatos/Sistemos“ meniu punkte."
@@ -2660,7 +2660,7 @@ msgid "The report has been created successfully."
 msgstr "Ataskaita sukurta sėkmingai."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Šioje eilutėje negalima pridėti sinchronizavimo taško."
 
 msgid "The same file is opened in both panels."
 msgstr "Tas pats failas pasirinktas abiejose pusėse."
