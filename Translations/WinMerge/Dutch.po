@@ -1,6 +1,6 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
-# 
+#
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
@@ -3532,3 +3532,4 @@ msgstr "Afstand: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+
