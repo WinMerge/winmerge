@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-12-22 07:42+0000\n"
-"PO-Revision-Date: 2020-10-10 23:42+0900\n"
+"PO-Revision-Date: 2020-11-17 19:51+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -914,7 +914,7 @@ msgid "Contributors"
 msgstr "貢献者"
 
 msgid "Select Files or Folders"
-msgstr "ファイルまたはフォルダーの選択..."
+msgstr "ファイルまたはフォルダーの選択"
 
 msgid "&1st File or Folder"
 msgstr "&1 番目のファイルまたはフォルダー"
@@ -1329,7 +1329,7 @@ msgid "Diff &algorithm (Experimental):"
 msgstr "Diff アルゴリズム (実験的機能)(&A):"
 
 msgid "Enable indent &heuristic"
-msgstr "indent heuristic を有効にする(&H)"
+msgstr "Indent heuristic を有効にする(&H)"
 
 msgid "Editor"
 msgstr "エディタ"
@@ -1444,7 +1444,7 @@ msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "Need to restart session."
 msgstr ""
-"mlang.dll を使用してファイルのコードページを検出する\n"
+"'mlang.dll' を使用してファイルのコードページを検出する\n"
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
 
 msgid "System codepage"
@@ -2552,7 +2552,7 @@ msgstr ""
 "再度比較してください。"
 
 msgid "Are you sure you want to move?"
-msgstr "項目を移動しますか? "
+msgstr "項目を移動しますか?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
@@ -2790,7 +2790,7 @@ msgid "Right file size in bytes."
 msgstr "右側ファイルのバイト数です。"
 
 msgid "Middle file size in bytes."
-msgstr "中央ファイルのバイト数"
+msgstr "中央ファイルのバイト数です。"
 
 msgid "Left file size abbreviated."
 msgstr "左側ファイルのバイト数(短縮形)です。"
@@ -2986,7 +2986,7 @@ msgstr "%1 個の文字列を置換しました。"
 
 #, c-format
 msgid "Cannot find string \"%s\"."
-msgstr "文字列 \"%s\""
+msgstr "文字列 \"%s\" が見つかりません。"
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
 msgstr ""
@@ -3365,37 +3365,37 @@ msgstr ""
 "$linenum: 現在のカーソル位置の行番号"
 
 msgid "default"
-msgstr ""
+msgstr "default"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite Default"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
 msgstr "MDI子ウインドウまたはメインウインドウ"
