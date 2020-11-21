@@ -964,7 +964,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		return;
 
 	// scroll to the first line of the diff
-	vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+	vector<WordDiff> worddiffs;
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
+		worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
 	CPoint pt = worddiffs.size() > 0 ?
 		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
 		CPoint{ 0, m_lineBegin };
@@ -2310,9 +2312,11 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 				}
 			}
 
-			vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+			vector<WordDiff> worddiffs;
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
+				worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
 			CPoint pt = worddiffs.size() > 0 ?
-				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } :
 				ptStart;
 			GetGroupView(m_nThisPane)->SetCursorPos(pt);
 			GetGroupView(m_nThisPane)->SetAnchor(pt);

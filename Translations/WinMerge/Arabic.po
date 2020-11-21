@@ -984,6 +984,9 @@ msgstr "عام"
 msgid "Automatically &scroll to first difference"
 msgstr "الانتقال إلى الا&ختلاف الأول تلقائيا"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "إغلاق النوافذ باستخدام زر 'Esc':"
 

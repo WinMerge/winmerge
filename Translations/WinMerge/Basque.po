@@ -1255,6 +1255,9 @@ msgstr "Orokorra"
 msgid "Automatically &scroll to first difference"
 msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Itxi leihoak 'Es&c'-rekin:"
 

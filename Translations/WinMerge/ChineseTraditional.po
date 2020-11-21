@@ -1261,6 +1261,9 @@ msgstr "一般"
 msgid "Automatically &scroll to first difference"
 msgstr "自動捲至最初差異(&S)"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "按 'Esc' 關閉視窗(&O):"
 

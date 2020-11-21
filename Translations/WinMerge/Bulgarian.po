@@ -978,6 +978,9 @@ msgstr "Основни"
 msgid "Automatically &scroll to first difference"
 msgstr "Автоматично &плъзване към първото различие"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Затваряне &прозорците при 'Esc':"
 

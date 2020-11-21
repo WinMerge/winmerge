@@ -1000,24 +1000,26 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,240,10
-    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,16,240,10
-    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,27,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Automatically s&croll to first inline difference",IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,16,240,10
+    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,26,240,10
+    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,37,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,52,240,10
     CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,64,240,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,76,240,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,78,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,240,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,100,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,102,240,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,122,240,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,134,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Language:",IDC_STATIC,7,152,240,10
-    COMBOBOX        IDC_LANGUAGE_LIST,7,164,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,112,240,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,132,240,10
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,144,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language:",IDC_STATIC,7,162,240,10
+    COMBOBOX        IDC_LANGUAGE_LIST,7,174,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,192,240,30
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
@@ -2166,6 +2168,7 @@ END
 IDD_PROPPAGE_GENERAL AFX_DIALOG_LAYOUT
 BEGIN
     0,
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,

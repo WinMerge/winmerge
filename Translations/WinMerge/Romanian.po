@@ -1253,6 +1253,9 @@ msgstr "General"
 msgid "Automatically &scroll to first difference"
 msgstr "De&sfăşoară automat la prima diferenţă"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Închide ferestrele cu tasta 'Esc':"
 

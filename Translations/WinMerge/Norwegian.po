@@ -1253,6 +1253,9 @@ msgstr "Generelt"
 msgid "Automatically &scroll to first difference"
 msgstr "Automatisk &rulling til første forskjell"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "L&ukk vinduer med 'Esc':"
 

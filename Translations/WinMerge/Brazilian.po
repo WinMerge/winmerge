@@ -1253,6 +1253,9 @@ msgstr "Geral"
 msgid "Automatically &scroll to first difference"
 msgstr "Automaticame&nte rolar pra primeira diferença"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Fe&char as janelas com o 'Esc':"
 

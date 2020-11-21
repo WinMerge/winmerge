@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-12-22 07:42+0000\n"
-"PO-Revision-Date: 2020-11-17 19:51+0900\n"
+"PO-Revision-Date: 2020-11-21 14:36+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -981,6 +981,9 @@ msgstr "一般"
 
 msgid "Automatically &scroll to first difference"
 msgstr "自動的に最初の差異にスクロールする(&S)"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "自動的に最初の行内差異にスクロールする(&C)"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc' キーでウィンドウを閉じる(&O):"

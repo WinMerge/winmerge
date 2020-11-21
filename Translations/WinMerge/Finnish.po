@@ -1253,6 +1253,9 @@ msgstr "Yleinen"
 msgid "Automatically &scroll to first difference"
 msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Sulje ikkuna 'Esc':llä:"
 

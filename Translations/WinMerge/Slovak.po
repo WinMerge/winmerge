@@ -984,6 +984,9 @@ msgstr "Všeobecné"
 msgid "Automatically &scroll to first difference"
 msgstr "Automaticky &rolovať na prvý rozdiel"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zat&várať okná klávesou 'Esc':"
 

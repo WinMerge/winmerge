@@ -1253,6 +1253,9 @@ msgstr "Obecné"
 msgid "Automatically &scroll to first difference"
 msgstr "Automaticky posunout na pr&vní rozdíl"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zavírat okna klávesou '&Esc':"
 

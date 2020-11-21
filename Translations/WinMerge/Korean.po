@@ -1257,6 +1257,9 @@ msgstr "일반"
 msgid "Automatically &scroll to first difference"
 msgstr "처음 차이점으로 자동 스크롤하기(&S)"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc'로 창 닫기(&O):"
 

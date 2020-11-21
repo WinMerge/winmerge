@@ -1253,6 +1253,9 @@ msgstr "Allgemein"
 msgid "Automatically &scroll to first difference"
 msgstr "&Anzeige automatisch auf den ersten Unterschied positionieren"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Fenster mit '&Esc' schließen:"
 

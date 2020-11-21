@@ -1255,6 +1255,9 @@ msgstr "Allmänt"
 msgid "Automatically &scroll to first difference"
 msgstr "Skrolla automatiskt till första skillnaden"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Stäng fönster med ''Esc'':"
 

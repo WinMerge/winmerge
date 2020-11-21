@@ -1252,6 +1252,9 @@ msgstr "Γενικά"
 msgid "Automatically &scroll to first difference"
 msgstr "Αυτόματη &κύλιση στην πρώτη διαφορά"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Κ&λείσιμο παραθύρων με 'Esc':"
 

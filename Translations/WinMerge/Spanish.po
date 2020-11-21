@@ -985,6 +985,9 @@ msgstr "General"
 msgid "Automatically &scroll to first difference"
 msgstr "Mover&se automáticamente a la primer diferencia"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "C&errar ventanas con 'Esc':"
 

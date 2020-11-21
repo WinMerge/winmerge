@@ -1252,6 +1252,9 @@ msgstr ""
 msgid "Automatically &scroll to first difference"
 msgstr "&Desplaça automàticament fins a la primera diferència"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "T&anca les finestres amb 'Esc':"
 

@@ -1253,6 +1253,9 @@ msgstr "Xeral"
 msgid "Automatically &scroll to first difference"
 msgstr "Ir &automaticamente á primeira diferenza"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Pe&char as ventás con 'Esc':"
 

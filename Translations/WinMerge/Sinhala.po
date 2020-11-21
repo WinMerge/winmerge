@@ -1250,6 +1250,9 @@ msgstr "සාමාන්‍ය "
 msgid "Automatically &scroll to first difference"
 msgstr "ස්වයංක්‍රීයව පළමුවන වෙනස්කම සඳහා අනුචලනය"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "කවුළු වැසීම 'Esc':"
 

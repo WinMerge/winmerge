@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-15 10:49+0000\n"
+"POT-Creation-Date: 2020-11-21 13:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -973,6 +973,9 @@ msgid "General"
 msgstr ""
 
 msgid "Automatically &scroll to first difference"
+msgstr ""
+
+msgid "Automatically s&croll to first inline difference"
 msgstr ""
 
 msgid "Cl&ose windows with 'Esc':"

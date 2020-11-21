@@ -1253,6 +1253,9 @@ msgstr "Splošno"
 msgid "Automatically &scroll to first difference"
 msgstr "Samodejno &pojdi na prvo razliko"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zapri okna s tipko '&Esc':"
 

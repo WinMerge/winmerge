@@ -169,6 +169,7 @@
 #define IDC_PATH2_COMBO                 1006
 #define IDC_EXT_COMBO                   1009
 #define IDC_SCROLL_CHECK                1012
+#define IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK 1013
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
 #define IDC_IGNBLANKS_CHECK             1017
