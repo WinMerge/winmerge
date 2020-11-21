@@ -70,6 +70,12 @@ msgstr "Lii&tä"
 msgid "&Goto..."
 msgstr "&Siirry..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 #, c-format
 msgid "Op&en"
 msgstr "Av&aa"
@@ -4016,6 +4022,9 @@ msgstr "<Automaattinen>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Siirry riville %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"

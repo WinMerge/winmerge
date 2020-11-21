@@ -60,6 +60,12 @@ msgstr "&لصق"
 msgid "&Goto..."
 msgstr "ال&ذهاب إلى..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "&فتح"
 
@@ -3304,6 +3310,9 @@ msgstr "<تلقائي>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "إ&ذهب إلى السطر %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "معطل"

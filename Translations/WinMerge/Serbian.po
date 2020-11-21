@@ -71,6 +71,12 @@ msgstr "&Налепи"
 msgid "&Goto..."
 msgstr "&Иди на..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 #, c-format
 msgid "Op&en"
 msgstr "&Отвори"
@@ -3892,6 +3898,9 @@ msgstr "<Аутоматски>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "И&ди на ред %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"

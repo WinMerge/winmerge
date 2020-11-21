@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-21 13:50+0000\n"
+"POT-Creation-Date: 2020-11-21 22:58+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -51,6 +51,12 @@ msgid "&Paste"
 msgstr ""
 
 msgid "&Goto..."
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
 msgstr ""
 
 msgid "Op&en"
@@ -2940,6 +2946,9 @@ msgstr ""
 
 #, c-format
 msgid "G&oto Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
 msgid "Disabled"

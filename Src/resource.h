@@ -979,6 +979,9 @@
 #define ID_REFRESH                      32787
 #define ID_EDIT_COPY_LINENUMBERS        32788
 #define ID_RESCAN                       32789
+#define ID_GOTO_MOVED_LINE_LM           32790
+#define ID_GOTO_MOVED_LINE_MR           32791
+#define IDS_GOTO_MOVED_LINE             32792
 #define ID_EDIT_FIND_PREVIOUS           32799
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801

@@ -60,6 +60,12 @@ msgstr "Plakken"
 msgid "&Goto..."
 msgstr "Ga naar..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "Openen"
 
@@ -3351,6 +3357,9 @@ msgstr "<Automatic>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Naar regel %1 gaan"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Uitgeschakeld"

@@ -72,6 +72,12 @@ msgstr "&Beillesztés"
 msgid "&Goto..."
 msgstr "&Ugrás..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 #, c-format
 msgid "Op&en"
 msgstr "Meg&nyitás"
@@ -3825,6 +3831,9 @@ msgstr "<Automatikus>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "&Ugrás a(z) %1. sorra"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"

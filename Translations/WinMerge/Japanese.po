@@ -60,6 +60,12 @@ msgstr "貼り付け(&P)"
 msgid "&Goto..."
 msgstr "移動(&G)..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr "左側と中央の移動行に移動\tCtrl+Shift+G"
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr "中央と右側の移動行に移動\tCtrl+Alt+G"
+
 msgid "Op&en"
 msgstr "開く(&E)"
 
@@ -3305,6 +3311,9 @@ msgstr "<自動>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "行 %1 に移動(&O)"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr "移動行に移動\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "無効"

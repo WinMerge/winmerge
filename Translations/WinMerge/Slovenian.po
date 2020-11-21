@@ -73,6 +73,12 @@ msgstr "&Prilepi"
 msgid "&Goto..."
 msgstr "Pojdi &na..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 #, c-format
 msgid "Op&en"
 msgstr "&Odpri"
@@ -4034,6 +4040,9 @@ msgstr "<Samodejno>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Pojdi &na vrstico %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
