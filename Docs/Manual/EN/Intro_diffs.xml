@@ -4,7 +4,7 @@
 
   <para>This topic describes how WinMerge detects and displays differences
   within text files, and demonstrates simple file comparing and merging
-  operations. See <xref linkend="Intro_diffs" /> for related information about
+  operations. See <xref linkend="Compare_bin" /> for related information about
   hex files. </para>
 
   <section id="Intro_diffs_comparing">
@@ -217,6 +217,7 @@ Believe it or not.</screen></para>
               <phrase>Compare Files Diff Pane</phrase>
             </textobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -377,6 +378,7 @@ Believe it or not.</screen></para>
                          fileref="screenshots/filemerged1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
