@@ -51,7 +51,7 @@
   
   <section id="Installing_usinginstaller">
     <title>Using the installer (recommended)</title>
-
+    <para></para>
     <note>
       <para>The installer requires Administrator user privileges. If you don't have admin user privileges, you can install
       WinMerge by unzipping from an archive file (see <xref
@@ -295,6 +295,7 @@
         If necessary, click <guibutton>Back</guibutton> to change anything in a
         previous page. When you are sure that you are ready to proceed, click
         <guibutton>Install</guibutton>.</simpara>
+      <para></para>
       </listitem>
 
       <listitem>
