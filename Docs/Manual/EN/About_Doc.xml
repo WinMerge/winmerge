@@ -204,7 +204,7 @@
     <title>Documentation conventions<indexterm>
         <primary>conventions, documentation</primary>
       </indexterm></title>
-
+    <para></para>
     <informaltable>
       <tgroup cols="2">
         <thead>
@@ -343,5 +343,6 @@
         </tbody>
       </tgroup>
     </informaltable>
+    <para></para>
   </section>
 </article>
