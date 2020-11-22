@@ -434,7 +434,7 @@ exitPrepAndCompare:
 	{
 		if (m_pBinaryCompare == nullptr)
 			m_pBinaryCompare.reset(new BinaryCompare());
-
+		m_pBinaryCompare->SetAbortable(m_pCtxt->GetAbortable());
 		PathContext tFiles;
 		GetComparePaths(m_pCtxt, di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);
