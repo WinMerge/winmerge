@@ -79,7 +79,7 @@
 
         <answer>
           <para>There are currently no plans for cross-platform support but
-          you can try the unofficial version <ulink url="https://bitbucket.org/jtuc/winmerge2011/">
+          you can try the unofficial version <ulink url="https://github.com/datadiode/winmerge2011">
           WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine also
           under Linux.</para>
         </answer>
