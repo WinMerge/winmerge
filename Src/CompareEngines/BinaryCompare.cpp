@@ -45,7 +45,7 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
 	{
 		for (;;)
 		{
-			if (piAbortable->ShouldAbort())
+			if (piAbortable && piAbortable->ShouldAbort())
 			{
 				code = DIFFCODE::CMPABORT;
 				break;
