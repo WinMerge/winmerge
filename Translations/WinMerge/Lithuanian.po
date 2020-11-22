@@ -62,6 +62,12 @@ msgstr "Įter&pti"
 msgid "&Goto..."
 msgstr "&Eiti į..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "Atv&erti"
 
@@ -2950,6 +2956,9 @@ msgstr "<Automatinis>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "E&iti į %1 eilutę"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Išjungta"

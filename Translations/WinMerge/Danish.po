@@ -73,6 +73,12 @@ msgstr "&Indsæt"
 msgid "&Goto..."
 msgstr "Gå &til..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 #, c-format
 msgid "Op&en"
 msgstr "Åb&en"
@@ -3960,6 +3966,9 @@ msgstr "<Automatisk>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "G&å til linje %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"

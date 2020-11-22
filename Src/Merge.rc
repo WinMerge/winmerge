@@ -81,6 +81,8 @@ BEGIN
         MENUITEM "&Paste",                      ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
+        MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G",  ID_GOTO_MOVED_LINE_MR
         MENUITEM SEPARATOR
         POPUP "Op&en"
         BEGIN
@@ -869,6 +871,8 @@ BEGIN
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO_MOVED_LINE_LM,  VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "G",            ID_GOTO_MOVED_LINE_MR,  VIRTKEY, CONTROL, ALT, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "M",            ID_EDIT_MARK,           VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -3289,6 +3293,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_LOCBAR_GOTOLINE_FMT "G&oto Line %1"
+END
+
+// MERGEVIEW CONTEXT MENU
+STRINGTABLE
+BEGIN
+    IDS_GOTO_MOVED_LINE "Go to Moved Line\tCtrl+Shift+G"
 END
 
 // AUTOCOMPLETE COMBOBOX OPTIONS

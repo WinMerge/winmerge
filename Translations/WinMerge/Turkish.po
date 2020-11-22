@@ -59,6 +59,12 @@ msgstr "Ya&pıştır"
 msgid "&Goto..."
 msgstr "&Git..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "&Aç"
 
@@ -3337,6 +3343,9 @@ msgstr "<Otomatik>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "%1. &Satıra Git"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Etkisizleştirildi"

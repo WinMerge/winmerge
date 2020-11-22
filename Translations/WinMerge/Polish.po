@@ -59,6 +59,12 @@ msgstr "Wklej"
 msgid "&Goto..."
 msgstr "Idź do..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "Otwórz"
 
@@ -2948,6 +2954,9 @@ msgstr "<automatycznie>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Idź do linii %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Wyłączone"

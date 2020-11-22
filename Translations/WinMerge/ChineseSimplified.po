@@ -62,6 +62,12 @@ msgstr "粘贴(&P)"
 msgid "&Goto..."
 msgstr "转到(&G)..."
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "打开(&E)"
 
@@ -3343,6 +3349,9 @@ msgstr "<自动>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "转到第 %1 行(&O)"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "禁用"

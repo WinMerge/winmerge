@@ -56,6 +56,12 @@ msgstr "По&ставяне"
 msgid "&Goto..."
 msgstr "Отиване &към…"
 
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "&Отваряне"
 
@@ -3278,6 +3284,9 @@ msgstr "<Автоматично>"
 #, c-format
 msgid "G&oto Line %1"
 msgstr "От&иване на ред %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Забранено"
