@@ -1326,7 +1326,7 @@ msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
 msgid "Ignore c&omment differences"
-msgstr "コメントの差異を無視する(&O)"
+msgstr "コメントの違いを無視する(&O)"
 
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
