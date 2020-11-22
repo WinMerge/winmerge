@@ -138,33 +138,33 @@
     </section>
 
     <section>
-      <title><keycap>ESC</keycap>でウインドウを閉じる<indexterm>
-        <primary>ESCでウインドウを閉じる</primary>
+      <title>'<keycap>Esc</keycap>'でウインドウを閉じる<indexterm>
+        <primary>Escでウインドウを閉じる</primary>
       </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
           <option>MDI子ウインドウまたはメインウインドウ</option>(デフォルト): 
-          <keycap>ESC</keycap>キーでWinMergeウィンドウを閉じられるようにします。
+          <keycap>Esc</keycap>キーでWinMergeウィンドウを閉じられるようにします。
           <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
           <keycap>
-          ESC</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
+          Esc</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
 
           <para>注) WinMergeのコマンドラインの
           <parameter>-e</parameter>パラメータは、WinMergeを
-          <keycap>ESC</keycap>1回で終了することを可能にします。</para>
+          <keycap>Esc</keycap>1回で終了することを可能にします。</para>
         </listitem>
 
         <listitem>
-          <para><option>MDI子ウインドウのみ</option>: <keycap>ESC</keycap>を押下すると
+          <para><option>MDI子ウインドウのみ</option>: <keycap>Esc</keycap>を押下すると
           子ウインドウは閉じますが、最後に残ったメインウインドウは閉じません。</para>
         </listitem>
 
         <listitem>
           <para>
           <option>無効</option>: 
-          <keycap>ESC</keycap>押下で、WinMergeウィンドウを閉じません。</para>
+          <keycap>Esc</keycap>押下で、WinMergeウィンドウを閉じません。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -695,7 +695,7 @@
         </listitem>
 
         <listitem>
-          <para><option>無効</option> ヒューリスティックを無効にします。</para>
+          <para><option>無効</option>: ヒューリスティックを無効にします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -952,7 +952,7 @@
 
           <para>This option sets the limit when WinMerge should stop comparing.
 		  If the limit is set to for instance 4 MB, then WinMerge will only read 
-		  the first 4 MB of a file. If no differences are founf before the 
+		  the first 4 MB of a file. If no differences are found before the 
 		  Quick Compare limit is reached, then the files will be marked as identical.
 		  </para>
 
@@ -1462,6 +1462,7 @@
             その場合、ファイルは削除され失われます！
             </para>
           </important>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -1497,14 +1498,14 @@
 
       <para>設定された外部エディタを使うには、フォルダ比較ウィンドウ中のファイルを右クリックし、
       <menuchoice>
-        <guimenuitem>左を開く</guimenuitem>
+          <guimenuitem>左を開く</guimenuitem>
 
-        <guimenuitem>外部エディタで</guimenuitem>
-      </menuchoice>、または、<menuchoice>
-        <guimenuitem>右を開く</guimenuitem>
+          <guimenuitem>外部エディタで</guimenuitem>
+        </menuchoice>、または、<menuchoice>
+          <guimenuitem>右を開く</guimenuitem>
 
-        <guimenuitem>外部エディタで</guimenuitem>
-      </menuchoice>を選択してください。</para>
+          <guimenuitem>外部エディタで</guimenuitem>
+        </menuchoice>を選択してください。</para>
     </section>
 
     <section>

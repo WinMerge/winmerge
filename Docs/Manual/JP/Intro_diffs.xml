@@ -5,7 +5,7 @@
   <para>ここでの主題は、WinMergeがどのようにして、テキストファイル中の
     差分を見つけ、また、表示するのかということ。
     そして、単純なファイルの比較とマージ操作のデモを行います。
-    バイナリファイルに関する情報は、<xref linkend="Intro_diffs" />を参照してください。</para>
+    バイナリファイルに関する情報は、<xref linkend="Compare_bin" />を参照してください。</para>
 
   <section id="Intro_diffs_comparing">
     <title>ファイルの比較<indexterm>
@@ -216,6 +216,7 @@ Believe it or not.</screen></para>
               <phrase>Compare Files Diff Pane</phrase>
             </textobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -377,6 +378,7 @@ Believe it or not.</screen></para>
                          fileref="screenshots/filemerged1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>

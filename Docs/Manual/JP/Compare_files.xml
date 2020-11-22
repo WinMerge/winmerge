@@ -9,7 +9,7 @@
   <para>This topic describes how to use the WinMerge File Compare window to
   compare and merge text files. To understand the basic concepts about
   differences discussed here, we suggest you read <xref linkend="Intro_diffs" />
-  first. See <xref linkend="Intro_diffs" /> for related information about hex
+  first. See <xref linkend="Compare_bin" /> for related information about hex
   files. </para>
 
   <section id="Compare_files_starting">
@@ -166,6 +166,7 @@
                   <phrase>Difference block background colors</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <para>This comparison detects three difference blocks:</para>
 
@@ -228,6 +229,7 @@
                   <phrase>Difference block colors with ignored diff</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
             </listitem>
           </varlistentry>
 
@@ -254,6 +256,7 @@
                   detection</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <para>Notice that the two identical lines (containing
               <literal>a</literal> and <literal>c</literal>) that are in
@@ -463,6 +466,7 @@
                   whitespace</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <note>
                 <para>As with word-level line differences, character
@@ -780,6 +784,7 @@
             <simpara><keycap>Up</keycap> and <keycap>Down</keycap> keys for the
             <function>Previous Difference</function> and <function>Next
             Difference</function> functions.</simpara>
+            <para></para>
           </listitem>
 
           <listitem>
@@ -988,7 +993,7 @@
 
       <para>You can merge differences directly in the Diff pane by
       right-clicking in either the top or bottom side and choosing
-      <function><guimenuitem>Copy to Right</guimenuitem></function> or
+      <guimenuitem>Copy to Right</guimenuitem> or
       <guimenuitem>Copy to Left</guimenuitem>.</para>
     </section>
 
@@ -1160,6 +1165,7 @@
                 <phrase>Select Line Difference example</phrase>
               </textobject>
             </mediaobject>
+            <para></para>
 
             <para>If you want to select the difference block itself, use
             <command>Current Difference</command> instead.</para>
@@ -1387,6 +1393,7 @@
               <guimenuitem>Find</guimenuitem> to search text, or stepping
               through differences.</para>
             </tip>
+            <para></para>
 
             <para>Shortcuts: <menuchoice>
                 <guimenu>Edit</guimenu>
@@ -1644,7 +1651,7 @@
           <listitem>
             <para>Copies all differences from the left to the right File pane.
             Use to synchronize two files with one command. Similarly, you can
-            back out the entire merge by clicking the<inlinemediaobject>
+            back out the entire merge by clicking the <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="11"
                              fileref="screenshots/undo_btn.png" />
