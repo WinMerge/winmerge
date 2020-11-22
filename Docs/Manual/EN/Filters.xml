@@ -268,6 +268,7 @@
                 filter is already loaded in the <guilabel>Filter</guilabel>
                 field.</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -545,6 +546,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
                 <para>The <guilabel>Filter</guilabel> field does not indicate
                 what line filters are enabled.</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -933,7 +935,7 @@ Pekka Himanen</screen></para>
             </note>
 
             <para>WinMerge initializes the new file with the contents of the
-            <filename>FileFilter.tmpl</filename> tempate, and opens it in your
+            <filename>FileFilter.tmpl</filename> template, and opens it in your
             default text editor.</para>
           </listitem>
 
@@ -948,6 +950,7 @@ Pekka Himanen</screen></para>
               try clicking Test in the Filters dialog. See <xref
               linkend="Filters_TestingDlg" /> for details.</para>
             </tip>
+            <para></para>
           </listitem>
 
           <listitem>
@@ -1006,7 +1009,7 @@ Pekka Himanen</screen></para>
           </listitem>
 
           <listitem>
-            <para>If you want to see the rules you will be testing,click
+            <para>If you want to see the rules you will be testing, click
             <guibutton>Edit</guibutton> now to open the file so that you can
             view it during the next steps.</para>
           </listitem>
