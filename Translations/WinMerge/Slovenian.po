@@ -74,10 +74,10 @@ msgid "&Goto..."
 msgstr "Pojdi &na..."
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Pojdi na premaknjeno vrstico med levo in srednjo\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Pojdi na premaknjeno vrstico med srednjo in desno\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -735,7 +735,7 @@ msgid "&View Whitespace"
 msgstr "&Prikaži presledke"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Prikaz &KnV"
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -1260,7 +1260,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Samodejno &pojdi na prvo razliko"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Samodejno se pomakni na prvo razliko v vrstici"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zapri okna s tipko '&Esc':"
@@ -1298,9 +1298,7 @@ msgid "Language:"
 msgstr "Jezik:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken.\n"
-"Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
+msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
 
 #, c-format
 msgid "Reset"
@@ -1694,7 +1692,7 @@ msgid "Ignore &case"
 msgstr "Prezri &velikost znakov"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Prezri razlike v k&omentarjih"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1843,14 +1841,10 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
 
 msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Zaznaj kodno stran v teh datotekah: .html, .rc, .xml\n"
-"(potreben je ponovni zagon seje)"
+msgstr "Zaznaj kodno stran v teh datotekah: .html, .rc, .xml\nZahtevan je ponovni zagon seje."
 
 msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
-msgstr ""
-"Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
-"zahtevan je ponovni zagon seje"
+msgstr "Zaznaj kodne strani besedilnih datotek z mlang.dll\nZahtevan je ponovni zagon seje"
 
 #, c-format
 msgid "System codepage"
@@ -2280,9 +2274,7 @@ msgstr "Omejitev d&vojiške primerjave (MB):"
 msgid ""
 "\n"
 "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
-"\n"
-"Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
+msgstr "Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzorci datotek &CSV:"
@@ -4042,7 +4034,7 @@ msgid "G&oto Line %1"
 msgstr "Pojdi &na vrstico %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Pojdi na premaknjeno vrstico\tCtrl+Shift+G"
 
 #, c-format
 msgid "Disabled"
