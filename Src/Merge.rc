@@ -71,7 +71,7 @@ BEGIN
         MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
         MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",     ID_SELECTLINEDIFF
+        MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -80,7 +80,7 @@ BEGIN
         MENUITEM "&Copy",                       ID_EDIT_COPY
         MENUITEM "&Paste",                      ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
         MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G",  ID_GOTO_MOVED_LINE_MR
         MENUITEM SEPARATOR
@@ -193,7 +193,7 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
@@ -230,7 +230,7 @@ BEGIN
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
@@ -278,7 +278,7 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
@@ -371,7 +371,7 @@ BEGIN
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
@@ -419,7 +419,7 @@ BEGIN
             MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
         MENUITEM "Page Set&up...",              ID_FILE_PAGE_SETUP
         MENUITEM "Print Previe&w...",           ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
@@ -455,7 +455,7 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
@@ -484,7 +484,7 @@ BEGIN
             MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
             MENUITEM "&Clear All Bookmarks",        ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
-        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END
@@ -625,7 +625,7 @@ BEGIN
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
@@ -784,8 +784,8 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff",                  ID_LOCBAR_GOTODIFF
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "G&o to Diff",                 ID_LOCBAR_GOTODIFF
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
@@ -944,7 +944,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_GNU_ASCII,7,50,200,120
     LTEXT           "Version 1.0",IDC_VERSION,240,153,133,21,SS_NOPREFIX
-    CONTROL         "Visit the WinMerge HomePage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,222,167,10
+    CONTROL         "Visit the WinMerge Homepage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,222,167,10
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,174,350,42
     DEFPUSHBUTTON   "OK",IDOK,295,220,65,14
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,220,65,14
@@ -1056,7 +1056,7 @@ BEGIN
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,140,10
     CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
     CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,140,10
-    DEFPUSHBUTTON   "&Ok",IDOK,226,7,60,14,WS_GROUP
+    DEFPUSHBUTTON   "&OK",IDOK,226,7,60,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,226,24,60,14
 END
 
@@ -1322,19 +1322,19 @@ END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 80
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Go To"
+CAPTION "Go to"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "G&oto:",IDC_STATIC,7,9,36,10
+    LTEXT           "G&o to:",IDC_STATIC,7,9,36,10
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,57,45
     CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,48,10
     CONTROL         "&Middle",IDC_WMGOTO_FILEMIDDLE,"Button",BS_AUTORADIOBUTTON,13,48,47,10
     CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,13,58,47,10
-    GROUPBOX        "Goto what",IDC_STATIC,69,27,78,45
+    GROUPBOX        "Go to what",IDC_STATIC,69,27,78,45
     CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,76,38,68,10
     CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",BS_AUTORADIOBUTTON,76,48,68,10
-    DEFPUSHBUTTON   "&Go To",IDOK,153,7,50,14
+    DEFPUSHBUTTON   "&Go to",IDOK,153,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
 END
 
@@ -3189,7 +3189,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
     IDS_OPT_EXPORT_CAPTION  "Select file for export"
     IDS_OPT_IMPORT_CAPTION  "Select file for import"
     IDS_OPT_IMPORT_DONE     "Options imported from the file."
@@ -3199,7 +3199,7 @@ BEGIN
     IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
 END
 
-// EOL types shown in folder compare EOL type column and in file compare statusbar
+// EOL types shown in folder compare EOL type column and in file compare status bar
 STRINGTABLE
 BEGIN
     IDS_EOL_DOS             "Win"
@@ -3292,7 +3292,7 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    IDS_LOCBAR_GOTOLINE_FMT "G&oto Line %1"
+    IDS_LOCBAR_GOTOLINE_FMT "G&o to Line %1"
 END
 
 // MERGEVIEW CONTEXT MENU
@@ -3374,7 +3374,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "frhed is not installed"
+    IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
 END
 
 STRINGTABLE
