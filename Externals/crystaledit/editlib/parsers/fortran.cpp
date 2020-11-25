@@ -245,7 +245,6 @@ CrystalLineParser::ParseLineFortran (unsigned dwCookie, const TCHAR *pszChars, i
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -349,12 +348,6 @@ out:
               dwCookie |= COOKIE_CHAR;
               continue;
             }
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

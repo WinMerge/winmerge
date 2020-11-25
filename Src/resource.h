@@ -169,6 +169,7 @@
 #define IDC_PATH2_COMBO                 1006
 #define IDC_EXT_COMBO                   1009
 #define IDC_SCROLL_CHECK                1012
+#define IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK 1013
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
 #define IDC_IGNBLANKS_CHECK             1017
@@ -978,6 +979,9 @@
 #define ID_REFRESH                      32787
 #define ID_EDIT_COPY_LINENUMBERS        32788
 #define ID_RESCAN                       32789
+#define ID_GOTO_MOVED_LINE_LM           32790
+#define ID_GOTO_MOVED_LINE_MR           32791
+#define IDS_GOTO_MOVED_LINE             32792
 #define ID_EDIT_FIND_PREVIOUS           32799
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801

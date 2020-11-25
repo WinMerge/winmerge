@@ -60,6 +60,7 @@ enum
 
 CHexMergeFrame::CHexMergeFrame()
 	: CMergeFrameCommon(IDI_EQUALBINARY, IDI_BINARYDIFF)
+	, m_HScrollInfo{}, m_VScrollInfo{}
 {
 	m_pMergeDoc = 0;
 }
@@ -318,6 +319,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 		SCROLLINFO si, siView[3];
 		// Synchronize horizontal scrollbars
 		pView[0]->GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		m_HScrollInfo[0] = si;
 		for (pane = 1; pane < nColumns; ++pane)
 		{
 			SCROLLINFO siCur;
@@ -329,11 +331,12 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 				si.nPage = siCur.nPage;
 			if (si.nMax < siCur.nMax)
 				si.nMax = siCur.nMax;
-			if (GetFocus() == pView[pane])
+			if (memcmp(&siCur, &m_HScrollInfo[pane], sizeof si))
 			{
 				si.nPos = siCur.nPos;
 				si.nTrackPos = siCur.nTrackPos;
 			}
+			m_HScrollInfo[pane] = siCur;
 		}
 		for (pane = 0; pane < nColumns; ++pane)
 		{
@@ -348,6 +351,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 
 		// Synchronize vertical scrollbars
 		pView[0]->GetScrollInfo(SB_VERT, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		m_VScrollInfo[0] = si;
 		for (pane = 1; pane < nColumns; ++pane)
 		{
 			SCROLLINFO siCur;
@@ -357,11 +361,12 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 				si.nMin = siCur.nMin;
 			if (si.nMax < siCur.nMax)
 				si.nMax = siCur.nMax;
-			if (GetFocus() == pView[pane])
+			if (memcmp(&siCur, &m_VScrollInfo[pane], sizeof si))
 			{
 				si.nPos = siCur.nPos;
 				si.nTrackPos = siCur.nTrackPos;
 			}
+			m_VScrollInfo[pane] = siCur;
 		}
 		for (pane = 0; pane < nColumns; ++pane)
 		{

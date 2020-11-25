@@ -378,6 +378,7 @@
           当然ながら、<filename class="directory">C:\Folder2</filename>がファイル名
           <filename>File.txt</filename>を含んでいなければ、コマンドは不正とみなされます。</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 

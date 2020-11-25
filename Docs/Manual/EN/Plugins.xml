@@ -81,7 +81,7 @@
           </note>
 
           <para>Example plugin: <xref linkend="CompareMSExcelFiles" />
-          Displays the text contents of a 
+          displays the text contents of a 
           <trademark class="registered">Microsoft</trademark>
           <application>Excel</application> file.</para>
         </listitem>
@@ -285,7 +285,7 @@
       <title>Applying prediffer plugins in the Folder Compare window</title>
 
       <para>With prediffer plugins, you set the mode (<firstterm>Auto
-      prediiffer</firstterm> or <firstterm>No prediffer</firstterm>) for
+      prediffer</firstterm> or <firstterm>No prediffer</firstterm>) for
       individual files. (Contrast this with unpacker plugins, where you set the
       mode for all files.) That is, some files in the same folder have different
       prediffer modes.</para>
@@ -324,7 +324,7 @@
     <section>
       <title>Applying prediffer plugins in the File Compare window</title>
 
-      <para>In the File Compare winodw, you can apply a prediffer plugin by
+      <para>In the File Compare window, you can apply a prediffer plugin by
       clicking <menuchoice>
           <guimenu>Plugins</guimenu>
 
@@ -367,13 +367,13 @@
           <seglistitem>
             <seg>Unpacker</seg>
 
-            <seg><filename class="extension">*.xls</filename><filename
-            class="extension">*.xlsx</filename><filename
-            class="extension">*.xlsm</filename><filename
-            class="extension">*.xlsb</filename><filename
-            class="extension">*.xla</filename><filename
-            class="extension">*.xlax</filename><filename
-            class="extension">*.xltx</filename><filename
+            <seg><filename class="extension">*.xls</filename>, <filename
+            class="extension">*.xlsx</filename>, <filename
+            class="extension">*.xlsm</filename>, <filename
+            class="extension">*.xlsb</filename>, <filename
+            class="extension">*.xla</filename>, <filename
+            class="extension">*.xlax</filename>, <filename
+            class="extension">*.xltx</filename>, <filename
             class="extension">*.xltm</filename></seg>
 
             <seg>No</seg>
@@ -566,7 +566,7 @@
         </indexterm></filename></title>
 
       <para>This plugin ignores characters at specified columns. The first
-      column is number 1</para>
+      column is number 1.</para>
 
       <para>Note that this plugin does not support files with tabs: the plugin
       does not fail, but all tabs are be treated as normal characters.</para>
@@ -662,7 +662,7 @@
             class="extension">*.php</filename>, <filename
             class="extension">*.js</filename>, <filename
             class="extension">*.cs</filename>, <filename
-            class="extension">*.ts</filename>,</seg>
+            class="extension">*.ts</filename></seg>
 
             <seg>No</seg>
           </seglistitem>
@@ -705,7 +705,7 @@
         </indexterm></filename></title>
 
       <para>This plugin is for files that use fields and tabs as delimiters
-      (<application>for examle, Excel</application> files saved in the <filename
+      (<application>for example, Excel</application> files saved in the <filename
       class="extension">*.txt</filename> format). It ignores the delimiter
       characters. The first field is number 1.</para>
 

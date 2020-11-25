@@ -43,7 +43,7 @@
             has none of the limitations of the ANSI executable.</para>
           <para><filename>WinMergeU.exe</filename> has been installed by default
             for some time, and since few ANSI-based Windows systems remain, the
-            value of maintaining <filename>WinMerge.exe</filename> is miminal.
+            value of maintaining <filename>WinMerge.exe</filename> is minimal.
             As of Version 2.14, WinMerge no longer includes
               <filename>WinMerge.exe</filename> in the installer.  </para>
         </answer>
@@ -79,7 +79,7 @@
 
         <answer>
           <para>There are currently no plans for cross-platform support but
-          you can try the unofficial version <ulink url="https://bitbucket.org/jtuc/winmerge2011/">
+          you can try the unofficial version <ulink url="https://github.com/datadiode/winmerge2011">
           WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine also
           under Linux.</para>
         </answer>
@@ -283,7 +283,7 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>I want WinMerge to close with a single <keycap>ESC</keycap>
+          <para>I want WinMerge to close with a single <keycap>Esc</keycap>
           press after I'm done?</para>
         </question>
 
@@ -484,5 +484,6 @@
         </answer>
       </qandaentry>
     </qandaset>
+    <para></para>
   </section>
 </article>

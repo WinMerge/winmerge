@@ -182,6 +182,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
+	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
+	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
+	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_MR, OnUpdateGotoMovedLineMR)
 	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
@@ -964,7 +968,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		return;
 
 	// scroll to the first line of the diff
-	vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+	vector<WordDiff> worddiffs;
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
+		worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
 	CPoint pt = worddiffs.size() > 0 ?
 		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
 		CPoint{ 0, m_lineBegin };
@@ -2310,9 +2316,11 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 				}
 			}
 
-			vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
+			vector<WordDiff> worddiffs;
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
+				worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
 			CPoint pt = worddiffs.size() > 0 ?
-				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } :
 				ptStart;
 			GetGroupView(m_nThisPane)->SetCursorPos(pt);
 			GetGroupView(m_nThisPane)->SetAnchor(pt);
@@ -2869,6 +2877,15 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 	}
 
+	// Remove "Go to Moved Line Between Middle and Right" if in 2-way file comparison.
+	// Remove "Go to Moved Line Between Middle and Right" if the right pane is active in 3-way file comparison.
+	// Remove "Go to Moved Line Between Left and Middle" if the right pane is active in 3-way file comparison.
+	int nBuffers = GetDocument()->m_nBuffers;
+	if (nBuffers == 2 || (nBuffers == 3 && m_nThisPane == 0))
+		menu.RemoveMenu(ID_GOTO_MOVED_LINE_MR, MF_BYCOMMAND);
+	else if (nBuffers == 3 && m_nThisPane == 2)
+		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
+
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 	theApp.TranslateMenu(menu.m_hMenu);
 
@@ -3099,6 +3116,139 @@ void CMergeEditView::OnWMGoto()
 
 			pCurrentView->SelectDiff(diff, true, false);
 		}
+	}
+}
+
+/**
+* @brief Called when "Go to Moved Line Between Left and Middle" item is selected.
+* Go to moved line between the left and right panes when in 2-way file comparison.
+* Go to moved line between the left and middle panes when in 3-way file comparison.
+*/
+void CMergeEditView::OnGotoMovedLineLM()
+{
+	if (!GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS))
+		return;
+
+	CMergeDoc* pDoc = GetDocument();
+	CPoint pos = GetCursorPos();
+
+	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
+	ASSERT(pDoc != nullptr);
+	ASSERT(pDoc->m_nBuffers == 2 || pDoc->m_nBuffers == 3);
+	ASSERT(pos.y >= 0);
+
+	if (m_nThisPane == 0)
+	{
+		int line = pDoc->RightLineInMovedBlock(m_nThisPane, pos.y);
+		if (line >= 0)
+			GotoLine(line, false, 1);
+	}
+	else if (m_nThisPane == 1)
+	{
+		int line = pDoc->LeftLineInMovedBlock(m_nThisPane, pos.y);
+		if (line >= 0)
+			GotoLine(line, false, 0);
+	}
+}
+
+/**
+ * @brief Called when "Go to Moved Line Between Left and Middle" item is updated.
+ * @param [in] pCmdUI UI component to update.
+ * @note The item label is changed to "Go to Moved Line" when 2-way file comparison.
+ */
+void CMergeEditView::OnUpdateGotoMovedLineLM(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pDoc = GetDocument();
+	CPoint pos = GetCursorPos();
+
+	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
+	ASSERT(pCmdUI != nullptr);
+	ASSERT(pDoc != nullptr);
+	ASSERT(pDoc->m_nBuffers == 2 || pDoc->m_nBuffers == 3);
+	ASSERT(pos.y >= 0);
+
+	if (pDoc->m_nBuffers == 2)
+		pCmdUI->SetText(_("Go to Moved Line\tCtrl+Shift+G").c_str());
+
+	if (!GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS) || m_nThisPane == 2)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (m_nThisPane == 0)
+	{
+		bool bOn = (pDoc->RightLineInMovedBlock(m_nThisPane, pos.y) >= 0);
+		pCmdUI->Enable(bOn);
+	}
+	else if (m_nThisPane == 1)
+	{
+		bool bOn = (pDoc->LeftLineInMovedBlock(m_nThisPane, pos.y) >= 0);
+		pCmdUI->Enable(bOn);
+	}
+}
+
+/**
+* @brief Called when "Go to Moved Line Between Middle and Right" item is selected.
+* Go to moved line between the middle and right panes when in 3-way file comparison.
+*/
+void CMergeEditView::OnGotoMovedLineMR()
+{
+	if (!GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS))
+		return;
+
+	CMergeDoc* pDoc = GetDocument();
+	CPoint pos = GetCursorPos();
+
+	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
+	ASSERT(pDoc != nullptr);
+	ASSERT(pDoc->m_nBuffers == 2 || pDoc->m_nBuffers == 3);
+	ASSERT(pos.y >= 0);
+
+	if (m_nThisPane == 1)
+	{
+		int line = pDoc->RightLineInMovedBlock(m_nThisPane, pos.y);
+		if (line >= 0)
+			GotoLine(line, false, 2);
+	}
+	else if (m_nThisPane == 2)
+	{
+		int line = pDoc->LeftLineInMovedBlock(m_nThisPane, pos.y);
+		if (line >= 0)
+			GotoLine(line, false, 1);
+	}
+}
+
+/**
+ * @brief Called when "Go to Moved Line Between Middle and Right" item is updated.
+ * @param [in] pCmdUI UI component to update.
+ */
+void CMergeEditView::OnUpdateGotoMovedLineMR(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pDoc = GetDocument();
+	CPoint pos = GetCursorPos();
+
+	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
+	ASSERT(pCmdUI != nullptr);
+	ASSERT(pDoc != nullptr);
+	ASSERT(pDoc->m_nBuffers == 2 || pDoc->m_nBuffers == 3);
+	ASSERT(pos.y >= 0);
+
+	if (!GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS) || pDoc->m_nBuffers == 2 || m_nThisPane == 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (m_nThisPane == 1)
+	{
+		bool bOn = (pDoc->RightLineInMovedBlock(m_nThisPane, pos.y) >= 0);
+		pCmdUI->Enable(bOn);
+	}
+	else if (m_nThisPane == 2)
+	{
+		bool bOn = (pDoc->LeftLineInMovedBlock(m_nThisPane, pos.y) >= 0);
+		pCmdUI->Enable(bOn);
 	}
 }
 
@@ -3372,7 +3522,8 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
 	{
-		CMergeEditView *pView = GetGroupView(nPane);
+		int nGroup = m_bDetailView ? 0 : m_nThisGroup;
+		CMergeEditView* pView = GetDocument()->GetView(nGroup, nPane);
 		pView->ScrollToSubLine(nScrollLine);
 		if (ptPos.y < pView->GetLineCount())
 		{
@@ -3390,7 +3541,9 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// If goto target is another view - activate another view.
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
-	if (GetGroupView(pane) != pCurrentView)
+	if (m_bDetailView)
+		GetDocument()->GetView(0, pane)->SetActivePane();
+	else if (GetGroupView(pane) != pCurrentView)
 		GetGroupView(pane)->SetActivePane();
 }
 

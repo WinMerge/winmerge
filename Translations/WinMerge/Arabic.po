@@ -39,8 +39,8 @@ msgstr "نسخ &من اليسار"
 msgid "Copy fro&m Right"
 msgstr "نسخ م&ن اليمين"
 
-msgid "&Select Line Difference"
-msgstr "تحديد الاختلاف في الس&طر"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "&تراجع"
@@ -57,8 +57,14 @@ msgstr "&نسخ"
 msgid "&Paste"
 msgstr "&لصق"
 
-msgid "&Goto..."
-msgstr "ال&ذهاب إلى..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 msgid "Op&en"
 msgstr "&فتح"
@@ -182,8 +188,8 @@ msgstr "الملفات أو المجلدات الأخيرة"
 msgid "< Empty >"
 msgstr "<فارغ>"
 
-msgid "E&xit"
-msgstr "&خروج"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "&تحرير"
@@ -245,8 +251,8 @@ msgstr "&إعادة تحميل الإضافات"
 msgid "&Window"
 msgstr "ناف&ذة"
 
-msgid "Cl&ose"
-msgstr "إ&غلاق"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "إغلاق ال&جميع"
@@ -443,8 +449,8 @@ msgstr "حفظ الجزء الأوس&ط باسم..."
 msgid "Save &Right As..."
 msgstr "حفظ الجزء الأي&من باسم..."
 
-msgid "&Print..."
-msgstr "&طباعة..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "&إعداد الصفحة..."
@@ -529,9 +535,6 @@ msgstr "الإشارة المرجعية ال&سابقة\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "&مسح كافة الإشارات المرجعية"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "ال&ذهاب إلى...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "تظليل النص حسب صيغته"
@@ -844,8 +847,8 @@ msgstr "لا يوجد اختلافات مسبقة"
 msgid "Auto prediffer"
 msgstr "اختلافات مسبقة تلقائية"
 
-msgid "G&oto Diff"
-msgstr "الذهاب إلى أداة مقارنة الملفات Diff"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "لا يوجد تجميعات تم تغيير موقعها"
@@ -909,8 +912,8 @@ msgstr "&تحميل مشروع..."
 msgid "About WinMerge"
 msgstr "حول WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "زيارة الصفحة الرئيسية لموقع WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "موافق"
@@ -987,6 +990,9 @@ msgstr "عام"
 msgid "Automatically &scroll to first difference"
 msgstr "الانتقال إلى الا&ختلاف الأول تلقائيا"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "إغلاق النوافذ باستخدام زر 'Esc':"
 
@@ -1049,8 +1055,8 @@ msgstr "البحث في ال&تالي"
 msgid "Find &Prev"
 msgstr "البحث في ال&سابق"
 
-msgid "&Ok"
-msgstr "&موافق"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "استبدال"
@@ -1090,6 +1096,9 @@ msgstr "جديد"
 
 msgid "&Background color:"
 msgstr "&لون الخلفية:"
+
+msgid "&Ok"
+msgstr "&موافق"
 
 msgid "&Apply"
 msgstr "ت&طبيق"
@@ -1277,17 +1286,17 @@ msgstr "العناصر التي تمت مقارنتها:"
 msgid "Items total:"
 msgstr "كل العناصر:"
 
-msgid "Go To"
-msgstr "الذهاب إلى"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "الذ&هاب إلى:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "الملف"
 
-msgid "Goto what"
-msgstr "الإنتقال إلى..."
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "الس&طر"
@@ -1295,8 +1304,8 @@ msgstr "الس&طر"
 msgid "&Difference"
 msgstr "الا&ختلاف"
 
-msgid "&Go To"
-msgstr "الذها&ب إلى"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "مقارنة"
@@ -1319,6 +1328,9 @@ msgstr "تجاهل الأسطر الفارغة"
 msgid "Ignore &case"
 msgstr "تجاهل حالة الحرف (للغة الإنجليزية)"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "&تفعيل كشف المجموعات التي نقلها"
 
@@ -1330,12 +1342,6 @@ msgstr "خوارزمية المقارنة (تجريبي):"
 
 msgid "Enable indent &heuristic"
 msgstr "تفعيل الم&سافة البادئة الإرشادية"
-
-msgid "Comments"
-msgstr "تعليقات"
-
-msgid "Filter Comments"
-msgstr "مرشح التعليقات"
 
 msgid "Editor"
 msgstr "المحرر"
@@ -3074,17 +3080,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "المجلد غير موجود."
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"دعم الملفات المؤرشفة غير مفعل.\n"
-"كل المكونات (7-zip و/أو Merge7z*.dll) لدعم الملفات المؤرشفة لم يتم العثور "
-"عليها.\n"
-"يرجى مراجعة الدليل لمعرفة المزيد من المعلومات عن دعم الملفات المؤرشفة وكيفية "
-"تفعيلها."
 
 msgid "Select file for export"
 msgstr "قم باختيار الملف للتصدير"
@@ -3305,8 +3302,11 @@ msgid "<Automatic>"
 msgstr "<تلقائي>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "إ&ذهب إلى السطر %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "معطل"
@@ -3350,8 +3350,8 @@ msgstr "إغلا&ق التبويبات الأخرى"
 msgid "Enable &Auto Max Width"
 msgstr "&تفعيل النطاق الأقصى التلقائي"
 
-msgid "frhed is not installed"
-msgstr "المحرر Frhed غير مثبت"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

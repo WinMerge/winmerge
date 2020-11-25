@@ -125,15 +125,6 @@ static int sign64(int64_t val)
  */
 static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
-	// Lower priority of the same items (FIXME:)
-	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME))
-		return -1;
-	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME))
-		return 1;
-	if ((diffcode1 & DIFFCODE::DIR) && !(diffcode2 & DIFFCODE::DIR))
-		return 1;
-	if (!(diffcode1 & DIFFCODE::DIR) && (diffcode2 & DIFFCODE::DIR))
-		return -1;
 	return diffcode1-diffcode2;	
 }
 /**

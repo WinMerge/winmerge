@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-10-11 06:39+0000\n"
-"PO-Revision-Date: 2020-10-12 09:09+0300\n"
+"POT-Creation-Date: 2020-11-15 10:49+0000\n"
+"PO-Revision-Date: 2020-11-16 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -41,8 +41,8 @@ msgstr "Kopijuoti iš &kairės"
 msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
 
-msgid "&Select Line Difference"
-msgstr "&Pažymėti skirtumą"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -59,8 +59,14 @@ msgstr "&Kopijuoti"
 msgid "&Paste"
 msgstr "Įter&pti"
 
-msgid "&Goto..."
-msgstr "&Eiti į..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 msgid "Op&en"
 msgstr "Atv&erti"
@@ -184,8 +190,8 @@ msgstr "Paskiausiai naudoti fa&ilai ar katalogai"
 msgid "< Empty >"
 msgstr "< Tuščia >"
 
-msgid "E&xit"
-msgstr "&Išeiti"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "R&edaguoti"
@@ -247,8 +253,8 @@ msgstr "&Iš naujo įkelti papildinius"
 msgid "&Window"
 msgstr "&Langas"
 
-msgid "Cl&ose"
-msgstr "Už&verti"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "Užv&erti viską"
@@ -445,8 +451,8 @@ msgstr "Išsaugoti vidurinįjį &kaip..."
 msgid "Save &Right As..."
 msgstr "Išsaugoti &dešinįjį kaip..."
 
-msgid "&Print..."
-msgstr "S&pausdinti..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "P&uslapio nuostatos..."
@@ -531,9 +537,6 @@ msgstr "&Ankstesnė žyma\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "&Išvalyti visas žymes"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "&Pereiti į...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "Sintaksės paryškinimas"
@@ -846,8 +849,8 @@ msgstr "&Nėra parengėjo"
 msgid "Auto prediffer"
 msgstr "Automatinis parengėjas"
 
-msgid "G&oto Diff"
-msgstr "Pereiti prie skirtum&o"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "&Neperkelti blokai"
@@ -909,8 +912,8 @@ msgstr "Įke&lti projektą..."
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "Aplankykite „WinMerge“ namų puslapį!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "Gerai"
@@ -987,6 +990,9 @@ msgstr "Bendros"
 msgid "Automatically &scroll to first difference"
 msgstr "Automatiškai pereiti prie pirmo &skirtumo"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Užverti langus „Esc“ klavišu:"
 
@@ -1047,8 +1053,8 @@ msgstr "&Rasti kitą"
 msgid "Find &Prev"
 msgstr "Rasti &praeitą"
 
-msgid "&Ok"
-msgstr "&Gerai"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "Pakeisti"
@@ -1088,6 +1094,9 @@ msgstr "Naujas"
 
 msgid "&Background color:"
 msgstr "&Fono spalva:"
+
+msgid "&Ok"
+msgstr "&Gerai"
 
 msgid "&Apply"
 msgstr "T&aikyti"
@@ -1275,17 +1284,17 @@ msgstr "Elementų palyginta:"
 msgid "Items total:"
 msgstr "Iš viso elementų:"
 
-msgid "Go To"
-msgstr "Pereiti į"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "P&ereiti:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "Failas"
 
-msgid "Goto what"
-msgstr "Pereiti į"
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "Ei&lutę"
@@ -1293,8 +1302,8 @@ msgstr "Ei&lutę"
 msgid "&Difference"
 msgstr "&Skirtumą"
 
-msgid "&Go To"
-msgstr "&Pereiti į"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "Lyginimo"
@@ -1317,6 +1326,9 @@ msgstr "Nepaisyti &tuščių eilučių"
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
+msgid "Ignore c&omment differences"
+msgstr "Nepaisyti k&omentarų skirtumų"
+
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
 
@@ -1328,12 +1340,6 @@ msgstr "Lyginimo &algoritmas (Bandymai):"
 
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
-
-msgid "Comments"
-msgstr "Komentarai"
-
-msgid "Filter Comments"
-msgstr "Filtro komentarai"
 
 msgid "Editor"
 msgstr "Redaktoriaus"
@@ -2018,7 +2024,7 @@ msgstr "Nepavyko rasti failų filtro šablono failo!\n\nNukopijuokit %1 failą �
 
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
-msgstr "Nepavyko kopijuoti filtro šablono failo į filtrų katalogą:\n%1\n\nĮsitikinkite, kad katalogas egzistuoja ir yra įrašomas."
+msgstr "Nepavyko nukopijuoti filtro šablono failo į filtrų katalogą:\n%1\n\nĮsitikinkite, kad katalogas egzistuoja ir yra įrašomas."
 
 msgid "User's filter file folder is not defined!\n\nPlease select filter folder in Options/System."
 msgstr "Vartotojo filtrų failų katalotgas nėra apibrėžtas!\n\nNurodykite filtrų katalogą „Nuostatos/Sistemos“ meniu punkte."
@@ -2666,7 +2672,7 @@ msgid "The report has been created successfully."
 msgstr "Ataskaita sukurta sėkmingai."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Šioje eilutėje negalima pridėti sinchronizavimo taško."
 
 msgid "The same file is opened in both panels."
 msgstr "Tas pats failas pasirinktas abiejose pusėse."
@@ -2808,8 +2814,8 @@ msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad f
 msgid "Folder does not exist."
 msgstr "Katalogas nerastas."
 
-msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr "Archyvų palaikymas nėra įjungtas.\nNerasti visi archyvų palaikymui būtini komponentai (7-zip ir/arba Merge7z*.dll).\nDaugiau informacijos apie archyvų palaikymą ir kaip tai įjungti yra naudotojo vadove."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgstr ""
 
 msgid "Select file for export"
 msgstr "Pasirinkite failą eksportui"
@@ -2951,8 +2957,11 @@ msgid "<Automatic>"
 msgstr "<Automatinis>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "E&iti į %1 eilutę"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Išjungta"
@@ -2996,8 +3005,8 @@ msgstr "Užverti k&itas korteles"
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
-msgid "frhed is not installed"
-msgstr "„frhed“ neįdiegtas"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

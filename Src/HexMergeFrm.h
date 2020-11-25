@@ -46,6 +46,8 @@ protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
 	CStatusBar m_wndStatusBar[3];
+	SCROLLINFO m_HScrollInfo[3];
+	SCROLLINFO m_VScrollInfo[3];
 // Overrides
 public:
 	// ClassWizard generated virtual function overrides

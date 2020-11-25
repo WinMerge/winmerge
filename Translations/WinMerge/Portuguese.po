@@ -41,8 +41,8 @@ msgstr "C&opiar da Esquerda"
 msgid "Copy fro&m Right"
 msgstr "C&opiar da Direita"
 
-msgid "&Select Line Difference"
-msgstr "&Selecionar Diferença de Linha"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "&Anular"
@@ -59,8 +59,14 @@ msgstr "Co&piar"
 msgid "&Paste"
 msgstr "Co&lar"
 
-msgid "&Goto..."
-msgstr "&Ir para..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 msgid "Op&en"
 msgstr "&Abrir"
@@ -184,8 +190,8 @@ msgstr "&Ficheiros ou Pastas Recentes"
 msgid "< Empty >"
 msgstr "< Vazio >"
 
-msgid "E&xit"
-msgstr "&Sair"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "&Editar"
@@ -247,8 +253,8 @@ msgstr "&Recarregar plugins"
 msgid "&Window"
 msgstr "&Janela"
 
-msgid "Cl&ose"
-msgstr "&Fe&char"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "Fechar &Tudo"
@@ -445,8 +451,8 @@ msgstr "Guardar &Meio Como..."
 msgid "Save &Right As..."
 msgstr "Guardar &Direita Como..."
 
-msgid "&Print..."
-msgstr "&Imprimir..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Con&figurações da Página..."
@@ -531,9 +537,6 @@ msgstr "Marcador Anterior\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "Eliminar Todos os Marcadores"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "Ir para...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "Combinar"
@@ -846,8 +849,8 @@ msgstr "Não pré-diferenciar"
 msgid "Auto prediffer"
 msgstr "Pré-diferenciação manual"
 
-msgid "G&oto Diff"
-msgstr "Ir para Diferença"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "Não Mostrar Blocos Movidos"
@@ -909,8 +912,8 @@ msgstr "&Carregar Projeto..."
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "Visite o site do WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "Ok"
@@ -987,6 +990,9 @@ msgstr "Geral"
 msgid "Automatically &scroll to first difference"
 msgstr "Ir automaticamente para a primeira diferença"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Fechar janela com 'Esc':"
 
@@ -1047,8 +1053,8 @@ msgstr "Localizar Próximo"
 msgid "Find &Prev"
 msgstr "Localizar &Pré-visualisar"
 
-msgid "&Ok"
-msgstr "OK"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "Substituir"
@@ -1088,6 +1094,9 @@ msgstr "Novo"
 
 msgid "&Background color:"
 msgstr "&Cor de fundo:"
+
+msgid "&Ok"
+msgstr "OK"
 
 msgid "&Apply"
 msgstr "Aplicar"
@@ -1275,17 +1284,17 @@ msgstr "Itens comparados:"
 msgid "Items total:"
 msgstr "Total de itens:"
 
-msgid "Go To"
-msgstr "Ir Para"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "Ir Para:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "Ficheiro"
 
-msgid "Goto what"
-msgstr "Ir Para"
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "Linha"
@@ -1293,8 +1302,8 @@ msgstr "Linha"
 msgid "&Difference"
 msgstr "Diferença"
 
-msgid "&Go To"
-msgstr "Ir Para"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "Comparar"
@@ -1317,6 +1326,9 @@ msgstr "Ignorar linhas em branco"
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas/minúsculas"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Ativar deteção de bloco movido"
 
@@ -1328,12 +1340,6 @@ msgstr "Diff &algoritmo (Experimental):"
 
 msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"
-
-msgid "Comments"
-msgstr "Comentários"
-
-msgid "Filter Comments"
-msgstr "Filtrar comentários"
 
 msgid "Editor"
 msgstr "Editor"
@@ -3076,14 +3082,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "A pasta não existe."
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"O ficheiro de suporte não está ativado. \n"
-"Não foram encontrados todos os componentes necessários (7-zip and/or Merge7z*.dll) \n"
-"Para mais informações verifique o manual acerca do ficheiro de suporte e active-o."
 
 msgid "Select file for export"
 msgstr "Selecione ficheiro a exportar"
@@ -3303,8 +3303,11 @@ msgid "<Automatic>"
 msgstr "<Automático>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "I&r para a Linha %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Desativado"
@@ -3348,8 +3351,8 @@ msgstr "Fechar &Outros Separadores"
 msgid "Enable &Auto Max Width"
 msgstr "Ativar largura Máxima Automática"
 
-msgid "frhed is not installed"
-msgstr "frhed não instalado"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "crystallineparser.h"
-#include "utils/fpattern.h"
+#include "../utils/fpattern.h"
 
 namespace CrystalLineParser
 {

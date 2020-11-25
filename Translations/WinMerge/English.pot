@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-10-18 17:28+0000\n"
+"POT-Creation-Date: 2020-11-25 21:32+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-msgid "&Select Line Difference"
+msgid "&Select Line Difference\tF4"
 msgstr ""
 
 msgid "&Undo"
@@ -50,7 +50,13 @@ msgstr ""
 msgid "&Paste"
 msgstr ""
 
-msgid "&Goto..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
 msgstr ""
 
 msgid "Op&en"
@@ -175,7 +181,7 @@ msgstr ""
 msgid "< Empty >"
 msgstr ""
 
-msgid "E&xit"
+msgid "E&xit\tCtrl+Q"
 msgstr ""
 
 msgid "&Edit"
@@ -238,7 +244,7 @@ msgstr ""
 msgid "&Window"
 msgstr ""
 
-msgid "Cl&ose"
+msgid "Cl&ose\tCtrl+W"
 msgstr ""
 
 msgid "Clo&se All"
@@ -436,7 +442,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-msgid "&Print..."
+msgid "&Print...\tCtrl+P"
 msgstr ""
 
 msgid "Page Set&up..."
@@ -521,9 +527,6 @@ msgid "&Previous bookmark\tShift+F2"
 msgstr ""
 
 msgid "&Clear All Bookmarks"
-msgstr ""
-
-msgid "&Go To...\tCtrl+G"
 msgstr ""
 
 msgid "Syntax Highlight"
@@ -837,7 +840,7 @@ msgstr ""
 msgid "Auto prediffer"
 msgstr ""
 
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr ""
 
 msgid "&No Moved Blocks"
@@ -900,7 +903,7 @@ msgstr ""
 msgid "About WinMerge"
 msgstr ""
 
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr ""
 
 msgid "OK"
@@ -978,6 +981,9 @@ msgstr ""
 msgid "Automatically &scroll to first difference"
 msgstr ""
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr ""
 
@@ -1038,7 +1044,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&Ok"
+msgid "&OK"
 msgstr ""
 
 msgid "Replace"
@@ -1078,6 +1084,9 @@ msgid "New"
 msgstr ""
 
 msgid "&Background color:"
+msgstr ""
+
+msgid "&Ok"
 msgstr ""
 
 msgid "&Apply"
@@ -1266,16 +1275,16 @@ msgstr ""
 msgid "Items total:"
 msgstr ""
 
-msgid "Go To"
+msgid "Go to"
 msgstr ""
 
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr ""
 
 msgid "File"
 msgstr ""
 
-msgid "Goto what"
+msgid "Go to what"
 msgstr ""
 
 msgid "Li&ne"
@@ -1284,7 +1293,7 @@ msgstr ""
 msgid "&Difference"
 msgstr ""
 
-msgid "&Go To"
+msgid "&Go to"
 msgstr ""
 
 msgid "Compare"
@@ -1308,6 +1317,9 @@ msgstr ""
 msgid "Ignore &case"
 msgstr ""
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr ""
 
@@ -1318,12 +1330,6 @@ msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Comments"
-msgstr ""
-
-msgid "Filter Comments"
 msgstr ""
 
 msgid "Editor"
@@ -2799,7 +2805,7 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr ""
 
-msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 
 msgid "Select file for export"
@@ -2942,7 +2948,10 @@ msgid "<Automatic>"
 msgstr ""
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
 msgid "Disabled"
@@ -2987,7 +2996,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format

@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ccrystaltextview.h"
+#include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
 

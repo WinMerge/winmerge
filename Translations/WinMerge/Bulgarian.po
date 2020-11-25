@@ -35,8 +35,8 @@ msgstr "Копиране &отляво"
 msgid "Copy fro&m Right"
 msgstr "Копиране отд&ясно"
 
-msgid "&Select Line Difference"
-msgstr "&Избиране на разликите на реда"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "О&тменяне"
@@ -53,8 +53,14 @@ msgstr "&Копиране"
 msgid "&Paste"
 msgstr "По&ставяне"
 
-msgid "&Goto..."
-msgstr "Отиване &към…"
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 msgid "Op&en"
 msgstr "&Отваряне"
@@ -178,8 +184,8 @@ msgstr "Последни &файлове и папки"
 msgid "< Empty >"
 msgstr "<празно>"
 
-msgid "E&xit"
-msgstr "&Изход"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "П&роменяне"
@@ -241,8 +247,8 @@ msgstr "&Презареждане на добавките"
 msgid "&Window"
 msgstr "&Прозорци"
 
-msgid "Cl&ose"
-msgstr "&Затваряне"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "Затваряне на &всички"
@@ -439,8 +445,8 @@ msgstr "Запазване на &средния като…"
 msgid "Save &Right As..."
 msgstr "Запазване на &десния като…"
 
-msgid "&Print..."
-msgstr "&Отпечатване…"
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Настройки на &страницата..."
@@ -525,9 +531,6 @@ msgstr "П&редишна отметка\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "&Изчисти всички отметки"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "От&иване към…\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "&Синтактично оцветяване"
@@ -840,8 +843,8 @@ msgstr ""
 msgid "Auto prediffer"
 msgstr ""
 
-msgid "G&oto Diff"
-msgstr "&Отиване към различие"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "&Без преместени блокове"
@@ -903,8 +906,8 @@ msgstr "&Отваряне на проект…"
 msgid "About WinMerge"
 msgstr "Относно WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "Посетете страницата на WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "Добре"
@@ -981,6 +984,9 @@ msgstr "Основни"
 msgid "Automatically &scroll to first difference"
 msgstr "Автоматично &плъзване към първото различие"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Затваряне &прозорците при 'Esc':"
 
@@ -1043,8 +1049,8 @@ msgstr "&Търсене"
 msgid "Find &Prev"
 msgstr "Търсене &назад"
 
-msgid "&Ok"
-msgstr "&Добре"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "Заменяне"
@@ -1084,6 +1090,9 @@ msgstr "&Нов"
 
 msgid "&Background color:"
 msgstr "Цвят на &фона:"
+
+msgid "&Ok"
+msgstr "&Добре"
 
 msgid "&Apply"
 msgstr "&Прилагане"
@@ -1271,17 +1280,17 @@ msgstr "Сравнени:"
 msgid "Items total:"
 msgstr "Всичко:"
 
-msgid "Go To"
-msgstr "Отиване към"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "&Отиване към:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "Файл"
 
-msgid "Goto what"
-msgstr "Отиване на някъде"
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "Ре&д"
@@ -1289,8 +1298,8 @@ msgstr "Ре&д"
 msgid "&Difference"
 msgstr "&Различие"
 
-msgid "&Go To"
-msgstr "&Отиване"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "Сравняване"
@@ -1313,6 +1322,9 @@ msgstr "Пренебрегване на пра&зните редове"
 msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 
@@ -1324,12 +1336,6 @@ msgstr "&Алгоритъм за различия (експер.):"
 
 msgid "Enable indent &heuristic"
 msgstr "П&редполагане на отстъпа"
-
-msgid "Comments"
-msgstr "Коментари"
-
-msgid "Filter Comments"
-msgstr "Филтър за коментари"
 
 msgid "Editor"
 msgstr "Редактор"
@@ -3063,17 +3069,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Папката не съществува."
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"Поддръжката на архиви не е включена.\n"
-"Не са намерени необходимите компоненти (7-zip и/или Merge7z*.dll) за "
-"поддръжката на архиви.\n"
-"Погледнете ръководството за повече информация относно поддръжката на архиви "
-"и как да я включите."
 
 msgid "Select file for export"
 msgstr "Изберете файл за експорт"
@@ -3279,8 +3276,11 @@ msgid "<Automatic>"
 msgstr "<Автоматично>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "От&иване на ред %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Забранено"
@@ -3324,8 +3324,8 @@ msgstr "Затваряне на д&ругите раздели"
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-msgid "frhed is not installed"
-msgstr "frhed не е инсталиран"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

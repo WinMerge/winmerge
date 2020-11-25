@@ -48,9 +48,8 @@ msgstr "왼쪽에서 복사(&F)"
 msgid "Copy fro&m Right"
 msgstr "오른쪽에서 복사(&M)"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "줄 차이점 선택(&S)"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -72,9 +71,14 @@ msgstr "복사(&C)"
 msgid "&Paste"
 msgstr "붙여넣기(&P)"
 
-#, c-format
-msgid "&Goto..."
-msgstr "이동(&G)"
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -226,9 +230,8 @@ msgstr "최근 파일/폴더(&I)"
 msgid "< Empty >"
 msgstr "< 비어 있음 >"
 
-#, c-format
-msgid "E&xit"
-msgstr "종료(&X)"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -310,9 +313,8 @@ msgstr "플러그인 다시 불러오기(&R)"
 msgid "&Window"
 msgstr "창(&W)"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "닫기(&O)"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -570,9 +572,8 @@ msgstr "가운데 저장(&M)..."
 msgid "Save &Right As..."
 msgstr "오른쪽 저장(&R)..."
 
-#, c-format
-msgid "&Print..."
-msgstr "인쇄(&P)..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "페이지 설정(&T)..."
@@ -682,10 +683,6 @@ msgstr "이전 책갈피(&P)\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "전체 책갈피 지우기(&C)"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "이동(&G)...\tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1073,9 +1070,8 @@ msgstr "prediffer 없음(&N)"
 msgid "Auto prediffer"
 msgstr "자동 prediffer"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "차이점으로 이동(&O)"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1157,9 +1153,8 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "WinMerge 정보"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "WinMerge 홈페이지 방문!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1260,6 +1255,9 @@ msgstr "일반"
 msgid "Automatically &scroll to first difference"
 msgstr "처음 차이점으로 자동 스크롤하기(&S)"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc'로 창 닫기(&O):"
 
@@ -1338,9 +1336,8 @@ msgstr "다음 찾기(&F)"
 msgid "Find &Prev"
 msgstr "이전 찾기(&P)"
 
-#, c-format
-msgid "&Ok"
-msgstr "확인(&O)"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1392,6 +1389,10 @@ msgstr "새로 만들기"
 #, c-format
 msgid "&Background color:"
 msgstr "배경 색상(&B):"
+
+#, c-format
+msgid "&Ok"
+msgstr "확인(&O)"
 
 #, c-format
 msgid "&Apply"
@@ -1634,21 +1635,18 @@ msgstr "비교된 항목 :"
 msgid "Items total:"
 msgstr "전체 항목 :"
 
-#, c-format
-msgid "Go To"
-msgstr "이동"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "이동(&O):"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "파일"
 
-#, c-format
-msgid "Goto what"
-msgstr "이동 위치"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1658,9 +1656,8 @@ msgstr "줄(&N)"
 msgid "&Difference"
 msgstr "차이점(&D)"
 
-#, c-format
-msgid "&Go To"
-msgstr "이동(&G)"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -1690,6 +1687,9 @@ msgstr "공백 줄 무시하기(&K)"
 msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "이동된 블럭 감지 사용하기"
@@ -1703,14 +1703,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "코멘트"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "코멘트 필터링하기"
 
 #, c-format
 msgid "Editor"
@@ -3758,16 +3750,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "폴더가 존재하지 않습니다."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"압축 지원이 꺼져 있습니다.\n"
-"\n"
-"압축 지원에 필요한 컴포넌트(7-zip and/or Merge7z*.dll)를 찾을 수 없습니다.\n"
-"압축 지원에 대한 추가 정보와 사용법은 메뉴얼을 참조하세요."
 
 #, c-format
 msgid "Select file for export"
@@ -4025,8 +4009,11 @@ msgid "<Automatic>"
 msgstr "<자동>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "%1줄로 이동(&O)"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -4083,8 +4070,7 @@ msgstr "다른 탭 닫기(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format

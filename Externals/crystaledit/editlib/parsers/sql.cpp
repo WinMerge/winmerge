@@ -77,7 +77,6 @@ CrystalLineParser::ParseLineSql (unsigned dwCookie, const TCHAR *pszChars, int n
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   const TCHAR *pszCommentBegin = nullptr;
   const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
@@ -202,12 +201,6 @@ out:
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)
