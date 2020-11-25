@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2020-11-22</update>
+  <update>2020-11-25</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -8,9 +8,9 @@
       <update>2019-12-30</update>
       <strings>
         <count>998</count>
-        <translated>923</translated>
+        <translated>908</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>75</untranslated>
+        <untranslated>90</untranslated>
       </strings>
     </translation>
     <translation>
@@ -19,9 +19,9 @@
       <update>2013-02-03</update>
       <strings>
         <count>998</count>
-        <translated>656</translated>
+        <translated>642</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>342</untranslated>
+        <untranslated>356</untranslated>
       </strings>
       <translators>
         <translator>
@@ -36,9 +36,9 @@
       <update>2020-07-26</update>
       <strings>
         <count>998</count>
-        <translated>987</translated>
+        <translated>972</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>11</untranslated>
+        <untranslated>26</untranslated>
       </strings>
       <translators>
         <translator>
@@ -61,9 +61,9 @@
       <update>2019-10-24</update>
       <strings>
         <count>998</count>
-        <translated>891</translated>
+        <translated>876</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>107</untranslated>
+        <untranslated>122</untranslated>
       </strings>
       <translators>
         <translator>
@@ -86,9 +86,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>580</translated>
+        <translated>566</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>418</untranslated>
+        <untranslated>432</untranslated>
       </strings>
       <translators>
         <translator>
@@ -103,9 +103,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>993</translated>
+        <translated>978</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>20</untranslated>
       </strings>
       <translators>
         <translator>
@@ -128,9 +128,9 @@
       <update>2010-02-19</update>
       <strings>
         <count>998</count>
-        <translated>875</translated>
+        <translated>860</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>123</untranslated>
+        <untranslated>138</untranslated>
       </strings>
       <translators>
         <translator>
@@ -153,9 +153,9 @@
       <update>2009-02-13</update>
       <strings>
         <count>998</count>
-        <translated>647</translated>
+        <translated>633</translated>
         <fuzzy>1</fuzzy>
-        <untranslated>350</untranslated>
+        <untranslated>364</untranslated>
       </strings>
       <translators>
         <translator>
@@ -170,9 +170,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>618</translated>
+        <translated>604</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>380</untranslated>
+        <untranslated>394</untranslated>
       </strings>
       <translators>
         <translator>
@@ -191,9 +191,9 @@
       <update>2013-01-13</update>
       <strings>
         <count>998</count>
-        <translated>656</translated>
+        <translated>642</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>342</untranslated>
+        <untranslated>356</untranslated>
       </strings>
       <translators>
         <translator>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>998</count>
-        <translated>994</translated>
+        <translated>979</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>19</untranslated>
       </strings>
       <translators>
         <translator>
@@ -232,7 +232,7 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2020-11-21</update>
+      <update>2020-11-25</update>
       <strings>
         <count>998</count>
         <translated>998</translated>
@@ -246,9 +246,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>920</translated>
+        <translated>905</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>78</untranslated>
+        <untranslated>93</untranslated>
       </strings>
     </translation>
     <translation>
@@ -257,9 +257,9 @@
       <update>2019-06-02</update>
       <strings>
         <count>998</count>
-        <translated>913</translated>
+        <translated>898</translated>
         <fuzzy>2</fuzzy>
-        <untranslated>83</untranslated>
+        <untranslated>98</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -286,9 +286,9 @@
       <update>2020-10-17</update>
       <strings>
         <count>998</count>
-        <translated>992</translated>
+        <translated>977</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>6</untranslated>
+        <untranslated>21</untranslated>
       </strings>
       <translators>
         <translator>
@@ -303,9 +303,9 @@
       <update>2020-09-28</update>
       <strings>
         <count>998</count>
-        <translated>994</translated>
+        <translated>979</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>19</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -328,9 +328,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>619</translated>
+        <translated>605</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>379</untranslated>
+        <untranslated>393</untranslated>
       </strings>
       <translators>
         <translator>
@@ -345,9 +345,9 @@
       <update>2011-01-24</update>
       <strings>
         <count>998</count>
-        <translated>552</translated>
+        <translated>539</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>446</untranslated>
+        <untranslated>459</untranslated>
       </strings>
       <translators>
         <translator>
@@ -366,9 +366,9 @@
       <update>2019-07-12</update>
       <strings>
         <count>998</count>
-        <translated>923</translated>
+        <translated>908</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>75</untranslated>
+        <untranslated>90</untranslated>
       </strings>
       <translators>
         <translator>
@@ -412,9 +412,9 @@
       <update>2018-02-05</update>
       <strings>
         <count>998</count>
-        <translated>879</translated>
+        <translated>865</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>119</untranslated>
+        <untranslated>133</untranslated>
       </strings>
       <translators>
         <translator>
@@ -441,9 +441,9 @@
       <update>2020-11-16</update>
       <strings>
         <count>998</count>
-        <translated>994</translated>
+        <translated>979</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>19</untranslated>
       </strings>
       <translators>
         <translator>
@@ -458,9 +458,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>648</translated>
+        <translated>634</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>350</untranslated>
+        <untranslated>364</untranslated>
       </strings>
       <translators>
         <translator>
@@ -479,9 +479,9 @@
       <update>2013-08-15</update>
       <strings>
         <count>998</count>
-        <translated>659</translated>
+        <translated>645</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>339</untranslated>
+        <untranslated>353</untranslated>
       </strings>
       <translators>
         <translator>
@@ -496,9 +496,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>962</translated>
+        <translated>947</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>36</untranslated>
+        <untranslated>51</untranslated>
       </strings>
       <translators>
         <translator>
@@ -524,9 +524,9 @@
       <update>2020-10-26</update>
       <strings>
         <count>998</count>
-        <translated>993</translated>
+        <translated>978</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>20</untranslated>
       </strings>
       <translators>
         <translator>
@@ -547,9 +547,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>577</translated>
+        <translated>563</translated>
         <fuzzy>44</fuzzy>
-        <untranslated>377</untranslated>
+        <untranslated>391</untranslated>
       </strings>
       <translators>
         <translator>
@@ -564,9 +564,9 @@
       <update>2020-11-16</update>
       <strings>
         <count>998</count>
-        <translated>986</translated>
+        <translated>971</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>12</untranslated>
+        <untranslated>27</untranslated>
       </strings>
       <translators>
         <translator>
@@ -597,9 +597,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>647</translated>
+        <translated>633</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>351</untranslated>
+        <untranslated>365</untranslated>
       </strings>
       <translators>
         <translator>
@@ -614,9 +614,9 @@
       <update>2010-12-12</update>
       <strings>
         <count>998</count>
-        <translated>574</translated>
-        <fuzzy>66</fuzzy>
-        <untranslated>358</untranslated>
+        <translated>561</translated>
+        <fuzzy>65</fuzzy>
+        <untranslated>372</untranslated>
       </strings>
       <translators>
         <translator>
@@ -630,9 +630,9 @@
       <update>2020-11-02</update>
       <strings>
         <count>998</count>
-        <translated>993</translated>
+        <translated>978</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>20</untranslated>
       </strings>
       <translators>
         <translator>
@@ -655,9 +655,9 @@
       <update>2020-11-08</update>
       <strings>
         <count>998</count>
-        <translated>991</translated>
+        <translated>981</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>7</untranslated>
+        <untranslated>17</untranslated>
       </strings>
       <translators>
         <translator>
@@ -680,9 +680,9 @@
       <update>2020-04-03</update>
       <strings>
         <count>998</count>
-        <translated>888</translated>
+        <translated>873</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>110</untranslated>
+        <untranslated>125</untranslated>
       </strings>
       <translators>
         <translator>
@@ -709,9 +709,9 @@
       <update>2019-10-07</update>
       <strings>
         <count>998</count>
-        <translated>923</translated>
+        <translated>908</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>75</untranslated>
+        <untranslated>90</untranslated>
       </strings>
       <translators>
         <translator>
@@ -734,9 +734,9 @@
       <update>2020-09-08</update>
       <strings>
         <count>998</count>
-        <translated>990</translated>
+        <translated>975</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>8</untranslated>
+        <untranslated>23</untranslated>
       </strings>
       <translators>
         <translator>
@@ -759,9 +759,9 @@
       <update>2009-06-13</update>
       <strings>
         <count>998</count>
-        <translated>653</translated>
+        <translated>639</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>345</untranslated>
+        <untranslated>359</untranslated>
       </strings>
       <translators>
         <translator>

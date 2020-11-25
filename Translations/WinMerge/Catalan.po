@@ -43,9 +43,8 @@ msgstr "Copia des de l'esquerra"
 msgid "Copy fro&m Right"
 msgstr "Copia des de la dreta"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Selecciona la diferència a la línia\tF4"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -67,9 +66,8 @@ msgstr "C&opia"
 msgid "&Paste"
 msgstr "Engan&xa"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Vés a..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -227,9 +225,8 @@ msgstr "Fitxers i carpetes recents"
 msgid "< Empty >"
 msgstr "< Buit >"
 
-#, c-format
-msgid "E&xit"
-msgstr "&Surt"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -311,9 +308,8 @@ msgstr "&Recarrega els connectors"
 msgid "&Window"
 msgstr "Fi&nestra"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Tanca"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -568,9 +564,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&Imprimeix..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Configuració de la pàgina..."
@@ -680,10 +675,6 @@ msgstr "&Punt d'interès previ\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "&Esborra tots els punts d'interès"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Vés a...\tControl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1071,9 +1062,8 @@ msgstr "&Sense prediferenciació"
 msgid "Auto prediffer"
 msgstr "Prediferenciació &automàtica"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "Vé&s a la diferència"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1155,9 +1145,8 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Quant al WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Visiteu la plana web del WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1339,9 +1328,8 @@ msgstr "&Següent"
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
-msgstr "&D'acord"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1393,6 +1381,10 @@ msgstr "Nova"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&D'acord"
 
 #, c-format
 msgid "&Apply"
@@ -1635,21 +1627,18 @@ msgstr "Elements comparats:"
 msgid "Items total:"
 msgstr "Elements totals:"
 
-#, c-format
-msgid "Go To"
-msgstr "Anar"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "&Anar a:"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "Fitxer"
 
-#, c-format
-msgid "Goto what"
-msgstr "Anar a on"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1659,9 +1648,8 @@ msgstr "&Línia"
 msgid "&Difference"
 msgstr "&Diferència"
 
-#, c-format
-msgid "&Go To"
-msgstr "&Vés-hi"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -3662,15 +3650,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "La carpeta no existeix."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"El suport d'arxivament no està habilitat.\n"
-"Els components necessaris (7-zip i/o Merge7z*.dll) per al suport d'arxivament no s'han pogut trobar.\n"
-"Vegeu el manual per a més informació quan al suport per a arxivament i com habilitar-lo."
 
 #, c-format
 msgid "Select file for export"
@@ -3853,8 +3834,8 @@ msgid "<Automatic>"
 msgstr "<Automàtic>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "Va fins a la línia %1"
+msgid "G&o to Line %1"
+msgstr ""
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3914,8 +3895,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format

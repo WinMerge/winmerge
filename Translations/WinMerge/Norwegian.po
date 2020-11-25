@@ -44,9 +44,8 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Marker linjeforskjell"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -68,9 +67,8 @@ msgstr "Ko&pier"
 msgid "&Paste"
 msgstr "&Lim inn"
 
-#, c-format
-msgid "&Goto..."
-msgstr "Gå &til..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -228,9 +226,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "< Tom >"
 
-#, c-format
-msgid "E&xit"
-msgstr "&Avslutt"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -312,9 +309,8 @@ msgstr "&Gjeninnlast programtillegg"
 msgid "&Window"
 msgstr "&Vindu"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Lukk"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -569,9 +565,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&Skriv ut..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "&Utskriftsformat..."
@@ -681,10 +676,6 @@ msgstr "&Forrige bokmerke\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Fjern &alle bokmerker"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Gå til...\tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1072,9 +1063,8 @@ msgstr "&Ingen prediffer"
 msgid "Auto prediffer"
 msgstr "Auto-prediffer"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "G&å til forskjell"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1156,9 +1146,8 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Om WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Besøk hjemmesiden til WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1340,9 +1329,8 @@ msgstr "&Finn neste"
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
-msgstr "&Ok"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1394,6 +1382,10 @@ msgstr "Ny"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&Ok"
 
 #, c-format
 msgid "&Apply"
@@ -1636,21 +1628,18 @@ msgstr "Objekter sammenlignet:"
 msgid "Items total:"
 msgstr "Objekter totalt:"
 
-#, c-format
-msgid "Go To"
-msgstr "Gå til"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "G&å til:"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "Fil"
 
-#, c-format
-msgid "Goto what"
-msgstr "Gå til hva"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1660,9 +1649,8 @@ msgstr "Li&nje"
 msgid "&Difference"
 msgstr "&Forskjell"
 
-#, c-format
-msgid "&Go To"
-msgstr "&Gå til"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -3730,15 +3718,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Mappe eksisterer ikke."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"Arkivstøtte er ikke arkivert.\n"
-"Alle nødvendig komponenter (7-zip og/eller Merge7z*.dll) for arkivstøtte ble ikke funnet.\n"
-"Se manualen for mer informasjon om arkivstøtte og hvordan aktivere den."
 
 #, c-format
 msgid "Select file for export"
@@ -3924,8 +3905,8 @@ msgid "<Automatic>"
 msgstr "<Automatisk>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "G&å til linje %1"
+msgid "G&o to Line %1"
+msgstr ""
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3985,8 +3966,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format

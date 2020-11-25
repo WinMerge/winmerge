@@ -45,9 +45,8 @@ msgstr "Kopiraj iz l&eve"
 msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Izberi razliko vrstice"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -69,9 +68,8 @@ msgstr "&Kopiraj"
 msgid "&Paste"
 msgstr "&Prilepi"
 
-#, c-format
-msgid "&Goto..."
-msgstr "Pojdi &na..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr "Pojdi na premaknjeno vrstico med levo in srednjo\tCtrl+Shift+G"
@@ -229,9 +227,8 @@ msgstr "Ne&davne datoteke ali mape"
 msgid "< Empty >"
 msgstr "< Prazno >"
 
-#, c-format
-msgid "E&xit"
-msgstr "I&zhod"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -313,9 +310,8 @@ msgstr "Znova na&loži vtičnike"
 msgid "&Window"
 msgstr "&Okno"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "Z&apri"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -569,9 +565,8 @@ msgstr "Shrani sredn&jo kot..."
 msgid "Save &Right As..."
 msgstr "Shrani l&evo kot..."
 
-#, c-format
-msgid "&Print..."
-msgstr "&Natisni..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Nastavitev &strani..."
@@ -681,10 +676,6 @@ msgstr "&Prejšnji zaznamek\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Počis&ti vse zaznamke"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "Pojdi &na... \tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1072,9 +1063,8 @@ msgstr "&Brez predogleda razlik"
 msgid "Auto prediffer"
 msgstr "Samodejni predogled razlik"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "Pojdi &na razliko"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1156,9 +1146,8 @@ msgstr "Na&loži projekt..."
 msgid "About WinMerge"
 msgstr "Vizitka"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Obiščite domačo stran WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1340,9 +1329,8 @@ msgstr "&Najdi naslednje"
 msgid "Find &Prev"
 msgstr "Najdi pre&jšnje"
 
-#, c-format
-msgid "&Ok"
-msgstr "&Vredu"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1394,6 +1382,10 @@ msgstr "Nov"
 #, c-format
 msgid "&Background color:"
 msgstr "Bar&va ozadja:"
+
+#, c-format
+msgid "&Ok"
+msgstr "&Vredu"
 
 #, c-format
 msgid "&Apply"
@@ -1635,21 +1627,18 @@ msgstr "Primerjanih vnosov:"
 msgid "Items total:"
 msgstr "Skupaj vnosov:"
 
-#, c-format
-msgid "Go To"
-msgstr "Pojdi na"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "Pojdi &na:"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "Datoteka"
 
-#, c-format
-msgid "Goto what"
-msgstr "Pojdi na kaj"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1659,9 +1648,8 @@ msgstr "&Vrstico"
 msgid "&Difference"
 msgstr "&Razlika"
 
-#, c-format
-msgid "&Go To"
-msgstr "Pojdi &na"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -2737,8 +2725,8 @@ msgid "File not unpacked: %1"
 msgstr "Datoteka ni razpakirana: %1"
 
 #, c-format
-msgid "Cannot open file\n%1\n\n%2
-msgstr "Ni mogoče odpreti datoteke\n%1\n\n%2"
+msgid "Cannot open file\n%1\n\n%2"
+msgstr ""
 
 #, c-format
 msgid "Failed to parse conflict file."
@@ -3342,8 +3330,8 @@ msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "Datoteka Poročila že obstaja. Ali jo želite prepisati?"
 
 #, c-format
-msgid "Error creating the report:\n%1
-sgstr "Napaka med ustvarjanjem poročila:\n%1"
+msgid "Error creating the report:\n%1"
+msgstr ""
 
 #, c-format
 msgid "The report has been created successfully."
@@ -3519,9 +3507,8 @@ msgstr "Prosimo, najprej shranite vse datoteke.\n\nUstvarjanje datoteke s poprav
 msgid "Folder does not exist."
 msgstr "Mapa ne obstaja."
 
-#, c-format
-msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr "Podpora arhivov ni omogočena.\nNi mogoče najti veh potrebnih komponent (7-zip in/ali Merge7z*.dll) za podporo arhivov.\nZa več informacij o podpori za arhiviranje in kako jo omogočiti si oglejte priročnik."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgstr ""
 
 #, c-format
 msgid "Select file for export"
@@ -3701,8 +3688,8 @@ msgid "<Automatic>"
 msgstr "<Samodejno>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "Pojdi &na vrstico %1"
+msgid "G&o to Line %1"
+msgstr ""
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Pojdi na premaknjeno vrstico\tCtrl+Shift+G"
@@ -3762,9 +3749,8 @@ msgstr "Zapri d&ruge zavihke"
 msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
-#, c-format
-msgid "frhed is not installed"
-msgstr "frhed ni nameščen"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

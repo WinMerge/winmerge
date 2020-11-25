@@ -41,8 +41,8 @@ msgstr "Kopírovať &zľava"
 msgid "Copy fro&m Right"
 msgstr "Kopírovať &sprava"
 
-msgid "&Select Line Difference"
-msgstr "&Vybrať rozdiely riadkov"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "&Späť"
@@ -59,8 +59,8 @@ msgstr "&Kopírovať"
 msgid "&Paste"
 msgstr "&Prilepiť"
 
-msgid "&Goto..."
-msgstr "&Prejsť na..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -190,8 +190,8 @@ msgstr "Naposledy otvorené sú&bory alebo projekty"
 msgid "< Empty >"
 msgstr "< Prázdne >"
 
-msgid "E&xit"
-msgstr "&Koniec"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "&Upraviť"
@@ -253,8 +253,8 @@ msgstr "&Znovu načítať rozšírenia"
 msgid "&Window"
 msgstr "&Okno"
 
-msgid "Cl&ose"
-msgstr "&Zatvoriť"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "Zatvoriť &všetky"
@@ -448,8 +448,8 @@ msgstr "Uložiť s&tredný ako..."
 msgid "Save &Right As..."
 msgstr "Uložiť p&ravý ako..."
 
-msgid "&Print..."
-msgstr "&Tlačiť..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Nastavenie s&tránky..."
@@ -534,9 +534,6 @@ msgstr "&Predošlá záložka\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "&Zmazať všetky záložky"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "&Prejsť na...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "Zvýrazňovanie syntaxe"
@@ -849,8 +846,8 @@ msgstr "&Bez predspracovania rozdielov"
 msgid "Auto prediffer"
 msgstr "&Automatické predspracovanie rozdielov"
 
-msgid "G&oto Diff"
-msgstr "Ch&oď na rozdiel"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "&Nepresúvať bloky"
@@ -912,8 +909,8 @@ msgstr "&Načítať projekt..."
 msgid "About WinMerge"
 msgstr "O aplikácii WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "Navštívte domovskú programu WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -1057,8 +1054,8 @@ msgstr "Nájsť ďalší"
 msgid "Find &Prev"
 msgstr "Nájsť &predošlý"
 
-msgid "&Ok"
-msgstr "&OK"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "Nahradiť"
@@ -1098,6 +1095,9 @@ msgstr "Nový"
 
 msgid "&Background color:"
 msgstr "Farba &pozadia:"
+
+msgid "&Ok"
+msgstr "&OK"
 
 msgid "&Apply"
 msgstr "&Použiť"
@@ -1285,17 +1285,17 @@ msgstr "Porovnané položky:"
 msgid "Items total:"
 msgstr "Položky celkom:"
 
-msgid "Go To"
-msgstr "Prejsť na"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "&Prejsť na:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "Súbor"
 
-msgid "Goto what"
-msgstr "Prejsť na čo"
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "Riad&ok"
@@ -1303,8 +1303,8 @@ msgstr "Riad&ok"
 msgid "&Difference"
 msgstr "&Rozdiel"
 
-msgid "&Go To"
-msgstr "&Prejsť na"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "Porovnať"
@@ -3137,17 +3137,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Priečinok neexistuje."
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"Podpora archívov nie je povolená.\n"
-"Všetky potrebné komponenty (7-zip alebo Merge7z *.dll) pre podporu archívu "
-"nemožno nájsť.\n"
-"V príručke nájdete ďalšie informácie o podpore archívov a o tom, ako ich "
-"povoliť."
 
 msgid "Select file for export"
 msgstr "Vyberte súbor pre export"
@@ -3370,8 +3361,8 @@ msgid "<Automatic>"
 msgstr "<Automatické>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "Ch&oď na riadok %1"
+msgid "G&o to Line %1"
+msgstr ""
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3418,8 +3409,8 @@ msgstr "Zavrieť ďa&lšie karty"
 msgid "Enable &Auto Max Width"
 msgstr "Povoliť &automaticky maximalizovať šírku"
 
-msgid "frhed is not installed"
-msgstr "Frhed nie je nainštalovaný"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

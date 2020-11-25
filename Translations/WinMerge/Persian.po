@@ -45,9 +45,8 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&S انتخاب خط تفاوت "
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -69,9 +68,8 @@ msgstr "&C رونوشت برداري "
 msgid "&Paste"
 msgstr "&P چسباندن "
 
-#, c-format
-msgid "&Goto..."
-msgstr "&G برو به ... "
+msgid "&Go to...\tCtrl+G"
+msgstr ""
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -229,9 +227,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "<خالي>"
 
-#, c-format
-msgid "E&xit"
-msgstr "&x خروج "
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -313,9 +310,8 @@ msgstr "&R بارگذاري دوباره افزايه ها "
 msgid "&Window"
 msgstr "&W پنجره "
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&o بستن "
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -570,9 +566,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&P چاپ ... "
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "&u تنظيم صفحه ..."
@@ -682,10 +677,6 @@ msgstr "&P چوب الف قبلي \tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "&C پاک کردن تمام نشانها "
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&G برو به ... \tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1073,9 +1064,8 @@ msgstr "&N بدون پيش فرق گذار "
 msgid "Auto prediffer"
 msgstr " پيش فرق گذار خودکار "
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "&o برو به محل تفاوت "
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1157,9 +1147,8 @@ msgstr ""
 msgid "About WinMerge"
 msgstr " درباره وينمرج "
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr " بازديد صفحه خانگي وينمرج ! "
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1345,9 +1334,8 @@ msgstr "&F يافتن بعدي "
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
-msgstr "&O تاييد "
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1399,6 +1387,10 @@ msgstr " جديد "
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&O تاييد "
 
 #, c-format
 msgid "&Apply"
@@ -1641,21 +1633,18 @@ msgstr " موارد مقايسه شده : "
 msgid "Items total:"
 msgstr " کل موارد : "
 
-#, c-format
-msgid "Go To"
-msgstr " برو به "
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "&o بروربه : "
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr " پرونده "
 
-#, c-format
-msgid "Goto what"
-msgstr " برو به چه "
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1665,9 +1654,8 @@ msgstr "&n خط "
 msgid "&Difference"
 msgstr "&D تفاوت "
 
-#, c-format
-msgid "&Go To"
-msgstr "&G برو به "
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -3771,18 +3759,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr " پوشه وجود ندارد "
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"  پشتيباني از بايگاني فعال نشده است \n"
-" تمام اجزاء مورد نياز  براي پشتيباني از بايگاني را نمي توان يافت - Merge7z*."
-"dll &/ 7-zip   - \n"
-" براي اطلاع بيشتر از پشتيباني بايگاني و چگونگي فعالسازي آن، کتابچه راهنما را "
-"ببينيد"
 
 #, c-format
 msgid "Select file for export"
@@ -3968,8 +3946,8 @@ msgid "<Automatic>"
 msgstr "<خودکار>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "&G   برو به خط  %1 "
+msgid "G&o to Line %1"
+msgstr ""
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -4029,8 +4007,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
