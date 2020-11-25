@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-09-28 22:27+0200\n"
+"PO-Revision-Date: 2020-11-25 20:27+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "Copy fro&m Right"
 msgstr "V&on rechts kopieren"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "Zeilen&unterschied markieren\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -68,13 +68,13 @@ msgid "&Paste"
 msgstr "E&infügen"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Gehe zu...\tStrg+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Zur verschobenen Zeile zwischen Links und Mitte gehen\tStrg+Umschalt+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Zur verschobenen Zeile zwischen Mitte und Rechts gehen\tStrg+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -227,7 +227,7 @@ msgid "< Empty >"
 msgstr "< Leer >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Beenden\tStrg+Q"
 
 #, c-format
 msgid "&Edit"
@@ -310,7 +310,7 @@ msgid "&Window"
 msgstr "&Fenster"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&Schließen\tStrg+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -566,7 +566,7 @@ msgid "Save &Right As..."
 msgstr "&Rechts speichern unter..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "&Drucken...\tStrg+P"
 
 msgid "Page Set&up..."
 msgstr "Sei&te einrichten..."
@@ -1064,7 +1064,7 @@ msgid "Auto prediffer"
 msgstr "&Auto-Prediffer"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Zum Unterschied g&ehen"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1076,7 +1076,7 @@ msgstr "&Alle verschobenen Blöcke"
 
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "&Verschobenen Block für aktuellen Unterschied"
+msgstr "&Verschobener Block für aktuellen Unterschied"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1147,7 +1147,7 @@ msgid "About WinMerge"
 msgstr "Info über WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Besuchen Sie die WinMerge-Homepage!"
 
 #, c-format
 msgid "OK"
@@ -1246,10 +1246,10 @@ msgstr "Allgemein"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "&Anzeige automatisch auf den ersten Unterschied positionieren"
+msgstr "&Automatisch zum ersten Unterschied scrollen"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Automatisch zum ersten Inline-&Unterschied scrollen"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Fenster mit '&Esc' schließen:"
@@ -1330,7 +1330,7 @@ msgid "Find &Prev"
 msgstr "R&ückwärtssuchen"
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 #, c-format
 msgid "Replace"
@@ -1629,17 +1629,17 @@ msgid "Items total:"
 msgstr "Objekte gesamt:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Gehe zu"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Zeile/Unt.:"
 
 #, c-format
 msgid "File"
 msgstr "Datei"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Ziel"
 
 #, c-format
 msgid "Li&ne"
@@ -1650,7 +1650,7 @@ msgid "&Difference"
 msgstr "&Unterschied"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&OK"
 
 #, c-format
 msgid "Compare"
@@ -3340,7 +3340,7 @@ msgid "The report has been created successfully."
 msgstr "Der Bericht wurde erfolgreich geschrieben."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr "An dieser Linie kann kein Synchronisationspunkt hinzugefügt werden."
+msgstr "In dieser Zeile kann kein Synchronisationspunkt hinzugefügt werden."
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3510,7 +3510,7 @@ msgid "Folder does not exist."
 msgstr "Der Ordner existiert nicht."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr ""
+msgstr "Die Archivunterstützung ist nicht aktiviert.\nNicht alle erforderlichen Komponenten (7-Zip und/oder Merge7z*.dll) für die Archivunterstützung können gefunden werden.\nEntnehmen Sie dem Handbuch mehr Informationen über die Archivunterstützung und wie sie aktiviert wird."
 
 #, c-format
 msgid "Select file for export"
@@ -3691,10 +3691,10 @@ msgstr "<Automatisch>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Gehe zu &Zeile %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Zur verschobenen Zeile gehen\tStrg+Umschalt+G"
 
 #, c-format
 msgid "Disabled"
@@ -3752,7 +3752,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Automatisch maximale Breite aktivieren"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed ist nicht installiert."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
