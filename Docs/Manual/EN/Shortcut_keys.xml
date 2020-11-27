@@ -195,36 +195,6 @@
           <entry><keycombo>
               <keycap>Ctrl</keycap>
 
-              <keycap>G</keycap>
-            </keycombo></entry>
-
-          <entry>Go to difference or line</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>Z</keycap>
-            </keycombo></entry>
-
-          <entry>Undo last action</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>Y</keycap>
-            </keycombo></entry>
-
-          <entry>Redo previously undone action</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
               <keycap>B</keycap>
             </keycombo></entry>
 
@@ -243,16 +213,6 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>S</keycap>
-            </keycombo></entry>
-
-          <entry>Add synchronization point</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
               <keycap>Ctrl</keycap>
               <keycap>Alt</keycap>
 
@@ -260,6 +220,60 @@
             </keycombo></entry>
 
           <entry>Open with external editor</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to difference or line</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line (2 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line between left side and middle (3 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line between middle and right side (3 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>M</keycap>
+            </keycombo></entry>
+
+          <entry>Add marker</entry>
         </row>
 
         <row>
@@ -275,13 +289,32 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Ctrl</keycap>
-              <keycap>Shift</keycap>
+              <keycap>Alt</keycap>
 
-              <keycap>M</keycap>
+              <keycap>S</keycap>
             </keycombo></entry>
 
-          <entry>Add marker</entry>
+          <entry>Add synchronization point</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Y</keycap>
+            </keycombo></entry>
+
+          <entry>Redo previously undone action</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Z</keycap>
+            </keycombo></entry>
+
+          <entry>Undo last action</entry>
         </row>
       </tbody>
     </tgroup>
@@ -576,16 +609,6 @@
       <tbody>
         <row>
           <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>F2</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
               <keycap>F2</keycap>
             </keycombo></entry>
 
@@ -600,6 +623,16 @@
             </keycombo></entry>
 
           <entry>Previous Bookmark</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>F2</keycap>
+            </keycombo></entry>
+
+          <entry>Toggle Bookmark</entry>
         </row>
 
         <row>
@@ -621,7 +654,7 @@
               <keycap>0</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 0</entry>
+          <entry>Go to Bookmark 0</entry>
         </row>
 
         <row>
@@ -641,7 +674,7 @@
               <keycap>1</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 1</entry>
+          <entry>Go to Bookmark 1</entry>
         </row>
 
         <row>
@@ -661,7 +694,7 @@
               <keycap>2</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 2</entry>
+          <entry>Go to Bookmark 2</entry>
         </row>
 
         <row>
@@ -681,7 +714,7 @@
               <keycap>3</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 3</entry>
+          <entry>Go to Bookmark 3</entry>
         </row>
 
         <row>
@@ -701,7 +734,7 @@
               <keycap>4</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 4</entry>
+          <entry>Go to Bookmark 4</entry>
         </row>
 
         <row>
@@ -721,7 +754,7 @@
               <keycap>5</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 5</entry>
+          <entry>Go to Bookmark 5</entry>
         </row>
 
         <row>
@@ -741,7 +774,7 @@
               <keycap>6</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 6</entry>
+          <entry>Go to Bookmark 6</entry>
         </row>
 
         <row>
@@ -761,7 +794,7 @@
               <keycap>7</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 7</entry>
+          <entry>Go to Bookmark 7</entry>
         </row>
 
         <row>
@@ -781,7 +814,7 @@
               <keycap>8</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 8</entry>
+          <entry>Go to Bookmark 8</entry>
         </row>
 
         <row>
@@ -801,7 +834,7 @@
               <keycap>9</keycap>
             </keycombo></entry>
 
-          <entry>Goto Bookmark 9</entry>
+          <entry>Go to Bookmark 9</entry>
         </row>
 
         <row>
