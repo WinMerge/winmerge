@@ -188,36 +188,6 @@
           <entry><keycombo>
               <keycap>Ctrl</keycap>
 
-              <keycap>G</keycap>
-            </keycombo></entry>
-
-          <entry>差異、または、行へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>Z</keycap>
-            </keycombo></entry>
-
-          <entry>最後に行った操作を元に戻す</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>Y</keycap>
-            </keycombo></entry>
-
-          <entry>前の操作をやり直す</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
               <keycap>B</keycap>
             </keycombo></entry>
 
@@ -236,18 +206,8 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>S</keycap>
-            </keycombo></entry>
-
-          <entry>Add synchronization point</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
               <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
 
               <keycap>E</keycap>
             </keycombo></entry>
@@ -257,13 +217,45 @@
 
         <row>
           <entry><keycombo>
-              <keycap>Alt</keycap>
               <keycap>Ctrl</keycap>
 
-              <keycap>M</keycap>
+              <keycap>G</keycap>
             </keycombo></entry>
 
-          <entry>Do auto merge</entry>
+          <entry>差異、または、行へ移動</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line (2 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line between left side and middle (3 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
+
+              <keycap>G</keycap>
+            </keycombo></entry>
+
+          <entry>Go to moved line between middle and right side (3 panes)</entry>
         </row>
 
         <row>
@@ -275,6 +267,47 @@
             </keycombo></entry>
 
           <entry>Add marker</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Alt</keycap>
+
+              <keycap>M</keycap>
+            </keycombo></entry>
+
+          <entry>Do auto merge</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+
+              <keycap>S</keycap>
+            </keycombo></entry>
+
+          <entry>Add synchronization point</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Y</keycap>
+            </keycombo></entry>
+
+          <entry>前の操作をやり直す</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Z</keycap>
+            </keycombo></entry>
+
+          <entry>最後に行った操作を元に戻す</entry>
         </row>
       </tbody>
     </tgroup>
@@ -565,16 +598,6 @@
       <tbody>
         <row>
           <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>F2</keycap>
-            </keycombo></entry>
-
-          <entry>ブックマークの作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
               <keycap>F2</keycap>
             </keycombo></entry>
 
@@ -589,6 +612,16 @@
             </keycombo></entry>
 
           <entry>前のブックマークへ移動</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>F2</keycap>
+            </keycombo></entry>
+
+          <entry>ブックマークの作成・削除</entry>
         </row>
 
         <row>
