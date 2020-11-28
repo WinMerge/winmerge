@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include <vector>
+
 class CSplitterWndEx : public CSplitterWnd  
 {
 	DECLARE_DYNCREATE(CSplitterWndEx)
@@ -27,7 +29,10 @@ public:
 	void EqualizeRows(); 
 	void EqualizeCols(); 
 
-	virtual void RecalcLayout();
+	virtual void RecalcLayout() override;
+	virtual void TrackRowSize(int y, int row) override;
+	virtual void TrackColumnSize(int x, int col) override;
+
 	CScrollBar* GetScrollBarCtrl(CWnd* pWnd, int nBar) const;
 
 private:
@@ -35,6 +40,8 @@ private:
 	bool m_bResizePanes;
 	bool m_bAutoResizePanes;
 	bool m_bHideBorders;
+	std::vector<int> m_rowRatios;
+	std::vector<int> m_colRatios;
 
 protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);

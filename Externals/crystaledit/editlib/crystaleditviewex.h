@@ -74,7 +74,7 @@ protected:
 	@return 
 		The calculated flags for this line (see dwCookie).
 	*/
-	virtual DWORD ParseLine( DWORD dwCookie, int nLineIndex, 
+	virtual unsigned ParseLine( unsigned dwCookie, int nLineIndex, 
 		CrystalLineParser::TEXTBLOCK *pBuf, int &nActualItems );
 	
 /** @attributes */

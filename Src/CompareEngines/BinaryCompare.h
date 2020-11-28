@@ -7,6 +7,7 @@
 
 class DIFFITEM;
 class PathContext;
+class IAbortable;
 
 namespace CompareEngines
 {
@@ -20,7 +21,10 @@ class BinaryCompare
 public:
 	BinaryCompare();
 	~BinaryCompare();
+	void SetAbortable(const IAbortable * piAbortable);
 	int CompareFiles(const PathContext& files, const DIFFITEM &di) const;
+private:
+	IAbortable * m_piAbortable;
 };
 
 } // namespace CompareEngines

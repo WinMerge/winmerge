@@ -71,6 +71,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_VIEW_EOL, false);
 	pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
+	pOptions->InitOption(OPT_SCROLL_TO_FIRST_INLINE_DIFF, false);
 	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
 	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
 	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
@@ -105,6 +106,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
+	pOptions->InitOption(OPT_COPY_FULL_LINE, false);
 	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
 	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 

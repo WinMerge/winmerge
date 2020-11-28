@@ -365,13 +365,13 @@
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.xls</filename><filename
-            class="extension">*.xlsx</filename><filename
-            class="extension">*.xlsm</filename><filename
-            class="extension">*.xlsb</filename><filename
-            class="extension">*.xla</filename><filename
-            class="extension">*.xlax</filename><filename
-            class="extension">*.xltx</filename><filename
+            <seg><filename class="extension">*.xls</filename>, <filename
+            class="extension">*.xlsx</filename>, <filename
+            class="extension">*.xlsm</filename>, <filename
+            class="extension">*.xlsb</filename>, <filename
+            class="extension">*.xla</filename>, <filename
+            class="extension">*.xlax</filename>, <filename
+            class="extension">*.xltx</filename>, <filename
             class="extension">*.xltm</filename></seg>
 
             <seg>No</seg>
@@ -563,7 +563,7 @@
           <primary>IgnoreColumns.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です</para>
+      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です。</para>
 
       <para>このプラグインはタブ付きのファイルをサポートしていないことに注意してください。
       プラグインは失敗しませんが、すべてのタブは通常の文字として扱われます。
@@ -659,7 +659,7 @@
             class="extension">*.php</filename>, <filename
             class="extension">*.js</filename>, <filename
             class="extension">*.cs</filename>, <filename
-            class="extension">*.ts</filename>,</seg>
+            class="extension">*.ts</filename></seg>
 
             <seg>No</seg>
           </seglistitem>

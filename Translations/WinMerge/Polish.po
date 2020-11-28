@@ -38,8 +38,8 @@ msgstr "Kopiuj z lewej"
 msgid "Copy fro&m Right"
 msgstr "Kopiuj z prawej"
 
-msgid "&Select Line Difference"
-msgstr "Zaznacz różniące się linie"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 msgid "&Undo"
 msgstr "Cofnij"
@@ -56,8 +56,14 @@ msgstr "Kopiuj"
 msgid "&Paste"
 msgstr "Wklej"
 
-msgid "&Goto..."
-msgstr "Idź do..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 msgid "Op&en"
 msgstr "Otwórz"
@@ -181,8 +187,8 @@ msgstr "Ostatnie pliki lub foldery"
 msgid "< Empty >"
 msgstr "< pusty >"
 
-msgid "E&xit"
-msgstr "Zakończ"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 msgid "&Edit"
 msgstr "Edycja"
@@ -244,8 +250,8 @@ msgstr "Przeładuj wtyczki"
 msgid "&Window"
 msgstr "Okno"
 
-msgid "Cl&ose"
-msgstr "Zamknij"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 msgid "Clo&se All"
 msgstr "Zamknij wszystkie"
@@ -439,8 +445,8 @@ msgstr "Zapisz środkową jako..."
 msgid "Save &Right As..."
 msgstr "Zapisz prawą jako..."
 
-msgid "&Print..."
-msgstr "Drukuj..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Ustawienia strony..."
@@ -525,9 +531,6 @@ msgstr "&Poprzednia zakładka\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "Wy&czyść wszystkie zakładki"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "Idź do...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "Podświetlenie składni"
@@ -840,8 +843,8 @@ msgstr "Bez róż&nicowania wstępnego"
 msgid "Auto prediffer"
 msgstr "Automatyczne różnicowanie wstępne"
 
-msgid "G&oto Diff"
-msgstr "Idź d&o różnicy"
+msgid "G&o to Diff"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "Bez prze&niesionych bloków"
@@ -903,8 +906,8 @@ msgstr "Wczytaj projekt..."
 msgid "About WinMerge"
 msgstr "O programie WinMerge"
 
-msgid "Visit the WinMerge HomePage!"
-msgstr "Odwiedź stronę domową WinMerge!"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -981,6 +984,9 @@ msgstr "Ogólne"
 msgid "Automatically &scroll to first difference"
 msgstr "Przewiń automatycznie do pierw&szej różnicy"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zamknij &okna klawiszem 'Esc':"
 
@@ -1041,8 +1047,8 @@ msgstr "Znajdź nast."
 msgid "Find &Prev"
 msgstr "Znajdź &poprz."
 
-msgid "&Ok"
-msgstr "&Ok"
+msgid "&OK"
+msgstr ""
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -1082,6 +1088,9 @@ msgstr "Nowy"
 
 msgid "&Background color:"
 msgstr "Kolor tła:"
+
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "Z&astosuj"
@@ -1269,17 +1278,17 @@ msgstr "Porównano elementów:"
 msgid "Items total:"
 msgstr "Wszystkie elementy:"
 
-msgid "Go To"
-msgstr "Idź do"
+msgid "Go to"
+msgstr ""
 
-msgid "G&oto:"
-msgstr "Idź do:"
+msgid "G&o to:"
+msgstr ""
 
 msgid "File"
 msgstr "Plik"
 
-msgid "Goto what"
-msgstr "Element docelowy"
+msgid "Go to what"
+msgstr ""
 
 msgid "Li&ne"
 msgstr "Linia"
@@ -1287,8 +1296,8 @@ msgstr "Linia"
 msgid "&Difference"
 msgstr "Różnica"
 
-msgid "&Go To"
-msgstr "Idź do"
+msgid "&Go to"
+msgstr ""
 
 msgid "Compare"
 msgstr "Porównaj"
@@ -1311,6 +1320,9 @@ msgstr "Ignoruj puste linie"
 msgid "Ignore &case"
 msgstr "Ignoruj wielkości liter"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
@@ -1322,12 +1334,6 @@ msgstr "Algorytm różnicowy (eksperyment.):"
 
 msgid "Enable indent &heuristic"
 msgstr "Włącz heurystykę wcięcia"
-
-msgid "Comments"
-msgstr "Komentarze"
-
-msgid "Filter Comments"
-msgstr "Filtruj komentarze"
 
 msgid "Editor"
 msgstr "Edytor"
@@ -2660,6 +2666,9 @@ msgstr "Błąd przy tworzeniu raportu:\n%1"
 msgid "The report has been created successfully."
 msgstr "Raport został pomyślnie utworzony."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 msgid "The same file is opened in both panels."
 msgstr "Ten sam plik został otwarty w obu panelach."
 
@@ -2800,8 +2809,8 @@ msgstr "Proszę najpierw zapisać wszystkie pliki.\n\nTworzenie łatki wymaga za
 msgid "Folder does not exist."
 msgstr "Folder nie istnieje."
 
-msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr "Obsługa archiwów nie została włączona.\nNie znaleziono wszystkich potrzebnych komponentów (7-zip i/lub Merge7z*.dll) do obsługi archiwów.\nWięcej informacji na temat obsługi archiwów i sposobu jej włączania znajdziesz w podręczniku."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgstr ""
 
 msgid "Select file for export"
 msgstr "Wybierz plik do eksportu"
@@ -2943,8 +2952,11 @@ msgid "<Automatic>"
 msgstr "<automatycznie>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "Idź do linii %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Wyłączone"
@@ -2988,8 +3000,8 @@ msgstr "Zamknij inne karty"
 msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
-msgid "frhed is not installed"
-msgstr "Free Hex Editor nie został zainstalowany"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

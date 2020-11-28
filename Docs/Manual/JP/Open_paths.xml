@@ -194,7 +194,7 @@
       Compare window.</para>
 
       <para>The left and right sides are determined by the sort order in Windows
-      Explorer. In the preceding screen shot, the Windows Explorer file list is
+      Explorer. In the preceding screenshot, the Windows Explorer file list is
       in ascending order, so WinMerge opens with <filename>File2</filename> on
       the 1st side and <filename>File1</filename> on the 2nd..</para>
 

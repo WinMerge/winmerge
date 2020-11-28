@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-12-22 07:42+0000\n"
-"PO-Revision-Date: 2020-10-10 23:42+0900\n"
+"PO-Revision-Date: 2020-11-21 14:36+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -39,8 +39,8 @@ msgstr "左側からコピー(&F)"
 msgid "Copy fro&m Right"
 msgstr "右側からコピー(&M)"
 
-msgid "&Select Line Difference"
-msgstr "行内差異を選択(&S)"
+msgid "&Select Line Difference\tF4"
+msgstr "行内差異を選択(&S)\tF4"
 
 msgid "&Undo"
 msgstr "元に戻す(&U)"
@@ -57,8 +57,14 @@ msgstr "コピー(&C)"
 msgid "&Paste"
 msgstr "貼り付け(&P)"
 
-msgid "&Goto..."
-msgstr "移動(&G)..."
+msgid "&Go to...\tCtrl+G"
+msgstr "移動(&G)...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr "左側と中央の移動行に移動\tCtrl+Shift+G"
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr "中央と右側の移動行に移動\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "開く(&E)"
@@ -182,8 +188,8 @@ msgstr "最近使用したファイルまたはフォルダー(&I)"
 msgid "< Empty >"
 msgstr "< なし >"
 
-msgid "E&xit"
-msgstr "終了(&X)"
+msgid "E&xit\tCtrl+Q"
+msgstr "終了(&X)\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "編集(&E)"
@@ -245,8 +251,8 @@ msgstr "プラグインの再読み込み(&R)"
 msgid "&Window"
 msgstr "ウィンドウ(&W)"
 
-msgid "Cl&ose"
-msgstr "閉じる(&O)"
+msgid "Cl&ose\tCtrl+W"
+msgstr "閉じる(&O)\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "すべて閉じる(&S)"
@@ -440,8 +446,8 @@ msgstr "名前を付けて中央のファイルを保存(&M)..."
 msgid "Save &Right As..."
 msgstr "名前を付けて右側のファイルを保存(&R)..."
 
-msgid "&Print..."
-msgstr "印刷(&P)..."
+msgid "&Print...\tCtrl+P"
+msgstr "印刷(&P)...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "ページ設定(&U)..."
@@ -526,9 +532,6 @@ msgstr "前のブックマークへ移動(&P)\tShift+F2"
 
 msgid "&Clear All Bookmarks"
 msgstr "すべてのブックマークをクリア(&C)"
-
-msgid "&Go To...\tCtrl+G"
-msgstr "移動(&G)...\tCtrl+G"
 
 msgid "Syntax Highlight"
 msgstr "シンタックス ハイライト"
@@ -841,7 +844,7 @@ msgstr "使用しない(&N)"
 msgid "Auto prediffer"
 msgstr "自動"
 
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "差異へ移動(&O)"
 
 msgid "&No Moved Blocks"
@@ -904,7 +907,7 @@ msgstr "プロジェクトを読み込み(&L)..."
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge のホームページに行く!"
 
 msgid "OK"
@@ -914,7 +917,7 @@ msgid "Contributors"
 msgstr "貢献者"
 
 msgid "Select Files or Folders"
-msgstr "ファイルまたはフォルダーの選択..."
+msgstr "ファイルまたはフォルダーの選択"
 
 msgid "&1st File or Folder"
 msgstr "&1 番目のファイルまたはフォルダー"
@@ -982,6 +985,9 @@ msgstr "一般"
 msgid "Automatically &scroll to first difference"
 msgstr "自動的に最初の差異にスクロールする(&S)"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr "自動的に最初の行内差異にスクロールする(&C)"
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc' キーでウィンドウを閉じる(&O):"
 
@@ -1042,7 +1048,7 @@ msgstr "次を検索(&F)"
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-msgid "&Ok"
+msgid "&OK"
 msgstr "&OK"
 
 msgid "Replace"
@@ -1083,6 +1089,9 @@ msgstr "新規"
 
 msgid "&Background color:"
 msgstr "背景色(&B)"
+
+msgid "&Ok"
+msgstr "&OK"
 
 msgid "&Apply"
 msgstr "適用(&A)"
@@ -1274,16 +1283,16 @@ msgstr "比較した項目:"
 msgid "Items total:"
 msgstr "全項目数:"
 
-msgid "Go To"
+msgid "Go to"
 msgstr "移動"
 
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "番号(&O):"
 
 msgid "File"
 msgstr "ファイル"
 
-msgid "Goto what"
+msgid "Go to what"
 msgstr "移動種別"
 
 msgid "Li&ne"
@@ -1292,7 +1301,7 @@ msgstr "行(&N)"
 msgid "&Difference"
 msgstr "差異(&D)"
 
-msgid "&Go To"
+msgid "&Go to"
 msgstr "移動(&G)"
 
 msgid "Compare"
@@ -1316,6 +1325,9 @@ msgstr "空行を無視する(&K)"
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
+msgid "Ignore c&omment differences"
+msgstr "コメントの違いを無視する(&O)"
+
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
@@ -1326,13 +1338,7 @@ msgid "Diff &algorithm (Experimental):"
 msgstr "Diff アルゴリズム (実験的機能)(&A):"
 
 msgid "Enable indent &heuristic"
-msgstr "indent heuristic を有効にする(&H)"
-
-msgid "Comments"
-msgstr "コメント"
-
-msgid "Filter Comments"
-msgstr "コメントの差異を無視する"
+msgstr "Indent heuristic を有効にする(&H)"
 
 msgid "Editor"
 msgstr "エディタ"
@@ -1447,7 +1453,7 @@ msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "Need to restart session."
 msgstr ""
-"mlang.dll を使用してファイルのコードページを検出する\n"
+"'mlang.dll' を使用してファイルのコードページを検出する\n"
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
 
 msgid "System codepage"
@@ -2555,7 +2561,7 @@ msgstr ""
 "再度比較してください。"
 
 msgid "Are you sure you want to move?"
-msgstr "項目を移動しますか? "
+msgstr "項目を移動しますか?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
@@ -2793,7 +2799,7 @@ msgid "Right file size in bytes."
 msgstr "右側ファイルのバイト数です。"
 
 msgid "Middle file size in bytes."
-msgstr "中央ファイルのバイト数"
+msgstr "中央ファイルのバイト数です。"
 
 msgid "Left file size abbreviated."
 msgstr "左側ファイルのバイト数(短縮形)です。"
@@ -2894,6 +2900,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "レポートの生成に成功しました。"
 
+msgid "Cannot add a synchronization point at this line."
+msgstr "この行には同期ポイントを追加できません。"
+
 msgid "The same file is opened in both panels."
 msgstr "同じファイルが両側のパネルで開かれています。"
 
@@ -2986,7 +2995,7 @@ msgstr "%1 個の文字列を置換しました。"
 
 #, c-format
 msgid "Cannot find string \"%s\"."
-msgstr "文字列 \"%s\""
+msgstr "文字列 \"%s\" が見つかりません。"
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
 msgstr ""
@@ -3073,13 +3082,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "アーカイブ サポートが有効になっていません。\n"
-"アーカイブ サポートの為に必要なコンポーネント (7-zip と Merge7z*.dll) が見つかりません。\n"
+"アーカイブ サポートの為に必要なコンポーネント (7-Zip と Merge7z*.dll) が見つかりません。\n"
 "アーカイブ サポートを有効にする方法については、マニュアルを参照してください。"
 
 msgid "Select file for export"
@@ -3300,8 +3306,11 @@ msgid "<Automatic>"
 msgstr "<自動>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "行 %1 に移動(&O)"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr "移動行に移動\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "無効"
@@ -3345,8 +3354,8 @@ msgstr "他のタブをすべて閉じる(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
-msgid "frhed is not installed"
-msgstr "frhed がインストールされていません"
+msgid "Frhed is not installed."
+msgstr "Frhed がインストールされていません"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3365,37 +3374,37 @@ msgstr ""
 "$linenum: 現在のカーソル位置の行番号"
 
 msgid "default"
-msgstr ""
+msgstr "default"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "patience"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite Default"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
 msgstr "MDI子ウインドウまたはメインウインドウ"

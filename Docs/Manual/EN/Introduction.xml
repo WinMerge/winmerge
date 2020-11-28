@@ -110,7 +110,7 @@
       experimental and beta development versions. At the appropriate points we
       create new branches for stable releases. In the diagram, the arrows for
       2.4.x and 2.6.x versions are two current stable branches. (The diagram is
-      a snapshot; it is not updated to show the current stable branch).</para>
+      a snapshot; it is not updated to show the current stable branch.)</para>
 
       <important>
         <para>A branch always indicates a separate development effort. There is

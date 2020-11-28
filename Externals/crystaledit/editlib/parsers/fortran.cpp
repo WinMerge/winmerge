@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszFortranKeywordList[] =
+static const TCHAR * s_apszFortranKeywordList[] =
   {
     _T (".and."),
     _T (".not."),
@@ -234,18 +234,17 @@ static LPCTSTR s_apszFortranKeywordList[] =
   };
 
 static bool
-IsFortranKeyword (LPCTSTR pszChars, int nLength)
+IsFortranKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszFortranKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineFortran (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineFortran (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -349,12 +348,6 @@ out:
               dwCookie |= COOKIE_CHAR;
               continue;
             }
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

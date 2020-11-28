@@ -50,7 +50,7 @@
   
   <section id="Installing_usinginstaller">
     <title>インストーラを使用する (推奨)</title>
-
+    <para></para>
     <note>
       <para>インストーラは、Administrator権限を必要とします。
       Administrator権限を持っていないなら、アーカイブファイルより展開するか、
@@ -281,6 +281,7 @@
         <simpara>インストール準備完了ページでは、インストール内容の設定を確かめてください。
           もし必要なら、<guibutton>戻る(B)</guibutton>をクリックし、前のページで内容を変更してください。
           インストール作業を続ける準備ができているなら、<guibutton>インストール(I)</guibutton>をクリックしてください。</simpara>
+      <para></para>
       </listitem>
 
       <listitem>

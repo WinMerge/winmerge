@@ -37,7 +37,7 @@ CCrystalParser::~CCrystalParser()
 }
 
 
-DWORD CCrystalParser::ParseLine(DWORD /*dwCookie*/, 
+unsigned CCrystalParser::ParseLine(unsigned /*dwCookie*/, 
 								int /*nLineIndex*/, 
 								CCrystalTextBlock * /*pBlock*/ )
 {

@@ -9,7 +9,7 @@
   <para>This topic describes how to use the WinMerge File Compare window to
   compare and merge text files. To understand the basic concepts about
   differences discussed here, we suggest you read <xref linkend="Intro_diffs" />
-  first. See <xref linkend="Intro_diffs" /> for related information about hex
+  first. See <xref linkend="Compare_bin" /> for related information about hex
   files. </para>
 
   <section id="Compare_files_starting">
@@ -60,7 +60,7 @@
 
     <para>The File Compare window displays compared files in two File panes,
     side by side. The WinMerge toolbar and context menu provides functions for
-    viewing, navigating, and merging differences. The screen shot below shows a
+    viewing, navigating, and merging differences. The screenshot below shows a
     comparison of two versions of a file.</para>
 
     <mediaobject>
@@ -166,6 +166,7 @@
                   <phrase>Difference block background colors</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <para>This comparison detects three difference blocks:</para>
 
@@ -228,6 +229,7 @@
                   <phrase>Difference block colors with ignored diff</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
             </listitem>
           </varlistentry>
 
@@ -240,7 +242,7 @@
               <para>Moved differences are identical lines found in different
               locations in the compared files, if <option>Moved block
               detection</option> is enabled in the Options dialog Compare page.
-              The next screen shot repeats the previous comparison, this time
+              The next screenshot repeats the previous comparison, this time
               with moved block detection enabled.</para>
 
               <mediaobject>
@@ -254,6 +256,7 @@
                   detection</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <para>Notice that the two identical lines (containing
               <literal>a</literal> and <literal>c</literal>) that are in
@@ -463,6 +466,7 @@
                   whitespace</phrase>
                 </textobject>
               </mediaobject>
+              <para></para>
 
               <note>
                 <para>As with word-level line differences, character
@@ -489,7 +493,7 @@
               whitespace to break words and characters.</para>
 
               <para>In some cases it's useful to break at punctuation. For
-              example, the next screen shot compares a comma-separated list. To
+              example, the next screenshot compares a comma-separated list. To
               highlight meaningful line differences, we have enabled
               <option>Break at whitespace or punctuation</option> in the Options
               dialog Editor page.</para>
@@ -521,7 +525,7 @@
         <para>Although WinMerge is a not a full-featured editor or IDE, it does
         provide basic editing functions, like <guilabel>Undo</guilabel> and
         <guilabel>Redo</guilabel>, <guilabel>Find</guilabel> and
-        <guilabel>Replace</guilabel>, and <guilabel>Goto</guilabel>. These basic
+        <guilabel>Replace</guilabel>, and <guilabel>Go to</guilabel>. These basic
         editing tasks are often needed during merging (for example, to change
         text within differences). You can edit in the active File pane
         (remember, click in a pane to make it active). Changes are not written
@@ -530,7 +534,7 @@
         <para>WinMerge editing features also include syntax highlighting. This
         optional feature supports several file formats, and you can configure
         the colors used. Note that syntax highlighting is not applied within
-        differences, as the preceding screen shot shows.</para>
+        differences, as the preceding screenshot shows.</para>
 
         <tip>
           <para>Make sure that <guilabel>Automatic rescan</guilabel> is enabled,
@@ -681,7 +685,7 @@
           </listitem>
         </itemizedlist>
 
-        <para>The following screen shot shows a margin with bookmarks and word
+        <para>The following screenshot shows a margin with bookmarks and word
         wrap enabled. Without line numbers, the margin width is minimal.</para>
 
         <mediaobject>
@@ -696,7 +700,7 @@
           </textobject>
         </mediaobject>
 
-        <para>The next screen shot shows a margin with bookmarks and line
+        <para>The next screenshot shows a margin with bookmarks and line
         numbers enabled. Notice that the margin is wider. In fact, the margin is
         wide enough for the largest line number. Thus, the margins for large
         files with many lines can be quite wide.</para>
@@ -780,6 +784,7 @@
             <simpara><keycap>Up</keycap> and <keycap>Down</keycap> keys for the
             <function>Previous Difference</function> and <function>Next
             Difference</function> functions.</simpara>
+            <para></para>
           </listitem>
 
           <listitem>
@@ -838,7 +843,7 @@
             the size (number of lines), types and distribution of all
             differences in the files. For example, the color of a line is the
             same as the color of the corresponding difference block. The
-            Location pane in the preceding screen shot shows many basic
+            Location pane in the preceding screenshot shows many basic
             differences (gold) and some empty difference blocks (gray).</para>
           </listitem>
         </varlistentry>
@@ -945,12 +950,12 @@
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>Goto Line 1</guimenuitem>: Moves the cursor to the
+          <para><guimenuitem>Go to Line 1</guimenuitem>: Moves the cursor to the
           top of the file.</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Goto</guimenuitem>: Moves the cursor to a line you
+          <para><guimenuitem>Go to</guimenuitem>: Moves the cursor to a line you
           specify (described in <xref
           linkend="Compare_files_nav_functions" />).</para>
         </listitem>
@@ -988,7 +993,7 @@
 
       <para>You can merge differences directly in the Diff pane by
       right-clicking in either the top or bottom side and choosing
-      <function><guimenuitem>Copy to Right</guimenuitem></function> or
+      <guimenuitem>Copy to Right</guimenuitem> or
       <guimenuitem>Copy to Left</guimenuitem>.</para>
     </section>
 
@@ -1160,6 +1165,7 @@
                 <phrase>Select Line Difference example</phrase>
               </textobject>
             </mediaobject>
+            <para></para>
 
             <para>If you want to select the difference block itself, use
             <command>Current Difference</command> instead.</para>
@@ -1369,24 +1375,25 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Go To<indexterm>
-              <primary>Go To function</primary>
+          <term>Go to<indexterm>
+              <primary>Go to function</primary>
             </indexterm></term>
 
           <listitem>
             <para>Enables you to jump to either a line number or a difference
             number (for example, difference 2 is the second difference). Opens
-            the Go To dialog, where you specify the number, which file to use
+            the Go to dialog, where you specify the number, which file to use
             (either the left or right), and the type of location (either line or
             difference).</para>
 
             <tip>
-              <para>The Go To line number can be useful when you need to merge
+              <para>The Go to line number can be useful when you need to merge
               the same change from one file to several target files. Jumping to
               a particular difference can be quicker than using
               <guimenuitem>Find</guimenuitem> to search text, or stepping
               through differences.</para>
             </tip>
+            <para></para>
 
             <para>Shortcuts: <menuchoice>
                 <guimenu>Edit</guimenu>
@@ -1397,6 +1404,60 @@
 
                 <keycap>G</keycap>
               </keycombo>, context menu in File pane and Location pane.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line<indexterm>
+              <primary>Go to function</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Enables to jump to the moved from/to of current diff on the other panel (2 panes).</para>
+
+            <para>Shortcuts: <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>Shift</keycap>
+
+                <keycap>G</keycap>
+              </keycombo>, context menu in File pane and Diff pane.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line Between Left and Middle<indexterm>
+              <primary>Go to function</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Enables to jump to the moved from/to of current diff on the other panel (3 panes).</para>
+
+            <para>Shortcuts: <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>Shift</keycap>
+
+                <keycap>G</keycap>
+              </keycombo>, context menu in File pane and Diff pane.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line Between Middle and Right<indexterm>
+              <primary>Go to function</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Enables to jump to the moved from/to of current diff on the other panel (3 panes).</para>
+
+            <para>Shortcuts: <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>Alt</keycap>
+
+                <keycap>G</keycap>
+              </keycombo>, context menu in File pane and Diff pane.</para>
           </listitem>
         </varlistentry>
 
@@ -1644,7 +1705,7 @@
           <listitem>
             <para>Copies all differences from the left to the right File pane.
             Use to synchronize two files with one command. Similarly, you can
-            back out the entire merge by clicking the<inlinemediaobject>
+            back out the entire merge by clicking the <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="11"
                              fileref="screenshots/undo_btn.png" />

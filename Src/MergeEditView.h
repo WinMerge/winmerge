@@ -171,6 +171,7 @@ public:
 	bool EnsureInDiff(CPoint& pt);
 	void SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView = true) override;
 	void ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true) override;
+	void SetActivePane();
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
@@ -300,6 +301,10 @@ protected:
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnWMGoto();
+	afx_msg void OnGotoMovedLineLM();
+	afx_msg void OnUpdateGotoMovedLineLM(CCmdUI* pCmdUI);
+	afx_msg void OnGotoMovedLineMR();
+	afx_msg void OnUpdateGotoMovedLineMR(CCmdUI* pCmdUI);
 	afx_msg void OnShellMenu();
 	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );

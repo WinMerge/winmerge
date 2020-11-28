@@ -24,7 +24,7 @@
 #endif
 
 //  PowerShell keywords
-static LPCTSTR s_apszPowerShellKeywordList[] =
+static const TCHAR * s_apszPowerShellKeywordList[] =
   {
     _T ("-and"),
     _T ("-as"),
@@ -96,7 +96,7 @@ static LPCTSTR s_apszPowerShellKeywordList[] =
     _T ("while"),
   };
 
-static LPCTSTR s_apszCmdletKeywordList[] =
+static const TCHAR * s_apszCmdletKeywordList[] =
   {
     // Commands...
     _T ("ac"),
@@ -330,24 +330,23 @@ static LPCTSTR s_apszCmdletKeywordList[] =
   };
 
 static bool
-IsPowerShellKeyword (LPCTSTR pszChars, int nLength)
+IsPowerShellKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPowerShellKeywordList, pszChars, nLength);
 }
 
 static bool
-IsCmdletKeyword (LPCTSTR pszChars, int nLength)
+IsCmdletKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszCmdletKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePowerShell (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePowerShell (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -477,12 +476,6 @@ out:
           DEFINE_BLOCK (I, COLORINDEX_USER1);
           dwCookie |= COOKIE_VARIABLE;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

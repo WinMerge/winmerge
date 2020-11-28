@@ -28,6 +28,7 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_nTabSize(0)
 , m_bAutomaticRescan(false)
 , m_bAllowMixedEol(false)
+, m_bCopyFullLine(false)
 , m_bViewLineDifferences(false)
 , m_bBreakOnWords(false)
 , m_nBreakType(0)
@@ -48,6 +49,8 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 	DDV_MaxChars(pDX, std::to_string(m_nTabSize).c_str(), 2);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
+	// m_bCopyFullLine currently is only a hidden option
+	//  > it is used here in PropEditor.cpp, because otherwise it doesn't get saved to the registry
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
 	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
@@ -76,6 +79,7 @@ void PropEditor::ReadOptions()
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 	m_bHiliteSyntax = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bAllowMixedEol = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL);
+	m_bCopyFullLine = GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE);
 	m_bViewLineDifferences = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
@@ -97,6 +101,7 @@ void PropEditor::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
 	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan);
 	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
+	GetOptionsMgr()->SaveOption(OPT_COPY_FULL_LINE, m_bCopyFullLine);
 	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
 	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, m_bViewLineDifferences);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, m_bBreakOnWords);

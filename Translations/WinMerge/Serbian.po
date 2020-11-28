@@ -43,9 +43,8 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Изабери различите редове"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -67,9 +66,14 @@ msgstr "&Умножи"
 msgid "&Paste"
 msgstr "&Налепи"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Иди на..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -221,9 +225,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "< Празан >"
 
-#, c-format
-msgid "E&xit"
-msgstr "Изла&з"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -305,9 +308,8 @@ msgstr "Поново &учитај додатке"
 msgid "&Window"
 msgstr "Пр&озор"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Затвори"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -562,9 +564,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&Одштампај..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "Подеси с&траницу..."
@@ -673,10 +674,6 @@ msgstr "&Претходна забелешка\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Очисти све забелешке"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Иди на...\tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1063,9 +1060,8 @@ msgstr "Нема дефинисаног поређења"
 msgid "Auto prediffer"
 msgstr "Аутоматски дефиниши поређење"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "Иди &на разлику"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1146,9 +1142,8 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "О WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Посетите WinMerge-ов сајт"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1240,6 +1235,9 @@ msgstr "Општи избор"
 msgid "Automatically &scroll to first difference"
 msgstr "Увек крени од &прве разлике"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Затвори пр&озор са 'Esc':"
 
@@ -1318,9 +1316,8 @@ msgstr "&Нађи следеће"
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
-msgstr "&У реду"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1372,6 +1369,10 @@ msgstr "Нови"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&У реду"
 
 #, c-format
 msgid "&Apply"
@@ -1610,21 +1611,18 @@ msgstr "Поређење ставки:"
 msgid "Items total:"
 msgstr "Укупно ставки :"
 
-#, c-format
-msgid "Go To"
-msgstr "Иди на"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "Иди &на:"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "Датотека"
 
-#, c-format
-msgid "Goto what"
-msgstr "У датотеци"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1634,9 +1632,8 @@ msgstr "Ре&д"
 msgid "&Difference"
 msgstr "Раз&лика"
 
-#, c-format
-msgid "&Go To"
-msgstr "&Иди на"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -1666,6 +1663,9 @@ msgstr "Занемари пра&зне редове"
 msgid "Ignore &case"
 msgstr "Занемари под&ударност"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
@@ -1679,14 +1679,6 @@ msgstr ""
 
 msgid "Enable indent &heuristic"
 msgstr ""
-
-#, c-format
-msgid "Comments"
-msgstr "Напомене"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Филтрирај напомене"
 
 #, c-format
 msgid "Editor"
@@ -3507,6 +3499,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Извештај је успешно направљен"
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Иста датотека је отворена у обе табле"
@@ -3695,15 +3690,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Фасцикла не постоји"
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"Рад са архивама је онемогућен.\n"
-"Све потребне компоненте (7-zip и/или Merge7z*.dll)за архиву не могу бити нађене.\n"
-"Погледајте упутство како омогућити рад са архивама"
 
 #, c-format
 msgid "Select file for export"
@@ -3889,8 +3877,11 @@ msgid "<Automatic>"
 msgstr "<Аутоматски>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "И&ди на ред %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -3947,8 +3938,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format

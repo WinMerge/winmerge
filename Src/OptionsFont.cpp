@@ -54,9 +54,9 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 
 	CodePageInfo cpi = {0};
 	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv==nullptr || !pexconv->getCodePageInfo(GetACP(), &cpi))
+	if (pexconv==nullptr || !pexconv->getCodePageInfo(GetACP(), &cpi)
+		|| cpi.proportionalFont == cpi.fixedWidthFont)
 	{
-		assert(false);	// this should never fail (???)
 		cpi.bGDICharset = ANSI_CHARSET;
 		cpi.fixedWidthFont = _T("Courier New");
 	}

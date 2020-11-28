@@ -13,7 +13,7 @@ static bool read_mmfile(int fd, mmfile_t& mmfile)
 		return false;
 	if (st.st_size < 0 || st.st_size > INT32_MAX)
 		return false;
-	size_t sz = st.st_size;
+	size_t sz = static_cast<size_t>(st.st_size);
 	mmfile.ptr = static_cast<char *>(malloc(sz ? sz : 1));
 	if (sz && _read(fd, mmfile.ptr, static_cast<unsigned>(sz)) == -1) {
 		return false;
@@ -69,7 +69,7 @@ static int hunk_func(long start_a, long count_a, long start_b, long count_b, voi
 static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::vector<xrecord_t *>& equivs, unsigned xdl_flags)
 {
 	std::unordered_map<unsigned long, std::vector<int>> equivs_map;
-	for (int i = 0; i < equivs.size(); ++i)
+	for (int i = 0; i < static_cast<int>(equivs.size()); ++i)
 	{
 		unsigned long ha = equivs[i]->ha;
 		if (equivs_map.find(ha) != equivs_map.end())

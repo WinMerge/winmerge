@@ -46,9 +46,8 @@ msgstr "Kopiera från Vänster"
 msgid "Copy fro&m Right"
 msgstr "Kopiera från Höger"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "Markera Radskillnad"
+msgid "&Select Line Difference\tF4"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -70,9 +69,14 @@ msgstr "Kopiera"
 msgid "&Paste"
 msgstr "Klistra in"
 
-#, c-format
-msgid "&Goto..."
-msgstr "Gå till ..."
+msgid "&Go to...\tCtrl+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -224,9 +228,8 @@ msgstr "Nyliga Filer eller Mappar"
 msgid "< Empty >"
 msgstr "< Tom >"
 
-#, c-format
-msgid "E&xit"
-msgstr "Avsluta"
+msgid "E&xit\tCtrl+Q"
+msgstr ""
 
 #, c-format
 msgid "&Edit"
@@ -308,9 +311,8 @@ msgstr "Återladda InsticksProgram"
 msgid "&Window"
 msgstr "Fönster"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "Stäng"
+msgid "Cl&ose\tCtrl+W"
+msgstr ""
 
 #, c-format
 msgid "Clo&se All"
@@ -565,9 +567,8 @@ msgstr "Spara Mitter som ..."
 msgid "Save &Right As..."
 msgstr "Spara Höger som ..."
 
-#, c-format
-msgid "&Print..."
-msgstr "Skriv ut ..."
+msgid "&Print...\tCtrl+P"
+msgstr ""
 
 msgid "Page Set&up..."
 msgstr "UtskriftsFormat..."
@@ -677,10 +678,6 @@ msgstr "Föregående Bokmärke\tShift+F2"
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Rensa Bokmärken"
-
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "Gå till ...\tCtrl+G"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -1068,9 +1065,8 @@ msgstr "Ingen PreDiffer"
 msgid "Auto prediffer"
 msgstr "Auto PreDiffer"
 
-#, c-format
-msgid "G&oto Diff"
-msgstr "Gå till Skillnad"
+msgid "G&o to Diff"
+msgstr ""
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1152,9 +1148,8 @@ msgstr "Ladda Projekt ..."
 msgid "About WinMerge"
 msgstr "Om WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Besök WinMerges Hemsida !"
+msgid "Visit the WinMerge Homepage!"
+msgstr ""
 
 #, c-format
 msgid "OK"
@@ -1255,6 +1250,9 @@ msgstr "Allmänt"
 msgid "Automatically &scroll to first difference"
 msgstr "Skrolla automatiskt till första skillnaden"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Stäng fönster med ''Esc'':"
 
@@ -1333,9 +1331,8 @@ msgstr "Sök Nästa"
 msgid "Find &Prev"
 msgstr "Sök Föregående"
 
-#, c-format
-msgid "&Ok"
-msgstr "OK"
+msgid "&OK"
+msgstr ""
 
 #, c-format
 msgid "Replace"
@@ -1387,6 +1384,10 @@ msgstr "Ny"
 #, c-format
 msgid "&Background color:"
 msgstr "BakgrundsFärg:"
+
+#, c-format
+msgid "&Ok"
+msgstr "OK"
 
 #, c-format
 msgid "&Apply"
@@ -1629,21 +1630,18 @@ msgstr "Jämförda objekt:"
 msgid "Items total:"
 msgstr "Objekt totalt:"
 
-#, c-format
-msgid "Go To"
-msgstr "Gå Till"
+msgid "Go to"
+msgstr ""
 
-#, c-format
-msgid "G&oto:"
-msgstr "Gå till:"
+msgid "G&o to:"
+msgstr ""
 
 #, c-format
 msgid "File"
 msgstr "Fil"
 
-#, c-format
-msgid "Goto what"
-msgstr "Gå till vad"
+msgid "Go to what"
+msgstr ""
 
 #, c-format
 msgid "Li&ne"
@@ -1653,9 +1651,8 @@ msgstr "Rad"
 msgid "&Difference"
 msgstr "Skillnad"
 
-#, c-format
-msgid "&Go To"
-msgstr "Gå till"
+msgid "&Go to"
+msgstr ""
 
 #, c-format
 msgid "Compare"
@@ -1685,6 +1682,9 @@ msgstr "Åsidosätt blanka rader"
 msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
 
+msgid "Ignore c&omment differences"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Möjliggör urskiljning av flyttade block"
@@ -1698,14 +1698,6 @@ msgstr "SkillnadsAlgo (experimentell):"
 
 msgid "Enable indent &heuristic"
 msgstr "Möjliggör IndragUppfinningsrikhet"
-
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "FilterKommentarer"
 
 #, c-format
 msgid "Editor"
@@ -3552,6 +3544,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Rapporten har skapats."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Samma fil är öppnad i båda paneler."
@@ -3747,15 +3742,8 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Mappen finns inte."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
-"Arkivstöd är inte möjliggjort.\n"
-"Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.\n"
-"Se manualen för mer information om arkivstöd och hur man möjliggör det."
 
 #, c-format
 msgid "Select file for export"
@@ -3996,8 +3984,11 @@ msgid "<Automatic>"
 msgstr "<Automatisk>"
 
 #, c-format
-msgid "G&oto Line %1"
-msgstr "Gå till rad %1"
+msgid "G&o to Line %1"
+msgstr ""
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -4054,9 +4045,8 @@ msgstr "Stäng Andra Tabs"
 msgid "Enable &Auto Max Width"
 msgstr "Möjliggör Auto Högsta Bredd"
 
-#, c-format
-msgid "frhed is not installed"
-msgstr "frhed är inte installerad"
+msgid "Frhed is not installed."
+msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

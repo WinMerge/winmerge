@@ -205,9 +205,6 @@
     <ClCompile Include="FileVersion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FilterCommentsManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FilterList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1012,9 +1009,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileVersion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterCommentsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FilterList.h">

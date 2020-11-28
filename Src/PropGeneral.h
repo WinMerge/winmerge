@@ -28,6 +28,7 @@ public:
 	//{{AFX_DATA(PropGeneral)
 	enum { IDD = IDD_PROPPAGE_GENERAL };
 	bool  m_bScroll;
+	bool  m_bScrollToFirstInlineDiff;
 	bool  m_bSingleInstance;
 	bool  m_bVerifyPaths;
 	int   m_nCloseWindowWithEsc;
