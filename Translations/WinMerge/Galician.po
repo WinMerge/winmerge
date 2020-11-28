@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-10-17 19:20+0200\n"
-"Last-Translator: Luis A. Martínez <luis.martinez.sobrino@gmail.com>\n"
+"PO-Revision-Date: 2020-11-28 16:54+0100\n"
+"Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: gl\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -45,7 +45,7 @@ msgid "Copy fro&m Right"
 msgstr "Copiar da &dereita"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Seleccionar a diferenza entre liñas\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -68,13 +68,13 @@ msgid "&Paste"
 msgstr "&Pegar"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Ir a…\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Ir á liña movida entre esquerda e centro\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Ir á liña movida entre centro e dereita\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -227,7 +227,7 @@ msgid "< Empty >"
 msgstr "< Baleiro >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "S&aír\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -310,7 +310,7 @@ msgid "&Window"
 msgstr "&Ventá"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Pe&char\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -566,7 +566,7 @@ msgid "Save &Right As..."
 msgstr "Gardar lado &dereito como…"
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Im&primir…\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Config&uración da páxina…"
@@ -1064,7 +1064,7 @@ msgid "Auto prediffer"
 msgstr "Precomparación automática"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "I&r ás diferenzas"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1147,7 +1147,7 @@ msgid "About WinMerge"
 msgstr "Acerca de Winmerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Visita a páxina web de WinMerge!"
 
 #, c-format
 msgid "OK"
@@ -1249,7 +1249,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Ir &automaticamente á primeira diferenza"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Desprazarse automáticamente á primeira diferenza de liña"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Pe&char as ventás con 'Esc':"
@@ -1330,7 +1330,7 @@ msgid "Find &Prev"
 msgstr "Buscar &anterior"
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 #, c-format
 msgid "Replace"
@@ -1629,17 +1629,17 @@ msgid "Items total:"
 msgstr "Total de elementos:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Ir a"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "I&r a:"
 
 #, c-format
 msgid "File"
 msgstr "Arquivo"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Ir ao/á"
 
 #, c-format
 msgid "Li&ne"
@@ -1650,7 +1650,7 @@ msgid "&Difference"
 msgstr "&Diferenza"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Ir a"
 
 #, c-format
 msgid "Compare"
@@ -1681,7 +1681,7 @@ msgid "Ignore &case"
 msgstr "Ignorar maiúsculas e minúsculas"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Ignorar diferenzas nos c&omentarios"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -3574,7 +3574,7 @@ msgid "The report has been created successfully."
 msgstr "O informe creouse satisfactoriamente."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Non se pode engadir un punto de sincronización nesta liña."
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3779,8 +3779,14 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "O cartafol non existe."
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
+"Non está habilitado o soporte de arquivos.\n"
+"Non se pode atopar os compoñentes necesarios para o soporte de arquivos (7-Zip e/ou Merge7z*.dll).\n"
+"Consulta o manual para ter máis información sobre o soporte de arquivos e como habilitalo."
 
 #, c-format
 msgid "Select file for export"
@@ -4039,10 +4045,10 @@ msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "I&r á liña %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Ir á liña movida\tCtrl+Shift+G"
 
 #, c-format
 msgid "Disabled"
@@ -4100,7 +4106,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Activar &anchura máxima automática"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed non está instalado."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4242,4 +4248,3 @@ msgstr "Dist: %g, %g "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-
