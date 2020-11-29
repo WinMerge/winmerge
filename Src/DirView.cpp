@@ -1642,23 +1642,36 @@ DIFFITEM &CDirView::GetDiffItem(int sel)
 
 void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 {
+	DIFFITEM *diffpos = GetItemKey(sel);
+	if (diffpos == (DIFFITEM*)SPECIAL_ITEM_POS)
+		return;
 	if (m_bTreeMode)
-		CollapseSubdir(sel);
-	if (removeDIFFITEM)
 	{
-		DIFFITEM *diffpos = GetItemKey(sel);
+		CollapseSubdir(sel);
 		m_pList->DeleteItem(sel);
-		if (diffpos != (DIFFITEM *)SPECIAL_ITEM_POS)
+	}
+	else if (GetDiffContext().m_bRecursive || diffpos->HasChildren())
+	{
+		DirItemIterator it;
+		for (it = RevBegin(); it != RevEnd(); )
 		{
-			if (diffpos->HasChildren())
-				diffpos->RemoveChildren();
-			diffpos->DelinkFromSiblings();
-			delete diffpos;
+			DIFFITEM& di = *it;
+			int cursel = it.m_sel;
+			++it;
+			if (di.IsAncestor(diffpos) || diffpos == &di)
+				m_pList->DeleteItem(cursel);
 		}
 	}
 	else
 	{
 		m_pList->DeleteItem(sel);
+	}
+	if (removeDIFFITEM)
+	{
+		if (diffpos->HasChildren())
+			diffpos->RemoveChildren();
+		diffpos->DelinkFromSiblings();
+		delete diffpos;
 	}
 
 	m_firstDiffItem.reset();
