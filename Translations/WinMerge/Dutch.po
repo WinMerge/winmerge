@@ -40,7 +40,7 @@ msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "Regelverschil selecteren\tF4"
 
 msgid "&Undo"
 msgstr "Ongedaan maken"
@@ -58,7 +58,7 @@ msgid "&Paste"
 msgstr "Plakken"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "Ga naar...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -189,7 +189,7 @@ msgid "< Empty >"
 msgstr "< Leeg >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "Afsluiten\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Bewerken"
@@ -252,7 +252,7 @@ msgid "&Window"
 msgstr "Venster"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Sluiten\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "Alles sluiten"
@@ -447,7 +447,7 @@ msgid "Save &Right As..."
 msgstr "Rechts opslaan als..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Afdrukken...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Pagina-instelling..."
@@ -845,7 +845,7 @@ msgid "Auto prediffer"
 msgstr "Automatische voorvergelijking"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Gaan naar verschil"
 
 msgid "&No Moved Blocks"
 msgstr "Geen verplaatste blokken"
@@ -908,7 +908,7 @@ msgid "About WinMerge"
 msgstr "Over WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Bezoek de WinMerge-homepage!"
 
 msgid "OK"
 msgstr "Ok"
@@ -1054,7 +1054,7 @@ msgid "Find &Prev"
 msgstr "Vorige zoeken"
 
 msgid "&OK"
-msgstr ""
+msgstr "Ok"
 
 msgid "Replace"
 msgstr "Vervangen"
@@ -1285,16 +1285,16 @@ msgid "Items total:"
 msgstr "Totaal aantal items:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Gaan naar"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Gaan naar:"
 
 msgid "File"
 msgstr "Bestand"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Gaan naar"
 
 msgid "Li&ne"
 msgstr "Regel"
@@ -1303,7 +1303,7 @@ msgid "&Difference"
 msgstr "Verschil"
 
 msgid "&Go to"
-msgstr ""
+msgstr "Gaan naar"
 
 msgid "Compare"
 msgstr "Vergelijken"
@@ -3126,6 +3126,9 @@ msgstr "Map bestaat niet."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Archiefondersteuning is niet ingeschakeld.\n"
+"Er kon geen enkel onderdeel voor archiefondersteuning (7-Zip en/of Merge7z*.dll) teruggevonden worden.\n"
+"Zie de handleiding voor meer info over archiefondersteuning en hoe het in te schakelen."
 
 msgid "Select file for export"
 msgstr "Bestand selecteren voor exporteren"
@@ -3350,7 +3353,7 @@ msgstr "<Automatic>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Naar regel %1 gaan"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3398,7 +3401,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed is niet geïnstalleerd."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

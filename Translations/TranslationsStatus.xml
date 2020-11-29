@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2020-11-28</update>
+  <update>2020-11-29</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -61,9 +61,9 @@
       <update>2019-10-24</update>
       <strings>
         <count>998</count>
-        <translated>876</translated>
+        <translated>891</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>122</untranslated>
+        <untranslated>107</untranslated>
       </strings>
       <translators>
         <translator>
@@ -86,9 +86,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>566</translated>
+        <translated>580</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>432</untranslated>
+        <untranslated>418</untranslated>
       </strings>
       <translators>
         <translator>
@@ -103,9 +103,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>978</translated>
+        <translated>993</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>20</untranslated>
+        <untranslated>5</untranslated>
       </strings>
       <translators>
         <translator>
@@ -128,9 +128,9 @@
       <update>2010-02-19</update>
       <strings>
         <count>998</count>
-        <translated>860</translated>
+        <translated>875</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>138</untranslated>
+        <untranslated>123</untranslated>
       </strings>
       <translators>
         <translator>
@@ -153,9 +153,9 @@
       <update>2009-02-13</update>
       <strings>
         <count>998</count>
-        <translated>633</translated>
+        <translated>647</translated>
         <fuzzy>1</fuzzy>
-        <untranslated>364</untranslated>
+        <untranslated>350</untranslated>
       </strings>
       <translators>
         <translator>
@@ -170,9 +170,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>604</translated>
+        <translated>618</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>394</untranslated>
+        <untranslated>380</untranslated>
       </strings>
       <translators>
         <translator>
@@ -191,9 +191,9 @@
       <update>2013-01-13</update>
       <strings>
         <count>998</count>
-        <translated>642</translated>
+        <translated>656</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>356</untranslated>
+        <untranslated>342</untranslated>
       </strings>
       <translators>
         <translator>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>998</count>
-        <translated>979</translated>
+        <translated>994</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>19</untranslated>
+        <untranslated>4</untranslated>
       </strings>
       <translators>
         <translator>
@@ -246,9 +246,9 @@
       <update></update>
       <strings>
         <count>998</count>
-        <translated>905</translated>
+        <translated>920</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>93</untranslated>
+        <untranslated>78</untranslated>
       </strings>
     </translation>
     <translation>
@@ -283,12 +283,12 @@
     <translation>
       <language>Galician</language>
       <file>Galician.po</file>
-      <update>2020-10-17</update>
+      <update>2020-11-28</update>
       <strings>
         <count>998</count>
-        <translated>977</translated>
+        <translated>998</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>21</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -561,17 +561,17 @@
     <translation>
       <language>Russian</language>
       <file>Russian.po</file>
-      <update>2020-11-16</update>
+      <update>2020-11-29</update>
       <strings>
         <count>998</count>
-        <translated>971</translated>
+        <translated>989</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>27</untranslated>
+        <untranslated>9</untranslated>
       </strings>
       <translators>
         <translator>
           <name>wvxwxvw</name>
-          <mail>ru-board</mail>
+          <mail>https://github.com/wvxwxvw</mail>
         </translator>
         <translator>
           <name>Dmitriy Rublev</name>
