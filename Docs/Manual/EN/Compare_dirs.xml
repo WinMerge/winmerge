@@ -973,7 +973,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
               <para>Again, the <guimenuitem>Compare</guimenuitem> operation is
               available only when the current left and right folder paths are
               identical in the Folder Compare window, as shown in the preceding
-              screen shot. For example, it is not available if the current
+              screenshot. For example, it is not available if the current
               window compares two different folders.</para>
             </tip>
           </listitem>
