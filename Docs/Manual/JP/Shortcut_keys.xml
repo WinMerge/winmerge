@@ -149,6 +149,12 @@
         </row>
 
         <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F5</keycap></entry>
+
+          <entry>Reload</entry>
+        </row>
+
+        <row>
           <entry><keycap>F6</keycap></entry>
 
           <entry>ペイン(アクティブなファイル)を切り替える</entry>
@@ -288,6 +294,27 @@
             </keycombo></entry>
 
           <entry>Add synchronization point</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>U</keycap>
+            </keycombo></entry>
+
+          <entry>Convert selected text to lower case</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>U</keycap>
+            </keycombo></entry>
+
+          <entry>Convert selected text to upper case</entry>
         </row>
 
         <row>

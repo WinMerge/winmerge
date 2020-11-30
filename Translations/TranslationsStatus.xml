@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2020-11-30</update>
+  <update>2020-12-01</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -438,12 +438,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2020-11-16</update>
+      <update>2020-11-30</update>
       <strings>
         <count>998</count>
-        <translated>979</translated>
+        <translated>998</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>19</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
