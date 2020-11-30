@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-15 10:49+0000\n"
-"PO-Revision-Date: 2020-11-16 08:08+0200\n"
+"POT-Creation-Date: 2020-11-25 21:32+0000\n"
+"PO-Revision-Date: 2020-11-30 07:50+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -42,7 +42,7 @@ msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Pažymėti skirtumą\tF4"
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -60,13 +60,13 @@ msgid "&Paste"
 msgstr "Įter&pti"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "Per&eiti į...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Pereiti į tarp kairiojo ir vidurinio perkeltą eilutę\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Pereiti į tarp vidurinio ir dešiniojo perkeltą eilutę\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "Atv&erti"
@@ -191,7 +191,7 @@ msgid "< Empty >"
 msgstr "< Tuščia >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Išeiti\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "R&edaguoti"
@@ -254,7 +254,7 @@ msgid "&Window"
 msgstr "&Langas"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Už&verti\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "Užv&erti viską"
@@ -449,7 +449,7 @@ msgid "Save &Right As..."
 msgstr "Išsaugoti &dešinįjį kaip..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "S&pausdinti...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "P&uslapio nuostatos..."
@@ -847,7 +847,7 @@ msgid "Auto prediffer"
 msgstr "Automatinis parengėjas"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Pereiti prie skirtum&o"
 
 msgid "&No Moved Blocks"
 msgstr "&Neperkelti blokai"
@@ -910,7 +910,7 @@ msgid "About WinMerge"
 msgstr "Apie WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Aplankykite „WinMerge“ namų puslapį!"
 
 msgid "OK"
 msgstr "Gerai"
@@ -985,10 +985,10 @@ msgid "General"
 msgstr "Bendros"
 
 msgid "Automatically &scroll to first difference"
-msgstr "Automatiškai pereiti prie pirmo &skirtumo"
+msgstr "Automatiškai pa&slinkti prie pirmo skirtumo"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Automatiškai pas&linkti prie pirmo skirtumo eilutėje"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Užverti langus „Esc“ klavišu:"
@@ -1051,7 +1051,7 @@ msgid "Find &Prev"
 msgstr "Rasti &praeitą"
 
 msgid "&OK"
-msgstr ""
+msgstr "&Gerai"
 
 msgid "Replace"
 msgstr "Pakeisti"
@@ -1282,16 +1282,16 @@ msgid "Items total:"
 msgstr "Iš viso elementų:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Pereiti į"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "P&ereiti:"
 
 msgid "File"
 msgstr "Failas"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Pereiti į"
 
 msgid "Li&ne"
 msgstr "Ei&lutę"
@@ -1300,7 +1300,7 @@ msgid "&Difference"
 msgstr "&Skirtumą"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Pereiti į"
 
 msgid "Compare"
 msgstr "Lyginimo"
@@ -2812,7 +2812,7 @@ msgid "Folder does not exist."
 msgstr "Katalogas nerastas."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr ""
+msgstr "Archyvų palaikymas nėra įjungtas.\nNerasti visi archyvų palaikymui būtini komponentai (7-Zip ir/arba Merge7z*.dll).\nDaugiau informacijos apie archyvų palaikymą ir kaip tai įjungti yra naudotojo vadove."
 
 msgid "Select file for export"
 msgstr "Pasirinkite failą eksportui"
@@ -2955,10 +2955,10 @@ msgstr "<Automatinis>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "E&iti į %1 eilutę"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Eiti į perkeltą eilutę\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "Išjungta"
@@ -3003,7 +3003,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "„Frhed“ neįdiegtas."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
