@@ -386,46 +386,6 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.sct<indexterm>
-          <primary>CompareMSWordFiles.sct plugin file</primary>
-        </indexterm></filename></title>
-
-      <para>Displays the text content of a <trademark
-      class="registered">Microsoft</trademark> <application>Word</application>
-      file, stripping away all formatting and embedded objects.</para>
-
-      <para><segmentedlist>
-          <segtitle>Category</segtitle>
-
-          <segtitle>File filter</segtitle>
-
-          <segtitle>Packing</segtitle>
-
-          <segtitle>Settings dialog support</segtitle>
-
-          <segtitle>Dependency</segtitle>
-
-          <seglistitem>
-            <seg>Unpacker</seg>
-
-	    <seg><filename class="extension">*.doc</filename>, <filename
-            class="extension">*.docx</filename>, <filename
-            class="extension">*.docm</filename>, <filename
-            class="extension">*.dot</filename>, <filename
-            class="extension">*.dotx</filename>, <filename
-            class="extension">*.dotm</filename></seg>
-
-            <seg>No</seg>
-
-            <seg>Yes</seg>
-
-            <seg><trademark class="registered">Microsoft</trademark>
-            <application>Word</application></seg>
-          </seglistitem>
-        </segmentedlist></para>
-    </section>
-
     <section id="Plugins_powerpnt">
       <title><filename>CompareMSPowerPointFiles.sct<indexterm>
           <primary>CompareMSPowerPointFiles.sct plugin file</primary>
@@ -511,51 +471,42 @@
         </segmentedlist></para>
     </section>
 
-    <section id="EditorAddin">
-      <title><filename>editor addin.sct<indexterm>
-          <primary>editor addin.sct plugin file</primary>
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles.sct<indexterm>
+          <primary>CompareMSWordFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
-          <guimenu>Plugins</guimenu>
-
-          <guisubmenu>Scripts</guisubmenu>
-        </menuchoice> menu:</para>
-
-      <itemizedlist>
-        <listitem>
-          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to
-          UPPER CASE.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
-          lower case.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>SortAscending</guimenuitem> sort the selection 
-          in ascending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>SortDescending</guimenuitem> sort the selection 
-          in descending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> replace the selection 
-          with the output of the specified filter command.</simpara>
-        </listitem>
-      </itemizedlist>
+      <para>Displays the text content of a <trademark
+      class="registered">Microsoft</trademark> <application>Word</application>
+      file, stripping away all formatting and embedded objects.</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Packing</segtitle>
+
           <segtitle>Settings dialog support</segtitle>
 
+          <segtitle>Dependency</segtitle>
+
           <seglistitem>
-            <seg>Editor complement</seg>
+            <seg>Unpacker</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+            class="extension">*.docx</filename>, <filename
+            class="extension">*.docm</filename>, <filename
+            class="extension">*.dot</filename>, <filename
+            class="extension">*.dotx</filename>, <filename
+            class="extension">*.dotm</filename></seg>
+
             <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Word</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -755,6 +706,55 @@
             <seg>No</seg>
 
             <seg><xref linkend="MSVBVM60" /></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin.sct<indexterm>
+          <primary>editor addin.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Adds five functions to the <menuchoice>
+          <guimenu>Plugins</guimenu>
+
+          <guisubmenu>Scripts</guisubmenu>
+        </menuchoice> menu:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to
+          UPPER CASE.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
+          lower case.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortAscending</guimenuitem> sort the selection 
+          in ascending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortDescending</guimenuitem> sort the selection 
+          in descending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> replace the selection 
+          with the output of the specified filter command.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+          <segtitle>Settings dialog support</segtitle>
+
+          <seglistitem>
+            <seg>Editor complement</seg>
+            <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
