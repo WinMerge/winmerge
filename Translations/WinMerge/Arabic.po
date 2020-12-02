@@ -868,8 +868,8 @@ msgstr "تجاهل التغييرات"
 msgid "Ig&nore all"
 msgstr "تجاهل الكل"
 
-msgid "Case sensi&tive"
-msgstr "الحساسية لحالة الأحرف الإنجليزية"
+msgid "Ignore &case"
+msgstr "تجاهل حالة الحرف (للغة الإنجليزية)"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
@@ -1321,9 +1321,6 @@ msgstr "تجاهل ال&كل"
 
 msgid "Ignore blan&k lines"
 msgstr "تجاهل الأسطر الفارغة"
-
-msgid "Ignore &case"
-msgstr "تجاهل حالة الحرف (للغة الإنجليزية)"
 
 msgid "Ignore c&omment differences"
 msgstr ""

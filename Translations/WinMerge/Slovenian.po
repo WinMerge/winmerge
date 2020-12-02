@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Prezri &vse"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Razlikuj m/V črke"
+msgid "Ignore &case"
+msgstr "Prezri &velikost znakov"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1674,10 +1674,6 @@ msgstr "P&rezri vse"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Prezri prazne &vrstice"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Prezri &velikost znakov"
 
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"

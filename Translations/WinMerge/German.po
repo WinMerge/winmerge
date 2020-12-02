@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "&Alle ignorieren"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Groß-/Kleinschreibung beachten"
+msgid "Ignore &case"
+msgstr "&Groß-/Kleinschreibung ignorieren"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "&Alle ignorieren"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Leerzeilen ignorieren"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "&Groß-/Kleinschreibung ignorieren"
 
 msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"

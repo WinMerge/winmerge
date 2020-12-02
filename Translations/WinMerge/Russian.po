@@ -869,8 +869,8 @@ msgstr "Игнорировать изменения"
 msgid "Ig&nore all"
 msgstr "Игнорировать все"
 
-msgid "Case sensi&tive"
-msgstr "Учитывать регистр"
+msgid "Ignore &case"
+msgstr "Игнорировать р&егистр"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Игнорировать концы строк (Win/Unix/Mac)"
@@ -1318,9 +1318,6 @@ msgstr "Игнорировать &все невидимые"
 
 msgid "Ignore blan&k lines"
 msgstr "Игнорировать пуст&ые строки"
-
-msgid "Ignore &case"
-msgstr "Игнорировать р&егистр"
 
 msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"

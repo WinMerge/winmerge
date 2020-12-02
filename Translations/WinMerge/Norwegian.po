@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Ig&norer alle"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Skill mellom store/små &bokstaver"
+msgid "Ignore &case"
+msgstr "Ignorer store/små &bokstaver"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "Ignorer &alle"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorer blan&ke linjer"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorer store/små &bokstaver"
 
 msgid "Ignore c&omment differences"
 msgstr ""

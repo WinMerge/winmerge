@@ -864,8 +864,8 @@ msgstr "Пренебре&гване на променените"
 msgid "Ig&nore all"
 msgstr "Пре&небрегване на всички"
 
-msgid "Case sensi&tive"
-msgstr "Съвпадение на &регистъра"
+msgid "Ignore &case"
+msgstr "Пренебре&гване на регистъра"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Пренебрегване на &знаците за нов ред (Windows/Unix/Mac)"
@@ -1315,9 +1315,6 @@ msgstr "Пренебре&гване на всички"
 
 msgid "Ignore blan&k lines"
 msgstr "Пренебрегване на пра&зните редове"
-
-msgid "Ignore &case"
-msgstr "Пренебре&гване на регистъра"
 
 msgid "Ignore c&omment differences"
 msgstr ""

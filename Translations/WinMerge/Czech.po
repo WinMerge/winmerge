@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Ignorovat &všechny"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Rozlišovat &malá a velká písmena"
+msgid "Ignore &case"
+msgstr "Ignorovat &malá a velká písmena"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1677,10 +1677,6 @@ msgstr "Ignorovat &všechny"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorovat prázdné řá&dky"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorovat &malá a velká písmena"
 
 msgid "Ignore c&omment differences"
 msgstr ""

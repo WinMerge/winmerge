@@ -870,8 +870,8 @@ msgstr "I&gnorovať zmeny"
 msgid "Ig&nore all"
 msgstr "Ig&norovať všetko"
 
-msgid "Case sensi&tive"
-msgstr "&Rozlišovať veľkosť písmen"
+msgid "Ignore &case"
+msgstr "Ignorovať m&alé/VEĽKÉ"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rovať rozdiely v zakončení riadkov (Windows/Unix/Mac)"
@@ -1323,9 +1323,6 @@ msgstr "I&gnorovať všetko"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorovať prázdne riad&ky"
-
-msgid "Ignore &case"
-msgstr "Ignorovať m&alé/VEĽKÉ"
 
 msgid "Ignore c&omment differences"
 msgstr ""

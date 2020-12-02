@@ -1103,8 +1103,8 @@ msgid "Ig&nore all"
 msgstr "忽略全部(&N)"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "區分大小寫(&T)"
+msgid "Ignore &case"
+msgstr "忽略大小寫(&C)"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1685,10 +1685,6 @@ msgstr "忽略空白處之任何差異(&A)"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "忽略空白行(&K)"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "忽略大小寫(&C)"
 
 msgid "Ignore c&omment differences"
 msgstr ""

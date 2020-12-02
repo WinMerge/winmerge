@@ -870,8 +870,8 @@ msgstr "Ignorar alterações"
 msgid "Ig&nore all"
 msgstr "Ignorar todas"
 
-msgid "Case sensi&tive"
-msgstr "Reconhecer maiúsculas/minúsculas"
+msgid "Ignore &case"
+msgstr "Ignorar maiúsculas/minúsculas"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rar diferentes tipos de ficheiros (Windows/Unix/Mac)"
@@ -1325,9 +1325,6 @@ msgstr "Ignorar tudo"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorar linhas em branco"
-
-msgid "Ignore &case"
-msgstr "Ignorar maiúsculas/minúsculas"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"

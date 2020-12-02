@@ -870,8 +870,8 @@ msgstr "I&gnoruoti pokyčius"
 msgid "Ig&nore all"
 msgstr "Ig&noruoti viską"
 
-msgid "Case sensi&tive"
-msgstr "Skir&ti raidžių dydį"
+msgid "Ignore &case"
+msgstr "Nepaisyti raidžių &dydžio"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
@@ -1319,9 +1319,6 @@ msgstr "I&gnoruoti visus"
 
 msgid "Ignore blan&k lines"
 msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore &case"
-msgstr "Nepaisyti raidžių &dydžio"
 
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti k&omentarų skirtumų"

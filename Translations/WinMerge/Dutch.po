@@ -868,8 +868,8 @@ msgstr "Wijzigingen negeren"
 msgid "Ig&nore all"
 msgstr "Alles negeren"
 
-msgid "Case sensi&tive"
-msgstr "Hoofdlettergevoelig"
+msgid "Ignore &case"
+msgstr "Niet hoofdlettergevoelig"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
@@ -1322,9 +1322,6 @@ msgstr "Alles negeren"
 
 msgid "Ignore blan&k lines"
 msgstr "Lege regels negeren"
-
-msgid "Ignore &case"
-msgstr "Niet hoofdlettergevoelig"
 
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"

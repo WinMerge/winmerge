@@ -1097,8 +1097,8 @@ msgid "Ig&nore all"
 msgstr "Åsidosätt allt"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "VERSAL/gemen känslig"
+msgid "Ignore &case"
+msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1677,10 +1677,6 @@ msgstr "Åsidosätt samtliga"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Åsidosätt blanka rader"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 msgid "Ignore c&omment differences"
 msgstr ""

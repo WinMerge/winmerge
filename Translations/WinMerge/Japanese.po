@@ -868,8 +868,8 @@ msgstr "変更を無視(&G)"
 msgid "Ig&nore all"
 msgstr "すべて無視(&N)"
 
-msgid "Case sensi&tive"
-msgstr "大文字と小文字を区別する(&T)"
+msgid "Ignore &case"
+msgstr "大文字と小文字を区別しない(&C)"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
@@ -1321,9 +1321,6 @@ msgstr "すべて無視(&G)"
 
 msgid "Ignore blan&k lines"
 msgstr "空行を無視する(&K)"
-
-msgid "Ignore &case"
-msgstr "大文字と小文字を区別しない(&C)"
 
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"

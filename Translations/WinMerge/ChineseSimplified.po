@@ -870,8 +870,8 @@ msgstr "忽略空白字符的变化(G)"
 msgid "Ig&nore all"
 msgstr "忽略所有空白字符(&N)"
 
-msgid "Case sensi&tive"
-msgstr "区分大小写(&T)"
+msgid "Ignore &case"
+msgstr "忽略大小写(&C)"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
@@ -1322,9 +1322,6 @@ msgstr "忽略所有空白字符(&G)"
 
 msgid "Ignore blan&k lines"
 msgstr "忽略空行(&K)"
-
-msgid "Ignore &case"
-msgstr "忽略大小写(&C)"
 
 msgid "Ignore c&omment differences"
 msgstr ""

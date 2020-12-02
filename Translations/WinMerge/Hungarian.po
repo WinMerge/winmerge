@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Minden kihagyása"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Kis-nagybetű érzékenység"
+msgid "Ignore &case"
+msgstr "&Kis-nagybetű különbségek kihagyása"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "&Minden kihagyása"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Üres sorok kihagyása"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "&Kis-nagybetű különbségek kihagyása"
 
 msgid "Ignore c&omment differences"
 msgstr ""

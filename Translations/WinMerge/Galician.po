@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Ig&norar todo"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Diferenciar maiúsculas/minúsculas"
+msgid "Ignore &case"
+msgstr "Ignorar maiúsculas e minúsculas"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "&Ignorar todo"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorar &liñas en branco"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorar maiúsculas e minúsculas"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"

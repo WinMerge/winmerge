@@ -1096,8 +1096,8 @@ msgid "Ig&nore all"
 msgstr "Нехтувати всюди"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Чутливість регістру"
+msgid "Ignore &case"
+msgstr "Нехтувати р&егістр"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1676,10 +1676,6 @@ msgstr "Нехтувати &всіма пропусками"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Нехтувати порожніми &лініями"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Нехтувати р&егістр"
 
 msgid "Ignore c&omment differences"
 msgstr ""

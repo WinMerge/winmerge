@@ -1097,8 +1097,8 @@ msgid "Ig&nore all"
 msgstr "E&zikusi denak"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Hizki larri eta &xehe artean"
+msgid "Ignore &case"
+msgstr "Ezikusi &kasua"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1676,10 +1676,6 @@ msgstr "E&zikusi denak"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ezikusi &lerro zuriak"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ezikusi &kasua"
 
 msgid "Ignore c&omment differences"
 msgstr ""

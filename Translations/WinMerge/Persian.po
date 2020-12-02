@@ -1096,8 +1096,8 @@ msgid "Ig&nore all"
 msgstr "&n چشم پوشي از همه "
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&t حساس به اندازه حروف "
+msgid "Ignore &case"
+msgstr "&c چشم پوشي از اندازه حروف "
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1680,10 +1680,6 @@ msgstr "&g چشم پوشي از همگي "
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&k چشم پوشي از خطوط خالي "
-
-#, c-format
-msgid "Ignore &case"
-msgstr "&c چشم پوشي از اندازه حروف "
 
 msgid "Ignore c&omment differences"
 msgstr ""

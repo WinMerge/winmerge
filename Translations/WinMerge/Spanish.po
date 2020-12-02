@@ -871,8 +871,8 @@ msgstr "I&gnorar cambios"
 msgid "Ig&nore all"
 msgstr "Ig&norar todos"
 
-msgid "Case sensi&tive"
-msgstr "Coincidir MA&Y./min."
+msgid "Ignore &case"
+msgstr "Ignorar MAYÚSCULAS/minús&culas"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rar saltos de línea diferentes (Windows/Unix/Mac)"
@@ -1322,9 +1322,6 @@ msgstr "I&gnorar todos"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorar diferencias de líneas &vacías"
-
-msgid "Ignore &case"
-msgstr "Ignorar MAYÚSCULAS/minús&culas"
 
 msgid "Ignore c&omment differences"
 msgstr ""

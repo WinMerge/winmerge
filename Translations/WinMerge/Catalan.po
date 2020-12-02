@@ -1094,8 +1094,8 @@ msgid "Ig&nore all"
 msgstr "I&gnora'ls tots"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Distingeix entre majúscules i minúscules"
+msgid "Ignore &case"
+msgstr "Ignora &majúscules/minúscules"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1674,10 +1674,6 @@ msgstr "Ignora t&ots els espais"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Ignora les línies en blanc"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignora &majúscules/minúscules"
 
 msgid "Ignore c&omment differences"
 msgstr ""

@@ -1091,9 +1091,9 @@ msgstr "වෙනස්කම් නොසලකා හරින්න"
 msgid "Ig&nore all"
 msgstr "සියල්ල නොසලකා හරින්න"
 
-#, c-format
-msgid "Case sensi&tive"
-msgstr "Case sensi&tive"
+#, fuzzy, c-format
+msgid "Ignore &case"
+msgstr "Ignore &case"
 
 #, fuzzy, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1672,10 +1672,6 @@ msgstr "සියල්ල නොසලකා හරින්න"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "හිස් පේළි නොසලකා හරින්න"
-
-#, fuzzy, c-format
-msgid "Ignore &case"
-msgstr "Ignore &case"
 
 msgid "Ignore c&omment differences"
 msgstr ""

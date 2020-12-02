@@ -1099,8 +1099,8 @@ msgid "Ig&nore all"
 msgstr "모두 무시하기(&N)"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "대소문자 구분하기(&T)"
+msgid "Ignore &case"
+msgstr "대소문자 무시하기(&C)"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1679,10 +1679,6 @@ msgstr "모두 무시하기(&G)"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "공백 줄 무시하기(&K)"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "대소문자 무시하기(&C)"
 
 msgid "Ignore c&omment differences"
 msgstr ""

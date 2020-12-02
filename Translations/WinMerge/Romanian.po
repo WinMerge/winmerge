@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Ig&noră tot"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Senzi&tiv la tipul caracterelor"
+msgid "Ignore &case"
+msgstr "Ignoră minus&cule/majuscule"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "I&gnoră tot"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignoră li&nii goale"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignoră minus&cule/majuscule"
 
 msgid "Ignore c&omment differences"
 msgstr ""

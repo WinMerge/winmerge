@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Zanemari &sve"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Razlikuj V/m slova"
+msgid "Ignore &case"
+msgstr "Zanemari V/m &slova"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "Zanemari &sve"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Zanemari prazne &retke"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Zanemari V/m &slova"
 
 msgid "Ignore c&omment differences"
 msgstr ""

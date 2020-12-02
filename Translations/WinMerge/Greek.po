@@ -1094,8 +1094,8 @@ msgid "Ig&nore all"
 msgstr "Να Αγνοηθούν Ό&λα"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Διάκριση Πεζών/&Κεφαλαίων"
+msgid "Ignore &case"
+msgstr "Διάκριση μεταξύ Πεζών/&Κεφαλαίων ανενεργός"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1674,10 +1674,6 @@ msgstr "Να αγνοούνται τα &πάντα"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Οι &κενές γραμμές να αγνοούνται"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Διάκριση μεταξύ Πεζών/&Κεφαλαίων ανενεργός"
 
 msgid "Ignore c&omment differences"
 msgstr ""

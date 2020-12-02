@@ -209,8 +209,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
 	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
 	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
-	ON_COMMAND(IDC_DIFF_CASESENSITIVE, OnDiffCaseSensitive)
-	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
+	ON_COMMAND(IDC_DIFF_IGNORECASE, OnDiffIgnoreCase)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECASE, OnUpdateDiffIgnoreCase)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
 	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
@@ -2356,15 +2356,15 @@ void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 	pCmdUI->Enable();
 }
 
-void CMainFrame::OnDiffCaseSensitive()
+void CMainFrame::OnDiffIgnoreCase()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
 	ApplyDiffOptions();
 }
 
-void CMainFrame::OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
 	pCmdUI->Enable();
 }
 

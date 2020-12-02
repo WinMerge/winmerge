@@ -1095,8 +1095,8 @@ msgid "Ig&nore all"
 msgstr "Ig&norar tudo"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Caso sensi&tivo"
+msgid "Ignore &case"
+msgstr "Ignorar &caso sensitivo"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1675,10 +1675,6 @@ msgstr "I&gnorar tudo"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorar as linha&s em branco"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorar &caso sensitivo"
 
 msgid "Ignore c&omment differences"
 msgstr ""
