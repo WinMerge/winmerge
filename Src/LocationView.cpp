@@ -475,22 +475,25 @@ void CLocationView::OnDraw(CDC* pDC)
 		bool bDisplayConnectorFromLeft = false;
 		bool bDisplayConnectorFromRight = false;
 
-		switch (m_displayMovedBlocks)
+		if (GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS))
 		{
-		case DISPLAY_MOVED_FOLLOW_DIFF:
-			// display moved block only for current diff
-			if (!bInsideDiff)
+			switch (m_displayMovedBlocks)
+			{
+			case DISPLAY_MOVED_FOLLOW_DIFF:
+				// display moved block only for current diff
+				if (!bInsideDiff)
+					break;
+				// two sides may be linked to a block somewhere else
+				bDisplayConnectorFromLeft = true;
+				bDisplayConnectorFromRight = true;
 				break;
-			// two sides may be linked to a block somewhere else
-			bDisplayConnectorFromLeft = true;
-			bDisplayConnectorFromRight = true;
-			break;
-		case DISPLAY_MOVED_ALL:
-			// we display all moved blocks, so once direction is enough
-			bDisplayConnectorFromLeft = true;
-			break;
-		default:
-			break;
+			case DISPLAY_MOVED_ALL:
+				// we display all moved blocks, so once direction is enough
+				bDisplayConnectorFromLeft = true;
+				break;
+			default:
+				break;
+			}
 		}
 
 		if (bEditedAfterRescan)
