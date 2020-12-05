@@ -1108,7 +1108,6 @@
 #define ID_PREDIFFERS_LAST              33107
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
-#define ID_DISPLAY_MOVED_FOLLOW_DIFF    33113
 #define ID_LOCBAR_GOTODIFF              33114
 #define IDS_LOCBAR_GOTOLINE_FMT         33115
 #define ID_FILE_OPENPROJECT             33116

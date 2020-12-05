@@ -855,9 +855,6 @@ msgstr "&Neperkelti blokai"
 msgid "&All Moved Blocks"
 msgstr "&Visi perkelti blokai"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Perkelti blokai š&iame palyginime"
-
 msgid "W&hitespaces"
 msgstr "T&arpai"
 

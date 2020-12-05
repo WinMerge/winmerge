@@ -1074,10 +1074,6 @@ msgid "&All Moved Blocks"
 msgstr "&Tots el blocs moguts"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Blocs moguts per a la &diferència actual"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "Espais"
 

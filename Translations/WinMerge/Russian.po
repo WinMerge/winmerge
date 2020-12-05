@@ -854,9 +854,6 @@ msgstr "&Без перемещенных блоков"
 msgid "&All Moved Blocks"
 msgstr "&Все перемещенные блоки"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Перемещенный блок текущего отличия"
-
 msgid "W&hitespaces"
 msgstr "Невидимые"
 

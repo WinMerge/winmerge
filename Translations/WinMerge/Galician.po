@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "&Amosar todos os bloques movidos"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Bloque movido para a &diferenza actual"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "Es&pazos en branco"
 

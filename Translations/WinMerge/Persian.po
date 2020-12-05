@@ -1076,10 +1076,6 @@ msgid "&All Moved Blocks"
 msgstr "&A همه قطعه هاي جابجا شده "
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "&C   قطعه جابجا شده براي تفاوت جاري "
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "&h فاصله هاي سفيد "
 

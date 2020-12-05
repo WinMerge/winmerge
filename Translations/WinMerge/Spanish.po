@@ -856,9 +856,6 @@ msgstr "&No mostrar bloques movidos"
 msgid "&All Moved Blocks"
 msgstr "Most&ar todos los bloques movidos"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Mostrar bloques movidos desde la dif. a&ctual"
-
 msgid "W&hitespaces"
 msgstr "Espacios en blanco"
 

@@ -1079,10 +1079,6 @@ msgid "&All Moved Blocks"
 msgstr "모든 이동된 블럭(&A)"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "현재 차이점에 대해 이동된 블럭(&C)"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "공백 문자(&H)"
 

@@ -855,9 +855,6 @@ msgstr "&Nepresúvať bloky"
 msgid "&All Moved Blocks"
 msgstr "Presunúť &všetky bloky"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Presunutý blok pre &aktuálny rozdiel"
-
 msgid "W&hitespaces"
 msgstr "&Netlačiteľné znaky"
 

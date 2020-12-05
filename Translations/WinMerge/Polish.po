@@ -852,9 +852,6 @@ msgstr "Bez prze&niesionych bloków"
 msgid "&All Moved Blocks"
 msgstr "Wszystkie przeniesione bloki"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Przeniesiony blok dla bieżą&cej różnicy"
-
 msgid "W&hitespaces"
 msgstr "Białe znaki"
 

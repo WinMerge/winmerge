@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "&Minden mozgatott blokk"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "A &jelenlegi Eltérés mozgatott blokkja"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "&Szóközök"
 

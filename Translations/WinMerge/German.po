@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "&Alle verschobenen Blöcke"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "&Verschobener Block für aktuellen Unterschied"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "&Leerzeichen"
 

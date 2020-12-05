@@ -849,9 +849,6 @@ msgstr "&Без преместени блокове"
 msgid "&All Moved Blocks"
 msgstr "&Всички преместени блокове"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Преместен блок за &текущо различие"
-
 msgid "W&hitespaces"
 msgstr "&Интервали"
 

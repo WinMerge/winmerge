@@ -855,9 +855,6 @@ msgstr "不显示移动的区块(&N)"
 msgid "&All Moved Blocks"
 msgstr "所有移动的区块(&A)"
 
-msgid "Moved Block for &Current Diff"
-msgstr "当前差异处的移动的区块(&C)"
-
 msgid "W&hitespaces"
 msgstr "空白字符(&H)"
 

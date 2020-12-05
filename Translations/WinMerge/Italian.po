@@ -852,9 +852,6 @@ msgstr "&Nessun blocco spostato"
 msgid "&All Moved Blocks"
 msgstr "&Tutti i blocchi spostati"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Blo&cchi spostati per la differenza &attual"
-
 msgid "W&hitespaces"
 msgstr "Spa&zi"
 

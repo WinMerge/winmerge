@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "&Todos os Blocos Movidos"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Bloco Movido pro &Diff Atual"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "E&spaços em branco"
 

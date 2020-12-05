@@ -853,9 +853,6 @@ msgstr "Geen verplaatste blokken"
 msgid "&All Moved Blocks"
 msgstr "Alle verplaatste blokken"
 
-msgid "Moved Block for &Current Diff"
-msgstr "Verplaatst blok voor huidig verschil"
-
 msgid "W&hitespaces"
 msgstr "Witruimtes"
 

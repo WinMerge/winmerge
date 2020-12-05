@@ -852,9 +852,6 @@ msgstr "&Taşınmış Blok Yok"
 msgid "&All Moved Blocks"
 msgstr "T&aşınmış Blokların Tümü"
 
-msgid "Moved Block for &Current Diff"
-msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
-
 msgid "W&hitespaces"
 msgstr "Beyaz boşl&uklar"
 

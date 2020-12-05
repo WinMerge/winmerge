@@ -789,7 +789,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 

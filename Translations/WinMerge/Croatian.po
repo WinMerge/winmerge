@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "Premještaj &svih blokova"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Premjesti blok &ove razlike"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "&Razmaci prema"
 

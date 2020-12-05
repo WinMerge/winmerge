@@ -853,9 +853,6 @@ msgstr "移動ブロック表示なし(&N)"
 msgid "&All Moved Blocks"
 msgstr "全移動ブロック表示(&A)"
 
-msgid "Moved Block for &Current Diff"
-msgstr "現在差異の移動ブロックのみ表示(&C)"
-
 msgid "W&hitespaces"
 msgstr "空白(&H)"
 

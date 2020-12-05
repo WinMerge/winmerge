@@ -76,7 +76,7 @@ CLocationView::CLocationView()
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
 
-	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
+	SetConnectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 
 	std::fill_n(m_nSubLineCount, std::size(m_nSubLineCount), 0);
 }
@@ -101,12 +101,11 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 END_MESSAGE_MAP()
 
 
-void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks) 
+void CLocationView::SetConnectMovedBlocks(bool displayMovedBlocks) 
 {
 	if (m_displayMovedBlocks == displayMovedBlocks)
 		return;
 
-	GetOptionsMgr()->SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
 	m_displayMovedBlocks = displayMovedBlocks;
 	if (this->GetSafeHwnd() != nullptr)
 		if (IsWindowVisible())
@@ -471,34 +470,12 @@ void CLocationView::OnDraw(CDC* pDC)
 		}
 		nPrevEndY = (*iter).bottom_coord;
 
-		// Test if we draw a connector
-		bool bDisplayConnectorFromLeft = false;
-		bool bDisplayConnectorFromRight = false;
-
-		switch (m_displayMovedBlocks)
-		{
-		case DISPLAY_MOVED_FOLLOW_DIFF:
-			// display moved block only for current diff
-			if (!bInsideDiff)
-				break;
-			// two sides may be linked to a block somewhere else
-			bDisplayConnectorFromLeft = true;
-			bDisplayConnectorFromRight = true;
-			break;
-		case DISPLAY_MOVED_ALL:
-			// we display all moved blocks, so once direction is enough
-			bDisplayConnectorFromLeft = true;
-			break;
-		default:
-			break;
-		}
-
 		if (bEditedAfterRescan)
 			continue;
 
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
-			if (bDisplayConnectorFromLeft && pane < 2)
+			if (m_displayMovedBlocks && pane < 2)
 			{
 				int apparent0 = (*iter).top_line;
 				int apparent1 = pDoc->RightLineInMovedBlock(pane, apparent0);
@@ -542,54 +519,10 @@ void CLocationView::OnDraw(CDC* pDC)
 					m_movedLines.AddTail(line);
 				}
 			}
-
-			if (bDisplayConnectorFromRight && pane > 0)
-			{
-				int apparent1 = (*iter).top_line;
-				int apparent0 = pDoc->LeftLineInMovedBlock(pane, apparent1);
-				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line + 1;
-				if (apparent0 != -1)
-				{
-					MovedLine line;
-					line.currentDiff = bInsideDiff || (nCurDiff != -1 && diCur.dbegin <= apparent0 && apparent0 <= diCur.dend);
-
-					apparent0 = pView->GetSubLineIndex(apparent0);
-					apparent1 = pView->GetSubLineIndex(apparent1);
-
-					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET) - 1;
-					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET) - 1;
-					line.ptLeftUpper.x = line.ptLeftLower.x = m_bar[pane - 1].right - 1;
-					line.ptLeftUpper.y = leftUpper;
-					line.ptLeftLower.y = leftLower;
-					line.ptRightUpper.x = line.ptRightLower.x = m_bar[pane].left;
-					line.ptRightUpper.y = rightUpper;
-					line.ptRightLower.y = rightLower;
-					line.apparent0 = apparent0;
-					line.apparent1 = apparent1;
-					line.blockHeight = nBlockHeight;
-					if (!m_movedLines.IsEmpty())
-					{
-						MovedLine& movedLineTail = m_movedLines.GetTail();
-						if (line.apparent0 - movedLineTail.blockHeight - 1 == movedLineTail.apparent0 &&
-						    line.apparent1 - movedLineTail.blockHeight - 1 == movedLineTail.apparent1)
-						{
-							line.ptLeftUpper = movedLineTail.ptLeftUpper;
-							line.ptRightUpper = movedLineTail.ptRightUpper;
-							line.apparent0 = movedLineTail.apparent0;
-							line.apparent1 = movedLineTail.apparent1;
-							line.blockHeight += movedLineTail.blockHeight;
-							m_movedLines.RemoveTail();
-						}
-					}
-					m_movedLines.AddTail(line);
-				}
-			}
 		}
 	}
 
-	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
+	if (m_displayMovedBlocks)
 		DrawConnectLines(&dc);
 
 	m_pSavedBackgroundBitmap.reset(CopyRectToBitmap(&dc, rc));
@@ -814,13 +747,10 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		switch (cmdUI.m_nID)
 		{
 		case ID_DISPLAY_MOVED_NONE:
-			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_NONE);
+			cmdUI.SetRadio(!m_displayMovedBlocks);
 			break;
 		case ID_DISPLAY_MOVED_ALL:
-			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_ALL);
-			break;
-		case ID_DISPLAY_MOVED_FOLLOW_DIFF:
-			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_FOLLOW_DIFF);
+			cmdUI.SetRadio(m_displayMovedBlocks);
 			break;
 		}
 	}
@@ -861,15 +791,11 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		pDoc->GetActiveMergeGroupView(0)->WMGoto();
 		break;
 	case ID_DISPLAY_MOVED_NONE:
-		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
+		SetConnectMovedBlocks(false);
 		pDoc->SetDetectMovedBlocks(false);
 		break;
 	case ID_DISPLAY_MOVED_ALL:
-		SetConnectMovedBlocks(DISPLAY_MOVED_ALL);
-		pDoc->SetDetectMovedBlocks(true);
-		break;
-	case ID_DISPLAY_MOVED_FOLLOW_DIFF:
-		SetConnectMovedBlocks(DISPLAY_MOVED_FOLLOW_DIFF);
+		SetConnectMovedBlocks(true);
 		pDoc->SetDetectMovedBlocks(true);
 		break;
 	}

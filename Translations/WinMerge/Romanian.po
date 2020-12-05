@@ -1075,10 +1075,6 @@ msgid "&All Moved Blocks"
 msgstr "To&ate blocurile mutate"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Blocuri mutate pentru diferenţa &curentă"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "Blancur&i"
 

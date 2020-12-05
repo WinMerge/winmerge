@@ -853,9 +853,6 @@ msgstr "لا يوجد تجميعات تم تغيير موقعها"
 msgid "&All Moved Blocks"
 msgstr "كل التجميعات التي تم تغيير مواقعها"
 
-msgid "Moved Block for &Current Diff"
-msgstr "التجميعة التي تم تغيير موقعها للاختلافات الحالية"
-
 msgid "W&hitespaces"
 msgstr "المساحات البيضاء"
 

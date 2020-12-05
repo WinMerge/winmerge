@@ -12,16 +12,6 @@ class CMergeDoc;
 class CMergeEditView;
 
 /**
- * @brief Status for display moved block
- */
-enum DISPLAY_MOVED_BLOCKS
-{
-	DISPLAY_MOVED_NONE = 0,
-	DISPLAY_MOVED_ALL,
-	DISPLAY_MOVED_FOLLOW_DIFF,
-};
-
-/**
  * @brief Endpoints of line connecting moved blocks
  */
 struct MovedLine
@@ -70,7 +60,7 @@ public:
 	CLocationView();
 	~CLocationView();
 	DECLARE_DYNCREATE(CLocationView)
-	void SetConnectMovedBlocks(int displayMovedBlocks);
+	void SetConnectMovedBlocks(bool displayMovedBlocks);
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
 	void SetFrameHwnd(HWND hwndFrame);
 	void ForceRecalculate();
@@ -102,7 +92,7 @@ protected:
 	void DrawBackground(CDC* pDC);
 
 private:
-	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
+	bool m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
 	double m_lineInPix; //*< How many lines is one pixel?
 	CRect m_bar[3]; //*< Left/middle/riggt bar */

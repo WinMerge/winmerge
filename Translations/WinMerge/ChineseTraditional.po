@@ -1083,10 +1083,6 @@ msgid "&All Moved Blocks"
 msgstr "顯示移位區塊(&A)"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "就目前差異處顯示其移位區塊(&C)"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "空格(&H)"
 

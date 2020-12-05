@@ -1076,10 +1076,6 @@ msgid "&All Moved Blocks"
 msgstr "&Всі переміщені блоки"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Переміщ. блок для &цієї відмінності"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "Пропуски"
 
