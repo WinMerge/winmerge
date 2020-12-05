@@ -21,6 +21,7 @@
  */
 PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareImage::IDD)
+ , m_bEnableImageCompare(false)
 {
 }
 
