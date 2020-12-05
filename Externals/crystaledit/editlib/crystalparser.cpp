@@ -74,7 +74,6 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 		int nMaxBreaks = 0;
 		int nColumn = 0;
 		bool bInQuote = false;
-		bool bFoundDelimiter = false;
 		const int sep = m_pTextView->m_pTextBuffer->GetFieldDelimiter ();
 		const int quote = m_pTextView->m_pTextBuffer->GetFieldEnclosure ();
 		for (int i = 0; i < nLineLength; )

@@ -64,11 +64,9 @@ void Init(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
  */
 void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 {
-	String valuename(DefColorsPath);
-
 	for (unsigned i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
-		valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
+		String valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
 		int color = pOptionsMgr->GetInt(valuename);
 		::SyntaxColors::COLORREF ref = color;
 		pSyntaxColors->SetColor(i, ref);
