@@ -353,10 +353,10 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 		case VK_RIGHT:
 		case VK_UP:
 		case VK_DOWN:
-			if (GetAsyncKeyState(VK_SHIFT))
+			if (::GetAsyncKeyState(VK_SHIFT) & 0x8000)
 			{
 				int nActivePane = pFrame->m_pImgMergeWindow->GetActivePane();
-				int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
+				int m = (::GetAsyncKeyState(VK_CONTROL) & 0x8000) ? 8 : 1;
 				int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
 				int dy = (-(evt.keycode == VK_UP) + (evt.keycode == VK_DOWN)) * m;
 				pFrame->m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
