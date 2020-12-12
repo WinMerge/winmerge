@@ -1370,7 +1370,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 
 	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
-	if (!!::GetAsyncKeyState(VK_CONTROL))
+	if (::GetAsyncKeyState(VK_CONTROL) & 0x8000)
 		recurse = !recurse;
 
 	// If user has <Shift> pressed with one file selected,
