@@ -45,7 +45,7 @@ msgid "Copy fro&m Right"
 msgstr ""
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Selectează diferenţele pe linie\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -68,7 +68,7 @@ msgid "&Paste"
 msgstr "Li&peşte"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Mergi la...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -227,7 +227,7 @@ msgid "< Empty >"
 msgstr "< Gol >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "Ieşir&e\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -310,7 +310,7 @@ msgid "&Window"
 msgstr "Ferea&stra"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Închi&de\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -566,7 +566,7 @@ msgid "Save &Right As..."
 msgstr ""
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Ti&părire...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Aranjare în pa&gină..."
@@ -1064,7 +1064,7 @@ msgid "Auto prediffer"
 msgstr "Auto prediferenţiator"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Mergi la difere&nţă"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1143,7 +1143,7 @@ msgid "About WinMerge"
 msgstr "Despre WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Vizitează pagina de bază WinMerge!"
 
 #, c-format
 msgid "OK"
@@ -1326,7 +1326,7 @@ msgid "Find &Prev"
 msgstr ""
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 #, c-format
 msgid "Replace"
@@ -1625,17 +1625,17 @@ msgid "Items total:"
 msgstr "Elemente total:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Mergi la"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "&La:"
 
 #, c-format
 msgid "File"
 msgstr "Fişier"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Anume"
 
 #, c-format
 msgid "Li&ne"
@@ -1646,7 +1646,7 @@ msgid "&Difference"
 msgstr "&Diferenţă"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Mergi la"
 
 #, c-format
 msgid "Compare"
@@ -3691,6 +3691,9 @@ msgstr "Directorul nu există."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Suportul de dezarhivare nu este activat.\n"
+"Componentele necesare (7-Zip şi/sau Merge7z*.dll) pentru dezarhivare nu au fost găsite.\n"
+"Vedeţi manualul pentru mai multe informaţii despre suportul de dezarhivare şi despre cum să-l activaţi."
 
 #, c-format
 msgid "Select file for export"
@@ -3877,7 +3880,7 @@ msgstr "<Automat>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "&Mergi la linia %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
