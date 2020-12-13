@@ -41,7 +41,7 @@ msgid "Copy fro&m Right"
 msgstr "Копировать справа"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Выбрать отличие\tF4"
 
 msgid "&Undo"
 msgstr "&Отменить"
@@ -117,7 +117,7 @@ msgstr "&Масштаб"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
@@ -1047,7 +1047,7 @@ msgid "Find &Prev"
 msgstr "Предыдущее"
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 msgid "Replace"
 msgstr "Заменить"
@@ -1632,10 +1632,10 @@ msgid "File type"
 msgstr "Тип файла"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
