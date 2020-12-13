@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2020-12-13</update>
+  <update>2020-12-14</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -630,9 +630,9 @@
       <update>2020-11-02</update>
       <strings>
         <count>996</count>
-        <translated>976</translated>
+        <translated>991</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>20</untranslated>
+        <untranslated>5</untranslated>
       </strings>
       <translators>
         <translator>
@@ -655,9 +655,9 @@
       <update>2020-11-08</update>
       <strings>
         <count>996</count>
-        <translated>979</translated>
+        <translated>996</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>17</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -680,9 +680,9 @@
       <update>2020-04-03</update>
       <strings>
         <count>996</count>
-        <translated>871</translated>
+        <translated>886</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>125</untranslated>
+        <untranslated>110</untranslated>
       </strings>
       <translators>
         <translator>

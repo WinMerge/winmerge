@@ -42,7 +42,7 @@ msgid "Copy fro&m Right"
 msgstr "Kopírovať &sprava"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Vybrať rozdiely riadkov\tF4"
 
 msgid "&Undo"
 msgstr "&Späť"
@@ -60,7 +60,7 @@ msgid "&Paste"
 msgstr "&Prilepiť"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Prejsť na...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -191,7 +191,7 @@ msgid "< Empty >"
 msgstr "< Prázdne >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Koniec\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Upraviť"
@@ -254,7 +254,7 @@ msgid "&Window"
 msgstr "&Okno"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&Zatvoriť\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "Zatvoriť &všetky"
@@ -449,7 +449,7 @@ msgid "Save &Right As..."
 msgstr "Uložiť p&ravý ako..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "&Tlačiť...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Nastavenie s&tránky..."
@@ -847,7 +847,7 @@ msgid "Auto prediffer"
 msgstr "&Automatické predspracovanie rozdielov"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Ch&oď na rozdiel"
 
 msgid "&No Moved Blocks"
 msgstr "&Nepresúvať bloky"
@@ -907,7 +907,7 @@ msgid "About WinMerge"
 msgstr "O aplikácii WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Navštívte domovskú programu WinMerge!"
 
 msgid "OK"
 msgstr "OK"
@@ -1052,7 +1052,7 @@ msgid "Find &Prev"
 msgstr "Nájsť &predošlý"
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 msgid "Replace"
 msgstr "Nahradiť"
@@ -1283,16 +1283,16 @@ msgid "Items total:"
 msgstr "Položky celkom:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Prejsť na"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "&Prejsť na:"
 
 msgid "File"
 msgstr "Súbor"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Prejsť na čo"
 
 msgid "Li&ne"
 msgstr "Riad&ok"
@@ -1301,7 +1301,7 @@ msgid "&Difference"
 msgstr "&Rozdiel"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Prejsť na"
 
 msgid "Compare"
 msgstr "Porovnať"
@@ -3133,6 +3133,11 @@ msgstr "Priečinok neexistuje."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Podpora archívov nie je povolená.\n"
+"Všetky potrebné komponenty (7-Zip alebo Merge7z *.dll) pre podporu archívu "
+"nemožno nájsť.\n"
+"V príručke nájdete ďalšie informácie o podpore archívov a o tom, ako ich "
+"povoliť."
 
 msgid "Select file for export"
 msgstr "Vyberte súbor pre export"
@@ -3356,7 +3361,7 @@ msgstr "<Automatické>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Ch&oď na riadok %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3404,7 +3409,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Povoliť &automaticky maximalizovať šírku"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed nie je nainštalovaný."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

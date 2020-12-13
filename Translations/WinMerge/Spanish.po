@@ -43,7 +43,7 @@ msgid "Copy fro&m Right"
 msgstr ""
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Seleccionar dif. de línea\tF4"
 
 msgid "&Undo"
 msgstr "Des&hacer"
@@ -61,7 +61,7 @@ msgid "&Paste"
 msgstr "&Pegar"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "Ir &a...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -192,7 +192,7 @@ msgid "< Empty >"
 msgstr "< Vacío >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Salir\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Editar"
@@ -255,7 +255,7 @@ msgid "&Window"
 msgstr "Ve&ntana"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&Cerrar\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "Cerrar Toda&s"
@@ -450,7 +450,7 @@ msgid "Save &Right As..."
 msgstr "Gua&rdar Lado Derecho Como..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Im&primir...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Config&urar página..."
@@ -848,7 +848,7 @@ msgid "Auto prediffer"
 msgstr "Auto precomparación"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Ir a &diferencia"
 
 msgid "&No Moved Blocks"
 msgstr "&No mostrar bloques movidos"
@@ -908,7 +908,7 @@ msgid "About WinMerge"
 msgstr "Acerca de WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "¡Visite la Web de WinMerge!"
 
 msgid "OK"
 msgstr "Aceptar"
@@ -1051,7 +1051,7 @@ msgid "Find &Prev"
 msgstr "&Anterior"
 
 msgid "&OK"
-msgstr ""
+msgstr "&Aceptar"
 
 msgid "Replace"
 msgstr "Reemplazar"
@@ -1282,16 +1282,16 @@ msgid "Items total:"
 msgstr "Total:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Ir a"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Ir a:"
 
 msgid "File"
 msgstr "Archivo"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Objetivo"
 
 msgid "Li&ne"
 msgstr "Lí&nea"
@@ -1300,7 +1300,7 @@ msgid "&Difference"
 msgstr "&Diferencia"
 
 msgid "&Go to"
-msgstr ""
+msgstr "Ir &a"
 
 msgid "Compare"
 msgstr "Comparar"
@@ -3112,6 +3112,11 @@ msgstr "La carpeta no existe."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"El soporte de archivos no está habilitado.\n"
+"Los componentes necesarios(7-Zip y/o Merge7z*.dll) para el archivo no están "
+"disponibles.\n"
+"Vea el manual para más información acerca del soporte de archivos y cómo "
+"habilitarlo."
 
 msgid "Select file for export"
 msgstr "Seleccione archivo a exportar"
@@ -3332,7 +3337,7 @@ msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Ir a &línea %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3380,7 +3385,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Habilitar Ancho Máximo &Automático"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed no está instalado."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
