@@ -886,11 +886,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge also shows the content from unique subfolders.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -904,11 +904,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): TBD</para>
+          <para><option>Enabled</option> (default): WinMerge doing a reqursive comparing and also includes subfolders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: WinMerge only comparing the files in the root folder.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -922,11 +922,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge don't expand all subfolders after a folder compare.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge automatically expand all subfolders after finishing a folder compare.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -959,12 +959,12 @@
       <itemizedlist>
         <listitem>
           <para><option>Disabled</option>: Is not active unless the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to <guilabel>Quick Contents</guilabel>.</para>
         </listitem>
 
         <listitem>
           <para><option>Enabled</option>: Is active when the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to <guilabel>Quick Contents</guilabel>.</para>
 
           <para>This option sets the limit when WinMerge should stop comparing.
 		  If the limit is set to for instance 4 MB, then WinMerge will only read 
@@ -990,11 +990,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: Is not active unless the Compare method 
+          is set to <guilabel>Binary Contents</guilabel>.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: Is active when the Compare method 
+          is set to <guilabel>Binary Contents</guilabel>.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1004,7 +1006,8 @@
           <primary>compare threads</primary>
         </indexterm></title>
 
-      <para>TBD</para>
+      <para>Number of threads which use to comparing. With a negative value WinMerge
+      will use addition of the number of available CPU cores.</para>
     </section>
 
   </section>
