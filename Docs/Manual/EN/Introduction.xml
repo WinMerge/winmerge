@@ -82,10 +82,18 @@
         <secondary>reporting bugs</secondary>
       </indexterm>Getting support and reporting bugs</title>
 
-    <para>The <ulink
-    url="https://forums.winmerge.org/viewforum.php?f=4">Open
-    Discussion forum</ulink> is the fastest way to get help. Please be patient,
-    it may take some time for somebody to answer.</para>
+    <para>The <emphasis>Discussion forums</emphasis> are the fastest way to get help:</para>
+    <itemizedlist>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winmerge/discussions">WinMerge discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winimerge/discussions">Image Compare discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/website/discussions">Website discussions</ulink>
+      </listitem>
+    </itemizedlist>
 
     <para>If you find a bug, please submit it as a <ulink
     url="https://github.com/WinMerge/winmerge/issues">bug
