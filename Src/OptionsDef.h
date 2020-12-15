@@ -39,8 +39,9 @@ extern const String OPT_RESIZE_PANES OP("Settings/AutoResizePanes");
 
 extern const String OPT_SYNTAX_HIGHLIGHT OP("Settings/HiliteSyntax");
 extern const String OPT_VIEW_WHITESPACE OP("Settings/ViewWhitespace");
-extern const String OPT_CONNECT_MOVED_BLOCKS OP("Settings/ConnectMovedBlocks");
+extern const String OPT_VIEW_EOL OP("Settings/ViewEOL");
 extern const String OPT_SCROLL_TO_FIRST OP("Settings/ScrollToFirst");
+extern const String OPT_SCROLL_TO_FIRST_INLINE_DIFF OP("Settings/ScrollToFirstInlineDiff");
 extern const String OPT_RENDERING_MODE OP("Settings/RenderingMode");
 
 // Difference (in-line) highlight
@@ -78,6 +79,8 @@ extern const String OPT_REPORTFILES_INCLUDEFILECMPREPORT OP("ReportFiles/Include
 // File compare
 extern const String OPT_AUTOMATIC_RESCAN OP("Settings/AutomaticRescan");
 extern const String OPT_ALLOW_MIXED_EOL OP("Settings/AllowMixedEOL");
+// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+extern const String OPT_COPY_FULL_LINE OP("Settings/CopyFullLine");
 extern const String OPT_TAB_SIZE OP("Settings/TabSize");
 extern const String OPT_TAB_TYPE OP("Settings/TabType");
 extern const String OPT_WORDWRAP OP("Settings/WordWrap");

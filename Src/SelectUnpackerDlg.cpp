@@ -41,7 +41,7 @@ void CSelectUnpackerDlg::Initialize()
 	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = nullptr;
 	automaticPlugin->m_name = _("<Automatic>");
-	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension)");
+	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension).");
 
 	m_pPlugin = noPlugin.get();
 

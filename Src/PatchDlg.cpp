@@ -30,7 +30,7 @@ using std::swap;
  */
 CPatchDlg::CPatchDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CPatchDlg::IDD, pParent)
-	, m_caseSensitive(false)
+	, m_ignoreCase(false)
 	, m_ignoreBlanks(false)
 	, m_ignoreEOLDifference(false)
 	, m_whitespaceCompare(0)
@@ -53,7 +53,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CPatchDlg)
 	DDX_Control(pDX, IDC_DIFF_STYLE, m_comboStyle);
 	DDX_Control(pDX, IDC_DIFF_CONTEXT, m_comboContext);
-	DDX_Check(pDX, IDC_DIFF_CASESENSITIVE, m_caseSensitive);
+	DDX_Check(pDX, IDC_DIFF_IGNORECASE, m_ignoreCase);
 	DDX_Check(pDX, IDC_DIFF_WHITESPACE_IGNOREBLANKS, m_ignoreBlanks);
 	DDX_Radio(pDX, IDC_DIFF_WHITESPACE_COMPARE, m_whitespaceCompare);
 	DDX_Check(pDX, IDC_DIFF_IGNOREEOL, m_ignoreEOLDifference);
@@ -397,7 +397,7 @@ void CPatchDlg::LoadSettings()
 	if (m_contextLines < 0 || m_contextLines > 50)
 		m_contextLines = 0;
 
-	m_caseSensitive = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_CASE_SENSITIVE);
+	m_ignoreCase = !GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_CASE_SENSITIVE);
 	m_ignoreEOLDifference = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_EOL_SENSITIVE);
 	m_ignoreBlanks = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_IGNORE_BLANK_LINES);
 	
@@ -422,7 +422,7 @@ void CPatchDlg::SaveSettings()
 	COptionsMgr *pOptions = GetOptionsMgr();
 	pOptions->SaveOption(OPT_PATCHCREATOR_PATCH_STYLE, m_outputStyle);
 	pOptions->SaveOption(OPT_PATCHCREATOR_CONTEXT_LINES, m_contextLines);
-	pOptions->SaveOption(OPT_PATCHCREATOR_CASE_SENSITIVE, m_caseSensitive);
+	pOptions->SaveOption(OPT_PATCHCREATOR_CASE_SENSITIVE, !m_ignoreCase);
 	pOptions->SaveOption(OPT_PATCHCREATOR_EOL_SENSITIVE, m_ignoreEOLDifference);
 	pOptions->SaveOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, m_ignoreBlanks);
 	pOptions->SaveOption(OPT_PATCHCREATOR_WHITESPACE, m_whitespaceCompare);
@@ -437,7 +437,7 @@ void CPatchDlg::OnDefaultSettings()
 {
 	m_outputStyle = (enum output_style) DIFF_OUTPUT_NORMAL;
 	m_contextLines = 0;
-	m_caseSensitive = true;
+	m_ignoreCase = false;
 	m_ignoreEOLDifference = false;
 	m_ignoreBlanks = false;
 	m_whitespaceCompare = WHITESPACE_COMPARE_ALL;

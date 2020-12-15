@@ -109,7 +109,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 		if (nLine == GetLineCount())
 			nLine--;
 		// The last parameter is optimization  
-		//   - don't recompute lines preceeding the removed line.
+		//   - don't recompute lines preceding the removed line.
 		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE,
 				nLine);
 	}

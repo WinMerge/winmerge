@@ -175,6 +175,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/foldercomp1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
       </varlistentry>
 
@@ -194,6 +195,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/treeview-01.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
 
           <itemizedlist>
             <listitem>
@@ -623,7 +625,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <variablelist>
         <varlistentry>
-          <term><guimenuitem>with Registered Application</guimenuitem></term>
+          <term><guimenuitem>With Registered Application</guimenuitem></term>
 
           <listitem>
             <para>Windowsで登録されているファイルタイプに対応したアプリケーションで、ファイルを開きます。
@@ -633,11 +635,12 @@ I get the partial list, but no Abort indicator.--></para>
               <para>このショートカットは、いつも新しいWindowsエクスプローラでフォルダを開きます。
               </para>
             </tip>
+            <para></para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>with External Editor</term>
+          <term>With External Editor</term>
 
           <listitem>
             <para>外部エディタでファイルを開くデフォルトエディタはメモ帳ですが、
@@ -647,7 +650,7 @@ I get the partial list, but no Abort indicator.--></para>
         </varlistentry>
 
         <varlistentry>
-          <term><guimenuitem>with...</guimenuitem></term>
+          <term><guimenuitem>With...</guimenuitem></term>
 
           <listitem>
             <para><!-- TODO: 左/右を開く/プログラムの選択 で開くダイアログのタイトルがわからない --><guilabel>Open With</guilabel>ダイアログを開き、指定したアプリケーションでファイルを開くことができます。
@@ -936,6 +939,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
                 <phrase>Folder Compare window, two folders selected</phrase>
               </textobject>
             </mediaobject>
+            <para></para>
 
             <para>選択する順番は重要です。最初に選択したフォルダは、結果の左側のフォルダ、
             二番目に選択したフォルダは、右側のフォルダになります。
@@ -1305,4 +1309,5 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       </para>
     </caution>
   </section>
+  <para></para>
 </article>

@@ -159,8 +159,44 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\editlib\parsers\asp.cpp" />
+    <ClCompile Include="..\editlib\parsers\basic.cpp" />
+    <ClCompile Include="..\editlib\parsers\batch.cpp" />
+    <ClCompile Include="..\editlib\parsers\cplusplus.cpp" />
+    <ClCompile Include="..\editlib\parsers\csharp.cpp" />
+    <ClCompile Include="..\editlib\parsers\css.cpp" />
+    <ClCompile Include="..\editlib\parsers\dcl.cpp" />
+    <ClCompile Include="..\editlib\parsers\fortran.cpp" />
+    <ClCompile Include="..\editlib\parsers\go.cpp" />
+    <ClCompile Include="..\editlib\parsers\html.cpp" />
+    <ClCompile Include="..\editlib\parsers\ini.cpp" />
+    <ClCompile Include="..\editlib\parsers\innosetup.cpp" />
+    <ClCompile Include="..\editlib\parsers\is.cpp" />
     <ClCompile Include="..\editlib\parsers\isx.cpp" />
+    <ClCompile Include="..\editlib\parsers\java.cpp" />
+    <ClCompile Include="..\editlib\parsers\lisp.cpp" />
     <ClCompile Include="..\editlib\parsers\lua.cpp" />
+    <ClCompile Include="..\editlib\parsers\nsis.cpp" />
+    <ClCompile Include="..\editlib\parsers\pascal.cpp" />
+    <ClCompile Include="..\editlib\parsers\perl.cpp" />
+    <ClCompile Include="..\editlib\parsers\php.cpp" />
+    <ClCompile Include="..\editlib\parsers\plain.cpp" />
+    <ClCompile Include="..\editlib\parsers\po.cpp" />
+    <ClCompile Include="..\editlib\parsers\powershell.cpp" />
+    <ClCompile Include="..\editlib\parsers\python.cpp" />
+    <ClCompile Include="..\editlib\parsers\rexx.cpp" />
+    <ClCompile Include="..\editlib\parsers\rsrc.cpp" />
+    <ClCompile Include="..\editlib\parsers\ruby.cpp" />
+    <ClCompile Include="..\editlib\parsers\rust.cpp" />
+    <ClCompile Include="..\editlib\parsers\sgml.cpp" />
+    <ClCompile Include="..\editlib\parsers\sh.cpp" />
+    <ClCompile Include="..\editlib\parsers\siod.cpp" />
+    <ClCompile Include="..\editlib\parsers\sql.cpp" />
+    <ClCompile Include="..\editlib\parsers\tcl.cpp" />
+    <ClCompile Include="..\editlib\parsers\tex.cpp" />
+    <ClCompile Include="..\editlib\parsers\verilog.cpp" />
+    <ClCompile Include="..\editlib\parsers\vhdl.cpp" />
+    <ClCompile Include="..\editlib\parsers\xml.cpp" />
     <ClCompile Include="..\editlib\utils\string_util.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -168,13 +204,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\editlib\SyntaxColors.cpp" />
+    <ClCompile Include="batchTests.cpp" />
+    <ClCompile Include="htmlTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="unittest1.cpp" />
+    <ClCompile Include="luaTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

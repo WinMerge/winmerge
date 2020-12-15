@@ -660,12 +660,6 @@ EXIT:
 }
 #endif // #if 0 savetofile
 
-CRLFSTYLE CCrystalTextBuffer::
-GetCRLFMode () const
-{
-  return m_nCRLFMode;
-}
-
 // Default EOL to use if editor has to manufacture one
 // (this occurs with ghost lines)
 void CCrystalTextBuffer::
@@ -768,6 +762,12 @@ GetLineFlags (int nLine) const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
+  if (nLine < 0 || nLine >= static_cast<int>(m_aLines.size()))
+    {
+      ASSERT(false);      //  nLine is out of range.
+      return 0;
+    }
+
   return m_aLines[nLine].m_dwFlags;
 }
 
@@ -849,6 +849,12 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
       if (nLine == -1)
         return;
       bRemoveFromPreviousLine = false;
+    }
+
+  if (nLine < 0 || nLine >= static_cast<int>(m_aLines.size()))
+    {
+      ASSERT(false);    //  nLine is out of range.
+      return;
     }
 
   DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;
@@ -1591,11 +1597,6 @@ AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
     }
   m_aUndoBuf.push_back (ur);
   m_nUndoPosition = (int) m_aUndoBuf.size ();
-}
-
-UndoRecord CCrystalTextBuffer::GetUndoRecord(int nUndoPos) const
-{
-  return m_aUndoBuf[nUndoPos];
 }
 
 /**

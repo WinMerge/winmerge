@@ -16,6 +16,7 @@
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
+#define IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL 116
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
@@ -125,8 +126,6 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
-#define IDB_TOOLBAR_ENABLED_MASK        379
-#define IDB_TOOLBAR_ENABLED_MASK32      380
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502
@@ -170,6 +169,7 @@
 #define IDC_PATH2_COMBO                 1006
 #define IDC_EXT_COMBO                   1009
 #define IDC_SCROLL_CHECK                1012
+#define IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK 1013
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
 #define IDC_IGNBLANKS_CHECK             1017
@@ -217,7 +217,7 @@
 #define IDC_DIFF_FILERESULT             1067
 #define IDC_DIFF_STYLE                  1068
 #define IDC_DIFF_CONTEXT                1069
-#define IDC_DIFF_CASESENSITIVE          1070
+#define IDC_DIFF_IGNORECASE             1070
 #define IDC_DIFF_WHITESPACE_IGNOREBLANKS 1071
 #define IDC_DIFF_WHITESPACE_COMPARE     1072
 #define IDC_DIFF_WHITESPACE_IGNORE      1073
@@ -549,6 +549,7 @@
 #define IDC_DIFF_ALGORITHM              8828
 #define IDC_INDENT_HEURISTIC            8829
 #define IDC_LIST_FILE                   8830
+#define IDC_FLDCONFIRM_DONTASKAGAIN     8831
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -879,6 +880,7 @@
 #define IDS_REPORT_FILEOVERWRITE        17967
 #define IDS_REPORT_ERROR                17968
 #define IDS_REPORT_SUCCESS              17969
+#define IDS_SYNCPOINT_LASTBLOCK         17970
 #define IDS_FILE_TO_ITSELF              18100
 #define IDS_FILESSAME                   18101
 #define IDS_FILEERROR                   18103
@@ -977,6 +979,9 @@
 #define ID_REFRESH                      32787
 #define ID_EDIT_COPY_LINENUMBERS        32788
 #define ID_RESCAN                       32789
+#define ID_GOTO_MOVED_LINE_LM           32790
+#define ID_GOTO_MOVED_LINE_MR           32791
+#define IDS_GOTO_MOVED_LINE             32792
 #define ID_EDIT_FIND_PREVIOUS           32799
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801
@@ -991,6 +996,7 @@
 #define ID_OPTIONS_SHOWMISSINGLEFTONLY  32810
 #define ID_OPTIONS_SHOWMISSINGMIDDLEONLY 32811
 #define ID_OPTIONS_SHOWMISSINGRIGHTONLY 32812
+#define ID_VIEW_EOL                     32815
 #define ID_VIEW_SELECTFONT              32816
 #define ID_VIEW_USEDEFAULTFONT          32817
 #define ID_VIEW_WHITESPACE              32818
@@ -1102,7 +1108,6 @@
 #define ID_PREDIFFERS_LAST              33107
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
-#define ID_DISPLAY_MOVED_FOLLOW_DIFF    33113
 #define ID_LOCBAR_GOTODIFF              33114
 #define IDS_LOCBAR_GOTOLINE_FMT         33115
 #define ID_FILE_OPENPROJECT             33116
@@ -1333,7 +1338,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
 #define _APS_NEXT_COMMAND_VALUE         34164
-#define _APS_NEXT_CONTROL_VALUE         8831
-#define _APS_NEXT_SYMED_VALUE           116
+#define _APS_NEXT_CONTROL_VALUE         8832
+#define _APS_NEXT_SYMED_VALUE           117
 #endif
 #endif

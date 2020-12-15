@@ -32,7 +32,7 @@ HINSTANCE CCrystalEditViewEx::GetResourceHandle()
 }
 
 
-DWORD CCrystalEditViewEx::ParseLine( DWORD dwCookie, int nLineIndex, 
+unsigned CCrystalEditViewEx::ParseLine( unsigned dwCookie, int nLineIndex, 
 																		TEXTBLOCK *pBuf, int &nActualItems )
 {
 	if( m_pSyntaxParser != nullptr )

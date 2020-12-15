@@ -50,7 +50,7 @@
   
   <section id="Installing_usinginstaller">
     <title>インストーラを使用する (推奨)</title>
-
+    <para></para>
     <note>
       <para>インストーラは、Administrator権限を必要とします。
       Administrator権限を持っていないなら、アーカイブファイルより展開するか、
@@ -68,10 +68,6 @@
       <listitem>
         <simpara>インストーラの開始(通常、
         <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>のような名前)。</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara>ようこそ画面の<guibutton>次へ</guibutton>をクリックしてください。</simpara>
       </listitem>
 
       <listitem>
@@ -107,6 +103,16 @@
           </varlistentry>
 
           <varlistentry>
+            <term>32-bit WinMerge ShellExtension<indexterm>
+                <primary>Shellextension</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>The option enables you to launch WinMerge directly from Windows Explorer, comparing items that you have selected there.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>フィルタ</term>
 
             <listitem>
@@ -124,7 +130,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Frhed</term>
+            <term>Frhed (Free hex editor)</term>
 
             <listitem>
               <para>Frhedを使用すると、ファイルをHEX形式で表示できます。</para>
@@ -132,7 +138,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>WinIMerge</term>
+            <term>WinIMerge (Image Diff/Merge)</term>
 
             <listitem>
               <para>WinIMergeを使用すると、イメージファイル間の違いを表示できます。</para>
@@ -278,9 +284,64 @@
       </listitem>
 
       <listitem>
+        <simpara>In the 3-way merge wizard page, register WinMerge
+        as 3-way merge tool for TortoiseSVN/Git.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Register WinMerge as a 3-way merge tool<indexterm>
+                <primary>3-way merge tool</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Register WinMerge as 3-way merge tool for
+              TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at right pane</term>
+
+            <listitem>
+              <para>Merge at right pane.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>Merge at center pane</term>
+
+            <listitem>
+              <para>Merge at center pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at left pane</term>
+
+            <listitem>
+              <para>Merge at left pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Auto-merge at startup time</term>
+
+            <listitem>
+              <para>Optionally, disable the option <guilabel>Auto-merge at
+            startup time</guilabel>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Click <guibutton>Next</guibutton>.</para>
+      </listitem>
+
+      <listitem>
         <simpara>インストール準備完了ページでは、インストール内容の設定を確かめてください。
           もし必要なら、<guibutton>戻る(B)</guibutton>をクリックし、前のページで内容を変更してください。
           インストール作業を続ける準備ができているなら、<guibutton>インストール(I)</guibutton>をクリックしてください。</simpara>
+      <para></para>
       </listitem>
 
       <listitem>

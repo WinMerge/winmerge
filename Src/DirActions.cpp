@@ -59,8 +59,8 @@ static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destinati
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Copy");
-	String strQuestion = count == 1 ? _("Are you sure you want to copy:") : 
-		strutils::format(_("Are you sure you want to copy %d items:").c_str(), count);
+	String strQuestion = count == 1 ? _("Are you sure you want to copy?") : 
+		strutils::format(_("Are you sure you want to copy %d items?").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);
@@ -83,8 +83,8 @@ static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destinati
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Move");
-	String strQuestion = count == 1 ? _("Are you sure you want to move:") : 
-		strutils::format(_("Are you sure you want to move %d items:").c_str(), count);
+	String strQuestion = count == 1 ? _("Are you sure you want to move?") : 
+		strutils::format(_("Are you sure you want to move %d items?").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);

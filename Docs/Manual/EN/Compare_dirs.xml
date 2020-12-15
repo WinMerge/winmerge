@@ -176,6 +176,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/foldercomp1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
       </varlistentry>
 
@@ -195,6 +196,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/treeview-01.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
 
           <itemizedlist>
             <listitem>
@@ -299,7 +301,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <para>In the Compare Folders window, files and folders are compared and
       divided into several categories. In each row, the category is clearly
-      identified in the left column with one of these icons :</para>
+      identified in the left column with one of these icons:</para>
 
       <simplelist>
         <member><inlinemediaobject>
@@ -630,7 +632,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <variablelist>
         <varlistentry>
-          <term><guimenuitem>with Registered Application</guimenuitem></term>
+          <term><guimenuitem>With Registered Application</guimenuitem></term>
 
           <listitem>
             <para>Opens the file with the application (if any) that is
@@ -640,11 +642,12 @@ I get the partial list, but no Abort indicator.--></para>
               <para>This shortcut usually opens a folder in a new Windows
               Explorer.</para>
             </tip>
+            <para></para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>with External Editor</term>
+          <term>With External Editor</term>
 
           <listitem>
             <para>Opens the file with an external editor. The default editor is
@@ -654,7 +657,7 @@ I get the partial list, but no Abort indicator.--></para>
         </varlistentry>
 
         <varlistentry>
-          <term><guimenuitem>with...</guimenuitem></term>
+          <term><guimenuitem>With...</guimenuitem></term>
 
           <listitem>
             <para>Opens the <guilabel>Open With</guilabel> dialog, where you can
@@ -953,6 +956,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
                 <phrase>Folder Compare window, two folders selected</phrase>
               </textobject>
             </mediaobject>
+            <para></para>
 
             <para>The order of selection is significant: the folder you select
             first is the left folder in the result; the second selected folder
@@ -969,7 +973,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
               <para>Again, the <guimenuitem>Compare</guimenuitem> operation is
               available only when the current left and right folder paths are
               identical in the Folder Compare window, as shown in the preceding
-              screen shot. For example, it is not available if the current
+              screenshot. For example, it is not available if the current
               window compares two different folders.</para>
             </tip>
           </listitem>
@@ -1325,4 +1329,5 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       see the change).</para>
     </caution>
   </section>
+  <para></para>
 </article>

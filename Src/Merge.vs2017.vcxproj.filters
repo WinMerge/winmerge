@@ -205,9 +205,6 @@
     <ClCompile Include="FileVersion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FilterCommentsManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FilterList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -916,6 +913,9 @@
     <ClCompile Include="WildcardDropList.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1009,9 +1009,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileVersion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterCommentsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FilterList.h">
@@ -1646,6 +1643,9 @@
     </ClInclude>
     <ClInclude Include="WildcardDropList.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h">
+      <Filter>EditLib\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

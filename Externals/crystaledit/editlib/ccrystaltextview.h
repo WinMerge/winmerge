@@ -321,7 +321,7 @@ protected :
     */
     int GetSubLines( int nLineIndex );
 
-    virtual int GetEmptySubLines( int nLineIndex );
+    virtual int GetEmptySubLines( int nLineIndex ) { return 0; }
     bool IsEmptySubLineIndex( int nSubLineIndex );
 
     /**
@@ -475,7 +475,7 @@ protected:
 
     //  Drag-n-drop overrideable
     virtual HGLOBAL PrepareDragData ();
-    virtual DROPEFFECT GetDropEffect ();
+    virtual DROPEFFECT GetDropEffect () { return DROPEFFECT_COPY; }
     virtual void OnDropSource (DROPEFFECT de);
     bool IsDraggingText () const;
 
@@ -513,6 +513,11 @@ protected:
 #else
         return 1;
 #endif
+    }
+
+    int GetMarginIconSize() const
+    {
+        return MulDiv(CCrystalRenderer::MARGIN_ICON_SIZE, GetSystemMetrics(SM_CXSMICON), 16);
     }
 
 #ifdef _UNICODE
@@ -680,32 +685,33 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    DWORD ParseLine (DWORD dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
     int GetCRLFMode ();
     void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
-    bool GetViewTabs ();
+    bool GetViewTabs () const { return m_bViewTabs; }
     void SetViewTabs (bool bViewTabs);
+    bool GetViewEols () const { return m_bViewEols; }
     void SetViewEols (bool bViewEols, bool bDistinguishEols);
     int GetTabSize ();
     void SetTabSize (int nTabSize);
-    bool GetTopMargin ();
+    bool GetTopMargin () const { return m_bTopMargin; }
     void SetTopMargin (bool bTopMargin);
-    bool GetSelectionMargin ();
+    bool GetSelectionMargin () const { return m_bSelMargin; }
     void SetSelectionMargin (bool bSelMargin);
-    bool GetViewLineNumbers() const;
+    bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
-    void GetFont (LOGFONT & lf);
+    void GetFont (LOGFONT & lf) const { lf = m_lfBaseFont; }
     void SetFont (const LOGFONT & lf);
-    DWORD GetFlags ();
+    DWORD GetFlags () const { return m_dwFlags; }
     void SetFlags (DWORD dwFlags);
-    bool GetSmoothScroll () const;
-    void SetSmoothScroll (bool bSmoothScroll);
+    bool GetSmoothScroll () const { return m_bSmoothScroll; }
+    void SetSmoothScroll (bool bSmoothScroll) { m_bSmoothScroll = bSmoothScroll; }
     //  [JRT]:
-    bool GetDisableDragAndDrop () const;
-    void SetDisableDragAndDrop (bool bDDAD);
+    bool GetDisableDragAndDrop () const { return m_bDisableDragAndDrop; }
+    void SetDisableDragAndDrop (bool bDDAD) { m_bDisableDragAndDrop = bDDAD; }
 
     static RENDERING_MODE GetRenderingModeDefault() { return s_nRenderingModeDefault;  }
     static void SetRenderingModeDefault(RENDERING_MODE nRenderingMode) { s_nRenderingModeDefault = nRenderingMode;  }
@@ -728,8 +734,8 @@ public :
     CCrystalParser *SetParser( CCrystalParser *pParser );
     //END SW
 
-    bool GetEnableHideLines () const;
-    void SetEnableHideLines (bool bHideLines);
+    bool GetEnableHideLines () const { return m_bHideLines; }
+    void SetEnableHideLines (bool bHideLines) { m_bHideLines = bHideLines; }
     bool GetLineVisible (int nLineIndex) const;
 
     //  Default handle to resources
@@ -768,7 +774,7 @@ public :
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
     //  Attributes
-    CPoint GetCursorPos () const;
+    CPoint GetCursorPos () const { return m_ptCursorPos; }
     virtual void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();

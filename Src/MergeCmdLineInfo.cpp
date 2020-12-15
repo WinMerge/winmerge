@@ -119,7 +119,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
 	m_bNonInteractive(false),
-	m_bSingleInstance(false),
+	m_bSingleInstance(),
 	m_bShowUsage(false),
 	m_bNoPrefs(false),
 	m_nCodepage(0),
@@ -229,6 +229,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -r to compare recursively
 			m_bRecurse = true;
+		}
+		else if (param == _T("s-"))
+		{
+			// -s- to not allow only one instance
+			m_bSingleInstance = false;
 		}
 		else if (param == _T("s"))
 		{

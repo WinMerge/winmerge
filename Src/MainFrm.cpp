@@ -59,6 +59,7 @@
 #include "VersionInfo.h"
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
+#include "utils/hqbitmap.h"
 
 #include "WindowsManagerDialog.h"
 
@@ -70,7 +71,7 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale, CImageList& ImgList);
+static void LoadToolbarImageList(int orgImageWidth, int newImageHeight, UINT nIDResource, bool bGrayscale, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
@@ -208,8 +209,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
 	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
 	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
-	ON_COMMAND(IDC_DIFF_CASESENSITIVE, OnDiffCaseSensitive)
-	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
+	ON_COMMAND(IDC_DIFF_IGNORECASE, OnDiffIgnoreCase)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECASE, OnUpdateDiffIgnoreCase)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
 	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
@@ -349,9 +350,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 
-	CWnd *pMDIChildWnd = FindWindowExW(m_hWnd, nullptr, _T("MDIClient"), nullptr);
-	if (pMDIChildWnd)
-		pMDIChildWnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
 }
@@ -1371,7 +1370,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 
 	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
-	if (!!::GetAsyncKeyState(VK_CONTROL))
+	if (::GetAsyncKeyState(VK_CONTROL) & 0x8000)
 		recurse = !recurse;
 
 	// If user has <Shift> pressed with one file selected,
@@ -2024,28 +2023,28 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarSize = 16 << GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * (1 + GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 
-	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();
-	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
-	CSize sizeButton(0, 0);
-
-	LoadToolbarImageList(toolbarSize,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
-		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	LoadToolbarImageList(toolbarSize,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
-		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-	sizeButton = CSize(toolbarSize + 8, toolbarSize + 8);
-
-	BarCtrl.SetButtonSize(sizeButton);
-	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
 	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].Detach();
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].Detach();
+	CSize sizeButton(0, 0);
+
+	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
+		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
+		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
+		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
+		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+
+	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
+
+	BarCtrl.SetButtonSize(sizeButton);
+	if (CImageList *pImgList = BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]))
+		pImgList->DeleteImageList();
+	if (CImageList *pImgList = BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]))
+		pImgList->DeleteImageList();
 
 	// resize the rebar.
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
@@ -2056,29 +2055,27 @@ void CMainFrame::LoadToolbarImages()
 
 
 /**
- * @brief Load a transparent 24-bit color image list.
+ * @brief Load a transparent 32-bit color image list.
  */
-static void LoadHiColImageList(UINT nIDResource, UINT nIDResourceMask, int nWidth, int nHeight, int nCount, bool bGrayscale, CImageList& ImgList)
+static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nNewWidth, int nNewHeight, int nCount, bool bGrayscale, CImageList& ImgList)
 {
-	CBitmap bm, bmMask;
-	bm.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_DEFAULTCOLOR));
-	bmMask.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResourceMask), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_MONOCHROME));
-	if (bGrayscale)
-		GrayScale(&bm);
-	VERIFY(ImgList.Create(nWidth, nHeight, ILC_COLORDDB|ILC_MASK, nCount, 0));
-	int nIndex = ImgList.Add(&bm, &bmMask);
+	CBitmap bm;
+	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
+
+	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
+	int nIndex = ImgList.Add(&bm, nullptr);
 	ASSERT(-1 != nIndex);
 }
 
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale,
-		CImageList& ImgList)
+static void LoadToolbarImageList(int orgImageWidth, int newImageWidth, UINT nIDResource, bool bGrayscale, CImageList& ImgList)
 {
 	const int ImageCount = 22;
-	const int imageHeight = imageWidth - 1;
-	LoadHiColImageList(nIDResource, nIDResourceMask, imageWidth, imageHeight, ImageCount, bGrayscale, ImgList);
+	const int orgImageHeight = orgImageWidth - 1;
+	const int newImageHeight = newImageWidth - 1;
+	LoadHiColImageList(nIDResource, orgImageWidth, orgImageHeight, newImageWidth, newImageHeight, ImageCount, bGrayscale, ImgList);
 }
 
 /**
@@ -2359,15 +2356,15 @@ void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 	pCmdUI->Enable();
 }
 
-void CMainFrame::OnDiffCaseSensitive()
+void CMainFrame::OnDiffIgnoreCase()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
 	ApplyDiffOptions();
 }
 
-void CMainFrame::OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
 	pCmdUI->Enable();
 }
 

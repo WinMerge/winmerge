@@ -123,6 +123,7 @@ Localization:
   Skiff <skiffatsf@users.sourceforge.net>
   Pawel Wawrzysko <traduc@kki.pl>
   Mirosław Żylewicz
+  Michał Lipok
 
 * Portuguese (Brazilian):
   Wender Firmino <wender@pta.com.br>
@@ -151,6 +152,7 @@ Localization:
 * Slovak:
   Majvan <vancojur@decef.elf.stuba.sk>
   Ivan Masár <helix84@centrum.sk>
+  Jozef Matta <jozef.m923@gmail.com>
 
 * Slovenian:
   Iztok Osredkar <iztok.osredkar@institut-oko.si>
@@ -158,11 +160,11 @@ Localization:
   Jadran Rudec <jrudec@gmail.com>
 
 * Spanish:
-  Mario Angel <marioangel70@gmail.com>
-  Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
   Dean Grimm <grimmdp@yahoo.com>
+  Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
+  Mario Angel <marioangel70@gmail.com>
+  Nelson Ariza <njarizas@hotmail.com>
   borjafg
-  Mario Angel <marioangel70 at gmail.com>
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
@@ -238,11 +240,12 @@ WinMerge includes code from:
 * Francis Irving (original conflict file parser)
 * Michael P. Mehl (CMessageBoxDialog)
 * Cristi Posea (CSizingControlBar)
-* Ferdinand Prantl (CrystalEditor syntax rules)
+* Ferdinand Prantl (Crystal Edit syntax rules)
 * Keith Rule (CMemDC - memory DC)
 * Paul Senzee (String formatting)
 * Henry Spencer (CRegExp)
-* Andrei Stcherbatchenko (CrystalEditor)
+* Andrei Stcherbatchenko (Author of Crystal Edit)
+* Sven Wiegand (Crystal Edit)
 
 *** NOTE ***
 If your name is missing please let us know (or create a pull request).

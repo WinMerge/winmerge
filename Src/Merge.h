@@ -36,7 +36,6 @@ class COptionsMgr;
 class LineFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
-class FilterCommentsManager;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -66,7 +65,6 @@ public:
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
 
 	WORD GetLangId() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
@@ -169,6 +167,7 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	CFont m_fontGUI;
+	ATL::CImage m_imageForInitializingGdiplus;
 };
 
 extern CMergeApp theApp;

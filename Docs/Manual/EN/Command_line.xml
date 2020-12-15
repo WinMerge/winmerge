@@ -376,6 +376,7 @@
           class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
           contain a file named <filename>File.txt</filename>.</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 

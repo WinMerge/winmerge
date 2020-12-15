@@ -286,6 +286,7 @@
                   何れかのファイルフィルタが選択されている状態)場合、選択されたファイルフィルタは、
                   <guilabel>フィルタ</guilabel>フィールドへ既にロードされています。</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -590,6 +591,7 @@
                   <guilabel>フィルタ</guilabel>フィールドは、
                   どの行フィルタが有効化されているかを表示しません。</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -1047,6 +1049,7 @@ Pekka Himanen</screen>
                 フィルタダイアログの「テスト」ボタンをクリックしてみてください。
                 詳細は、<xref linkend="Filters_TestingDlg" />を参照してください。</para>
             </tip>
+            <para></para>
           </listitem>
 
           <listitem>

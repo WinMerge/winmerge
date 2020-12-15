@@ -24,7 +24,7 @@
 #endif
 
 //  Python 2.6 keywords
-static LPCTSTR s_apszPythonKeywordList[] =
+static const TCHAR * s_apszPythonKeywordList[] =
   {
     _T ("and"),
     _T ("as"),
@@ -59,7 +59,7 @@ static LPCTSTR s_apszPythonKeywordList[] =
     _T ("yield"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("AttributeError"),
     _T ("EOFError"),
@@ -106,7 +106,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("tracebacklimit"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T ("__abs__"),
     _T ("__add__"),
@@ -164,30 +164,29 @@ static LPCTSTR s_apszUser2KeywordList[] =
   };
 
 static bool
-IsPythonKeyword (LPCTSTR pszChars, int nLength)
+IsPythonKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszPythonKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePython (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePython (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -291,12 +290,6 @@ out:
               dwCookie |= COOKIE_CHAR;
               continue;
             }
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

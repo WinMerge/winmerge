@@ -60,8 +60,6 @@ END_MESSAGE_MAP()
 
 BOOL CWindowsManagerDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: Add your specialized code here and/or call the base class
-
 	if ((WM_KEYUP == pMsg->message && VK_CONTROL == pMsg->wParam) || 
 		(WM_KEYDOWN == pMsg->message && VK_ESCAPE == pMsg->wParam))
 	{
@@ -79,8 +77,6 @@ BOOL CWindowsManagerDialog::PreTranslateMessage(MSG* pMsg)
 BOOL CWindowsManagerDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	// TODO: Add extra initialization here
 
 	m_List.SetExtendedStyle(LVS_EX_INFOTIP | LVS_EX_FULLROWSELECT);
 
@@ -178,8 +174,6 @@ void CWindowsManagerDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: Add your message handler code here
-
 	if(NULL != m_List.GetSafeHwnd() && cx > 0 && cy > 0)
 		m_List.MoveWindow(0, 0, cx, cy);
 }
@@ -194,8 +188,6 @@ void CWindowsManagerDialog::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 
 void CWindowsManagerDialog::OnClose()
 {
-	// TODO: Add your message handler code here and/or call default
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -204,8 +196,6 @@ void CWindowsManagerDialog::OnClose()
 
 void CWindowsManagerDialog::OnOK()
 {
-	// TODO: Add extra validation here
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -214,8 +204,6 @@ void CWindowsManagerDialog::OnOK()
 
 void CWindowsManagerDialog::OnCancel()
 {
-	// TODO: Add extra cleanup here
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -224,7 +212,6 @@ void CWindowsManagerDialog::OnCancel()
 
 void CWindowsManagerDialog::PostNcDestroy()
 {
-	// TODO: Add your specialized code here and/or call the base class
 	CDialog::PostNcDestroy();
 
 	if (m_bAutoCleanup)
@@ -234,8 +221,6 @@ void CWindowsManagerDialog::PostNcDestroy()
 void CWindowsManagerDialog::OnDestroy()
 {
 	CDialog::OnDestroy();
-
-	// TODO: Add your message handler code here
 
 	const int nIndex = m_List.GetNextItem(-1, LVNI_SELECTED);
 	if (nIndex >= 0 && nIndex < m_List.GetItemCount())
@@ -273,9 +258,7 @@ LRESULT CWindowsManagerDialog::OnSelectNext(WPARAM wParam, LPARAM lParam)
 
 void CWindowsManagerDialog::OnNMCustomdrawListFile(NMHDR* pNMHDR, LRESULT* pResult)
 {
-//	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
 	NMLVCUSTOMDRAW* pLVCD = reinterpret_cast<NMLVCUSTOMDRAW*>(pNMHDR);
-	// TODO: Add your control notification handler code here
 
 	switch (pLVCD->nmcd.dwDrawStage)
 	{
@@ -298,8 +281,6 @@ void CWindowsManagerDialog::OnNMCustomdrawListFile(NMHDR* pNMHDR, LRESULT* pResu
 
 void CWindowsManagerDialog::OnNMDblclkListFile(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	// TODO: Add your control notification handler code here
 	*pResult = 0;
 
 	PostMessage(WM_CLOSE);
