@@ -330,11 +330,11 @@
 
           <itemizedlist>
             <listitem>
-              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /e /u %1 %2</screen>
+              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /e /u %1 %2 %3</screen>
             </listitem>
 
             <listitem>
-              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /e /u %1 %2</screen>
+              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /e /u %1 %2 %3</screen>
             </listitem>
           </itemizedlist>
 
