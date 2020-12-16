@@ -192,12 +192,12 @@
         <listitem>
           <para><option>Enabled</option> (default): The Select Files or Folders
           dialog checks both paths as you enter them. The
-          <guibutton>OK</guibutton> button remains disabled until both paths are
+          <guibutton>Compare</guibutton> button remains disabled until both paths are
           validated. Note that this checking can cause some delay.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: The <guibutton>OK</guibutton> button
+          <para><option>Disabled</option>: The <guibutton>Compare</guibutton> button
           in the Select Files or Folders dialog is always enabled, and attempts
           to open any paths you specify. Since there is no delay during
           validation, this can speed up the selection of paths. However, if the
@@ -306,13 +306,13 @@
     </section>
 
     <section>
-      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+      <title>Close "Select Files or Folders" Dialog on clicking Compare button<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): When you click <guibutton>Compare</guibutton> button, the Select File or Folder dialog will remain open instead of closing.</para>
+          <para><option>Disabled</option> (default): When you click <guibutton>Compare</guibutton> button, the Select File or Folders dialog will remain open instead of closing.</para>
         </listitem>
 
         <listitem>
@@ -904,7 +904,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge doing a reqursive comparing and also includes subfolders.</para>
+          <para><option>Enabled</option> (default): WinMerge doing a recursive comparing and also includes subfolders.</para>
         </listitem>
 
         <listitem>
@@ -1420,8 +1420,8 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_differencescolors">
@@ -1447,8 +1447,8 @@
     elements that are recognized, and enables you to change their text color and
     weight.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_textcolors">
@@ -1491,8 +1491,8 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_archive">

@@ -37,6 +37,8 @@
 
       <arg><option>/s</option></arg>
 
+      <arg><option>/s-</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/um</option></arg>
@@ -196,6 +198,14 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>Ensure that another instance is always executed, ignoring the
+        value of the "Allow only one instance to run" option.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>MRU list</primary>
       </indexterm>
@@ -288,21 +298,21 @@
     <varlistentry>
       <term><option>/fl</option></term>
       <listitem>
-        <para>Sets focus to the left side at startup</para>
+        <para>Sets focus to the left side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Sets focus to the middle side at startup</para>
+        <para>Sets focus to the middle side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fr</option></term>
       <listitem>
-        <para>Sets focus to the right side at startup</para>
+        <para>Sets focus to the right side at startup.</para>
       </listitem>
     </varlistentry>
 

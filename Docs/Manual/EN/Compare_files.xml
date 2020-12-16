@@ -638,7 +638,7 @@
             <itemizedlist>
               <listitem>
                 <para>To set a bookmark on a line, double-click in its margin
-                (or press (<keycombo>
+                (or press <keycombo>
                     <keycap>Ctrl</keycap>
 
                     <keycap>F2</keycap>
@@ -657,7 +657,7 @@
 
               <listitem>
                 <para>Double-click a single bookmark to delete it (or press
-                (<keycombo>
+                <keycombo>
                     <keycap>Ctrl</keycap>
 
                     <keycap>F2</keycap>
@@ -776,8 +776,9 @@
             <guimenu>File</guimenu>
 
             <guimenuitem>Merge Mode</guimenuitem>
-          </menuchoice> restores these WinMerge 1.7.1 single keyboard shortcuts
-        for difference merging and navigating functions:</para>
+          </menuchoice> (or press <keycap>F9</keycap>) restores these WinMerge
+        1.7.1 single keyboard shortcuts for difference merging and navigating
+        functions:</para>
 
         <itemizedlist>
           <listitem>
@@ -800,7 +801,7 @@
         <keycap>Arrow</keycap> key combinations work in merge mode in the same
         way as normal mode.</para>
 
-        <para>Merge mode is indicated in the status bar by the text,
+        <para>Merge mode is indicated in the status bar by the text
         <guilabel>Merge</guilabel>.</para>
       </section>
     </section>
@@ -1077,7 +1078,7 @@
           <listitem>
             <para>EOL style of the file: <guilabel>Win</guilabel> for
             Windows/DOS files (CRLF), <guilabel>Unix</guilabel> (LF),
-            <guilabel>Mac</guilabel> (CR), or Mixed.</para>
+            <guilabel>Mac</guilabel> (CR), or <guilabel>Mixed</guilabel>.</para>
 
             <note>
               <para>When the per-line EOL style is used, the file EOL style is
@@ -1339,11 +1340,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Last Difference (<keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>End</keycap>
-            </keycombo>)<indexterm>
+          <term>Last Difference<indexterm>
               <primary>Last Difference function</primary>
 
               <secondary>with Compare Files</secondary>
