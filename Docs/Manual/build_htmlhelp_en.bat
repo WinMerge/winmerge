@@ -41,7 +41,6 @@ del "toc.hhc"
 del "index.hhk"
 rd /S /Q "%docbook_outputdir%\images"
 rd /S /Q "%docbook_outputdir%\screenshots"
-rd /S /Q "%docbook_outputdir%\art"
 rd /S /Q "%docbook_outputdir%\css"
 if not "%docbook_build_path%" == "." rd /S /Q "%docbook_outputdir%"
 echo Finished!
