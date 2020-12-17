@@ -315,9 +315,9 @@ next:
       if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-          if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof(_T("<script") - 1)) == 0)
+          if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
             dwCookie |= COOKIE_BLOCK_SCRIPT;
-          else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof(_T("<style") - 1)) == 0)
+          else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
             dwCookie |= COOKIE_BLOCK_STYLE;
         }
       else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))

@@ -353,10 +353,10 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 		case VK_RIGHT:
 		case VK_UP:
 		case VK_DOWN:
-			if (GetAsyncKeyState(VK_SHIFT))
+			if (::GetAsyncKeyState(VK_SHIFT) & 0x8000)
 			{
 				int nActivePane = pFrame->m_pImgMergeWindow->GetActivePane();
-				int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
+				int m = (::GetAsyncKeyState(VK_CONTROL) & 0x8000) ? 8 : 1;
 				int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
 				int dy = (-(evt.keycode == VK_UP) + (evt.keycode == VK_DOWN)) * m;
 				pFrame->m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
@@ -666,7 +666,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			theApp.CreateBackup(false, filename);
 			if (!m_pImgMergeWindow->SaveImage(pane))
 			{
-				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), filename, GetSysError());
+				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 				if (answer == IDOK)
 					return DoFileSaveAs(pane);
@@ -696,7 +696,7 @@ RETRY:
 		std::wstring filename = ucr::toUTF16(strPath);
 		if (!m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 		{
-			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), strPath, GetSysError());
+			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), strPath, GetSysError());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 			if (answer == IDOK)
 				goto RETRY;
@@ -1316,15 +1316,15 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 			String text;
 			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
 			{
-				text += strutils::format(_("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), ptReal.x, ptReal.y,
+				text += strutils::format(_("Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "), ptReal.x, ptReal.y,
 					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
-					text += strutils::format(_("Dist:%g,%g "), colorDistance01, colorDistance12);
+					text += strutils::format(_("Dist: %g, %g  "), colorDistance01, colorDistance12);
 				else
-					text += strutils::format(_("Dist:%g "), colorDistance01);
+					text += strutils::format(_("Dist: %g  "), colorDistance01);
 			}
 
-			text += strutils::format(_("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
+			text += strutils::format(_("Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),
 					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
@@ -2059,9 +2059,8 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 
-	GenerateReport(s);
-
-	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+	if (GenerateReport(s))
+		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 
 void CImgMergeFrame::OnRefresh()

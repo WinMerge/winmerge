@@ -43,7 +43,7 @@ msgid "Copy fro&m Right"
 msgstr "Kopioi &oikealta"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "Valitse riviero\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -66,7 +66,7 @@ msgid "&Paste"
 msgstr "Lii&tä"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Siirry...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -225,7 +225,7 @@ msgid "< Empty >"
 msgstr "< Tyhjä >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "Poistu\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -308,7 +308,7 @@ msgid "&Window"
 msgstr "Ikkuna"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Sulje\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -567,7 +567,7 @@ msgid "Save &Right As..."
 msgstr "Tallenna oikea &nimellä..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Tulosta...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Sivun asetukset..."
@@ -1067,7 +1067,7 @@ msgid "Auto prediffer"
 msgstr "Automaattinen esivertailu"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Siirry eroon"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1076,10 +1076,6 @@ msgstr "Ei siirrettyjä lohkoja"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "Kaikki siirretyt lohkot"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Siirretty lohko nykyiseen eroon"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1098,8 +1094,8 @@ msgid "Ig&nore all"
 msgstr "Hylkää kaikki"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Sama kirjainkoko"
+msgid "Ignore &case"
+msgstr "Ohita kirjainkoko"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1150,7 +1146,7 @@ msgid "About WinMerge"
 msgstr "Tietoja WinMergestä"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Vieraile WinMergen kotisivulla!"
 
 #, c-format
 msgid "OK"
@@ -1333,7 +1329,7 @@ msgid "Find &Prev"
 msgstr "Etsi &edellinen"
 
 msgid "&OK"
-msgstr ""
+msgstr "OK"
 
 #, c-format
 msgid "Replace"
@@ -1632,17 +1628,17 @@ msgid "Items total:"
 msgstr "Kohteita yhteensä:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Siirry >"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Siirry:"
 
 #, c-format
 msgid "File"
 msgstr "Tiedosto"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Siirry mihin"
 
 #, c-format
 msgid "Li&ne"
@@ -1653,7 +1649,7 @@ msgid "&Difference"
 msgstr "Erilaisuus"
 
 msgid "&Go to"
-msgstr ""
+msgstr "Siirry kohteeseen"
 
 #, c-format
 msgid "Compare"
@@ -1678,10 +1674,6 @@ msgstr "Hylkää kaikki"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ohita tyhjät rivit"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ohita kirjainkoko"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3747,6 +3739,9 @@ msgstr "Kansiota ei ole olemassa."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Arkistotuki ei ole käytössä.\n"
+"Kaikkia tarvittavia osia (7-Zip ja/tai Merge7z *. Dll) arkistojen tukeen ei löydy.\n"
+"Katso käyttöohjeesta lisätietoja arkistotuesta ja kuinka se otetaan käyttöön."
 
 #, c-format
 msgid "Select file for export"
@@ -4005,7 +4000,7 @@ msgstr "<Automaattinen>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Siirry riville %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -4066,7 +4061,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Käytä &automaattista maksimi leveyttä"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed ei ole asennettu."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

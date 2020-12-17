@@ -42,7 +42,7 @@ msgid "Copy fro&m Right"
 msgstr ""
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "පේලි අතර වෙනස තේරීම\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -65,7 +65,7 @@ msgid "&Paste"
 msgstr "ඇලවීම"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "යන්න\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -224,7 +224,7 @@ msgid "< Empty >"
 msgstr "< හිස් >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr " නික්මීම\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -307,7 +307,7 @@ msgid "&Window"
 msgstr "Fe&nêtre"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&වසන්න\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -566,7 +566,7 @@ msgid "Save &Right As..."
 msgstr ""
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "මුද්‍රණය කරන්න...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "පිටු සැකසීම..."
@@ -1064,7 +1064,7 @@ msgid "Auto prediffer"
 msgstr "Auto prediffer"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "G&oto Diff"
 
 #, fuzzy, c-format
 msgid "&No Moved Blocks"
@@ -1073,10 +1073,6 @@ msgstr "&No Moved Blocks"
 #, fuzzy, c-format
 msgid "&All Moved Blocks"
 msgstr "&All Moved Blocks"
-
-#, fuzzy, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Moved Block for &Current Diff"
 
 #, fuzzy, c-format
 msgid "W&hitespaces"
@@ -1094,9 +1090,9 @@ msgstr "වෙනස්කම් නොසලකා හරින්න"
 msgid "Ig&nore all"
 msgstr "සියල්ල නොසලකා හරින්න"
 
-#, c-format
-msgid "Case sensi&tive"
-msgstr "Case sensi&tive"
+#, fuzzy, c-format
+msgid "Ignore &case"
+msgstr "Ignore &case"
 
 #, fuzzy, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1147,7 +1143,7 @@ msgid "About WinMerge"
 msgstr "WinMerge ගැන"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "WinMerge මුල් පිටුව වෙත !"
 
 #, c-format
 msgid "OK"
@@ -1330,7 +1326,7 @@ msgid "Find &Prev"
 msgstr ""
 
 msgid "&OK"
-msgstr ""
+msgstr "&හරි"
 
 #, c-format
 msgid "Replace"
@@ -1629,17 +1625,17 @@ msgid "Items total:"
 msgstr "අයිතම එකතුව:"
 
 msgid "Go to"
-msgstr ""
+msgstr "වෙත යන්න"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "වෙත යන්න:"
 
 #, c-format
 msgid "File"
 msgstr "ගොනුව"
 
 msgid "Go to what"
-msgstr ""
+msgstr "කුමක් වෙත යන්නද"
 
 #, c-format
 msgid "Li&ne"
@@ -1650,7 +1646,7 @@ msgid "&Difference"
 msgstr "වෙනස"
 
 msgid "&Go to"
-msgstr ""
+msgstr "වෙත යන්න"
 
 #, c-format
 msgid "Compare"
@@ -1675,10 +1671,6 @@ msgstr "සියල්ල නොසලකා හරින්න"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "හිස් පේළි නොසලකා හරින්න"
-
-#, fuzzy, c-format
-msgid "Ignore &case"
-msgstr "Ignore &case"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3713,6 +3705,9 @@ msgstr ""
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 
 #, c-format
 msgid "Select file for export"
@@ -3899,7 +3894,7 @@ msgstr "<Automatic>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "G&o to Line %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""

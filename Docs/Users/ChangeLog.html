@@ -14,250 +14,91 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <style type="text/css">
-
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
-display: block;
-}
-
-audio,
-canvas,
-video {
-display: inline-block;
-}
-
-audio:not([controls]) {
-display: none;
-height: 0;
-}
-
-[hidden],
-template {
-display: none;
-}
-
-
-html {
-font-family: sans-serif; 
--ms-text-size-adjust: 100%; 
--webkit-text-size-adjust: 100%; 
-}
-
-body {
-margin: 0;
-}
-
-
-a {
-background: transparent;
-}
-
-a:focus {
-outline: thin dotted;
-}
-
-a:active,
-a:hover {
-outline: 0;
-}
-
-
-h1 {
-font-size: 2em;
-margin: 0.67em 0;
-}
-
-abbr[title] {
-border-bottom: 1px dotted;
-}
-
-b,
-strong {
-font-weight: bold;
-}
-
-dfn {
-font-style: italic;
-}
-
-hr {
--moz-box-sizing: content-box;
-box-sizing: content-box;
-height: 0;
-}
-
-mark {
-background: #ff0;
-color: #000;
-}
-
-code,
-kbd,
-pre,
-samp {
-font-family: monospace, serif;
-font-size: 1em;
-}
-
-pre {
-white-space: pre-wrap;
-}
-
-q {
-quotes: "\201C" "\201D" "\2018" "\2019";
-}
-
-small {
-font-size: 80%;
-}
-
-sub,
-sup {
-font-size: 75%;
-line-height: 0;
-position: relative;
-vertical-align: baseline;
-}
-sup {
-top: -0.5em;
-}
-sub {
-bottom: -0.25em;
-}
-
-
-img {
-border: 0;
-}
-
-svg:not(:root) {
-overflow: hidden;
-}
-
-
-figure {
-margin: 0;
-}
-
-
-fieldset {
-border: 1px solid #c0c0c0;
-margin: 0 2px;
-padding: 0.35em 0.625em 0.75em;
-}
-
-legend {
-border: 0; 
-padding: 0; 
-}
-
-button,
-input,
-select,
-textarea {
-font-family: inherit; 
-font-size: 100%; 
-margin: 0; 
-}
-
-button,
-input {
-line-height: normal;
-}
-
-button,
-select {
-text-transform: none;
-}
-
-button,
-html input[type="button"], 
-input[type="reset"],
-input[type="submit"] {
--webkit-appearance: button; 
-cursor: pointer; 
-}
-
-button[disabled],
-html input[disabled] {
-cursor: default;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-box-sizing: border-box; 
-padding: 0; 
-}
-
-input[type="search"] {
--webkit-appearance: textfield; 
--moz-box-sizing: content-box;
--webkit-box-sizing: content-box; 
-box-sizing: content-box;
-}
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
--webkit-appearance: none;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-border: 0;
-padding: 0;
-}
-
-textarea {
-overflow: auto; 
-vertical-align: top; 
-}
-
-
-table {
-border-collapse: collapse;
-border-spacing: 0;
-}
-.go-top {
-position: fixed;
-bottom: 2em;
-right: 2em;
-text-decoration: none;
-background-color: #E0E0E0;
-font-size: 12px;
-padding: 1em;
-display: inline;
-}
-
-html,body{ margin: auto;
-padding-right: 1em;
-padding-left: 1em;
-max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:13.34px helvetica,arial,freesans,clean,sans-serif;-webkit-font-smoothing:subpixel-antialiased;line-height:1.4;padding:3px;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}p{margin:1em 0}a{color:#4183c4;text-decoration:none}body{background-color:#fff;padding:30px;margin:15px;font-size:14px;line-height:1.6}body>*:first-child{margin-top:0!important}body>*:last-child{margin-bottom:0!important}@media screen{body{box-shadow:0 0 0 1px #cacaca,0 0 0 4px #eee}}h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:bold;-webkit-font-smoothing:subpixel-antialiased;cursor:text}h1{font-size:28px;color:#000}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h3{font-size:18px;color:#333}h4{font-size:16px;color:#333}h5{font-size:14px;color:#333}h6{color:#777;font-size:14px}p,blockquote,table,pre{margin:15px 0}ul{padding-left:30px}ol{padding-left:30px}ol li ul:first-of-type{margin-top:0}hr{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:4px;padding:0}body>h2:first-child{margin-top:0;padding-top:0}body>h1:first-child{margin-top:0;padding-top:0}body>h1:first-child+h2{margin-top:0;padding-top:0}body>h3:first-child,body>h4:first-child,body>h5:first-child,body>h6:first-child{margin-top:0;padding-top:0}a:first-child h1,a:first-child h2,a:first-child h3,a:first-child h4,a:first-child h5,a:first-child h6{margin-top:0;padding-top:0}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p,ul li>:first-child,ol li>:first-child{margin-top:0}dl{padding:0}dl dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt>:first-child{margin-top:0}dl dt>:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd>:first-child{margin-top:0}dl dd>:last-child{margin-bottom:0}blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777}blockquote>:first-child{margin-top:0}blockquote>:last-child{margin-bottom:0}table{border-collapse:collapse;border-spacing:0;font-size:100%;font:inherit}table th{font-weight:bold;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}img{max-width:100%}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px;font-family:Consolas,'Liberation Mono',Courier,monospace;font-size:12px;color:#333}pre>code{margin:0;padding:0;white-space:pre;border:0;background:transparent}.highlight pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre code,pre tt{background-color:transparent;border:0}.poetry pre{font-family:Georgia,Garamond,serif!important;font-style:italic;font-size:110%!important;line-height:1.6em;display:block;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;vertical-align:super;position:relative}sub{vertical-align:sub;top:-1px}@media print{body{background:#fff}img,pre,blockquote,table,figure{page-break-inside:avoid}body{background:#fff;border:0}code{background-color:#fff;color:#333!important;padding:0 .2em;border:1px solid #dedede}pre{background:#fff}pre code{background-color:white!important;overflow:visible}}@media screen{body.inverted{color:#eee!important;border-color:#555;box-shadow:none}.inverted body,.inverted hr .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt,.inverted blockquote{color:#eee!important;border-color:#555;box-shadow:none}.inverted td,.inverted th{background:#333}.inverted h2{border-color:#555}.inverted hr{border-color:#777;border-width:1px!important}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}.inverted{background:#0b2531;background:#252a2a}.inverted body{background:#252a2a}.inverted a{color:#acd1d5}}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k,.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne,.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:#008080}.highlight .il{color:#099}.highlight .gc{color:#999;background-color:#eaf2f5}.type-csharp .highlight .k,.type-csharp .highlight .kt{color:#00F}.type-csharp .highlight .nf{color:#000;font-weight:normal}.type-csharp .highlight .nc{color:#2b91af}.type-csharp .highlight .nn{color:#000}.type-csharp .highlight .s,.type-csharp .highlight .sc{color:#a31515}
-</style>
+  <style type="text/css">article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {display: block;}audio,canvas,video {display: inline-block;}audio:not([controls]) {display: none;height: 0;}[hidden],template {display: none;}html {font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }body {margin: 0;}a {background: transparent;}a:focus {outline: thin dotted;}a:active,a:hover {outline: 0;}h1 {font-size: 2em;margin: 0.67em 0;}abbr[title] {border-bottom: 1px dotted;}b,strong {font-weight: bold;}dfn {font-style: italic;}hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0;}mark {background: #ff0;color: #000;}code,kbd,pre,samp {font-family: monospace, serif;font-size: 1em;}pre {white-space: pre-wrap;}q {quotes: "\201C" "\201D" "\2018" "\2019";}small {font-size: 80%;}sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline;}sup {top: -0.5em;}sub {bottom: -0.25em;}img {border: 0;}svg:not(:root) {overflow: hidden;}figure {margin: 0;}fieldset {border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em;}legend {border: 0; padding: 0; }button,input,select,textarea {font-family: inherit; font-size: 100%; margin: 0; }button,input {line-height: normal;}button,select {text-transform: none;}button,html input[type="button"], input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer; }button[disabled],html input[disabled] {cursor: default;}input[type="checkbox"],input[type="radio"] {box-sizing: border-box; padding: 0; }input[type="search"] {-webkit-appearance: textfield; -moz-box-sizing: content-box;-webkit-box-sizing: content-box; box-sizing: content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0;}textarea {overflow: auto; vertical-align: top; }table {border-collapse: collapse;border-spacing: 0;}.go-top {position: fixed;bottom: 2em;right: 2em;text-decoration: none;background-color: #E0E0E0;font-size: 12px;padding: 1em;display: inline;}html,body{ margin: auto;padding-right: 1em;padding-left: 1em;max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:13.34px helvetica,arial,freesans,clean,sans-serif;-webkit-font-smoothing:subpixel-antialiased;line-height:1.4;padding:3px;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}p{margin:1em 0}a{color:#4183c4;text-decoration:none}body{background-color:#fff;padding:30px;margin:15px;font-size:14px;line-height:1.6}body>*:first-child{margin-top:0!important}body>*:last-child{margin-bottom:0!important}@media screen{body{box-shadow:0 0 0 1px #cacaca,0 0 0 4px #eee}}h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:bold;-webkit-font-smoothing:subpixel-antialiased;cursor:text}h1{font-size:28px;color:#000}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h3{font-size:18px;color:#333}h4{font-size:16px;color:#333}h5{font-size:14px;color:#333}h6{color:#777;font-size:14px}p,blockquote,table,pre{margin:15px 0}ul{padding-left:30px}ol{padding-left:30px}ol li ul:first-of-type{margin-top:0}hr{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:4px;padding:0}body>h2:first-child{margin-top:0;padding-top:0}body>h1:first-child{margin-top:0;padding-top:0}body>h1:first-child+h2{margin-top:0;padding-top:0}body>h3:first-child,body>h4:first-child,body>h5:first-child,body>h6:first-child{margin-top:0;padding-top:0}a:first-child h1,a:first-child h2,a:first-child h3,a:first-child h4,a:first-child h5,a:first-child h6{margin-top:0;padding-top:0}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p,ul li>:first-child,ol li>:first-child{margin-top:0}dl{padding:0}dl dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt>:first-child{margin-top:0}dl dt>:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd>:first-child{margin-top:0}dl dd>:last-child{margin-bottom:0}blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777}blockquote>:first-child{margin-top:0}blockquote>:last-child{margin-bottom:0}table{border-collapse:collapse;border-spacing:0;font-size:100%;font:inherit}table th{font-weight:bold;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}img{max-width:100%}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px;font-family:Consolas,'Liberation Mono',Courier,monospace;font-size:12px;color:#333}pre>code{margin:0;padding:0;white-space:pre;border:0;background:transparent}.highlight pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre code,pre tt{background-color:transparent;border:0}.poetry pre{font-family:Georgia,Garamond,serif!important;font-style:italic;font-size:110%!important;line-height:1.6em;display:block;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;vertical-align:super;position:relative}sub{vertical-align:sub;top:-1px}@media print{body{background:#fff}img,pre,blockquote,table,figure{page-break-inside:avoid}body{background:#fff;border:0}code{background-color:#fff;color:#333!important;padding:0 .2em;border:1px solid #dedede}pre{background:#fff}pre code{background-color:white!important;overflow:visible}}@media screen{body.inverted{color:#eee!important;border-color:#555;box-shadow:none}.inverted body,.inverted hr .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt,.inverted blockquote{color:#eee!important;border-color:#555;box-shadow:none}.inverted td,.inverted th{background:#333}.inverted h2{border-color:#555}.inverted hr{border-color:#777;border-width:1px!important}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}.inverted{background:#0b2531;background:#252a2a}.inverted body{background:#252a2a}.inverted a{color:#acd1d5}}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k,.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne,.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:#008080}.highlight .il{color:#099}.highlight .gc{color:#999;background-color:#eaf2f5}.type-csharp .highlight .k,.type-csharp .highlight .kt{color:#00F}.type-csharp .highlight .nf{color:#000;font-weight:normal}.type-csharp .highlight .nc{color:#2b91af}.type-csharp .highlight .nn{color:#000}.type-csharp .highlight .s,.type-csharp .highlight .sc{color:#a31515}</style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
 <h1 id="change-log">Change log</h1>
-<h2 id="winmerge-2168---2020-08-28">WinMerge 2.16.8 - 2020-08-28</h2>
+<h2 id="winmerge-2169---2020-11-29">WinMerge 2.16.9 - 2020-11-29</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>BugFix: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)</li>
+<li>BugFix: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
+<li>Update English.pot (GitHub #440)</li>
+<li>Update Merge.rc (GitHub #487)</li>
+<li>Improved startup time</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: [UI] Pane enlargement was reset after changing tab (GitHub #403)</li>
+<li>BugFix: Non-comment differences were sometimes ignored when the comment filter was enabled, (osdn.net #40488)</li>
+<li>BugFix: Line Filters aren&#39;t applied when using a 3rd file (GitHub #395)</li>
+<li>BugFix: &quot;Ignore blank lines&quot; does not work in 3-way compare (GitHub #450)</li>
+<li>BugFix: Fix the problem that the comparison result is displayed one line off in the file compare window if a sync point is added with the first line selected. (GitHub PR #435)</li>
+<li>BugFix: Fix the problem accessing the text buffer out of range if a sync point is added by selecting a ghost line that is after the last block. (GitHub PR #457)</li>
+<li>BugFix: Fix the problem that &quot;Goto...&quot;, &quot;Goto Line <line>&quot; and moving by left click on the location pane do not work appropriately when the Diff pane is active in the file compare window. (GitHub PR #476)</li>
+<li>BugFix: Reloading file does not refresh its encoding (GitHub #466)</li>
+<li>BugFix: Editor text display is abnormal - character spacing problem (GitHub #468)</li>
+<li>always copy &quot;full line&quot; instead of &quot;selected text only&quot; - option CopyFullLine (GitHub PR #459)</li>
+<li>Add the feature &quot;Go to Moved Line&quot; requested by #278 (GitHub PR #484)</li>
+<li>how to show white space with linebreak hidden? (GitHub #265) (Added View-&gt;View EOL menu item)</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Pausing comparing doesn&#39;t pause immediately (GitHub #342)</li>
+<li>BugFix: Sorting on Comparison Result being done incorectly (GitHub #483)</li>
+<li>Commandline to display versions in the output report (GitHub #418)</li>
+<li>&quot;Don&#39;t ask again&quot; checkbox for the Confirm Copy dialog (GitHub PR #445)</li>
+</ul>
+<h3 id="binary-compare">Binary compare</h3>
+<ul>
+<li>BugFix: Scrolling binary files (GitHub #456)</li>
+</ul>
+<h3 id="options-dialog">Options dialog</h3>
+<ul>
+<li>Added &quot;Automatically scroll to first inline difference&quot; option to Options dialog</li>
+</ul>
+<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
+<ul>
+<li>BugFix: Fixed the problem that the input to File1 or File2 comboboxes of the Patch Generator dialog is not applied when the Patch Generator dialog is opened by selecting multiple files. (GitHub PR #421)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Chinese Simplified (GitHub PR #465)</li>
+<li>Dutch (GitHub PR #482)</li>
+<li>Galician (GitHub PR #419,458,493)</li>
+<li>German (GitHub PR #438,448,480,490)</li>
+<li>Lithuanian (GitHub PR #417,439,443,449,481)</li>
+<li>Polish (GitHub PR #447)</li>
+<li>Portuguese (GitHub PR #429,467)</li>
+<li>Slovak (GitHub PR #470)</li>
+<li>Slovenian (GitHub PR #486,488)</li>
+<li>Spanish (GitHub PR #454)</li>
+<li>Turkish (GitHub PR #425)</li>
+</ul></li>
+</ul>
+<h3 id="manual">Manual</h3>
+<ul>
+<li>Update Shortcut_keys.xml (GitHub PR #430)</li>
+<li>Update manual (GitHub PR #485,492)</li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Tweak output from BuildInstaller.cmd and BuildArc.cmd (GitHub PR #424)</li>
+<li>Fix typo in GhostTextBuffer.cpp (GitHub PR #472)</li>
+<li>Fix typo in memdc.h (GitHub PR #474)</li>
+</ul>
+<h2 id="winmerge-2168---2020-08-28">WinMerge 2.16.8 - 2020-08-28</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>BugFix: More space for some internationalized strings (GitHub #402)</li>
 <li>BugFix: Some improvements (GitHub #405,411)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Ignore case option did not work when Diff algorithm was other than default</li>
 <li>BugFix: A white vertical rectangle was sometimes drawn in the selected area</li>
@@ -266,7 +107,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>Extended F4 key movement range to the whole file</li>
 <li>Don&#39;t treat UTF-8 and UTF-8 with BOM the same when the &quot;Ignore codepage differences&quot; option is disabled</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Appropriate error messages were not displayed when the file to be deleted no longer existed</li>
 <li>BugFix: &#39;Show Middle/Right Unique items&#39; menu item does not work properly in 3-way folder compare (osdn.net #40672)</li>
@@ -277,7 +118,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>BugFix: Fix scrolling glitches (GitHub WinMerge/winimerge PR #8)</li>
 <li>Reduce flicker on resize (GitHub WinMerge/winimerge PR #9)</li>
 </ul>
-<h3 id="options-dialog">Options dialog</h3>
+<h3 id="options-dialog-1">Options dialog</h3>
 <ul>
 <li>Allow choosing image filename patterns from a multi-selection dropdown list (GitHub PR #391)</li>
 <li>WildcardDropList: Avoid the String instance as it could throw std::bad_alloc (GitHub PR #397)</li>
@@ -300,7 +141,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>BugFix: Lithuanian.po is missing (GitHub PR #415)</li>
 <li>New installer for per-user installation (WinMerge-2.16.8-x64-PerUser-Setup.exe)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -312,13 +153,13 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>Russian (GitHub PR #387)</li>
 </ul></li>
 </ul>
-<h3 id="manual">Manual</h3>
+<h3 id="manual-1">Manual</h3>
 <ul>
 <li>Update manual for IgnoreCommentsC change (GitHub PR #384)</li>
 <li>Update Shortcut_keys.xml (GitHub PR #410)</li>
 </ul>
 <h2 id="winmerge-2167---2020-07-26">WinMerge 2.16.7 - 2020-07-26</h2>
-<h3 id="general-1">General</h3>
+<h3 id="general-2">General</h3>
 <ul>
 <li>BugFix: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
 <li>BugFix: GUI glitches/bugs (GitHub #316)</li>
@@ -326,7 +167,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
 <li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
 </ul>
-<h3 id="file-compare-1">File compare</h3>
+<h3 id="file-compare-2">File compare</h3>
 <ul>
 <li>BugFix: Diff Pane issues (GitHub #307)</li>
 <li>BugFix: Codepage not updated on refresh (GitHub #320)</li>
@@ -345,7 +186,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <ul>
 <li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
 </ul>
-<h3 id="folder-compare-1">Folder compare</h3>
+<h3 id="folder-compare-2">Folder compare</h3>
 <ul>
 <li>BugFix: DST causes incorrect dates shown in Date column (GitHub #299)</li>
 <li>BugFix: Long filename issue (GitHub #339)</li>
@@ -367,7 +208,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>BugFix: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
 <li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
 </ul>
-<h3 id="options-dialog-1">Options dialog</h3>
+<h3 id="options-dialog-2">Options dialog</h3>
 <ul>
 <li>BugFix: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
 </ul>
@@ -388,7 +229,7 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <ul>
 <li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
 </ul>
-<h3 id="translations-1">Translations</h3>
+<h3 id="translations-2">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -406,22 +247,22 @@ max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:
 <li>Turkish (GitHub PR #335,336,337,338)</li>
 </ul></li>
 </ul>
-<h3 id="manual-1">Manual</h3>
+<h3 id="manual-2">Manual</h3>
 <ul>
 <li>Minor changes to translations README.md file (GitHub #289)</li>
 <li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
 </ul>
-<h3 id="internals">Internals</h3>
+<h3 id="internals-1">Internals</h3>
 <ul>
 <li>BugFix: Src\Common\MyCom.h unused? (GitHub #284)</li>
 <li>BugFix: Error on git repository cloning (GitHub #288)</li>
 </ul>
 <h2 id="winmerge-2166---2020-02-23">WinMerge 2.16.6 - 2020-02-23</h2>
-<h3 id="general-2">General</h3>
+<h3 id="general-3">General</h3>
 <ul>
 <li>Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab, now the application is behave just like professional editors (Visual Studio, Notepad++, etc.) to switch and activate the open tabs. (GitHub #247)</li>
 </ul>
-<h3 id="file-compare-2">File compare</h3>
+<h3 id="file-compare-3">File compare</h3>
 <ul>
 <li>BugFix: GhostTextBuffer: Don&#39;t unexpectedly bring back empty lines user wants to delete (GitHub #244)</li>
 <li>BugFix: Prevent silent abort with File Comparison of files whose size is an exact multiple of 2^32 bytes (GitHub #257)</li>
@@ -442,7 +283,7 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <ul>
 <li>BugFix: Third tgz doesn&#39;t get fully extracted (first two do) (GitHub #263)</li>
 </ul>
-<h3 id="patch-generator-dialog">Patch generator dialog</h3>
+<h3 id="patch-generator-dialog-1">Patch generator dialog</h3>
 <ul>
 <li>BugFix: Crash when generating patch for multiple files and a file only on one side (GitHub #252)</li>
 </ul>
@@ -450,7 +291,7 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <ul>
 <li>BugFix: Fix spelling of Git (GitHub #246)</li>
 </ul>
-<h3 id="translations-2">Translations</h3>
+<h3 id="translations-3">Translations</h3>
 <ul>
 <li>New translation: Arabic (sf.net #3038)</li>
 <li>Translation updates:
@@ -463,18 +304,18 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <li>Spanish (GitHub #266)</li>
 </ul></li>
 </ul>
-<h3 id="manual-2">Manual</h3>
+<h3 id="manual-3">Manual</h3>
 <ul>
 <li>BugFix: Fix spelling of Git (GitHub #246)</li>
 <li>Update Configuration.xml (GitHub #262)</li>
 </ul>
-<h3 id="internals-1">Internals</h3>
+<h3 id="internals-2">Internals</h3>
 <ul>
 <li>Consolidate FolderCmp (GitHub #240, #242)</li>
 <li>Avoid some back and forth file path transcoding between UTF16 and UTF8 (GitHub #243)</li>
 </ul>
 <h2 id="winmerge-2165---2019-12-09">WinMerge 2.16.5 - 2019-12-09</h2>
-<h3 id="file-compare-3">File compare</h3>
+<h3 id="file-compare-4">File compare</h3>
 <ul>
 <li>BugFix: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)</li>
 <li>BugFix: Performance using Unpacker (GitHub #180)</li>
@@ -487,7 +328,7 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <li>Add support for color emoji (Only available in 64bit version) (To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog)<br />
 Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4</a></li>
 </ul>
-<h3 id="folder-compare-2">Folder compare</h3>
+<h3 id="folder-compare-3">Folder compare</h3>
 <ul>
 <li>BugFix: Crash when clicking Next Difference button after unchecking Show Different Items menu item</li>
 <li>Changed symbols in Newer/Older column for better visual clarity (GitHub #169)</li>
@@ -509,7 +350,7 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>BugFix: Windows 10 shell integration not working (GitHub #176)</li>
 <li>Installer - Proposal - Separate Inno Setup strings from WinMerge installer strings (GitHub #167)</li>
 </ul>
-<h3 id="translations-3">Translations</h3>
+<h3 id="translations-4">Translations</h3>
 <ul>
 <li>Update Italian translation (GitHub #164, #165)</li>
 <li>Update Russian translation (GitHub #166)</li>
@@ -525,19 +366,19 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>Update English.pot (#216)</li>
 <li>Add Japanese manual (GitHub #183)</li>
 </ul>
-<h3 id="manual-3">Manual</h3>
+<h3 id="manual-4">Manual</h3>
 <ul>
 <li>Small Manual tweaks (GitHub #190)</li>
 </ul>
 <h2 id="winmerge-2164---2019-07-28">WinMerge 2.16.4 - 2019-07-28</h2>
-<h3 id="file-compare-4">File compare</h3>
+<h3 id="file-compare-5">File compare</h3>
 <ul>
 <li>BugFix: coretools.cpp: linelen() should not truncate lines with embedded NULs (GitHub #156)</li>
 <li>BugFix: file compare : right-click doesn&#39;t select the diff under the mouse (GitHub #159)</li>
 <li>BugFix: Avoid an exception in GuessCodepageEncoding() when filepath equals &quot;NUL&quot; (GitHub #162)</li>
 <li>BugFix: Auto-indent did not work if the EOL-style was not CRLF</li>
 </ul>
-<h3 id="folder-compare-3">Folder compare</h3>
+<h3 id="folder-compare-4">Folder compare</h3>
 <ul>
 <li>BugFix: Generating HTML Folder Compare report including File Compare report did not complete (Bitbucket #15)</li>
 <li>BugFix: Compare Statistics dialog: The number of diff folders was counted in the number of diff files</li>
@@ -546,25 +387,25 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <ul>
 <li>BugFix: PrediffLineFilter.sct: Wrong encoding for settings dialog (Bitbucket #16)</li>
 </ul>
-<h3 id="translations-4">Translations</h3>
+<h3 id="translations-5">Translations</h3>
 <ul>
 <li>Update Russian translation (Bitbucket PR #51)</li>
 <li>Update Italian translation (Bitbucket PR #52)</li>
 </ul>
-<h3 id="internals-2">Internals</h3>
+<h3 id="internals-3">Internals</h3>
 <ul>
 <li>Favor PathContext::GetSize() over PathContext::size() (GitHub #157)</li>
 <li>Consolidate FolderCmp (GitHub #158, #160, #161)</li>
 <li>Avoid some InnoSetup compiler warnings (Bitbucket PR #53)</li>
 </ul>
 <h2 id="winmerge-2163---2019-06-29">WinMerge 2.16.3 - 2019-06-29</h2>
-<h3 id="general-3">General</h3>
+<h3 id="general-4">General</h3>
 <ul>
 <li>BugFix: Slow startup with documents folder redirected to high-latency network drive (Bitbucket #155)</li>
 <li>Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)</li>
 <li>Reduce the size of the executable file</li>
 </ul>
-<h3 id="file-compare-5">File compare</h3>
+<h3 id="file-compare-6">File compare</h3>
 <ul>
 <li>BugFix: Location and Diff pane visibility broken in 2.16.1 (GitHub #138, Bitbucket #163, sf.net #2228)</li>
 <li>BugFix: Temporary files could not be created (GitHub #143, sf.net #2220)</li>
@@ -576,7 +417,7 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="folder-compare-4">Folder compare</h3>
+<h3 id="folder-compare-5">Folder compare</h3>
 <ul>
 <li>BugFix: WinMerge 3-Way Compare Bugs: Always Shows Unique Items. (GitHub #154)</li>
 <li>BugFix: WinMerge could not compare files that are opened in other applications</li>
@@ -595,7 +436,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Implement Insertion/Deletion Detection<br />
 Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80</a></li>
 </ul>
-<h3 id="options-dialog-2">Options dialog</h3>
+<h3 id="options-dialog-3">Options dialog</h3>
 <ul>
 <li>Tweak size of combobox &quot;codepage&quot; in options (GitHub #144)</li>
 <li>Sort combobox codepage and add manual codepage (GitHub #145)</li>
@@ -605,14 +446,14 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Allow per-user installation (only x64 installer)</li>
 <li>Don&#39;t install Files.txt and don&#39;t add &quot;Uninstall WinMerge&quot; to the start menu (Bitbuket #38)</li>
 </ul>
-<h3 id="translations-5">Translations</h3>
+<h3 id="translations-6">Translations</h3>
 <ul>
 <li>Update French translation (GitHub #149, #150)</li>
 <li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)</li>
 <li>Update Russian translation (Bitbucket PR #41, #42)</li>
 </ul>
 <h2 id="winmerge-2162---2019-04-04">WinMerge 2.16.2 - 2019-04-04</h2>
-<h3 id="file-compare-6">File compare</h3>
+<h3 id="file-compare-7">File compare</h3>
 <ul>
 <li>BugFix: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)</li>
 <li>BugFix: Save As: default directory should be file&#39;s original directory (sf.net #2163)</li>
@@ -623,7 +464,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>BugFix: Crash when failed to load file</li>
 <li>Add syntax highlight for Lua (Bitbucket #114)</li>
 </ul>
-<h3 id="folder-compare-5">Folder compare</h3>
+<h3 id="folder-compare-6">Folder compare</h3>
 <ul>
 <li>BugFix: Compare results refresh incorrectly after deletions (sf.net #2217)</li>
 </ul>
@@ -644,7 +485,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <ul>
 <li>Allow quoted filenames in &quot;Select Files or Folders&quot; (sf.net #1240, GitHub #137)</li>
 </ul>
-<h3 id="manual-4">Manual</h3>
+<h3 id="manual-5">Manual</h3>
 <ul>
 <li>Some tweaks for the manual (Bitbucket PR #35)</li>
 </ul>
@@ -652,7 +493,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <ul>
 <li>BugFix: Gibberish language during installation (Bitbucket #147)</li>
 </ul>
-<h3 id="translations-6">Translations</h3>
+<h3 id="translations-7">Translations</h3>
 <ul>
 <li>Update Catalan translation (Bitbucket PR #29)</li>
 <li>Update Italian translation (Bitbucket PR #32)</li>
@@ -660,7 +501,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Update Simplified Chinese translation (Bitbucket PR #34)</li>
 </ul>
 <h2 id="winmerge-2161---2019-02-24">WinMerge 2.16.1 - 2019-02-24</h2>
-<h3 id="general-4">General</h3>
+<h3 id="general-5">General</h3>
 <ul>
 <li>Updated the copyright year to 2019, actually (GitHub #110)</li>
 <li>Prevent splitter view from claiming input focus (GitHub #127)</li>
@@ -672,7 +513,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
 <li>Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
 </ul>
-<h3 id="file-compare-7">File compare</h3>
+<h3 id="file-compare-8">File compare</h3>
 <ul>
 <li>BugFix: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
 <li>BugFix: Click doesn&#39;t trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
@@ -686,7 +527,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="folder-compare-6">Folder compare</h3>
+<h3 id="folder-compare-7">Folder compare</h3>
 <ul>
 <li>BugFix: Unique files are not shown (Bitbucket #138)</li>
 <li>BugFix: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
@@ -695,7 +536,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
 </ul>
-<h3 id="options-dialog-3">Options dialog</h3>
+<h3 id="options-dialog-4">Options dialog</h3>
 <ul>
 <li>BugFix: Widen the width of labels in Options dialog (GitHub#108)</li>
 <li>BugFix: view settings make winmerge crash (Bitbucket #109)</li>
@@ -707,7 +548,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>BugFix: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
 </ul>
-<h3 id="translations-7">Translations</h3>
+<h3 id="translations-8">Translations</h3>
 <ul>
 <li>Update Brazilian Portuguese translation (GitHub #108)</li>
 <li>Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
@@ -718,13 +559,13 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Update Japanese translation</li>
 <li>Remove now unneeded MergeLang.dll</li>
 </ul>
-<h3 id="manual-5">Manual</h3>
+<h3 id="manual-6">Manual</h3>
 <ul>
 <li>BugFix: Some fixes in the manual (GitHub #116)</li>
 <li>Bugifx: end of line documentation (sf.net #2211)</li>
 <li>Clarification as per <a href="https://github.com/WinMerge/winmerge-v2/issues/41">https://github.com/WinMerge/winmerge-v2/issues/41</a> (GitHub #126)</li>
 </ul>
-<h3 id="internals-3">Internals</h3>
+<h3 id="internals-4">Internals</h3>
 <ul>
 <li>Remove <code>nFinalNullLines</code> checking, disabled by an earlier commit (GitHub #111)</li>
 <li>Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
@@ -732,11 +573,11 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Don&#39;t pass <code>DIFFITEM *</code> by casting to <code>uintptr_t</code> (GitHub #124, #125)</li>
 </ul>
 <h2 id="winmerge-2160---2018-11-23">WinMerge 2.16.0 - 2018-11-23</h2>
-<h3 id="general-5">General</h3>
+<h3 id="general-6">General</h3>
 <ul>
 <li>BugFix: Disabled icon on toolbar not gray out when running on XP</li>
 </ul>
-<h3 id="file-compare-8">File compare</h3>
+<h3 id="file-compare-9">File compare</h3>
 <ul>
 <li>BugFix: Copy to X and Advance&quot; not work in 3way-compare (Bitbucket #123)</li>
 <li>BugFix: File compare always showing different ending (GitHub #106)</li>
@@ -752,13 +593,13 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Drop ClearCase integration (Bitbucket PR #6)</li>
 </ul>
-<h3 id="translations-8">Translations</h3>
+<h3 id="translations-9">Translations</h3>
 <ul>
 <li>Add Lithuanian translation (Bitbucket #124)</li>
 <li>Update Portuguese translation (GitHub #102,103)</li>
 </ul>
 <h2 id="winmerge-2155---2018-10-28">WinMerge 2.15.5 - 2018-10-28</h2>
-<h3 id="general-6">General</h3>
+<h3 id="general-7">General</h3>
 <ul>
 <li>Add support for very long path and file names (GitHub #87,95,99)</li>
 <li>Enable Ctrl+C shortcut key on the file path bar</li>
@@ -768,7 +609,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Improve visual layout of Open dialog (GitHub #97)</li>
 <li>Add icon for &quot;New (3 panes)&quot; menu item (GitHub #97)</li>
 </ul>
-<h3 id="file-compare-9">File compare</h3>
+<h3 id="file-compare-10">File compare</h3>
 <ul>
 <li>Add Window/Split menu item</li>
 <li>Improve handling of last lines in files (GitHub #89,90,93)</li>
@@ -779,7 +620,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>BugFix: Various problems reading of files &gt; 2GB (GitHub #81)</li>
 <li>BugFix: Selecting files &quot;From MRU list&quot; again works correctly</li>
 </ul>
-<h3 id="translations-9">Translations</h3>
+<h3 id="translations-10">Translations</h3>
 <ul>
 <li>Update Italian translation (GitHub #86)</li>
 <li>Update Japanese translation (Bitbucket #3)</li>
@@ -787,7 +628,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Update German translation</li>
 <li>BugFix: Spanish translation error (Bitbucket Issue #108)</li>
 </ul>
-<h3 id="internals-4">Internals</h3>
+<h3 id="internals-5">Internals</h3>
 <ul>
 <li>Various diffengine and compilation/build fixes (GitHub #89,90,91,92,94)</li>
 </ul>
@@ -796,7 +637,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>BugFix: Dot icon in a drop-down menu is not drawn correctly</li>
 </ul>
-<h3 id="file-compare-10">File compare</h3>
+<h3 id="file-compare-11">File compare</h3>
 <ul>
 <li>BugFix: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
 <li>BugFix: Crash when removing ghost lines (GitHub #80)</li>
@@ -804,7 +645,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
 <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
 </ul>
-<h3 id="folder-compare-7">Folder compare</h3>
+<h3 id="folder-compare-8">Folder compare</h3>
 <ul>
 <li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
 <li>Re-detect the file encoding when opening files (sf.net#2131)</li>
@@ -814,7 +655,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Add Options button to Open dialog</li>
 <li>Add Save Project button to Open dialog</li>
 </ul>
-<h3 id="patch-generator-dialog-1">Patch generator dialog</h3>
+<h3 id="patch-generator-dialog-2">Patch generator dialog</h3>
 <ul>
 <li>BugFix: File1/File2 fields don&#39;t remember manual input (sf.net#1949)</li>
 </ul>
@@ -827,17 +668,17 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Add PrediffLineFilter.sct plugin</li>
 <li>Make ignored lines by Prediffer plugin colored</li>
 </ul>
-<h3 id="translations-10">Translations</h3>
+<h3 id="translations-11">Translations</h3>
 <ul>
 <li>Update Slovak translation (sf.net#2902)</li>
 <li>Update Portuguese translation (GitHub #84,#85)</li>
 </ul>
-<h3 id="internals-5">Internals</h3>
+<h3 id="internals-6">Internals</h3>
 <ul>
 <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
 </ul>
 <h2 id="winmerge-2153---2018-03-04">WinMerge 2.15.3 - 2018-03-04</h2>
-<h3 id="file-compare-11">File compare</h3>
+<h3 id="file-compare-12">File compare</h3>
 <ul>
 <li>Fix assertion error when started on Windows XP</li>
 <li>Fix a problem that moved blocks are sometimes shown as normal diff blocks</li>
@@ -846,12 +687,12 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Fix infinite loop when replacing ^ (sf.net#2094)</li>
 <li>Fix to show text that contains &amp; on message box, correctly (sf.net#2067)</li>
 </ul>
-<h3 id="folder-compare-8">Folder compare</h3>
+<h3 id="folder-compare-9">Folder compare</h3>
 <ul>
 <li>Fix a problem that unique files are invisible when comparing files using &#39;Date&#39; compare method</li>
 <li>Remove trailing garbage from a dragged text (Github#75)</li>
 </ul>
-<h3 id="patch-generator-dialog-2">Patch generator dialog</h3>
+<h3 id="patch-generator-dialog-3">Patch generator dialog</h3>
 <ul>
 <li>Fix a problem that typed-in Context in Generate Patch is not applied (sf.net#2179)</li>
 </ul>
@@ -872,7 +713,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Remove extra space in installer: &quot; Launch WinMerge&quot; (sf.net#2144)</li>
 <li>Add &quot;How to Apply These Terms to Your New Programs&quot; section into GPL.rtf (sf.net#2098)</li>
 </ul>
-<h3 id="translations-11">Translations</h3>
+<h3 id="translations-12">Translations</h3>
 <ul>
 <li>Add Finnish translation (sf.net#3031)</li>
 <li>Add Sinhala translation (sf.net#3032)</li>
@@ -911,7 +752,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Show close button when hovering over tabs</li>
 <li>Add icons to each tab</li>
 </ul>
-<h3 id="options-dialog-4">Options dialog</h3>
+<h3 id="options-dialog-5">Options dialog</h3>
 <ul>
 <li>Add &quot;Close Select Files or Folders Dialog on clicking OK button&quot; checkbox to &quot;General&quot; page</li>
 <li>Add &quot;Language&quot; combobox to &quot;General&quot; page and remove Language dialog</li>
@@ -935,7 +776,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Remove &quot;Add Shell menu to context menu&quot; from &quot;Shell Integration&quot; page (WinMerge now always adds shell menu to context menu in Folder window)</li>
 <li>Add &quot;Register shell extension&quot; button to &quot;Shell Integration&quot; page</li>
 </ul>
-<h3 id="folder-compare-9">Folder Compare</h3>
+<h3 id="folder-compare-10">Folder Compare</h3>
 <ul>
 <li>Add Multi-thread compare support for Full Contents or Quick Contents method</li>
 <li>Color the background of items in list view</li>
@@ -956,7 +797,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>BugFix: Properly handle 3-way comparison of Binary files (Github #23)</li>
 <li>BugFix: Use proper font for View&gt;Use Default Font menu item (GitHub #24)</li>
 </ul>
-<h3 id="file-compare-12">File Compare</h3>
+<h3 id="file-compare-13">File Compare</h3>
 <ul>
 <li>Add support for 3-way compare/merge</li>
 <li>Add &quot;Diff Context&quot; menu to View menu to adjust the number of displayed diff context lines</li>
@@ -976,7 +817,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>BugFix: More on Issue #73 Fixed the -dl -dm and -dr description parameters for conflict files (for both 2 way and 3 way conflict files).(Bitbucket #1)</li>
 <li>BugFix: Fix Memory Leak with Drop Targets (GitHub #26)</li>
 </ul>
-<h3 id="binary-compare">Binary Compare</h3>
+<h3 id="binary-compare-1">Binary Compare</h3>
 <ul>
 <li>Install binary file editor (frhed) component again by default</li>
 <li>Make binary file editor undoable</li>
@@ -1025,7 +866,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>64-bit version of WinMerge is available</li>
 <li>Install plugins by default</li>
 </ul>
-<h3 id="translations-12">Translations</h3>
+<h3 id="translations-13">Translations</h3>
 <ul>
 <li>Update Portuguese translation (GitHub #2-17)</li>
 <li>Update Korean translation (GitHub #45)</li>
@@ -1041,7 +882,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Add support for jump list introduced in Windows 7</li>
 </ul>
-<h3 id="internals-6">Internals</h3>
+<h3 id="internals-7">Internals</h3>
 <ul>
 <li>Use POCO C++ libraries instead of pcre, expat and scew. They use pcre, expat internally</li>
 <li>Link statically with MFC and VC runtime libraries</li>

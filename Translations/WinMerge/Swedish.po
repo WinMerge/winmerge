@@ -47,7 +47,7 @@ msgid "Copy fro&m Right"
 msgstr "Kopiera från Höger"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "Markera Radskillnad\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -70,7 +70,7 @@ msgid "&Paste"
 msgstr "Klistra in"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "Gå till ...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -229,7 +229,7 @@ msgid "< Empty >"
 msgstr "< Tom >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "Avsluta\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -312,7 +312,7 @@ msgid "&Window"
 msgstr "Fönster"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Stäng\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -571,7 +571,7 @@ msgid "Save &Right As..."
 msgstr "Spara Höger som ..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Skriv ut ...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "UtskriftsFormat..."
@@ -1069,7 +1069,7 @@ msgid "Auto prediffer"
 msgstr "Auto PreDiffer"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Gå till Skillnad"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1078,10 +1078,6 @@ msgstr "Inga Flyttade Block"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "Alla Flyttade Block"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Flyttat Block för Aktuell Skillnad"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1100,8 +1096,8 @@ msgid "Ig&nore all"
 msgstr "Åsidosätt allt"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "VERSAL/gemen känslig"
+msgid "Ignore &case"
+msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1152,7 +1148,7 @@ msgid "About WinMerge"
 msgstr "Om WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Besök WinMerges Hemsida !"
 
 #, c-format
 msgid "OK"
@@ -1335,7 +1331,7 @@ msgid "Find &Prev"
 msgstr "Sök Föregående"
 
 msgid "&OK"
-msgstr ""
+msgstr "OK"
 
 #, c-format
 msgid "Replace"
@@ -1634,17 +1630,17 @@ msgid "Items total:"
 msgstr "Objekt totalt:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Gå Till"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Gå till:"
 
 #, c-format
 msgid "File"
 msgstr "Fil"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Gå till vad"
 
 #, c-format
 msgid "Li&ne"
@@ -1655,7 +1651,7 @@ msgid "&Difference"
 msgstr "Skillnad"
 
 msgid "&Go to"
-msgstr ""
+msgstr "Gå till"
 
 #, c-format
 msgid "Compare"
@@ -1680,10 +1676,6 @@ msgstr "Åsidosätt samtliga"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Åsidosätt blanka rader"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3747,6 +3739,9 @@ msgstr "Mappen finns inte."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Arkivstöd är inte möjliggjort.\n"
+"Alla krävda komponenter (7-Zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.\n"
+"Se manualen för mer information om arkivstöd och hur man möjliggör det."
 
 #, c-format
 msgid "Select file for export"
@@ -3988,7 +3983,7 @@ msgstr "<Automatisk>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Gå till rad %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -4049,7 +4044,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Möjliggör Auto Högsta Bredd"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed är inte installerad"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

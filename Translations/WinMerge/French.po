@@ -50,7 +50,7 @@ msgid "Copy fro&m Right"
 msgstr "Copier depuis la Droite"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Sélectionner la distinction\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -73,7 +73,7 @@ msgid "&Paste"
 msgstr "Co&ller"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Atteindre...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -232,7 +232,7 @@ msgid "< Empty >"
 msgstr "< Vide >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Quitter\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -315,7 +315,7 @@ msgid "&Window"
 msgstr "Fe&nêtre"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&Fermer\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -574,7 +574,7 @@ msgid "Save &Right As..."
 msgstr "Enregistrer D&roite sous..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "&Imprimer...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "&Mise en page..."
@@ -1072,7 +1072,7 @@ msgid "Auto prediffer"
 msgstr "Au&tomatique"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Atteindre la différence courante"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1081,10 +1081,6 @@ msgstr "&Ne pas afficher les blocs déplacés"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Afficher les blocs déplacés"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Afficher le bloc déplacé de la différence &courante"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1103,8 +1099,8 @@ msgid "Ig&nore all"
 msgstr "Ignorer &tout"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Respecter la casse"
+msgid "Ignore &case"
+msgstr "Ignorer la ca&sse"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1155,7 +1151,7 @@ msgid "About WinMerge"
 msgstr "A propos de WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Découvrez la page d'accueil de WinMerge !"
 
 #, c-format
 msgid "OK"
@@ -1342,7 +1338,7 @@ msgid "Find &Prev"
 msgstr "Chercher &Précédent"
 
 msgid "&OK"
-msgstr ""
+msgstr "&Ok"
 
 #, c-format
 msgid "Replace"
@@ -1641,17 +1637,17 @@ msgid "Items total:"
 msgstr "Éléments au total :"
 
 msgid "Go to"
-msgstr ""
+msgstr "Atteindre"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "A&tteindre :"
 
 #, c-format
 msgid "File"
 msgstr "Fichier"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Atteindre quoi"
 
 #, c-format
 msgid "Li&ne"
@@ -1662,7 +1658,7 @@ msgid "&Difference"
 msgstr "Di&fférence"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Atteindre"
 
 #, c-format
 msgid "Compare"
@@ -1687,10 +1683,6 @@ msgstr "Ignorer &tout"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorer les lignes &vides"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorer la ca&sse"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3815,6 +3807,11 @@ msgstr "Le répertoire n'existe pas."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"Le support d'archives n'est pas activé.\n"
+"Tous les composants requis (7-Zip et/ou Merge7z*.dll) pour le support "
+"d'archives ne peuvent être trouvés.\n"
+"Consulter la documentation au sujet du support d'archives indiquant comment "
+"l'activer."
 
 #, c-format
 msgid "Select file for export"
@@ -4076,7 +4073,7 @@ msgstr "<Automatique>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Atteindre la ligne %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -4137,7 +4134,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Activer largeur &auto max"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed n'est pas installé."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

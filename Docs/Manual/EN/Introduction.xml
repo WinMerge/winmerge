@@ -22,23 +22,25 @@
 
   <para>The goal of WinMerge development is to make comparing, synchronizing,
   and merging folders and files easy and fast, while maintaining maximum
-  reliability. Ease of use is of key importance for reducing errors. The latest
-  version, &WinMergeVersion; is
+  reliability. Ease of use is of key importance for reducing errors.</para>
+  
+  <para>The latest version &WinMergeVersion; is
   considered a stable and reliable program to use.</para>
 
-  <para>Please note that WinMerge is not freeware (as many sites on the Web have
-  stated): it is <ulink
-  url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licensed. We
-  provide you with a good tool for free, so please honor your license agreement
-  and submit improvements to us. We are happy to get help improving WinMerge, to
-  the advantage of all WinMerge users.</para>
+  <note>
+    <para>WinMerge is not freeware (as many sites on the Web have stated):
+    It is <ulink url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licensed.</para>
+    <para>We provide you with a good tool for free, so please honor your license agreement
+    and submit improvements to us. We are happy to get help improving WinMerge, to
+    the advantage of all WinMerge users.</para>
+  </note>
 
   <section>
     <title>WinMerge versions<indexterm>
         <primary>WinMerge versions</primary>
       </indexterm></title>
 
-    <para>There are three kind of versions available in the <ulink
+    <para>There are two kind of versions available in the <ulink
     url="https://sourceforge.net/projects/winmerge/files/">downloads</ulink>
     page.</para>
 
@@ -71,77 +73,6 @@
       year, so it may be worth waiting for few months for the next stable
       release...</para>
     </section>
-
-    <section>
-      <title><indexterm>
-          <primary>experimental WinMerge versions</primary>
-        </indexterm>Experimental versions</title>
-
-      <para><ulink
-      url="https://sourceforge.net/projects/winmerge/files/alpha/">Experimental
-      versions</ulink> or alpha versions are snapshot releases from our version control system
-      (Subversion). They have all the latest features and improvements. Some
-      features may still be buggy or incomplete. These releases are made
-      available to allow users to try out the current code without needing to
-      compile, and to participate in development discussions concerning new and
-      changing features. We also appreciate any help testing the current code.
-      Use experimental versions with care and enable backups! And please <ulink
-      url="https://github.com/WinMerge/winmerge/issues">report
-      bugs</ulink> that you find while using these builds: it really helps with
-      WinMerge development!</para>
-    </section>
-
-    <section>
-      <title>Version tree</title>
-
-      <para>All this talk about different versions might be confusing if you
-      never have worked with this kind of model. Lets illustrate with a
-      picture:</para>
-
-      <para><mediaobject>
-          <imageobject>
-            <imagedata fileref="art/WinMerge_versions.png" format="PNG" />
-          </imageobject>
-
-          <caption><para> WinMerge stable and development
-          versions</para></caption>
-        </mediaobject>The preceding diagram shows the relationships between
-      different releases and versions. Development always happens within
-      experimental and beta development versions. At the appropriate points we
-      create new branches for stable releases. In the diagram, the arrows for
-      2.4.x and 2.6.x versions are two current stable branches. (The diagram is
-      a snapshot; it is not updated to show the current stable branch.)</para>
-
-      <important>
-        <para>A branch always indicates a separate development effort. There is
-        no any automation to copy improvements or fixes from development
-        versions to stable versions, or in the opposite direction. Changes are
-        always selected by hand and then merged (using WinMerge, of
-        course).</para>
-      </important>
-
-      <para>After a branch is created, we try to keep the code in it as stable
-      as possible. Usually this means that we copy only tested bug fixes from
-      development versions to stable versions. Unfortunately this is not always
-      an easy task, and errors can occur. New bugs can also appear in stable
-      versions: this is real-life software development. However, in general,
-      quality increases in branches. For example, 2.6.14 was a better release
-      than 2.4.0. So we always recommend using the latest stable branch
-      release.</para>
-
-      <para>This branching also means that stable versions don't get many new
-      features after a branch is created. Stable versions 2.6.0 and 2.6.14 had
-      pretty similar features. After the 2.6 stable branch, we created a new
-      stable branch, 2.8, where we added many improvements and fixes.</para>
-
-      <para>Many software vendors always increase their version numbers and
-      advise people to use the version with the biggest number. If WinMerge were
-      developed as proprietary software, users would see only versions from
-      stable branches. But because WinMerge is an open source software project,
-      we want to keep our development as open as possible and to release many
-      development versions. The latest development version can have version
-      number 2.9.1.0 and the latest stable version can be version 2.6.14.</para>
-    </section>
   </section>
 
   <section>
@@ -151,10 +82,18 @@
         <secondary>reporting bugs</secondary>
       </indexterm>Getting support and reporting bugs</title>
 
-    <para>The <ulink
-    url="https://forums.winmerge.org/viewforum.php?f=4">Open
-    Discussion forum</ulink> is the fastest way to get help. Please be patient,
-    it may take some time for somebody to answer.</para>
+    <para>The <emphasis>Discussion forums</emphasis> are the fastest way to get help:</para>
+    <itemizedlist>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winmerge/discussions">WinMerge discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winimerge/discussions">Image Compare discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/website/discussions">Website discussions</ulink>
+      </listitem>
+    </itemizedlist>
 
     <para>If you find a bug, please submit it as a <ulink
     url="https://github.com/WinMerge/winmerge/issues">bug
@@ -182,9 +121,8 @@
         <primary>WinMerge development</primary>
       </indexterm>WinMerge source code and development</title>
 
-    <para>WinMerge source code is available in the <ulink
-    url="https://sourceforge.net/projects/winmerge/files/">downloads</ulink>
-    page and from the
+    <para>WinMerge source code is available on our <ulink
+    url="https://winmerge.org/source-code/">website</ulink> and from the
     <ulink url="https://github.com/winmerge/">GitHub</ulink> project pages.
     Anyone can download the sources, study them, and alter them.
     If you find (and fix) bugs, improve something, and so on, please submit your

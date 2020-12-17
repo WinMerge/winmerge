@@ -384,46 +384,6 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.sct<indexterm>
-          <primary>CompareMSWordFiles.sct plugin file</primary>
-        </indexterm></filename></title>
-
-      <para><trademark
-      class="registered">Microsoft</trademark> <application>Word</application>
-      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
-
-      <para><segmentedlist>
-          <segtitle>分類</segtitle>
-
-          <segtitle>ファイルフィルタ</segtitle>
-
-          <segtitle>書き戻し</segtitle>
-
-          <segtitle>設定ダイアログサポート</segtitle>
-
-          <segtitle>依存するもの</segtitle>
-
-          <seglistitem>
-            <seg>展開プラグイン</seg>
-
-	    <seg><filename class="extension">*.doc</filename>, <filename
-            class="extension">*.docx</filename>, <filename
-            class="extension">*.docm</filename>, <filename
-            class="extension">*.dot</filename>, <filename
-            class="extension">*.dotx</filename>, <filename
-            class="extension">*.dotm</filename></seg>
-
-            <seg>No</seg>
-
-            <seg>Yes</seg>
-
-            <seg><trademark class="registered">Microsoft</trademark>
-            <application>Word</application></seg>
-          </seglistitem>
-        </segmentedlist></para>
-    </section>
-
     <section id="Plugins_powerpnt">
       <title><filename>CompareMSPowerPointFiles.sct<indexterm>
           <primary>CompareMSPowerPointFiles.sct plugin file</primary>
@@ -505,6 +465,46 @@
 
             <seg><trademark class="registered">Microsoft</trademark>
             <application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles.sct<indexterm>
+          <primary>CompareMSWordFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>Word</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+            class="extension">*.docx</filename>, <filename
+            class="extension">*.docm</filename>, <filename
+            class="extension">*.dot</filename>, <filename
+            class="extension">*.dotx</filename>, <filename
+            class="extension">*.dotm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Word</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

@@ -277,8 +277,8 @@ protected:
 	afx_msg void OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
-	afx_msg void OnDiffCaseSensitive();
-	afx_msg void OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCase();
+	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCP();

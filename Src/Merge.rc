@@ -792,7 +792,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -806,7 +805,7 @@ BEGIN
             MENUITEM "I&gnore changes",             IDC_DIFF_WHITESPACE_IGNORE
             MENUITEM "Ig&nore all",                 IDC_DIFF_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Case sensi&tive",             IDC_DIFF_CASESENSITIVE
+        MENUITEM "Ignore &case",                IDC_DIFF_IGNORECASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
         MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
         MENUITEM SEPARATOR
@@ -1008,26 +1007,26 @@ BEGIN
     CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,240,10
     CONTROL         "Automatically s&croll to first inline difference",IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,16,240,10
-    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,26,240,10
-    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,37,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,240,10
+    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,28,240,10
+    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,39,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,52,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,56,240,10
     CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,64,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,68,240,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,76,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,80,240,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,92,240,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,100,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,112,240,10
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,116,240,10
     LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,132,240,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,144,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,162,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,174,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,192,240,30
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,194,240,30
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
@@ -1257,7 +1256,7 @@ BEGIN
     CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,134,142,10
-    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
+    CONTROL         "Ignore &case",IDC_DIFF_IGNORECASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_DIFF_IGNOREEOL,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,281,10
     CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
@@ -2366,7 +2365,6 @@ END
 IDD_PROPPAGE_COMPARE AFX_DIALOG_LAYOUT
 BEGIN
     0,
-    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,

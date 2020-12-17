@@ -1427,7 +1427,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	}
 	else
 	{
-		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press OK)\n\t-abort the current operation (Press Cancel)?"), strPath, sError);
+		str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), strPath, sError);
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
@@ -3571,9 +3571,8 @@ void CMergeDoc::OnToolsGenerateReport()
 	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 
-	GenerateReport(s.c_str());
-
-	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+	if (GenerateReport(s.c_str()))
+		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 
 /**

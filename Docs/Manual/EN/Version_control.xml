@@ -71,11 +71,11 @@
       linkend="Installing_usinginstaller">WinMerge installation</link>.</para>
 
       <example>
-        <title>Tortoise SVN integration</title>
+        <title>TortoiseSVN integration</title>
 
         <para>Here is a sample diff operation in TortoiseSVN that uses the
-        WinMerge integration. The integrations with TortoiseCVS and TortoiseGit
-        are similar.</para>
+        WinMerge integration. The integration with TortoiseCVS and TortoiseGit
+        is similar.</para>
 
         <orderedlist>
           <listitem>
@@ -111,7 +111,7 @@
           <listitem>
             <para>Choose either the <guimenuitem>Diff with previous
             version</guimenuitem> or <guimenuitem>Diff</guimenuitem> shortcut.
-            The WinMerge window opens, with the target file versions loaded In
+            The WinMerge window opens, with the target file versions loaded in
             the File Compare window.</para>
           </listitem>
         </orderedlist>
@@ -137,7 +137,7 @@
                 <guimenuitem>Diff</guimenuitem>
               </menuchoice> in the context menu.</para>
 
-            <para>The WinMerge window opens, with the selected files loaded In
+            <para>The WinMerge window opens, with the selected files loaded in
             the File Compare window.</para>
           </listitem>
         </orderedlist>
@@ -147,7 +147,7 @@
         <title>Visual Studio Team Foundation Server integration</title>
 
         <para>You can manually set up WinMerge as the default tool to use for
-		in Visual Studio to show differences in Team Foundation Server (TFS)
+		in Visual Studio to show differences in Team Foundation Server (TFS).
         Other version control systems can be set up in very similar ways.</para>
 
         <orderedlist>

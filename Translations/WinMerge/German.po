@@ -1078,10 +1078,6 @@ msgid "&All Moved Blocks"
 msgstr "&Alle verschobenen Blöcke"
 
 #, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "&Verschobener Block für aktuellen Unterschied"
-
-#, c-format
 msgid "W&hitespaces"
 msgstr "&Leerzeichen"
 
@@ -1098,8 +1094,8 @@ msgid "Ig&nore all"
 msgstr "&Alle ignorieren"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Groß-/Kleinschreibung beachten"
+msgid "Ignore &case"
+msgstr "&Groß-/Kleinschreibung ignorieren"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1678,10 +1674,6 @@ msgstr "&Alle ignorieren"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Leerzeilen ignorieren"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "&Groß-/Kleinschreibung ignorieren"
 
 msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"

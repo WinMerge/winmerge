@@ -100,7 +100,7 @@ Believe it or not.</screen></para>
             </imageobject>
 
             <textobject>
-              <phrase>Compare Files screen shot</phrase>
+              <phrase>Compare Files screenshot</phrase>
             </textobject>
           </mediaobject>
 
@@ -332,7 +332,7 @@ Believe it or not.</screen></para>
                 <phrase>Copy Right button</phrase>
               </textobject>
             </inlinemediaobject> <guibutton>Copy Right</guibutton> to merge
-          difference 1 from <filename>File1</filename> to
+          Difference 1 from <filename>File1</filename> to
           <filename>File2</filename>. In <filename>File</filename>2, notice that
           the single difference line is replaced by the two lines from
           <filename>File1</filename>, and the gray blank line is now

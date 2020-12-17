@@ -39,7 +39,7 @@ msgid "Copy fro&m Right"
 msgstr "Kopiuj z prawej"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "Zaznacz różniące się linie\tF4"
 
 msgid "&Undo"
 msgstr "Cofnij"
@@ -57,7 +57,7 @@ msgid "&Paste"
 msgstr "Wklej"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "Idź do...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -188,7 +188,7 @@ msgid "< Empty >"
 msgstr "< pusty >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "Zakończ\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Edycja"
@@ -251,7 +251,7 @@ msgid "&Window"
 msgstr "Okno"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "Zamknij\tCtrl+W"
 
 msgid "Clo&se All"
 msgstr "Zamknij wszystkie"
@@ -449,7 +449,7 @@ msgid "Save &Right As..."
 msgstr "Zapisz prawą jako..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "Drukuj...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Ustawienia strony..."
@@ -847,16 +847,13 @@ msgid "Auto prediffer"
 msgstr "Automatyczne różnicowanie wstępne"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Idź d&o różnicy"
 
 msgid "&No Moved Blocks"
 msgstr "Bez prze&niesionych bloków"
 
 msgid "&All Moved Blocks"
 msgstr "Wszystkie przeniesione bloki"
-
-msgid "Moved Block for &Current Diff"
-msgstr "Przeniesiony blok dla bieżą&cej różnicy"
 
 msgid "W&hitespaces"
 msgstr "Białe znaki"
@@ -870,8 +867,8 @@ msgstr "I&gnoruj zmiany"
 msgid "Ig&nore all"
 msgstr "Ig&noruj wszystkie"
 
-msgid "Case sensi&tive"
-msgstr "Uwzględnij wielkość li&ter"
+msgid "Ignore &case"
+msgstr "Ignoruj wielkości liter"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ruj znaki końca linii (Windows/Unix/Mac)"
@@ -910,7 +907,7 @@ msgid "About WinMerge"
 msgstr "O programie WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Odwiedź stronę domową WinMerge!"
 
 msgid "OK"
 msgstr "OK"
@@ -1051,7 +1048,7 @@ msgid "Find &Prev"
 msgstr "Znajdź &poprz."
 
 msgid "&OK"
-msgstr ""
+msgstr "&OK"
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -1282,16 +1279,16 @@ msgid "Items total:"
 msgstr "Wszystkie elementy:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Idź do"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "Idź do:"
 
 msgid "File"
 msgstr "Plik"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Element docelowy"
 
 msgid "Li&ne"
 msgstr "Linia"
@@ -1300,7 +1297,7 @@ msgid "&Difference"
 msgstr "Różnica"
 
 msgid "&Go to"
-msgstr ""
+msgstr "Idź do"
 
 msgid "Compare"
 msgstr "Porównaj"
@@ -1319,9 +1316,6 @@ msgstr "Ignoruj wszystkie"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignoruj puste linie"
-
-msgid "Ignore &case"
-msgstr "Ignoruj wielkości liter"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -2813,7 +2807,7 @@ msgid "Folder does not exist."
 msgstr "Folder nie istnieje."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr ""
+msgstr "Obsługa archiwów nie została włączona.\nNie znaleziono wszystkich potrzebnych komponentów (7-Zip i/lub Merge7z*.dll) do obsługi archiwów.\nWięcej informacji na temat obsługi archiwów i sposobu jej włączania znajdziesz w podręczniku."
 
 msgid "Select file for export"
 msgstr "Wybierz plik do eksportu"
@@ -2956,7 +2950,7 @@ msgstr "<automatycznie>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Idź do linii %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -3004,7 +2998,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Free Hex Editor nie został zainstalowany"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

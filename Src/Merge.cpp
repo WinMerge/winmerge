@@ -220,8 +220,8 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	bool bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
-		(true == cmdInfo.m_bSingleInstance);
+	bool bSingleInstance = cmdInfo.m_bSingleInstance.has_value() ?
+		*cmdInfo.m_bSingleInstance : GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
 
 	// Create exclusion mutex name
 	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");

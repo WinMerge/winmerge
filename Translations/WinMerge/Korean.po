@@ -49,7 +49,7 @@ msgid "Copy fro&m Right"
 msgstr "오른쪽에서 복사(&M)"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "줄 차이점 선택(&S)\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -72,7 +72,7 @@ msgid "&Paste"
 msgstr "붙여넣기(&P)"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "이동(&G)\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -231,7 +231,7 @@ msgid "< Empty >"
 msgstr "< 비어 있음 >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "종료(&X)\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -314,7 +314,7 @@ msgid "&Window"
 msgstr "창(&W)"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "닫기(&O)\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -573,7 +573,7 @@ msgid "Save &Right As..."
 msgstr "오른쪽 저장(&R)..."
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "인쇄(&P)...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "페이지 설정(&T)..."
@@ -1071,7 +1071,7 @@ msgid "Auto prediffer"
 msgstr "자동 prediffer"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "차이점으로 이동(&O)"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1080,10 +1080,6 @@ msgstr "이동된 블럭 없음(&N)"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "모든 이동된 블럭(&A)"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "현재 차이점에 대해 이동된 블럭(&C)"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1102,8 +1098,8 @@ msgid "Ig&nore all"
 msgstr "모두 무시하기(&N)"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "대소문자 구분하기(&T)"
+msgid "Ignore &case"
+msgstr "대소문자 무시하기(&C)"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1154,7 +1150,7 @@ msgid "About WinMerge"
 msgstr "WinMerge 정보"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "WinMerge 홈페이지 방문!"
 
 #, c-format
 msgid "OK"
@@ -1337,7 +1333,7 @@ msgid "Find &Prev"
 msgstr "이전 찾기(&P)"
 
 msgid "&OK"
-msgstr ""
+msgstr "확인(&O)"
 
 #, c-format
 msgid "Replace"
@@ -1636,17 +1632,17 @@ msgid "Items total:"
 msgstr "전체 항목 :"
 
 msgid "Go to"
-msgstr ""
+msgstr "이동"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "이동(&O):"
 
 #, c-format
 msgid "File"
 msgstr "파일"
 
 msgid "Go to what"
-msgstr ""
+msgstr "이동 위치"
 
 #, c-format
 msgid "Li&ne"
@@ -1657,7 +1653,7 @@ msgid "&Difference"
 msgstr "차이점(&D)"
 
 msgid "&Go to"
-msgstr ""
+msgstr "이동(&G)"
 
 #, c-format
 msgid "Compare"
@@ -1682,10 +1678,6 @@ msgstr "모두 무시하기(&G)"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "공백 줄 무시하기(&K)"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "대소문자 무시하기(&C)"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3752,6 +3744,10 @@ msgstr "폴더가 존재하지 않습니다."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"압축 지원이 꺼져 있습니다.\n"
+"\n"
+"압축 지원에 필요한 컴포넌트(7-Zip and/or Merge7z*.dll)를 찾을 수 없습니다.\n"
+"압축 지원에 대한 추가 정보와 사용법은 메뉴얼을 참조하세요."
 
 #, c-format
 msgid "Select file for export"
@@ -4010,7 +4006,7 @@ msgstr "<자동>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "%1줄로 이동(&O)"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""

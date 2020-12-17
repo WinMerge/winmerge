@@ -69,7 +69,6 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
 	pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
 	pOptions->InitOption(OPT_VIEW_EOL, false);
-	pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST_INLINE_DIFF, false);
 	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);

@@ -71,6 +71,20 @@
 
     <variablelist>
       <varlistentry>
+        <term>To import options</term>
+
+        <listitem>
+          <para>When you want to reuse your saved options, click
+          <guibutton>Import</guibutton>. In the Select file for import dialog,
+          navigate to the saved <filename>ini</filename> file and click
+          <guibutton>Open</guibutton>.</para>
+
+          <para>The values in your imported options file replace all existing
+          settings.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>To export options</term>
 
         <listitem>
@@ -82,20 +96,6 @@
 
           <para>In the generated text <filename>ini</filename> file, each line
           contains a name-value pair that defines a single option.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>To import options</term>
-
-        <listitem>
-          <para>When you want to reuse your saved options, click
-          <guibutton>Import</guibutton>. In the Select file for import dialog,
-          navigate to the saved <filename>ini</filename> file and click
-          <guibutton>Open</guibutton>.</para>
-
-          <para>The values in your imported options file replace all existing
-          settings.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,6 +138,23 @@
     </section>
 
     <section>
+      <title>Automatically scroll to first inline difference<indexterm>
+          <primary>autoscrolling to first inline difference</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Close Windows with '<keycap>Esc</keycap>'<indexterm>
           <primary>closing windows using Esc key</primary>
         </indexterm></title>
@@ -175,12 +192,12 @@
         <listitem>
           <para><option>Enabled</option> (default): The Select Files or Folders
           dialog checks both paths as you enter them. The
-          <guibutton>OK</guibutton> button remains disabled until both paths are
+          <guibutton>Compare</guibutton> button remains disabled until both paths are
           validated. Note that this checking can cause some delay.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: The <guibutton>OK</guibutton> button
+          <para><option>Disabled</option>: The <guibutton>Compare</guibutton> button
           in the Select Files or Folders dialog is always enabled, and attempts
           to open any paths you specify. Since there is no delay during
           validation, this can speed up the selection of paths. However, if the
@@ -289,17 +306,17 @@
     </section>
 
     <section>
-      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+      <title>Close "Select Files or Folders" Dialog on clicking Compare button<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): When you click <guilabel>Compare</guilabel> button, the Select File or Folder dialog will remain open instead of closing.</para>
+          <para><option>Disabled</option> (default): When you click <guibutton>Compare</guibutton> button, the Select File or Folders dialog will remain open instead of closing.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Clicking <guilabel>Compare</guilabel> button closes the Select Files or Folders dialog.</para>
+          <para><option>Enabled</option>: Clicking <guibutton>Compare</guibutton> button closes the Select Files or Folders dialog.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -653,7 +670,7 @@
     </section>
 
     <section>
-      <title>Diff algorithm<indexterm>
+      <title>Diff algorithm (Experimental)<indexterm>
           <primary>algorithm</primary>
         </indexterm></title>
 
@@ -703,7 +720,7 @@
     <title>Compare Folder page</title>
 
     <section id="Configuration_compmethod">
-      <title>File Compare method<indexterm>
+      <title>Compare method<indexterm>
           <primary>comparing files</primary>
 
           <secondary>detection options</secondary>
@@ -869,11 +886,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge also shows the content from unique subfolders.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -887,11 +904,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): TBD</para>
+          <para><option>Enabled</option> (default): WinMerge doing a recursive comparing and also includes subfolders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: WinMerge only comparing the files in the root folder.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -905,11 +922,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge don't expand all subfolders after a folder compare.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge automatically expand all subfolders after finishing a folder compare.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -942,12 +959,12 @@
       <itemizedlist>
         <listitem>
           <para><option>Disabled</option>: Is not active unless the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to <guilabel>Quick Contents</guilabel>.</para>
         </listitem>
 
         <listitem>
           <para><option>Enabled</option>: Is active when the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to <guilabel>Quick Contents</guilabel>.</para>
 
           <para>This option sets the limit when WinMerge should stop comparing.
 		  If the limit is set to for instance 4 MB, then WinMerge will only read 
@@ -973,11 +990,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: Is not active unless the Compare method 
+          is set to <guilabel>Binary Contents</guilabel>.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: Is active when the Compare method 
+          is set to <guilabel>Binary Contents</guilabel>.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -987,19 +1006,10 @@
           <primary>compare threads</primary>
         </indexterm></title>
 
-      <para>TBD</para>
+      <para>Number of threads which use to comparing. With a negative value WinMerge
+      will use addition of the number of available CPU cores.</para>
     </section>
 
-  </section>
-
-  <section id="Configuration_compare_binary">
-    <title>Compare Binary page</title>
-    <section>
-      <title>Binary File Patterns<indexterm>
-          <primary>binary files</primary>
-        </indexterm></title>
-      <para>TBD</para>
-    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -1063,6 +1073,47 @@
     </section>
   </section>
 
+  <section id="Configuration_compare_binary">
+    <title>Compare Binary page</title>
+    <section>
+      <title>Binary File Patterns<indexterm>
+          <primary>binary files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
+    <section>
+      <title>Frhed settings<indexterm>
+          <primary>frhed</primary>
+        </indexterm></title>
+      <para>TBD</para>
+      <variablelist>
+        <varlistentry>
+          <term>View Settings...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Binary Mode...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Character Set...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
   <section id="Configuration_compare_image">
     <title>Compare Image page<indexterm>
           <primary>image files</primary>
@@ -1086,7 +1137,7 @@
       </indexterm></title>
 
     <section id="Configuration_syntaxhighlight">
-      <title>Syntax highlighting<indexterm>
+      <title>Highlight syntax<indexterm>
           <primary>syntax highlighting</primary>
 
           <secondary>enabling and disabling</secondary>
@@ -1183,7 +1234,7 @@
     </section>
 
     <section>
-      <title>Tab options<indexterm>
+      <title>Tabs<indexterm>
           <primary>tabs</primary>
 
           <secondary>editing options</secondary>
@@ -1227,7 +1278,7 @@
     </section>
 
     <section id="Configuration_viewlinediffs">
-      <title>View line differences<indexterm>
+      <title>Line Difference Coloring<indexterm>
           <primary>line differences</primary>
 
           <secondary>viewing options</secondary>
@@ -1237,58 +1288,76 @@
       differences</glossterm> (changes within the lines of difference
       blocks):</para>
 
-      <itemizedlist>
+      <variablelist>
+        <varlistentry>
+          <term>View line differences</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>Enabled</option> (default): WinMerge highlights
+                differences within lines. Also enables the <menuchoice>
+                    <guimenu>View</guimenu>
+      
+                    <guimenuitem>View Line Differences</guimenuitem>
+                  </menuchoice> menu item.</para>
+      
+                <para>Choose one of these suboptions:</para>
+      
+                <itemizedlist>
+                  <listitem>
+                    <para><guilabel>Character level</guilabel>: Highlights individual
+                    characters that are different. This option can be useful if you
+                    are looking for changes within words, or for file formats that do
+                    not have clear word breaks.</para>
+                  </listitem>
+      
+                  <listitem>
+                    <para><guilabel>Word-level</guilabel> (default): Highlights
+                    entire words that are different.</para>
+      
+                    <itemizedlist>
+                      <listitem>
+                        <para><guilabel>Break at whitespace</guilabel> (default):
+                        Words are assumed to be separated by whitespace characters.
+                        This usually works for typical text files.</para>
+                      </listitem>
+      
+                      <listitem>
+                        <para><guilabel>Break at whitespace or punctuation</guilabel>:
+                        Considers both whitespace and punctuation characters to be
+                        word breaks. This can useful for handling lists that are
+                        separated with punctuation (like comma-separated
+                        lists).</para>
+                      </listitem>
+                    </itemizedlist>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+
+              <listitem>
+                <para><option>Disabled</option>: WinMerge does not highlight line
+                differences, and all settings for the level and whitespace options are
+                ignored. Also disables the <menuchoice>
+                    <guimenu>View</guimenu>
+      
+                    <guimenuitem>View Line Differences</guimenuitem>
+                  </menuchoice> menu item.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Word break characters</term>
+
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge highlights
-          differences within lines. Also enables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
-
-          <para>Choose one of these suboptions:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Character level</guilabel>: Highlights individual
-              characters that are different. This option can be useful if you
-              are looking for changes within words, or for file formats that do
-              not have clear word breaks.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>Word-level</guilabel> (default): Highlights
-              entire words that are different.</para>
-
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Break at whitespace</guilabel> (default):
-                  Words are assumed to be separated by whitespace characters.
-                  This usually works for typical text files.</para>
-                </listitem>
-
-                <listitem>
-                  <para><guilabel>Break at whitespace or punctuation</guilabel>:
-                  Considers both whitespace and punctuation characters to be
-                  word breaks. This can useful for handling lists that are
-                  separated with punctuation (like comma-separated
-                  lists).</para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
+          <para>TBD</para>
         </listitem>
-
-        <listitem>
-          <para><option>Disabled</option>: WinMerge does not highlight line
-          differences, and all settings for the level and whitespace options are
-          ignored. Also disables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
-        </listitem>
-      </itemizedlist>
+        </varlistentry>
+      </variablelist>
 
       <note>
         <title>Related topic</title>
@@ -1296,6 +1365,42 @@
         <para><xref linkend="CompareFiles_linediff-highlight" /> explains in
         more detail how WinMerge detects and marks line differences.</para>
       </note>
+    </section>
+
+    <section>
+      <title>Rendering Mode<indexterm>
+          <primary>rendering</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>GDI</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Default</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Aliased</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Classic</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
@@ -1315,22 +1420,18 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
-  <section id="Configuration_textcolors">
-    <title>Text Colors page<indexterm>
-        <primary>text colors</primary>
+  <section id="Configuration_differencescolors">
+    <title>Differences Colors page<indexterm>
+        <primary>differences colors</primary>
 
         <secondary>options</secondary>
       </indexterm></title>
 
-    <para>Use this page to change the colors used for text. First, check the
-    option, <guilabel>Use customized text colors</guilabel>. This activates the
-    text options. There is an option for three kinds of text: whitespace,
-    regular text, and selected text. For each kind of text , you can choose a
-    color for the background and the text.</para>
+    <para>TBD</para>
   </section>
 
   <section id="Configuration_syntaxcolors">
@@ -1346,8 +1447,22 @@
     elements that are recognized, and enables you to change their text color and
     weight.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
+  </section>
+
+  <section id="Configuration_textcolors">
+    <title>Text Colors page<indexterm>
+        <primary>text colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>Use this page to change the colors used for text. First, check the
+    option, <guilabel>Use customized text colors</guilabel>. This activates the
+    text options. There is an option for three kinds of text: whitespace,
+    regular text, and selected text. For each kind of text , you can choose a
+    color for the background and the text.</para>
   </section>
 
   <section id="Configuration_markercolors">
@@ -1376,8 +1491,8 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_archive">
@@ -1506,7 +1621,7 @@
     </section>
 
     <section>
-      <title>Filter Folder<indexterm>
+      <title>Filter folder<indexterm>
           <primary>Filters folders</primary>
 
           <secondary>specifying default private folder</secondary>
@@ -1655,7 +1770,7 @@
     </note>
 
     <section>
-      <title>Default codepage for non-Unicode files</title>
+      <title>Default Codepage</title>
 
       <para>Choose one of these radio buttons to set the default codepage that
       WinMerge uses when handling ANSI files:</para>
@@ -1730,6 +1845,13 @@ or is this understood?--></para>
           </caution>
         </listitem>
       </itemizedlist>
+    </section>
+
+    <section>
+      <title>Detect codepage for text files using mlang.dll</title>
+
+      <para>TBD</para>
+
     </section>
   </section>
 

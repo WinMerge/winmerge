@@ -23,11 +23,11 @@
 	
 	<itemizedlist>
 	  <listitem>
-	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(64 bit)</ulink> 
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge 2.16.8 (64 bit)</ulink> 
 		supports Windows 7 and later. It runs on 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
-	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(32 bit)</ulink> 
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge 2.16.8 (32 bit)</ulink> 
 		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
@@ -71,10 +71,6 @@
       </listitem>
 
       <listitem>
-        <simpara>ようこそ画面の<guibutton>次へ</guibutton>をクリックしてください。</simpara>
-      </listitem>
-
-      <listitem>
         <simpara>ライセンス認証画面の<guibutton>次へ</guibutton>をクリックしてください。</simpara>
       </listitem>
 
@@ -107,6 +103,16 @@
           </varlistentry>
 
           <varlistentry>
+            <term>32-bit WinMerge ShellExtension<indexterm>
+                <primary>Shellextension</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>The option enables you to launch WinMerge directly from Windows Explorer, comparing items that you have selected there.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>フィルタ</term>
 
             <listitem>
@@ -124,7 +130,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Frhed</term>
+            <term>Frhed (Free hex editor)</term>
 
             <listitem>
               <para>Frhedを使用すると、ファイルをHEX形式で表示できます。</para>
@@ -132,7 +138,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>WinIMerge</term>
+            <term>WinIMerge (Image Diff/Merge)</term>
 
             <listitem>
               <para>WinIMergeを使用すると、イメージファイル間の違いを表示できます。</para>
@@ -275,6 +281,60 @@
         </variablelist>
 
         <para><guibutton>次へ</guibutton>をクリックしてください。</para>
+      </listitem>
+
+      <listitem>
+        <simpara>In the 3-way merge wizard page, register WinMerge
+        as 3-way merge tool for TortoiseSVN/Git.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Register WinMerge as a 3-way merge tool<indexterm>
+                <primary>3-way merge tool</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Register WinMerge as 3-way merge tool for
+              TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at right pane</term>
+
+            <listitem>
+              <para>Merge at right pane.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>Merge at center pane</term>
+
+            <listitem>
+              <para>Merge at center pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at left pane</term>
+
+            <listitem>
+              <para>Merge at left pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Auto-merge at startup time</term>
+
+            <listitem>
+              <para>Optionally, disable the option <guilabel>Auto-merge at
+            startup time</guilabel>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Click <guibutton>Next</guibutton>.</para>
       </listitem>
 
       <listitem>

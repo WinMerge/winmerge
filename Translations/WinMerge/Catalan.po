@@ -44,7 +44,7 @@ msgid "Copy fro&m Right"
 msgstr "Copia des de la dreta"
 
 msgid "&Select Line Difference\tF4"
-msgstr ""
+msgstr "&Selecciona la diferència a la línia\tF4"
 
 #, c-format
 msgid "&Undo"
@@ -67,7 +67,7 @@ msgid "&Paste"
 msgstr "Engan&xa"
 
 msgid "&Go to...\tCtrl+G"
-msgstr ""
+msgstr "&Vés a...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -226,7 +226,7 @@ msgid "< Empty >"
 msgstr "< Buit >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr ""
+msgstr "&Surt\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -309,7 +309,7 @@ msgid "&Window"
 msgstr "Fi&nestra"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr ""
+msgstr "&Tanca\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -568,7 +568,7 @@ msgid "Save &Right As..."
 msgstr ""
 
 msgid "&Print...\tCtrl+P"
-msgstr ""
+msgstr "&Imprimeix...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Configuració de la pàgina..."
@@ -1066,7 +1066,7 @@ msgid "Auto prediffer"
 msgstr "Prediferenciació &automàtica"
 
 msgid "G&o to Diff"
-msgstr ""
+msgstr "Vé&s a la diferència"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1075,10 +1075,6 @@ msgstr "Blocs &no moguts"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Tots el blocs moguts"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Blocs moguts per a la &diferència actual"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1097,8 +1093,8 @@ msgid "Ig&nore all"
 msgstr "I&gnora'ls tots"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Distingeix entre majúscules i minúscules"
+msgid "Ignore &case"
+msgstr "Ignora &majúscules/minúscules"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1149,7 +1145,7 @@ msgid "About WinMerge"
 msgstr "Quant al WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr ""
+msgstr "Visiteu la plana web del WinMerge!"
 
 #, c-format
 msgid "OK"
@@ -1332,7 +1328,7 @@ msgid "Find &Prev"
 msgstr ""
 
 msgid "&OK"
-msgstr ""
+msgstr "&D'acord"
 
 #, c-format
 msgid "Replace"
@@ -1631,17 +1627,17 @@ msgid "Items total:"
 msgstr "Elements totals:"
 
 msgid "Go to"
-msgstr ""
+msgstr "Anar"
 
 msgid "G&o to:"
-msgstr ""
+msgstr "&Anar a:"
 
 #, c-format
 msgid "File"
 msgstr "Fitxer"
 
 msgid "Go to what"
-msgstr ""
+msgstr "Anar a on"
 
 #, c-format
 msgid "Li&ne"
@@ -1652,7 +1648,7 @@ msgid "&Difference"
 msgstr "&Diferència"
 
 msgid "&Go to"
-msgstr ""
+msgstr "&Vés-hi"
 
 #, c-format
 msgid "Compare"
@@ -1677,10 +1673,6 @@ msgstr "Ignora t&ots els espais"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Ignora les línies en blanc"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignora &majúscules/minúscules"
 
 msgid "Ignore c&omment differences"
 msgstr ""
@@ -3655,6 +3647,9 @@ msgstr "La carpeta no existeix."
 
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
+"El suport d'arxivament no està habilitat.\n"
+"Els components necessaris (7-Zip i/o Merge7z*.dll) per al suport d'arxivament no s'han pogut trobar.\n"
+"Vegeu el manual per a més informació quan al suport per a arxivament i com habilitar-lo."
 
 #, c-format
 msgid "Select file for export"
@@ -3838,7 +3833,7 @@ msgstr "<Automàtic>"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr ""
+msgstr "Va fins a la línia %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""

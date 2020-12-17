@@ -231,7 +231,7 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		// patch file EOLs correctly
 		diffOptions.bIgnoreEol = pDlgPatch->m_ignoreEOLDifference;
 		
-		diffOptions.bIgnoreCase = !pDlgPatch->m_caseSensitive;
+		diffOptions.bIgnoreCase = pDlgPatch->m_ignoreCase;
 		diffOptions.nDiffAlgorithm = pDlgPatch->m_diffAlgorithm;
 		diffOptions.bIndentHeuristic = pDlgPatch->m_indentHeuristic;
 		m_diffWrapper.SetOptions(&diffOptions);
