@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-12-22 07:42+0000\n"
-"PO-Revision-Date: 2020-11-21 14:36+0900\n"
+"POT-Creation-Date: 2020-12-05 22:07+0000\n"
+"PO-Revision-Date: 2020-12-07 00:00+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -73,13 +73,13 @@ msgid "With &Registered Application"
 msgstr "登録されたアプリケーションで(&R)"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "外部エディタで(&E)\tCtrl+Alt+E"
+msgstr "外部エディターで(&E)\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "プログラムの選択(&W)..."
 
 msgid "S&hell Menu"
-msgstr "シェルメニュー"
+msgstr "シェルメニュー(&H)"
 
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
@@ -156,7 +156,7 @@ msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
 
 msgid "&Vector Image Scaling"
-msgstr "ベクタ画像スケーリング"
+msgstr "ベクター画像スケーリング(&V)"
 
 msgid "&File"
 msgstr "ファイル(&F)"
@@ -222,7 +222,7 @@ msgid "&Tools"
 msgstr "ツール(&T)"
 
 msgid "&Filters..."
-msgstr "フィルタ(&F)..."
+msgstr "フィルター(&F)..."
 
 msgid "&Generate Patch..."
 msgstr "パッチの生成(&G)..."
@@ -762,7 +762,7 @@ msgid "&Open Left"
 msgstr "左側を開く(&O)"
 
 msgid "with &External Editor"
-msgstr "外部エディタで(&E)"
+msgstr "外部エディターで(&E)"
 
 msgid "Open &Parent Folder..."
 msgstr "親フォルダーを開く(&P)..."
@@ -830,7 +830,7 @@ msgid "Copy"
 msgstr "コピー"
 
 msgid "&Copy Full Path"
-msgstr "フル パスをコピー(&C)"
+msgstr "フルパスをコピー(&C)"
 
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
@@ -881,7 +881,7 @@ msgid "&Compare method:"
 msgstr "比較方法(&C):"
 
 msgid "Full Contents"
-msgstr "フル コンテンツ"
+msgstr "フルコンテンツ"
 
 msgid "Quick Contents"
 msgstr "クイック コンテンツ"
@@ -953,7 +953,7 @@ msgid "Browse..."
 msgstr "参照..."
 
 msgid " Folder: Filter"
-msgstr " フォルダー: フィルタ"
+msgstr " フォルダー: フィルター"
 
 msgid "&Select..."
 msgstr "選択(&S)..."
@@ -1094,10 +1094,10 @@ msgid "&Apply"
 msgstr "適用(&A)"
 
 msgid "Linefilters"
-msgstr "行フィルタ"
+msgstr "行フィルター"
 
 msgid "Enable Line Filters"
-msgstr "行フィルタを有効にする"
+msgstr "行フィルターを有効にする"
 
 msgid "Regular Expressions (one per line):"
 msgstr "正規表現: (1 行につき 1 ルール)"
@@ -1155,7 +1155,7 @@ msgid "Selected Word Diff:"
 msgstr "選択された単語の差異:"
 
 msgid "&Use folder compare colors"
-msgstr "フォルダー比較用の色を使用"
+msgstr "フォルダー比較用の色を使用する(&U)"
 
 msgid "Items equal:"
 msgstr "同一項目:"
@@ -1179,10 +1179,10 @@ msgid "&Send deleted files to Recycle Bin"
 msgstr "削除されたファイルをごみ箱に移動する(&S)"
 
 msgid "&External editor:"
-msgstr "外部エディタ(&E): (使用可能な置換文字列: $file, $linenum)"
+msgstr "外部エディター(&E): (使用可能な置換文字列: $file, $linenum)"
 
 msgid "&Filter folder:"
-msgstr "フィルタ用フォルダー(&F):"
+msgstr "フィルター用フォルダー(&F):"
 
 msgid "Temporary files folder"
 msgstr "テンポラリ ファイル用フォルダー"
@@ -1233,7 +1233,7 @@ msgid "Inclu&de command line"
 msgstr "コマンド行を含める(&D)"
 
 msgid "Open to e&xternal editor"
-msgstr "外部エディタで開く(&X)"
+msgstr "外部エディターで開く(&X)"
 
 msgid "Defaults"
 msgstr "デフォルト"
@@ -1335,7 +1335,7 @@ msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"
 
 msgid "Editor"
-msgstr "エディタ"
+msgstr "エディター"
 
 msgid "&Highlight syntax"
 msgstr "シンタックス ハイライトを有効にする(&H)"
@@ -1377,7 +1377,7 @@ msgid "&Rendering Mode:"
 msgstr "レンダリングモード(&R):"
 
 msgid "Filefilters"
-msgstr "ファイル フィルタ"
+msgstr "ファイル フィルター"
 
 msgid "Test..."
 msgstr "テスト..."
@@ -1529,16 +1529,16 @@ msgid "&Copy to Clipboard"
 msgstr "クリップボードにコピー(&C)"
 
 msgid "Shared or Private Filter"
-msgstr "共有/プライベート フィルタ"
+msgstr "共有/プライベート フィルター"
 
 msgid "Which type of filter do you want to create?"
-msgstr "どのタイプのフィルタを作成しますか?"
+msgstr "どのタイプのフィルターを作成しますか?"
 
 msgid "Shared Filter (for all users on this machine)"
-msgstr "共有フィルタ (このマシン上のすべてのユーザーに有効)"
+msgstr "共有フィルター (このマシン上のすべてのユーザーに有効)"
 
 msgid "Private Filter (only for current user)"
-msgstr "プライベート フィルタ (現在のユーザーのみ)"
+msgstr "プライベート フィルター (現在のユーザーのみ)"
 
 msgid "Archive Support"
 msgstr "アーカイブ サポート"
@@ -1616,10 +1616,10 @@ msgid "&Cancel"
 msgstr "キャンセル(&C)"
 
 msgid "Test Filter"
-msgstr "フィルタのテスト"
+msgstr "フィルターのテスト"
 
 msgid "Testing filter:"
-msgstr "テストするフィルタ:"
+msgstr "テストするフィルター:"
 
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"
@@ -1649,7 +1649,7 @@ msgid "&TSV"
 msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr "ユーザ指定文字区切り値(&D)"
+msgstr "ユーザー指定文字区切り値(&D)"
 
 msgid "D&elimiter character:"
 msgstr "区切り文字(&E)"
@@ -1826,7 +1826,7 @@ msgid "Image File &Patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
 msgid "&Enable image compare in folder compare"
-msgstr "フォルダ比較で画像比較を有効にする(&E)"
+msgstr "フォルダー比較で画像比較を有効にする(&E)"
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
@@ -2067,7 +2067,7 @@ msgid "Location"
 msgstr "場所"
 
 msgid "Filters"
-msgstr "フィルタ"
+msgstr "フィルター"
 
 msgid "[F] "
 msgstr "[F] "
@@ -2076,10 +2076,10 @@ msgid "Description"
 msgstr "説明"
 
 msgid "Select filename for new filter"
-msgstr "新しいフィルタのファイル名を指定してください"
+msgstr "新しいフィルターのファイル名を指定してください"
 
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "ファイル フィルタ (*.flt)|*.flt|すべてのファイル (*.*)|*.*||"
+msgstr "ファイル フィルター (*.flt)|*.flt|すべてのファイル (*.*)|*.*||"
 
 #, c-format
 msgid ""
@@ -2088,7 +2088,7 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"ファイル フィルタのテンプレート ファイルが見つかりません!\n"
+"ファイル フィルターのテンプレート ファイルが見つかりません!\n"
 "\n"
 "ファイル %1 を以下の WinMerge/Filters フォルダーにコピーしてください:\n"
 "%2"
@@ -2100,7 +2100,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"フィルタのテンプレート ファイルをフォルダー %1 にコピーできません。\n"
+"フィルターのテンプレート ファイルをフォルダー %1 にコピーできません。\n"
 "\n"
 "フォルダーの存在または書き込み可能であるか確認してください。"
 
@@ -2109,9 +2109,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"ユーザーのフィルタ ファイル用フォルダーが定義されていません。\n"
+"ユーザーのフィルター ファイル用フォルダーが定義されていません。\n"
 "\n"
-"[オプション/システム] でフィルタ用フォルダーを指定してください。"
+"[オプション/システム] でフィルター用フォルダーを指定してください。"
 
 #, c-format
 msgid ""
@@ -2120,24 +2120,24 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"フィルタ ファイル %1 の削除に失敗しました。\n"
+"フィルター ファイル %1 の削除に失敗しました。\n"
 "\n"
 "そのファイルは読み取り専用ではありませんか?"
 
 msgid "Locate filter file to install"
-msgstr "インストールするフィルタ ファイルを選択"
+msgstr "インストールするフィルター ファイルを選択"
 
 msgid ""
 "Installing filter file failed.\n"
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"フィルタ ファイルのインストールに失敗しました。\n"
+"フィルター ファイルのインストールに失敗しました。\n"
 "\n"
-"新しいフィルタ ファイルをフィルタ フォルダーにコピーできませんでした。"
+"新しいフィルター ファイルをフィルター フォルダーにコピーできません。"
 
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "フィルタ ファイルは既に存在します。既存のファイルを上書きしますか?"
+msgstr "フィルター ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 msgid "Regular expression"
 msgstr "正規表現"
@@ -2147,7 +2147,7 @@ msgid ""
 "\n"
 "If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
-"フィルタが更新されました。現在開いているすべてのフォルダー比較ウィンドウを更新しますか?\n"
+"フィルターが更新されました。現在開いているすべてのフォルダー比較ウィンドウを更新しますか?\n"
 "\n"
 "もし、いまはすべての比較ウィンドウを更新したくない場合、「いいえ」を選択し、後で比較ウィンドウを更新してください。"
 
@@ -2569,7 +2569,7 @@ msgstr "フォルダー比較中のウィンドウを閉じようとしていま
 
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "外部エディタの実行に失敗しました: %1"
+msgstr "外部エディターの実行に失敗しました: %1"
 
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
@@ -2907,7 +2907,7 @@ msgid "An error occurred while comparing the files."
 msgstr "ファイルの比較時にエラーが発生しました。"
 
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "テンポラリ ファイルが作成できませんでした。テンポラリ パス設定を確認してください。"
+msgstr "テンポラリ ファイルが作成できません。テンポラリ パス設定を確認してください。"
 
 msgid ""
 "These files use different carriage return types.\n"
@@ -2928,7 +2928,7 @@ msgid "The selected folder is invalid."
 msgstr "選択されたフォルダーは無効です。"
 
 msgid "Cannot open a binary file to editor."
-msgstr "バイナリ ファイルをエディタで開くことはできません。"
+msgstr "バイナリ ファイルをエディターで開くことはできません。"
 
 #, c-format
 msgid ""
@@ -2938,7 +2938,7 @@ msgid ""
 "%1\n"
 "to the other side and open these folders?"
 msgstr ""
-"フォルダーは片方にのみにしか存在せず、開くことが出来ません。\n"
+"フォルダーは片方にのみにしか存在せず、開くことができません。\n"
 "\n"
 "他方にマッチする以下のフォルダーを作成し、フォルダーを開きますか?:\n"
 "%1"
@@ -3032,7 +3032,7 @@ msgid "2. item is not found!"
 msgstr "2. 項目が見つかりません!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "出力結果ファイルは既に存在します。上書きしますか?"
+msgstr "出力結果ファイルは既に存在しています。上書きしますか?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3136,7 +3136,7 @@ msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
 msgid "Editor script"
-msgstr "エディタ スクリプト"
+msgstr "エディター スクリプト"
 
 msgid ""
 "\n"
@@ -3349,7 +3349,7 @@ msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
 msgid "Frhed is not installed."
-msgstr "Frhed がインストールされていません"
+msgstr "Frhed がインストールされていません。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3363,7 +3363,7 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-"次のパラメータが指定可能です。\n"
+"次のパラメーターが指定可能です。\n"
 "$file: 現在のファイルのパス名\n"
 "$linenum: 現在のカーソル位置の行番号"
 
