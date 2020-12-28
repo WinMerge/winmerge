@@ -153,7 +153,7 @@ msgid "&Horizontal Wipe"
 msgstr "水平ワイプ(&H)"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "矩形選択(&R)"
 
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
