@@ -492,6 +492,7 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
 	bool bSucceeded = true;
+	int nNormalBuffer = 0;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
 	{
@@ -500,6 +501,8 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 			bSucceeded = false;
 			break;
 		}
+		if (m_nBufferType[nBuffer] == BUFFER_NORMAL || m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED)
+			++nNormalBuffer;
 	}
 	if (nBuffer == nFiles)
 	{
@@ -507,7 +510,10 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		// also triggers initial diff coloring by invalidating the client area.
 		m_pView[0]->ResizeWindow();
 
-		OnRefresh();
+		if (nNormalBuffer > 0)
+			OnRefresh();
+		else
+			UpdateDiffItem(m_pDirDoc);
 	}
 	else
 	{

@@ -161,6 +161,7 @@ BEGIN
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
             MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
             MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
+            MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -179,8 +180,18 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
@@ -256,8 +267,18 @@ IDR_DIRDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
@@ -397,8 +418,18 @@ IDR_MERGEDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
@@ -816,6 +847,16 @@ BEGIN
             MENUITEM "Modified Date and Size",      ID_COMPMETHOD_DATESIZE
             MENUITEM "Size",                        ID_COMPMETHOD_SIZE
         END
+    END
+END
+
+IDR_POPUP_NEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_FILE_NEW
+        MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+        MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
     END
 END
 
@@ -3435,6 +3476,7 @@ BEGIN
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist: %g  "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
     IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+    IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
 END
 
 #endif    // English (United States) resources

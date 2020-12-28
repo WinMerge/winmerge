@@ -105,6 +105,7 @@ findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
 fc English.pot.flt English.pot.prev.flt
 if not errorlevel 1 copy /y English.pot.prev English.pot
 del English.pot.prev English.pot.flt English.pot.prev.flt
+set LIB=
 powershell -ExecutionPolicy ByPass -File UpdatePoFilesFromPotFile.ps1
 popd
 </Command>

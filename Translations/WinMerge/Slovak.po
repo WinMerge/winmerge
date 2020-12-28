@@ -154,6 +154,9 @@ msgstr "&Vertikálne stieranie"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontálne stieranie"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Nastaviť farbu &pozadia"
 
@@ -163,8 +166,17 @@ msgstr "Zmena mierky &vektorového obrázka"
 msgid "&File"
 msgstr "&Súbor"
 
-msgid "&New\tCtrl+N"
-msgstr "&Nový\tCtrl+N"
+msgid "&New"
+msgstr "&Nový"
+
+msgid "&Text"
+msgstr "&Text"
+
+msgid "&Binary"
+msgstr "&Binárne"
+
+msgid "&Image"
+msgstr "&Obrázok"
 
 msgid "New (&3 panes)"
 msgstr "Nový (&3 panely)"
@@ -472,20 +484,11 @@ msgstr "&Kódovanie súboru..."
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
 
-msgid "&Text"
-msgstr "&Text"
-
 msgid "T&able"
 msgstr "&Karta"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binárne"
-
-msgid "&Image"
-msgstr "&Obrázok"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Späť\tCtrl+Z"
@@ -3549,4 +3552,8 @@ msgstr "Vzdialenosť: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Stránka: %d/%d  Priblíženie: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
 

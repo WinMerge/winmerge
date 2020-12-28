@@ -180,6 +180,9 @@ msgstr "Limpeza &vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &horizontal"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "Es&tablecer cor de fondo"
@@ -192,8 +195,20 @@ msgid "&File"
 msgstr "&Arquivo"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Novo\tCtrl+N"
+msgid "&New"
+msgstr "&Novo"
+
+#, c-format
+msgid "&Text"
+msgstr "&Texto"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binario"
+
+#, c-format
+msgid "&Image"
+msgstr "&Imaxe"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -594,24 +609,12 @@ msgstr "Codificación do ar&quivo…"
 msgid "Reco&mpare As"
 msgstr "Volver comparar como"
 
-#, c-format
-msgid "&Text"
-msgstr "&Texto"
-
 msgid "T&able"
 msgstr "Tábo&a"
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Binario"
-
-#, c-format
-msgid "&Image"
-msgstr "&Imaxe"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -4240,4 +4243,8 @@ msgstr "Dist: %g, %g "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
 
