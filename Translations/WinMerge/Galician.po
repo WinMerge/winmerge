@@ -180,6 +180,9 @@ msgstr "Limpeza &vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &horizontal"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "Es&tablecer cor de fondo"

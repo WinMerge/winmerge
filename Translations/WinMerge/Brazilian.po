@@ -182,6 +182,9 @@ msgstr "Limpeza &Vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &Horizontal"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "&Definir a Cor do 2º Plano"

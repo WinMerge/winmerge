@@ -154,6 +154,9 @@ msgstr "垂直擦拭(&V)"
 msgid "&Horizontal Wipe"
 msgstr "水平擦拭(&H)"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "设置背景颜色(&S)"
 

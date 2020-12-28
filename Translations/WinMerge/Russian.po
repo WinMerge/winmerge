@@ -153,6 +153,9 @@ msgstr "Вертикальное стирание"
 msgid "&Horizontal Wipe"
 msgstr "Горизонтальное стирание"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Цвет фона"
 

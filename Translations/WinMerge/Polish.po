@@ -151,6 +151,9 @@ msgstr "Pionowa wycieraczka"
 msgid "&Horizontal Wipe"
 msgstr "Pozioma wycieraczka"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Ustaw kolor tła"
 

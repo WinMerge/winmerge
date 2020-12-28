@@ -154,6 +154,9 @@ msgstr "&Vertikalus trinimas"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontalus trinimas"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Nu&statyti fono spalvą"
 

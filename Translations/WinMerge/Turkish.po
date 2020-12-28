@@ -151,6 +151,9 @@ msgstr "&Dikey Temizlik"
 msgid "&Horizontal Wipe"
 msgstr "&Yatay Temizlik"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Ar&ka Plan Rengini Ayarla"
 

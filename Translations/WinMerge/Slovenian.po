@@ -181,6 +181,9 @@ msgstr "Obriši na&vpično"
 msgid "&Horizontal Wipe"
 msgstr "Obriši vodo&ravno"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "Nas&tavi barvo ozadja"
