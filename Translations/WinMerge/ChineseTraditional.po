@@ -182,6 +182,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "設定背景顏色(&S)"
@@ -194,8 +197,20 @@ msgid "&File"
 msgstr "檔案(&F)"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "新增(&N)\tCtrl+N"
+msgid "&New"
+msgstr "新增(&N)"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "二進制(&B)"
+
+#, c-format
+msgid "&Image"
+msgstr "圖片(&I)"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -601,24 +616,12 @@ msgstr "檔案編碼(&F)..."
 msgid "Reco&mpare As"
 msgstr "重新比較(&M)"
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "二進制(&B)"
-
-#, c-format
-msgid "&Image"
-msgstr "圖片(&I)"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -4109,5 +4112,9 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
 msgstr ""
 

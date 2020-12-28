@@ -152,6 +152,9 @@ msgstr "垂直ワイプ(&V)"
 msgid "&Horizontal Wipe"
 msgstr "水平ワイプ(&H)"
 
+msgid "&Rectangle Select"
+msgstr "矩形選択(&R)"
+
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
 
@@ -161,8 +164,17 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "&File"
 msgstr "ファイル(&F)"
 
-msgid "&New\tCtrl+N"
-msgstr "新規(&N)\tCtrl+N"
+msgid "&New"
+msgstr "新規(&N)"
+
+msgid "&Text"
+msgstr "テキスト(&T)"
+
+msgid "&Binary"
+msgstr "バイナリ(&B)"
+
+msgid "&Image"
+msgstr "画像(&I)"
 
 msgid "New (&3 panes)"
 msgstr "新規 (&3 ペイン)"
@@ -473,20 +485,11 @@ msgstr "ファイル エンコーディング(&F)..."
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
 
-msgid "&Text"
-msgstr "テキスト(&T)"
-
 msgid "T&able"
 msgstr "テーブル(&A)"
 
 msgid "&XML"
 msgstr "XML(&X)"
-
-msgid "&Binary"
-msgstr "バイナリ(&B)"
-
-msgid "&Image"
-msgstr "画像(&I)"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
@@ -3492,4 +3495,8 @@ msgstr "色距離: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr "範囲: (%d, %d)  "
 

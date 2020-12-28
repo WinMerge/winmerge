@@ -154,6 +154,9 @@ msgstr "&Vertikalus trinimas"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontalus trinimas"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Nu&statyti fono spalvą"
 
@@ -163,8 +166,17 @@ msgstr "&Vektorinių vaizdų mąstelio keitimas"
 msgid "&File"
 msgstr "&Failas"
 
-msgid "&New\tCtrl+N"
-msgstr "&Naujas\tCtrl+N"
+msgid "&New"
+msgstr "&Naujas"
+
+msgid "&Text"
+msgstr "&Tekstas"
+
+msgid "&Binary"
+msgstr "&Binarinis"
+
+msgid "&Image"
+msgstr "Pave&ikslėlis"
 
 msgid "New (&3 panes)"
 msgstr "Naujas (&3 polangiai)"
@@ -475,20 +487,11 @@ msgstr "&Failo koduotė..."
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
 
-msgid "&Text"
-msgstr "&Tekstas"
-
 msgid "T&able"
 msgstr "&Lentelė"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binarinis"
-
-msgid "&Image"
-msgstr "Pave&ikslėlis"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Atša&ukti\tCtrl+Z"
@@ -3134,4 +3137,8 @@ msgstr "Dist: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
 

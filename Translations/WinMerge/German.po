@@ -180,6 +180,9 @@ msgstr "Vertikal wischen"
 msgid "&Horizontal Wipe"
 msgstr "Horizontal wischen"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "&Hintergrundfarbe setzen"
@@ -192,8 +195,20 @@ msgid "&File"
 msgstr "&Datei"
 
 #, c-format
-msgid "&New\tCtrl+N"
+msgid "&New"
 msgstr "&Neu\tStrg+N"
+
+#, c-format
+msgid "&Text"
+msgstr "&Text"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binär"
+
+#, c-format
+msgid "&Image"
+msgstr "Bil&d"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -597,24 +612,12 @@ msgstr "Dateic&odierung..."
 msgid "Reco&mpare As"
 msgstr "Erneut ver&gleichen als"
 
-#, c-format
-msgid "&Text"
-msgstr "&Text"
-
 msgid "T&able"
 msgstr "T&abelle"
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Binär"
-
-#, c-format
-msgid "&Image"
-msgstr "Bil&d"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -3883,4 +3886,8 @@ msgstr "Dist.: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
 

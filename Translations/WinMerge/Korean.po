@@ -184,6 +184,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "배경색 설정(&S)"
@@ -196,8 +199,20 @@ msgid "&File"
 msgstr "파일(&F)"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "새로 만들기(&N)\tCtrl+N"
+msgid "&New"
+msgstr "새로 만들기(&N)"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "바이너리(&B)"
+
+#, c-format
+msgid "&Image"
+msgstr "이미지(&I)"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -601,24 +616,12 @@ msgstr "파일 인코딩(&F)..."
 msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "바이너리(&B)"
-
-#, c-format
-msgid "&Image"
-msgstr "이미지(&I)"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -4208,5 +4211,9 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
 msgstr ""
 

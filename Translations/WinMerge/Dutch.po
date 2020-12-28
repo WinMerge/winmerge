@@ -152,6 +152,9 @@ msgstr "&Verticaal uitvegen"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontaal uitvegen"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr "Achtergrondkleur instellen"
 
@@ -161,8 +164,17 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "&File"
 msgstr "Bestand"
 
-msgid "&New\tCtrl+N"
-msgstr "Nieuw\tCtrl+N"
+msgid "&New"
+msgstr "Nieuw"
+
+msgid "&Text"
+msgstr "Tekst"
+
+msgid "&Binary"
+msgstr "Binair"
+
+msgid "&Image"
+msgstr "Afbeelding"
 
 msgid "New (&3 panes)"
 msgstr "Nieuw (3 vensters)"
@@ -473,20 +485,11 @@ msgstr "Bestandscodering..."
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
-msgid "&Text"
-msgstr "Tekst"
-
 msgid "T&able"
 msgstr "Tabel"
 
 msgid "&XML"
 msgstr "XML"
-
-msgid "&Binary"
-msgstr "Binair"
-
-msgid "&Image"
-msgstr "Afbeelding"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Ongedaan maken\tCtrl+Z"
@@ -3538,4 +3541,8 @@ msgstr "Afstand: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
 
