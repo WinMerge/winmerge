@@ -210,7 +210,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
-	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnToolbarButtonDropDown)
 	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
 	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
 	ON_COMMAND(IDC_DIFF_IGNORECASE, OnDiffIgnoreCase)
@@ -2010,11 +2010,14 @@ BOOL CMainFrame::CreateToolbar()
 	LoadToolbarImages();
 
 	UINT nID, nStyle;
-	int iImage;
-	int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(ID_OPTIONS);
-	m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
-	nStyle |= TBSTYLE_DROPDOWN;
-	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
+	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW })
+	{
+		int iImage;
+		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
+		m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
+		nStyle |= TBSTYLE_DROPDOWN;
+		m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
+	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
@@ -2333,12 +2336,13 @@ void CMainFrame::OnPluginsList()
 	dlg.DoModal();
 }
 
-void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
+void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
 	ClientToScreen(&(pToolBar->rcButton));
 	BCMenu menu;
-	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
+	int id = (pToolBar->iItem == ID_FILE_NEW) ? IDR_POPUP_NEW : IDR_POPUP_DIFF_OPTIONS;
+	VERIFY(menu.LoadMenu(id));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)

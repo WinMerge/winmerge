@@ -850,6 +850,16 @@ BEGIN
     END
 END
 
+IDR_POPUP_NEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_FILE_NEW
+        MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+        MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+    END
+END
+
 IDR_POPUP_PROJECT MENU
 BEGIN
     POPUP "_POPUP_"

@@ -17,6 +17,7 @@
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
 #define IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL 116
+#define IDR_POPUP_NEW                   117
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
