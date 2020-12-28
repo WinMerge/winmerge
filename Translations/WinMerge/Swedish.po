@@ -194,8 +194,20 @@ msgid "&File"
 msgstr "Fil"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "Ny\tCtrl+N"
+msgid "&New"
+msgstr "Ny"
+
+#, c-format
+msgid "&Text"
+msgstr "Text"
+
+#, c-format
+msgid "&Binary"
+msgstr "Binärt"
+
+#, c-format
+msgid "&Image"
+msgstr "Avbild"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -596,24 +608,12 @@ msgstr "Filkodning ..."
 msgid "Reco&mpare As"
 msgstr "Återjämför som"
 
-#, c-format
-msgid "&Text"
-msgstr "Text"
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "Binärt"
-
-#, c-format
-msgid "&Image"
-msgstr "Avbild"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

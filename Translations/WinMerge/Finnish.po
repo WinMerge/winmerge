@@ -190,8 +190,20 @@ msgid "&File"
 msgstr "Tiedosto"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "Uusi\tCtrl+N"
+msgid "&New"
+msgstr "Uusi"
+
+#, c-format
+msgid "&Text"
+msgstr "&Teksti"
+
+#, c-format
+msgid "&Binary"
+msgstr "Binääri"
+
+#, c-format
+msgid "&Image"
+msgstr "&Kuva"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -592,24 +604,12 @@ msgstr "Tiedoston koodaus..."
 msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
-#, c-format
-msgid "&Text"
-msgstr "&Teksti"
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "Binääri"
-
-#, c-format
-msgid "&Image"
-msgstr "&Kuva"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

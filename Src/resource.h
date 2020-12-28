@@ -1330,6 +1330,12 @@
 #define IDC_COMPARETABLE_DSV_DELIM_CHAR 34160
 #define IDC_COMPARETABLE_ALLOWNEWLINE   34161
 #define IDC_COMPARETABLE_QUOTE_CHAR     34162
+#define ID_FILE_NEW_TABLE               34163
+#define ID_FILE_NEW_HEX                 34164
+#define ID_FILE_NEW_IMAGE               34165
+#define ID_FILE_NEW3_TABLE              34166
+#define ID_FILE_NEW3_HEX                34167
+#define ID_FILE_NEW3_IMAGE              34168
 
 // Next default values for new objects
 // 
@@ -1337,7 +1343,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34164
+#define _APS_NEXT_COMMAND_VALUE         34169
 #define _APS_NEXT_CONTROL_VALUE         8832
 #define _APS_NEXT_SYMED_VALUE           117
 #endif

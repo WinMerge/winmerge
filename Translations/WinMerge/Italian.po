@@ -160,8 +160,17 @@ msgstr ""
 msgid "&File"
 msgstr "&File"
 
-msgid "&New\tCtrl+N"
-msgstr "&Nuovo\tCtrl+N"
+msgid "&New"
+msgstr "&Nuovo"
+
+msgid "&Text"
+msgstr "&Testo"
+
+msgid "&Binary"
+msgstr "&Binario"
+
+msgid "&Image"
+msgstr "&Immagine"
 
 msgid "New (&3 panes)"
 msgstr "Nuovo (&3 pannelli)"
@@ -469,20 +478,11 @@ msgstr "Codifica &file..."
 msgid "Reco&mpare As"
 msgstr "Riconfronta come"
 
-msgid "&Text"
-msgstr "&Testo"
-
 msgid "T&able"
 msgstr ""
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binario"
-
-msgid "&Image"
-msgstr "&Immagine"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Annulla\tCtrl+Z"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-12-05 22:07+0000\n"
+"POT-Creation-Date: 2020-12-28 13:47+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -154,7 +154,16 @@ msgstr ""
 msgid "&File"
 msgstr ""
 
-msgid "&New\tCtrl+N"
+msgid "&New"
+msgstr ""
+
+msgid "&Text"
+msgstr ""
+
+msgid "&Binary"
+msgstr ""
+
+msgid "&Image"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -463,19 +472,10 @@ msgstr ""
 msgid "Reco&mpare As"
 msgstr ""
 
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 msgid "&XML"
-msgstr ""
-
-msgid "&Binary"
-msgstr ""
-
-msgid "&Image"
 msgstr ""
 
 msgid "&Undo\tCtrl+Z"

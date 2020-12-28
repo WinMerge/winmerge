@@ -191,8 +191,20 @@ msgid "&File"
 msgstr "&Αρχείο"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Δημιουργία\tCtrl+N"
+msgid "&New"
+msgstr "&Δημιουργία"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -593,23 +605,11 @@ msgstr "&Κωδικοσελίδα Αρχείου..."
 msgid "Reco&mpare As"
 msgstr ""
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
-msgstr ""
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #, c-format

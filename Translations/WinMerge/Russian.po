@@ -162,8 +162,17 @@ msgstr "&Масштаб изображений"
 msgid "&File"
 msgstr "&Файл"
 
-msgid "&New\tCtrl+N"
-msgstr "Создать\tCtrl+N"
+msgid "&New"
+msgstr "Создать"
+
+msgid "&Text"
+msgstr "Текст"
+
+msgid "&Binary"
+msgstr "Двоичный"
+
+msgid "&Image"
+msgstr "Изображение"
 
 msgid "New (&3 panes)"
 msgstr "Создать (&3 панели)"
@@ -471,20 +480,11 @@ msgstr "Кодировка файла..."
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
-msgid "&Text"
-msgstr "Текст"
-
 msgid "T&able"
 msgstr "Таблица"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "Двоичный"
-
-msgid "&Image"
-msgstr "Изображение"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"

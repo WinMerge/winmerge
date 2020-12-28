@@ -161,8 +161,17 @@ msgstr ""
 msgid "&File"
 msgstr "&ملف"
 
-msgid "&New\tCtrl+N"
-msgstr "&جدبد\tCtrl+N"
+msgid "&New"
+msgstr "&جدبد"
+
+msgid "&Text"
+msgstr "&نص"
+
+msgid "&Binary"
+msgstr "ملف &ثنائي"
+
+msgid "&Image"
+msgstr "&صورة"
 
 msgid "New (&3 panes)"
 msgstr "جديد - &3 أجزاء"
@@ -470,20 +479,11 @@ msgstr "ترمي&ز الملف..."
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
 
-msgid "&Text"
-msgstr "&نص"
-
 msgid "T&able"
 msgstr ""
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "ملف &ثنائي"
-
-msgid "&Image"
-msgstr "&صورة"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&تراجع"

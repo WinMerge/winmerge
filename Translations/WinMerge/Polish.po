@@ -160,8 +160,17 @@ msgstr "Skalowanie obrazu wektorowego"
 msgid "&File"
 msgstr "Plik"
 
-msgid "&New\tCtrl+N"
-msgstr "Nowy\tCtrl+N"
+msgid "&New"
+msgstr "Nowy"
+
+msgid "&Text"
+msgstr "Tekst"
+
+msgid "&Binary"
+msgstr "&Binarny"
+
+msgid "&Image"
+msgstr "Obraz"
 
 msgid "New (&3 panes)"
 msgstr "Nowy (3 panele)"
@@ -469,20 +478,11 @@ msgstr "Kodowanie pliku..."
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
 
-msgid "&Text"
-msgstr "Tekst"
-
 msgid "T&able"
 msgstr "T&abela"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binarny"
-
-msgid "&Image"
-msgstr "Obraz"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Cofnij\tCtrl+Z"

@@ -193,8 +193,20 @@ msgid "&File"
 msgstr "&Datoteka"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Nova\tCtrl+N"
+msgid "&New"
+msgstr "&Nova"
+
+#, c-format
+msgid "&Text"
+msgstr "&Besedilo"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Dvojiško"
+
+#, c-format
+msgid "&Image"
+msgstr "S&lika"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -594,24 +606,12 @@ msgstr "De&kodiranje datoteke..."
 msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
-#, c-format
-msgid "&Text"
-msgstr "&Besedilo"
-
 msgid "T&able"
 msgstr "T&abela"
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Dvojiško"
-
-#, c-format
-msgid "&Image"
-msgstr "S&lika"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

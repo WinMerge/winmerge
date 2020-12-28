@@ -87,7 +87,7 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	void FileNew(int nPanes);
+	void FileNew(int nPanes, FRAMETYPE frameType);
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -245,8 +245,8 @@ protected:
 	afx_msg void OnUpdateReloadPlugins(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
+	template <int nFiles, FRAMETYPE frameType>
 	afx_msg void OnFileNew();
-	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);

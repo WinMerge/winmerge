@@ -160,8 +160,17 @@ msgstr "&Vektör Görsel Ölçekleme"
 msgid "&File"
 msgstr "&Dosya"
 
-msgid "&New\tCtrl+N"
-msgstr "Ye&ni\tCtrl+N"
+msgid "&New"
+msgstr "Ye&ni"
+
+msgid "&Text"
+msgstr "Me&tin"
+
+msgid "&Binary"
+msgstr "&Binary"
+
+msgid "&Image"
+msgstr "&Görsel"
 
 msgid "New (&3 panes)"
 msgstr "Yeni (&3 pano)"
@@ -469,20 +478,11 @@ msgstr "&Dosya Kodlaması..."
 msgid "Reco&mpare As"
 msgstr "&Farklı Karşılaştır"
 
-msgid "&Text"
-msgstr "Me&tin"
-
 msgid "T&able"
 msgstr "T&ablo"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binary"
-
-msgid "&Image"
-msgstr "&Görsel"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Geri A&l\tCtrl+Z"

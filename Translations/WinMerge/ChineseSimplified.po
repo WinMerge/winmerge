@@ -163,8 +163,17 @@ msgstr "矢量图形缩放 (&V)"
 msgid "&File"
 msgstr "文件(&F)"
 
-msgid "&New\tCtrl+N"
-msgstr "新建(&N)\tCtrl+N"
+msgid "&New"
+msgstr "新建(&N)"
+
+msgid "&Text"
+msgstr "文本(&T)"
+
+msgid "&Binary"
+msgstr "二进制(&B)"
+
+msgid "&Image"
+msgstr "图像(&I)"
 
 msgid "New (&3 panes)"
 msgstr "新建三路比较(&3)"
@@ -472,20 +481,11 @@ msgstr "文件编码(&F)..."
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
 
-msgid "&Text"
-msgstr "文本(&T)"
-
 msgid "T&able"
 msgstr "表格(&A)"
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "二进制(&B)"
-
-msgid "&Image"
-msgstr "图像(&I)"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"

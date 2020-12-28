@@ -179,8 +179,18 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
@@ -256,8 +266,18 @@ IDR_DIRDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
@@ -397,8 +417,18 @@ IDR_MERGEDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR

@@ -189,8 +189,20 @@ msgid "&File"
 msgstr "&ගොනුව"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&අළුත්\tCtrl+N"
+msgid "&New"
+msgstr "&අළුත්"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -591,24 +603,12 @@ msgstr "ගොනුව කේතීකරණය..."
 msgid "Reco&mpare As"
 msgstr ""
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

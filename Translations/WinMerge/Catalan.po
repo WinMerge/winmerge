@@ -191,8 +191,20 @@ msgid "&File"
 msgstr "&Fitxer"
 
 #, c-format
-msgid "&New\tCtrl+N"
+msgid "&New"
 msgstr "&Nou\tControl+N"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -593,23 +605,11 @@ msgstr ""
 msgid "Reco&mpare As"
 msgstr ""
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
-msgstr ""
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #, c-format

@@ -193,8 +193,20 @@ msgid "&File"
 msgstr "&F پرونده "
 
 #, c-format
-msgid "&New\tCtrl+N"
+msgid "&New"
 msgstr "&N جديد \tCtl+N"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "&B دودويي"
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -595,24 +607,12 @@ msgstr "&F کدبندي پرونده ... "
 msgid "Reco&mpare As"
 msgstr ""
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&B دودويي"
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

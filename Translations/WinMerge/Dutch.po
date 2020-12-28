@@ -161,8 +161,17 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "&File"
 msgstr "Bestand"
 
-msgid "&New\tCtrl+N"
-msgstr "Nieuw\tCtrl+N"
+msgid "&New"
+msgstr "Nieuw"
+
+msgid "&Text"
+msgstr "Tekst"
+
+msgid "&Binary"
+msgstr "Binair"
+
+msgid "&Image"
+msgstr "Afbeelding"
 
 msgid "New (&3 panes)"
 msgstr "Nieuw (3 vensters)"
@@ -470,20 +479,11 @@ msgstr "Bestandscodering..."
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
-msgid "&Text"
-msgstr "Tekst"
-
 msgid "T&able"
 msgstr "Tabel"
 
 msgid "&XML"
 msgstr "XML"
-
-msgid "&Binary"
-msgstr "Binair"
-
-msgid "&Image"
-msgstr "Afbeelding"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Ongedaan maken\tCtrl+Z"

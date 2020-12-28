@@ -194,8 +194,20 @@ msgid "&File"
 msgstr "&Arquivo"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Novo\tCtrl+N"
+msgid "&New"
+msgstr "&Novo"
+
+#, c-format
+msgid "&Text"
+msgstr "&Texto"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binário"
+
+#, c-format
+msgid "&Image"
+msgstr "&Imagem"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -594,24 +606,12 @@ msgstr "&Codificação do Arquivo..."
 msgid "Reco&mpare As"
 msgstr "Recomparar Como"
 
-#, c-format
-msgid "&Text"
-msgstr "&Texto"
-
 msgid "T&able"
 msgstr "T&abela"
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Binário"
-
-#, c-format
-msgid "&Image"
-msgstr "&Imagem"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

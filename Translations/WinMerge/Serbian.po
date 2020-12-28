@@ -191,8 +191,19 @@ msgid "&File"
 msgstr "&Датотека"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Нова\tCtrl+N"
+msgid "&New"
+msgstr "&Нова"
+
+msgid "&Text"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -593,23 +604,12 @@ msgstr "Де&кодирање датотеке..."
 msgid "Reco&mpare As"
 msgstr ""
 
-msgid "&Text"
-msgstr ""
-
 msgid "T&able"
 msgstr ""
 
 #, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"

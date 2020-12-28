@@ -164,8 +164,17 @@ msgstr "Escalado de imagen &vectorial"
 msgid "&File"
 msgstr "&Archivo"
 
-msgid "&New\tCtrl+N"
-msgstr "&Nuevo\tCtrl+N"
+msgid "&New"
+msgstr "&Nuevo"
+
+msgid "&Text"
+msgstr "&Texto"
+
+msgid "&Binary"
+msgstr "&Binario"
+
+msgid "&Image"
+msgstr "&Imagen"
 
 msgid "New (&3 panes)"
 msgstr "Nuevo (&3 paneles)"
@@ -473,20 +482,11 @@ msgstr "Codi&ficación de archivo..."
 msgid "Reco&mpare As"
 msgstr "Recomparar como"
 
-msgid "&Text"
-msgstr "&Texto"
-
 msgid "T&able"
 msgstr ""
 
 msgid "&XML"
 msgstr "&XML"
-
-msgid "&Binary"
-msgstr "&Binario"
-
-msgid "&Image"
-msgstr "&Imagen"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Des&hacer\tCtrl+Z"

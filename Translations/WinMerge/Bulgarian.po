@@ -157,8 +157,17 @@ msgstr ""
 msgid "&File"
 msgstr "&Файл"
 
-msgid "&New\tCtrl+N"
-msgstr "&Нов\tCtrl+N"
+msgid "&New"
+msgstr "&Нов"
+
+msgid "&Text"
+msgstr "&Текстови файлове"
+
+msgid "&Binary"
+msgstr "&Двоични файлове"
+
+msgid "&Image"
+msgstr "&Изображения"
 
 msgid "New (&3 panes)"
 msgstr "Нов (&3 панела)"
@@ -466,20 +475,11 @@ msgstr "Избиране на &кодировка…"
 msgid "Reco&mpare As"
 msgstr "Сравняване като"
 
-msgid "&Text"
-msgstr "&Текстови файлове"
-
 msgid "T&able"
 msgstr ""
 
 msgid "&XML"
 msgstr "Файлове на &XML"
-
-msgid "&Binary"
-msgstr "&Двоични файлове"
-
-msgid "&Image"
-msgstr "&Изображения"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменяне\tCtrl+Z"

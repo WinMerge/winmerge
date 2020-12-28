@@ -182,8 +182,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdateReloadPlugins)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
-	ON_COMMAND(ID_FILE_NEW, OnFileNew)
-	ON_COMMAND(ID_FILE_NEW3, OnFileNew3)
+	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, FRAME_FILE>))
+	ON_COMMAND(ID_FILE_NEW_HEX, (OnFileNew<2, FRAME_HEXFILE>))
+	ON_COMMAND(ID_FILE_NEW_IMAGE, (OnFileNew<2, FRAME_IMGFILE>))
+	ON_COMMAND(ID_FILE_NEW3, (OnFileNew<3, FRAME_FILE>))
+	ON_COMMAND(ID_FILE_NEW3_HEX, (OnFileNew<3, FRAME_HEXFILE>))
+	ON_COMMAND(ID_FILE_NEW3_IMAGE, (OnFileNew<3, FRAME_IMGFILE>))
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
@@ -1548,7 +1552,7 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-void CMainFrame::FileNew(int nPanes) 
+void CMainFrame::FileNew(int nPanes, FRAMETYPE frameType) 
 {
 	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	
@@ -1563,7 +1567,6 @@ void CMainFrame::FileNew(int nPanes)
 		strDesc[1] = _("Untitled right");
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
-		ShowMergeDoc(pDirDoc, 2, fileloc, dwFlags, strDesc);
 	}
 	else
 	{
@@ -1573,8 +1576,13 @@ void CMainFrame::FileNew(int nPanes)
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[2].encoding.SetCodepage(ucr::getDefaultCodepage());
-		ShowMergeDoc(pDirDoc, 3, fileloc, dwFlags, strDesc);
 	}
+	if (frameType == FRAME_FILE)
+		ShowMergeDoc(pDirDoc, nPanes, fileloc, dwFlags, strDesc);
+	else if (frameType == FRAME_HEXFILE)
+		ShowHexMergeDoc(pDirDoc, nPanes, fileloc, dwFlags, strDesc);
+	else if (frameType == FRAME_IMGFILE)
+		ShowImgMergeDoc(pDirDoc, nPanes, fileloc, dwFlags, strDesc);
 }
 
 /**
@@ -1587,14 +1595,10 @@ void CMainFrame::FileNew(int nPanes)
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
+template <int nFiles, CMainFrame::FRAMETYPE frameType>
 void CMainFrame::OnFileNew() 
 {
-	FileNew(2);
-}
-
-void CMainFrame::OnFileNew3() 
-{
-	FileNew(3);
+	FileNew(nFiles, frameType);
 }
 
 /**
