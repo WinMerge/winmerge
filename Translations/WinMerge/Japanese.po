@@ -3493,3 +3493,7 @@ msgstr "色距離: %g, %g  "
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr "範囲: (%d, %d)  "
+

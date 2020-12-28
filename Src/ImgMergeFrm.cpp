@@ -1346,7 +1346,11 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 				else
 					text += strutils::format(_("Dist: %g  "), colorDistance01);
 			}
-
+			if (m_pImgMergeWindow->IsRectangleSelectionVisible(pane))
+			{
+				RECT rc = m_pImgMergeWindow->GetRectangleSelection(pane);
+				text += strutils::format(_("Rc: (%d, %d)  "), rc.right - rc.left, rc.bottom - rc.top);
+			}
 			text += strutils::format(_("Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),

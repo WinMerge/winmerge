@@ -3524,3 +3524,7 @@ msgstr "Uzaklık: %g, %g "
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Sayfa: %d/%d  Yakınlaştırma: %d%%  %dx%dpiksel  %dbpp"
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+

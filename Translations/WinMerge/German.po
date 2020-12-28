@@ -3884,3 +3884,7 @@ msgstr "Dist.: %g, %g  "
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+

@@ -4092,3 +4092,7 @@ msgstr ""
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr ""
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+

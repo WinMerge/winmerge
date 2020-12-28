@@ -3466,6 +3466,7 @@ BEGIN
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist: %g  "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
     IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+    IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
 END
 
 #endif    // English (United States) resources
