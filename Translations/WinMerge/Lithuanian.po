@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-25 21:32+0000\n"
-"PO-Revision-Date: 2020-11-30 07:50+0200\n"
+"POT-Creation-Date: 2020-12-28 19:49+0000\n"
+"PO-Revision-Date: 2020-12-29 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -155,13 +155,13 @@ msgid "&Horizontal Wipe"
 msgstr "&Horizontalus trinimas"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "&Stačiakampis žymėjimas"
 
 msgid "&Set Background Color"
 msgstr "Nu&statyti fono spalvą"
 
 msgid "&Vector Image Scaling"
-msgstr "&Vektorinių vaizdų mąstelio keitimas"
+msgstr "&Vektorinių vaizdų mastelio keitimas"
 
 msgid "&File"
 msgstr "&Failas"
@@ -3137,5 +3137,5 @@ msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "St.: (%d, %d)  "
 
