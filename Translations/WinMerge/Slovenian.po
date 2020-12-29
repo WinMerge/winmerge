@@ -4242,3 +4242,4 @@ msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
+
