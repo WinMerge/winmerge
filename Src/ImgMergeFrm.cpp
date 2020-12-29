@@ -253,6 +253,9 @@ void CImgMergeFrame::MoveOnLoad(int nPane, int)
 
 void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 {
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 
