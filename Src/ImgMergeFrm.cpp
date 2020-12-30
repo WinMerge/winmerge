@@ -1364,6 +1364,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 					);
 			m_wndStatusBar[pane].SetPaneText(0, text.c_str());
 		}
+		UpdateLastCompareResult();
 	}
 	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }

@@ -24,6 +24,7 @@ END_MESSAGE_MAP()
 CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	: m_hIdentical(nIdenticalIcon < 0 ? nullptr : AfxGetApp()->LoadIcon(nIdenticalIcon))
 	, m_hDifferent(nDifferentIcon < 0 ? nullptr : AfxGetApp()->LoadIcon(nDifferentIcon))
+	, m_hCurrent((HICON)-1)
 	, m_bActivated(false)
 	, m_nLastSplitPos{0}
 {
@@ -86,14 +87,15 @@ void CMergeFrameCommon::RemoveBarBorder()
  */
 void CMergeFrameCommon::SetLastCompareResult(int nResult)
 {
-	HICON hCurrent = GetIcon(FALSE);
 	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
 
-	if (hCurrent != hReplace)
+	if (m_hCurrent != hReplace)
 	{
 		SetIcon(hReplace, TRUE);
 
 		AfxGetMainWnd()->SetTimer(IDT_UPDATEMAINMENU, 500, nullptr);
+
+		m_hCurrent = hReplace;
 	}
 
 	theApp.SetLastCompareResult(nResult);

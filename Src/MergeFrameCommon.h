@@ -25,6 +25,7 @@ protected:
 	int m_nLastSplitPos[2];
 private:
 	bool m_bActivated;
+	HICON m_hCurrent;
 	HICON m_hIdentical;
 	HICON m_hDifferent;
 
