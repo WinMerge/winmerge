@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////
-//  File:    java.cpp
+//  File:    javascript.cpp
 //  Version: 1.1.0.4
 //  Updated: 19-Jul-1998
 //
 //  Copyright:  Ferdinand Prantl, portions by Stcherbatchenko Andrei
 //  E-mail:     prantl@ff.cuni.cz
 //
-//  Java syntax highlighing definition
+//  JavaScript syntax highlighing definition
 //
 //  You are free to use or modify this code to the following restrictions:
 //  - Acknowledge me somewhere in your about box, simple "Parts of code by.."
@@ -23,69 +23,71 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
-static const TCHAR * s_apszJavaKeywordList[] =
+//  JavaScript keywords
+static const TCHAR * s_apszJavaScriptKeywordList[] =
   {
-    _T ("abstract"),
-    _T ("boolean"),
+    _T ("async"),
+    _T ("await"),
     _T ("break"),
-    _T ("byte"),
-    _T ("byvalue"),
     _T ("case"),
     _T ("catch"),
-    _T ("char"),
     _T ("class"),
     _T ("const"),
+    _T ("constructor"),
     _T ("continue"),
+    _T ("debugger"),
     _T ("default"),
+    _T ("delete"),
     _T ("do"),
-    _T ("double"),
+    _T ("each"),
+    _T ("enum"),
     _T ("else"),
+    _T ("export"),
     _T ("extends"),
     _T ("false"),
-    _T ("final"),
     _T ("finally"),
-    _T ("float"),
     _T ("for"),
-    _T ("goto"),
+    _T ("function"),
     _T ("if"),
     _T ("implements"),
     _T ("import"),
+    _T ("in"),
     _T ("instanceof"),
-    _T ("int"),
     _T ("interface"),
-    _T ("long"),
-    _T ("native"),
+    _T ("let"),
     _T ("new"),
     _T ("null"),
+    _T ("of"),
     _T ("package"),
-    _T ("private"),
     _T ("protected"),
     _T ("public"),
+    _T ("resolve"),
     _T ("return"),
-    _T ("short"),
     _T ("static"),
     _T ("super"),
     _T ("switch"),
-    _T ("synchronized"),
+    _T ("target"),
     _T ("this"),
-    _T ("threadsafe"),
     _T ("throw"),
-    _T ("transient"),
     _T ("true"),
     _T ("try"),
+    _T ("typeof"),
+    _T ("undefined"),
+    _T ("var"),
     _T ("void"),
     _T ("while"),
+    _T ("with"),
+    _T ("yield")
   };
 
 static bool
-IsJavaKeyword (const TCHAR *pszChars, int nLength)
+IsJavaScriptKeyword (const TCHAR *pszChars, int nLength)
 {
-  return ISXKEYWORD (s_apszJavaKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszJavaScriptKeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineJava (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineJavaScript (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaKeyword, nullptr);
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaScriptKeyword, nullptr);
 }

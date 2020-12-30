@@ -4031,6 +4031,9 @@ msgstr "강조 표시 없음"
 msgid "Batch"
 msgstr "일괄 처리"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

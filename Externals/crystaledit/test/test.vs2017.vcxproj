@@ -174,6 +174,7 @@
     <ClCompile Include="..\editlib\parsers\is.cpp" />
     <ClCompile Include="..\editlib\parsers\isx.cpp" />
     <ClCompile Include="..\editlib\parsers\java.cpp" />
+    <ClCompile Include="..\editlib\parsers\javascript.cpp" />
     <ClCompile Include="..\editlib\parsers\lisp.cpp" />
     <ClCompile Include="..\editlib\parsers\lua.cpp" />
     <ClCompile Include="..\editlib\parsers\nsis.cpp" />

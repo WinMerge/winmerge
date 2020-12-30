@@ -242,6 +242,14 @@ IsUser1Keyword (const TCHAR *pszChars, int nLength)
 unsigned
 CrystalLineParser::ParseLineC (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsCppKeyword, IsUser1Keyword);
+}
+
+unsigned
+CrystalLineParser::ParseLineCJava (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems,
+	bool (*IsKeyword)(const TCHAR *pszChars, int nLength),
+	bool (*IsUser1Keyword)(const TCHAR *pszChars, int nLength))
+{
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
@@ -412,11 +420,11 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsCppKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+              if (IsKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
                 }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsUser1Keyword && IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
                 }
@@ -457,7 +465,7 @@ out:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsUser1Keyword && IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
         }

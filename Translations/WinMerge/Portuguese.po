@@ -3407,6 +3407,9 @@ msgstr "Sem Destaque"
 msgid "Batch"
 msgstr "Quantidade"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

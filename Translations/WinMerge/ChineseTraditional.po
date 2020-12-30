@@ -3938,6 +3938,9 @@ msgstr "無高亮度顯示"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

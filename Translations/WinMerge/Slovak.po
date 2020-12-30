@@ -3384,6 +3384,9 @@ msgstr "Bez zvýrazňovania"
 msgid "Batch"
 msgstr "Dávkový"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

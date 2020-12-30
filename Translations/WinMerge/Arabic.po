@@ -3322,6 +3322,9 @@ msgstr "بدون تظليل"
 msgid "Batch"
 msgstr "متتالي"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

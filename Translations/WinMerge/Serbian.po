@@ -3901,6 +3901,9 @@ msgstr "Није означено"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

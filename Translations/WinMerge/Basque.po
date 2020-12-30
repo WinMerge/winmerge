@@ -3929,6 +3929,9 @@ msgstr "Ez Nabarmenduta"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 
