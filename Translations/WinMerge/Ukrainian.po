@@ -3932,6 +3932,9 @@ msgstr "Не підсвічувати"
 msgid "Batch"
 msgstr "Бетч"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

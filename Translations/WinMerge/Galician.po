@@ -4068,6 +4068,9 @@ msgstr "Sen resaltar"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

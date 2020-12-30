@@ -4028,6 +4028,9 @@ msgstr "Ei korostusta"
 msgid "Batch"
 msgstr "Erä"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

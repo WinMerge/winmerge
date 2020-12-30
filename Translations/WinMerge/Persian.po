@@ -3975,6 +3975,9 @@ msgstr " برجسته نکردن "
 msgid "Batch"
 msgstr " دسته "
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

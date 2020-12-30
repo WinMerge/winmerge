@@ -3971,6 +3971,9 @@ msgstr "Ingen fremhævning"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

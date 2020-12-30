@@ -3863,6 +3863,9 @@ msgstr "Žádné zvýraznění"
 msgid "Batch"
 msgstr ""
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

@@ -2974,6 +2974,9 @@ msgstr "Без выделения"
 msgid "Batch"
 msgstr "Пакет"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Библиотека Lua"
 

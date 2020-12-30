@@ -92,7 +92,7 @@ out:
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              dwCookie = ParseLineJava(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf, nActualItems);
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf, nActualItems);
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
               else
@@ -127,7 +127,7 @@ out:
               {
               case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
               case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
-              default: pParseLineFunc = ParseLineJava; break;
+              default: pParseLineFunc = ParseLineJavaScript; break;
               }
               dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf, nActualItems);
               if (!pszEnd)

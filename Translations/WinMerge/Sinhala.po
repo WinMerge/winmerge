@@ -3922,6 +3922,9 @@ msgstr "No Highlighting"
 msgid "Batch"
 msgstr "Batch"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr ""
 

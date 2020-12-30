@@ -3364,6 +3364,9 @@ msgstr "无高亮"
 msgid "Batch"
 msgstr "批处理文件"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

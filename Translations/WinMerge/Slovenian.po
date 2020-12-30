@@ -4064,6 +4064,9 @@ msgstr "Brez označevanja"
 msgid "Batch"
 msgstr "Paket"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 

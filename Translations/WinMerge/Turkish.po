@@ -3358,6 +3358,9 @@ msgstr "Vurgulama Yok"
 msgid "Batch"
 msgstr "Toplu İşlem"
 
+msgid "JavaScript"
+msgstr ""
+
 msgid "Lua"
 msgstr "Lua"
 
