@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-11-25 20:27+0200\n"
+"PO-Revision-Date: 2020-12-31 22:27+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -172,16 +172,16 @@ msgstr "&Verschieben"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr "&Versatz einstellen"
+msgstr "Ver&satz einstellen"
 
 msgid "&Vertical Wipe"
-msgstr "Vertikal wischen"
+msgstr "Ver&tikal wischen"
 
 msgid "&Horizontal Wipe"
-msgstr "Horizontal wischen"
+msgstr "&Horizontal wischen"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "&Rechteck auswählen"
 
 #, c-format
 msgid "&Set Background Color"
@@ -196,11 +196,11 @@ msgstr "&Datei"
 
 #, c-format
 msgid "&New"
-msgstr "&Neu\tStrg+N"
+msgstr "&Neu"
 
 #, c-format
 msgid "&Text"
-msgstr "&Text"
+msgstr "&Text\tStrg+N"
 
 #, c-format
 msgid "&Binary"
@@ -721,7 +721,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Zwischen allen und 0-9 Zeilen &wechseln\tStrg+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "Umkehren (unterschiedliche Zeilen verstecken)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -2340,7 +2340,7 @@ msgstr "MA"
 
 #, c-format
 msgid "\nNew Documents (Ctrl+N)"
-msgstr "\nNeue Dokumente (Strg+N)"
+msgstr "\nNeue Dokumente"
 
 #, c-format
 msgid "\nOpen (Ctrl+O)"
@@ -3715,7 +3715,7 @@ msgid "Batch"
 msgstr "Batch"
 
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 msgid "Lua"
 msgstr "Lua"
@@ -3892,5 +3892,5 @@ msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Re.: (%d, %d)  "
 
