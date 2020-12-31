@@ -59,18 +59,7 @@
 
 using std::swap;
 
-/** @brief Max len of path in caption. */
-static const UINT CAPTION_PATH_MAX = 50;
-
 int CMergeDoc::m_nBuffersTemp = 2;
-
-/** @brief EOL types */
-static LPCTSTR crlfs[] =
-{
-	_T ("\x0d\x0a"), //  DOS/Windows style
-	_T ("\x0a"),     //  UNIX style
-	_T ("\x0d")      //  Macintosh style
-};
 
 static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
