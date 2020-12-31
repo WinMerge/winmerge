@@ -62,8 +62,9 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 	}
 
 	// Actually display selection areas on screen in both edit panels
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+	for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			HighlightDiffRect(m_pView[nGroup][nBuffer], rc[nBuffer]);
 }
 
 static inline bool IsDiffPerLine(bool bTableEditing, const DIFFRANGE& cd)
