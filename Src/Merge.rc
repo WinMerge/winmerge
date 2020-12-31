@@ -547,6 +547,8 @@ BEGIN
             MENUITEM "&9 Lines",                    ID_VIEW_DIFFCONTEXT_9
             MENUITEM SEPARATOR
             MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
+            MENUITEM SEPARATOR
+            MENUITEM "&Invert (Hide Different Lines)", ID_VIEW_DIFFCONTEXT_INVERT
         END
         MENUITEM SEPARATOR
         MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES

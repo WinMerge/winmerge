@@ -722,6 +722,9 @@ msgstr "9 Rader"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Växla Samtliga/0-9 Rader\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "Lås Placering"

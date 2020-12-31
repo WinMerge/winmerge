@@ -87,6 +87,7 @@ extern const String OPT_WORDWRAP OP("Settings/WordWrap");
 extern const String OPT_VIEW_LINENUMBERS OP("Settings/ViewLineNumbers");
 extern const String OPT_VIEW_FILEMARGIN OP("Settings/ViewFileMargin");
 extern const String OPT_DIFF_CONTEXT OP("Settings/DiffContextV2");
+extern const String OPT_INVERT_DIFF_CONTEXT OP("Settings/InvertDiffContext");
 
 extern const String OPT_EXT_EDITOR_CMD OP("Settings/ExternalEditor");
 extern const String OPT_USE_RECYCLE_BIN OP("Settings/UseRecycleBin");

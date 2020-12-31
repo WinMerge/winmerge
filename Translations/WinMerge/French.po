@@ -725,6 +725,9 @@ msgstr "&9 lignes"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Basculer &tout et 0-9 lignes\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "&Verrouiller les panneaux"

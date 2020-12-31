@@ -568,6 +568,9 @@ msgstr "&9 eilutės"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Įjungti Visas ir 0-9 eilutes\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 msgid "&Lock Panes"
 msgstr "Užrakinti po&langius"
 

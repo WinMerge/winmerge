@@ -720,6 +720,9 @@ msgstr "&9 Zeilen"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Zwischen allen und 0-9 Zeilen &wechseln\tStrg+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "Ausschnitte &fixieren"

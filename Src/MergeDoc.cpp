@@ -84,8 +84,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnDiffContext)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnUpdateDiffContext)
+	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
@@ -138,6 +138,7 @@ CMergeDoc::CMergeDoc()
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
+	m_bInvertDiffContext = GetOptionsMgr()->GetBool(OPT_INVERT_DIFF_CONTEXT);
 
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
@@ -2011,8 +2012,12 @@ void CMergeDoc::OnDiffContext(UINT nID)
 		if (m_nDiffContext >= 0)
 			m_nDiffContext = -m_nDiffContext - 1;
 		break;
+	case ID_VIEW_DIFFCONTEXT_INVERT:
+		m_bInvertDiffContext = !m_bInvertDiffContext;
+		break;
 	}
 	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
+	GetOptionsMgr()->SaveOption(OPT_INVERT_DIFF_CONTEXT, m_bInvertDiffContext);
 	FlushAndRescan(true);
 }
 
@@ -2038,11 +2043,13 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 		bCheck = (m_nDiffContext == 9); break;
 	case ID_VIEW_DIFFCONTEXT_TOGGLE:
 		bCheck = false; break;
+	case ID_VIEW_DIFFCONTEXT_INVERT:
+		bCheck = m_bInvertDiffContext; break;
 	default:
 		bCheck = (m_nDiffContext < 0); break;
 	}
 	pCmdUI->SetCheck(bCheck);
-	pCmdUI->Enable(true);
+	pCmdUI->Enable(!(pCmdUI->m_nID == ID_VIEW_DIFFCONTEXT_INVERT && (m_nDiffContext < 0)));
 }
 
 /**
@@ -2260,7 +2267,8 @@ void CMergeDoc::HideLines()
 
 	for (nLine =  0; nLine < nLineCount;)
 	{
-		if (!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST)))
+		bool diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+		if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
 		{
 			for (file = 0; file < m_nBuffers; file++)
 				m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, true, false, false);
@@ -2277,7 +2285,8 @@ void CMergeDoc::HideLines()
 		
 			for (; nLine < nLineCount; nLine++)
 			{
-				if (!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST)))
+				diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+				if ((!m_bInvertDiffContext && !diff) || (m_bInvertDiffContext && diff))
 					break;
 				for (file = 0; file < m_nBuffers; file++)
 					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
@@ -2288,7 +2297,8 @@ void CMergeDoc::HideLines()
 			{
 				for (file = 0; file < m_nBuffers; file++)
 					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, false, false, false);
-				if (m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST))
+				diff = !!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST));
+				if ((!m_bInvertDiffContext && diff) || (m_bInvertDiffContext && !diff))
 					nLineEnd2 = (nLine + 1 + m_nDiffContext >= nLineCount) ? nLineCount-1 : (nLine + 1 + m_nDiffContext);
 			}
 		}

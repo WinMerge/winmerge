@@ -334,6 +334,7 @@ protected:
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;
+	bool m_bInvertDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;

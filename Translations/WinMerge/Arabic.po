@@ -566,6 +566,9 @@ msgstr "&9 سطر"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "عكس الاختيار بين الكل و الأسطر 0-9\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 msgid "&Lock Panes"
 msgstr "&قفل الأجزاء"
 

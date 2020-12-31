@@ -75,6 +75,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
 	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
 	pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
+	pOptions->InitOption(OPT_INVERT_DIFF_CONTEXT, false);
 	pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
 	pOptions->InitOption(OPT_RENDERING_MODE, -1);
 	pOptions->InitOption(OPT_FILE_SIZE_THRESHOLD, 64*1024*1024);

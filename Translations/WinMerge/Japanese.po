@@ -566,6 +566,9 @@ msgstr "&9 行"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "全行/0 ～ 9 行切替(&T)\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr "反転(差異行を非表示にする)(&I)"
+
 msgid "&Lock Panes"
 msgstr "ペインをロック(&L)"
 

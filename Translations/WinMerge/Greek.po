@@ -719,6 +719,9 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "&Πάγωμα Πεδίων"

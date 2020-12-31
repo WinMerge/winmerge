@@ -565,6 +565,9 @@ msgstr "&9 Satır"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Tümünü ve 0-9 Satırları Değiştir\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 msgid "&Lock Panes"
 msgstr "Pano&lar Kilitlensin"
 
