@@ -210,10 +210,8 @@ void PathContext::SetPath(int index, const String& path, bool bNormalized)
 /**
  * @brief Swap paths.
  */
-void PathContext::Swap()
+void PathContext::Swap(int nFromIndex, int nToIndex)
 {
-	if (m_nFiles < 3)
-		m_path[0].m_sPath.swap(m_path[1].m_sPath);
-	else
-		m_path[0].m_sPath.swap(m_path[2].m_sPath);
+	if ((nFromIndex >= 0 && nFromIndex < m_nFiles) && (nToIndex >= 0 && nToIndex < m_nFiles))
+		m_path[nFromIndex].m_sPath.swap(m_path[nToIndex].m_sPath);
 }

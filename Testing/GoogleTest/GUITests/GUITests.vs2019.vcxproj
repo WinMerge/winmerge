@@ -265,6 +265,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="DirFrameTest.cpp" />
+    <ClCompile Include="FileTest.cpp" />
     <ClCompile Include="GUITestUtils.cpp" />
     <ClCompile Include="InstallerTest.cpp" />
     <ClCompile Include="MainFrameTest.cpp" />

@@ -329,7 +329,9 @@ protected:
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
-	afx_msg void OnViewSwapPanes();
+	afx_msg void OnViewSwapPanes12();
+	afx_msg void OnViewSwapPanes23();
+	afx_msg void OnViewSwapPanes13();
 	afx_msg void OnUpdateNoEditScripts(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();

@@ -1345,6 +1345,9 @@
 #define ID_FILE_NEW3_TABLE              34167
 #define ID_FILE_NEW3_HEX                34168
 #define ID_FILE_NEW3_IMAGE              34169
+#define ID_SWAPPANES_SWAP12             34170
+#define ID_SWAPPANES_SWAP23             34171
+#define ID_SWAPPANES_SWAP13             34172
 
 // Next default values for new objects
 // 
