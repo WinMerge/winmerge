@@ -21,7 +21,6 @@
 #include "Constants.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
-static void CopyHKLMValues();
 static bool OpenHKLM(HKEY *key, LPCTSTR relpath = nullptr);
 static bool OpenHKCU(HKEY *key, LPCTSTR relpath = nullptr);
 static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname);

@@ -2139,7 +2139,7 @@ void CMergeDoc::PrimeTextBuffers()
 		{
 		case OP_TRIVIAL:
 			++m_nTrivialDiffs;
-			// fall through and handle as diff
+			[[fallthrough]];
 		case OP_DIFF:
 		case OP_1STONLY:
 		case OP_2NDONLY:

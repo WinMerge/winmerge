@@ -1239,15 +1239,15 @@ void CDirView::OpenParentDirectory()
 	{
 	case AllowUpwardDirectory::ParentIsTempPath:
 		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
-		// fall through (no break!)
+		[[fallthrough]];
 	case AllowUpwardDirectory::ParentIsRegularPath: 
 	{
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
+		[[fallthrough]];
 	}
-		// fall through (no break!)
 	case AllowUpwardDirectory::No:
 		break;
 	default:
@@ -2799,7 +2799,7 @@ int CDirView::AddSpecialItems()
 	{
 	case AllowUpwardDirectory::No:
 		bEnable = false;
-		// fall through
+		[[fallthrough]];
 	default:
 		AddParentFolderItem(bEnable);
 		retVal = 1;
