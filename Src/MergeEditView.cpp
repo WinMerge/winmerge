@@ -2831,7 +2831,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		m_CurrentPredifferID = 0;
 	else if (prediffer.m_PluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
@@ -2921,17 +2921,17 @@ void CMergeEditView::OnUpdateStatusEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnConvertEolTo(UINT nID )
 {
-	CRLFSTYLE nStyle = CRLF_STYLE_AUTOMATIC;;
+	CRLFSTYLE nStyle = CRLFSTYLE::AUTOMATIC;;
 	switch (nID)
 	{
 		case ID_EOL_TO_DOS:
-			nStyle = CRLF_STYLE_DOS;
+			nStyle = CRLFSTYLE::DOS;
 			break;
 		case ID_EOL_TO_UNIX:
-			nStyle = CRLF_STYLE_UNIX;
+			nStyle = CRLFSTYLE::UNIX;
 			break;
 		case ID_EOL_TO_MAC:
-			nStyle = CRLF_STYLE_MAC;
+			nStyle = CRLFSTYLE::MAC;
 			break;
 		default:
 			// Catch errors
@@ -2955,17 +2955,17 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
  */
 void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 {
-	int nStyle = CRLF_STYLE_AUTOMATIC;
+	CRLFSTYLE nStyle = CRLFSTYLE::AUTOMATIC;
 	switch (pCmdUI->m_nID)
 	{
 		case ID_EOL_TO_DOS:
-			nStyle = CRLF_STYLE_DOS;
+			nStyle = CRLFSTYLE::DOS;
 			break;
 		case ID_EOL_TO_UNIX:
-			nStyle = CRLF_STYLE_UNIX;
+			nStyle = CRLFSTYLE::UNIX;
 			break;
 		case ID_EOL_TO_MAC:
-			nStyle = CRLF_STYLE_MAC;
+			nStyle = CRLFSTYLE::MAC;
 			break;
 		default:
 			// Catch errors
@@ -3348,7 +3348,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 	{
 		pCmdUI->SetRadio(false);
 		return;
@@ -3402,7 +3402,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		m_CurrentPredifferID = nID;
 		// All flags are set correctly during the construction
 		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 		infoPrediffer->m_PluginName.clear();
 		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
@@ -3417,7 +3417,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer;
-	prediffer.m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	prediffer.m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())

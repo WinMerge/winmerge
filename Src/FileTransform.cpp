@@ -25,8 +25,8 @@ using Poco::Exception;
 namespace FileTransform
 {
 
-PLUGIN_MODE g_UnpackerMode = PLUGIN_MANUAL;
-PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
+PLUGIN_MODE g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
+PLUGIN_MODE g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 
 
@@ -182,8 +182,8 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 // scan plugins for the first handler
 bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
-	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
-	if (handler->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML)
+	// PLUGIN_MODE::PLUGIN_BUILTIN_XML : read source file through custom UniFile
+	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML)
 	{
 		handler->m_pufile = new UniMarkdownFile;
 		handler->m_textType = _T("xml");
@@ -244,7 +244,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	}
 
 	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	// assign the sucode
 	*handlerSubcode = handler->m_subcode;
@@ -261,7 +261,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 
 bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
 {
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		return Unpacking(filepath, filteredText, handler, &handler->m_subcode);
 	else
 		return Unpacking(filepath, handler, &handler->m_subcode);
@@ -405,7 +405,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	}
 
 	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -419,7 +419,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 
 bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
 {
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
 	else
 		return Prediffing(filepath, *handler, bMayOverwrite);

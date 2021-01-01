@@ -138,7 +138,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file
-				assert(!infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MANUAL);
+				assert(infoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 			}
 
 			// As we keep handles open on unpacked files, Transform() may not delete them.

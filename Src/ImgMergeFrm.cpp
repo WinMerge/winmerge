@@ -163,7 +163,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(nullptr)
 , m_pImgToolWindow(nullptr)
-, m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
+, m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 , m_bRO{}
 , m_nActivePane(-1)
 {
@@ -205,10 +205,10 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
 		if (fileloc[pane].filepath.empty())
-			m_nBufferType[pane] = BUFFER_UNNAMED;
+			m_nBufferType[pane] = BUFFERTYPE::UNNAMED;
 		else
 		{
-			m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFER_NORMAL : BUFFER_NORMAL_NAMED;
+			m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFERTYPE::NORMAL : BUFFERTYPE::NORMAL_NAMED;
 			++nNormalBuffer;
 		}
 	}
@@ -260,7 +260,7 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 
 	m_filePaths[nBuffer] = path;
-	m_nBufferType[nBuffer] = BUFFER_NORMAL;
+	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
 	m_strDesc[nBuffer] = _T("");
 
 	if (m_filePaths.GetSize() == 2)
@@ -318,22 +318,22 @@ IMergeDoc::FileChange CImgMergeFrame::IsFileChangedOnDisk(int pane) const
 {
 	DiffFileInfo dfi;
 	if (!dfi.Update(m_filePaths[pane]))
-		return FileRemoved;
+		return FileChange::Removed;
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
 	int64_t timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo[pane].size))
-		return FileChanged;
-	return FileNoChange;
+		return FileChange::Changed;
+	return FileChange::NoChange;
 }
 
 void CImgMergeFrame::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 	{
-		if (IsFileChangedOnDisk(pane) == FileChanged)
+		if (IsFileChangedOnDisk(pane) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
@@ -443,7 +443,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	LoadOptions();
 
 	bool bResult;
-	if (m_nBufferType[0] == BUFFER_UNNAMED)
+	if (m_nBufferType[0] == BUFFERTYPE::UNNAMED)
 	{
 		bResult = m_pImgMergeWindow->NewImages(m_filePaths.GetSize(), 1, 256, 256);
 	}
@@ -681,7 +681,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 {
 	if (m_pImgMergeWindow->IsModified(pane))
 	{
-		if (m_nBufferType[pane] == BUFFER_UNNAMED)
+		if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
 			DoFileSaveAs(pane);
 		else
 		{
@@ -731,7 +731,7 @@ RETRY:
 		if (path.empty())
 		{
 			// We are saving scratchpad (unnamed file)
-			m_nBufferType[pane] = BUFFER_UNNAMED_SAVED;
+			m_nBufferType[pane] = BUFFERTYPE::UNNAMED_SAVED;
 			m_strDesc[pane].erase();
 		}
 
@@ -947,8 +947,8 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 {
 	String sText;
 
-	if (m_nBufferType[pane] == BUFFER_UNNAMED ||
-		m_nBufferType[pane] == BUFFER_NORMAL_NAMED)
+	if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED ||
+		m_nBufferType[pane] == BUFFERTYPE::NORMAL_NAMED)
 	{
 		sText = m_strDesc[pane];
 	}

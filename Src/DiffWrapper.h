@@ -103,13 +103,13 @@ struct PATCHOPTIONS
 	bool bAddCommandline; /**< Add diff-style commandline to patch file. */
 };
 
-typedef enum {
-	IDENTLEVEL_ALL,
-	IDENTLEVEL_NONE,
-	IDENTLEVEL_EXCEPTLEFT,
-	IDENTLEVEL_EXCEPTMIDDLE,
-	IDENTLEVEL_EXCEPTRIGHT,
-} IDENTLEVEL;
+enum class IDENTLEVEL {
+	ALL,
+	NONE,
+	EXCEPTLEFT,
+	EXCEPTMIDDLE,
+	EXCEPTRIGHT,
+};
 /**
  * @brief Diffutils returns this statusdata about files compared
  */
@@ -117,19 +117,19 @@ struct DIFFSTATUS
 {
 	bool bMissingNL[3] {}; /**< file is missing EOL before EOF */
 	bool bBinaries = false; /**< Files are binaries */
-	IDENTLEVEL Identical = IDENTLEVEL_NONE; /**< diffutils said files are identical */
+	IDENTLEVEL Identical = IDENTLEVEL::NONE; /**< diffutils said files are identical */
 	bool bPatchFileFailed = false; /**< Creating patch file failed */
 
 	DIFFSTATUS() {}
 	void MergeStatus(const DIFFSTATUS& other)
 	{
-		if (Identical == IDENTLEVEL_ALL)
+		if (Identical == IDENTLEVEL::ALL)
 			Identical = other.Identical;
 		else if (
-			 (Identical == IDENTLEVEL_EXCEPTLEFT   && other.Identical != IDENTLEVEL_EXCEPTLEFT) ||
-			 (Identical == IDENTLEVEL_EXCEPTRIGHT  && other.Identical != IDENTLEVEL_EXCEPTRIGHT) ||
-			 (Identical == IDENTLEVEL_EXCEPTMIDDLE && other.Identical != IDENTLEVEL_EXCEPTMIDDLE))
-			Identical = IDENTLEVEL_NONE;
+			 (Identical == IDENTLEVEL::EXCEPTLEFT   && other.Identical != IDENTLEVEL::EXCEPTLEFT) ||
+			 (Identical == IDENTLEVEL::EXCEPTRIGHT  && other.Identical != IDENTLEVEL::EXCEPTRIGHT) ||
+			 (Identical == IDENTLEVEL::EXCEPTMIDDLE && other.Identical != IDENTLEVEL::EXCEPTMIDDLE))
+			Identical = IDENTLEVEL::NONE;
 		if (other.bPatchFileFailed)
 			bPatchFileFailed = true;
 		if (other.bBinaries)

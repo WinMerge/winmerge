@@ -57,21 +57,21 @@ enum
  * @brief Types for buffer. Buffer's type defines behavior
  * of buffer when saving etc.
  * 
- * Difference between BUFFER_NORMAL and BUFFER_NORMAL_NAMED is
+ * Difference between BUFFERTYPE::NORMAL and BUFFERTYPE::NORMAL_NAMED is
  * that _NAMED has description text given and which is shown
  * instead of filename.
  *
- * BUFFER_UNNAMED is created empty buffer (scratchpad), it has
+ * BUFFERTYPE::UNNAMED is created empty buffer (scratchpad), it has
  * no filename, and default description is given for it. After
  * this buffer is saved it becomes _SAVED. It is not equal to
  * NORMAL_NAMED, since scratchpads don't have plugins etc.
  */
-enum BUFFERTYPE
+enum class BUFFERTYPE
 {
-	BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-	BUFFER_NORMAL_NAMED, /**< Normal, description given */
-	BUFFER_UNNAMED, /**< Empty, created buffer */
-	BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+	NORMAL = 0, /**< Normal, file loaded from disk */
+	NORMAL_NAMED, /**< Normal, description given */
+	UNNAMED, /**< Empty, created buffer */
+	UNNAMED_SAVED, /**< Empty buffer saved with filename */
 };
 
 struct WordDiff {

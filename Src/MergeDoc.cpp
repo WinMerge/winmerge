@@ -130,7 +130,7 @@ CMergeDoc::CMergeDoc()
 		m_ptBuf[nBuffer].reset(new CDiffTextBuffer(this, nBuffer));
 		m_pSaveFileInfo[nBuffer].reset(new DiffFileInfo());
 		m_pRescanFileInfo[nBuffer].reset(new DiffFileInfo());
-		m_nBufferType[nBuffer] = BUFFER_NORMAL;
+		m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
 		m_bEditAfterRescan[nBuffer] = false;
 	}
 
@@ -255,7 +255,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int n
 	// write buffer out to temporary file
 	String sError;
 	int retVal = buf.SaveToFile(filepath, true, sError, tempPacker,
-		CRLF_STYLE_AUTOMATIC, false, nStartLine, nLines);
+		CRLFSTYLE::AUTOMATIC, false, nStartLine, nLines);
 }
 
 /**
@@ -281,7 +281,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	DiffFileInfo fileInfo;
 	bool diffSuccess = false;
 	int nResult = RESCAN_OK;
-	FileChange FileChanged[3] = {FileNoChange, FileNoChange, FileNoChange};
+	FileChange Changed[3] = {FileChange::NoChange, FileChange::NoChange, FileChange::NoChange};
 	int nBuffer;
 
 	if (!bForced)
@@ -311,7 +311,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Ignore checking in case of scratchpads (empty filenames)
 		if (!m_filePaths[nBuffer].empty())
 		{
-			FileChanged[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(),
+			Changed[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(),
 					fileInfo, false, nBuffer);
 		}
 	}
@@ -320,7 +320,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	LPCTSTR tnames[] = {_T("t0_wmdoc"), _T("t1_wmdoc"), _T("t2_wmdoc")};
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		if (FileChanged[nBuffer] == FileRemoved)
+		if (Changed[nBuffer] == FileChange::Removed)
 		{
 			String msg = strutils::format_string1(_("The file\n%1\nhas disappeared. Please save a copy of the file to continue."), m_filePaths[nBuffer]);
 			ShowMessageBox(msg, MB_ICONWARNING);
@@ -508,7 +508,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 		// Identical files are also updated
 		if (!m_diffList.HasSignificantDiffs())
-			identical = IDENTLEVEL_ALL;
+			identical = IDENTLEVEL::ALL;
 
 		ForEachView([](auto& pView) {
 			// just apply some options to the views
@@ -523,12 +523,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE) &&
-		identical == IDENTLEVEL_ALL &&
+		identical == IDENTLEVEL::ALL &&
 		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
 			[&](std::unique_ptr<CDiffTextBuffer>& buf) { return buf->getEncoding() != m_ptBuf[0]->getEncoding(); }))
-		identical = IDENTLEVEL_NONE;
+		identical = IDENTLEVEL::NONE;
 
-	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL_ALL ? 1 : 0);
+	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
 	return nResult;
 }
@@ -550,7 +550,7 @@ void CMergeDoc::CheckFileChanged(void)
 	bool bDoReload = false;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		if (FileChange[nBuffer] == FileChanged)
+		if (FileChange[nBuffer] == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
 			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
@@ -562,7 +562,7 @@ void CMergeDoc::CheckFileChanged(void)
 	{
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (FileChange[nBuffer] == FileChanged)
+			if (FileChange[nBuffer] == FileChange::Changed)
 			{
 				CPoint pt = GetView(0, nBuffer)->GetCursorPos();
 				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
@@ -616,7 +616,7 @@ void CMergeDoc::FlagMovedLines(void)
 	pMovedLines = m_diffWrapper.GetMovedLines(0);
 	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i)
 	{
-		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_RIGHT);
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
 		{
 			TRACE(_T("%d->%d\n"), i, j);
@@ -639,7 +639,7 @@ void CMergeDoc::FlagMovedLines(void)
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
 	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
 	{
-		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::LEFT);
 		if (j != -1)
 		{
 			TRACE(_T("%d->%d\n"), i, j);
@@ -665,7 +665,7 @@ void CMergeDoc::FlagMovedLines(void)
 	pMovedLines = m_diffWrapper.GetMovedLines(1);
 	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
 	{
-		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_RIGHT);
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::RIGHT);
 		if (j != -1)
 		{
 			TRACE(_T("%d->%d\n"), i, j);
@@ -688,7 +688,7 @@ void CMergeDoc::FlagMovedLines(void)
 	pMovedLines = m_diffWrapper.GetMovedLines(2);
 	for (i=0; i<m_ptBuf[2]->GetLineCount(); ++i)
 	{
-		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE::LEFT);
 		if (j != -1)
 		{
 			TRACE(_T("%d->%d\n"), i, j);
@@ -753,7 +753,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	}
 
 	// Files are not binaries, but they are identical
-	if (identical != IDENTLEVEL_NONE)
+	if (identical != IDENTLEVEL::NONE)
 	{
 		if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 		{
@@ -777,14 +777,14 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 				s = _("The same file is opened in both panels.");
 				ShowMessageBox(s, nFlags, IDS_FILE_TO_ITSELF);
 			}
-			else if (identical == IDENTLEVEL_ALL)
+			else if (identical == IDENTLEVEL::ALL)
 			{
 				s = _("The selected files are identical.");
 				ShowMessageBox(s, nFlags, IDS_FILESSAME);
 			}
 		}
 
-		if (identical == IDENTLEVEL_ALL)
+		if (identical == IDENTLEVEL::ALL)
 		{
 			// Exit application if files are identical.
 			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
@@ -1413,7 +1413,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 				strPath, pInfoTempUnpacker->m_PluginName);
 		}
 		// replace the unpacker with a "do nothing" unpacker
-		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
+		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 	}
 	else
 	{
@@ -1447,7 +1447,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 				// We are saving scratchpad (unnamed file)
 				if (strPath.empty())
 				{
-					m_nBufferType[nBuffer] = BUFFER_UNNAMED_SAVED;
+					m_nBufferType[nBuffer] = BUFFERTYPE::UNNAMED_SAVED;
 					m_strDesc[nBuffer].erase();
 				}
 					
@@ -1498,7 +1498,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	int nRetVal = -1;
 
 	fileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);
-	if (fileChanged == FileChanged)
+	if (fileChanged == FileChange::Changed)
 	{
 		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), szPath);
 		if (ShowMessageBox(msg, MB_ICONWARNING | MB_YESNO) == IDNO)
@@ -1552,7 +1552,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 		nSaveErrorCode = SAVE_NO_FILENAME;
 
 	// Handle unnamed buffers
-	if (m_nBufferType[nBuffer] == BUFFER_UNNAMED)
+	if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
 		nSaveErrorCode = SAVE_NO_FILENAME;
 
 	String sError;
@@ -1671,7 +1671,7 @@ int CMergeDoc::RightLineInMovedBlock(int nBuffer, int apparentLeftLine)
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
 		realRightLine = m_diffWrapper.GetMovedLines(nBuffer)->LineInBlock(realLeftLine,
-				MovedLines::SIDE_RIGHT);
+				MovedLines::SIDE::RIGHT);
 	}
 	if (realRightLine != -1)
 		return m_ptBuf[nBuffer + 1]->ComputeApparentLine(realRightLine);
@@ -1692,7 +1692,7 @@ int CMergeDoc::LeftLineInMovedBlock(int nBuffer, int apparentRightLine)
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
 		realLeftLine = m_diffWrapper.GetMovedLines(nBuffer)->LineInBlock(realRightLine,
-				MovedLines::SIDE_LEFT);
+				MovedLines::SIDE::LEFT);
 	}
 	if (realLeftLine != -1)
 		return m_ptBuf[nBuffer - 1]->ComputeApparentLine(realLeftLine);
@@ -1765,7 +1765,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	pActiveView->HideCursor();
 
 	bool bBinary = false;
-	IDENTLEVEL identical = IDENTLEVEL_NONE;
+	IDENTLEVEL identical = IDENTLEVEL::NONE;
 	int nRescanResult = Rescan(bBinary, identical, bForced);
 
 	// restore cursors and caret
@@ -2232,7 +2232,7 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 
 	// We assume file existed, so disappearing means removal
 	if (!dfi.Update(szPath))
-		return FileRemoved;
+		return FileChange::Removed;
 
 	int64_t timeDiff = dfi.mtime - fileInfo->mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
@@ -2242,9 +2242,9 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 	}
 
 	if (bFileChanged)
-		return FileChanged;
+		return FileChange::Changed;
 	else
-		return FileNoChange;
+		return FileChange::NoChange;
 }
 
 void CMergeDoc::HideLines()
@@ -2518,7 +2518,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer].get();
 	m_filePaths[nBuffer] = sFileName;
 
-	CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC;
+	CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC;
 	CString sOpenError;
 	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker.get(),
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
@@ -2602,9 +2602,9 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	if (!filename.empty())
 	{
 		if (strDesc.empty())
-			m_nBufferType[index] = BUFFER_NORMAL;
+			m_nBufferType[index] = BUFFERTYPE::NORMAL;
 		else
-			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+			m_nBufferType[index] = BUFFERTYPE::NORMAL_NAMED;
 		m_pSaveFileInfo[index]->Update(filename);
 		m_pRescanFileInfo[index]->Update(filename);
 
@@ -2618,7 +2618,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	}
 	else
 	{
-		m_nBufferType[index] = BUFFER_UNNAMED;
+		m_nBufferType[index] = BUFFERTYPE::UNNAMED;
 		m_ptBuf[index]->InitNew();
 		m_ptBuf[index]->m_encoding = encoding;
 		m_ptBuf[index]->FinishLoading(); // should clear GGhostTextBuffer::m_RealityBlock when reloading unnamed buffer 
@@ -2710,7 +2710,7 @@ void CMergeDoc::SetTableProperties()
 bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		const bool bRO[], const String strDesc[])
 {
-	IDENTLEVEL identical = IDENTLEVEL_NONE;
+	IDENTLEVEL identical = IDENTLEVEL::NONE;
 	int nRescanResult = RESCAN_OK;
 	int nBuffer;
 	FileLocation fileloc[3];
@@ -2760,9 +2760,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// we need to initialize the unpacker as a "do nothing" one
 	if (bFiltersEnabled)
 	{ 
-		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFER_UNNAMED) == m_nBuffers)
+		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
 		{
-			m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
+			m_pInfoUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 		}
 	}
 
@@ -2927,8 +2927,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
 			
-			if ((m_nBufferType[nBuffer] == BUFFER_NORMAL) ||
-			    (m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED))
+			if ((m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL) ||
+			    (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
 			{
 				nNormalBuffer++;
 			}
@@ -2937,7 +2937,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
-		if (identical == IDENTLEVEL_ALL && nNormalBuffer > 0)
+		if (identical == IDENTLEVEL::ALL && nNormalBuffer > 0)
 		{
 			ShowRescanError(nRescanResult, identical);
 		}
@@ -3045,8 +3045,8 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	String sText;
 	bool bChanges = false;
 
-	if (m_nBufferType[pane] == BUFFER_UNNAMED ||
-		m_nBufferType[pane] == BUFFER_NORMAL_NAMED)
+	if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED ||
+		m_nBufferType[pane] == BUFFERTYPE::NORMAL_NAMED)
 	{
 		sText = m_strDesc[pane];
 	}
@@ -3148,11 +3148,11 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
-	if (m_nBufferType[0] == BUFFER_UNNAMED)
+	if (m_nBufferType[0] == BUFFERTYPE::UNNAMED)
 		m_strDesc[0] = _("Untitled left");
-	if (m_nBufferType[m_nBuffers - 1] == BUFFER_UNNAMED)
+	if (m_nBufferType[m_nBuffers - 1] == BUFFERTYPE::UNNAMED)
 		m_strDesc[m_nBuffers - 1] = _("Untitled right");
-	if (m_nBuffers == 3 && m_nBufferType[1] == BUFFER_UNNAMED)
+	if (m_nBuffers == 3 && m_nBufferType[1] == BUFFERTYPE::UNNAMED)
 		m_strDesc[1] = _("Untitled middle");
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		UpdateHeaderPath(nBuffer);
@@ -3229,7 +3229,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 	// let the user choose a handler
 	CSelectUnpackerDlg dlg(m_filePaths[0], nullptr);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
-	PackingInfo infoUnpacker(PLUGIN_AUTO);
+	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
 
 	if (dlg.DoModal() == IDOK)
@@ -3329,7 +3329,7 @@ void CMergeDoc::OnFileRecompareAsText()
 
 void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML ||
+	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML ||
 		m_ptBuf[0]->GetTableEditing());
 }
 
@@ -3349,14 +3349,14 @@ void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
 void CMergeDoc::OnFileRecompareAsXML()
 {
 	m_bEnableTableEditing = false;
-	PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
+	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_BUILTIN_XML);
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }
 
 void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode != PLUGIN_BUILTIN_XML);
+	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_BUILTIN_XML);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)

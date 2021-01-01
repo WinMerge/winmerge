@@ -1412,13 +1412,13 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		FileTransform::g_UnpackerMode = PLUGIN_MANUAL;
+		FileTransform::g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
 		break;
 	case ID_UNPACK_AUTO:
-		FileTransform::g_UnpackerMode = PLUGIN_AUTO;
+		FileTransform::g_UnpackerMode = PLUGIN_MODE::PLUGIN_AUTO;
 		break;
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, FileTransform::g_UnpackerMode);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(FileTransform::g_UnpackerMode));
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
@@ -1426,19 +1426,19 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_MANUAL == FileTransform::g_UnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_AUTO == FileTransform::g_UnpackerMode);
 }
 void CMainFrame::OnPluginPrediffMode(UINT nID )
 {
 	switch (nID)
 	{
 	case ID_PREDIFFER_MANUAL:
-		FileTransform::g_PredifferMode = PLUGIN_MANUAL;
+		FileTransform::g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 		break;
 	case ID_PREDIFFER_AUTO:
-		FileTransform::g_PredifferMode = PLUGIN_AUTO;
+		FileTransform::g_PredifferMode = PLUGIN_MODE::PLUGIN_AUTO;
 		break;
 	}
 	PrediffingInfo infoPrediffer;
@@ -1446,7 +1446,7 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
 		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_PredifferMode);
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::g_PredifferMode);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, static_cast<int>(FileTransform::g_PredifferMode));
 }
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
@@ -1454,9 +1454,9 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_MANUAL == FileTransform::g_PredifferMode);
 	if (pCmdUI->m_nID == ID_PREDIFFER_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_AUTO == FileTransform::g_PredifferMode);
 }
 /**
  * @brief Called when "Reload Plugins" item is updated

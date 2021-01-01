@@ -400,13 +400,13 @@ bool CDiffWrapper::RunFileDiff()
 					m_infoPrediffer->m_PluginName.c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 				m_infoPrediffer->m_PluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MANUAL);
+			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 		}
 	}
 
@@ -485,13 +485,13 @@ bool CDiffWrapper::RunFileDiff()
 		{
 			m_status.bBinaries = true;
 			if (bin_flag != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else
-				m_status.Identical = IDENTLEVEL_NONE;
+				m_status.Identical = IDENTLEVEL::NONE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
-			m_status.Identical = (script == 0) ? IDENTLEVEL_ALL : IDENTLEVEL_NONE;
+			m_status.Identical = (script == 0) ? IDENTLEVEL::ALL : IDENTLEVEL::NONE;
 			m_status.bBinaries = false;
 		}
 		m_status.bMissingNL[0] = !!inf[0].missing_newline;
@@ -499,30 +499,30 @@ bool CDiffWrapper::RunFileDiff()
 	}
 	else
 	{
-		m_status.Identical = IDENTLEVEL_NONE;
+		m_status.Identical = IDENTLEVEL::NONE;
 		if (bin_flag10 != 0 || bin_flag12 != 0)
 		{
 			m_status.bBinaries = true;
 			if (bin_flag10 != -1 && bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (bin_flag10 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.bBinaries = false;
 			if (script10 == nullptr && script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (script10 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
 		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
@@ -904,7 +904,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
 							int line1 = i+thisob->line1 + (trans_a1-first1-1);
-							GetMovedLines(1)->Add(MovedLines::SIDE_LEFT, line1, line0);
+							GetMovedLines(1)->Add(MovedLines::SIDE::LEFT, line1, line0);
 						}
 					}
 					if (thisob->match1>=0)
@@ -914,7 +914,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
 							int line1 = i+thisob->match1 + (trans_a1-first1-1);
-							GetMovedLines(0)->Add(MovedLines::SIDE_RIGHT, line0, line1);
+							GetMovedLines(0)->Add(MovedLines::SIDE::RIGHT, line0, line1);
 						}
 					}
 				}
@@ -1042,14 +1042,14 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					{
 						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
 						int index2 = 1;
-						MovedLines::ML_SIDE side1 = MovedLines::SIDE_RIGHT;
-						MovedLines::ML_SIDE side2 = MovedLines::SIDE_LEFT;
+						MovedLines::SIDE side1 = MovedLines::SIDE::RIGHT;
+						MovedLines::SIDE side2 = MovedLines::SIDE::LEFT;
 						if (file == 1 /* diff12 */)
 						{
 							index1 = 2;
 							index2 = 1;
-							side1 = MovedLines::SIDE_LEFT;
-							side2 = MovedLines::SIDE_RIGHT;
+							side1 = MovedLines::SIDE::LEFT;
+							side2 = MovedLines::SIDE::RIGHT;
 						}
 						if (index1 != -1 && index2 != -1)
 						{

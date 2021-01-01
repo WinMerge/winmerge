@@ -54,14 +54,13 @@ enum LINEFLAGS: unsigned long
 
 #define LF_BOOKMARK(id)     (LF_BOOKMARK_FIRST << id)
 
-enum CRLFSTYLE
+enum class CRLFSTYLE
 {
-  CRLF_STYLE_AUTOMATIC = -1,
-  CRLF_STYLE_DOS = 0,
-  CRLF_STYLE_UNIX = 1,
-  CRLF_STYLE_MAC = 2,
-  CRLF_STYLE_MIXED = 3
-
+  AUTOMATIC = -1,
+  DOS = 0,
+  UNIX = 1,
+  MAC = 2,
+  MIXED = 3
 };
 
 enum
@@ -205,14 +204,14 @@ public :
     ~CCrystalTextBuffer ();
 
     //  Basic functions
-    bool InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
+    bool InitNew (CRLFSTYLE nCrlfStyle = CRLFSTYLE::DOS);
 
 // WinMerge has own routines for loading and saving
 #ifdef CRYSTALEDIT_ENABLELOADER
-    bool LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+    bool LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC);
 #endif
 #ifdef CRYSTALEDIT_ENABLESAVER
-    bool SaveToFile(LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
+    bool SaveToFile(LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC, 
     bool bClearModifiedFlag = true);
 #endif
 
@@ -244,7 +243,7 @@ public :
             CString & text, LPCTSTR pszCRLF = nullptr, bool bExcludeInvisibleLines = true) const;
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, CString &text,
-            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, bool bExcludeInvisibleLines = true) const;
+            CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC, bool bExcludeInvisibleLines = true) const;
     virtual bool IsIndentableLine(int nLine) const { return true; }
 
     //  Attributes

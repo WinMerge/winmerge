@@ -144,7 +144,7 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_bInit = false;
   m_bReadOnly = false;
   m_bModified = false;
-  m_nCRLFMode = CRLF_STYLE_DOS;
+  m_nCRLFMode = CRLFSTYLE::DOS;
   m_IgnoreEol = false;
   m_bCreateBackupFile = false;
   m_nSyncPosition = m_nUndoPosition = 0;
@@ -306,11 +306,11 @@ FreeAll ()
 }
 
 bool CCrystalTextBuffer::
-InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
+InitNew (CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::DOS*/ )
 {
   ASSERT (!m_bInit);
   ASSERT (m_aLines.size() == 0);
-  ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+  ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC && nCrlfStyle != CRLFSTYLE::MIXED);
   InsertLine (_T (""), 0);
   m_bInit = true;
   m_bReadOnly = false;
@@ -358,7 +358,7 @@ static LPCTSTR crlfs[] =
 };
 
 bool CCrystalTextBuffer::
-LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
+LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/ )
 {
   ASSERT (!m_bInit);
   ASSERT (m_aLines.size() == 0);
@@ -395,7 +395,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, nullptr))
         __leave;
 
-      if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+      if (nCrlfStyle == CRLFSTYLE::AUTOMATIC)
         {
           //  Try to determine current CRLF mode based on first line
           DWORD I;
@@ -407,21 +407,21 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
           if (I == dwCurSize)
             {
               //  By default (or in the case of empty file), set DOS style
-              nCrlfStyle = CRLF_STYLE_DOS;
+              nCrlfStyle = CRLFSTYLE::DOS;
             }
           else
             {
               //  Otherwise, analyse the first occurance of line-feed character
               if (pcBuf[I] == _T('\x0a'))
                 {
-                  nCrlfStyle = CRLF_STYLE_UNIX;
+                  nCrlfStyle = CRLFSTYLE::UNIX;
                 }
               else
                 {
                   if (I < dwCurSize - 1 && pcBuf[I + 1] == _T ('\x0a'))
-                    nCrlfStyle = CRLF_STYLE_DOS;
+                    nCrlfStyle = CRLFSTYLE::DOS;
                   else
-                    nCrlfStyle = CRLF_STYLE_MAC;
+                    nCrlfStyle = CRLFSTYLE::MAC;
                 }
             }
         }
@@ -516,11 +516,11 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
 // WinMerge has own routine for saving
 #ifdef CRYSTALEDIT_ENABLESAVER
 bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
-                  CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+                  CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
                   bool bClearModifiedFlag /*= true*/)
 {
-  ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
-          nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
+  ASSERT (nCrlfStyle == CRLFSTYLE::AUTOMATIC || nCrlfStyle == CRLFSTYLE::DOS ||
+          nCrlfStyle == CRLFSTYLE::UNIX || nCrlfStyle == CRLFSTYLE::MAC);
   ASSERT (m_bInit);
   HANDLE hTempFile = INVALID_HANDLE_VALUE;
   HANDLE hSearch = INVALID_HANDLE_VALUE;
@@ -548,11 +548,11 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     if (hTempFile == INVALID_HANDLE_VALUE)
       goto EXIT;
 
-    if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+    if (nCrlfStyle == CRLFSTYLE::AUTOMATIC)
       nCrlfStyle = m_nCRLFMode;
 
-    ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
-    LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+    ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC>= 0 && nCrlfStyle != CRLFSTYLE::MIXED);
+    LPCTSTR pszCRLF = crlfs[static_cast<int>(nCrlfStyle)];
     int nCRLFLength = static_cast<int>(_tcslen (pszCRLF));
 
     int nLineCount = static_cast<int>(m_aLines.size());
@@ -665,12 +665,12 @@ EXIT:
 void CCrystalTextBuffer::
 SetCRLFMode (CRLFSTYLE nCRLFMode)
 {
-  if (nCRLFMode==CRLF_STYLE_AUTOMATIC)
-    nCRLFMode = CRLF_STYLE_DOS;
+  if (nCRLFMode==CRLFSTYLE::AUTOMATIC)
+    nCRLFMode = CRLFSTYLE::DOS;
   m_nCRLFMode = nCRLFMode;
 
-  ASSERT(m_nCRLFMode == CRLF_STYLE_DOS || m_nCRLFMode == CRLF_STYLE_UNIX ||
-      m_nCRLFMode == CRLF_STYLE_MAC || m_nCRLFMode == CRLF_STYLE_MIXED);
+  ASSERT(m_nCRLFMode == CRLFSTYLE::DOS || m_nCRLFMode == CRLFSTYLE::UNIX ||
+      m_nCRLFMode == CRLFSTYLE::MAC || m_nCRLFMode == CRLFSTYLE::MIXED);
 }
 
 bool CCrystalTextBuffer::
@@ -902,10 +902,10 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 void CCrystalTextBuffer::			/* virtual base */
 GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC */,
+                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
                  bool bExcludeInvisibleLines/*= true*/) const
 {
-  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLF_STYLE_AUTOMATIC) ? nullptr : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
+  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLFSTYLE::AUTOMATIC) ? nullptr : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
 }
 
 
@@ -1531,7 +1531,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
             {
 #ifdef _DEBUG
               CString text;
-              GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
+              GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLFSTYLE::AUTOMATIC, false);
               ASSERT (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
 #endif
               VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
@@ -1609,9 +1609,9 @@ LPCTSTR CCrystalTextBuffer::GetStringEol(CRLFSTYLE nCRLFMode)
 {
   switch(nCRLFMode)
   {
-  case CRLF_STYLE_DOS: return _T("\r\n");
-  case CRLF_STYLE_UNIX: return _T("\n");
-  case CRLF_STYLE_MAC: return _T("\r");
+  case CRLFSTYLE::DOS: return _T("\r\n");
+  case CRLFSTYLE::UNIX: return _T("\n");
+  case CRLFSTYLE::MAC: return _T("\r");
       // If mixed or not defined
   default: return _T("\r\n");
   }

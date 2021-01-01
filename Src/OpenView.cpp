@@ -1075,7 +1075,7 @@ void COpenView::OnSelectUnpacker()
 
 	// let the user select a handler
 	CSelectUnpackerDlg dlg(m_files[0], this);
-	PackingInfo infoUnpacker(PLUGIN_AUTO);
+	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
 
 	if (dlg.DoModal() == IDOK)

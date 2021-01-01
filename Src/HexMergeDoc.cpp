@@ -113,7 +113,7 @@ CHexMergeDoc::CHexMergeDoc()
 : m_pDirDoc(nullptr)
 , m_nBuffers(m_nBuffersTemp)
 , m_pView{}
-, m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
+, m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 {
 	m_filePaths.SetSize(m_nBuffers);
 }
@@ -320,7 +320,7 @@ void CHexMergeDoc::DoFileSave(int nBuffer)
 {
 	if (m_pView[nBuffer]->GetModified())
 	{
-		if (m_nBufferType[nBuffer] == BUFFER_UNNAMED)
+		if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
 			DoFileSaveAs(nBuffer);
 		else
 		{
@@ -350,7 +350,7 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		if (path.empty())
 		{
 			// We are saving scratchpad (unnamed file)
-			m_nBufferType[nBuffer] = BUFFER_UNNAMED_SAVED;
+			m_nBufferType[nBuffer] = BUFFERTYPE::UNNAMED_SAVED;
 			m_strDesc[nBuffer].erase();
 		}
 
@@ -467,16 +467,16 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 			return E_FAIL;
 		m_pView[index]->SetReadOnly(readOnly);
 		m_filePaths.SetPath(index, filename);
-		ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
+		ASSERT(m_nBufferType[index] == BUFFERTYPE::NORMAL); // should have been initialized to BUFFERTYPE::NORMAL in constructor
 		if (!strDesc.empty())
 		{
 			m_strDesc[index] = strDesc;
-			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+			m_nBufferType[index] = BUFFERTYPE::NORMAL_NAMED;
 		}
 	}
 	else
 	{
-		m_nBufferType[index] = BUFFER_UNNAMED;
+		m_nBufferType[index] = BUFFERTYPE::UNNAMED;
 		m_strDesc[index] = strDesc;
 	}
 	UpdateHeaderPath(index);
@@ -501,7 +501,7 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 			bSucceeded = false;
 			break;
 		}
-		if (m_nBufferType[nBuffer] == BUFFER_NORMAL || m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED)
+		if (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL || m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED)
 			++nNormalBuffer;
 	}
 	if (nBuffer == nFiles)
@@ -542,7 +542,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_nBuffers; ++pane)
 	{
-		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChanged)
+		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
@@ -564,8 +564,8 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	ASSERT(pf != nullptr);
 	String sText;
 
-	if (m_nBufferType[pane] == BUFFER_UNNAMED ||
-		m_nBufferType[pane] == BUFFER_NORMAL_NAMED)
+	if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED ||
+		m_nBufferType[pane] == BUFFERTYPE::NORMAL_NAMED)
 	{
 		sText = m_strDesc[pane];
 	}

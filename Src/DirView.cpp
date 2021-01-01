@@ -2571,7 +2571,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 		// let the user choose a handler
 		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename, this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
-		PackingInfo infoUnpacker(PLUGIN_AUTO);
+		PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 		dlg.SetInitialInfoHandler(&infoUnpacker);
 
 		if (dlg.DoModal() == IDOK)
@@ -2917,7 +2917,7 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
 void CDirView::OnPluginPredifferMode(UINT nID)
 {
 	ApplyPluginPrediffSetting(SelBegin(), SelEnd(), GetDiffContext(), 
-		(nID == ID_PREDIFF_AUTO) ? PLUGIN_AUTO : PLUGIN_MANUAL);
+		(nID == ID_PREDIFF_AUTO) ? PLUGIN_MODE::PLUGIN_AUTO : PLUGIN_MODE::PLUGIN_MANUAL);
 }
 
 /**
@@ -3583,7 +3583,7 @@ void CDirView::OnMergeCompareNonHorizontally()
 void CDirView::OnMergeCompareXML()
 {
 	CWaitCursor waitstatus;
-	PackingInfo packingInfo(PLUGIN_BUILTIN_XML);
+	PackingInfo packingInfo(PLUGIN_MODE::PLUGIN_BUILTIN_XML);
 	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo, false);
 }
 
