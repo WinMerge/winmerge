@@ -98,6 +98,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2022,6 +2023,21 @@ void CMergeDoc::OnDiffContext(UINT nID)
 }
 
 /**
+ * @brief Swap context enable for 3 file compares 
+ */
+void CMergeDoc::OnUpdateSwapContext(CCmdUI* pCmdUI)
+{
+	if (m_nBuffers > 2)
+	{
+		pCmdUI->Enable(true);
+	}
+	else
+	{
+		pCmdUI->Enable(false);
+	}
+}
+
+/**
  * @brief Update number of diff context lines
  */
 void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
@@ -3177,48 +3193,51 @@ bool CMergeDoc::GetByteColoringOption() const
 }
 
 /// Swap files and update views
-void CMergeDoc::SwapFiles()
+void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 {
-	// Swap views
-	for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+	if ((nFromIndex >= 0 && nFromIndex < m_nBuffers) && (nToIndex >= 0 && nToIndex < m_nBuffers))
 	{
-		int nLeftViewId = m_pView[nGroup][0]->GetDlgCtrlID();
-		int nRightViewId = m_pView[nGroup][m_nBuffers - 1]->GetDlgCtrlID();
-		m_pView[nGroup][0]->SetDlgCtrlID(nRightViewId);
-		m_pView[nGroup][m_nBuffers - 1]->SetDlgCtrlID(nLeftViewId);
-	}
+		// Swap views
+		for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+		{
+			int nLeftViewId = m_pView[nGroup][nFromIndex]->GetDlgCtrlID();
+			int nRightViewId = m_pView[nGroup][nToIndex]->GetDlgCtrlID();
+			m_pView[nGroup][nFromIndex]->SetDlgCtrlID(nRightViewId);
+			m_pView[nGroup][nToIndex]->SetDlgCtrlID(nLeftViewId);
+		}
 
 
-	// Swap buffers and so on
-	std::swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
-	for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
-		std::swap(m_pView[nGroup][0], m_pView[nGroup][m_nBuffers - 1]);
-	std::swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
-	std::swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
-	std::swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
-	std::swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
-	std::swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);
+		// Swap buffers and so on
+		std::swap(m_ptBuf[nFromIndex], m_ptBuf[nToIndex]);
+		for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+			std::swap(m_pView[nGroup][nFromIndex], m_pView[nGroup][nToIndex]);
+		std::swap(m_pSaveFileInfo[nFromIndex], m_pSaveFileInfo[nToIndex]);
+		std::swap(m_pRescanFileInfo[nFromIndex], m_pRescanFileInfo[nToIndex]);
+		std::swap(m_nBufferType[nFromIndex], m_nBufferType[nToIndex]);
+		std::swap(m_bEditAfterRescan[nFromIndex], m_bEditAfterRescan[nToIndex]);
+		std::swap(m_strDesc[nFromIndex], m_strDesc[nToIndex]);
 
-	m_filePaths.Swap();
-	m_diffList.Swap(0, m_nBuffers - 1);
-	for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-		swap(m_pView[nGroup][0]->m_piMergeEditStatus, m_pView[nGroup][m_nBuffers - 1]->m_piMergeEditStatus);
-
-	ClearWordDiffCache();
-
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_ptBuf[nBuffer]->m_nThisPane = nBuffer;
+		m_filePaths.Swap(nFromIndex, nToIndex);
+		m_diffList.Swap(nFromIndex, nToIndex);
 		for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-			m_pView[nGroup][nBuffer]->m_nThisPane = nBuffer;
+			swap(m_pView[nGroup][nFromIndex]->m_piMergeEditStatus, m_pView[nGroup][nToIndex]->m_piMergeEditStatus);
 
-		// Update views
-		UpdateHeaderPath(nBuffer);
+		ClearWordDiffCache();
+
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			m_ptBuf[nBuffer]->m_nThisPane = nBuffer;
+			for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+				m_pView[nGroup][nBuffer]->m_nThisPane = nBuffer;
+
+			// Update views
+			UpdateHeaderPath(nBuffer);
+		}
+		GetParentFrame()->UpdateSplitter();
+		ForEachView([](auto& pView) { pView->UpdateStatusbar(); });
+
+		UpdateAllViews(nullptr);
 	}
-	GetParentFrame()->UpdateSplitter();
-	ForEachView([](auto& pView) { pView->UpdateStatusbar(); });
-
-	UpdateAllViews(nullptr);
 }
 
 /**
