@@ -4506,14 +4506,17 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 	const int pane = pNMItemActivate->iItem / 4;
+	CMergeDoc* pDoc = GetDocument();
+	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMItemActivate->hdr.hwndFrom)))
+		return;
 
 	switch (pNMItemActivate->iItem % 4)
 	{
 	case 0:
-		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
 		break;
 	case 1:
-		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
 		break;
 	case 2:
 	{
@@ -4527,7 +4530,7 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	}
 	case 3:
-		GetDocument()->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
+		pDoc->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
 		break;
 	default:
 		break;
