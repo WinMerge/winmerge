@@ -316,8 +316,6 @@ void CMergeEditFrame::UpdateHeaderSizes()
 	}
 	else
 	{
-		CRect rect;
-		wndSplitter.GetWindowRect(&rect);
 		int w2, wmin;
 		wndSplitter.GetColumnInfo(0, w2, wmin);
 		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
