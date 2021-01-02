@@ -481,6 +481,15 @@ msgstr "&o استفاده از قلم پيش فرض "
 msgid "Sw&ap Panes"
 msgstr "&a تعويض چهارگوشها "
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&r مقايسه آمارها ... "
@@ -750,15 +759,6 @@ msgstr "&M مشاهده کناره ها "
 #, c-format
 msgid "W&rap Lines"
 msgstr "&r سطر بندي خطوط "
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

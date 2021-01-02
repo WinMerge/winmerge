@@ -481,6 +481,15 @@ msgstr "Brug standard s&krifttype"
 msgid "Sw&ap Panes"
 msgstr "By&t vinduer"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Sammen&ligningsstatistikker..."
@@ -750,15 +759,6 @@ msgstr "Vis &margener"
 #, c-format
 msgid "W&rap Lines"
 msgstr "O&mbryd linjer"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

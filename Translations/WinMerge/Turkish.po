@@ -382,6 +382,15 @@ msgstr "Varsayılan Yazı &Türü Kullanılsın"
 msgid "Sw&ap Panes"
 msgstr "&Panoların Yerini Değiştir"
 
+msgid "Swap &1st | 2nd"
+msgstr "&1. ile 2. Ögeyi Değiştir"
+
+msgid "Swap &2nd | 3rd"
+msgstr "&2. ile 3. Ögeyi Değiştir"
+
+msgid "Swap 1st | &3rd"
+msgstr "1. ile &3. Ögeyi Değiştir"
+
 msgid "Com&pare Statistics..."
 msgstr "Karşılaştırma İstatistikleri..."
 
@@ -588,15 +597,6 @@ msgstr "Kenar Boşlukları &Görüntülensin"
 
 msgid "W&rap Lines"
 msgstr "Satı&rlar Kaydırılsın"
-
-msgid "Swap &1st | 2nd"
-msgstr "&1. ile 2. Ögeyi Değiştir"
-
-msgid "Swap &2nd | 3rd"
-msgstr "&2. ile 3. Ögeyi Değiştir"
-
-msgid "Swap 1st | &3rd"
-msgstr "1. ile &3. Ögeyi Değiştir"
 
 msgid "Split V&ertically"
 msgstr "Dik&ey Bölünsün"

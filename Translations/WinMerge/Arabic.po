@@ -383,6 +383,15 @@ msgstr "اختيار نوع الخط الإفتراضي"
 msgid "Sw&ap Panes"
 msgstr "الأجزاء الخاصة بالمبادلة"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "إحصائيات المقارنة..."
 
@@ -589,15 +598,6 @@ msgstr "عرض ال&هوامش"
 
 msgid "W&rap Lines"
 msgstr "إلت&فاف الأسطر"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 msgid "Split V&ertically"
 msgstr "تقسيم &عمودي"

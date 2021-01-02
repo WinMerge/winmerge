@@ -379,6 +379,15 @@ msgstr "Използване на стандартен ш&рифт"
 msgid "Sw&ap Panes"
 msgstr "Раз&меняне на панелите"
 
+msgid "Swap &1st | 2nd"
+msgstr "Разменяне на №&1 с №2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Разменяне на №&2 с №3"
+
+msgid "Swap 1st | &3rd"
+msgstr "Разменяне на №1 с №&3"
+
 msgid "Com&pare Statistics..."
 msgstr "Статистика на &сравнението..."
 
@@ -585,15 +594,6 @@ msgstr "Показване на &отстъпа"
 
 msgid "W&rap Lines"
 msgstr "Прена&сяне на редовете"
-
-msgid "Swap &1st | 2nd"
-msgstr "Разменяне на №&1 с №2"
-
-msgid "Swap &2nd | 3rd"
-msgstr "Разменяне на №&2 с №3"
-
-msgid "Swap 1st | &3rd"
-msgstr "Разменяне на №1 с №&3"
 
 msgid "Split V&ertically"
 msgstr "В&ертикално разделяне"

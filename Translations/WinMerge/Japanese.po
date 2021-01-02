@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2020-12-07 00:00+0900\n"
+"PO-Revision-Date: 2021-01-02 11:10+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -383,6 +383,15 @@ msgstr "デフォルト フォントを使用"
 msgid "Sw&ap Panes"
 msgstr "ペインの交換(&A)"
 
+msgid "Swap &1st | 2nd"
+msgstr "&1 番目と 2 番目を交換"
+
+msgid "Swap &2nd | 3rd"
+msgstr "&2 番目と 3 番目を交換"
+
+msgid "Swap 1st | &3rd"
+msgstr "1 番目と &3 番目を交換"
+
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
@@ -589,15 +598,6 @@ msgstr "マージンを表示(&M)"
 
 msgid "W&rap Lines"
 msgstr "行を右端で折返す(&R)"
-
-msgid "Swap &1st | 2nd"
-msgstr "&1 番目と 2 番目を交換"
-
-msgid "Swap &2nd | 3rd"
-msgstr "&2 番目と 3 番目を交換"
-
-msgid "Swap 1st | &3rd"
-msgstr "1 番目と &3 番目を交換"
 
 msgid "Split V&ertically"
 msgstr "垂直分割(&E)"
@@ -3337,7 +3337,7 @@ msgid "Batch"
 msgstr "Batch"
 
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 msgid "Lua"
 msgstr "Lua"

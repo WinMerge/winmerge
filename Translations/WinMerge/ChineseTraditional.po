@@ -484,6 +484,15 @@ msgstr "使用預設字型"
 msgid "Sw&ap Panes"
 msgstr "窗格交換(&A)"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "統計比較結果(&P)"
@@ -753,15 +762,6 @@ msgstr "檢視頁邊(&M)"
 #, c-format
 msgid "W&rap Lines"
 msgstr "自動換行(&R)"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

@@ -288,7 +288,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_ALLSUBDIRS, OnUpdateViewExpandAllSubdirs)
 	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnUpdateViewCollapseAllSubdirs)
-	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
+	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
+	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
+	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
+	ON_UPDATE_COMMAND_UI(ID_SWAPPANES_SWAP12, (OnUpdateViewSwapPanes<0, 1>))
+	ON_UPDATE_COMMAND_UI(ID_SWAPPANES_SWAP23, (OnUpdateViewSwapPanes<1, 2>))
+	ON_UPDATE_COMMAND_UI(ID_SWAPPANES_SWAP13, (OnUpdateViewSwapPanes<0, 2>))
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
@@ -3329,10 +3334,17 @@ void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
 }
 
+template <int pane1, int pane2>
 void CDirView::OnViewSwapPanes()
 {
-	GetDocument()->Swap(0, GetDocument()->m_nDirs - 1);
+	GetDocument()->Swap(pane1, pane2);
 	Redisplay();
+}
+
+template <int pane1, int pane2>
+void CDirView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(pane2 < GetDocument()->m_nDirs);
 }
 
 /**

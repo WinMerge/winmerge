@@ -479,6 +479,15 @@ msgstr "Empra el tipus de lletra del &sistema"
 msgid "Sw&ap Panes"
 msgstr "&Intercanvia les subfinestres"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Estadístiques de &comparació..."
@@ -748,15 +757,6 @@ msgstr "Mostra els &marges"
 #, c-format
 msgid "W&rap Lines"
 msgstr "A&justa les línies"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

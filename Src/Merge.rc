@@ -336,7 +336,12 @@ BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default Font",            ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        POPUP "Sw&ap Panes"
+        BEGIN
+            MENUITEM "Swap &1st | 2nd",             ID_SWAPPANES_SWAP12
+            MENUITEM "Swap &2nd | 3rd",             ID_SWAPPANES_SWAP23
+            MENUITEM "Swap 1st | &3rd",             ID_SWAPPANES_SWAP13
+        END
         MENUITEM SEPARATOR
         POPUP "&Toolbar"
         BEGIN

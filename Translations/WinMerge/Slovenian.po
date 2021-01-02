@@ -480,6 +480,15 @@ msgstr "Uporabi privzeto pi&savo"
 msgid "Sw&ap Panes"
 msgstr "Zam&enjaj podokni"
 
+msgid "Swap &1st | 2nd"
+msgstr "Zamenjaj &1-vo | 2-go"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Zamenjaj &2-go | 3-tjo"
+
+msgid "Swap 1st | &3rd"
+msgstr "Zamenjaj 1-vo | &3-tjo"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&Statistika primerjave..."
@@ -749,15 +758,6 @@ msgstr "Prikaz &robov"
 #, c-format
 msgid "W&rap Lines"
 msgstr "Pr&elomi vrstic"
-
-msgid "Swap &1st | 2nd"
-msgstr "Zamenjaj &1-vo | 2-go"
-
-msgid "Swap &2nd | 3rd"
-msgstr "Zamenjaj &2-go | 3-tjo"
-
-msgid "Swap 1st | &3rd"
-msgstr "Zamenjaj 1-vo | &3-tjo"
 
 #, c-format
 msgid "Split V&ertically"

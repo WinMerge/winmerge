@@ -1117,7 +1117,6 @@
 #define IDS_LOCBAR_GOTOLINE_FMT         33115
 #define ID_FILE_OPENPROJECT             33116
 #define ID_VIEW_SHOWHIDDENITEMS         33117
-#define ID_VIEW_SWAPPANES               33118
 #define ID_FILE_SAVEPROJECT             33119
 #define ID_FILE_ENCODING                33120
 #define ID_FILE_OPENCONFLICT            33121
@@ -1355,7 +1354,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34170
+#define _APS_NEXT_COMMAND_VALUE         34173
 #define _APS_NEXT_CONTROL_VALUE         8832
 #define _APS_NEXT_SYMED_VALUE           117
 #endif

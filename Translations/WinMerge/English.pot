@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-02 08:30+0000\n"
+"POT-Creation-Date: 2021-01-02 11:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -376,6 +376,15 @@ msgstr ""
 msgid "Sw&ap Panes"
 msgstr ""
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr ""
 
@@ -581,15 +590,6 @@ msgid "View &Margins"
 msgstr ""
 
 msgid "W&rap Lines"
-msgstr ""
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
 msgstr ""
 
 msgid "Split V&ertically"

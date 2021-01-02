@@ -180,8 +180,8 @@ TEST_P(DirFrameTest, ViewFont)
 
 TEST_P(DirFrameTest, ViewSwapPanes)
 {
-	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
-	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
+	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
+	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 }
 
 TEST_P(DirFrameTest, ViewCompareStatistics)

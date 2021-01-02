@@ -386,6 +386,15 @@ msgstr "Usar F&uente del Sistema"
 msgid "Sw&ap Panes"
 msgstr "&Intercambiar paneles"
 
+msgid "Swap &1st | 2nd"
+msgstr "Intercambiar &1er | 2do"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Intercambiar &2do | 3er"
+
+msgid "Swap 1st | &3rd"
+msgstr "Intercambiar 1er | &3er"
+
 msgid "Com&pare Statistics..."
 msgstr "Estadísticas de &comparación..."
 
@@ -592,15 +601,6 @@ msgstr "Ver &márgenes"
 
 msgid "W&rap Lines"
 msgstr "&Ajuste de línea"
-
-msgid "Swap &1st | 2nd"
-msgstr "Intercambiar &1er | 2do"
-
-msgid "Swap &2nd | 3rd"
-msgstr "Intercambiar &2do | 3er"
-
-msgid "Swap 1st | &3rd"
-msgstr "Intercambiar 1er | &3er"
 
 msgid "Split V&ertically"
 msgstr "Dividir &Verticalmente"

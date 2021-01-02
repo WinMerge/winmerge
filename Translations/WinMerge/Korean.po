@@ -484,6 +484,15 @@ msgstr "기본 글꼴 사용"
 msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
@@ -753,15 +762,6 @@ msgstr "여백 보기(&M)"
 #, c-format
 msgid "W&rap Lines"
 msgstr "자동 줄 바꿈(&R)"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

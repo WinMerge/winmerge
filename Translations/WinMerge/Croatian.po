@@ -480,6 +480,15 @@ msgstr "Koristi standardni f&ont"
 msgid "Sw&ap Panes"
 msgstr "&Zamijeni panele"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Usporedbena &statistika..."
@@ -749,15 +758,6 @@ msgstr "Prikaži &margine"
 #, c-format
 msgid "W&rap Lines"
 msgstr "Pre&lomi retke"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

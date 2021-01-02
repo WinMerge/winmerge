@@ -384,6 +384,15 @@ msgstr "Шрифт по &умолчанию"
 msgid "Sw&ap Panes"
 msgstr "Поменять панели местами"
 
+msgid "Swap &1st | 2nd"
+msgstr "Поменять &1-й | 2-й"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Поменять &2-й | 3-й"
+
+msgid "Swap 1st | &3rd"
+msgstr "Поменять 1-й | &3-й"
+
 msgid "Com&pare Statistics..."
 msgstr "Статистика сравнения..."
 
@@ -590,15 +599,6 @@ msgstr "Показывать поля"
 
 msgid "W&rap Lines"
 msgstr "Переносить по словам"
-
-msgid "Swap &1st | 2nd"
-msgstr "Поменять &1-й | 2-й"
-
-msgid "Swap &2nd | 3rd"
-msgstr "Поменять &2-й | 3-й"
-
-msgid "Swap 1st | &3rd"
-msgstr "Поменять 1-й | &3-й"
 
 msgid "Split V&ertically"
 msgstr "Разделить по вертикали"

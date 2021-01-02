@@ -480,6 +480,15 @@ msgstr "Utilizează font im&plicit"
 msgid "Sw&ap Panes"
 msgstr "Interschimbă p&anourile"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Statistici de compa&rare..."
@@ -749,15 +758,6 @@ msgstr "Afişează &marginile"
 #, c-format
 msgid "W&rap Lines"
 msgstr "Infăşoa&ră rândurile lungi"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

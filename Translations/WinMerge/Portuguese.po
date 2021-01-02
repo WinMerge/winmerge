@@ -385,6 +385,15 @@ msgstr "Usar Fonte Pre&definida"
 msgid "Sw&ap Panes"
 msgstr "Trocar Janelas"
 
+msgid "Swap &1st | 2nd"
+msgstr "Trocar &1º | 2º"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Trocar &2º | 3º"
+
+msgid "Swap 1st | &3rd"
+msgstr "Trocar 1º | &3º"
+
 msgid "Com&pare Statistics..."
 msgstr "Comparar Estatísticas..."
 
@@ -591,15 +600,6 @@ msgstr "Ver &Margens"
 
 msgid "W&rap Lines"
 msgstr "Ajuste de Linha"
-
-msgid "Swap &1st | 2nd"
-msgstr "Trocar &1º | 2º"
-
-msgid "Swap &2nd | 3rd"
-msgstr "Trocar &2º | 3º"
-
-msgid "Swap 1st | &3rd"
-msgstr "Trocar 1º | &3º"
 
 msgid "Split V&ertically"
 msgstr "Dividir V&erticalmante"

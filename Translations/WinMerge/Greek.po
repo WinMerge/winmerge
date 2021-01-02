@@ -479,6 +479,15 @@ msgstr "Χρήση Προκα&θορισμένης Γραμματοσειράς"
 msgid "Sw&ap Panes"
 msgstr "Αντι&μετάθεση Πεδίων"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Στατιστικά Συγκρίσεως..."
@@ -748,15 +757,6 @@ msgstr "Εμφάνιση Περι&θωρίων"
 #, c-format
 msgid "W&rap Lines"
 msgstr "Ανα&δίπλωση Γραμμών"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"

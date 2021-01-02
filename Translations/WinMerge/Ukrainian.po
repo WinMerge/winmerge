@@ -481,6 +481,15 @@ msgstr "Використовувати &звичайний шрифт "
 msgid "Sw&ap Panes"
 msgstr "Пом&іняти панелі місцями"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Порівняти статистики..."
@@ -750,15 +759,6 @@ msgstr "Показувати п&оля"
 #, c-format
 msgid "W&rap Lines"
 msgstr "Переносити за &словами"
-
-msgid "Swap &1st | 2nd"
-msgstr ""
-
-msgid "Swap &2nd | 3rd"
-msgstr ""
-
-msgid "Swap 1st | &3rd"
-msgstr ""
 
 #, c-format
 msgid "Split V&ertically"
