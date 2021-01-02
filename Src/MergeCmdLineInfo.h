@@ -42,11 +42,22 @@ public:
 		MINIMIZE = 6,
 	};
 
+	enum CompareMethodType
+	{
+		CONTENT,
+		QUICK_CONTENT,
+		BINARY_CONTENT,
+		DATE,
+		DATE_SIZE,
+		SIZE,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
 	bool m_bRecurse; /**< Include sub folder in directories compare. */
+	std::optional<CompareMethodType> m_nCompMethod; /**< Compare method */
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
 	std::optional<bool> m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */

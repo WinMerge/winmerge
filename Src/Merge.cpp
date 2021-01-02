@@ -619,6 +619,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		UpdateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
 
+	// Set compare method
+	if (cmdInfo.m_nCompMethod.has_value())
+		GetOptionsMgr()->Set(OPT_CMP_METHOD, *cmdInfo.m_nCompMethod);
+
 	// Unless the user has requested to see WinMerge's usage open files for
 	// comparison.
 	if (cmdInfo.m_bShowUsage)
