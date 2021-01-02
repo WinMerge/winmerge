@@ -756,44 +756,8 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	// Files are not binaries, but they are identical
 	if (identical != IDENTLEVEL::NONE)
 	{
-		if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
-		{
-			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
-
-			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit)
-			{
-				// Show the "files are identical" for basic "exit no diff" flag
-				// If user don't want to see the message one uses the quiet version
-				// of the "exit no diff".
-				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
-			}
-			if ((m_nBuffers == 2 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetRight().empty() &&
-				 strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0) ||
-				(m_nBuffers == 3 && !m_filePaths.GetLeft().empty() && !m_filePaths.GetMiddle().empty() && !m_filePaths.GetRight().empty() &&
-				 (strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetRight()) == 0 ||
-				  strutils::compare_nocase(m_filePaths.GetMiddle(), m_filePaths.GetRight()) == 0 ||
-				  strutils::compare_nocase(m_filePaths.GetLeft(), m_filePaths.GetMiddle()) == 0)))
-			{
-				// compare file to itself, a custom message so user may hide the message in this case only
-				s = _("The same file is opened in both panels.");
-				ShowMessageBox(s, nFlags, IDS_FILE_TO_ITSELF);
-			}
-			else if (identical == IDENTLEVEL::ALL)
-			{
-				s = _("The selected files are identical.");
-				ShowMessageBox(s, nFlags, IDS_FILESSAME);
-			}
-		}
-
-		if (identical == IDENTLEVEL::ALL)
-		{
-			// Exit application if files are identical.
-			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
-				theApp.m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
-			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
-			}
-		}
+		static_cast<CMergeFrameCommon*>(GetParentFrame())->ShowIdenticalMessage(m_filePaths, identical == IDENTLEVEL::ALL,
+			[this](LPCTSTR msg, UINT flags, UINT id) -> int { return ShowMessageBox(msg, flags, id); });
 	}
 }
 

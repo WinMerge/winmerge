@@ -2154,7 +2154,10 @@ void CImgMergeFrame::OnToolsGenerateReport()
 void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateDiffItem(m_pDirDoc) == 0)
-		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+	{
+		static_cast<CMergeFrameCommon*>(GetParentFrame())->ShowIdenticalMessage(m_filePaths, true,
+			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+	}
 }
 
 void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)

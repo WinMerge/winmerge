@@ -101,6 +101,50 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	theApp.SetLastCompareResult(nResult);
 }
 
+void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int(LPCTSTR, unsigned, unsigned)> fnMessageBox)
+{
+	String s;
+	if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
+	{
+		UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
+
+		if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit)
+		{
+			// Show the "files are identical" for basic "exit no diff" flag
+			// If user don't want to see the message one uses the quiet version
+			// of the "exit no diff".
+			nFlags &= ~MB_DONT_DISPLAY_AGAIN;
+		}
+		if ((paths.GetSize() == 2 && !paths.GetLeft().empty() && !paths.GetRight().empty() &&
+			 strutils::compare_nocase(paths.GetLeft(), paths.GetRight()) == 0) ||
+			(paths.GetSize() == 3 && !paths.GetLeft().empty() && !paths.GetMiddle().empty() && !paths.GetRight().empty() &&
+			 (strutils::compare_nocase(paths.GetLeft(), paths.GetRight()) == 0 ||
+			  strutils::compare_nocase(paths.GetMiddle(), paths.GetRight()) == 0 ||
+			  strutils::compare_nocase(paths.GetLeft(), paths.GetMiddle()) == 0)))
+		{
+			// compare file to itself, a custom message so user may hide the message in this case only
+			s = _("The same file is opened in both panels.");
+			fnMessageBox(s.c_str(), nFlags, IDS_FILE_TO_ITSELF);
+		}
+		else if (bIdenticalAll)
+		{
+			s = _("The selected files are identical.");
+			fnMessageBox(s.c_str(), nFlags, IDS_FILESSAME);
+		}
+	}
+
+	if (bIdenticalAll)
+	{
+		// Exit application if files are identical.
+		if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
+			theApp.m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
+		{
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+		}
+	}
+}
+
+
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
