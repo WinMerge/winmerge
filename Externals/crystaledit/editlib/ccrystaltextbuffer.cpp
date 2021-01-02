@@ -551,7 +551,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     if (nCrlfStyle == CRLFSTYLE::AUTOMATIC)
       nCrlfStyle = m_nCRLFMode;
 
-    ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC>= 0 && nCrlfStyle != CRLFSTYLE::MIXED);
+    ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC && nCrlfStyle != CRLFSTYLE::MIXED);
     LPCTSTR pszCRLF = crlfs[static_cast<int>(nCrlfStyle)];
     int nCRLFLength = static_cast<int>(_tcslen (pszCRLF));
 
