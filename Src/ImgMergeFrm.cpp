@@ -1017,36 +1017,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
  */
 void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle;
-	String sFileName[3];
-
-	if (lpszTitle != nullptr)
-		sTitle = lpszTitle;
-	else
-	{
-		for (int nBuffer = 0; nBuffer < m_filePaths.GetSize(); nBuffer++)
-		{
-			if (!m_strDesc[nBuffer].empty())
-				sFileName[nBuffer] = m_strDesc[nBuffer];
-			else
-			{
-				String file;
-				String ext;
-				paths::SplitFilename(m_filePaths[nBuffer], nullptr, &file, &ext);
-				sFileName[nBuffer] += file;
-				if (!ext.empty())
-				{
-					sFileName[nBuffer] += _T(".");
-					sFileName[nBuffer] += ext;
-				}
-			}
-		}
-		const int nBuffers = m_filePaths.GetSize();
-		if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
-			sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
-		else
-			sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
-	}
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 		SetWindowText(sTitle.c_str());
@@ -2155,7 +2126,7 @@ void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 	{
-		static_cast<CMergeFrameCommon*>(GetParentFrame())->ShowIdenticalMessage(m_filePaths, true,
+		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
 			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 	}
 }

@@ -8,6 +8,7 @@
 #include "MergeFrameCommon.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "paths.h"
 #include "Merge.h"
 #include <../src/mfc/afximpl.h>
 
@@ -144,6 +145,19 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 	}
 }
 
+String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[])
+{
+	const int nBuffers = paths.GetSize();
+	String sFileName[3];
+	String sTitle;
+	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
+		sFileName[nBuffer] = !desc[nBuffer].empty() ? desc[nBuffer] : paths::FindFileName(paths[nBuffer]);
+	if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
+		sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
+	else
+		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
+	return sTitle;
+}
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
