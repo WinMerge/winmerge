@@ -1777,10 +1777,9 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 		// because of ghostlines, m_nTopLine may differ just after Rescan
 		// scroll both views to the same top line
 		pView->UpdateSiblingScrollPos(false);
-
-		// make sure we see the cursor from the curent view
-		pView->EnsureVisible(pView->GetCursorPos());
 	});
+	// make sure we see the cursor from the curent view
+	pActiveView->EnsureVisible(pActiveView->GetCursorPos());
 
 	// Refresh display
 	UpdateAllViews(nullptr);
