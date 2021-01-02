@@ -753,6 +753,15 @@ msgstr "Ikusi &Bazterrak"
 msgid "W&rap Lines"
 msgstr "I&nguratu Lerroak"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Split V&ertically"
 msgstr ""

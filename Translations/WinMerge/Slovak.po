@@ -592,6 +592,15 @@ msgstr "Zobraziť &okraje"
 msgid "W&rap Lines"
 msgstr "&Zvinúť riadky"
 
+msgid "Swap &1st | 2nd"
+msgstr "Prehodiť &1. | 2."
+
+msgid "Swap &2nd | 3rd"
+msgstr "Prehodiť &2. | 3."
+
+msgid "Swap 1st | &3rd"
+msgstr "Prehodiť 1. | &3."
+
 msgid "Split V&ertically"
 msgstr "Oddeliť &vertikálne"
 

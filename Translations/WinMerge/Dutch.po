@@ -590,6 +590,15 @@ msgstr "Marges weergeven"
 msgid "W&rap Lines"
 msgstr "Automatische terugloop"
 
+msgid "Swap &1st | 2nd"
+msgstr "&1ste en 2de wisselen"
+
+msgid "Swap &2nd | 3rd"
+msgstr "&2de en 3de wisselen"
+
+msgid "Swap 1st | &3rd"
+msgstr "1ste en &3de wisselen"
+
 msgid "Split V&ertically"
 msgstr "Verticaal splitsen"
 

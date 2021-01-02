@@ -750,6 +750,15 @@ msgstr "Visualizar as &Margens"
 msgid "W&rap Lines"
 msgstr "O&rganizar as Linhas"
 
+msgid "Swap &1st | 2nd"
+msgstr "Trocar o &1º | 2º"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Trocar o &2º | 3º"
+
+msgid "Swap 1st | &3rd"
+msgstr "Trocar o 1º | &3º"
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "Dividir V&erticalmente"

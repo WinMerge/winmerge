@@ -750,6 +750,15 @@ msgstr "&Ränder anzeigen"
 msgid "W&rap Lines"
 msgstr "Zeilen &umbrechen"
 
+msgid "Swap &1st | 2nd"
+msgstr "&1. | 2. vertauschen"
+
+msgid "Swap &2nd | 3rd"
+msgstr "&2. | 3. vertauschen"
+
+msgid "Swap 1st | &3rd"
+msgstr "1. | &3. vertauschen"
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "&Vertikal teilen"

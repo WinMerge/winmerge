@@ -592,6 +592,15 @@ msgstr "显示页边(&M)"
 msgid "W&rap Lines"
 msgstr "自动换行(&R)"
 
+msgid "Swap &1st | 2nd"
+msgstr "交换组&1与组2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "交换组&2与组3"
+
+msgid "Swap 1st | &3rd"
+msgstr "交换组1与组&3"
+
 msgid "Split V&ertically"
 msgstr "垂直分隔(&E)"
 

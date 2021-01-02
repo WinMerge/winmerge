@@ -754,6 +754,15 @@ msgstr "여백 보기(&M)"
 msgid "W&rap Lines"
 msgstr "자동 줄 바꿈(&R)"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "수직 분할"

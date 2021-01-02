@@ -747,6 +747,15 @@ msgstr "Näytä &marginaalit"
 msgid "W&rap Lines"
 msgstr "&Rivitä"
 
+msgid "Swap &1st | 2nd"
+msgstr "Vaihda &1. | toinen"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Vaihda &2. | kolmas"
+
+msgid "Swap 1st | &3rd"
+msgstr "Vaihda 1. | &kolmas"
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "Jaa pystysuunnassa"

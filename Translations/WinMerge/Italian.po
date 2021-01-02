@@ -589,6 +589,15 @@ msgstr "Visualizza &margini"
 msgid "W&rap Lines"
 msgstr "A capo a&utomatico"
 
+msgid "Swap &1st | 2nd"
+msgstr "Scambia &1° | 2°"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Scambia &2° | 3°"
+
+msgid "Swap 1st | &3rd"
+msgstr "Scambia 1° | &3°"
+
 msgid "Split V&ertically"
 msgstr "Dividi v&erticalmente"
 

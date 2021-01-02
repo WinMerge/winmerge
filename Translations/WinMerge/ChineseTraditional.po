@@ -754,6 +754,15 @@ msgstr "檢視頁邊(&M)"
 msgid "W&rap Lines"
 msgstr "自動換行(&R)"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "垂直切割(&E)"

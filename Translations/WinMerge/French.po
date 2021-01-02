@@ -755,6 +755,15 @@ msgstr "Afficher les &marges"
 msgid "W&rap Lines"
 msgstr "&Retour à la ligne automatique"
 
+msgid "Swap &1st | 2nd"
+msgstr "Echanger &1er  | 2ème"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Echanger &2ème | 3ème"
+
+msgid "Swap 1st | &3rd"
+msgstr "Echanger 1er  | &3ème"
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "Scinder V&erticalement"

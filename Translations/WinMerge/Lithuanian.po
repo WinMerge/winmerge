@@ -592,6 +592,15 @@ msgstr "Rodyti &paraštes"
 msgid "W&rap Lines"
 msgstr "S&kaidyti eilutes"
 
+msgid "Swap &1st | 2nd"
+msgstr "Sukeisti &1-ą | 2-ą"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Sukeisti &2-ą | 3-ią"
+
+msgid "Swap 1st | &3rd"
+msgstr "Sukeisti 1-ą | &3-ią"
+
 msgid "Split V&ertically"
 msgstr "Padalintas v&ertikaliai"
 

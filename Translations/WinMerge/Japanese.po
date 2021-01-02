@@ -590,6 +590,15 @@ msgstr "マージンを表示(&M)"
 msgid "W&rap Lines"
 msgstr "行を右端で折返す(&R)"
 
+msgid "Swap &1st | 2nd"
+msgstr "&1 番目と 2 番目を交換"
+
+msgid "Swap &2nd | 3rd"
+msgstr "&2 番目と 3 番目を交換"
+
+msgid "Swap 1st | &3rd"
+msgstr "1 番目と &3 番目を交換"
+
 msgid "Split V&ertically"
 msgstr "垂直分割(&E)"
 

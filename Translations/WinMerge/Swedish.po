@@ -752,6 +752,15 @@ msgstr "Visa Marginaler"
 msgid "W&rap Lines"
 msgstr "Bryt Rader"
 
+msgid "Swap &1st | 2nd"
+msgstr "Byt &1:a | 2:a"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Byt &2:a | 3:e"
+
+msgid "Swap 1st | &3rd"
+msgstr "Byt 1:a | &3:e"
+
 #, c-format
 msgid "Split V&ertically"
 msgstr "Dela Lodrätt"

@@ -590,6 +590,15 @@ msgstr "عرض ال&هوامش"
 msgid "W&rap Lines"
 msgstr "إلت&فاف الأسطر"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 msgid "Split V&ertically"
 msgstr "تقسيم &عمودي"
 
