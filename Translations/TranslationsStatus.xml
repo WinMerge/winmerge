@@ -285,12 +285,16 @@
       <file>Galician.po</file>
       <update>2021-01-04</update>
       <strings>
-        <count>1002</count>
-        <translated>1002</translated>
+        <count>1003</count>
+        <translated>1003</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>
       <translators>
+        <translator>
+          <name>Medulio</name>
+          <mail>medulio at ciberirmandade.org</mail>
+        </translator>
         <translator>
           <name>Luis A. Martínez</name>
           <mail>luis.a.martinez at gmail.com</mail>
