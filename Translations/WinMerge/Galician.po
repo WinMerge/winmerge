@@ -2,6 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * Medulio <medulio at ciberirmandade.org>
 # * Luis A. Martínez <luis.a.martinez at gmail.com>
 #
 # ID line follows -- this is updated by SVN
