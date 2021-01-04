@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-01-02</update>
+  <update>2021-01-05</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -283,17 +283,17 @@
     <translation>
       <language>Galician</language>
       <file>Galician.po</file>
-      <update>2020-11-28</update>
+      <update>2021-01-04</update>
       <strings>
-        <count>1003</count>
-        <translated>999</translated>
+        <count>1002</count>
+        <translated>1002</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
-          <name>Medulio</name>
-          <mail>medulio@ciberirmandade.org</mail>
+          <name>Luis A. Martínez</name>
+          <mail>luis.a.martinez at gmail.com</mail>
         </translator>
       </translators>
     </translation>
@@ -438,12 +438,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2020-12-29</update>
+      <update>2021-01-02</update>
       <strings>
         <count>1003</count>
-        <translated>1001</translated>
+        <translated>1003</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>

@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Medulio <medulio@ciberirmandade.org>
+# * Luis A. Martínez <luis.a.martinez at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Galician.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -4262,3 +4262,4 @@ msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
