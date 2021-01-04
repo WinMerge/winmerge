@@ -551,7 +551,7 @@ static void unslash(std::wstring &s)
 			}
 			if (q >= r)
 				break;
-			// fall through
+			[[fallthrough]];
 		default:
 			*p = c;
 			q = r;

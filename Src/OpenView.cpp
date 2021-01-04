@@ -389,7 +389,7 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 					SetCursor(m_hIconRotate);
 					break;
 				}
-				// fall through
+				[[fallthrough]];
 			default:
 				SetCursor(m_hCursorNo);
 				break;
