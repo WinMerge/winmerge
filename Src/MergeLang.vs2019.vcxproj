@@ -113,7 +113,43 @@ popd
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Translations\WinMerge\Arabic.po" />
+    <None Include="..\Translations\WinMerge\Basque.po" />
+    <None Include="..\Translations\WinMerge\Brazilian.po" />
+    <None Include="..\Translations\WinMerge\Bulgarian.po" />
+    <None Include="..\Translations\WinMerge\Catalan.po" />
+    <None Include="..\Translations\WinMerge\ChineseSimplified.po" />
+    <None Include="..\Translations\WinMerge\ChineseTraditional.po" />
     <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\Croatian.po" />
+    <None Include="..\Translations\WinMerge\Czech.po" />
+    <None Include="..\Translations\WinMerge\Danish.po" />
+    <None Include="..\Translations\WinMerge\Dutch.po" />
+    <None Include="..\Translations\WinMerge\English.pot" />
+    <None Include="..\Translations\WinMerge\Finnish.po" />
+    <None Include="..\Translations\WinMerge\French.po" />
+    <None Include="..\Translations\WinMerge\Galician.po" />
+    <None Include="..\Translations\WinMerge\German.po" />
+    <None Include="..\Translations\WinMerge\Greek.po" />
+    <None Include="..\Translations\WinMerge\Hungarian.po" />
+    <None Include="..\Translations\WinMerge\Italian.po" />
+    <None Include="..\Translations\WinMerge\Japanese.po" />
+    <None Include="..\Translations\WinMerge\Korean.po" />
+    <None Include="..\Translations\WinMerge\Lithuanian.po" />
+    <None Include="..\Translations\WinMerge\Norwegian.po" />
+    <None Include="..\Translations\WinMerge\Persian.po" />
+    <None Include="..\Translations\WinMerge\Polish.po" />
+    <None Include="..\Translations\WinMerge\Portuguese.po" />
+    <None Include="..\Translations\WinMerge\Romanian.po" />
+    <None Include="..\Translations\WinMerge\Russian.po" />
+    <None Include="..\Translations\WinMerge\Serbian.po" />
+    <None Include="..\Translations\WinMerge\Sinhala.po" />
+    <None Include="..\Translations\WinMerge\Slovak.po" />
+    <None Include="..\Translations\WinMerge\Slovenian.po" />
+    <None Include="..\Translations\WinMerge\Spanish.po" />
+    <None Include="..\Translations\WinMerge\Swedish.po" />
+    <None Include="..\Translations\WinMerge\Turkish.po" />
+    <None Include="..\Translations\WinMerge\Ukrainian.po" />
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
