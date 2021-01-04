@@ -92,7 +92,7 @@ void COpenFrame::ActivateFrame(int nCmdShow)
 	CMergeFrameCommon::ActivateFrame(nCmdShow);
 	if (CView *const pView = GetActiveView())
 	{
-		WINDOWPLACEMENT wp;
+		WINDOWPLACEMENT wp = {};
 		wp.length = sizeof wp;
 		GetWindowPlacement(&wp);
 		CRect rc;
