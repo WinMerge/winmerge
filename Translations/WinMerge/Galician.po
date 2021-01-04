@@ -3,7 +3,7 @@
 #
 # Translators:
 # * Medulio <medulio at ciberirmandade.org>
-# * Luis A. Martínez <luis.a.martinez at gmail.com>
+# * qosobrin (LMS)
 #
 # ID line follows -- this is updated by SVN
 # $Id: Galician.po 7556 2011-08-19 15:07:03Z sdottaka $
