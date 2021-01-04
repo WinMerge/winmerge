@@ -512,7 +512,7 @@ static void unslash(std::wstring &s)
 {
 	wchar_t *p = &*s.begin();
 	wchar_t *q = p;
-	wchar_t c;
+	wchar_t c = {};
 	do
 	{
 		wchar_t *r = q + 1;

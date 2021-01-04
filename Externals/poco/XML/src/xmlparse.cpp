@@ -632,7 +632,7 @@ XML_ParserCreate(const XML_Char *encodingName) {
 
 XML_Parser XMLCALL
 XML_ParserCreateNS(const XML_Char *encodingName, XML_Char nsSep) {
-  XML_Char tmp[2];
+    XML_Char tmp[2] = {};
   *tmp = nsSep;
   return XML_ParserCreate_MM(encodingName, NULL, tmp);
 }
@@ -1249,7 +1249,7 @@ XML_ExternalEntityParserCreate(XML_Parser oldParser, const XML_Char *context,
      would be otherwise.
   */
   if (parser->m_ns) {
-    XML_Char tmp[2];
+      XML_Char tmp[2] = {};
     *tmp = parser->m_namespaceSeparator;
     parser = parserCreate(encodingName, &parser->m_mem, tmp, newDtd);
   } else {
@@ -2362,7 +2362,7 @@ XML_ExpatVersion(void) {
 
 XML_Expat_Version XMLCALL
 XML_ExpatVersionInfo(void) {
-  XML_Expat_Version version;
+    XML_Expat_Version version = {};
 
   version.major = XML_MAJOR_VERSION;
   version.minor = XML_MINOR_VERSION;
@@ -2783,7 +2783,7 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
       enum XML_Error result;
       BINDING *bindings = NULL;
       XML_Bool noElmHandlers = XML_TRUE;
-      TAG_NAME name;
+      TAG_NAME name = {};
       name.str = poolStoreString(&parser->m_tempPool, enc, rawName,
                                  rawName + XmlNameLength(enc, rawName));
       if (! name.str)
@@ -2886,7 +2886,7 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
       if (n < 0)
         return XML_ERROR_BAD_CHAR_REF;
       if (parser->m_characterDataHandler) {
-        XML_Char buf[XML_ENCODE_MAX];
+          XML_Char buf[XML_ENCODE_MAX] = {};
         parser->m_characterDataHandler(parser->m_handlerArg, buf,
                                        XmlEncode(n, (ICHAR *)buf));
       } else if (parser->m_defaultHandler)
@@ -3898,7 +3898,7 @@ processXmlDecl(XML_Parser parser, int isGeneralTextEntity, const char *s,
 static enum XML_Error
 handleUnknownEncoding(XML_Parser parser, const XML_Char *encodingName) {
   if (parser->m_unknownEncodingHandler) {
-    XML_Encoding info;
+      XML_Encoding info = {};
     int i;
     for (i = 0; i < 256; i++)
       info.map[i] = -1;
@@ -5326,7 +5326,7 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
         parser->m_eventPtr = ptr;
       return XML_ERROR_INVALID_TOKEN;
     case XML_TOK_CHAR_REF: {
-      XML_Char buf[XML_ENCODE_MAX];
+        XML_Char buf[XML_ENCODE_MAX] = {};
       int i;
       int n = XmlCharRefNumber(enc, ptr);
       if (n < 0) {
@@ -5586,7 +5586,7 @@ storeEntityValue(XML_Parser parser, const ENCODING *enc,
       *(pool->ptr)++ = 0xA;
       break;
     case XML_TOK_CHAR_REF: {
-      XML_Char buf[XML_ENCODE_MAX];
+        XML_Char buf[XML_ENCODE_MAX] = {};
       int i;
       int n = XmlCharRefNumber(enc, entityTextPtr);
       if (n < 0) {
@@ -5718,7 +5718,7 @@ static void
 reportDefault(XML_Parser parser, const ENCODING *enc, const char *s,
               const char *end) {
   if (MUST_CONVERT(enc, s)) {
-    enum XML_Convert_Result convert_res;
+      enum XML_Convert_Result convert_res = {};
     const char **eventPP;
     const char **eventEndPP;
     if (enc == parser->m_encoding) {
