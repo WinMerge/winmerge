@@ -637,7 +637,7 @@ int CMarkdown::Token::IsSpecial(const char *p, const char *ahead)
 					++p;
 				} while (p < ahead && *p != c);
 			}
-			// fall through
+			[[fallthrough]];
 		case '/':
 		case '=':
 		case '<':
@@ -802,6 +802,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
+				[[fallthrough]];
 			case 2 + 0:
 			case 2 + 0 + 8:
 				// little endian
@@ -843,6 +844,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
+				[[fallthrough]];
 			case 4 + 0:
 			case 4 + 0 + 8:
 			case 4 + 3:
