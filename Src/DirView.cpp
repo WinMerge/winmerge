@@ -4092,6 +4092,24 @@ int CDirView::AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent)
 void CDirView::UpdateDiffItemStatus(UINT nIdx)
 {
 	GetListCtrl().RedrawItems(nIdx, nIdx);
+	const DIFFITEM& di = GetDiffItem(nIdx);
+	if (di.diffcode.isDirectory())
+	{
+		DirItemIterator it;
+		for (it = RevBegin(); it != RevEnd(); )
+		{
+			DIFFITEM& di2 = *it;
+			int cursel = it.m_sel;
+			++it;
+			if (di2.IsAncestor(&di))
+			{
+				if ((di2.diffcode.diffcode & DIFFCODE::SIDEFLAGS) == 0)
+					DeleteItem(cursel, true);
+				else
+					GetListCtrl().RedrawItems(cursel, cursel);
+			}
+		}
+	}
 }
 
 static String rgDispinfoText[2]; // used in function below

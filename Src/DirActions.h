@@ -165,7 +165,9 @@ int GetColImage(const DIFFITEM &di);
 
 void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask);
 void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
-void SetDiffSide(DIFFITEM& di, unsigned diffcode);
+void CopyDiffSide(DIFFITEM& di, int src, int dst);
+void UnsetDiffSide(DIFFITEM& di, int index);
+void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored);
 void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask);
 void SetItemViewFlag(CDiffContext& ctxt, unsigned flag, unsigned mask);
