@@ -426,7 +426,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC
             }
         }
 
-      ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+      ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC && nCrlfStyle != CRLFSTYLE::MIXED);
       m_nCRLFMode = nCrlfStyle;
 
       m_aLines.reserve(4096);
