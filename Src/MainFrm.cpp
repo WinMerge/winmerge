@@ -389,6 +389,27 @@ void CMainFrame::OnDestroy(void)
 		RevokeDragDrop(m_hWnd);
 }
 
+static HMENU GetSubmenu(HMENU menu, bool bFirstSubmenu)
+{
+	if (!bFirstSubmenu)
+	{
+		// look for last submenu
+		for (int i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
+			if (::GetSubMenu(menu, i) != nullptr)
+				return ::GetSubMenu(menu, i);
+	}
+	else
+	{
+		// look for first submenu
+		for (int i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
+			if (::GetSubMenu(menu, i) != nullptr)
+				return ::GetSubMenu(menu, i);
+	}
+
+	// error, submenu not found
+	return nullptr;
+}
+
 static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
 {
 	int i;
@@ -396,24 +417,9 @@ static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmen
 		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
 			break;
 	HMENU menu = ::GetSubMenu(mainMenu, i);
-
-	if (!bFirstSubmenu)
-	{
-		// look for last submenu
-		for (i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
-			if (::GetSubMenu(menu, i) != nullptr)
-				return ::GetSubMenu(menu, i);
-	}
-	else
-	{
-		// look for first submenu
-		for (i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
-			if (::GetSubMenu(menu, i) != nullptr)
-				return ::GetSubMenu(menu, i);
-	}
-
-	// error, submenu not found
-	return nullptr;
+	if (!menu)
+		return nullptr;
+	return GetSubmenu(menu, bFirstSubmenu);
 }
 
 /** 
@@ -2445,7 +2451,7 @@ void CMainFrame::OnMRUs(UINT nID)
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
-	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu, ID_FILE_NEW, false);
+	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->GetSubMenu(0/*File menu*/)->m_hMenu, false);
 	if (hMenu == nullptr)
 		return;
 	
