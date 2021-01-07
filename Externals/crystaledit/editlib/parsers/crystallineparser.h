@@ -70,6 +70,7 @@ typedef enum
 {
 	SRC_PLAIN,
 	SRC_ASP,
+	SRC_AUTOIT,
 	SRC_BASIC,
 	SRC_BATCH,
 	SRC_C,
@@ -126,7 +127,7 @@ struct TextDefinition
 	unsigned encoding;
 };
 
-extern TextDefinition m_SourceDefs[38];
+extern TextDefinition m_SourceDefs[39];
 
 bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
 bool IsXNumber(const TCHAR* pszChars, int nLength);
@@ -138,6 +139,7 @@ TextDefinition *GetTextType(const TCHAR *pszExt);
 
 unsigned ParseLinePlain(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAsp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineAutoIt(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineBasic(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineBatch(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineC(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

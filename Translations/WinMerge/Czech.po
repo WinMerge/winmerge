@@ -3868,6 +3868,9 @@ msgstr "Naposledy použité"
 msgid "No Highlighting"
 msgstr "Žádné zvýraznění"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr ""

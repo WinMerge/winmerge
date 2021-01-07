@@ -3937,6 +3937,9 @@ msgstr "Popis zadnje korištenih"
 msgid "No Highlighting"
 msgstr "Nije označeno"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

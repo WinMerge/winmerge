@@ -2979,6 +2979,9 @@ msgstr "Z listy MRU"
 msgid "No Highlighting"
 msgstr "Bez podświetlenia"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr ""
 

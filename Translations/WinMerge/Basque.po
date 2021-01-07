@@ -3937,6 +3937,9 @@ msgstr "MRU zerrendatik"
 msgid "No Highlighting"
 msgstr "Ez Nabarmenduta"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

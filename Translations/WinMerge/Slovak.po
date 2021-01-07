@@ -3393,6 +3393,9 @@ msgstr "Zo zoznamu nedávno otvorených"
 msgid "No Highlighting"
 msgstr "Bez zvýrazňovania"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Dávkový"
 

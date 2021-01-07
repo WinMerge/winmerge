@@ -3379,6 +3379,9 @@ msgstr "Uit lijst van recent gebruikt"
 msgid "No Highlighting"
 msgstr "Geen markering"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Batch"
 

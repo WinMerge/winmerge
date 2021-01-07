@@ -3333,6 +3333,9 @@ msgstr "最近使ったリスト"
 msgid "No Highlighting"
 msgstr "ハイライトなし"
 
+msgid "AutoIt"
+msgstr "AutoIt"
+
 msgid "Batch"
 msgstr "Batch"
 

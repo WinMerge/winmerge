@@ -482,6 +482,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\editlib\parsers\asp.cpp" />
+    <ClCompile Include="..\editlib\parsers\autoit.cpp" />
     <ClCompile Include="..\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\editlib\ccrystaleditview.cpp" />

@@ -3946,6 +3946,9 @@ msgstr "從 MRU 表"
 msgid "No Highlighting"
 msgstr "無高亮度顯示"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

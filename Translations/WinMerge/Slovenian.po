@@ -4069,6 +4069,9 @@ msgstr "Iz seznama nedavnih (MRU)"
 msgid "No Highlighting"
 msgstr "Brez označevanja"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Paket"

@@ -2980,6 +2980,9 @@ msgstr "Как в истории"
 msgid "No Highlighting"
 msgstr "Без выделения"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Пакет"
 

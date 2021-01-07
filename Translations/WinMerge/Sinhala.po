@@ -3927,6 +3927,9 @@ msgstr "From Most Recently Used list"
 msgid "No Highlighting"
 msgstr "No Highlighting"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

@@ -3416,6 +3416,9 @@ msgstr "Da lista MRU"
 msgid "No Highlighting"
 msgstr "Sem Destaque"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Quantidade"
 

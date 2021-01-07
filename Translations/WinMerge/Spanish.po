@@ -3369,6 +3369,9 @@ msgstr "De la lista MRU"
 msgid "No Highlighting"
 msgstr "No Seleccionado"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Batch"
 

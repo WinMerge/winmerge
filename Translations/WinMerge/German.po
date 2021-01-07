@@ -3719,6 +3719,9 @@ msgstr "Von MRU-Liste"
 msgid "No Highlighting"
 msgstr "Keine Hervorhebung"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

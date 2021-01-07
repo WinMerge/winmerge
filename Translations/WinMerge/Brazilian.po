@@ -4052,6 +4052,9 @@ msgstr "Da lista das MRUs"
 msgid "No Highlighting"
 msgstr "Sem Destacar"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

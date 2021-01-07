@@ -4033,6 +4033,9 @@ msgstr "MRU listalta"
 msgid "No Highlighting"
 msgstr "Ei korostusta"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Erä"

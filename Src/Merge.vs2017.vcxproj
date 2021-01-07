@@ -419,6 +419,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\asp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\autoit.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />

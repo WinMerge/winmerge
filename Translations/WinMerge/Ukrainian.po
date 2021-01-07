@@ -3937,6 +3937,9 @@ msgstr "Як в списку нещодавніх документів"
 msgid "No Highlighting"
 msgstr "Не підсвічувати"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Бетч"

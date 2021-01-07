@@ -4106,6 +4106,9 @@ msgstr "A partir de la liste des fichiers récents"
 msgid "No Highlighting"
 msgstr "Pas de surbrillance"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

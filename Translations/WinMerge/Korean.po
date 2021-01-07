@@ -4039,6 +4039,9 @@ msgstr "최근 목록에서"
 msgid "No Highlighting"
 msgstr "강조 표시 없음"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "일괄 처리"

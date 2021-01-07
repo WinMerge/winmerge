@@ -3909,6 +3909,9 @@ msgstr "Из MRU списка"
 msgid "No Highlighting"
 msgstr "Није означено"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr "Batch"

@@ -3370,6 +3370,9 @@ msgstr "匹配最近使用记录"
 msgid "No Highlighting"
 msgstr "无高亮"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "批处理文件"
 

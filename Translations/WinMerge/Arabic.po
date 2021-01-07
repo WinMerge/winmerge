@@ -3331,6 +3331,9 @@ msgstr "من قائمة MRU"
 msgid "No Highlighting"
 msgstr "بدون تظليل"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "متتالي"
 

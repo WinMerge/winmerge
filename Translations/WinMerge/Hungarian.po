@@ -3842,6 +3842,9 @@ msgstr ""
 msgid "No Highlighting"
 msgstr ""
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr ""

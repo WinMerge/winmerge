@@ -3352,6 +3352,9 @@ msgstr "Dall'elenco dei file recenti"
 msgid "No Highlighting"
 msgstr "Nessuna evidenziazione"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Batch"
 

@@ -3305,6 +3305,9 @@ msgstr "От последно отваряните"
 msgid "No Highlighting"
 msgstr "Без оцветяване"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Batch"
 

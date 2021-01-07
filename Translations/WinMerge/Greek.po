@@ -3915,6 +3915,9 @@ msgstr "Από Κατάλογο προσφάτως χρησιμοποιηθέν�
 msgid "No Highlighting"
 msgstr "Χωρίς Χρωματισμό Κώδικα"
 
+msgid "AutoIt"
+msgstr ""
+
 #, c-format
 msgid "Batch"
 msgstr ""

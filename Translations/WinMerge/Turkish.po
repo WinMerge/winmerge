@@ -3364,6 +3364,9 @@ msgstr "Sık kullanılanlar listesinden"
 msgid "No Highlighting"
 msgstr "Vurgulama Yok"
 
+msgid "AutoIt"
+msgstr ""
+
 msgid "Batch"
 msgstr "Toplu İşlem"
 
