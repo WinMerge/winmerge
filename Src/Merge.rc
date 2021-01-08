@@ -873,6 +873,7 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "&Text",                       ID_FILE_NEW
+        MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
     END
