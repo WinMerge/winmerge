@@ -22,6 +22,7 @@
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
 #define IDD_PROPPAGE_FILTER             207
+#define IDD_IGNORED_SUSBSTITUTIONS_DLG  208
 #define IDD_PROPPAGE_SYSTEM             209
 #define IDD_EDITOR_HEADERBAR            210
 #define IDD_GENERATE_PATCH              211
@@ -190,6 +191,7 @@
 #define IDC_ALL_WHITE                   1027
 #define IDC_WHITE_CHANGE                1028
 #define IDC_WHITESPACE                  1029
+#define IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED  1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
 #define IDC_DIFFERENCE_COLOR            1035
@@ -455,6 +457,7 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
+#define IDC_IGNORED_SUBSTITUTIONS_FILTER 1324
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
 #define IDC_PRESERVE_FILETIME           1328
@@ -557,6 +560,10 @@
 #define IDC_INDENT_HEURISTIC            8829
 #define IDC_LIST_FILE                   8830
 #define IDC_FLDCONFIRM_DONTASKAGAIN     8831
+#define IDC_IGNORED_SUSBSTITUTIONS_WORK_BOTH_WAYS 8832
+#define IDC_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS 8833
+#define IDC_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS 8834
+#define IDC_LFILTER_CLEARBTN            8836
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1350,6 +1357,7 @@
 #define ID_SWAPPANES_SWAP12             34170
 #define ID_SWAPPANES_SWAP23             34171
 #define ID_SWAPPANES_SWAP13             34172
+#define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34173
 
 // Next default values for new objects
 // 
@@ -1357,7 +1365,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34173
+#define _APS_NEXT_COMMAND_VALUE         34174
 #define _APS_NEXT_CONTROL_VALUE         8832
 #define _APS_NEXT_SYMED_VALUE           117
 #endif

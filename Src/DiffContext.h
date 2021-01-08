@@ -194,6 +194,7 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
+	std::unique_ptr<FilterList> m_pTokenListsForIs[2]; /// Two lists for Ignored Substitutions
 
 private:
 	/**

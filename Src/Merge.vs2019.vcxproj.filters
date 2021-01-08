@@ -523,6 +523,9 @@
     <ClCompile Include="LineFiltersDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SubeditList.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="LoadSaveCodepageDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -916,6 +919,12 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp">
       <Filter>EditLib\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="IgnoredSubstitutionsDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenPairList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\javascript.cpp">
       <Filter>EditLib\Parsers\Source Files</Filter>
     </ClCompile>
@@ -1027,9 +1036,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IntToIntMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LineFiltersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="locality.h">
@@ -1652,6 +1658,15 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h">
       <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFiltersList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IgnoredSubstitutionsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenPairList.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

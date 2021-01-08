@@ -32,6 +32,7 @@ public:
 	~DiffUtils();
 	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
+	void SetIgnoredSubstitutionsList(FilterList* list0, FilterList* list1);
 	void ClearFilterList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();
@@ -45,6 +46,8 @@ public:
 private:
 	std::unique_ptr<DiffutilsOptions> m_pOptions; /**< Compare options for diffutils. */
 	FilterList * m_pFilterList; /**< Filter list for line filters. */
+	FilterList* m_pIgnoredSubstitutionsList0; 
+	FilterList* m_pIgnoredSubstitutionsList1;
 	file_data * m_inf; /**< Compared files data (for diffutils). */
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */

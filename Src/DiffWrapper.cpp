@@ -47,6 +47,12 @@
 #include "parsers/crystallineparser.h"
 #include "SyntaxColors.h"
 #include "MergeApp.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "TokenPairList.h"
+#include "stringdiffs.h"
+using namespace strdiff;
+
 
 using Poco::Debugger;
 using Poco::format;
@@ -73,6 +79,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
+, m_pIgnoredSubstitutionsList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
 {
@@ -848,6 +855,99 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf)
 	return linesMatch;
 }
 
+bool MatchDiffVsIngoredSubstitutions
+(
+	const std::string &fullLine0,
+	const std::string &fullLine1,
+	const strdiff::wdiff &diff,
+	const IgnoredSubstitutionsFilterList &ignoredSubstitutionsList,
+	const bool optUseRegexpsForIgnoredSubstitutions,
+	const bool optMatchBothWays
+)
+{
+	int changeStartPos[2] = { diff.begin[0], diff.begin[1] };
+	int changeEndPos[2] = { diff.end[0], diff.end[1] };
+	int changeLen0 = changeEndPos[0] - changeStartPos[0] + 1;
+	int changeLen1 = changeEndPos[1] - changeStartPos[1] + 1;
+	std::string change0 = std::string(fullLine0.c_str() + changeStartPos[0], changeLen0);
+	std::string change1 = std::string(fullLine1.c_str() + changeStartPos[1], changeLen1);
+
+	size_t numIgnoredSubstitutions = ignoredSubstitutionsList.GetCount();
+
+	for (int f = 0; f < numIgnoredSubstitutions; f++)
+	{
+		const IgnoredSusbstitutionItem& filter = ignoredSubstitutionsList[f];
+		// Check if the common prefix and suffix fit into the line around the change
+		if
+		(
+			   changeStartPos[0] < filter.CommonPrefixLength
+			|| changeStartPos[1] < filter.CommonPrefixLength
+			|| changeEndPos[0] >= fullLine0.length() - filter.CommonSuffixLength
+			|| changeEndPos[1] >= fullLine1.length() - filter.CommonSuffixLength
+		)
+			continue; /// This filter does not fit into the line with its suffix and prefix
+
+		// Check if the common prefix and suffix match
+		bool continueWithNextFilter = false;
+		for (int p = 1; p <= filter.CommonPrefixLength; p++)
+		{
+			char char0 = fullLine0[changeStartPos[0] - p];
+			char char1 = fullLine1[changeStartPos[1] - p];
+			if (char0 != char1)
+			{
+				continueWithNextFilter = true;
+				break;
+			}
+		}
+
+		for (int s = 1; s <= filter.CommonSuffixLength; s++)
+		{
+			char char0 = fullLine0[changeEndPos[0] + s];
+			char char1 = fullLine1[changeEndPos[1] + s];
+			if (char0 != char1)
+			{
+				continueWithNextFilter = true;
+				break;
+			}
+		}
+
+		if (continueWithNextFilter)
+			continue;
+
+		if(optUseRegexpsForIgnoredSubstitutions)
+		{
+
+			if
+			(
+					ignoredSubstitutionsList.MatchBoth(f, change0, change1)
+				||
+					optMatchBothWays
+				&& ignoredSubstitutionsList.MatchBoth(f, change1, change0)
+			)
+			{
+				return true; /// a match found
+			}
+		}
+		else
+		{
+			if
+			(
+				   filter.ChangedPart[0].compare(change0) == 0
+				&& filter.ChangedPart[1].compare(change1) == 0
+				||
+				   optMatchBothWays
+				&& filter.ChangedPart[0].compare(change1) == 0
+				&& filter.ChangedPart[1].compare(change0) == 0
+			)
+			{
+				return true; /// a match found
+			}
+		}
+	}
+
+	return false; /// n0 match found
+}
+
 /**
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
@@ -859,6 +959,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	struct change *next = script;
 	
+	const bool optCompletelyBlankOutIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS);
+	const bool optMatchBothWays = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS);
+	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+
 	while (next != nullptr)
 	{
 		/* Find a set of changes that belong together.  */
@@ -935,6 +1039,65 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &file_data_ary[1]);
 					if (match1 && match2)
 						op = OP_TRIVIAL;
+				}
+
+				/// Handling Ignored Substitutions
+				if
+				(
+					   op == OP_DIFF
+					//&& next != nullptr
+					&& QtyLinesLeft > 0
+					&& QtyLinesRight > 0
+					&& m_files.GetSize() == 2
+					&& m_pIgnoredSubstitutionsList
+					&& m_pIgnoredSubstitutionsList->GetCount()
+				)
+				{
+					size_t len = file_data_ary[0].linbuf[thisob->line0 + 1] - file_data_ary[0].linbuf[thisob->line0];
+					const char* string = file_data_ary[0].linbuf[thisob->line0];
+					size_t stringlen = linelen(string, len);
+					std::string fullLine0 = std::string(string, stringlen);
+
+					len = file_data_ary[1].linbuf[thisob->line1 + 1] - file_data_ary[1].linbuf[thisob->line1];
+					string = file_data_ary[1].linbuf[thisob->line1];
+					stringlen = linelen(string, len);
+					std::string fullLine1 = std::string(string, stringlen);
+
+					bool case_sensitive = false;
+					bool eol_sensitive = false;
+					int whitespace = WHITESPACE_IGNORE_CHANGE;
+					int breakType = 1;// breakType==1 means break also on punctuation
+					bool byte_level = true;
+					std::vector<wdiff> worddiffs = ComputeWordDiffs(
+						ucr::toTString(fullLine0.c_str()), ucr::toTString(fullLine1.c_str()),
+						case_sensitive, eol_sensitive, whitespace, breakType, byte_level
+					);
+
+					if (!worddiffs.empty())
+					{
+						bool lineShouldBeIgnored = true; /// If all changes are ignored the line is ignored
+						for (std::vector<strdiff::wdiff>::const_iterator diffIt = worddiffs.begin(); diffIt != worddiffs.end(); ++diffIt)
+						{
+							if(!MatchDiffVsIngoredSubstitutions
+							(
+								fullLine0, fullLine1,
+								*diffIt,
+								*m_pIgnoredSubstitutionsList, optUseRegexpsForIgnoredSubstitutions,
+								optMatchBothWays
+							))
+							{
+								lineShouldBeIgnored = false;
+							}
+						}
+
+						if (lineShouldBeIgnored)
+						{
+							if(optCompletelyBlankOutIgnoredSubstitutions)
+								op = OP_NONE;
+							else
+								op = OP_TRIVIAL;
+						}
+					}
 				}
 
 				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
@@ -1349,6 +1512,53 @@ void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
 	{
 		m_pFilterList.reset(new FilterList());
 		*m_pFilterList = *pFilterList;
+	}
+}
+
+IgnoredSubstitutionsFilterList* CDiffWrapper::GetIgnoredSubstitutionsList()
+{
+	return m_pIgnoredSubstitutionsList.get();
+}
+
+void CDiffWrapper::SetIgnoredSubstitutionsList(const FilterList* pIgnoredSubstitutionsList0, const FilterList* pIgnoredSubstitutionsList1)
+{
+	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
+
+	if (!pIgnoredSubstitutionsList0 || pIgnoredSubstitutionsList0->GetCount() == 0)
+	{
+		m_pIgnoredSubstitutionsList.reset();
+		return;
+	}
+
+	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+
+	for (int f = 0; f < pIgnoredSubstitutionsList0->GetCount(); f++)
+	{
+		std::string s0 = (*pIgnoredSubstitutionsList0)[f].filterAsString;
+		std::string s1 = (*pIgnoredSubstitutionsList1)[f].filterAsString;
+		m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
+	}
+}
+
+void CDiffWrapper::SetIgnoredSubstitutionsList(const TokenPairList *ignoredSubstitutionsList)
+{
+	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
+
+	// Remove filterlist if new filter is empty
+	if (!ignoredSubstitutionsList || ignoredSubstitutionsList->GetCount() == 0)
+	{
+		m_pIgnoredSubstitutionsList.reset();
+		return;
+	}
+
+	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+
+	for (int f = 0; f < ignoredSubstitutionsList->GetCount(); f++)
+	{
+		std::string s0 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr0.c_str());
+		std::string s1 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr1.c_str());
+		if(s0 != s1)
+			m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
 	}
 }
 

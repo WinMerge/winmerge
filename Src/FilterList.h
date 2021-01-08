@@ -40,13 +40,54 @@ public:
 	void AddRegExp(const std::string& regularExpression);
 	void RemoveAllFilters();
 	bool HasRegExps() const;
+	size_t GetCount() const { return m_list.size(); }
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
 	const char * GetLastMatchExpression() const;
+	const filter_item& operator[](int index) const;
 
 private:
 	std::vector <filter_item_ptr> m_list;
 	const std::string *m_lastMatchExpression;
 
+};
+
+struct IgnoredSusbstitutionItem
+{
+	std::string CommonPrefix;
+	size_t CommonPrefixLength;
+	std::string ChangedPart[2];
+	std::string CommonSuffix;
+	size_t CommonSuffixLength;
+	Poco::RegularExpression ChangedPartRegexp[2]; /**< Compiled regular expression */
+
+	IgnoredSusbstitutionItem
+	(
+		const std::string& filter0, const std::string& filter1,
+		int regexpCompileOptions, bool extractCommonSufixAndPrefix
+	);
+};
+
+class IgnoredSubstitutionsFilterList
+{
+public:
+	IgnoredSubstitutionsFilterList();
+	~IgnoredSubstitutionsFilterList();
+
+	void Add(const std::string& change0, const std::string& change1, bool extractCommonSufixAndPrefix);
+	void RemoveAllFilters();
+	bool HasRegExps() const;
+	size_t GetCount() const { return m_list.size(); }
+	bool MatchBoth
+	(
+		size_t filterIndex,
+		const std::string& string0,
+		const std::string& string1,
+		int codepage = CP_UTF8
+	) const;
+	const IgnoredSusbstitutionItem &operator[](int index) const;
+
+private:
+	std::vector<std::shared_ptr<IgnoredSusbstitutionItem>> m_list;
 };
 
 /** 
@@ -75,3 +116,10 @@ inline const char * FilterList::GetLastMatchExpression() const
 {
 	return m_lastMatchExpression->c_str();
 }
+
+inline const filter_item& FilterList::operator[](int index) const
+{
+	const filter_item_ptr &item = m_list[index];
+	return *item;
+}
+
