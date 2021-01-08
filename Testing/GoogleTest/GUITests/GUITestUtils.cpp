@@ -172,7 +172,7 @@ std::filesystem::path getInstallerPath()
 		if (pos != std::wstring::npos)
 			return argstr.substr(pos + std::size("--installerpath=") - 1);
 	}
-	return "../../../Build/WinMerge-2.16.7.0-x64-PerUser-Setup.exe";
+	return "../../../Build/WinMerge-2.16.8-x64-PerUser-Setup.exe";
 }
 
 HWND execWinMerge(const std::string& args)
@@ -196,7 +196,13 @@ HWND execWinMerge(const std::string& args)
 HWND execInstaller(const std::string& args)
 {
 	HWND hwndInstaller = nullptr;
-	auto command = "start \"\" \"" + getInstallerPath().string() + "\" " + args;
+	std::filesystem::path sInstallerPath = getInstallerPath();
+
+	if (!exists(sInstallerPath)) {
+		printf("The file \"%s\" does not exist on this system.\n", sInstallerPath.string().c_str());
+		return hwndInstaller;
+	} 
+	auto command = "start \"\" \"" + sInstallerPath.string() + "\" " + args;
 	system(command.c_str());
 	Sleep(3000);
 	for (int i = 0; i < 50 && !hwndInstaller; ++i)
