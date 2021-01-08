@@ -4074,18 +4074,9 @@ msgstr "Da listaxe de últimos arquivos usados"
 msgid "No Highlighting"
 msgstr "Sen resaltar"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr "JavaScript"
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4098,10 +4089,6 @@ msgstr "Recursos"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

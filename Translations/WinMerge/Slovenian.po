@@ -4069,18 +4069,9 @@ msgstr "Iz seznama nedavnih (MRU)"
 msgid "No Highlighting"
 msgstr "Brez označevanja"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Paket"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4093,10 +4084,6 @@ msgstr "Viri"
 #, c-format
 msgid "Shell"
 msgstr "Lupina"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

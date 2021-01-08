@@ -3915,17 +3915,8 @@ msgstr "Από Κατάλογο προσφάτως χρησιμοποιηθέν�
 msgid "No Highlighting"
 msgstr "Χωρίς Χρωματισμό Κώδικα"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
-msgstr ""
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
 msgstr ""
 
 #, c-format
@@ -3938,10 +3929,6 @@ msgstr ""
 
 #, c-format
 msgid "Shell"
-msgstr ""
-
-#, c-format
-msgid "VHDL"
 msgstr ""
 
 #, c-format

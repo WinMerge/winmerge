@@ -4039,18 +4039,9 @@ msgstr "최근 목록에서"
 msgid "No Highlighting"
 msgstr "강조 표시 없음"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "일괄 처리"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -4063,10 +4054,6 @@ msgstr "자원"
 #, c-format
 msgid "Shell"
 msgstr "쉘"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

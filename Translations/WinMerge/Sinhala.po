@@ -3927,18 +3927,9 @@ msgstr "From Most Recently Used list"
 msgid "No Highlighting"
 msgstr "No Highlighting"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -3951,10 +3942,6 @@ msgstr "Resources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"

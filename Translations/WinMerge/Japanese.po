@@ -3333,17 +3333,8 @@ msgstr "最近使ったリスト"
 msgid "No Highlighting"
 msgstr "ハイライトなし"
 
-msgid "AutoIt"
-msgstr "AutoIt"
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr "JavaScript"
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable Object(.po)"
@@ -3353,9 +3344,6 @@ msgstr "Resources"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "左側のタブをすべて閉じる(&L)"

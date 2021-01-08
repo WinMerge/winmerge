@@ -3937,18 +3937,9 @@ msgstr "Як в списку нещодавніх документів"
 msgid "No Highlighting"
 msgstr "Не підсвічувати"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Бетч"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -3961,10 +3952,6 @@ msgstr "Ресурси"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"

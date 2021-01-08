@@ -3719,18 +3719,9 @@ msgstr "Von MRU-Liste"
 msgid "No Highlighting"
 msgstr "Keine Hervorhebung"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr "JavaScript"
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -3743,10 +3734,6 @@ msgstr "Ressourcen"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

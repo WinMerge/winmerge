@@ -3370,17 +3370,8 @@ msgstr "匹配最近使用记录"
 msgid "No Highlighting"
 msgstr "无高亮"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "批处理文件"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable Object"
@@ -3390,9 +3381,6 @@ msgstr "资源文件"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "关闭左侧标签页(&L)"

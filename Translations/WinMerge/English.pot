@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-08 08:36+0000\n"
+"POT-Creation-Date: 2021-01-08 22:03+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2972,16 +2972,7 @@ msgstr ""
 msgid "No Highlighting"
 msgstr ""
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
-msgstr ""
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
 msgstr ""
 
 msgid "Portable Object"
@@ -2991,9 +2982,6 @@ msgid "Resources"
 msgstr ""
 
 msgid "Shell"
-msgstr ""
-
-msgid "VHDL"
 msgstr ""
 
 msgid "Close &Left Tabs"

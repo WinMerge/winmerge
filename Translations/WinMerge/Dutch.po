@@ -3379,17 +3379,8 @@ msgstr "Uit lijst van recent gebruikt"
 msgid "No Highlighting"
 msgstr "Geen markering"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable object"
@@ -3399,9 +3390,6 @@ msgstr "Bronnen"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Linker tabs sluiten"

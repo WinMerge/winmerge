@@ -4033,18 +4033,9 @@ msgstr "MRU listalta"
 msgid "No Highlighting"
 msgstr "Ei korostusta"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Erä"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4057,10 +4048,6 @@ msgstr "Resurssit"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

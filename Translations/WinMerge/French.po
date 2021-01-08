@@ -4106,18 +4106,9 @@ msgstr "A partir de la liste des fichiers récents"
 msgid "No Highlighting"
 msgstr "Pas de surbrillance"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4130,10 +4121,6 @@ msgstr "Ressources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

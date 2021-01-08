@@ -3369,17 +3369,8 @@ msgstr "De la lista MRU"
 msgid "No Highlighting"
 msgstr "No Seleccionado"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable Object"
@@ -3389,9 +3380,6 @@ msgstr "Resources"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr ""
 
 msgid "Close &Left Tabs"
 msgstr ""

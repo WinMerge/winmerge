@@ -2980,17 +2980,8 @@ msgstr "Как в истории"
 msgid "No Highlighting"
 msgstr "Без выделения"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Пакет"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Библиотека Lua"
 
 msgid "Portable Object"
 msgstr "Портативный объект"
@@ -3000,9 +2991,6 @@ msgstr "Ресурсы"
 
 msgid "Shell"
 msgstr "Оболочка"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Закрыть вкладки слева"

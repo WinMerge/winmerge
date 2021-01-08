@@ -3305,17 +3305,8 @@ msgstr "От последно отваряните"
 msgid "No Highlighting"
 msgstr "Без оцветяване"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable Object"
@@ -3325,9 +3316,6 @@ msgstr "Ресурси"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Затваряне на &левия раздел"

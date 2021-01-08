@@ -2979,16 +2979,7 @@ msgstr "Z listy MRU"
 msgid "No Highlighting"
 msgstr "Bez podświetlenia"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
-msgstr ""
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
 msgstr ""
 
 msgid "Portable Object"
@@ -2999,9 +2990,6 @@ msgstr "Zasoby"
 
 msgid "Shell"
 msgstr "Powłoka"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Zamknij karty po lewej"

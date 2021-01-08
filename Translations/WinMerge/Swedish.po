@@ -4016,18 +4016,9 @@ msgstr "Från MRU listan (senast använda filer)"
 msgid "No Highlighting"
 msgstr "Ingen Markering"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Sats"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"
@@ -4040,10 +4031,6 @@ msgstr "Resurser"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

@@ -3946,18 +3946,9 @@ msgstr "從 MRU 表"
 msgid "No Highlighting"
 msgstr "無高亮度顯示"
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -3970,10 +3961,6 @@ msgstr "Resources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"

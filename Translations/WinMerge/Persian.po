@@ -3980,18 +3980,9 @@ msgstr " از فهرست آخرين پرونده ها "
 msgid "No Highlighting"
 msgstr " برجسته نکردن "
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr " دسته "
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -4004,10 +3995,6 @@ msgstr " منابع "
 #, c-format
 msgid "Shell"
 msgstr " پوسته "
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"

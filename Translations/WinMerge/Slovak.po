@@ -3393,17 +3393,8 @@ msgstr "Zo zoznamu nedávno otvorených"
 msgid "No Highlighting"
 msgstr "Bez zvýrazňovania"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Dávkový"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Prenosný objekt"
@@ -3413,9 +3404,6 @@ msgstr "Zdroje"
 
 msgid "Shell"
 msgstr "Vzhľad prostredia"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Zavrieť karty vľ&avo"

@@ -3352,17 +3352,8 @@ msgstr "Dall'elenco dei file recenti"
 msgid "No Highlighting"
 msgstr "Nessuna evidenziazione"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Oggetto portatile"
@@ -3372,9 +3363,6 @@ msgstr "Risorse"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Chiudi schede a &sinistra"

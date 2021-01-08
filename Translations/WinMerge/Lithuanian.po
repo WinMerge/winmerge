@@ -2981,17 +2981,8 @@ msgstr "Iš dažniausiai naudojamų sąrašo"
 msgid "No Highlighting"
 msgstr "Nenaudoti paryškinimo"
 
-msgid "AutoIt"
-msgstr ""
-
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr "JavaScript"
-
-msgid "Lua"
-msgstr "Lua"
 
 msgid "Portable Object"
 msgstr "Portable Object"
@@ -3001,9 +2992,6 @@ msgstr "Resources"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Užverti korteles &kairėje"

@@ -3916,18 +3916,9 @@ msgstr "Din lista de recent utilizate"
 msgid "No Highlighting"
 msgstr ""
 
-msgid "AutoIt"
-msgstr ""
-
 #, c-format
 msgid "Batch"
 msgstr "Batch"
-
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
 
 #, c-format
 msgid "Portable Object"
@@ -3940,10 +3931,6 @@ msgstr "Resurse"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
