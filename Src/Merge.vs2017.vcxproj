@@ -751,7 +751,14 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="LineFiltersDlg.cpp" />
+    <ClCompile Include="IgnoredSubstitutionsDlg.cpp" />
+    <ClCompile Include="SubeditList.cpp" />
     <ClCompile Include="LineFiltersList.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="TokenPairList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1197,7 +1204,9 @@
     <ClInclude Include="Common\LanguageSelect.h" />
     <ClInclude Include="JumpList.h" />
     <ClInclude Include="LineFiltersDlg.h" />
+    <ClInclude Include="IgnoredSubstitutionsDlg.h" />
     <ClInclude Include="LineFiltersList.h" />
+    <ClInclude Include="TokenPairList.h" />
     <ClInclude Include="LoadSaveCodepageDlg.h" />
     <ClInclude Include="locality.h" />
     <ClInclude Include="LocationBar.h" />
