@@ -1120,7 +1120,7 @@
 
     <para>This section describes how to navigate and select differences in the
     File Compare window. Note that when you select a difference, it is always
-    selected in both File panes.</para>
+    selected in both or all three File panes.</para>
 
     <tip>
       <para>To save time, enable <guilabel>Automatically scroll to first
@@ -1589,7 +1589,7 @@
                 <keycap>Alt</keycap>
 
                 <keycap>Right</keycap>
-              </keycombo> ( or <keycap>Right</keycap> in merge mode), context
+              </keycombo> (or <keycap>Right</keycap> in merge mode), context
             menu in File pane within a difference, and in Diff pane.</para>
           </listitem>
         </varlistentry>
@@ -1601,7 +1601,7 @@
 
           <listitem>
             <para>Copies the current difference from the right to the left File
-            pane. See <command>Copy Righ</command>t description for
+            pane. See <command>Copy Right</command> description for
             details.</para>
 
             <para>Shortcuts: <inlinemediaobject>

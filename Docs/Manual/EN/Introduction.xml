@@ -4,8 +4,8 @@
 
   <para>WinMerge is an <ulink url="https://opensource.org/">Open
   Source</ulink> differencing and merging tool for Windows. WinMerge can compare
-  both folders and files, presenting differences in a visual text format that is
-  easy to understand and handle.</para>
+  two or three folders and files, presenting differences in a visual text format
+  that is easy to understand and handle.</para>
 
   <para>WinMerge is highly useful for determining what has changed between
   project versions, and then merging changes between versions. WinMerge can be
