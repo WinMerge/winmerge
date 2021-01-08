@@ -33,8 +33,10 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
+#include "TokenPairList.h"
 #include "ConflictFileParser.h"
 #include "LineFiltersDlg.h"
+#include "IgnoredSubstitutionsDlg.h"
 #include "paths.h"
 #include "Environment.h"
 #include "PatchTool.h"
@@ -1627,12 +1629,15 @@ void CMainFrame::OnToolsFilters()
 	String title = _("Filters");
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
+	IgnoredSubstitutionsDlg ignoredSubstitutionsFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
+	std::unique_ptr<TokenPairList> ignoredSubstitutionsFilters(new TokenPairList());
 	String selectedFilter;
 	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
+	sht.AddPage(&ignoredSubstitutionsFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
@@ -1645,6 +1650,19 @@ void CMainFrame::OnToolsFilters()
 
 	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
+
+	const bool ignoredSubstitutionsAreEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
+	const bool ignoredSubstitutionsWorkBothWaysOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS);
+	const bool completelyBlankOutIgnoredSubstitutionsOrig = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS);
+	const bool optUseRegexpsForSubstitutionsOrig = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+
+	ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsAreEnabled = ignoredSubstitutionsAreEnabledOrig;
+	ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsWorkBothWays = ignoredSubstitutionsWorkBothWaysOrig;
+	ignoredSubstitutionsFiltersDlg.m_CompletelyBlankOutIgnoredSubstitutions = completelyBlankOutIgnoredSubstitutionsOrig;
+	ignoredSubstitutionsFiltersDlg.m_UseRegexpsForIgnoredSubstitutions = optUseRegexpsForSubstitutionsOrig;
+	
+	ignoredSubstitutionsFilters->CloneFrom(theApp.m_pTokensForIs.get());
+	ignoredSubstitutionsFiltersDlg.SetList(ignoredSubstitutionsFilters.get());
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -1670,6 +1688,19 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
+		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsAreEnabled;
+		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, ignoredSubstitutionsAreEnabled);
+
+		bool ignoredSubstitutionsWorkBothWays = ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsWorkBothWays;
+		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS, ignoredSubstitutionsWorkBothWays);
+
+		bool completelyBlankOutIgnoredSubstitutions = ignoredSubstitutionsFiltersDlg.m_CompletelyBlankOutIgnoredSubstitutions;
+		GetOptionsMgr()->SaveOption(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS, completelyBlankOutIgnoredSubstitutions);
+		
+		bool optUseRegexpsForSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+		GetOptionsMgr()->SaveOption(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS, optUseRegexpsForSubstitutions);
+
+
 		// Check if compare documents need rescanning
 		bool bFileCompareRescan = false;
 		bool bFolderCompareRescan = false;
@@ -1677,8 +1708,16 @@ void CMainFrame::OnToolsFilters()
 		FRAMETYPE frame = GetFrameType(pFrame);
 		if (frame == FRAME_FILE)
 		{
-			if (lineFiltersEnabledOrig != linefiltersEnabled ||
-					!theApp.m_pLineFilters->Compare(lineFilters.get()))
+			if
+			(
+				   linefiltersEnabled != lineFiltersEnabledOrig
+				|| ignoredSubstitutionsAreEnabled != ignoredSubstitutionsAreEnabledOrig
+				|| ignoredSubstitutionsWorkBothWays != ignoredSubstitutionsWorkBothWaysOrig
+				|| completelyBlankOutIgnoredSubstitutions != completelyBlankOutIgnoredSubstitutionsOrig
+				|| optUseRegexpsForSubstitutions != optUseRegexpsForSubstitutionsOrig
+				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
+				|| !ignoredSubstitutionsFilters->Compare(theApp.m_pTokensForIs.get())
+			)
 			{
 				bFileCompareRescan = true;
 			}
@@ -1698,6 +1737,10 @@ void CMainFrame::OnToolsFilters()
 		// Save new filters before (possibly) rescanning
 		theApp.m_pLineFilters->CloneFrom(lineFilters.get());
 		theApp.m_pLineFilters->SaveFilters();
+
+		theApp.m_pTokensForIs->CloneFrom(ignoredSubstitutionsFilters.get());
+		theApp.m_pTokensForIs->SaveFilters();
+
 
 		if (bFileCompareRescan)
 		{

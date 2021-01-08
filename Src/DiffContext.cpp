@@ -44,6 +44,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_piAbortable(nullptr)
 , m_bStopAfterFirstDiff(false)
 , m_pFilterList(nullptr)
+, m_pTokenListsForIs{ nullptr, nullptr }
 , m_pContentCompareOptions(nullptr)
 , m_pQuickCompareOptions(nullptr)
 , m_pOptions(nullptr)

@@ -24,6 +24,7 @@ class PathContext;
 struct file_data;
 class MovedLines;
 class FilterList;
+class IgnoredSubstitutionsFilterList;
 namespace CrystalLineParser { struct TextDefinition; };
 
 /** @enum COMPARE_TYPE
@@ -183,6 +184,9 @@ public:
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
+	IgnoredSubstitutionsFilterList *GetIgnoredSubstitutionsList();
+	void SetIgnoredSubstitutionsList(const FilterList* pIgnoredSubstitutionsList0, const FilterList* pIgnoredSubstitutionsList1);
+	void SetIgnoredSubstitutionsList(const class TokenPairList *ignoredSubstitutionsList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
 	void EnablePlugins(bool enable);
@@ -202,10 +206,17 @@ public:
 	static void FreeDiffUtilsScript(struct change * & script);
 	bool RegExpFilter(int StartPos, int EndPos, const file_data * pinf) const;
 
+	IgnoredSubstitutionsFilterList *GetIgnoredSubstitutionsList(int index) const
+	{
+		return m_pIgnoredSubstitutionsList.get();
+	}
+
 private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
+	std::unique_ptr<IgnoredSubstitutionsFilterList> m_pIgnoredSubstitutionsList;
+
 	PathContext m_files; /**< Full path to diff'ed file. */
 	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */
 	PathContext m_originalFile; /**< file's original (NON-TEMP) path. */

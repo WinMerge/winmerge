@@ -38,6 +38,7 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
+#include "TokenPairList.h"
 #include "SyntaxColors.h"
 #include "CCrystalTextMarkers.h"
 #include "OptionsSyntaxColors.h"
@@ -105,6 +106,7 @@ CMergeApp::CMergeApp() :
 , m_bEscShutdown(false)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
+, m_pTokensForIs(new TokenPairList())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
@@ -306,6 +308,9 @@ BOOL CMergeApp::InitInstance()
 		if (!oldFilter.empty())
 			m_pLineFilters->Import(oldFilter);
 	}
+
+	if (m_pTokensForIs != nullptr)
+		m_pTokensForIs->Initialize(GetOptionsMgr());
 
 	// Check if filter folder is set, and create it if not
 	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);

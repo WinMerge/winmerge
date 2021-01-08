@@ -248,6 +248,12 @@ extern const String OPT_FILEFILTER_CURRENT OP("Settings/FileFilterCurrent");
 extern const String OPT_FILTER_USERPATH OP("Settings/UserFilterPath");
 extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 
+/// Ignored Susbstitutions
+extern const String OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED OP("Settings/IgnoredSubstitutionsAreEnabled");
+extern const String OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS OP("Settings/IgnoredSubstitutionsWorkBothWays");
+extern const String OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS OP("Settings/CompletelyBlankOutIgnoredSusbstitutions");
+extern const String OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS OP("Settings/UseRegexpsForIgnoredSubstitutions");
+
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");
 extern const String OPT_ARCHIVE_PROBETYPE OP("Merge7z/ProbeSignature");

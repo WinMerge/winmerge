@@ -75,6 +75,12 @@ void DiffUtils::SetFilterList(FilterList * list)
 	m_pFilterList = list;
 }
 
+void DiffUtils::SetIgnoredSubstitutionsList(FilterList* list0, FilterList* list1)
+{
+	m_pIgnoredSubstitutionsList0 = list0;
+	m_pIgnoredSubstitutionsList1 = list1;
+}
+
 /**
  * @brief Set filedata.
  * @param [in] items Count of filedata items to set.

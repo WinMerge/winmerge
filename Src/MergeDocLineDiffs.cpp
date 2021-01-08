@@ -13,6 +13,10 @@
 #include "DiffTextBuffer.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
+#include "TokenPairList.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,22 +53,87 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 {
 	CRect rc[3];
-	int nBuffer;
 
 	Computelinediff(pView, rc, bReversed);
 
 	if (std::all_of(rc, rc + m_nBuffers, [](auto& rc) { return rc.top == -1; }))
 	{
 		String caption = _("Line difference");
-		String msg = _("No difference");
+		String msg = _("No differences to select found");
 		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}
 
 	// Actually display selection areas on screen in both edit panels
-	for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-			HighlightDiffRect(m_pView[nGroup][nBuffer], rc[nBuffer]);
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+}
+
+void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
+{
+	if (m_nBuffers != 2)
+		return; /// Not clear what to do for a 3-way merge
+
+	CRect rc[3];
+
+	Computelinediff(pView, rc, bReversed);
+
+	bool optIgnoredSubstitutionsWorkBothWays = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS);
+
+	if (std::all_of(rc, rc + m_nBuffers, [](auto& rc) { return rc.top == -1; }))
+	{
+		String caption = _("Line difference");
+		String msg = _("No differences found to add as ignored substitution");
+		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
+		return;
+	}
+
+	// Actually display selection areas on screen in both edit panels
+	String selectedText[3];
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+		selectedText[nBuffer] = String(m_pView[pView->m_nThisGroup][nBuffer]->GetSelectedText());
+	}
+
+	if (selectedText[0].empty() && selectedText[1].empty())
+	{
+		return;
+	}
+
+
+	/// Check whether the pair is already registered with Ignored Substitutions
+	TokenPairList &ignoredSubstitutionsList = *theApp.m_pTokensForIs.get();
+	for (int f = 0; f < ignoredSubstitutionsList.GetCount(); f++)
+	{
+		String str0 = ignoredSubstitutionsList.GetAt(f).filterStr0;
+		String str1 = ignoredSubstitutionsList.GetAt(f).filterStr1;
+		if
+		(
+			   str0 == selectedText[0]
+			&& str1 == selectedText[1]
+			||
+			   optIgnoredSubstitutionsWorkBothWays
+			&& str1 == selectedText[0]
+			&& str0 == selectedText[1]
+		)
+		{
+			String caption = _("The pair is already present in the list of Ignored Substiturions");
+			String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
+			MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
+			return; /// The substitution pair is already registered
+		}
+	}
+
+	String caption = _("Add this change to Ignored Substitutions?");
+	String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
+	if (MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_YESNO) == IDYES)
+	{
+		ignoredSubstitutionsList.AddFilter(selectedText[0], selectedText[1]);
+		FlushAndRescan(true);
+		//Rescan();
+	}
+	return;
 }
 
 static inline bool IsDiffPerLine(bool bTableEditing, const DIFFRANGE& cd)

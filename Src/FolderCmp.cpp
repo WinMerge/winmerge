@@ -263,6 +263,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				dw.SetCompareFiles(tFiles);
 				dw.SetOptions(m_pCtxt->GetOptions());
 				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
+				dw.SetIgnoredSubstitutionsList(m_pCtxt->m_pTokenListsForIs[0].get(), m_pCtxt->m_pTokenListsForIs[1].get());
 				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
