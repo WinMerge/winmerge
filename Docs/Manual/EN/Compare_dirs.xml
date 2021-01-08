@@ -645,7 +645,7 @@ I get the partial list, but no Abort indicator.--></para>
       in its context menu or press <keycap>F2</keycap>. Then change the name in
       the edit box and press <keycap>Enter</keycap>, or press
       <keycap>Esc</keycap> to cancel. You can only rename a single file or
-      folder. Note that renaming changes items in both sides: it is not
+      folder. Note that renaming changes items in both or all three sides: it is not
       currently possible to rename an item on just one side.</para>
     </section>
 
@@ -971,11 +971,12 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <variablelist>
         <varlistentry>
-          <term>Browsing a single subfolder that exists on both sides</term>
+          <term>Browsing a single subfolder that exists on both or all three
+          sides</term>
 
           <listitem>
-            <para>To compare a single subfolder that exists on both sides,
-            double-click the folder in the folder compare window.</para>
+            <para>To compare a single subfolder that exists on both or all three
+            sides, double-click the folder in the folder compare window.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -985,10 +986,10 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           <term>Browsing a single subfolder that exists only one side</term>
 
           <listitem>
-            <para>If you browse to a subfolder that exists only the left or
-            right side, WinMerge can create a new, matching folder on the other
-            side. See <xref linkend="CompareDirs_browse_unique" /> for
-            details.</para>
+            <para>If you browse to a subfolder that exists only one side,
+            WinMerge can create a new, matching folder on the other side
+            respective both other sides. See
+           <xref linkend="CompareDirs_browse_unique" /> for details.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1247,7 +1248,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Filename (default)</guilabel>: Name of compared item.
+          <para><guilabel>Filename</guilabel>: Name of compared item.
           In a nonrecursive compare, this column includes both files and
           folders; in a recursive compare, it does not include folders: instead,
           folders are listed in the Folder column.</para>
