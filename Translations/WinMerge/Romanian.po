@@ -202,6 +202,9 @@ msgstr "&Nou"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -616,9 +619,6 @@ msgstr "Codar&e caractere fişiere..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

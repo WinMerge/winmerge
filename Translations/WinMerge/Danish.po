@@ -203,6 +203,9 @@ msgstr "&Ny"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "&Binær"
@@ -617,9 +620,6 @@ msgstr "&Fil Kodning..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

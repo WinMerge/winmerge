@@ -201,6 +201,9 @@ msgstr "&Δημιουργία"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -615,9 +618,6 @@ msgstr "&Κωδικοσελίδα Αρχείου..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

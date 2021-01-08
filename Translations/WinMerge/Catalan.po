@@ -201,6 +201,9 @@ msgstr "&Nou\tControl+N"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -615,9 +618,6 @@ msgstr ""
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

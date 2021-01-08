@@ -204,6 +204,9 @@ msgstr "Ny"
 msgid "&Text"
 msgstr "Text"
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "Binärt"
@@ -619,9 +622,6 @@ msgstr "Filkodning ..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Återjämför som"
-
-msgid "T&able"
-msgstr ""
 
 #, c-format
 msgid "&XML"

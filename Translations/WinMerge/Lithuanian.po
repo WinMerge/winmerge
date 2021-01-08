@@ -172,6 +172,9 @@ msgstr "&Naujas"
 msgid "&Text"
 msgstr "&Tekstas"
 
+msgid "T&able"
+msgstr "&Lentelė"
+
 msgid "&Binary"
 msgstr "&Binarinis"
 
@@ -492,9 +495,6 @@ msgstr "&Failo koduotė..."
 
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
-
-msgid "T&able"
-msgstr "&Lentelė"
 
 msgid "&XML"
 msgstr "&XML"

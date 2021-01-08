@@ -206,6 +206,9 @@ msgstr "새로 만들기(&N)"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "바이너리(&B)"
@@ -621,9 +624,6 @@ msgstr "파일 인코딩(&F)..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
-
-msgid "T&able"
-msgstr ""
 
 #, c-format
 msgid "&XML"

@@ -170,6 +170,9 @@ msgstr "新規(&N)"
 msgid "&Text"
 msgstr "テキスト(&T)"
 
+msgid "T&able"
+msgstr "テーブル(&A)"
+
 msgid "&Binary"
 msgstr "バイナリ(&B)"
 
@@ -490,9 +493,6 @@ msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
-
-msgid "T&able"
-msgstr "テーブル(&A)"
 
 msgid "&XML"
 msgstr "XML(&X)"

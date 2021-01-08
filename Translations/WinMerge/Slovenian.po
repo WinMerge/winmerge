@@ -203,6 +203,9 @@ msgstr "&Nova"
 msgid "&Text"
 msgstr "&Besedilo"
 
+msgid "T&able"
+msgstr "T&abela"
+
 #, c-format
 msgid "&Binary"
 msgstr "&Dvojiško"
@@ -617,9 +620,6 @@ msgstr "De&kodiranje datoteke..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
-
-msgid "T&able"
-msgstr "T&abela"
 
 #, c-format
 msgid "&XML"

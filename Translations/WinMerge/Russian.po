@@ -171,6 +171,9 @@ msgstr "Создать"
 msgid "&Text"
 msgstr "Текст"
 
+msgid "T&able"
+msgstr "Таблица"
+
 msgid "&Binary"
 msgstr "Двоичный"
 
@@ -491,9 +494,6 @@ msgstr "Кодировка файла..."
 
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
-
-msgid "T&able"
-msgstr "Таблица"
 
 msgid "&XML"
 msgstr "&XML"

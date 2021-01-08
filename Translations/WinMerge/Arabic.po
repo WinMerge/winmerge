@@ -170,6 +170,9 @@ msgstr "&جدبد"
 msgid "&Text"
 msgstr "&نص"
 
+msgid "T&able"
+msgstr ""
+
 msgid "&Binary"
 msgstr "ملف &ثنائي"
 
@@ -490,9 +493,6 @@ msgstr "ترمي&ز الملف..."
 
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
-
-msgid "T&able"
-msgstr ""
 
 msgid "&XML"
 msgstr "&XML"

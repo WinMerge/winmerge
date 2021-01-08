@@ -205,6 +205,9 @@ msgstr "&Berria"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "&Binarioa"
@@ -619,9 +622,6 @@ msgstr "&Agiria Kodeatzen..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

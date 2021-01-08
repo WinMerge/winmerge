@@ -207,6 +207,9 @@ msgstr "&Nouveau"
 msgid "&Text"
 msgstr "&Texte"
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "&Binaire"
@@ -622,9 +625,6 @@ msgstr "Encodage de fic&hier..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Recompare comme"
-
-msgid "T&able"
-msgstr ""
 
 #, c-format
 msgid "&XML"

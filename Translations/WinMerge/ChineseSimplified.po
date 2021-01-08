@@ -172,6 +172,9 @@ msgstr "新建(&N)"
 msgid "&Text"
 msgstr "文本(&T)"
 
+msgid "T&able"
+msgstr "表格(&A)"
+
 msgid "&Binary"
 msgstr "二进制(&B)"
 
@@ -492,9 +495,6 @@ msgstr "文件编码(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
-
-msgid "T&able"
-msgstr "表格(&A)"
 
 msgid "&XML"
 msgstr "&XML"

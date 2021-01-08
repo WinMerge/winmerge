@@ -169,6 +169,9 @@ msgstr "Nowy"
 msgid "&Text"
 msgstr "Tekst"
 
+msgid "T&able"
+msgstr "T&abela"
+
 msgid "&Binary"
 msgstr "&Binarny"
 
@@ -489,9 +492,6 @@ msgstr "Kodowanie pliku..."
 
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
-
-msgid "T&able"
-msgstr "T&abela"
 
 msgid "&XML"
 msgstr "&XML"

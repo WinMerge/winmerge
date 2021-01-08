@@ -166,6 +166,9 @@ msgstr "&Нов"
 msgid "&Text"
 msgstr "&Текстови файлове"
 
+msgid "T&able"
+msgstr ""
+
 msgid "&Binary"
 msgstr "&Двоични файлове"
 
@@ -486,9 +489,6 @@ msgstr "Избиране на &кодировка…"
 
 msgid "Reco&mpare As"
 msgstr "Сравняване като"
-
-msgid "T&able"
-msgstr ""
 
 msgid "&XML"
 msgstr "Файлове на &XML"

@@ -202,6 +202,9 @@ msgstr "&Neu"
 msgid "&Text"
 msgstr "&Text\tStrg+N"
 
+msgid "T&able"
+msgstr "T&abelle"
+
 #, c-format
 msgid "&Binary"
 msgstr "&Binär"
@@ -617,9 +620,6 @@ msgstr "Dateic&odierung..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Erneut ver&gleichen als"
-
-msgid "T&able"
-msgstr "T&abelle"
 
 #, c-format
 msgid "&XML"

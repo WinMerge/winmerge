@@ -203,6 +203,9 @@ msgstr "&Novo"
 msgid "&Text"
 msgstr "&Texto"
 
+msgid "T&able"
+msgstr "Tábo&a"
+
 #, c-format
 msgid "&Binary"
 msgstr "&Binario"
@@ -618,9 +621,6 @@ msgstr "Codificación do ar&quivo…"
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Volver comparar como"
-
-msgid "T&able"
-msgstr "Tábo&a"
 
 #, c-format
 msgid "&XML"

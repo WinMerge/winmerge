@@ -200,6 +200,9 @@ msgstr "Uusi"
 msgid "&Text"
 msgstr "&Teksti"
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "Binääri"
@@ -615,9 +618,6 @@ msgstr "Tiedoston koodaus..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
-
-msgid "T&able"
-msgstr ""
 
 #, c-format
 msgid "&XML"

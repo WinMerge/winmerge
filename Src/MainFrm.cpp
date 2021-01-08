@@ -81,9 +81,11 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
  */
 const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_OPENCONFLICT,			IDB_FILE_OPENCONFLICT,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_TABLE,			IDB_FILE_NEW_TABLE,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_HEX,				IDB_FILE_NEW_HEX,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_IMAGE,			IDB_FILE_NEW_IMAGE,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3,					IDB_FILE_NEW3,					CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_TABLE,			IDB_FILE_NEW3_TABLE,			CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_HEX,				IDB_FILE_NEW3_HEX,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_IMAGE,			IDB_FILE_NEW3_IMAGE,			CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
@@ -187,9 +189,11 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, FRAME_FILE>))
+	ON_COMMAND(ID_FILE_NEW_TABLE, (OnFileNew<2, FRAME_FILE, true>))
 	ON_COMMAND(ID_FILE_NEW_HEX, (OnFileNew<2, FRAME_HEXFILE>))
 	ON_COMMAND(ID_FILE_NEW_IMAGE, (OnFileNew<2, FRAME_IMGFILE>))
 	ON_COMMAND(ID_FILE_NEW3, (OnFileNew<3, FRAME_FILE>))
+	ON_COMMAND(ID_FILE_NEW3_TABLE, (OnFileNew<2, FRAME_FILE, true>))
 	ON_COMMAND(ID_FILE_NEW3_HEX, (OnFileNew<3, FRAME_HEXFILE>))
 	ON_COMMAND(ID_FILE_NEW3_IMAGE, (OnFileNew<3, FRAME_IMGFILE>))
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
@@ -1562,7 +1566,7 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-void CMainFrame::FileNew(int nPanes, FRAMETYPE frameType) 
+void CMainFrame::FileNew(int nPanes, FRAMETYPE frameType, bool table) 
 {
 	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	
@@ -1588,7 +1592,11 @@ void CMainFrame::FileNew(int nPanes, FRAMETYPE frameType)
 		fileloc[2].encoding.SetCodepage(ucr::getDefaultCodepage());
 	}
 	if (frameType == FRAME_FILE)
+	{
 		ShowMergeDoc(pDirDoc, nPanes, fileloc, dwFlags, strDesc);
+		if (table)
+			PostMessage(WM_COMMAND, ID_MERGE_COMPARE_TABLE);
+	}
 	else if (frameType == FRAME_HEXFILE)
 		ShowHexMergeDoc(pDirDoc, nPanes, fileloc, dwFlags, strDesc);
 	else if (frameType == FRAME_IMGFILE)
@@ -1605,10 +1613,10 @@ void CMainFrame::FileNew(int nPanes, FRAMETYPE frameType)
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-template <int nFiles, CMainFrame::FRAMETYPE frameType>
+template <int nFiles, CMainFrame::FRAMETYPE frameType, bool table>
 void CMainFrame::OnFileNew() 
 {
-	FileNew(nFiles, frameType);
+	FileNew(nFiles, frameType, table);
 }
 
 /**

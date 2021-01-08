@@ -200,6 +200,9 @@ msgstr "&Нова"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -614,9 +617,6 @@ msgstr "Де&кодирање датотеке..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

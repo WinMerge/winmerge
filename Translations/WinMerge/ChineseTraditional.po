@@ -204,6 +204,9 @@ msgstr "新增(&N)"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "二進制(&B)"
@@ -621,9 +624,6 @@ msgstr "檔案編碼(&F)..."
 #, c-format
 msgid "Reco&mpare As"
 msgstr "重新比較(&M)"
-
-msgid "T&able"
-msgstr ""
 
 #, c-format
 msgid "&XML"

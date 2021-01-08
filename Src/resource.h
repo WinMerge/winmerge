@@ -127,10 +127,12 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
-#define IDB_FILE_NEW_HEX                379
-#define IDB_FILE_NEW_IMAGE              380
-#define IDB_FILE_NEW3_HEX               381
-#define IDB_FILE_NEW3_IMAGE             382
+#define IDB_FILE_NEW_TABLE              379
+#define IDB_FILE_NEW_HEX                380
+#define IDB_FILE_NEW_IMAGE              381
+#define IDB_FILE_NEW3_TABLE             382
+#define IDB_FILE_NEW3_HEX               383
+#define IDB_FILE_NEW3_IMAGE             384
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502

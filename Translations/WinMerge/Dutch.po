@@ -170,6 +170,9 @@ msgstr "Nieuw"
 msgid "&Text"
 msgstr "Tekst"
 
+msgid "T&able"
+msgstr "Tabel"
+
 msgid "&Binary"
 msgstr "Binair"
 
@@ -490,9 +493,6 @@ msgstr "Bestandscodering..."
 
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
-
-msgid "T&able"
-msgstr "Tabel"
 
 msgid "&XML"
 msgstr "XML"

@@ -183,12 +183,14 @@ BEGIN
         POPUP "&New"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
         END
@@ -270,12 +272,14 @@ BEGIN
         POPUP "&New"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
         END
@@ -426,12 +430,14 @@ BEGIN
         POPUP "&New"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
             MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
         END

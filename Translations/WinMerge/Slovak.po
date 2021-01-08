@@ -172,6 +172,9 @@ msgstr "&Nový"
 msgid "&Text"
 msgstr "&Text"
 
+msgid "T&able"
+msgstr "&Karta"
+
 msgid "&Binary"
 msgstr "&Binárne"
 
@@ -492,9 +495,6 @@ msgstr "&Kódovanie súboru..."
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
-
-msgid "T&able"
-msgstr "&Karta"
 
 msgid "&XML"
 msgstr "&XML"

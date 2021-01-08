@@ -203,6 +203,9 @@ msgstr "&N جديد \tCtl+N"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr "&B دودويي"
@@ -617,9 +620,6 @@ msgstr "&F کدبندي پرونده ... "
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

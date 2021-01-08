@@ -202,6 +202,9 @@ msgstr "&Nové"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -616,9 +619,6 @@ msgstr "Kódo&vání souborů"
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-07 20:49+0000\n"
+"POT-Creation-Date: 2021-01-08 08:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -161,6 +161,9 @@ msgid "&New"
 msgstr ""
 
 msgid "&Text"
+msgstr ""
+
+msgid "T&able"
 msgstr ""
 
 msgid "&Binary"
@@ -482,9 +485,6 @@ msgid "&File Encoding..."
 msgstr ""
 
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 msgid "&XML"

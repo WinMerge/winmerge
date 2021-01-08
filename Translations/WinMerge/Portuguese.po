@@ -172,6 +172,9 @@ msgstr "&Novo"
 msgid "&Text"
 msgstr "&Texto"
 
+msgid "T&able"
+msgstr "P&ainel"
+
 msgid "&Binary"
 msgstr "&Binário"
 
@@ -492,9 +495,6 @@ msgstr "Codificar Ficheiro..."
 
 msgid "Reco&mpare As"
 msgstr "Voltar a Comparar Como"
-
-msgid "T&able"
-msgstr "P&ainel"
 
 msgid "&XML"
 msgstr "&XML"

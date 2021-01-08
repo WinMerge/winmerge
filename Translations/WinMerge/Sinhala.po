@@ -199,6 +199,9 @@ msgstr "&අළුත්"
 msgid "&Text"
 msgstr ""
 
+msgid "T&able"
+msgstr ""
+
 #, c-format
 msgid "&Binary"
 msgstr ""
@@ -613,9 +616,6 @@ msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "T&able"
 msgstr ""
 
 #, c-format
