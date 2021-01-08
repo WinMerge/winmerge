@@ -223,11 +223,10 @@
           <listitem>
             <para>The location of this folder is defined in the System page of
             WinMerge options. By default, it is specified as a subfolder in your
-            user profile folder (for example, <filename>My
-            Documents\WinMerge\Filters</filename> in Windows XP). Filters that
-            are created or copied here are normally visible only to you. If you
-            create new file filters, you can copy them here to keep them
-            private.</para>
+            user profile folder (for example, <filename>Documents</filename> in
+            Windows 10). Filters that are created or copied here are normally
+            visible only to you. If you create new file filters, you can copy
+            them here to keep them private.</para>
           </listitem>
         </varlistentry>
       </variablelist>
