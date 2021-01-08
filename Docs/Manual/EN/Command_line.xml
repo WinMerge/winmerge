@@ -381,8 +381,9 @@
       <listitem>
         <para>Specifies the folder, file or project file to open on the right side.</para>
 
-        <para>WinMerge cannot compare files to folders, so both path parameters
-        (<option><replaceable>leftpath</replaceable></option> and
+        <para>WinMerge cannot compare files to folders, so the path parameters
+        (<option><replaceable>leftpath</replaceable></option>,
+        <option><replaceable>middlepath</replaceable></option> and
         <option><replaceable>rightpath</replaceable></option>) must point to the
         same target type (either folders or files). If WinMerge cannot find either
         of the specified paths, it opens the Select Files or Folders dialog, where

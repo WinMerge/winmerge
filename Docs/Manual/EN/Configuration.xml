@@ -191,9 +191,10 @@
       <itemizedlist>
         <listitem>
           <para><option>Enabled</option> (default): The Select Files or Folders
-          dialog checks both paths as you enter them. The
-          <guibutton>Compare</guibutton> button remains disabled until both paths are
-          validated. Note that this checking can cause some delay.</para>
+          dialog checks both or all three paths as you enter them. The
+          <guibutton>Compare</guibutton> button remains disabled until both or
+          all three paths are validated. Note that this checking can cause some
+          delay.</para>
         </listitem>
 
         <listitem>
@@ -1629,8 +1630,7 @@
 
       <para>Use this field to specify your own private folder for file filters.
       By default this folder is your user profile directory (for example,
-      <filename>My Documents</filename> on Windows XP, or
-      <filename>Documents</filename> on Windows Vista). When you create a file
+      <filename>Documents</filename> on Windows 10). When you create a file
       filter, it is automatically added to this folder.</para>
     </section>
 
