@@ -238,7 +238,7 @@
             <para>このフォルダの場所は、WinMerge
               オプションの、システムページで定義されています。
               デフォルトでは、あなたのユーザプロファイルフォルダのサブフォルダとして指定されています
-              (Windows XPなら、<filename>My Documents\WinMerge\Filters</filename>)。
+              (Windows 10なら、<filename>Documents\WinMerge\Filters</filename>)。
               通常、ここに作成、または、コピーされたフィルタは、
               あなただけが見ることができます。
               新しいファイルフィルタを作成したら、それらをプライベートにするために、

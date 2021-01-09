@@ -607,7 +607,7 @@ I get the partial list, but no Abort indicator.--></para>
       、または、<keycap>F2</keycap>キーを押下してください。エディットボックス内で
       <keycap>Return</keycap>キーを押下すると、名前を変更します。また、
       <keycap>Esc</keycap>キーを押下するとキャンセルします。一つのファイル、または、フォルダをリネームできます。リネームは、
-      両側のアイテムを変更することに注意してください。現在、
+      両側(または3つすべて)のアイテムを変更することに注意してください。現在、
       片側のアイテムだけのリネームはできません。</para>
     </section>
 
@@ -894,7 +894,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <variablelist>
         <varlistentry>
-          <term>両側に存在する単一のサブフォルダをブラウズする</term>
+          <term>両側(または3つすべてに)存在する単一のサブフォルダをブラウズする</term>
 
           <listitem>
             <para>両側に存在する単一のサブフォルダを比較するには、
@@ -1163,7 +1163,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>ファイル名(デフォルト)</guilabel>: 比較されたアイテムの名前非再帰比較では、この列はファイルとフォルダの両方を含んでいます。
+          <para><guilabel>ファイル名</guilabel>: 比較されたアイテムの名前非再帰比較では、この列はファイルとフォルダの両方を含んでいます。
 　　　　　再帰比較では、フォルダは含まれていません。
           代わりに、フォルダはフォルダ列に表示されます。
           </para>

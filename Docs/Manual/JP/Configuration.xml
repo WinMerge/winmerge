@@ -193,7 +193,7 @@
         <listitem>
           <para><option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、
           パスを入力した時に、それらをチェックします。
-          <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
+          <guibutton>OK</guibutton>ボタンは、両方(または3つすべて)のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
 
@@ -1627,10 +1627,10 @@
           <primary>Filters folders</primary>
 
           <secondary>specifying default private folder</secondary>
-      </indexterm></title>
+        </indexterm></title>
 
-      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、(Windows XP では
-      <filename>マイ ドキュメント</filename>、または、Windows Vista では
+      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、
+      Windows 10 では
       <filename>
       ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダです。ファイルフィルタを作成したら、このフォルダへ自動的に追加されます。
       </para>
