@@ -44,6 +44,9 @@ msgstr "Kopijuoti iš &dešinės"
 msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Atša&ukti"
 
@@ -1110,8 +1113,8 @@ msgstr "&Gerai"
 msgid "&Apply"
 msgstr "T&aikyti"
 
-msgid "Linefilters"
-msgstr "Eilutės filtrai"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Įjungti eilutės filtrus"
@@ -1124,6 +1127,30 @@ msgstr "Redaguoti"
 
 msgid "Remove"
 msgstr "Pašalinti"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Spalvų"
@@ -1389,8 +1416,8 @@ msgstr "Ž&odžių skirtukų simboliai:"
 msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
 
-msgid "Filefilters"
-msgstr "Failo filtrai"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testas..."
@@ -2069,6 +2096,9 @@ msgstr "Bevardis vidurinis"
 msgid "Untitled right"
 msgstr "Bevardis dešinysis"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Jų failas"
 
@@ -2202,6 +2232,10 @@ msgstr "Failo įrašyti nepavyko.\n%1\n%2\rAr norite:\n\t- panaudoti kitą failo
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -3144,4 +3178,25 @@ msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
+msgstr ""
 

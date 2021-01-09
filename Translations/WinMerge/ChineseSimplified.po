@@ -44,6 +44,9 @@ msgstr "从右侧复制(&M)"
 msgid "&Select Line Difference\tF4"
 msgstr "选中行内差异(&S)\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 msgid "&Undo"
 msgstr "撤销(&U)"
 
@@ -1113,8 +1116,8 @@ msgstr "确定(&O)"
 msgid "&Apply"
 msgstr "应用(&A)"
 
-msgid "Linefilters"
-msgstr "行过滤器"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "忽略符合下列样式的行"
@@ -1127,6 +1130,30 @@ msgstr "编辑"
 
 msgid "Remove"
 msgstr "删除"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "颜色"
@@ -1392,8 +1419,8 @@ msgstr "单词分隔字符:"
 msgid "&Rendering Mode:"
 msgstr "渲染模式(&R)"
 
-msgid "Filefilters"
-msgstr "文件过滤器"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "测试..."
@@ -2199,6 +2226,9 @@ msgstr "未命名 中"
 msgid "Untitled right"
 msgstr "未命名 右"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "他们的文件"
 
@@ -2387,6 +2417,10 @@ msgstr ""
 "原始文件不会被更改。\n"
 "\n"
 "是否将未打包的版本另存为其他文件？"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3538,5 +3572,26 @@ msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
 msgstr ""
 

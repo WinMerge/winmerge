@@ -43,6 +43,9 @@ msgstr "Копировать справа"
 msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 msgid "&Undo"
 msgstr "&Отменить"
 
@@ -1109,8 +1112,8 @@ msgstr "&Ok"
 msgid "&Apply"
 msgstr "&Применить"
 
-msgid "Linefilters"
-msgstr "Строковые фильтры"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Разрешить строковые фильтры"
@@ -1123,6 +1126,30 @@ msgstr "Изменить"
 
 msgid "Remove"
 msgstr "Удалить"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Цвета"
@@ -1388,8 +1415,8 @@ msgstr "Символы разрыва слов:"
 msgid "&Rendering Mode:"
 msgstr "Режим отрисовки:"
 
-msgid "Filefilters"
-msgstr "Фильтры файлов"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Тест..."
@@ -2068,6 +2095,9 @@ msgstr "Безымянный посередине"
 msgid "Untitled right"
 msgstr "Безымянный справа"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Их файл"
 
@@ -2201,6 +2231,10 @@ msgstr "Сбой сохранения файла.\n%1\n%2\nХотите:\n\t- и
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Плагин '%2' не может упаковать изменения обратно в файл слева '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -3142,5 +3176,26 @@ msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
 msgstr ""
 
