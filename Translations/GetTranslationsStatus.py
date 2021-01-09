@@ -240,6 +240,60 @@ class TranslationsStatus(object):
         htmlfile.write('</body>\n')
         htmlfile.write('</html>\n')
         htmlfile.close()
+    
+    def writeToMdFile(self, mdpath):
+        mdfile = codecs.open(mdpath, 'w', 'utf-8')
+        
+        mdfile.write('# Translations Status\n\n')
+        mdfile.write('Status from **%s**:\n\n' % (time.strftime('%Y-%m-%d')))
+        for project in self._projects: #For all projects...
+            mdfile.write('## %s\n\n' % (project.name))
+            mdfile.write('| Language             | Total | Translated | Fuzzy | Untranslated | Last Update |\n')
+            mdfile.write('|:---------------------|------:|-----------:|------:|-------------:|:-----------:|\n')
+            for language in project.languages: #For all (sorted) languages...
+                status1 = project[language]
+                formatedlanguage = status1.language.ljust(20)
+                formatedupdatedate = status1.updatedate[0:10].center(11)
+                if status1.template: #If a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        formatedcount = str(status1.count).rjust(5)
+                        formatedtranslated = str(status1.count).rjust(10)
+                        mdfile.write('| %s | %s | %s |     0 |            0 | %s |\n' % (formatedlanguage, formatedcount, formatedtranslated, formatedupdatedate))
+                    else: #If UNKNOWN status...
+                        mdfile.write('| %s |     - |          - |     - |            - | %s |\n' % (formatedlanguage, formatedupdatedate))
+                else: #If NOT a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        formatedcount = str(status1.count).rjust(5)
+                        formatedtranslated = str(status1.translated).rjust(10)
+                        formatedfuzzy = str(status1.fuzzy).rjust(5)
+                        formateduntranslated = str(status1.untranslated).rjust(12)
+                        mdfile.write('| %s | %s | %s | %s | %s | %s |\n' % (formatedlanguage, formatedcount, formatedtranslated, formatedfuzzy, formateduntranslated, formatedupdatedate))
+                    else: #If UNKNOWN status...
+                        mdfile.write('| %s |     - |          - |     - |            - | %s |\n' % (formatedlanguage, formatedupdatedate))
+            mdfile.write('\n')
+        
+        #Translators...
+        mdfile.write('## Translators\n')
+        for project in self._projects: #For all projects...
+            mdfile.write('\n### %s\n' % project.name)
+            for language in self.noneTemplateLanguages: #For all NONE template languages...
+                status1 = project[language]
+                if status1:
+                    if status1.translators: #If translators exists...
+                        mdfile.write('\n * %s\n' % language)
+                        for translator in status1.translators: #For all translators...
+                            if (translator.ismaintainer): #If maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    mdfile.write('   - [%s](mailto:%s) *Maintainer*\n' % (translator.name, translator.mail))
+                                else: #If NO mail address exists...
+                                    mdfile.write('   - %s *Maintainer*\n' % (translator.name))
+                            else: #If NOT maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    mdfile.write('   - [%s](mailto:%s)\n' % (translator.name, translator.mail))
+                                else: #If NO mail address exists...
+                                    mdfile.write('   - %s\n' % (translator.name))
+        
+        mdfile.close()
 
 class Project(object):
     def __getitem__(self, key):
@@ -554,6 +608,7 @@ def main():
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
     status.writeToXmlFile('TranslationsStatus.xml')
     status.writeToHtmlFile('TranslationsStatus.html')
+    status.writeToMdFile('TranslationsStatus.md')
 
 # MAIN #
 if __name__ == "__main__":
