@@ -2792,6 +2792,7 @@ BEGIN
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_MIDDLE_FILE   "Untitled middle"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_CONFLICT_BASE_FILE  "Base File"
     IDS_CONFLICT_THEIRS_FILE "Theirs File"
     IDS_CONFLICT_MINE_FILE  "Mine File"
 END
@@ -2862,6 +2863,8 @@ BEGIN
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_MIDDLE 
+                            "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT 
                             "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
