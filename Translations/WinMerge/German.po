@@ -1427,22 +1427,22 @@ msgstr "Entfernen"
 msgid "Ignored Substitutions"
 msgstr ""
 
-msgid "Enable"
-msgstr ""
-
-msgid "Add"
-msgstr ""
-
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
 
-msgid "Ignore changes in both directions"
+msgid "Enable"
 msgstr ""
 
 msgid "Completely unhighlight the ignored changes"
 msgstr ""
 
+msgid "Ignore changes in both directions"
+msgstr ""
+
 msgid "Use regular expressions"
+msgstr ""
+
+msgid "Add"
 msgstr ""
 
 msgid "Clear"

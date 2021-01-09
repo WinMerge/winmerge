@@ -90,8 +90,8 @@ void IgnoredSubstitutionsDlg::InitList()
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
- 	m_VisibleFiltersList.InsertColumn(0, _("On one panel").c_str(), LVCFMT_LEFT, pointToPixel(112));
- 	m_VisibleFiltersList.InsertColumn(1, _("On the other panel").c_str(), LVCFMT_LEFT, pointToPixel(262));
+ 	m_VisibleFiltersList.InsertColumn(0, _("On one panel").c_str(), LVCFMT_LEFT, pointToPixel(285));
+ 	m_VisibleFiltersList.InsertColumn(1, _("On the other panel").c_str(), LVCFMT_LEFT, pointToPixel(285));
 
 	if (m_pExternalRenameList)
 	{
