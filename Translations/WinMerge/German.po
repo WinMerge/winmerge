@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-12-31 22:27+0200\n"
+"PO-Revision-Date: 2021-01-10 17:17+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -65,16 +65,16 @@ msgstr "&Kopieren"
 
 #, c-format
 msgid "&Paste"
-msgstr "E&infügen"
+msgstr "&Einfügen"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Gehe zu...\tStrg+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "Zur verschobenen Zeile zwischen Links und Mitte gehen\tStrg+Umschalt+G"
+msgstr "Zur verschobenen Zeile zwischen &Links und Mitte gehen\tStrg+Umschalt+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "Zur verschobenen Zeile zwischen Mitte und Rechts gehen\tStrg+Alt+G"
+msgstr "Zur verschobenen Zeile zwischen &Mitte und Rechts gehen\tStrg+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -105,7 +105,7 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "Farbunterschiede &ignorieren (Color Distance Threshold)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr "&Einfügen-/Löschen-Erkennung"
+msgstr "&Einfügen/Löschen-Erkennung"
 
 #, c-format
 msgid "&None"
@@ -253,7 +253,7 @@ msgstr "&Bearbeiten"
 
 #, c-format
 msgid "&Options..."
-msgstr "&Einstellungen..."
+msgstr "Einstellunge&n..."
 
 #, c-format
 msgid "&View"
@@ -643,7 +643,7 @@ msgstr "&Kopieren\tStrg+C"
 
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "E&infügen\tStrg+V"
+msgstr "&Einfügen\tStrg+V"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -663,7 +663,7 @@ msgstr "&Markierungen...\tStrg+Umschalt+M"
 
 #, c-format
 msgid "Advanced"
-msgstr "Erweitert"
+msgstr "Erwe&itert"
 
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
@@ -2623,7 +2623,7 @@ msgid "Untitled right"
 msgstr "Unbenannt rechts"
 
 msgid "Base File"
-msgstr ""
+msgstr "Basisdatei"
 
 #, c-format
 msgid "Theirs File"
@@ -2777,15 +2777,15 @@ msgstr "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie:\n\t- einen an
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
+msgstr "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die entpackte Version in einer anderen Datei speichern?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr ""
+msgstr "Plugin '%2' kann Ihre Änderungen der mittleren Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die entpackte Version in einer anderen Datei speichern?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
+msgstr "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die entpackte Version in einer anderen Datei speichern?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -3358,7 +3358,7 @@ msgstr "In dieser Zeile kann kein Synchronisationspunkt hinzugefügt werden."
 
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Die gleiche Datei ist in beiden Bereichen ausgewählt."
+msgstr "In beiden Bereichen ist die gleiche Datei geöffnet."
 
 #, c-format
 msgid "The selected files are identical."
@@ -3708,7 +3708,7 @@ msgid "G&o to Line %1"
 msgstr "Gehe zu &Zeile %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr "Zur verschobenen Zeile gehen\tStrg+Umschalt+G"
+msgstr "&Zur verschobenen Zeile gehen\tStrg+Umschalt+G"
 
 #, c-format
 msgid "Disabled"
