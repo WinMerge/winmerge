@@ -2069,6 +2069,9 @@ msgstr "Bevardis vidurinis"
 msgid "Untitled right"
 msgstr "Bevardis dešinysis"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Jų failas"
 
@@ -2202,6 +2205,10 @@ msgstr "Failo įrašyti nepavyko.\n%1\n%2\rAr norite:\n\t- panaudoti kitą failo
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

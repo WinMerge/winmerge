@@ -2204,6 +2204,9 @@ msgstr "Nepomenovanmý stredný"
 msgid "Untitled right"
 msgstr "Nepomenovaný pravý"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Ich súbor"
 
@@ -2395,6 +2398,10 @@ msgstr ""
 "Originálny súbor nebude zmenený.\n"
 "\n"
 "Želáte si uložiť rozbalenú verziu do iného súboru?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

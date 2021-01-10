@@ -2199,6 +2199,9 @@ msgstr "未命名 中"
 msgid "Untitled right"
 msgstr "未命名 右"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "他们的文件"
 
@@ -2387,6 +2390,10 @@ msgstr ""
 "原始文件不会被更改。\n"
 "\n"
 "是否将未打包的版本另存为其他文件？"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

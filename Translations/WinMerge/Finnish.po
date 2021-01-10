@@ -2726,6 +2726,9 @@ msgstr "Nimetön keskimmäinen"
 msgid "Untitled right"
 msgstr "Nimetön oikea"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Niiden tiedosto"
@@ -2911,6 +2914,10 @@ msgstr ""
 "Alkuperäinen tiedosto jää koskemattomaksi.\n"
 "\n"
 "Haluatko tallentaa puretun version toiseen tiedostoon?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

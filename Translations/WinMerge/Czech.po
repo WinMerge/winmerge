@@ -2666,6 +2666,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Bez názvu vpravo"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr ""
@@ -2851,6 +2854,10 @@ msgstr ""
 "Původní soubor nebude změněn.\n"
 "\n"
 "Chcete uložit převedenou verzi do jiného souboru?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

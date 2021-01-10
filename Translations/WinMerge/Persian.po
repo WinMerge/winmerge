@@ -2718,6 +2718,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr " راست بدون عنوان "
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr " پرونده ديگران "
@@ -2912,6 +2915,10 @@ msgstr ""
 " پرونده اصلي تغيير نخواهد کرد \n"
 "\n"
 " آيا مي خواهيد که نسخه با بسته بازشده به صورت پرونده ديگري ذخيره شود؟ "
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

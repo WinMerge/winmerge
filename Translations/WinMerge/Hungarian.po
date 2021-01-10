@@ -2643,6 +2643,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Névtelen jobb oldal"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr ""
@@ -2828,6 +2831,10 @@ msgstr ""
 "Az eredeti fájl nem lett megváltoztatva.\n"
 "\n"
 "Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

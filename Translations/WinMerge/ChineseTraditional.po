@@ -2711,6 +2711,9 @@ msgstr "未設標題的中間"
 msgid "Untitled right"
 msgstr "未設標題的右邊"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "他們的(檔案)"
@@ -2902,6 +2905,10 @@ msgstr ""
 "將不變更原始檔。\n"
 "\n"
 "要儲存解壓縮版成另一檔案嗎？"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

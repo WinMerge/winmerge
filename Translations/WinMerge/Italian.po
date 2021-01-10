@@ -2190,6 +2190,9 @@ msgstr "File centrale senza titolo"
 msgid "Untitled right"
 msgstr "File di destra senza titolo"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Loro file"
 
@@ -2364,6 +2367,10 @@ msgstr ""
 "Il file originale non verrà modificato.\n"
 "\n"
 "Vuoi salvare la versione non compressa in un altro file?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

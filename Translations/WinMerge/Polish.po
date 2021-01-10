@@ -2067,6 +2067,9 @@ msgstr "Środkowy bez nazwy"
 msgid "Untitled right"
 msgstr "Prawy bez nazwy"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Ich plik"
 
@@ -2200,6 +2203,10 @@ msgstr "Zapis pliku nieudany.\n%1\n%2\nCzy chcesz:\n\t- użyć innej nazwy pliku
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w lewym pliku do '%1'.\n\nOryginalny plik nie zostanie zmieniony.\n\nCzy chcesz zapisać rozpakowaną wersję w innym pliku?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

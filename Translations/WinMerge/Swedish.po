@@ -2722,6 +2722,9 @@ msgstr "Namnlös mitter"
 msgid "Untitled right"
 msgstr "Namnlös höger"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Deras fil"
@@ -2913,6 +2916,10 @@ msgstr ""
 "Originalfilen blir inte ändrad.\n"
 "\n"
 "Vill Ni spara den uppackade versionen till en annan fil?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

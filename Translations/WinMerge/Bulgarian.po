@@ -2168,6 +2168,9 @@ msgstr "Неозаглавен среден"
 msgid "Untitled right"
 msgstr "Неозаглавен десен"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Техен файл"
 
@@ -2342,6 +2345,10 @@ msgstr ""
 "Оригиналния файл няма да бъде променен.\n"
 "\n"
 "Искате ли да запишете непакетирана версия в друг файл?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

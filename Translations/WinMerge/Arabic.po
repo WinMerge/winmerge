@@ -2187,6 +2187,9 @@ msgstr "الوسط غير معنون"
 msgid "Untitled right"
 msgstr "اليمين غير معنون"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "ملفهم"
 
@@ -2359,6 +2362,10 @@ msgstr ""
 "لن يتم تغيير الملف الأصلي.\n"
 "\n"
 "هل تريد حفظ النسخة التي تم فك تحزيمها إلى ملف آخر؟"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

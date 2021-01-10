@@ -2622,6 +2622,9 @@ msgstr "Unbenannt Mitte"
 msgid "Untitled right"
 msgstr "Unbenannt rechts"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Deren Datei"
@@ -2775,6 +2778,10 @@ msgstr "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie:\n\t- einen an
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

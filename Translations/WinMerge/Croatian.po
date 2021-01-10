@@ -2699,6 +2699,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Neimenovan"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Tuđe datoteke"
@@ -2890,6 +2893,10 @@ msgstr ""
 "Izvorna datoteka nije promijenjena.\n"
 "\n"
 "Pohraniti nespakiranu verziju kao datoteku?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

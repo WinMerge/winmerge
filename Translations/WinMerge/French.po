@@ -2759,6 +2759,9 @@ msgstr "Milieu sans titre"
 msgid "Untitled right"
 msgstr "Sans titre à Droite"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Leur fichier"
@@ -2954,6 +2957,10 @@ msgstr ""
 "Le fichier original est conservé.\n"
 "\n"
 "Voulez-vous enregistrer la version décompressée sous un autre nom ?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

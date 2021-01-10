@@ -2068,6 +2068,9 @@ msgstr "Безымянный посередине"
 msgid "Untitled right"
 msgstr "Безымянный справа"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Их файл"
 
@@ -2201,6 +2204,10 @@ msgstr "Сбой сохранения файла.\n%1\n%2\nХотите:\n\t- и
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Плагин '%2' не может упаковать изменения обратно в файл слева '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

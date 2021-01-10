@@ -2735,6 +2735,9 @@ msgstr "Centro sen título"
 msgid "Untitled right"
 msgstr "Lado dereito sen título"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Arquivo Theirs"
@@ -2940,6 +2943,10 @@ msgstr ""
 "O arquivo orixinal non será cambiado.\n"
 "\n"
 "Desexas gardar a versión desempaquetada noutro arquivo?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

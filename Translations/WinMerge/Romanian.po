@@ -2694,6 +2694,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Nedenumit dreapta"
 
+msgid "Base File"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "Theirs File"
 msgstr "Fişierul lor"
@@ -2885,6 +2888,10 @@ msgstr ""
 "Fişierul original nu va fi modificat.\n"
 "\n"
 "Doriţi să salvaţi versiunea nearhivată în alt fişier?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -2715,6 +2715,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Ikke navngivet højre"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Deres fil"
@@ -2909,6 +2912,10 @@ msgstr ""
 "Den originale fil vil ikke blive ændret.\n"
 "\n"
 "Vil du gemme den udpakkede version under et andet filnavn?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

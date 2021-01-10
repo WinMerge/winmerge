@@ -2663,6 +2663,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Fitxer dret sense títol"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr ""
@@ -2848,6 +2851,10 @@ msgstr ""
 "El fitxer original no es canviarà.\n"
 "\n"
 "Voleu desar la versió desempaquetada en un altre fitxer?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""

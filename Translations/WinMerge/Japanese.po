@@ -2181,6 +2181,9 @@ msgstr "中無題"
 msgid "Untitled right"
 msgstr "右無題"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Theirs File"
 
@@ -2367,6 +2370,10 @@ msgstr ""
 "元ファイルは変更されません。\n"
 "\n"
 "展開されたものを別ファイルに保存しますか?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
