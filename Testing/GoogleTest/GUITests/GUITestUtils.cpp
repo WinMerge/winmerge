@@ -172,7 +172,21 @@ std::filesystem::path getInstallerPath()
 		if (pos != std::wstring::npos)
 			return argstr.substr(pos + std::size("--installerpath=") - 1);
 	}
-	return "../../../Build/WinMerge-2.16.8-x64-PerUser-Setup.exe";
+	std::regex re{ "WinMerge-.*-x64-PerUser-Setup.exe" };
+	std::filesystem::path path;
+	std::filesystem::file_time_type time;
+	for (auto& ent : std::filesystem::directory_iterator("../../../Build"))
+	{
+		if (std::regex_match(ent.path().filename().string(), re))
+		{
+			if (time < ent.last_write_time())
+			{
+				time = ent.last_write_time();
+				path = ent.path();
+			}
+		}
+	}
+	return path;
 }
 
 HWND execWinMerge(const std::string& args)
