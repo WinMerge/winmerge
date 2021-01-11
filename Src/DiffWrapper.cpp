@@ -867,17 +867,48 @@ bool MatchDiffVsIngoredSubstitutions
 {
 	int changeStartPos[2] = { diff.begin[0], diff.begin[1] };
 	int changeEndPos[2] = { diff.end[0], diff.end[1] };
+	
+	if (!optUseRegexpsForIgnoredSubstitutions)
+	{
+		/// The passed in changes can still have common suffix and prefix between them. Shrink changeStartPos and changeEndPos,
+		/// so that in terms of the first and the last symbols change0 and change1 are different.
+		/// This is to account for the fact that the ignored substitution tokens are broken down similarly.
+		while
+		(
+			   changeStartPos[0] < changeEndPos[0]
+			&& changeStartPos[1] < changeEndPos[1]
+			&& fullLine0[changeStartPos[0]] == fullLine1[changeStartPos[1]]
+		)
+		{
+			changeStartPos[0]++;
+			changeStartPos[1]++;
+		}
+
+		while
+		(
+			   changeStartPos[0] < changeEndPos[0]
+			&& changeStartPos[1] < changeEndPos[1]
+			&& fullLine0[changeEndPos[0]] == fullLine1[changeEndPos[1]]
+		)
+		{
+			changeEndPos[0]--;
+			changeEndPos[1]--;
+		}
+	}
+
 	int changeLen0 = changeEndPos[0] - changeStartPos[0] + 1;
 	int changeLen1 = changeEndPos[1] - changeStartPos[1] + 1;
 	std::string change0 = std::string(fullLine0.c_str() + changeStartPos[0], changeLen0);
 	std::string change1 = std::string(fullLine1.c_str() + changeStartPos[1], changeLen1);
+
 
 	size_t numIgnoredSubstitutions = ignoredSubstitutionsList.GetCount();
 
 	for (int f = 0; f < numIgnoredSubstitutions; f++)
 	{
 		const IgnoredSusbstitutionItem& filter = ignoredSubstitutionsList[f];
-		// Check if the common prefix and suffix fit into the line around the change
+
+		/// Check if the common prefix and suffix fit into the line around the change
 		if
 		(
 			   changeStartPos[0] < filter.CommonPrefixLength
@@ -887,7 +918,7 @@ bool MatchDiffVsIngoredSubstitutions
 		)
 			continue; /// This filter does not fit into the line with its suffix and prefix
 
-		// Check if the common prefix and suffix match
+		/// Check if the common prefix and suffix match
 		bool continueWithNextFilter = false;
 		for (int p = 1; p <= filter.CommonPrefixLength; p++)
 		{
@@ -916,7 +947,6 @@ bool MatchDiffVsIngoredSubstitutions
 
 		if(optUseRegexpsForIgnoredSubstitutions)
 		{
-
 			if
 			(
 					ignoredSubstitutionsList.MatchBoth(f, change0, change1)
@@ -932,12 +962,12 @@ bool MatchDiffVsIngoredSubstitutions
 		{
 			if
 			(
-				   filter.ChangedPart[0].compare(change0) == 0
-				&& filter.ChangedPart[1].compare(change1) == 0
+				   filter.MiddleParts[0].compare(change0) == 0
+				&& filter.MiddleParts[1].compare(change1) == 0
 				||
 				   optMatchBothWays
-				&& filter.ChangedPart[0].compare(change1) == 0
-				&& filter.ChangedPart[1].compare(change0) == 0
+				&& filter.MiddleParts[0].compare(change1) == 0
+				&& filter.MiddleParts[1].compare(change0) == 0
 			)
 			{
 				return true; /// a match found
@@ -1041,7 +1071,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				/// Handling Ignored Substitutions
+				/// Handle Ignored Substitutions
 				if
 				(
 					   op == OP_DIFF

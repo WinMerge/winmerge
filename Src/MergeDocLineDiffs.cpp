@@ -118,7 +118,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 			&& str0 == selectedText[1]
 		)
 		{
-			String caption = _("The pair is already present in the list of Ignored Substiturions");
+			String caption = _("The pair is already present in the list of Ignored Substitutions");
 			String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 			MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 			return; /// The substitution pair is already registered

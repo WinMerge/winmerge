@@ -53,16 +53,20 @@ private:
 
 struct IgnoredSusbstitutionItem
 {
+	std::string Tokens[2];
+	/// Both tokens are broken down into the three parts:
+	///		Tokens[0] = CommonPrefix + MiddleParts[0] + CommonSuffix
+	///		Tokens[1] = CommonPrefix + MiddleParts[1] + CommonSuffix
 	std::string CommonPrefix;
-	size_t CommonPrefixLength;
-	std::string ChangedPart[2];
+	std::string MiddleParts[2];
 	std::string CommonSuffix;
+	size_t CommonPrefixLength; /// For convenience
 	size_t CommonSuffixLength;
 	Poco::RegularExpression ChangedPartRegexp[2]; /**< Compiled regular expression */
 
 	IgnoredSusbstitutionItem
 	(
-		const std::string& filter0, const std::string& filter1,
+		const std::string& token0, const std::string& token1,
 		int regexpCompileOptions, bool extractCommonSufixAndPrefix
 	);
 };
