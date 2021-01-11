@@ -1130,23 +1130,23 @@ msgstr "Удалить"
 msgid "Ignored Substitutions"
 msgstr "Игнорируемые подстановки"
 
-msgid "Enable"
-msgstr "Включено"
-
-msgid "Add"
-msgstr "Добавить"
-
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Изменения в тексте соответсвующие парам в списке ниже будут игнорироваться"
 
-msgid "Ignore changes in both directions"
-msgstr "Игнорировать изменения в обоих направелениях"
+msgid "Enable"
+msgstr "Включено"
 
 msgid "Completely unhighlight the ignored changes"
 msgstr "Никак вообще не выделять игнорируемые изменения"
 
+msgid "Ignore changes in both directions"
+msgstr "Игнорировать изменения в обоих направелениях"
+
 msgid "Use regular expressions"
 msgstr "Использовать регулярнэ выражения"
+
+msgid "Add"
+msgstr "Добавить"
 
 msgid "Clear"
 msgstr "Очистить"
