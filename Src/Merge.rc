@@ -874,6 +874,7 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "&Text",                       ID_FILE_NEW
+        MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
     END
@@ -1164,17 +1165,36 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
 END
 
-IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 535, 188
+IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 531, 284
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Line Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Enable Line Filters",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,351,15
     LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,24,351,10
-    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,519,121
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,39,516,219
+    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,6,264,50,14
+    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,61,264,50,14
+    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,115,264,50,14
+END
+
+IDD_IGNORED_SUSBSTITUTIONS_DLG DIALOGEX 0, 0, 531, 284
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Ignored Substitutions"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected.",IDC_STATIC,8,6,516,19
+    CONTROL         "Enable",IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,351,9
+    CONTROL         "",IDC_IGNORED_SUBSTITUTIONS_FILTER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,87,516,171
+    CONTROL         "Completely unhighlight the ignored changes",IDC_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,43,341,10
+    CONTROL         "Ignore changes in both directions",IDC_IGNORED_SUSBSTITUTIONS_WORK_BOTH_WAYS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,57,351,10
+    CONTROL         "Use regular expressions",IDC_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,350,10
+    PUSHBUTTON      "Add",IDC_LFILTER_ADDBTN,7,264,50,14
+    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,63,264,50,14
+    PUSHBUTTON      "Clear",IDC_LFILTER_CLEARBTN,474,264,50,14
 END
 
 IDD_IGNORED_SUSBSTITUTIONS_DLG DIALOGEX 0, 0, 365, 281
@@ -1469,17 +1489,17 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
-IDD_FILEFILTERS DIALOGEX 0, 0, 537, 188
+IDD_FILEFILTERS DIALOGEX 0, 0, 531, 284
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "File Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,10,7,517,153
-    PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,10,167,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,309,167,50,14
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,364,167,50,14
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,418,167,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,477,167,50,14
+    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,6,516,252
+    PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,6,264,50,14
+    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,305,264,50,14
+    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,360,264,50,14
+    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,414,264,50,14
+    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,473,264,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217
@@ -2816,6 +2836,7 @@ BEGIN
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_MIDDLE_FILE   "Untitled middle"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_CONFLICT_BASE_FILE  "Base File"
     IDS_CONFLICT_THEIRS_FILE "Theirs File"
     IDS_CONFLICT_MINE_FILE  "Mine File"
 END
@@ -2886,6 +2907,8 @@ BEGIN
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_MIDDLE 
+                            "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT 
                             "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -3536,6 +3559,17 @@ BEGIN
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
     IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
     IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_IGNSUB_STR1 "On one panel"
+    IDS_IGNSUB_STR2 "On the other panel"
+    IDS_IGNSUB_STR3 "<Edit here>"
+    IDS_IGNSUB_STR4 "No differences to select found"
+    IDS_IGNSUB_STR5 "No differences found to add as ignored substitution"
+    IDS_IGNSUB_STR6 "The pair is already present in the list of Ignored Substiturions"
+    IDS_IGNSUB_STR7 "Add this change to Ignored Substitutions?"
 END
 
 #endif    // English (United States) resources

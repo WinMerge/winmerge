@@ -48,6 +48,9 @@ msgstr "Kopiraj iz de&sne"
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "&Razveljavi"
@@ -1402,9 +1405,8 @@ msgstr "&Vredu"
 msgid "&Apply"
 msgstr "&Uporabi"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Filtri vrstic"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1421,6 +1423,30 @@ msgstr "Uredi"
 #, c-format
 msgid "Remove"
 msgstr "Odstrani"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1757,9 +1783,8 @@ msgstr "&Znaki za prelom besed:"
 msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filtri datotek"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Preizkusi..."
@@ -2730,6 +2755,9 @@ msgstr "Srednja neimenovana"
 msgid "Untitled right"
 msgstr "Desna neimenovana"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Njihova datoteka"
@@ -2935,6 +2963,10 @@ msgstr ""
 "Izvirna datoteka ne bo spremenjena.\n"
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -4247,4 +4279,25 @@ msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
+msgstr ""
 

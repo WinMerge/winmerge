@@ -56,6 +56,10 @@ public:
 
 TEST_P(InstallerTest, Pages)
 {
+	if (m_hwndWinMerge == nullptr) {
+		GTEST_FAIL();
+	}
+
 	saveImage("LicenseAgreement");
 	typeKey(VK_RETURN); Sleep(200);
 	saveImage("SelectComponents");

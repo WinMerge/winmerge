@@ -15,6 +15,7 @@
 #include <cassert>
 #include <ctime>
 #include <filesystem>
+#include <regex>
 #include <tchar.h>
 #include <gtest/gtest.h>
 #include <gtest/gtest-param-test.h>

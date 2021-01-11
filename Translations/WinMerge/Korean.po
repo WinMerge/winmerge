@@ -51,6 +51,9 @@ msgstr "오른쪽에서 복사(&M)"
 msgid "&Select Line Difference\tF4"
 msgstr "줄 차이점 선택(&S)\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "실행 취소(&U)"
@@ -1406,9 +1409,8 @@ msgstr "확인(&O)"
 msgid "&Apply"
 msgstr "적용(&A)"
 
-#, c-format
-msgid "Linefilters"
-msgstr "줄 필터"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1425,6 +1427,30 @@ msgstr "편집"
 #, c-format
 msgid "Remove"
 msgstr "제거"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1763,9 +1789,8 @@ msgstr "단어 분리 문자(&O):"
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "파일 필터"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "테스트..."
@@ -2725,6 +2750,9 @@ msgstr "가운데 제목 없음"
 msgid "Untitled right"
 msgstr "오른쪽 제목 없음"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "그 파일"
@@ -2916,6 +2944,10 @@ msgstr ""
 "원본 파일은 변경되지 않을 것입니다.\n"
 "\n"
 "자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -4217,5 +4249,26 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
 msgstr ""
 

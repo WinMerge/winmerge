@@ -958,7 +958,7 @@ bool MatchDiffVsIngoredSubstitutions
 			(
 				   ignoredSubstitutionsList.MatchBoth(f, change0, change1)
 				||
-					optMatchBothWays
+					 optMatchBothWays
 				&& ignoredSubstitutionsList.MatchBoth(f, change1, change0)
 			)
 			{
@@ -975,7 +975,7 @@ bool MatchDiffVsIngoredSubstitutions
 				   optMatchBothWays
 				&& filter.MiddleParts[0].compare(change1) == 0
 				&& filter.MiddleParts[1].compare(change0) == 0
-			)
+		)
 			{
 				return true; /// a match found
 			}
@@ -1099,7 +1099,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 					std::string changeBlock0 = std::string(changeBlockStart0, changeBlockLength0);
 					std::string changeBlock1 = std::string(changeBlockStart1, changeBlockLength1);
-
 					bool case_sensitive = false;
 					bool eol_sensitive = false;
 					int whitespace = WHITESPACE_IGNORE_CHANGE;

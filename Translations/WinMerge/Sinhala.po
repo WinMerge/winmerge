@@ -44,6 +44,9 @@ msgstr ""
 msgid "&Select Line Difference\tF4"
 msgstr "පේලි අතර වෙනස තේරීම\tF4"
 
+msgid "Add this change to &Ignored Substitutions"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "නිෂ්ප්‍රභා කිරීම"
@@ -1399,9 +1402,8 @@ msgstr "&හරි"
 msgid "&Apply"
 msgstr "&යොමු කරන්න"
 
-#, fuzzy, c-format
-msgid "Linefilters"
-msgstr "Linefilters"
+msgid "Line Filters"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "Enable Line Filters"
@@ -1418,6 +1420,30 @@ msgstr "සංස්කරණය කරන්න"
 #, c-format
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
+
+msgid "Ignored Substitutions"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
+
+msgid "Ignore changes in both directions"
+msgstr ""
+
+msgid "Use regular expressions"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1756,9 +1782,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "ගොනුපෙරහන්"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "පරීක්ෂාව..."
@@ -2691,6 +2716,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "නමක් නැති දකුණ"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "ඔවුන්ගේම ලිපිගොනු"
@@ -2882,6 +2910,10 @@ msgstr ""
 "The original file will not be changed.\n"
 "\n"
 "Do you want to save the unpacked version to another file?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -4099,5 +4131,26 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "On one panel"
+msgstr ""
+
+msgid "On the other panel"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as ignored substitution"
+msgstr ""
+
+msgid "The pair is already present in the list of Ignored Substiturions"
+msgstr ""
+
+msgid "Add this change to Ignored Substitutions?"
 msgstr ""
 

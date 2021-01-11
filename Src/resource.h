@@ -648,8 +648,9 @@
 #define IDS_EMPTY_LEFT_FILE             16802
 #define IDS_EMPTY_MIDDLE_FILE           16803
 #define IDS_EMPTY_RIGHT_FILE            16804
-#define IDS_CONFLICT_THEIRS_FILE        16805
-#define IDS_CONFLICT_MINE_FILE          16806
+#define IDS_CONFLICT_BASE_FILE          16805
+#define IDS_CONFLICT_THEIRS_FILE        16806
+#define IDS_CONFLICT_MINE_FILE          16807
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833
 #define IDS_LINE_STATUS_INFO            16834
@@ -1358,6 +1359,13 @@
 #define ID_SWAPPANES_SWAP23             34171
 #define ID_SWAPPANES_SWAP13             34172
 #define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34173
+#define IDS_IGNSUB_STR1                 34174
+#define IDS_IGNSUB_STR2                 34175
+#define IDS_IGNSUB_STR3                 34176
+#define IDS_IGNSUB_STR4                 34177
+#define IDS_IGNSUB_STR5                 34178
+#define IDS_IGNSUB_STR6                 34179
+#define IDS_IGNSUB_STR7                 34180
 
 // Next default values for new objects
 // 
@@ -1365,8 +1373,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34174
-#define _APS_NEXT_CONTROL_VALUE         8832
-#define _APS_NEXT_SYMED_VALUE           117
+#define _APS_NEXT_COMMAND_VALUE         34181
+#define _APS_NEXT_CONTROL_VALUE         8837
+#define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

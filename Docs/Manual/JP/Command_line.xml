@@ -383,8 +383,9 @@
         <para>右側で開くフォルダやファイルを指定します。
         </para>
 
-        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方
+        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方(または3つすべて)
         (<option><replaceable>leftpath</replaceable></option> と
+        (<option><replaceable>middlepath</replaceable></option> と)
         <option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォルダかファイルのどちらか)
         を指し差なければなりません。
         もし、WinMergeが指定したパスのどちらかを見つけることができなければ、

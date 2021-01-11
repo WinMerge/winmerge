@@ -91,7 +91,7 @@ void LineFiltersDlg::InitList()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Regular expression");
-	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(375));
+	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(570));
 
 	size_t count = m_pList->GetCount();
 	for (size_t i = 0; i < count; i++)
