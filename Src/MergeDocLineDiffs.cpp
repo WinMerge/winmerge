@@ -65,9 +65,8 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 	}
 
 	// Actually display selection areas on screen in both edit panels
-	for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-			HighlightDiffRect(m_pView[nGroup][nBuffer], rc[nBuffer]);
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
 }
 
 void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
@@ -119,7 +118,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 			&& str0 == selectedText[1]
 		)
 		{
-			String caption = _("The pair is already present in the list of Ignored Substiturions");
+			String caption = _("The pair is already present in the list of Ignored Substitutions");
 			String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 			MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 			return; /// The substitution pair is already registered
@@ -135,6 +134,9 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 		//Rescan();
 	}
 	return;
+	//for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+	//	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	//		HighlightDiffRect(m_pView[nGroup][nBuffer], rc[nBuffer]);
 }
 
 static inline bool IsDiffPerLine(bool bTableEditing, const DIFFRANGE& cd)

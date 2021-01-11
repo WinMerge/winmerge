@@ -123,40 +123,40 @@ static std::string ExtractCommonSuffix(const std::string& str0, const std::strin
 	return strlen0 < strlen1 ? str0 : str1;
 }
 
-template<int index>
-static std::string ExtractMiddleChangedPart(const std::string& str0, const std::string& str1)
+static std::string ExtractMiddleChangedPart(const std::string& str0, const std::string& str1, int stringIndex)
 {
 	size_t strlen[2]{ str0.length(), str1.length() };
 	size_t minStrlen = strlen[0] < strlen[1] ? strlen[0] : strlen[1];
 	size_t diffStart = 0;
 	while (diffStart < minStrlen && str0[diffStart] == str1[diffStart])
 		diffStart++;
-	size_t diffEnd = minStrlen - 1;
+	size_t diffEnd = 0;
 	while (diffEnd < minStrlen && str0[strlen[0] - 1 - diffEnd] == str1[strlen[1] - 1 - diffEnd])
 		diffEnd++;
 
 	const std::string* strs[2]{ &str0, &str1 };
-	return strs[index]->substr(diffStart, strlen[index] - diffEnd - 1);
+	return strs[stringIndex]->substr(diffStart, strlen[stringIndex] - diffStart - diffEnd);
 }
 
 IgnoredSusbstitutionItem::IgnoredSusbstitutionItem
 (
-	const std::string& filter0, const std::string& filter1,
+	const std::string& token0, const std::string& token1,
 	int regexpCompileOptions, bool extractCommonSufixAndPrefix
 )
-	: CommonPrefix(extractCommonSufixAndPrefix ? ExtractCommonPrefix(filter0, filter1) : "")
+	: Tokens{ token0 , token1 }
+	, CommonPrefix(extractCommonSufixAndPrefix ? ExtractCommonPrefix(token0, token1) : "")
 	, CommonPrefixLength(CommonPrefix.length())
-	, ChangedPart
+	, MiddleParts
 	{
-		extractCommonSufixAndPrefix ? ExtractMiddleChangedPart<0>(filter0, filter1) : filter0,
-		extractCommonSufixAndPrefix ? ExtractMiddleChangedPart<1>(filter0, filter1) : filter1
+		extractCommonSufixAndPrefix ? ExtractMiddleChangedPart(token0, token1, 0) : token0,
+		extractCommonSufixAndPrefix ? ExtractMiddleChangedPart(token0, token1, 1) : token1
 	}
-	, CommonSuffix(extractCommonSufixAndPrefix ? ExtractCommonSuffix(filter0, filter1) : "")
+	, CommonSuffix(extractCommonSufixAndPrefix ? ExtractCommonSuffix(token0, token1) : "")
 	, CommonSuffixLength(CommonSuffix.length())
 	, ChangedPartRegexp
 	{
-		Poco::RegularExpression(ChangedPart[0], regexpCompileOptions),
-		Poco::RegularExpression(ChangedPart[1], regexpCompileOptions)
+		Poco::RegularExpression(MiddleParts[0], regexpCompileOptions),
+		Poco::RegularExpression(MiddleParts[1], regexpCompileOptions)
 	}
 {
 }

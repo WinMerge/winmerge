@@ -44,7 +44,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
 msgid "Add this change to &Ignored Substitutions"
-msgstr ""
+msgstr "Добавить в список игнорируемых подстановок"
 
 msgid "&Undo"
 msgstr "&Отменить"
@@ -1113,7 +1113,7 @@ msgid "&Apply"
 msgstr "&Применить"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Строковые фильтры"
 
 msgid "Enable Line Filters"
 msgstr "Разрешить строковые фильтры"
@@ -1128,28 +1128,28 @@ msgid "Remove"
 msgstr "Удалить"
 
 msgid "Ignored Substitutions"
-msgstr ""
-
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "Игнорируемые подстановки"
 
 msgid "Enable"
-msgstr ""
-
-msgid "Completely unhighlight the ignored changes"
-msgstr ""
-
-msgid "Ignore changes in both directions"
-msgstr ""
-
-msgid "Use regular expressions"
-msgstr ""
+msgstr "Включено"
 
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr "Изменения в тексте соответсвующие парам в списке ниже будут игнорироваться"
+
+msgid "Ignore changes in both directions"
+msgstr "Игнорировать изменения в обоих направелениях"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr "Никак вообще не выделять игнорируемые изменения"
+
+msgid "Use regular expressions"
+msgstr "Использовать регулярнэ выражения"
 
 msgid "Clear"
-msgstr ""
+msgstr "Очистить"
 
 msgid "Colors"
 msgstr "Цвета"
@@ -1416,7 +1416,7 @@ msgid "&Rendering Mode:"
 msgstr "Режим отрисовки:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Фильтры файлов"
 
 msgid "Test..."
 msgstr "Тест..."
