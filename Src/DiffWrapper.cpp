@@ -857,9 +857,9 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf)
 
 bool MatchDiffVsIngoredSubstitutions
 (
-	const std::string &fullLine0,
-	const std::string &fullLine1,
-	const strdiff::wdiff &diff,
+	const std::string &changeBlock0,
+	const std::string &changeBlock1,
+	const wdiff &diff,
 	const IgnoredSubstitutionsFilterList &ignoredSubstitutionsList,
 	const bool optUseRegexpsForIgnoredSubstitutions,
 	const bool optMatchBothWays
@@ -870,14 +870,14 @@ bool MatchDiffVsIngoredSubstitutions
 	
 	if (!optUseRegexpsForIgnoredSubstitutions)
 	{
-		/// The passed in changes can still have common suffix and prefix between them. Shrink changeStartPos and changeEndPos,
+		/// The passed in changes can still have a commonality between them on the ends. Shrink changeStartPos and changeEndPos,
 		/// so that in terms of the first and the last symbols change0 and change1 are different.
-		/// This is to account for the fact that the ignored substitution tokens are broken down similarly.
+		/// The ignored substitution tokens are broken down similarly.
 		while
 		(
 			   changeStartPos[0] < changeEndPos[0]
 			&& changeStartPos[1] < changeEndPos[1]
-			&& fullLine0[changeStartPos[0]] == fullLine1[changeStartPos[1]]
+			&& changeBlock0[changeStartPos[0]] == changeBlock1[changeStartPos[1]]
 		)
 		{
 			changeStartPos[0]++;
@@ -888,7 +888,7 @@ bool MatchDiffVsIngoredSubstitutions
 		(
 			   changeStartPos[0] < changeEndPos[0]
 			&& changeStartPos[1] < changeEndPos[1]
-			&& fullLine0[changeEndPos[0]] == fullLine1[changeEndPos[1]]
+			&& changeBlock0[changeEndPos[0]] == changeBlock1[changeEndPos[1]]
 		)
 		{
 			changeEndPos[0]--;
@@ -898,8 +898,8 @@ bool MatchDiffVsIngoredSubstitutions
 
 	int changeLen0 = changeEndPos[0] - changeStartPos[0] + 1;
 	int changeLen1 = changeEndPos[1] - changeStartPos[1] + 1;
-	std::string change0 = std::string(fullLine0.c_str() + changeStartPos[0], changeLen0);
-	std::string change1 = std::string(fullLine1.c_str() + changeStartPos[1], changeLen1);
+	std::string change0 = std::string(changeBlock0.c_str() + changeStartPos[0], changeLen0);
+	std::string change1 = std::string(changeBlock1.c_str() + changeStartPos[1], changeLen1);
 
 
 	size_t numIgnoredSubstitutions = ignoredSubstitutionsList.GetCount();
@@ -913,29 +913,19 @@ bool MatchDiffVsIngoredSubstitutions
 		(
 			   changeStartPos[0] < filter.CommonPrefixLength
 			|| changeStartPos[1] < filter.CommonPrefixLength
-			|| changeEndPos[0] >= fullLine0.length() - filter.CommonSuffixLength
-			|| changeEndPos[1] >= fullLine1.length() - filter.CommonSuffixLength
+			|| changeEndPos[0] >= changeBlock0.length() - filter.CommonSuffixLength
+			|| changeEndPos[1] >= changeBlock1.length() - filter.CommonSuffixLength
 		)
-			continue; /// This filter does not fit into the line with its suffix and prefix
+			continue; /// This filter does not fit into the change block together with its suffix and prefix
 
-		/// Check if the common prefix and suffix match
+		/// Check if the common prefix matches (if the the filter is a regexp the prefix will be empty)
 		bool continueWithNextFilter = false;
 		for (int p = 1; p <= filter.CommonPrefixLength; p++)
 		{
-			char char0 = fullLine0[changeStartPos[0] - p];
-			char char1 = fullLine1[changeStartPos[1] - p];
-			if (char0 != char1)
-			{
-				continueWithNextFilter = true;
-				break;
-			}
-		}
-
-		for (int s = 1; s <= filter.CommonSuffixLength; s++)
-		{
-			char char0 = fullLine0[changeEndPos[0] + s];
-			char char1 = fullLine1[changeEndPos[1] + s];
-			if (char0 != char1)
+			char char0 = changeBlock0[changeStartPos[0] - p];
+			char char1 = changeBlock1[changeStartPos[1] - p];
+			char charInFilter = filter.CommonPrefix[filter.CommonPrefixLength - p];
+			if (char0 != charInFilter || char1 != charInFilter)
 			{
 				continueWithNextFilter = true;
 				break;
@@ -945,11 +935,28 @@ bool MatchDiffVsIngoredSubstitutions
 		if (continueWithNextFilter)
 			continue;
 
+		/// Check if the common suffix matches (if the the filter is a regexp the suffix will be empty)
+		for (int s = 1; s <= filter.CommonSuffixLength; s++)
+		{
+			char char0 = changeBlock0[changeEndPos[0] + s];
+			char char1 = changeBlock1[changeEndPos[1] + s];
+			char charInFilter = filter.CommonSuffix[s - 1];
+			if (char0 != charInFilter || char1 != charInFilter)
+			{
+				continueWithNextFilter = true;
+				break;
+			}
+		}
+
+		if (continueWithNextFilter)
+			continue;
+
+		/// Check is the middle part matches
 		if(optUseRegexpsForIgnoredSubstitutions)
 		{
 			if
 			(
-					ignoredSubstitutionsList.MatchBoth(f, change0, change1)
+				   ignoredSubstitutionsList.MatchBoth(f, change0, change1)
 				||
 					optMatchBothWays
 				&& ignoredSubstitutionsList.MatchBoth(f, change1, change0)
@@ -1074,59 +1081,60 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				/// Handle Ignored Substitutions
 				if
 				(
-					   op == OP_DIFF
-					//&& next != nullptr
-					&& QtyLinesLeft > 0
-					&& QtyLinesRight > 0
-					&& m_files.GetSize() == 2
+					   op == OP_DIFF /// The change marked as significant
+					&& m_files.GetSize() == 2 /// We only support two pane mode for Ignored Substitutions
 					&& m_pIgnoredSubstitutionsList
 					&& m_pIgnoredSubstitutionsList->GetCount()
+					&& QtyLinesLeft > 0
+					&& QtyLinesRight > 0
 				)
 				{
-					size_t len = file_data_ary[0].linbuf[thisob->line0 + 1] - file_data_ary[0].linbuf[thisob->line0];
-					const char* string = file_data_ary[0].linbuf[thisob->line0];
-					size_t stringlen = linelen(string, len);
-					std::string fullLine0 = std::string(string, stringlen);
+					const char* changeBlockStart0 =     file_data_ary[0].linbuf[thisob->line0];
+					const char *nextChangeBlockStart0 = file_data_ary[0].linbuf[thisob->line0 + QtyLinesLeft];
+					size_t changeBlockLength0 = nextChangeBlockStart0 - changeBlockStart0;
 
-					len = file_data_ary[1].linbuf[thisob->line1 + 1] - file_data_ary[1].linbuf[thisob->line1];
-					string = file_data_ary[1].linbuf[thisob->line1];
-					stringlen = linelen(string, len);
-					std::string fullLine1 = std::string(string, stringlen);
+					const char* changeBlockStart1 =     file_data_ary[1].linbuf[thisob->line1];
+					const char *nextChangeBlockStart1 = file_data_ary[1].linbuf[thisob->line1 + QtyLinesRight];
+					size_t changeBlockLength1 = nextChangeBlockStart1 - changeBlockStart1;
+
+					std::string changeBlock0 = std::string(changeBlockStart0, changeBlockLength0);
+					std::string changeBlock1 = std::string(changeBlockStart1, changeBlockLength1);
 
 					bool case_sensitive = false;
 					bool eol_sensitive = false;
 					int whitespace = WHITESPACE_IGNORE_CHANGE;
 					int breakType = 1;// breakType==1 means break also on punctuation
 					bool byte_level = true;
+					
 					std::vector<wdiff> worddiffs = ComputeWordDiffs(
-						ucr::toTString(fullLine0.c_str()), ucr::toTString(fullLine1.c_str()),
+						ucr::toTString(changeBlock0), ucr::toTString(changeBlock1),
 						case_sensitive, eol_sensitive, whitespace, breakType, byte_level
 					);
 
-					if (!worddiffs.empty())
+					bool allChangesWithinTheBlockAreIgnored = true;
+					for (const wdiff &diff: worddiffs)
 					{
-						bool lineShouldBeIgnored = true; /// If all changes are ignored the line is ignored
-						for (std::vector<strdiff::wdiff>::const_iterator diffIt = worddiffs.begin(); diffIt != worddiffs.end(); ++diffIt)
+						if (!MatchDiffVsIngoredSubstitutions
+						(
+							changeBlock0, changeBlock1,
+							diff,
+							*m_pIgnoredSubstitutionsList, optUseRegexpsForIgnoredSubstitutions,
+							optMatchBothWays
+						))
 						{
-							if(!MatchDiffVsIngoredSubstitutions
-							(
-								fullLine0, fullLine1,
-								*diffIt,
-								*m_pIgnoredSubstitutionsList, optUseRegexpsForIgnoredSubstitutions,
-								optMatchBothWays
-							))
-							{
-								lineShouldBeIgnored = false;
-							}
+							/// Found a change that does not match any Ignored Substitution's. Leave the change block unaffected.
+							/// Our strategy is to only mark a change block as ignored if all of its changes are ignored.
+							allChangesWithinTheBlockAreIgnored = false;
+							break;
 						}
+					}
 
-						if (lineShouldBeIgnored)
-						{
-							if(optCompletelyBlankOutIgnoredSubstitutions)
-								op = OP_NONE;
-							else
-								op = OP_TRIVIAL;
-						}
+					if (allChangesWithinTheBlockAreIgnored)
+					{
+						if (optCompletelyBlankOutIgnoredSubstitutions)
+							op = OP_NONE;
+						else
+							op = OP_TRIVIAL;
 					}
 				}
 
