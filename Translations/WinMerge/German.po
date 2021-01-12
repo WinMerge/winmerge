@@ -3940,7 +3940,7 @@ msgstr "Keine Unterschiede zur Auswahl gefunden."
 msgid "No differences found to add as ignored substitution"
 msgstr "Keine Unterschiede zum Hinzufügen zu ignorierten Ersetzungen gefunden."
 
-msgid "The pair is already present in the list of Ignored Substiturions"
+msgid "The pair is already present in the list of Ignored Substitutions"
 msgstr "Das Paar ist bereits in der Liste der ignorierten Ersetzungen vorhanden."
 
 msgid "Add this change to Ignored Substitutions?"

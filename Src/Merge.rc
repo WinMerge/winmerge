@@ -3549,7 +3549,7 @@ BEGIN
     IDS_IGNSUB_STR3 "<Edit here>"
     IDS_IGNSUB_STR4 "No differences to select found"
     IDS_IGNSUB_STR5 "No differences found to add as ignored substitution"
-    IDS_IGNSUB_STR6 "The pair is already present in the list of Ignored Substiturions"
+    IDS_IGNSUB_STR6 "The pair is already present in the list of Ignored Substitutions"
     IDS_IGNSUB_STR7 "Add this change to Ignored Substitutions?"
 END
 

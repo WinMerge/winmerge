@@ -3583,7 +3583,7 @@ msgstr ""
 msgid "No differences found to add as ignored substitution"
 msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substiturions"
+msgid "The pair is already present in the list of Ignored Substitutions"
 msgstr ""
 
 msgid "Add this change to Ignored Substitutions?"
