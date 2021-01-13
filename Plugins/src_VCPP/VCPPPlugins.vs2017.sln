@@ -11,6 +11,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsTab", "IgnoreFieldsTab\IgnoreFieldsTab.vs2017.vcxproj", "{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles\DisplayXMLFiles.vs2017.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideFirstLetter", "HideFirstLetter\HideFirstLetter.vs2017.vcxproj", "{78ABD31C-70A2-4608-8A3D-506E1E2C0AFE}"
 EndProject
@@ -21,6 +24,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchBeginningOfLog", "WatchBeginningOfLog\WatchBeginningOfLog.vs2017.vcxproj", "{A948A08A-3AF4-4860-8D13-8C425E56806F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchEndOfLog", "WatchEndOfLog\WatchEndOfLog.vs2017.vcxproj", "{4A3F0C35-6B6D-44B3-84FD-7E2168398361}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "..\..\Externals\poco\Foundation\Foundation.vs2017.vcxproj", "{8164D41D-B053-405B-826C-CF37AC0EF176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,8 +233,34 @@ Global
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Unicode Release MinDependency|Win32.Build.0 = Unicode Release MinDependency|Win32
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Unicode Release MinDependency|x64.ActiveCfg = Unicode Release MinDependency|x64
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Unicode Release MinDependency|x64.Build.0 = Unicode Release MinDependency|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|Win32.Build.0 = Debug|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.ActiveCfg = Debug|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.Build.0 = Debug|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release MinDependency|Win32.ActiveCfg = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release MinDependency|Win32.Build.0 = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release MinDependency|x64.ActiveCfg = Release|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release MinDependency|x64.Build.0 = Release|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|Win32.ActiveCfg = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|Win32.Build.0 = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.ActiveCfg = Release|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.Build.0 = Release|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Debug|Win32.Build.0 = Debug|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Debug|x64.ActiveCfg = Debug|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Debug|x64.Build.0 = Debug|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Release MinDependency|Win32.ActiveCfg = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Release MinDependency|Win32.Build.0 = Release|Win32
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Release MinDependency|x64.ActiveCfg = Release|x64
+		{8164D41D-B053-405B-826C-CF37AC0EF176}.Unicode Release MinDependency|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8164D41D-B053-405B-826C-CF37AC0EF176} = {EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DDDBFB7-ED36-4224-B514-5B84249DC736}
 	EndGlobalSection
 EndGlobal
