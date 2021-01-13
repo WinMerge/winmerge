@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-12-29 07:34+0100\n"
+"PO-Revision-Date: 2021-01-13 06:37+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -49,7 +49,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 
 msgid "Add this change to &Ignored Substitutions"
-msgstr ""
+msgstr "Dodaj to spremembo v Pre&zrte zamenjave"
 
 #, c-format
 msgid "&Undo"
@@ -733,7 +733,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Preklopi vse in 0-9 vrstic\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "O&brni  (Skrij različne vrstice)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -1406,7 +1406,7 @@ msgid "&Apply"
 msgstr "&Uporabi"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Filtri vrstic"
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1425,28 +1425,28 @@ msgid "Remove"
 msgstr "Odstrani"
 
 msgid "Ignored Substitutions"
-msgstr ""
+msgstr "Prezrte zamenjave"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Popravki ne vplivajo."
 
 msgid "Enable"
-msgstr ""
+msgstr "Omogoči"
 
 msgid "Completely unhighlight the ignored changes"
-msgstr ""
+msgstr "Popolnoma odstrani označevanje prezrtih sprememb"
 
 msgid "Ignore changes in both directions"
-msgstr ""
+msgstr "Prezri spremembe v obe smeri"
 
 msgid "Use regular expressions"
-msgstr ""
+msgstr "Uporabi regularne izraze"
 
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 msgid "Clear"
-msgstr ""
+msgstr "Počisti"
 
 #, c-format
 msgid "Colors"
@@ -1784,7 +1784,7 @@ msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Filtri datotek"
 
 msgid "Test..."
 msgstr "Preizkusi..."
@@ -2756,7 +2756,7 @@ msgid "Untitled right"
 msgstr "Desna neimenovana"
 
 msgid "Base File"
-msgstr ""
+msgstr "Osnovna datoteka"
 
 #, c-format
 msgid "Theirs File"
@@ -2958,15 +2958,25 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Vtičnik '%2' ne more kopirati vaših sprememb v levo datoteko nazaj v '%1'.\n"
+"Vtičnik '%2' ne more pakirati vaših sprememb v levo datoteko nazaj v '%1'.\n"
 "\n"
 "Izvirna datoteka ne bo spremenjena.\n"
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
+"Vtičnik '%2' ne more pakirati vaših sprememb v srednjo datoteko nazaj v '%1'.\n"
+"\n"
+"Izvirna datoteka ne bo spremenjena.\n"
+"\n"
+"Ali želite razpakirano različico shraniti v drugo datoteko?"
 
 #, c-format
 msgid ""
@@ -2978,7 +2988,7 @@ msgid ""
 msgstr ""
 "Vtičnik '%2' ne more pakirati vaših sprememb nazaj v pravo datoteko '%1'.\n"
 "\n"
-"Izvirna datoteka se ne bo spremenila.\n"
+"Izvirna datoteka ne bo spremenjena.\n"
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
 
@@ -3806,9 +3816,9 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"Prosimo, najprej shranite vse datoteke.\n"
+"Najprej shranite vse datoteke.\n"
 "\n"
-"Ustvarjanje datoteke s popravki zahteva, da v datoteki ni neshranjenih sprememb."
+"Ustvarjanje datoteke s popravki zahteva, da v datoteki ni ne shranjenih sprememb."
 
 #, c-format
 msgid "Folder does not exist."
@@ -4281,23 +4291,23 @@ msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
 
 msgid "On one panel"
-msgstr ""
+msgstr "V enem podoknu"
 
 msgid "On the other panel"
-msgstr ""
+msgstr "V drugem podoknu"
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Uredi tukaj>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Ni najdenih nobenih razlik za izbiro"
 
 msgid "No differences found to add as ignored substitution"
-msgstr ""
+msgstr "Ni najdenih za dodajanje kot prezrto zamenjavo"
 
 msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr ""
+msgstr "Par je že prisoten na seznamu prezrtih zamenjav"
 
 msgid "Add this change to Ignored Substitutions?"
-msgstr ""
+msgstr "Dodajm to spremembo v Prezrte zamenjave?"
 
