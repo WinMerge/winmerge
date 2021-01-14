@@ -160,97 +160,97 @@ Status from **2021-01-14**:
 ### WinMerge
 
  * Basque
-   - [Xabier Aramendi](mailto:azpidatziak at gmail.com)
+   - [Xabier Aramendi](mailto:azpidatziak%20at%20gmail.com)
 
  * Brazilian
-   - [Wender Firmino](mailto:wender at pta.com.br)
-   - [Leonardo Peixoto](mailto:ljpeixoto at gmail.com)
-   - [Felipe Periard Lopes](mailto:felipefplzx at gmail.com)
+   - [Wender Firmino](mailto:wender%20at%20pta.com.br)
+   - [Leonardo Peixoto](mailto:ljpeixoto%20at%20gmail.com)
+   - [Felipe Periard Lopes](mailto:felipefplzx%20at%20gmail.com)
 
  * Bulgarian
-   - [sld](mailto:sld at mail.bg)
-   - [tigertron](mailto:ivg_18 at yahoo.com)
-   - [Стоян](mailto:stoyan от гмаил)
+   - [sld](mailto:sld%20at%20mail.bg)
+   - [tigertron](mailto:ivg_18%20at%20yahoo.com)
+   - [Стоян](mailto:stoyan%20от%20гмаил)
 
  * Catalan
-   - [Jordi Vilar](mailto:jvilar at users.sourceforge.net)
+   - [Jordi Vilar](mailto:jvilar%20at%20users.sourceforge.net)
 
  * ChineseSimplified
-   - [Liaobin](mailto:liaobin at jite. net)
-   - [xmpdhml](mailto:xmpdhml at users.sourceforge.net)
-   - [MaysWind](mailto:i at mayswind.net)
+   - [Liaobin](mailto:liaobin%20at%20jite.%20net)
+   - [xmpdhml](mailto:xmpdhml%20at%20users.sourceforge.net)
+   - [MaysWind](mailto:i%20at%20mayswind.net)
 
  * ChineseTraditional
-   - [Koko](mailto:kokokoko at giga.net.tw)
-   - [wck3](mailto:wck3171 at pchome.com.tw)
-   - [Calvin Lin](mailto:ylin77 at gmail.com)
+   - [Koko](mailto:kokokoko%20at%20giga.net.tw)
+   - [wck3](mailto:wck3171%20at%20pchome.com.tw)
+   - [Calvin Lin](mailto:ylin77%20at%20gmail.com)
 
  * Croatian
-   - [Hasan Osmanagić](mailto:hasan.osmanagic at public.carnet.hr)
+   - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)
 
  * Czech
-   - [Jiri Tax](mailto:jt at taxoft.cz)
-   - [Jan Hryz](mailto:janhryz at users.sourceforge.net)
+   - [Jiri Tax](mailto:jt%20at%20taxoft.cz)
+   - [Jan Hryz](mailto:janhryz%20at%20users.sourceforge.net)
 
  * Danish
-   - [Christian List](mailto:list1974 at hotmail.com)
-   - [Rolf Egmose](mailto:R.Egmose at gmail.com)
+   - [Christian List](mailto:list1974%20at%20hotmail.com)
+   - [Rolf Egmose](mailto:R.Egmose%20at%20gmail.com)
 
  * Dutch
-   - [Ronald Schaap](mailto:ronald at schaap.demon.nl)
+   - [Ronald Schaap](mailto:ronald%20at%20schaap.demon.nl)
    - Michel Coene
    - Thomas De Rocker, 2020
 
  * French
-   - [Jean-F Jolin](mailto:jean-f-j at users.sourceforge.net) *Maintainer*
-   - [Gil Andre](mailto:gil_andre at compuserve.com)
-   - [Laurent Ganier](mailto:ccganier at club-internet.fr)
-   - [Dominique Saussereau](mailto:redguff at users.sourceforge.net)
+   - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net) *Maintainer*
+   - [Gil Andre](mailto:gil_andre%20at%20compuserve.com)
+   - [Laurent Ganier](mailto:ccganier%20at%20club-internet.fr)
+   - [Dominique Saussereau](mailto:redguff%20at%20users.sourceforge.net)
 
  * Galician
-   - [Medulio](mailto:medulio at ciberirmandade.org)
+   - [Medulio](mailto:medulio%20at%20ciberirmandade.org)
    - qosobrin (LMS)
 
  * German
-   - [Tim Gerundt](mailto:tim at gerundt.de) *Maintainer*
-   - [Winfried Peter](mailto:winfried.peter at omicron.at)
-   - [Jörg Schneider](mailto:tonda at users.sourceforge.net)
+   - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
+   - [Winfried Peter](mailto:winfried.peter%20at%20omicron.at)
+   - [Jörg Schneider](mailto:tonda%20at%20users.sourceforge.net)
 
  * Greek
-   - [Polyvios J. Simopoulos](mailto:polyvios.j.simopoulos at gmail.com)
+   - [Polyvios J. Simopoulos](mailto:polyvios.j.simopoulos%20at%20gmail.com)
 
  * Hungarian
-   - [Márton Balázs](mailto:documan at users.sourceforge.net)
-   - [Mihalicza József](mailto:jmihalicza at gmail.com)
+   - [Márton Balázs](mailto:documan%20at%20users.sourceforge.net)
+   - [Mihalicza József](mailto:jmihalicza%20at%20gmail.com)
 
  * Italian
-   - [Michele Merega](mailto:michele.merega at ifminfomaster.com)
-   - [Andrea Decorte](mailto:deco1985 at hotmail.com)
-   - [Antonio Angelo](mailto:antonio.angelo at gmail.com)
-   - [Michele Locati](mailto:michele at locati.it)
+   - [Michele Merega](mailto:michele.merega%20at%20ifminfomaster.com)
+   - [Andrea Decorte](mailto:deco1985%20at%20hotmail.com)
+   - [Antonio Angelo](mailto:antonio.angelo%20at%20gmail.com)
+   - [Michele Locati](mailto:michele%20at%20locati.it)
 
  * Japanese
-   - [Takashi Sawanaka](mailto:sawanaka at d1.dion.ne.jp)
+   - [Takashi Sawanaka](mailto:sawanaka%20at%20d1.dion.ne.jp)
 
  * Korean
-   - [Hwang Sukjoon](mailto:bbcool at gmail.com)
-   - [Lee Jae-Hong](mailto:pyrasis at users.sourceforge.net)
-   - [Sushizang](mailto:sushizang at empal.com)
-   - [sheppaul](mailto:sheppaul at gmail.com)
+   - [Hwang Sukjoon](mailto:bbcool%20at%20gmail.com)
+   - [Lee Jae-Hong](mailto:pyrasis%20at%20users.sourceforge.net)
+   - [Sushizang](mailto:sushizang%20at%20empal.com)
+   - [sheppaul](mailto:sheppaul%20at%20gmail.com)
 
  * Lithuanian
-   - [Dalius Guzauskas (aka Tichij)](mailto:tichij AT mail DOT com)
+   - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)
 
  * Norwegian
-   - [Hans Fredrik Nordhaug](mailto:hansfn at users.sourceforge.net)
+   - [Hans Fredrik Nordhaug](mailto:hansfn%20at%20users.sourceforge.net)
    - [FreewareTips](mailto:http://home.c2i.net/freewaretips/)
 
  * Persian
-   - [Abolfazl Rostamzadeh](mailto:a.rostamzadeh at gmail.com)
+   - [Abolfazl Rostamzadeh](mailto:a.rostamzadeh%20at%20gmail.com)
 
  * Polish
-   - [Pawel Wawrzysko](mailto:traduc at kki.pl)
-   - [Skiff](mailto:skiffatsf at users.sourceforge.net)
+   - [Pawel Wawrzysko](mailto:traduc%20at%20kki.pl)
+   - [Skiff](mailto:skiffatsf%20at%20users.sourceforge.net)
    - [Michał Trzebiatowski](mailto:hippie_1968@hotmail.com)
    - Mirosław Żylewicz
 
@@ -260,50 +260,50 @@ Status from **2021-01-14**:
    - [Hugo Carvalho](mailto:hugokarvalho@hotmail.com)
 
  * Romanian
-   - [Cristian Arghiroiu](mailto:cristi.arghiroiu at gmail.com)
+   - [Cristian Arghiroiu](mailto:cristi.arghiroiu%20at%20gmail.com)
 
  * Russian
    - [wvxwxvw](mailto:https://github.com/wvxwxvw)
-   - [Dmitriy Rublev](mailto:kaktebyavirubit at gmail.com)
-   - [Valerij Romanovskij](mailto:valerik-roma at mail.ru)
-   - [Dmitriy S. Aleshkowskiy](mailto:wwarlock at mail.ru)
-   - [geek2k](mailto:geek2k at users.sourceforge.net)
+   - [Dmitriy Rublev](mailto:kaktebyavirubit%20at%20gmail.com)
+   - [Valerij Romanovskij](mailto:valerik-roma%20at%20mail.ru)
+   - [Dmitriy S. Aleshkowskiy](mailto:wwarlock%20at%20mail.ru)
+   - [geek2k](mailto:geek2k%20at%20users.sourceforge.net)
 
  * Serbian
-   - [Ozzii](mailto:ivanstar61 at gmail.com)
+   - [Ozzii](mailto:ivanstar61%20at%20gmail.com)
 
  * Sinhala
    - T G E Perera
 
  * Slovak
-   - [majvan](mailto:vancojur at decef.elf.stuba.sk)
-   - [Ivan Masár](mailto:helix84 at centrum.sk)
+   - [majvan](mailto:vancojur%20at%20decef.elf.stuba.sk)
+   - [Ivan Masár](mailto:helix84%20at%20centrum.sk)
    - [Jozef Matta](mailto:jozef.m923@gmail.com)
 
  * Slovenian
-   - [Iztok Osredkar](mailto:iztok.osredkar at institut-oko.si)
-   - [Filip Komar](mailto:filip.komar at gmail.com)
+   - [Iztok Osredkar](mailto:iztok.osredkar%20at%20institut-oko.si)
+   - [Filip Komar](mailto:filip.komar%20at%20gmail.com)
    - [Jadran Rudec](mailto:jrudec@gmail.com)
 
  * Spanish
-   - [Dean Grimm](mailto:grimmdp at yahoo.com)
-   - [Jesús M. Delgado 'MacK'](mailto:nncsoft at yahoo.com)
-   - [Mario Angel](mailto:marioangel70 at gmail.com)
-   - [Nelson Ariza](mailto:njarizas at hotmail.com)
+   - [Dean Grimm](mailto:grimmdp%20at%20yahoo.com)
+   - [Jesús M. Delgado 'MacK'](mailto:nncsoft%20at%20yahoo.com)
+   - [Mario Angel](mailto:marioangel70%20at%20gmail.com)
+   - [Nelson Ariza](mailto:njarizas%20at%20hotmail.com)
 
  * Swedish
-   - [Göran Håkansson](mailto:goran.x.hakansson at telia.com)
-   - [Hans Eriksson](mailto:hans.ericson at bredband.net)
-   - [pgert](mailto:pgert at yahoo.se)
+   - [Göran Håkansson](mailto:goran.x.hakansson%20at%20telia.com)
+   - [Hans Eriksson](mailto:hans.ericson%20at%20bredband.net)
+   - [pgert](mailto:pgert%20at%20yahoo.se)
 
  * Turkish
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)
-   - [Ozkan UNVER](mailto:turquaz37915 at users.sourceforge.net)
-   - [Kaya Zeren](mailto:translator at zeron.net)
+   - [Ozkan UNVER](mailto:turquaz37915%20at%20users.sourceforge.net)
+   - [Kaya Zeren](mailto:translator%20at%20zeron.net)
 
  * Ukrainian
-   - [Warrior](mailto:warr11r at rambler.ru)
-   - [Vitaliy Stopchans'kyy](mailto:stopcha at gmail.com)
+   - [Warrior](mailto:warr11r%20at%20rambler.ru)
+   - [Vitaliy Stopchans'kyy](mailto:stopcha%20at%20gmail.com)
 
 ### ShellExtension
 
@@ -311,17 +311,17 @@ Status from **2021-01-14**:
    - [Thomas De Rocker](mailto:thomasderocker@yahoo.com)
 
  * German
-   - [Tim Gerundt](mailto:tim at gerundt.de) *Maintainer*
+   - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
 
  * Lithuanian
-   - [Dalius Guzauskas (aka Tichij)](mailto:tichij AT mail DOT com)
+   - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)
 
  * Persian
-   - [Abolfazl Rostamzadeh](mailto:a.rostamzadeh at gmail.com)
+   - [Abolfazl Rostamzadeh](mailto:a.rostamzadeh%20at%20gmail.com)
 
  * Slovenian
-   - [Filip Komar](mailto:filip.komar at gmail.com)
-   - [Jadran Rudec](mailto:jrudec at gmail.com)
+   - [Filip Komar](mailto:filip.komar%20at%20gmail.com)
+   - [Jadran Rudec](mailto:jrudec%20at%20gmail.com)
 
  * Turkish
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)
