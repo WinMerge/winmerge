@@ -22,6 +22,7 @@
 *.log
 *.diagsession
 *.asm
+*.swp
 **/.vs
 **/ipch
 **/BuildTmp
@@ -34,9 +35,11 @@
 **/Debug
 **/DebugU
 **/Release*MinDependency
+**/Release*MinSize
 **/Unicode Debug
 **/Unicode Release
 **/Unicode Release*MinDependency
+**/Unicode Release*MinSize
 **/x64Release
 **/x64Debug
 winmerge-cppcheck-build-dir/
