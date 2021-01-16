@@ -195,6 +195,9 @@ msgstr "Ställ in BakgrundsFärg"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Fil"
@@ -2348,6 +2351,9 @@ msgid "Image File &Patterns:"
 msgstr "AvbildsFilmönster:"
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 #, c-format

@@ -145,6 +145,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
 	ON_COMMAND_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnImgVectorImageScaling)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnUpdateImgVectorImageScaling)
+	ON_COMMAND(ID_IMG_COMPARE_EXTRACTED_TEXT, OnImgCompareExtractedText)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_WM_SETFOCUS ()
@@ -2043,6 +2044,22 @@ void CImgMergeFrame::OnImgVectorImageScaling(UINT nId)
 void CImgMergeFrame::OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio(pow(2.0, int(pCmdUI->m_nID - ID_IMG_VECTORIMAGESCALING_100)) == m_pImgMergeWindow->GetVectorImageZoomRatio());
+}
+
+void CImgMergeFrame::OnImgCompareExtractedText()
+{
+	String text[3];
+	String desc[3];
+	for (int nBuffer = 0; nBuffer < m_filePaths.GetSize(); ++nBuffer)
+	{
+		BSTR bstr = m_pImgMergeWindow->ExtractTextFromImage(nBuffer,
+			m_pImgMergeWindow->GetCurrentPage(nBuffer),
+			static_cast<IImgMergeWindow::OCR_RESULT_TYPE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OCR_RESULT_TYPE)));
+		text[nBuffer].assign(bstr, SysStringLen(bstr));
+		desc[nBuffer] = m_strDesc[nBuffer].empty() ? 
+			paths::FindFileName(m_filePaths[nBuffer]) : m_strDesc[nBuffer];
+	}
+	GetMainFrame()->ShowMergeDoc(m_pDirDoc, m_filePaths.GetSize(), text, desc, _T(".yaml"));
 }
 
 /**

@@ -166,6 +166,9 @@ msgstr "Nu&statyti fono spalvą"
 msgid "&Vector Image Scaling"
 msgstr "&Vektorinių vaizdų mastelio keitimas"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Failas"
 
@@ -1855,6 +1858,9 @@ msgstr "&Paveikslėlių failų šablonai:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Lyginti pav&eikslėlius lyginant katalogus"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"

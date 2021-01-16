@@ -193,6 +193,9 @@ msgstr "&Hintergrundfarbe setzen"
 msgid "&Vector Image Scaling"
 msgstr "Vektorbild-Skalierung"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datei"
@@ -2343,6 +2346,9 @@ msgstr "&Bilddateimuster:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "&Bildvergleich im Ordnervergleich aktivieren"
+
+msgid "OCR result:"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"

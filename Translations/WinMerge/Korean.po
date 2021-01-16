@@ -197,6 +197,9 @@ msgstr "배경색 설정(&S)"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
@@ -2350,6 +2353,9 @@ msgid "Image File &Patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 #, c-format

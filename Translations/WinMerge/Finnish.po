@@ -191,6 +191,9 @@ msgstr "A&seta taustaväri"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Tiedosto"
@@ -2349,6 +2352,9 @@ msgid "Image File &Patterns:"
 msgstr "Kuvatiedosto&mallit:"
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 #, c-format

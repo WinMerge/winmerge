@@ -164,6 +164,9 @@ msgstr "透明色を設定(&S)"
 msgid "&Vector Image Scaling"
 msgstr "ベクター画像スケーリング(&V)"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "ファイル(&F)"
 
@@ -1869,6 +1872,9 @@ msgstr "画像ファイルとして扱うパターン(&P):"
 
 msgid "&Enable image compare in folder compare"
 msgstr "フォルダー比較で画像比較を有効にする(&E)"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"

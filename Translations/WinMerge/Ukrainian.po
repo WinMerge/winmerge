@@ -194,6 +194,9 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Файл"
@@ -2345,6 +2348,9 @@ msgid "Image File &Patterns:"
 msgstr ""
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 #, c-format

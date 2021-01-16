@@ -166,6 +166,9 @@ msgstr "设置背景颜色(&S)"
 msgid "&Vector Image Scaling"
 msgstr "矢量图形缩放 (&V)"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "文件(&F)"
 
@@ -1871,6 +1874,9 @@ msgstr "图像文件扩展名 (&P):"
 
 msgid "&Enable image compare in folder compare"
 msgstr "在文件夹比较中启用图像比较(&E)"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"

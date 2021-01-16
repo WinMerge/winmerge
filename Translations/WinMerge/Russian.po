@@ -165,6 +165,9 @@ msgstr "Цвет фона"
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -1854,6 +1857,9 @@ msgstr "Шаблоны изображений:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Cравнивать изображения в папках сравнения"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "&Hex"

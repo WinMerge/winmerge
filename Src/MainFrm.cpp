@@ -62,6 +62,7 @@
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
 #include "utils/hqbitmap.h"
+#include "UniFile.h"
 
 #include "WindowsManagerDialog.h"
 
@@ -810,6 +811,29 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 		pImgMergeFrame->GenerateReport(sReportFile);
 
 	return true;
+}
+
+bool CMainFrame::ShowMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+		const String strDesc[], const String& strFileExt)
+{
+	FileLocation fileloc[3];
+	DWORD dwFlags[3] = {};
+	CDirDoc* pDirDoc2 = pDirDoc->GetMainView() ? pDirDoc :
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
+	{
+		TempFilePtr wTemp(new TempFile());
+		String workFile = wTemp->Create(_T("text_"), strFileExt);
+		m_tempFiles.push_back(wTemp);
+		wTemp->Create(_T(""), strFileExt);
+		UniStdioFile file;
+		if (file.OpenCreateUtf8(workFile))
+		{
+			file.WriteString(text[nBuffer]);
+		}
+		fileloc[nBuffer].setPath(workFile);
+	}
+	return ShowMergeDoc(pDirDoc2, nBuffers, fileloc, dwFlags, strDesc);
 }
 
 /**

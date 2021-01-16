@@ -195,6 +195,9 @@ msgstr "&Definir a Cor do 2º Plano"
 msgid "&Vector Image Scaling"
 msgstr "Escala de Imagem &Vetorial"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Arquivo"
@@ -2351,6 +2354,9 @@ msgstr "Modelos dos Arquivos de &Imagens:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Habilitar comparação de imag&ens na comparação de pastas"
+
+msgid "OCR result:"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"

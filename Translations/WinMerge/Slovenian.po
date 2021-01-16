@@ -194,6 +194,9 @@ msgstr "Nas&tavi barvo ozadja"
 msgid "&Vector Image Scaling"
 msgstr "Prilagoditev &vektorskih slik"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datoteka"
@@ -2351,6 +2354,9 @@ msgstr "V&zorci slikovnih datotek:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Omogoči primerjavo &slik v primerjanju map"
+
+msgid "OCR result:"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"

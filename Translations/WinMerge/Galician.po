@@ -194,6 +194,9 @@ msgstr "Es&tablecer cor de fondo"
 msgid "&Vector Image Scaling"
 msgstr "&Escalado de imaxe vectorial"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Arquivo"
@@ -2356,6 +2359,9 @@ msgstr "&Patróns de ficheiros de imaxe:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "&Activar a comparación de imaxes na comparación de cartafoles"
+
+msgid "OCR result:"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"

@@ -163,6 +163,9 @@ msgstr "Ustaw kolor tła"
 msgid "&Vector Image Scaling"
 msgstr "Skalowanie obrazu wektorowego"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "Plik"
 
@@ -1852,6 +1855,9 @@ msgstr "Rozszerzenia pliku obrazu:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"

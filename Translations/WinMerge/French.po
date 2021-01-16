@@ -198,6 +198,9 @@ msgstr "Définir la couleur du fond"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fichier"
@@ -2365,6 +2368,9 @@ msgid "Image File &Patterns:"
 msgstr "Modèles de fichiers image :"
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 #, c-format

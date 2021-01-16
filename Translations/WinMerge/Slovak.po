@@ -166,6 +166,9 @@ msgstr "Nastaviť farbu &pozadia"
 msgid "&Vector Image Scaling"
 msgstr "Zmena mierky &vektorového obrázka"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Súbor"
 
@@ -1871,6 +1874,9 @@ msgstr "Vzory súborov &obrázkov:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "&Povoliť porovnanie obrázkov pri porovnaní priečinkov"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Zobraziť &hexadecimálne"

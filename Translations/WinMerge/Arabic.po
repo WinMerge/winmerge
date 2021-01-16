@@ -164,6 +164,9 @@ msgstr "&تغيير لون الخلفية"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&ملف"
 
@@ -1861,6 +1864,9 @@ msgid "Image File &Patterns:"
 msgstr "أ&نماط ملف الصور:"
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
 msgstr ""
 
 msgid "&Hex View"

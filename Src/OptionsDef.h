@@ -229,6 +229,7 @@ extern const String OPT_CMP_IMG_THRESHOLD OP("Settings/ImageColorDistanceThresho
 extern const String OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE OP("Settings/ImageInsertionDeletionDetectionMode");
 extern const String OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO OP("Settings/ImageVectorImageZoomRatio");
 extern const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP OP("Settings/EnableImageCompareInFolderCompare");
+extern const String OPT_CMP_IMG_OCR_RESULT_TYPE OP("Settings/ImageOcrResultType");
 
 // Binary options
 extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");

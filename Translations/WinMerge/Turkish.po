@@ -163,6 +163,9 @@ msgstr "Ar&ka Plan Rengini Ayarla"
 msgid "&Vector Image Scaling"
 msgstr "&Vektör Görsel Ölçekleme"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Dosya"
 
@@ -1864,6 +1867,9 @@ msgstr "Görsel dosya &uzantıları:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Klasör karşılaştırmasında görs&el karşılaştırması yapılsın"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Onaltılık &Görünüm"

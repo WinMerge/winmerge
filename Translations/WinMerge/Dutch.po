@@ -164,6 +164,9 @@ msgstr "Achtergrondkleur instellen"
 msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "Bestand"
 
@@ -1872,6 +1875,9 @@ msgstr "Afbeeldingsbestand-patronen:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Afbeeldingsvergelijking in mapvergelijking inschakelen"
+
+msgid "OCR result:"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Hex-weergave"

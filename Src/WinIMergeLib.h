@@ -18,6 +18,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <wtypes.h>
 
 struct IImgMergeWindow
 {
@@ -39,6 +40,9 @@ struct IImgMergeWindow
 		NONE = 0, MOVE, ADJUST_OFFSET, VERTICAL_WIPE, HORIZONTAL_WIPE,
 		RECTANGLE_SELECT,
 		MOVE_IMAGE = 256, RESIZE_WIDTH, RESIZE_HEIGHT, RESIZE_BOTH
+	};
+	enum OCR_RESULT_TYPE {
+		TEXT_ONLY = 0, TEXT_PER_LINE_YAML, TEXT_PER_WORD_YAML
 	};
 	struct Event
 	{
@@ -164,6 +168,7 @@ struct IImgMergeWindow
 	virtual bool IsPastable() const = 0;
 	virtual bool IsCancellable() const = 0;
 	virtual bool IsRectangleSelectionVisible(int pane) const = 0;
+	virtual BSTR ExtractTextFromImage(int pane, int page, OCR_RESULT_TYPE resultType) = 0;
 };
 
 struct IImgToolWindow
