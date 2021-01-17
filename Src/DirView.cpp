@@ -2043,6 +2043,122 @@ void CDirView::OpenPrevDiff()
 	}
 }
 
+void CDirView::OpenFirstFile()
+{
+	int currentInd = GetFocusedItem();
+	int firstFileInd = 0;
+	// Skip directories
+	while (firstFileInd <= currentInd)
+	{
+		DIFFITEM& dip = GetDiffItem(firstFileInd);
+		if (!dip.diffcode.isDirectory())
+		{
+			MoveFocus(currentInd, firstFileInd, 1);
+			OpenSelection();
+			break;
+		}		
+		firstFileInd++;
+	}
+}
+
+bool CDirView::IsFirstFile()
+{
+	int currentInd = GetFocusedItem();
+	int firstFileInd = 0;
+	while (firstFileInd <= currentInd)
+	{
+		DIFFITEM& dip = GetDiffItem(firstFileInd);
+		if (!dip.diffcode.isDirectory())
+		{
+			if (currentInd == firstFileInd)
+				return true;
+			else
+				return false;
+		}
+		firstFileInd++;
+	}
+	return false;
+}
+
+void CDirView::OpenLastFile()
+{
+	const int count = m_pList->GetItemCount();
+	int currentInd = GetFocusedItem();
+	int lastFileInd = count - 1;
+	// Skip directories
+	while (lastFileInd >= 0)
+	{
+		DIFFITEM& dip = GetDiffItem(lastFileInd);
+		if (!dip.diffcode.isDirectory())
+		{
+			MoveFocus(currentInd, lastFileInd, 1);
+			OpenSelection();
+			break;
+		}
+		lastFileInd--;
+	}
+}
+
+bool CDirView::IsLastFile()
+{
+	const int count = m_pList->GetItemCount();
+	int currentInd = GetFocusedItem();
+	int lastFileInd = count - 1;
+	while (lastFileInd >= currentInd)
+	{
+		DIFFITEM& dip = GetDiffItem(lastFileInd);
+		if (!dip.diffcode.isDirectory())
+		{
+			if (currentInd == lastFileInd)
+				return true;
+			else
+				return false;
+		}
+		lastFileInd--;
+	}
+	return false;
+}
+
+void CDirView::OpenNextFile()
+{
+	int currentInd = GetFocusedItem();
+	int nextInd = currentInd + 1;
+	if (currentInd >= 0)
+	{
+		while (true)
+		{
+			DIFFITEM& dip = GetDiffItem(nextInd);
+			MoveFocus(nextInd - 1, nextInd, 1);
+			if (!dip.diffcode.isDirectory())
+			{				
+				OpenSelection();
+				break;
+			}
+			nextInd++;
+		}
+	}
+}
+
+void CDirView::OpenPrevFile()
+{
+	int currentInd = GetFocusedItem();
+	int prevInd = currentInd - 1;
+	if (currentInd >= 0)
+	{
+		while (prevInd >= 0)
+		{
+			DIFFITEM& dip = GetDiffItem(prevInd);
+			MoveFocus(prevInd + 1, prevInd, 1);
+			if (!dip.diffcode.isDirectory())
+			{
+				OpenSelection();
+				break;
+			}
+			prevInd--;
+		}
+	}
+}
+
 void CDirView::SetActivePane(int pane)
 {
 	if (m_nActivePane >= 0)

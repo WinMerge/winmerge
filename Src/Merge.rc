@@ -3356,6 +3356,11 @@ BEGIN
     ID_ALL_RIGHT            "\nAll Right"
     ID_ALL_LEFT             "\nAll Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
+    ID_FIRSTFILE            "\nFirst File"
+    ID_NEXTFILE             "\nNext File"
+    ID_LASTFILE             "\nLast File"
+    ID_PREVFILE             "\nPrevious File"
+
 END
 
 // PLUGINS MENU
