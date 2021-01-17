@@ -103,10 +103,23 @@ attrib -a English.pot
 findstr /v POT-Creation-Date English.pot &gt; English.pot.flt
 findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
 fc English.pot.flt English.pot.prev.flt
-if not errorlevel 1 copy /y English.pot.prev English.pot
+if not errorlevel 1 (
+  copy /y English.pot.prev English.pot
+) else (
+  set POT_UPDATED=true
+)
 del English.pot.prev English.pot.flt English.pot.prev.flt
 set LIB=
 powershell -ExecutionPolicy ByPass -File UpdatePoFilesFromPotFile.ps1
+if "%POT_UPDATED%" == "true" (
+  pushd ..
+  for %%i in ("%LOCALAPPDATA%\Programs\Python\Python39" "C:\Python39") do (
+    if exist "%%~i\python.exe" (
+      "%%~i\python.exe" GetTranslationsStatus.py
+    )
+  ) 
+  popd
+)
 popd
 </Command>
       <Outputs>$(ProjectDir)..\Translations\WinMerge\MergeLang.lastbuild</Outputs>
