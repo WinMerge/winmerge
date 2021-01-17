@@ -1369,6 +1369,10 @@
 #define IDS_IGNSUB_STR6                 34179
 #define IDS_IGNSUB_STR7                 34180
 #define ID_FILE_COMPARE_PROPERTIES      34181
+#define ID_FIRSTFILE					34182
+#define ID_PREVFILE						34183
+#define ID_NEXTFILE						34184
+#define ID_LASTFILE						34185
 
 // Next default values for new objects
 // 
@@ -1376,7 +1380,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34182
+#define _APS_NEXT_COMMAND_VALUE         34186
 #define _APS_NEXT_CONTROL_VALUE         8837
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
