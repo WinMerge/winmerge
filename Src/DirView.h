@@ -104,6 +104,13 @@ public:
 	void MoveToPrevDiff();
 	void OpenNextDiff();
 	void OpenPrevDiff();
+	void OpenFirstFile();
+	void OpenLastFile();
+	void OpenNextFile();
+	void OpenPrevFile();
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	void SetActivePane(int pane);
 
 // Implementation types

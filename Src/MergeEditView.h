@@ -351,6 +351,15 @@ protected:
 	afx_msg void OnWindowSplit();
 	afx_msg void OnUpdateWindowSplit(CCmdUI* pCmdUI);
 	afx_msg void OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnFirstFile();
+	afx_msg void OnUpdateFirstFile(CCmdUI* pCmdUI);
+	afx_msg void OnPrevFile();
+	afx_msg void OnUpdatePrevFile(CCmdUI* pCmdUI);
+	afx_msg void OnNextFile();
+	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
+	afx_msg void OnLastFile();
+	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

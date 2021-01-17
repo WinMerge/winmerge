@@ -111,7 +111,13 @@ public:
 	bool MoveableToPrevDiff();
 	void MoveToNextDiff(IMergeDoc *pMergeDoc);
 	void MoveToPrevDiff(IMergeDoc *pMergeDoc);
-	
+	void MoveToFirstFile(IMergeDoc* pMergeDoc);
+	void MoveToLastFile(IMergeDoc* pMergeDoc);
+	void MoveToNextFile(IMergeDoc* pMergeDoc);
+	void MoveToPrevFile(IMergeDoc* pMergeDoc);
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	bool CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifileloc[]);
 
 protected:

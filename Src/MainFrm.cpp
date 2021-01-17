@@ -2164,7 +2164,7 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nN
  */
 static void LoadToolbarImageList(int orgImageWidth, int newImageWidth, UINT nIDResource, bool bGrayscale, CImageList& ImgList)
 {
-	const int ImageCount = 22;
+	const int ImageCount = 26;
 	const int orgImageHeight = orgImageWidth - 1;
 	const int newImageHeight = newImageWidth - 1;
 	LoadHiColImageList(nIDResource, orgImageWidth, orgImageHeight, newImageWidth, newImageHeight, ImageCount, bGrayscale, ImgList);
