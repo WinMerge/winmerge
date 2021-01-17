@@ -251,9 +251,7 @@ extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 
 /// Ignored Susbstitutions
 extern const String OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED OP("Settings/IgnoredSubstitutionsAreEnabled");
-extern const String OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS OP("Settings/IgnoredSubstitutionsWorkBothWays");
-extern const String OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS OP("Settings/CompletelyBlankOutIgnoredSusbstitutions");
-extern const String OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS OP("Settings/UseRegexpsForIgnoredSubstitutions");
+extern const String OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES OP("Settings/CompletelyBlankOutIgnoredChanges");
 
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");

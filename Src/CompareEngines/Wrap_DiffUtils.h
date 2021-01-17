@@ -32,7 +32,6 @@ public:
 	~DiffUtils();
 	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
-	void SetIgnoredSubstitutionsList(FilterList* list0, FilterList* list1);
 	void ClearFilterList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();

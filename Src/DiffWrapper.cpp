@@ -860,15 +860,13 @@ bool MatchDiffVsIngoredSubstitutions
 	const std::string &changeBlock0,
 	const std::string &changeBlock1,
 	const wdiff &diff,
-	const IgnoredSubstitutionsFilterList &ignoredSubstitutionsList,
-	const bool optUseRegexpsForIgnoredSubstitutions,
-	const bool optMatchBothWays
+	const IgnoredSubstitutionsFilterList &ignoredSubstitutionsList
 )
 {
 	int changeStartPos[2] = { diff.begin[0], diff.begin[1] };
 	int changeEndPos[2] = { diff.end[0], diff.end[1] };
 	
-	if (!optUseRegexpsForIgnoredSubstitutions)
+	if (false/*!optUseRegexpsForIgnoredSubstitutions*/)
 	{
 		/// The passed in changes can still have a commonality between them on the ends. Shrink changeStartPos and changeEndPos,
 		/// so that in terms of the first and the last symbols change0 and change1 are different.
@@ -952,30 +950,17 @@ bool MatchDiffVsIngoredSubstitutions
 			continue;
 
 		/// Check is the middle part matches
-		if(optUseRegexpsForIgnoredSubstitutions)
+		if(true /*optUseRegexpsForIgnoredSubstitutions*/)
 		{
-			if
-			(
-				   ignoredSubstitutionsList.MatchBoth(f, change0, change1)
-				||
-					 optMatchBothWays
-				&& ignoredSubstitutionsList.MatchBoth(f, change1, change0)
-			)
+			if (ignoredSubstitutionsList.MatchBoth(f, change0, change1))
 			{
 				return true; /// a match found
 			}
 		}
 		else
 		{
-			if
-			(
-				   filter.MiddleParts[0].compare(change0) == 0
-				&& filter.MiddleParts[1].compare(change1) == 0
-				||
-				   optMatchBothWays
-				&& filter.MiddleParts[0].compare(change1) == 0
-				&& filter.MiddleParts[1].compare(change0) == 0
-		)
+			if (filter.MiddleParts[0].compare(change0) == 0 &&
+			    filter.MiddleParts[1].compare(change1) == 0)
 			{
 				return true; /// a match found
 			}
@@ -996,9 +981,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	struct change *next = script;
 	
-	const bool optCompletelyBlankOutIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS);
-	const bool optMatchBothWays = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS);
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
+	const bool optCompletelyBlankOutIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 
 	while (next != nullptr)
 	{
@@ -1117,8 +1100,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						(
 							changeBlock0, changeBlock1,
 							diff,
-							*m_pIgnoredSubstitutionsList, optUseRegexpsForIgnoredSubstitutions,
-							optMatchBothWays
+							*m_pIgnoredSubstitutionsList
 						))
 						{
 							/// Found a change that does not match any Ignored Substitution's. Leave the change block unaffected.
@@ -1129,15 +1111,13 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					}
 
 					if (allChangesWithinTheBlockAreIgnored)
-					{
-						if (optCompletelyBlankOutIgnoredSubstitutions)
-							op = OP_NONE;
-						else
-							op = OP_TRIVIAL;
-					}
+						op = OP_TRIVIAL;
 				}
 
-				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				if (op == OP_TRIVIAL && optCompletelyBlankOutIgnoredSubstitutions)
+					op = OP_NONE;
+				if (op != OP_NONE)
+					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
 		}
 		
@@ -1557,26 +1537,6 @@ IgnoredSubstitutionsFilterList* CDiffWrapper::GetIgnoredSubstitutionsList()
 	return m_pIgnoredSubstitutionsList.get();
 }
 
-void CDiffWrapper::SetIgnoredSubstitutionsList(const FilterList* pIgnoredSubstitutionsList0, const FilterList* pIgnoredSubstitutionsList1)
-{
-	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
-
-	if (!pIgnoredSubstitutionsList0 || pIgnoredSubstitutionsList0->GetCount() == 0)
-	{
-		m_pIgnoredSubstitutionsList.reset();
-		return;
-	}
-
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
-
-	for (int f = 0; f < pIgnoredSubstitutionsList0->GetCount(); f++)
-	{
-		std::string s0 = (*pIgnoredSubstitutionsList0)[f].filterAsString;
-		std::string s1 = (*pIgnoredSubstitutionsList1)[f].filterAsString;
-		m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
-	}
-}
-
 void CDiffWrapper::SetIgnoredSubstitutionsList(const TokenPairList *ignoredSubstitutionsList)
 {
 	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
@@ -1588,14 +1548,17 @@ void CDiffWrapper::SetIgnoredSubstitutionsList(const TokenPairList *ignoredSubst
 		return;
 	}
 
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
-
 	for (int f = 0; f < ignoredSubstitutionsList->GetCount(); f++)
 	{
-		std::string s0 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr0.c_str());
-		std::string s1 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr1.c_str());
-		if(s0 != s1)
-			m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
+		bool enabled = ignoredSubstitutionsList->GetAt(f).enabled;
+		if (enabled)
+		{
+			bool useRegExp = ignoredSubstitutionsList->GetAt(f).useRegExp;
+			std::string s0 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr0.c_str());
+			std::string s1 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr1.c_str());
+			if (s0 != s1)
+				m_pIgnoredSubstitutionsList->Add(s0, s1, useRegExp);
+		}
 	}
 }
 

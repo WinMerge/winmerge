@@ -16,6 +16,8 @@ class COptionsMgr;
  */
 struct TokenPair
 {
+	bool enabled;
+	bool useRegExp;
 	String filterStr0;
 	String filterStr1;
 };
@@ -29,7 +31,7 @@ public:
 	TokenPairList();
 	~TokenPairList();
 
-	void AddFilter(const String& filter0, const String& filter1);
+	void AddFilter(const String& filter0, const String& filter1, bool useRegExp, bool enabled);
 	size_t GetCount() const;
 	void Empty();
 	const TokenPair &GetAt(size_t ind) const;

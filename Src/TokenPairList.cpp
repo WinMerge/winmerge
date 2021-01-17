@@ -36,9 +36,11 @@ TokenPairList::~TokenPairList()
  * @param [in] filter Filter string to add.
  * @param [in] enabled Is filter enabled?
  */
-void TokenPairList::AddFilter(const String& filter0, const String& filter1)
+void TokenPairList::AddFilter(const String& filter0, const String& filter1, bool useRegExp, bool enabled)
 {
 	std::shared_ptr<TokenPair> item(new TokenPair());
+	item->enabled = enabled;
+	item->useRegExp = useRegExp;
 	item->filterStr0 = filter0;
 	item->filterStr1 = filter1;
 	m_items.push_back(item);
@@ -72,7 +74,7 @@ void TokenPairList::CloneFrom(const TokenPairList *list)
 	for (size_t i = 0; i < count; i++)
 	{
 		const TokenPair &item = list->GetAt(i);
-		AddFilter(item.filterStr0, item.filterStr1);
+		AddFilter(item.filterStr0, item.filterStr1, item.useRegExp, item.enabled);
 	}
 }
 
@@ -93,7 +95,9 @@ bool TokenPairList::Compare(const TokenPairList *list) const
 
 		if
 		(
-			   item1.filterStr0 != item2.filterStr0
+			   item1.enabled != item2.enabled
+			|| item1.useRegExp != item2.useRegExp
+			|| item1.filterStr0 != item2.filterStr0
 			|| item1.filterStr1 != item2.filterStr1
 		)
 			return false;
@@ -119,6 +123,14 @@ void TokenPairList::Initialize(COptionsMgr *pOptionsMgr)
 
 	for (unsigned i = 0; i < count; i++)
 	{
+		String nameEnabled = strutils::format(_T("%s/Enabled%02u"), IgnoredSubstitutionsRegPath, i);
+		m_pOptionsMgr->InitOption(nameEnabled, true);
+		bool enabled = m_pOptionsMgr->GetBool(nameEnabled);
+
+		String nameUseRegExp = strutils::format(_T("%s/UseRegExp%02u"), IgnoredSubstitutionsRegPath, i);
+		m_pOptionsMgr->InitOption(nameUseRegExp, true);
+		bool useRegExp = m_pOptionsMgr->GetBool(nameUseRegExp);
+
 		String name0 = strutils::format(_T("%s/Filter%02u_0"), IgnoredSubstitutionsRegPath, i);
 		m_pOptionsMgr->InitOption(name0, _T(""));
 		String filterStr0 = m_pOptionsMgr->GetString(name0);
@@ -127,7 +139,7 @@ void TokenPairList::Initialize(COptionsMgr *pOptionsMgr)
 		m_pOptionsMgr->InitOption(name1, _T(""));
 		String filterStr1 = m_pOptionsMgr->GetString(name1);
 
-		AddFilter(filterStr0, filterStr1);
+		AddFilter(filterStr0, filterStr1, useRegExp, enabled);
 	}
 }
 

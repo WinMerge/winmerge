@@ -25,8 +25,6 @@ public:
 	//{{AFX_DATA(IgnoredSubstitutionsDlg)
 	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
 	bool m_IgnoredSubstitutionsAreEnabled;
-	bool m_IgnoredSubstitutionsWorkBothWays;
-	bool m_CompletelyBlankOutIgnoredSubstitutions;
 	bool m_UseRegexpsForIgnoredSubstitutions;
 	//}}AFX_DATA
 

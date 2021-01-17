@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "subedit.h"
 #include "SubeditList.h"
 
 #ifdef _DEBUG

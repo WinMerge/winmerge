@@ -1143,15 +1143,6 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-msgid "Completely unhighlight the ignored changes"
-msgstr ""
-
-msgid "Ignore changes in both directions"
-msgstr ""
-
-msgid "Use regular expressions"
-msgstr ""
-
 msgid "Add"
 msgstr ""
 
@@ -1379,6 +1370,9 @@ msgstr "比较算法 (实验性) (&A):"
 
 msgid "Enable indent &heuristic"
 msgstr "启用启发式缩进(&H)"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
 
 msgid "Editor"
 msgstr "编辑器"
@@ -3580,10 +3574,10 @@ msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "On one panel"
+msgid "Find what"
 msgstr ""
 
-msgid "On the other panel"
+msgid "Replace with"
 msgstr ""
 
 msgid "<Edit here>"

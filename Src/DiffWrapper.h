@@ -185,7 +185,6 @@ public:
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
 	IgnoredSubstitutionsFilterList *GetIgnoredSubstitutionsList();
-	void SetIgnoredSubstitutionsList(const FilterList* pIgnoredSubstitutionsList0, const FilterList* pIgnoredSubstitutionsList1);
 	void SetIgnoredSubstitutionsList(const class TokenPairList *ignoredSubstitutionsList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);

@@ -1139,15 +1139,6 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-msgid "Completely unhighlight the ignored changes"
-msgstr ""
-
-msgid "Ignore changes in both directions"
-msgstr ""
-
-msgid "Use regular expressions"
-msgstr ""
-
 msgid "Add"
 msgstr ""
 
@@ -1375,6 +1366,9 @@ msgstr "&Fark algortiması (Deneysel):"
 
 msgid "Enable indent &heuristic"
 msgstr "&Sezgisel girinti kullanılsın"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
 
 msgid "Editor"
 msgstr "Düzenleyici"
@@ -3574,10 +3568,10 @@ msgstr "Sayfa: %d/%d  Yakınlaştırma: %d%%  %dx%dpiksel  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "On one panel"
+msgid "Find what"
 msgstr ""
 
-msgid "On the other panel"
+msgid "Replace with"
 msgstr ""
 
 msgid "<Edit here>"

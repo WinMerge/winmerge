@@ -31,8 +31,6 @@ IgnoredSubstitutionsDlg::IgnoredSubstitutionsDlg()
 {
 	//{{AFX_DATA_INIT(IgnoredSubstitutionsFiltersDlg)
 	m_IgnoredSubstitutionsAreEnabled = false;
-	m_IgnoredSubstitutionsWorkBothWays = false;
-	m_CompletelyBlankOutIgnoredSubstitutions = false;
 	m_UseRegexpsForIgnoredSubstitutions = false;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
@@ -47,21 +45,18 @@ void IgnoredSubstitutionsDlg::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(IgnoredSubstitutionsFiltersDlg)
 	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED, m_IgnoredSubstitutionsAreEnabled);
-	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_WORK_BOTH_WAYS, m_IgnoredSubstitutionsWorkBothWays);
-	DDX_Check(pDX, IDC_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS, m_CompletelyBlankOutIgnoredSubstitutions);
-	DDX_Check(pDX, IDC_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS, m_UseRegexpsForIgnoredSubstitutions);
-	//}}AFX_DATA_MAP
 	DDX_Control(pDX, IDC_IGNORED_SUBSTITUTIONS_FILTER, m_VisibleFiltersList);
+	//}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP(IgnoredSubstitutionsDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(IgnoredSubstitutionsFiltersDlg)
 	ON_COMMAND(ID_HELP, OnHelp)
-	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_CLEARBTN, OnBnClickedClearBtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedRemovebtn)
 	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_IGNORED_SUBSTITUTIONS_FILTER, OnEndLabelEdit)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -84,14 +79,15 @@ BOOL IgnoredSubstitutionsDlg::OnInitDialog()
 
 void IgnoredSubstitutionsDlg::InitList()
 {
-	m_VisibleFiltersList.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
+	m_VisibleFiltersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 	//m_VisibleFiltersList.SetExtendedStyle(LVS_EX_INFOTIP | LVS_EX_GRIDLINES);
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
- 	m_VisibleFiltersList.InsertColumn(0, _("On one panel").c_str(), LVCFMT_LEFT, pointToPixel(112));
- 	m_VisibleFiltersList.InsertColumn(1, _("On the other panel").c_str(), LVCFMT_LEFT, pointToPixel(262));
+ 	m_VisibleFiltersList.InsertColumn(0, _("Find what").c_str(), LVCFMT_LEFT, pointToPixel(112));
+ 	m_VisibleFiltersList.InsertColumn(1, _("Replace with").c_str(), LVCFMT_LEFT, pointToPixel(262));
+ 	m_VisibleFiltersList.InsertColumn(2, _("RegExp").c_str(), LVCFMT_LEFT, pointToPixel(72));
 
 	if (m_pExternalRenameList)
 	{
@@ -100,6 +96,8 @@ void IgnoredSubstitutionsDlg::InitList()
 			const TokenPair& item = m_pExternalRenameList->GetAt(i);
 			m_VisibleFiltersList.InsertItem(i, item.filterStr0.c_str());
 			m_VisibleFiltersList.SetItemText(i, 1, item.filterStr1.c_str());
+			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _("Yes").c_str() : _("No").c_str());
+			m_VisibleFiltersList.SetCheck(i, item.enabled);
 		}
 	}
 }
@@ -148,8 +146,11 @@ void IgnoredSubstitutionsDlg::OnOK()
 	{
 		String symbolBeforeRename = m_VisibleFiltersList.GetItemText(i, 0);
 		String symbolAfterRename = m_VisibleFiltersList.GetItemText(i, 1);
+		const TCHAR c = m_VisibleFiltersList.GetItemText(i, 2)[0];
+		bool useRegExp = (c == 'Y' || c == 'y' || m_VisibleFiltersList.GetItemText(i, 2).Compare(_("Yes").c_str()) == 0);
+		bool enabled = !!m_VisibleFiltersList.GetCheck(i);
 		if(symbolBeforeRename != _("<Edit here>") && symbolAfterRename != _("<Edit here>"))
-			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename);
+			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename, useRegExp, enabled);
 	}
 
 	CPropertyPage::OnClose();
