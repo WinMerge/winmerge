@@ -5,6 +5,7 @@
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
 #include "FolderCmp.h"
+#include "DirScan.h"
 #include <iostream>
 #include <Poco/Thread.h>
 #ifdef _MSC_VER
@@ -51,7 +52,18 @@ int main()
 	// Folder names to compare are in the compare context
 	CDiffThread diffThread;
 	diffThread.SetContext(&ctx);
-	diffThread.SetCompareSelected(false);
+	diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+		bool casesensitive = false;
+		int depth = myStruct->context->m_bRecursive ? -1 : 0;
+		PathContext paths = myStruct->context->GetNormalizedPaths();
+		String subdir[3] = { _T(""), _T(""), _T("") }; // blank to start at roots specified in diff context
+		// Build results list (except delaying file comparisons until below)
+		DirScan_GetItems(paths, subdir, myStruct,
+			casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+	});
+	diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+		DirScan_CompareItems(myStruct, nullptr);
+	});
 	diffThread.CompareDirectories();
 
 	while (diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
@@ -66,8 +78,8 @@ int main()
 		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
 		if (ctx.m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename))
 		{
-			FolderCmp folderCmp;
-			folderCmp.prepAndCompareFiles(&ctx, di);
+			FolderCmp folderCmp(&ctx);
+			folderCmp.prepAndCompareFiles(di);
 #ifdef _UNICODE
 //		std::wcout << di.diffFileInfo[0].filename << ":" << di.diffcode.isResultDiff() << std::endl;
 #else
