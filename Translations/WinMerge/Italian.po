@@ -3328,6 +3328,18 @@ msgstr ""
 "\n"
 "Unione automatica (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr ""
 "Il decompressore è applicato a entrambi i file (è sufficiente che uno dei "

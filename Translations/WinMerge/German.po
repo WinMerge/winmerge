@@ -3688,6 +3688,18 @@ msgstr "\nAlles nach links"
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatisch mischen (Strg+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."
 
