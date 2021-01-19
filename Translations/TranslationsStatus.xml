@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-01-18</update>
+  <update>2021-01-19</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -303,12 +303,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-01-10</update>
+      <update>2021-01-18</update>
       <strings>
         <count>1024</count>
-        <translated>1018</translated>
+        <translated>1024</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>6</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -441,12 +441,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-01-18</update>
+      <update>2021-01-19</update>
       <strings>
         <count>1024</count>
-        <translated>1020</translated>
+        <translated>1024</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -655,12 +655,12 @@
     <translation>
       <language>Slovenian</language>
       <file>Slovenian.po</file>
-      <update>2021-01-13</update>
+      <update>2021-01-19</update>
       <strings>
         <count>1024</count>
-        <translated>1018</translated>
+        <translated>1024</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>6</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
