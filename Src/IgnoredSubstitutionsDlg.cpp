@@ -88,6 +88,7 @@ void IgnoredSubstitutionsDlg::InitList()
  	m_VisibleFiltersList.InsertColumn(0, _("Find what").c_str(), LVCFMT_LEFT, pointToPixel(112));
  	m_VisibleFiltersList.InsertColumn(1, _("Replace with").c_str(), LVCFMT_LEFT, pointToPixel(262));
  	m_VisibleFiltersList.InsertColumn(2, _("RegExp").c_str(), LVCFMT_LEFT, pointToPixel(72));
+	m_VisibleFiltersList.SetBinaryValueColumn(2);
 
 	if (m_pExternalRenameList)
 	{
