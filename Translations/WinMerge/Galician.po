@@ -4033,6 +4033,18 @@ msgstr ""
 "\n"
 "Automesturar (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "O desempaquetador escollido utilízase con ambos arquivos (unicamente un arquivo precisa a extensión)."
 

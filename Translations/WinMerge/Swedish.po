@@ -3975,6 +3975,18 @@ msgstr ""
 "\n"
 "Auto Sammanfoga (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Den valda uppackaren används för båda filerna (bara en fil behöver ha filsuffixet)."
 

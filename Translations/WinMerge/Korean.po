@@ -3998,6 +3998,18 @@ msgstr ""
 "\n"
 "자동 병합 (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."
 

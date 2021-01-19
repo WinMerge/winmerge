@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-02 11:14+0000\n"
-"PO-Revision-Date: 2021-01-02 11:11+0200\n"
+"POT-Creation-Date: 2021-01-16 22:59+0000\n"
+"PO-Revision-Date: 2021-01-18 07:07+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -45,7 +45,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
 
 msgid "Add this change to &Ignored Substitutions"
-msgstr ""
+msgstr "Pridėti šį pakeitimą prie &ignoruojamų pakaitalų"
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -167,7 +167,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Vektorinių vaizdų mastelio keitimas"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Lyginti iš paveikslėlio ištrauktą &tekstą"
 
 msgid "&File"
 msgstr "&Failas"
@@ -590,10 +590,10 @@ msgid "&Lock Panes"
 msgstr "Užrakinti po&langius"
 
 msgid "&View Whitespace"
-msgstr "&Rodyti tarpus"
+msgstr "&Rodyti tarpų simbolius"
 
 msgid "View E&OL"
-msgstr "Rodyti E&PF"
+msgstr "R&odyti eilučių skirtukus"
 
 msgid "Vie&w Line Differences"
 msgstr "Ro&dyti skirtumus eilutėse"
@@ -886,7 +886,7 @@ msgid "I&gnore changes"
 msgstr "I&gnoruoti pokyčius"
 
 msgid "Ig&nore all"
-msgstr "Ig&noruoti viską"
+msgstr "Ig&noruoti visus"
 
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
@@ -1117,13 +1117,13 @@ msgid "&Apply"
 msgstr "T&aikyti"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Eilutės filtrai"
 
 msgid "Enable Line Filters"
 msgstr "Įjungti eilutės filtrus"
 
 msgid "Regular Expressions (one per line):"
-msgstr "Reguliarioji išraiška (viena eilutėje):"
+msgstr "Reguliarieji reiškiniai (vienas eilutėje):"
 
 msgid "Edit"
 msgstr "Redaguoti"
@@ -1132,19 +1132,28 @@ msgid "Remove"
 msgstr "Pašalinti"
 
 msgid "Ignored Substitutions"
-msgstr ""
+msgstr "Ignoruojami pakaitalai"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "Pakeitimai, kurie rodomi skyduose kaip toliau išvardytos poros, bus ignoruojami arba pažymėti kaip nereikšmingi. Pataisos nepaveikiamos."
 
 msgid "Enable"
-msgstr ""
+msgstr "Įjungti"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr "Visiškai nuimti paryškinimą ignoruojamiems keitimams"
+
+msgid "Ignore changes in both directions"
+msgstr "Ignoruoti pakeitimus abiejomis kryptimis"
+
+msgid "Use regular expressions"
+msgstr "Naudoti reguliariuosius reiškinius"
 
 msgid "Add"
-msgstr ""
+msgstr "Pridėti"
 
 msgid "Clear"
-msgstr ""
+msgstr "Išvalyti"
 
 msgid "Colors"
 msgstr "Spalvų"
@@ -1354,7 +1363,7 @@ msgid "Ignore blan&k lines"
 msgstr "Nepaisyti &tuščių eilučių"
 
 msgid "Ignore c&omment differences"
-msgstr "Nepaisyti k&omentarų skirtumų"
+msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -1368,9 +1377,6 @@ msgstr "Lyginimo &algoritmas (Bandymai):"
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr ""
-
 msgid "Editor"
 msgstr "Redaktoriaus"
 
@@ -1381,7 +1387,7 @@ msgid "&Automatic rescan"
 msgstr "&Automatiškai perskanuoti"
 
 msgid "&Preserve original EOL chars"
-msgstr "Išsaugoti originalų eilučių pabaigos formatą"
+msgstr "Išsaugoti originalų eil. pabaigos formatą"
 
 msgid "Tabs"
 msgstr "TAB simboliai"
@@ -1414,7 +1420,7 @@ msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Failo filtrai"
 
 msgid "Test..."
 msgstr "Testas..."
@@ -1854,7 +1860,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCR rezultatas:"
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
@@ -2097,7 +2103,7 @@ msgid "Untitled right"
 msgstr "Bevardis dešinysis"
 
 msgid "Base File"
-msgstr ""
+msgstr "Pagrindinis failas"
 
 msgid "Theirs File"
 msgstr "Jų failas"
@@ -2235,7 +2241,7 @@ msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr ""
+msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -2958,6 +2964,18 @@ msgstr "\nKopijuoti viską į kairę"
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
 
@@ -3179,24 +3197,24 @@ msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
 
-msgid "Find what"
-msgstr ""
+msgid "On one panel"
+msgstr "Šiame skyde"
 
-msgid "Replace with"
-msgstr ""
+msgid "On the other panel"
+msgstr "Kitame skyde"
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Redaguoti čia>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Nerasta skirtumų, kuriuos būtų galima pasirinkti"
 
 msgid "No differences found to add as ignored substitution"
-msgstr ""
+msgstr "Nerasta skirtumų, kuriuos būtų galima pridėti kaip ignoruojamą pakaitalą"
 
 msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr ""
+msgstr "Pora jau yra ignoruojamų pakaitalų sąraše"
 
 msgid "Add this change to Ignored Substitutions?"
-msgstr ""
+msgstr "Pridėti šį pakeitimą prie ignoruojamų pakaitalų?"
 

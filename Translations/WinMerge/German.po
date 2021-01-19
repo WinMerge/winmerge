@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-01-10 17:17+0200\n"
+"PO-Revision-Date: 2021-01-18 21:21+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "S&hell-Menü"
 
 #, c-format
 msgid "View &Differences"
-msgstr "Unterschiede anzeigen"
+msgstr "&Unterschiede anzeigen"
 
 #, c-format
 msgid "Diff &Block Size"
@@ -191,10 +191,10 @@ msgid "&Set Background Color"
 msgstr "&Hintergrundfarbe setzen"
 
 msgid "&Vector Image Scaling"
-msgstr "Vektorbild-Skalierung"
+msgstr "&Vektorbild-Skalierung"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Extrahierten &Text aus den Bildern vergleichen"
 
 #, c-format
 msgid "&File"
@@ -2342,7 +2342,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "&Bildvergleich im Ordnervergleich aktivieren"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCR-Resultat:"
 
 #, c-format
 msgid "&Hex View"
@@ -3681,6 +3681,18 @@ msgstr "\nAlles nach links"
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatisch mischen (Strg+Alt+M)"
+
+msgid "\nFirst File"
+msgstr "\nErste Datei"
+
+msgid "\nNext File"
+msgstr "\nNächste Datei"
+
+msgid "\nLast File"
+msgstr "\nLetzte Datei"
+
+msgid "\nPrevious File"
+msgstr "\nVorherige Datei"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."

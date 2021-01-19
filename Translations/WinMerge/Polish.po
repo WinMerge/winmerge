@@ -2955,6 +2955,18 @@ msgstr "\nWszystko do lewej"
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
 

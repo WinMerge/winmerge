@@ -3992,6 +3992,18 @@ msgstr ""
 "\n"
 "Yhdistä automaattisesti (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Mukautettua purkajaa käytetään molempiin tiedostoihin (vain yksi tiedosto tarvitsee päätteen)."
 
