@@ -2121,11 +2121,12 @@ bool CDirView::IsLastFile()
 
 void CDirView::OpenNextFile()
 {
+	const int count = m_pList->GetItemCount();
 	int currentInd = GetFocusedItem();
 	int nextInd = currentInd + 1;
 	if (currentInd >= 0)
 	{
-		while (true)
+		while (nextInd < count)
 		{
 			DIFFITEM& dip = GetDiffItem(nextInd);
 			MoveFocus(nextInd - 1, nextInd, 1);

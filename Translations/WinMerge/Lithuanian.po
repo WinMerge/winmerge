@@ -2964,6 +2964,18 @@ msgstr "\nKopijuoti viską į kairę"
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
 
