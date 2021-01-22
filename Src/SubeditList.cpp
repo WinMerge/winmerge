@@ -203,8 +203,8 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 				if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
 				{
 					CString text = GetItemText(index, colnum);
-					SetItemText(index, colnum, text.Compare(_("Yes").c_str()) == 0 ?
-						_("No").c_str() : _("Yes").c_str());
+					SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
+						_T("\u2610") : _T("\u2611"));
 				}
 				else
 				{

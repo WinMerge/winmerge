@@ -353,6 +353,54 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	Op = OP_TRIVIAL;
 }
 
+void CDiffWrapper::SubstitutionFilter(int StartPos0, int EndPos0, 
+	int StartPos1, int EndPos1, OP_TYPE& Op, const file_data* file_data_ary) const
+{
+	if (Op == OP_TRIVIAL)
+		return;
+
+	const char* changeBlockStart0 =     file_data_ary[0].linbuf[StartPos0];
+	const char *nextChangeBlockStart0 = file_data_ary[0].linbuf[EndPos0 + 1];
+	size_t changeBlockLength0 = nextChangeBlockStart0 - changeBlockStart0;
+
+	const char* changeBlockStart1 =     file_data_ary[1].linbuf[StartPos1];
+	const char *nextChangeBlockStart1 = file_data_ary[1].linbuf[EndPos1 + 1];
+	size_t changeBlockLength1 = nextChangeBlockStart1 - changeBlockStart1;
+
+	std::string changeBlock0{changeBlockStart0, changeBlockLength0};
+	std::string changeBlock1{changeBlockStart1, changeBlockLength1};
+
+	String LineDataLeft, LineDataRight;
+
+	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+	{
+		//Ignore character case
+		ReplaceSpaces(LineDataLeft, _T(""));
+		ReplaceSpaces(LineDataRight, _T(""));
+	}
+	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+	{
+		//Ignore change in whitespace char count
+		ReplaceSpaces(LineDataLeft, _T(" "));
+		ReplaceSpaces(LineDataRight, _T(" "));
+	}
+
+	if (m_options.m_bIgnoreCase)
+	{
+		//ignore case
+		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+		for (String::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+			*pb = static_cast<TCHAR>(::toupper(*pb));
+		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+		for (String::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+			*pb = static_cast<TCHAR>(::toupper(*pb));
+	}
+	if (LineDataLeft != LineDataRight)
+		return;
+
+	Op = OP_TRIVIAL;
+}
+
 /**
  * @brief Set source paths for diffing two files.
  * Sets full paths to two files we are diffing. Paths can be actual user files
@@ -1065,53 +1113,14 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				if
 				(
 					   op == OP_DIFF /// The change marked as significant
-					&& m_files.GetSize() == 2 /// We only support two pane mode for Ignored Substitutions
 					&& m_pIgnoredSubstitutionsList
 					&& m_pIgnoredSubstitutionsList->GetCount()
-					&& QtyLinesLeft > 0
-					&& QtyLinesRight > 0
 				)
 				{
-					const char* changeBlockStart0 =     file_data_ary[0].linbuf[thisob->line0];
-					const char *nextChangeBlockStart0 = file_data_ary[0].linbuf[thisob->line0 + QtyLinesLeft];
-					size_t changeBlockLength0 = nextChangeBlockStart0 - changeBlockStart0;
-
-					const char* changeBlockStart1 =     file_data_ary[1].linbuf[thisob->line1];
-					const char *nextChangeBlockStart1 = file_data_ary[1].linbuf[thisob->line1 + QtyLinesRight];
-					size_t changeBlockLength1 = nextChangeBlockStart1 - changeBlockStart1;
-
-					std::string changeBlock0 = std::string(changeBlockStart0, changeBlockLength0);
-					std::string changeBlock1 = std::string(changeBlockStart1, changeBlockLength1);
-					bool case_sensitive = false;
-					bool eol_sensitive = false;
-					int whitespace = WHITESPACE_IGNORE_CHANGE;
-					int breakType = 1;// breakType==1 means break also on punctuation
-					bool byte_level = true;
-					
-					std::vector<wdiff> worddiffs = ComputeWordDiffs(
-						ucr::toTString(changeBlock0), ucr::toTString(changeBlock1),
-						case_sensitive, eol_sensitive, whitespace, breakType, byte_level
-					);
-
-					bool allChangesWithinTheBlockAreIgnored = true;
-					for (const wdiff &diff: worddiffs)
-					{
-						if (!MatchDiffVsIngoredSubstitutions
-						(
-							changeBlock0, changeBlock1,
-							diff,
-							*m_pIgnoredSubstitutionsList
-						))
-						{
-							/// Found a change that does not match any Ignored Substitution's. Leave the change block unaffected.
-							/// Our strategy is to only mark a change block as ignored if all of its changes are ignored.
-							allChangesWithinTheBlockAreIgnored = false;
-							break;
-						}
-					}
-
-					if (allChangesWithinTheBlockAreIgnored)
-						op = OP_TRIVIAL;
+					SubstitutionFilter(
+						thisob->line0, thisob->line0 + QtyLinesLeft - 1, 
+						thisob->line1, thisob->line1 + QtyLinesRight- 1, 
+						op, file_data_ary);
 				}
 
 				if (op == OP_TRIVIAL && optCompletelyBlankOutIgnoredSubstitutions)

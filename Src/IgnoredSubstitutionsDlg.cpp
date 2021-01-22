@@ -97,7 +97,7 @@ void IgnoredSubstitutionsDlg::InitList()
 			const TokenPair& item = m_pExternalRenameList->GetAt(i);
 			m_VisibleFiltersList.InsertItem(i, item.filterStr0.c_str());
 			m_VisibleFiltersList.SetItemText(i, 1, item.filterStr1.c_str());
-			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _("Yes").c_str() : _("No").c_str());
+			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _T("\u2611") : _T("\u2610"));
 			m_VisibleFiltersList.SetCheck(i, item.enabled);
 		}
 	}
@@ -147,8 +147,7 @@ void IgnoredSubstitutionsDlg::OnOK()
 	{
 		String symbolBeforeRename = m_VisibleFiltersList.GetItemText(i, 0);
 		String symbolAfterRename = m_VisibleFiltersList.GetItemText(i, 1);
-		const TCHAR c = m_VisibleFiltersList.GetItemText(i, 2)[0];
-		bool useRegExp = (c == 'Y' || c == 'y' || m_VisibleFiltersList.GetItemText(i, 2).Compare(_("Yes").c_str()) == 0);
+		bool useRegExp = m_VisibleFiltersList.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
 		bool enabled = !!m_VisibleFiltersList.GetCheck(i);
 		if(symbolBeforeRename != _("<Edit here>") && symbolAfterRename != _("<Edit here>"))
 			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename, useRegExp, enabled);
