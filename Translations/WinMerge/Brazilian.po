@@ -3967,7 +3967,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "\n"
-"Copiar da Direita (Alt+Right)"
+"Copiar para Direita (Alt+Right)"
 
 #, c-format
 msgid ""
@@ -3975,7 +3975,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "\n"
-"Copiar da Esquerda (Alt+Left)"
+"Copiar para Esquerda (Alt+Left)"
 
 #, c-format
 msgid ""
@@ -3983,7 +3983,7 @@ msgid ""
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Copiar da Direita e Avançar (Ctrl+Alt+Right)"
+"Copiar para Direita e Avançar (Ctrl+Alt+Right)"
 
 #, c-format
 msgid ""
@@ -3991,7 +3991,7 @@ msgid ""
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Copiar da Esquerda e Avançar (Ctrl+Alt+Left)"
+"Copiar para Esquerda e Avançar (Ctrl+Alt+Left)"
 
 #, c-format
 msgid ""
