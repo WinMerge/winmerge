@@ -39,7 +39,7 @@
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
-#include "TokenPairList.h"
+#include "IgnoredSubstitutionsList.h"
 #include "TempFile.h"
 #include "codepage_detect.h"
 #include "SelectUnpackerDlg.h"
@@ -303,9 +303,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		m_diffWrapper.SetFilterList(_T(""));
 	}
 
-	if (GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED) && theApp.m_pTokensForIs)
+	if (GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED) && theApp.m_pIgnoredSubstitutionsList)
 	{
-		m_diffWrapper.SetIgnoredSubstitutionsList(theApp.m_pTokensForIs.get());
+		m_diffWrapper.SetIgnoredSubstitutionsList(theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList());
 	}
 	else
 	{

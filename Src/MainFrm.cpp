@@ -33,7 +33,7 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
-#include "TokenPairList.h"
+#include "IgnoredSubstitutionsList.h"
 #include "ConflictFileParser.h"
 #include "LineFiltersDlg.h"
 #include "IgnoredSubstitutionsDlg.h"
@@ -1653,15 +1653,15 @@ void CMainFrame::OnToolsFilters()
 	String title = _("Filters");
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
-	IgnoredSubstitutionsDlg ignoredSubstitutionsFiltersDlg;
+	IgnoredSubstitutionsDlg ignoredSubstitutionsDlg;
 	FileFiltersDlg fileFiltersDlg;
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
-	std::unique_ptr<TokenPairList> ignoredSubstitutionsFilters(new TokenPairList());
+	std::unique_ptr<IgnoredSubstitutionsList> ignoredSubstitutions(new IgnoredSubstitutionsList());
 	String selectedFilter;
 	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
-	sht.AddPage(&ignoredSubstitutionsFiltersDlg);
+	sht.AddPage(&ignoredSubstitutionsDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
@@ -1677,10 +1677,10 @@ void CMainFrame::OnToolsFilters()
 
 	const bool ignoredSubstitutionsAreEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
 
-	ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsAreEnabled = ignoredSubstitutionsAreEnabledOrig;
+	ignoredSubstitutionsDlg.m_IgnoredSubstitutionsAreEnabled = ignoredSubstitutionsAreEnabledOrig;
 	
-	ignoredSubstitutionsFilters->CloneFrom(theApp.m_pTokensForIs.get());
-	ignoredSubstitutionsFiltersDlg.SetList(ignoredSubstitutionsFilters.get());
+	ignoredSubstitutions->CloneFrom(theApp.m_pIgnoredSubstitutionsList.get());
+	ignoredSubstitutionsDlg.SetList(ignoredSubstitutions.get());
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -1706,7 +1706,7 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
-		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsFiltersDlg.m_IgnoredSubstitutionsAreEnabled;
+		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsDlg.m_IgnoredSubstitutionsAreEnabled;
 		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, ignoredSubstitutionsAreEnabled);
 
 		// Check if compare documents need rescanning
@@ -1721,7 +1721,7 @@ void CMainFrame::OnToolsFilters()
 				   linefiltersEnabled != lineFiltersEnabledOrig
 				|| ignoredSubstitutionsAreEnabled != ignoredSubstitutionsAreEnabledOrig
 				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
-				|| !ignoredSubstitutionsFilters->Compare(theApp.m_pTokensForIs.get())
+				|| !ignoredSubstitutions->Compare(theApp.m_pIgnoredSubstitutionsList.get())
 			)
 			{
 				bFileCompareRescan = true;
@@ -1743,8 +1743,8 @@ void CMainFrame::OnToolsFilters()
 		theApp.m_pLineFilters->CloneFrom(lineFilters.get());
 		theApp.m_pLineFilters->SaveFilters();
 
-		theApp.m_pTokensForIs->CloneFrom(ignoredSubstitutionsFilters.get());
-		theApp.m_pTokensForIs->SaveFilters();
+		theApp.m_pIgnoredSubstitutionsList->CloneFrom(ignoredSubstitutions.get());
+		theApp.m_pIgnoredSubstitutionsList->SaveFilters();
 
 
 		if (bFileCompareRescan)

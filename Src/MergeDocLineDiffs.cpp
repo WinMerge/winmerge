@@ -13,7 +13,7 @@
 #include "DiffTextBuffer.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
-#include "TokenPairList.h"
+#include "IgnoredSubstitutionsList.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "Merge.h"
@@ -101,11 +101,11 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 
 
 	/// Check whether the pair is already registered with Ignored Substitutions
-	TokenPairList &ignoredSubstitutionsList = *theApp.m_pTokensForIs.get();
+	IgnoredSubstitutionsList &ignoredSubstitutionsList = *theApp.m_pIgnoredSubstitutionsList.get();
 	for (int f = 0; f < ignoredSubstitutionsList.GetCount(); f++)
 	{
-		String str0 = ignoredSubstitutionsList.GetAt(f).filterStr0;
-		String str1 = ignoredSubstitutionsList.GetAt(f).filterStr1;
+		String str0 = ignoredSubstitutionsList.GetAt(f).pattern;
+		String str1 = ignoredSubstitutionsList.GetAt(f).replacement;
 		if ( str0 == selectedText[0] && str1 == selectedText[1])
 		{
 			String caption = _("The pair is already present in the list of Ignored Substitutions");
@@ -119,7 +119,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 	String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 	if (MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_YESNO) == IDYES)
 	{
-		ignoredSubstitutionsList.AddFilter(selectedText[0], selectedText[1], false, true);
+		ignoredSubstitutionsList.AddFilter(selectedText[0], selectedText[1], false, true, false, true);
 		FlushAndRescan(true);
 		//Rescan();
 	}

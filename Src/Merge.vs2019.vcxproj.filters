@@ -922,14 +922,17 @@
     <ClCompile Include="IgnoredSubstitutionsDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TokenPairList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\javascript.cpp">
       <Filter>EditLib\Parsers\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\autoit.cpp">
       <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubstitutionList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IgnoredSubstitutionsList.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1665,7 +1668,10 @@
     <ClInclude Include="IgnoredSubstitutionsDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TokenPairList.h">
+    <ClInclude Include="SubstitutionList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IgnoredSubstitutionsList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

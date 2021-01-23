@@ -19,7 +19,7 @@ class IgnoredSubstitutionsDlg : public CTrPropertyPage
 public:
 	IgnoredSubstitutionsDlg();
 
-	void SetList(TokenPairList *list);
+	void SetList(IgnoredSubstitutionsList *list);
 
 // Dialog Data
 	//{{AFX_DATA(IgnoredSubstitutionsDlg)
@@ -43,13 +43,9 @@ protected:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
 	virtual void OnOK() override;
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
-	afx_msg void OnBnClickedEditbtn();
 	afx_msg void OnBnClickedRemovebtn();
-	afx_msg void OnLvnItemActivate(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnLvnKeyDown(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -61,5 +57,5 @@ private:
 
 	CSubeditList m_VisibleFiltersList; /**< List control having filter strings */
 
-	TokenPairList *m_pExternalRenameList;
+	IgnoredSubstitutionsList *m_pExternalRenameList;
 };

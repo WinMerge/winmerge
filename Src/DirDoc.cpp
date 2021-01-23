@@ -21,6 +21,7 @@
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
+#include "SubstitutionList.h"
 #include "DirView.h"
 #include "DirFrame.h"
 #include "MainFrm.h"
@@ -30,7 +31,7 @@
 #include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
 #include "LineFiltersList.h"
-#include "TokenPairList.h"
+#include "IgnoredSubstitutionsList.h"
 #include "FileFilterHelper.h"
 #include "unicoder.h"
 #include "DirActions.h"
@@ -200,34 +201,18 @@ void CDirDoc::LoadLineFilterList(CDiffContext *pCtxt)
 		pCtxt->m_pFilterList->AddRegExp(*it);
 }
 
-void CDirDoc::LoadTokensForIgnoredSubstitutions(CDiffContext* pCtxt)
+void CDirDoc::LoadIgnoredSubstitutionsList(CDiffContext* pCtxt)
 {
 	ASSERT(pCtxt != nullptr);
 
 	bool ignoredSubstitutionsAreEnabled = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
-	if (!ignoredSubstitutionsAreEnabled || theApp.m_pTokensForIs->GetCount() == 0)
+	if (!ignoredSubstitutionsAreEnabled || theApp.m_pIgnoredSubstitutionsList->GetCount() == 0)
 	{
-		pCtxt->m_pTokenListsForIs[0].reset();
-		pCtxt->m_pTokenListsForIs[1].reset();
+		pCtxt->m_pSubstitutionList.reset();
 		return;
 	}
 
-	if (pCtxt->m_pTokenListsForIs[0])
-		pCtxt->m_pTokenListsForIs[0]->RemoveAllFilters();
-	else
-		pCtxt->m_pTokenListsForIs[0].reset(new FilterList());
-
-	if (pCtxt->m_pTokenListsForIs[1])
-		pCtxt->m_pTokenListsForIs[1]->RemoveAllFilters();
-	else
-		pCtxt->m_pTokenListsForIs[1].reset(new FilterList());
-
-	for (int f = 0; f < theApp.m_pTokensForIs->GetCount(); f++)
-	{
-		const TokenPair &tokenPair = theApp.m_pTokensForIs->GetAt(f);
-		pCtxt->m_pTokenListsForIs[0]->AddRegExp(ucr::toUTF8(tokenPair.filterStr0));
-		pCtxt->m_pTokenListsForIs[1]->AddRegExp(ucr::toUTF8(tokenPair.filterStr1));
-	}
+	pCtxt->m_pSubstitutionList.reset(theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList());
 }
 
 void CDirDoc::DiffThreadCallback(int& state)
@@ -238,7 +223,7 @@ void CDirDoc::DiffThreadCallback(int& state)
 void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 {
 	LoadLineFilterList(pCtxt);
-	LoadTokensForIgnoredSubstitutions(pCtxt);
+	LoadIgnoredSubstitutionsList(pCtxt);
 
 	DIFFOPTIONS options = {0};
 	Options::DiffOptions::Load(GetOptionsMgr(), options);

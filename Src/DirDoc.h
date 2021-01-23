@@ -123,7 +123,7 @@ public:
 protected:
 	void InitDiffContext(CDiffContext *pCtxt);
 	void LoadLineFilterList(CDiffContext *pCtxt);
-	void LoadTokensForIgnoredSubstitutions(CDiffContext* pCtxt);
+	void LoadIgnoredSubstitutionsList(CDiffContext* pCtxt);
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

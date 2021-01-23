@@ -1,11 +1,11 @@
 /**
- *  @file IgnoredSubstitutionsFiltersDlg.cpp
+ *  @file IgnoredSubstitutionsDlg.cpp
  *
- *  @brief Implementation of Line Filter dialog
+ *  @brief Implementation of Ignored Substitutions dialog
  */ 
 
 #include "stdafx.h"
-#include "TokenPairList.h"
+#include "IgnoredSubstitutionsList.h"
 #include "Merge.h"
 #include "IgnoredSubstitutionsDlg.h"
 
@@ -94,9 +94,9 @@ void IgnoredSubstitutionsDlg::InitList()
 	{
 		for (int i = 0; i < (int)m_pExternalRenameList->GetCount(); i++)
 		{
-			const TokenPair& item = m_pExternalRenameList->GetAt(i);
-			m_VisibleFiltersList.InsertItem(i, item.filterStr0.c_str());
-			m_VisibleFiltersList.SetItemText(i, 1, item.filterStr1.c_str());
+			const IgnoredSubstitution& item = m_pExternalRenameList->GetAt(i);
+			m_VisibleFiltersList.InsertItem(i, item.pattern.c_str());
+			m_VisibleFiltersList.SetItemText(i, 1, item.replacement.c_str());
 			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _T("\u2611") : _T("\u2610"));
 			m_VisibleFiltersList.SetCheck(i, item.enabled);
 		}
@@ -150,7 +150,7 @@ void IgnoredSubstitutionsDlg::OnOK()
 		bool useRegExp = m_VisibleFiltersList.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
 		bool enabled = !!m_VisibleFiltersList.GetCheck(i);
 		if(symbolBeforeRename != _("<Edit here>") && symbolAfterRename != _("<Edit here>"))
-			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename, useRegExp, enabled);
+			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename, useRegExp, true, false, enabled);
 	}
 
 	CPropertyPage::OnClose();
@@ -161,7 +161,7 @@ void IgnoredSubstitutionsDlg::OnOK()
  * @brief Sets external filter list.
  * @param [in] list External filter list.
  */
-void IgnoredSubstitutionsDlg::SetList(TokenPairList *list)
+void IgnoredSubstitutionsDlg::SetList(IgnoredSubstitutionsList *list)
 {
 	m_pExternalRenameList = list;
 }
@@ -185,15 +185,6 @@ void IgnoredSubstitutionsDlg::OnBnClickedRemovebtn()
 		m_VisibleFiltersList.EnsureVisible(newSel, bPartialOk);
 	}
 }
-
-/**
- * @brief Called when the user activates an item.
- */
-// void IgnoredSubstitutionsFiltersDlg::OnLvnItemActivate(NMHDR *pNMHDR, LRESULT *pResult)
-// {
-// 	EditSelectedFilter();
-// 	*pResult = 0;
-// }
 
 /**
  * @brief Called when in-place editing has finished.
