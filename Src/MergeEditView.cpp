@@ -3446,7 +3446,7 @@ void CMergeEditView::OnScripts(UINT nID )
 void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
 {
 	// append the scripts submenu
-	HMENU scriptsSubmenu = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->GetScriptsSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu);
+	HMENU scriptsSubmenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
 	if (scriptsSubmenu != nullptr)
 		createScriptsSubmenu(scriptsSubmenu);
 

@@ -2526,7 +2526,7 @@ void CMainFrame::OnMRUs(UINT nID)
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
-	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->GetSubMenu(0/*File menu*/)->m_hMenu, false);
+	HMENU hMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
 	if (hMenu == nullptr)
 		return;
 	
