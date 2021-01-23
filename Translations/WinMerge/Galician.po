@@ -4350,3 +4350,4 @@ msgstr "O par xa está presente na lista de Substitucións ignoradas"
 
 msgid "Add this change to Ignored Substitutions?"
 msgstr "Engadir este cambio ás Substitucións ignoradas?"
+
