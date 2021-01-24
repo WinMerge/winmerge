@@ -213,6 +213,7 @@ extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoin
 extern const String OPT_CMP_INCLUDE_SUBDIRS OP("Settings/Recurse");
 extern const String OPT_CMP_DIFF_ALGORITHM OP("Settings/DiffAlgorithm");
 extern const String OPT_CMP_INDENT_HEURISTIC OP("Settings/IndentHeuristic");
+extern const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES OP("Settings/CompletelyBlankOutIgnoredChanges");
 
 // Image Compare options
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
@@ -251,7 +252,6 @@ extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 
 /// Ignored Susbstitutions
 extern const String OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED OP("Settings/IgnoredSubstitutionsAreEnabled");
-extern const String OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES OP("Settings/CompletelyBlankOutIgnoredChanges");
 
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");

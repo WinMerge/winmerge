@@ -36,8 +36,7 @@ void SubstitutionList::Add(
 	bool caseSensitive, bool matchWholeWordOnly)
 {
 	int regexpCompileOptions = 
-		Poco::RegularExpression::RE_GLOBAL | 
-		(caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+		caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS;
 	std::string rePattern;
 	for (auto c: pattern)
 	{
@@ -81,7 +80,7 @@ std::string SubstitutionList::Subst(const std::string& subject, int codepage/*=C
 	{
 		try
 		{
-			item.regexp.subst(replaced, item.replacement);
+			item.regexp.subst(replaced, item.replacement, Poco::RegularExpression::RE_GLOBAL);
 		}
 		catch (...)
 		{

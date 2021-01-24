@@ -240,15 +240,16 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 	return dwCookie;
 }
 
-static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, String& filtered, CrystalLineParser::TextDefinition* enuType)
+static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, std::string& filtered, CrystalLineParser::TextDefinition* enuType)
 {
+	String filteredT;
 	for (int i = startLine; i <= endLine; ++i)
 	{
 		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
 		unsigned textlen = static_cast<unsigned>(text.size());
 		if (!enuType)
 		{
-			filtered += text;
+			filteredT += text;
 		}
 		else
 		{
@@ -258,7 +259,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 
 			if (nActualItems == 0)
 			{
-				filtered += text;
+				filteredT += text;
 			}
 			else
 			{
@@ -268,12 +269,14 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 					if (block.m_nColorIndex != COLORINDEX_COMMENT)
 					{
 						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
-						filtered.append(text.c_str() + block.m_nCharPos, blocklen);
+						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
 					}
 				}
 			}
 		}
 	}
+
+	filtered = ucr::toUTF8(filteredT);
 
 	return dwCookie;
 }
@@ -283,13 +286,13 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
  * @param [in] str - String to search
  * @param [in] rep - String to replace
  */
-static void ReplaceSpaces(String & str, const TCHAR *rep)
+static void ReplaceSpaces(std::string & str, const char *rep)
 {
-	String::size_type pos = 0;
-	size_t replen = _tcslen(rep);
-	while ((pos = str.find_first_of(_T(" \t"), pos)) != String::npos)
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
 	{
-		String::size_type posend = str.find_first_not_of(_T(" \t"), pos);
+		std::string::size_type posend = str.find_first_not_of(" \t", pos);
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
@@ -311,7 +314,7 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	if (Op == OP_TRIVIAL)
 		return;
 
-	String LineDataLeft, LineDataRight;
+	std::string LineDataLeft, LineDataRight;
 
 	if (m_options.m_filterCommentsLines)
 	{
@@ -328,34 +331,44 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
 			LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
 	}
+	else
+	{
+		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
+			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
+		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
+			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+	}
 
 	if (m_pIgnoredSubstitutionsList)
 	{
-		m_pIgnoredSubstitutionsList->Subst();
+		LineDataLeft = m_pIgnoredSubstitutionsList->Subst(LineDataLeft);
+		LineDataRight = m_pIgnoredSubstitutionsList->Subst(LineDataRight);
 	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
-		ReplaceSpaces(LineDataLeft, _T(""));
-		ReplaceSpaces(LineDataRight, _T(""));
+		ReplaceSpaces(LineDataLeft, "");
+		ReplaceSpaces(LineDataRight, "");
 	}
 	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		//Ignore change in whitespace char count
-		ReplaceSpaces(LineDataLeft, _T(" "));
-		ReplaceSpaces(LineDataRight, _T(" "));
+		ReplaceSpaces(LineDataLeft, " ");
+		ReplaceSpaces(LineDataRight, " ");
 	}
 
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
 		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-		for (String::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
-		for (String::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 	}
 	if (LineDataLeft != LineDataRight)
 		return;

@@ -78,7 +78,7 @@ void PropCompare::ReadOptions()
 	m_bMatchSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
 	m_bIndentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
-	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
+	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 }
 
 /** 
@@ -98,7 +98,7 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
 	GetOptionsMgr()->SaveOption(OPT_CMP_INDENT_HEURISTIC, m_bIndentHeuristic);
-	GetOptionsMgr()->SaveOption(OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges);
+	GetOptionsMgr()->SaveOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges);
 }
 
 /** 
@@ -133,7 +133,7 @@ void PropCompare::OnDefaults()
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
 	m_bIndentHeuristic = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INDENT_HEURISTIC);
-	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetDefault<bool>(OPT_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
+	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 	UpdateData(FALSE);
 }
 

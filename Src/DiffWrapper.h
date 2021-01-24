@@ -173,8 +173,6 @@ public:
 	void SetAppendFiles(bool bAppendFiles);
 	void SetPaths(const PathContext &files, bool tempPaths);
 	void SetAlternativePaths(const PathContext &altPaths);
-	bool GetCompletelyBlankOutIgnoredChanged() const { return m_bCompletelyBlankOutIgnoredChanges; }
-	void SetCompletelyBlankOutIgnoredChanged(bool bCompletelyBlankOutIgnoredChanges) { m_bCompletelyBlankOutIgnoredChanges = bCompletelyBlankOutIgnoredChanges; }
 	bool RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status) const;
 	void AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned end0, unsigned begin1, unsigned end1, OP_TYPE op);

@@ -248,8 +248,7 @@ const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList()
 				plist->Add(
 					ucr::toUTF8(item.pattern),
 					ucr::toUTF8(item.replacement),
-					Poco::RegularExpression::RE_GLOBAL | 
-					(item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS));
+					item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
 			}
 			else
 			{
