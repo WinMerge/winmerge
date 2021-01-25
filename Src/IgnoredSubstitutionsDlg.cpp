@@ -8,6 +8,7 @@
 #include "IgnoredSubstitutionsList.h"
 #include "Merge.h"
 #include "IgnoredSubstitutionsDlg.h"
+#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,12 +27,11 @@ IMPLEMENT_DYNAMIC(IgnoredSubstitutionsDlg, CTrPropertyPage)
  */
 IgnoredSubstitutionsDlg::IgnoredSubstitutionsDlg()
 	: CTrPropertyPage(IgnoredSubstitutionsDlg::IDD)
-	, m_pExternalRenameList(nullptr)
+	, m_pIgnoredSubstitutionsList(nullptr)
 	, InPlaceEdit(nullptr)
 {
 	//{{AFX_DATA_INIT(IgnoredSubstitutionsFiltersDlg)
 	m_IgnoredSubstitutionsAreEnabled = false;
-	m_UseRegexpsForIgnoredSubstitutions = false;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
@@ -85,16 +85,16 @@ void IgnoredSubstitutionsDlg::InitList()
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
- 	m_VisibleFiltersList.InsertColumn(0, _("Find what").c_str(), LVCFMT_LEFT, pointToPixel(112));
- 	m_VisibleFiltersList.InsertColumn(1, _("Replace with").c_str(), LVCFMT_LEFT, pointToPixel(262));
- 	m_VisibleFiltersList.InsertColumn(2, _("RegExp").c_str(), LVCFMT_LEFT, pointToPixel(72));
+ 	m_VisibleFiltersList.InsertColumn(0, _("Find what").c_str(), LVCFMT_LEFT, pointToPixel(120));
+ 	m_VisibleFiltersList.InsertColumn(1, _("Replace with").c_str(), LVCFMT_LEFT, pointToPixel(120));
+ 	m_VisibleFiltersList.InsertColumn(2, _("RegExp").c_str(), LVCFMT_LEFT, pointToPixel(60));
 	m_VisibleFiltersList.SetBinaryValueColumn(2);
 
-	if (m_pExternalRenameList)
+	if (m_pIgnoredSubstitutionsList)
 	{
-		for (int i = 0; i < (int)m_pExternalRenameList->GetCount(); i++)
+		for (int i = 0; i < (int)m_pIgnoredSubstitutionsList->GetCount(); i++)
 		{
-			const IgnoredSubstitution& item = m_pExternalRenameList->GetAt(i);
+			const IgnoredSubstitution& item = m_pIgnoredSubstitutionsList->GetAt(i);
 			m_VisibleFiltersList.InsertItem(i, item.pattern.c_str());
 			m_VisibleFiltersList.SetItemText(i, 1, item.replacement.c_str());
 			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _T("\u2611") : _T("\u2610"));
@@ -139,9 +139,9 @@ void IgnoredSubstitutionsDlg::OnBnClickedClearBtn()
 /**
  * @brief Save filters to list when exiting the dialog.
  */
-void IgnoredSubstitutionsDlg::OnOK()
+BOOL IgnoredSubstitutionsDlg::OnApply()
 {
-	m_pExternalRenameList->Empty();
+	m_pIgnoredSubstitutionsList->Empty();
 
 	for (int i = 0; i < m_VisibleFiltersList.GetItemCount(); i++)
 	{
@@ -150,11 +150,20 @@ void IgnoredSubstitutionsDlg::OnOK()
 		bool useRegExp = m_VisibleFiltersList.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
 		bool enabled = !!m_VisibleFiltersList.GetCheck(i);
 		if(symbolBeforeRename != _("<Edit here>") && symbolAfterRename != _("<Edit here>"))
-			m_pExternalRenameList->AddFilter(symbolBeforeRename, symbolAfterRename, useRegExp, true, false, enabled);
+			m_pIgnoredSubstitutionsList->Add(symbolBeforeRename, symbolAfterRename, useRegExp, true, false, enabled);
 	}
 
-	CPropertyPage::OnClose();
-	//CDialog::OnOK(); //?
+	// Test
+	try
+	{
+		std::unique_ptr<const SubstitutionList> pList(m_pIgnoredSubstitutionsList->MakeSubstitutionList(true));
+		return TRUE;
+	}
+	catch (Poco::RegularExpressionException& e)
+	{
+		AfxMessageBox(ucr::toTString(e.message()).c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return FALSE;
+	}
 }
 
 /**
@@ -163,7 +172,7 @@ void IgnoredSubstitutionsDlg::OnOK()
  */
 void IgnoredSubstitutionsDlg::SetList(IgnoredSubstitutionsList *list)
 {
-	m_pExternalRenameList = list;
+	m_pIgnoredSubstitutionsList = list;
 }
 
 /**

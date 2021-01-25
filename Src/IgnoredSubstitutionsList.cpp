@@ -9,6 +9,7 @@
 #include "SubstitutionList.h"
 #include <vector>
 #include <cassert>
+#include <Poco/Exception.h>
 #include "OptionsMgr.h"
 #include "UnicodeString.h"
 
@@ -35,7 +36,7 @@ IgnoredSubstitutionsList::~IgnoredSubstitutionsList()
  * @param [in] filter Filter string to add.
  * @param [in] enabled Is filter enabled?
  */
-void IgnoredSubstitutionsList::AddFilter(const String& filter0, const String& filter1,
+void IgnoredSubstitutionsList::Add(const String& filter0, const String& filter1,
 	bool useRegExp, bool caseSensitive, bool matchWholeWordOnly, bool enabled)
 {
 	IgnoredSubstitution item;
@@ -75,7 +76,7 @@ void IgnoredSubstitutionsList::CloneFrom(const IgnoredSubstitutionsList *list)
 	for (size_t i = 0; i < count; i++)
 	{
 		const IgnoredSubstitution &item = list->GetAt(i);
-		AddFilter(item.pattern, item.replacement, item.useRegExp,
+		Add(item.pattern, item.replacement, item.useRegExp,
 			item.caseSensitive, item.matchWholeWordOnly, item.enabled);
 	}
 }
@@ -151,7 +152,7 @@ void IgnoredSubstitutionsList::Initialize(COptionsMgr *pOptionsMgr)
 		m_pOptionsMgr->InitOption(name1, _T(""));
 		String replacement = m_pOptionsMgr->GetString(name1);
 
-		AddFilter(pattern, replacement, useRegExp, caseSensitive, matchWholeWordOnly, enabled);
+		Add(pattern, replacement, useRegExp, caseSensitive, matchWholeWordOnly, enabled);
 	}
 }
 
@@ -236,26 +237,34 @@ void IgnoredSubstitutionsList::SaveFilters()
 	}
 }
 
-const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList()
+const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList(bool throwIfInvalid)
 {
 	SubstitutionList *plist = new SubstitutionList();
 	for (auto& item : m_items)
 	{
 		if (item.enabled)
 		{
-			if (item.useRegExp)
+			try
 			{
-				plist->Add(
-					ucr::toUTF8(item.pattern),
-					ucr::toUTF8(item.replacement),
-					item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+				if (item.useRegExp)
+				{
+					plist->Add(
+						ucr::toUTF8(item.pattern),
+						ucr::toUTF8(item.replacement),
+						item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+				}
+				else
+				{
+					plist->Add(
+						ucr::toUTF8(item.pattern),
+						ucr::toUTF8(item.replacement),
+						item.caseSensitive, item.matchWholeWordOnly);
+				}
 			}
-			else
+			catch (const Poco::RegularExpressionException& e)
 			{
-				plist->Add(
-					ucr::toUTF8(item.pattern),
-					ucr::toUTF8(item.replacement),
-					item.caseSensitive, item.matchWholeWordOnly);
+				if (throwIfInvalid)
+					throw e;
 			}
 		}
 	}

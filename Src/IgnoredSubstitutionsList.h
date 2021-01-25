@@ -34,7 +34,7 @@ public:
 	IgnoredSubstitutionsList();
 	~IgnoredSubstitutionsList();
 
-	void AddFilter(const String& pattern, const String& replacement, bool useRegExp, bool caseSensitive, bool matchWholeWordOnly, bool enabled);
+	void Add(const String& pattern, const String& replacement, bool useRegExp, bool caseSensitive, bool matchWholeWordOnly, bool enabled);
 	size_t GetCount() const;
 	void Empty();
 	const IgnoredSubstitution &GetAt(size_t ind) const;
@@ -44,7 +44,7 @@ public:
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
 
-	const SubstitutionList *MakeSubstitutionList();
+	const SubstitutionList *MakeSubstitutionList(bool throwIfInvalid = false);
 
 private:
 	std::vector<IgnoredSubstitution> m_items; /**< List for linefilter items */

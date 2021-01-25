@@ -119,7 +119,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 	String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 	if (MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_YESNO) == IDYES)
 	{
-		ignoredSubstitutionsList.AddFilter(selectedText[0], selectedText[1], false, true, false, true);
+		ignoredSubstitutionsList.Add(selectedText[0], selectedText[1], false, true, false, true);
 		FlushAndRescan(true);
 		//Rescan();
 	}

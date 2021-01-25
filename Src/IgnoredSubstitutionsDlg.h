@@ -25,7 +25,6 @@ public:
 	//{{AFX_DATA(IgnoredSubstitutionsDlg)
 	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
 	bool m_IgnoredSubstitutionsAreEnabled;
-	bool m_UseRegexpsForIgnoredSubstitutions;
 	//}}AFX_DATA
 
 // Overrides
@@ -42,7 +41,7 @@ protected:
 	//{{AFX_MSG(IgnoredSubstitutionsDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
-	virtual void OnOK() override;
+	virtual BOOL OnApply() override;
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
 	afx_msg void OnBnClickedRemovebtn();
@@ -57,5 +56,5 @@ private:
 
 	CSubeditList m_VisibleFiltersList; /**< List control having filter strings */
 
-	IgnoredSubstitutionsList *m_pExternalRenameList;
+	IgnoredSubstitutionsList *m_pIgnoredSubstitutionsList;
 };
