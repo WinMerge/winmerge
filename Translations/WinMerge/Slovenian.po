@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-01-19 09:06+0100\n"
-"Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
+"PO-Revision-Date: 2021-01-25 10:26+0100\n"
+"Last-Translator: Simon Krajnik\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 
 msgid "Add this change to &Ignored Substitutions"
-msgstr "Dodaj to spremembo v Pre&zrte zamenjave"
+msgstr "Dodaj to spremembo v pre&zrte zamenjave"
 
 #, c-format
 msgid "&Undo"
@@ -391,11 +391,11 @@ msgstr "S&amo-za-branje"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "L&evo Samo-za-branje"
+msgstr "L&evo samo-za-branje"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr "S&rednja Samo-za-branje"
+msgstr "S&rednja samo-za-branje"
 
 #, c-format
 msgid "Ri&ght Read-only"
@@ -439,7 +439,7 @@ msgstr "Prikaži &dvojiške datoteke"
 
 #, c-format
 msgid "&3-way Compare"
-msgstr "&3. način primerjave"
+msgstr "&3-smerna primerjava"
 
 #, c-format
 msgid "Show &Left Only Different Items"
@@ -596,7 +596,7 @@ msgstr "Shrani sredn&jo kot..."
 
 #, c-format
 msgid "Save &Right As..."
-msgstr "Shrani l&evo kot..."
+msgstr "Shrani &desno kot..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "&Natisni...\tCtrl+P"
@@ -747,11 +747,11 @@ msgid "&View Whitespace"
 msgstr "&Prikaz presledkov"
 
 msgid "View E&OL"
-msgstr "Prikaz &KnV"
+msgstr "Prikaz &koncev vrstic (EOL)"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Prikaži razl&ik vrstic"
+msgstr "Prikaz razl&ik vrstic"
 
 #, c-format
 msgid "View Line &Numbers"
@@ -876,7 +876,7 @@ msgstr "&Predpregled razlik"
 
 #, c-format
 msgid "&Scripts"
-msgstr "&Skripti"
+msgstr "&Skripte"
 
 #, c-format
 msgid "Sp&lit"
@@ -1431,7 +1431,7 @@ msgid "Ignored Substitutions"
 msgstr "Prezrte zamenjave"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Popravki ne vplivajo."
+msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Nima vpliva na popravke."
 
 msgid "Enable"
 msgstr "Omogoči"
@@ -1727,7 +1727,7 @@ msgid "&Match similar lines"
 msgstr "&Ujemaj enake vrstice"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Al&goritem razlik (eksperimen):"
+msgstr "Al&goritem razlik (eksperimentalno):"
 
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
@@ -2774,7 +2774,7 @@ msgstr "Vaša datoteka"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  KnV: %s"
+msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  EOL: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -2922,7 +2922,7 @@ msgstr "Shrani spremembe v %1?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "%1 je označena Samo-za- branje. Ali želite preglasiti datoteko Samo-za- branje? ('Ne', za shranjevanje pod novim imenom)"
+msgstr "%1 je označena samo-za-branje. Ali želite preglasiti datoteko samo-za-branje? ('Ne', za shranjevanje pod novim imenom)"
 
 #, c-format
 msgid "Error backing up file"
@@ -3018,7 +3018,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"je označena Samo-za-branje. Ali želite preglasiti vnos Samo-za-branje?"
+"je označena samo-za-branje. Ali želite preglasiti vnos samo-za-branje?"
 
 #, c-format
 msgid ""
@@ -3208,7 +3208,7 @@ msgstr "Potrdi premik"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
+msgstr "Zaprli boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -4337,11 +4337,10 @@ msgid "No differences to select found"
 msgstr "Ni najdenih nobenih razlik za izbiro"
 
 msgid "No differences found to add as ignored substitution"
-msgstr "Ni najdenih za dodajanje kot prezrto zamenjavo"
+msgstr "Ni najdenih razlik za dodajanje med prezrto zamenjavo"
 
 msgid "The pair is already present in the list of Ignored Substitutions"
 msgstr "Par je že prisoten na seznamu prezrtih zamenjav"
 
 msgid "Add this change to Ignored Substitutions?"
-msgstr "Dodajm to spremembo v Prezrte zamenjave?"
-
+msgstr "Dodam to spremembo med prezrte zamenjave?"
