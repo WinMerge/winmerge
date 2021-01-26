@@ -3586,12 +3586,6 @@ msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "Find what"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
 msgid "<Edit here>"
 msgstr ""
 

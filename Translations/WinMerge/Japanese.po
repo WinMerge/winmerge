@@ -3549,12 +3549,6 @@ msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
 
-msgid "Find what"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
 msgid "<Edit here>"
 msgstr ""
 

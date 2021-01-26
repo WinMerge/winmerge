@@ -1140,15 +1140,6 @@ msgstr "Pakeitimai, kurie rodomi skyduose kaip toliau išvardytos poros, bus ign
 msgid "Enable"
 msgstr "Įjungti"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Visiškai nuimti paryškinimą ignoruojamiems keitimams"
-
-msgid "Ignore changes in both directions"
-msgstr "Ignoruoti pakeitimus abiejomis kryptimis"
-
-msgid "Use regular expressions"
-msgstr "Naudoti reguliariuosius reiškinius"
-
 msgid "Add"
 msgstr "Pridėti"
 
@@ -1376,6 +1367,9 @@ msgstr "Lyginimo &algoritmas (Bandymai):"
 
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr "Visiškai nuimti paryškinimą ignoruojamiems keitimams"
 
 msgid "Editor"
 msgstr "Redaktoriaus"
@@ -3196,12 +3190,6 @@ msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
-
-msgid "On one panel"
-msgstr "Šiame skyde"
-
-msgid "On the other panel"
-msgstr "Kitame skyde"
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"

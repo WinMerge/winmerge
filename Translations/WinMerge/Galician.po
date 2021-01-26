@@ -4324,12 +4324,6 @@ msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
 
-msgid "Find what"
-msgstr "Nun panel"
-
-msgid "Replace with"
-msgstr "No outro panel"
-
 msgid "<Edit here>"
 msgstr "<Editar aquí>"
 

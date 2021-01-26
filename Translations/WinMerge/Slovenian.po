@@ -4318,12 +4318,6 @@ msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
 
-msgid "Find what"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
 msgid "<Edit here>"
 msgstr "<Uredi tukaj>"
 

@@ -3580,12 +3580,6 @@ msgstr "Sayfa: %d/%d  Yakınlaştırma: %d%%  %dx%dpiksel  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "Find what"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
 msgid "<Edit here>"
 msgstr ""
 

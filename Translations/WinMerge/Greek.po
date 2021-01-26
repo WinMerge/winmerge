@@ -4133,12 +4133,6 @@ msgstr ""
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "Find what"
-msgstr ""
-
-msgid "Replace with"
-msgstr ""
-
 msgid "<Edit here>"
 msgstr ""
 
