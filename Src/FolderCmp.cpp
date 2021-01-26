@@ -211,6 +211,10 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
+				if (m_pCtxt->m_pSubstitutionList != nullptr)
+					m_pDiffUtilsEngine->SetIgnoredSubstitutionsList(m_pCtxt->m_pSubstitutionList);
+				else
+					m_pDiffUtilsEngine->ClearIgnoredSubstitutionsList();
 			}
 			if (tFiles.GetSize() == 2)
 			{
@@ -263,6 +267,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				dw.SetCompareFiles(tFiles);
 				dw.SetOptions(m_pCtxt->GetOptions());
 				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
+				dw.SetIgnoredSubstitutionsList(m_pCtxt->m_pSubstitutionList);
 				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(

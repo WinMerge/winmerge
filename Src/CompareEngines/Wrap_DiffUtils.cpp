@@ -75,6 +75,16 @@ void DiffUtils::SetFilterList(FilterList * list)
 	m_pFilterList = list;
 }
 
+void DiffUtils::SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> list)
+{
+	m_pDiffWrapper->SetIgnoredSubstitutionsList(list);
+}
+
+void DiffUtils::ClearIgnoredSubstitutionsList()
+{
+	m_pDiffWrapper->SetIgnoredSubstitutionsList(nullptr);
+}
+
 /**
  * @brief Set filedata.
  * @param [in] items Count of filedata items to set.
@@ -154,7 +164,9 @@ int DiffUtils::diffutils_compare_files()
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
 	
-					if(m_pOptions->m_filterCommentsLines)
+					if(m_pOptions->m_filterCommentsLines ||
+						(m_pDiffWrapper->GetIgnoredSubstitutionsList() &&
+						 m_pDiffWrapper->GetIgnoredSubstitutionsList()->HasRegExps()))
 					{
 						OP_TYPE op = OP_NONE;
 						if (deletes == 0 && inserts == 0)

@@ -26,6 +26,7 @@ SubstitutionItem::SubstitutionItem(const SubstitutionItem& other)
 	, regexp(other.pattern, other.regexpCompileOptions)
 {
 }
+
 void SubstitutionList::Add(const std::string& pattern, const std::string& replacement, int regexpCompileOptions)
 {
 	m_list.emplace_back(pattern, replacement, regexpCompileOptions);

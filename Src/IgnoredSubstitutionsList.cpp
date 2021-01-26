@@ -238,10 +238,10 @@ void IgnoredSubstitutionsList::SaveFilters()
 	}
 }
 
-const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList(bool throwIfInvalid)
+std::shared_ptr<SubstitutionList> IgnoredSubstitutionsList::MakeSubstitutionList(bool throwIfInvalid)
 {
 	int i = 0;
-	SubstitutionList *plist = new SubstitutionList();
+	std::shared_ptr<SubstitutionList> plist(new SubstitutionList);
 	for (auto& item : m_items)
 	{
 		if (item.enabled)
@@ -267,7 +267,7 @@ const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList(bool thro
 			{
 				if (throwIfInvalid)
 				{
-					delete plist;
+					plist.reset();
 					char msg[512];
 					_snprintf_s(msg, _TRUNCATE, "#%d: %s", i + 1, e.message().c_str());
 					throw Poco::RegularExpressionException(msg, e.code());

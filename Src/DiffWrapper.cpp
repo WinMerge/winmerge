@@ -79,7 +79,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
-, m_pIgnoredSubstitutionsList{nullptr}
+, m_pSubstitutionList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
 {
@@ -340,10 +340,10 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
 	}
 
-	if (m_pIgnoredSubstitutionsList)
+	if (m_pSubstitutionList)
 	{
-		LineDataLeft = m_pIgnoredSubstitutionsList->Subst(LineDataLeft);
-		LineDataRight = m_pIgnoredSubstitutionsList->Subst(LineDataRight);
+		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft);
+		LineDataRight = m_pSubstitutionList->Subst(LineDataRight);
 	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
@@ -951,7 +951,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
 				if (m_options.m_filterCommentsLines ||
-					(m_pIgnoredSubstitutionsList && m_pIgnoredSubstitutionsList->HasRegExps()))
+					(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
 					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
 
 				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1113,7 +1113,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
 					if (m_options.m_filterCommentsLines ||
-						(m_pIgnoredSubstitutionsList && m_pIgnoredSubstitutionsList->HasRegExps()))
+						(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
 						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
 
 					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1388,12 +1388,12 @@ void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
 
 const SubstitutionList* CDiffWrapper::GetIgnoredSubstitutionsList() const
 {
-	return m_pIgnoredSubstitutionsList.get();
+	return m_pSubstitutionList.get();
 }
 
-void CDiffWrapper::SetIgnoredSubstitutionsList(const SubstitutionList* ignoredSubstitutionsList)
+void CDiffWrapper::SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> pSubstitutionList)
 {
-	m_pIgnoredSubstitutionsList.reset(ignoredSubstitutionsList);
+	m_pSubstitutionList = pSubstitutionList;
 }
 
 void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)

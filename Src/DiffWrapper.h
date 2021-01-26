@@ -185,7 +185,7 @@ public:
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
 	const SubstitutionList* GetIgnoredSubstitutionsList() const;
-	void SetIgnoredSubstitutionsList(const SubstitutionList *ignoredSubstitutionsList);
+	void SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> pIgnoredSubstitutionsList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
 	void EnablePlugins(bool enable);
@@ -209,7 +209,7 @@ private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
-	std::unique_ptr<const SubstitutionList> m_pIgnoredSubstitutionsList;
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
 
 	PathContext m_files; /**< Full path to diff'ed file. */
 	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */

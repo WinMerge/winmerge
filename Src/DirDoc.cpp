@@ -212,7 +212,7 @@ void CDirDoc::LoadIgnoredSubstitutionsList(CDiffContext* pCtxt)
 		return;
 	}
 
-	pCtxt->m_pSubstitutionList.reset(theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList());
+	pCtxt->m_pSubstitutionList = theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList();
 }
 
 void CDirDoc::DiffThreadCallback(int& state)

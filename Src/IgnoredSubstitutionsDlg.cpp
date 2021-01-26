@@ -179,7 +179,7 @@ BOOL IgnoredSubstitutionsDlg::OnApply()
 	// Test
 	try
 	{
-		std::unique_ptr<const SubstitutionList> pList(m_pIgnoredSubstitutionsList->MakeSubstitutionList(true));
+		m_pIgnoredSubstitutionsList->MakeSubstitutionList(true);
 	}
 	catch (Poco::RegularExpressionException& e)
 	{

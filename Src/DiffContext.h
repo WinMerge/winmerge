@@ -195,7 +195,7 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
-	std::unique_ptr<const SubstitutionList> m_pSubstitutionList; /// list for Ignored Substitutions
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Ignored Substitutions
 
 private:
 	/**

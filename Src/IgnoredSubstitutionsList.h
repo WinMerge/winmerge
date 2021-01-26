@@ -44,7 +44,7 @@ public:
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
 
-	const SubstitutionList *MakeSubstitutionList(bool throwIfInvalid = false);
+	std::shared_ptr<SubstitutionList> MakeSubstitutionList(bool throwIfInvalid = false);
 
 private:
 	std::vector<IgnoredSubstitution> m_items; /**< List for linefilter items */
