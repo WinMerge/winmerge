@@ -198,6 +198,8 @@ void FileFiltersDlg::OnOK()
 	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
 	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
 
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
+
 	CDialog::OnOK();
 }
 

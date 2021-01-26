@@ -188,9 +188,8 @@ void CSubeditList::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	int index;
-	CListCtrl::OnLButtonDown(nFlags, point);
-
 	int colnum;
+	CListCtrl::OnLButtonDown(nFlags, point);
 	if( ( index = HitTestEx( point, &colnum )) != -1 )
 	{
 		UINT flag = LVIS_FOCUSED;
@@ -213,8 +212,10 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 		else
-			SetItemState( index, LVIS_SELECTED | LVIS_FOCUSED ,
-						LVIS_SELECTED | LVIS_FOCUSED); 
+		{
+			SetItemState(index, LVIS_SELECTED | LVIS_FOCUSED,
+					LVIS_SELECTED | LVIS_FOCUSED);
+		}
 	}
 }
 

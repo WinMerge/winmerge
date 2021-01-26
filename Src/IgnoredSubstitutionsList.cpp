@@ -45,6 +45,7 @@ void IgnoredSubstitutionsList::Add(const String& filter0, const String& filter1,
 	item.matchWholeWordOnly = matchWholeWordOnly;
 	item.pattern = filter0;
 	item.replacement = filter1;
+	item.enabled = enabled;
 	m_items.emplace_back(item);
 }
 
@@ -133,15 +134,15 @@ void IgnoredSubstitutionsList::Initialize(COptionsMgr *pOptionsMgr)
 		bool enabled = m_pOptionsMgr->GetBool(nameEnabled);
 
 		String nameUseRegExp = strutils::format(_T("%s/UseRegExp%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameUseRegExp, true);
+		m_pOptionsMgr->InitOption(nameUseRegExp, false);
 		bool useRegExp = m_pOptionsMgr->GetBool(nameUseRegExp);
 
 		String nameCaseSensitive = strutils::format(_T("%s/CaseSensitive%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameCaseSensitive, true);
+		m_pOptionsMgr->InitOption(nameCaseSensitive, false);
 		bool caseSensitive = m_pOptionsMgr->GetBool(nameCaseSensitive);
 
 		String nameMatchWholeWordOnly = strutils::format(_T("%s/MatchWholeWordOnly%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameMatchWholeWordOnly, true);
+		m_pOptionsMgr->InitOption(nameMatchWholeWordOnly, false);
 		bool matchWholeWordOnly = m_pOptionsMgr->GetBool(nameMatchWholeWordOnly);
 
 		String name0 = strutils::format(_T("%s/Pattern%02u"), IgnoredSubstitutionsRegPath, i);
@@ -173,19 +174,19 @@ void IgnoredSubstitutionsList::SaveFilters()
 		const IgnoredSubstitution& item = m_items[i];
 
 		String nameEnabled = strutils::format(_T("%s/Enabled%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameEnabled, _T(""));
+		m_pOptionsMgr->InitOption(nameEnabled, true);
 		m_pOptionsMgr->SaveOption(nameEnabled, item.enabled);
 
 		String nameUseRegExp = strutils::format(_T("%s/UseRegExp%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameUseRegExp, _T(""));
+		m_pOptionsMgr->InitOption(nameUseRegExp, false);
 		m_pOptionsMgr->SaveOption(nameUseRegExp, item.useRegExp);
 
 		String nameCaseSensitive = strutils::format(_T("%s/CaseSensitive%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameCaseSensitive, _T(""));
+		m_pOptionsMgr->InitOption(nameCaseSensitive, false);
 		m_pOptionsMgr->SaveOption(nameCaseSensitive, item.caseSensitive);
 
 		String nameMatchWholeWordOnly = strutils::format(_T("%s/MatchWholeWordOnly%02u"), IgnoredSubstitutionsRegPath, i);
-		m_pOptionsMgr->InitOption(nameMatchWholeWordOnly, _T(""));
+		m_pOptionsMgr->InitOption(nameMatchWholeWordOnly, false);
 		m_pOptionsMgr->SaveOption(nameMatchWholeWordOnly, item.matchWholeWordOnly);
 
 		String name0 = strutils::format(_T("%s/Pattern%02u"), IgnoredSubstitutionsRegPath, i);
@@ -239,6 +240,7 @@ void IgnoredSubstitutionsList::SaveFilters()
 
 const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList(bool throwIfInvalid)
 {
+	int i = 0;
 	SubstitutionList *plist = new SubstitutionList();
 	for (auto& item : m_items)
 	{
@@ -264,9 +266,15 @@ const SubstitutionList* IgnoredSubstitutionsList::MakeSubstitutionList(bool thro
 			catch (const Poco::RegularExpressionException& e)
 			{
 				if (throwIfInvalid)
-					throw e;
+				{
+					delete plist;
+					char msg[512];
+					_snprintf_s(msg, _TRUNCATE, "#%d: %s", i + 1, e.message().c_str());
+					throw Poco::RegularExpressionException(msg, e.code());
+				}
 			}
 		}
+		i++;
 	}
 	return plist;
 }

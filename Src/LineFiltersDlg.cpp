@@ -175,6 +175,8 @@ void LineFiltersDlg::OnOK()
 		m_pList->AddFilter(text, enabled);
 	}
 
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
+
 	CPropertyPage::OnClose();
 }
 

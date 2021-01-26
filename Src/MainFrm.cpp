@@ -1677,10 +1677,12 @@ void CMainFrame::OnToolsFilters()
 
 	const bool ignoredSubstitutionsAreEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
 
-	ignoredSubstitutionsDlg.m_IgnoredSubstitutionsAreEnabled = ignoredSubstitutionsAreEnabledOrig;
+	ignoredSubstitutionsDlg.m_bEnabled = ignoredSubstitutionsAreEnabledOrig;
 	
 	ignoredSubstitutions->CloneFrom(theApp.m_pIgnoredSubstitutionsList.get());
 	ignoredSubstitutionsDlg.SetList(ignoredSubstitutions.get());
+
+	sht.SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("FilterStartPage"), 0));
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -1706,7 +1708,7 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
-		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsDlg.m_IgnoredSubstitutionsAreEnabled;
+		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsDlg.m_bEnabled;
 		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, ignoredSubstitutionsAreEnabled);
 
 		// Check if compare documents need rescanning

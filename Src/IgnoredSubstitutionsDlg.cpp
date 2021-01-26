@@ -28,10 +28,9 @@ IMPLEMENT_DYNAMIC(IgnoredSubstitutionsDlg, CTrPropertyPage)
 IgnoredSubstitutionsDlg::IgnoredSubstitutionsDlg()
 	: CTrPropertyPage(IgnoredSubstitutionsDlg::IDD)
 	, m_pIgnoredSubstitutionsList(nullptr)
-	, InPlaceEdit(nullptr)
 {
 	//{{AFX_DATA_INIT(IgnoredSubstitutionsFiltersDlg)
-	m_IgnoredSubstitutionsAreEnabled = false;
+	m_bEnabled = false;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
@@ -44,8 +43,8 @@ void IgnoredSubstitutionsDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(IgnoredSubstitutionsFiltersDlg)
-	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED, m_IgnoredSubstitutionsAreEnabled);
-	DDX_Control(pDX, IDC_IGNORED_SUBSTITUTIONS_FILTER, m_VisibleFiltersList);
+	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED, m_bEnabled);
+	DDX_Control(pDX, IDC_IGNORED_SUBSTITUTIONS_FILTER, m_listFilters);
 	//}}AFX_DATA_MAP
 }
 
@@ -76,29 +75,46 @@ BOOL IgnoredSubstitutionsDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+static CString BooleanValueToCheckBox(bool b)
+{
+	return b ? _T("\u2611") : _T("\u2610");
+}
+
+static CString RemoveMnemonic(String text)
+{
+	Poco::RegularExpression re("\\(&.\\)|&|:");
+	std::string textu8 = ucr::toUTF8(text);
+	re.subst(textu8, "", Poco::RegularExpression::RE_GLOBAL);
+	return ucr::toTString(textu8).c_str();
+}
 
 void IgnoredSubstitutionsDlg::InitList()
 {
-	m_VisibleFiltersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
-	//m_VisibleFiltersList.SetExtendedStyle(LVS_EX_INFOTIP | LVS_EX_GRIDLINES);
+	m_listFilters.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
- 	m_VisibleFiltersList.InsertColumn(0, _("Find what").c_str(), LVCFMT_LEFT, pointToPixel(120));
- 	m_VisibleFiltersList.InsertColumn(1, _("Replace with").c_str(), LVCFMT_LEFT, pointToPixel(120));
- 	m_VisibleFiltersList.InsertColumn(2, _("RegExp").c_str(), LVCFMT_LEFT, pointToPixel(60));
-	m_VisibleFiltersList.SetBinaryValueColumn(2);
+ 	m_listFilters.InsertColumn(0, RemoveMnemonic(_("Fi&nd what:")), LVCFMT_LEFT, pointToPixel(150));
+ 	m_listFilters.InsertColumn(1, RemoveMnemonic(_("Re&place with:")), LVCFMT_LEFT, pointToPixel(150));
+ 	m_listFilters.InsertColumn(2, RemoveMnemonic(_("Regular &expression")), LVCFMT_LEFT, pointToPixel(120));
+ 	m_listFilters.InsertColumn(3, RemoveMnemonic(_("Match &case")), LVCFMT_LEFT, pointToPixel(120));
+ 	m_listFilters.InsertColumn(4, RemoveMnemonic(_("Match &whole word only")), LVCFMT_LEFT, pointToPixel(120));
+	m_listFilters.SetBooleanValueColumn(2);
+	m_listFilters.SetBooleanValueColumn(3);
+	m_listFilters.SetBooleanValueColumn(4);
 
 	if (m_pIgnoredSubstitutionsList)
 	{
 		for (int i = 0; i < (int)m_pIgnoredSubstitutionsList->GetCount(); i++)
 		{
 			const IgnoredSubstitution& item = m_pIgnoredSubstitutionsList->GetAt(i);
-			m_VisibleFiltersList.InsertItem(i, item.pattern.c_str());
-			m_VisibleFiltersList.SetItemText(i, 1, item.replacement.c_str());
-			m_VisibleFiltersList.SetItemText(i, 2, item.useRegExp ? _T("\u2611") : _T("\u2610"));
-			m_VisibleFiltersList.SetCheck(i, item.enabled);
+			m_listFilters.InsertItem(i, item.pattern.c_str());
+			m_listFilters.SetItemText(i, 1, item.replacement.c_str());
+			m_listFilters.SetItemText(i, 2, BooleanValueToCheckBox(item.useRegExp));
+			m_listFilters.SetItemText(i, 3, BooleanValueToCheckBox(item.caseSensitive));
+			m_listFilters.SetItemText(i, 4, BooleanValueToCheckBox(item.matchWholeWordOnly));
+			m_listFilters.SetCheck(i, item.enabled);
 		}
 	}
 }
@@ -116,15 +132,18 @@ void IgnoredSubstitutionsDlg::OnHelp()
  */
 void IgnoredSubstitutionsDlg::OnBnClickedAddBtn()
 {
-	int num = m_VisibleFiltersList.GetItemCount();
-	int ind = m_VisibleFiltersList.InsertItem(num, _("<Edit here>").c_str());
-	m_VisibleFiltersList.SetItemText(num, 1, _("<Edit here>").c_str());
+	int num = m_listFilters.GetItemCount();
+	int ind = m_listFilters.InsertItem(num, _("<Edit here>").c_str());
+	m_listFilters.SetItemText(num, 1, _("<Edit here>").c_str());
+	m_listFilters.SetItemText(num, 2, BooleanValueToCheckBox(false));
+	m_listFilters.SetItemText(num, 3, BooleanValueToCheckBox(false));
+	m_listFilters.SetItemText(num, 4, BooleanValueToCheckBox(false));
+	m_listFilters.SetCheck(num);
 
 	if (ind >= -1)
 	{
-		m_VisibleFiltersList.SetItemState(ind, LVIS_SELECTED, LVIS_SELECTED);
-		m_VisibleFiltersList.EnsureVisible(ind, FALSE);
-		//EditSelectedFilter();
+		m_listFilters.SetItemState(ind, LVIS_SELECTED, LVIS_SELECTED);
+		m_listFilters.EnsureVisible(ind, FALSE);
 	}
 }
 
@@ -133,7 +152,7 @@ void IgnoredSubstitutionsDlg::OnBnClickedAddBtn()
  */
 void IgnoredSubstitutionsDlg::OnBnClickedClearBtn()
 {
-	m_VisibleFiltersList.DeleteAllItems();
+	m_listFilters.DeleteAllItems();
 }
 
 /**
@@ -143,27 +162,33 @@ BOOL IgnoredSubstitutionsDlg::OnApply()
 {
 	m_pIgnoredSubstitutionsList->Empty();
 
-	for (int i = 0; i < m_VisibleFiltersList.GetItemCount(); i++)
+	for (int i = 0; i < m_listFilters.GetItemCount(); i++)
 	{
-		String symbolBeforeRename = m_VisibleFiltersList.GetItemText(i, 0);
-		String symbolAfterRename = m_VisibleFiltersList.GetItemText(i, 1);
-		bool useRegExp = m_VisibleFiltersList.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
-		bool enabled = !!m_VisibleFiltersList.GetCheck(i);
-		if(symbolBeforeRename != _("<Edit here>") && symbolAfterRename != _("<Edit here>"))
-			m_pIgnoredSubstitutionsList->Add(symbolBeforeRename, symbolAfterRename, useRegExp, true, false, enabled);
+		String symbolBeforeRename = m_listFilters.GetItemText(i, 0);
+		String symbolAfterRename = m_listFilters.GetItemText(i, 1);
+		bool useRegExp = m_listFilters.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
+		bool caseSensitive = m_listFilters.GetItemText(i, 3).Compare(_T("\u2611")) == 0;
+		bool matchWholeWordOnly = m_listFilters.GetItemText(i, 4).Compare(_T("\u2611")) == 0;
+		if (useRegExp)
+			matchWholeWordOnly = false;
+		bool enabled = !!m_listFilters.GetCheck(i);
+		m_pIgnoredSubstitutionsList->Add(symbolBeforeRename, symbolAfterRename,
+			useRegExp, caseSensitive, matchWholeWordOnly, enabled);
 	}
 
 	// Test
 	try
 	{
 		std::unique_ptr<const SubstitutionList> pList(m_pIgnoredSubstitutionsList->MakeSubstitutionList(true));
-		return TRUE;
 	}
 	catch (Poco::RegularExpressionException& e)
 	{
 		AfxMessageBox(ucr::toTString(e.message()).c_str(), MB_OK | MB_ICONEXCLAMATION);
 		return FALSE;
 	}
+
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
+	return TRUE;
 }
 
 /**
@@ -180,18 +205,18 @@ void IgnoredSubstitutionsDlg::SetList(IgnoredSubstitutionsList *list)
  */
 void IgnoredSubstitutionsDlg::OnBnClickedRemovebtn()
 {
-	int sel = m_VisibleFiltersList.GetNextItem(-1, LVNI_SELECTED);
+	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
 	{
-		m_VisibleFiltersList.DeleteItem(sel);
+		m_listFilters.DeleteItem(sel);
 	}
 
-	int newSel = min(m_VisibleFiltersList.GetItemCount() - 1, sel);
+	int newSel = min(m_listFilters.GetItemCount() - 1, sel);
 	if (newSel >= -1)
 	{
-		m_VisibleFiltersList.SetItemState(newSel, LVIS_SELECTED, LVIS_SELECTED);
+		m_listFilters.SetItemState(newSel, LVIS_SELECTED, LVIS_SELECTED);
 		bool bPartialOk = false;
-		m_VisibleFiltersList.EnsureVisible(newSel, bPartialOk);
+		m_listFilters.EnsureVisible(newSel, bPartialOk);
 	}
 }
 
@@ -200,5 +225,5 @@ void IgnoredSubstitutionsDlg::OnBnClickedRemovebtn()
  */
 void IgnoredSubstitutionsDlg::OnEndLabelEdit(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	m_VisibleFiltersList.OnEndLabelEdit(pNMHDR, pResult);
+	m_listFilters.OnEndLabelEdit(pNMHDR, pResult);
 }

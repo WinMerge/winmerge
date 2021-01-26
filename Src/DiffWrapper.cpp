@@ -82,7 +82,6 @@ CDiffWrapper::CDiffWrapper()
 , m_pIgnoredSubstitutionsList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
-, m_bCompletelyBlankOutIgnoredChanges(false)
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
@@ -968,7 +967,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				if (op == OP_TRIVIAL && m_bCompletelyBlankOutIgnoredChanges)
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredChanges)
 					op = OP_NONE;
 				if (op != OP_NONE)
 					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);

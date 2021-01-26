@@ -24,7 +24,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(IgnoredSubstitutionsDlg)
 	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
-	bool m_IgnoredSubstitutionsAreEnabled;
+	bool m_bEnabled;
 	//}}AFX_DATA
 
 // Overrides
@@ -52,9 +52,7 @@ protected:
 	void InitList();
 
 private:
-	std::unique_ptr<CInPlaceEdit> InPlaceEdit;
-
-	CSubeditList m_VisibleFiltersList; /**< List control having filter strings */
+	CSubeditList m_listFilters; /**< List control having filter strings */
 
 	IgnoredSubstitutionsList *m_pIgnoredSubstitutionsList;
 };

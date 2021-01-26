@@ -1364,8 +1364,6 @@
 #define IDS_IGNSUB_STR3                 34176
 #define IDS_IGNSUB_STR4                 34177
 #define IDS_IGNSUB_STR5                 34178
-#define IDS_IGNSUB_STR6                 34179
-#define IDS_IGNSUB_STR7                 34180
 #define ID_FILE_COMPARE_PROPERTIES      34181
 #define ID_FIRSTFILE					34182
 #define ID_PREVFILE						34183

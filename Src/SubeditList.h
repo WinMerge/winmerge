@@ -61,7 +61,7 @@ public:
 
 // Operations
 public:
-	void SetBinaryValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
+	void SetBooleanValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
 
 // Overrides
 	// ClassWizard generated virtual function overrides

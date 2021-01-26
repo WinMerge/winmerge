@@ -230,7 +230,6 @@ private:
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
-	bool m_bCompletelyBlankOutIgnoredChanges;
 };
 
 /**
