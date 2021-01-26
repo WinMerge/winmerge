@@ -43,7 +43,7 @@ void IgnoredSubstitutionsDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(IgnoredSubstitutionsFiltersDlg)
-	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED, m_bEnabled);
+	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ENABLED, m_bEnabled);
 	DDX_Control(pDX, IDC_IGNORED_SUBSTITUTIONS_FILTER, m_listFilters);
 	//}}AFX_DATA_MAP
 }

@@ -191,7 +191,7 @@
 #define IDC_ALL_WHITE                   1027
 #define IDC_WHITE_CHANGE                1028
 #define IDC_WHITESPACE                  1029
-#define IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED  1030
+#define IDC_IGNORED_SUSBSTITUTIONS_ENABLED 1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
 #define IDC_DIFFERENCE_COLOR            1035
@@ -1365,10 +1365,13 @@
 #define IDS_IGNSUB_STR4                 34177
 #define IDS_IGNSUB_STR5                 34178
 #define ID_FILE_COMPARE_PROPERTIES      34181
-#define ID_FIRSTFILE					34182
-#define ID_PREVFILE						34183
-#define ID_NEXTFILE						34184
-#define ID_LASTFILE						34185
+#define ID_FIRSTFILE                    34182
+#define ID_PREVFILE                     34183
+#define ID_NEXTFILE                     34184
+#define ID_LASTFILE                     34185
+#define IDS_OCRRESULT_TEXTONLY          34186
+#define IDS_OCRRESULT_POS_LINE          34187
+#define IDS_OCRRESULT_POS_WORD          34188
 
 // Next default values for new objects
 // 
@@ -1376,7 +1379,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34186
+#define _APS_NEXT_COMMAND_VALUE         34189
 #define _APS_NEXT_CONTROL_VALUE         8837
 #define _APS_NEXT_SYMED_VALUE           118
 #endif

@@ -1186,7 +1186,7 @@ CAPTION "Ignored Substitutions"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected.",IDC_STATIC,8,6,516,19
-    CONTROL         "Enable",IDC_IGNORED_SUSBSTITUTIONS_ARE_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,351,9
+    CONTROL         "Enable",IDC_IGNORED_SUSBSTITUTIONS_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,351,9
     CONTROL         "",IDC_IGNORED_SUBSTITUTIONS_FILTER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,40,516,111
     PUSHBUTTON      "Add",IDC_LFILTER_ADDBTN,7,156,50,14
     PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,63,156,50,14

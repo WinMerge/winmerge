@@ -303,7 +303,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		m_diffWrapper.SetFilterList(_T(""));
 	}
 
-	if (GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED) && theApp.m_pIgnoredSubstitutionsList)
+	if (GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ENABLED) && theApp.m_pIgnoredSubstitutionsList)
 	{
 		m_diffWrapper.SetIgnoredSubstitutionsList(theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList());
 	}

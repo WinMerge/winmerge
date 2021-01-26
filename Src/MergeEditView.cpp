@@ -159,7 +159,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
 	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToIgnoredSubstitutions<false>)
+	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToIgnoredSubstitutions)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToIgnoredSubstitutions)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
@@ -2798,18 +2798,16 @@ void CMergeEditView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(!GetDocument()->IsEditedAfterRescan());
 }
 
-template<bool reversed>
 void CMergeEditView::OnAddToIgnoredSubstitutions()
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->AddToIgnoredSubstitutions(this, reversed);
+	GetDocument()->AddToIgnoredSubstitutions(this, false);
 }
 
 void CMergeEditView::OnUpdateAddToIgnoredSubstitutions(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
-
 
 /**
  * @brief Enable/disable Replace-menuitem

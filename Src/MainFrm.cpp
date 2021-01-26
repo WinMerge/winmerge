@@ -1675,9 +1675,9 @@ void CMainFrame::OnToolsFilters()
 	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
 
-	const bool ignoredSubstitutionsAreEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
+	const bool ignoredSubstitutionsEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ENABLED);
 
-	ignoredSubstitutionsDlg.m_bEnabled = ignoredSubstitutionsAreEnabledOrig;
+	ignoredSubstitutionsDlg.m_bEnabled = ignoredSubstitutionsEnabledOrig;
 	
 	ignoredSubstitutions->CloneFrom(theApp.m_pIgnoredSubstitutionsList.get());
 	ignoredSubstitutionsDlg.SetList(ignoredSubstitutions.get());
@@ -1708,8 +1708,8 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
-		bool ignoredSubstitutionsAreEnabled = ignoredSubstitutionsDlg.m_bEnabled;
-		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, ignoredSubstitutionsAreEnabled);
+		bool ignoredSubstitutionsEnabled = ignoredSubstitutionsDlg.m_bEnabled;
+		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ENABLED, ignoredSubstitutionsEnabled);
 
 		// Check if compare documents need rescanning
 		bool bFileCompareRescan = false;
@@ -1721,7 +1721,7 @@ void CMainFrame::OnToolsFilters()
 			if
 			(
 				   linefiltersEnabled != lineFiltersEnabledOrig
-				|| ignoredSubstitutionsAreEnabled != ignoredSubstitutionsAreEnabledOrig
+				|| ignoredSubstitutionsEnabled != ignoredSubstitutionsEnabledOrig
 				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
 				|| !ignoredSubstitutions->Compare(theApp.m_pIgnoredSubstitutionsList.get())
 			)
@@ -1747,7 +1747,6 @@ void CMainFrame::OnToolsFilters()
 
 		theApp.m_pIgnoredSubstitutionsList->CloneFrom(ignoredSubstitutions.get());
 		theApp.m_pIgnoredSubstitutionsList->SaveFilters();
-
 
 		if (bFileCompareRescan)
 		{

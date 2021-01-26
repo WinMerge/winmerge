@@ -40,10 +40,8 @@ public:
 	void AddRegExp(const std::string& regularExpression);
 	void RemoveAllFilters();
 	bool HasRegExps() const;
-	size_t GetCount() const { return m_list.size(); }
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
 	const char * GetLastMatchExpression() const;
-	const filter_item& operator[](int index) const;
 
 private:
 	std::vector <filter_item_ptr> m_list;
@@ -77,10 +75,3 @@ inline const char * FilterList::GetLastMatchExpression() const
 {
 	return m_lastMatchExpression->c_str();
 }
-
-inline const filter_item& FilterList::operator[](int index) const
-{
-	const filter_item_ptr &item = m_list[index];
-	return *item;
-}
-

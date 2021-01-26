@@ -14,8 +14,6 @@
 #include "stringdiffs.h"
 #include "UnicodeString.h"
 #include "IgnoredSubstitutionsList.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -124,9 +122,6 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 		//Rescan();
 	}
 	return;
-	//for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-	//	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	//		HighlightDiffRect(m_pView[nGroup][nBuffer], rc[nBuffer]);
 }
 
 static inline bool IsDiffPerLine(bool bTableEditing, const DIFFRANGE& cd)

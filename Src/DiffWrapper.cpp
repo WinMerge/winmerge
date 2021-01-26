@@ -47,12 +47,7 @@
 #include "parsers/crystallineparser.h"
 #include "SyntaxColors.h"
 #include "MergeApp.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
 #include "SubstitutionList.h"
-#include "stringdiffs.h"
-
-using namespace strdiff;
 
 using Poco::Debugger;
 using Poco::format;

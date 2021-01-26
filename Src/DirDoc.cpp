@@ -205,8 +205,8 @@ void CDirDoc::LoadIgnoredSubstitutionsList(CDiffContext* pCtxt)
 {
 	ASSERT(pCtxt != nullptr);
 
-	bool ignoredSubstitutionsAreEnabled = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED);
-	if (!ignoredSubstitutionsAreEnabled || theApp.m_pIgnoredSubstitutionsList->GetCount() == 0)
+	bool ignoredSubstitutionsEnabled = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ENABLED);
+	if (!ignoredSubstitutionsEnabled || theApp.m_pIgnoredSubstitutionsList->GetCount() == 0)
 	{
 		pCtxt->m_pSubstitutionList.reset();
 		return;

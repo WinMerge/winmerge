@@ -166,7 +166,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
 
 	pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
-	pOptions->InitOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, false);
+	pOptions->InitOption(OPT_IGNORED_SUBSTITUTIONS_ENABLED, false);
 
 	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
