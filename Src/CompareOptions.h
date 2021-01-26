@@ -84,6 +84,7 @@ struct DIFFOPTIONS
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
 	int nDiffAlgorithm; /**< Diff algorithm -option. */
 	bool bIndentHeuristic; /**< Ident heuristic -option */
+	bool bCompletelyBlankOutIgnoredChanges;
 };
 
 /**
@@ -102,8 +103,6 @@ public:
 	bool m_bIgnoreBlankLines; /**< Ignore blank lines (both sides) */
 	bool m_bIgnoreCase; /**< Ignore case differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
-	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
-	bool m_bIndentHeuristic; /**< Indent heuristic */
 };
 
 /**
@@ -125,6 +124,9 @@ public:
 	enum DiffOutputType m_outputStyle; /**< Output style (for patch files) */
 	int m_contextLines; /**< Number of context lines (for patch files) */
 	bool m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
+	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
+	bool m_bIndentHeuristic; /**< Indent heuristic */
+	bool m_bCompletelyBlankOutIgnoredChanges; /**< Completely blank out ignored changes */
 };
 
 /**

@@ -19,15 +19,12 @@ class IgnoredSubstitutionsDlg : public CTrPropertyPage
 public:
 	IgnoredSubstitutionsDlg();
 
-	void SetList(TokenPairList *list);
+	void SetList(IgnoredSubstitutionsList *list);
 
 // Dialog Data
 	//{{AFX_DATA(IgnoredSubstitutionsDlg)
 	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
-	bool m_IgnoredSubstitutionsAreEnabled;
-	bool m_IgnoredSubstitutionsWorkBothWays;
-	bool m_CompletelyBlankOutIgnoredSubstitutions;
-	bool m_UseRegexpsForIgnoredSubstitutions;
+	bool m_bEnabled;
 	//}}AFX_DATA
 
 // Overrides
@@ -44,14 +41,10 @@ protected:
 	//{{AFX_MSG(IgnoredSubstitutionsDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
-	virtual void OnOK() override;
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	virtual BOOL OnApply() override;
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
-	afx_msg void OnBnClickedEditbtn();
 	afx_msg void OnBnClickedRemovebtn();
-	afx_msg void OnLvnItemActivate(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnLvnKeyDown(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -59,9 +52,7 @@ protected:
 	void InitList();
 
 private:
-	std::unique_ptr<CInPlaceEdit> InPlaceEdit;
+	CSubeditList m_listFilters; /**< List control having filter strings */
 
-	CSubeditList m_VisibleFiltersList; /**< List control having filter strings */
-
-	TokenPairList *m_pExternalRenameList;
+	IgnoredSubstitutionsList *m_pIgnoredSubstitutionsList;
 };

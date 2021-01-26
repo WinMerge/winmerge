@@ -7,46 +7,48 @@
 // SubeditList.h : header file
 //
 
+#include <set>
+
 class CInPlaceEdit : public CEdit
 {
 // Construction
 public:
-    CInPlaceEdit(int iItem, int iSubItem, CString sInitText);
-     
+	CInPlaceEdit(int iItem, int iSubItem, CString sInitText);
+ 
 // Attributes
 public:
-     
+ 
 // Operations
 public:
-     
+ 
 // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CInPlaceEdit)
-    public:
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-    //}}AFX_VIRTUAL
-     
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CInPlaceEdit)
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	//}}AFX_VIRTUAL
+ 
 // Implementation
 public:
-    virtual ~CInPlaceEdit();
-     
-    // Generated message map functions
+	virtual ~CInPlaceEdit();
+ 
+	// Generated message map functions
 protected:
-    //{{AFX_MSG(CInPlaceEdit)
-    afx_msg void OnKillFocus(CWnd* pNewWnd);
-    afx_msg void OnNcDestroy();
-    afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
-     
-    DECLARE_MESSAGE_MAP()
+	//{{AFX_MSG(CInPlaceEdit)
+	afx_msg void OnKillFocus(CWnd* pNewWnd);
+	afx_msg void OnNcDestroy();
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	//}}AFX_MSG
+ 
+	DECLARE_MESSAGE_MAP()
 private:
-    int m_iItem;
-    int m_iSubItem;
-    CString m_sInitText;
-    BOOL    m_bESC;	 	// To indicate whether ESC key was pressed
+	int m_iItem;
+	int m_iSubItem;
+	CString m_sInitText;
+	BOOL	m_bESC;	 	// To indicate whether ESC key was pressed
 };
-     
+ 
 class CSubeditList : public CListCtrl
 {
 // Construction
@@ -55,9 +57,11 @@ public:
 
 // Attributes
 public:
+	std::set<int> m_binaryValueColumns;
 
 // Operations
 public:
+	void SetBooleanValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -68,17 +72,17 @@ public:
 public:
 	virtual ~CSubeditList();
 
-    CInPlaceEdit *EditSubLabel(int nItem, int nCol);
+	CInPlaceEdit *EditSubLabel(int nItem, int nCol);
 	// Generated message map functions
 //protected:
 	//{{AFX_MSG(CSubeditList)
 	// NOTE - the ClassWizard will add and remove member functions here.
-    afx_msg int HitTestEx(CPoint& point, int* col) const;
-    afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-    afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg int HitTestEx(CPoint& point, int* col) const;
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()

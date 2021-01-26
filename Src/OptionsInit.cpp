@@ -167,9 +167,6 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
 	pOptions->InitOption(OPT_IGNORED_SUBSTITUTIONS_ARE_ENABLED, false);
-	pOptions->InitOption(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS, false);
-	pOptions->InitOption(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS, false);
-	pOptions->InitOption(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS, false);
 
 	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.

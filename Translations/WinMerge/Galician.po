@@ -1437,15 +1437,6 @@ msgstr "Os cambios que aparecen nos paneis como os pares que se amosan máis aba
 msgid "Enable"
 msgstr "Activar"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Desmarcar por completo os cambios ignorados"
-
-msgid "Ignore changes in both directions"
-msgstr "Ignorar cambios en ambas as dúas direccións"
-
-msgid "Use regular expressions"
-msgstr "Usar expresións regulares"
-
 msgid "Add"
 msgstr "Engadir"
 
@@ -1733,6 +1724,9 @@ msgstr "Algoritmo de diferenciación (exper.):"
 
 msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -4330,10 +4324,10 @@ msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
 
-msgid "On one panel"
+msgid "Find what"
 msgstr "Nun panel"
 
-msgid "On the other panel"
+msgid "Replace with"
 msgstr "No outro panel"
 
 msgid "<Edit here>"

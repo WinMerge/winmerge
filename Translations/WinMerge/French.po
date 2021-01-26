@@ -1445,15 +1445,6 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-msgid "Completely unhighlight the ignored changes"
-msgstr ""
-
-msgid "Ignore changes in both directions"
-msgstr ""
-
-msgid "Use regular expressions"
-msgstr ""
-
 msgid "Add"
 msgstr ""
 
@@ -1741,6 +1732,9 @@ msgstr "Diff &algorithme (expérimental) :"
 
 msgid "Enable indent &heuristic"
 msgstr "Activer l'indentation &heuristique"
+
+msgid "Completely unhighlight the ignored changes"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -4336,10 +4330,10 @@ msgstr ""
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
-msgid "On one panel"
+msgid "Find what"
 msgstr ""
 
-msgid "On the other panel"
+msgid "Replace with"
 msgstr ""
 
 msgid "<Edit here>"

@@ -51,49 +51,6 @@ private:
 
 };
 
-struct IgnoredSusbstitutionItem
-{
-	std::string Tokens[2];
-	/// Both tokens are broken down into the three parts:
-	///		Tokens[0] = CommonPrefix + MiddleParts[0] + CommonSuffix
-	///		Tokens[1] = CommonPrefix + MiddleParts[1] + CommonSuffix
-	std::string CommonPrefix;
-	std::string MiddleParts[2];
-	std::string CommonSuffix;
-	size_t CommonPrefixLength; /// For convenience
-	size_t CommonSuffixLength;
-	Poco::RegularExpression ChangedPartRegexp[2]; /**< Compiled regular expression */
-
-	IgnoredSusbstitutionItem
-	(
-		const std::string& token0, const std::string& token1,
-		int regexpCompileOptions, bool extractCommonSufixAndPrefix
-	);
-};
-
-class IgnoredSubstitutionsFilterList
-{
-public:
-	IgnoredSubstitutionsFilterList();
-	~IgnoredSubstitutionsFilterList();
-
-	void Add(const std::string& change0, const std::string& change1, bool extractCommonSufixAndPrefix);
-	void RemoveAllFilters();
-	bool HasRegExps() const;
-	size_t GetCount() const { return m_list.size(); }
-	bool MatchBoth
-	(
-		size_t filterIndex,
-		const std::string& string0,
-		const std::string& string1,
-		int codepage = CP_UTF8
-	) const;
-	const IgnoredSusbstitutionItem &operator[](int index) const;
-
-private:
-	std::vector<std::shared_ptr<IgnoredSusbstitutionItem>> m_list;
-};
-
 /** 
  * @brief Removes all expressions from the list.
  */

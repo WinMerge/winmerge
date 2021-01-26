@@ -34,7 +34,7 @@ class MergeCmdLineInfo;
 class ProjectFile;
 class COptionsMgr;
 class LineFiltersList;
-class TokenPairList;
+class IgnoredSubstitutionsList;
 class SyntaxColors;
 class CCrystalTextMarkers;
 
@@ -66,7 +66,7 @@ public:
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-	std::unique_ptr<TokenPairList> m_pTokensForIs;
+	std::unique_ptr<IgnoredSubstitutionsList> m_pIgnoredSubstitutionsList;
 
 	WORD GetLangId() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;

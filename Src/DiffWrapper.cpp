@@ -49,10 +49,10 @@
 #include "MergeApp.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
-#include "TokenPairList.h"
+#include "SubstitutionList.h"
 #include "stringdiffs.h"
-using namespace strdiff;
 
+using namespace strdiff;
 
 using Poco::Debugger;
 using Poco::format;
@@ -239,15 +239,16 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 	return dwCookie;
 }
 
-static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, String& filtered, CrystalLineParser::TextDefinition* enuType)
+static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, std::string& filtered, CrystalLineParser::TextDefinition* enuType)
 {
+	String filteredT;
 	for (int i = startLine; i <= endLine; ++i)
 	{
 		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
 		unsigned textlen = static_cast<unsigned>(text.size());
 		if (!enuType)
 		{
-			filtered += text;
+			filteredT += text;
 		}
 		else
 		{
@@ -257,7 +258,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 
 			if (nActualItems == 0)
 			{
-				filtered += text;
+				filteredT += text;
 			}
 			else
 			{
@@ -267,12 +268,14 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 					if (block.m_nColorIndex != COLORINDEX_COMMENT)
 					{
 						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
-						filtered.append(text.c_str() + block.m_nCharPos, blocklen);
+						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
 					}
 				}
 			}
 		}
 	}
+
+	filtered = ucr::toUTF8(filteredT);
 
 	return dwCookie;
 }
@@ -282,13 +285,13 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
  * @param [in] str - String to search
  * @param [in] rep - String to replace
  */
-static void ReplaceSpaces(String & str, const TCHAR *rep)
+static void ReplaceSpaces(std::string & str, const char *rep)
 {
-	String::size_type pos = 0;
-	size_t replen = _tcslen(rep);
-	while ((pos = str.find_first_of(_T(" \t"), pos)) != String::npos)
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
 	{
-		String::size_type posend = str.find_first_not_of(_T(" \t"), pos);
+		std::string::size_type posend = str.find_first_not_of(" \t", pos);
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
@@ -310,42 +313,61 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	if (Op == OP_TRIVIAL)
 		return;
 
-	ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-		ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
-	ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-		ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
+	std::string LineDataLeft, LineDataRight;
 
-	ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
-	ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
+	if (m_options.m_filterCommentsLines)
+	{
+		ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
+			ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
+			ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 
-	String LineDataLeft, LineDataRight;
-	ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-		LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
-	ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-		LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
+		ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
+		ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
+
+		ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
+			LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
+			LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
+	}
+	else
+	{
+		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
+			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
+		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
+			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+	}
+
+	if (m_pIgnoredSubstitutionsList)
+	{
+		LineDataLeft = m_pIgnoredSubstitutionsList->Subst(LineDataLeft);
+		LineDataRight = m_pIgnoredSubstitutionsList->Subst(LineDataRight);
+	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
-		ReplaceSpaces(LineDataLeft, _T(""));
-		ReplaceSpaces(LineDataRight, _T(""));
+		ReplaceSpaces(LineDataLeft, "");
+		ReplaceSpaces(LineDataRight, "");
 	}
 	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		//Ignore change in whitespace char count
-		ReplaceSpaces(LineDataLeft, _T(" "));
-		ReplaceSpaces(LineDataRight, _T(" "));
+		ReplaceSpaces(LineDataLeft, " ");
+		ReplaceSpaces(LineDataRight, " ");
 	}
 
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
 		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-		for (String::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
-		for (String::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 	}
 	if (LineDataLeft != LineDataRight)
 		return;
@@ -855,136 +877,6 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf)
 	return linesMatch;
 }
 
-bool MatchDiffVsIngoredSubstitutions
-(
-	const std::string &changeBlock0,
-	const std::string &changeBlock1,
-	const wdiff &diff,
-	const IgnoredSubstitutionsFilterList &ignoredSubstitutionsList,
-	const bool optUseRegexpsForIgnoredSubstitutions,
-	const bool optMatchBothWays
-)
-{
-	int changeStartPos[2] = { diff.begin[0], diff.begin[1] };
-	int changeEndPos[2] = { diff.end[0], diff.end[1] };
-	
-	if (!optUseRegexpsForIgnoredSubstitutions)
-	{
-		/// The passed in changes can still have a commonality between them on the ends. Shrink changeStartPos and changeEndPos,
-		/// so that in terms of the first and the last symbols change0 and change1 are different.
-		/// The ignored substitution tokens are broken down similarly.
-		while
-		(
-			   changeStartPos[0] < changeEndPos[0]
-			&& changeStartPos[1] < changeEndPos[1]
-			&& changeBlock0[changeStartPos[0]] == changeBlock1[changeStartPos[1]]
-		)
-		{
-			changeStartPos[0]++;
-			changeStartPos[1]++;
-		}
-
-		while
-		(
-			   changeStartPos[0] < changeEndPos[0]
-			&& changeStartPos[1] < changeEndPos[1]
-			&& changeBlock0[changeEndPos[0]] == changeBlock1[changeEndPos[1]]
-		)
-		{
-			changeEndPos[0]--;
-			changeEndPos[1]--;
-		}
-	}
-
-	int changeLen0 = changeEndPos[0] - changeStartPos[0] + 1;
-	int changeLen1 = changeEndPos[1] - changeStartPos[1] + 1;
-	std::string change0 = std::string(changeBlock0.c_str() + changeStartPos[0], changeLen0);
-	std::string change1 = std::string(changeBlock1.c_str() + changeStartPos[1], changeLen1);
-
-
-	size_t numIgnoredSubstitutions = ignoredSubstitutionsList.GetCount();
-
-	for (int f = 0; f < numIgnoredSubstitutions; f++)
-	{
-		const IgnoredSusbstitutionItem& filter = ignoredSubstitutionsList[f];
-
-		/// Check if the common prefix and suffix fit into the line around the change
-		if
-		(
-			   changeStartPos[0] < filter.CommonPrefixLength
-			|| changeStartPos[1] < filter.CommonPrefixLength
-			|| changeEndPos[0] >= changeBlock0.length() - filter.CommonSuffixLength
-			|| changeEndPos[1] >= changeBlock1.length() - filter.CommonSuffixLength
-		)
-			continue; /// This filter does not fit into the change block together with its suffix and prefix
-
-		/// Check if the common prefix matches (if the the filter is a regexp the prefix will be empty)
-		bool continueWithNextFilter = false;
-		for (int p = 1; p <= filter.CommonPrefixLength; p++)
-		{
-			char char0 = changeBlock0[changeStartPos[0] - p];
-			char char1 = changeBlock1[changeStartPos[1] - p];
-			char charInFilter = filter.CommonPrefix[filter.CommonPrefixLength - p];
-			if (char0 != charInFilter || char1 != charInFilter)
-			{
-				continueWithNextFilter = true;
-				break;
-			}
-		}
-
-		if (continueWithNextFilter)
-			continue;
-
-		/// Check if the common suffix matches (if the the filter is a regexp the suffix will be empty)
-		for (int s = 1; s <= filter.CommonSuffixLength; s++)
-		{
-			char char0 = changeBlock0[changeEndPos[0] + s];
-			char char1 = changeBlock1[changeEndPos[1] + s];
-			char charInFilter = filter.CommonSuffix[s - 1];
-			if (char0 != charInFilter || char1 != charInFilter)
-			{
-				continueWithNextFilter = true;
-				break;
-			}
-		}
-
-		if (continueWithNextFilter)
-			continue;
-
-		/// Check is the middle part matches
-		if(optUseRegexpsForIgnoredSubstitutions)
-		{
-			if
-			(
-				   ignoredSubstitutionsList.MatchBoth(f, change0, change1)
-				||
-					 optMatchBothWays
-				&& ignoredSubstitutionsList.MatchBoth(f, change1, change0)
-			)
-			{
-				return true; /// a match found
-			}
-		}
-		else
-		{
-			if
-			(
-				   filter.MiddleParts[0].compare(change0) == 0
-				&& filter.MiddleParts[1].compare(change1) == 0
-				||
-				   optMatchBothWays
-				&& filter.MiddleParts[0].compare(change1) == 0
-				&& filter.MiddleParts[1].compare(change0) == 0
-		)
-			{
-				return true; /// a match found
-			}
-		}
-	}
-
-	return false; /// n0 match found
-}
-
 /**
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
@@ -996,10 +888,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	struct change *next = script;
 	
-	const bool optCompletelyBlankOutIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_COMPLETELY_BLANK_OUT_IGNORED_SUBSTITUTIONS);
-	const bool optMatchBothWays = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_WORK_BOTH_WAYS);
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
-
 	while (next != nullptr)
 	{
 		/* Find a set of changes that belong together.  */
@@ -1062,7 +950,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 				int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
-				if (m_options.m_filterCommentsLines)
+				if (m_options.m_filterCommentsLines ||
+					(m_pIgnoredSubstitutionsList && m_pIgnoredSubstitutionsList->HasRegExps()))
 					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
 
 				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1078,66 +967,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				/// Handle Ignored Substitutions
-				if
-				(
-					   op == OP_DIFF /// The change marked as significant
-					&& m_files.GetSize() == 2 /// We only support two pane mode for Ignored Substitutions
-					&& m_pIgnoredSubstitutionsList
-					&& m_pIgnoredSubstitutionsList->GetCount()
-					&& QtyLinesLeft > 0
-					&& QtyLinesRight > 0
-				)
-				{
-					const char* changeBlockStart0 =     file_data_ary[0].linbuf[thisob->line0];
-					const char *nextChangeBlockStart0 = file_data_ary[0].linbuf[thisob->line0 + QtyLinesLeft];
-					size_t changeBlockLength0 = nextChangeBlockStart0 - changeBlockStart0;
-
-					const char* changeBlockStart1 =     file_data_ary[1].linbuf[thisob->line1];
-					const char *nextChangeBlockStart1 = file_data_ary[1].linbuf[thisob->line1 + QtyLinesRight];
-					size_t changeBlockLength1 = nextChangeBlockStart1 - changeBlockStart1;
-
-					std::string changeBlock0 = std::string(changeBlockStart0, changeBlockLength0);
-					std::string changeBlock1 = std::string(changeBlockStart1, changeBlockLength1);
-					bool case_sensitive = false;
-					bool eol_sensitive = false;
-					int whitespace = WHITESPACE_IGNORE_CHANGE;
-					int breakType = 1;// breakType==1 means break also on punctuation
-					bool byte_level = true;
-					
-					std::vector<wdiff> worddiffs = ComputeWordDiffs(
-						ucr::toTString(changeBlock0), ucr::toTString(changeBlock1),
-						case_sensitive, eol_sensitive, whitespace, breakType, byte_level
-					);
-
-					bool allChangesWithinTheBlockAreIgnored = true;
-					for (const wdiff &diff: worddiffs)
-					{
-						if (!MatchDiffVsIngoredSubstitutions
-						(
-							changeBlock0, changeBlock1,
-							diff,
-							*m_pIgnoredSubstitutionsList, optUseRegexpsForIgnoredSubstitutions,
-							optMatchBothWays
-						))
-						{
-							/// Found a change that does not match any Ignored Substitution's. Leave the change block unaffected.
-							/// Our strategy is to only mark a change block as ignored if all of its changes are ignored.
-							allChangesWithinTheBlockAreIgnored = false;
-							break;
-						}
-					}
-
-					if (allChangesWithinTheBlockAreIgnored)
-					{
-						if (optCompletelyBlankOutIgnoredSubstitutions)
-							op = OP_NONE;
-						else
-							op = OP_TRIVIAL;
-					}
-				}
-
-				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredChanges)
+					op = OP_NONE;
+				if (op != OP_NONE)
+					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
 		}
 		
@@ -1279,7 +1112,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
-					if (m_options.m_filterCommentsLines)
+					if (m_options.m_filterCommentsLines ||
+						(m_pIgnoredSubstitutionsList && m_pIgnoredSubstitutionsList->HasRegExps()))
 						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
 
 					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1552,51 +1386,14 @@ void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
 	}
 }
 
-IgnoredSubstitutionsFilterList* CDiffWrapper::GetIgnoredSubstitutionsList()
+const SubstitutionList* CDiffWrapper::GetIgnoredSubstitutionsList() const
 {
 	return m_pIgnoredSubstitutionsList.get();
 }
 
-void CDiffWrapper::SetIgnoredSubstitutionsList(const FilterList* pIgnoredSubstitutionsList0, const FilterList* pIgnoredSubstitutionsList1)
+void CDiffWrapper::SetIgnoredSubstitutionsList(const SubstitutionList* ignoredSubstitutionsList)
 {
-	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
-
-	if (!pIgnoredSubstitutionsList0 || pIgnoredSubstitutionsList0->GetCount() == 0)
-	{
-		m_pIgnoredSubstitutionsList.reset();
-		return;
-	}
-
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
-
-	for (int f = 0; f < pIgnoredSubstitutionsList0->GetCount(); f++)
-	{
-		std::string s0 = (*pIgnoredSubstitutionsList0)[f].filterAsString;
-		std::string s1 = (*pIgnoredSubstitutionsList1)[f].filterAsString;
-		m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
-	}
-}
-
-void CDiffWrapper::SetIgnoredSubstitutionsList(const TokenPairList *ignoredSubstitutionsList)
-{
-	m_pIgnoredSubstitutionsList.reset(new IgnoredSubstitutionsFilterList());
-
-	// Remove filterlist if new filter is empty
-	if (!ignoredSubstitutionsList || ignoredSubstitutionsList->GetCount() == 0)
-	{
-		m_pIgnoredSubstitutionsList.reset();
-		return;
-	}
-
-	const bool optUseRegexpsForIgnoredSubstitutions = GetOptionsMgr()->GetBool(OPT_USE_REGEXPS_FOR_IGNORED_SUBSTITUTIONS);
-
-	for (int f = 0; f < ignoredSubstitutionsList->GetCount(); f++)
-	{
-		std::string s0 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr0.c_str());
-		std::string s1 = ucr::toUTF8(ignoredSubstitutionsList->GetAt(f).filterStr1.c_str());
-		if(s0 != s1)
-			m_pIgnoredSubstitutionsList->Add(s0, s1, !optUseRegexpsForIgnoredSubstitutions);
-	}
+	m_pIgnoredSubstitutionsList.reset(ignoredSubstitutionsList);
 }
 
 void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)
