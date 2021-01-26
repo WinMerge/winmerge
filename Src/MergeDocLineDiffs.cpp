@@ -94,7 +94,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 		selectedText[nBuffer] = String(m_pView[pView->m_nThisGroup][nBuffer]->GetSelectedText());
 	}
 
-	if (selectedText[0].empty() && selectedText[1].empty())
+	if (selectedText[0].empty())
 	{
 		return;
 	}
