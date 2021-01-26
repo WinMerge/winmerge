@@ -21,12 +21,13 @@
 </head>
 <body>
 <h1 id="change-log">Change log</h1>
-<h2 id="winmerge-21610---2021-01-xx">WinMerge 2.16.10 - 2021-01-xx</h2>
+<h2 id="winmerge-21610---2021-01-29">WinMerge 2.16.10 - 2021-01-29</h2>
 <h3 id="general">General</h3>
 <ul>
 <li>BugFix: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)</li>
 <li>BugFix: Fixed the problem that the language setting is not applied to the context menu of the MDI tab when the language setting is changed. (GitHub PR #523)</li>
 <li>BugFix: command-line option /x did not work for binary and image comparison</li>
+<li>BugFix: Substiturions vs. Substitutions (GitHub #551)</li>
 <li>Swap Panes functionality for 3 way compares (Issue #507) (GitHub PR #533)</li>
 <li>[feature request] Add options to command line to change &quot;compare methods&quot;<br />
 (GitHub #530)</li>
@@ -36,15 +37,19 @@
 <ul>
 <li>BugFix: WinMerge crashes with mouse double click (GitHub #531)</li>
 <li>BugFix: Fixed an issue where the message box &quot;The report has been created successfully.&quot; was displayed even if the report creation failed.</li>
+<li>BugFix: BUG: Doesn&#39;t respect &quot;Don&#39;t ask this question again&quot; checkbox when comparing large files (GitHub #574)</li>
 <li>The Location pane doesn&#39;t draw a line connecting moved differences by default (GitHub #498)</li>
 <li>Update crystallineparser.cpp - AutoIt (*.au3) support as a &quot;Basic&quot; (GitHub PR #543)</li>
 <li>Added JavaScript and JSON syntax highligher (osdn.net #41083)</li>
 <li>Added View -&gt; Diff Context -&gt; Invert menu item</li>
+<li>Feature Request: Move To Next File option while comparing files #475 (GitHub PR #561)</li>
+<li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
 <li>BugFix: Winmerge crashes consistently when deleting files (GitHub #491)</li>
 <li>BugFix: Copy Folder does not copy subfolders and I don&#39;t see any option for it (GitHub #537)</li>
+<li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560)</li>
 </ul>
 <h3 id="table-compare">Table compare</h3>
 <ul>
@@ -58,6 +63,7 @@
 <ul>
 <li>Implement copy and paste images (GitHub PR #524)</li>
 <li>Added File -&gt; New -&gt; Image menu item</li>
+<li>Added Image -&gt; Compare Extracted Text From Image menu item</li>
 </ul>
 <h3 id="filter-dialog">Filter dialog</h3>
 <ul>
@@ -71,12 +77,12 @@
 <ul>
 <li>Translation updates:
 <ul>
-<li>Galician (GitHub PR #493,#538)</li>
-<li>German (GitHub PR #532)</li>
+<li>Galician (GitHub PR #493,#538,#570)</li>
+<li>German (GitHub PR #532,#548,#563)</li>
 <li>Japanese</li>
-<li>Lithuanian (GitHub PR #496,#528,#536)</li>
+<li>Lithuanian (GitHub PR #496,#528,#536,#562,#564)</li>
 <li>Portuguese (GitHub PR #495)</li>
-<li>Slovenian</li>
+<li>Slovenian (GitHub #553,#565)</li>
 <li>Russian (GitHub PR #494)</li>
 </ul></li>
 </ul>
@@ -90,6 +96,11 @@
 <ul>
 <li>Fix Various Warnings (GitHub PR #539)</li>
 <li>Various fixes to testing (GitHub PR #545)</li>
+<li>Some tweaks for translations status (GitHub PR #556)</li>
+<li>Link error when <code>building Plugins\src_VCPP\DisplayXMLFiles</code> with Visual Studio 2019 16.7.7 (GitHub #554)</li>
+<li>Link error when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #555)</li>
+<li>Link warnings when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #558)</li>
+<li>Some more files should be added to the .gitignore file (GitHub #559)</li>
 </ul>
 <h2 id="winmerge-2169---2020-11-29">WinMerge 2.16.9 - 2020-11-29</h2>
 <h3 id="general-1">General</h3>
