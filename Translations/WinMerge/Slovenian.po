@@ -4333,3 +4333,12 @@ msgstr "Par je že prisoten na seznamu prezrtih zamenjav"
 msgid "Add this change to Ignored Substitutions?"
 msgstr "Dodajm to spremembo v Prezrte zamenjave?"
 
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+

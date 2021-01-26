@@ -1133,7 +1133,7 @@ msgid "Ignored Substitutions"
 msgstr "置換フィルター"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "以下の置換リストで両ファイルの差異ブロックを置換します。置換した結果、差異ブロックの内容が一致した場合、その差異ブロックは無視されたブロックとして扱われます。生成するパッチには影響しません。"
+msgstr "以下の置換リストで両ファイルの差異ブロックの内容を置換します。置換した結果、内容が一致した場合、そのブロックの元々の差異は無視されます。生成するパッチには影響しません。"
 
 msgid "Enable"
 msgstr "有効にする"
@@ -3576,4 +3576,13 @@ msgstr "このペアは、既に置換フィルターのリストに存在しま
 
 msgid "Add this change to Ignored Substitutions?"
 msgstr "この差異を置換フィルターに追加しますか?"
+
+msgid "Text only"
+msgstr "テキストのみ"
+
+msgid "Line-by-line position and text"
+msgstr "行毎の位置情報とテキスト"
+
+msgid "Word-by-word position and text"
+msgstr "単語毎の位置情報とテキスト"
 

@@ -4339,3 +4339,12 @@ msgstr "O par xa está presente na lista de Substitucións ignoradas"
 msgid "Add this change to Ignored Substitutions?"
 msgstr "Engadir este cambio ás Substitucións ignoradas?"
 
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+

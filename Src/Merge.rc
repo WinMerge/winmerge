@@ -3558,6 +3558,13 @@ BEGIN
     IDS_IGNSUB_STR5 "Add this change to Ignored Substitutions?"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_OCRRESULT_TEXTONLY "Text only"
+    IDS_OCRRESULT_POS_LINE "Line-by-line position and text"
+    IDS_OCRRESULT_POS_WORD "Word-by-word position and text"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

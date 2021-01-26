@@ -3206,3 +3206,12 @@ msgstr "Pora jau yra ignoruojamų pakaitalų sąraše"
 msgid "Add this change to Ignored Substitutions?"
 msgstr "Pridėti šį pakeitimą prie ignoruojamų pakaitalų?"
 
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+

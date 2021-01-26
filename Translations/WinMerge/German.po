@@ -3952,3 +3952,12 @@ msgstr "Das Paar ist bereits in der Liste der ignorierten Ersetzungen vorhanden.
 msgid "Add this change to Ignored Substitutions?"
 msgstr "Diese Änderung zu den ignorierten Ersetzungen hinzufügen?"
 
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+
