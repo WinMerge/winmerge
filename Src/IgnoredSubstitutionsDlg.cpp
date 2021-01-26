@@ -75,11 +75,6 @@ BOOL IgnoredSubstitutionsDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-static CString BooleanValueToCheckBox(bool b)
-{
-	return b ? _T("\u2611") : _T("\u2610");
-}
-
 static CString RemoveMnemonic(String text)
 {
 	Poco::RegularExpression re("\\(&.\\)|&|:");
@@ -111,9 +106,9 @@ void IgnoredSubstitutionsDlg::InitList()
 			const IgnoredSubstitution& item = m_pIgnoredSubstitutionsList->GetAt(i);
 			m_listFilters.InsertItem(i, item.pattern.c_str());
 			m_listFilters.SetItemText(i, 1, item.replacement.c_str());
-			m_listFilters.SetItemText(i, 2, BooleanValueToCheckBox(item.useRegExp));
-			m_listFilters.SetItemText(i, 3, BooleanValueToCheckBox(item.caseSensitive));
-			m_listFilters.SetItemText(i, 4, BooleanValueToCheckBox(item.matchWholeWordOnly));
+			m_listFilters.SetItemBooleanValue(i, 2, item.useRegExp);
+			m_listFilters.SetItemBooleanValue(i, 3, item.caseSensitive);
+			m_listFilters.SetItemBooleanValue(i, 4, item.matchWholeWordOnly);
 			m_listFilters.SetCheck(i, item.enabled);
 		}
 	}
@@ -135,9 +130,9 @@ void IgnoredSubstitutionsDlg::OnBnClickedAddBtn()
 	int num = m_listFilters.GetItemCount();
 	int ind = m_listFilters.InsertItem(num, _("<Edit here>").c_str());
 	m_listFilters.SetItemText(num, 1, _("<Edit here>").c_str());
-	m_listFilters.SetItemText(num, 2, BooleanValueToCheckBox(false));
-	m_listFilters.SetItemText(num, 3, BooleanValueToCheckBox(false));
-	m_listFilters.SetItemText(num, 4, BooleanValueToCheckBox(false));
+	m_listFilters.SetItemBooleanValue(num, 2, false);
+	m_listFilters.SetItemBooleanValue(num, 3, false);
+	m_listFilters.SetItemBooleanValue(num, 4, false);
 	m_listFilters.SetCheck(num);
 
 	if (ind >= -1)
@@ -166,9 +161,9 @@ BOOL IgnoredSubstitutionsDlg::OnApply()
 	{
 		String symbolBeforeRename = m_listFilters.GetItemText(i, 0);
 		String symbolAfterRename = m_listFilters.GetItemText(i, 1);
-		bool useRegExp = m_listFilters.GetItemText(i, 2).Compare(_T("\u2611")) == 0;
-		bool caseSensitive = m_listFilters.GetItemText(i, 3).Compare(_T("\u2611")) == 0;
-		bool matchWholeWordOnly = m_listFilters.GetItemText(i, 4).Compare(_T("\u2611")) == 0;
+		bool useRegExp = m_listFilters.GetItemBooleanValue(i, 2);
+		bool caseSensitive = m_listFilters.GetItemBooleanValue(i, 3);
+		bool matchWholeWordOnly = m_listFilters.GetItemBooleanValue(i, 4);
 		if (useRegExp)
 			matchWholeWordOnly = false;
 		bool enabled = !!m_listFilters.GetCheck(i);

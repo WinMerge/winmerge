@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "SubeditList.h"
+#include "Win_VersionHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,6 +24,20 @@ CSubeditList::CSubeditList()
 
 CSubeditList::~CSubeditList()
 {
+}
+
+void CSubeditList::SetItemBooleanValue(int nItem, int nSubItem, bool value)
+{
+	if (IsWin7_OrGreater())
+		SetItemText(nItem, nSubItem, value ? _T("\u2611") : _T("\u2610"));
+	else
+		SetItemText(nItem, nSubItem, value ? _T("true") : _T("false"));
+}
+
+bool CSubeditList::GetItemBooleanValue(int nItem, int nSubItem) const
+{
+	CString text = GetItemText(nItem, nSubItem);
+	return (text.Compare(_T("true")) == 0 || text.Compare(_T("\u2611")) == 0);
 }
 
 // HitTestEx	- Determine the row index and column index for a point
@@ -202,8 +217,16 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 				if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
 				{
 					CString text = GetItemText(index, colnum);
-					SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
-						_T("\u2610") : _T("\u2611"));
+					if (IsVista_OrGreater())
+					{
+						SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
+							_T("\u2610") : _T("\u2611"));
+					}
+					else
+					{
+						SetItemText(index, colnum, text.Compare(_T("true")) == 0 ?
+							_T("false") : _T("true"));
+					}
 				}
 				else
 				{

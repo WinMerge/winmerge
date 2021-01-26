@@ -62,6 +62,8 @@ public:
 // Operations
 public:
 	void SetBooleanValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
+	void SetItemBooleanValue(int nItem, int nSubItem, bool value);
+	bool GetItemBooleanValue(int nItem, int nSubItem) const;
 
 // Overrides
 	// ClassWizard generated virtual function overrides
