@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-01-02 11:10+0900\n"
+"PO-Revision-Date: 2021-01-26 14:41+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "行内差異を選択(&S)\tF4"
 
 msgid "Add this change to &Ignored Substitutions"
-msgstr ""
+msgstr "この差異を置換フィルターに追加する(&I)"
 
 msgid "&Undo"
 msgstr "元に戻す(&U)"
@@ -165,7 +165,7 @@ msgid "&Vector Image Scaling"
 msgstr "ベクター画像スケーリング(&V)"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "画像から抽出したテキストを比較(&T)"
 
 msgid "&File"
 msgstr "ファイル(&F)"
@@ -1115,7 +1115,7 @@ msgid "&Apply"
 msgstr "適用(&A)"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "行フィルター"
 
 msgid "Enable Line Filters"
 msgstr "行フィルターを有効にする"
@@ -1130,19 +1130,19 @@ msgid "Remove"
 msgstr "削除"
 
 msgid "Ignored Substitutions"
-msgstr ""
+msgstr "置換フィルター"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "以下の置換リストで両ファイルの差異ブロックを置換します。置換した結果、差異ブロックの内容が一致した場合、その差異ブロックは無視されたブロックとして扱われます。生成するパッチには影響しません。"
 
 msgid "Enable"
-msgstr ""
+msgstr "有効にする"
 
 msgid "Add"
-msgstr ""
+msgstr "追加"
 
 msgid "Clear"
-msgstr ""
+msgstr "クリア"
 
 msgid "Colors"
 msgstr "色"
@@ -1371,7 +1371,7 @@ msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"
 
 msgid "Completely unhighlight the ignored changes"
-msgstr ""
+msgstr "無視された差異の行を同一行の色と同じにする"
 
 msgid "Editor"
 msgstr "エディター"
@@ -1416,7 +1416,7 @@ msgid "&Rendering Mode:"
 msgstr "レンダリングモード(&R):"
 
 msgid "File Filters"
-msgstr ""
+msgstr "ファイルフィルター"
 
 msgid "Test..."
 msgstr "テスト..."
@@ -1868,7 +1868,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "フォルダー比較で画像比較を有効にする(&E)"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCRの結果:"
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
@@ -2209,7 +2209,7 @@ msgid "Untitled right"
 msgstr "右無題"
 
 msgid "Base File"
-msgstr ""
+msgstr "Base File"
 
 msgid "Theirs File"
 msgstr "Theirs File"
@@ -2401,6 +2401,11 @@ msgstr ""
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr ""
+"プラグイン '%2' は、修正内容を中央のファイル '%1' に書き戻すことができません。\n"
+"\n"
+"元ファイルは変更されません。\n"
+"\n"
+"展開されたものを別ファイルに保存しますか?"
 
 #, c-format
 msgid ""
@@ -3308,15 +3313,23 @@ msgstr ""
 
 msgid "\nFirst File"
 msgstr ""
+"\n"
+"最初のファイル"
 
 msgid "\nNext File"
 msgstr ""
+"\n"
+"次のファイル"
 
 msgid "\nLast File"
 msgstr ""
+"\n"
+"最後のファイル"
 
 msgid "\nPrevious File"
 msgstr ""
+"\n"
+"前のファイル"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
@@ -3550,17 +3563,17 @@ msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<ここを編集>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "選択する差異がありません"
 
 msgid "No differences found to add as ignored substitution"
-msgstr ""
+msgstr "置換フィルターに追加する差異がありません"
 
 msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr ""
+msgstr "このペアは、既に置換フィルターのリストに存在します"
 
 msgid "Add this change to Ignored Substitutions?"
-msgstr ""
+msgstr "この差異を置換フィルターに追加しますか?"
 
