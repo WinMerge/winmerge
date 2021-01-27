@@ -986,7 +986,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	CPoint pt = worddiffs.size() > 0 ?
 		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
 		CPoint{ 0, m_lineBegin };
-	EnsureVisible(pt);
+	ScrollToLine(m_lineBegin);
+	if (pt.x > 0)
+		EnsureVisible(pt);
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
