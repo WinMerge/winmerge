@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-01-19 09:06+0100\n"
+"PO-Revision-Date: 2021-01-27 19:30+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -49,7 +49,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Dodaj to spremembmo med &Nadomestne filtre"
 
 #, c-format
 msgid "&Undo"
@@ -747,11 +747,11 @@ msgid "&View Whitespace"
 msgstr "&Prikaz presledkov"
 
 msgid "View E&OL"
-msgstr "Prikaz &KnV"
+msgstr "Prikaz &EOL"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Prikaži razl&ik vrstic"
+msgstr "Prikaz razl&ik vrstic"
 
 #, c-format
 msgid "View Line &Numbers"
@@ -1428,7 +1428,7 @@ msgid "Remove"
 msgstr "Odstrani"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Nadomestni filtri"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Popravki ne vplivajo."
@@ -1471,7 +1471,7 @@ msgstr "Izbrane razlike:"
 
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Prezrte razlike:"
+msgstr "Prezrta razlika:"
 
 #, c-format
 msgid "Moved:"
@@ -1724,7 +1724,7 @@ msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Popolnoma odstrani poudarek prezrtih razlik"
 
 msgid "Editor"
 msgstr "Urejevalnik"
@@ -4106,7 +4106,7 @@ msgstr "Nastavitve vtičnika"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH ni najden - .sct skripti so onemogočeni"
+msgstr "WSH ni najden - skripti '.sct' so onemogočeni"
 
 #, c-format
 msgid "<None>"
@@ -4325,20 +4325,20 @@ msgid "No differences to select found"
 msgstr "Ni najdenih nobenih razlik za izbiro"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Ni najdenih razlik za dodajanje kot Nadomestni filter"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Par je že prisoten na seznamu nadomestnih filtrov"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Dodam to spremembo med Nadomestne filtre?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Samo besedilo"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Položaj vrstico po vrstico in besedilo"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Položaj besedo po besedo in besedilo"
 
