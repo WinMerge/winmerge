@@ -1,7 +1,7 @@
 /** 
- * @file IgnoredSubstitutionsList.h
+ * @file SubstitutionFiltersList.h
  *
- * @brief Declaration file for IgnoredSubstitutionsList class
+ * @brief Declaration file for SubstitutionFiltersList class
  */
 #pragma once
 
@@ -15,7 +15,7 @@ class COptionsMgr;
 /**
  @brief Structure for filter.
  */
-struct IgnoredSubstitution
+struct SubstitutionFilter
 {
 	bool enabled;
 	bool useRegExp;
@@ -28,18 +28,18 @@ struct IgnoredSubstitution
 /**
  @brief List of raw Ignored Substitution pairs.
  */
-class IgnoredSubstitutionsList
+class SubstitutionFiltersList
 {
 public:
-	IgnoredSubstitutionsList();
-	~IgnoredSubstitutionsList();
+	SubstitutionFiltersList();
+	~SubstitutionFiltersList();
 
 	void Add(const String& pattern, const String& replacement, bool useRegExp, bool caseSensitive, bool matchWholeWordOnly, bool enabled);
 	size_t GetCount() const;
 	void Empty();
-	const IgnoredSubstitution &GetAt(size_t ind) const;
-	void CloneFrom(const IgnoredSubstitutionsList *list);
-	bool Compare(const IgnoredSubstitutionsList *list) const;
+	const SubstitutionFilter &GetAt(size_t ind) const;
+	void CloneFrom(const SubstitutionFiltersList *list);
+	bool Compare(const SubstitutionFiltersList *list) const;
 
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
@@ -47,7 +47,7 @@ public:
 	std::shared_ptr<SubstitutionList> MakeSubstitutionList(bool throwIfInvalid = false);
 
 private:
-	std::vector<IgnoredSubstitution> m_items; /**< List for linefilter items */
+	std::vector<SubstitutionFilter> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 
@@ -55,7 +55,7 @@ private:
  * @brief Returns count of items in the list.
  * @return Count of filters in the list.
  */
-inline size_t IgnoredSubstitutionsList::GetCount() const
+inline size_t SubstitutionFiltersList::GetCount() const
 {
 	return m_items.size();
 }
@@ -63,7 +63,7 @@ inline size_t IgnoredSubstitutionsList::GetCount() const
 /**
  * @brief Empties the list.
  */
-inline void IgnoredSubstitutionsList::Empty()
+inline void SubstitutionFiltersList::Empty()
 {
 	m_items.clear();
 }

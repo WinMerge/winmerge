@@ -46,7 +46,7 @@ msgstr "Copia des de la dreta"
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecciona la diferència a la línia\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
 #, c-format
@@ -1426,7 +1426,7 @@ msgstr "Edita"
 msgid "Remove"
 msgstr "Suprimeix"
 
-msgid "Ignored Substitutions"
+msgid "Substitution Filters"
 msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
@@ -1723,7 +1723,7 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-msgid "Completely unhighlight the ignored changes"
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 #, c-format
@@ -4090,13 +4090,13 @@ msgstr ""
 msgid "No differences to select found"
 msgstr ""
 
-msgid "No differences found to add as ignored substitution"
+msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
+msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
+msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"

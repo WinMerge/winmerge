@@ -184,8 +184,8 @@ public:
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
-	const SubstitutionList* GetIgnoredSubstitutionsList() const;
-	void SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> pIgnoredSubstitutionsList);
+	const SubstitutionList* GetSubstitutionList() const;
+	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
 	void EnablePlugins(bool enable);

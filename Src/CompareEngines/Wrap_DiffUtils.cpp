@@ -75,14 +75,14 @@ void DiffUtils::SetFilterList(FilterList * list)
 	m_pFilterList = list;
 }
 
-void DiffUtils::SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> list)
+void DiffUtils::SetSubstitutionList(std::shared_ptr<SubstitutionList> list)
 {
-	m_pDiffWrapper->SetIgnoredSubstitutionsList(list);
+	m_pDiffWrapper->SetSubstitutionList(list);
 }
 
-void DiffUtils::ClearIgnoredSubstitutionsList()
+void DiffUtils::ClearSubstitutionList()
 {
-	m_pDiffWrapper->SetIgnoredSubstitutionsList(nullptr);
+	m_pDiffWrapper->SetSubstitutionList(nullptr);
 }
 
 /**
@@ -165,8 +165,8 @@ int DiffUtils::diffutils_compare_files()
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
 	
 					if(m_pOptions->m_filterCommentsLines ||
-						(m_pDiffWrapper->GetIgnoredSubstitutionsList() &&
-						 m_pDiffWrapper->GetIgnoredSubstitutionsList()->HasRegExps()))
+						(m_pDiffWrapper->GetSubstitutionList() &&
+						 m_pDiffWrapper->GetSubstitutionList()->HasRegExps()))
 					{
 						OP_TYPE op = OP_NONE;
 						if (deletes == 0 && inserts == 0)

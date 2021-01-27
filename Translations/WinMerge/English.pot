@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-26 15:53+0000\n"
+"POT-Creation-Date: 2021-01-27 23:46+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "&Select Line Difference\tF4"
 msgstr ""
 
-msgid "Add this change to &Ignored Substitutions"
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
 msgid "&Undo"
@@ -1122,7 +1122,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-msgid "Ignored Substitutions"
+msgid "Substitution Filters"
 msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
@@ -1359,7 +1359,7 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-msgid "Completely unhighlight the ignored changes"
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 msgid "Editor"
@@ -3188,13 +3188,13 @@ msgstr ""
 msgid "No differences to select found"
 msgstr ""
 
-msgid "No differences found to add as ignored substitution"
+msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
+msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
+msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"

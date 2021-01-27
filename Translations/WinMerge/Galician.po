@@ -48,8 +48,8 @@ msgstr "Copiar da &dereita"
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleccionar a diferenza entre liñas\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "Engadir este cambio ás Substitucións &ignoradas"
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -1428,8 +1428,8 @@ msgstr "Editar"
 msgid "Remove"
 msgstr "Eliminar"
 
-msgid "Ignored Substitutions"
-msgstr "Substitucións ignoradas"
+msgid "Substitution Filters"
+msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Os cambios que aparecen nos paneis como os pares que se amosan máis abaixe serán ignorados ou marcados como non significantes. Non afecta aos Patches."
@@ -1725,7 +1725,7 @@ msgstr "Algoritmo de diferenciación (exper.):"
 msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
 
-msgid "Completely unhighlight the ignored changes"
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 #, c-format
@@ -4330,14 +4330,14 @@ msgstr "<Editar aquí>"
 msgid "No differences to select found"
 msgstr "Non se atoparon deferenzas que seleccionar"
 
-msgid "No differences found to add as ignored substitution"
-msgstr "Non se atoparon deferenzas para engadir ás substitucións ignoradas"
+msgid "No differences found to add as substitution filter"
+msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr "O par xa está presente na lista de Substitucións ignoradas"
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
-msgstr "Engadir este cambio ás Substitucións ignoradas?"
+msgid "Add this change to Substitution Filters?"
+msgstr ""
 
 msgid "Text only"
 msgstr ""

@@ -232,7 +232,7 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2021-01-26</update>
+      <update>2021-01-27</update>
       <strings>
         <count>1023</count>
         <translated>1023</translated>
@@ -306,9 +306,9 @@
       <update>2021-01-18</update>
       <strings>
         <count>1023</count>
-        <translated>1020</translated>
+        <translated>1019</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>4</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -398,9 +398,9 @@
       <update>2021-01-26</update>
       <strings>
         <count>1023</count>
-        <translated>1023</translated>
+        <translated>1022</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>0</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -444,9 +444,9 @@
       <update>2021-01-19</update>
       <strings>
         <count>1023</count>
-        <translated>1020</translated>
+        <translated>1019</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>4</untranslated>
       </strings>
       <translators>
         <translator>
@@ -567,9 +567,9 @@
       <update>2020-11-29</update>
       <strings>
         <count>1023</count>
-        <translated>1000</translated>
+        <translated>999</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>23</untranslated>
+        <untranslated>24</untranslated>
       </strings>
       <translators>
         <translator>
@@ -658,9 +658,9 @@
       <update>2021-01-19</update>
       <strings>
         <count>1023</count>
-        <translated>1020</translated>
+        <translated>1019</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>4</untranslated>
       </strings>
       <translators>
         <translator>

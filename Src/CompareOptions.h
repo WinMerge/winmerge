@@ -126,7 +126,7 @@ public:
 	bool m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
 	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
 	bool m_bIndentHeuristic; /**< Indent heuristic */
-	bool m_bCompletelyBlankOutIgnoredChanges; /**< Completely blank out ignored changes */
+	bool m_bCompletelyBlankOutIgnoredDiffereneces; /**< Completely blank out ignored differences */
 };
 
 /**

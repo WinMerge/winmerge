@@ -31,7 +31,7 @@
 #include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
 #include "LineFiltersList.h"
-#include "IgnoredSubstitutionsList.h"
+#include "SubstitutionFiltersList.h"
 #include "FileFilterHelper.h"
 #include "unicoder.h"
 #include "DirActions.h"
@@ -201,18 +201,18 @@ void CDirDoc::LoadLineFilterList(CDiffContext *pCtxt)
 		pCtxt->m_pFilterList->AddRegExp(*it);
 }
 
-void CDirDoc::LoadIgnoredSubstitutionsList(CDiffContext* pCtxt)
+void CDirDoc::LoadSubstitutionFiltersList(CDiffContext* pCtxt)
 {
 	ASSERT(pCtxt != nullptr);
 
-	bool ignoredSubstitutionsEnabled = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ENABLED);
-	if (!ignoredSubstitutionsEnabled || theApp.m_pIgnoredSubstitutionsList->GetCount() == 0)
+	bool SubstitutionFiltersEnabled = GetOptionsMgr()->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
+	if (!SubstitutionFiltersEnabled || theApp.m_pSubstitutionFiltersList->GetCount() == 0)
 	{
 		pCtxt->m_pSubstitutionList.reset();
 		return;
 	}
 
-	pCtxt->m_pSubstitutionList = theApp.m_pIgnoredSubstitutionsList->MakeSubstitutionList();
+	pCtxt->m_pSubstitutionList = theApp.m_pSubstitutionFiltersList->MakeSubstitutionList();
 }
 
 void CDirDoc::DiffThreadCallback(int& state)
@@ -223,7 +223,7 @@ void CDirDoc::DiffThreadCallback(int& state)
 void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 {
 	LoadLineFilterList(pCtxt);
-	LoadIgnoredSubstitutionsList(pCtxt);
+	LoadSubstitutionFiltersList(pCtxt);
 
 	DIFFOPTIONS options = {0};
 	Options::DiffOptions::Load(GetOptionsMgr(), options);

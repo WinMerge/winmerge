@@ -1,13 +1,13 @@
 /**
- *  @file IgnoredSubstitutionsDlg.cpp
+ *  @file SubstitutionFiltersDlg.cpp
  *
- *  @brief Implementation of Ignored Substitutions dialog
+ *  @brief Implementation of Substitution Filters dialog
  */ 
 
 #include "stdafx.h"
-#include "IgnoredSubstitutionsList.h"
+#include "SubstitutionFiltersList.h"
 #include "Merge.h"
-#include "IgnoredSubstitutionsDlg.h"
+#include "SubstitutionFiltersDlg.h"
 #include <Poco/Exception.h>
 
 #ifdef _DEBUG
@@ -20,16 +20,16 @@ static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page
 
-IMPLEMENT_DYNAMIC(IgnoredSubstitutionsDlg, CTrPropertyPage)
+IMPLEMENT_DYNAMIC(SubstitutionFiltersDlg, CTrPropertyPage)
 
 /**
  * @brief Constructor.
  */
-IgnoredSubstitutionsDlg::IgnoredSubstitutionsDlg()
-	: CTrPropertyPage(IgnoredSubstitutionsDlg::IDD)
-	, m_pIgnoredSubstitutionsList(nullptr)
+SubstitutionFiltersDlg::SubstitutionFiltersDlg()
+	: CTrPropertyPage(SubstitutionFiltersDlg::IDD)
+	, m_pSubstitutionFiltersList(nullptr)
 {
-	//{{AFX_DATA_INIT(IgnoredSubstitutionsFiltersDlg)
+	//{{AFX_DATA_INIT(SubstitutionFiltersFiltersDlg)
 	m_bEnabled = false;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
@@ -39,22 +39,22 @@ IgnoredSubstitutionsDlg::IgnoredSubstitutionsDlg()
 	m_psp.dwFlags |= PSP_USEHICON;
 }
 
-void IgnoredSubstitutionsDlg::DoDataExchange(CDataExchange* pDX)
+void SubstitutionFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(IgnoredSubstitutionsFiltersDlg)
+	//{{AFX_DATA_MAP(SubstitutionFiltersFiltersDlg)
 	DDX_Check(pDX, IDC_IGNORED_SUSBSTITUTIONS_ENABLED, m_bEnabled);
-	DDX_Control(pDX, IDC_IGNORED_SUBSTITUTIONS_FILTER, m_listFilters);
+	DDX_Control(pDX, IDC_SUBSTITUTION_FILTERS, m_listFilters);
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(IgnoredSubstitutionsDlg, CTrPropertyPage)
-	//{{AFX_MSG_MAP(IgnoredSubstitutionsFiltersDlg)
+BEGIN_MESSAGE_MAP(SubstitutionFiltersDlg, CTrPropertyPage)
+	//{{AFX_MSG_MAP(SubstitutionFiltersFiltersDlg)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_CLEARBTN, OnBnClickedClearBtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedRemovebtn)
-	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_IGNORED_SUBSTITUTIONS_FILTER, OnEndLabelEdit)
+	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_SUBSTITUTION_FILTERS, OnEndLabelEdit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -65,7 +65,7 @@ END_MESSAGE_MAP()
 /**
  * @brief Initialize the dialog.
  */
-BOOL IgnoredSubstitutionsDlg::OnInitDialog()
+BOOL SubstitutionFiltersDlg::OnInitDialog()
 {
 	CTrPropertyPage::OnInitDialog();
 
@@ -83,7 +83,7 @@ static CString RemoveMnemonic(String text)
 	return ucr::toTString(textu8).c_str();
 }
 
-void IgnoredSubstitutionsDlg::InitList()
+void SubstitutionFiltersDlg::InitList()
 {
 	m_listFilters.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
@@ -99,11 +99,11 @@ void IgnoredSubstitutionsDlg::InitList()
 	m_listFilters.SetBooleanValueColumn(3);
 	m_listFilters.SetBooleanValueColumn(4);
 
-	if (m_pIgnoredSubstitutionsList)
+	if (m_pSubstitutionFiltersList)
 	{
-		for (int i = 0; i < (int)m_pIgnoredSubstitutionsList->GetCount(); i++)
+		for (int i = 0; i < (int)m_pSubstitutionFiltersList->GetCount(); i++)
 		{
-			const IgnoredSubstitution& item = m_pIgnoredSubstitutionsList->GetAt(i);
+			const SubstitutionFilter& item = m_pSubstitutionFiltersList->GetAt(i);
 			m_listFilters.InsertItem(i, item.pattern.c_str());
 			m_listFilters.SetItemText(i, 1, item.replacement.c_str());
 			m_listFilters.SetItemBooleanValue(i, 2, item.useRegExp);
@@ -117,7 +117,7 @@ void IgnoredSubstitutionsDlg::InitList()
 /**
  * @brief Open help from mainframe when user presses F1.
  */
-void IgnoredSubstitutionsDlg::OnHelp()
+void SubstitutionFiltersDlg::OnHelp()
 {
 	theApp.ShowHelp(FilterHelpLocation);
 }
@@ -125,7 +125,7 @@ void IgnoredSubstitutionsDlg::OnHelp()
 /**
  * @brief Called when Add-button is clicked.
  */
-void IgnoredSubstitutionsDlg::OnBnClickedAddBtn()
+void SubstitutionFiltersDlg::OnBnClickedAddBtn()
 {
 	int num = m_listFilters.GetItemCount();
 	int ind = m_listFilters.InsertItem(num, _("<Edit here>").c_str());
@@ -145,7 +145,7 @@ void IgnoredSubstitutionsDlg::OnBnClickedAddBtn()
 /**
  * @brief Called when Clear-button is clicked.
  */
-void IgnoredSubstitutionsDlg::OnBnClickedClearBtn()
+void SubstitutionFiltersDlg::OnBnClickedClearBtn()
 {
 	m_listFilters.DeleteAllItems();
 }
@@ -153,9 +153,9 @@ void IgnoredSubstitutionsDlg::OnBnClickedClearBtn()
 /**
  * @brief Save filters to list when exiting the dialog.
  */
-BOOL IgnoredSubstitutionsDlg::OnApply()
+BOOL SubstitutionFiltersDlg::OnApply()
 {
-	m_pIgnoredSubstitutionsList->Empty();
+	m_pSubstitutionFiltersList->Empty();
 
 	for (int i = 0; i < m_listFilters.GetItemCount(); i++)
 	{
@@ -167,14 +167,14 @@ BOOL IgnoredSubstitutionsDlg::OnApply()
 		if (useRegExp)
 			matchWholeWordOnly = false;
 		bool enabled = !!m_listFilters.GetCheck(i);
-		m_pIgnoredSubstitutionsList->Add(symbolBeforeRename, symbolAfterRename,
+		m_pSubstitutionFiltersList->Add(symbolBeforeRename, symbolAfterRename,
 			useRegExp, caseSensitive, matchWholeWordOnly, enabled);
 	}
 
 	// Test
 	try
 	{
-		m_pIgnoredSubstitutionsList->MakeSubstitutionList(true);
+		m_pSubstitutionFiltersList->MakeSubstitutionList(true);
 	}
 	catch (Poco::RegularExpressionException& e)
 	{
@@ -190,15 +190,15 @@ BOOL IgnoredSubstitutionsDlg::OnApply()
  * @brief Sets external filter list.
  * @param [in] list External filter list.
  */
-void IgnoredSubstitutionsDlg::SetList(IgnoredSubstitutionsList *list)
+void SubstitutionFiltersDlg::SetList(SubstitutionFiltersList *list)
 {
-	m_pIgnoredSubstitutionsList = list;
+	m_pSubstitutionFiltersList = list;
 }
 
 /**
  * @brief Called when Remove button is clicked.
  */
-void IgnoredSubstitutionsDlg::OnBnClickedRemovebtn()
+void SubstitutionFiltersDlg::OnBnClickedRemovebtn()
 {
 	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
@@ -218,7 +218,7 @@ void IgnoredSubstitutionsDlg::OnBnClickedRemovebtn()
 /**
  * @brief Called when in-place editing has finished.
  */
-void IgnoredSubstitutionsDlg::OnEndLabelEdit(NMHDR *pNMHDR, LRESULT *pResult)
+void SubstitutionFiltersDlg::OnEndLabelEdit(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	m_listFilters.OnEndLabelEdit(pNMHDR, pResult);
 }

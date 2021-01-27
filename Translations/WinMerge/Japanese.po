@@ -42,8 +42,8 @@ msgstr "右側からコピー(&M)"
 msgid "&Select Line Difference\tF4"
 msgstr "行内差異を選択(&S)\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "この差異を置換フィルターに追加する(&I)"
+msgid "Add this change to Substitution &Filters"
+msgstr "この差異を置換フィルターに追加する(&F)"
 
 msgid "&Undo"
 msgstr "元に戻す(&U)"
@@ -1129,7 +1129,7 @@ msgstr "編集"
 msgid "Remove"
 msgstr "削除"
 
-msgid "Ignored Substitutions"
+msgid "Substitution Filters"
 msgstr "置換フィルター"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
@@ -1370,7 +1370,7 @@ msgstr "Diff アルゴリズム (実験的機能)(&A):"
 msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"
 
-msgid "Completely unhighlight the ignored changes"
+msgid "Completely unhighlight the ignored differences"
 msgstr "無視された差異の行を同一行の色と同じにする"
 
 msgid "Editor"
@@ -3568,13 +3568,13 @@ msgstr "<ここを編集>"
 msgid "No differences to select found"
 msgstr "選択する差異がありません"
 
-msgid "No differences found to add as ignored substitution"
+msgid "No differences found to add as substitution filter"
 msgstr "置換フィルターに追加する差異がありません"
 
-msgid "The pair is already present in the list of Ignored Substitutions"
+msgid "The pair is already present in the list of Substitution Filters"
 msgstr "このペアは、既に置換フィルターのリストに存在します"
 
-msgid "Add this change to Ignored Substitutions?"
+msgid "Add this change to Substitution Filters?"
 msgstr "この差異を置換フィルターに追加しますか?"
 
 msgid "Text only"

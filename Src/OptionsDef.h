@@ -250,8 +250,8 @@ extern const String OPT_FILEFILTER_CURRENT OP("Settings/FileFilterCurrent");
 extern const String OPT_FILTER_USERPATH OP("Settings/UserFilterPath");
 extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 
-/// Ignored Susbstitutions
-extern const String OPT_IGNORED_SUBSTITUTIONS_ENABLED OP("Settings/IgnoredSubstitutionsEnabled");
+/// Substitution Filters
+extern const String OPT_SUBSTITUTION_FILTERS_ENABLED OP("Settings/SubstitutionFiltersEnabled");
 
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");

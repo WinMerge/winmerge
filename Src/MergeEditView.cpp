@@ -159,8 +159,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
 	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToIgnoredSubstitutions)
-	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToIgnoredSubstitutions)
+	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -2798,13 +2798,13 @@ void CMergeEditView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(!GetDocument()->IsEditedAfterRescan());
 }
 
-void CMergeEditView::OnAddToIgnoredSubstitutions()
+void CMergeEditView::OnAddToSubstitutionFilters()
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->AddToIgnoredSubstitutions(this, false);
+	GetDocument()->AddToSubstitutionFilters(this, false);
 }
 
-void CMergeEditView::OnUpdateAddToIgnoredSubstitutions(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }

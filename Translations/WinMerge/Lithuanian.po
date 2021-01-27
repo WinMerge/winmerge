@@ -44,8 +44,8 @@ msgstr "Kopijuoti iš &dešinės"
 msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "Pridėti šį pakeitimą prie &ignoruojamų pakaitalų"
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -1131,8 +1131,8 @@ msgstr "Redaguoti"
 msgid "Remove"
 msgstr "Pašalinti"
 
-msgid "Ignored Substitutions"
-msgstr "Ignoruojami pakaitalai"
+msgid "Substitution Filters"
+msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Pakeitimai, kurie rodomi skyduose kaip toliau išvardytos poros, bus ignoruojami arba pažymėti kaip nereikšmingi. Pataisos nepaveikiamos."
@@ -1368,8 +1368,8 @@ msgstr "Lyginimo &algoritmas (Bandymai):"
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Visiškai nuimti paryškinimą ignoruojamiems keitimams"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 msgid "Editor"
 msgstr "Redaktoriaus"
@@ -3197,14 +3197,14 @@ msgstr "<Redaguoti čia>"
 msgid "No differences to select found"
 msgstr "Nerasta skirtumų, kuriuos būtų galima pasirinkti"
 
-msgid "No differences found to add as ignored substitution"
-msgstr "Nerasta skirtumų, kuriuos būtų galima pridėti kaip ignoruojamą pakaitalą"
+msgid "No differences found to add as substitution filter"
+msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr "Pora jau yra ignoruojamų pakaitalų sąraše"
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
-msgstr "Pridėti šį pakeitimą prie ignoruojamų pakaitalų?"
+msgid "Add this change to Substitution Filters?"
+msgstr ""
 
 msgid "Text only"
 msgstr ""

@@ -48,8 +48,8 @@ msgstr "Kopiraj iz de&sne"
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "Dodaj to spremembo v Pre&zrte zamenjave"
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -1427,8 +1427,8 @@ msgstr "Uredi"
 msgid "Remove"
 msgstr "Odstrani"
 
-msgid "Ignored Substitutions"
-msgstr "Prezrte zamenjave"
+msgid "Substitution Filters"
+msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Popravki ne vplivajo."
@@ -1723,8 +1723,8 @@ msgstr "Al&goritem razlik (eksperimen):"
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Popolnoma odstrani označevanje prezrtih sprememb"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 msgid "Editor"
 msgstr "Urejevalnik"
@@ -4324,14 +4324,14 @@ msgstr "<Uredi tukaj>"
 msgid "No differences to select found"
 msgstr "Ni najdenih nobenih razlik za izbiro"
 
-msgid "No differences found to add as ignored substitution"
-msgstr "Ni najdenih za dodajanje kot prezrto zamenjavo"
+msgid "No differences found to add as substitution filter"
+msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr "Par je že prisoten na seznamu prezrtih zamenjav"
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
-msgstr "Dodajm to spremembo v Prezrte zamenjave?"
+msgid "Add this change to Substitution Filters?"
+msgstr ""
 
 msgid "Text only"
 msgstr ""

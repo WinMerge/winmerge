@@ -919,7 +919,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp">
       <Filter>EditLib\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="IgnoredSubstitutionsDlg.cpp">
+    <ClCompile Include="SubstitutionFiltersDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\javascript.cpp">
@@ -931,7 +931,7 @@
     <ClCompile Include="SubstitutionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IgnoredSubstitutionsList.cpp">
+    <ClCompile Include="SubstitutionFiltersList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1665,13 +1665,13 @@
     <ClInclude Include="LineFiltersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IgnoredSubstitutionsDlg.h">
+    <ClInclude Include="SubstitutionFiltersDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SubstitutionList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IgnoredSubstitutionsList.h">
+    <ClInclude Include="SubstitutionFiltersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 /** 
- * @file  IgnoredSubstitutionsDlg.h
+ * @file  SubstitutionFiltersDlg.h
  *
  * @brief Declaration file for Line Filter dialog
  *
@@ -9,27 +9,27 @@
 #include "TrDialogs.h"
 #include "SubeditList.h"
 
-class IgnoredSubstitutionFiltersList;
+class SubstitutionFilterFiltersList;
 
-class IgnoredSubstitutionsDlg : public CTrPropertyPage
+class SubstitutionFiltersDlg : public CTrPropertyPage
 {
-	DECLARE_DYNAMIC(IgnoredSubstitutionsDlg)
+	DECLARE_DYNAMIC(SubstitutionFiltersDlg)
 
 // Construction
 public:
-	IgnoredSubstitutionsDlg();
+	SubstitutionFiltersDlg();
 
-	void SetList(IgnoredSubstitutionsList *list);
+	void SetList(SubstitutionFiltersList *list);
 
 // Dialog Data
-	//{{AFX_DATA(IgnoredSubstitutionsDlg)
+	//{{AFX_DATA(SubstitutionFiltersDlg)
 	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
 	bool m_bEnabled;
 	//}}AFX_DATA
 
 // Overrides
 	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(IgnoredSubstitutionsDlg)
+	//{{AFX_VIRTUAL(SubstitutionFiltersDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -38,7 +38,7 @@ public:
 protected:
 
 	// Generated message map functions
-	//{{AFX_MSG(IgnoredSubstitutionsDlg)
+	//{{AFX_MSG(SubstitutionFiltersDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
 	virtual BOOL OnApply() override;
@@ -54,5 +54,5 @@ protected:
 private:
 	CSubeditList m_listFilters; /**< List control having filter strings */
 
-	IgnoredSubstitutionsList *m_pIgnoredSubstitutionsList;
+	SubstitutionFiltersList *m_pSubstitutionFiltersList;
 };

@@ -535,7 +535,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp" />
-    <ClCompile Include="IgnoredSubstitutionsList.cpp">
+    <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -757,7 +757,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="LineFiltersDlg.cpp" />
-    <ClCompile Include="IgnoredSubstitutionsDlg.cpp" />
+    <ClCompile Include="SubstitutionFiltersDlg.cpp" />
     <ClCompile Include="SubeditList.cpp" />
     <ClCompile Include="LineFiltersList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1126,7 +1126,7 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
-    <ClInclude Include="IgnoredSubstitutionsList.h" />
+    <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
@@ -1210,7 +1210,7 @@
     <ClInclude Include="Common\LanguageSelect.h" />
     <ClInclude Include="JumpList.h" />
     <ClInclude Include="LineFiltersDlg.h" />
-    <ClInclude Include="IgnoredSubstitutionsDlg.h" />
+    <ClInclude Include="SubstitutionFiltersDlg.h" />
     <ClInclude Include="LineFiltersList.h" />
     <ClInclude Include="SubstitutionList.h" />
     <ClInclude Include="LoadSaveCodepageDlg.h" />

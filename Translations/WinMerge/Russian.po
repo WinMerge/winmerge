@@ -43,8 +43,8 @@ msgstr "Копировать справа"
 msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "Добавить в список игнорируемых подстановок"
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 msgid "&Undo"
 msgstr "&Отменить"
@@ -1130,8 +1130,8 @@ msgstr "Изменить"
 msgid "Remove"
 msgstr "Удалить"
 
-msgid "Ignored Substitutions"
-msgstr "Игнорируемые подстановки"
+msgid "Substitution Filters"
+msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Изменения в тексте соответсвующие парам в списке ниже будут игнорироваться"
@@ -1367,8 +1367,8 @@ msgstr "Алгоритм сравнения (эксперимент.):"
 msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Никак вообще не выделять игнорируемые изменения"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 msgid "Editor"
 msgstr "Редактор"
@@ -3196,13 +3196,13 @@ msgstr ""
 msgid "No differences to select found"
 msgstr ""
 
-msgid "No differences found to add as ignored substitution"
+msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
+msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
+msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"

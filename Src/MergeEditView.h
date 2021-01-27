@@ -283,8 +283,8 @@ protected:
 	template<bool reversed>
 	afx_msg void OnSelectLineDiff();
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
-	afx_msg void OnAddToIgnoredSubstitutions();
-	afx_msg void OnUpdateAddToIgnoredSubstitutions(CCmdUI* pCmdUI);
+	afx_msg void OnAddToSubstitutionFilters();
+	afx_msg void OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnLeftReadOnly();

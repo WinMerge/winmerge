@@ -42,7 +42,7 @@ msgstr "نسخ م&ن اليمين"
 msgid "&Select Line Difference\tF4"
 msgstr "تحديد الاختلاف في الس&طر\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
 msgid "&Undo"
@@ -1133,7 +1133,7 @@ msgstr "تعديل"
 msgid "Remove"
 msgstr "حذف"
 
-msgid "Ignored Substitutions"
+msgid "Substitution Filters"
 msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
@@ -1370,7 +1370,7 @@ msgstr "خوارزمية المقارنة (تجريبي):"
 msgid "Enable indent &heuristic"
 msgstr "تفعيل الم&سافة البادئة الإرشادية"
 
-msgid "Completely unhighlight the ignored changes"
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 msgid "Editor"
@@ -3553,13 +3553,13 @@ msgstr ""
 msgid "No differences to select found"
 msgstr ""
 
-msgid "No differences found to add as ignored substitution"
+msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
+msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
+msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"

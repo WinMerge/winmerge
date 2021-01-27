@@ -47,8 +47,8 @@ msgstr "V&on rechts kopieren"
 msgid "&Select Line Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
 
-msgid "Add this change to &Ignored Substitutions"
-msgstr "Diese Änderung zu den &ignorierten Ersetzungen hinzufügen"
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -1427,8 +1427,8 @@ msgstr "Bearbeiten"
 msgid "Remove"
 msgstr "Entfernen"
 
-msgid "Ignored Substitutions"
-msgstr "Ignorierte Ersetzungen"
+msgid "Substitution Filters"
+msgstr ""
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Änderungen, die in den Bereichen als die unten aufgeführten Paare erscheinen, werden ignoriert oder als unbedeutend markiert.\nPatches sind nicht betroffen."
@@ -1724,8 +1724,8 @@ msgstr "&Diff-Algorithmus (experimentell):"
 msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
 
-msgid "Completely unhighlight the ignored changes"
-msgstr "Ignorierte Änderungen komplett nicht markieren"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -3943,14 +3943,14 @@ msgstr "<Hier bearbeiten>"
 msgid "No differences to select found"
 msgstr "Keine Unterschiede zur Auswahl gefunden."
 
-msgid "No differences found to add as ignored substitution"
-msgstr "Keine Unterschiede zum Hinzufügen zu ignorierten Ersetzungen gefunden."
+msgid "No differences found to add as substitution filter"
+msgstr ""
 
-msgid "The pair is already present in the list of Ignored Substitutions"
-msgstr "Das Paar ist bereits in der Liste der ignorierten Ersetzungen vorhanden."
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
 
-msgid "Add this change to Ignored Substitutions?"
-msgstr "Diese Änderung zu den ignorierten Ersetzungen hinzufügen?"
+msgid "Add this change to Substitution Filters?"
+msgstr ""
 
 msgid "Text only"
 msgstr ""

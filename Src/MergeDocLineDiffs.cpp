@@ -13,7 +13,7 @@
 #include "DiffTextBuffer.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
-#include "IgnoredSubstitutionsList.h"
+#include "SubstitutionFiltersList.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -67,7 +67,7 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
 }
 
-void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
+void CMergeDoc::AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed)
 {
 	if (m_nBuffers != 2)
 		return; /// Not clear what to do for a 3-way merge
@@ -79,7 +79,7 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 	if (std::all_of(rc, rc + m_nBuffers, [](auto& rc) { return rc.top == -1; }))
 	{
 		String caption = _("Line difference");
-		String msg = _("No differences found to add as ignored substitution");
+		String msg = _("No differences found to add as substitution filter");
 		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}
@@ -98,26 +98,26 @@ void CMergeDoc::AddToIgnoredSubstitutions(CMergeEditView* pView, bool bReversed)
 	}
 
 
-	/// Check whether the pair is already registered with Ignored Substitutions
-	IgnoredSubstitutionsList &ignoredSubstitutionsList = *theApp.m_pIgnoredSubstitutionsList.get();
-	for (int f = 0; f < ignoredSubstitutionsList.GetCount(); f++)
+	/// Check whether the pair is already registered with Substitution Filters
+	SubstitutionFiltersList &SubstitutionFiltersList = *theApp.m_pSubstitutionFiltersList.get();
+	for (int f = 0; f < SubstitutionFiltersList.GetCount(); f++)
 	{
-		String str0 = ignoredSubstitutionsList.GetAt(f).pattern;
-		String str1 = ignoredSubstitutionsList.GetAt(f).replacement;
+		String str0 = SubstitutionFiltersList.GetAt(f).pattern;
+		String str1 = SubstitutionFiltersList.GetAt(f).replacement;
 		if ( str0 == selectedText[0] && str1 == selectedText[1])
 		{
-			String caption = _("The pair is already present in the list of Ignored Substitutions");
+			String caption = _("The pair is already present in the list of Substitution Filters");
 			String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 			MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 			return; /// The substitution pair is already registered
 		}
 	}
 
-	String caption = _("Add this change to Ignored Substitutions?");
+	String caption = _("Add this change to Substitution Filters?");
 	String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 	if (MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_YESNO) == IDYES)
 	{
-		ignoredSubstitutionsList.Add(selectedText[0], selectedText[1], false, true, false, true);
+		SubstitutionFiltersList.Add(selectedText[0], selectedText[1], false, true, false, true);
 		FlushAndRescan(true);
 		//Rescan();
 	}

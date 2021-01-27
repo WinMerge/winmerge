@@ -33,10 +33,10 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
-#include "IgnoredSubstitutionsList.h"
+#include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
 #include "LineFiltersDlg.h"
-#include "IgnoredSubstitutionsDlg.h"
+#include "SubstitutionFiltersDlg.h"
 #include "paths.h"
 #include "Environment.h"
 #include "PatchTool.h"
@@ -1653,15 +1653,15 @@ void CMainFrame::OnToolsFilters()
 	String title = _("Filters");
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
-	IgnoredSubstitutionsDlg ignoredSubstitutionsDlg;
+	SubstitutionFiltersDlg substitutionFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
-	std::unique_ptr<IgnoredSubstitutionsList> ignoredSubstitutions(new IgnoredSubstitutionsList());
+	std::unique_ptr<SubstitutionFiltersList> SubstitutionFilters(new SubstitutionFiltersList());
 	String selectedFilter;
 	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
-	sht.AddPage(&ignoredSubstitutionsDlg);
+	sht.AddPage(&substitutionFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
@@ -1675,12 +1675,12 @@ void CMainFrame::OnToolsFilters()
 	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
 
-	const bool ignoredSubstitutionsEnabledOrig = GetOptionsMgr()->GetBool(OPT_IGNORED_SUBSTITUTIONS_ENABLED);
+	const bool SubstitutionFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
 
-	ignoredSubstitutionsDlg.m_bEnabled = ignoredSubstitutionsEnabledOrig;
+	substitutionFiltersDlg.m_bEnabled = SubstitutionFiltersEnabledOrig;
 	
-	ignoredSubstitutions->CloneFrom(theApp.m_pIgnoredSubstitutionsList.get());
-	ignoredSubstitutionsDlg.SetList(ignoredSubstitutions.get());
+	SubstitutionFilters->CloneFrom(theApp.m_pSubstitutionFiltersList.get());
+	substitutionFiltersDlg.SetList(SubstitutionFilters.get());
 
 	sht.SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("FilterStartPage"), 0));
 
@@ -1708,8 +1708,8 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
-		bool ignoredSubstitutionsEnabled = ignoredSubstitutionsDlg.m_bEnabled;
-		GetOptionsMgr()->SaveOption(OPT_IGNORED_SUBSTITUTIONS_ENABLED, ignoredSubstitutionsEnabled);
+		bool SubstitutionFiltersEnabled = substitutionFiltersDlg.m_bEnabled;
+		GetOptionsMgr()->SaveOption(OPT_SUBSTITUTION_FILTERS_ENABLED, SubstitutionFiltersEnabled);
 
 		// Check if compare documents need rescanning
 		bool bFileCompareRescan = false;
@@ -1721,9 +1721,9 @@ void CMainFrame::OnToolsFilters()
 			if
 			(
 				   linefiltersEnabled != lineFiltersEnabledOrig
-				|| ignoredSubstitutionsEnabled != ignoredSubstitutionsEnabledOrig
+				|| SubstitutionFiltersEnabled != SubstitutionFiltersEnabledOrig
 				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
-				|| !ignoredSubstitutions->Compare(theApp.m_pIgnoredSubstitutionsList.get())
+				|| !SubstitutionFilters->Compare(theApp.m_pSubstitutionFiltersList.get())
 			)
 			{
 				bFileCompareRescan = true;
@@ -1745,8 +1745,8 @@ void CMainFrame::OnToolsFilters()
 		theApp.m_pLineFilters->CloneFrom(lineFilters.get());
 		theApp.m_pLineFilters->SaveFilters();
 
-		theApp.m_pIgnoredSubstitutionsList->CloneFrom(ignoredSubstitutions.get());
-		theApp.m_pIgnoredSubstitutionsList->SaveFilters();
+		theApp.m_pSubstitutionFiltersList->CloneFrom(SubstitutionFilters.get());
+		theApp.m_pSubstitutionFiltersList->SaveFilters();
 
 		if (bFileCompareRescan)
 		{

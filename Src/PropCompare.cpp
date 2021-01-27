@@ -48,7 +48,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
-	DDX_Check(pDX, IDC_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges);
+	DDX_Check(pDX, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES, m_bCompleteBlankOutIgnoredChanges);
 	//}}AFX_DATA_MAP
 	UpdateControls();
 }

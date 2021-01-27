@@ -94,7 +94,7 @@ int CSubeditList::HitTestEx(CPoint &point, int *col) const
 BEGIN_MESSAGE_MAP(CSubeditList, CListCtrl)
 	//{{AFX_MSG_MAP(CSubeditList)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
-	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_IGNORED_SUBSTITUTIONS_FILTER, OnEndLabelEdit)
+	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_SUBSTITUTION_FILTERS, OnEndLabelEdit)
 	ON_WM_LBUTTONDOWN()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()

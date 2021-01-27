@@ -43,7 +43,7 @@ DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
 , m_filterCommentsLines(options.m_filterCommentsLines)
 , m_diffAlgorithm(options.m_diffAlgorithm)
 , m_bIndentHeuristic(options.m_bIndentHeuristic)
-, m_bCompletelyBlankOutIgnoredChanges(options.m_bCompletelyBlankOutIgnoredChanges)
+, m_bCompletelyBlankOutIgnoredDiffereneces(options.m_bCompletelyBlankOutIgnoredDiffereneces)
 , m_outputStyle(options.m_outputStyle)
 {
 }
@@ -90,7 +90,7 @@ DiffutilsOptions::DiffutilsOptions()
 : m_outputStyle(DIFF_OUTPUT_NORMAL)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
-, m_bCompletelyBlankOutIgnoredChanges(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
 , m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 {
@@ -105,7 +105,7 @@ DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
 , m_outputStyle(DIFF_OUTPUT_NORMAL)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
-, m_bCompletelyBlankOutIgnoredChanges(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
 , m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 {
@@ -118,7 +118,7 @@ DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
 void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 {
 	CompareOptions::SetFromDiffOptions(options);
-	m_bCompletelyBlankOutIgnoredChanges = options.bCompletelyBlankOutIgnoredChanges;
+	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
 	m_filterCommentsLines = options.bFilterCommentsLines;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
@@ -220,7 +220,7 @@ void DiffutilsOptions::SetToDiffUtils()
  */
 void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 {
-	options.bCompletelyBlankOutIgnoredChanges = m_bCompletelyBlankOutIgnoredChanges;
+	options.bCompletelyBlankOutIgnoredChanges = m_bCompletelyBlankOutIgnoredDiffereneces;
 	options.bFilterCommentsLines = m_filterCommentsLines;
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
 	options.bIgnoreCase = m_bIgnoreCase;

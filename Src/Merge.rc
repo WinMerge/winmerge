@@ -72,7 +72,7 @@ BEGIN
         MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
         MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
-        MENUITEM "Add this change to &Ignored Substitutions", ID_ADD_TO_IGNORED_SUBSTITUTIONS
+        MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -1182,12 +1182,12 @@ END
 
 IDD_IGNORED_SUSBSTITUTIONS_DLG DIALOGEX 0, 0, 530, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Ignored Substitutions"
+CAPTION "Substitution Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected.",IDC_STATIC,8,6,516,19
     CONTROL         "Enable",IDC_IGNORED_SUSBSTITUTIONS_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,351,9
-    CONTROL         "",IDC_IGNORED_SUBSTITUTIONS_FILTER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,40,516,111
+    CONTROL         "",IDC_SUBSTITUTION_FILTERS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,40,516,111
     PUSHBUTTON      "Add",IDC_LFILTER_ADDBTN,7,156,50,14
     PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,63,156,50,14
     PUSHBUTTON      "Clear",IDC_LFILTER_CLEARBTN,474,156,50,14
@@ -1433,7 +1433,7 @@ BEGIN
     LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,144,239,10
     COMBOBOX        IDC_DIFF_ALGORITHM,6,156,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,174,239,10
-    CONTROL         "Completely unhighlight the ignored changes",IDC_COMPLETELY_BLANK_OUT_IGNORED_CHANGES,
+    CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,239,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
@@ -3553,9 +3553,9 @@ STRINGTABLE
 BEGIN
     IDS_IGNSUB_STR1 "<Edit here>"
     IDS_IGNSUB_STR2 "No differences to select found"
-    IDS_IGNSUB_STR3 "No differences found to add as ignored substitution"
-    IDS_IGNSUB_STR4 "The pair is already present in the list of Ignored Substitutions"
-    IDS_IGNSUB_STR5 "Add this change to Ignored Substitutions?"
+    IDS_IGNSUB_STR3 "No differences found to add as substitution filter"
+    IDS_IGNSUB_STR4 "The pair is already present in the list of Substitution Filters"
+    IDS_IGNSUB_STR5 "Add this change to Substitution Filters?"
 END
 
 STRINGTABLE

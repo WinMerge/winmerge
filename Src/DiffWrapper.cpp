@@ -962,7 +962,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredChanges)
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 					op = OP_NONE;
 				if (op != OP_NONE)
 					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
@@ -1381,12 +1381,12 @@ void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
 	}
 }
 
-const SubstitutionList* CDiffWrapper::GetIgnoredSubstitutionsList() const
+const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
 {
 	return m_pSubstitutionList.get();
 }
 
-void CDiffWrapper::SetIgnoredSubstitutionsList(std::shared_ptr<SubstitutionList> pSubstitutionList)
+void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
 {
 	m_pSubstitutionList = pSubstitutionList;
 }
