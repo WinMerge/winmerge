@@ -40,6 +40,8 @@ public:
 	const SubstitutionFilter &GetAt(size_t ind) const;
 	void CloneFrom(const SubstitutionFiltersList *list);
 	bool Compare(const SubstitutionFiltersList *list) const;
+	void SetEnabled(bool enabled) { m_enabled = enabled; }
+	bool GetEnabled() const { return m_enabled; }
 
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
@@ -47,6 +49,7 @@ public:
 	std::shared_ptr<SubstitutionList> MakeSubstitutionList(bool throwIfInvalid = false);
 
 private:
+	bool m_enabled;
 	std::vector<SubstitutionFilter> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };

@@ -11,6 +11,7 @@
 #include <cassert>
 #include <Poco/Exception.h>
 #include "OptionsMgr.h"
+#include "OptionsDef.h"
 #include "UnicodeString.h"
 
 /** @brief Registry key for saving Substitution filters. */
@@ -73,7 +74,7 @@ void SubstitutionFiltersList::CloneFrom(const SubstitutionFiltersList *list)
 {
 	Empty();
 	size_t count = list->GetCount();
-
+	m_enabled = list->m_enabled;
 	for (size_t i = 0; i < count; i++)
 	{
 		const SubstitutionFilter &item = list->GetAt(i);
@@ -90,6 +91,8 @@ void SubstitutionFiltersList::CloneFrom(const SubstitutionFiltersList *list)
 bool SubstitutionFiltersList::Compare(const SubstitutionFiltersList *list) const
 {
 	if (list->GetCount() != GetCount())
+		return false;
+	if (list->GetEnabled() != GetEnabled())
 		return false;
 
 	for (size_t i = 0; i < GetCount(); i++)
@@ -121,6 +124,8 @@ void SubstitutionFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 	String valuename(SubstitutionFiltersRegPath);
 
 	m_pOptionsMgr = pOptionsMgr;
+
+	m_enabled = m_pOptionsMgr->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
 
 	size_t count = m_items.size();
 	valuename += _T("/Values");
@@ -164,6 +169,8 @@ void SubstitutionFiltersList::SaveFilters()
 {
 	assert(m_pOptionsMgr != nullptr);
 	String valuename(SubstitutionFiltersRegPath);
+
+	m_pOptionsMgr->SaveOption(OPT_SUBSTITUTION_FILTERS_ENABLED, m_enabled);
 
 	size_t count = m_items.size();
 	valuename += _T("/Values");

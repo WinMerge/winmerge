@@ -118,6 +118,8 @@ void CMergeDoc::AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed)
 	if (MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_YESNO) == IDYES)
 	{
 		SubstitutionFiltersList.Add(selectedText[0], selectedText[1], false, true, false, true);
+		SubstitutionFiltersList.SetEnabled(true);
+		SubstitutionFiltersList.SaveFilters();
 		FlushAndRescan(true);
 		//Rescan();
 	}

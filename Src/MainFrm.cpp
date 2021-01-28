@@ -1675,10 +1675,6 @@ void CMainFrame::OnToolsFilters()
 	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
 
-	const bool SubstitutionFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
-
-	substitutionFiltersDlg.m_bEnabled = SubstitutionFiltersEnabledOrig;
-	
 	SubstitutionFilters->CloneFrom(theApp.m_pSubstitutionFiltersList.get());
 	substitutionFiltersDlg.SetList(SubstitutionFilters.get());
 
@@ -1708,9 +1704,6 @@ void CMainFrame::OnToolsFilters()
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
-		bool SubstitutionFiltersEnabled = substitutionFiltersDlg.m_bEnabled;
-		GetOptionsMgr()->SaveOption(OPT_SUBSTITUTION_FILTERS_ENABLED, SubstitutionFiltersEnabled);
-
 		// Check if compare documents need rescanning
 		bool bFileCompareRescan = false;
 		bool bFolderCompareRescan = false;
@@ -1721,7 +1714,6 @@ void CMainFrame::OnToolsFilters()
 			if
 			(
 				   linefiltersEnabled != lineFiltersEnabledOrig
-				|| SubstitutionFiltersEnabled != SubstitutionFiltersEnabledOrig
 				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
 				|| !SubstitutionFilters->Compare(theApp.m_pSubstitutionFiltersList.get())
 			)

@@ -67,6 +67,7 @@ END_MESSAGE_MAP()
  */
 BOOL SubstitutionFiltersDlg::OnInitDialog()
 {
+	m_bEnabled = m_pSubstitutionFiltersList->GetEnabled();
 	CTrPropertyPage::OnInitDialog();
 
 	InitList();
@@ -182,6 +183,7 @@ BOOL SubstitutionFiltersDlg::OnApply()
 		return FALSE;
 	}
 
+	m_pSubstitutionFiltersList->SetEnabled(m_bEnabled);
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
 	return TRUE;
 }

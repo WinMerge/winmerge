@@ -205,7 +205,7 @@ void CDirDoc::LoadSubstitutionFiltersList(CDiffContext* pCtxt)
 {
 	ASSERT(pCtxt != nullptr);
 
-	bool SubstitutionFiltersEnabled = GetOptionsMgr()->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
+	bool SubstitutionFiltersEnabled = theApp.m_pSubstitutionFiltersList->GetEnabled();
 	if (!SubstitutionFiltersEnabled || theApp.m_pSubstitutionFiltersList->GetCount() == 0)
 	{
 		pCtxt->m_pSubstitutionList.reset();
@@ -922,7 +922,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		msg.c_str(), _T(""),
 		MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U,
 		_T("CompareLargeFiles"));
-	int ans = dlg.DoModal();
+	INT_PTR ans = dlg.DoModal();
 	if (ans == IDCANCEL)
 		return true;
 	else if (ans == IDNO)
