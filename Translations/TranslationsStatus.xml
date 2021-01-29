@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-01-27</update>
+  <update>2021-01-29</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -211,10 +211,10 @@
       <file>Dutch.po</file>
       <update>2018-09-06</update>
       <strings>
-        <count>1023</count>
-        <translated>991</translated>
+        <count>1022</count>
+        <translated>1022</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>32</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -223,9 +223,6 @@
         </translator>
         <translator>
           <name>Michel Coene</name>
-        </translator>
-        <translator>
-          <name>Thomas De Rocker, 2020</name>
         </translator>
       </translators>
     </translation>
@@ -286,9 +283,9 @@
       <update>2021-01-22</update>
       <strings>
         <count>1023</count>
-        <translated>1019</translated>
+        <translated>1014</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>9</untranslated>
       </strings>
       <translators>
         <translator>
@@ -306,9 +303,9 @@
       <update>2021-01-18</update>
       <strings>
         <count>1023</count>
-        <translated>1019</translated>
+        <translated>1014</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>9</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -398,9 +395,9 @@
       <update>2021-01-26</update>
       <strings>
         <count>1023</count>
-        <translated>1022</translated>
+        <translated>1023</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>1</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -444,9 +441,9 @@
       <update>2021-01-19</update>
       <strings>
         <count>1023</count>
-        <translated>1019</translated>
+        <translated>1014</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>9</untranslated>
       </strings>
       <translators>
         <translator>
@@ -567,9 +564,9 @@
       <update>2020-11-29</update>
       <strings>
         <count>1023</count>
-        <translated>999</translated>
+        <translated>997</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>24</untranslated>
+        <untranslated>26</untranslated>
       </strings>
       <translators>
         <translator>
@@ -655,12 +652,12 @@
     <translation>
       <language>Slovenian</language>
       <file>Slovenian.po</file>
-      <update>2021-01-19</update>
+      <update>2021-01-27</update>
       <strings>
         <count>1023</count>
-        <translated>1019</translated>
+        <translated>1023</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -890,29 +887,23 @@
       </strings>
     </translation>
     <translation>
-      <language>Dutch</language>
+      <language>English</language>
       <file>Dutch.po</file>
-      <update>2019-02-01</update>
+      <update>2021-01-28</update>
       <strings>
         <count>12</count>
         <translated>12</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>
-      <translators>
-        <translator>
-          <name>Thomas De Rocker</name>
-          <mail>thomasderocker@yahoo.com</mail>
-        </translator>
-      </translators>
     </translation>
-    <translation template="1">
+    <translation>
       <language>English</language>
-      <file>English.pot</file>
-      <update>2011-10-11</update>
+      <file>Dutch.po</file>
+      <update>2021-01-28</update>
       <strings>
-        <count>13</count>
-        <translated>13</translated>
+        <count>12</count>
+        <translated>12</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>

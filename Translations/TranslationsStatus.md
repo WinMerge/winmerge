@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-01-27**:
+Status from **2021-01-29**:
 
 ## WinMerge
 
@@ -16,28 +16,28 @@ Status from **2021-01-27**:
 | Croatian             |  1023 |        643 |     1 |          379 |     63 % |  2009-02-13 |
 | Czech                |  1023 |        614 |     0 |          409 |     60 % |             |
 | Danish               |  1023 |        652 |     0 |          371 |     64 % |  2013-01-13 |
-| Dutch                |  1023 |        991 |     0 |           32 |     97 % |  2018-09-06 |
+| Dutch                |  1022 |       1022 |     0 |            0 |    100 % |  2018-09-06 |
 | English              |  1023 |       1023 |     0 |            0 |    100 % |  2021-01-27 |
 | Finnish              |  1023 |        917 |     0 |          106 |     90 % |             |
 | French               |  1023 |        910 |     2 |          111 |     89 % |  2019-06-02 |
-| Galician             |  1023 |       1019 |     0 |            4 |    100 % |  2021-01-22 |
-| German               |  1023 |       1019 |     0 |            4 |    100 % |  2021-01-18 |
+| Galician             |  1023 |       1014 |     0 |            9 |     99 % |  2021-01-22 |
+| German               |  1023 |       1014 |     0 |            9 |     99 % |  2021-01-18 |
 | Greek                |  1023 |        615 |     0 |          408 |     60 % |             |
 | Hungarian            |  1023 |        548 |     0 |          475 |     54 % |  2011-01-24 |
 | Italian              |  1023 |        920 |     0 |          103 |     90 % |  2019-07-12 |
-| Japanese             |  1023 |       1022 |     0 |            1 |    100 % |  2021-01-26 |
+| Japanese             |  1023 |       1023 |     0 |            0 |    100 % |  2021-01-26 |
 | Korean               |  1023 |        874 |     0 |          149 |     85 % |  2018-02-05 |
-| Lithuanian           |  1023 |       1019 |     0 |            4 |    100 % |  2021-01-19 |
+| Lithuanian           |  1023 |       1014 |     0 |            9 |     99 % |  2021-01-19 |
 | Norwegian            |  1023 |        644 |     0 |          379 |     63 % |             |
 | Persian              |  1023 |        655 |     0 |          368 |     64 % |  2013-08-15 |
 | Polish               |  1023 |        960 |     0 |           63 |     94 % |             |
 | Portuguese           |  1023 |        995 |     0 |           28 |     97 % |  2020-11-29 |
 | Romanian             |  1023 |        573 |    44 |          406 |     60 % |             |
-| Russian              |  1023 |        999 |     0 |           24 |     98 % |  2020-11-29 |
+| Russian              |  1023 |        997 |     0 |           26 |     97 % |  2020-11-29 |
 | Serbian              |  1023 |        643 |     0 |          380 |     63 % |             |
 | Sinhala              |  1023 |        573 |    63 |          387 |     62 % |  2010-12-12 |
 | Slovak               |  1023 |        990 |     0 |           33 |     97 % |  2020-11-02 |
-| Slovenian            |  1023 |       1019 |     0 |            4 |    100 % |  2021-01-19 |
+| Slovenian            |  1023 |       1023 |     0 |            0 |    100 % |  2021-01-27 |
 | Spanish              |  1023 |        886 |     0 |          137 |     87 % |  2020-04-03 |
 | Swedish              |  1023 |        920 |     0 |          103 |     90 % |  2019-10-07 |
 | Turkish              |  1023 |        986 |     0 |           37 |     96 % |  2020-09-08 |
@@ -57,8 +57,8 @@ Status from **2021-01-27**:
 | Croatian             |    12 |         12 |     0 |            0 |    100 % |             |
 | Czech                |    12 |         12 |     0 |            0 |    100 % |             |
 | Danish               |    12 |         12 |     0 |            0 |    100 % |             |
-| Dutch                |    12 |         12 |     0 |            0 |    100 % |  2019-02-01 |
-| English              |    13 |         13 |     0 |            0 |    100 % |  2011-10-11 |
+| English              |    12 |         12 |     0 |            0 |    100 % |  2021-01-28 |
+| English              |    12 |         12 |     0 |            0 |    100 % |  2021-01-28 |
 | Finnish              |    12 |         12 |     0 |            0 |    100 % |             |
 | French               |    12 |         12 |     0 |            0 |    100 % |             |
 | Galician             |    12 |         12 |     0 |            0 |    100 % |             |
@@ -199,7 +199,6 @@ Status from **2021-01-27**:
  * Dutch
    - [Ronald Schaap](mailto:ronald%20at%20schaap.demon.nl)
    - Michel Coene
-   - Thomas De Rocker, 2020
 
  * French
    - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net) *Maintainer*
@@ -306,9 +305,6 @@ Status from **2021-01-27**:
    - [Vitaliy Stopchans'kyy](mailto:stopcha%20at%20gmail.com)
 
 ### ShellExtension
-
- * Dutch
-   - [Thomas De Rocker](mailto:thomasderocker@yahoo.com)
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
