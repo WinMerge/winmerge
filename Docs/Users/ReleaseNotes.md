@@ -42,6 +42,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
     default (GitHub #498)
 - Update crystallineparser.cpp - AutoIt (\*.au3) support as a "Basic"
     (GitHub PR #543)
+- s\_apszAutoItKeywordList[] - actualization for AutoIt (GitHub PR #584)
 - Added JavaScript and JSON syntax highligher (osdn.net #41083)
 - Added View -> Diff Context -> Invert menu item
 - Feature Request: Move To Next File option while comparing files #475
@@ -84,7 +85,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
 - Translation updates:
   - Dutch (GitHub #578,#579,#580)
   - Galician (GitHub PR #493,#538,#570)
-  - German (GitHub PR #532,#548,#563)
+  - German (GitHub PR #532,#548,#563,#585)
   - Japanese
   - Lithuanian (GitHub PR #496,#528,#536,#562,#564)
   - Portuguese (GitHub PR #495)
