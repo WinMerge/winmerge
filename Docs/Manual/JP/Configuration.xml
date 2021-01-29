@@ -71,6 +71,20 @@
 
     <variablelist>
       <varlistentry>
+        <term>インポートオプション</term>
+
+        <listitem>
+          <para>保存された設定を再使用したい時は、
+          <guibutton>インポート</guibutton>をクリックしてください。インポートダイアログで、保存済の
+          <filename>ini</filename>ファイルを探して、
+          <guibutton>開く</guibutton>をクリックしてください。</para>
+
+          <para>インポートされた設定ファイルの値で、すべてのオプションを置き換えます。
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>エクスポートオプション</term>
 
         <listitem>
@@ -82,20 +96,6 @@
 
           <para><!-- FIXME: もっと良い訳はないか -->生成された
           <filename>ini</filename>ファイルの各行は、一つのオプションを表す、名前と値のペアを含みます。</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>インポートオプション</term>
-
-        <listitem>
-          <para>保存された設定を再使用したい時は、
-          <guibutton>インポート</guibutton>をクリックしてください。インポートダイアログで、保存済の
-          <filename>ini</filename>ファイルを探して、
-          <guibutton>開く</guibutton>をクリックしてください。</para>
-
-          <para>インポートされた設定ファイルの値で、すべてのオプションを置き換えます。
-          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,33 +138,50 @@
     </section>
 
     <section>
-      <title><keycap>ESC</keycap>でウインドウを閉じる<indexterm>
-        <primary>ESCでウインドウを閉じる</primary>
+      <title>Automatically scroll to first inline difference<indexterm>
+          <primary>autoscrolling to first inline difference</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>'<keycap>Esc</keycap>'でウインドウを閉じる<indexterm>
+        <primary>Escでウインドウを閉じる</primary>
       </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
           <option>MDI子ウインドウまたはメインウインドウ</option>(デフォルト): 
-          <keycap>ESC</keycap>キーでWinMergeウィンドウを閉じられるようにします。
+          <keycap>Esc</keycap>キーでWinMergeウィンドウを閉じられるようにします。
           <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
           <keycap>
-          ESC</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
+          Esc</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
 
           <para>注) WinMergeのコマンドラインの
           <parameter>-e</parameter>パラメータは、WinMergeを
-          <keycap>ESC</keycap>1回で終了することを可能にします。</para>
+          <keycap>Esc</keycap>1回で終了することを可能にします。</para>
         </listitem>
 
         <listitem>
-          <para><option>MDI子ウインドウのみ</option>: <keycap>ESC</keycap>を押下すると
+          <para><option>MDI子ウインドウのみ</option>: <keycap>Esc</keycap>を押下すると
           子ウインドウは閉じますが、最後に残ったメインウインドウは閉じません。</para>
         </listitem>
 
         <listitem>
           <para>
           <option>無効</option>: 
-          <keycap>ESC</keycap>押下で、WinMergeウィンドウを閉じません。</para>
+          <keycap>Esc</keycap>押下で、WinMergeウィンドウを閉じません。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -176,7 +193,7 @@
         <listitem>
           <para><option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、
           パスを入力した時に、それらをチェックします。
-          <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
+          <guibutton>OK</guibutton>ボタンは、両方(または3つすべて)のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
 
@@ -256,9 +273,11 @@
           <para>
           <option>無効</option>(デフォルト): WinMergeで、ファイルの変更を保存する時、ファイルのタイムスタンプが更新されます。</para>
         </listitem>
+
         <listitem>
           <para>
-          <option>有効</option>: WinMergeで、ファイルの変更を保存する時、ファイルシステム上のファイルのタイムスタンプは更新されません。</para>
+          <option>有効</option>: WinMergeで、ファイルの変更を保存する時、ファイルシステム上のファイルのタイムスタンプは更新されません。
+          </para>
         </listitem>
       </itemizedlist>
     </section>
@@ -272,12 +291,12 @@
 
       <itemizedlist>
         <listitem>
-          <para>
-          <option>無効</option>(デフォルト): WinMerge起動時に、WinMergeウィンドウが開きます。ファイル、または、フォルダを選択するには、
+          <para><option>無効</option>(デフォルト): WinMerge起動時に、WinMergeウィンドウが開きます。ファイル、または、フォルダを選択するには、
           <menuchoice>
-            <guimenu>ファイル</guimenu>
-            <guimenuitem>開く</guimenuitem>
-          </menuchoice>をクリックしなければなりません。</para>
+              <guimenu>ファイル</guimenu>
+
+              <guimenuitem>開く</guimenuitem>
+            </menuchoice>をクリックしなければなりません。</para>
         </listitem>
 
         <listitem>
@@ -294,11 +313,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option> (デフォルト): <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログは閉じずに開いたままになります。</para>
+          <para><option>無効</option> (デフォルト): <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログは閉じずに開いたままになります。</para>
         </listitem>
 
         <listitem>
-          <para><option>有効</option>: <guilabel>比較</guilabel>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログが閉じます。</para>
+          <para><option>有効</option>: <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログが閉じます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -438,9 +457,9 @@
 
         <para>単語間に一つのスペース:<screen format="linespecific">Two Words</screen></para>
 
-        <para>単語間に二つのスペース:<screen format="linespecific">Two Words</screen></para>
+        <para>単語間に二つのスペース:<screen format="linespecific">Two  Words</screen></para>
 
-        <para>単語間にタブ:<screen format="linespecific">Two Words</screen></para>
+        <para>単語間にタブ:<screen format="linespecific">Two	Words</screen></para>
 
         <para>単語間にスペースなし:<screen format="linespecific">TwoWords</screen></para>
       </example>
@@ -520,8 +539,8 @@
 
     <section>
       <title>大文字と小文字を区別しない<indexterm>
-        <primary>case (letter), detecting and ignoring differences</primary>
-      </indexterm></title>
+          <primary>case (letter), detecting and ignoring differences</primary>
+        </indexterm></title>
 
       <itemizedlist>
         <listitem>
@@ -543,7 +562,7 @@
           <primary>EOL</primary>
 
           <secondary>detecting and ignoring differences</secondary>
-      </indexterm></title>
+        </indexterm></title>
 
       <itemizedlist>
         <listitem>
@@ -575,6 +594,29 @@
 
         <listitem>
           <para><option>Enabled</option>: ファイルエンコーディングの違いは無視されます。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>コメントの違いを無視する<indexterm>
+          <primary>filters</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
+
+      <itemizedlist>
+        <listitem>
+          <para><option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>有効</option>: このオプションは、(C++ や Java
+          のような)プログラミング言語のコメントを検出し、それらを無視することにより、
+          比較を最適化します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -672,34 +714,28 @@
         </listitem>
 
         <listitem>
-          <para><option>無効</option> ヒューリスティックを無効にします。</para>
+          <para><option>無効</option>: ヒューリスティックを無効にします。</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>フィルタコメント<indexterm>
-          <primary>filters</primary>
-
-          <secondary>comments</secondary>
+      <title>Completely unhighlight the ignored differences<indexterm>
+          <primary>unhighlight ignored differences</primary>
         </indexterm></title>
-
-      <!--Just guessing what this does - ask a developer.-->
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。
+          <para><option>Enabled</option>:
+          Makes the color of the different lines ignored by line filters and substitution
+          filters the same as the color of the identical lines.
           </para>
         </listitem>
 
         <listitem>
-          <para><option>有効</option>: このオプションは、(C++ や Java
-          のような)プログラミング言語のコメントを検出し、それらを無視することにより、
-          比較を最適化します。</para>
-
-          <para>既知のファイル形式と、それらのコメント記号は WinMerge インストールフォルダ直下の 
-          <filename>IgnoreSectionMarkers.ini</filename>ファイルに定義されています。
-          </para>
+          <para><option>Disabled</option> (default):
+          Difference lines ignored by line filters and substitution filters are
+          displayed in the color of Ignored Difference.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -709,7 +745,7 @@
     <title>比較/フォルダー ページ</title>
 
     <section id="Configuration_compmethod">
-      <title>ファイル比較方法<indexterm>
+      <title>比較方法<indexterm>
         <primary>comparing files</primary>
 
         <secondary>detection options</secondary>
@@ -956,7 +992,7 @@
 
           <para>This option sets the limit when WinMerge should stop comparing.
 		  If the limit is set to for instance 4 MB, then WinMerge will only read 
-		  the first 4 MB of a file. If no differences are founf before the 
+		  the first 4 MB of a file. If no differences are found before the 
 		  Quick Compare limit is reached, then the files will be marked as identical.
 		  </para>
 
@@ -995,16 +1031,6 @@
       <para>TBD</para>
     </section>
 
-  </section>
-
-  <section id="Configuration_compare_binary">
-    <title>比較/バイナリ ページ</title>
-    <section>
-      <title>バイナリファイルとして扱うパターン<indexterm>
-          <primary>binary files</primary>
-        </indexterm></title>
-      <para>TBD</para>
-    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -1071,6 +1097,47 @@
     </section>
   </section>
 
+  <section id="Configuration_compare_binary">
+    <title>比較/バイナリ ページ</title>
+    <section>
+      <title>バイナリファイルとして扱うパターン<indexterm>
+          <primary>binary files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
+    <section>
+      <title>Frhed settings<indexterm>
+          <primary>frhed</primary>
+        </indexterm></title>
+      <para>TBD</para>
+      <variablelist>
+        <varlistentry>
+          <term>View Settings...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Binary Mode...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Character Set...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
   <section id="Configuration_compare_image">
     <title>比較/画像 ページ<indexterm>
           <primary>image files</primary>
@@ -1082,6 +1149,11 @@
 
     <section>
       <title>フォルダ比較で画像比較を有効にする</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>OCRの結果</title>
       <para>TBD</para>
     </section>
   </section>
@@ -1191,7 +1263,7 @@
     </section>
 
     <section>
-      <title>タブオプション<indexterm>
+      <title>タブ<indexterm>
           <primary>tabs</primary>
 
           <secondary>editing options</secondary>
@@ -1236,66 +1308,84 @@
 
     <section id="Configuration_viewlinediffs">
       <title>行内差異の強調<indexterm>
-        <primary>line differences</primary>
+          <primary>line differences</primary>
 
-        <secondary>viewing options</secondary>
-      </indexterm></title>
+          <secondary>viewing options</secondary>
+        </indexterm></title>
 
       <para>これらは、
       <glossterm>行内差異</glossterm>(差異ブロックの行内の変更)の検出を有効にし、また、その設定をします。:
       </para>
 
-      <itemizedlist>
+      <variablelist>
+        <varlistentry>
+          <term>View line differences</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>有効</option>(デフォルト): WinMerge は、行内の差異をハイライトします。メニューの
+                <menuchoice>
+                    <guimenu>表示</guimenu>
+
+                    <guimenuitem>行内差異を表示</guimenuitem>
+                  </menuchoice>でも有効にできます。</para>
+
+                <para>次のサブオプションから、1つ選択してください:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><guilabel>文字単位</guilabel>:
+                    異なる文字をハイライトします。
+                    このオプションは、単語内の変更を探す場合や、
+                    明確な単語分割をしていないファイルの場合に役立つでしょう。</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><guilabel>単語単位</guilabel>(デフォルト) 差異のある単語全体をハイライトします。
+                    </para>
+
+                    <itemizedlist>
+                      <listitem>
+                        <para><guilabel>空白で区切る</guilabel>(デフォルト):
+                        単語は、空白で区切られていると仮定されます。
+                        これは、大抵の典型的なテキストファイルに作用します。</para>
+                      </listitem>
+
+                      <listitem>
+                        <para><guilabel>空白か句読点で区切る</guilabel>:
+                        空白と句読点の両方を単語境界とみなします。
+                        これは、(カンマ区切りリストのような)
+                        句読点で区切られたリストを扱うために便利です。
+                        </para>
+                      </listitem>
+                    </itemizedlist>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+
+              <listitem>
+                <para><option>無効</option>: WinMerge は、行内差異をハイライトしません。そして、レベルと空白オプションは無視されます。メニューの、
+                <menuchoice>
+                  <guimenu>表示</guimenu>
+
+                  <guimenuitem>行内差異を表示</guimenuitem>
+                </menuchoice>も無効になります。</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Word break characters</term>
+
         <listitem>
-          <para><option>有効</option>(デフォルト): WinMerge は、行内の差異をハイライトします。メニューの
-          <menuchoice>
-            <guimenu>表示</guimenu>
-
-            <guimenuitem>行内差異を表示</guimenuitem>
-          </menuchoice>でも有効にできます。</para>
-
-          <para>次のサブオプションから、1つ選択してください:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>文字単位</guilabel>:
-              異なる文字をハイライトします。
-              このオプションは、単語内の変更を探す場合や、
-              明確な単語分割をしていないファイルの場合に役立つでしょう。</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>単語単位</guilabel>(デフォルト) 差異のある単語全体をハイライトします。
-              </para>
-
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>空白で区切る</guilabel>(デフォルト):
-                  単語は、空白で区切られていると仮定されます。
-                  これは、大抵の典型的なテキストファイルに作用します。</para>
-                </listitem>
-
-                <listitem>
-                  <para><guilabel>空白か句読点で区切る</guilabel>:
-                  空白と句読点の両方を単語境界とみなします。
-                  これは、(カンマ区切りリストのような)
-                  句読点で区切られたリストを扱うために便利です。
-                  </para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
+          <para>TBD</para>
         </listitem>
-
-        <listitem>
-          <para><option>無効</option>: WinMerge は、行内差異をハイライトしません。そして、レベルと空白オプションは無視されます。メニューの、
-          <menuchoice>
-            <guimenu>表示</guimenu>
-
-            <guimenuitem>行内差異を表示</guimenuitem>
-          </menuchoice>も無効になります。</para>
-        </listitem>
-      </itemizedlist>
+        </varlistentry>
+      </variablelist>
 
       <note>
         <title>関連トピック</title>
@@ -1303,6 +1393,42 @@
         <para><xref linkend="CompareFiles_linediff-highlight" />
         <!-- NOTE: コレどこで説明してる？ -->WinMerge が、行内差異をどのように検出しマークするのかを、もっと詳細に説明します。</para>
       </note>
+    </section>
+
+    <section>
+      <title>Rendering Mode<indexterm>
+          <primary>rendering</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>GDI</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Default</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Aliased</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Classic</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
@@ -1326,18 +1452,14 @@
     元々の色を再読み込みすることができます。</para>
   </section>
 
-  <section id="Configuration_textcolors">
-    <title>色/テキスト ページ<indexterm>
-        <primary>text colors</primary>
+  <section id="Configuration_differencescolors">
+    <title>Differences Colors page<indexterm>
+        <primary>differences colors</primary>
 
         <secondary>options</secondary>
       </indexterm></title>
 
-    <para>テキスト色を変更するには、このページを使用してください。はじめに、
-    <guilabel>
-    カスタムテキストカラーを使用</guilabel>にチェックしてください。
-    これは、カスタムテキストカラーを有効化します。空白、標準テキスト、選択の3種類のテキストの設定があります。
-    それぞれの種類のテキストに対し、背景と文字の色を選択することができます。</para>
+    <para>TBD</para>
   </section>
 
   <section id="Configuration_syntaxcolors">
@@ -1355,6 +1477,20 @@
     
     <para>いつでも、
     <guibutton>デフォルト</guibutton>をクリックして、元々の色を再読み込みすることができます。</para>
+  </section>
+
+  <section id="Configuration_textcolors">
+    <title>色/テキスト ページ<indexterm>
+        <primary>text colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>テキスト色を変更するには、このページを使用してください。はじめに、
+    <guilabel>
+    カスタムテキストカラーを使用</guilabel>にチェックしてください。
+    これは、カスタムテキストカラーを有効化します。空白、標準テキスト、選択の3種類のテキストの設定があります。
+    それぞれの種類のテキストに対し、背景と文字の色を選択することができます。</para>
   </section>
 
   <section id="Configuration_markercolors">
@@ -1466,6 +1602,7 @@
             その場合、ファイルは削除され失われます！
             </para>
           </important>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -1501,25 +1638,25 @@
 
       <para>設定された外部エディタを使うには、フォルダ比較ウィンドウ中のファイルを右クリックし、
       <menuchoice>
-        <guimenuitem>左を開く</guimenuitem>
+          <guimenuitem>左を開く</guimenuitem>
 
-        <guimenuitem>外部エディタで</guimenuitem>
-      </menuchoice>、または、<menuchoice>
-        <guimenuitem>右を開く</guimenuitem>
+          <guimenuitem>外部エディタで</guimenuitem>
+        </menuchoice>、または、<menuchoice>
+          <guimenuitem>右を開く</guimenuitem>
 
-        <guimenuitem>外部エディタで</guimenuitem>
-      </menuchoice>を選択してください。</para>
+          <guimenuitem>外部エディタで</guimenuitem>
+        </menuchoice>を選択してください。</para>
     </section>
 
     <section>
       <title>フィルタフォルダ<indexterm>
-        <primary>Filters folders</primary>
+          <primary>Filters folders</primary>
 
-        <secondary>specifying default private folder</secondary>
-      </indexterm></title>
+          <secondary>specifying default private folder</secondary>
+        </indexterm></title>
 
-      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、(Windows XP では
-      <filename>マイ ドキュメント</filename>、または、Windows Vista では
+      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、
+      Windows 10 では
       <filename>
       ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダです。ファイルフィルタを作成したら、このフォルダへ自動的に追加されます。
       </para>
@@ -1662,7 +1799,7 @@
     </note>
 
     <section>
-      <title>非Unicodeファイルのデフォルトコードページ</title>
+      <title>デフォルトコードページ</title>
 
       <para>WinMerge が、非Unicode ファイルを扱う際の、デフォルトコードページを設定するために、
       次のラジオボタンから1つ選んでください:</para>
@@ -1739,6 +1876,13 @@ or is this understood?--></para>
           </caution>
         </listitem>
       </itemizedlist>
+    </section>
+
+    <section>
+      <title>Detect codepage for text files using mlang.dll</title>
+
+      <para>TBD</para>
+
     </section>
   </section>
 

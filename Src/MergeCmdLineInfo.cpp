@@ -119,7 +119,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
 	m_bNonInteractive(false),
-	m_bSingleInstance(false),
+	m_bSingleInstance(),
 	m_bShowUsage(false),
 	m_bNoPrefs(false),
 	m_nCodepage(0),
@@ -225,10 +225,39 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -f "mask" - file filter mask ("*.h *.cpp")
 			q = EatParam(q, m_sFileFilter);
 		}
+		else if (param == _T("m"))
+		{
+			// -m "method" - compare method
+			q = EatParam(q, param);
+			param = strutils::makelower(param);
+			strutils::replace(param, _T("and"), _T(""));
+			strutils::replace(param, _T("contents"), _T(""));
+			strutils::replace(param, _T("modified"), _T(""));
+			strutils::replace(param, _T(" "), _T(""));
+			if (param == _T("full"))
+				m_nCompMethod = CompareMethodType::CONTENT;
+			else if (param == _T("quick"))
+				m_nCompMethod = CompareMethodType::QUICK_CONTENT;
+			else if (param == _T("binary"))
+				m_nCompMethod = CompareMethodType::BINARY_CONTENT;
+			else if (param == _T("date"))
+				m_nCompMethod = CompareMethodType::DATE;
+			else if (param == _T("sizedate") || param == _T("datesize"))
+				m_nCompMethod = CompareMethodType::DATE_SIZE;
+			else if (param == _T("size"))
+				m_nCompMethod = CompareMethodType::SIZE;
+			else
+				m_sErrorMessages.push_back(_T("Unknown compare method '") + param + _T("' specified"));
+		}
 		else if (param == _T("r"))
 		{
 			// -r to compare recursively
 			m_bRecurse = true;
+		}
+		else if (param == _T("s-"))
+		{
+			// -s- to not allow only one instance
+			m_bSingleInstance = false;
 		}
 		else if (param == _T("s"))
 		{
@@ -368,6 +397,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		else if (param == _T("ignorecodepage"))
 		{
 			q = SetOption(q, OPT_CMP_IGNORE_CODEPAGE);
+		}
+		else if (param == _T("ignorecomments"))
+		{
+			q = SetOption(q, OPT_CMP_FILTER_COMMENTLINES);
 		}
 		else if (param == _T("cfg") || param == _T("config"))
 		{

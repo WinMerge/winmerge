@@ -24,7 +24,7 @@
 #endif
 
 //  VHDL keywords
-static LPCTSTR s_apszVhdlKeywordList[] =
+static const TCHAR * s_apszVhdlKeywordList[] =
   {
     _T ("abs"),
     _T ("access"),
@@ -112,7 +112,7 @@ static LPCTSTR s_apszVhdlKeywordList[] =
     _T ("xor")
   };
 
-static LPCTSTR s_apszVhdlAttributeList[] =
+static const TCHAR * s_apszVhdlAttributeList[] =
   {
     _T ("'active"),
     _T ("'ascending"),
@@ -148,7 +148,7 @@ static LPCTSTR s_apszVhdlAttributeList[] =
   };
 
 //  VHDL Types
-static LPCTSTR s_apszVhdlTypeList[] =
+static const TCHAR * s_apszVhdlTypeList[] =
   {
     _T ("bit"),
     _T ("bit_vector"),
@@ -182,7 +182,7 @@ static LPCTSTR s_apszVhdlTypeList[] =
   };
 
 //  VHDL functions
-static LPCTSTR s_apszVhdlFunctionList[] =
+static const TCHAR * s_apszVhdlFunctionList[] =
   {
     _T ("conv_integer"),
     _T ("conv_signed"),
@@ -208,13 +208,13 @@ static LPCTSTR s_apszVhdlFunctionList[] =
   };
 
 static bool
-IsVhdlKeyword (LPCTSTR pszChars, int nLength)
+IsVhdlKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszVhdlKeywordList, pszChars, nLength);
 }
 
 static bool
-IsVhdlAttribute (LPCTSTR pszChars, int nLength, int *nAttributeBegin)
+IsVhdlAttribute (const TCHAR *pszChars, int nLength, int *nAttributeBegin)
 {
   for (int I = 0; I < nLength; I++)
     {
@@ -228,19 +228,19 @@ IsVhdlAttribute (LPCTSTR pszChars, int nLength, int *nAttributeBegin)
 }
 
 static bool
-IsVhdlType (LPCTSTR pszChars, int nLength)
+IsVhdlType (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszVhdlTypeList, pszChars, nLength);
 }
 
 static bool
-IsVhdlFunction (LPCTSTR pszChars, int nLength)
+IsVhdlFunction (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszVhdlFunctionList, pszChars, nLength);
 }
 
 static bool
-IsVhdlNumber (LPCTSTR pszChars, int nLength)
+IsVhdlNumber (const TCHAR *pszChars, int nLength)
 {
   if (nLength == 3 && pszChars[0] == '\'' && pszChars[2] == '\'')
     {
@@ -321,7 +321,7 @@ IsVhdlNumber (LPCTSTR pszChars, int nLength)
 }
 
 static bool
-IsVhdlString (LPCTSTR pszChars, int nLength)
+IsVhdlString (const TCHAR *pszChars, int nLength)
 {
   if (nLength > 3 && pszChars[0] == '"' && pszChars[nLength-1] == '"')
     return true;
@@ -329,15 +329,15 @@ IsVhdlString (LPCTSTR pszChars, int nLength)
 }
 
 static bool
-IsVhdlChar (LPCTSTR pszChars, int nLength)
+IsVhdlChar (const TCHAR *pszChars, int nLength)
 {
   if (nLength == 3 && pszChars[0] == '\'' && pszChars[2] == '\'')
     return true;
   return false;
 }
 
-DWORD
-CrystalLineParser::ParseLineVhdl (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;

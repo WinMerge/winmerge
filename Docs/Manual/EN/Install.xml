@@ -24,16 +24,16 @@
 	
 	<itemizedlist>
 	  <listitem>
-	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(64 bit)</ulink> 
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge 2.16.8 (64 bit)</ulink> 
 		supports Windows 7 and later. It runs on 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
-	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.4/">WinMerge 2.16.4(32 bit)</ulink> 
-		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge 2.16.8 (32 bit)</ulink> 
+		supports Windows XP SP3 and later. It runs on both 32 bit and 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
 	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge 2.16.0</ulink> 
-		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
+		supports Windows XP SP3 and later. It runs on both 32 bit and 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
 	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge 2.14.0</ulink> 
@@ -51,7 +51,7 @@
   
   <section id="Installing_usinginstaller">
     <title>Using the installer (recommended)</title>
-
+    <para></para>
     <note>
       <para>The installer requires Administrator user privileges. If you don't have admin user privileges, you can install
       WinMerge by unzipping from an archive file (see <xref
@@ -67,11 +67,6 @@
       <listitem>
         <simpara>Start the installer executable (usually named
         <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>).</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara>Click <guibutton>Next</guibutton> in the Welcome
-        screen.</simpara>
       </listitem>
 
       <listitem>
@@ -108,6 +103,16 @@
           </varlistentry>
 
           <varlistentry>
+            <term>32-bit WinMerge ShellExtension<indexterm>
+                <primary>Shellextension</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>The option enables you to launch WinMerge directly from Windows Explorer, comparing items that you have selected there.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>Filters</term>
 
             <listitem>
@@ -127,7 +132,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Frhed</term>
+            <term>Frhed (Free hex editor)</term>
 
             <listitem>
               <para>Frhed enable you to show files in hex format.</para>
@@ -135,7 +140,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>WinIMerge</term>
+            <term>WinIMerge (Image Diff/Merge)</term>
 
             <listitem>
               <para>WinIMerge enables you to show the differences between image files.</para>
@@ -188,7 +193,7 @@
           </listitem>
 
           <listitem>
-            <para>Optionally, check the option, <guilabel>Don't create a Start
+            <para>Optionally, check the option <guilabel>Don't create a Start
             Menu folder</guilabel>.</para>
           </listitem>
         </itemizedlist>
@@ -270,19 +275,64 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Create a Desktop shortcut</term>
+            <term>Create a desktop shortcut</term>
 
             <listitem>
               <para>Adds the WinMerge shortcut to your Windows Desktop.</para>
             </listitem>
           </varlistentry>
+        </variablelist>
 
+        <para>Click <guibutton>Next</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>In the 3-way merge wizard page, register WinMerge
+        as 3-way merge tool for TortoiseSVN/Git.</simpara>
+
+        <variablelist>
           <varlistentry>
-            <term>Create a Quick Launch shortcut</term>
+            <term>Register WinMerge as a 3-way merge tool<indexterm>
+                <primary>3-way merge tool</primary>
+              </indexterm></term>
 
             <listitem>
-              <para>Adds the WinMerge shortcut to the Windows Quick Launch
-              bar.</para>
+              <para>Register WinMerge as 3-way merge tool for
+              TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at right pane</term>
+
+            <listitem>
+              <para>Merge at right pane.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>Merge at center pane</term>
+
+            <listitem>
+              <para>Merge at center pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Merge at left pane</term>
+
+            <listitem>
+              <para>Merge at left pane.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Auto-merge at startup time</term>
+
+            <listitem>
+              <para>Optionally, disable the option <guilabel>Auto-merge at
+            startup time</guilabel>.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -295,6 +345,7 @@
         If necessary, click <guibutton>Back</guibutton> to change anything in a
         previous page. When you are sure that you are ready to proceed, click
         <guibutton>Install</guibutton>.</simpara>
+      <para></para>
       </listitem>
 
       <listitem>

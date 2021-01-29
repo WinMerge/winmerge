@@ -16,15 +16,15 @@ class MovedLines
 {
 public:
 	/** @brief Sides for mapping functions. */
-	enum ML_SIDE
+	enum class SIDE
 	{
-		SIDE_LEFT,
-		SIDE_RIGHT,
+		LEFT,
+		RIGHT,
 	};
 
 	void Clear();
-	void Add(ML_SIDE side1, unsigned line1, unsigned line2);
-	int LineInBlock(unsigned line, ML_SIDE side) const;
+	void Add(SIDE side1, unsigned line1, unsigned line2);
+	int LineInBlock(unsigned line, SIDE side) const;
 
 protected:
 	int FirstSideInMovedBlock(unsigned secondSideLine) const;

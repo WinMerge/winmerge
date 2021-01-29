@@ -277,6 +277,7 @@ public:
 		HRESULT hr = m_pmlang->GetCodePageInfo(codepage, GetSystemDefaultLangID(), &mcpi);
 		if (FAILED(hr))
 			return false;
+		pCodePageInfo->proportionalFont = ucr::toTString(mcpi.wszProportionalFont);
 		pCodePageInfo->fixedWidthFont = ucr::toTString(mcpi.wszFixedWidthFont);
 		pCodePageInfo->bGDICharset = mcpi.bGDICharset;
 		return true;

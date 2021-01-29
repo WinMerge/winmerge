@@ -45,9 +45,11 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&S انتخاب خط تفاوت "
+msgid "&Select Line Difference\tF4"
+msgstr "&S انتخاب خط تفاوت \tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -69,9 +71,14 @@ msgstr "&C رونوشت برداري "
 msgid "&Paste"
 msgstr "&P چسباندن "
 
-#, c-format
-msgid "&Goto..."
-msgstr "&G برو به ... "
+msgid "&Go to...\tCtrl+G"
+msgstr "&G برو به ... \tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -177,6 +184,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
@@ -184,13 +194,31 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&F پرونده "
 
 #, c-format
-msgid "&New\tCtrl+N"
+msgid "&New"
 msgstr "&N جديد \tCtl+N"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+msgid "T&able"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "&B دودويي"
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -223,9 +251,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "<خالي>"
 
-#, c-format
-msgid "E&xit"
-msgstr "&x خروج "
+msgid "E&xit\tCtrl+Q"
+msgstr "&x خروج \tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -307,9 +334,8 @@ msgstr "&R بارگذاري دوباره افزايه ها "
 msgid "&Window"
 msgstr "&W پنجره "
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&o بستن "
+msgid "Cl&ose\tCtrl+W"
+msgstr "&o بستن \tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -464,6 +490,15 @@ msgstr "&o استفاده از قلم پيش فرض "
 msgid "Sw&ap Panes"
 msgstr "&a تعويض چهارگوشها "
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&r مقايسه آمارها ... "
@@ -564,9 +599,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&P چاپ ... "
+msgid "&Print...\tCtrl+P"
+msgstr "&P چاپ ...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "&u تنظيم صفحه ..."
@@ -595,23 +629,8 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&Text"
-msgstr ""
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&B دودويي"
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -678,10 +697,6 @@ msgid "&Clear All Bookmarks"
 msgstr "&C پاک کردن تمام نشانها "
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&G برو به ... \tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr " مشخص نمودن نحو "
 
@@ -719,6 +734,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1067,8 +1085,7 @@ msgstr "&N بدون پيش فرق گذار "
 msgid "Auto prediffer"
 msgstr " پيش فرق گذار خودکار "
 
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "&o برو به محل تفاوت "
 
 #, c-format
@@ -1078,10 +1095,6 @@ msgstr "&N هيچ قطعه جابجا شده "
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&A همه قطعه هاي جابجا شده "
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "&C   قطعه جابجا شده براي تفاوت جاري "
 
 #, c-format
 msgid "W&hitespaces"
@@ -1100,8 +1113,8 @@ msgid "Ig&nore all"
 msgstr "&n چشم پوشي از همه "
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&t حساس به اندازه حروف "
+msgid "Ignore &case"
+msgstr "&c چشم پوشي از اندازه حروف "
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1151,8 +1164,7 @@ msgstr ""
 msgid "About WinMerge"
 msgstr " درباره وينمرج "
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr " بازديد صفحه خانگي وينمرج ! "
 
 #, c-format
@@ -1254,6 +1266,9 @@ msgstr " عمومي "
 msgid "Automatically &scroll to first difference"
 msgstr "&s بطور خودکار به نخستين تفاوت منتقل شود "
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "&o   'Esc' بستن پنجره ها با کليد :"
 
@@ -1336,8 +1351,7 @@ msgstr "&F يافتن بعدي "
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
+msgid "&OK"
 msgstr "&O تاييد "
 
 #, c-format
@@ -1392,12 +1406,15 @@ msgid "&Background color:"
 msgstr ""
 
 #, c-format
+msgid "&Ok"
+msgstr "&O تاييد "
+
+#, c-format
 msgid "&Apply"
 msgstr "&A به کار بستن "
 
-#, c-format
-msgid "Linefilters"
-msgstr " صافيهاي خط "
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1414,6 +1431,21 @@ msgstr " ويرايش "
 #, c-format
 msgid "Remove"
 msgstr " برداشتن "
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1632,20 +1664,17 @@ msgstr " موارد مقايسه شده : "
 msgid "Items total:"
 msgstr " کل موارد : "
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr " برو به "
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "&o بروربه : "
 
 #, c-format
 msgid "File"
 msgstr " پرونده "
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr " برو به چه "
 
 #, c-format
@@ -1656,8 +1685,7 @@ msgstr "&n خط "
 msgid "&Difference"
 msgstr "&D تفاوت "
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "&G برو به "
 
 #, c-format
@@ -1684,9 +1712,8 @@ msgstr "&g چشم پوشي از همگي "
 msgid "Ignore blan&k lines"
 msgstr "&k چشم پوشي از خطوط خالي "
 
-#, c-format
-msgid "Ignore &case"
-msgstr "&c چشم پوشي از اندازه حروف "
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1702,13 +1729,8 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-#, c-format
-msgid "Comments"
-msgstr " يادداشتها "
-
-#, c-format
-msgid "Filter Comments"
-msgstr " پالايه توضيحات "
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -1765,9 +1787,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr " پرونده صافيها "
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr " آزمايش ..."
@@ -2329,6 +2350,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2719,6 +2743,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr " راست بدون عنوان "
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr " پرونده ديگران "
@@ -2913,6 +2940,10 @@ msgstr ""
 " پرونده اصلي تغيير نخواهد کرد \n"
 "\n"
 " آيا مي خواهيد که نسخه با بسته بازشده به صورت پرونده ديگري ذخيره شود؟ "
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3563,6 +3594,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr " گزارش با موفقيت ايجاد شده است  "
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "  يک  پرونده در هر دو تابلو باز شده است"
@@ -3764,16 +3798,11 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr " پوشه وجود ندارد "
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "  پشتيباني از بايگاني فعال نشده است \n"
 " تمام اجزاء مورد نياز  براي پشتيباني از بايگاني را نمي توان يافت - Merge7z*."
-"dll &/ 7-zip   - \n"
+"dll &/ 7-Zip   - \n"
 " براي اطلاع بيشتر از پشتيباني بايگاني و چگونگي فعالسازي آن، کتابچه راهنما را "
 "ببينيد"
 
@@ -3914,6 +3943,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr " بازکننده بسته تطبيق داده شده روي هر دو پرونده ها بکار بسته مي شود "
 
@@ -3961,8 +4002,11 @@ msgid "<Automatic>"
 msgstr "<خودکار>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "&G   برو به خط  %1 "
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -3984,9 +4028,6 @@ msgstr " برجسته نکردن "
 msgid "Batch"
 msgstr " دسته "
 
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr " شيئ حمل شدني "
@@ -3998,10 +4039,6 @@ msgstr " منابع "
 #, c-format
 msgid "Shell"
 msgstr " پوسته "
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4019,8 +4056,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
@@ -4156,5 +4192,33 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

@@ -104,6 +104,13 @@ public:
 	void MoveToPrevDiff();
 	void OpenNextDiff();
 	void OpenPrevDiff();
+	void OpenFirstFile();
+	void OpenLastFile();
+	void OpenNextFile();
+	void OpenPrevFile();
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	void SetActivePane(int pane);
 
 // Implementation types
@@ -323,7 +330,10 @@ protected:
 	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	template <int pane1, int pane2>
 	afx_msg void OnViewSwapPanes();
+	template <int pane1, int pane2>
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();

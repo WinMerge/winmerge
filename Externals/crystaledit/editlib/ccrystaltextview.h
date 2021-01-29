@@ -202,15 +202,15 @@ protected:
     void ToggleBookmark(int nLine);
 
 public :
-    enum RENDERING_MODE
+    enum class RENDERING_MODE
     {
-      RENDERING_MODE_GDI = -1,
-      RENDERING_MODE_DWRITE_DFEAULT = 0,
-      RENDERING_MODE_DWRITE_ALIASED = 1,
-      RENDERING_MODE_DWRITE_GDI_CLASSIC = 2,
-      RENDERING_MODE_DWRITE_GDI_NATURAL = 3,
-      RENDERING_MODE_DWRITE_NATURAL = 4,
-      RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC = 5,
+      GDI = -1,
+      DWRITE_DFEAULT = 0,
+      DWRITE_ALIASED = 1,
+      DWRITE_GDI_CLASSIC = 2,
+      DWRITE_GDI_NATURAL = 3,
+      DWRITE_NATURAL = 4,
+      DWRITE_NATURAL_SYMMETRIC = 5,
     };
 
     virtual void ResetView ();
@@ -685,12 +685,12 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    DWORD ParseLine (DWORD dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
-    int GetCRLFMode ();
-    void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
+    enum class CRLFSTYLE GetCRLFMode ();
+    void SetCRLFMode (CRLFSTYLE nCRLFMode);
     bool GetViewTabs () const { return m_bViewTabs; }
     void SetViewTabs (bool bViewTabs);
     bool GetViewEols () const { return m_bViewEols; }

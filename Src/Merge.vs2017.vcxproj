@@ -152,6 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -418,10 +419,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\asp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\autoit.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\javascript.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -530,6 +533,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp" />
+    <ClCompile Include="SubstitutionFiltersList.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="MergeFrameCommon.cpp" />
     <ClCompile Include="MergeEditFrm.cpp" />
     <ClCompile Include="Common\ClipBoard.cpp">
@@ -726,11 +733,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="FilterCommentsManager.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -753,6 +755,8 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="LineFiltersDlg.cpp" />
+    <ClCompile Include="SubstitutionFiltersDlg.cpp" />
+    <ClCompile Include="SubeditList.cpp" />
     <ClCompile Include="LineFiltersList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -945,6 +949,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="Common\SuperComboBox.cpp" />
+    <ClCompile Include="SubstitutionList.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="TempFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1116,6 +1124,7 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
@@ -1185,7 +1194,6 @@
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />
     <ClInclude Include="FileVersion.h" />
-    <ClInclude Include="FilterCommentsManager.h" />
     <ClInclude Include="FilterList.h" />
     <ClInclude Include="FolderCmp.h" />
     <ClInclude Include="GhostTextBuffer.h" />
@@ -1200,7 +1208,9 @@
     <ClInclude Include="Common\LanguageSelect.h" />
     <ClInclude Include="JumpList.h" />
     <ClInclude Include="LineFiltersDlg.h" />
+    <ClInclude Include="SubstitutionFiltersDlg.h" />
     <ClInclude Include="LineFiltersList.h" />
+    <ClInclude Include="SubstitutionList.h" />
     <ClInclude Include="LoadSaveCodepageDlg.h" />
     <ClInclude Include="locality.h" />
     <ClInclude Include="LocationBar.h" />

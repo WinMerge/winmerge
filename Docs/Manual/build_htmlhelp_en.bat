@@ -20,10 +20,6 @@ echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
 copy "EN\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
-echo Copy art...
-if not exist "%docbook_outputdir%\art" mkdir "%docbook_outputdir%\art"
-copy "EN\art\*.*" "%docbook_outputdir%\art\."
-
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
 copy "Shared\css\*.css" "%docbook_outputdir%\css\."
@@ -45,7 +41,6 @@ del "toc.hhc"
 del "index.hhk"
 rd /S /Q "%docbook_outputdir%\images"
 rd /S /Q "%docbook_outputdir%\screenshots"
-rd /S /Q "%docbook_outputdir%\art"
 rd /S /Q "%docbook_outputdir%\css"
 if not "%docbook_build_path%" == "." rd /S /Q "%docbook_outputdir%"
 echo Finished!

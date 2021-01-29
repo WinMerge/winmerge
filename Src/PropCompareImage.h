@@ -29,6 +29,7 @@ public:
 	CComboBox m_comboPatterns;
 	String m_sFilePatterns;
 	bool m_bEnableImageCompare;
+	int  m_nOcrResultType;
 	//}}AFX_DATA
 
 
@@ -43,6 +44,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareImage)
+	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
 	afx_msg void OnDropDownPatterns();
 	afx_msg void OnCloseUpPatterns();

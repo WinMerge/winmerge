@@ -35,6 +35,7 @@ public:
 	unsigned m_nTabSize;
 	bool    m_bAutomaticRescan;
 	bool    m_bAllowMixedEol;
+	bool    m_bCopyFullLine;
 	bool    m_bViewLineDifferences;
 	bool    m_bBreakOnWords;
 	int     m_nBreakType;

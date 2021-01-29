@@ -7,14 +7,14 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace test
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(LuaTests)
 	{
 	public:
 		TEST_METHOD(LuaSyntax)
 		{
 			std::unique_ptr<CrystalLineParser::TEXTBLOCK[]> pblocks(new CrystalLineParser::TEXTBLOCK[256]);
 			struct TestData {
-				DWORD dwCookie;
+				unsigned dwCookie;
 				TCHAR *pszChars;
 			} data[] = {
 				//                                             1         2         3         4         5
@@ -34,7 +34,7 @@ namespace test
 				{COOKIE_RAWSTRING | (2 << 28),   _T("]==];") },
 			};
 			struct Expected {
-				DWORD dwCookie;
+				unsigned dwCookie;
 				CrystalLineParser::TEXTBLOCK pblocks[10];
 				size_t nblocks;
 			} expected[] = {
@@ -66,19 +66,15 @@ namespace test
 					}, 6},
 				{ 0, {
 					{0,  COLORINDEX_COMMENT,    COLORINDEX_BKGND},
-					{13, COLORINDEX_COMMENT,    COLORINDEX_BKGND},
-					{23, COLORINDEX_COMMENT,    COLORINDEX_BKGND},
 					{33, COLORINDEX_STRING,     COLORINDEX_BKGND},
-					{37, COLORINDEX_STRING,     COLORINDEX_BKGND},
-					{44, COLORINDEX_STRING,     COLORINDEX_BKGND},
 					{56, COLORINDEX_NORMALTEXT, COLORINDEX_BKGND},
-					}, 7},
+					}, 3},
 				{ COOKIE_EXT_COMMENT,             {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}}, 1 },
-				{ COOKIE_EXT_COMMENT | (1 << 28), {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}, {2, COLORINDEX_COMMENT, COLORINDEX_BKGND}}, 2 },
-				{ COOKIE_EXT_COMMENT | (2 << 28), {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}, {3, COLORINDEX_COMMENT, COLORINDEX_BKGND}}, 2 },
+				{ COOKIE_EXT_COMMENT | (1 << 28), {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}}, 1 },
+				{ COOKIE_EXT_COMMENT | (2 << 28), {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}}, 1 },
 				{ COOKIE_RAWSTRING,               {{0, COLORINDEX_COMMENT, COLORINDEX_BKGND}, {4, COLORINDEX_STRING,  COLORINDEX_BKGND}}, 2 },
-				{ COOKIE_RAWSTRING | (1 << 28),   {{0, COLORINDEX_STRING,  COLORINDEX_BKGND}, {2, COLORINDEX_STRING,  COLORINDEX_BKGND}}, 2 },
-				{ COOKIE_RAWSTRING | (2 << 28),   {{0, COLORINDEX_STRING,  COLORINDEX_BKGND}, {3, COLORINDEX_STRING,  COLORINDEX_BKGND}}, 2 },
+				{ COOKIE_RAWSTRING | (1 << 28),   {{0, COLORINDEX_STRING,  COLORINDEX_BKGND}}, 1 },
+				{ COOKIE_RAWSTRING | (2 << 28),   {{0, COLORINDEX_STRING,  COLORINDEX_BKGND}}, 1 },
 				{ 0,                              {{0, COLORINDEX_STRING,  COLORINDEX_BKGND}, {4, COLORINDEX_OPERATOR, COLORINDEX_BKGND}}, 2 },
 			};
 			for (size_t i = 0; i < std::size(expected); ++i)
@@ -86,8 +82,8 @@ namespace test
 				int nActualItems = 0;
 				std::wstring msg = L"index: " + std::to_wstring(i);
 				Assert::AreEqual(
-					static_cast<DWORD>(expected[i].dwCookie),
-					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, _tcslen(data[i].pszChars), pblocks.get(), nActualItems), msg.c_str());
+					static_cast<unsigned>(expected[i].dwCookie),
+					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, static_cast<int>(_tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
 				Assert::AreEqual(static_cast<int>(expected[i].nblocks), nActualItems, msg.c_str());
 				for (int j = 0; j < nActualItems; ++j)
 				{

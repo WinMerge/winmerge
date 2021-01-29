@@ -5,7 +5,7 @@
   <para>ここでの主題は、WinMergeがどのようにして、テキストファイル中の
     差分を見つけ、また、表示するのかということ。
     そして、単純なファイルの比較とマージ操作のデモを行います。
-    バイナリファイルに関する情報は、<xref linkend="Intro_diffs" />を参照してください。</para>
+    バイナリファイルに関する情報は、<xref linkend="Compare_bin" />を参照してください。</para>
 
   <section id="Intro_diffs_comparing">
     <title>ファイルの比較<indexterm>
@@ -100,7 +100,7 @@ Believe it or not.</screen></para>
             </imageobject>
 
             <textobject>
-              <phrase>Compare Files screen shot</phrase>
+              <phrase>Compare Files screenshot</phrase>
             </textobject>
           </mediaobject>
 
@@ -159,7 +159,7 @@ Believe it or not.</screen></para>
 
                 <tip>
                   <para>空行の一つの重要性は、たとえ、ソースファイルではそうでなくても、
-                    ファイル比較ウィンドウの両方のペインには、
+                    ファイル比較ウィンドウの両方(または3つすべて)のペインには、
                     いつも同じ総行数が表示されていることです。</para>
                 </tip>
               </listitem>
@@ -216,6 +216,7 @@ Believe it or not.</screen></para>
               <phrase>Compare Files Diff Pane</phrase>
             </textobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -377,6 +378,7 @@ Believe it or not.</screen></para>
                          fileref="screenshots/filemerged1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -411,7 +413,7 @@ Believe it or not.</screen></para>
 
         <para>マージ結果が保たれるようにコントロールしてください。
           WinMergeのファイル比較ウィンドウには、幾つかのマージツールがそうであるように、
-          分割された結果ペインがありません。 最も単純な方策は、片方、または、両方のソースファイルの変更を保存することです。
+          分割された結果ペインがありません。 最も単純な方策は、片方、または、両方(または3つすべて)のソースファイルの変更を保存することです。
           <keycombo>
           <keycap>Ctrl</keycap>
 
@@ -442,7 +444,7 @@ Believe it or not.</screen></para>
 
       <para>同様に、WinMergeのコマンドラインで、<xref linkend="Command_line" />で説明されている、
         任意の<option>outputfile</option>引数を使用して、
-        両方のソースファイルが変更されていない状態のままにしておくことができます。</para>
+        両方(または3つすべて)のソースファイルが変更されていない状態のままにしておくことができます。</para>
     </section>
   </section>
 </article>

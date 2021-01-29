@@ -111,12 +111,19 @@ public:
 	bool MoveableToPrevDiff();
 	void MoveToNextDiff(IMergeDoc *pMergeDoc);
 	void MoveToPrevDiff(IMergeDoc *pMergeDoc);
-	
+	void MoveToFirstFile(IMergeDoc* pMergeDoc);
+	void MoveToLastFile(IMergeDoc* pMergeDoc);
+	void MoveToNextFile(IMergeDoc* pMergeDoc);
+	void MoveToPrevFile(IMergeDoc* pMergeDoc);
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	bool CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifileloc[]);
 
 protected:
 	void InitDiffContext(CDiffContext *pCtxt);
 	void LoadLineFilterList(CDiffContext *pCtxt);
+	void LoadSubstitutionFiltersList(CDiffContext* pCtxt);
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

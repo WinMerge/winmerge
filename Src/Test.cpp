@@ -470,10 +470,10 @@ TEST(ImageCompareTest, Open)
 TEST(FileMenu, New)
 {
 	CFrameWnd *pFrame;
-	GetMainFrame()->FileNew(2);
+	GetMainFrame()->FileNew(2, CMainFrame::FRAMETYPE::FRAME_FILE, false);
 	pFrame = GetMainFrame()->GetActiveFrame();
 	pFrame->PostMessage(WM_CLOSE);
-	GetMainFrame()->FileNew(3);
+	GetMainFrame()->FileNew(3, CMainFrame::FRAMETYPE::FRAME_FILE, false);
 	pFrame = GetMainFrame()->GetActiveFrame();
 	pFrame->PostMessage(WM_CLOSE);
 }

@@ -38,7 +38,7 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
-#include "FilterCommentsManager.h"
+#include "SubstitutionFiltersList.h"
 #include "SyntaxColors.h"
 #include "CCrystalTextMarkers.h"
 #include "OptionsSyntaxColors.h"
@@ -106,7 +106,7 @@ CMergeApp::CMergeApp() :
 , m_bEscShutdown(false)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
-, m_pFilterCommentsManager(new FilterCommentsManager())
+, m_pSubstitutionFiltersList(new SubstitutionFiltersList())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
@@ -222,8 +222,8 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	bool bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
-		(true == cmdInfo.m_bSingleInstance);
+	bool bSingleInstance = cmdInfo.m_bSingleInstance.has_value() ?
+		*cmdInfo.m_bSingleInstance : GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
 
 	// Create exclusion mutex name
 	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
@@ -308,6 +308,9 @@ BOOL CMergeApp::InitInstance()
 		if (!oldFilter.empty())
 			m_pLineFilters->Import(oldFilter);
 	}
+
+	if (m_pSubstitutionFiltersList != nullptr)
+		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 
 	// Check if filter folder is set, and create it if not
 	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
@@ -459,7 +462,7 @@ int CMergeApp::ExitInstance()
 	ClearTempfolder(temp);
 
 	// Cleanup left over tempfiles from previous instances.
-	// Normally this should not neet to do anything - but if for some reason
+	// Normally this should not need to do anything - but if for some reason
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
 
@@ -620,6 +623,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	{
 		UpdateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
+
+	// Set compare method
+	if (cmdInfo.m_nCompMethod.has_value())
+		GetOptionsMgr()->Set(OPT_CMP_METHOD, *cmdInfo.m_nCompMethod);
 
 	// Unless the user has requested to see WinMerge's usage open files for
 	// comparison.
@@ -1003,7 +1010,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			else
 			{
 				// Single file
-				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
+				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1073,7 +1080,7 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to open project file");
+		String sErr = _("Unknown error attempting to open project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
@@ -1091,7 +1098,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to save project file");
+		String sErr = _("Unknown error attempting to save project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);

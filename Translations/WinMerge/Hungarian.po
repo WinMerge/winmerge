@@ -44,8 +44,10 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
+msgid "&Select Line Difference\tF4"
+msgstr ""
+
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
 #, c-format
@@ -68,9 +70,14 @@ msgstr "&Másolás"
 msgid "&Paste"
 msgstr "&Beillesztés"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Ugrás..."
+msgid "&Go to...\tCtrl+G"
+msgstr "&Ugrás...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -176,6 +183,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
@@ -183,13 +193,31 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fájl"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Új\tCtrl+N"
+msgid "&New"
+msgstr "&Új"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+msgid "T&able"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -222,9 +250,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "< Üres >"
 
-#, c-format
-msgid "E&xit"
-msgstr "&Kilépés"
+msgid "E&xit\tCtrl+Q"
+msgstr "&Kilépés\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -306,9 +333,8 @@ msgstr "&Bővítmények betöltése"
 msgid "&Window"
 msgstr "&Ablak"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Bezárás"
+msgid "Cl&ose\tCtrl+W"
+msgstr "&Bezárás\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -463,6 +489,15 @@ msgstr "Alapértelmezett betűtípus használata"
 msgid "Sw&ap Panes"
 msgstr "Panelek megcserélése"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
@@ -563,9 +598,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "Nyomtatás..."
+msgid "&Print...\tCtrl+P"
+msgstr "Nyomtatás...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Oldalbeállítás..."
@@ -594,23 +628,8 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&Text"
-msgstr ""
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -677,10 +696,6 @@ msgid "&Clear All Bookmarks"
 msgstr "Összes könyvjelző törlése"
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Ugrás...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr ""
 
@@ -718,6 +733,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1066,8 +1084,7 @@ msgstr "&Nincs elővizsgálat"
 msgid "Auto prediffer"
 msgstr "Automatikus elővizsgálat"
 
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
 
 #, c-format
@@ -1077,10 +1094,6 @@ msgstr "&Nem mozgatott blokkok"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Minden mozgatott blokk"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "A &jelenlegi Eltérés mozgatott blokkja"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1099,8 +1112,8 @@ msgid "Ig&nore all"
 msgstr "Minden kihagyása"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Kis-nagybetű érzékenység"
+msgid "Ignore &case"
+msgstr "&Kis-nagybetű különbségek kihagyása"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1150,8 +1163,7 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "A WinMerge névjegye"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "Látogasd meg a WinMerge honlapját!"
 
 #, c-format
@@ -1253,6 +1265,9 @@ msgstr "Általános"
 msgid "Automatically &scroll to first difference"
 msgstr "Automatikus &ugrás az első eltérésre"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Ablakok bezárása az '&Esc' billentyűvel:"
 
@@ -1331,8 +1346,7 @@ msgstr "Kere&sés"
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
+msgid "&OK"
 msgstr "&Rendben"
 
 #, c-format
@@ -1387,12 +1401,15 @@ msgid "&Background color:"
 msgstr ""
 
 #, c-format
+msgid "&Ok"
+msgstr "&Rendben"
+
+#, c-format
 msgid "&Apply"
 msgstr "&Alkalmaz"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Sorszűrők"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1409,6 +1426,21 @@ msgstr "Szerkesztés"
 #, c-format
 msgid "Remove"
 msgstr "Eltávolítás"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1627,20 +1659,17 @@ msgstr "Összehasonlított elemek:"
 msgid "Items total:"
 msgstr "Összes elem:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Ugrás"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "U&grás:"
 
 #, c-format
 msgid "File"
 msgstr "Fájl"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "Mire ugorjon:"
 
 #, c-format
@@ -1651,8 +1680,7 @@ msgstr "&Sorra"
 msgid "&Difference"
 msgstr "&Eltérésre"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "&Ugrás"
 
 #, c-format
@@ -1679,9 +1707,8 @@ msgstr "&Minden kihagyása"
 msgid "Ignore blan&k lines"
 msgstr "&Üres sorok kihagyása"
 
-#, c-format
-msgid "Ignore &case"
-msgstr "&Kis-nagybetű különbségek kihagyása"
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1697,12 +1724,7 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-#, c-format
-msgid "Comments"
-msgstr "Megjegyzések"
-
-#, c-format
-msgid "Filter Comments"
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 #, c-format
@@ -1760,9 +1782,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "FájlSzűrők"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr ""
@@ -2320,6 +2341,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2644,6 +2668,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Névtelen jobb oldal"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr ""
@@ -2829,6 +2856,10 @@ msgstr ""
 "Az eredeti fájl nem lett megváltoztatva.\n"
 "\n"
 "Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3447,6 +3478,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "A jelentés sikeresen elkészült."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Ugyanaz a fájl van megnyitva mindkét panelen."
@@ -3628,14 +3662,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "A mappa nem létezik."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "Az Archívum támogatás nem engedélyezett.\n"
-"Az ehhez szükséges összetevők (7-zip és/vagy Merge7z*.dll) nem találhatóak.\n"
+"Az ehhez szükséges összetevők (7-Zip és/vagy Merge7z*.dll) nem találhatóak.\n"
 "Olvasd el a kézikönyv archívum támogatásról szóló részét."
 
 #, c-format
@@ -3775,6 +3805,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "A választott kicsomagoló lesz használva mindkét fájlnál (az egyik fájlnak csak a kiterjesztése lényeges)."
 
@@ -3822,8 +3864,11 @@ msgid "<Automatic>"
 msgstr "<Automatikus>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "&Ugrás a(z) %1. sorra"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -3845,9 +3890,6 @@ msgstr ""
 msgid "Batch"
 msgstr ""
 
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr ""
@@ -3858,10 +3900,6 @@ msgstr ""
 
 #, c-format
 msgid "Shell"
-msgstr ""
-
-#, c-format
-msgid "VHDL"
 msgstr ""
 
 #, c-format
@@ -3880,8 +3918,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
@@ -4017,5 +4054,33 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

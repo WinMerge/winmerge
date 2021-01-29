@@ -194,7 +194,7 @@
       Compare window.</para>
 
       <para>The left and right sides are determined by the sort order in Windows
-      Explorer. In the preceding screen shot, the Windows Explorer file list is
+      Explorer. In the preceding screenshot, the Windows Explorer file list is
       in ascending order, so WinMerge opens with <filename>File2</filename> on
       the 1st side and <filename>File1</filename> on the 2nd..</para>
 
@@ -308,7 +308,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
       </itemizedlist>
 
       <tip>
-        <para>Press <keycap>Control</keycap> while selecting the
+        <para>Press <keycap>Ctrl</keycap> while selecting the
         <guimenuitem>WinMerge</guimenuitem> or
         <guimenuitem>Compare</guimenuitem> shortcut in the Windows Explorer
         context menu to force a reverse comparison with the current 'Include Subfolders' settings.</para>
@@ -329,7 +329,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
     opened.</para>
 
     <para>By default, WinMerge does include subfolders in compare
-    operations. To not include subfolders, press and hold <keycap>Control</keycap>
+    operations. To not include subfolders, press and hold <keycap>Ctrl</keycap>
     while dropping paths. Another useful key when dropping paths is
     <keycap>Shift</keycap>: To open the same path in both sides of a Compare
     window, press and hold <keycap>Shift</keycap> while dropping only one path.
@@ -383,10 +383,10 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
           <guimenuitem>Open Project</guimenuitem>
         </menuchoice>. WinMerge reads the paths from the project file. If the
-      project file has two paths, both paths are opened. If only one path is
-      given or one of paths is invalid, WinMerge opens the Select Files or
-      Folders dialog, where you can add or correct the path information. Here
-      are a few things to consider:</para>
+      project file has two or three paths, two respective three paths are
+      opened. If only one path is given or one of paths is invalid, WinMerge
+      opens the Select Files or Folders dialog, where you can add or correct the
+      path information. Here are a few things to consider:</para>
 
       <itemizedlist>
         <listitem>

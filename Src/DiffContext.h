@@ -11,6 +11,7 @@
 #include "PathContext.h"
 #include "DiffItemList.h"
 #include "FilterList.h"
+#include "SubstitutionList.h"
 
 class PackingInfo;
 class PrediffingInfo;
@@ -20,7 +21,6 @@ class IAbortable;
 class CDiffWrapper;
 class CompareOptions;
 struct DIFFOPTIONS;
-class FilterCommentsManager;
 
 /** Interface to a provider of plugin info */
 class IPluginInfos
@@ -149,6 +149,8 @@ public:
 		DiffItemList::Swap(idx1, idx2);
 	}
 
+	const DIFFOPTIONS *GetOptions() const { return m_pOptions.get(); }
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IDiffFilter * m_pImgfileFilter; /**< Interface for image file filtering */
 	IPluginInfos * m_piPluginInfos;
@@ -193,7 +195,7 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
-	FilterCommentsManager *m_pFilterCommentsManager;
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
 
 private:
 	/**

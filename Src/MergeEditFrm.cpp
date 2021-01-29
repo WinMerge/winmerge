@@ -116,11 +116,7 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
-		auto& wndSplitter = GetMergeEditSplitterWnd(0);
-		if (wndSplitter.GetColumnCount() > 1)
-			wndSplitter.SetActivePane(0, pane);
-		else
-			wndSplitter.SetActivePane(pane, 0);
+		m_pMergeDoc->GetView(0, pane)->SetActivePane();
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
@@ -320,12 +316,10 @@ void CMergeEditFrame::UpdateHeaderSizes()
 	}
 	else
 	{
-		CRect rect;
-		wndSplitter.GetWindowRect(&rect);
+		int w2, wmin;
+		wndSplitter.GetColumnInfo(0, w2, wmin);
 		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-		{
-			w[pane] = rect.Width() /  pDoc->m_nBuffers;
-		}
+			w[pane] = (w2 - 4 * pDoc->m_nBuffers) / pDoc->m_nBuffers;
 	}
 
 	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))

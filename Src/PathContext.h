@@ -79,7 +79,7 @@ public:
 	void SetSize(int nFiles);
 	int GetSize() const;
 	void RemoveAll();
-	void Swap();
+	void Swap(int nFromIndex, int nToIndex);
 
 	const_iterator begin() const;
 	const_iterator end() const;

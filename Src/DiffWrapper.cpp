@@ -38,14 +38,16 @@
 #include "CompareOptions.h"
 #include "FileTextStats.h"
 #include "FolderCmp.h"
-#include "FilterCommentsManager.h"
 #include "Environment.h"
 #include "PatchHTML.h"
 #include "UnicodeString.h"
 #include "unicoder.h"
 #include "TFile.h"
 #include "Exceptions.h"
+#include "parsers/crystallineparser.h"
+#include "SyntaxColors.h"
 #include "MergeApp.h"
+#include "SubstitutionList.h"
 
 using Poco::Debugger;
 using Poco::format;
@@ -59,10 +61,10 @@ static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
 /**
  * @brief Default constructor.
- * Initializes members and creates new FilterCommentsManager.
+ * Initializes members.
  */
 CDiffWrapper::CDiffWrapper()
-: m_pFilterCommentsManager(nullptr)
+: m_pFilterCommentsDef(nullptr)
 , m_bCreatePatchFile(false)
 , m_bUseDiffList(false)
 , m_bAddCmdLine(true)
@@ -72,6 +74,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
+, m_pSubstitutionList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
 {
@@ -217,95 +220,59 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 	}
 }
 
-/**
- * @brief Test for trivial only characters in string
- * @param [in] Start				- Start position in string
- * @param [in] End					- One character pass the end position of the string
- * @param [in] filtercommentsset	- For future use to determine trivial bytes
- * @return Returns true if all characters are trivial
- */
-bool CDiffWrapper::IsTrivialBytes(const char* Start, const char* End,
-	const FilterCommentsSet& filtercommentsset) const
+static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
 {
-	std::string testdata(Start, End);
-	//@TODO: Need to replace the following trivial string with a user specified string
-	size_t pos = testdata.find_first_not_of(" \t\r\n");
-	return (pos == std::string::npos);
+	if (!enuType)
+		return dwCookie;
+	for (int i = startLine; i <= endLine; ++i)
+	{
+		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
+		int nActualItems = 0;
+		std::vector<CrystalLineParser::TEXTBLOCK> blocks(text.length());
+		dwCookie = enuType->ParseLineX(dwCookie, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems);
+	}
+	return dwCookie;
 }
 
-/**
- * @brief Test for a line of trivial data
- * @param [in] Line					- String to test for
- * @param [in] StartOfComment		- 
- * @param [in] EndOfComment			- 
- * @param [in] InLineComment		- 
- * @param [in] filtercommentsset	- Comment marker set used to indicate comment blocks.
- * @return Returns true if entire line is trivial
- */
-bool CDiffWrapper::IsTrivialLine(const std::string &Line, 
-				   const char * StartOfComment,	
-				   const char * EndOfComment,	
-				   const char * InLineComment,	
-				   const FilterCommentsSet& filtercommentsset) const
+static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, std::string& filtered, CrystalLineParser::TextDefinition* enuType)
 {
-	//Do easy test first
-	if ((StartOfComment == nullptr || EndOfComment == nullptr) && InLineComment == nullptr)
-		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
-
-	if (StartOfComment == Line.c_str() &&
-		static_cast<size_t>((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
-	{//If entire line is blocked by End and Start markers, then entire line is trivial
-		return true;
-	}
-
-	if (InLineComment != nullptr && InLineComment < StartOfComment)
+	String filteredT;
+	for (int i = startLine; i <= endLine; ++i)
 	{
-		if (InLineComment == Line.c_str())
-			return true;//If line starts with InLineComment marker, then entire line is trivial
-
-		//Other wise, check if data before InLineComment marker is trivial
-		return IsTrivialBytes(Line.c_str(), InLineComment, filtercommentsset);
-	}
-
-	//Done with easy test, so now do more complex test
-	if (StartOfComment != nullptr && 
-		EndOfComment != nullptr && 
-		StartOfComment < EndOfComment &&
-		IsTrivialBytes(Line.c_str(), StartOfComment, filtercommentsset) &&
-		IsTrivialBytes(EndOfComment + filtercommentsset.EndMarker.size(),
-			Line.c_str()+Line.size(), filtercommentsset))
-	{
-		return true;
-	}
-
-	return false;
-}
-
-/**
- * @brief Find comment marker in string, excluding portions enclosed in quotation marks or apostrophes
- * @param [in] target				- string to search
- * @param [in] marker				- marker to search for
- * @return Returns position of marker, or `nullptr` if none is present
- */
-static const char *FindCommentMarker(const char *target, const char *marker)
-{
-	char prev = '\0';
-	char quote = '\0';
-	size_t marker_len = strlen(marker);
-	while (char c = *target)
-	{
-		if (quote == '\0' && strncmp(target, marker, marker_len) == 0)
-			return target;
-		if ((prev != '\\') &&
-			(c == '"' || c == '\'') &&
-			(quote == '\0' || quote == c))
+		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
+		unsigned textlen = static_cast<unsigned>(text.size());
+		if (!enuType)
 		{
-			quote ^= c;
+			filteredT += text;
 		}
-		prev = c;
-		++target;
+		else
+		{
+			int nActualItems = 0;
+			std::vector<CrystalLineParser::TEXTBLOCK> blocks(textlen);
+			dwCookie = enuType->ParseLineX(dwCookie, text.c_str(), textlen, blocks.data(), nActualItems);
+
+			if (nActualItems == 0)
+			{
+				filteredT += text;
+			}
+			else
+			{
+				for (int j = 0; j < nActualItems; ++j)
+				{
+					CrystalLineParser::TEXTBLOCK& block = blocks[j];
+					if (block.m_nColorIndex != COLORINDEX_COMMENT)
+					{
+						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
+						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
+					}
+				}
+			}
+		}
 	}
-	return nullptr;
+
+	filtered = ucr::toUTF8(filteredT);
+
+	return dwCookie;
 }
 
 /**
@@ -320,138 +287,13 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
 	{
 		std::string::size_type posend = str.find_first_not_of(" \t", pos);
-		if (posend != std::string::npos)
+		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
 			str.replace(pos, 1, rep);
 		pos += replen;
 	}
 }
-
-/**
-	@brief Performs post-filtering, by setting comment blocks to trivial
-	@param [in]  StartPos			- First line number to read
-	@param [in]  EndPos				- The line number PASS the last line number to read
-	@param [in]  QtyLinesInBlock		- Number of lines in diff block.  Not needed in backward direction.
-	@param [in]  Direction			- This should be 1 or -1, to indicate which direction to read (backward or forward)
-	@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
-	@param [in]  FileNo				- Should be 0 or 1, to indicate left or right file.
-	@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
-	@return		Always returns true in reverse direction.
-				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
-*/
-bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-	FilterCommentsSet& filtercommentsset) const
-{
-	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
-		return true;
-	bool OpShouldBeTrivial = false;
-	int QtyTrivialLines = 0;
-	for(int i = StartPos + ((Direction == -1)?-1:0); i != EndPos;i += Direction)
-	{
-		if ((i - StartPos) == QtyLinesInBlock && 
-			QtyLinesInBlock == QtyTrivialLines)
-		{
-			OpShouldBeTrivial = true;
-			break;
-		}
-		size_t len = files[FileNo].linbuf[i + 1] - files[FileNo].linbuf[i];
-		const char *LineStr = files[FileNo].linbuf[i];
-		std::string LineData(LineStr, linelen(LineStr, len));
-
-		const char * StartOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.StartMarker.c_str());
-		const char * EndOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.EndMarker.c_str());
-		const char * InLineComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
-		//The following logic determines if the entire block is a comment block, and only marks it as trivial
-		//if all the changes are within a comment block.
-		if (Direction == -1)
-		{
-			if (!StartOfComment && EndOfComment)
-				break;
-			
-			if (StartOfComment && (!EndOfComment || EndOfComment < StartOfComment) && (!InLineComment || InLineComment > StartOfComment))
-			{
-				OpShouldBeTrivial = true;
-				break;
-			}
-		}
-		else if (Direction == 1)
-		{
-			if (IsTrivialBytes(LineData.c_str(), LineData.c_str()+LineData.size(), filtercommentsset) || 
-				IsTrivialLine(LineData, StartOfComment,	EndOfComment, InLineComment, filtercommentsset))
-			{
-				++QtyTrivialLines;
-			}
-
-			if (!EndOfComment && StartOfComment)
-			{
-				if (i == (StartPos + QtyTrivialLines) )
-				{
-					if (StartOfComment == LineData.c_str())
-					{//If this is at the beginning of the first line, then lets continue
-						continue;
-					}
-					if (IsTrivialBytes(LineData.c_str(), StartOfComment, filtercommentsset))
-					{//If only trivial bytes before comment marker, then continue
-						continue;
-					}
-					break;
-				}
-				//If this is not the first line, then assume
-				//previous lines are non-trivial, and return true.
-				return false;
-			}
-
-			if (EndOfComment != nullptr && 
-				(StartOfComment == nullptr || StartOfComment > EndOfComment) && 
-				(InLineComment == nullptr || InLineComment > EndOfComment) )
-			{
-				if (!IsTrivialBytes(EndOfComment+filtercommentsset.EndMarker.size(), LineData.c_str()+LineData.size(), filtercommentsset))
-				{
-					return false;
-				}
-
-				if ((i - StartPos) >=  (QtyLinesInBlock-1))
-				{
-					OpShouldBeTrivial = true;
-					break;
-				}
-
-				//Lets check if the remaining lines only contain trivial data
-				bool AllRemainingLinesContainTrivialData = true;
-				int TrivLinePos = i+1;
-				for(; TrivLinePos != (StartPos + QtyLinesInBlock);++TrivLinePos)
-				{
-					size_t len1 = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
-					const char *LineStrTrvCk = files[FileNo].linbuf[TrivLinePos];
-					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len1));
-					if (LineDataTrvCk.size() &&
-						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
-					{
-						AllRemainingLinesContainTrivialData = false;
-						break;
-					}
-				}
-				if (AllRemainingLinesContainTrivialData)
-				{
-					OpShouldBeTrivial = true;
-					break;
-				}
-				if (TrivLinePos != (StartPos + QtyLinesInBlock) )
-				{
-					return PostFilter(TrivLinePos, EndPos, Direction, QtyLinesInBlock - (TrivLinePos - StartPos), Op, FileNo, filtercommentsset);
-				}
-			}
-		}
-	}
-	if (OpShouldBeTrivial)
-	{
-		Op = OP_TRIVIAL;
-	}
-	return true;
-}
-
 /**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
 @param [in]  LineNumberLeft		- First line number to read from left file
@@ -459,151 +301,70 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  LineNumberRight		- First line number to read from right file
 @param [in]  QtyLinesRight		- Number of lines in the block for right file
 @param [in,out]  Op				- This variable is set to trivial if block should be ignored.
-@param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
-void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const
+void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+	int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const
 {
-	if (Op == OP_TRIVIAL || m_pFilterCommentsManager == nullptr)
+	if (Op == OP_TRIVIAL)
 		return;
-	
-	//First we need to get lowercase file name extension
-	FilterCommentsSet filtercommentsset = m_pFilterCommentsManager->GetSetForFileType(FileNameExt);
-	if (filtercommentsset.StartMarker.empty() && 
-		filtercommentsset.EndMarker.empty() &&
-		filtercommentsset.InlineMarker.empty())
+
+	std::string LineDataLeft, LineDataRight;
+
+	if (m_options.m_filterCommentsLines)
 	{
-		return;
-	}
+		ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
+			ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
+			ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 
-	OP_TYPE LeftOp = OP_NONE;
-	OP_TYPE RightOp = OP_NONE;
+		ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
+		ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
 
-	if (QtyLinesRight == 0)
-	{	//Only check left side
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
-	}
-	else if (QtyLinesLeft == 0)
-	{	//Only check right side
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
+		ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
+			LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
+			LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
 	}
 	else
 	{
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
-
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
+		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
+			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
+		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
+			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
 	}
 
-	std::list<std::string> LeftLines, RightLines;
-	for (int i = 0; (i < QtyLinesLeft) || (i < QtyLinesRight); i++)
+	if (m_pSubstitutionList)
 	{
-		//Lets test  all lines if only a comment is different.
-		const char *	LineStrLeft = "";
-		const char *	EndLineLeft = LineStrLeft;
-		const char *	LineStrRight = "";
-		const char *	EndLineRight = LineStrRight;
-		if(i < QtyLinesLeft)
-		{
-			LineStrLeft = files[0].linbuf[LineNumberLeft + i];
-			EndLineLeft = files[0].linbuf[LineNumberLeft + i + 1];
-		}
-		if(i < QtyLinesRight)
-		{
-			LineStrRight = files[1].linbuf[LineNumberRight + i];
-			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
-		}
-			
-		if (EndLineLeft != nullptr && EndLineRight != nullptr)
-		{	
-			std::string LineDataLeft(LineStrLeft, EndLineLeft);
-			std::string LineDataRight(LineStrRight, EndLineRight);
-
-			if (!filtercommentsset.StartMarker.empty() && !filtercommentsset.EndMarker.empty())
-			{
-				const char * CommentStrLeftStart;
-				const char * CommentStrLeftEnd;
-				const char * CommentStrRightStart;
-				const char * CommentStrRightEnd;
-
-				bool bFirstLoop = true;
-				do {
-					//Lets remove block comments, and see if lines are equal
-					CommentStrLeftStart = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.StartMarker.c_str());
-					CommentStrLeftEnd = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.EndMarker.c_str());
-					CommentStrRightStart = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.StartMarker.c_str());
-					CommentStrRightEnd = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.EndMarker.c_str());
-					
-					if (CommentStrLeftStart != nullptr && CommentStrLeftEnd != nullptr && CommentStrLeftStart < CommentStrLeftEnd)
-						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str(), CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
-					else if (CommentStrLeftEnd != nullptr)
-						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - LineDataLeft.c_str());
-					else if (CommentStrLeftStart != nullptr)
-						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str());
-					else if(LeftOp == OP_TRIVIAL && bFirstLoop)
-						LineDataLeft.erase(0);  //This line is all in block comments
-
-					if (CommentStrRightStart != nullptr && CommentStrRightEnd != nullptr && CommentStrRightStart < CommentStrRightEnd)
-						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str(), CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
-					else if (CommentStrRightEnd != nullptr)
-						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size() - LineDataRight.c_str());
-					else if (CommentStrRightStart != nullptr)
-						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str());
-					else if(RightOp == OP_TRIVIAL && bFirstLoop)
-						LineDataRight.erase(0);  //This line is all in block comments
-
-					bFirstLoop = false;
-
-				} while (CommentStrLeftStart != nullptr || CommentStrLeftEnd != nullptr
-					|| CommentStrRightStart != nullptr || CommentStrRightEnd != nullptr); //Loops until all blockcomments are lost
-			}
-
-			if (!filtercommentsset.InlineMarker.empty())
-			{
-				//Lets remove line comments
-				const char * CommentStrLeft = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.InlineMarker.c_str());
-				const char * CommentStrRight = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.InlineMarker.c_str());
-
-				if (CommentStrLeft != nullptr)
-					LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
-				if (CommentStrRight != nullptr)
-					LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
-			}
-
-		if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
-			{
-				//Ignore character case
-				ReplaceSpaces(LineDataLeft, "");
-				ReplaceSpaces(LineDataRight, "");
-			}
-			else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
-			{
-				//Ignore change in whitespace char count
-				ReplaceSpaces(LineDataLeft, " ");
-				ReplaceSpaces(LineDataRight, " ");
-			}
-
-			if (m_options.m_bIgnoreCase)
-			{
-				//ignore case
-				// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-				for (std::basic_string<char>::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
-					*pb = static_cast<char>(::toupper(*pb)); 
-				// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
-				for (std::basic_string<char>::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
-					*pb = static_cast<char>(::toupper(*pb)); 
-			}
-
-			if (!LineDataLeft.empty())
-				LeftLines.push_back(LineDataLeft);
-			if (!LineDataRight.empty())
-				RightLines.push_back(LineDataRight);
-		}
+		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft);
+		LineDataRight = m_pSubstitutionList->Subst(LineDataRight);
 	}
-	if (LeftLines != RightLines)
+
+	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+	{
+		//Ignore character case
+		ReplaceSpaces(LineDataLeft, "");
+		ReplaceSpaces(LineDataRight, "");
+	}
+	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+	{
+		//Ignore change in whitespace char count
+		ReplaceSpaces(LineDataLeft, " ");
+		ReplaceSpaces(LineDataRight, " ");
+	}
+
+	if (m_options.m_bIgnoreCase)
+	{
+		//ignore case
+		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+		for (std::string::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
+		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
+	}
+	if (LineDataLeft != LineDataRight)
 		return;
 	//only difference is trival
 	Op = OP_TRIVIAL;
@@ -663,13 +424,13 @@ bool CDiffWrapper::RunFileDiff()
 					m_infoPrediffer->m_PluginName.c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 				m_infoPrediffer->m_PluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MANUAL);
+			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 		}
 	}
 
@@ -748,13 +509,13 @@ bool CDiffWrapper::RunFileDiff()
 		{
 			m_status.bBinaries = true;
 			if (bin_flag != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else
-				m_status.Identical = IDENTLEVEL_NONE;
+				m_status.Identical = IDENTLEVEL::NONE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
-			m_status.Identical = (script == 0) ? IDENTLEVEL_ALL : IDENTLEVEL_NONE;
+			m_status.Identical = (script == 0) ? IDENTLEVEL::ALL : IDENTLEVEL::NONE;
 			m_status.bBinaries = false;
 		}
 		m_status.bMissingNL[0] = !!inf[0].missing_newline;
@@ -762,30 +523,30 @@ bool CDiffWrapper::RunFileDiff()
 	}
 	else
 	{
-		m_status.Identical = IDENTLEVEL_NONE;
+		m_status.Identical = IDENTLEVEL::NONE;
 		if (bin_flag10 != 0 || bin_flag12 != 0)
 		{
 			m_status.bBinaries = true;
 			if (bin_flag10 != -1 && bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (bin_flag10 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.bBinaries = false;
 			if (script10 == nullptr && script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (script10 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
 		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
@@ -1085,7 +846,7 @@ CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
+bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
 {
 	if (m_pFilterList == nullptr)
 	{	
@@ -1098,8 +859,8 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 
 	while (line <= EndPos && linesMatch)
 	{
-		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
-		const char *string = files[FileNo].linbuf[line];
+		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
+		const char *string = pinf->linbuf[line];
 		size_t stringlen = linelen(string, len);
 		if (!m_pFilterList->Match(std::string(string, stringlen)))
 
@@ -1115,23 +876,10 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
 void
-CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf)
+CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * file_data_ary)
 {
 	//Logic needed for Ignore comment option
-	DIFFOPTIONS options;
-	GetOptions(&options);
-	String asLwrCaseExt;
-	if (options.bFilterCommentsLines)
-	{
-		String LowerCaseExt = m_originalFile.GetLeft();
-		String::size_type PosOfDot = LowerCaseExt.rfind('.');
-		if (PosOfDot != String::npos)
-		{
-			LowerCaseExt.erase(0, PosOfDot + 1);
-			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
-			asLwrCaseExt = LowerCaseExt;
-		}
-	}
+	PostFilterContext ctxt;
 
 	struct change *next = script;
 	
@@ -1154,7 +902,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 		{					
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
-			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, inf);
+			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, file_data_ary);
 			if (deletes || inserts || thisob->trivial)
 			{
 				OP_TYPE op = OP_NONE;
@@ -1167,8 +915,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				
 				/* Print the lines that the first file has.  */
 				int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
-				translate_range(&inf[0], first0, last0, &trans_a0, &trans_b0);
-				translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
+				translate_range(&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
+				translate_range(&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
 
 				// Store information about these blocks in moved line info
 				if (GetDetectMovedBlocks())
@@ -1180,7 +928,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
 							int line1 = i+thisob->line1 + (trans_a1-first1-1);
-							GetMovedLines(1)->Add(MovedLines::SIDE_LEFT, line1, line0);
+							GetMovedLines(1)->Add(MovedLines::SIDE::LEFT, line1, line0);
 						}
 					}
 					if (thisob->match1>=0)
@@ -1190,36 +938,34 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
 							int line1 = i+thisob->match1 + (trans_a1-first1-1);
-							GetMovedLines(0)->Add(MovedLines::SIDE_RIGHT, line0, line1);
+							GetMovedLines(0)->Add(MovedLines::SIDE::RIGHT, line0, line1);
 						}
 					}
 				}
+				int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+				int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
-				if (options.bFilterCommentsLines)
-				{
-					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt);
-				}
+				if (m_options.m_filterCommentsLines ||
+					(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
+					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
 
 				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 				{
-					 //Determine quantity of lines in this block for both sides
-					int QtyLinesLeft = (trans_b0 - trans_a0);
-					int QtyLinesRight = (trans_b1 - trans_a1);
-					
 					// Match lines against regular expression filters
 					// Our strategy is that every line in both sides must
 					// match regexp before we mark difference as ignored.
 					bool match2 = false;
-					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
+					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &file_data_ary[0]);
 					if (match1)
-						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
+						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &file_data_ary[1]);
 					if (match1 && match2)
 						op = OP_TRIVIAL;
 				}
 
-				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+					op = OP_NONE;
+				if (op != OP_NONE)
+					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
 		}
 		
@@ -1279,6 +1025,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		OP_TYPE op;
 		const file_data *pinf = nullptr;
 		DiffList *pdiff = nullptr;
+		PostFilterContext ctxt;
 
 		switch (file)
 		{
@@ -1323,14 +1070,14 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					{
 						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
 						int index2 = 1;
-						MovedLines::ML_SIDE side1 = MovedLines::SIDE_RIGHT;
-						MovedLines::ML_SIDE side2 = MovedLines::SIDE_LEFT;
+						MovedLines::SIDE side1 = MovedLines::SIDE::RIGHT;
+						MovedLines::SIDE side2 = MovedLines::SIDE::LEFT;
 						if (file == 1 /* diff12 */)
 						{
 							index1 = 2;
 							index2 = 1;
-							side1 = MovedLines::SIDE_LEFT;
-							side2 = MovedLines::SIDE_RIGHT;
+							side1 = MovedLines::SIDE::LEFT;
+							side2 = MovedLines::SIDE::RIGHT;
 						}
 						if (index1 != -1 && index2 != -1)
 						{
@@ -1357,6 +1104,26 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
+					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+
+					if (m_options.m_filterCommentsLines ||
+						(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
+						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
+
+					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
+					{
+						// Match lines against regular expression filters
+						// Our strategy is that every line in both sides must
+						// match regexp before we mark difference as ignored.
+						bool match2 = false;
+						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &pinf[0]);
+						if (match1)
+							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &pinf[1]);
+						if (match1 && match2)
+							op = OP_TRIVIAL;
+					}
+
 					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				}
 			}
@@ -1367,7 +1134,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	}
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
-		Comp02Functor(inf10, inf12), (m_pFilterList != nullptr && m_pFilterList->HasRegExps()));
+		Comp02Functor(inf10, inf12), 
+		(m_pFilterList != nullptr && m_pFilterList->HasRegExps()) || m_options.m_bIgnoreBlankLines || m_options.m_filterCommentsLines);
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)
@@ -1468,8 +1236,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	if ((inf_patch[0].linbuf && ucr::CheckForInvalidUtf8(inf_patch[0].linbuf[inf_patch[0].linbuf_base], inf_patch[0].buffered_chars)) ||
-		(inf_patch[1].linbuf && ucr::CheckForInvalidUtf8(inf_patch[1].linbuf[inf_patch[1].linbuf_base], inf_patch[1].buffered_chars)))
+	if ((inf_patch[0].linbuf && ucr::CheckForInvalidUtf8(inf_patch[0].buffer, inf_patch[0].buffered_chars)) ||
+		(inf_patch[1].linbuf && ucr::CheckForInvalidUtf8(inf_patch[1].buffer, inf_patch[1].buffered_chars)))
 	{
 		inf_patch[0].name = _strdup(ucr::toThreadCP(path1).c_str());
 		inf_patch[1].name = _strdup(ucr::toThreadCP(path2).c_str());
@@ -1600,6 +1368,32 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 	StringTokenizer tokens(regexp_str, "\r\n");
 	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
 		m_pFilterList->AddRegExp(*it);
+}
+
+void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
+{
+	if (!pFilterList)
+		m_pFilterList.reset();
+	else
+	{
+		m_pFilterList.reset(new FilterList());
+		*m_pFilterList = *pFilterList;
+	}
+}
+
+const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
+{
+	return m_pSubstitutionList.get();
+}
+
+void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
+{
+	m_pSubstitutionList = pSubstitutionList;
+}
+
+void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)
+{
+	m_pFilterCommentsDef = CrystalLineParser::GetTextType(ext.c_str());
 }
 
 /**

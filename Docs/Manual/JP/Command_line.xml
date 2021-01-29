@@ -16,7 +16,7 @@
   <para>WinMergeをコマンドラインから実行するには以下の書式のうちの1つを使用します:</para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command>WinMerge<optional>U</optional></command>
+      <command>WinMergeU</command>
 
       <arg choice="opt" rep="norepeat"><option>/?</option></arg>
     </cmdsynopsis></para>
@@ -31,11 +31,16 @@
       <arg choice="opt" rep="norepeat"><option>/f</option>
       <replaceable>filter</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/m</option>
+      <replaceable>compare-method</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
 
       <arg><option>/s</option></arg>
+
+      <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
@@ -158,6 +163,22 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>compare method</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/m</option></term>
+      <listitem>
+        <para>フォルダ比較方法を指定します。
+        次のキーワードが指定できます。<userinput>Full</userinput>,
+        <userinput>Quick</userinput>, <userinput>Binary</userinput>,
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/x</option></term>
       <listitem>
         <para>同一ファイルの比較をしたときにWinMergeを閉じます。
@@ -191,6 +212,14 @@
         この引数を指定しなかった場合、複数のウインドウが開かれる可能性があります:
         設定によっては、新しい比較が既に存在するウインドウで実行されることも新しいウインドウで
         実行されることもあります。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>"複数のインスタンスを起動しない"の設定値を無視して、
+        常に別のインスタンスが起動されるようにします。</para>
       </listitem>
     </varlistentry>
 
@@ -354,8 +383,9 @@
         <para>右側で開くフォルダやファイルを指定します。
         </para>
 
-        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方
+        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方(または3つすべて)
         (<option><replaceable>leftpath</replaceable></option> と
+        (<option><replaceable>middlepath</replaceable></option> と)
         <option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォルダかファイルのどちらか)
         を指し差なければなりません。
         もし、WinMergeが指定したパスのどちらかを見つけることができなければ、
@@ -378,6 +408,7 @@
           当然ながら、<filename class="directory">C:\Folder2</filename>がファイル名
           <filename>File.txt</filename>を含んでいなければ、コマンドは不正とみなされます。</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 

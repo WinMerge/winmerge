@@ -40,6 +40,7 @@ public:
 	bool    m_bFilterCommentsLines;
 	int     m_nDiffAlgorithm;
 	bool    m_bIndentHeuristic;
+	bool    m_bCompleteBlankOutIgnoredChanges;
 	//}}AFX_DATA
 
 

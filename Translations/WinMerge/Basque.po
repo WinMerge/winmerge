@@ -47,9 +47,11 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "Hautatu &Lerro Ezberdintasuna"
+msgid "&Select Line Difference\tF4"
+msgstr "Hautatu &Lerro Ezberdintasuna\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -71,9 +73,14 @@ msgstr "&Kopiatu"
 msgid "&Paste"
 msgstr "&Itsatsi"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Joan hona..."
+msgid "&Go to...\tCtrl+G"
+msgstr "&Joan hona...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -179,6 +186,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
@@ -186,13 +196,31 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Agiria"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Berria\tCtrl+N"
+msgid "&New"
+msgstr "&Berria"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+msgid "T&able"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binarioa"
+
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -225,9 +253,8 @@ msgstr ""
 msgid "< Empty >"
 msgstr "< Hutsik >"
 
-#, c-format
-msgid "E&xit"
-msgstr "Ir&ten"
+msgid "E&xit\tCtrl+Q"
+msgstr "Ir&ten\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -309,9 +336,8 @@ msgstr "B&irgertatu pluginak"
 msgid "&Window"
 msgstr "Lei&hoa"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "It&xi"
+msgid "Cl&ose\tCtrl+W"
+msgstr "It&xi\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -466,6 +492,15 @@ msgstr "Erabili Berezko H&izkia"
 msgid "Sw&ap Panes"
 msgstr "&Trukatu Panelak"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Alderatu Esta&tistikak..."
@@ -566,9 +601,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "I&rarkitu..."
+msgid "&Print...\tCtrl+P"
+msgstr "I&rarkitu...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Ire&ki Gatazka Agiria..."
@@ -597,23 +631,8 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&Text"
-msgstr ""
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Binarioa"
-
-#, c-format
-msgid "&Image"
-msgstr ""
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -680,10 +699,6 @@ msgid "&Clear All Bookmarks"
 msgstr "&Garbitu Lastermarka Guztiak"
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Joan Hona...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Joskera Nabar&mentzea"
 
@@ -721,6 +736,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1068,8 +1086,7 @@ msgstr "&Ez aurrezberd"
 msgid "Auto prediffer"
 msgstr "Berez aurrezberd"
 
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "Jo&an Ezberd"
 
 #, c-format
@@ -1079,10 +1096,6 @@ msgstr "Mugitu &Gabeko Bloke Guztiak"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Mugitutako Bloke Guztiak"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "&Uneko Ezberd Mugitutako Blokeak "
 
 #, c-format
 msgid "W&hitespaces"
@@ -1101,8 +1114,8 @@ msgid "Ig&nore all"
 msgstr "E&zikusi denak"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Hizki larri eta &xehe artean"
+msgid "Ignore &case"
+msgstr "Ezikusi &kasua"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1152,8 +1165,7 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "WinMergeri buruz"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "Ikusi WinMerge Webgunea!"
 
 #, c-format
@@ -1255,6 +1267,9 @@ msgstr "Orokorra"
 msgid "Automatically &scroll to first difference"
 msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Itxi leihoak 'Es&c'-rekin:"
 
@@ -1333,8 +1348,7 @@ msgstr "Bilatu &Hurrengoa"
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
-msgid "&Ok"
+msgid "&OK"
 msgstr "&Ongi"
 
 #, c-format
@@ -1389,12 +1403,15 @@ msgid "&Background color:"
 msgstr ""
 
 #, c-format
+msgid "&Ok"
+msgstr "&Ongi"
+
+#, c-format
 msgid "&Apply"
 msgstr "&Ezarri"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Lerro-iragazkiak"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1411,6 +1428,21 @@ msgstr "Editatu"
 #, c-format
 msgid "Remove"
 msgstr "Kendu"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1629,20 +1661,17 @@ msgstr "Alderatutako gaiak:"
 msgid "Items total:"
 msgstr "Gaiak guztira:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Joan Hona"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "Joan &Hona:"
 
 #, c-format
 msgid "File"
 msgstr "Agiria"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "Joan &nora"
 
 #, c-format
@@ -1653,8 +1682,7 @@ msgstr "&Lerroa"
 msgid "&Difference"
 msgstr "&Ezberdintasuna"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "&Joan Hona"
 
 #, c-format
@@ -1680,9 +1708,8 @@ msgstr "E&zikusi denak"
 msgid "Ignore blan&k lines"
 msgstr "Ezikusi &lerro zuriak"
 
-#, c-format
-msgid "Ignore &case"
-msgstr "Ezikusi &kasua"
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1698,13 +1725,8 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-#, c-format
-msgid "Comments"
-msgstr "Aipamenak"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "&Iragazki Aipamenak"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -1761,9 +1783,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Agiri-iragazkiak"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Azterketa..."
@@ -2323,6 +2344,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2701,6 +2725,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Izenburugabeko eskuina"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Theirs Agiria"
@@ -2892,6 +2919,10 @@ msgstr ""
 "Jatorrizko agira ez da aldatuko.\n"
 "\n"
 "Nahi duzu despaketatutako bertsioa beste agiri batean gordetzea?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3533,6 +3564,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Jakinarazpena ongi sortu da."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Agiri berdina dago irekita bi paneletan."
@@ -3724,14 +3758,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Agiritegia ez dago."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "Agiri sostengua ez dago gaituta\n"
-"Beharrezko osagai guztiak (7-zip eta/edo Merge7z*.dll) agiri sostengurako ezin dira aurkitu.\n"
+"Beharrezko osagai guztiak (7-Zip eta/edo Merge7z*.dll) agiri sostengurako ezin dira aurkitu.\n"
 "Ikusi eskuliburua argibide gehigorako agiri sostenguari buruz eta nola gaitzeaz."
 
 #, c-format
@@ -3871,6 +3901,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Egokitutako despaketatzailea bi agiriei ezartzen zaie (agiri batek bakarrik behar du luzapena)."
 
@@ -3918,8 +3960,11 @@ msgid "<Automatic>"
 msgstr "<Berezgaitasunez>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "&Joan lerro honetara: %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -3940,9 +3985,6 @@ msgstr "Ez Nabarmenduta"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr "Portable Object"
@@ -3954,10 +3996,6 @@ msgstr "Resources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -3975,8 +4013,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
@@ -4112,5 +4149,33 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

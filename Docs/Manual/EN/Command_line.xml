@@ -31,11 +31,16 @@
       <arg choice="opt" rep="norepeat"><option>/f</option>
       <replaceable>filter</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/m</option>
+      <replaceable>compare-method</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
 
       <arg><option>/s</option></arg>
+
+      <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
@@ -159,6 +164,22 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>compare method</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/m</option></term>
+      <listitem>
+        <para>Sets the compare method to use for the comparison.
+        This can be one of the keywords <userinput>Full</userinput>,
+        <userinput>Quick</userinput>, <userinput>Binary</userinput>,
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/x</option></term>
       <listitem>
         <para>Closes WinMerge (after displaying an information
@@ -192,6 +213,14 @@
         same instance. Without this parameter, multiple windows are allowed:
         depending on other settings, a new compare might open in the existing
         window or in a new window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>Ensure that another instance is always executed, ignoring the
+        value of the "Allow only one instance to run" option.</para>
       </listitem>
     </varlistentry>
 
@@ -288,21 +317,21 @@
     <varlistentry>
       <term><option>/fl</option></term>
       <listitem>
-        <para>Sets focus to the left side at startup</para>
+        <para>Sets focus to the left side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Sets focus to the middle side at startup</para>
+        <para>Sets focus to the middle side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fr</option></term>
       <listitem>
-        <para>Sets focus to the right side at startup</para>
+        <para>Sets focus to the right side at startup.</para>
       </listitem>
     </varlistentry>
 
@@ -352,8 +381,9 @@
       <listitem>
         <para>Specifies the folder, file or project file to open on the right side.</para>
 
-        <para>WinMerge cannot compare files to folders, so both path parameters
-        (<option><replaceable>leftpath</replaceable></option> and
+        <para>WinMerge cannot compare files to folders, so the path parameters
+        (<option><replaceable>leftpath</replaceable></option>,
+        <option><replaceable>middlepath</replaceable></option> and
         <option><replaceable>rightpath</replaceable></option>) must point to the
         same target type (either folders or files). If WinMerge cannot find either
         of the specified paths, it opens the Select Files or Folders dialog, where
@@ -376,6 +406,7 @@
           class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
           contain a file named <filename>File.txt</filename>.</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 

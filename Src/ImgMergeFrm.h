@@ -28,12 +28,12 @@ class CDirDoc;
 class CImgMergeFrame : public CMergeFrameCommon,public IMergeDoc
 {
 	private:
-	enum BUFFERTYPE
+	enum class BUFFERTYPE
 	{
-		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-		BUFFER_NORMAL_NAMED, /**< Normal, description given */
-		BUFFER_UNNAMED, /**< Empty, created buffer */
-		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+		NORMAL = 0, /**< Normal, file loaded from disk */
+		NORMAL_NAMED, /**< Normal, description given */
+		UNNAMED, /**< Empty, created buffer */
+		UNNAMED_SAVED, /**< Empty buffer saved with filename */
 	};
 
 	using CMDIChildWnd::Create;
@@ -148,6 +148,13 @@ private:
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
+	afx_msg void OnEditCut();
+	afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
+	afx_msg void OnEditCopy();
+	afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
+	afx_msg void OnEditPaste();
+	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
+	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
@@ -207,6 +214,7 @@ private:
 	afx_msg void OnImgVectorImageScaling(UINT nId);
 	afx_msg void OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
+	afx_msg void OnImgCompareExtractedText();
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

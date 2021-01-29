@@ -170,10 +170,59 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 }
 
+static void initializeRatios(std::vector<int>& ratios, int n)
+{
+	ratios.clear();
+	for (int sum = 0, i = 0; i < n; ++i)
+	{
+		ratios.push_back((i + 1) * 10000 / n - sum);
+		sum = (i + 1) * 10000 / n;
+	}
+}
+
+static void updateRatios(CSplitterWnd& wnd, int pane, int newpos, std::vector<int>& ratios, bool horizontal)
+{
+	const int n = horizontal ? wnd.GetColumnCount(): wnd.GetRowCount();
+	if (n != ratios.size())
+		initializeRatios(ratios, n);
+
+	int sum = 0;
+	std::vector<int> sizes(n);
+	for (int i = 0 ; i < n; i++)
+	{
+		int min;
+		if (horizontal)
+			wnd.GetColumnInfo(i, sizes[i], min);
+		else
+			wnd.GetRowInfo(i, sizes[i], min);
+		sum += sizes[i];
+	}
+	int sumratio = 0;
+	int i;
+	for (i = 0; i < pane; i++)
+	{
+		ratios[i] = sizes[i] * 10000 / sum;
+		sumratio += ratios[i];
+	}
+	ratios[i] = newpos * 10000 / sum - sumratio;
+	sumratio += ratios[i];
+	++i;
+	for (; i < n - 1; i++)
+	{
+		if (ratios[i] + sumratio > 10000)
+			ratios[i] = 10000 - sumratio;
+		sumratio += ratios[i];
+	}
+	ratios[n - 1] = 10000 - sumratio;
+}
+
 void CSplitterWndEx::EqualizeRows() 
 {
 	if (m_nRows < 2)
 		return;
+
+	if (m_nRows != m_rowRatios.size())
+		initializeRatios(m_rowRatios, m_nRows);
 
 	int i;
 	int sum = 0;
@@ -186,13 +235,14 @@ void CSplitterWndEx::EqualizeRows()
 	}
 	if (sum > 0)
 	{
-		int hEqual = sum/m_nRows;
+		int remain = sum;
 		for (i = 0 ; i < m_nRows-1 ; i++)
 		{
-			SetRowInfo(i, hEqual, hmin);
-			sum -= hEqual;
+			const int height = m_rowRatios[i] * sum / 10000;
+			SetRowInfo(i, height, hmin);
+			sum -= height;
 		}
-		SetRowInfo(i, sum, hmin);
+		SetRowInfo(i, remain, hmin);
 		CSplitterWnd::RecalcLayout();
 	}
 }
@@ -201,6 +251,9 @@ void CSplitterWndEx::EqualizeCols()
 {
 	if (m_nCols < 2)
 		return;
+
+	if (m_nCols != m_colRatios.size())
+		initializeRatios(m_colRatios, m_nCols);
 
 	int i;
 	int sum = 0;
@@ -216,13 +269,14 @@ void CSplitterWndEx::EqualizeCols()
 	// Sum is negative if WinMerge started minimized.
 	if (sum > 0)
 	{
-		int vEqual = sum/m_nCols;
+		int remain = sum;
 		for (i = 0 ; i < m_nCols-1 ; i++)
 		{
-			SetColumnInfo(i, vEqual, hmin);
-			sum -= vEqual;
+			const int width = m_colRatios[i] * sum / 10000;
+			SetColumnInfo(i, width, hmin);
+			remain -= width;
 		}
-		SetColumnInfo(i, sum, hmin);
+		SetColumnInfo(i, remain, hmin);
 		CSplitterWnd::RecalcLayout();
 	}
 }
@@ -266,6 +320,18 @@ void CSplitterWndEx::RecalcLayout()
 	}
 
 	CSplitterWnd::RecalcLayout();
+}
+
+void CSplitterWndEx::TrackRowSize(int y, int row)
+{
+	__super::TrackRowSize(y, row);
+	updateRatios(*this, row, y, m_rowRatios, false);
+}
+
+void CSplitterWndEx::TrackColumnSize(int x, int col)
+{
+	__super::TrackColumnSize(x, col);
+	updateRatios(*this, col, x, m_colRatios, true);
 }
 
 void CSplitterWndEx::OnSize(UINT nType, int cx, int cy) 

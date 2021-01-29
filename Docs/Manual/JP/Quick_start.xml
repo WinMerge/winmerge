@@ -134,6 +134,7 @@
                   このオプションにより、WinMergeは、あなたがこのフィールドに入力する時に、有効なパスの一覧を表示します。
                   詳しくは、<xref linkend="Configuration" />を参照してください。</para>
               </tip>
+              <para></para>
             </listitem>
 
             <listitem>

@@ -40,8 +40,8 @@ extern const String OPT_RESIZE_PANES OP("Settings/AutoResizePanes");
 extern const String OPT_SYNTAX_HIGHLIGHT OP("Settings/HiliteSyntax");
 extern const String OPT_VIEW_WHITESPACE OP("Settings/ViewWhitespace");
 extern const String OPT_VIEW_EOL OP("Settings/ViewEOL");
-extern const String OPT_CONNECT_MOVED_BLOCKS OP("Settings/ConnectMovedBlocks");
 extern const String OPT_SCROLL_TO_FIRST OP("Settings/ScrollToFirst");
+extern const String OPT_SCROLL_TO_FIRST_INLINE_DIFF OP("Settings/ScrollToFirstInlineDiff");
 extern const String OPT_RENDERING_MODE OP("Settings/RenderingMode");
 
 // Difference (in-line) highlight
@@ -79,12 +79,15 @@ extern const String OPT_REPORTFILES_INCLUDEFILECMPREPORT OP("ReportFiles/Include
 // File compare
 extern const String OPT_AUTOMATIC_RESCAN OP("Settings/AutomaticRescan");
 extern const String OPT_ALLOW_MIXED_EOL OP("Settings/AllowMixedEOL");
+// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+extern const String OPT_COPY_FULL_LINE OP("Settings/CopyFullLine");
 extern const String OPT_TAB_SIZE OP("Settings/TabSize");
 extern const String OPT_TAB_TYPE OP("Settings/TabType");
 extern const String OPT_WORDWRAP OP("Settings/WordWrap");
 extern const String OPT_VIEW_LINENUMBERS OP("Settings/ViewLineNumbers");
 extern const String OPT_VIEW_FILEMARGIN OP("Settings/ViewFileMargin");
 extern const String OPT_DIFF_CONTEXT OP("Settings/DiffContextV2");
+extern const String OPT_INVERT_DIFF_CONTEXT OP("Settings/InvertDiffContext");
 
 extern const String OPT_EXT_EDITOR_CMD OP("Settings/ExternalEditor");
 extern const String OPT_USE_RECYCLE_BIN OP("Settings/UseRecycleBin");
@@ -210,6 +213,7 @@ extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoin
 extern const String OPT_CMP_INCLUDE_SUBDIRS OP("Settings/Recurse");
 extern const String OPT_CMP_DIFF_ALGORITHM OP("Settings/DiffAlgorithm");
 extern const String OPT_CMP_INDENT_HEURISTIC OP("Settings/IndentHeuristic");
+extern const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES OP("Settings/CompletelyBlankOutIgnoredChanges");
 
 // Image Compare options
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
@@ -226,6 +230,7 @@ extern const String OPT_CMP_IMG_THRESHOLD OP("Settings/ImageColorDistanceThresho
 extern const String OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE OP("Settings/ImageInsertionDeletionDetectionMode");
 extern const String OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO OP("Settings/ImageVectorImageZoomRatio");
 extern const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP OP("Settings/EnableImageCompareInFolderCompare");
+extern const String OPT_CMP_IMG_OCR_RESULT_TYPE OP("Settings/ImageOcrResultType");
 
 // Binary options
 extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");
@@ -244,6 +249,9 @@ extern const String OPT_LINEFILTER_ENABLED OP("Settings/IgnoreRegExp");
 extern const String OPT_FILEFILTER_CURRENT OP("Settings/FileFilterCurrent");
 extern const String OPT_FILTER_USERPATH OP("Settings/UserFilterPath");
 extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
+
+/// Substitution Filters
+extern const String OPT_SUBSTITUTION_FILTERS_ENABLED OP("Settings/SubstitutionFiltersEnabled");
 
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");

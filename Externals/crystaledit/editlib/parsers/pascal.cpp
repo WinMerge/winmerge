@@ -24,7 +24,7 @@
 #endif
 
 //  Pascal keywords
-static LPCTSTR s_apszPascalKeywordList[] =
+static const TCHAR * s_apszPascalKeywordList[] =
   {
     _T ("Abstract"),
     _T ("and"),
@@ -107,18 +107,17 @@ static LPCTSTR s_apszPascalKeywordList[] =
   };
 
 static bool
-IsPascalKeyword (LPCTSTR pszChars, int nLength)
+IsPascalKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPascalKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLinePascal (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLinePascal (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -258,12 +257,6 @@ out:
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT2;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

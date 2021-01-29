@@ -41,7 +41,7 @@ void CSelectUnpackerDlg::Initialize()
 	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = nullptr;
 	automaticPlugin->m_name = _("<Automatic>");
-	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension)");
+	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension).");
 
 	m_pPlugin = noPlugin.get();
 
@@ -110,7 +110,7 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 	// default value
 	m_pPlugin = noPlugin.get();
 
-	if (infoHandler != nullptr && infoHandler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (infoHandler != nullptr && infoHandler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		// automatic unpacker
 		m_pPlugin = automaticPlugin.get();
 	else if (infoHandler)
@@ -129,14 +129,14 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 {
 	if (m_pPlugin == noPlugin.get())
-		return PackingInfo(PLUGIN_MANUAL);
+		return PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL);
 	else if (m_pPlugin == automaticPlugin.get())
-		return PackingInfo(PLUGIN_AUTO);
+		return PackingInfo(PLUGIN_MODE::PLUGIN_AUTO);
 	else
 	{
 		// build a real plugin unpacker
 		PackingInfo infoHandler;
-		infoHandler.m_PluginOrPredifferMode = PLUGIN_MANUAL;
+		infoHandler.m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 		infoHandler.m_PluginName = m_strPluginName;
 		int i;
 		for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)

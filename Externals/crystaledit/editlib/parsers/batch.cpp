@@ -24,7 +24,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszBatKeywordList[] =
+static const TCHAR * s_apszBatKeywordList[] =
   {
     _T (".AND."),
     _T (".OR."),
@@ -221,7 +221,7 @@ static LPCTSTR s_apszBatKeywordList[] =
     _T ("Y"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("APPEND"),
     _T ("ATTRIB"),
@@ -291,7 +291,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("XCOPY"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T ("@ABS"),
     _T ("@AFSCELL"),
@@ -646,13 +646,13 @@ static LPCTSTR s_apszUser2KeywordList[] =
   };
 
 static bool
-IsBatKeyword (LPCTSTR pszChars, int nLength)
+IsBatKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszBatKeywordList, pszChars, (size_t)nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
@@ -681,18 +681,18 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
 
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
     return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineBatch (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineBatch (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & COOKIE_EXT_COMMENT;
+    return dwCookie;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+  bool bFirstChar = true;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -712,7 +712,7 @@ CrystalLineParser::ParseLineBatch (DWORD dwCookie, const TCHAR *pszChars, int nL
           int nPos = I;
           if (bDecIndex)
             nPos = nPrevI;
-          if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
+          if (dwCookie & COOKIE_COMMENT)
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
@@ -804,20 +804,6 @@ out:
 
       if (bFirstChar)
         {
-          if (nLength >= I + 4 &&!_tcsnicmp (pszChars + I, _T ("TEXT"), 4))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-              dwCookie |= COOKIE_EXT_COMMENT;
-              continue;
-            }
-          if (nLength >= I + 7 &&!_tcsnicmp (pszChars + I, _T ("ENDTEXT"), 7))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-              dwCookie &= ~COOKIE_EXT_COMMENT;
-              continue;
-            }
-          if (dwCookie & COOKIE_EXT_COMMENT)
-              continue;
           if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (xisspace (pszChars[I + 3]) || nLength == I + 3))
             {
               DEFINE_BLOCK (I, COLORINDEX_COMMENT);
@@ -860,33 +846,29 @@ out:
                 }
               else
                 {
-                  if (dwCookie & COOKIE_EXT_COMMENT)
+                  if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
-                        DEFINE_BLOCK (nIdentBegin, COLORINDEX_COMMENT);
+                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+                      if ((I - nIdentBegin ==4 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
+                          (I - nIdentBegin ==5 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
+                          )
+                        {
+                          dwCookie=COOKIE_PREPROCESSOR;
+                        }
                     }
-                  else if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                  if ((I - nIdentBegin ==4 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
-                      (I - nIdentBegin ==5 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
-                      )
+                  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
-                        dwCookie=COOKIE_PREPROCESSOR;
+                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
                     }
-                }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                }
                   else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
                     }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+                  else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+                    {
+                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+                    }
                 }
-              }
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -896,19 +878,15 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (dwCookie & COOKIE_EXT_COMMENT)
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_COMMENT);
-        }
-      else if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+      if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
           if ((I - nIdentBegin ==4 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
                 (I - nIdentBegin ==5 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
                 )
-              {
-                dwCookie=COOKIE_PREPROCESSOR;
-              }
+            {
+              dwCookie=COOKIE_PREPROCESSOR;
+            }
         }
       else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
@@ -924,6 +902,6 @@ out:
         }
     }
 
-  dwCookie &= COOKIE_EXT_COMMENT;
+  dwCookie = 0;
   return dwCookie;
 }

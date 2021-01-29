@@ -42,9 +42,11 @@ msgstr "Kopioi &vasemmalta"
 msgid "Copy fro&m Right"
 msgstr "Kopioi &oikealta"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "Valitse riviero"
+msgid "&Select Line Difference\tF4"
+msgstr "Valitse riviero\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -66,9 +68,14 @@ msgstr "&Kopioi"
 msgid "&Paste"
 msgstr "Lii&tä"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Siirry..."
+msgid "&Go to...\tCtrl+G"
+msgstr "&Siirry...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -174,6 +181,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "A&seta taustaväri"
@@ -181,13 +191,31 @@ msgstr "A&seta taustaväri"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Tiedosto"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "Uusi\tCtrl+N"
+msgid "&New"
+msgstr "Uusi"
+
+#, c-format
+msgid "&Text"
+msgstr "&Teksti"
+
+msgid "T&able"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr "Binääri"
+
+#, c-format
+msgid "&Image"
+msgstr "&Kuva"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -220,9 +248,8 @@ msgstr "Viimeaikaiset t&iedostot tai kansiot"
 msgid "< Empty >"
 msgstr "< Tyhjä >"
 
-#, c-format
-msgid "E&xit"
-msgstr "Poistu"
+msgid "E&xit\tCtrl+Q"
+msgstr "Poistu\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -304,9 +331,8 @@ msgstr "Lataa lisäosat uudelleen"
 msgid "&Window"
 msgstr "Ikkuna"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "Sulje"
+msgid "Cl&ose\tCtrl+W"
+msgstr "Sulje\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -461,6 +487,15 @@ msgstr "Käytä oletusfonttia"
 msgid "Sw&ap Panes"
 msgstr "Vaihda ruudut"
 
+msgid "Swap &1st | 2nd"
+msgstr "Vaihda &1. | toinen"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Vaihda &2. | kolmas"
+
+msgid "Swap 1st | &3rd"
+msgstr "Vaihda 1. | &kolmas"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Vertaa tilastoja..."
@@ -561,9 +596,8 @@ msgstr "Tallenna keski&mmäinen nimellä..."
 msgid "Save &Right As..."
 msgstr "Tallenna oikea &nimellä..."
 
-#, c-format
-msgid "&Print..."
-msgstr "Tulosta..."
+msgid "&Print...\tCtrl+P"
+msgstr "Tulosta...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Sivun asetukset..."
@@ -592,23 +626,8 @@ msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
 #, c-format
-msgid "&Text"
-msgstr "&Teksti"
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "Binääri"
-
-#, c-format
-msgid "&Image"
-msgstr "&Kuva"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -674,10 +693,6 @@ msgid "&Clear All Bookmarks"
 msgstr "Poista kaikki kirjanmerkit"
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "Siirry...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Syntaksin korostus"
 
@@ -716,6 +731,9 @@ msgstr "&9 riviä"
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Vaihda kaikki ja 0-9 riviä\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 #, c-format
 msgid "&Lock Panes"
@@ -1066,8 +1084,7 @@ msgstr "Ei esivertailua"
 msgid "Auto prediffer"
 msgstr "Automaattinen esivertailu"
 
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "Siirry eroon"
 
 #, c-format
@@ -1077,10 +1094,6 @@ msgstr "Ei siirrettyjä lohkoja"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "Kaikki siirretyt lohkot"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Siirretty lohko nykyiseen eroon"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1099,8 +1112,8 @@ msgid "Ig&nore all"
 msgstr "Hylkää kaikki"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Sama kirjainkoko"
+msgid "Ignore &case"
+msgstr "Ohita kirjainkoko"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1150,8 +1163,7 @@ msgstr "&Lataa projekti..."
 msgid "About WinMerge"
 msgstr "Tietoja WinMergestä"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "Vieraile WinMergen kotisivulla!"
 
 #, c-format
@@ -1253,6 +1265,9 @@ msgstr "Yleinen"
 msgid "Automatically &scroll to first difference"
 msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Sulje ikkuna 'Esc':llä:"
 
@@ -1331,8 +1346,7 @@ msgstr "Etsi seuraava"
 msgid "Find &Prev"
 msgstr "Etsi &edellinen"
 
-#, c-format
-msgid "&Ok"
+msgid "&OK"
 msgstr "OK"
 
 #, c-format
@@ -1387,12 +1401,15 @@ msgid "&Background color:"
 msgstr "&Taustaväri:"
 
 #, c-format
+msgid "&Ok"
+msgstr "OK"
+
+#, c-format
 msgid "&Apply"
 msgstr "Käytä"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Rivisuodattimet"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1409,6 +1426,21 @@ msgstr "Muokkaa"
 #, c-format
 msgid "Remove"
 msgstr "Poista"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1627,20 +1659,17 @@ msgstr "Verratut kohteet:"
 msgid "Items total:"
 msgstr "Kohteita yhteensä:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Siirry >"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "Siirry:"
 
 #, c-format
 msgid "File"
 msgstr "Tiedosto"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "Siirry mihin"
 
 #, c-format
@@ -1651,8 +1680,7 @@ msgstr "Rivi"
 msgid "&Difference"
 msgstr "Erilaisuus"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "Siirry kohteeseen"
 
 #, c-format
@@ -1679,9 +1707,8 @@ msgstr "Hylkää kaikki"
 msgid "Ignore blan&k lines"
 msgstr "Ohita tyhjät rivit"
 
-#, c-format
-msgid "Ignore &case"
-msgstr "Ohita kirjainkoko"
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1697,13 +1724,8 @@ msgstr "Ero&algoritmi (kokeellinen):"
 msgid "Enable indent &heuristic"
 msgstr "Ota käyttöön &heuristinen sisennys"
 
-#, c-format
-msgid "Comments"
-msgstr "Kommentit"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Suodatin kommentit"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -1760,9 +1782,8 @@ msgstr "Sanakatk&on merkit:"
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Tiedostosuodattimet"
+msgid "File Filters"
+msgstr ""
 
 #, c-format
 msgid "Test..."
@@ -2327,6 +2348,9 @@ msgstr "Kuvatiedosto&mallit:"
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "&Hexanäkymä"
@@ -2727,6 +2751,9 @@ msgstr "Nimetön keskimmäinen"
 msgid "Untitled right"
 msgstr "Nimetön oikea"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Niiden tiedosto"
@@ -2912,6 +2939,10 @@ msgstr ""
 "Alkuperäinen tiedosto jää koskemattomaksi.\n"
 "\n"
 "Haluatko tallentaa puretun version toiseen tiedostoon?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3553,6 +3584,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "Raportin luominen onnistui."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Sama tiedosto on avatttu molemmissa paneeleissa."
@@ -3747,14 +3781,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Kansiota ei ole olemassa."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "Arkistotuki ei ole käytössä.\n"
-"Kaikkia tarvittavia osia (7-zip ja/tai Merge7z *. Dll) arkistojen tukeen ei löydy.\n"
+"Kaikkia tarvittavia osia (7-Zip ja/tai Merge7z *. Dll) arkistojen tukeen ei löydy.\n"
 "Katso käyttöohjeesta lisätietoja arkistotuesta ja kuinka se otetaan käyttöön."
 
 #, c-format
@@ -3962,6 +3992,18 @@ msgstr ""
 "\n"
 "Yhdistä automaattisesti (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Mukautettua purkajaa käytetään molempiin tiedostoihin (vain yksi tiedosto tarvitsee päätteen)."
 
@@ -4013,8 +4055,11 @@ msgid "<Automatic>"
 msgstr "<Automaattinen>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "Siirry riville %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -4036,9 +4081,6 @@ msgstr "Ei korostusta"
 msgid "Batch"
 msgstr "Erä"
 
-msgid "Lua"
-msgstr "Lua"
-
 #, c-format
 msgid "Portable Object"
 msgstr "Siirrettävä objekti"
@@ -4050,10 +4092,6 @@ msgstr "Resurssit"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4071,9 +4109,8 @@ msgstr "Sulje &muut välilehdet"
 msgid "Enable &Auto Max Width"
 msgstr "Käytä &automaattista maksimi leveyttä"
 
-#, c-format
-msgid "frhed is not installed"
-msgstr "frhed ei ole asennettu"
+msgid "Frhed is not installed."
+msgstr "Frhed ei ole asennettu."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4214,5 +4251,33 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgstr ""
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

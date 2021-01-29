@@ -34,9 +34,9 @@ class MergeCmdLineInfo;
 class ProjectFile;
 class COptionsMgr;
 class LineFiltersList;
+class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
-class FilterCommentsManager;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -66,7 +66,7 @@ public:
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
+	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
 
 	WORD GetLangId() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;

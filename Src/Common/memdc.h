@@ -66,7 +66,7 @@ public:
 			pDC->DPtoLP(&m_rect);
 			SetWindowOrg(m_rect.left, m_rect.top);
 		} else {
-			// Make a copy of the relevent parts of the current DC for printing
+			// Make a copy of the relevant parts of the current DC for printing
 			m_bPrinting = pDC->m_bPrinting;
 			m_hDC       = pDC->m_hDC;
 			m_hAttribDC = pDC->m_hAttribDC;

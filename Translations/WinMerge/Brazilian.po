@@ -46,9 +46,11 @@ msgstr "Copiar &da Esquerda"
 msgid "Copy fro&m Right"
 msgstr "Copiar d&a Direita"
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Selecionar a Diferença da Linha"
+msgid "&Select Line Difference\tF4"
+msgstr "&Selecionar a Diferença da Linha\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -70,9 +72,14 @@ msgstr "&Copiar"
 msgid "&Paste"
 msgstr "&Colar"
 
-#, c-format
-msgid "&Goto..."
-msgstr "&Ir para..."
+msgid "&Go to...\tCtrl+G"
+msgstr "&Ir para...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -178,6 +185,9 @@ msgstr "Limpeza &Vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &Horizontal"
 
+msgid "&Rectangle Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr "&Definir a Cor do 2º Plano"
@@ -185,13 +195,31 @@ msgstr "&Definir a Cor do 2º Plano"
 msgid "&Vector Image Scaling"
 msgstr "Escala de Imagem &Vetorial"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Arquivo"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Novo\tCtrl+N"
+msgid "&New"
+msgstr "&Novo"
+
+#, c-format
+msgid "&Text"
+msgstr "&Texto"
+
+msgid "T&able"
+msgstr "T&abela"
+
+#, c-format
+msgid "&Binary"
+msgstr "&Binário"
+
+#, c-format
+msgid "&Image"
+msgstr "&Imagem"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -224,9 +252,8 @@ msgstr "Arquivos ou P&astas Recentes"
 msgid "< Empty >"
 msgstr "< Vazio >"
 
-#, c-format
-msgid "E&xit"
-msgstr "S&air"
+msgid "E&xit\tCtrl+Q"
+msgstr "S&air\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -308,9 +335,8 @@ msgstr "&Recarregar plugins"
 msgid "&Window"
 msgstr "&Janela"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "Fe&char"
+msgid "Cl&ose\tCtrl+W"
+msgstr "Fe&char\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -465,6 +491,15 @@ msgstr "Usar a Fonte P&adrão"
 msgid "Sw&ap Panes"
 msgstr "Tr&ocar os Painéis"
 
+msgid "Swap &1st | 2nd"
+msgstr "Trocar o &1º | 2º"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Trocar o &2º | 3º"
+
+msgid "Swap 1st | &3rd"
+msgstr "Trocar o 1º | &3º"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Compa&rar as Estatísticas..."
@@ -565,9 +600,8 @@ msgstr "Salvar &o do Meio Como..."
 msgid "Save &Right As..."
 msgstr "Salvar &o da Direita Como..."
 
-#, c-format
-msgid "&Print..."
-msgstr "&Imprimir..."
+msgid "&Print...\tCtrl+P"
+msgstr "&Imprimir...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Configuração da Pá&gina..."
@@ -594,23 +628,8 @@ msgid "Reco&mpare As"
 msgstr "Recomparar Como"
 
 #, c-format
-msgid "&Text"
-msgstr "&Texto"
-
-msgid "T&able"
-msgstr "T&abela"
-
-#, c-format
 msgid "&XML"
 msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr "&Binário"
-
-#, c-format
-msgid "&Image"
-msgstr "&Imagem"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -677,10 +696,6 @@ msgid "&Clear All Bookmarks"
 msgstr "&Limpar Todos os Favoritos"
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Ir Para...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Destacar a Sintaxe"
 
@@ -719,6 +734,9 @@ msgstr "&9 Linhas"
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Ativar/Desativar Tudo e as Linhas de 0-9\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 #, c-format
 msgid "&Lock Panes"
@@ -1066,8 +1084,7 @@ msgstr "&Sem prediffer"
 msgid "Auto prediffer"
 msgstr "Auto prediffer"
 
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "I&r para o Diff"
 
 #, c-format
@@ -1077,10 +1094,6 @@ msgstr "&Nenhum dos Blocos Movidos"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Todos os Blocos Movidos"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Bloco Movido pro &Diff Atual"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1099,8 +1112,8 @@ msgid "Ig&nore all"
 msgstr "Ig&norar tudo"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "Caso sensi&tivo"
+msgid "Ignore &case"
+msgstr "Ignorar &caso sensitivo"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1150,8 +1163,7 @@ msgstr "&Carregar Projeto..."
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "Visitar a Home Page do WinMerge!"
 
 #, c-format
@@ -1253,6 +1265,9 @@ msgstr "Geral"
 msgid "Automatically &scroll to first difference"
 msgstr "Automaticame&nte rolar pra primeira diferença"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Fe&char as janelas com o 'Esc':"
 
@@ -1331,8 +1346,7 @@ msgstr "&Achar o Próximo"
 msgid "Find &Prev"
 msgstr "Achar &Anterior"
 
-#, c-format
-msgid "&Ok"
+msgid "&OK"
 msgstr "&Ok"
 
 #, c-format
@@ -1387,12 +1401,15 @@ msgid "&Background color:"
 msgstr "&Cor do 2º Plano:"
 
 #, c-format
+msgid "&Ok"
+msgstr "&Ok"
+
+#, c-format
 msgid "&Apply"
 msgstr "&Aplicar"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Filtros das Linhas"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1409,6 +1426,21 @@ msgstr "Editar"
 #, c-format
 msgid "Remove"
 msgstr "Remover"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1627,20 +1659,17 @@ msgstr "Itens comparados:"
 msgid "Items total:"
 msgstr "Total de itens:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Ir Para"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "I&r para:"
 
 #, c-format
 msgid "File"
 msgstr "Arquivo"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "Ir para o quê"
 
 #, c-format
@@ -1651,8 +1680,7 @@ msgstr "Li&nha"
 msgid "&Difference"
 msgstr "&Diferença"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "&Ir Para"
 
 #, c-format
@@ -1679,9 +1707,8 @@ msgstr "I&gnorar tudo"
 msgid "Ignore blan&k lines"
 msgstr "Ignorar as linha&s em branco"
 
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorar &caso sensitivo"
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1697,13 +1724,8 @@ msgstr "&Algoritmo diff (Experimental):"
 msgid "Enable indent &heuristic"
 msgstr "Ativar &heurística de recuo"
 
-#, c-format
-msgid "Comments"
-msgstr "Comentários"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Comentários do Filtro"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -1760,9 +1782,8 @@ msgstr "C&aracters da quebra de linha:"
 msgid "&Rendering Mode:"
 msgstr "Modo de &Renderização:"
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filtros dos arquivos"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Teste..."
@@ -2328,6 +2349,9 @@ msgstr "Modelos dos Arquivos de &Imagens:"
 msgid "&Enable image compare in folder compare"
 msgstr "Habilitar comparação de imag&ens na comparação de pastas"
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "&Visualização Hex"
@@ -2728,6 +2752,9 @@ msgstr "Do Meio sem título"
 msgid "Untitled right"
 msgstr "Sem título a direita"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "O Arquivo Deles"
@@ -2927,6 +2954,10 @@ msgstr ""
 "o arquivo original não será mudado.\n"
 "\n"
 "Você quer salvar a versão desempacotada em outro arquivo?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3568,6 +3599,9 @@ msgstr ""
 msgid "The report has been created successfully."
 msgstr "O relatório foi criado com sucesso."
 
+msgid "Cannot add a synchronization point at this line."
+msgstr ""
+
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "O mesmo arquivo está aberto em ambos os painéis."
@@ -3766,14 +3800,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "A pasta não existe."
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "O suporte para arquivos não está ativado.\n"
-"Todos os componentes necessários (7-zip e/ou Merge7z*.dll) pro suporte de arquivos compactados não puderam ser achados.\n"
+"Todos os componentes necessários (7-Zip e/ou Merge7z*.dll) pro suporte de arquivos compactados não puderam ser achados.\n"
 "Veja o manual pra mais informações sobre o suporte de arquivos compactados e como ativá-lo."
 
 #, c-format
@@ -3931,7 +3961,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "\n"
-"Copiar da Direita (Alt+Right)"
+"Copiar para Direita (Alt+Right)"
 
 #, c-format
 msgid ""
@@ -3939,7 +3969,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "\n"
-"Copiar da Esquerda (Alt+Left)"
+"Copiar para Esquerda (Alt+Left)"
 
 #, c-format
 msgid ""
@@ -3947,7 +3977,7 @@ msgid ""
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Copiar da Direita e Avançar (Ctrl+Alt+Right)"
+"Copiar para Direita e Avançar (Ctrl+Alt+Right)"
 
 #, c-format
 msgid ""
@@ -3955,7 +3985,7 @@ msgid ""
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Copiar da Esquerda e Avançar (Ctrl+Alt+Left)"
+"Copiar para Esquerda e Avançar (Ctrl+Alt+Left)"
 
 #, c-format
 msgid ""
@@ -3980,6 +4010,18 @@ msgid ""
 msgstr ""
 "\n"
 "Auto-Unir (Ctrl+Alt+M)"
+
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "O desempacotador adaptado está aplicado a ambos os arquivos (um arquivo só precisa da extensão)."
@@ -4032,8 +4074,11 @@ msgid "<Automatic>"
 msgstr "<Automático>"
 
 #, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "I&r pra Linha %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -4055,9 +4100,6 @@ msgstr "Sem Destacar"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "Lua"
-msgstr "Lua"
-
 #, c-format
 msgid "Portable Object"
 msgstr "Objeto Portátil"
@@ -4069,10 +4111,6 @@ msgstr "Recursos"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4090,9 +4128,8 @@ msgstr "Fechar as &Outras Abas"
 msgid "Enable &Auto Max Width"
 msgstr "Ativar o &Máx de Largura Automática"
 
-#, c-format
-msgid "frhed is not installed"
-msgstr "frhed não está instalado"
+msgid "Frhed is not installed."
+msgstr "Frhed não está instalado"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4234,4 +4271,32 @@ msgstr "Dist: %g, %g  "
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 msgstr "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
 
