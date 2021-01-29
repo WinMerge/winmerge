@@ -33,6 +33,7 @@
 - Feature Request: Move To Next File option while comparing files #475
     (GitHub PR #561)
 - A new feature "Ignored Substutions" (GitHub PR #544,#549,#560)
+  ("Ignored Substitutions" was renamed to "Substitution Filters")
 
 ### Folder compare
 
@@ -40,7 +41,6 @@
     (GitHub #491)
 - BugFix: Copy Folder does not copy subfolders and I don't see any option for it
     (GitHub #537)
-- A new feature "Ignored Substutions" (GitHub PR #544,#549,#560)
 
 ### Table compare
 
@@ -68,6 +68,7 @@
 ### Translations
 
 - Translation updates:
+  - Dutch (GitHub #578,#579,#580)
   - Galician (GitHub PR #493,#538,#570)
   - German (GitHub PR #532,#548,#563)
   - Japanese
