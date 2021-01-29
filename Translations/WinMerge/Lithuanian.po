@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-18 22:17+0000\n"
-"PO-Revision-Date: 2021-01-19 06:50+0200\n"
+"POT-Creation-Date: 2021-01-27 23:46+0000\n"
+"PO-Revision-Date: 2021-01-28 21:01+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -45,7 +45,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -1132,10 +1132,10 @@ msgid "Remove"
 msgstr "Pašalinti"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Keitinių filtrai"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Pakeitimai, kurie rodomi skyduose kaip toliau išvardytos poros, bus ignoruojami arba pažymėti kaip nereikšmingi. Pataisos nepaveikiamos."
+msgstr "Skirtumai, kurie rodomi skyduose kaip toliau išvardytos poros, bus ignoruojami arba pažymėti kaip nereikšmingi. Pataisos nepaveikiamos."
 
 msgid "Enable"
 msgstr "Įjungti"
@@ -1369,7 +1369,7 @@ msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Visiškai nuimti paryškinimą ignoruojamiems skirtumams"
 
 msgid "Editor"
 msgstr "Redaktoriaus"
@@ -1854,7 +1854,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 
 msgid "OCR result:"
-msgstr "OCR rezultatas:"
+msgstr "Optinio ženklų atpažinimo (OCR) rezultatas:"
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
@@ -3198,20 +3198,20 @@ msgid "No differences to select found"
 msgstr "Nerasta skirtumų, kuriuos būtų galima pasirinkti"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Nerasta skirtumų, kuriuos būtų galima pridėti kaip keitinio filtrą"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Pora jau yra Keitinių filtrų sąraše"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Įtraukti šį skirtumą į Keitinių filtrus?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Tik tekstas"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "„Line-by-line“ pozicija ir tekstas"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "„Word-by-word“ pozicija ir tekstas"
 
