@@ -715,6 +715,27 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Completely unhighlight the ignored differences<indexterm>
+          <primary>unhighlight ignored differences</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option>:
+          Makes the color of the different lines ignored by line filters and substitution
+          filters the same as the color of the identical lines.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option> (default):
+          Difference lines ignored by line filters and substitution filters are
+          displayed in the color of Ignored Difference.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
   </section>
 	
   <section id="Configuration_compare_folder">
@@ -1126,6 +1147,11 @@
 
     <section>
       <title>Enable image compare in folder compare</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>OCR result</title>
       <para>TBD</para>
     </section>
   </section>

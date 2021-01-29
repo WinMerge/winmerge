@@ -8,6 +8,8 @@
       <seealso>file masks</seealso>
 
       <seealso>line filters</seealso>
+
+      <seealso>substitution filters</seealso>
     </indexterm></title>
 
   <para>When you compare files or folders, you can use filters to narrow the
@@ -61,7 +63,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>File comparisons: Line filters<indexterm>
+      <term>File comparisons: Line filters and substitution filters<indexterm>
           <primary>comparing files</primary>
 
           <secondary>filtering</secondary>
@@ -70,6 +72,11 @@
       <listitem>
         <para>Line filters are applied only to file compare operations. They let
         you ignore single line differences.</para>
+        <para>Substitution filters are applied only to file compare operations.
+        They replace the strings in the diff block with the specified strings,
+        compare them, and ignore the diff block if the replacement results match.
+        They are useful for ignoring large numbers of uninteresting changes. 
+        </para>
       </listitem>
     </varlistentry>
   </variablelist>
@@ -732,6 +739,20 @@ Pekka Himanen</screen></para>
     </section>
   </section>
 
+  <section id="Filters_SubstitutionFilter">
+    <title>Using substitution filters<indexterm>
+        <primary>filters</primary>
+
+        <secondary>substitution</secondary>
+      </indexterm><indexterm>
+        <primary>filters</primary>
+
+        <secondary>in file comparisons</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
   <section id="Filters_dlg">
     <title>Using the Filters dialog<indexterm>
         <primary>Filters dialog</primary>
@@ -781,6 +802,15 @@ Pekka Himanen</screen></para>
 
         <listitem>
           <para>Choose this tab to work with line filters for file compare
+          operations.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Substitution Filters</term>
+
+        <listitem>
+          <para>Choose this tab to work with substitution filters for file compare
           operations.</para>
         </listitem>
       </varlistentry>
@@ -1141,6 +1171,33 @@ Pekka Himanen</screen></para>
 
         <para>There are several ways to apply file filters after enabling them.
         For details, see <xref linkend="Filters_LineFilterApply" />.</para>
+      </section>
+    </section>
+
+    <section id="Filters_SubstitutionFiltersTab">
+      <title>Using the Substitution Filters tab<indexterm>
+          <primary>substitution filters</primary>
+
+          <secondary>enabling</secondary>
+        </indexterm></title>
+
+        <para>TBD</para>
+
+      <section id="Filters_SubstitutionFilterCfg">
+        <title>Configuring substitution filters</title>
+
+        <para>TBD</para>
+
+      </section>
+
+      <section id="Filters_SubstitutionFilterEnabling">
+        <title>Enabling and disabling substitution filters<indexterm>
+            <primary>substitution filters</primary>
+
+            <secondary>list of available</secondary>
+          </indexterm></title>
+
+        <para>TBD</para>
       </section>
     </section>
   </section>

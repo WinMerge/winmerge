@@ -8,6 +8,8 @@
       <seealso>file masks</seealso>
 
       <seealso>line filters</seealso>
+
+      <seealso>substitution filters</seealso>
     </indexterm></title>
 
   <para>
@@ -64,7 +66,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>ファイル比較: 行フィルタ<indexterm>
+      <term>ファイル比較: 行フィルタと置換フィルタ<indexterm>
           <primary>comparing files</primary>
 
           <secondary>filtering</secondary>
@@ -74,6 +76,11 @@
         <para>
           行フィルタは、ファイル比較操作のみに適用されます。
           それにより、単一行の差異を無視することができます。</para>
+        <para>置換フィルタは、ファイル比較操作のみに適用されます。
+         置換フィルタは、diffブロック内の文字列を指定された文字列に置換して比較し、
+         結果が一致する場合はそのdiffブロックを無視します。
+         これは、興味のない多数の変更を無視するのに役立ちます。
+        </para>
       </listitem>
     </varlistentry>
   </variablelist>
@@ -801,6 +808,20 @@ Pekka Himanen</screen>
     </section>
   </section>
 
+  <section id="Filters_SubstitutionFilter">
+    <title>Using substitution filters<indexterm>
+        <primary>filters</primary>
+
+        <secondary>substitution</secondary>
+      </indexterm><indexterm>
+        <primary>filters</primary>
+
+        <secondary>in file comparisons</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
   <section id="Filters_dlg">
     <title>フィルタダイアログの使用<indexterm>
         <primary>Filters dialog</primary>
@@ -854,6 +875,15 @@ Pekka Himanen</screen>
         <listitem>
           <para>
             ファイル比較用の行フィルタを設定するには、こちらのタブを使用してください。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Substitution Filters</term>
+
+        <listitem>
+          <para>Choose this tab to work with substitution filters for file compare
+          operations.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1261,6 +1291,33 @@ Pekka Himanen</screen>
           それらを有効にした後にファイルフィルタを適用する、いくつかの方法があります。
           詳細は、<!-- TODO: リンク切れ？ -->
           <xref linkend="Filters_LineFilterApply" />を参照してください。</para>
+      </section>
+    </section>
+
+    <section id="Filters_SubstitutionFiltersTab">
+      <title>Using the Substitution Filters tab<indexterm>
+          <primary>substitution filters</primary>
+
+          <secondary>enabling</secondary>
+        </indexterm></title>
+
+        <para>TBD</para>
+
+      <section id="Filters_SubstitutionFilterCfg">
+        <title>Configuring substitution filters</title>
+
+        <para>TBD</para>
+
+      </section>
+
+      <section id="Filters_SubstitutionFilterEnabling">
+        <title>Enabling and disabling substitution filters<indexterm>
+            <primary>substitution filters</primary>
+
+            <secondary>list of available</secondary>
+          </indexterm></title>
+
+        <para>TBD</para>
       </section>
     </section>
   </section>

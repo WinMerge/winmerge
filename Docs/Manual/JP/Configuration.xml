@@ -718,6 +718,27 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Completely unhighlight the ignored differences<indexterm>
+          <primary>unhighlight ignored differences</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option>:
+          Makes the color of the different lines ignored by line filters and substitution
+          filters the same as the color of the identical lines.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option> (default):
+          Difference lines ignored by line filters and substitution filters are
+          displayed in the color of Ignored Difference.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
   </section>
 	
   <section id="Configuration_compare_folder">
@@ -1128,6 +1149,11 @@
 
     <section>
       <title>フォルダ比較で画像比較を有効にする</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>OCRの結果</title>
       <para>TBD</para>
     </section>
   </section>
