@@ -41,6 +41,9 @@ msgstr "Copia da &destra"
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleziona differenze riga\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Annul&la"
 
@@ -160,6 +163,9 @@ msgstr "Imposta colore s&fondo"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&File"
 
@@ -168,6 +174,9 @@ msgstr "&Nuovo"
 
 msgid "&Text"
 msgstr "&Testo"
+
+msgid "T&able"
+msgstr ""
 
 msgid "&Binary"
 msgstr "&Binario"
@@ -385,6 +394,15 @@ msgstr "&Usa carattere predefinito"
 msgid "Sw&ap Panes"
 msgstr "Sc&ambia pannelli"
 
+msgid "Swap &1st | 2nd"
+msgstr "Scambia &1° | 2°"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Scambia &2° | 3°"
+
+msgid "Swap 1st | &3rd"
+msgstr "Scambia 1° | &3°"
+
 msgid "Com&pare Statistics..."
 msgstr "Statistic&he confronto..."
 
@@ -484,9 +502,6 @@ msgstr "Codifica &file..."
 msgid "Reco&mpare As"
 msgstr "Riconfronta come"
 
-msgid "T&able"
-msgstr ""
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -567,6 +582,9 @@ msgstr "&9 linee"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Attiva/disattiva tutto e linee 0-9\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "B&locca pannelli"
@@ -1100,8 +1118,8 @@ msgstr "&OK"
 msgid "&Apply"
 msgstr "&Applica"
 
-msgid "Linefilters"
-msgstr "Filtri linee"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Attiva i filtri linee"
@@ -1114,6 +1132,21 @@ msgstr "Modifica"
 
 msgid "Remove"
 msgstr "Rimuovi"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Colori"
@@ -1337,6 +1370,9 @@ msgstr "&Algoritmo differenze (sperimentale):"
 msgid "Enable indent &heuristic"
 msgstr "Abilita rientro &euristico"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "Editor"
 
@@ -1379,8 +1415,8 @@ msgstr "Caratteri terminatori &parola:"
 msgid "&Rendering Mode:"
 msgstr ""
 
-msgid "Filefilters"
-msgstr "Filtri file"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Prova..."
@@ -1827,6 +1863,9 @@ msgstr "&Pattern file immagine:"
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
@@ -2181,6 +2220,9 @@ msgstr "File centrale senza titolo"
 msgid "Untitled right"
 msgstr "File di destra senza titolo"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Loro file"
 
@@ -2355,6 +2397,10 @@ msgstr ""
 "Il file originale non verrà modificato.\n"
 "\n"
 "Vuoi salvare la versione non compressa in un altro file?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3279,6 +3325,18 @@ msgstr ""
 "\n"
 "Unione automatica (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr ""
 "Il decompressore è applicato a entrambi i file (è sufficiente che uno dei "
@@ -3346,12 +3404,6 @@ msgstr "Nessuna evidenziazione"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Oggetto portatile"
 
@@ -3360,9 +3412,6 @@ msgstr "Risorse"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Chiudi schede a &sinistra"
@@ -3520,5 +3569,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

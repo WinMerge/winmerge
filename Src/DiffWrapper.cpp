@@ -47,6 +47,7 @@
 #include "parsers/crystallineparser.h"
 #include "SyntaxColors.h"
 #include "MergeApp.h"
+#include "SubstitutionList.h"
 
 using Poco::Debugger;
 using Poco::format;
@@ -73,6 +74,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
+, m_pSubstitutionList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
 {
@@ -232,15 +234,16 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 	return dwCookie;
 }
 
-static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, String& filtered, CrystalLineParser::TextDefinition* enuType)
+static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, std::string& filtered, CrystalLineParser::TextDefinition* enuType)
 {
+	String filteredT;
 	for (int i = startLine; i <= endLine; ++i)
 	{
 		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
 		unsigned textlen = static_cast<unsigned>(text.size());
 		if (!enuType)
 		{
-			filtered += text;
+			filteredT += text;
 		}
 		else
 		{
@@ -250,7 +253,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 
 			if (nActualItems == 0)
 			{
-				filtered += text;
+				filteredT += text;
 			}
 			else
 			{
@@ -260,12 +263,14 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 					if (block.m_nColorIndex != COLORINDEX_COMMENT)
 					{
 						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
-						filtered.append(text.c_str() + block.m_nCharPos, blocklen);
+						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
 					}
 				}
 			}
 		}
 	}
+
+	filtered = ucr::toUTF8(filteredT);
 
 	return dwCookie;
 }
@@ -275,13 +280,13 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
  * @param [in] str - String to search
  * @param [in] rep - String to replace
  */
-static void ReplaceSpaces(String & str, const TCHAR *rep)
+static void ReplaceSpaces(std::string & str, const char *rep)
 {
-	String::size_type pos = 0;
-	size_t replen = _tcslen(rep);
-	while ((pos = str.find_first_of(_T(" \t"), pos)) != String::npos)
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
 	{
-		String::size_type posend = str.find_first_not_of(_T(" \t"), pos);
+		std::string::size_type posend = str.find_first_not_of(" \t", pos);
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
@@ -303,42 +308,61 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	if (Op == OP_TRIVIAL)
 		return;
 
-	ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-		ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
-	ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-		ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
+	std::string LineDataLeft, LineDataRight;
 
-	ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
-	ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
+	if (m_options.m_filterCommentsLines)
+	{
+		ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
+			ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
+			ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 
-	String LineDataLeft, LineDataRight;
-	ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-		LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
-	ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-		LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
+		ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
+		ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
+
+		ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
+			LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
+		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
+			LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
+	}
+	else
+	{
+		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
+			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
+		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
+			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+	}
+
+	if (m_pSubstitutionList)
+	{
+		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft);
+		LineDataRight = m_pSubstitutionList->Subst(LineDataRight);
+	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
-		ReplaceSpaces(LineDataLeft, _T(""));
-		ReplaceSpaces(LineDataRight, _T(""));
+		ReplaceSpaces(LineDataLeft, "");
+		ReplaceSpaces(LineDataRight, "");
 	}
 	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		//Ignore change in whitespace char count
-		ReplaceSpaces(LineDataLeft, _T(" "));
-		ReplaceSpaces(LineDataRight, _T(" "));
+		ReplaceSpaces(LineDataLeft, " ");
+		ReplaceSpaces(LineDataRight, " ");
 	}
 
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
 		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-		for (String::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
-		for (String::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
-			*pb = static_cast<TCHAR>(::toupper(*pb));
+		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+			*pb = static_cast<char>(::toupper(*pb));
 	}
 	if (LineDataLeft != LineDataRight)
 		return;
@@ -400,13 +424,13 @@ bool CDiffWrapper::RunFileDiff()
 					m_infoPrediffer->m_PluginName.c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 				m_infoPrediffer->m_PluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MANUAL);
+			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 		}
 	}
 
@@ -485,13 +509,13 @@ bool CDiffWrapper::RunFileDiff()
 		{
 			m_status.bBinaries = true;
 			if (bin_flag != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else
-				m_status.Identical = IDENTLEVEL_NONE;
+				m_status.Identical = IDENTLEVEL::NONE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
-			m_status.Identical = (script == 0) ? IDENTLEVEL_ALL : IDENTLEVEL_NONE;
+			m_status.Identical = (script == 0) ? IDENTLEVEL::ALL : IDENTLEVEL::NONE;
 			m_status.bBinaries = false;
 		}
 		m_status.bMissingNL[0] = !!inf[0].missing_newline;
@@ -499,30 +523,30 @@ bool CDiffWrapper::RunFileDiff()
 	}
 	else
 	{
-		m_status.Identical = IDENTLEVEL_NONE;
+		m_status.Identical = IDENTLEVEL::NONE;
 		if (bin_flag10 != 0 || bin_flag12 != 0)
 		{
 			m_status.bBinaries = true;
 			if (bin_flag10 != -1 && bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (bin_flag10 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.bBinaries = false;
 			if (script10 == nullptr && script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_ALL;
+				m_status.Identical = IDENTLEVEL::ALL;
 			else if (script10 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
 			else if (script12 == nullptr)
-				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
 			else
-				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
 		}
 		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
 		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
@@ -904,7 +928,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
 							int line1 = i+thisob->line1 + (trans_a1-first1-1);
-							GetMovedLines(1)->Add(MovedLines::SIDE_LEFT, line1, line0);
+							GetMovedLines(1)->Add(MovedLines::SIDE::LEFT, line1, line0);
 						}
 					}
 					if (thisob->match1>=0)
@@ -914,14 +938,15 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
 							int line1 = i+thisob->match1 + (trans_a1-first1-1);
-							GetMovedLines(0)->Add(MovedLines::SIDE_RIGHT, line0, line1);
+							GetMovedLines(0)->Add(MovedLines::SIDE::RIGHT, line0, line1);
 						}
 					}
 				}
 				int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 				int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
-				if (m_options.m_filterCommentsLines)
+				if (m_options.m_filterCommentsLines ||
+					(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
 					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
 
 				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -937,7 +962,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+					op = OP_NONE;
+				if (op != OP_NONE)
+					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
 		}
 		
@@ -1042,14 +1070,14 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					{
 						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
 						int index2 = 1;
-						MovedLines::ML_SIDE side1 = MovedLines::SIDE_RIGHT;
-						MovedLines::ML_SIDE side2 = MovedLines::SIDE_LEFT;
+						MovedLines::SIDE side1 = MovedLines::SIDE::RIGHT;
+						MovedLines::SIDE side2 = MovedLines::SIDE::LEFT;
 						if (file == 1 /* diff12 */)
 						{
 							index1 = 2;
 							index2 = 1;
-							side1 = MovedLines::SIDE_LEFT;
-							side2 = MovedLines::SIDE_RIGHT;
+							side1 = MovedLines::SIDE::LEFT;
+							side2 = MovedLines::SIDE::RIGHT;
 						}
 						if (index1 != -1 && index2 != -1)
 						{
@@ -1079,7 +1107,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
-					if (m_options.m_filterCommentsLines)
+					if (m_options.m_filterCommentsLines ||
+						(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
 						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
 
 					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -1350,6 +1379,16 @@ void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
 		m_pFilterList.reset(new FilterList());
 		*m_pFilterList = *pFilterList;
 	}
+}
+
+const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
+{
+	return m_pSubstitutionList.get();
+}
+
+void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
+{
+	m_pSubstitutionList = pSubstitutionList;
 }
 
 void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)

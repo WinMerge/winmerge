@@ -1,17 +1,115 @@
-# WinMerge 2.16.9 Beta Release Notes
+# WinMerge 2.16.10 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.10?](#what-is-new-in-21610)
 - [What Is New in 2.16.9 beta?](#what-is-new-in-2169-beta)
 - [Known issues](#known-issues)
 
-November 2020
+January 2021
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.10 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
+
+## What Is New in 2.16.10
+
+### General
+
+- BugFix: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)
+- BugFix: Fixed the problem that the language setting is not applied to the
+    context menu of the MDI tab when the language setting is changed. 
+    (GitHub PR #523)
+- BugFix: command-line option /x did not work for binary and image comparison
+- BugFix: Substiturions vs. Substitutions (GitHub #551)
+- Swap Panes functionality for 3 way compares (Issue #507) (GitHub PR #533)
+- [feature request] Add options to command line to change "compare methods"  
+    (GitHub #530)
+- Added the command line option "/s-" to ensure that another instance is
+    always executed, ignoring the value of the 'Allow only one instance to 
+    run' option.
+
+### File compare
+
+- BugFix: WinMerge crashes with mouse double click (GitHub #531)
+- BugFix: Fixed an issue where the message box "The report has been created
+    successfully." was displayed even if the report creation failed.
+- BugFix: BUG: Doesn't respect "Don't ask this question again" checkbox when
+    comparing large files (GitHub #574)
+- The Location pane doesn't draw a line connecting moved differences by
+    default (GitHub #498)
+- Update crystallineparser.cpp - AutoIt (\*.au3) support as a "Basic"
+    (GitHub PR #543)
+- s\_apszAutoItKeywordList[] - actualization for AutoIt (GitHub PR #584)
+- Added JavaScript and JSON syntax highligher (osdn.net #41083)
+- Added View -> Diff Context -> Invert menu item
+- Feature Request: Move To Next File option while comparing files #475
+    (GitHub PR #561)
+- A new feature "Ignored Substutions" (GitHub PR #544,#549,#560)
+  ("Ignored Substitutions" was renamed to "Substitution Filters")
+
+### Folder compare
+
+- BugFix: Winmerge crashes consistently when deleting files
+    (GitHub #491)
+- BugFix: Copy Folder does not copy subfolders and I don't see any option for it
+    (GitHub #537)
+
+### Table compare
+
+- Added File -> New -> Table menu item
+
+### Binary compare
+
+- Added File -> New -> Binary menu item
+
+### Image compare
+
+- Implement copy and paste images (GitHub PR #524)
+- Added File -> New -> Image menu item
+- Added Image -> Compare Extracted Text From Image menu item
+
+### Filter dialog
+
+- Making CPropertySheet resizable needs some re-work. (Issue #509)
+    (GitHub PR #535)
+  
+### Patch Generator dialog
+
+- BugFix: Crash when generating patch (GitHub #521)
+
+### Translations
+
+- Translation updates:
+  - Dutch (GitHub #578,#579,#580)
+  - Galician (GitHub PR #493,#538,#570)
+  - German (GitHub PR #532,#548,#563,#585)
+  - Japanese
+  - Lithuanian (GitHub PR #496,#528,#536,#562,#564)
+  - Portuguese (GitHub PR #495)
+  - Slovenian (GitHub #553,#565)
+  - Russian (GitHub PR #494)
+
+### Manual
+
+- Update manual (GitHub PR #497,#513,#546)
+- Small tweaks for the Manual (GitHub PR #508)
+- Windows XP Pro SP0 vs Requirements (GitHub #515)
+
+### Internals
+
+- Fix Various Warnings (GitHub PR #539)
+- Various fixes to testing (GitHub PR #545)
+- Some tweaks for translations status (GitHub PR #556)
+- Link error when `building Plugins\src_VCPP\DisplayXMLFiles` with Visual
+    Studio 2019 16.7.7 (GitHub #554)
+- Link error when building VCPP plugin DisplayXMLFiles with Visual Studio
+    2019 16.7.7 (GitHub #555)
+- Link warnings when building VCPP plugin DisplayXMLFiles with Visual Studio
+    2019 16.7.7 (GitHub #558)
+- Some more files should be added to the .gitignore file (GitHub #559)
 
 ## What Is New in 2.16.9 Beta?
 
@@ -75,20 +173,20 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - Translation updates:
     - Chinese Simplified (GitHub PR #465)
     - Dutch (GitHub PR #482)
-    - Galician (GitHub PR #419,458,493)
-    - German (GitHub PR #438,448,480,490)
-    - Lithuanian (GitHub PR #417,439,443,449,481)
+    - Galician (GitHub PR #419,#458,#493)
+    - German (GitHub PR #438,#448,#480,#490)
+    - Lithuanian (GitHub PR #417,#439,#443,#449,#481)
     - Polish (GitHub PR #447)
-    - Portuguese (GitHub PR #429,467)
+    - Portuguese (GitHub PR #429,#467)
     - Slovak (GitHub PR #470)
-    - Slovenian (GitHub PR #486,488)
+    - Slovenian (GitHub PR #486,#488)
     - Spanish (GitHub PR #454)
     - Turkish (GitHub PR #425)
 
 ### Manual
 
   - Update Shortcut_keys.xml (GitHub PR #430)
-  - Update manual (GitHub PR #485,492)
+  - Update manual (GitHub PR #485,#492)
 
 ### Internals
 

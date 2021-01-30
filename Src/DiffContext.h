@@ -11,6 +11,7 @@
 #include "PathContext.h"
 #include "DiffItemList.h"
 #include "FilterList.h"
+#include "SubstitutionList.h"
 
 class PackingInfo;
 class PrediffingInfo;
@@ -194,6 +195,7 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
 
 private:
 	/**

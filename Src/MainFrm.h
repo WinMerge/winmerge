@@ -87,13 +87,15 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	void FileNew(int nPanes, FRAMETYPE frameType);
+	void FileNew(int nPanes, FRAMETYPE frameType, bool table);
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+		const String strDesc[], const String& strFileExt);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -245,7 +247,7 @@ protected:
 	afx_msg void OnUpdateReloadPlugins(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
-	template <int nFiles, FRAMETYPE frameType>
+	template <int nFiles, FRAMETYPE frameType, bool table = false>
 	afx_msg void OnFileNew();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();

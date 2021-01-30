@@ -18,7 +18,7 @@
 /**
  * @brief Modes for plugin (Modes for prediffing included)
  */
-enum PLUGIN_MODE
+enum class PLUGIN_MODE
 {
 	// Modes for "unpacking"
 	PLUGIN_MANUAL,
@@ -50,7 +50,7 @@ public:
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
 		m_PluginOrPredifferMode = Mode;
-		if (Mode != PLUGIN_AUTO)
+		if (Mode != PLUGIN_MODE::PLUGIN_AUTO)
 		{
 			m_PluginName.erase();
 		}

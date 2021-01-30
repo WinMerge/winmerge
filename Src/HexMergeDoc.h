@@ -24,12 +24,12 @@ class CHexMergeView;
 class CHexMergeDoc : public CDocument, public IMergeDoc
 {
 public:
-	enum BUFFERTYPE
+	enum class BUFFERTYPE
 	{
-		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-		BUFFER_NORMAL_NAMED, /**< Normal, description given */
-		BUFFER_UNNAMED, /**< Empty, created buffer */
-		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+		NORMAL = 0, /**< Normal, file loaded from disk */
+		NORMAL_NAMED, /**< Normal, description given */
+		UNNAMED, /**< Empty, created buffer */
+		UNNAMED_SAVED, /**< Empty buffer saved with filename */
 	};
 
 // Attributes

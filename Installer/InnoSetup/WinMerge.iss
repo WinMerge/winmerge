@@ -42,7 +42,6 @@
 ;      1.  WinMerge
 ;      2.  Read Me
 ;      3.  Users's Guide
-;      4.  WinMerge on the Web
 ; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Not yet possible (Limited by Inno Setup):
@@ -132,7 +131,7 @@ Name: Dutch; MessagesFile: compiler:Languages\Dutch.isl,..\..\Translations\InnoS
 Name: Finnish; MessagesFile: compiler:Languages\Finnish.isl,..\..\Translations\InnoSetup\Finnish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Finnish.txt
 Name: French; MessagesFile: compiler:Languages\French.isl,..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-French.txt
 Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Galician.isl,..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
-Name: German; MessagesFile: compiler:Languages\German.isl,..\..\Translations\InnoSetup\German.isl;InfoAfterFile:..\..\Translations\Docs\Readme\ReadMe-German.txt
+Name: German; MessagesFile: compiler:Languages\German.isl,..\..\Translations\InnoSetup\German.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-German.txt
 Name: Greek; MessagesFile: compiler:Languages\Greek.isl,..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: compiler:Languages\Italian.isl,..\..\Translations\InnoSetup\Italian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
@@ -296,7 +295,6 @@ Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm
 Name: TortoiseGit; Description: {cm:IntegrateTortoiseGit}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseGitInstalled; MinVersion: 0,5.0.2195sp3
 Name: TortoiseSVN; Description: {cm:IntegrateTortoiseSVN}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseSVNInstalled; MinVersion: 0,5.0.2195sp3
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
-Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; OnlyBelowVersion: 0,6.1
 
 [InstallDelete]
 ; Diff.txt is a file left over from previous versions of WinMerge (before version 2.0), we just delete it to be nice.
@@ -381,12 +379,7 @@ Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('
 Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs')
 Name: {group}\{cm:ReadMe}.lnk; Type: files
 
-;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
-Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
-Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
-
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
-Name: {userdesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
 ;Removes the Uninstall icon from the start menu...
@@ -574,13 +567,9 @@ Name: "{app}\MergePlugins"
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmergejp.bitbucket.io
 
 ;Desktop Icon
 Name: {commondesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon
-
-;Quick Launch Icon
-Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: quicklaunchicon
 
 [Registry]
 Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty

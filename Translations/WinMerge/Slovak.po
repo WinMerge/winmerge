@@ -44,6 +44,9 @@ msgstr "Kopírovať &sprava"
 msgid "&Select Line Difference\tF4"
 msgstr "&Vybrať rozdiely riadkov\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "&Späť"
 
@@ -163,6 +166,9 @@ msgstr "Nastaviť farbu &pozadia"
 msgid "&Vector Image Scaling"
 msgstr "Zmena mierky &vektorového obrázka"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Súbor"
 
@@ -171,6 +177,9 @@ msgstr "&Nový"
 
 msgid "&Text"
 msgstr "&Text"
+
+msgid "T&able"
+msgstr "&Karta"
 
 msgid "&Binary"
 msgstr "&Binárne"
@@ -388,6 +397,15 @@ msgstr "Použiť &predvolené písmo"
 msgid "Sw&ap Panes"
 msgstr "&Prehodiť panely"
 
+msgid "Swap &1st | 2nd"
+msgstr "Prehodiť &1. | 2."
+
+msgid "Swap &2nd | 3rd"
+msgstr "Prehodiť &2. | 3."
+
+msgid "Swap 1st | &3rd"
+msgstr "Prehodiť 1. | &3."
+
 msgid "Com&pare Statistics..."
 msgstr "Štatistika po&rovnania..."
 
@@ -487,9 +505,6 @@ msgstr "&Kódovanie súboru..."
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
 
-msgid "T&able"
-msgstr "&Karta"
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -570,6 +585,9 @@ msgstr "&9 riadkov"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Prepnúť všetky a 0-9 riadkov\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "&Zamknúť panely"
@@ -1105,8 +1123,8 @@ msgstr "&OK"
 msgid "&Apply"
 msgstr "&Použiť"
 
-msgid "Linefilters"
-msgstr "Riadkové filtre"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Povoliť riadkové filtre"
@@ -1119,6 +1137,21 @@ msgstr "Upraviť"
 
 msgid "Remove"
 msgstr "Odstrániť"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Farby"
@@ -1342,6 +1375,9 @@ msgstr "&Algoritmus rozdielov (experimentálne):"
 msgid "Enable indent &heuristic"
 msgstr "Povoliť &heuristické odsadenie"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "Editor"
 
@@ -1384,8 +1420,8 @@ msgstr "Zalam&ovať slová:"
 msgid "&Rendering Mode:"
 msgstr "&Režim vytvárania prevodu:"
 
-msgid "Filefilters"
-msgstr "Filtre súborov"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testovať..."
@@ -1836,6 +1872,9 @@ msgstr "Vzory súborov &obrázkov:"
 msgid "&Enable image compare in folder compare"
 msgstr "&Povoliť porovnanie obrázkov pri porovnaní priečinkov"
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Zobraziť &hexadecimálne"
 
@@ -2195,6 +2234,9 @@ msgstr "Nepomenovanmý stredný"
 msgid "Untitled right"
 msgstr "Nepomenovaný pravý"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Ich súbor"
 
@@ -2386,6 +2428,10 @@ msgstr ""
 "Originálny súbor nebude zmenený.\n"
 "\n"
 "Želáte si uložiť rozbalenú verziu do iného súboru?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3320,6 +3366,18 @@ msgstr ""
 "\n"
 "Automatické zlúčenie (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)."
@@ -3387,12 +3445,6 @@ msgstr "Bez zvýrazňovania"
 msgid "Batch"
 msgstr "Dávkový"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Prenosný objekt"
 
@@ -3401,9 +3453,6 @@ msgstr "Zdroje"
 
 msgid "Shell"
 msgstr "Vzhľad prostredia"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Zavrieť karty vľ&avo"
@@ -3561,5 +3610,29 @@ msgstr "Stránka: %d/%d  Priblíženie: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

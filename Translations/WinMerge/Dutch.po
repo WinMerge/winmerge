@@ -4,15 +4,15 @@
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
-# * Thomas De Rocker, 2020
+# Thomas De Rocker, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-15 10:49+0000\n"
+"POT-Creation-Date: 2021-01-27 23:46+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
-"Last-Translator: Thomas De Rocker, 2020\n"
+"Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +42,9 @@ msgstr "Van rechts kopiëren"
 msgid "&Select Line Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr "Deze wijziging aan vervangingsfilters toevoegen"
+
 msgid "&Undo"
 msgstr "Ongedaan maken"
 
@@ -58,13 +61,13 @@ msgid "&Paste"
 msgstr "Plakken"
 
 msgid "&Go to...\tCtrl+G"
-msgstr "Ga naar...\tCtrl+G"
+msgstr "Gaan naar...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Naar verplaatste regel tussen links en midden gaan\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Naar verplaatste regel tussen midden en rechts gaan\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "Openen"
@@ -147,19 +150,22 @@ msgid "&Adjust Offset"
 msgstr "Offset aanpassen"
 
 msgid "&Vertical Wipe"
-msgstr "&Verticaal uitvegen"
+msgstr "Verticaal uitvegen"
 
 msgid "&Horizontal Wipe"
-msgstr "&Horizontaal uitvegen"
+msgstr "Horizontaal uitvegen"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "Rechthoekige selectie"
 
 msgid "&Set Background Color"
 msgstr "Achtergrondkleur instellen"
 
 msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
+
+msgid "Compare Extracted &Text From Image"
+msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
 msgid "&File"
 msgstr "Bestand"
@@ -169,6 +175,9 @@ msgstr "Nieuw"
 
 msgid "&Text"
 msgstr "Tekst"
+
+msgid "T&able"
+msgstr "Tabel"
 
 msgid "&Binary"
 msgstr "Binair"
@@ -386,6 +395,15 @@ msgstr "Standaard lettertype gebruiken"
 msgid "Sw&ap Panes"
 msgstr "Vensters wisselen"
 
+msgid "Swap &1st | 2nd"
+msgstr "1ste en 2de wisselen"
+
+msgid "Swap &2nd | 3rd"
+msgstr "2de en 3de wisselen"
+
+msgid "Swap 1st | &3rd"
+msgstr "1ste en 3de wisselen"
+
 msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
@@ -485,9 +503,6 @@ msgstr "Bestandscodering..."
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
-msgid "T&able"
-msgstr "Tabel"
-
 msgid "&XML"
 msgstr "XML"
 
@@ -568,6 +583,9 @@ msgstr "9 regels"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Alle en 0-9 regels wisselen\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr "Inverteren (verschillende regels verbergen)"
 
 msgid "&Lock Panes"
 msgstr "Vensters vergrendelen"
@@ -851,7 +869,7 @@ msgid "Auto prediffer"
 msgstr "Automatische voorvergelijking"
 
 msgid "G&o to Diff"
-msgstr "Gaan naar verschil"
+msgstr "Ga naar verschil"
 
 msgid "&No Moved Blocks"
 msgstr "Geen verplaatste blokken"
@@ -989,7 +1007,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Automatisch naar eerste verschil gaan"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Automatisch naar eerste verschil binnen de regel scrollen"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Vensters sluiten met 'Esc':"
@@ -1104,7 +1122,7 @@ msgstr "Ok"
 msgid "&Apply"
 msgstr "Toepassen"
 
-msgid "Linefilters"
+msgid "Line Filters"
 msgstr "Regelfilters"
 
 msgid "Enable Line Filters"
@@ -1118,6 +1136,26 @@ msgstr "Bewerken"
 
 msgid "Remove"
 msgstr "Verwijderen"
+
+msgid "Substitution Filters"
+msgstr "Vervangingsfilters"
+
+msgid ""
+"The changes that appear on the panels as the listed pairs below will be "
+"ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+"De wijzigingen die op de panelen verschijnen als de hieronder vermelde paren"
+" zullen worden genegeerd of als onbelangrijk worden gemarkeerd. Patches "
+"worden niet beïnvloed."
+
+msgid "Enable"
+msgstr "Inschakelen"
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Clear"
+msgstr "Wissen"
 
 msgid "Colors"
 msgstr "Kleuren"
@@ -1291,7 +1329,7 @@ msgid "Go to"
 msgstr "Gaan naar"
 
 msgid "G&o to:"
-msgstr "Gaan naar:"
+msgstr "Ga naar:"
 
 msgid "File"
 msgstr "Bestand"
@@ -1341,6 +1379,9 @@ msgstr "Vergelijkingsalgoritme (experimenteel):"
 msgid "Enable indent &heuristic"
 msgstr "Inspringing-heuristiek inschakelen"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr "Markering van genegeerde verschillen volledig verwijderen"
+
 msgid "Editor"
 msgstr "Editor"
 
@@ -1383,7 +1424,7 @@ msgstr "Woordsplitsingstekens:"
 msgid "&Rendering Mode:"
 msgstr "Rendermodus:"
 
-msgid "Filefilters"
+msgid "File Filters"
 msgstr "Bestandsfilters"
 
 msgid "Test..."
@@ -1652,10 +1693,10 @@ msgid "File type"
 msgstr "Bestandstype"
 
 msgid "&CSV"
-msgstr "&CSV"
+msgstr "CSV"
 
 msgid "&TSV"
-msgstr "&TSV"
+msgstr "TSV"
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Aangepaste door scheidingsteken gescheiden waarden"
@@ -1798,10 +1839,10 @@ msgstr ""
 "Aantal vergelijkingsthreads (een negatieve waarde impliceert optelling van het aantal beschikbare CPU-kernen):"
 
 msgid "&CSV File Patterns:"
-msgstr "&CSV-bestand-patronen:"
+msgstr "CSV-bestand-patronen:"
 
 msgid "&TSV File Patterns:"
-msgstr "&TSV-bestand-patronen:"
+msgstr "TSV-bestand-patronen:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Aangepaste door scheidingsteken gescheiden waarden"
@@ -1836,6 +1877,9 @@ msgstr "Afbeeldingsbestand-patronen:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "Afbeeldingsvergelijking in mapvergelijking inschakelen"
+
+msgid "OCR result:"
+msgstr "OCR-resultaat:"
 
 msgid "&Hex View"
 msgstr "Hex-weergave"
@@ -2191,6 +2235,9 @@ msgstr "Naamloos midden"
 msgid "Untitled right"
 msgstr "Naamloos rechts"
 
+msgid "Base File"
+msgstr "Basisbestand"
+
 msgid "Theirs File"
 msgstr "Hun bestand"
 
@@ -2377,7 +2424,21 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plugin '%2' kan de wijzigingen aan de linker kant niet opslaan in '%1'.\n"
+"Plugin '%2' kan de wijzigingen aan het linker bestand niet opslaan in '%1'.\n"
+"\n"
+"Het originele bestand zal niet gewijzigd worden.\n"
+"\n"
+"Wilt u de uitgepakte versie in een ander bestand opslaan?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"Plugin '%2' kan de wijzigingen aan het middelste bestand niet opslaan in '%1'.\n"
 "\n"
 "Het originele bestand zal niet gewijzigd worden.\n"
 "\n"
@@ -2391,7 +2452,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plugin '%2' kan de wijzigingen aan de rechter kant niet opslaan in '%1'.\n"
+"Plugin '%2' kan de wijzigingen aan het rechter bestand niet opslaan in '%1'.\n"
 "\n"
 "Het originele bestand zal niet gewijzigd worden.\n"
 "\n"
@@ -3124,10 +3185,13 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Map bestaat niet."
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "Archiefondersteuning is niet ingeschakeld.\n"
-"Er kon geen enkel onderdeel voor archiefondersteuning (7-Zip en/of Merge7z*.dll) teruggevonden worden.\n"
+"Er kon geen enkel onderdeel voor archiefondersteuning (7-zip en/of Merge7z*.dll) teruggevonden worden.\n"
 "Zie de handleiding voor meer info over archiefondersteuning en hoe het in te schakelen."
 
 msgid "Select file for export"
@@ -3306,6 +3370,34 @@ msgstr ""
 "Automatisch samenvoegen (Ctrl+Alt+M)"
 
 msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"Eerste bestand"
+
+msgid ""
+"\n"
+"Next File"
+msgstr ""
+"\n"
+"Volgend bestand"
+
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"Laatste bestand"
+
+msgid ""
+"\n"
+"Previous File"
+msgstr ""
+"\n"
+"Vorig bestand"
+
+msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)."
 msgstr ""
@@ -3356,7 +3448,7 @@ msgid "G&o to Line %1"
 msgstr "Naar regel %1 gaan"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Naar verplaatste regel gaan\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "Uitgeschakeld"
@@ -3373,12 +3465,6 @@ msgstr "Geen markering"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Portable object"
 
@@ -3387,9 +3473,6 @@ msgstr "Bronnen"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Linker tabs sluiten"
@@ -3404,7 +3487,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
 msgid "Frhed is not installed."
-msgstr "Frhed is niet geïnstalleerd."
+msgstr "Fhred is niet geïnstalleerd"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3547,5 +3630,29 @@ msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Rc: (%d, %d)  "
+
+msgid "<Edit here>"
+msgstr "<hier bewerken>"
+
+msgid "No differences to select found"
+msgstr "Geen verschillen gevonden om te selecteren"
+
+msgid "No differences found to add as substitution filter"
+msgstr "Geen verschillen gevonden om toe te voegen als vervangingsfilter"
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr "Dit paar is al aanwezig in de lijst van vervangingsfilters"
+
+msgid "Add this change to Substitution Filters?"
+msgstr "Deze wijziging aan vervangingsfilters toevoegen?"
+
+msgid "Text only"
+msgstr "Alleen tekst"
+
+msgid "Line-by-line position and text"
+msgstr "Positie en tekst regel per regel"
+
+msgid "Word-by-word position and text"
+msgstr "Positie en tekst woord voor woord"
 

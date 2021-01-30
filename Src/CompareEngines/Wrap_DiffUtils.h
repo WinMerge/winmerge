@@ -9,6 +9,7 @@
 
 class CompareOptions;
 class FilterList;
+class SubstitutionList;
 class DiffutilsOptions;
 struct file_data;
 struct FileTextStats;
@@ -33,6 +34,8 @@ public:
 	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
 	void ClearFilterList();
+	void SetSubstitutionList(std::shared_ptr<SubstitutionList> plist);
+	void ClearSubstitutionList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();
 	bool RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const;

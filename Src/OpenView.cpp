@@ -389,7 +389,7 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 					SetCursor(m_hIconRotate);
 					break;
 				}
-				// fall through
+				[[fallthrough]];
 			default:
 				SetCursor(m_hCursorNo);
 				break;
@@ -444,7 +444,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			WINDOWPLACEMENT wp;
+			WINDOWPLACEMENT wp = {};
 			wp.length = sizeof wp;
 			pFrameWnd->GetWindowPlacement(&wp);
 			CRect rc;
@@ -1075,7 +1075,7 @@ void COpenView::OnSelectUnpacker()
 
 	// let the user select a handler
 	CSelectUnpackerDlg dlg(m_files[0], this);
-	PackingInfo infoUnpacker(PLUGIN_AUTO);
+	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
 
 	if (dlg.DoModal() == IDOK)

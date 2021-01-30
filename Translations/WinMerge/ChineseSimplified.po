@@ -44,6 +44,9 @@ msgstr "从右侧复制(&M)"
 msgid "&Select Line Difference\tF4"
 msgstr "选中行内差异(&S)\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "撤销(&U)"
 
@@ -163,6 +166,9 @@ msgstr "设置背景颜色(&S)"
 msgid "&Vector Image Scaling"
 msgstr "矢量图形缩放 (&V)"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "文件(&F)"
 
@@ -171,6 +177,9 @@ msgstr "新建(&N)"
 
 msgid "&Text"
 msgstr "文本(&T)"
+
+msgid "T&able"
+msgstr "表格(&A)"
 
 msgid "&Binary"
 msgstr "二进制(&B)"
@@ -388,6 +397,15 @@ msgstr "使用默认字体"
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
 
+msgid "Swap &1st | 2nd"
+msgstr "交换组&1与组2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "交换组&2与组3"
+
+msgid "Swap 1st | &3rd"
+msgstr "交换组1与组&3"
+
 msgid "Com&pare Statistics..."
 msgstr "比较结果统计(&P)..."
 
@@ -487,9 +505,6 @@ msgstr "文件编码(&F)..."
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
 
-msgid "T&able"
-msgstr "表格(&A)"
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -570,6 +585,9 @@ msgstr "9行(&9)"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "在所有行与 0-9 行之间切换\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "锁定窗格(&L)"
@@ -1104,8 +1122,8 @@ msgstr "确定(&O)"
 msgid "&Apply"
 msgstr "应用(&A)"
 
-msgid "Linefilters"
-msgstr "行过滤器"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "忽略符合下列样式的行"
@@ -1118,6 +1136,21 @@ msgstr "编辑"
 
 msgid "Remove"
 msgstr "删除"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "颜色"
@@ -1341,6 +1374,9 @@ msgstr "比较算法 (实验性) (&A):"
 msgid "Enable indent &heuristic"
 msgstr "启用启发式缩进(&H)"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "编辑器"
 
@@ -1383,8 +1419,8 @@ msgstr "单词分隔字符:"
 msgid "&Rendering Mode:"
 msgstr "渲染模式(&R)"
 
-msgid "Filefilters"
-msgstr "文件过滤器"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "测试..."
@@ -1836,6 +1872,9 @@ msgstr "图像文件扩展名 (&P):"
 msgid "&Enable image compare in folder compare"
 msgstr "在文件夹比较中启用图像比较(&E)"
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
 
@@ -2190,6 +2229,9 @@ msgstr "未命名 中"
 msgid "Untitled right"
 msgstr "未命名 右"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "他们的文件"
 
@@ -2378,6 +2420,10 @@ msgstr ""
 "原始文件不会被更改。\n"
 "\n"
 "是否将未打包的版本另存为其他文件？"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3298,6 +3344,18 @@ msgstr ""
 "\n"
 "自动合并 (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)."
@@ -3364,12 +3422,6 @@ msgstr "无高亮"
 msgid "Batch"
 msgstr "批处理文件"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Portable Object"
 
@@ -3378,9 +3430,6 @@ msgstr "资源文件"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "关闭左侧标签页(&L)"
@@ -3538,5 +3587,29 @@ msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

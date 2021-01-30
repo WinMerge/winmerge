@@ -159,6 +159,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
 	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -210,7 +212,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
-	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
+	ON_COMMAND(ID_SWAPPANES_SWAP12, OnViewSwapPanes12)
+	ON_COMMAND(ID_SWAPPANES_SWAP23, OnViewSwapPanes23)
+	ON_COMMAND(ID_SWAPPANES_SWAP13, OnViewSwapPanes13)
 	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
@@ -227,6 +231,14 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	ON_COMMAND(ID_FIRSTFILE, OnFirstFile)
+	ON_UPDATE_COMMAND_UI(ID_FIRSTFILE, OnUpdateFirstFile)
+	ON_COMMAND(ID_PREVFILE, OnPrevFile)
+	ON_UPDATE_COMMAND_UI(ID_PREVFILE, OnUpdatePrevFile)
+	ON_COMMAND(ID_NEXTFILE, OnNextFile)
+	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
+	ON_COMMAND(ID_LASTFILE, OnLastFile)
+	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
 	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -974,7 +986,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	CPoint pt = worddiffs.size() > 0 ?
 		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
 		CPoint{ 0, m_lineBegin };
-	EnsureVisible(pt);
+	ScrollToLine(m_lineBegin);
+	if (pt.x > 0)
+		EnsureVisible(pt);
 
 	// update the width of the horizontal scrollbar
 	RecalcHorzScrollBar();
@@ -2095,6 +2109,98 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Move to next file
+ */
+void CMergeEditView::OnNextFile()
+{
+	CMergeDoc* pd = GetDocument();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	if (pDirDoc)
+	{
+		pDirDoc->MoveToNextFile(pd);
+	}
+}
+
+/**
+ * @brief Called when Move to next file is updated
+ */
+void CMergeEditView::OnUpdateNextFile(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pd = GetDocument();
+	bool enabled = !pd->GetDirDoc()->IsLastFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to previous file
+ */
+void CMergeEditView::OnPrevFile()
+{
+	CMergeDoc* pd = GetDocument();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	if (pDirDoc)
+	{
+		pDirDoc->MoveToPrevFile(pd);
+	}
+}
+
+/**
+ * @brief Called when Move to previous file is updated
+ */
+void CMergeEditView::OnUpdatePrevFile(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pd = GetDocument();	
+	bool enabled = !pd->GetDirDoc()->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to first file
+ */
+void CMergeEditView::OnFirstFile()
+{
+	CMergeDoc* pd = GetDocument();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	if (pDirDoc)
+	{
+		pDirDoc->MoveToFirstFile(pd);
+	}
+}
+
+/**
+ * @brief Called when Move to first file is updated
+ */
+void CMergeEditView::OnUpdateFirstFile(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pd = GetDocument();	
+	bool enabled = !pd->GetDirDoc()->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to last file
+ */
+void CMergeEditView::OnLastFile()
+{
+	CMergeDoc* pd = GetDocument();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	if (pDirDoc)
+	{
+		pDirDoc->MoveToLastFile(pd);
+	}
+}
+
+/**
+ * @brief Called when Move to last file item is updated
+ */
+void CMergeEditView::OnUpdateLastFile(CCmdUI* pCmdUI)
+{
+	CMergeDoc* pd = GetDocument();
+	bool enabled = !pd->GetDirDoc()->IsLastFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
  * @brief Do Auto merge
  */
 void CMergeEditView::OnAutoMerge()
@@ -2694,6 +2800,17 @@ void CMergeEditView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(!GetDocument()->IsEditedAfterRescan());
 }
 
+void CMergeEditView::OnAddToSubstitutionFilters()
+{
+	// Pass this to the document, to compare this file to other
+	GetDocument()->AddToSubstitutionFilters(this, false);
+}
+
+void CMergeEditView::OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
+}
+
 /**
  * @brief Enable/disable Replace-menuitem
  */
@@ -2831,7 +2948,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		m_CurrentPredifferID = 0;
 	else if (prediffer.m_PluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
@@ -2921,17 +3038,17 @@ void CMergeEditView::OnUpdateStatusEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnConvertEolTo(UINT nID )
 {
-	CRLFSTYLE nStyle = CRLF_STYLE_AUTOMATIC;;
+	CRLFSTYLE nStyle = CRLFSTYLE::AUTOMATIC;;
 	switch (nID)
 	{
 		case ID_EOL_TO_DOS:
-			nStyle = CRLF_STYLE_DOS;
+			nStyle = CRLFSTYLE::DOS;
 			break;
 		case ID_EOL_TO_UNIX:
-			nStyle = CRLF_STYLE_UNIX;
+			nStyle = CRLFSTYLE::UNIX;
 			break;
 		case ID_EOL_TO_MAC:
-			nStyle = CRLF_STYLE_MAC;
+			nStyle = CRLFSTYLE::MAC;
 			break;
 		default:
 			// Catch errors
@@ -2955,17 +3072,17 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
  */
 void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 {
-	int nStyle = CRLF_STYLE_AUTOMATIC;
+	CRLFSTYLE nStyle = CRLFSTYLE::AUTOMATIC;
 	switch (pCmdUI->m_nID)
 	{
 		case ID_EOL_TO_DOS:
-			nStyle = CRLF_STYLE_DOS;
+			nStyle = CRLFSTYLE::DOS;
 			break;
 		case ID_EOL_TO_UNIX:
-			nStyle = CRLF_STYLE_UNIX;
+			nStyle = CRLFSTYLE::UNIX;
 			break;
 		case ID_EOL_TO_MAC:
-			nStyle = CRLF_STYLE_MAC;
+			nStyle = CRLFSTYLE::MAC;
 			break;
 		default:
 			// Catch errors
@@ -3329,7 +3446,7 @@ void CMergeEditView::OnScripts(UINT nID )
 void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
 {
 	// append the scripts submenu
-	HMENU scriptsSubmenu = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->GetScriptsSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu);
+	HMENU scriptsSubmenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
 	if (scriptsSubmenu != nullptr)
 		createScriptsSubmenu(scriptsSubmenu);
 
@@ -3348,7 +3465,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 	{
 		pCmdUI->SetRadio(false);
 		return;
@@ -3402,7 +3519,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		m_CurrentPredifferID = nID;
 		// All flags are set correctly during the construction
 		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 		infoPrediffer->m_PluginName.clear();
 		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
@@ -3417,7 +3534,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer;
-	prediffer.m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	prediffer.m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
@@ -4001,9 +4118,25 @@ void CMergeEditView::SetWordWrapping( bool bWordWrap )
 /**
  * @brief Swap the positions of the two panes
  */
-void CMergeEditView::OnViewSwapPanes()
+void CMergeEditView::OnViewSwapPanes12()
 {
-	GetDocument()->SwapFiles();
+	GetDocument()->SwapFiles(0, 1);
+}
+
+/**
+ * @brief Swap the positions of the two panes
+ */
+void CMergeEditView::OnViewSwapPanes23()
+{
+	GetDocument()->SwapFiles(1, 2);
+}
+
+/**
+ * @brief Swap the positions of the two panes
+ */
+void CMergeEditView::OnViewSwapPanes13()
+{
+	GetDocument()->SwapFiles(0, 2);
 }
 
 /**
@@ -4506,14 +4639,17 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 	const int pane = pNMItemActivate->iItem / 4;
+	CMergeDoc* pDoc = GetDocument();
+	if (pane >= pDoc->m_nBuffers || !GetParentFrame()->IsChild(CWnd::FromHandle(pNMItemActivate->hdr.hwndFrom)))
+		return;
 
 	switch (pNMItemActivate->iItem % 4)
 	{
 	case 0:
-		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
+		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
 		break;
 	case 1:
-		GetDocument()->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
 		break;
 	case 2:
 	{
@@ -4527,7 +4663,7 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	}
 	case 3:
-		GetDocument()->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
+		pDoc->m_ptBuf[pane]->SetReadOnly(!GetDocument()->m_ptBuf[pane]->GetReadOnly());
 		break;
 	default:
 		break;

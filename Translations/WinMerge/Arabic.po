@@ -42,6 +42,9 @@ msgstr "نسخ م&ن اليمين"
 msgid "&Select Line Difference\tF4"
 msgstr "تحديد الاختلاف في الس&طر\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "&تراجع"
 
@@ -161,6 +164,9 @@ msgstr "&تغيير لون الخلفية"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&ملف"
 
@@ -169,6 +175,9 @@ msgstr "&جدبد"
 
 msgid "&Text"
 msgstr "&نص"
+
+msgid "T&able"
+msgstr ""
 
 msgid "&Binary"
 msgstr "ملف &ثنائي"
@@ -386,6 +395,15 @@ msgstr "اختيار نوع الخط الإفتراضي"
 msgid "Sw&ap Panes"
 msgstr "الأجزاء الخاصة بالمبادلة"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "إحصائيات المقارنة..."
 
@@ -485,9 +503,6 @@ msgstr "ترمي&ز الملف..."
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
 
-msgid "T&able"
-msgstr ""
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -568,6 +583,9 @@ msgstr "&9 سطر"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "عكس الاختيار بين الكل و الأسطر 0-9\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "&قفل الأجزاء"
@@ -1103,8 +1121,8 @@ msgstr "&موافق"
 msgid "&Apply"
 msgstr "ت&طبيق"
 
-msgid "Linefilters"
-msgstr "مرشحات الأسطر"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "تفعيل مرشحات الأسطر"
@@ -1117,6 +1135,21 @@ msgstr "تعديل"
 
 msgid "Remove"
 msgstr "حذف"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "ألوان"
@@ -1340,6 +1373,9 @@ msgstr "خوارزمية المقارنة (تجريبي):"
 msgid "Enable indent &heuristic"
 msgstr "تفعيل الم&سافة البادئة الإرشادية"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "المحرر"
 
@@ -1382,8 +1418,8 @@ msgstr "رمو&ز الفصل للكلمات:"
 msgid "&Rendering Mode:"
 msgstr ""
 
-msgid "Filefilters"
-msgstr "مرشحات الملفات"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "اختبار..."
@@ -1827,6 +1863,9 @@ msgstr "أ&نماط ملف الصور:"
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
@@ -2178,6 +2217,9 @@ msgstr "الوسط غير معنون"
 msgid "Untitled right"
 msgstr "اليمين غير معنون"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "ملفهم"
 
@@ -2350,6 +2392,10 @@ msgstr ""
 "لن يتم تغيير الملف الأصلي.\n"
 "\n"
 "هل تريد حفظ النسخة التي تم فك تحزيمها إلى ملف آخر؟"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3260,6 +3306,18 @@ msgstr ""
 "\n"
 "الدمج التلقائي (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr ""
 "أداة فك الحزمة المختارة يتم تطبيقه لكلا الملفين (ملف واحد فقط يحتاج للإمتداد)."
@@ -3325,12 +3383,6 @@ msgstr "بدون تظليل"
 msgid "Batch"
 msgstr "متتالي"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Portable Object"
 
@@ -3339,9 +3391,6 @@ msgstr "Resources"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "إ&غلاق التبويبات في الجزء الأيسر"
@@ -3499,5 +3548,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

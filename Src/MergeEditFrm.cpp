@@ -316,12 +316,10 @@ void CMergeEditFrame::UpdateHeaderSizes()
 	}
 	else
 	{
-		CRect rect;
-		wndSplitter.GetWindowRect(&rect);
+		int w2, wmin;
+		wndSplitter.GetColumnInfo(0, w2, wmin);
 		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-		{
-			w[pane] = rect.Width() /  pDoc->m_nBuffers;
-		}
+			w[pane] = (w2 - 4 * pDoc->m_nBuffers) / pDoc->m_nBuffers;
 	}
 
 	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))

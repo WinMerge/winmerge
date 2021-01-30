@@ -22,6 +22,7 @@
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
 #define IDD_PROPPAGE_FILTER             207
+#define IDD_IGNORED_SUSBSTITUTIONS_DLG  208
 #define IDD_PROPPAGE_SYSTEM             209
 #define IDD_EDITOR_HEADERBAR            210
 #define IDD_GENERATE_PATCH              211
@@ -127,10 +128,12 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
-#define IDB_FILE_NEW_HEX                379
-#define IDB_FILE_NEW_IMAGE              380
-#define IDB_FILE_NEW3_HEX               381
-#define IDB_FILE_NEW3_IMAGE             382
+#define IDB_FILE_NEW_TABLE              379
+#define IDB_FILE_NEW_HEX                380
+#define IDB_FILE_NEW_IMAGE              381
+#define IDB_FILE_NEW3_TABLE             382
+#define IDB_FILE_NEW3_HEX               383
+#define IDB_FILE_NEW3_IMAGE             384
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502
@@ -188,6 +191,7 @@
 #define IDC_ALL_WHITE                   1027
 #define IDC_WHITE_CHANGE                1028
 #define IDC_WHITESPACE                  1029
+#define IDC_IGNORED_SUSBSTITUTIONS_ENABLED 1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
 #define IDC_DIFFERENCE_COLOR            1035
@@ -453,6 +457,7 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
+#define IDC_SUBSTITUTION_FILTERS 1324
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
 #define IDC_PRESERVE_FILETIME           1328
@@ -555,6 +560,8 @@
 #define IDC_INDENT_HEURISTIC            8829
 #define IDC_LIST_FILE                   8830
 #define IDC_FLDCONFIRM_DONTASKAGAIN     8831
+#define IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES 8833
+#define IDC_LFILTER_CLEARBTN            8836
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -639,8 +646,9 @@
 #define IDS_EMPTY_LEFT_FILE             16802
 #define IDS_EMPTY_MIDDLE_FILE           16803
 #define IDS_EMPTY_RIGHT_FILE            16804
-#define IDS_CONFLICT_THEIRS_FILE        16805
-#define IDS_CONFLICT_MINE_FILE          16806
+#define IDS_CONFLICT_BASE_FILE          16805
+#define IDS_CONFLICT_THEIRS_FILE        16806
+#define IDS_CONFLICT_MINE_FILE          16807
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833
 #define IDS_LINE_STATUS_INFO            16834
@@ -1117,7 +1125,6 @@
 #define IDS_LOCBAR_GOTOLINE_FMT         33115
 #define ID_FILE_OPENPROJECT             33116
 #define ID_VIEW_SHOWHIDDENITEMS         33117
-#define ID_VIEW_SWAPPANES               33118
 #define ID_FILE_SAVEPROJECT             33119
 #define ID_FILE_ENCODING                33120
 #define ID_FILE_OPENCONFLICT            33121
@@ -1134,43 +1141,44 @@
 #define ID_COLORSCHEME_FIRST            33152
 #define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
 #define IDS_COLORSCHEME_ASP             33153
-#define IDS_COLORSCHEME_BASIC           33154
-#define IDS_COLORSCHEME_BATCH           33155
-#define IDS_COLORSCHEME_C               33156
-#define IDS_COLORSCHEME_CSHARP          33157
-#define IDS_COLORSCHEME_CSS             33158
-#define IDS_COLORSCHEME_DCL             33159
-#define IDS_COLORSCHEME_FORTRAN         33160
-#define IDS_COLORSCHEME_GO              33161
-#define IDS_COLORSCHEME_HTML            33162
-#define IDS_COLORSCHEME_INI             33163
-#define IDS_COLORSCHEME_INNOSETUP       33164
-#define IDS_COLORSCHEME_INSTALLSHIELD   33165
-#define IDS_COLORSCHEME_JAVA            33166
-#define IDS_COLORSCHEME_JAVASCRIPT      33167
-#define IDS_COLORSCHEME_LISP            33168
-#define IDS_COLORSCHEME_LUA             33169
-#define IDS_COLORSCHEME_NSIS            33170
-#define IDS_COLORSCHEME_PASCAL          33171
-#define IDS_COLORSCHEME_PERL            33172
-#define IDS_COLORSCHEME_PHP             33173
-#define IDS_COLORSCHEME_PO              33174
-#define IDS_COLORSCHEME_POWERSHELL      33175
-#define IDS_COLORSCHEME_PYTHON          33176
-#define IDS_COLORSCHEME_REXX            33177
-#define IDS_COLORSCHEME_RSRC            33178
-#define IDS_COLORSCHEME_RUBY            33179
-#define IDS_COLORSCHEME_RUST            33180
-#define IDS_COLORSCHEME_SGML            33181
-#define IDS_COLORSCHEME_SH              33182
-#define IDS_COLORSCHEME_SIOD            33183
-#define IDS_COLORSCHEME_SQL             33184
-#define IDS_COLORSCHEME_TCL             33185
-#define IDS_COLORSCHEME_TEX             33186
-#define IDS_COLORSCHEME_VERILOG         33187
-#define IDS_COLORSCHEME_VHDL            33188
-#define IDS_COLORSCHEME_XML             33189
-#define ID_COLORSCHEME_LAST             33189 // = IDS_COLORSCHEME_XML
+#define IDS_COLORSCHEME_AUTOIT          33154
+#define IDS_COLORSCHEME_BASIC           33155
+#define IDS_COLORSCHEME_BATCH           33156
+#define IDS_COLORSCHEME_C               33157
+#define IDS_COLORSCHEME_CSHARP          33158
+#define IDS_COLORSCHEME_CSS             33159
+#define IDS_COLORSCHEME_DCL             33160
+#define IDS_COLORSCHEME_FORTRAN         33161
+#define IDS_COLORSCHEME_GO              33162
+#define IDS_COLORSCHEME_HTML            33163
+#define IDS_COLORSCHEME_INI             33164
+#define IDS_COLORSCHEME_INNOSETUP       33165
+#define IDS_COLORSCHEME_INSTALLSHIELD   33166
+#define IDS_COLORSCHEME_JAVA            33167
+#define IDS_COLORSCHEME_JAVASCRIPT      33168
+#define IDS_COLORSCHEME_LISP            33169
+#define IDS_COLORSCHEME_LUA             33170
+#define IDS_COLORSCHEME_NSIS            33171
+#define IDS_COLORSCHEME_PASCAL          33172
+#define IDS_COLORSCHEME_PERL            33173
+#define IDS_COLORSCHEME_PHP             33174
+#define IDS_COLORSCHEME_PO              33175
+#define IDS_COLORSCHEME_POWERSHELL      33176
+#define IDS_COLORSCHEME_PYTHON          33177
+#define IDS_COLORSCHEME_REXX            33178
+#define IDS_COLORSCHEME_RSRC            33179
+#define IDS_COLORSCHEME_RUBY            33180
+#define IDS_COLORSCHEME_RUST            33181
+#define IDS_COLORSCHEME_SGML            33182
+#define IDS_COLORSCHEME_SH              33183
+#define IDS_COLORSCHEME_SIOD            33184
+#define IDS_COLORSCHEME_SQL             33185
+#define IDS_COLORSCHEME_TCL             33186
+#define IDS_COLORSCHEME_TEX             33187
+#define IDS_COLORSCHEME_VERILOG         33188
+#define IDS_COLORSCHEME_VHDL            33189
+#define IDS_COLORSCHEME_XML             33190
+#define ID_COLORSCHEME_LAST             33190 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
@@ -1190,6 +1198,7 @@
 #define ID_VIEW_DIFFCONTEXT_7           33223
 #define ID_VIEW_DIFFCONTEXT_9           33224
 #define ID_VIEW_DIFFCONTEXT_TOGGLE      33225
+#define ID_VIEW_DIFFCONTEXT_INVERT      33226
 #define ID_VIEW_SPLITVERTICALLY         33228
 #define IDS_FRHED_NOTINSTALLED          33229
 #define ID_ADD_SYNCPOINT                33230
@@ -1249,6 +1258,7 @@
 #define ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT 33390
 #define IDC_COMPAREIMAGE_PATTERNS       33391
 #define IDC_PLUGIN_SETTINGS             33392
+#define IDC_COMPAREIMAGE_OCR_RESULT_TYPE 33393
 #define IDC_COMPAREBINARY_PATTERNS      33394
 #define IDC_COMPAREBINARY_VIEWSETTINGS  33395
 #define IDC_COMPAREBINARY_BINARYMODE    33398
@@ -1305,7 +1315,8 @@
 #define ID_IMG_VECTORIMAGESCALING_200   33722
 #define ID_IMG_VECTORIMAGESCALING_400   33723
 #define ID_IMG_VECTORIMAGESCALING_800   33724
-#define IDC_ENABLE_IMGCMP_IN_DIRCMP     33725
+#define ID_IMG_COMPARE_EXTRACTED_TEXT   33725
+#define IDC_ENABLE_IMGCMP_IN_DIRCMP     33727
 #define IDS_DIFF_GROUP                  34131
 #define IDS_DIFF_HIGHLIGHT              34132
 #define IDS_DIFF_BLINK                  34133
@@ -1345,6 +1356,23 @@
 #define ID_FILE_NEW3_TABLE              34167
 #define ID_FILE_NEW3_HEX                34168
 #define ID_FILE_NEW3_IMAGE              34169
+#define ID_SWAPPANES_SWAP12             34170
+#define ID_SWAPPANES_SWAP23             34171
+#define ID_SWAPPANES_SWAP13             34172
+#define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34173
+#define IDS_IGNSUB_STR1                 34174
+#define IDS_IGNSUB_STR2                 34175
+#define IDS_IGNSUB_STR3                 34176
+#define IDS_IGNSUB_STR4                 34177
+#define IDS_IGNSUB_STR5                 34178
+#define ID_FILE_COMPARE_PROPERTIES      34181
+#define ID_FIRSTFILE                    34182
+#define ID_PREVFILE                     34183
+#define ID_NEXTFILE                     34184
+#define ID_LASTFILE                     34185
+#define IDS_OCRRESULT_TEXTONLY          34186
+#define IDS_OCRRESULT_POS_LINE          34187
+#define IDS_OCRRESULT_POS_WORD          34188
 
 // Next default values for new objects
 // 
@@ -1352,8 +1380,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        253
-#define _APS_NEXT_COMMAND_VALUE         34170
-#define _APS_NEXT_CONTROL_VALUE         8832
-#define _APS_NEXT_SYMED_VALUE           117
+#define _APS_NEXT_COMMAND_VALUE         34189
+#define _APS_NEXT_CONTROL_VALUE         8837
+#define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

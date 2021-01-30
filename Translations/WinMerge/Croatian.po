@@ -47,6 +47,9 @@ msgstr ""
 msgid "&Select Line Difference\tF4"
 msgstr "&Označi različite retke\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "&Poništi"
@@ -190,6 +193,9 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datoteka"
@@ -200,6 +206,9 @@ msgstr "&Nova usporedba"
 
 #, c-format
 msgid "&Text"
+msgstr ""
+
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -483,6 +492,15 @@ msgstr "Koristi standardni f&ont"
 msgid "Sw&ap Panes"
 msgstr "&Zamijeni panele"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Usporedbena &statistika..."
@@ -612,9 +630,6 @@ msgstr "De&kodiranje datoteke..."
 msgid "Reco&mpare As"
 msgstr ""
 
-msgid "T&able"
-msgstr ""
-
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -721,6 +736,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1393,9 +1411,8 @@ msgstr "&U redu"
 msgid "&Apply"
 msgstr "&Primjeni"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Filtar redaka"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1412,6 +1429,21 @@ msgstr "Uređivanje"
 #, c-format
 msgid "Remove"
 msgstr "Ukloni"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1695,6 +1727,9 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 #, c-format
 msgid "Editor"
 msgstr "Uređivanje"
@@ -1750,9 +1785,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filtar redaka"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Test..."
@@ -2312,6 +2346,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2690,6 +2727,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Neimenovan"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Tuđe datoteke"
@@ -2881,6 +2921,10 @@ msgstr ""
 "Izvorna datoteka nije promijenjena.\n"
 "\n"
 "Pohraniti nespakiranu verziju kao datoteku?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3859,6 +3903,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Arhiver će se koristiti za obje datoteke (jedna treba samo ekstenziju)."
 
@@ -3932,12 +3988,6 @@ msgstr "Nije označeno"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr "Prenosni objekt"
@@ -3949,10 +3999,6 @@ msgstr "Resursi"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4110,5 +4156,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

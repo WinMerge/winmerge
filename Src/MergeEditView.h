@@ -283,6 +283,8 @@ protected:
 	template<bool reversed>
 	afx_msg void OnSelectLineDiff();
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
+	afx_msg void OnAddToSubstitutionFilters();
+	afx_msg void OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnLeftReadOnly();
@@ -329,7 +331,9 @@ protected:
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
-	afx_msg void OnViewSwapPanes();
+	afx_msg void OnViewSwapPanes12();
+	afx_msg void OnViewSwapPanes23();
+	afx_msg void OnViewSwapPanes13();
 	afx_msg void OnUpdateNoEditScripts(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();
@@ -346,6 +350,15 @@ protected:
 	afx_msg void OnWindowSplit();
 	afx_msg void OnUpdateWindowSplit(CCmdUI* pCmdUI);
 	afx_msg void OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnFirstFile();
+	afx_msg void OnUpdateFirstFile(CCmdUI* pCmdUI);
+	afx_msg void OnPrevFile();
+	afx_msg void OnUpdatePrevFile(CCmdUI* pCmdUI);
+	afx_msg void OnNextFile();
+	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
+	afx_msg void OnLastFile();
+	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

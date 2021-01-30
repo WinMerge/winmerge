@@ -2,7 +2,8 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Medulio <medulio@ciberirmandade.org>
+# * Medulio <medulio at ciberirmandade.org>
+# * qosobrin (LMS)
 #
 # ID line follows -- this is updated by SVN
 # $Id: Galician.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -12,9 +13,9 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-11-28 16:54+0100\n"
+"PO-Revision-Date: 2021-01-22 18:47+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
-"Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
+"Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,6 +47,9 @@ msgstr "Copiar da &dereita"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleccionar a diferenza entre liñas\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -181,7 +185,7 @@ msgid "&Horizontal Wipe"
 msgstr "Limpeza &horizontal"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "Seleccionar &rectángulo"
 
 #, c-format
 msgid "&Set Background Color"
@@ -189,6 +193,9 @@ msgstr "Es&tablecer cor de fondo"
 
 msgid "&Vector Image Scaling"
 msgstr "&Escalado de imaxe vectorial"
+
+msgid "Compare Extracted &Text From Image"
+msgstr "Comparar o &Text extraído da imaxe"
 
 #, c-format
 msgid "&File"
@@ -201,6 +208,9 @@ msgstr "&Novo"
 #, c-format
 msgid "&Text"
 msgstr "&Texto"
+
+msgid "T&able"
+msgstr "Tábo&a"
 
 #, c-format
 msgid "&Binary"
@@ -483,6 +493,15 @@ msgstr "Empregar fonte predef&inida"
 msgid "Sw&ap Panes"
 msgstr "Interc&ambiar paneis"
 
+msgid "Swap &1st | 2nd"
+msgstr "Intercambiar &1º | 2º"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Intercambiar &2º | 3º"
+
+msgid "Swap 1st | &3rd"
+msgstr "Intercambiar 1º | &3º"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Estatísticas da comparación…"
@@ -612,9 +631,6 @@ msgstr "Codificación do ar&quivo…"
 msgid "Reco&mpare As"
 msgstr "Volver comparar como"
 
-msgid "T&able"
-msgstr "Tábo&a"
-
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -722,6 +738,9 @@ msgstr "&9 Liñas"
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Conmutar todas e 0-9 liñas\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr "&Invertir (Ocultar liñas diferentes)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -1393,8 +1412,7 @@ msgstr "&Aceptar"
 msgid "&Apply"
 msgstr "&Aplicar"
 
-#, c-format
-msgid "Linefilters"
+msgid "Line Filters"
 msgstr "Filtros de liña"
 
 #, c-format
@@ -1412,6 +1430,21 @@ msgstr "Editar"
 #, c-format
 msgid "Remove"
 msgstr "Eliminar"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr "Os cambios que aparecen nos paneis como os pares que se amosan máis abaixe serán ignorados ou marcados como non significantes. Non afecta aos Patches."
+
+msgid "Enable"
+msgstr "Activar"
+
+msgid "Add"
+msgstr "Engadir"
+
+msgid "Clear"
+msgstr "Limpar"
 
 #, c-format
 msgid "Colors"
@@ -1695,6 +1728,9 @@ msgstr "Algoritmo de diferenciación (exper.):"
 msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 #, c-format
 msgid "Editor"
 msgstr "Editor"
@@ -1750,9 +1786,8 @@ msgstr "Caracteres de separación de palabra:"
 msgid "&Rendering Mode:"
 msgstr "Modo de &renderizado:"
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filtros de arquivos"
+msgid "File Filters"
+msgstr "Filtros de ficheiro"
 
 msgid "Test..."
 msgstr "Probar…"
@@ -2322,6 +2357,9 @@ msgstr "&Patróns de ficheiros de imaxe:"
 msgid "&Enable image compare in folder compare"
 msgstr "&Activar a comparación de imaxes na comparación de cartafoles"
 
+msgid "OCR result:"
+msgstr "Resultado de OCR:"
+
 #, c-format
 msgid "&Hex View"
 msgstr "Visor &Hex"
@@ -2725,6 +2763,9 @@ msgstr "Centro sen título"
 msgid "Untitled right"
 msgstr "Lado dereito sen título"
 
+msgid "Base File"
+msgstr "Arquivo base"
+
 #, c-format
 msgid "Theirs File"
 msgstr "Arquivo Theirs"
@@ -2926,6 +2967,20 @@ msgid ""
 "Do you want to save the unpacked version to another file?"
 msgstr ""
 "O complemento '%2' non puido empaquetar os cambios no arquivo esquerdo en '%1'.\n"
+"\n"
+"O arquivo orixinal non será cambiado.\n"
+"\n"
+"Desexas gardar a versión desempaquetada noutro arquivo?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"O complemento '%2' non puido empaquetar os cambios no arquivo central en '%1'.\n"
 "\n"
 "O arquivo orixinal non será cambiado.\n"
 "\n"
@@ -3991,6 +4046,34 @@ msgstr ""
 "\n"
 "Automesturar (Ctrl+Alt+M)"
 
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"Primeiro arquivo"
+
+msgid ""
+"\n"
+"Next File"
+msgstr ""
+"\n"
+"Seguinte arquivo"
+
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"Derradeiro arquivo"
+
+msgid ""
+"\n"
+"Previous File"
+msgstr ""
+"\n"
+"Anterior arquivo"
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "O desempaquetador escollido utilízase con ambos arquivos (unicamente un arquivo precisa a extensión)."
 
@@ -4068,12 +4151,6 @@ msgstr "Sen resaltar"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 #, c-format
 msgid "Portable Object"
 msgstr "Obxecto Portable"
@@ -4085,10 +4162,6 @@ msgstr "Recursos"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4252,5 +4325,29 @@ msgstr "Páx: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr "Rc: (%d, %d)  "
+
+msgid "<Edit here>"
+msgstr "<Editar aquí>"
+
+msgid "No differences to select found"
+msgstr "Non se atoparon deferenzas que seleccionar"
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

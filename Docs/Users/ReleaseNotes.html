@@ -14,24 +14,107 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <style type="text/css">article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {display: block;}audio,canvas,video {display: inline-block;}audio:not([controls]) {display: none;height: 0;}[hidden],template {display: none;}html {font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }body {margin: 0;}a {background: transparent;}a:focus {outline: thin dotted;}a:active,a:hover {outline: 0;}h1 {font-size: 2em;margin: 0.67em 0;}abbr[title] {border-bottom: 1px dotted;}b,strong {font-weight: bold;}dfn {font-style: italic;}hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0;}mark {background: #ff0;color: #000;}code,kbd,pre,samp {font-family: monospace, serif;font-size: 1em;}pre {white-space: pre-wrap;}q {quotes: "\201C" "\201D" "\2018" "\2019";}small {font-size: 80%;}sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline;}sup {top: -0.5em;}sub {bottom: -0.25em;}img {border: 0;}svg:not(:root) {overflow: hidden;}figure {margin: 0;}fieldset {border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em;}legend {border: 0; padding: 0; }button,input,select,textarea {font-family: inherit; font-size: 100%; margin: 0; }button,input {line-height: normal;}button,select {text-transform: none;}button,html input[type="button"], input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer; }button[disabled],html input[disabled] {cursor: default;}input[type="checkbox"],input[type="radio"] {box-sizing: border-box; padding: 0; }input[type="search"] {-webkit-appearance: textfield; -moz-box-sizing: content-box;-webkit-box-sizing: content-box; box-sizing: content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0;}textarea {overflow: auto; vertical-align: top; }table {border-collapse: collapse;border-spacing: 0;}.go-top {position: fixed;bottom: 2em;right: 2em;text-decoration: none;background-color: #E0E0E0;font-size: 12px;padding: 1em;display: inline;}html,body{ margin: auto;padding-right: 1em;padding-left: 1em;max-width: 44em; color:black;}*:not('#mkdbuttons'){margin:0;padding:0}body{font:13.34px helvetica,arial,freesans,clean,sans-serif;-webkit-font-smoothing:subpixel-antialiased;line-height:1.4;padding:3px;background:#fff;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}p{margin:1em 0}a{color:#4183c4;text-decoration:none}body{background-color:#fff;padding:30px;margin:15px;font-size:14px;line-height:1.6}body>*:first-child{margin-top:0!important}body>*:last-child{margin-bottom:0!important}@media screen{body{box-shadow:0 0 0 1px #cacaca,0 0 0 4px #eee}}h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:bold;-webkit-font-smoothing:subpixel-antialiased;cursor:text}h1{font-size:28px;color:#000}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h3{font-size:18px;color:#333}h4{font-size:16px;color:#333}h5{font-size:14px;color:#333}h6{color:#777;font-size:14px}p,blockquote,table,pre{margin:15px 0}ul{padding-left:30px}ol{padding-left:30px}ol li ul:first-of-type{margin-top:0}hr{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:4px;padding:0}body>h2:first-child{margin-top:0;padding-top:0}body>h1:first-child{margin-top:0;padding-top:0}body>h1:first-child+h2{margin-top:0;padding-top:0}body>h3:first-child,body>h4:first-child,body>h5:first-child,body>h6:first-child{margin-top:0;padding-top:0}a:first-child h1,a:first-child h2,a:first-child h3,a:first-child h4,a:first-child h5,a:first-child h6{margin-top:0;padding-top:0}h1+p,h2+p,h3+p,h4+p,h5+p,h6+p,ul li>:first-child,ol li>:first-child{margin-top:0}dl{padding:0}dl dt{font-size:14px;font-weight:bold;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt>:first-child{margin-top:0}dl dt>:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd>:first-child{margin-top:0}dl dd>:last-child{margin-bottom:0}blockquote{border-left:4px solid #DDD;padding:0 15px;color:#777}blockquote>:first-child{margin-top:0}blockquote>:last-child{margin-bottom:0}table{border-collapse:collapse;border-spacing:0;font-size:100%;font:inherit}table th{font-weight:bold;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}img{max-width:100%}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px;font-family:Consolas,'Liberation Mono',Courier,monospace;font-size:12px;color:#333}pre>code{margin:0;padding:0;white-space:pre;border:0;background:transparent}.highlight pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre code,pre tt{background-color:transparent;border:0}.poetry pre{font-family:Georgia,Garamond,serif!important;font-style:italic;font-size:110%!important;line-height:1.6em;display:block;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif!important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;vertical-align:super;position:relative}sub{vertical-align:sub;top:-1px}@media print{body{background:#fff}img,pre,blockquote,table,figure{page-break-inside:avoid}body{background:#fff;border:0}code{background-color:#fff;color:#333!important;padding:0 .2em;border:1px solid #dedede}pre{background:#fff}pre code{background-color:white!important;overflow:visible}}@media screen{body.inverted{color:#eee!important;border-color:#555;box-shadow:none}.inverted body,.inverted hr .inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dd,.inverted dt,.inverted blockquote{color:#eee!important;border-color:#555;box-shadow:none}.inverted td,.inverted th{background:#333}.inverted h2{border-color:#555}.inverted hr{border-color:#777;border-width:1px!important}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7)!important;color:#eee!important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}.inverted{background:#0b2531;background:#252a2a}.inverted body{background:#252a2a}.inverted a{color:#acd1d5}}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k,.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kp,.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne,.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:#008080}.highlight .il{color:#099}.highlight .gc{color:#999;background-color:#eaf2f5}.type-csharp .highlight .k,.type-csharp .highlight .kt{color:#00F}.type-csharp .highlight .nf{color:#000;font-weight:normal}.type-csharp .highlight .nc{color:#2b91af}.type-csharp .highlight .nn{color:#000}.type-csharp .highlight .s,.type-csharp .highlight .sc{color:#a31515}</style>
+  <link rel="stylesheet" href="data:text/css,article%2Caside%2Cdetails%2Cfigcaption%2Cfigure%2Cfooter%2Cheader%2Chgroup%2Cmain%2Cnav%2Csection%2Csummary%20%7Bdisplay%3A%20block%3B%7Daudio%2Ccanvas%2Cvideo%20%7Bdisplay%3A%20inline%2Dblock%3B%7Daudio%3Anot%28%5Bcontrols%5D%29%20%7Bdisplay%3A%20none%3Bheight%3A%200%3B%7D%5Bhidden%5D%2Ctemplate%20%7Bdisplay%3A%20none%3B%7Dhtml%20%7Bfont%2Dfamily%3A%20sans%2Dserif%3B%20%2Dms%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%20%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%20%7Dbody%20%7Bmargin%3A%200%3B%7Da%20%7Bbackground%3A%20transparent%3B%7Da%3Afocus%20%7Boutline%3A%20thin%20dotted%3B%7Da%3Aactive%2Ca%3Ahover%20%7Boutline%3A%200%3B%7Dh1%20%7Bfont%2Dsize%3A%202em%3Bmargin%3A%200%2E67em%200%3B%7Dabbr%5Btitle%5D%20%7Bborder%2Dbottom%3A%201px%20dotted%3B%7Db%2Cstrong%20%7Bfont%2Dweight%3A%20bold%3B%7Ddfn%20%7Bfont%2Dstyle%3A%20italic%3B%7Dhr%20%7B%2Dmoz%2Dbox%2Dsizing%3A%20content%2Dbox%3Bbox%2Dsizing%3A%20content%2Dbox%3Bheight%3A%200%3B%7Dmark%20%7Bbackground%3A%20%23ff0%3Bcolor%3A%20%23000%3B%7Dcode%2Ckbd%2Cpre%2Csamp%20%7Bfont%2Dfamily%3A%20monospace%2C%20serif%3Bfont%2Dsize%3A%201em%3B%7Dpre%20%7Bwhite%2Dspace%3A%20pre%2Dwrap%3B%7Dq%20%7Bquotes%3A%20%22%5C201C%22%20%22%5C201D%22%20%22%5C2018%22%20%22%5C2019%22%3B%7Dsmall%20%7Bfont%2Dsize%3A%2080%25%3B%7Dsub%2Csup%20%7Bfont%2Dsize%3A%2075%25%3Bline%2Dheight%3A%200%3Bposition%3A%20relative%3Bvertical%2Dalign%3A%20baseline%3B%7Dsup%20%7Btop%3A%20%2D0%2E5em%3B%7Dsub%20%7Bbottom%3A%20%2D0%2E25em%3B%7Dimg%20%7Bborder%3A%200%3B%7Dsvg%3Anot%28%3Aroot%29%20%7Boverflow%3A%20hidden%3B%7Dfigure%20%7Bmargin%3A%200%3B%7Dfieldset%20%7Bborder%3A%201px%20solid%20%23c0c0c0%3Bmargin%3A%200%202px%3Bpadding%3A%200%2E35em%200%2E625em%200%2E75em%3B%7Dlegend%20%7Bborder%3A%200%3B%20padding%3A%200%3B%20%7Dbutton%2Cinput%2Cselect%2Ctextarea%20%7Bfont%2Dfamily%3A%20inherit%3B%20font%2Dsize%3A%20100%25%3B%20margin%3A%200%3B%20%7Dbutton%2Cinput%20%7Bline%2Dheight%3A%20normal%3B%7Dbutton%2Cselect%20%7Btext%2Dtransform%3A%20none%3B%7Dbutton%2Chtml%20input%5Btype%3D%22button%22%5D%2C%20input%5Btype%3D%22reset%22%5D%2Cinput%5Btype%3D%22submit%22%5D%20%7B%2Dwebkit%2Dappearance%3A%20button%3B%20cursor%3A%20pointer%3B%20%7Dbutton%5Bdisabled%5D%2Chtml%20input%5Bdisabled%5D%20%7Bcursor%3A%20default%3B%7Dinput%5Btype%3D%22checkbox%22%5D%2Cinput%5Btype%3D%22radio%22%5D%20%7Bbox%2Dsizing%3A%20border%2Dbox%3B%20padding%3A%200%3B%20%7Dinput%5Btype%3D%22search%22%5D%20%7B%2Dwebkit%2Dappearance%3A%20textfield%3B%20%2Dmoz%2Dbox%2Dsizing%3A%20content%2Dbox%3B%2Dwebkit%2Dbox%2Dsizing%3A%20content%2Dbox%3B%20box%2Dsizing%3A%20content%2Dbox%3B%7Dinput%5Btype%3D%22search%22%5D%3A%3A%2Dwebkit%2Dsearch%2Dcancel%2Dbutton%2Cinput%5Btype%3D%22search%22%5D%3A%3A%2Dwebkit%2Dsearch%2Ddecoration%20%7B%2Dwebkit%2Dappearance%3A%20none%3B%7Dbutton%3A%3A%2Dmoz%2Dfocus%2Dinner%2Cinput%3A%3A%2Dmoz%2Dfocus%2Dinner%20%7Bborder%3A%200%3Bpadding%3A%200%3B%7Dtextarea%20%7Boverflow%3A%20auto%3B%20vertical%2Dalign%3A%20top%3B%20%7Dtable%20%7Bborder%2Dcollapse%3A%20collapse%3Bborder%2Dspacing%3A%200%3B%7D%2Ego%2Dtop%20%7Bposition%3A%20fixed%3Bbottom%3A%202em%3Bright%3A%202em%3Btext%2Ddecoration%3A%20none%3Bbackground%2Dcolor%3A%20%23E0E0E0%3Bfont%2Dsize%3A%2012px%3Bpadding%3A%201em%3Bdisplay%3A%20inline%3B%7Dhtml%2Cbody%7B%20margin%3A%20auto%3Bpadding%2Dright%3A%201em%3Bpadding%2Dleft%3A%201em%3Bmax%2Dwidth%3A%2044em%3B%20color%3Ablack%3B%7D%2A%3Anot%28%27%23mkdbuttons%27%29%7Bmargin%3A0%3Bpadding%3A0%7Dbody%7Bfont%3A13%2E34px%20helvetica%2Carial%2Cfreesans%2Cclean%2Csans%2Dserif%3B%2Dwebkit%2Dfont%2Dsmoothing%3Asubpixel%2Dantialiased%3Bline%2Dheight%3A1%2E4%3Bpadding%3A3px%3Bbackground%3A%23fff%3Bborder%2Dradius%3A3px%3B%2Dmoz%2Dborder%2Dradius%3A3px%3B%2Dwebkit%2Dborder%2Dradius%3A3px%7Dp%7Bmargin%3A1em%200%7Da%7Bcolor%3A%234183c4%3Btext%2Ddecoration%3Anone%7Dbody%7Bbackground%2Dcolor%3A%23fff%3Bpadding%3A30px%3Bmargin%3A15px%3Bfont%2Dsize%3A14px%3Bline%2Dheight%3A1%2E6%7Dbody%3E%2A%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%21important%7Dbody%3E%2A%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%21important%7D%40media%20screen%7Bbody%7Bbox%2Dshadow%3A0%200%200%201px%20%23cacaca%2C0%200%200%204px%20%23eee%7D%7Dh1%2Ch2%2Ch3%2Ch4%2Ch5%2Ch6%7Bmargin%3A20px%200%2010px%3Bpadding%3A0%3Bfont%2Dweight%3Abold%3B%2Dwebkit%2Dfont%2Dsmoothing%3Asubpixel%2Dantialiased%3Bcursor%3Atext%7Dh1%7Bfont%2Dsize%3A28px%3Bcolor%3A%23000%7Dh2%7Bfont%2Dsize%3A24px%3Bborder%2Dbottom%3A1px%20solid%20%23ccc%3Bcolor%3A%23000%7Dh3%7Bfont%2Dsize%3A18px%3Bcolor%3A%23333%7Dh4%7Bfont%2Dsize%3A16px%3Bcolor%3A%23333%7Dh5%7Bfont%2Dsize%3A14px%3Bcolor%3A%23333%7Dh6%7Bcolor%3A%23777%3Bfont%2Dsize%3A14px%7Dp%2Cblockquote%2Ctable%2Cpre%7Bmargin%3A15px%200%7Dul%7Bpadding%2Dleft%3A30px%7Dol%7Bpadding%2Dleft%3A30px%7Dol%20li%20ul%3Afirst%2Dof%2Dtype%7Bmargin%2Dtop%3A0%7Dhr%7Bbackground%3Atransparent%20url%28data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI%2FPqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC%29%20repeat%2Dx%200%200%3Bborder%3A0%20none%3Bcolor%3A%23ccc%3Bheight%3A4px%3Bpadding%3A0%7Dbody%3Eh2%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh1%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh1%3Afirst%2Dchild%2Bh2%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh3%3Afirst%2Dchild%2Cbody%3Eh4%3Afirst%2Dchild%2Cbody%3Eh5%3Afirst%2Dchild%2Cbody%3Eh6%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Da%3Afirst%2Dchild%20h1%2Ca%3Afirst%2Dchild%20h2%2Ca%3Afirst%2Dchild%20h3%2Ca%3Afirst%2Dchild%20h4%2Ca%3Afirst%2Dchild%20h5%2Ca%3Afirst%2Dchild%20h6%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dh1%2Bp%2Ch2%2Bp%2Ch3%2Bp%2Ch4%2Bp%2Ch5%2Bp%2Ch6%2Bp%2Cul%20li%3E%3Afirst%2Dchild%2Col%20li%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%7Bpadding%3A0%7Ddl%20dt%7Bfont%2Dsize%3A14px%3Bfont%2Dweight%3Abold%3Bfont%2Dstyle%3Aitalic%3Bpadding%3A0%3Bmargin%3A15px%200%205px%7Ddl%20dt%3Afirst%2Dchild%7Bpadding%3A0%7Ddl%20dt%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%20dt%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Ddl%20dd%7Bmargin%3A0%200%2015px%3Bpadding%3A0%2015px%7Ddl%20dd%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%20dd%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Dblockquote%7Bborder%2Dleft%3A4px%20solid%20%23DDD%3Bpadding%3A0%2015px%3Bcolor%3A%23777%7Dblockquote%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Dblockquote%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Dtable%7Bborder%2Dcollapse%3Acollapse%3Bborder%2Dspacing%3A0%3Bfont%2Dsize%3A100%25%3Bfont%3Ainherit%7Dtable%20th%7Bfont%2Dweight%3Abold%3Bborder%3A1px%20solid%20%23ccc%3Bpadding%3A6px%2013px%7Dtable%20td%7Bborder%3A1px%20solid%20%23ccc%3Bpadding%3A6px%2013px%7Dtable%20tr%7Bborder%2Dtop%3A1px%20solid%20%23ccc%3Bbackground%2Dcolor%3A%23fff%7Dtable%20tr%3Anth%2Dchild%282n%29%7Bbackground%2Dcolor%3A%23f8f8f8%7Dimg%7Bmax%2Dwidth%3A100%25%7Dcode%2Ctt%7Bmargin%3A0%202px%3Bpadding%3A0%205px%3Bwhite%2Dspace%3Anowrap%3Bborder%3A1px%20solid%20%23eaeaea%3Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%2Dradius%3A3px%3Bfont%2Dfamily%3AConsolas%2C%27Liberation%20Mono%27%2CCourier%2Cmonospace%3Bfont%2Dsize%3A12px%3Bcolor%3A%23333%7Dpre%3Ecode%7Bmargin%3A0%3Bpadding%3A0%3Bwhite%2Dspace%3Apre%3Bborder%3A0%3Bbackground%3Atransparent%7D%2Ehighlight%20pre%7Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%3A1px%20solid%20%23ccc%3Bfont%2Dsize%3A13px%3Bline%2Dheight%3A19px%3Boverflow%3Aauto%3Bpadding%3A6px%2010px%3Bborder%2Dradius%3A3px%7Dpre%7Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%3A1px%20solid%20%23ccc%3Bfont%2Dsize%3A13px%3Bline%2Dheight%3A19px%3Boverflow%3Aauto%3Bpadding%3A6px%2010px%3Bborder%2Dradius%3A3px%7Dpre%20code%2Cpre%20tt%7Bbackground%2Dcolor%3Atransparent%3Bborder%3A0%7D%2Epoetry%20pre%7Bfont%2Dfamily%3AGeorgia%2CGaramond%2Cserif%21important%3Bfont%2Dstyle%3Aitalic%3Bfont%2Dsize%3A110%25%21important%3Bline%2Dheight%3A1%2E6em%3Bdisplay%3Ablock%3Bmargin%2Dleft%3A1em%7D%2Epoetry%20pre%20code%7Bfont%2Dfamily%3AGeorgia%2CGaramond%2Cserif%21important%3Bword%2Dbreak%3Abreak%2Dall%3Bword%2Dbreak%3Abreak%2Dword%3B%2Dwebkit%2Dhyphens%3Aauto%3B%2Dmoz%2Dhyphens%3Aauto%3Bhyphens%3Aauto%3Bwhite%2Dspace%3Apre%2Dwrap%7Dsup%2Csub%2Ca%2Efootnote%7Bfont%2Dsize%3A1%2E4ex%3Bheight%3A0%3Bline%2Dheight%3A1%3Bvertical%2Dalign%3Asuper%3Bposition%3Arelative%7Dsub%7Bvertical%2Dalign%3Asub%3Btop%3A%2D1px%7D%40media%20print%7Bbody%7Bbackground%3A%23fff%7Dimg%2Cpre%2Cblockquote%2Ctable%2Cfigure%7Bpage%2Dbreak%2Dinside%3Aavoid%7Dbody%7Bbackground%3A%23fff%3Bborder%3A0%7Dcode%7Bbackground%2Dcolor%3A%23fff%3Bcolor%3A%23333%21important%3Bpadding%3A0%20%2E2em%3Bborder%3A1px%20solid%20%23dedede%7Dpre%7Bbackground%3A%23fff%7Dpre%20code%7Bbackground%2Dcolor%3Awhite%21important%3Boverflow%3Avisible%7D%7D%40media%20screen%7Bbody%2Einverted%7Bcolor%3A%23eee%21important%3Bborder%2Dcolor%3A%23555%3Bbox%2Dshadow%3Anone%7D%2Einverted%20body%2C%2Einverted%20hr%20%2Einverted%20p%2C%2Einverted%20td%2C%2Einverted%20li%2C%2Einverted%20h1%2C%2Einverted%20h2%2C%2Einverted%20h3%2C%2Einverted%20h4%2C%2Einverted%20h5%2C%2Einverted%20h6%2C%2Einverted%20th%2C%2Einverted%20%2Emath%2C%2Einverted%20caption%2C%2Einverted%20dd%2C%2Einverted%20dt%2C%2Einverted%20blockquote%7Bcolor%3A%23eee%21important%3Bborder%2Dcolor%3A%23555%3Bbox%2Dshadow%3Anone%7D%2Einverted%20td%2C%2Einverted%20th%7Bbackground%3A%23333%7D%2Einverted%20h2%7Bborder%2Dcolor%3A%23555%7D%2Einverted%20hr%7Bborder%2Dcolor%3A%23777%3Bborder%2Dwidth%3A1px%21important%7D%3A%3Aselection%7Bbackground%3Argba%28157%2C193%2C200%2C0%2E5%29%7Dh1%3A%3Aselection%7Bbackground%2Dcolor%3Argba%2845%2C156%2C208%2C0%2E3%29%7Dh2%3A%3Aselection%7Bbackground%2Dcolor%3Argba%2890%2C182%2C224%2C0%2E3%29%7Dh3%3A%3Aselection%2Ch4%3A%3Aselection%2Ch5%3A%3Aselection%2Ch6%3A%3Aselection%2Cli%3A%3Aselection%2Col%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28133%2C201%2C232%2C0%2E3%29%7Dcode%3A%3Aselection%7Bbackground%2Dcolor%3Argba%280%2C0%2C0%2C0%2E7%29%3Bcolor%3A%23eee%7Dcode%20span%3A%3Aselection%7Bbackground%2Dcolor%3Argba%280%2C0%2C0%2C0%2E7%29%21important%3Bcolor%3A%23eee%21important%7Da%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28255%2C230%2C102%2C0%2E2%29%7D%2Einverted%20a%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28255%2C230%2C102%2C0%2E6%29%7Dtd%3A%3Aselection%2Cth%3A%3Aselection%2Ccaption%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28180%2C237%2C95%2C0%2E5%29%7D%2Einverted%7Bbackground%3A%230b2531%3Bbackground%3A%23252a2a%7D%2Einverted%20body%7Bbackground%3A%23252a2a%7D%2Einverted%20a%7Bcolor%3A%23acd1d5%7D%7D%2Ehighlight%20%2Ec%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Eerr%7Bcolor%3A%23a61717%3Bbackground%2Dcolor%3A%23e3d2d2%7D%2Ehighlight%20%2Ek%2C%2Ehighlight%20%2Eo%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ecm%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Ecp%7Bcolor%3A%23999%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ec1%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Ecs%7Bcolor%3A%23999%3Bfont%2Dweight%3Abold%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Egd%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23fdd%7D%2Ehighlight%20%2Egd%20%2Ex%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23faa%7D%2Ehighlight%20%2Ege%7Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Egr%7Bcolor%3A%23a00%7D%2Ehighlight%20%2Egh%7Bcolor%3A%23999%7D%2Ehighlight%20%2Egi%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23dfd%7D%2Ehighlight%20%2Egi%20%2Ex%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23afa%7D%2Ehighlight%20%2Ego%7Bcolor%3A%23888%7D%2Ehighlight%20%2Egp%7Bcolor%3A%23555%7D%2Ehighlight%20%2Egs%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Egu%7Bcolor%3A%23800080%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Egt%7Bcolor%3A%23a00%7D%2Ehighlight%20%2Ekc%2C%2Ehighlight%20%2Ekd%2C%2Ehighlight%20%2Ekn%2C%2Ehighlight%20%2Ekp%2C%2Ehighlight%20%2Ekr%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ekt%7Bcolor%3A%23458%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Em%7Bcolor%3A%23099%7D%2Ehighlight%20%2Es%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Ena%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Enb%7Bcolor%3A%230086b3%7D%2Ehighlight%20%2Enc%7Bcolor%3A%23458%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Eno%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eni%7Bcolor%3A%23800080%7D%2Ehighlight%20%2Ene%2C%2Ehighlight%20%2Enf%7Bcolor%3A%23900%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Enn%7Bcolor%3A%23555%7D%2Ehighlight%20%2Ent%7Bcolor%3A%23000080%7D%2Ehighlight%20%2Env%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eow%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ew%7Bcolor%3A%23bbb%7D%2Ehighlight%20%2Emf%2C%2Ehighlight%20%2Emh%2C%2Ehighlight%20%2Emi%2C%2Ehighlight%20%2Emo%7Bcolor%3A%23099%7D%2Ehighlight%20%2Esb%2C%2Ehighlight%20%2Esc%2C%2Ehighlight%20%2Esd%2C%2Ehighlight%20%2Es2%2C%2Ehighlight%20%2Ese%2C%2Ehighlight%20%2Esh%2C%2Ehighlight%20%2Esi%2C%2Ehighlight%20%2Esx%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Esr%7Bcolor%3A%23009926%7D%2Ehighlight%20%2Es1%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Ess%7Bcolor%3A%23990073%7D%2Ehighlight%20%2Ebp%7Bcolor%3A%23999%7D%2Ehighlight%20%2Evc%2C%2Ehighlight%20%2Evg%2C%2Ehighlight%20%2Evi%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eil%7Bcolor%3A%23099%7D%2Ehighlight%20%2Egc%7Bcolor%3A%23999%3Bbackground%2Dcolor%3A%23eaf2f5%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Ek%2C%2Etype%2Dcsharp%20%2Ehighlight%20%2Ekt%7Bcolor%3A%2300F%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enf%7Bcolor%3A%23000%3Bfont%2Dweight%3Anormal%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enc%7Bcolor%3A%232b91af%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enn%7Bcolor%3A%23000%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Es%2C%2Etype%2Dcsharp%20%2Ehighlight%20%2Esc%7Bcolor%3A%23a31515%7D" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-2169-beta-release-notes">WinMerge 2.16.9 Beta Release Notes</h1>
+<h1 id="winmerge-21610-release-notes">WinMerge 2.16.10 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-21610">What Is New in 2.16.10?</a></li>
 <li><a href="#what-is-new-in-2169-beta">What Is New in 2.16.9 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>November 2020</p>
+<p>January 2021</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
+<p>This is a WinMerge 2.16.10 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-2169-beta">What Is New in 2.16.9 Beta?</h2>
+<h2 id="what-is-new-in-21610">What Is New in 2.16.10</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>BugFix: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)</li>
+<li>BugFix: Fixed the problem that the language setting is not applied to the context menu of the MDI tab when the language setting is changed. (GitHub PR #523)</li>
+<li>BugFix: command-line option /x did not work for binary and image comparison</li>
+<li>BugFix: Substiturions vs. Substitutions (GitHub #551)</li>
+<li>Swap Panes functionality for 3 way compares (Issue #507) (GitHub PR #533)</li>
+<li>[feature request] Add options to command line to change &quot;compare methods&quot;<br />
+(GitHub #530)</li>
+<li>Added the command line option &quot;/s-&quot; to ensure that another instance is always executed, ignoring the value of the &#39;Allow only one instance to run&#39; option.</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: WinMerge crashes with mouse double click (GitHub #531)</li>
+<li>BugFix: Fixed an issue where the message box &quot;The report has been created successfully.&quot; was displayed even if the report creation failed.</li>
+<li>BugFix: BUG: Doesn&#39;t respect &quot;Don&#39;t ask this question again&quot; checkbox when comparing large files (GitHub #574)</li>
+<li>The Location pane doesn&#39;t draw a line connecting moved differences by default (GitHub #498)</li>
+<li>Update crystallineparser.cpp - AutoIt (*.au3) support as a &quot;Basic&quot; (GitHub PR #543)</li>
+<li>s_apszAutoItKeywordList[] - actualization for AutoIt (GitHub PR #584)</li>
+<li>Added JavaScript and JSON syntax highligher (osdn.net #41083)</li>
+<li>Added View -&gt; Diff Context -&gt; Invert menu item</li>
+<li>Feature Request: Move To Next File option while comparing files #475 (GitHub PR #561)</li>
+<li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560) (&quot;Ignored Substitutions&quot; was renamed to &quot;Substitution Filters&quot;)</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Winmerge crashes consistently when deleting files (GitHub #491)</li>
+<li>BugFix: Copy Folder does not copy subfolders and I don&#39;t see any option for it (GitHub #537)</li>
+</ul>
+<h3 id="table-compare">Table compare</h3>
+<ul>
+<li>Added File -&gt; New -&gt; Table menu item</li>
+</ul>
+<h3 id="binary-compare">Binary compare</h3>
+<ul>
+<li>Added File -&gt; New -&gt; Binary menu item</li>
+</ul>
+<h3 id="image-compare">Image compare</h3>
+<ul>
+<li>Implement copy and paste images (GitHub PR #524)</li>
+<li>Added File -&gt; New -&gt; Image menu item</li>
+<li>Added Image -&gt; Compare Extracted Text From Image menu item</li>
+</ul>
+<h3 id="filter-dialog">Filter dialog</h3>
+<ul>
+<li>Making CPropertySheet resizable needs some re-work. (Issue #509) (GitHub PR #535)</li>
+</ul>
+<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
+<ul>
+<li>BugFix: Crash when generating patch (GitHub #521)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Dutch (GitHub #578,#579,#580)</li>
+<li>Galician (GitHub PR #493,#538,#570)</li>
+<li>German (GitHub PR #532,#548,#563,#585)</li>
+<li>Japanese</li>
+<li>Lithuanian (GitHub PR #496,#528,#536,#562,#564)</li>
+<li>Portuguese (GitHub PR #495)</li>
+<li>Slovenian (GitHub #553,#565)</li>
+<li>Russian (GitHub PR #494)</li>
+</ul></li>
+</ul>
+<h3 id="manual">Manual</h3>
+<ul>
+<li>Update manual (GitHub PR #497,#513,#546)</li>
+<li>Small tweaks for the Manual (GitHub PR #508)</li>
+<li>Windows XP Pro SP0 vs Requirements (GitHub #515)</li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Fix Various Warnings (GitHub PR #539)</li>
+<li>Various fixes to testing (GitHub PR #545)</li>
+<li>Some tweaks for translations status (GitHub PR #556)</li>
+<li>Link error when <code>building Plugins\src_VCPP\DisplayXMLFiles</code> with Visual Studio 2019 16.7.7 (GitHub #554)</li>
+<li>Link error when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #555)</li>
+<li>Link warnings when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #558)</li>
+<li>Some more files should be added to the .gitignore file (GitHub #559)</li>
+</ul>
+<h2 id="what-is-new-in-2169-beta">What Is New in 2.16.9 Beta?</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>BugFix: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)</li>
 <li>BugFix: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
@@ -39,7 +122,7 @@
 <li>Update Merge.rc (GitHub #487)</li>
 <li>Improved startup time</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: [UI] Pane enlargement was reset after changing tab (GitHub #403)</li>
 <li>BugFix: Non-comment differences were sometimes ignored when the comment filter was enabled, (osdn.net #40488)</li>
@@ -54,14 +137,14 @@
 <li>Add the feature &quot;Go to Moved Line&quot; requested by #278 (GitHub PR #484)</li>
 <li>how to show white space with linebreak hidden? (GitHub #265) (Added View-&gt;View EOL menu item)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Pausing comparing doesn&#39;t pause immediately (GitHub #342)</li>
 <li>BugFix: Sorting on Comparison Result being done incorectly (GitHub #483)</li>
 <li>Commandline to display versions in the output report (GitHub #418)</li>
 <li>&quot;Don&#39;t ask again&quot; checkbox for the Confirm Copy dialog (GitHub PR #445)</li>
 </ul>
-<h3 id="binary-compare">Binary compare</h3>
+<h3 id="binary-compare-1">Binary compare</h3>
 <ul>
 <li>BugFix: Scrolling binary files (GitHub #456)</li>
 </ul>
@@ -69,33 +152,33 @@
 <ul>
 <li>Added &quot;Automatically scroll to first inline difference&quot; option to Options dialog</li>
 </ul>
-<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
+<h3 id="patch-generator-dialog-1">Patch Generator dialog</h3>
 <ul>
 <li>BugFix: Fixed the problem that the input to File1 or File2 comboboxes of the Patch Generator dialog is not applied when the Patch Generator dialog is opened by selecting multiple files. (GitHub PR #421)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
 <li>Chinese Simplified (GitHub PR #465)</li>
 <li>Dutch (GitHub PR #482)</li>
-<li>Galician (GitHub PR #419,458,493)</li>
-<li>German (GitHub PR #438,448,480,490)</li>
-<li>Lithuanian (GitHub PR #417,439,443,449,481)</li>
+<li>Galician (GitHub PR #419,#458,#493)</li>
+<li>German (GitHub PR #438,#448,#480,#490)</li>
+<li>Lithuanian (GitHub PR #417,#439,#443,#449,#481)</li>
 <li>Polish (GitHub PR #447)</li>
-<li>Portuguese (GitHub PR #429,467)</li>
+<li>Portuguese (GitHub PR #429,#467)</li>
 <li>Slovak (GitHub PR #470)</li>
-<li>Slovenian (GitHub PR #486,488)</li>
+<li>Slovenian (GitHub PR #486,#488)</li>
 <li>Spanish (GitHub PR #454)</li>
 <li>Turkish (GitHub PR #425)</li>
 </ul></li>
 </ul>
-<h3 id="manual">Manual</h3>
+<h3 id="manual-1">Manual</h3>
 <ul>
 <li>Update Shortcut_keys.xml (GitHub PR #430)</li>
-<li>Update manual (GitHub PR #485,492)</li>
+<li>Update manual (GitHub PR #485,#492)</li>
 </ul>
-<h3 id="internals">Internals</h3>
+<h3 id="internals-1">Internals</h3>
 <ul>
 <li>Tweak output from BuildInstaller.cmd and BuildArc.cmd (GitHub PR #424)</li>
 <li>Fix typo in GhostTextBuffer.cpp (GitHub PR #472)</li>

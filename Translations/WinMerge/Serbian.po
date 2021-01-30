@@ -46,6 +46,9 @@ msgstr ""
 msgid "&Select Line Difference\tF4"
 msgstr "&Изабери различите редове\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "&Опозови"
@@ -189,6 +192,9 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Датотека"
@@ -198,6 +204,9 @@ msgid "&New"
 msgstr "&Нова"
 
 msgid "&Text"
+msgstr ""
+
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -481,6 +490,15 @@ msgstr "Користи подразумевана слова"
 msgid "Sw&ap Panes"
 msgstr "З&амени табле"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Упореди статистику..."
@@ -610,9 +628,6 @@ msgstr "Де&кодирање датотеке..."
 msgid "Reco&mpare As"
 msgstr ""
 
-msgid "T&able"
-msgstr ""
-
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -719,6 +734,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1380,9 +1398,8 @@ msgstr "&У реду"
 msgid "&Apply"
 msgstr "П&римени"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Филтер редова"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1399,6 +1416,21 @@ msgstr "Уреди"
 #, c-format
 msgid "Remove"
 msgstr "Уклони"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1678,6 +1710,9 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 #, c-format
 msgid "Editor"
 msgstr "Уређивач"
@@ -1733,9 +1768,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Филтер датотека"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Провера..."
@@ -2295,6 +2329,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2673,6 +2710,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Неименована десна"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Њихове датотеке"
@@ -2856,6 +2896,10 @@ msgstr ""
 "Изворна датотека неће бити промењена.\n"
 "\n"
 "Да ли желите да сачувате нераспаковано издање као датотеку?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3831,6 +3875,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Прилагођено распакивање ће се користити за обе датотеке (једна датотека треба наставак)."
 
@@ -3904,12 +3960,6 @@ msgstr "Није означено"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr "Преносни објекат"
@@ -3921,10 +3971,6 @@ msgstr "Resources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4082,5 +4128,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

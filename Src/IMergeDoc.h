@@ -6,11 +6,11 @@ class CDirDoc;
 
 struct IMergeDoc
 {
-	enum FileChange
+	enum class FileChange
 	{
-		FileNoChange,
-		FileChanged,
-		FileRemoved,
+		NoChange,
+		Changed,
+		Removed,
 	};
 
 	virtual void SetDirDoc(CDirDoc *pDirDoc) = 0;

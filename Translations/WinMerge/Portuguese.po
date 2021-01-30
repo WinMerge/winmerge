@@ -44,6 +44,9 @@ msgstr "C&opiar da Direita"
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecionar diferença de linha\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "&Anular"
 
@@ -163,6 +166,9 @@ msgstr "Definir Cor de Fundo"
 msgid "&Vector Image Scaling"
 msgstr "Escala da imagem &vetorial"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "&Ficheiro"
 
@@ -171,6 +177,9 @@ msgstr "&Novo"
 
 msgid "&Text"
 msgstr "&Texto"
+
+msgid "T&able"
+msgstr "P&ainel"
 
 msgid "&Binary"
 msgstr "&Binário"
@@ -388,6 +397,15 @@ msgstr "Usar Fonte Pre&definida"
 msgid "Sw&ap Panes"
 msgstr "Trocar Janelas"
 
+msgid "Swap &1st | 2nd"
+msgstr "Trocar &1º | 2º"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Trocar &2º | 3º"
+
+msgid "Swap 1st | &3rd"
+msgstr "Trocar 1º | &3º"
+
 msgid "Com&pare Statistics..."
 msgstr "Comparar Estatísticas..."
 
@@ -487,9 +505,6 @@ msgstr "Codificar Ficheiro..."
 msgid "Reco&mpare As"
 msgstr "Voltar a Comparar Como"
 
-msgid "T&able"
-msgstr "P&ainel"
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -570,6 +585,9 @@ msgstr "&9 Linhas"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Alternar tudo e linhas 0-9\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "Trancar Janelas"
@@ -1107,8 +1125,8 @@ msgstr "OK"
 msgid "&Apply"
 msgstr "Aplicar"
 
-msgid "Linefilters"
-msgstr "Filtros de Linha"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Ignorar Linhas com as Seguintes Características"
@@ -1121,6 +1139,21 @@ msgstr "Editar"
 
 msgid "Remove"
 msgstr "Remover"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Cores"
@@ -1344,6 +1377,9 @@ msgstr "Diff &algoritmo (Experimental):"
 msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "Editor"
 
@@ -1386,8 +1422,8 @@ msgstr "Caracteres da palavra:"
 msgid "&Rendering Mode:"
 msgstr "Modo de &renderização:"
 
-msgid "Filefilters"
-msgstr "Filtros de ficheiro"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testar..."
@@ -1843,6 +1879,9 @@ msgstr "&Padrão de Imagem do Ficheiro:"
 msgid "&Enable image compare in folder compare"
 msgstr "&Ativar comparação de imagem na comparação de pasta"
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Vista Hex"
 
@@ -2205,6 +2244,9 @@ msgstr "Sem título meio"
 msgid "Untitled right"
 msgstr "Sem título direita"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "O ficheiro deles"
 
@@ -2398,6 +2440,10 @@ msgstr ""
 "O ficheiro original não será alterado.\n"
 "\n"
 "Deseja guardar a versão não comprimida em outro ficheiro?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3342,6 +3388,18 @@ msgstr ""
 "\n"
 "Combinar automaticamente (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)."
@@ -3410,12 +3468,6 @@ msgstr "Sem Destaque"
 msgid "Batch"
 msgstr "Quantidade"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 msgid "Portable Object"
 msgstr "Objeto Portátil"
 
@@ -3424,9 +3476,6 @@ msgstr "Recursos"
 
 msgid "Shell"
 msgstr "Shell"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Fechar Separador E&squerdo"
@@ -3584,5 +3633,29 @@ msgstr "Página: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

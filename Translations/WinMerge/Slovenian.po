@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2020-12-29 07:34+0100\n"
+"PO-Revision-Date: 2021-01-27 19:30+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -47,6 +47,9 @@ msgstr "Kopiraj iz de&sne"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr "Dodaj to spremembmo med &Nadomestne filtre"
 
 #, c-format
 msgid "&Undo"
@@ -191,6 +194,9 @@ msgstr "Nas&tavi barvo ozadja"
 msgid "&Vector Image Scaling"
 msgstr "Prilagoditev &vektorskih slik"
 
+msgid "Compare Extracted &Text From Image"
+msgstr "Primerjaj razširjeno &besedilo s slike"
+
 #, c-format
 msgid "&File"
 msgstr "&Datoteka"
@@ -202,6 +208,9 @@ msgstr "&Nova"
 #, c-format
 msgid "&Text"
 msgstr "&Besedilo"
+
+msgid "T&able"
+msgstr "T&abela"
 
 #, c-format
 msgid "&Binary"
@@ -483,6 +492,15 @@ msgstr "Uporabi privzeto pi&savo"
 msgid "Sw&ap Panes"
 msgstr "Zam&enjaj podokni"
 
+msgid "Swap &1st | 2nd"
+msgstr "Zamenjaj &1-vo | 2-go"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Zamenjaj &2-go | 3-tjo"
+
+msgid "Swap 1st | &3rd"
+msgstr "Zamenjaj 1-vo | &3-tjo"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&Statistika primerjave..."
@@ -612,9 +630,6 @@ msgstr "De&kodiranje datoteke..."
 msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
-msgid "T&able"
-msgstr "T&abela"
-
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -723,6 +738,9 @@ msgstr "&9 vrstic"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Preklopi vse in 0-9 vrstic\tCtrl+D"
 
+msgid "&Invert (Hide Different Lines)"
+msgstr "O&brni  (Skrij različne vrstice)"
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "Za&kleni podokna"
@@ -732,11 +750,11 @@ msgid "&View Whitespace"
 msgstr "&Prikaz presledkov"
 
 msgid "View E&OL"
-msgstr "Prikaz &KnV"
+msgstr "Prikaz &EOL"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Prikaži razl&ik vrstic"
+msgstr "Prikaz razl&ik vrstic"
 
 #, c-format
 msgid "View Line &Numbers"
@@ -1393,8 +1411,7 @@ msgstr "&Vredu"
 msgid "&Apply"
 msgstr "&Uporabi"
 
-#, c-format
-msgid "Linefilters"
+msgid "Line Filters"
 msgstr "Filtri vrstic"
 
 #, c-format
@@ -1412,6 +1429,21 @@ msgstr "Uredi"
 #, c-format
 msgid "Remove"
 msgstr "Odstrani"
+
+msgid "Substitution Filters"
+msgstr "Nadomestni filtri"
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr "Spremembe, ki se v podoknih pojavijo kot spodaj navedeni pari, bodo prezrte ali označene kot nepomembne. Popravki ne vplivajo."
+
+msgid "Enable"
+msgstr "Omogoči"
+
+msgid "Add"
+msgstr "Dodaj"
+
+msgid "Clear"
+msgstr "Počisti"
 
 #, c-format
 msgid "Colors"
@@ -1442,7 +1474,7 @@ msgstr "Izbrane razlike:"
 
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Prezrte razlike:"
+msgstr "Prezrta razlika:"
 
 #, c-format
 msgid "Moved:"
@@ -1694,6 +1726,9 @@ msgstr "Al&goritem razlik (eksperimen):"
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr "Popolnoma odstrani poudarek prezrtih razlik"
+
 msgid "Editor"
 msgstr "Urejevalnik"
 
@@ -1748,8 +1783,7 @@ msgstr "&Znaki za prelom besed:"
 msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
 
-#, c-format
-msgid "Filefilters"
+msgid "File Filters"
 msgstr "Filtri datotek"
 
 msgid "Test..."
@@ -2318,6 +2352,9 @@ msgstr "V&zorci slikovnih datotek:"
 msgid "&Enable image compare in folder compare"
 msgstr "Omogoči primerjavo &slik v primerjanju map"
 
+msgid "OCR result:"
+msgstr "Rezultat OCR:"
+
 #, c-format
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
@@ -2721,6 +2758,9 @@ msgstr "Srednja neimenovana"
 msgid "Untitled right"
 msgstr "Desna neimenovana"
 
+msgid "Base File"
+msgstr "Osnovna datoteka"
+
 #, c-format
 msgid "Theirs File"
 msgstr "Njihova datoteka"
@@ -2921,11 +2961,25 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Vtičnik '%2' ne more kopirati vaših sprememb v levo datoteko nazaj v '%1'.\n"
+"Vtičnik '%2' ne more pakirati vaših sprememb v levo datoteko nazaj v '%1'.\n"
 "\n"
 "Izvirna datoteka ne bo spremenjena.\n"
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"Vtičnik '%2' ne more pakirati vaših sprememb v srednjo datoteko nazaj v '%1'.\n"
+"\n"
+"Izvirna datoteka ne bo spremenjena.\n"
+"\n"
+"Ali želite razpakirano različico shraniti v drugo datoteko?"
 
 #, c-format
 msgid ""
@@ -2937,7 +2991,7 @@ msgid ""
 msgstr ""
 "Vtičnik '%2' ne more pakirati vaših sprememb nazaj v pravo datoteko '%1'.\n"
 "\n"
-"Izvirna datoteka se ne bo spremenila.\n"
+"Izvirna datoteka ne bo spremenjena.\n"
 "\n"
 "Ali želite shraniti nepakirano različico v drugo datoteko?"
 
@@ -3765,9 +3819,9 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"Prosimo, najprej shranite vse datoteke.\n"
+"Najprej shranite vse datoteke.\n"
 "\n"
-"Ustvarjanje datoteke s popravki zahteva, da v datoteki ni neshranjenih sprememb."
+"Ustvarjanje datoteke s popravki zahteva, da v datoteki ni ne shranjenih sprememb."
 
 #, c-format
 msgid "Folder does not exist."
@@ -3987,6 +4041,34 @@ msgstr ""
 "\n"
 "Samodejno združi (Ctrl+Alt+M)"
 
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"Prva datoteka"
+
+msgid ""
+"\n"
+"Next File"
+msgstr ""
+"\n"
+"Naslednja datoteka"
+
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"Zadnja datoteka"
+
+msgid ""
+"\n"
+"Previous File"
+msgstr ""
+"\n"
+"Prejšnja datoteka"
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Prilagojen razpakovalec se uporablja za obe datoteki (samo ena datoteka potrebuje končnico)."
 
@@ -4027,7 +4109,7 @@ msgstr "Nastavitve vtičnika"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH ni najden - .sct skripti so onemogočeni"
+msgstr "WSH ni najden - skripti '.sct' so onemogočeni"
 
 #, c-format
 msgid "<None>"
@@ -4064,12 +4146,6 @@ msgstr "Brez označevanja"
 msgid "Batch"
 msgstr "Paket"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr "Lua"
-
 #, c-format
 msgid "Portable Object"
 msgstr "Prenosni predmet"
@@ -4081,10 +4157,6 @@ msgstr "Viri"
 #, c-format
 msgid "Shell"
 msgstr "Lupina"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4248,4 +4320,28 @@ msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
+
+msgid "<Edit here>"
+msgstr "<Uredi tukaj>"
+
+msgid "No differences to select found"
+msgstr "Ni najdenih nobenih razlik za izbiro"
+
+msgid "No differences found to add as substitution filter"
+msgstr "Ni najdenih razlik za dodajanje kot Nadomestni filter"
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr "Par je že prisoten na seznamu nadomestnih filtrov"
+
+msgid "Add this change to Substitution Filters?"
+msgstr "Dodam to spremembo med Nadomestne filtre?"
+
+msgid "Text only"
+msgstr "Samo besedilo"
+
+msgid "Line-by-line position and text"
+msgstr "Položaj vrstico po vrstico in besedilo"
+
+msgid "Word-by-word position and text"
+msgstr "Položaj besedo po besedo in besedilo"
 

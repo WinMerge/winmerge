@@ -193,7 +193,7 @@
         <listitem>
           <para><option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、
           パスを入力した時に、それらをチェックします。
-          <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
+          <guibutton>OK</guibutton>ボタンは、両方(または3つすべて)のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
 
@@ -718,6 +718,27 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Completely unhighlight the ignored differences<indexterm>
+          <primary>unhighlight ignored differences</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option>:
+          Makes the color of the different lines ignored by line filters and substitution
+          filters the same as the color of the identical lines.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option> (default):
+          Difference lines ignored by line filters and substitution filters are
+          displayed in the color of Ignored Difference.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
   </section>
 	
   <section id="Configuration_compare_folder">
@@ -1128,6 +1149,11 @@
 
     <section>
       <title>フォルダ比較で画像比較を有効にする</title>
+      <para>TBD</para>
+    </section>
+
+    <section>
+      <title>OCRの結果</title>
       <para>TBD</para>
     </section>
   </section>
@@ -1627,10 +1653,10 @@
           <primary>Filters folders</primary>
 
           <secondary>specifying default private folder</secondary>
-      </indexterm></title>
+        </indexterm></title>
 
-      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、(Windows XP では
-      <filename>マイ ドキュメント</filename>、または、Windows Vista では
+      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、
+      Windows 10 では
       <filename>
       ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダです。ファイルフィルタを作成したら、このフォルダへ自動的に追加されます。
       </para>

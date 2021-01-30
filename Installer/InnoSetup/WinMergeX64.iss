@@ -42,7 +42,6 @@
 ;      1.  WinMerge
 ;      2.  Read Me
 ;      3.  Users's Guide
-;      4.  WinMerge on the Web
 ; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Not yet possible (Limited by Inno Setup):
@@ -546,7 +545,6 @@ Name: "{app}\MergePlugins"
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmergejp.bitbucket.io
 
 ;Desktop Icon
 Name: {commondesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon

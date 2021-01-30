@@ -51,6 +51,9 @@ msgstr "오른쪽에서 복사(&M)"
 msgid "&Select Line Difference\tF4"
 msgstr "줄 차이점 선택(&S)\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "실행 취소(&U)"
@@ -194,6 +197,9 @@ msgstr "배경색 설정(&S)"
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
@@ -204,6 +210,9 @@ msgstr "새로 만들기(&N)"
 
 #, c-format
 msgid "&Text"
+msgstr ""
+
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -487,6 +496,15 @@ msgstr "기본 글꼴 사용"
 msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
@@ -616,9 +634,6 @@ msgstr "파일 인코딩(&F)..."
 msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
 
-msgid "T&able"
-msgstr ""
-
 #, c-format
 msgid "&XML"
 msgstr "&XML"
@@ -726,6 +741,9 @@ msgstr "&9 줄"
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "전체와 0-9 줄 토글\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 #, c-format
 msgid "&Lock Panes"
@@ -1397,9 +1415,8 @@ msgstr "확인(&O)"
 msgid "&Apply"
 msgstr "적용(&A)"
 
-#, c-format
-msgid "Linefilters"
-msgstr "줄 필터"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1416,6 +1433,21 @@ msgstr "편집"
 #, c-format
 msgid "Remove"
 msgstr "제거"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1699,6 +1731,9 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 #, c-format
 msgid "Editor"
 msgstr "편집기"
@@ -1754,9 +1789,8 @@ msgstr "단어 분리 문자(&O):"
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "파일 필터"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "테스트..."
@@ -2318,6 +2352,9 @@ msgstr "이미지 파일 패턴(&P):"
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "16진수 보기(&H)"
@@ -2716,6 +2753,9 @@ msgstr "가운데 제목 없음"
 msgid "Untitled right"
 msgstr "오른쪽 제목 없음"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "그 파일"
@@ -2907,6 +2947,10 @@ msgstr ""
 "원본 파일은 변경되지 않을 것입니다.\n"
 "\n"
 "자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3957,6 +4001,18 @@ msgstr ""
 "\n"
 "자동 병합 (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."
 
@@ -4034,12 +4090,6 @@ msgstr "강조 표시 없음"
 msgid "Batch"
 msgstr "일괄 처리"
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr "이동 가능한 객체"
@@ -4051,10 +4101,6 @@ msgstr "자원"
 #, c-format
 msgid "Shell"
 msgstr "쉘"
-
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -4218,5 +4264,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

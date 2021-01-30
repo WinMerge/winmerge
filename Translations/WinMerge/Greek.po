@@ -46,6 +46,9 @@ msgstr ""
 msgid "&Select Line Difference\tF4"
 msgstr "Επιλογή Δια&φοράς Γραμμής\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "Α&ναίρεση"
@@ -189,6 +192,9 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Αρχείο"
@@ -199,6 +205,9 @@ msgstr "&Δημιουργία"
 
 #, c-format
 msgid "&Text"
+msgstr ""
+
+msgid "T&able"
 msgstr ""
 
 #, c-format
@@ -482,6 +491,15 @@ msgstr "Χρήση Προκα&θορισμένης Γραμματοσειράς"
 msgid "Sw&ap Panes"
 msgstr "Αντι&μετάθεση Πεδίων"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Στατιστικά Συγκρίσεως..."
@@ -611,9 +629,6 @@ msgstr "&Κωδικοσελίδα Αρχείου..."
 msgid "Reco&mpare As"
 msgstr ""
 
-msgid "T&able"
-msgstr ""
-
 #, c-format
 msgid "&XML"
 msgstr ""
@@ -720,6 +735,9 @@ msgstr ""
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr ""
+
+msgid "&Invert (Hide Different Lines)"
 msgstr ""
 
 #, c-format
@@ -1392,9 +1410,8 @@ msgstr "&ΟΚ"
 msgid "&Apply"
 msgstr "Ε&φαρμογή"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Φίλτρα Γραμμών"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1411,6 +1428,21 @@ msgstr "Επεξεργασία"
 #, c-format
 msgid "Remove"
 msgstr "Διαγραφή"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1694,6 +1726,9 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 #, c-format
 msgid "Editor"
 msgstr "Επεξεργασία Κειμένου"
@@ -1749,9 +1784,8 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Αρχειοφίλτρα"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Δοκιμή..."
@@ -2309,6 +2343,9 @@ msgstr ""
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
+msgid "OCR result:"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2684,6 +2721,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Χωρίς τίτλο δεξιά"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Αρχείο Αυτών"
@@ -2875,6 +2915,10 @@ msgstr ""
 "Το αρχικό αρχείο δε θα μεταβληθεί.\n"
 "\n"
 "Επιθυμείτε να αποθηκεύσετε το αποσυμπιεσμένο αρχείο ως διαφορετικό αρχείο;"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3837,6 +3881,18 @@ msgstr ""
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Το συνεργαζόμενο αποσυμπιεστικό ενεργεί σε αμφότερα τα αρχεία (μόνο ένα αρχείο χρειάζεται να έχει την επέκταση)."
 
@@ -3910,12 +3966,6 @@ msgstr "Χωρίς Χρωματισμό Κώδικα"
 msgid "Batch"
 msgstr ""
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr ""
@@ -3926,10 +3976,6 @@ msgstr ""
 
 #, c-format
 msgid "Shell"
-msgstr ""
-
-#, c-format
-msgid "VHDL"
 msgstr ""
 
 #, c-format
@@ -4088,5 +4134,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

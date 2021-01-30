@@ -41,6 +41,9 @@ msgstr "Kopiuj z prawej"
 msgid "&Select Line Difference\tF4"
 msgstr "Zaznacz różniące się linie\tF4"
 
+msgid "Add this change to Substitution &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Cofnij"
 
@@ -160,6 +163,9 @@ msgstr "Ustaw kolor tła"
 msgid "&Vector Image Scaling"
 msgstr "Skalowanie obrazu wektorowego"
 
+msgid "Compare Extracted &Text From Image"
+msgstr ""
+
 msgid "&File"
 msgstr "Plik"
 
@@ -168,6 +174,9 @@ msgstr "Nowy"
 
 msgid "&Text"
 msgstr "Tekst"
+
+msgid "T&able"
+msgstr "T&abela"
 
 msgid "&Binary"
 msgstr "&Binarny"
@@ -385,6 +394,15 @@ msgstr "Użyj domyślnej czcionki"
 msgid "Sw&ap Panes"
 msgstr "Zamień panele"
 
+msgid "Swap &1st | 2nd"
+msgstr "Zamień &1 | 2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Zamień &2 | 3"
+
+msgid "Swap 1st | &3rd"
+msgstr "Zamień 1 | &3"
+
 msgid "Com&pare Statistics..."
 msgstr "Statystyki porównania..."
 
@@ -484,9 +502,6 @@ msgstr "Kodowanie pliku..."
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
 
-msgid "T&able"
-msgstr "T&abela"
-
 msgid "&XML"
 msgstr "&XML"
 
@@ -567,6 +582,9 @@ msgstr "&9 linii"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Przełącz wszystkie i 0-9 linii\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
 
 msgid "&Lock Panes"
 msgstr "Zab&lokuj panele"
@@ -1098,8 +1116,8 @@ msgstr "&Ok"
 msgid "&Apply"
 msgstr "Z&astosuj"
 
-msgid "Linefilters"
-msgstr "Filtry linii"
+msgid "Line Filters"
+msgstr ""
 
 msgid "Enable Line Filters"
 msgstr "Włącz filtry linii"
@@ -1112,6 +1130,21 @@ msgstr "Edytuj"
 
 msgid "Remove"
 msgstr "Usuń"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 msgid "Colors"
 msgstr "Kolory"
@@ -1335,6 +1368,9 @@ msgstr "Algorytm różnicowy (eksperyment.):"
 msgid "Enable indent &heuristic"
 msgstr "Włącz heurystykę wcięcia"
 
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
 msgid "Editor"
 msgstr "Edytor"
 
@@ -1377,9 +1413,8 @@ msgstr "Znaki łamania wyrazów:"
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filtry plików"
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testuj..."
@@ -1818,6 +1853,9 @@ msgstr "Rozszerzenia pliku obrazu:"
 msgid "&Enable image compare in folder compare"
 msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 
+msgid "OCR result:"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
@@ -2058,6 +2096,9 @@ msgstr "Środkowy bez nazwy"
 msgid "Untitled right"
 msgstr "Prawy bez nazwy"
 
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Ich plik"
 
@@ -2191,6 +2232,10 @@ msgstr "Zapis pliku nieudany.\n%1\n%2\nCzy chcesz:\n\t- użyć innej nazwy pliku
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w lewym pliku do '%1'.\n\nOryginalny plik nie zostanie zmieniony.\n\nCzy chcesz zapisać rozpakowaną wersję w innym pliku?"
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -2913,6 +2958,18 @@ msgstr "\nWszystko do lewej"
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File"
+msgstr ""
+
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
 
@@ -2973,12 +3030,6 @@ msgstr "Bez podświetlenia"
 msgid "Batch"
 msgstr ""
 
-msgid "JavaScript"
-msgstr ""
-
-msgid "Lua"
-msgstr ""
-
 msgid "Portable Object"
 msgstr "Obiekt przenośny"
 
@@ -2987,9 +3038,6 @@ msgstr "Zasoby"
 
 msgid "Shell"
 msgstr "Powłoka"
-
-msgid "VHDL"
-msgstr "VHDL"
 
 msgid "Close &Left Tabs"
 msgstr "Zamknij karty po lewej"
@@ -3141,5 +3189,29 @@ msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
 msgstr ""
 

@@ -43,6 +43,27 @@ public:
 		GUITestUtils::selectMenu(m_hwndWinMerge, id, true);
 	}
 
+	void selectYesOnFileNavConfirmationMessageBox()
+	{
+		HWND foreground = GetForegroundWindow();
+		if (foreground)
+		{
+			int cTxtLen = GetWindowTextLength(foreground);
+			// Expecting message box title "WinMerge" in File navigation confirmations
+			// for Tests not run in English, tbd, needed?
+			if (cTxtLen > 0)
+			{
+				LPWSTR pszMem = (LPWSTR)VirtualAlloc((LPVOID)NULL, (DWORD)(cTxtLen + 1), MEM_COMMIT, PAGE_READWRITE);
+				GetWindowText(foreground, pszMem, cTxtLen + 1);
+				if (wcscmp(pszMem, L"WinMerge") == 0)
+				{
+					GUITestUtils::typeKey(VK_RETURN);
+				}
+				VirtualFree(pszMem, 0, MEM_RELEASE);
+			}
+		}
+	}
+
 	void selectMenuAndSaveWindowImageHelper(UINT id, const char *str)
 	{
 		selectMenu(id);

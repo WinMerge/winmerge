@@ -57,21 +57,21 @@ enum
  * @brief Types for buffer. Buffer's type defines behavior
  * of buffer when saving etc.
  * 
- * Difference between BUFFER_NORMAL and BUFFER_NORMAL_NAMED is
+ * Difference between BUFFERTYPE::NORMAL and BUFFERTYPE::NORMAL_NAMED is
  * that _NAMED has description text given and which is shown
  * instead of filename.
  *
- * BUFFER_UNNAMED is created empty buffer (scratchpad), it has
+ * BUFFERTYPE::UNNAMED is created empty buffer (scratchpad), it has
  * no filename, and default description is given for it. After
  * this buffer is saved it becomes _SAVED. It is not equal to
  * NORMAL_NAMED, since scratchpads don't have plugins etc.
  */
-enum BUFFERTYPE
+enum class BUFFERTYPE
 {
-	BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-	BUFFER_NORMAL_NAMED, /**< Normal, description given */
-	BUFFER_UNNAMED, /**< Empty, created buffer */
-	BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+	NORMAL = 0, /**< Normal, file loaded from disk */
+	NORMAL_NAMED, /**< Normal, description given */
+	UNNAMED, /**< Empty, created buffer */
+	UNNAMED_SAVED, /**< Empty buffer saved with filename */
 };
 
 struct WordDiff {
@@ -195,7 +195,7 @@ public:
 	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
-	void SwapFiles();
+	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
 	CLocationView * GetLocationView() { return m_pLocationView; }
@@ -258,6 +258,7 @@ public:
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
+	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
 	void ClearWordDiffCache(int nDiff = -1);
@@ -334,6 +335,7 @@ protected:
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;
+	bool m_bInvertDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
@@ -374,6 +376,7 @@ protected:
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
+	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

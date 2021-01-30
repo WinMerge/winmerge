@@ -163,7 +163,7 @@ LOGFONT CCrystalTextView::m_LogFont;
 IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = nullptr;
-CCrystalTextView::RENDERING_MODE CCrystalTextView::s_nRenderingModeDefault = RENDERING_MODE_GDI;
+CCrystalTextView::RENDERING_MODE CCrystalTextView::s_nRenderingModeDefault = RENDERING_MODE::GDI;
 
 static ptrdiff_t FindStringHelper(LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
@@ -512,10 +512,10 @@ CCrystalTextView::CCrystalTextView ()
 , m_nColumnResizing(-1)
 {
 #ifdef _WIN64
-  if (m_nRenderingMode == RENDERING_MODE_GDI)
+  if (m_nRenderingMode == RENDERING_MODE::GDI)
     m_pCrystalRenderer.reset(new CCrystalRendererGDI());
   else
-    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(m_nRenderingMode));
+    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(static_cast<int>(m_nRenderingMode)));
 #else
   m_pCrystalRenderer.reset(new CCrystalRendererGDI());
 #endif
@@ -902,7 +902,7 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
   line.Empty();
   // Request whitespace characters for codepage ACP
   // because that is the codepage used by ExtTextOut
-  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE_GDI);
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE::GDI);
 
   if (nCount <= 0)
     {
@@ -1015,7 +1015,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
   line.Empty();
   // Request whitespace characters for codepage ACP
   // because that is the codepage used by ExtTextOut
-  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE_GDI);
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE::GDI);
 
   int nLength = nCount;
   int nColumn = 0;
@@ -2735,14 +2735,14 @@ OnUpdateCaret()
 {
 }
 
-int CCrystalTextView::
+CRLFSTYLE CCrystalTextView::
 GetCRLFMode ()
 {
   if (m_pTextBuffer != nullptr)
     {
       return m_pTextBuffer->GetCRLFMode ();
     }
-  return -1;
+  return CRLFSTYLE::AUTOMATIC;
 }
 
 void CCrystalTextView::
@@ -4862,7 +4862,7 @@ GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/
 
   PrepareSelBounds ();
 
-  CString sEol = m_pTextBuffer->GetStringEol (CRLF_STYLE_DOS);
+  CString sEol = m_pTextBuffer->GetStringEol (CRLFSTYLE::DOS);
 
   int nBufSize = 1;
   for (int L = m_ptDrawSelStart.y; L <= m_ptDrawSelEnd.y; L++)
@@ -5211,22 +5211,22 @@ OnUpdateIndicatorCRLF (CCmdUI * pCmdUI)
       CRLFSTYLE crlfMode = m_pTextBuffer->GetCRLFMode ();
       switch (crlfMode)
         {
-        case CRLF_STYLE_DOS:
+        case CRLFSTYLE::DOS:
           eol = LoadResString (IDS_EOL_DOS);
           pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (true);
           break;
-        case CRLF_STYLE_UNIX:
+        case CRLFSTYLE::UNIX:
           eol = LoadResString (IDS_EOL_UNIX);
           pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (true);
           break;
-        case CRLF_STYLE_MAC:
+        case CRLFSTYLE::MAC:
           eol = LoadResString (IDS_EOL_MAC);
           pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (true);
           break;
-        case CRLF_STYLE_MIXED:
+        case CRLFSTYLE::MIXED:
           eol = LoadResString (IDS_EOL_MIXED);
           pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (true);
@@ -6664,10 +6664,10 @@ OnToggleColumnSelection ()
 void CCrystalTextView::SetRenderingMode(RENDERING_MODE nRenderingMode)
 {
 #ifdef _WIN64
-  if (nRenderingMode == RENDERING_MODE_GDI)
+  if (nRenderingMode == RENDERING_MODE::GDI)
     m_pCrystalRenderer.reset(new CCrystalRendererGDI());
   else
-    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(nRenderingMode));
+    m_pCrystalRenderer.reset(new CCrystalRendererDirectWrite(static_cast<int>(nRenderingMode)));
   m_pCrystalRenderer->SetFont(m_lfBaseFont);
 #endif
   m_nRenderingMode = nRenderingMode;

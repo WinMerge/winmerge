@@ -38,6 +38,7 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
+#include "SubstitutionFiltersList.h"
 #include "SyntaxColors.h"
 #include "CCrystalTextMarkers.h"
 #include "OptionsSyntaxColors.h"
@@ -105,6 +106,7 @@ CMergeApp::CMergeApp() :
 , m_bEscShutdown(false)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
+, m_pSubstitutionFiltersList(new SubstitutionFiltersList())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
@@ -307,6 +309,9 @@ BOOL CMergeApp::InitInstance()
 			m_pLineFilters->Import(oldFilter);
 	}
 
+	if (m_pSubstitutionFiltersList != nullptr)
+		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
+
 	// Check if filter folder is set, and create it if not
 	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.empty())
@@ -457,7 +462,7 @@ int CMergeApp::ExitInstance()
 	ClearTempfolder(temp);
 
 	// Cleanup left over tempfiles from previous instances.
-	// Normally this should not neet to do anything - but if for some reason
+	// Normally this should not need to do anything - but if for some reason
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
 
@@ -618,6 +623,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	{
 		UpdateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
+
+	// Set compare method
+	if (cmdInfo.m_nCompMethod.has_value())
+		GetOptionsMgr()->Set(OPT_CMP_METHOD, *cmdInfo.m_nCompMethod);
 
 	// Unless the user has requested to see WinMerge's usage open files for
 	// comparison.
