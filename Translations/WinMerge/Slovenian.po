@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-01-27 19:30+0100\n"
+"PO-Revision-Date: 2021-01-30 10:55+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -379,7 +379,7 @@ msgstr "Nas&tavitve"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "&GNU Javna licenca"
+msgstr "Javna licenca &GNU"
 
 #, c-format
 msgid "&About WinMerge..."
@@ -391,11 +391,11 @@ msgstr "S&amo-za-branje"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "L&evo Samo-za-branje"
+msgstr "L&evo 'samo-za-branje'"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr "S&rednja Samo-za-branje"
+msgstr "S&rednja 'samo-za-branje'"
 
 #, c-format
 msgid "Ri&ght Read-only"
@@ -540,11 +540,11 @@ msgstr "&Zadnja razlika\tAlt+End"
 
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Kopiraj v de&sno\tAlt+Right"
+msgstr "Kopiraj v de&sno\tAlt+Desno"
 
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Kopiraj v &levo\tAlt+Left"
+msgstr "Kopiraj v &levo\tAlt+Levo"
 
 #, c-format
 msgid "&Delete\tDel"
@@ -736,7 +736,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "&Preklopi vse in 0-9 vrstic\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr "O&brni  (Skrij različne vrstice)"
+msgstr "O&brni (Skrij različne vrstice)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -839,17 +839,17 @@ msgstr "Samo prejšnja desna razlika\tAlt+Shift+9"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Kopiraj iz leve\tAlt+Shift+Right"
+msgstr "Kopiraj iz leve\tAlt+Shift+Desno"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Kopiraj iz desne\tAlt+Shift+Left"
+msgstr "Kopiraj iz desne\tAlt+Shift+Levo"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "K&opiraj v desno in naprej\tAlt+Ctrl+desno"
+msgstr "K&opiraj v desno in naprej\tAlt+Ctrl+Desno"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Kopiraj v le&vo in naprej\tAlt+Ctrl+levo"
+msgstr "Kopiraj v le&vo in naprej\tAlt+Ctrl+Levo"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -1718,7 +1718,7 @@ msgid "&Match similar lines"
 msgstr "&Ujemaj enake vrstice"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Al&goritem razlik (eksperimen):"
+msgstr "Al&goritem razlik (poskusno):"
 
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"
@@ -2628,7 +2628,7 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Vse datoteke (*.*)|*.*||"
 
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "Datoterke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
+msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
 
 #, c-format
 msgid "Name"
@@ -2768,7 +2768,7 @@ msgstr "Vaša datoteka"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  KnV: %s"
+msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  EOL: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -3012,7 +3012,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"je označena Samo-za-branje. Ali želite preglasiti vnos Samo-za-branje?"
+"je označena 'samo-za-branje'. Ali želite preglasiti vnos 'samo-za-branje'?"
 
 #, c-format
 msgid ""
@@ -3644,7 +3644,7 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"Ti datoteki imata različno vrsto znakov za konec vrstic (KnD).\n"
+"Ti datoteki imata različno vrsto znakov za konec vrstic.\n"
 "\n"
 "Ali želite obe vrsti obravnavati kot enaki, za trenutno primerjavo?\n"
 "\n"
@@ -3700,19 +3700,19 @@ msgstr ""
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "Izgubljene informacije pri kodiranju: obe datoteki"
+msgstr "Izgubljeni podatki pri kodiranju: obe datoteki"
 
 #, c-format
 msgid "Information lost due to encoding errors: first file"
-msgstr "Izgubljene informacije zaradi napak pri kodiranju: prva datoteka"
+msgstr "Izgubljeni podatki zaradi napak pri kodiranju: prva datoteka"
 
 #, c-format
 msgid "Information lost due to encoding errors: second file"
-msgstr "Izgubljene informacije zaradi napak pri kodiranju: druga datoteka"
+msgstr "Izgubljeni podatki zaradi napak pri kodiranju: druga datoteka"
 
 #, c-format
 msgid "Information lost due to encoding errors: third file"
-msgstr "Izgubljene informacije zaradi napak pri kodiranju: tretja datoteka"
+msgstr "Izgubljeni podatki zaradi napak pri kodiranju: tretja datoteka"
 
 #, c-format
 msgid "No difference"
@@ -3763,7 +3763,7 @@ msgstr "Podokno razlik"
 
 #, c-format
 msgid "Patch file successfully written."
-msgstr "Datoteka poročila je bila uspešno zapisana."
+msgstr "Datoteka popravka je bila uspešno zapisana."
 
 msgid "1. item is not found!"
 msgstr "1. vnosa ni mogoče najti!"
@@ -3988,7 +3988,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "\n"
-"Kopiraj desno (Alt+Right)"
+"Kopiraj desno (Alt+Desno)"
 
 #, c-format
 msgid ""
@@ -3996,7 +3996,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "\n"
-"Kopiraj levo (Alt+Left)"
+"Kopiraj levo (Alt+Levo)"
 
 #, c-format
 msgid ""
@@ -4004,7 +4004,7 @@ msgid ""
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Kopiraj desno in naprej (Ctrl+Alt+Right)"
+"Kopiraj desno in naprej (Ctrl+Alt+Desno)"
 
 #, c-format
 msgid ""
@@ -4012,7 +4012,7 @@ msgid ""
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Kopiraj levo in naprej (Ctrl+Alt+Left)"
+"Kopiraj levo in naprej (Ctrl+Alt+Levo)"
 
 #, c-format
 msgid ""
