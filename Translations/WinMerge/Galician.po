@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-01-22 18:47+0100\n"
+"PO-Revision-Date: 2021-01-30 20:04+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Seleccionar a diferenza entre liñas\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Engadir este cambio aos &Filtros de substitución"
 
 #, c-format
 msgid "&Undo"
@@ -1429,7 +1429,7 @@ msgid "Remove"
 msgstr "Eliminar"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Filtros de substitución"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Os cambios que aparecen nos paneis como os pares que se amosan máis abaixe serán ignorados ou marcados como non significantes. Non afecta aos Patches."
@@ -1726,7 +1726,7 @@ msgid "Enable indent &heuristic"
 msgstr "Activar sangrado &heurístico"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Desmarcar por completo as diferenzas ignoradas"
 
 #, c-format
 msgid "Editor"
@@ -4331,20 +4331,19 @@ msgid "No differences to select found"
 msgstr "Non se atoparon deferenzas que seleccionar"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Non se atoparon deferenzas para engadir ás substitucións ignoradas"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Esta parella xa está presente na lista de Filtros de substitución"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Engadir este cambio aos Filtros de substitución?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Só texto"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posición e texto liña a liña"
 
 msgid "Word-by-word position and text"
-msgstr ""
-
+msgstr "Posición e texto palabra a palabra"
