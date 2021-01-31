@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-25 21:32+0000\n"
-"PO-Revision-Date: 2020-11-29 09:09+0200\n"
+"POT-Creation-Date: 2021-01-27 23:46+0000\n"
+"PO-Revision-Date: 2021-01-31 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Добавить это изменение в &фильтры замены"
 
 msgid "&Undo"
 msgstr "&Отменить"
@@ -157,7 +157,7 @@ msgid "&Horizontal Wipe"
 msgstr "Горизонтальное стирание"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "&Прямоугольный выбор"
 
 msgid "&Set Background Color"
 msgstr "Цвет фона"
@@ -166,7 +166,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Сравнить извлеченный из изображения текст"
 
 msgid "&File"
 msgstr "&Файл"
@@ -583,7 +583,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Переключить все и 0-9 строк\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "Инвертировать (скрыть отличные строки)"
 
 msgid "&Lock Panes"
 msgstr "Заблокировать панели"
@@ -1131,10 +1131,10 @@ msgid "Remove"
 msgstr "Удалить"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Фильтры замены"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Изменения в тексте соответсвующие парам в списке ниже будут игнорироваться"
+msgstr "Изменения в тексте соответсвующие парам, в списке ниже, будут игнорироваться"
 
 msgid "Enable"
 msgstr "Включено"
@@ -1368,7 +1368,7 @@ msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Вообще не подсвечивать игнорируемые различия"
 
 msgid "Editor"
 msgstr "Редактор"
@@ -1853,7 +1853,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Cравнивать изображения в папках сравнения"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Результат OCR"
 
 msgid "&Hex View"
 msgstr "&Hex"
@@ -2096,7 +2096,7 @@ msgid "Untitled right"
 msgstr "Безымянный справа"
 
 msgid "Base File"
-msgstr ""
+msgstr "Базовый файл"
 
 msgid "Theirs File"
 msgstr "Их файл"
@@ -2230,15 +2230,15 @@ msgstr "Сбой сохранения файла.\n%1\n%2\nХотите:\n\t- и
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Плагин '%2' не может упаковать изменения обратно в файл слева '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
+msgstr "Плагин '%2' не может упаковать ваши изменения из левого файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr ""
+msgstr "Плагин '%2' не может упаковать ваши изменения из среднего файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Плагин '%2' не может упаковать изменения обратно в файл справа '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
+msgstr "Плагин '%2' не может упаковать ваши изменения из правого файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -2958,16 +2958,16 @@ msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nАвто объединение (Ctrl+Alt+M)"
 
 msgid "\nFirst File"
-msgstr ""
+msgstr "\nПервый файл"
 
 msgid "\nNext File"
-msgstr ""
+msgstr "\nСледующий файл"
 
 msgid "\nLast File"
-msgstr ""
+msgstr "\nПоследний файл"
 
 msgid "\nPrevious File"
-msgstr ""
+msgstr "\nПредыдущий файл"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Автоматический подбор распаковщика (укажите расширение хотя бы у одного из файлов)."
@@ -3191,26 +3191,26 @@ msgid "Rc: (%d, %d)  "
 msgstr ""
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Редактировать здесь>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Никаких отличий для выбора не найдено"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Никаких отличий не найдено для добавления в фильтр замены"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Эта пара уже присутствует в списке фильтров замены"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Добавить это изменение в фильтры замены?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Только текст"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Построчная позиция и текст"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Пословная позиция и текст"
 
