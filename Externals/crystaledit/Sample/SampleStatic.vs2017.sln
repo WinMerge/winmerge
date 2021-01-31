@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic.vs2017", "SampleStatic.vs2017.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "icudata.vs2017", "..\icudata\icudata.vs2017.vcxproj", "{2710A368-ED56-4FB1-80C3-D93BA6483710}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "icudata", "..\icudata\icudata.vcxproj", "{2710A368-ED56-4FB1-80C3-D93BA6483710}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.vs2017", "..\test\test.vs2017.vcxproj", "{D358EAE3-AE53-4292-9384-6DB97E8B8D40}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test.vcxproj", "{D358EAE3-AE53-4292-9384-6DB97E8B8D40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

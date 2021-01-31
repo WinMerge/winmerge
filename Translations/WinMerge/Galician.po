@@ -4347,3 +4347,4 @@ msgstr "Posición e texto liña a liña"
 
 msgid "Word-by-word position and text"
 msgstr "Posición e texto palabra a palabra"
+

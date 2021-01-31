@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -10,9 +10,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MergeLang", "Src\MergeLang.vcxproj", "{4B011DDA-2279-437D-903C-8028913AF31B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poco\Foundation\Foundation.vs2017.vcxproj", "{8164D41D-B053-405B-826C-CF37AC0EF176}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poco\Foundation\Foundation.vs2019.vcxproj", "{8164D41D-B053-405B-826C-CF37AC0EF176}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vs2017.vcxproj", "{9E211743-85FE-4977-82F3-4F04B40C912D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vs2019.vcxproj", "{9E211743-85FE-4977-82F3-4F04B40C912D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "Testing\GoogleTest\UnitTests\UnitTests.vcxproj", "{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,9 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
-		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
+		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
 		BuildArc.cmd = BuildArc.cmd
-		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
+		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
 		SetVersion.cmd = SetVersion.cmd
@@ -79,7 +79,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinIMerge", "Externals\wini
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vs2017.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vs2019.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E3536C28-A7F1-4B53-8E52-7D2232F9E098} = {E3536C28-A7F1-4B53-8E52-7D2232F9E098}
 		{17A4874B-0606-4687-90B6-F91F8CB3B8AF} = {17A4874B-0606-4687-90B6-F91F8CB3B8AF}
@@ -92,28 +92,28 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\F
 		{244455E0-5F25-4451-9540-F317883E52A8} = {244455E0-5F25-4451-9540-F317883E52A8}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vs2017.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vs2019.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\FreeImage\Source\LibJXR\LibJXR.vs2017.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\FreeImage\Source\LibJXR\LibJXR.vs2019.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vs2017.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vs2019.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\FreeImage\Source\LibPNG\LibPNG.vs2017.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\FreeImage\Source\LibPNG\LibPNG.vs2019.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {33134F61-C1AD-4B6F-9CEA-503A9F140C52}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\FreeImage\Source\LibRawLite\LibRawLite.vs2017.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\FreeImage\Source\LibRawLite\LibRawLite.vs2019.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\FreeImage\Source\LibTIFF4\LibTIFF4.vs2017.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\FreeImage\Source\LibTIFF4\LibTIFF4.vs2019.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\FreeImage\Source\LibWebP\LibWebP.vs2017.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\FreeImage\Source\LibWebP\LibWebP.vs2019.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\FreeImage\Source\OpenEXR\OpenEXR.vs2017.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\FreeImage\Source\OpenEXR\OpenEXR.vs2019.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\FreeImage\Source\ZLib\ZLib.vs2017.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\FreeImage\Source\ZLib\ZLib.vs2019.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vs2017.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vs2019.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
 	EndProjectSection
@@ -136,7 +136,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{A9E83C9D-8AD6-4C87-888D-3F91B5656CD1}"
 	ProjectSection(SolutionItems) = preProject
 		Externals\winimerge\BuildArc.cmd = Externals\winimerge\BuildArc.cmd
-		Externals\winimerge\BuildBin.vs2017.cmd = Externals\winimerge\BuildBin.vs2017.cmd
+		Externals\winimerge\BuildBin.vs2019.cmd = Externals\winimerge\BuildBin.vs2019.cmd
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
