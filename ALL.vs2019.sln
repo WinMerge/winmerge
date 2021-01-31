@@ -79,7 +79,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinIMerge", "Externals\wini
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vs2019.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E3536C28-A7F1-4B53-8E52-7D2232F9E098} = {E3536C28-A7F1-4B53-8E52-7D2232F9E098}
 		{17A4874B-0606-4687-90B6-F91F8CB3B8AF} = {17A4874B-0606-4687-90B6-F91F8CB3B8AF}
@@ -92,28 +92,28 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\F
 		{244455E0-5F25-4451-9540-F317883E52A8} = {244455E0-5F25-4451-9540-F317883E52A8}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vs2019.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\FreeImage\Source\LibJXR\LibJXR.vs2019.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJXR", "Externals\FreeImage\Source\LibJXR\LibJXR.vcxproj", "{244455E0-5F25-4451-9540-F317883E52A8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vs2019.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibOpenJPEG", "Externals\FreeImage\Source\LibOpenJPEG\LibOpenJPEG.vcxproj", "{E3536C28-A7F1-4B53-8E52-7D2232F9E098}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\FreeImage\Source\LibPNG\LibPNG.vs2019.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibPNG", "Externals\FreeImage\Source\LibPNG\LibPNG.vcxproj", "{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {33134F61-C1AD-4B6F-9CEA-503A9F140C52}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\FreeImage\Source\LibRawLite\LibRawLite.vs2019.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibRaw", "Externals\FreeImage\Source\LibRawLite\LibRawLite.vcxproj", "{07F662C1-1323-42AB-B6AF-FBFD34A7437A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\FreeImage\Source\LibTIFF4\LibTIFF4.vs2019.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF4", "Externals\FreeImage\Source\LibTIFF4\LibTIFF4.vcxproj", "{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\FreeImage\Source\LibWebP\LibWebP.vs2019.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibWebP", "Externals\FreeImage\Source\LibWebP\LibWebP.vcxproj", "{097D9F6C-FD0E-4CBC-9676-009012AAECA8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\FreeImage\Source\OpenEXR\OpenEXR.vs2019.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenEXR", "Externals\FreeImage\Source\OpenEXR\OpenEXR.vcxproj", "{17A4874B-0606-4687-90B6-F91F8CB3B8AF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\FreeImage\Source\ZLib\ZLib.vs2019.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZLib", "Externals\FreeImage\Source\ZLib\ZLib.vcxproj", "{33134F61-C1AD-4B6F-9CEA-503A9F140C52}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vs2019.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImagePlus", "Externals\FreeImage\Wrapper\FreeImagePlus\FreeImagePlus.vcxproj", "{94F36908-A4E2-4533-939D-64FF6EADA5A1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
 	EndProjectSection
