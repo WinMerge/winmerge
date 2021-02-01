@@ -3,7 +3,7 @@
 #include "IgnoreFieldsComma.h"
 #include "WinMergeScript.h"
 #include "resource.h"
-#include <atlstr.h>
+#include <atlutil.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
