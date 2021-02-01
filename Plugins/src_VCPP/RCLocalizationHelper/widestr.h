@@ -48,7 +48,7 @@ public:
 		m_wstr = (wchar_t *)new wchar_t[maxlen];
 		m_maxlen = maxlen;
 		wcscpy(m_wstr, old ? old : L"");
-		if (old) { delete (wchar_t *)old; }
+		if (old) { delete[] (wchar_t *)old; }
 	}
 	void append(const wchar_t * wstr, int maxlen=-1)
 	{
@@ -80,7 +80,7 @@ public:
 private:
 	void release()
 	{
-		delete m_wstr;
+		delete[] m_wstr;
 		m_wstr = 0;
 	}
 	void update()
