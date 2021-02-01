@@ -39,10 +39,10 @@ msgid "Copy fro&m Right"
 msgstr "Kopiuj z prawej"
 
 msgid "&Select Line Difference\tF4"
-msgstr "Zaznacz różniące się linie\tF4"
+msgstr "Zaznacz różniące się wiersze\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Dodaj tę zmianę do filtrów substytucyjnych"
 
 msgid "&Undo"
 msgstr "Cofnij"
@@ -62,7 +62,7 @@ msgstr "Wklej"
 msgid "&Go to...\tCtrl+G"
 msgstr "Idź do...\tCtrl+G"
 
-msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgid "Go to Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
@@ -84,7 +84,7 @@ msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
 msgid "View &Differences"
-msgstr "Zobacz różnice"
+msgstr "Wyświetl różnice"
 
 msgid "Diff &Block Size"
 msgstr "Rozmiar bloku różnic"
@@ -118,13 +118,13 @@ msgstr "Powiększenie"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Powiększ\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Pomniejsz\tCtrl+-"
+msgstr "Zmniejsz\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
@@ -164,7 +164,7 @@ msgid "&Vector Image Scaling"
 msgstr "Skalowanie obrazu wektorowego"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Porównaj wyodrębniony tekst z obrazu"
 
 msgid "&File"
 msgstr "Plik"
@@ -206,7 +206,7 @@ msgid "Recent F&iles Or Folders"
 msgstr "Ostatnie pliki lub foldery"
 
 msgid "< Empty >"
-msgstr "< pusty >"
+msgstr "< Pusty >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Zakończ\tCtrl+Q"
@@ -485,7 +485,7 @@ msgid "Print Previe&w..."
 msgstr "Podgląd wydruku..."
 
 msgid "&Convert Line Endings to"
-msgstr "Konwertuj końce linii do"
+msgstr "Konwertuj końce wierszy do"
 
 msgid "Mer&ge Mode\tF9"
 msgstr "Tryb scalania\tF9"
@@ -518,7 +518,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Wklej\tCtrl+V"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Zaznacz różniące się linie\tF4"
+msgstr "Zaznacz różniące się wiersze\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Znajdź...\tCtrl+F"
@@ -533,7 +533,7 @@ msgid "Advanced"
 msgstr "Zaawansowane"
 
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "Kopiuj z numerami linii\tCtrl+Shift+C"
+msgstr "Kopiuj z numerami wierszy\tCtrl+Shift+C"
 
 msgid "&Bookmarks"
 msgstr "Zakładki"
@@ -557,52 +557,52 @@ msgid "&Diff Context"
 msgstr "Różnica typu kontekst"
 
 msgid "&All Lines"
-msgstr "Wszystkie linie"
+msgstr "Wszystkie wiersze"
 
 msgid "&0 Lines"
-msgstr "&0 linii"
+msgstr "&0 wierszy"
 
 msgid "&1 Line"
-msgstr "&1 linia"
+msgstr "&1 wiersz"
 
 msgid "&3 Lines"
-msgstr "&3 linie"
+msgstr "&3 wiersze"
 
 msgid "&5 Lines"
-msgstr "&5 linii"
+msgstr "&5 wierszy"
 
 msgid "&7 Lines"
-msgstr "&7 linii"
+msgstr "&7 wierszy"
 
 msgid "&9 Lines"
-msgstr "&9 linii"
+msgstr "&9 wierszy"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr "Przełącz wszystkie i 0-9 linii\tCtrl+D"
+msgstr "Przełącz wszystkie i 0-9 wierszy\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "&Odwróć (ukryj różniące się wiersze)"
 
 msgid "&Lock Panes"
 msgstr "Zab&lokuj panele"
 
 msgid "&View Whitespace"
-msgstr "Pokaż białe znaki"
+msgstr "Wyświetl białe znaki"
 
 msgid "View E&OL"
-msgstr "Pokaż koniec linii"
+msgstr "Wyświetl koniec wiersza"
 
 msgid "Vie&w Line Differences"
-msgstr "Pokaż różniące się linie"
+msgstr "Wyświetl różniące się wiersze"
 
 msgid "View Line &Numbers"
-msgstr "Pokaż &numery linii"
+msgstr "Wyświetl &numery wierszy"
 
 msgid "View &Margins"
-msgstr "Pokaż &marginesy"
+msgstr "Wyświetl &marginesy"
 
 msgid "W&rap Lines"
-msgstr "Zawijaj linie"
+msgstr "Zawijaj wiersze"
 
 msgid "Split V&ertically"
 msgstr "Podziel pionowo"
@@ -785,7 +785,7 @@ msgid "with &External Editor"
 msgstr "w zewnętrznym &edytorze"
 
 msgid "Open &Parent Folder..."
-msgstr "Otówrz nadrzędny katalog"
+msgstr "Otwórz nadrzędny katalog"
 
 msgid "Open Midd&le"
 msgstr "Otwórz środkową"
@@ -907,7 +907,7 @@ msgid "Quick Contents"
 msgstr "Szybka zawartość"
 
 msgid "Binary Contents"
-msgstr "Zawartość binarna"
+msgstr "Binarna zawartość"
 
 msgid "Modified Date"
 msgstr "Data modyfikacji"
@@ -1003,7 +1003,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Przewiń automatycznie do pierw&szej różnicy"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Przewiń automatycznie do pierwszej różnicy w wierszu"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zamknij &okna klawiszem 'Esc':"
@@ -1021,10 +1021,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Zachowaj czas &pliku w porównanym pliku"
 
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Pokaż okno dialogowe \"wybierz pliki lub foldery\" po uruchomieniu"
+msgstr "Po uruchomieniu pokaż okno dialogowe \"wybierz pliki lub foldery\""
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Zamknij okno dialogowe \"wybierz pliki lub foldery\" po kliknięciu przycisku OK"
+msgstr "Zamknij okno dialogowe \"wybierz pliki lub foldery\" przyciskiem OK"
 
 msgid "O&pen-dialog Auto-Completion:"
 msgstr "Otwórz okno dialogowe automatycznego uzu&pełniania:"
@@ -1111,13 +1111,13 @@ msgid "&Apply"
 msgstr "Z&astosuj"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Filtry wierszy"
 
 msgid "Enable Line Filters"
-msgstr "Włącz filtry linii"
+msgstr "Włącz filtry wierszy"
 
 msgid "Regular Expressions (one per line):"
-msgstr "Wyrażenia regularne (jedno na linię):"
+msgstr "Wyrażenia regularne (jedno na wiersz):"
 
 msgid "Edit"
 msgstr "Edytuj"
@@ -1126,19 +1126,19 @@ msgid "Remove"
 msgstr "Usuń"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Filtry substytucyjne"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "Włącz"
 
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 msgid "Clear"
-msgstr ""
+msgstr "Wyczyść"
 
 msgid "Colors"
 msgstr "Kolory"
@@ -1159,7 +1159,7 @@ msgid "Difference:"
 msgstr "Różnica:"
 
 msgid "Selected Difference:"
-msgstr "Wybrana różnica:"
+msgstr "Zaznaczona różnica:"
 
 msgid "Ignored Difference:"
 msgstr "Pominięta różnica:"
@@ -1168,19 +1168,19 @@ msgid "Moved:"
 msgstr "Przeniesione:"
 
 msgid "Selected Moved:"
-msgstr "Wybrane przeniesione:"
+msgstr "Zaznaczone przeniesione:"
 
 msgid "Same As The Next (3 panes):"
-msgstr "Tak samo jak następne (3 panele):"
+msgstr "Taki sam jak następny (3 panele):"
 
 msgid "Same As The Next (Selected):"
-msgstr "Tak samo jak następne (wybrane):"
+msgstr "Taki sam jak następny (zaznaczone):"
 
 msgid "Word Difference:"
-msgstr "Różnica słowa:"
+msgstr "Różniące się słowa:"
 
 msgid "Selected Word Diff:"
-msgstr "Wybrana różnica słowa:"
+msgstr "Zaznaczone różniące się słowa:"
 
 msgid "&Use folder compare colors"
 msgstr "Użyj kolorów do porównania folderów"
@@ -1255,7 +1255,7 @@ msgid "&Context:"
 msgstr "Kontekst:"
 
 msgid "Ignor&e blank lines"
-msgstr "Ignoruj puste linie"
+msgstr "Ignoruj puste wiersze"
 
 msgid "Inclu&de command line"
 msgstr "Uwzględnij wiersz poleceń"
@@ -1345,19 +1345,19 @@ msgid "I&gnore all"
 msgstr "Ignoruj wszystkie"
 
 msgid "Ignore blan&k lines"
-msgstr "Ignoruj puste linie"
+msgstr "Ignoruj puste wiersze"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Ignoruj różnice w komentarzach"
 
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
 msgid "&Match similar lines"
-msgstr "Dopasuje podobne linie"
+msgstr "Dopasuje podobne wiersze"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Algorytm różnicowy (eksperyment.):"
+msgstr "Algorytm różnicowy (eksperymentalny):"
 
 msgid "Enable indent &heuristic"
 msgstr "Włącz heurystykę wcięcia"
@@ -1390,10 +1390,10 @@ msgid "Insert &Spaces"
 msgstr "Wstawiaj spacje"
 
 msgid "Line Difference Coloring"
-msgstr "Kolorowanie różniących się linii"
+msgstr "Kolorowanie różniących się wierszy"
 
 msgid "View line differences"
-msgstr "Pokaż różniące się linie"
+msgstr "Wyświetl różniące się wiersze"
 
 msgid "&Character level"
 msgstr "Poziom znaków"
@@ -1405,10 +1405,10 @@ msgid "W&ord break characters:"
 msgstr "Znaki łamania wyrazów:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "&Tryb renderowania:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Filtry plików"
 
 msgid "Test..."
 msgstr "Testuj..."
@@ -1672,16 +1672,16 @@ msgid "&TSV"
 msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr "Niestandardowe wartości rozdzielone separatorem"
+msgstr "Niestandardowe wartości - rozdzielone separatorem"
 
 msgid "D&elimiter character:"
 msgstr "Rozgraniczający znak"
 
 msgid "&Allow newlines in quotes"
-msgstr "Pozwól na nową linę w cytowaniu"
+msgstr "Zezwalaj na nowe wiersze w cudzysłowach"
 
 msgid "&Quote character:"
-msgstr "Znak cytowania"
+msgstr "Znak cudzysłowu"
 
 msgid "&Use customized text colors"
 msgstr "Użyj niestandardowych kolorów tekstu"
@@ -1696,28 +1696,28 @@ msgid "Selection:"
 msgstr "Zaznaczenie:"
 
 msgid "Backup Files"
-msgstr "Pliki kopii"
+msgstr "Pliki kopii zapasowej"
 
 msgid "Create backup files in:"
-msgstr "Twórz kopie plików w:"
+msgstr "Twórz kopię zapasową plików w:"
 
 msgid "&Folder compare"
-msgstr "Porównania folderów"
+msgstr "Porównywarce folderów"
 
 msgid "Fil&e compare"
-msgstr "Porównania plików"
+msgstr "Porównywarce plików"
 
 msgid "Create backup files into:"
-msgstr "Utwórz pliki kopii w:"
+msgstr "Utwórz pliki kopii zapasowej w:"
 
 msgid "&Original file's folder"
-msgstr "Folder oryginalnych plików"
+msgstr "Folderze oryginalnych plików"
 
 msgid "&Global backup folder:"
-msgstr "Globalny folder dla kopii:"
+msgstr "Globalnym folderze kopii zapasowej:"
 
 msgid "Backup filename:"
-msgstr "Nazwa pliku kopii:"
+msgstr "Nazwa pliku kopii zapasowej:"
 
 msgid "&Append .bak extension"
 msgstr "Dodaj rozszerzenie .bak"
@@ -1774,10 +1774,10 @@ msgid "&Unregister shell extension"
 msgstr "Wyrejestruj rozszerzenie powłoki"
 
 msgid "Register shell extension for current user &only"
-msgstr "Zarejestruj rozszerzenie powłoki tylko dla bieżącego użytkownika"
+msgstr "Zarejestruj rozszerzenie powłoki dla bieżącego użytkownika"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "Wyrejestruj rozszerzenie powłoki tylko z bieżącego użytkownika"
+msgstr "Wyrejestruj rozszerzenie powłoki z bieżącego użytkownika"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -1808,10 +1808,10 @@ msgid "\n&Number of compare threads (a negative value implies addition of the nu
 msgstr "Liczba porównywanych wątków (wartość ujemna oznacza dodanie liczby dostępnych rdzeni procesora):"
 
 msgid "&CSV File Patterns:"
-msgstr "&CSV Wzorce plikowe:"
+msgstr "Wzorce plikowe &CSV:"
 
 msgid "&TSV File Patterns:"
-msgstr "&TSV Wzorce plikowe"
+msgstr "Wzorce plikowe &TSV:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Niestandardowe wartości rozdzielone separatorem"
@@ -1827,7 +1827,7 @@ msgid "Binary File &Patterns:"
 msgstr "Rozszerzenia pliku binarnego:"
 
 msgid "Frhed settings"
-msgstr "Ustawienia Free Hex Editor'a"
+msgstr "Ustawienia Free Hex Editor"
 
 msgid "View &Settings..."
 msgstr "Wyświetl ustawienia..."
@@ -1848,7 +1848,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Wynik OCR:"
 
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
@@ -2091,7 +2091,7 @@ msgid "Untitled right"
 msgstr "Prawy bez nazwy"
 
 msgid "Base File"
-msgstr ""
+msgstr "Plik podstawowy"
 
 msgid "Theirs File"
 msgstr "Ich plik"
@@ -2101,15 +2101,15 @@ msgstr "Mój plik"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d  ZKL: %s"
+msgstr "Wier: %s  Kol: %d/%d  Zn: %d/%d  ZKL: %s"
 
 #, c-format
 msgid "Line: %s"
-msgstr "Linia: %s"
+msgstr "Wiersz: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d"
+msgstr "Wier: %s  Kol: %d/%d  Zn: %d/%d"
 
 msgid "Merge"
 msgstr "Scal"
@@ -2481,7 +2481,7 @@ msgid "Middle Encoding"
 msgstr "Środkowe kodowanie"
 
 msgid "Ignored Diff"
-msgstr "Ignorowane różn"
+msgstr "Zignorowana różnica"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -2706,7 +2706,7 @@ msgid "The report has been created successfully."
 msgstr "Raport został pomyślnie utworzony."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Nie można dodać punktu synchronizacji w tym wierszu."
 
 msgid "The same file is opened in both panels."
 msgstr "Ten sam plik został otwarty w obu panelach."
@@ -2765,7 +2765,7 @@ msgid "No difference"
 msgstr "Brak różnic"
 
 msgid "Line difference"
-msgstr "Różniące się linie"
+msgstr "Różniące się wiersze"
 
 #, c-format
 msgid "Replaced %1 string(s)."
@@ -2902,7 +2902,7 @@ msgid "Editor script"
 msgstr "Skrypt edytora"
 
 msgid "\nDifference in the Current Line"
-msgstr "\nRóżnica w bieżącej linii"
+msgstr "\nRóżnica w bieżącym wierszu"
 
 msgid "\nOptions"
 msgstr "\nOpcje"
@@ -2953,16 +2953,16 @@ msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 
 msgid "\nFirst File"
-msgstr ""
+msgstr "\nPierwszy plik"
 
 msgid "\nNext File"
-msgstr ""
+msgstr "\nNastępny plik"
 
 msgid "\nLast File"
-msgstr ""
+msgstr "\nOstatni plik"
 
 msgid "\nPrevious File"
-msgstr ""
+msgstr "\nPoprzedni plik"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
@@ -2997,17 +2997,17 @@ msgid "WSH not found - .sct scripts disabled"
 msgstr "Nie znaleziono WSH – skrypty .sct wyłączone"
 
 msgid "<None>"
-msgstr "<brak>"
+msgstr "<Brak>"
 
 msgid "<Automatic>"
-msgstr "<automatycznie>"
+msgstr "<Automatycznie>"
 
 #, c-format
 msgid "G&o to Line %1"
 msgstr "Idź do linii %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Idź do przeniesionego wiersza\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "Wyłączone"
@@ -3056,22 +3056,22 @@ msgid "Failed to create folder."
 msgstr "Nie udało się utworzyć folderu."
 
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr "Możesz podać następujące parametry ścieżki:\n$file: Nazwa ścieżki do bieżącego pliku\n$linenum: Numer linii dla aktualnej pozycji kursora"
+msgstr "Możesz podać następujące parametry ścieżki:\n$file: Nazwa ścieżki do bieżącego pliku\n$linenum: Numer wiersza dla aktualnej pozycji kursora"
 
 msgid "default"
-msgstr "domyślny"
+msgstr "Domyślny"
 
 msgid "minimal"
-msgstr "minimalne"
+msgstr "Minimalny"
 
 msgid "patience"
-msgstr "cierpliwość"
+msgstr "Cierpliwość"
 
 msgid "histogram"
-msgstr "histogram"
+msgstr "Histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
 msgstr ""
@@ -3099,23 +3099,23 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Różnica"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Podświetl."
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Mruganie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Rozmiar bloku"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Przezroczystość bloku"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
@@ -3123,11 +3123,11 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Wykrywanie Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Brak"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
@@ -3139,23 +3139,23 @@ msgstr "Poziomy"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Nakładka"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Przezroczystość"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Przenikanie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Animacja"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
@@ -3167,7 +3167,7 @@ msgstr "Strona:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Poz: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
@@ -3179,33 +3179,33 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr ""
+msgstr "Strona: %d/%d  Powiększenie: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Edytuj tutaj>"
 
 msgid "No differences to select found"
 msgstr ""
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Nie znaleziono różnic, które można by dodać jako filtr substytucyjny"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Ta para jest już obecna na liście filtrów substytucyjnych"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Dodać tę zmianę do filtrów substytucyjnych?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Tylko tekst"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Pozycja i tekst wiersz-po-wierszu"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Pozycja i tekst słowo-po-słowie"
 
