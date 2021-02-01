@@ -1345,7 +1345,8 @@ msgstr "Εύρεση &Επομένου"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&ΟΚ"
 
 #, c-format
@@ -1398,10 +1399,6 @@ msgstr "Δημιουργία"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&ΟΚ"
 
 #, c-format
 msgid "&Apply"

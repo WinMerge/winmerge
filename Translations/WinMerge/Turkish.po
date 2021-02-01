@@ -1067,7 +1067,7 @@ msgstr "S&onrakini Bul"
 msgid "Find &Prev"
 msgstr "Ö&ncekini Bul"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&Tamam"
 
 msgid "Replace"
@@ -1108,9 +1108,6 @@ msgstr "Yeni"
 
 msgid "&Background color:"
 msgstr "A&rka plan rengi:"
-
-msgid "&Ok"
-msgstr "&Tamam"
 
 msgid "&Apply"
 msgstr "&Uygula"

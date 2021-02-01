@@ -1065,8 +1065,8 @@ msgstr "Znajdź nast."
 msgid "Find &Prev"
 msgstr "Znajdź &poprz."
 
-msgid "&OK"
-msgstr "&OK"
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -1106,9 +1106,6 @@ msgstr "Nowy"
 
 msgid "&Background color:"
 msgstr "Kolor tła:"
-
-msgid "&Ok"
-msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "Z&astosuj"

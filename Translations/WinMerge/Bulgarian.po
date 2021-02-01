@@ -1064,7 +1064,7 @@ msgstr "&Търсене"
 msgid "Find &Prev"
 msgstr "Търсене &назад"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&Добре"
 
 msgid "Replace"
@@ -1105,9 +1105,6 @@ msgstr "&Нов"
 
 msgid "&Background color:"
 msgstr "Цвят на &фона:"
-
-msgid "&Ok"
-msgstr "&Добре"
 
 msgid "&Apply"
 msgstr "&Прилагане"

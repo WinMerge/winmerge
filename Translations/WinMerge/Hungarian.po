@@ -1346,7 +1346,8 @@ msgstr "Kere&sés"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&Rendben"
 
 #, c-format
@@ -1399,10 +1400,6 @@ msgstr "Új"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&Rendben"
 
 #, c-format
 msgid "&Apply"

@@ -1072,7 +1072,7 @@ msgstr "Nájsť ďalší"
 msgid "Find &Prev"
 msgstr "Nájsť &predošlý"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&OK"
 
 msgid "Replace"
@@ -1113,9 +1113,6 @@ msgstr "Nový"
 
 msgid "&Background color:"
 msgstr "Farba &pozadia:"
-
-msgid "&Ok"
-msgstr "&OK"
 
 msgid "&Apply"
 msgstr "&Použiť"

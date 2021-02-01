@@ -1350,7 +1350,8 @@ msgstr "다음 찾기(&F)"
 msgid "Find &Prev"
 msgstr "이전 찾기(&P)"
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "확인(&O)"
 
 #, c-format
@@ -1403,10 +1404,6 @@ msgstr "새로 만들기"
 #, c-format
 msgid "&Background color:"
 msgstr "배경 색상(&B):"
-
-#, c-format
-msgid "&Ok"
-msgstr "확인(&O)"
 
 #, c-format
 msgid "&Apply"
