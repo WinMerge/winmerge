@@ -62,7 +62,7 @@ msgstr "Wklej"
 msgid "&Go to...\tCtrl+G"
 msgstr "Idź do...\tCtrl+G"
 
-msgid "Go to Line Between Left and Middle\tCtrl+Shift+G"
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
