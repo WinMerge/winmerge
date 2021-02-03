@@ -1336,7 +1336,8 @@ msgstr "&Нађи следеће"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&У реду"
 
 #, c-format
@@ -1389,10 +1390,6 @@ msgstr "Нови"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&У реду"
 
 #, c-format
 msgid "&Apply"

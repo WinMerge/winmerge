@@ -1070,7 +1070,7 @@ msgstr "Trova &successivo"
 msgid "Find &Prev"
 msgstr "Trova &precedente"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&OK"
 
 msgid "Replace"
@@ -1111,9 +1111,6 @@ msgstr "Nuovo"
 
 msgid "&Background color:"
 msgstr "Colore di s&fondo:"
-
-msgid "&Ok"
-msgstr "&OK"
 
 msgid "&Apply"
 msgstr "&Applica"

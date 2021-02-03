@@ -1359,7 +1359,8 @@ msgstr "找下一個(&F)"
 msgid "Find &Prev"
 msgstr "找上一個(&P)"
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "確定(&O)"
 
 #, c-format
@@ -1412,10 +1413,6 @@ msgstr "新增"
 #, c-format
 msgid "&Background color:"
 msgstr "背景顏色(&B)"
-
-#, c-format
-msgid "&Ok"
-msgstr "確定(&O)"
 
 #, c-format
 msgid "&Apply"

@@ -1349,7 +1349,8 @@ msgstr "Etsi seuraava"
 msgid "Find &Prev"
 msgstr "Etsi &edellinen"
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "OK"
 
 #, c-format
@@ -1402,10 +1403,6 @@ msgstr "Uusi"
 #, c-format
 msgid "&Background color:"
 msgstr "&Taustaväri:"
-
-#, c-format
-msgid "&Ok"
-msgstr "OK"
 
 #, c-format
 msgid "&Apply"

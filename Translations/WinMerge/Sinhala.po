@@ -1346,7 +1346,8 @@ msgstr "සෙවීම එ ළඟ"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&හරි"
 
 #, c-format
@@ -1399,10 +1400,6 @@ msgstr "නව"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&හරි"
 
 #, c-format
 msgid "&Apply"

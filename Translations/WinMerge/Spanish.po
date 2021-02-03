@@ -1074,7 +1074,7 @@ msgstr "&Siguiente"
 msgid "Find &Prev"
 msgstr "&Anterior"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&Aceptar"
 
 msgid "Replace"
@@ -1115,9 +1115,6 @@ msgstr "Nuevo"
 
 msgid "&Background color:"
 msgstr ""
-
-msgid "&Ok"
-msgstr "&Aceptar"
 
 msgid "&Apply"
 msgstr "&Aplicar"

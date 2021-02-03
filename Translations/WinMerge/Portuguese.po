@@ -1077,8 +1077,8 @@ msgstr "Localizar Próximo"
 msgid "Find &Prev"
 msgstr "Localizar &Pré-visualisar"
 
-msgid "&OK"
-msgstr "&OK"
+msgid "&Ok"
+msgstr "OK"
 
 msgid "Replace"
 msgstr "Substituir"
@@ -1118,9 +1118,6 @@ msgstr "Novo"
 
 msgid "&Background color:"
 msgstr "&Cor de fundo:"
-
-msgid "&Ok"
-msgstr "OK"
 
 msgid "&Apply"
 msgstr "Aplicar"

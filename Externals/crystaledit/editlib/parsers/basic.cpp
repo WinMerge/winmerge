@@ -313,7 +313,7 @@ IsBasicKeyword (const TCHAR *pszChars, int nLength)
   return ISXKEYWORDI (s_apszBasicKeywordList, pszChars, nLength);
 }
 
-inline void
+static inline void
 DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
   if (IsBasicKeyword (pszChars + nIdentBegin, I - nIdentBegin))

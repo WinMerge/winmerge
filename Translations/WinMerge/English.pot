@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
+"POT-Creation-Date: 2021-02-01 23:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1062,7 +1062,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+msgid "&Ok"
 msgstr ""
 
 msgid "Replace"
@@ -1102,9 +1102,6 @@ msgid "New"
 msgstr ""
 
 msgid "&Background color:"
-msgstr ""
-
-msgid "&Ok"
 msgstr ""
 
 msgid "&Apply"

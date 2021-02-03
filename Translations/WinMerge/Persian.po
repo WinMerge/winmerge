@@ -1354,7 +1354,8 @@ msgstr "&F يافتن بعدي "
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&O تاييد "
 
 #, c-format
@@ -1407,10 +1408,6 @@ msgstr " جديد "
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&O تاييد "
 
 #, c-format
 msgid "&Apply"

@@ -1350,7 +1350,8 @@ msgstr "&Далі"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&OК"
 
 #, c-format
@@ -1403,10 +1404,6 @@ msgstr "Створити"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&OК"
 
 #, c-format
 msgid "&Apply"
