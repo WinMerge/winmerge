@@ -488,7 +488,7 @@ IsAutoItKeyword (const TCHAR *pszChars, int nLength)
   return ISXKEYWORDI (s_apszAutoItKeywordList, pszChars, nLength);
 }
 
-inline void
+static inline void
 DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
   if (IsAutoItKeyword (pszChars + nIdentBegin, I - nIdentBegin))
