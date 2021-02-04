@@ -672,6 +672,17 @@ void CDirDoc::ApplyDisplayRoot(int nIndex, String &sText)
 {
 	if (m_pTempPathContext != nullptr)
 	{
+		if (sText.find(m_pTempPathContext->m_strRoot[nIndex]) == String::npos)
+		{
+			for (int pane = 0; pane < m_nDirs; ++pane)
+			{
+				if (sText.find(m_pTempPathContext->m_strRoot[pane]) != String::npos)
+				{
+					nIndex = pane;
+					break;
+				}
+			}
+		}
 		sText.erase(0, m_pTempPathContext->m_strRoot[nIndex].length());
 		sText.insert(0, m_pTempPathContext->m_strDisplayRoot[nIndex]);
 	}
