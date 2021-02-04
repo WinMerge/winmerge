@@ -793,7 +793,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="WatchBeginningOfLog.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="WatchBeginningOfLog.idl">

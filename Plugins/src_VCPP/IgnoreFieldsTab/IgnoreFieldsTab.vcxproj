@@ -793,7 +793,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="IgnoreFieldsTab.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="IgnoreFieldsTab.idl">

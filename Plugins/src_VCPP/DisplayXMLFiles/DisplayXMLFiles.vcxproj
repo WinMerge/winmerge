@@ -861,7 +861,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DisplayXMLFiles.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="DisplayXMLFiles.idl">

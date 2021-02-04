@@ -792,7 +792,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="IgnoreFieldsComma.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="IgnoreFieldsComma.idl">
