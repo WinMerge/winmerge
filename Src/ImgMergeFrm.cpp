@@ -2055,9 +2055,13 @@ void CImgMergeFrame::OnImgCompareExtractedText()
 		BSTR bstr = m_pImgMergeWindow->ExtractTextFromImage(nBuffer,
 			m_pImgMergeWindow->GetCurrentPage(nBuffer),
 			static_cast<IImgMergeWindow::OCR_RESULT_TYPE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OCR_RESULT_TYPE)));
-		text[nBuffer].assign(bstr, SysStringLen(bstr));
-		desc[nBuffer] = m_strDesc[nBuffer].empty() ? 
-			paths::FindFileName(m_filePaths[nBuffer]) : m_strDesc[nBuffer];
+		if (bstr)
+		{
+			text[nBuffer].assign(bstr, SysStringLen(bstr));
+			desc[nBuffer] = m_strDesc[nBuffer].empty() ?
+				paths::FindFileName(m_filePaths[nBuffer]) : m_strDesc[nBuffer];
+			SysFreeString(bstr);
+		}
 	}
 	GetMainFrame()->ShowMergeDoc(m_pDirDoc, m_filePaths.GetSize(), text, desc, _T(".yaml"));
 }
