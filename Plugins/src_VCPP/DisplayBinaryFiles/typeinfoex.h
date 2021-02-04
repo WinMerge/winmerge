@@ -162,7 +162,7 @@ inline HRESULT CComTypeInfoHolderModule<nObtainMethod>::GetTI(LCID lcid)
 	EnterCriticalSection(&_Module.m_csTypeInfoHolder);
 	if (m_pInfo == NULL)
 	{
-		ITypeLib* pTypeLib;
+		ITypeLib* pTypeLib = nullptr;
         hRes = E_FAIL;
         TCHAR szModule[_MAX_PATH+10];
         LPOLESTR lpszModule;
