@@ -2069,7 +2069,7 @@ BOOL CMainFrame::CreateToolbar()
 	LoadToolbarImages();
 
 	UINT nID, nStyle;
-	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW })
+	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN })
 	{
 		int iImage;
 		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
@@ -2400,7 +2400,19 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
 	ClientToScreen(&(pToolBar->rcButton));
 	BCMenu menu;
-	int id = (pToolBar->iItem == ID_FILE_NEW) ? IDR_POPUP_NEW : IDR_POPUP_DIFF_OPTIONS;
+	int id;
+	switch (pToolBar->iItem)
+	{
+	case ID_FILE_NEW:
+		id = IDR_POPUP_NEW;
+		break;
+	case ID_FILE_OPEN:
+		id = IDR_POPUP_OPEN;
+		break;
+	default:
+		id = IDR_POPUP_DIFF_OPTIONS;
+		break;
+	}
 	VERIFY(menu.LoadMenu(id));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
@@ -2500,9 +2512,10 @@ void CMainFrame::OnMRUs(UINT nID)
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
-	HMENU hMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
-	if (hMenu == nullptr)
+	CMenu *pMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu : pCmdUI->m_pMenu;
+	if (pMenu == nullptr)
 		return;
+	HMENU hMenu = pMenu->m_hMenu;
 	
 	// empty the menu
 	size_t i = ::GetMenuItemCount(hMenu);

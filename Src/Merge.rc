@@ -882,6 +882,14 @@ BEGIN
     END
 END
 
+IDR_POPUP_OPEN MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "< Empty >",                   ID_NO_MRU
+    END
+END
+
 IDR_POPUP_PROJECT MENU
 BEGIN
     POPUP "_POPUP_"
