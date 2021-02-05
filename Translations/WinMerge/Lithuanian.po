@@ -1068,7 +1068,7 @@ msgstr "&Rasti kitą"
 msgid "Find &Prev"
 msgstr "Rasti &praeitą"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&Gerai"
 
 msgid "Replace"
@@ -1109,9 +1109,6 @@ msgstr "Naujas"
 
 msgid "&Background color:"
 msgstr "&Fono spalva:"
-
-msgid "&Ok"
-msgstr "&Gerai"
 
 msgid "&Apply"
 msgstr "T&aikyti"

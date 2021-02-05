@@ -793,7 +793,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="IgnoreCommentsC.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="IgnoreCommentsC.idl">

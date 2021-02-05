@@ -793,7 +793,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HideFirstLetter.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="HideFirstLetter.idl">

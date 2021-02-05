@@ -1347,8 +1347,9 @@ msgstr "&Buscar seguinte"
 msgid "Find &Prev"
 msgstr "Buscar &anterior"
 
-msgid "&OK"
-msgstr "&OK"
+#, c-format
+msgid "&Ok"
+msgstr "&Aceptar"
 
 #, c-format
 msgid "Replace"
@@ -1400,10 +1401,6 @@ msgstr "Novo"
 #, c-format
 msgid "&Background color:"
 msgstr "Cor de &fondo:"
-
-#, c-format
-msgid "&Ok"
-msgstr "&Aceptar"
 
 #, c-format
 msgid "&Apply"

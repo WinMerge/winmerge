@@ -1071,7 +1071,7 @@ msgstr "查找下一个(&F)"
 msgid "Find &Prev"
 msgstr "查找上一个(&P)"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "确定(&O)"
 
 msgid "Replace"
@@ -1112,9 +1112,6 @@ msgstr "新建"
 
 msgid "&Background color:"
 msgstr "背景颜色(&B)"
-
-msgid "&Ok"
-msgstr "确定(&O)"
 
 msgid "&Apply"
 msgstr "应用(&A)"

@@ -1066,7 +1066,7 @@ msgstr "次を検索(&F)"
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&OK"
 
 msgid "Replace"
@@ -1107,9 +1107,6 @@ msgstr "新規"
 
 msgid "&Background color:"
 msgstr "背景色(&B)"
-
-msgid "&Ok"
-msgstr "&OK"
 
 msgid "&Apply"
 msgstr "適用(&A)"

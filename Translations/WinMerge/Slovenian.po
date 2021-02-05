@@ -1346,7 +1346,8 @@ msgstr "&Najdi naslednje"
 msgid "Find &Prev"
 msgstr "Najdi pre&jšnje"
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&Vredu"
 
 #, c-format
@@ -1399,10 +1400,6 @@ msgstr "Nov"
 #, c-format
 msgid "&Background color:"
 msgstr "Bar&va ozadja:"
-
-#, c-format
-msgid "&Ok"
-msgstr "&Vredu"
 
 #, c-format
 msgid "&Apply"

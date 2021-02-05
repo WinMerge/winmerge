@@ -55,7 +55,7 @@
     <ProjectGuid>{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}</ProjectGuid>
     <RootNamespace>DisplayXMLFiles</RootNamespace>
     <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">7.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '16'">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '16'">10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|Win32'" Label="Configuration">
@@ -227,6 +227,42 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|x64'">$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|x64'">false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release MinDependency|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release MinSize|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release MinDependency|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release MinSize|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
     <Midl>
       <TypeLibraryName>.\..\..\..\BuildTmp\DisplayXMLFiles\DebugU/DisplayXMLFiles.tlb</TypeLibraryName>
@@ -263,6 +299,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\DebugU/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -305,6 +342,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\DebugU/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -346,6 +384,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseMinDependency/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -387,6 +426,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseMinDependency/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -430,6 +470,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\Debug/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -473,6 +514,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\Debug/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -514,6 +556,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseMinSize/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -555,6 +598,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseMinSize/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -596,6 +640,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseUMinDependency/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -637,6 +682,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseUMinDependency/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -678,6 +724,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseUMinSize/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -719,6 +766,7 @@
       </DataExecutionPrevention>
       <ImportLibrary>.\..\..\..\BuildTmp\DisplayXMLFiles\ReleaseUMinSize/DisplayXMLFiles.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -813,7 +861,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DisplayXMLFiles.def" />
-    <None Include="WinMergeScript.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="DisplayXMLFiles.idl">

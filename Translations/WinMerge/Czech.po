@@ -1348,7 +1348,8 @@ msgstr "&Najít další"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&OK"
 
 #, c-format
@@ -1401,10 +1402,6 @@ msgstr "&Nový"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&OK"
 
 #, c-format
 msgid "&Apply"

@@ -1070,7 +1070,7 @@ msgstr "البحث في ال&تالي"
 msgid "Find &Prev"
 msgstr "البحث في ال&سابق"
 
-msgid "&OK"
+msgid "&Ok"
 msgstr "&موافق"
 
 msgid "Replace"
@@ -1111,9 +1111,6 @@ msgstr "جديد"
 
 msgid "&Background color:"
 msgstr "&لون الخلفية:"
-
-msgid "&Ok"
-msgstr "&موافق"
 
 msgid "&Apply"
 msgstr "ت&طبيق"

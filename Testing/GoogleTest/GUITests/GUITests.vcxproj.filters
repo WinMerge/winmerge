@@ -72,6 +72,9 @@
     <ClCompile Include="InstallerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-string.h">

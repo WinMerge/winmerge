@@ -1067,8 +1067,8 @@ msgstr "Следующее"
 msgid "Find &Prev"
 msgstr "Предыдущее"
 
-msgid "&OK"
-msgstr "&OK"
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "Replace"
 msgstr "Заменить"
@@ -1108,9 +1108,6 @@ msgstr "Создать"
 
 msgid "&Background color:"
 msgstr "Цвет фона:"
-
-msgid "&Ok"
-msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "&Применить"

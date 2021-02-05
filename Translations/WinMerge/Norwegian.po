@@ -1346,7 +1346,8 @@ msgstr "&Finn neste"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&Ok"
 
 #, c-format
@@ -1399,10 +1400,6 @@ msgstr "Ny"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&Ok"
 
 #, c-format
 msgid "&Apply"

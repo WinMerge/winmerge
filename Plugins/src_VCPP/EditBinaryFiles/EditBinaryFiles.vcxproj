@@ -834,7 +834,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EditBinaryFiles.def" />
-    <None Include="WinMergeScript.rgs" />
     <None Include="ChangeLog.txt" />
   </ItemGroup>
   <ItemGroup>

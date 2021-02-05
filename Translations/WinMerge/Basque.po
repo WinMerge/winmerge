@@ -1348,7 +1348,8 @@ msgstr "Bilatu &Hurrengoa"
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&OK"
+#, c-format
+msgid "&Ok"
 msgstr "&Ongi"
 
 #, c-format
@@ -1401,10 +1402,6 @@ msgstr "Berria"
 #, c-format
 msgid "&Background color:"
 msgstr ""
-
-#, c-format
-msgid "&Ok"
-msgstr "&Ongi"
 
 #, c-format
 msgid "&Apply"
