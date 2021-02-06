@@ -22,20 +22,28 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "Testing\Google
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D051-463E-997B-8C392081EE15}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
+		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
+		BuildAll.vs2019x64_vs2017Win32.cmd = BuildAll.vs2019x64_vs2017Win32.cmd
 		BuildArc.cmd = BuildArc.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
+		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
+		CreateRelease.cmd = CreateRelease.cmd
+		DownloadDeps.cmd = DownloadDeps.cmd
+		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		runastyle.bat = runastyle.bat
 		SetVersion.cmd = SetVersion.cmd
 		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBS Scripts", "VBS Scripts", "{8B625EC8-5063-4336-84F9-AA7FD5348525}"
-	ProjectSection(SolutionItems) = preProject
-		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
+		Version.h = Version.h
+		Version.in = Version.in
+		winmerge.cppcheck = winmerge.cppcheck
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleTest\GUITests\GUITests.vcxproj", "{0A3727B1-51E7-4702-AD0C-8AEE317EA510}"
@@ -136,7 +144,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{A9E83C9D-8AD6-4C87-888D-3F91B5656CD1}"
 	ProjectSection(SolutionItems) = preProject
 		Externals\winimerge\BuildArc.cmd = Externals\winimerge\BuildArc.cmd
-		Externals\winimerge\BuildBin.vs2017.cmd = Externals\winimerge\BuildBin.vs2017.cmd
+		Externals\winimerge\BuildBin.vs2019.cmd = Externals\winimerge\BuildBin.vs2019.cmd
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
@@ -165,7 +173,386 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge7z", "ArchiveSupport\M
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderCompare", "Testing\FolderCompare\FolderCompare.vcxproj", "{AB827C6B-5116-408F-B453-E2075E9B73B4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{14FC5F77-041C-49BF-B28F-F976EC6F253C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{14FC5F77-041C-49BF-B28F-F976EC6F253C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{32E78687-FB4E-4B90-88F0-95FE1095F361}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\dlls\ApplyPatch.sct = Plugins\dlls\ApplyPatch.sct
+		Plugins\dlls\CompareMSExcelFiles.sct = Plugins\dlls\CompareMSExcelFiles.sct
+		Plugins\dlls\CompareMSPowerPointFiles.sct = Plugins\dlls\CompareMSPowerPointFiles.sct
+		Plugins\dlls\CompareMSVisioFiles.sct = Plugins\dlls\CompareMSVisioFiles.sct
+		Plugins\dlls\CompareMSWordFiles.sct = Plugins\dlls\CompareMSWordFiles.sct
+		Plugins\dlls\editor addin.sct = Plugins\dlls\editor addin.sct
+		Plugins\dlls\insert datetime.sct = Plugins\dlls\insert datetime.sct
+		Plugins\dlls\PrediffLineFilter.sct = Plugins\dlls\PrediffLineFilter.sct
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{860FEA9B-C932-4878-9E76-3DE0241591C2}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\README.md = Docs\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{C15D3EBB-A0A6-47AF-93FF-0FB3B477B96B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{5D37AB3C-A012-46AB-A2B0-5165B36884C8}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Users\BuildDocs.bat = Docs\Users\BuildDocs.bat
+		Docs\Users\ChangeLog.html = Docs\Users\ChangeLog.html
+		Docs\Users\ChangeLog.md = Docs\Users\ChangeLog.md
+		Docs\Users\Contributors.txt = Docs\Users\Contributors.txt
+		Docs\Users\github-pandoc.css = Docs\Users\github-pandoc.css
+		Docs\Users\GPL.rtf = Docs\Users\GPL.rtf
+		Docs\Users\GPL.rtf.txt = Docs\Users\GPL.rtf.txt
+		Docs\Users\README.md = Docs\Users\README.md
+		Docs\Users\ReadMe.txt = Docs\Users\ReadMe.txt
+		Docs\Users\ReleaseNotes.html = Docs\Users\ReleaseNotes.html
+		Docs\Users\ReleaseNotes.md = Docs\Users\ReleaseNotes.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{2313487A-3891-4F6E-A4F4-13E8DE53D7AC}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
+		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
+		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
+		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
+		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
+		Docs\Manual\README.md = Docs\Manual\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EN", "EN", "{68CBCF73-57B3-4D8E-95D8-645313D3DF80}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\EN\_Copyrights.xml = Docs\Manual\EN\_Copyrights.xml
+		Docs\Manual\EN\_VersionNumbers.xml = Docs\Manual\EN\_VersionNumbers.xml
+		Docs\Manual\EN\About_Doc.xml = Docs\Manual\EN\About_Doc.xml
+		Docs\Manual\EN\Command_line.xml = Docs\Manual\EN\Command_line.xml
+		Docs\Manual\EN\Compare_bin.xml = Docs\Manual\EN\Compare_bin.xml
+		Docs\Manual\EN\Compare_dirs.xml = Docs\Manual\EN\Compare_dirs.xml
+		Docs\Manual\EN\Compare_files.xml = Docs\Manual\EN\Compare_files.xml
+		Docs\Manual\EN\Compare_images.xml = Docs\Manual\EN\Compare_images.xml
+		Docs\Manual\EN\Compare_table.xml = Docs\Manual\EN\Compare_table.xml
+		Docs\Manual\EN\Configuration.xml = Docs\Manual\EN\Configuration.xml
+		Docs\Manual\EN\Faq.xml = Docs\Manual\EN\Faq.xml
+		Docs\Manual\EN\Filters.xml = Docs\Manual\EN\Filters.xml
+		Docs\Manual\EN\Index.xml = Docs\Manual\EN\Index.xml
+		Docs\Manual\EN\Install.xml = Docs\Manual\EN\Install.xml
+		Docs\Manual\EN\Intro_diffs.xml = Docs\Manual\EN\Intro_diffs.xml
+		Docs\Manual\EN\Introduction.xml = Docs\Manual\EN\Introduction.xml
+		Docs\Manual\EN\Locales.xml = Docs\Manual\EN\Locales.xml
+		Docs\Manual\EN\Open_paths.xml = Docs\Manual\EN\Open_paths.xml
+		Docs\Manual\EN\Plugins.xml = Docs\Manual\EN\Plugins.xml
+		Docs\Manual\EN\Quick_start.xml = Docs\Manual\EN\Quick_start.xml
+		Docs\Manual\EN\select_unpacker.xml = Docs\Manual\EN\select_unpacker.xml
+		Docs\Manual\EN\Shortcut_keys.xml = Docs\Manual\EN\Shortcut_keys.xml
+		Docs\Manual\EN\Version_control.xml = Docs\Manual\EN\Version_control.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JP", "JP", "{6EC212D7-E8CC-4475-A682-C4D5F1E748B6}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\JP\_Copyrights.xml = Docs\Manual\JP\_Copyrights.xml
+		Docs\Manual\JP\_VersionNumbers.xml = Docs\Manual\JP\_VersionNumbers.xml
+		Docs\Manual\JP\About_Doc.xml = Docs\Manual\JP\About_Doc.xml
+		Docs\Manual\JP\Command_line.xml = Docs\Manual\JP\Command_line.xml
+		Docs\Manual\JP\Compare_bin.xml = Docs\Manual\JP\Compare_bin.xml
+		Docs\Manual\JP\Compare_dirs.xml = Docs\Manual\JP\Compare_dirs.xml
+		Docs\Manual\JP\Compare_files.xml = Docs\Manual\JP\Compare_files.xml
+		Docs\Manual\JP\Compare_images.xml = Docs\Manual\JP\Compare_images.xml
+		Docs\Manual\JP\Compare_table.xml = Docs\Manual\JP\Compare_table.xml
+		Docs\Manual\JP\Configuration.xml = Docs\Manual\JP\Configuration.xml
+		Docs\Manual\JP\Faq.xml = Docs\Manual\JP\Faq.xml
+		Docs\Manual\JP\Filters.xml = Docs\Manual\JP\Filters.xml
+		Docs\Manual\JP\Index.xml = Docs\Manual\JP\Index.xml
+		Docs\Manual\JP\Install.xml = Docs\Manual\JP\Install.xml
+		Docs\Manual\JP\Intro_diffs.xml = Docs\Manual\JP\Intro_diffs.xml
+		Docs\Manual\JP\Introduction.xml = Docs\Manual\JP\Introduction.xml
+		Docs\Manual\JP\Locales.xml = Docs\Manual\JP\Locales.xml
+		Docs\Manual\JP\Open_paths.xml = Docs\Manual\JP\Open_paths.xml
+		Docs\Manual\JP\Plugins.xml = Docs\Manual\JP\Plugins.xml
+		Docs\Manual\JP\Quick_start.xml = Docs\Manual\JP\Quick_start.xml
+		Docs\Manual\JP\select_unpacker.xml = Docs\Manual\JP\select_unpacker.xml
+		Docs\Manual\JP\Shortcut_keys.xml = Docs\Manual\JP\Shortcut_keys.xml
+		Docs\Manual\JP\Version_control.xml = Docs\Manual\JP\Version_control.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{5360DC20-6552-4F74-8D4D-BF88B23E0B3A}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\Shared\xsl\common.xsl = Docs\Manual\Shared\xsl\common.xsl
+		Installer\InnoSetup\ExternalArchiveFormat.ini = Installer\InnoSetup\ExternalArchiveFormat.ini
+		Docs\Manual\Shared\xsl\html.xsl = Docs\Manual\Shared\xsl\html.xsl
+		Docs\Manual\Shared\xsl\htmlhelp.xsl = Docs\Manual\Shared\xsl\htmlhelp.xsl
+		Installer\InnoSetup\modpath.is6.iss = Installer\InnoSetup\modpath.is6.iss
+		Installer\InnoSetup\modpath.iss = Installer\InnoSetup\modpath.iss
+		Installer\InnoSetup\modpathNonAdmin.iss = Installer\InnoSetup\modpathNonAdmin.iss
+		Installer\InnoSetup\README.md = Installer\InnoSetup\README.md
+		Installer\InnoSetup\WinMerge.iss = Installer\InnoSetup\WinMerge.iss
+		Installer\InnoSetup\WinMergeX64.is6.iss = Installer\InnoSetup\WinMergeX64.is6.iss
+		Installer\InnoSetup\WinMergeX64.iss = Installer\InnoSetup\WinMergeX64.iss
+		Installer\InnoSetup\WinMergeX64NonAdmin.iss = Installer\InnoSetup\WinMergeX64NonAdmin.iss
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arts", "Arts", "{66765216-61B6-4D38-934B-6E92056A97DC}"
+	ProjectSection(SolutionItems) = preProject
+		Installer\InnoSetup\Art\Large Logo.bmp = Installer\InnoSetup\Art\Large Logo.bmp
+		Installer\InnoSetup\Art\Small Logo.bmp = Installer\InnoSetup\Art\Small Logo.bmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{27626AB5-4AD7-4BD8-B64C-206304D0F046}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{C20255F3-FF39-465A-AAE7-F1E3DAAD8984}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\Shared\css\all.css = Docs\Manual\Shared\css\all.css
+		Docs\Manual\Shared\css\help.css = Docs\Manual\Shared\css\help.css
+		Docs\Manual\Shared\css\print.css = Docs\Manual\Shared\css\print.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{7185A7F2-9672-4D5A-A5B3-3305F38B2120}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\Shared\images\head.gif = Docs\Manual\Shared\images\head.gif
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xsl", "xsl", "{69353C05-C3FF-4EA9-B337-127FF8D782C8}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\Shared\xsl\common.xsl = Docs\Manual\Shared\xsl\common.xsl
+		Docs\Manual\Shared\xsl\html.xsl = Docs\Manual\Shared\xsl\html.xsl
+		Docs\Manual\Shared\xsl\htmlhelp.xsl = Docs\Manual\Shared\xsl\htmlhelp.xsl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshots", "screenshots", "{C6848BA0-378B-4FCE-9EE7-2793DBBEE35C}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\EN\screenshots\aborted.png = Docs\Manual\EN\screenshots\aborted.png
+		Docs\Manual\EN\screenshots\allleft_btn.png = Docs\Manual\EN\screenshots\allleft_btn.png
+		Docs\Manual\EN\screenshots\allright_btn.png = Docs\Manual\EN\screenshots\allright_btn.png
+		Docs\Manual\EN\screenshots\binary.png = Docs\Manual\EN\screenshots\binary.png
+		Docs\Manual\EN\screenshots\binarydiff.png = Docs\Manual\EN\screenshots\binarydiff.png
+		Docs\Manual\EN\screenshots\char-diff-01.png = Docs\Manual\EN\screenshots\char-diff-01.png
+		Docs\Manual\EN\screenshots\copyl_adv_btn.png = Docs\Manual\EN\screenshots\copyl_adv_btn.png
+		Docs\Manual\EN\screenshots\copyl_button.png = Docs\Manual\EN\screenshots\copyl_button.png
+		Docs\Manual\EN\screenshots\copyr_adv_btn.png = Docs\Manual\EN\screenshots\copyr_adv_btn.png
+		Docs\Manual\EN\screenshots\copyr_button.png = Docs\Manual\EN\screenshots\copyr_button.png
+		Docs\Manual\EN\screenshots\ctx_menu_advanced.png = Docs\Manual\EN\screenshots\ctx_menu_advanced.png
+		Docs\Manual\EN\screenshots\ctx_menu_copy1.png = Docs\Manual\EN\screenshots\ctx_menu_copy1.png
+		Docs\Manual\EN\screenshots\ctx_menu_copy2.png = Docs\Manual\EN\screenshots\ctx_menu_copy2.png
+		Docs\Manual\EN\screenshots\ctx_menu_simple.png = Docs\Manual\EN\screenshots\ctx_menu_simple.png
+		Docs\Manual\EN\screenshots\currentdiff_btn.png = Docs\Manual\EN\screenshots\currentdiff_btn.png
+		Docs\Manual\EN\screenshots\diff-blocks-01.png = Docs\Manual\EN\screenshots\diff-blocks-01.png
+		Docs\Manual\EN\screenshots\diff_inline_btn.png = Docs\Manual\EN\screenshots\diff_inline_btn.png
+		Docs\Manual\EN\screenshots\equal.png = Docs\Manual\EN\screenshots\equal.png
+		Docs\Manual\EN\screenshots\equaltextfile.png = Docs\Manual\EN\screenshots\equaltextfile.png
+		Docs\Manual\EN\screenshots\error.png = Docs\Manual\EN\screenshots\error.png
+		Docs\Manual\EN\screenshots\file_headerbar1.png = Docs\Manual\EN\screenshots\file_headerbar1.png
+		Docs\Manual\EN\screenshots\filecomp1.png = Docs\Manual\EN\screenshots\filecomp1.png
+		Docs\Manual\EN\screenshots\filecomp_context1.png = Docs\Manual\EN\screenshots\filecomp_context1.png
+		Docs\Manual\EN\screenshots\filecomp_diffpane1.png = Docs\Manual\EN\screenshots\filecomp_diffpane1.png
+		Docs\Manual\EN\screenshots\filecomp_inlinediff.png = Docs\Manual\EN\screenshots\filecomp_inlinediff.png
+		Docs\Manual\EN\screenshots\filecomp_margin1.png = Docs\Manual\EN\screenshots\filecomp_margin1.png
+		Docs\Manual\EN\screenshots\filecomp_margin2.png = Docs\Manual\EN\screenshots\filecomp_margin2.png
+		Docs\Manual\EN\screenshots\filemerged1.png = Docs\Manual\EN\screenshots\filemerged1.png
+		Docs\Manual\EN\screenshots\fileskip.png = Docs\Manual\EN\screenshots\fileskip.png
+		Docs\Manual\EN\screenshots\firstdiff_btn.png = Docs\Manual\EN\screenshots\firstdiff_btn.png
+		Docs\Manual\EN\screenshots\foldercmp_progress.png = Docs\Manual\EN\screenshots\foldercmp_progress.png
+		Docs\Manual\EN\screenshots\foldercmp_unique1.png = Docs\Manual\EN\screenshots\foldercmp_unique1.png
+		Docs\Manual\EN\screenshots\foldercmp_unique2.png = Docs\Manual\EN\screenshots\foldercmp_unique2.png
+		Docs\Manual\EN\screenshots\foldercomp1.png = Docs\Manual\EN\screenshots\foldercomp1.png
+		Docs\Manual\EN\screenshots\foldercomp_2same.png = Docs\Manual\EN\screenshots\foldercomp_2same.png
+		Docs\Manual\EN\screenshots\folderdiff.png = Docs\Manual\EN\screenshots\folderdiff.png
+		Docs\Manual\EN\screenshots\foldersame.png = Docs\Manual\EN\screenshots\foldersame.png
+		Docs\Manual\EN\screenshots\folderskip.png = Docs\Manual\EN\screenshots\folderskip.png
+		Docs\Manual\EN\screenshots\folderup.png = Docs\Manual\EN\screenshots\folderup.png
+		Docs\Manual\EN\screenshots\folderup_disable.png = Docs\Manual\EN\screenshots\folderup_disable.png
+		Docs\Manual\EN\screenshots\hexcmp1.png = Docs\Manual\EN\screenshots\hexcmp1.png
+		Docs\Manual\EN\screenshots\ignore-blank-lines.png = Docs\Manual\EN\screenshots\ignore-blank-lines.png
+		Docs\Manual\EN\screenshots\imgcmp1.png = Docs\Manual\EN\screenshots\imgcmp1.png
+		Docs\Manual\EN\screenshots\lastdiff_btn.png = Docs\Manual\EN\screenshots\lastdiff_btn.png
+		Docs\Manual\EN\screenshots\lfile.png = Docs\Manual\EN\screenshots\lfile.png
+		Docs\Manual\EN\screenshots\lfolder.png = Docs\Manual\EN\screenshots\lfolder.png
+		Docs\Manual\EN\screenshots\line-diff-punctuation.png = Docs\Manual\EN\screenshots\line-diff-punctuation.png
+		Docs\Manual\EN\screenshots\linediff.png = Docs\Manual\EN\screenshots\linediff.png
+		Docs\Manual\EN\screenshots\locpane_currentdiff.png = Docs\Manual\EN\screenshots\locpane_currentdiff.png
+		Docs\Manual\EN\screenshots\locpane_diffs.png = Docs\Manual\EN\screenshots\locpane_diffs.png
+		Docs\Manual\EN\screenshots\locpane_moved_diffs.png = Docs\Manual\EN\screenshots\locpane_moved_diffs.png
+		Docs\Manual\EN\screenshots\locpane_viewbar.png = Docs\Manual\EN\screenshots\locpane_viewbar.png
+		Docs\Manual\EN\screenshots\merge_menu.png = Docs\Manual\EN\screenshots\merge_menu.png
+		Docs\Manual\EN\screenshots\mfile.png = Docs\Manual\EN\screenshots\mfile.png
+		Docs\Manual\EN\screenshots\mfolder.png = Docs\Manual\EN\screenshots\mfolder.png
+		Docs\Manual\EN\screenshots\missing_lines.png = Docs\Manual\EN\screenshots\missing_lines.png
+		Docs\Manual\EN\screenshots\moved-01.png = Docs\Manual\EN\screenshots\moved-01.png
+		Docs\Manual\EN\screenshots\nav_uparrow_btn.png = Docs\Manual\EN\screenshots\nav_uparrow_btn.png
+		Docs\Manual\EN\screenshots\nextdiff_btn.png = Docs\Manual\EN\screenshots\nextdiff_btn.png
+		Docs\Manual\EN\screenshots\notequal.png = Docs\Manual\EN\screenshots\notequal.png
+		Docs\Manual\EN\screenshots\notequaltextfile.png = Docs\Manual\EN\screenshots\notequaltextfile.png
+		Docs\Manual\EN\screenshots\open_icon.png = Docs\Manual\EN\screenshots\open_icon.png
+		Docs\Manual\EN\screenshots\OpenDlg1.png = Docs\Manual\EN\screenshots\OpenDlg1.png
+		Docs\Manual\EN\screenshots\options_btn.png = Docs\Manual\EN\screenshots\options_btn.png
+		Docs\Manual\EN\screenshots\prevdiff_btn.png = Docs\Manual\EN\screenshots\prevdiff_btn.png
+		Docs\Manual\EN\screenshots\projfile_save.png = Docs\Manual\EN\screenshots\projfile_save.png
+		Docs\Manual\EN\screenshots\refresh_btn.png = Docs\Manual\EN\screenshots\refresh_btn.png
+		Docs\Manual\EN\screenshots\rfile.png = Docs\Manual\EN\screenshots\rfile.png
+		Docs\Manual\EN\screenshots\rfolder.png = Docs\Manual\EN\screenshots\rfolder.png
+		Docs\Manual\EN\screenshots\simlines-diffs-off.png = Docs\Manual\EN\screenshots\simlines-diffs-off.png
+		Docs\Manual\EN\screenshots\simlines-diffs-on.png = Docs\Manual\EN\screenshots\simlines-diffs-on.png
+		Docs\Manual\EN\screenshots\tblcomp1.png = Docs\Manual\EN\screenshots\tblcomp1.png
+		Docs\Manual\EN\screenshots\tfs_configure.png = Docs\Manual\EN\screenshots\tfs_configure.png
+		Docs\Manual\EN\screenshots\treeview-01.png = Docs\Manual\EN\screenshots\treeview-01.png
+		Docs\Manual\EN\screenshots\undo_btn.png = Docs\Manual\EN\screenshots\undo_btn.png
+		Docs\Manual\EN\screenshots\wm_icon.png = Docs\Manual\EN\screenshots\wm_icon.png
+		Docs\Manual\EN\screenshots\word-diff-allwhite.png = Docs\Manual\EN\screenshots\word-diff-allwhite.png
+		Docs\Manual\EN\screenshots\word-diff-nochange.png = Docs\Manual\EN\screenshots\word-diff-nochange.png
+		Docs\Manual\EN\screenshots\word-diff-nowhite.png = Docs\Manual\EN\screenshots\word-diff-nowhite.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xsl", "xsl", "{8EC1D59A-1A33-467B-9F47-3F87AE8F080A}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\EN\xsl\html.xsl = Docs\Manual\EN\xsl\html.xsl
+		Docs\Manual\EN\xsl\htmlhelp.xsl = Docs\Manual\EN\xsl\htmlhelp.xsl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshos", "screenshos", "{0BDED91D-2919-4772-8536-2EC4F663068B}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\JP\screenshots\aborted.png = Docs\Manual\JP\screenshots\aborted.png
+		Docs\Manual\JP\screenshots\allleft_btn.png = Docs\Manual\JP\screenshots\allleft_btn.png
+		Docs\Manual\JP\screenshots\allright_btn.png = Docs\Manual\JP\screenshots\allright_btn.png
+		Docs\Manual\JP\screenshots\binary.png = Docs\Manual\JP\screenshots\binary.png
+		Docs\Manual\JP\screenshots\binarydiff.png = Docs\Manual\JP\screenshots\binarydiff.png
+		Docs\Manual\JP\screenshots\char-diff-01.png = Docs\Manual\JP\screenshots\char-diff-01.png
+		Docs\Manual\JP\screenshots\copyl_adv_btn.png = Docs\Manual\JP\screenshots\copyl_adv_btn.png
+		Docs\Manual\JP\screenshots\copyl_button.png = Docs\Manual\JP\screenshots\copyl_button.png
+		Docs\Manual\JP\screenshots\copyr_adv_btn.png = Docs\Manual\JP\screenshots\copyr_adv_btn.png
+		Docs\Manual\JP\screenshots\copyr_button.png = Docs\Manual\JP\screenshots\copyr_button.png
+		Docs\Manual\JP\screenshots\ctx_menu_advanced.png = Docs\Manual\JP\screenshots\ctx_menu_advanced.png
+		Docs\Manual\JP\screenshots\ctx_menu_copy1.png = Docs\Manual\JP\screenshots\ctx_menu_copy1.png
+		Docs\Manual\JP\screenshots\ctx_menu_simple.png = Docs\Manual\JP\screenshots\ctx_menu_simple.png
+		Docs\Manual\JP\screenshots\currentdiff_btn.png = Docs\Manual\JP\screenshots\currentdiff_btn.png
+		Docs\Manual\JP\screenshots\diff-blocks-01.png = Docs\Manual\JP\screenshots\diff-blocks-01.png
+		Docs\Manual\JP\screenshots\diff_inline_btn.png = Docs\Manual\JP\screenshots\diff_inline_btn.png
+		Docs\Manual\JP\screenshots\equal.png = Docs\Manual\JP\screenshots\equal.png
+		Docs\Manual\JP\screenshots\equaltextfile.png = Docs\Manual\JP\screenshots\equaltextfile.png
+		Docs\Manual\JP\screenshots\error.png = Docs\Manual\JP\screenshots\error.png
+		Docs\Manual\JP\screenshots\file_headerbar1.png = Docs\Manual\JP\screenshots\file_headerbar1.png
+		Docs\Manual\JP\screenshots\filecomp1.png = Docs\Manual\JP\screenshots\filecomp1.png
+		Docs\Manual\JP\screenshots\filecomp_context1.png = Docs\Manual\JP\screenshots\filecomp_context1.png
+		Docs\Manual\JP\screenshots\filecomp_diffpane1.png = Docs\Manual\JP\screenshots\filecomp_diffpane1.png
+		Docs\Manual\JP\screenshots\filecomp_inlinediff.png = Docs\Manual\JP\screenshots\filecomp_inlinediff.png
+		Docs\Manual\JP\screenshots\filecomp_margin1.png = Docs\Manual\JP\screenshots\filecomp_margin1.png
+		Docs\Manual\JP\screenshots\filecomp_margin2.png = Docs\Manual\JP\screenshots\filecomp_margin2.png
+		Docs\Manual\JP\screenshots\filemerged1.png = Docs\Manual\JP\screenshots\filemerged1.png
+		Docs\Manual\JP\screenshots\fileskip.png = Docs\Manual\JP\screenshots\fileskip.png
+		Docs\Manual\JP\screenshots\firstdiff_btn.png = Docs\Manual\JP\screenshots\firstdiff_btn.png
+		Docs\Manual\JP\screenshots\foldercmp_progress.png = Docs\Manual\JP\screenshots\foldercmp_progress.png
+		Docs\Manual\JP\screenshots\foldercmp_unique1.png = Docs\Manual\JP\screenshots\foldercmp_unique1.png
+		Docs\Manual\JP\screenshots\foldercmp_unique2.png = Docs\Manual\JP\screenshots\foldercmp_unique2.png
+		Docs\Manual\JP\screenshots\foldercomp1.png = Docs\Manual\JP\screenshots\foldercomp1.png
+		Docs\Manual\JP\screenshots\foldercomp_2same.png = Docs\Manual\JP\screenshots\foldercomp_2same.png
+		Docs\Manual\JP\screenshots\folderdiff.png = Docs\Manual\JP\screenshots\folderdiff.png
+		Docs\Manual\JP\screenshots\foldersame.png = Docs\Manual\JP\screenshots\foldersame.png
+		Docs\Manual\JP\screenshots\folderskip.png = Docs\Manual\JP\screenshots\folderskip.png
+		Docs\Manual\JP\screenshots\folderup.png = Docs\Manual\JP\screenshots\folderup.png
+		Docs\Manual\JP\screenshots\folderup_disable.png = Docs\Manual\JP\screenshots\folderup_disable.png
+		Docs\Manual\JP\screenshots\hexcmp1.png = Docs\Manual\JP\screenshots\hexcmp1.png
+		Docs\Manual\JP\screenshots\ignore-blank-lines.png = Docs\Manual\JP\screenshots\ignore-blank-lines.png
+		Docs\Manual\JP\screenshots\imgcmp1.png = Docs\Manual\JP\screenshots\imgcmp1.png
+		Docs\Manual\JP\screenshots\lastdiff_btn.png = Docs\Manual\JP\screenshots\lastdiff_btn.png
+		Docs\Manual\JP\screenshots\lfile.png = Docs\Manual\JP\screenshots\lfile.png
+		Docs\Manual\JP\screenshots\lfolder.png = Docs\Manual\JP\screenshots\lfolder.png
+		Docs\Manual\JP\screenshots\line-diff-punctuation.png = Docs\Manual\JP\screenshots\line-diff-punctuation.png
+		Docs\Manual\JP\screenshots\linediff.png = Docs\Manual\JP\screenshots\linediff.png
+		Docs\Manual\JP\screenshots\locpane_currentdiff.png = Docs\Manual\JP\screenshots\locpane_currentdiff.png
+		Docs\Manual\JP\screenshots\locpane_diffs.png = Docs\Manual\JP\screenshots\locpane_diffs.png
+		Docs\Manual\JP\screenshots\locpane_moved_diffs.png = Docs\Manual\JP\screenshots\locpane_moved_diffs.png
+		Docs\Manual\JP\screenshots\locpane_viewbar.png = Docs\Manual\JP\screenshots\locpane_viewbar.png
+		Docs\Manual\JP\screenshots\merge_menu.png = Docs\Manual\JP\screenshots\merge_menu.png
+		Docs\Manual\JP\screenshots\missing_lines.png = Docs\Manual\JP\screenshots\missing_lines.png
+		Docs\Manual\JP\screenshots\moved-01.png = Docs\Manual\JP\screenshots\moved-01.png
+		Docs\Manual\JP\screenshots\nav_uparrow_btn.png = Docs\Manual\JP\screenshots\nav_uparrow_btn.png
+		Docs\Manual\JP\screenshots\nextdiff_btn.png = Docs\Manual\JP\screenshots\nextdiff_btn.png
+		Docs\Manual\JP\screenshots\notequal.png = Docs\Manual\JP\screenshots\notequal.png
+		Docs\Manual\JP\screenshots\notequaltextfile.png = Docs\Manual\JP\screenshots\notequaltextfile.png
+		Docs\Manual\JP\screenshots\open_icon.png = Docs\Manual\JP\screenshots\open_icon.png
+		Docs\Manual\JP\screenshots\OpenDlg1.png = Docs\Manual\JP\screenshots\OpenDlg1.png
+		Docs\Manual\JP\screenshots\options_btn.png = Docs\Manual\JP\screenshots\options_btn.png
+		Docs\Manual\JP\screenshots\prevdiff_btn.png = Docs\Manual\JP\screenshots\prevdiff_btn.png
+		Docs\Manual\JP\screenshots\projfile_save.png = Docs\Manual\JP\screenshots\projfile_save.png
+		Docs\Manual\JP\screenshots\refresh_btn.png = Docs\Manual\JP\screenshots\refresh_btn.png
+		Docs\Manual\JP\screenshots\rfile.png = Docs\Manual\JP\screenshots\rfile.png
+		Docs\Manual\JP\screenshots\rfolder.png = Docs\Manual\JP\screenshots\rfolder.png
+		Docs\Manual\JP\screenshots\simlines-diffs-off.png = Docs\Manual\JP\screenshots\simlines-diffs-off.png
+		Docs\Manual\JP\screenshots\simlines-diffs-on.png = Docs\Manual\JP\screenshots\simlines-diffs-on.png
+		Docs\Manual\JP\screenshots\tblcomp1.png = Docs\Manual\JP\screenshots\tblcomp1.png
+		Docs\Manual\JP\screenshots\tfs_configure.png = Docs\Manual\JP\screenshots\tfs_configure.png
+		Docs\Manual\JP\screenshots\treeview-01.png = Docs\Manual\JP\screenshots\treeview-01.png
+		Docs\Manual\JP\screenshots\undo_btn.png = Docs\Manual\JP\screenshots\undo_btn.png
+		Docs\Manual\JP\screenshots\wm_icon.png = Docs\Manual\JP\screenshots\wm_icon.png
+		Docs\Manual\JP\screenshots\word-diff-allwhite.png = Docs\Manual\JP\screenshots\word-diff-allwhite.png
+		Docs\Manual\JP\screenshots\word-diff-nochange.png = Docs\Manual\JP\screenshots\word-diff-nochange.png
+		Docs\Manual\JP\screenshots\word-diff-nowhite.png = Docs\Manual\JP\screenshots\word-diff-nowhite.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xsl", "xsl", "{440F7B19-6A74-4C4A-A343-B303725E6BB3}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Manual\JP\xsl\html.xsl = Docs\Manual\JP\xsl\html.xsl
+		Docs\Manual\JP\xsl\htmlhelp.xsl = Docs\Manual\JP\xsl\htmlhelp.xsl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Developers", "Developers", "{A348FF0E-3DD2-4F8B-BF10-B4092A0B8FDB}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Developers\doxygen.cfg = Docs\Developers\doxygen.cfg
+		Docs\Developers\Options.html = Docs\Developers\Options.html
+		Docs\Developers\readme-developers.html = Docs\Developers\readme-developers.html
+		Docs\Developers\README.md = Docs\Developers\README.md
+		Docs\Developers\UnitTesting.html = Docs\Developers\UnitTesting.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ColorSchemes", "ColorSchemes", "{92E79FEF-3EDE-4F79-97BA-CD6F3E1BE58B}"
+	ProjectSection(SolutionItems) = preProject
+		ColorSchemes\Default.ini = ColorSchemes\Default.ini
+		ColorSchemes\Modern.ini = ColorSchemes\Modern.ini
+		ColorSchemes\Solarized Dark.ini = ColorSchemes\Solarized Dark.ini
+		ColorSchemes\Solarized Light.ini = ColorSchemes\Solarized Light.ini
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Filters", "Filters", "{4D6CA805-D847-462E-B176-AE8571D586AB}"
+	ProjectSection(SolutionItems) = preProject
+		Filters\ADAMulti.flt = Filters\ADAMulti.flt
+		Filters\ASPNET.flt = Filters\ASPNET.flt
+		Filters\CSharp_loose.flt = Filters\CSharp_loose.flt
+		Filters\Delphi.flt = Filters\Delphi.flt
+		Filters\FileFilter.tmpl = Filters\FileFilter.tmpl
+		Filters\Frontpage.flt = Filters\Frontpage.flt
+		Filters\MASM.flt = Filters\MASM.flt
+		Filters\Merge_GnuC_loose.flt = Filters\Merge_GnuC_loose.flt
+		Filters\Merge_VB_loose.flt = Filters\Merge_VB_loose.flt
+		Filters\Merge_VC_loose.flt = Filters\Merge_VC_loose.flt
+		Filters\README.md = Filters\README.md
+		Filters\SourceControl.flt = Filters\SourceControl.flt
+		Filters\Symbian.flt = Filters\Symbian.flt
+		Filters\XML_html.flt = Filters\XML_html.flt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{CE514278-A13F-4F6A-93EB-5653410AC214}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\versions.txt = Externals\versions.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4407E7D0-41F5-4FC4-ADB9-948C09966721}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{88571237-56AD-421A-8F88-26983BDD8D6C}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\Scripts\CheckMenuResources.vbs = Tools\Scripts\CheckMenuResources.vbs
+		Tools\Scripts\CheckTranslationStrings.cmd = Tools\Scripts\CheckTranslationStrings.cmd
+		Tools\Scripts\CheckTranslationStrings.ps1 = Tools\Scripts\CheckTranslationStrings.ps1
+		Tools\Scripts\CheckUnusedResources.vbs = Tools\Scripts\CheckUnusedResources.vbs
+		Tools\Scripts\cleanup_backups.py = Tools\Scripts\cleanup_backups.py
+		Tools\Scripts\README.md = Tools\Scripts\README.md
+		Tools\Scripts\tsvn_patch.py = Tools\Scripts\tsvn_patch.py
+		Tools\Scripts\UpdateTranslations.bat = Tools\Scripts\UpdateTranslations.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logos", "Logos", "{91ED0FD4-86C9-4D7C-87C1-1B12F04DCAD0}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Logos\README.md = Docs\Logos\README.md
+		Docs\Logos\WinMerge_logo_24bit.png = Docs\Logos\WinMerge_logo_24bit.png
+		Docs\Logos\WinMerge_logo_shadow_24bit.png = Docs\Logos\WinMerge_logo_shadow_24bit.png
+		Docs\Logos\WinMerge_logo_shadow_trans.tif = Docs\Logos\WinMerge_logo_shadow_trans.tif
+		Docs\Logos\WinMerge_logo_trans.tif = Docs\Logos\WinMerge_logo_trans.tif
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -588,7 +975,7 @@ Global
 		{8164D41D-B053-405B-826C-CF37AC0EF176} = {220B870C-D051-463E-997B-8C392081EE15}
 		{9E211743-85FE-4977-82F3-4F04B40C912D} = {220B870C-D051-463E-997B-8C392081EE15}
 		{733E7C0B-AC3D-47AC-A8DA-E13644D6294D} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
-		{8B625EC8-5063-4336-84F9-AA7FD5348525} = {DC3B258E-444F-460D-8FD9-09A8165212FA}
+		{220B870C-D051-463E-997B-8C392081EE15} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{0A3727B1-51E7-4702-AD0C-8AEE317EA510} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
 		{6877DE2D-4ABA-49B0-858D-7D9A9F92945C} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
@@ -615,16 +1002,37 @@ Global
 		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {AD6E6E47-0363-409F-8B7A-48341147E632}
 		{94F36908-A4E2-4533-939D-64FF6EADA5A1} = {AD6E6E47-0363-409F-8B7A-48341147E632}
 		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
-		{AD6E6E47-0363-409F-8B7A-48341147E632} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
+		{AD6E6E47-0363-409F-8B7A-48341147E632} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
 		{A9E83C9D-8AD6-4C87-888D-3F91B5656CD1} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
 		{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453} = {A9E83C9D-8AD6-4C87-888D-3F91B5656CD1}
 		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
+		{0B7E421E-A8CA-444C-B650-D1D7F1D55688} = {CE514278-A13F-4F6A-93EB-5653410AC214}
+		{97E9C1F1-F87E-4BE6-A66C-6B97DCD80873} = {CE514278-A13F-4F6A-93EB-5653410AC214}
+		{6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{139D8239-98B4-4B29-A199-B27CDB8B4708} = {97E9C1F1-F87E-4BE6-A66C-6B97DCD80873}
 		{488796F1-8E07-40FE-A006-B6252E958746} = {97E9C1F1-F87E-4BE6-A66C-6B97DCD80873}
 		{D358EAE3-AE53-4292-9384-6DB97E8B8D40} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{2710A368-ED56-4FB1-80C3-D93BA6483710} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{AB827C6B-5116-408F-B453-E2075E9B73B4} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
+		{32E78687-FB4E-4B90-88F0-95FE1095F361} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
+		{5D37AB3C-A012-46AB-A2B0-5165B36884C8} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
+		{2313487A-3891-4F6E-A4F4-13E8DE53D7AC} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
+		{68CBCF73-57B3-4D8E-95D8-645313D3DF80} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{6EC212D7-E8CC-4475-A682-C4D5F1E748B6} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{5360DC20-6552-4F74-8D4D-BF88B23E0B3A} = {C15D3EBB-A0A6-47AF-93FF-0FB3B477B96B}
+		{66765216-61B6-4D38-934B-6E92056A97DC} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
+		{27626AB5-4AD7-4BD8-B64C-206304D0F046} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{C20255F3-FF39-465A-AAE7-F1E3DAAD8984} = {27626AB5-4AD7-4BD8-B64C-206304D0F046}
+		{7185A7F2-9672-4D5A-A5B3-3305F38B2120} = {27626AB5-4AD7-4BD8-B64C-206304D0F046}
+		{69353C05-C3FF-4EA9-B337-127FF8D782C8} = {27626AB5-4AD7-4BD8-B64C-206304D0F046}
+		{C6848BA0-378B-4FCE-9EE7-2793DBBEE35C} = {68CBCF73-57B3-4D8E-95D8-645313D3DF80}
+		{8EC1D59A-1A33-467B-9F47-3F87AE8F080A} = {68CBCF73-57B3-4D8E-95D8-645313D3DF80}
+		{0BDED91D-2919-4772-8536-2EC4F663068B} = {6EC212D7-E8CC-4475-A682-C4D5F1E748B6}
+		{440F7B19-6A74-4C4A-A343-B303725E6BB3} = {6EC212D7-E8CC-4475-A682-C4D5F1E748B6}
+		{A348FF0E-3DD2-4F8B-BF10-B4092A0B8FDB} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
+		{88571237-56AD-421A-8F88-26983BDD8D6C} = {4407E7D0-41F5-4FC4-ADB9-948C09966721}
+		{91ED0FD4-86C9-4D7C-87C1-1B12F04DCAD0} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
