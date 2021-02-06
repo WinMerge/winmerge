@@ -29,9 +29,6 @@
     <None Include="WatchBeginningOfLog.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="WinMergeScript.rgs">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="WatchBeginningOfLog.idl">
