@@ -539,9 +539,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8857
 		Tools\Scripts\CheckTranslationStrings.cmd = Tools\Scripts\CheckTranslationStrings.cmd
 		Tools\Scripts\CheckTranslationStrings.ps1 = Tools\Scripts\CheckTranslationStrings.ps1
 		Tools\Scripts\CheckUnusedResources.vbs = Tools\Scripts\CheckUnusedResources.vbs
-		Tools\Scripts\cleanup_backups.py = Tools\Scripts\cleanup_backups.py
 		Tools\Scripts\README.md = Tools\Scripts\README.md
-		Tools\Scripts\tsvn_patch.py = Tools\Scripts\tsvn_patch.py
 		Tools\Scripts\UpdateTranslations.bat = Tools\Scripts\UpdateTranslations.bat
 	EndProjectSection
 EndProject
