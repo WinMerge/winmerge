@@ -3221,7 +3221,8 @@ void CMergeEditView::OnWMGoto()
 			if (nRealLine1 > nLastLine)
 				nRealLine1 = nLastLine;
 
-			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
+			bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile, !bShift);
 		}
 		else
 		{
@@ -3606,8 +3607,9 @@ bool CMergeEditView::SetPredifferByName(const CString & prediffer)
  * @param [in] bRealLine if true linenumber is real line, otherwise
  * it is apparent line (including deleted lines)
  * @param [in] pane Pane index of goto target pane (0 = left, 1 = right).
+ * @param [in] bMoveAnchor if true the anchor is moved to nLine
  */
-void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
+void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
@@ -3645,13 +3647,17 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 		if (ptPos.y < pView->GetLineCount())
 		{
 			pView->SetCursorPos(ptPos);
-			pView->SetAnchor(ptPos);
+			if (bMoveAnchor)
+				pView->SetAnchor(ptPos);
+			pView->SetSelection(pView->GetAnchor(), ptPos);
 		}
 		else
 		{
 			CPoint ptPos1(0, pView->GetLineCount() - 1);
 			pView->SetCursorPos(ptPos1);
-			pView->SetAnchor(ptPos1);
+			if (bMoveAnchor)
+				pView->SetAnchor(ptPos1);
+			pView->SetSelection(pView->GetAnchor(), ptPos1);
 		}
 	}
 

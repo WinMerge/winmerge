@@ -576,7 +576,8 @@ void CLocationView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	SetCapture();
 
-	if (!GotoLocation(point, false))
+	bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+	if (!GotoLocation(point, false, !bShift))
 		CView::OnLButtonDown(nFlags, point);
 }
 
@@ -644,7 +645,8 @@ int  CLocationView::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT messa
  */
 void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	if (!GotoLocation(point, false))
+	bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+	if (!GotoLocation(point, false, !bShift))
 		CView::OnLButtonDblClk(nFlags, point);
 }
 
@@ -660,9 +662,10 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  * @param [in] point Point to move to
  * @param [in] bRealLine `true` if we want to scroll using real line num,
  *                       `false` if view linenumbers are OK.
+ * @param [in] bMoveAnchor if true the anchor is moved to the point
  * @return `true` if succeeds, `false` if point not inside bars.
  */
-bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
+bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/, bool bMoveAnchor)
 {
 	CRect rc;
 	GetClientRect(rc);
@@ -686,7 +689,7 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
 	else
 		return false;
 
-	pDoc->GetActiveMergeGroupView(0)->GotoLine(line, bRealLine, bar);
+	pDoc->GetActiveMergeGroupView(0)->GotoLine(line, bRealLine, bar, bMoveAnchor);
 	if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
 		pDoc->GetActiveMergeGroupView(bar)->SetFocus();
 
