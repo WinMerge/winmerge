@@ -590,6 +590,17 @@ out:
           break;
         }
 
+      //  String constant '....'
+      if (dwCookie & COOKIE_CHAR)
+        {
+          if (pszChars[I] == '\'')
+            {
+              dwCookie &= ~COOKIE_CHAR;
+              bRedefineBlock = true;
+            }
+          continue;
+        }
+
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
@@ -636,6 +647,14 @@ out:
         {
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_STRING;
+          continue;
+        }
+
+      //  Normal text
+      if (pszChars[I] == '\'')
+        {
+          DEFINE_BLOCK (I, COLORINDEX_STRING);
+          dwCookie |= COOKIE_CHAR;
           continue;
         }
 
