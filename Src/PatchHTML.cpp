@@ -433,11 +433,8 @@ output_1_escapedhtml(const char *text, const char *limit)
 	{
 	  unsigned spaces = TAB_WIDTH - column % TAB_WIDTH;
 	  column += spaces;
-	  if (spaces > 0)
-	    {
-	      putc (' ', out);
-	      spaces--;
-	    }
+	  putc (' ', out);
+	  spaces--;    
 	  if (spaces == 0)
 	    break;
 	  do
