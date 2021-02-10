@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-02-03**:
+Status from **2021-02-10**:
 
 ## WinMerge
 
@@ -17,9 +17,9 @@ Status from **2021-02-03**:
 | Czech                |  1022 |        613 |     0 |          409 |     60 % |             |
 | Danish               |  1022 |        651 |     0 |          371 |     64 % |  2013-01-13 |
 | Dutch                |  1022 |       1022 |     0 |            0 |    100 % |  2018-09-06 |
-| English              |  1022 |       1022 |     0 |            0 |    100 % |  2021-02-01 |
+| English              |  1022 |       1022 |     0 |            0 |    100 % |  2021-02-07 |
 | Finnish              |  1022 |        916 |     0 |          106 |     90 % |             |
-| French               |  1022 |        909 |     2 |          111 |     89 % |  2019-06-02 |
+| French               |  1022 |       1022 |     0 |            0 |    100 % |  2021-02-10 |
 | Galician             |  1022 |       1022 |     0 |            0 |    100 % |  2021-01-30 |
 | German               |  1022 |       1022 |     0 |            0 |    100 % |  2021-01-29 |
 | Greek                |  1022 |        614 |     0 |          408 |     60 % |             |
@@ -201,10 +201,12 @@ Status from **2021-02-03**:
    - Michel Coene
 
  * French
-   - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net) *Maintainer*
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
    - [Gil Andre](mailto:gil_andre%20at%20compuserve.com)
    - [Laurent Ganier](mailto:ccganier%20at%20club-internet.fr)
    - [Dominique Saussereau](mailto:redguff%20at%20users.sourceforge.net)
+   - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net)
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
 
  * Galician
    - [Medulio](mailto:medulio%20at%20ciberirmandade.org)

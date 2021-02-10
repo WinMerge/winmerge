@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-02-03</update>
+  <update>2021-02-10</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -229,7 +229,7 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2021-02-01</update>
+      <update>2021-02-07</update>
       <strings>
         <count>1022</count>
         <translated>1022</translated>
@@ -251,17 +251,17 @@
     <translation>
       <language>French</language>
       <file>French.po</file>
-      <update>2019-06-02</update>
+      <update>2021-02-10</update>
       <strings>
         <count>1022</count>
-        <translated>909</translated>
-        <fuzzy>2</fuzzy>
-        <untranslated>111</untranslated>
+        <translated>1022</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
-          <name>Jean-F Jolin</name>
-          <mail>jean-f-j at users.sourceforge.net</mail>
+          <name>Lolo S.</name>
+          <mail>slolo2000 at hotmail.com</mail>
         </translator>
         <translator>
           <name>Gil Andre</name>
@@ -274,6 +274,14 @@
         <translator>
           <name>Dominique Saussereau</name>
           <mail>redguff at users.sourceforge.net</mail>
+        </translator>
+        <translator>
+          <name>Jean-F Jolin</name>
+          <mail>jean-f-j at users.sourceforge.net</mail>
+        </translator>
+        <translator>
+          <name>Lolo S.</name>
+          <mail>slolo2000 at hotmail.com</mail>
         </translator>
       </translators>
     </translation>
