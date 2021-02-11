@@ -4323,17 +4323,18 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 	CMergeDoc *pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
 
-	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-	{
-		CMergeEditView *pView = GetGroupView(nPane);
-		ASSERT(pView != nullptr);
-
-		if (pView != nullptr)
+	for (int nGroup = 0; nGroup < pDoc->m_nGroups; nGroup++)
+		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
-			pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
-			pView->SetDisableBSAtSOL(false);
+			CMergeEditView *pView = pDoc->GetView(nGroup, nPane);
+			ASSERT(pView != nullptr);
+
+			if (pView != nullptr)
+			{
+				pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
+				pView->SetDisableBSAtSOL(false);
+			}
 		}
-	}
 
 	OnRefresh();
 }
