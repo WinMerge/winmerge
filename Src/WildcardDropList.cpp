@@ -226,12 +226,10 @@ LRESULT WildcardDropList::LvWndProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
 			TCHAR text[4096];
 			LONG_PTR data;
 		case CBN_CLOSEUP:
-			if (OnCloseUp(reinterpret_cast<HWND>(lParam)))
-			{
-				::GetWindowText(reinterpret_cast<HWND>(lParam), text, _countof(text));
-				data = ::GetWindowLongPtr(reinterpret_cast<HWND>(lParam), GWLP_USERDATA);
-				ListView_SetItemText(hwnd, SHORT LOWORD(data), SHORT HIWORD(data), text);
-			}
+			OnCloseUp(reinterpret_cast<HWND>(lParam));
+			::GetWindowText(reinterpret_cast<HWND>(lParam), text, _countof(text));
+			data = ::GetWindowLongPtr(reinterpret_cast<HWND>(lParam), GWLP_USERDATA);
+			ListView_SetItemText(hwnd, SHORT LOWORD(data), SHORT HIWORD(data), text);
 			::DestroyWindow(reinterpret_cast<HWND>(lParam));
 			::SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)pfnSuper);
 			::SetFocus(hwnd);
@@ -247,7 +245,7 @@ LRESULT WildcardDropList::LvWndProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
 	return ::CallWindowProc(pfnSuper, hwnd, message, wParam, lParam);
 }
 
-void WildcardDropList::OnItemActivate(HWND hLv, int iItem, int iSubItem, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns)
+void WildcardDropList::OnItemActivate(HWND hLv, int iItem, int iSubItem, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns, int limitTextSize)
 {
 	RECT rc;
 	ListView_EnsureVisible(hLv, iItem, FALSE);
@@ -259,9 +257,17 @@ void WildcardDropList::OnItemActivate(HWND hLv, int iItem, int iSubItem, int col
 		rc.left, rc.top - 1, rc.right - rc.left, 0,
 		hLv, reinterpret_cast<HMENU>(1), NULL, NULL);
 	::SetWindowLongPtr(hCb, GWLP_USERDATA, MAKELPARAM(iItem, iSubItem));
-	::SetWindowText(hCb, text);
 	::SendMessage(hCb, WM_SETFONT, ::SendMessage(hLv, WM_GETFONT, 0, 0), 0);
 	::SetFocus(hCb);
+	::SetWindowText(hCb, text);
+
+	size_t len = _tcslen(text);
+	LPARAM lp = (len << 16) | len; 
+	::SendMessage(hCb, CB_SETEDITSEL, 0, lp);
+
+	if (limitTextSize > 0)
+		::SendMessage(hCb, CB_LIMITTEXT, limitTextSize, 0);
+
 	LONG_PTR pfnSuper = ::SetWindowLongPtr(hLv, GWLP_WNDPROC, (LONG_PTR)LvWndProc);
 	::SetWindowLongPtr(hLv, GWLP_USERDATA, pfnSuper);
 	OnDropDown(hCb, columns, fixedPatterns, allowUserAddedPatterns);

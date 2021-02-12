@@ -10,5 +10,5 @@ private:
 public:
 	static void OnDropDown(HWND, int columns, LPCTSTR, bool allowUserAddedPatterns = true);
 	static bool OnCloseUp(HWND);
-	static void OnItemActivate(HWND, int, int, int columns, LPCTSTR, bool allowUserAddedPatterns = true);
+	static void OnItemActivate(HWND hLv, int iItem, int iSubItem, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns = true, int limitTextSize = 0);
 };
