@@ -2499,11 +2499,11 @@ msgstr "Nu afişa acest &mesaj din nou."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2596,6 +2596,13 @@ msgstr "Fişiere HTML (*.htm,*.html)|*.htm;*.html|Toate fişierele (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fişiere XML (*.xml)|*.xml|Toate fişierele (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Extensie"
 
 #, c-format
 msgid "Name"
@@ -3156,10 +3163,6 @@ msgstr "Dată dreapta"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Extensie"
 
 #, c-format
 msgid "Left Size"

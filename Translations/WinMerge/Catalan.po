@@ -2468,11 +2468,11 @@ msgstr "No tornis amostrar aquest missatge."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2565,6 +2565,13 @@ msgstr "Fitxers HTML (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fitxers XML (*.xml)|*.xml|All Files (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Extensió"
 
 #, c-format
 msgid "Name"
@@ -3119,10 +3126,6 @@ msgstr "Data dreta"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Extensió"
 
 #, c-format
 msgid "Left Size"

@@ -2021,11 +2021,11 @@ msgstr ""
 "Per visualizzare nuovamente questa finestra di dialogo seleziona il pulsante "
 "'Ripristina' nella scheda Generale della finestra delle opzioni."
 
-msgid "Color Schemes"
-msgstr ""
-
 msgid "Syntax"
 msgstr "Sintassi"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "Confronto cartelle"
@@ -2105,6 +2105,12 @@ msgstr "File HTML (*.htm,*.html)|*.htm;*.html|Tutti i file (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "File XML (*.xml)|*.xml|Tutti i file (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Estensione"
 
 msgid "Name"
 msgstr "Nome"
@@ -2644,9 +2650,6 @@ msgstr "Data di destra"
 
 msgid "Middle Date"
 msgstr "Data centrale"
-
-msgid "Extension"
-msgstr "Estensione"
 
 msgid "Left Size"
 msgstr "Dimensioni di sinistra"

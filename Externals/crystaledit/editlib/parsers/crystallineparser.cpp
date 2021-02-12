@@ -100,4 +100,32 @@ GetTextType (const TCHAR *pszExt)
   return nullptr;
 }
 
+/**
+ * @brief Get the text type of the specified index.
+ * @param [in] index Index of m_SourceDefs
+ * @return the text type of the specified index.
+ */
+TextDefinition*
+GetTextType(int index)
+{
+  if (index < 0 || index > SRC_XML)
+    return nullptr;
+  return &m_SourceDefs[index];
+}
+
+/**
+ * @brief Set the extension settings for the specified index.
+ * @param [in] index Index of m_SourceDefs
+ * @param [in] exts Extension setting
+ */
+void
+SetExtension(int index, const String& exts)
+{
+  if (index < 0 || index > SRC_XML)
+    return;
+
+  int size = sizeof(TextDefinition::exts) / sizeof(TextDefinition::exts[0]);
+  _tcscpy_s(m_SourceDefs[index].exts, size, exts.c_str());
+}
+
 }

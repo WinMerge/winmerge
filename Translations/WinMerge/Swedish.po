@@ -2525,12 +2525,12 @@ msgstr "Visa inte detta meddelande igen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "MappJämförelse"
@@ -2621,6 +2621,13 @@ msgstr "HTML-filer (*.htm,*.html)|*.htm;*.html|Alla filer (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alla filer (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Filsuffix"
 
 #, c-format
 msgid "Name"
@@ -3199,10 +3206,6 @@ msgstr "Höger Datum"
 #, c-format
 msgid "Middle Date"
 msgstr "Mitter Datum"
-
-#, c-format
-msgid "Extension"
-msgstr "Filsuffix"
 
 #, c-format
 msgid "Left Size"

@@ -2030,11 +2030,11 @@ msgid ""
 msgstr ""
 "如需重新显示这些提示框，请在“选项”对话框的“常规”选项卡中点击“重置”按钮。"
 
-msgid "Color Schemes"
-msgstr "配色方案"
-
 msgid "Syntax"
 msgstr "语法"
+
+msgid "Color Schemes"
+msgstr "配色方案"
 
 msgid "Folder Compare"
 msgstr "文件夹比较"
@@ -2114,6 +2114,12 @@ msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "扩展名"
 
 msgid "Name"
 msgstr "名称"
@@ -2663,9 +2669,6 @@ msgstr "右侧日期"
 
 msgid "Middle Date"
 msgstr "中间日期"
-
-msgid "Extension"
-msgstr "扩展名"
 
 msgid "Left Size"
 msgstr "左侧大小"

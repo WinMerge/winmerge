@@ -2529,12 +2529,12 @@ msgstr "Não exibir esta &mensagem de novo."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Resetar na página Geral do diálogo das Opções."
 
-msgid "Color Schemes"
-msgstr "Esquemas de Cor"
-
 #, c-format
 msgid "Syntax"
 msgstr "Sintaxe"
+
+msgid "Color Schemes"
+msgstr "Esquemas de Cor"
 
 msgid "Folder Compare"
 msgstr "Comparar Pastas"
@@ -2626,6 +2626,13 @@ msgstr "Arquivos HTML (*.htm,*.html)|*.htm;*.html|Todos os Arquivos (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Arquivos XML (*.xml)|*.xml|Todos os Arquivos (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Extensão"
 
 #, c-format
 msgid "Name"
@@ -3213,10 +3220,6 @@ msgstr "Data da Direita"
 #, c-format
 msgid "Middle Date"
 msgstr "Data do Meio"
-
-#, c-format
-msgid "Extension"
-msgstr "Extensão"
 
 #, c-format
 msgid "Left Size"

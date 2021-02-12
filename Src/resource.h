@@ -64,6 +64,7 @@
 #define IDD_SELECT_FILES_OR_FOLDERS     247
 #define IDD_PROPPAGE_COLOR_SCHEMES      248
 #define IDD_PROPPAGE_COMPARE_TABLE      249
+#define IDD_PROPPAGE_EDITOR_SYNTAX      250
 #define IDD_DIALOG_WINDOWSMANAGER       251
 #define IDD_OPEN_TABLE                  252
 #define IDI_ROTATE2                     302
@@ -515,6 +516,7 @@
 #define IDC_THIRD                       1390
 #define IDC_COLOR_SCHEMES               1391
 #define IDC_DIR_MARGIN_COLOR            1392
+#define IDC_SYNTAX_LIST                 1393
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -602,6 +604,8 @@
 #define IDS_OPTIONSPG_DIRCOLORS         9059
 #define IDS_OPTIONSPG_COLOR_SCHEMES     9060
 #define IDS_OPTIONSPG_TABLECOMPARE      9061
+#define IDS_OPTIONSPG_GENEDITOR         9062
+#define IDS_OPTIONSPG_EDITOR_SYNTAX     9063
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1272,7 +1276,9 @@
 #define IDS_COMPMETHOD_MODDATE          33493
 #define IDS_COMPMETHOD_DATESIZE         33494
 #define IDS_COMPMETHOD_SIZE             33495
-#define IDS_UNPACK_AUTO                 33497
+#define IDS_SYNTAXTABLE_FILETYPE        33496
+#define IDS_SYNTAXTABLE_EXTENSION       33497
+#define IDS_UNPACK_AUTO                 33498
 #define IDS_NO_PREDIFFER                33501
 #define IDS_SUGGESTED_PLUGINS           33502
 #define IDS_NOT_SUGGESTED_PLUGINS       33503

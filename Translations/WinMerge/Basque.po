@@ -2502,12 +2502,12 @@ msgstr "Ez erakutsi &mezu hau berriro."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Joskera"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr ""
@@ -2599,6 +2599,13 @@ msgstr "HTML Agiriak (*.htm,*.html)|*.htm;*.html|Agiri Denak (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML Agiriak (*.xml)|*.xml|Agiri Denak (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Luzapena"
 
 #, c-format
 msgid "Name"
@@ -3178,10 +3185,6 @@ msgstr "Eskuin Eguna"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Luzapena"
 
 #, c-format
 msgid "Left Size"

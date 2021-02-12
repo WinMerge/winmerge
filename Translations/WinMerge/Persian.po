@@ -2514,12 +2514,12 @@ msgstr "&m دوباره اين پيام را نمايش نده "
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "نحو"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr ""
@@ -2616,6 +2616,13 @@ msgstr ""
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML  پرونده هاي  (*.xml)|*.xml|همه پرونده ها  (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr " توسعه "
 
 #, c-format
 msgid "Name"
@@ -3200,10 +3207,6 @@ msgstr " تاريخ راست "
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr " توسعه "
 
 #, c-format
 msgid "Left Size"

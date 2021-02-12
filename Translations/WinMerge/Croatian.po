@@ -2501,11 +2501,11 @@ msgstr "Ne prikazuj više ovu poruku."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2598,6 +2598,13 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Sve datoteke (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML datoteke (*.xml)|*.xml|Sve datoteke (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Tip"
 
 #, c-format
 msgid "Name"
@@ -3177,10 +3184,6 @@ msgstr "Datum sadašnji"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Tip"
 
 #, c-format
 msgid "Left Size"

@@ -2528,12 +2528,12 @@ msgstr "Älä näytä tätä ilmoitusta uudestaan."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Jos haluat, että tämä sanomaruutu on jälleen näkyvissä, paina Asetukset-ikkunan Yleiset-sivun Palauta-painiketta."
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntaksi"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "Kansiovertailu"
@@ -2625,6 +2625,13 @@ msgstr "HTML-tiedostot (*.htm,*.html)|*.htm;*.html|Kaikki tiedostot (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-tiedostot (*.xml)|*.xml|Kaikki tiedostot (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Pääte"
 
 #, c-format
 msgid "Name"
@@ -3198,10 +3205,6 @@ msgstr "Oikea päiväys"
 #, c-format
 msgid "Middle Date"
 msgstr "Keskimmäinen päivä"
-
-#, c-format
-msgid "Extension"
-msgstr "Pääte"
 
 #, c-format
 msgid "Left Size"
