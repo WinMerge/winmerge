@@ -2039,11 +2039,11 @@ msgstr ""
 "Para tornar esta caixa de mensagem visível novamente, pressione o botão "
 "Redefinir na página Geral da caixa de diálogo Opções."
 
-msgid "Color Schemes"
-msgstr "Esquema de cores"
-
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Esquema de cores"
 
 msgid "Folder Compare"
 msgstr "Comparação de pastas"
@@ -2125,6 +2125,12 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Ficheiros XML (*.xml)|*.xml|Todos os ficheiros (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Extensão"
 
 msgid "Name"
 msgstr "Nome"
@@ -2686,9 +2692,6 @@ msgstr "Data da Direita"
 
 msgid "Middle Date"
 msgstr "Data do Meio"
-
-msgid "Extension"
-msgstr "Extensão"
 
 msgid "Left Size"
 msgstr "Lado Esquerdo"

@@ -1952,11 +1952,11 @@ msgstr "Daugiau nerodyti šio praneši&mo."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
 
-msgid "Color Schemes"
-msgstr "Schemų"
-
 msgid "Syntax"
 msgstr "Sintaksės"
+
+msgid "Color Schemes"
+msgstr "Schemų"
 
 msgid "Folder Compare"
 msgstr "Katalogų lyginimo"
@@ -2026,6 +2026,12 @@ msgstr "HTML failai (*.htm,*.html)|*.htm;*.html|Visi failai (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML failai (*.xml)|*.xml|Visi failai (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Plėtinys"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2410,9 +2416,6 @@ msgstr "Dešiniojo data"
 
 msgid "Middle Date"
 msgstr "Vidurinio data"
-
-msgid "Extension"
-msgstr "Plėtinys"
 
 msgid "Left Size"
 msgstr "Kairiojo dydis"

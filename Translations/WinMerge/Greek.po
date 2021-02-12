@@ -2498,11 +2498,11 @@ msgstr "Να μην εμφανισθεί ξανά αυτό το &Μήνυμα."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2595,6 +2595,13 @@ msgstr "Αρχεία HTML (*.htm,*.html)|*.htm;*.html|Όλα τα Αρχεία (
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Αρχεία XML (*.xml)|*.xml|All Files (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Επέκταση"
 
 #, c-format
 msgid "Name"
@@ -3155,10 +3162,6 @@ msgstr "Ημερομηνία Δεξιού"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Επέκταση"
 
 #, c-format
 msgid "Left Size"

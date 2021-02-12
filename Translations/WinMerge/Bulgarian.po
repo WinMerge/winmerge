@@ -2030,11 +2030,11 @@ msgstr ""
 "За да видите отново това съобщение, натиснете бутона Отменяне на страницата "
 "„Общи“ в Настройки."
 
-msgid "Color Schemes"
-msgstr "Теми"
-
 msgid "Syntax"
 msgstr "Синтаксис"
+
+msgid "Color Schemes"
+msgstr "Теми"
 
 msgid "Folder Compare"
 msgstr "Сравняване на папки"
@@ -2114,6 +2114,12 @@ msgstr "HTML файлове (*.htm,*.html)|*.htm;*.html|Всички файло�
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML файлове (*.xml)|*.xml|Всички файлове (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Разширение"
 
 msgid "Name"
 msgstr "Име"
@@ -2682,9 +2688,6 @@ msgstr "Дата дясно"
 
 msgid "Middle Date"
 msgstr "Дата средата"
-
-msgid "Extension"
-msgstr "Разширение"
 
 msgid "Left Size"
 msgstr "Размер ляво"

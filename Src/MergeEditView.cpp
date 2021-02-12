@@ -68,6 +68,7 @@ CMergeEditView::CMergeEditView()
 , m_lineBegin(0)
 , m_lineEnd(-1)
 , m_CurrentPredifferID(0)
+, m_bChangedSchemeManually(false)
 {
 	SetParser(&m_xParser);
 	
@@ -3417,6 +3418,18 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
+	else if (!m_bChangedSchemeManually)
+	{
+		// The syntax highlighting scheme should only be applied if it has not been manually changed.
+		String fileName = GetDocument()->m_filePaths[m_nThisPane];
+		String sExt;
+		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
+		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(sExt.c_str());
+		if (def != nullptr)
+			SetTextType(def->type);
+		else
+			SetTextType(CrystalLineParser::SRC_PLAIN);
+	}
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
@@ -4333,6 +4346,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 			{
 				pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
 				pView->SetDisableBSAtSOL(false);
+				pView->m_bChangedSchemeManually = true;
 			}
 		}
 

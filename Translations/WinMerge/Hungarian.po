@@ -2469,11 +2469,11 @@ msgstr "&Ne jelenjen meg többet ez az üzenet."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2563,6 +2563,13 @@ msgstr ""
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr ""
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Kiterjesztés"
 
 #, c-format
 msgid "Name"
@@ -3092,10 +3099,6 @@ msgstr "Jobb oldali dátum"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Kiterjesztés"
 
 #, c-format
 msgid "Left Size"

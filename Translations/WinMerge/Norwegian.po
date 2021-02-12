@@ -2501,11 +2501,11 @@ msgstr "Ikke vis denne &meldingen igjen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2598,6 +2598,13 @@ msgstr "HTML-filer (*.htm,*.html)|*.htm;*.html|Alle filer (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alle filer (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Filtype"
 
 #, c-format
 msgid "Name"
@@ -3177,10 +3184,6 @@ msgstr "Høyre dato"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Filtype"
 
 #, c-format
 msgid "Left Size"

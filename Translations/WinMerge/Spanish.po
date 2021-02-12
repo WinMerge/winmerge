@@ -2026,11 +2026,11 @@ msgstr ""
 "Para volver a hacer visible este cuadro de dialogo, presione el botón "
 "Restablecer en la página General del cuadro de diálogo Opciones."
 
-msgid "Color Schemes"
-msgstr ""
-
 msgid "Syntax"
 msgstr "Sintaxis"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "Comparar de carpetas"
@@ -2112,6 +2112,12 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Archivos XML (*.xml)|*.xml|Todos los archivos (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Extensión"
 
 msgid "Name"
 msgstr "Nombre"
@@ -2653,9 +2659,6 @@ msgstr "Fecha der."
 
 msgid "Middle Date"
 msgstr "Fecha Media"
-
-msgid "Extension"
-msgstr "Extensión"
 
 msgid "Left Size"
 msgstr "Tamaño izq."

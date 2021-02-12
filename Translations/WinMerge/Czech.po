@@ -2471,12 +2471,12 @@ msgstr "T&uto zprávu již příště nezobrazovat."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntaxe"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr ""
@@ -2568,6 +2568,13 @@ msgstr "Soubory HTML (*.htm,*.html)|*.htm;*.html|Všechny soubory (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Soubory XML (*.xml)|*.xml|Všechny soubory (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Přípona"
 
 #, c-format
 msgid "Name"
@@ -3122,10 +3129,6 @@ msgstr "Datum vpravo"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Přípona"
 
 #, c-format
 msgid "Left Size"

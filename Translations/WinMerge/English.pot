@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-02-07 10:33+0000\n"
+"POT-Creation-Date: 2021-02-12 11:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1943,10 +1943,10 @@ msgstr ""
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
+msgid "Syntax"
 msgstr ""
 
-msgid "Syntax"
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2016,6 +2016,12 @@ msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr ""
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
 msgstr ""
 
 msgid "Name"
@@ -2400,9 +2406,6 @@ msgid "Right Date"
 msgstr ""
 
 msgid "Middle Date"
-msgstr ""
-
-msgid "Extension"
 msgstr ""
 
 msgid "Left Size"

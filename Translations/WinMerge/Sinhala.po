@@ -2496,11 +2496,11 @@ msgstr "මෙම පණිවිඩය නැවත දර්ශනය නො�
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2593,6 +2593,13 @@ msgstr "HTML ලිපිගොනු (*.htm,*.html)|*.htm;*.html|සියල�
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ලිපිගොනු (*.xml)|*.xml|සියලුම ලිපිගොනු (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "දිගුව"
 
 #, c-format
 msgid "Name"
@@ -3169,10 +3176,6 @@ msgstr "දකුණු දිනය"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "දිගුව"
 
 #, c-format
 msgid "Left Size"

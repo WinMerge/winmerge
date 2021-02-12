@@ -2018,11 +2018,11 @@ msgstr "再びこのメッセージを表示しない(&M)"
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般ページで [リセット] ボタンを押してください。"
 
-msgid "Color Schemes"
-msgstr "配色"
-
 msgid "Syntax"
 msgstr "シンタックス"
+
+msgid "Color Schemes"
+msgstr "配色"
 
 msgid "Folder Compare"
 msgstr "フォルダー比較"
@@ -2098,6 +2098,12 @@ msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
+
+msgid "File Type"
+msgstr "ファイルタイプ"
+
+msgid "Extension"
+msgstr "拡張子"
 
 msgid "Name"
 msgstr "名前"
@@ -2643,9 +2649,6 @@ msgstr "右更新日時"
 
 msgid "Middle Date"
 msgstr "中更新日時"
-
-msgid "Extension"
-msgstr "拡張子"
 
 msgid "Left Size"
 msgstr "左サイズ"
