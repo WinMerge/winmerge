@@ -112,7 +112,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths::ConcatPath(env::GetWindowsDirectory(), _T("NOTEPAD.EXE")));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
-	pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
+	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0);
 	pOptions->InitOption(OPT_MERGE_MODE, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
 	pOptions->InitOption(OPT_BREAK_ON_WORDS, false);

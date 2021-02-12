@@ -58,7 +58,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -83,7 +83,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -108,7 +108,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -133,7 +133,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -159,7 +159,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -185,7 +185,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -211,7 +211,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -237,7 +237,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -263,7 +263,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -289,7 +289,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -316,7 +316,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -343,7 +343,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -371,7 +371,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -399,7 +399,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -426,7 +426,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -453,7 +453,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -480,7 +480,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -507,7 +507,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -533,7 +533,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -559,7 +559,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -586,7 +586,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -613,7 +613,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -641,7 +641,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -669,7 +669,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -695,7 +695,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -721,7 +721,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -748,7 +748,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -775,7 +775,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -802,7 +802,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -830,7 +830,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -858,7 +858,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -883,7 +883,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(1251,cmdInfo.m_nCodepage);
@@ -908,7 +908,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(1251,cmdInfo.m_nCodepage);
@@ -933,7 +933,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -958,7 +958,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -983,7 +983,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1009,7 +1009,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1035,7 +1035,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1061,7 +1061,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1086,7 +1086,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1112,7 +1112,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1138,7 +1138,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1163,7 +1163,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1189,7 +1189,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1215,7 +1215,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1240,7 +1240,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1266,7 +1266,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1292,7 +1292,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1317,7 +1317,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1342,7 +1342,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1367,7 +1367,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1392,7 +1392,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1417,7 +1417,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1442,7 +1442,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1467,7 +1467,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
@@ -1541,7 +1541,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
-		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
