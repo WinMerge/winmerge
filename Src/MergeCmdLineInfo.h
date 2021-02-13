@@ -59,7 +59,7 @@ public:
 	bool m_bRecurse; /**< Include sub folder in directories compare. */
 	std::optional<CompareMethodType> m_nCompMethod; /**< Compare method */
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
-	std::optional<bool> m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
+	std::optional<int> m_nSingleInstance; /**< Allow only one instance of WinMerge executable. */
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */
 	int  m_nCodepage;  /**< Codepage. */
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   

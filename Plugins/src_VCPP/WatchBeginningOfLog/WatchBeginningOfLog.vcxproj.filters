@@ -29,9 +29,6 @@
     <None Include="WatchBeginningOfLog.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="WinMergeScript.rgs">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="WatchBeginningOfLog.idl">
@@ -50,10 +47,10 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\typeinfoex.h">
+    <ClInclude Include="WinMergeScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WinMergeScript.h">
+    <ClInclude Include="typeinfoex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

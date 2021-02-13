@@ -68,6 +68,7 @@ CMergeEditView::CMergeEditView()
 , m_lineBegin(0)
 , m_lineEnd(-1)
 , m_CurrentPredifferID(0)
+, m_bChangedSchemeManually(false)
 {
 	SetParser(&m_xParser);
 	
@@ -3221,7 +3222,8 @@ void CMergeEditView::OnWMGoto()
 			if (nRealLine1 > nLastLine)
 				nRealLine1 = nLastLine;
 
-			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
+			bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile, !bShift);
 		}
 		else
 		{
@@ -3416,6 +3418,18 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
+	else if (!m_bChangedSchemeManually)
+	{
+		// The syntax highlighting scheme should only be applied if it has not been manually changed.
+		String fileName = GetDocument()->m_filePaths[m_nThisPane];
+		String sExt;
+		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
+		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(sExt.c_str());
+		if (def != nullptr)
+			SetTextType(def->type);
+		else
+			SetTextType(CrystalLineParser::SRC_PLAIN);
+	}
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
@@ -3606,8 +3620,9 @@ bool CMergeEditView::SetPredifferByName(const CString & prediffer)
  * @param [in] bRealLine if true linenumber is real line, otherwise
  * it is apparent line (including deleted lines)
  * @param [in] pane Pane index of goto target pane (0 = left, 1 = right).
+ * @param [in] bMoveAnchor if true the anchor is moved to nLine
  */
-void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
+void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
@@ -3645,13 +3660,17 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 		if (ptPos.y < pView->GetLineCount())
 		{
 			pView->SetCursorPos(ptPos);
-			pView->SetAnchor(ptPos);
+			if (bMoveAnchor)
+				pView->SetAnchor(ptPos);
+			pView->SetSelection(pView->GetAnchor(), ptPos);
 		}
 		else
 		{
 			CPoint ptPos1(0, pView->GetLineCount() - 1);
 			pView->SetCursorPos(ptPos1);
-			pView->SetAnchor(ptPos1);
+			if (bMoveAnchor)
+				pView->SetAnchor(ptPos1);
+			pView->SetSelection(pView->GetAnchor(), ptPos1);
 		}
 	}
 
@@ -4317,17 +4336,19 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 	CMergeDoc *pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
 
-	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-	{
-		CMergeEditView *pView = GetGroupView(nPane);
-		ASSERT(pView != nullptr);
-
-		if (pView != nullptr)
+	for (int nGroup = 0; nGroup < pDoc->m_nGroups; nGroup++)
+		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
-			pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
-			pView->SetDisableBSAtSOL(false);
+			CMergeEditView *pView = pDoc->GetView(nGroup, nPane);
+			ASSERT(pView != nullptr);
+
+			if (pView != nullptr)
+			{
+				pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
+				pView->SetDisableBSAtSOL(false);
+				pView->m_bChangedSchemeManually = true;
+			}
 		}
-	}
 
 	OnRefresh();
 }

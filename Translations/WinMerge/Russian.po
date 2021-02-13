@@ -1013,8 +1013,8 @@ msgstr "За&крывать окна клавишей 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Автопроверка пути в диалоге открытия файлов"
 
-msgid "All&ow only one instance to run"
-msgstr "&Разрешить запуск только одной копии"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Подтверждать закрытие окон"
@@ -1951,11 +1951,11 @@ msgstr "Не показывать &больше."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие."
 
-msgid "Color Schemes"
-msgstr "Цветовая схема"
-
 msgid "Syntax"
 msgstr "Синтаксис"
+
+msgid "Color Schemes"
+msgstr "Цветовая схема"
 
 msgid "Folder Compare"
 msgstr "Сравнение папок"
@@ -2025,6 +2025,12 @@ msgstr "Файлы HTML (*.htm,*.html)|*.htm;*.html|Все файлы (*.*)|*.*|
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файлы XML (*.xml)|*.xml|Все файлы (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Расширение"
 
 msgid "Name"
 msgstr "Имя"
@@ -2409,9 +2415,6 @@ msgstr "Дата справа"
 
 msgid "Middle Date"
 msgstr "Дата посередине"
-
-msgid "Extension"
-msgstr "Расширение"
 
 msgid "Left Size"
 msgstr "Размер слева"
@@ -3210,4 +3213,10 @@ msgstr "Построчная позиция и текст"
 
 msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
+
+msgid "Allow only one instance to run"
+msgstr "Разрешить запуск только одной копии"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

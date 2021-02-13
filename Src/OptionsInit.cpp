@@ -13,6 +13,7 @@
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
 #include "OptionsDirColors.h"
+#include "OptionsEditorSyntax.h"
 #include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "paths.h"
@@ -111,7 +112,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths::ConcatPath(env::GetWindowsDirectory(), _T("NOTEPAD.EXE")));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
-	pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
+	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0);
 	pOptions->InitOption(OPT_MERGE_MODE, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
 	pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
@@ -221,6 +222,7 @@ void Init(COptionsMgr *pOptions)
 	Options::DiffOptions::SetDefaults(pOptions);
 	Options::DiffColors::SetDefaults(pOptions);
 	Options::DirColors::SetDefaults(pOptions);
+	Options::EditorSyntax::SetDefaults(pOptions);
 	Options::Font::SetDefaults(pOptions);
 }
 

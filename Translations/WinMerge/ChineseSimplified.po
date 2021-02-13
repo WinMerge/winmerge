@@ -1014,8 +1014,8 @@ msgstr "按 'Esc' 关闭窗口(&O):"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "“打开”对话框中自动验证路径(&A)"
 
-msgid "All&ow only one instance to run"
-msgstr "只允许运行一个实例(&O)"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "关闭多个窗口时询问我(&K)"
@@ -2030,11 +2030,11 @@ msgid ""
 msgstr ""
 "如需重新显示这些提示框，请在“选项”对话框的“常规”选项卡中点击“重置”按钮。"
 
-msgid "Color Schemes"
-msgstr "配色方案"
-
 msgid "Syntax"
 msgstr "语法"
+
+msgid "Color Schemes"
+msgstr "配色方案"
 
 msgid "Folder Compare"
 msgstr "文件夹比较"
@@ -2114,6 +2114,12 @@ msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "扩展名"
 
 msgid "Name"
 msgstr "名称"
@@ -2663,9 +2669,6 @@ msgstr "右侧日期"
 
 msgid "Middle Date"
 msgstr "中间日期"
-
-msgid "Extension"
-msgstr "扩展名"
 
 msgid "Left Size"
 msgstr "左侧大小"
@@ -3605,5 +3608,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "只允许运行一个实例"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

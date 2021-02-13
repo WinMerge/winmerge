@@ -934,6 +934,12 @@
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropEditorSyntax.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsEditorSyntax.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1672,6 +1678,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SubstitutionFiltersList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropEditorSyntax.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsEditorSyntax.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

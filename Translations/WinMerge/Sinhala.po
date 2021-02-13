@@ -1272,9 +1272,8 @@ msgstr "කවුළු වැසීම 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automatically verify paths in Open-dialog"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "එක් දෘෂ්ටාන්තයක් පමණක් සිදු වීමට ඉඩ හරින්න"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2496,11 +2495,11 @@ msgstr "මෙම පණිවිඩය නැවත දර්ශනය නො�
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Color Schemes"
 msgstr ""
 
 msgid "Folder Compare"
@@ -2593,6 +2592,13 @@ msgstr "HTML ලිපිගොනු (*.htm,*.html)|*.htm;*.html|සියල�
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ලිපිගොනු (*.xml)|*.xml|සියලුම ලිපිගොනු (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "දිගුව"
 
 #, c-format
 msgid "Name"
@@ -3169,10 +3175,6 @@ msgstr "දකුණු දිනය"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "දිගුව"
 
 #, c-format
 msgid "Left Size"
@@ -4164,5 +4166,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "එක් දෘෂ්ටාන්තයක් පමණක් සිදු වීමට ඉඩ හරින්න"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

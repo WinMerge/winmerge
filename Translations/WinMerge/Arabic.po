@@ -1014,8 +1014,8 @@ msgstr "إغلاق النوافذ باستخدام زر 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&تحقق من المسارات في النافذة المفتوحة"
 
-msgid "All&ow only one instance to run"
-msgstr "السماح بتشغيل عنصر واحد فقط"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "ال&سؤال قبل إغلاق نوافذ متعددة"
@@ -2021,11 +2021,11 @@ msgstr ""
 "لإعادة تفعيل عرض الرسالة مجددا، قم بالضغط على زر إعادة التعيين من صفحة \"عام"
 "\" في قائمة الخيارات."
 
-msgid "Color Schemes"
-msgstr ""
-
 msgid "Syntax"
 msgstr "اللغة"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "مقارنة المجلد"
@@ -2105,6 +2105,12 @@ msgstr "ملفات HTML (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "ملفات XML (*.xml)|*.xml|All Files (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "الإمتداد"
 
 msgid "Name"
 msgstr "الاسم"
@@ -2637,9 +2643,6 @@ msgstr "التاريخ في الجزء الأيمن"
 
 msgid "Middle Date"
 msgstr "التاريخ في الجزء الأوسط"
-
-msgid "Extension"
-msgstr "الإمتداد"
 
 msgid "Left Size"
 msgstr "الحجم في الجزء الأيسر"
@@ -3566,5 +3569,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "السماح بتشغيل عنصر واحد فقط"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

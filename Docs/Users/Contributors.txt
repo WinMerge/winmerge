@@ -78,6 +78,7 @@ Localization:
   Dominique Saussereau <redguff@users.sourceforge.net>
   Matthieu Pupat
   gandf
+  Lolo S. <slolo2000 at hotmail.com>
 
 * Galician:
   Medulio

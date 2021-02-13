@@ -1014,8 +1014,8 @@ msgstr "Zat&várať okná klávesou 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automaticky overovať cestu v dialógu Otvoriť"
 
-msgid "All&ow only one instance to run"
-msgstr "Um&ožniť spustenie iba jednej inštancie"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "&Pýtať sa pred zatvorením viacerých okien"
@@ -2032,11 +2032,11 @@ msgstr ""
 "Ak chcete, aby sa toto okno so správami znova zobrazilo, stlačte tlačidlo "
 "Reset na stránke Všeobecné v dialógovom okne Možnosti."
 
-msgid "Color Schemes"
-msgstr "Farebné schémy"
-
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Farebné schémy"
 
 msgid "Folder Compare"
 msgstr "Porovnávanie priečinkov"
@@ -2116,6 +2116,12 @@ msgstr "HTML súbory (*.htm,*.html)|*.htm;*.html|Všetky súbory (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML súbory (*.xml)|*.xml|Všetky súbory (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Prípona"
 
 msgid "Name"
 msgstr "Názov"
@@ -2672,9 +2678,6 @@ msgstr "Dátum pravého"
 
 msgid "Middle Date"
 msgstr "Dátum stredného"
-
-msgid "Extension"
-msgstr "Prípona"
 
 msgid "Left Size"
 msgstr "Veľkosť ľavého"
@@ -3628,5 +3631,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Umožniť spustenie iba jednej inštancie"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

@@ -1276,9 +1276,8 @@ msgstr "&o   'Esc' بستن پنجره ها با کليد :"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&A بطور خودکار مسيرها در پنجره محاوره - باز کردن - وارسي شود "
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "&o اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2514,12 +2513,12 @@ msgstr "&m دوباره اين پيام را نمايش نده "
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "نحو"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr ""
@@ -2616,6 +2615,13 @@ msgstr ""
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML  پرونده هاي  (*.xml)|*.xml|همه پرونده ها  (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr " توسعه "
 
 #, c-format
 msgid "Name"
@@ -3200,10 +3206,6 @@ msgstr " تاريخ راست "
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr " توسعه "
 
 #, c-format
 msgid "Left Size"
@@ -4217,5 +4219,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

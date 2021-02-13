@@ -1276,9 +1276,8 @@ msgstr "Pe&char as ventás con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Verificar automaticamente as rutas no diálogo Abrir"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Per&mitir executar só unha instancia"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2534,12 +2533,12 @@ msgstr "Non amosar esta &mensaxe de novo."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Para a ver esta caixa de mensaxe outra vez, preme no botón Restaurar na páxina Xeral do diálogo de Opcións."
 
-msgid "Color Schemes"
-msgstr "Esquemas de cores"
-
 #, c-format
 msgid "Syntax"
 msgstr "Sintaxe"
+
+msgid "Color Schemes"
+msgstr "Esquemas de cores"
 
 msgid "Folder Compare"
 msgstr "Comparar cartafoles"
@@ -2631,6 +2630,13 @@ msgstr "Arquivos HTML (*.htm,*.html)|*.htm;*.html|Todos os arquivos (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Arquivos XML (*.xml)|*.xml|Todos os arquivos(*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Extensión"
 
 #, c-format
 msgid "Name"
@@ -3237,10 +3243,6 @@ msgstr "Data dereita"
 #, c-format
 msgid "Middle Date"
 msgstr "Data centro"
-
-#, c-format
-msgid "Extension"
-msgstr "Extensión"
 
 #, c-format
 msgid "Left Size"
@@ -4344,4 +4346,11 @@ msgstr "Posición e texto liña a liña"
 
 msgid "Word-by-word position and text"
 msgstr "Posición e texto palabra a palabra"
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Permitir executar só unha instancia"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

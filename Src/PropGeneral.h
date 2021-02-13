@@ -29,7 +29,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_GENERAL };
 	bool  m_bScroll;
 	bool  m_bScrollToFirstInlineDiff;
-	bool  m_bSingleInstance;
+	int   m_nSingleInstance;
 	bool  m_bVerifyPaths;
 	int   m_nCloseWindowWithEsc;
 	bool  m_bAskMultiWindowClose;

@@ -97,6 +97,8 @@ private:
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
+	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
+
 // Operations
 public:
 	void RefreshOptions();
@@ -132,7 +134,7 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
-	void GotoLine(UINT nLine, bool bRealLine, int pane);
+	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
 	int GetTopSubLine() const { return m_nTopSubLine; }

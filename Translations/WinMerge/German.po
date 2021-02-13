@@ -1275,9 +1275,8 @@ msgstr "Fenster mit '&Esc' schließen:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Nur eine Programm-&Instanz zulassen"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2469,12 +2468,12 @@ msgstr "Diese &Meldung nicht erneut anzeigen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."
 
-msgid "Color Schemes"
-msgstr "Farbschemas"
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Farbschemas"
 
 msgid "Folder Compare"
 msgstr "Ordnervergleich"
@@ -2560,6 +2559,13 @@ msgstr "HTML-Dateien (*.htm,*.html)|*.htm;*.html|Alle Dateien (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Erweiterung"
 
 #, c-format
 msgid "Name"
@@ -2996,10 +3002,6 @@ msgstr "Rechtes Datum"
 #, c-format
 msgid "Middle Date"
 msgstr "Mittleres Datum"
-
-#, c-format
-msgid "Extension"
-msgstr "Erweiterung"
 
 #, c-format
 msgid "Left Size"
@@ -3957,4 +3959,11 @@ msgstr "Position und Text zeilenweise"
 
 msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Nur eine Programm-Instanz zulassen"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

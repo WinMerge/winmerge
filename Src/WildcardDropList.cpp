@@ -170,13 +170,14 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, 
  * @brief Handles the CBN_CLOSEUP notification.
  * @param [in] hCb Handle to ComboBox control.
  */
-void WildcardDropList::OnCloseUp(HWND hCb)
+bool WildcardDropList::OnCloseUp(HWND hCb)
 {
 	COMBOBOXINFO info;
 	info.cbSize = sizeof info;
 	if (!::GetComboBoxInfo(hCb, &info))
-		return;
+		return false;
 	::UnregisterHotKey(info.hwndList, IDCANCEL);
+	bool ret = false;
 	if (HWND const hTc = ::GetDlgItem(info.hwndList, 100))
 	{
 		if (::IsWindowEnabled(hTc))
@@ -205,9 +206,70 @@ void WildcardDropList::OnCloseUp(HWND hCb)
 			*pch = _T('\0');
 			::SetWindowText(hCb, patterns);
 			::SendMessage(hCb, CB_SETEDITSEL, 0, MAKELPARAM(0, -1));
+			ret = true;
 		}
 		::DestroyWindow(hTc);
 	}
 	LONG_PTR pfnSuper = ::SetWindowLongPtr(info.hwndList, GWLP_USERDATA, 0);
 	::SetWindowLongPtr(info.hwndList, GWLP_WNDPROC, pfnSuper);
+	return ret;
+}
+
+LRESULT WildcardDropList::LvWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	WNDPROC pfnSuper = (WNDPROC)::GetWindowLongPtr(hwnd, GWLP_USERDATA);
+	switch (message)
+	{
+	case WM_COMMAND:
+		switch (HIWORD(wParam))
+		{
+			TCHAR text[4096];
+			LONG_PTR data;
+		case CBN_CLOSEUP:
+			OnCloseUp(reinterpret_cast<HWND>(lParam));
+			::GetWindowText(reinterpret_cast<HWND>(lParam), text, _countof(text));
+			data = ::GetWindowLongPtr(reinterpret_cast<HWND>(lParam), GWLP_USERDATA);
+			ListView_SetItemText(hwnd, SHORT LOWORD(data), SHORT HIWORD(data), text);
+			::DestroyWindow(reinterpret_cast<HWND>(lParam));
+			::SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)pfnSuper);
+			::SetFocus(hwnd);
+			break;
+		case CBN_SELENDOK:
+			::GetWindowText(reinterpret_cast<HWND>(lParam), text, _countof(text));
+			data = ::GetWindowLongPtr(reinterpret_cast<HWND>(lParam), GWLP_USERDATA);
+			ListView_SetItemText(hwnd, SHORT LOWORD(data), SHORT HIWORD(data), text);
+			break;
+		}
+		return 0;
+	}
+	return ::CallWindowProc(pfnSuper, hwnd, message, wParam, lParam);
+}
+
+void WildcardDropList::OnItemActivate(HWND hLv, int iItem, int iSubItem, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns, int limitTextSize)
+{
+	RECT rc;
+	ListView_EnsureVisible(hLv, iItem, FALSE);
+	ListView_GetSubItemRect(hLv, iItem, iSubItem, LVIR_BOUNDS, &rc);
+	TCHAR text[4096];
+	ListView_GetItemText(hLv, iItem, iSubItem, text, _countof(text));
+	HWND hCb = ::CreateWindow(WC_COMBOBOX, NULL, WS_CHILD | WS_VISIBLE |
+		WS_TABSTOP | CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT,
+		rc.left, rc.top - 1, rc.right - rc.left, 0,
+		hLv, reinterpret_cast<HMENU>(1), NULL, NULL);
+	::SetWindowLongPtr(hCb, GWLP_USERDATA, MAKELPARAM(iItem, iSubItem));
+	::SendMessage(hCb, WM_SETFONT, ::SendMessage(hLv, WM_GETFONT, 0, 0), 0);
+	::SetFocus(hCb);
+	::SetWindowText(hCb, text);
+
+	size_t len = _tcslen(text);
+	LPARAM lp = (len << 16) | len; 
+	::SendMessage(hCb, CB_SETEDITSEL, 0, lp);
+
+	if (limitTextSize > 0)
+		::SendMessage(hCb, CB_LIMITTEXT, limitTextSize, 0);
+
+	LONG_PTR pfnSuper = ::SetWindowLongPtr(hLv, GWLP_WNDPROC, (LONG_PTR)LvWndProc);
+	::SetWindowLongPtr(hLv, GWLP_USERDATA, pfnSuper);
+	OnDropDown(hCb, columns, fixedPatterns, allowUserAddedPatterns);
+	::SendMessage(hCb, CB_SHOWDROPDOWN, TRUE, 0);
 }
