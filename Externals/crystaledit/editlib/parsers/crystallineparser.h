@@ -137,7 +137,7 @@ bool IsHtmlUser2Keyword(const TCHAR *pszChars, int nLength);
 
 TextDefinition *GetTextType(const TCHAR *pszExt);
 TextDefinition* GetTextType(int index);
-void SetExtension(int index, const String& exts);
+void SetExtension(int index, const TCHAR *pszExts);
 
 unsigned ParseLinePlain(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAsp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

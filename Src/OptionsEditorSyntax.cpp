@@ -53,7 +53,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 
 			// Register the settings read from the registry in CrystalLineParser.
 			String exts = pOptionsMgr->GetString(name);
-			CrystalLineParser::SetExtension(i, exts);
+			CrystalLineParser::SetExtension(i, exts.c_str());
 		}
 	}
 }
@@ -100,7 +100,7 @@ void Save(COptionsMgr* pOptionsMgr, const String* const pExtension)
 			pOptionsMgr->SaveOption(name, pExtension[i-1]);
 
 			// Save the extension settings to CrystalLineParser.
-			CrystalLineParser::SetExtension(i, pExtension[i-1]);
+			CrystalLineParser::SetExtension(i, pExtension[i-1].c_str());
 		}
 	}
 }

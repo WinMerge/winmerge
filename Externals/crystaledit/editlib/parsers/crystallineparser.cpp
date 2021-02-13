@@ -119,13 +119,13 @@ GetTextType(int index)
  * @param [in] exts Extension setting
  */
 void
-SetExtension(int index, const String& exts)
+SetExtension(int index, const TCHAR *pszExts)
 {
   if (index < 0 || index > SRC_XML)
     return;
 
   int size = sizeof(TextDefinition::exts) / sizeof(TextDefinition::exts[0]);
-  _tcscpy_s(m_SourceDefs[index].exts, size, exts.c_str());
+  _tcscpy_s(m_SourceDefs[index].exts, size, pszExts);
 }
 
 }
