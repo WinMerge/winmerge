@@ -259,6 +259,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -s- to not allow only one instance
 			m_nSingleInstance = 0;
 		}
+		else if (param == _T("sw"))
+		{
+			// -sw to allow only one instance and wait for the instance to terminate
+			m_nSingleInstance = 2;
+		}
 		else if (param == _T("s"))
 		{
 			// -s to allow only one instance

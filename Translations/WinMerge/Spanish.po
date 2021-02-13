@@ -1015,8 +1015,8 @@ msgstr "C&errar ventanas con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Comprobar rutas &automáticamente en la ventana de apertura"
 
-msgid "All&ow only one instance to run"
-msgstr "Permitir s&olo una instancia en ejecución"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Preguntar al cerrar &múltiples ventanas"
@@ -3607,5 +3607,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permitir solo una instancia en ejecución"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

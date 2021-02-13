@@ -1276,9 +1276,8 @@ msgstr "&o   'Esc' بستن پنجره ها با کليد :"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&A بطور خودکار مسيرها در پنجره محاوره - باز کردن - وارسي شود "
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "&o اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -4220,5 +4219,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

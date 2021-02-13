@@ -1014,8 +1014,8 @@ msgstr "Fechar janela com 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verificar automaticamente localização na janela de abertura"
 
-msgid "All&ow only one instance to run"
-msgstr "Permitir apenas uma execução"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Pe&rguntar ao fechar múltiplas janelas"
@@ -3654,5 +3654,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permitir apenas uma execução"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

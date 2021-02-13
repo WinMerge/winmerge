@@ -1012,8 +1012,8 @@ msgstr "Vensters sluiten met 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
 
-msgid "All&ow only one instance to run"
-msgstr "Slechts één draaiende instantie toestaan"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Vragen bij sluiten van meerdere vensters"
@@ -3652,4 +3652,10 @@ msgstr "Positie en tekst regel per regel"
 
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
+
+msgid "Allow only one instance to run"
+msgstr "Slechts één draaiende instantie toestaan"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

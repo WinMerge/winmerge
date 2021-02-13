@@ -1275,9 +1275,8 @@ msgstr "Ablakok bezárása az '&Esc' billentyűvel:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Automatikus útvonalellenőrzés a &Megnyitás ablakban"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Csak &egy példány futásának engedélyezése"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -4082,5 +4081,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Csak egy példány futásának engedélyezése"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

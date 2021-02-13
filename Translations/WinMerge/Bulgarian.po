@@ -1008,8 +1008,8 @@ msgstr "Затваряне &прозорците при „Esc“:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Автоматична проверка на пътищата в диалога за отваряне"
 
-msgid "All&ow only one instance to run"
-msgstr "Позволи само &едно стартирано копие"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Потвърждение при &затваряне на много прозорци"
@@ -3649,4 +3649,10 @@ msgstr "Позиция на редове и текст"
 
 msgid "Word-by-word position and text"
 msgstr "Позиция на думи и текст"
+
+msgid "Allow only one instance to run"
+msgstr "Позволи само едно стартирано копие"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

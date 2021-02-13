@@ -1014,8 +1014,8 @@ msgstr "Zat&várať okná klávesou 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automaticky overovať cestu v dialógu Otvoriť"
 
-msgid "All&ow only one instance to run"
-msgstr "Um&ožniť spustenie iba jednej inštancie"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "&Pýtať sa pred zatvorením viacerých okien"
@@ -3631,5 +3631,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Umožniť spustenie iba jednej inštancie"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

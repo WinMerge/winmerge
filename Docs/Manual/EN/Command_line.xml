@@ -40,6 +40,8 @@
 
       <arg><option>/s</option></arg>
 
+      <arg><option>/sw</option></arg>
+
       <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
@@ -213,6 +215,15 @@
         same instance. Without this parameter, multiple windows are allowed:
         depending on other settings, a new compare might open in the existing
         window or in a new window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>Limit the WinMerge window to one instance as well as the option /s.
+         However, it waits for the instance displaying the window to terminate.
+        </para>
       </listitem>
     </varlistentry>
 

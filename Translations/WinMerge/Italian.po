@@ -1011,8 +1011,8 @@ msgstr "C&hiudi finestra con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verifica &automaticamente i percorsi nella finestra Apri"
 
-msgid "All&ow only one instance to run"
-msgstr "&Permetti l'esecuzione di un'unica istanza del programma"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Conferma c&hiusura di più finestre"
@@ -3590,5 +3590,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permetti l'esecuzione di un'unica istanza del programma"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

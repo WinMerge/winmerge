@@ -1014,8 +1014,8 @@ msgstr "إغلاق النوافذ باستخدام زر 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&تحقق من المسارات في النافذة المفتوحة"
 
-msgid "All&ow only one instance to run"
-msgstr "السماح بتشغيل عنصر واحد فقط"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "ال&سؤال قبل إغلاق نوافذ متعددة"
@@ -3569,5 +3569,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "السماح بتشغيل عنصر واحد فقط"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

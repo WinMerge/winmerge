@@ -1011,8 +1011,8 @@ msgstr "'Esc' tuşu pencereleri &kapatsın:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "'&Aç' penceresindeki yollar doğrulansın"
 
-msgid "All&ow only one instance to run"
-msgstr "Yalnız bir &WinMerge kopyası çalışsın"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
@@ -3602,5 +3602,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Yalnız bir WinMerge kopyası çalışsın"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

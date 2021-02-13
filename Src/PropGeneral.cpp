@@ -30,7 +30,7 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 	: OptionsPanel(optionsMgr, PropGeneral::IDD)
 	, m_bScroll(false)
 	, m_bScrollToFirstInlineDiff(false)
-	, m_nSingleInstance(false)
+	, m_nSingleInstance(0)
 	, m_bVerifyPaths(false)
 	, m_nCloseWindowWithEsc(1)
 	, m_bAskMultiWindowClose(false)
@@ -67,6 +67,15 @@ BOOL PropGeneral::OnInitDialog()
 
 	pWnd->SetCurSel(m_nCloseWindowWithEsc);
 
+	pWnd = (CComboBox*)GetDlgItem(IDC_SINGLE_INSTANCE);
+	ASSERT(pWnd != nullptr);
+
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("Allow only one instance to run").c_str());
+	pWnd->AddString(_("Allow only one instance to run and wait for the instance to terminate").c_str());
+
+	pWnd->SetCurSel(m_nSingleInstance);
+
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
 	m_asyncLanguagesLoader = Concurrent::CreateTask([hwnd = m_hWnd] {
@@ -83,7 +92,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(PropGeneral)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK, m_bScrollToFirstInlineDiff);
-	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_nSingleInstance);
+	DDX_CBIndex(pDX, IDC_SINGLE_INSTANCE, m_nSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_CBIndex(pDX, IDC_ESC_CLOSES_WINDOW, m_nCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);

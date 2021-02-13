@@ -1014,8 +1014,8 @@ msgstr "Užverti langus „Esc“ klavišu:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automatiškai tikrinti kelius „Atverti“ lange"
 
-msgid "All&ow only one instance to run"
-msgstr "Tik viena program&os kopija vienu metu"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "&Klausti patvirtinimo, kai uždaromi keli langai"
@@ -3214,4 +3214,10 @@ msgstr "„Line-by-line“ pozicija ir tekstas"
 
 msgid "Word-by-word position and text"
 msgstr "„Word-by-word“ pozicija ir tekstas"
+
+msgid "Allow only one instance to run"
+msgstr "Tik viena programos kopija vienu metu"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

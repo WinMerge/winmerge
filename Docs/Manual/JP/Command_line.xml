@@ -40,6 +40,8 @@
 
       <arg><option>/s</option></arg>
 
+      <arg><option>/sw</option></arg>
+
       <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
@@ -212,6 +214,15 @@
         この引数を指定しなかった場合、複数のウインドウが開かれる可能性があります:
         設定によっては、新しい比較が既に存在するウインドウで実行されることも新しいウインドウで
         実行されることもあります。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>/s と同様にWinMergeウインドウを1つのインスタンスに制限します。
+        ただし、ウインドウを表示しているインスタンスが終了するまで待機します。
+        </para>
       </listitem>
     </varlistentry>
 
