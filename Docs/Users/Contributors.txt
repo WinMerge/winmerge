@@ -130,6 +130,7 @@ Localization:
   Wender Firmino <wender@pta.com.br>
   Felipe Periard Lopes <felipefpl@ig.com.br>
   Igor Rückert
+  jota11
 
 * Portuguese (Portugal):
   Nelson Simão
