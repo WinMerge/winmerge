@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-01-15 20:39+0000\n"
-"PO-Revision-Date: 2021-02-14 06:27-0300\n"
+"PO-Revision-Date: 2021-02-14 07:47-0300\n"
 "Last-Translator: Felipe <felipefplzx@gmail.com>\n"
 "Language-Team: Felipe\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "Mostrar os I&tens Únicos a Esquerda"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr "Mostrar Ite&ns do Meio Únicos"
+msgstr "Mostrar Ite&ns Únicos do Meio"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
@@ -990,7 +990,7 @@ msgid "with &External Editor"
 msgstr "com &o Editor Externo"
 
 msgid "Open &Parent Folder..."
-msgstr "Abrir Pasta Parente..."
+msgstr "Abrir Pasta &Parente..."
 
 #, c-format
 msgid "Open Midd&le"
@@ -1117,7 +1117,7 @@ msgstr "Ignorar &caso sensitivo"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Igno&rar diferenças de retorno dos procedimentos (Win/Unix/Mac)"
+msgstr "Igno&rar diferenças de retorno dos procedimentos (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
@@ -1273,7 +1273,7 @@ msgstr "Fe&char as janelas com o 'Esc':"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "&Verificar automaticamente os caminhos no diálogo-Abrir"
+msgstr "&Verificar automaticamente os caminhos no Diálogo-Abrir"
 
 msgid "Single instance mode:"
 msgstr "Modo de instância única:"
@@ -1860,15 +1860,15 @@ msgid ""
 "Detect codepage info for these files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
-"Detectar a info do código da página para estes arquivos : .html, .rc, .xml \n"
-"Precisa reiniciar a sessão."
+"Detecte a info do código de página para estes arquivos : .html, .rc, .xml \n"
+"É necessário reiniciar a sessão."
 
 msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "Need to restart session."
 msgstr ""
-"Detectar o código da página pros arquivos texto usando mlang.dll\n"
-"Precisa reiniciar a sessão."
+"Detecte o código de página pros arquivos de texto usando mlang.dll\n"
+"É necessário reiniciar a sessão."
 
 #, c-format
 msgid "System codepage"
@@ -3063,7 +3063,7 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Não pode unir as diferenças quando os documentos não estão sincronizados.\n"
+"Não é possível unir as diferenças quando os documentos não estão sincronizados.\n"
 "\n"
 "Atualize os documentos antes de continuar."
 
@@ -3392,15 +3392,15 @@ msgstr "As pastas são diferentes"
 
 #, c-format
 msgid "Left Only"
-msgstr "Só a Esquerda"
+msgstr "Somente a Esquerda"
 
 #, c-format
 msgid "Right Only"
-msgstr "Só a Direita"
+msgstr "Somente a Direita"
 
 #, c-format
 msgid "Middle Only"
-msgstr "Só o Meio"
+msgstr "Somente o Meio"
 
 #, c-format
 msgid "No item in left"
@@ -3436,7 +3436,7 @@ msgstr "(O da esquerda e o do meio são idênticos)"
 
 #, c-format
 msgid "Text files are different"
-msgstr "Os arquivos texto são diferentes"
+msgstr "Os arquivos de texto são diferentes"
 
 msgid "Image files are identical"
 msgstr "Os arquivos de imagem são iguais"
@@ -3659,7 +3659,7 @@ msgstr "A pasta selecionada é inválida."
 
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Não pode abrir um arquivo binário no editor."
+msgstr "Não pôde abrir um arquivo binário no editor."
 
 #, c-format
 msgid ""
@@ -3866,7 +3866,7 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"Você está para fechar várias janelas de comparação.\n"
+"Você está prestes a fechar várias janelas de comparação.\n"
 "\n"
 "Você quer continuar?"
 
@@ -4070,7 +4070,7 @@ msgstr ""
 "Arquivo Anterior"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
-msgstr "O desempacotador adaptado está aplicado a ambos os arquivos (um arquivo só precisa da extensão)."
+msgstr "O desempacotador adaptado está aplicado a ambos os arquivos (somente um arquivo precisa da extensão)."
 
 #, c-format
 msgid "No prediffer (normal)"
@@ -4097,7 +4097,7 @@ msgid ""
 "%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
 "Uma nova versão do WinMerge está disponível.\n"
-"A &1 está disponível agora (você tem a %2). Você gostaria de baixá-la agora?"
+"A %1 está disponível agora (você tem a %2). Você gostaria de baixá-la agora?"
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -4136,7 +4136,7 @@ msgstr "Do sistema de arquivos"
 
 #, c-format
 msgid "From Most Recently Used list"
-msgstr "Da lista das MRUs"
+msgstr "Da lista dos Mais Usados Recentemente"
 
 #, c-format
 msgid "No Highlighting"
@@ -4348,7 +4348,7 @@ msgstr "Posição e texto palavra-por-palavra"
 
 #, c-format
 msgid "Allow only one instance to run"
-msgstr "Só permitir uma instância a executar"
+msgstr "Permitir somente uma instância a ser executada"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Permitir somente uma instância a ser executada e esperar a instância ser fechada."
+msgstr "Permitir somente uma instância a ser executada e esperar a instância ser fechada"
