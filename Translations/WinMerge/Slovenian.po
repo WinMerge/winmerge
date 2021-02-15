@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-01-30 10:55+0100\n"
+"PO-Revision-Date: 2021-02-14 18:13+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -1276,7 +1276,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Način za en primerek:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2627,7 +2627,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Vrsta datoteke"
 
 #, c-format
 msgid "Extension"
@@ -4346,5 +4346,5 @@ msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
 
