@@ -4353,3 +4353,4 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
+

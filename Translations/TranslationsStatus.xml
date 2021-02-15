@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-02-13</update>
+  <update>2021-02-15</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -33,12 +33,12 @@
     <translation>
       <language>Brazilian</language>
       <file>Brazilian.po</file>
-      <update>2020-07-26</update>
+      <update>2021-02-14</update>
       <strings>
         <count>1025</count>
-        <translated>983</translated>
+        <translated>1025</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>42</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -288,12 +288,12 @@
     <translation>
       <language>Galician</language>
       <file>Galician.po</file>
-      <update>2021-01-30</update>
+      <update>2021-02-13</update>
       <strings>
         <count>1025</count>
-        <translated>1022</translated>
+        <translated>1025</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -308,12 +308,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-01-29</update>
+      <update>2021-02-13</update>
       <strings>
         <count>1025</count>
-        <translated>1022</translated>
+        <translated>1025</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -403,9 +403,9 @@
       <update>2021-01-26</update>
       <strings>
         <count>1025</count>
-        <translated>1023</translated>
+        <translated>1025</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -660,12 +660,12 @@
     <translation>
       <language>Slovenian</language>
       <file>Slovenian.po</file>
-      <update>2021-01-30</update>
+      <update>2021-02-14</update>
       <strings>
         <count>1025</count>
-        <translated>1022</translated>
+        <translated>1025</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
