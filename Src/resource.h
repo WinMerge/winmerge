@@ -1381,6 +1381,10 @@
 #define IDS_OCRRESULT_TEXTONLY          34186
 #define IDS_OCRRESULT_POS_LINE          34187
 #define IDS_OCRRESULT_POS_WORD          34188
+#define ID_LINES_R2L                    34190
+#define ID_LINES_L2R                    34191
+#define ID_COPY_LINES_FROM_LEFT         34192
+#define ID_COPY_LINES_FROM_RIGHT        34193
 
 // Next default values for new objects
 // 

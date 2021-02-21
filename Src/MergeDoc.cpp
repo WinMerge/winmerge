@@ -827,7 +827,6 @@ void CMergeDoc::CopyAllList(int srcPane, int dstPane)
  * @param [in] firstDiff First diff copied (0-based index)
  * @param [in] lastDiff Last diff copied (0-based index)
  */
-void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff, int lastWordDiff)
 {
 #ifdef _DEBUG
 	if (firstDiff > lastDiff)
@@ -902,6 +901,84 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 			else
 			{
 				if (!WordListCopy(srcPane, dstPane, firstDiff, firstWordDiff, -1, nullptr, bGroupWithPrevious, false))
+					break; // sync failure
+			}
+		}
+	}
+
+	ForEachView(dstPane, [currentPosDst](auto& pView) {
+		pView->SetCursorPos(currentPosDst);
+		pView->SetNewSelection(currentPosDst, currentPosDst, false);
+		pView->SetNewAnchor(currentPosDst);
+	});
+
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
+}
+
+void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff,
+	int firstLineDiff, int lastLineDiff)
+{
+	lastDiff = min(m_diffList.GetSize() - 1, lastDiff);
+	firstDiff = max(0, firstDiff);
+	if (firstDiff > lastDiff)
+		return;
+	
+	RescanSuppress suppressRescan(*this);
+
+	bool bGroupWithPrevious = false;
+	if (firstLineDiff <= 0 && lastLineDiff == -1)
+	{
+		if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, true))
+			return; // sync failure
+	}
+	else
+	{
+		if (!PartialListCopy(srcPane, dstPane, lastDiff, 
+			(firstDiff == lastDiff) ? firstLineDiff : 0, lastLineDiff, bGroupWithPrevious, true))
+			return; // sync failure
+	}
+
+
+	SetEditedAfterRescan(dstPane);
+
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CPoint currentPosSrc = pViewSrc->GetCursorPos();
+	currentPosSrc.x = 0;
+	CPoint currentPosDst = pViewDst->GetCursorPos();
+	currentPosDst.x = 0;
+
+	CPoint pt(0, 0);
+	pViewDst->SetCursorPos(pt);
+	pViewDst->SetNewSelection(pt, pt, false);
+	pViewDst->SetNewAnchor(pt);
+
+	// copy from bottom up is more efficient
+	for (int i = lastDiff - 1; i >= firstDiff; --i)
+	{
+		if (m_diffList.IsDiffSignificant(i))
+		{
+			SetCurrentDiff(i);
+			const DIFFRANGE *pdi = m_diffList.DiffRangeAt(i);
+			if (currentPosDst.y > pdi->dend)
+			{
+				if (pdi->blank[dstPane] >= 0)
+					currentPosDst.y -= pdi->dend - pdi->blank[dstPane] + 1;
+				else if (pdi->blank[srcPane] >= 0)
+					currentPosDst.y -= pdi->dend - pdi->blank[srcPane] + 1;
+			}			
+			// Group merge with previous (merge undo data to one action)
+			bGroupWithPrevious = true;
+			if (i > firstDiff || firstLineDiff <= 0)
+			{
+				if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
+					break; // sync failure
+			}
+			else
+			{
+				if (!PartialListCopy(srcPane, dstPane, firstDiff, firstLineDiff, -1, bGroupWithPrevious, false))
 					break; // sync failure
 			}
 		}
@@ -1206,6 +1283,99 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// changes, but none that concern the source text
 		sbuf.SetModified(bSrcWasMod);
 	}
+
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
+	return true;
+}
+
+bool CMergeDoc::PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine /*= -1*/,
+	bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+{
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
+
+	// suppress Rescan during this method
+	// (Not only do we not want to rescan a lot of times, but
+	// it will wreck the line status array to rescan as we merge)
+	RescanSuppress suppressRescan(*this);
+
+	DIFFRANGE cd;
+	VERIFY(m_diffList.GetDiff(nDiff, cd));
+	CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
+	CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
+	bool bSrcWasMod = sbuf.IsModified();
+	const int cd_dbegin = (firstLine > cd.dbegin) ? firstLine : cd.dbegin;
+	const int cd_dend = cd.dend;
+	const int cd_blank = cd.blank[srcPane];
+	bool bInSync = SanityCheckDiff(cd);
+
+	if (!bInSync)
+	{
+		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		return false; // abort copying
+	}
+
+	// If we remove whole diff from current view, we must fix cursor
+	// position first. Normally we would move to end of previous line,
+	// but we want to move to begin of that line for usability.
+	if (bUpdateView)
+	{
+		CPoint currentPos = pViewDst->GetCursorPos();
+		currentPos.x = 0;
+		if (currentPos.y > cd_dend)
+		{
+			if (cd.blank[dstPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[dstPane] + 1;
+			else if (cd.blank[srcPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
+		}
+		ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
+	}
+
+	// if the current diff contains missing lines, remove them from both sides
+	int limit = ((lastLine < 0) || (lastLine > cd_dend)) ? cd_dend : lastLine;
+
+	// curView is the view which is changed, so the opposite of the source view
+	dbuf.BeginUndoGroup(bGroupWithPrevious);
+	if ((cd_blank >= 0) && (cd_dbegin >= cd_blank))
+	{
+		// text was missing, so delete rest of lines on both sides
+		// delete only on destination side since rescan will clear the other side
+		if (limit+1 < dbuf.GetLineCount())
+		{
+			dbuf.DeleteText(pSource, cd_dbegin, 0, limit+1, 0, CE_ACTION_MERGE);
+		}
+		else
+		{
+			// To removing EOL chars of last line, deletes from the end of the line (cd_blank - 1).
+			ASSERT(cd_dbegin > 0);
+			dbuf.DeleteText(pSource, cd_dbegin-1, dbuf.GetLineLength(cd_dbegin-1), limit, dbuf.GetLineLength(limit), CE_ACTION_MERGE);
+		}
+
+		limit = cd_dbegin-1;
+		dbuf.FlushUndoGroup(pSource);
+		dbuf.BeginUndoGroup(true);
+	}
+
+	// copy the selected text over
+	if (cd_dbegin <= limit)
+	{
+		// text exists on left side, so just replace
+		dbuf.ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
+		dbuf.FlushUndoGroup(pSource);
+		dbuf.BeginUndoGroup(true);
+	}
+	dbuf.FlushUndoGroup(pSource);
+
+	// remove the diff
+	SetCurrentDiff(-1);
+
+	// reset the mod status of the source view because we do make some
+	// changes, but none that concern the source text
+	sbuf.SetModified(bSrcWasMod);
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
