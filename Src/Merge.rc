@@ -71,6 +71,11 @@ BEGIN
         MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
         MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
+        MENUITEM "Copy Selected Line(s) to Right", ID_LINES_L2R
+        MENUITEM "Copy Selected Line(s) to Left", ID_LINES_R2L
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT
+        MENUITEM SEPARATOR
         MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM SEPARATOR

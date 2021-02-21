@@ -138,12 +138,20 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
+	ON_COMMAND(ID_LINES_L2R, OnLinesL2r)
+	ON_UPDATE_COMMAND_UI(ID_LINES_L2R, OnUpdateLinesL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_COMMAND(ID_LINES_R2L, OnLinesR2l)
+	ON_UPDATE_COMMAND_UI(ID_LINES_R2L, OnUpdateLinesR2l)
 	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
+	ON_COMMAND(ID_COPY_LINES_FROM_LEFT, OnCopyLinesFromLeft)
+	ON_UPDATE_COMMAND_UI(ID_COPY_LINES_FROM_LEFT, OnUpdateCopyLinesFromLeft)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
+	ON_COMMAND(ID_COPY_LINES_FROM_RIGHT, OnCopyLinesFromRight)
+	ON_UPDATE_COMMAND_UI(ID_COPY_LINES_FROM_RIGHT, OnUpdateCopyLinesFromRight)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
@@ -495,6 +503,42 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 	ASSERT(firstDiff == -1 ? (lastDiff  == -1 && firstWordDiff == -1 && lastWordDiff == -1) : true);
 	ASSERT(lastDiff  == -1 ? (firstDiff == -1 && firstWordDiff == -1 && lastWordDiff == -1) : true);
 	ASSERT(firstDiff != -1 ? firstWordDiff != -1 : true);
+}
+
+void CMergeEditView::GetSelectedDiffs(int & firstDiff, int & lastDiff)
+{
+	firstDiff = -1;
+	lastDiff = -1;
+
+	CMergeDoc *pd = GetDocument();
+	const int nDiffs = pd->m_diffList.GetSignificantDiffs();
+	if (nDiffs == 0)
+		return;
+
+	int firstLine, lastLine;
+	CPoint ptStart, ptEnd;
+	GetSelection(ptStart, ptEnd);
+	firstLine = ptStart.y;
+	lastLine = ptEnd.y;
+
+	firstDiff = pd->m_diffList.LineToDiff(firstLine);
+	if (firstDiff == -1)
+	{
+		firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+		if (firstDiff == -1)
+			return;
+	}
+	lastDiff = pd->m_diffList.LineToDiff(lastLine);
+	if (lastDiff == -1)
+		lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	if (lastDiff < firstDiff)
+	{
+		firstDiff = -1;
+		return;
+	}
+
+	ASSERT(firstDiff == -1 ? (lastDiff  == -1) : true);
+	ASSERT(lastDiff  == -1 ? (firstDiff == -1) : true);
 }
 
 std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice()
@@ -1864,7 +1908,7 @@ void CMergeEditView::OnRButtonDown(UINT nFlags, CPoint point)
 	DeselectDiffIfCursorNotInCurrentDiff();
 }
 
-void CMergeEditView::OnX2Y(int srcPane, int dstPane)
+void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 {
 	// Check that right side is not readonly
 	if (IsReadOnly(dstPane))
@@ -1890,23 +1934,36 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 	{
 		if (!m_bRectangularSelection)
 		{
-			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
-			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
-			if (firstDiff != -1 && lastDiff != -1)
+			if (selectedLineOnly)
 			{
-				CWaitCursor waitstatus;
-				
-				// Setting CopyFullLine (OPT_COPY_FULL_LINE)
-				// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-				if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				if (firstDiff != -1 && lastDiff != -1)
 				{
-					// old behaviour: copy full line
-					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+					CWaitCursor waitstatus;
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, firstDiff, lastDiff, ptStart.y, ptEnd.y);
 				}
-				else
+			}
+			else
+			{
+				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				if (firstDiff != -1 && lastDiff != -1)
 				{
-					// new behaviour: copy selected text only
-					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+					CWaitCursor waitstatus;
+					
+					// Setting CopyFullLine (OPT_COPY_FULL_LINE)
+					// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
+					if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
+					{
+						// old behaviour: copy full line
+						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+					}
+					else
+					{
+						// new behaviour: copy selected text only
+						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+					}
 				}
 			}
 		}
@@ -1923,8 +1980,16 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		CWaitCursor waitstatus;
-		pDoc->ListCopy(srcPane, dstPane, currentDiff);
+		if (selectedLineOnly)
+		{
+			CWaitCursor waitstatus;
+			pDoc->PartialListCopy(srcPane, dstPane, currentDiff, ptStart.y, ptEnd.y);
+		}
+		else
+		{
+			CWaitCursor waitstatus;
+			pDoc->ListCopy(srcPane, dstPane, currentDiff);
+		}
 	}
 }
 
@@ -1988,6 +2053,18 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
 }
 
+void CMergeEditView::OnLinesL2r()
+{
+	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
+	int srcPane = dstPane - 1;
+	OnX2Y(srcPane, dstPane, true);
+}
+
+void CMergeEditView::OnUpdateLinesL2r(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
+}
+
 /**
  * @brief Copy diff from right pane to left pane
  *
@@ -2014,6 +2091,18 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
 }
 
+void CMergeEditView::OnLinesR2l()
+{
+	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
+	int srcPane = dstPane + 1;
+	OnX2Y(srcPane, dstPane, true);
+}
+
+void CMergeEditView::OnUpdateLinesR2l(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
+}
+
 void CMergeEditView::OnCopyFromLeft()
 {
 	int dstPane = m_nThisPane;
@@ -2033,6 +2122,25 @@ void CMergeEditView::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
 		OnUpdateX2Y(dstPane, pCmdUI);
 }
 
+void CMergeEditView::OnCopyLinesFromLeft()
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane - 1;
+	if (srcPane < 0)
+		return;
+	OnX2Y(srcPane, dstPane, true);
+}
+
+void CMergeEditView::OnUpdateCopyLinesFromLeft(CCmdUI* pCmdUI)
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane - 1;
+	if (srcPane < 0)
+		pCmdUI->Enable(false);
+	else
+		OnUpdateX2Y(dstPane, pCmdUI);
+}
+
 void CMergeEditView::OnCopyFromRight()
 {
 	int dstPane = m_nThisPane;
@@ -2043,6 +2151,25 @@ void CMergeEditView::OnCopyFromRight()
 }
 
 void CMergeEditView::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane + 1;
+	if (srcPane >= GetDocument()->m_nBuffers)
+		pCmdUI->Enable(false);
+	else
+		OnUpdateX2Y(dstPane, pCmdUI);
+}
+
+void CMergeEditView::OnCopyLinesFromRight()
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane + 1;
+	if (srcPane >= GetDocument()->m_nBuffers)
+		return;
+	OnX2Y(srcPane, dstPane, true);
+}
+
+void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
 {
 	int dstPane = m_nThisPane;
 	int srcPane = dstPane + 1;
@@ -2988,11 +3115,15 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	{
 		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_LINES_FROM_RIGHT, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_LINES_FROM_LEFT, MF_BYCOMMAND);
 	}
 	if (m_nThisPane == GetDocument()->m_nBuffers - 1)
 	{
 		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_LINES_FROM_RIGHT, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_LINES_FROM_LEFT, MF_BYCOMMAND);
 	}
 
 	// Remove "Go to Moved Line Between Middle and Right" if in 2-way file comparison.
