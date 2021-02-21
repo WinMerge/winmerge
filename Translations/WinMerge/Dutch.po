@@ -39,6 +39,18 @@ msgstr "Van links kopiëren"
 msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 

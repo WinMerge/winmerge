@@ -40,6 +40,18 @@ msgstr "Копировать слева"
 msgid "Copy fro&m Right"
 msgstr "Копировать справа"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 

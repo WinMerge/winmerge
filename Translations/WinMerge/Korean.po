@@ -48,6 +48,18 @@ msgstr "왼쪽에서 복사(&F)"
 msgid "Copy fro&m Right"
 msgstr "오른쪽에서 복사(&M)"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "줄 차이점 선택(&S)\tF4"
 

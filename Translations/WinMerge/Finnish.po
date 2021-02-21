@@ -42,6 +42,18 @@ msgstr "Kopioi &vasemmalta"
 msgid "Copy fro&m Right"
 msgstr "Kopioi &oikealta"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Valitse riviero\tF4"
 

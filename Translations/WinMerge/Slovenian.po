@@ -45,6 +45,18 @@ msgstr "Kopiraj iz l&eve"
 msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
 

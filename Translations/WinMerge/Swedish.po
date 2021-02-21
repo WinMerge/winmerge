@@ -46,6 +46,18 @@ msgstr "Kopiera från Vänster"
 msgid "Copy fro&m Right"
 msgstr "Kopiera från Höger"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Markera Radskillnad\tF4"
 

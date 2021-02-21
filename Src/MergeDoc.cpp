@@ -827,6 +827,7 @@ void CMergeDoc::CopyAllList(int srcPane, int dstPane)
  * @param [in] firstDiff First diff copied (0-based index)
  * @param [in] lastDiff Last diff copied (0-based index)
  */
+void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff, int lastWordDiff)
 {
 #ifdef _DEBUG
 	if (firstDiff > lastDiff)

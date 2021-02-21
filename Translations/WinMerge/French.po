@@ -51,6 +51,18 @@ msgstr "Copier depuis la Gauche"
 msgid "Copy fro&m Right"
 msgstr "Copier depuis la Droite"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Sélectionner la ligne différente\tF4"
 
@@ -4362,3 +4374,4 @@ msgstr "Permettre une seule instance en exécution"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
+
