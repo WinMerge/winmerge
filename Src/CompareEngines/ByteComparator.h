@@ -49,6 +49,7 @@ protected:
 private:
 	// settings
 	bool m_ignore_case; /**< Ignore character case */
+	bool m_ignore_numbers; /**< Ignore character case */
 	bool m_ignore_space_change; /**< Ignore change in whitespace char count */
 	bool m_ignore_all_space; /**< Ignore all whitespace changes */
 	bool m_ignore_eol_diff; /**< Ignore differences in EOL bytes */

@@ -315,7 +315,7 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
      when the line has been entirely scanned.
      c2 is the equivalent of c1 for the line s2 */
 
-  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff)
+  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff | ignore_numbers_flag)
     {
       t1 = (unsigned char const *) s1;
       t2 = (unsigned char const *) s2;
@@ -448,6 +448,35 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
 		    }
 		}
 	    }
+
+		if (ignore_numbers_flag)
+		{
+			/* For ..., just skip past any numbers.  */
+			while (isdigit(c1))
+			{
+				if (t1 - (unsigned char*)s1 < (int)len1)
+				{
+					c1 = *t1++;
+				}
+				else
+				{
+					c1 = 0;
+					break;
+				}
+			}
+			while (isdigit(c2))
+			{
+				if (t2 - (unsigned char*)s2 < (int)len2)
+				{
+					c2 = *t2++;
+				}
+				else
+				{
+					c2 = 0;
+					break;
+				}
+			}
+		}
 
 	  /* Upcase all letters if -i is specified.  */
 

@@ -25,6 +25,7 @@ enum
 	dlspace,
 	dlbreak, 
 	dlinsert,
+	dlnumber,
 };
 /**
  * @brief kind of synchronaction
@@ -84,6 +85,13 @@ private:
 		return (word1.bBreak == dlspace);
 	}
 	/**
+	 * @brief Is this block a number one?
+	 */
+	inline bool IsNumber(const word& word1) const
+	{
+		return (word1.bBreak == dlnumber);
+	}
+	/**
 	 * @brief Is this block a break?
 	 */
 	inline bool IsBreak(const word & word1) const
@@ -113,6 +121,7 @@ private:
 	bool m_case_sensitive;
 	bool m_eol_sensitive;
 	int m_whitespace;
+	bool m_ignore_numbers = true;
 	int m_breakType;
 	bool m_matchblock;
 	std::vector<wdiff> * m_pDiffs;

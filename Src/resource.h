@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_ENABLED8BIT         100
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -196,6 +196,8 @@
 #define IDC_IGNORED_SUSBSTITUTIONS_ENABLED 1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
+#define IDC_EOL_SENSITIVE2              1034
+#define IDC_IGNORE_NUMBERS              1034
 #define IDC_DIFFERENCE_COLOR            1035
 #define IDC_SEL_DIFFERENCE_COLOR        1037
 #define IDC_PROP_INSERT_TABS            1038
@@ -459,7 +461,7 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
-#define IDC_SUBSTITUTION_FILTERS 1324
+#define IDC_SUBSTITUTION_FILTERS        1324
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
 #define IDC_PRESERVE_FILETIME           1328
@@ -1144,7 +1146,7 @@
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33148
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
-#define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
+#define IDS_COLORSCHEME_PLAIN           33152
 #define IDS_COLORSCHEME_ASP             33153
 #define IDS_COLORSCHEME_AUTOIT          33154
 #define IDS_COLORSCHEME_BASIC           33155
@@ -1183,7 +1185,7 @@
 #define IDS_COLORSCHEME_VERILOG         33188
 #define IDS_COLORSCHEME_VHDL            33189
 #define IDS_COLORSCHEME_XML             33190
-#define ID_COLORSCHEME_LAST             33190 // = IDS_COLORSCHEME_XML
+#define ID_COLORSCHEME_LAST             33190
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
