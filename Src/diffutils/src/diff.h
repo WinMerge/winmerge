@@ -124,7 +124,7 @@ EXTERN int      ignore_some_changes;
 /* Ignore differences in case of letters (-i).  */
 EXTERN int      ignore_case_flag;
 
-/* Ignore differences in case of letters (-i).  */
+/* Ignore differences in case of numbers.  */
 EXTERN int      ignore_numbers_flag;
 
 /* File labels for `-c' output headers (-L).  */
