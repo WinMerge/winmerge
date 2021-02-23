@@ -1738,6 +1738,10 @@ msgid "I&gnore all"
 msgstr "&Alle ignorieren"
 
 #, c-format
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
+#, c-format
 msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
 

@@ -204,6 +204,7 @@
 #define IDC_IGNORED_SUSBSTITUTIONS_ENABLED 1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
+#define IDC_IGNORE_NUMBERS              1034
 #define IDC_DIFFERENCE_COLOR            1035
 #define IDC_SEL_DIFFERENCE_COLOR        1037
 #define IDC_PROP_INSERT_TABS            1038

@@ -21,6 +21,7 @@
 PropCompare::PropCompare(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompare::IDD)
  , m_bIgnoreCase(false)
+ , m_bIgnoreNumbers(false)
  , m_bIgnoreBlankLines(false)
  , m_bIgnoreEol(true)
  , m_bIgnoreCodepage(true)
@@ -45,6 +46,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
 	DDX_Check(pDX, IDC_CP_SENSITIVE, m_bIgnoreCodepage);
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
+	DDX_Check(pDX, IDC_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
@@ -72,6 +74,7 @@ void PropCompare::ReadOptions()
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
@@ -94,6 +97,7 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
@@ -129,6 +133,7 @@ void PropCompare::OnDefaults()
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_BLANKLINES);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_FILTER_COMMENTLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_NUMBERS);
 	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);

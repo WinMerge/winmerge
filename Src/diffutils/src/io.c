@@ -304,6 +304,8 @@ find_and_hash_each_line (struct file_data *current)
           if (ignore_all_space_flag)
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
                 if (! ISWSPACE (c))
                   h = HASH (h, isupper (c) ? tolower (c) : c);
               }
@@ -326,7 +328,12 @@ find_and_hash_each_line (struct file_data *current)
                         h = HASH (h, ' ');
                       }
                   }
+
                 /* c is now the first non-space.  */
+
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
+
                 /* c can be a \r (CR) if !ignore_eol_diff */
                 h = HASH (h, isupper (c) ? tolower (c) : c);
                 if (c == '\r' && *p != '\n')
@@ -335,6 +342,9 @@ find_and_hash_each_line (struct file_data *current)
           else
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
+
                 h = HASH (h, isupper (c) ? tolower (c) : c);
               }
         }
@@ -343,6 +353,9 @@ find_and_hash_each_line (struct file_data *current)
           if (ignore_all_space_flag)
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
+
                 if (! ISWSPACE (c))
                   h = HASH (h, c);
               }
@@ -366,6 +379,9 @@ find_and_hash_each_line (struct file_data *current)
                       }
                   }
                 /* c is now the first non-space.  */
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
+
                 /* c can be a \r (CR) if !ignore_eol_diff */
                 h = HASH (h, c);
                 if (c == '\r' && *p != '\n')
@@ -374,6 +390,9 @@ find_and_hash_each_line (struct file_data *current)
           else
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
+                if (ignore_numbers_flag && isdigit(c))
+                    continue;
+
                 h = HASH (h, c);
               }
         }

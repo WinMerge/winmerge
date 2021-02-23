@@ -1521,15 +1521,17 @@ BEGIN
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,239,10
     CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_EOL_SENSITIVE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,239,10
-    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,239,10
-    CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,239,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
-    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,144,239,10
-    COMBOBOX        IDC_DIFF_ALGORITHM,6,156,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,174,239,10
+    CONTROL         "Ignore num&bers",IDC_IGNORE_NUMBERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,239,10
+    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,239,10
+    CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
+    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,239,10
+    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,156,239,10
+    COMBOBOX        IDC_DIFF_ALGORITHM,6,168,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,239,10
     CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,239,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,198,239,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
 END
 

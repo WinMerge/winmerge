@@ -199,6 +199,7 @@ extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");
 extern const String OPT_CMP_IGNORE_BLANKLINES OP("Settings/IgnoreBlankLines");
 extern const String OPT_CMP_FILTER_COMMENTLINES OP("Settings/FilterCommentsLines");
 extern const String OPT_CMP_IGNORE_CASE OP("Settings/IgnoreCase");
+extern const String OPT_CMP_IGNORE_NUMBERS OP("Settings/IgnoreNumbers");
 extern const String OPT_CMP_IGNORE_EOL OP("Settings/IgnoreEol");
 extern const String OPT_CMP_IGNORE_CODEPAGE OP("Settings/IgnoreCodepage");
 extern const String OPT_CMP_METHOD OP("Settings/CompMethod2");

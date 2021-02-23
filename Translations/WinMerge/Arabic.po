@@ -1389,6 +1389,9 @@ msgstr "تجاهل الت&غييرات"
 msgid "I&gnore all"
 msgstr "تجاهل ال&كل"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "&تفعيل كشف المجموعات التي نقلها"
 
