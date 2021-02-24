@@ -891,6 +891,7 @@ BEGIN
         MENUITEM "Ignore &case",                ID_DIFF_OPTIONS_IGNORE_CASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_DIFF_OPTIONS_IGNORE_EOL
         MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore num&bers",                IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore c&omment differences" ,ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
         MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS

@@ -1163,6 +1163,10 @@ msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"
 
 #, c-format
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Unterordner einbeziehen"
 
@@ -1736,10 +1740,6 @@ msgstr "Änderung &ignorieren"
 #, c-format
 msgid "I&gnore all"
 msgstr "&Alle ignorieren"
-
-#, c-format
-msgid "Ignore num&bers"
-msgstr "&Nummern ignorieren"
 
 #, c-format
 msgid "E&nable moved block detection"

@@ -560,6 +560,7 @@
 #define IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES 1419
 #define IDC_LFILTER_CLEARBTN            1420
 #define IDC_MESSAGEBOX_LIST             1421
+#define IDC_DIFF_IGNORENUMBERS          1422
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
