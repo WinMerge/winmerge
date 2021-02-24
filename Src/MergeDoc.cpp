@@ -607,6 +607,7 @@ void CMergeDoc::FlagTrivialLines(void)
 					!diffOptions.bIgnoreCase,
 					!diffOptions.bIgnoreEol,
 					diffOptions.nIgnoreWhitespace,
+					diffOptions.bIgnoreNumbers,
 					GetBreakType(), // whitespace only or include punctuation
 					GetByteColoringOption());
 				if (!worddiffs.empty())

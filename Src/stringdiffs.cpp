@@ -58,10 +58,10 @@ void SetBreakChars(const TCHAR *breakChars)
 
 std::vector<wdiff>
 ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level)
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level)
 {
 	String strs[3] = {str1, str2, _T("")};
-	return ComputeWordDiffs(2, strs, case_sensitive, eol_sensitive, whitespace, breakType, byte_level);
+	return ComputeWordDiffs(2, strs, case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, byte_level);
 }
 
 struct Comp02Functor
@@ -97,12 +97,12 @@ struct Comp02Functor
  */
 std::vector<wdiff>
 ComputeWordDiffs(int nFiles, const String str[3],
-	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level)
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level)
 {
 	std::vector<wdiff> diffs;
 	if (nFiles == 2)
 	{
-		stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
+		stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
 		// Hash all words in both lines and then compare them word by word
 		// storing differences into m_wdiffs
 		sdiffs.BuildWordDiffList();
@@ -118,7 +118,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 	{
 		if (str[0].empty())
 		{
-			stringdiffs sdiffs(str[1], str[2], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[1], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -136,7 +136,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[1].empty())
 		{
-			stringdiffs sdiffs(str[0], str[2], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -154,7 +154,7 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[2].empty())
 		{
-			stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -173,8 +173,8 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		else
 		{
 			std::vector<wdiff> diffs10, diffs12;
-			stringdiffs sdiffs10(str[1], str[0], case_sensitive, eol_sensitive, 0, breakType, &diffs10);
-			stringdiffs sdiffs12(str[1], str[2], case_sensitive, eol_sensitive, 0, breakType, &diffs12);
+			stringdiffs sdiffs10(str[1], str[0], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, &diffs10);
+			stringdiffs sdiffs12(str[1], str[2], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, &diffs12);
 			// Hash all words in both lines and then compare them word by word
 			// storing differences into m_wdiffs
 			sdiffs10.BuildWordDiffList();
@@ -199,13 +199,14 @@ ComputeWordDiffs(int nFiles, const String str[3],
  * @brief stringdiffs constructor simply loads all members from arguments
  */
 stringdiffs::stringdiffs(const String & str1, const String & str2,
-	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType,
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType,
 	std::vector<wdiff> * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
 , m_case_sensitive(case_sensitive)
 , m_eol_sensitive(eol_sensitive)
 , m_whitespace(whitespace)
+, m_ignore_numbers(ignore_numbers)
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
 , m_matchblock(true) // Change to false to get word to word compare
