@@ -1137,6 +1137,9 @@ msgstr "Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Åsidosätt TextKodningsSkillnader"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "Inkludera UnderMappar"
@@ -1716,9 +1719,6 @@ msgstr "Åsidosätt samtliga"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Åsidosätt blanka rader"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

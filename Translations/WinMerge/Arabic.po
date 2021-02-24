@@ -909,6 +909,9 @@ msgstr ""
 msgid "Ignore codepage &differences"
 msgstr "تجاهل اختلافات ترميز الصفحة"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "تضمين المجلدات الفرعية"
 
@@ -1363,9 +1366,6 @@ msgstr "تجاهل ال&كل"
 
 msgid "Ignore blan&k lines"
 msgstr "تجاهل الأسطر الفارغة"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

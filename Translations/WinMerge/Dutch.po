@@ -907,6 +907,9 @@ msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Ook in submappen"
 
@@ -1369,9 +1372,6 @@ msgstr "Alles negeren"
 
 msgid "Ignore blan&k lines"
 msgstr "Lege regels negeren"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"

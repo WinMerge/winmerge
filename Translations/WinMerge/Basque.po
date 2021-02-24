@@ -1137,6 +1137,9 @@ msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Az&piagiritegiak Barne"
@@ -1715,9 +1718,6 @@ msgstr "E&zikusi denak"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ezikusi &lerro zuriak"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

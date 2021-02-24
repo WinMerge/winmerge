@@ -862,6 +862,7 @@ BEGIN
         MENUITEM "Ignore &case",                IDC_DIFF_IGNORECASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
         MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
+        MENUITEM "Ignore num&bers",                IDC_DIFF_IGNORENUMBERS
         MENUITEM SEPARATOR
         MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
         POPUP "&Compare method:"

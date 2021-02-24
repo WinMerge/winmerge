@@ -1135,6 +1135,9 @@ msgstr "Ignorovat rozdíly v &koncích řádků (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "Včetně pod&složek"
@@ -1716,9 +1719,6 @@ msgstr "Ignorovat &všechny"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorovat prázdné řá&dky"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

@@ -1132,6 +1132,9 @@ msgstr "Занемари &разлике ознака завршетка ред�
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "Укључи и потфасцикле"
@@ -1697,9 +1700,6 @@ msgstr "Зане&мари све"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Занемари пра&зне редове"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

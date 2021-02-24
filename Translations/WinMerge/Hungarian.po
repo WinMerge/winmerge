@@ -1135,6 +1135,9 @@ msgstr "Sorvég különbségek figyelmen kívül hagyása (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Alkönyvtárakkal együtt"
@@ -1714,9 +1717,6 @@ msgstr "&Minden kihagyása"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Üres sorok kihagyása"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

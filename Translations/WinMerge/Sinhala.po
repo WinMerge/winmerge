@@ -1132,6 +1132,9 @@ msgstr "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Inclure les sous-répertoires"
@@ -1711,9 +1714,6 @@ msgstr "සියල්ල නොසලකා හරින්න"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "හිස් පේළි නොසලකා හරින්න"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

@@ -910,6 +910,9 @@ msgstr "Igno&rar saltos de línea diferentes (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferencias en página de códigos"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Incluir subcarpetas"
 
@@ -1364,9 +1367,6 @@ msgstr "I&gnorar todos"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorar diferencias de líneas &vacías"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

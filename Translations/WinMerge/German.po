@@ -1136,6 +1136,10 @@ msgid "Ignore codepage &differences"
 msgstr "&Codeseiten-Unterschiede ignorieren"
 
 #, c-format
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Unterordner einbeziehen"
 
@@ -1714,10 +1718,6 @@ msgstr "&Alle ignorieren"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Leerzeilen ignorieren"
-
-#, c-format
-msgid "Ignore num&bers"
-msgstr "&Nummern ignorieren"
 
 msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"

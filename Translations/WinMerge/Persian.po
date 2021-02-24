@@ -1136,6 +1136,9 @@ msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر س�
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&I شامل زيرپوشه ها "
@@ -1719,9 +1722,6 @@ msgstr "&g چشم پوشي از همگي "
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&k چشم پوشي از خطوط خالي "
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

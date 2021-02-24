@@ -1135,6 +1135,9 @@ msgstr "Igno&rar diferenças de retorno dos procedimentos (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar as diferenças do código da &página"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Incluir as Sub-Pastas"
@@ -1714,9 +1717,6 @@ msgstr "I&gnorar tudo"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorar as linha&s em branco"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"

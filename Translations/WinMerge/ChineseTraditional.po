@@ -1143,6 +1143,9 @@ msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "忽略代碼頁不同(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "包括子資料夾(&I)"
@@ -1724,9 +1727,6 @@ msgstr "忽略空白處之任何差異(&A)"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "忽略空白行(&K)"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

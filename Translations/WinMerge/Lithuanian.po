@@ -909,6 +909,9 @@ msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
@@ -1361,9 +1364,6 @@ msgstr "I&gnoruoti visus"
 
 msgid "Ignore blan&k lines"
 msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"

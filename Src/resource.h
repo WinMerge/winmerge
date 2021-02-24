@@ -519,6 +519,7 @@
 #define IDC_COLOR_SCHEMES               1391
 #define IDC_DIR_MARGIN_COLOR            1392
 #define IDC_SYNTAX_LIST                 1393
+#define IDC_DIFF_IGNORENUMBERS          1394
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

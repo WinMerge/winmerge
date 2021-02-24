@@ -909,6 +909,9 @@ msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "忽略代码页差异(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
 
@@ -1364,9 +1367,6 @@ msgstr "忽略所有空白字符(&G)"
 
 msgid "Ignore blan&k lines"
 msgstr "忽略空行(&K)"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

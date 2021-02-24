@@ -909,6 +909,9 @@ msgstr "Igno&rovať rozdiely v zakončení riadkov (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorovať rozdiely kódových stránok"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Zahrnúť podpriečinky"
 
@@ -1365,9 +1368,6 @@ msgstr "I&gnorovať všetko"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorovať prázdne riad&ky"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

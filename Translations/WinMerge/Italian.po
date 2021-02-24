@@ -906,6 +906,9 @@ msgstr "I&gnora differenze nei fine riga (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignora differenze di codice di &pagina"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Includi sotto cartelle"
 
@@ -1360,9 +1363,6 @@ msgstr "I&gnora tutto"
 
 msgid "Ignore blan&k lines"
 msgstr "Ign&ora le linee vuote"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

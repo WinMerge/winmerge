@@ -1134,6 +1134,9 @@ msgstr ""
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Inclou-hi les subcarpetes"
@@ -1713,9 +1716,6 @@ msgstr "Ignora t&ots els espais"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "&Ignora les línies en blanc"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

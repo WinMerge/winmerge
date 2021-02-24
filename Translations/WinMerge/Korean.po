@@ -1139,6 +1139,9 @@ msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "코드페이지 차이 무시하기(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함하기(&I)"
@@ -1718,9 +1721,6 @@ msgstr "모두 무시하기(&G)"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "공백 줄 무시하기(&K)"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

@@ -1136,6 +1136,9 @@ msgstr "Нехтувати різницею в кінцях рядків (Win/Un
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Враховуючи підтеки"
@@ -1715,9 +1718,6 @@ msgstr "Нехтувати &всіма пропусками"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Нехтувати порожніми &лініями"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

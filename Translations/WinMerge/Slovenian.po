@@ -1135,6 +1135,9 @@ msgstr "&Prezri različnost vrste znakov za konec vrstice (EOL)"
 msgid "Ignore codepage &differences"
 msgstr "P&rezri razlike kodnih strani"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Vključi podmape"
@@ -1713,9 +1716,6 @@ msgstr "P&rezri vse"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Prezri prazne &vrstice"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"

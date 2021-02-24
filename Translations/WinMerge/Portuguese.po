@@ -909,6 +909,9 @@ msgstr "Igno&rar diferentes tipos de ficheiros (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenças nas páginas de código"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Incluir Sub-ficheiros"
 
@@ -1367,9 +1370,6 @@ msgstr "Ignorar tudo"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorar linhas em branco"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"

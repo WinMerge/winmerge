@@ -1136,6 +1136,9 @@ msgstr "Igno&rer returtegns forskelle (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Inkluder undermapper"
@@ -1717,9 +1720,6 @@ msgstr "I&gnorer alle"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ignorer blan&ke linjer"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

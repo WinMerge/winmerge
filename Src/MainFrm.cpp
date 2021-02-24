@@ -226,6 +226,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
 	ON_COMMAND(IDC_DIFF_IGNORECASE, OnDiffIgnoreCase)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECASE, OnUpdateDiffIgnoreCase)
+	ON_COMMAND(IDC_DIFF_IGNORENUMBERS, OnDiffIgnoreNumbers)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORENUMBERS, OnUpdateDiffIgnoreNumbers)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
 	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
@@ -2444,6 +2446,18 @@ void CMainFrame::OnDiffIgnoreCase()
 void CMainFrame::OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreNumbers()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS));
 	pCmdUI->Enable();
 }
 

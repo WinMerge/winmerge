@@ -1134,6 +1134,9 @@ msgstr "Διαφορές χαρακτήρων &τερματισμού (Win/Unix/
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "Οι Υποφάκελοι να &συμπεριληφθούν"
@@ -1713,9 +1716,6 @@ msgstr "Να αγνοούνται τα &πάντα"
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Οι &κενές γραμμές να αγνοούνται"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr ""

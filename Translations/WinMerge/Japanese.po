@@ -907,6 +907,9 @@ msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "コードページの違いを無視する(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -1363,9 +1366,6 @@ msgstr "すべて無視(&G)"
 
 msgid "Ignore blan&k lines"
 msgstr "空行を無視する(&K)"
-
-msgid "Ignore num&bers"
-msgstr ""
 
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"
