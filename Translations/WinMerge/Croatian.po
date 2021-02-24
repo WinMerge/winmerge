@@ -1737,6 +1737,9 @@ msgstr "Zanemari &izmjene"
 msgid "I&gnore all"
 msgstr "Zanemari &sve"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Omogući &razlikovanje premještenih blokova"

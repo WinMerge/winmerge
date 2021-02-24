@@ -1380,6 +1380,9 @@ msgstr ""
 msgid "I&gnore all"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr ""
 

@@ -1742,6 +1742,9 @@ msgstr "변경사항 무시하기(&H)"
 msgid "I&gnore all"
 msgstr "모두 무시하기(&G)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "이동된 블럭 감지 사용하기"

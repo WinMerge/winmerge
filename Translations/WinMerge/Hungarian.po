@@ -1739,6 +1739,9 @@ msgstr "&Változtatás mellőzése"
 msgid "I&gnore all"
 msgstr "Összes mellőzése"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Mozgatott &blokk észlelés bekapcsolása"

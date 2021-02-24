@@ -1390,6 +1390,9 @@ msgstr "&Ignorar cambios"
 msgid "I&gnore all"
 msgstr "I&gnorar todos"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Habilitar detecció&n de bloques movidos"
 

@@ -1390,6 +1390,9 @@ msgstr "&Değişiklik yok sayılsın"
 msgid "I&gnore all"
 msgstr "Tümü &yok sayılsın"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
 

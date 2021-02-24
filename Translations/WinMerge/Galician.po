@@ -1738,6 +1738,9 @@ msgstr "&Ignorar cambio"
 msgid "I&gnore all"
 msgstr "&Ignorar todo"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "A&ctivar detección de bloques movidos"

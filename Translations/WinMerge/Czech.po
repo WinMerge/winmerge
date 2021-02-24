@@ -1737,6 +1737,9 @@ msgstr "Ignorovat &změny"
 msgid "I&gnore all"
 msgstr "Ignorovat &všechny"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Povolit zjišťování přesunutých &bloků"

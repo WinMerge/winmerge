@@ -1389,6 +1389,9 @@ msgstr "忽略空白字符的变化(&I)"
 msgid "I&gnore all"
 msgstr "忽略所有空白字符(&G)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"
 

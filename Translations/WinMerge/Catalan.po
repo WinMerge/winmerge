@@ -1736,6 +1736,9 @@ msgstr "Ignora els &canvis en els espais"
 msgid "I&gnore all"
 msgstr "Ignora t&ots els espais"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&Habilita detecció de blocs desplaçats"

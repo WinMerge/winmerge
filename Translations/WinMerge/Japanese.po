@@ -1391,6 +1391,9 @@ msgstr "変更を無視(&I)"
 msgid "I&gnore all"
 msgstr "すべて無視(&G)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 

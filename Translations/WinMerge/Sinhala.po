@@ -1734,6 +1734,9 @@ msgstr "වෙනස නොසලකා හරින්න "
 msgid "I&gnore all"
 msgstr "සියල්ල නොසලකා හරින්න"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "E&nable moved block detection"
 msgstr "E&nable moved block detection"

@@ -1389,6 +1389,9 @@ msgstr "&Ignoruoti pokyčius"
 msgid "I&gnore all"
 msgstr "I&gnoruoti visus"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
 

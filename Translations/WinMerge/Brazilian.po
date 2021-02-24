@@ -1394,6 +1394,9 @@ msgstr "&Ignorar mudança"
 msgid "I&gnore all"
 msgstr "I&gnorar tudo"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "A&tivar a detecção dos blocos movidos"
 

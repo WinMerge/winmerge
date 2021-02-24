@@ -1747,6 +1747,9 @@ msgstr "忽略空白數量之變動而造成的差異(&H)"
 msgid "I&gnore all"
 msgstr "忽略空白處之任何差異(&A)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "偵測移位的區塊(&N)"

@@ -1737,6 +1737,9 @@ msgstr "Ignorer e&ndringer"
 msgid "I&gnore all"
 msgstr "Ignorer &alle"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&Aktiver flyttet blokk-oppdagelse"

@@ -1736,6 +1736,9 @@ msgstr "Η μεταβολή να α&γνοείται"
 msgid "I&gnore all"
 msgstr "Να αγνοούνται τα &πάντα"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέντων τμημάτων"

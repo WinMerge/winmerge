@@ -1386,6 +1386,9 @@ msgstr "Ignoruj zmiany"
 msgid "I&gnore all"
 msgstr "Ignoruj wszystkie"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 

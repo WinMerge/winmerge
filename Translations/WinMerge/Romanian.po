@@ -1737,6 +1737,9 @@ msgstr "&Ignoră schimbare"
 msgid "I&gnore all"
 msgstr "I&gnoră tot"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"

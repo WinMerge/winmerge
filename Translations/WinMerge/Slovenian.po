@@ -1736,6 +1736,9 @@ msgstr "&Prezri spremembe"
 msgid "I&gnore all"
 msgstr "P&rezri vse"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Omogoči zazna&vanje premaknjenih blokov"

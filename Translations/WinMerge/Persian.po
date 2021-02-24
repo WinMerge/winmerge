@@ -1740,6 +1740,9 @@ msgstr "&I چشم پوشي از تغيير "
 msgid "I&gnore all"
 msgstr "&g چشم پوشي از همگي "
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "&n فعال کردن تشخيص قطعه جابجا شده "

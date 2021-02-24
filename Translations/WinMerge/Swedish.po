@@ -1739,6 +1739,9 @@ msgstr "Åsidosätt skillnad"
 msgid "I&gnore all"
 msgstr "Åsidosätt samtliga"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Möjliggör urskiljning av flyttade block"

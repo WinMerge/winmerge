@@ -1392,6 +1392,9 @@ msgstr "Wijziging negeren"
 msgid "I&gnore all"
 msgstr "Alles negeren"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 

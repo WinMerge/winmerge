@@ -1388,6 +1388,9 @@ msgstr "Игнорировать измененные невидимые"
 msgid "I&gnore all"
 msgstr "Игнорировать &все невидимые"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"
 

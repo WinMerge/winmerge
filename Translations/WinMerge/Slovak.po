@@ -1391,6 +1391,9 @@ msgstr "&Ignorovať zmeny"
 msgid "I&gnore all"
 msgstr "I&gnorovať všetko"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Povoliť &zisťovanie presunu bloku"
 

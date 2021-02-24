@@ -1385,6 +1385,9 @@ msgstr "&Пренебрегване на променените"
 msgid "I&gnore all"
 msgstr "Пренебре&гване на всички"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 

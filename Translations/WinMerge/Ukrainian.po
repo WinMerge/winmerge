@@ -1738,6 +1738,9 @@ msgstr "Нехтувати зміненими пропусками"
 msgid "I&gnore all"
 msgstr "Нехтувати &всіма пропусками"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"

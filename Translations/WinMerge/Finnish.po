@@ -1737,6 +1737,9 @@ msgstr "Hylkää muutos"
 msgid "I&gnore all"
 msgstr "Hylkää kaikki"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Ota siirretyn lohkon tunnistus käyttöön"
