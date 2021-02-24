@@ -681,4 +681,48 @@ namespace
 		EXPECT_EQ(0, diffs.size());
 	}
 
+	// Identical strings with numbers
+	TEST_F(StringDiffsTest, IgnoreNumbers)
+	{
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, true, 0, false, 0, true);
+		EXPECT_EQ(1, diffs.size());
+		strdiff::wdiff* pDiff = &diffs[0];
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(3, pDiff->begin[0]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(3, pDiff->begin[1]);
+			EXPECT_EQ(3, pDiff->end[1]);
+		}
+
+		diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, true, 0, true, 0, true);
+		EXPECT_EQ(0, diffs.size());
+
+		diffs = strdiff::ComputeWordDiffs(_T("ab 1234"), _T("ab 2"), true, true, 0, true, 0, true);
+		EXPECT_EQ(0, diffs.size());
+
+		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2"), true, true, 0, true, 0, true);
+		EXPECT_EQ(1, diffs.size());
+		pDiff = &diffs[0];
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(5, pDiff->begin[0]);
+			EXPECT_EQ(5, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->begin[1]);
+			EXPECT_EQ(3, pDiff->end[1]); // at line end the end is always (begin - 1)
+		}
+
+		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2 c"), true, true, 0, true, 0, true);
+		EXPECT_EQ(1, diffs.size());
+		pDiff = &diffs[0];
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(7, pDiff->begin[0]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(5, pDiff->begin[1]);
+			EXPECT_EQ(5, pDiff->end[1]);
+		}
+
+	}
+
 }  // namespace
