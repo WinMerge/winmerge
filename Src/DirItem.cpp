@@ -21,16 +21,16 @@
 	*/
 String FileFlags::ToString() const
 {
-	String sflags;
+	TCHAR sflags[5], *p = sflags;
 	if (attributes & FILE_ATTRIBUTE_READONLY)
-		sflags += _T("R");
+		*p++ = 'R';
 	if (attributes & FILE_ATTRIBUTE_HIDDEN)
-		sflags += _T("H");
+		*p++ = 'H';
 	if (attributes & FILE_ATTRIBUTE_SYSTEM)
-		sflags += _T("S");
+		*p++ = 'S';
 	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
-		sflags += _T("A");
-	return sflags;
+		*p++ = 'A';
+	return String{ sflags, p };
 }
 
 /**
@@ -117,6 +117,5 @@ void DirItem::ClearPartial()
 	ctime = 0;
 	mtime = 0;
 	size = DirItem::FILE_SIZE_NONE;
-	version.Clear();
 	flags.reset();
 }
