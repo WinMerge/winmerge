@@ -31,10 +31,7 @@ void Save(COptionsMgr *pOptionsMgr, const COLORREF * colors)
 	for (int i = 0; i < 16; i++)
 	{
 		String valuename = strutils::format(_T("%s/%d"), Section, i);
-		if (colors[i] == RGB(255, 255, 255))
-			pOptionsMgr->RemoveOption(valuename);
-		else 
-			pOptionsMgr->SaveOption(valuename, static_cast<int>(colors[i]));
+		pOptionsMgr->SaveOption(valuename, static_cast<int>(colors[i]));
 	}
 }
 
