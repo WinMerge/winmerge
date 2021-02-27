@@ -2255,7 +2255,8 @@ void CMergeEditView::OnNextFile()
 void CMergeEditView::OnUpdateNextFile(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pd = GetDocument();
-	bool enabled = !pd->GetDirDoc()->IsLastFile();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsLastFile() : false;
 	pCmdUI->Enable(enabled);
 }
 
@@ -2278,7 +2279,8 @@ void CMergeEditView::OnPrevFile()
 void CMergeEditView::OnUpdatePrevFile(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pd = GetDocument();	
-	bool enabled = !pd->GetDirDoc()->IsFirstFile();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsFirstFile() : false;
 	pCmdUI->Enable(enabled);
 }
 
@@ -2300,8 +2302,9 @@ void CMergeEditView::OnFirstFile()
  */
 void CMergeEditView::OnUpdateFirstFile(CCmdUI* pCmdUI)
 {
-	CMergeDoc* pd = GetDocument();	
-	bool enabled = !pd->GetDirDoc()->IsFirstFile();
+	CMergeDoc* pd = GetDocument();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	bool enabled = pDirDoc ? !pDirDoc->IsFirstFile() : false;
 	pCmdUI->Enable(enabled);
 }
 
@@ -2324,7 +2327,8 @@ void CMergeEditView::OnLastFile()
 void CMergeEditView::OnUpdateLastFile(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pd = GetDocument();
-	bool enabled = !pd->GetDirDoc()->IsLastFile();
+	CDirDoc* pDirDoc = pd->GetDirDoc();
+	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsLastFile() : false;
 	pCmdUI->Enable(enabled);
 }
 
