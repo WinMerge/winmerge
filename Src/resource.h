@@ -136,6 +136,10 @@
 #define IDB_FILE_NEW3_TABLE             382
 #define IDB_FILE_NEW3_HEX               383
 #define IDB_FILE_NEW3_IMAGE             384
+#define IDB_COPY_SELECTED_LINES_TO_LEFT 385
+#define IDB_COPY_SELECTED_LINES_TO_RIGHT 386
+#define IDB_COPY_SELECTED_LINES_FROM_LEFT 387
+#define IDB_COPY_SELECTED_LINES_FROM_RIGHT 388
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502
