@@ -52,16 +52,16 @@ msgid "Copy fro&m Right"
 msgstr "Copier depuis la Droite"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Copier les lignes sélectionnées vers la droite"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Copier les lignes sélectionnées vers la gauche"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Copier les lignes sélectionnées depuis la gauche"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Copier les lignes sélectionnées depuis la droite"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Sélectionner la ligne différente\tF4"
@@ -1295,7 +1295,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Vérifier automatiquement les chemins de la fenêtre-Ouvrir"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Mode d'instance unique :"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2651,7 +2651,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fichiers XML (*.xml)|*.xml|All Files (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Type de fichier"
 
 #, c-format
 msgid "Extension"
