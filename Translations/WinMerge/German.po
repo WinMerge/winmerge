@@ -2673,6 +2673,9 @@ msgstr "Deren Datei"
 msgid "Mine File"
 msgstr "Meine Datei"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Zeile: %s  Spalte: %d/%d  Zeichen: %d/%d  EOL: %s"

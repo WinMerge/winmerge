@@ -2745,6 +2745,9 @@ msgstr "Fişierul lor"
 msgid "Mine File"
 msgstr "Fişierul meu"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""

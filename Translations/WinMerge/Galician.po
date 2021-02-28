@@ -2786,6 +2786,9 @@ msgstr "Arquivo Theirs"
 msgid "Mine File"
 msgstr "Arquivo Mine"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Lñ: %s  Col: %d/%d  Car: %d/%d  EOL: %s"
@@ -4365,3 +4368,4 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
+

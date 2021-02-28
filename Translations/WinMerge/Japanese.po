@@ -2232,6 +2232,9 @@ msgstr "Theirs File"
 msgid "Mine File"
 msgstr "Mine File"
 
+msgid "Original File"
+msgstr "元のファイル"
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"

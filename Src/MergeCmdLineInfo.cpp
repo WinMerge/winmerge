@@ -123,6 +123,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_bShowUsage(false),
 	m_bNoPrefs(false),
 	m_nCodepage(0),
+	m_bSelfCompare(false),
 	m_dwLeftFlags(FFILEOPEN_NONE),
 	m_dwMiddleFlags(FFILEOPEN_NONE),
 	m_dwRightFlags(FFILEOPEN_NONE)
@@ -285,6 +286,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -noprefs means do not load or remember options (preferences)
 			m_bNoPrefs = true;
+		}
+		else if (param == _T("self-compare"))
+		{
+			// -self-compare means compare a specified file with a copy of the file
+			m_bSelfCompare = true;
 		}
 		else if (param == _T("minimize"))
 		{

@@ -2238,6 +2238,9 @@ msgstr "ملفهم"
 msgid "Mine File"
 msgstr "ملفي"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"

@@ -2781,6 +2781,9 @@ msgstr "Njihova datoteka"
 msgid "Mine File"
 msgstr "Vaša datoteka"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Vr: %s  St: %d/%d  Zn: %d/%d  EOL: %s"

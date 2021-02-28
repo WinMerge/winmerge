@@ -2751,6 +2751,9 @@ msgstr "Їхй файл"
 msgid "Mine File"
 msgstr "Мій файл"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""

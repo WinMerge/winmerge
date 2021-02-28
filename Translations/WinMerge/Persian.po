@@ -2769,6 +2769,9 @@ msgstr " پرونده ديگران "
 msgid "Mine File"
 msgstr " پرونده خودم "
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"

@@ -2776,6 +2776,9 @@ msgstr "그 파일"
 msgid "Mine File"
 msgstr "내 파일"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "줄: %s  열: %d/%d  문자: %d/%d  줄끝: %s"

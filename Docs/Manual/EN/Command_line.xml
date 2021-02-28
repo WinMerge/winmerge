@@ -58,6 +58,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
+
       <arg><option>/minimize</option></arg>
 
       <arg><option>/maximize</option></arg>
@@ -305,6 +307,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>Compares the specified file with a copy of the file.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
         <secondary>opening minimized or maximized</secondary>
@@ -485,5 +494,6 @@
         with a conflict file.</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>

@@ -2117,6 +2117,9 @@ msgstr "Ich plik"
 msgid "Mine File"
 msgstr "Mój plik"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Wier: %s  Kol: %d/%d  Zn: %d/%d  ZKL: %s"

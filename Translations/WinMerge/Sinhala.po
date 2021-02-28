@@ -2742,6 +2742,9 @@ msgstr "ඔවුන්ගේම ලිපිගොනු"
 msgid "Mine File"
 msgstr "ලිපිගොනු ආකරය"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"

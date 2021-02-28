@@ -2120,6 +2120,9 @@ msgstr "Jų failas"
 msgid "Mine File"
 msgstr "Mano failas"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d  EPF: %s"

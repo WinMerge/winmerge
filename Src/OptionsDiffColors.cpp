@@ -7,8 +7,28 @@
 #include "OptionsDiffColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include <any>
 
 namespace Options { namespace DiffColors {
+
+const struct Map
+{
+	const String& name;
+	const int offset;
+	const std::any defValue;
+} map[] =
+{
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+	{OPT_CLR_DIFF, offsetof(COLORSETTINGS, clrDiff), RGB(239,203,5)},
+};
 
 void SetDefaults(COptionsMgr *pOptionsMgr)
 {

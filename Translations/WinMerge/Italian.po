@@ -2241,6 +2241,9 @@ msgstr "Loro file"
 msgid "Mine File"
 msgstr "Mio file"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Car: %d/%d  EOL: %s"

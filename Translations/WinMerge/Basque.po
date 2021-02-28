@@ -2751,6 +2751,9 @@ msgstr "Theirs Agiria"
 msgid "Mine File"
 msgstr "Mine Agiria"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
