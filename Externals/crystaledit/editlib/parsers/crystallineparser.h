@@ -85,6 +85,7 @@ typedef enum
 	SRC_INSTALLSHIELD,
 	SRC_JAVA,
 	SRC_JAVASCRIPT,
+	SRC_JSON,
 	SRC_LISP,
 	SRC_LUA,
 	SRC_NSIS,
@@ -127,7 +128,7 @@ struct TextDefinition
 	unsigned encoding;
 };
 
-extern TextDefinition m_SourceDefs[39];
+extern TextDefinition m_SourceDefs[40];
 
 bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
 bool IsXNumber(const TCHAR* pszChars, int nLength);

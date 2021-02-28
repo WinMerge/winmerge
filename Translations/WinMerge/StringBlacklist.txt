@@ -28,6 +28,7 @@ InnoSetup
 InstallShield
 Java
 JavaScript
+JSON
 Lua
 AutoLISP
 NSIS

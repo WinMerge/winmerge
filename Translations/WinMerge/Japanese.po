@@ -3622,3 +3622,4 @@ msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1つのインスタンスを起動し、インスタンスの終了を待つ"
+
