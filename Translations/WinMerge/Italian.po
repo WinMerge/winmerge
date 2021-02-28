@@ -38,6 +38,18 @@ msgstr "Copia da &sinistra"
 msgid "Copy fro&m Right"
 msgstr "Copia da &destra"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleziona differenze riga\tF4"
 
@@ -1014,8 +1026,8 @@ msgstr "C&hiudi finestra con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verifica &automaticamente i percorsi nella finestra Apri"
 
-msgid "All&ow only one instance to run"
-msgstr "&Permetti l'esecuzione di un'unica istanza del programma"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Conferma c&hiusura di più finestre"
@@ -2024,11 +2036,11 @@ msgstr ""
 "Per visualizzare nuovamente questa finestra di dialogo seleziona il pulsante "
 "'Ripristina' nella scheda Generale della finestra delle opzioni."
 
-msgid "Color Schemes"
-msgstr ""
-
 msgid "Syntax"
 msgstr "Sintassi"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "Confronto cartelle"
@@ -2108,6 +2120,12 @@ msgstr "File HTML (*.htm,*.html)|*.htm;*.html|Tutti i file (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "File XML (*.xml)|*.xml|Tutti i file (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Estensione"
 
 msgid "Name"
 msgstr "Nome"
@@ -2225,6 +2243,9 @@ msgstr "Loro file"
 
 msgid "Mine File"
 msgstr "Mio file"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2647,9 +2668,6 @@ msgstr "Data di destra"
 
 msgid "Middle Date"
 msgstr "Data centrale"
-
-msgid "Extension"
-msgstr "Estensione"
 
 msgid "Left Size"
 msgstr "Dimensioni di sinistra"
@@ -3590,5 +3608,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permetti l'esecuzione di un'unica istanza del programma"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

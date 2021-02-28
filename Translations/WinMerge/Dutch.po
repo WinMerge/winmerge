@@ -39,6 +39,18 @@ msgstr "Van links kopiëren"
 msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 
@@ -1015,8 +1027,8 @@ msgstr "Vensters sluiten met 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
 
-msgid "All&ow only one instance to run"
-msgstr "Slechts één draaiende instantie toestaan"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Vragen bij sluiten van meerdere vensters"
@@ -2039,11 +2051,11 @@ msgstr ""
 "Druk op de herstellen-knop op de pagina \"algemeen\" van het venster "
 "\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
-msgid "Color Schemes"
-msgstr "Kleurenschema's"
-
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Kleurenschema's"
 
 msgid "Folder Compare"
 msgstr "Mapvergelijking"
@@ -2123,6 +2135,12 @@ msgstr "HTML-bestanden (*.htm,*.html)|*.htm;*.html|Alle bestanden (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-bestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Extensie"
 
 msgid "Name"
 msgstr "Naam"
@@ -2240,6 +2258,9 @@ msgstr "Hun bestand"
 
 msgid "Mine File"
 msgstr "Mijn bestand"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2684,9 +2705,6 @@ msgstr "Datum rechts"
 
 msgid "Middle Date"
 msgstr "Datum midden"
-
-msgid "Extension"
-msgstr "Extensie"
 
 msgid "Left Size"
 msgstr "Grootte links"
@@ -3652,4 +3670,10 @@ msgstr "Positie en tekst regel per regel"
 
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
+
+msgid "Allow only one instance to run"
+msgstr "Slechts één draaiende instantie toestaan"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
 

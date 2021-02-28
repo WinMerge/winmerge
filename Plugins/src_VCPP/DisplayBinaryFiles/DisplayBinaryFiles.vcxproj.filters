@@ -32,9 +32,6 @@
     <None Include="DisplayBinaryFiles.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="WinMergeScript.rgs">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="ChangeLog.txt" />
   </ItemGroup>
   <ItemGroup>

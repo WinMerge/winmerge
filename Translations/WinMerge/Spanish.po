@@ -42,6 +42,18 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleccionar dif. de línea\tF4"
 
@@ -1018,8 +1030,8 @@ msgstr "C&errar ventanas con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Comprobar rutas &automáticamente en la ventana de apertura"
 
-msgid "All&ow only one instance to run"
-msgstr "Permitir s&olo una instancia en ejecución"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Preguntar al cerrar &múltiples ventanas"
@@ -2029,11 +2041,11 @@ msgstr ""
 "Para volver a hacer visible este cuadro de dialogo, presione el botón "
 "Restablecer en la página General del cuadro de diálogo Opciones."
 
-msgid "Color Schemes"
-msgstr ""
-
 msgid "Syntax"
 msgstr "Sintaxis"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "Comparar de carpetas"
@@ -2115,6 +2127,12 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Archivos XML (*.xml)|*.xml|Todos los archivos (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Extensión"
 
 msgid "Name"
 msgstr "Nombre"
@@ -2233,6 +2251,9 @@ msgstr "Archivo externo"
 
 msgid "Mine File"
 msgstr "Archivo interno"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2656,9 +2677,6 @@ msgstr "Fecha der."
 
 msgid "Middle Date"
 msgstr "Fecha Media"
-
-msgid "Extension"
-msgstr "Extensión"
 
 msgid "Left Size"
 msgstr "Tamaño izq."
@@ -3607,5 +3625,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permitir solo una instancia en ejecución"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

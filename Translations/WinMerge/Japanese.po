@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-01-26 14:41+0900\n"
+"PO-Revision-Date: 2021-02-28 20:54+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,18 @@ msgstr "左側からコピー(&F)"
 
 msgid "Copy fro&m Right"
 msgstr "右側からコピー(&M)"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr "選択した行を右側にコピー"
+
+msgid "Copy Selected Line(s) to Left"
+msgstr "選択した行を左側にコピー"
+
+msgid "Copy Selected Line(s) from Left"
+msgstr "選択した行を左からコピー"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "選択した行を右からコピー"
 
 msgid "&Select Line Difference\tF4"
 msgstr "行内差異を選択(&S)\tF4"
@@ -1015,8 +1027,8 @@ msgstr "'Esc' キーでウィンドウを閉じる(&O):"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
 
-msgid "All&ow only one instance to run"
-msgstr "複数のインスタンスを起動しない(&O)"
+msgid "Single instance mode:"
+msgstr "単一インスタンスモード:"
 
 msgid "As&k when closing multiple windows"
 msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
@@ -2021,11 +2033,11 @@ msgstr "再びこのメッセージを表示しない(&M)"
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般ページで [リセット] ボタンを押してください。"
 
-msgid "Color Schemes"
-msgstr "配色"
-
 msgid "Syntax"
 msgstr "シンタックス"
+
+msgid "Color Schemes"
+msgstr "配色"
 
 msgid "Folder Compare"
 msgstr "フォルダー比較"
@@ -2101,6 +2113,12 @@ msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
+
+msgid "File Type"
+msgstr "ファイルタイプ"
+
+msgid "Extension"
+msgstr "拡張子"
 
 msgid "Name"
 msgstr "名前"
@@ -2216,6 +2234,9 @@ msgstr "Theirs File"
 
 msgid "Mine File"
 msgstr "Mine File"
+
+msgid "Original File"
+msgstr "元のファイル"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2399,7 +2420,12 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
 "プラグイン '%2' は、修正内容を中央のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2646,9 +2672,6 @@ msgstr "右更新日時"
 
 msgid "Middle Date"
 msgstr "中更新日時"
-
-msgid "Extension"
-msgstr "拡張子"
 
 msgid "Left Size"
 msgstr "左サイズ"
@@ -3130,7 +3153,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "アーカイブ サポートが有効になっていません。\n"
 "アーカイブ サポートの為に必要なコンポーネント (7-Zip と Merge7z*.dll) が見つかりません。\n"
@@ -3311,22 +3337,30 @@ msgstr ""
 "\n"
 "自動マージ (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
+msgid ""
+"\n"
+"First File"
 msgstr ""
 "\n"
 "最初のファイル"
 
-msgid "\nNext File"
+msgid ""
+"\n"
+"Next File"
 msgstr ""
 "\n"
 "次のファイル"
 
-msgid "\nLast File"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
 "\n"
 "最後のファイル"
 
-msgid "\nPrevious File"
+msgid ""
+"\n"
+"Previous File"
 msgstr ""
 "\n"
 "前のファイル"
@@ -3585,4 +3619,10 @@ msgstr "行毎の位置情報とテキスト"
 
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
+
+msgid "Allow only one instance to run"
+msgstr "1つのみインスタンスを起動する"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "1つのインスタンスを起動し、インスタンスの終了を待つ"
 

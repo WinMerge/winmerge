@@ -119,10 +119,11 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
 	m_bNonInteractive(false),
-	m_bSingleInstance(),
+	m_nSingleInstance(),
 	m_bShowUsage(false),
 	m_bNoPrefs(false),
 	m_nCodepage(0),
+	m_bSelfCompare(false),
 	m_dwLeftFlags(FFILEOPEN_NONE),
 	m_dwMiddleFlags(FFILEOPEN_NONE),
 	m_dwRightFlags(FFILEOPEN_NONE)
@@ -257,12 +258,24 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		else if (param == _T("s-"))
 		{
 			// -s- to not allow only one instance
-			m_bSingleInstance = false;
+			m_nSingleInstance = 0;
+		}
+		else if (param == _T("sw"))
+		{
+			// -sw to allow only one instance and wait for the instance to terminate
+			m_nSingleInstance = 2;
 		}
 		else if (param == _T("s"))
 		{
 			// -s to allow only one instance
-			m_bSingleInstance = true;
+			if (*q == ':')
+			{
+				q = EatParam(q + 1, param);
+				m_nSingleInstance = _ttoi(param.c_str());
+			}
+				
+			else
+				m_nSingleInstance = 1;
 		}
 		else if (param == _T("noninteractive"))
 		{
@@ -273,6 +286,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -noprefs means do not load or remember options (preferences)
 			m_bNoPrefs = true;
+		}
+		else if (param == _T("self-compare"))
+		{
+			// -self-compare means compare a specified file with a copy of the file
+			m_bSelfCompare = true;
 		}
 		else if (param == _T("minimize"))
 		{

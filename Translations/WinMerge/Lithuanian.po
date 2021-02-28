@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
-"PO-Revision-Date: 2021-01-28 21:01+0200\n"
+"POT-Creation-Date: 2021-02-13 21:43+0000\n"
+"PO-Revision-Date: 2021-02-15 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -40,6 +40,18 @@ msgstr "Kopijuoti iš &kairės"
 
 msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
@@ -1017,8 +1029,8 @@ msgstr "Užverti langus „Esc“ klavišu:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Automatiškai tikrinti kelius „Atverti“ lange"
 
-msgid "All&ow only one instance to run"
-msgstr "Tik viena program&os kopija vienu metu"
+msgid "Single instance mode:"
+msgstr "Vieno egzemplioriaus režimas:"
 
 msgid "As&k when closing multiple windows"
 msgstr "&Klausti patvirtinimo, kai uždaromi keli langai"
@@ -1955,11 +1967,11 @@ msgstr "Daugiau nerodyti šio praneši&mo."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
 
-msgid "Color Schemes"
-msgstr "Schemų"
-
 msgid "Syntax"
 msgstr "Sintaksės"
+
+msgid "Color Schemes"
+msgstr "Schemų"
 
 msgid "Folder Compare"
 msgstr "Katalogų lyginimo"
@@ -2029,6 +2041,12 @@ msgstr "HTML failai (*.htm,*.html)|*.htm;*.html|Visi failai (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML failai (*.xml)|*.xml|Visi failai (*.*)|*.*||"
+
+msgid "File Type"
+msgstr "Failo tipas"
+
+msgid "Extension"
+msgstr "Plėtinys"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2104,6 +2122,9 @@ msgstr "Jų failas"
 
 msgid "Mine File"
 msgstr "Mano failas"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2413,9 +2434,6 @@ msgstr "Dešiniojo data"
 
 msgid "Middle Date"
 msgstr "Vidurinio data"
-
-msgid "Extension"
-msgstr "Plėtinys"
 
 msgid "Left Size"
 msgstr "Kairiojo dydis"
@@ -3210,8 +3228,14 @@ msgid "Text only"
 msgstr "Tik tekstas"
 
 msgid "Line-by-line position and text"
-msgstr "„Line-by-line“ pozicija ir tekstas"
+msgstr "Paeilutinė pozicija ir tekstas"
 
 msgid "Word-by-word position and text"
-msgstr "„Word-by-word“ pozicija ir tekstas"
+msgstr "Pažodinė pozicija ir tekstas"
+
+msgid "Allow only one instance to run"
+msgstr "Leisti vykdyti tik vieną programos egzempliorių"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
 

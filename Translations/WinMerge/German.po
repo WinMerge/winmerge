@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-01-29 18:21+0200\n"
+"PO-Revision-Date: 2021-02-27 21:22+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -30,19 +30,31 @@ msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 
 #, c-format
 msgid "C&opy to Right"
-msgstr "&Nach rechts kopieren"
+msgstr "&Nach rechts kopieren\tAlt+Rechts"
 
 #, c-format
 msgid "Cop&y to Left"
-msgstr "N&ach links kopieren"
+msgstr "N&ach links kopieren\tAlt+Links"
 
 #, c-format
 msgid "Copy &from Left"
-msgstr "&Von links kopieren"
+msgstr "&Von links kopieren\tAlt+Umschalt+Rechts"
 
 #, c-format
 msgid "Copy fro&m Right"
-msgstr "V&on rechts kopieren"
+msgstr "V&on rechts kopieren\tAlt+Umschalt+Links"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr "Ausgewählte Zeile(n) nach rechts kopieren"
+
+msgid "Copy Selected Line(s) to Left"
+msgstr "Ausgewählte Zeile(n) nach links kopieren"
+
+msgid "Copy Selected Line(s) from Left"
+msgstr "Ausgewählte Zeile(n) von links kopieren"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Ausgewählte Zeile(n) von rechts kopieren"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
@@ -1278,9 +1290,8 @@ msgstr "Fenster mit '&Esc' schließen:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Nur eine Programm-&Instanz zulassen"
+msgid "Single instance mode:"
+msgstr "Einzelinstanzmodus:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2472,12 +2483,12 @@ msgstr "Diese &Meldung nicht erneut anzeigen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."
 
-msgid "Color Schemes"
-msgstr "Farbschemas"
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Farbschemas"
 
 msgid "Folder Compare"
 msgstr "Ordnervergleich"
@@ -2563,6 +2574,13 @@ msgstr "HTML-Dateien (*.htm,*.html)|*.htm;*.html|Alle Dateien (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
+
+msgid "File Type"
+msgstr "Dateityp"
+
+#, c-format
+msgid "Extension"
+msgstr "Erweiterung"
 
 #, c-format
 msgid "Name"
@@ -2657,6 +2675,9 @@ msgstr "Deren Datei"
 #, c-format
 msgid "Mine File"
 msgstr "Meine Datei"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2924,7 +2945,7 @@ msgstr "Linke Seite - Zielordner auswählen:"
 
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr "Mittlere Seite - Zielordner auswählen:"
+msgstr "Mitte - Zielordner auswählen:"
 
 #, c-format
 msgid "Right side - select destination folder:"
@@ -2999,10 +3020,6 @@ msgstr "Rechtes Datum"
 #, c-format
 msgid "Middle Date"
 msgstr "Mittleres Datum"
-
-#, c-format
-msgid "Extension"
-msgstr "Erweiterung"
 
 #, c-format
 msgid "Left Size"
@@ -3185,15 +3202,15 @@ msgstr "Textdateien sind identisch"
 
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr "(Mitte und Rechts sind identisch)"
+msgstr " (Mitte und Rechts sind identisch)"
 
 #, c-format
 msgid "(Left and right are identical)"
-msgstr "(Links und Rechts sind identisch)"
+msgstr " (Links und Rechts sind identisch)"
 
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr "(Links und Mitte sind identisch)"
+msgstr " (Links und Mitte sind identisch)"
 
 #, c-format
 msgid "Text files are different"
@@ -3672,11 +3689,11 @@ msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
 #, c-format
 msgid "\nAll Right"
-msgstr "\nAlles nach rechts"
+msgstr "\nAlles nach rechts kopieren"
 
 #, c-format
 msgid "\nAll Left"
-msgstr "\nAlles nach links"
+msgstr "\nAlles nach links kopieren"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
@@ -3960,4 +3977,11 @@ msgstr "Position und Text zeilenweise"
 
 msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Nur eine Instanz zulassen"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
 

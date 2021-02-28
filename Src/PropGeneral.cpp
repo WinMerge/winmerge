@@ -30,7 +30,7 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 	: OptionsPanel(optionsMgr, PropGeneral::IDD)
 	, m_bScroll(false)
 	, m_bScrollToFirstInlineDiff(false)
-	, m_bSingleInstance(false)
+	, m_nSingleInstance(0)
 	, m_bVerifyPaths(false)
 	, m_nCloseWindowWithEsc(1)
 	, m_bAskMultiWindowClose(false)
@@ -67,6 +67,15 @@ BOOL PropGeneral::OnInitDialog()
 
 	pWnd->SetCurSel(m_nCloseWindowWithEsc);
 
+	pWnd = (CComboBox*)GetDlgItem(IDC_SINGLE_INSTANCE);
+	ASSERT(pWnd != nullptr);
+
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("Allow only one instance to run").c_str());
+	pWnd->AddString(_("Allow only one instance to run and wait for the instance to terminate").c_str());
+
+	pWnd->SetCurSel(m_nSingleInstance);
+
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
 	m_asyncLanguagesLoader = Concurrent::CreateTask([hwnd = m_hWnd] {
@@ -83,7 +92,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(PropGeneral)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK, m_bScrollToFirstInlineDiff);
-	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
+	DDX_CBIndex(pDX, IDC_SINGLE_INSTANCE, m_nSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_CBIndex(pDX, IDC_ESC_CLOSES_WINDOW, m_nCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
@@ -110,7 +119,7 @@ void PropGeneral::ReadOptions()
 {
 	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
 	m_bScrollToFirstInlineDiff = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF);
-	m_bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
+	m_nSingleInstance = GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_nCloseWindowWithEsc = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	m_bAskMultiWindowClose = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
@@ -127,7 +136,7 @@ void PropGeneral::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll);
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST_INLINE_DIFF, m_bScrollToFirstInlineDiff);
-	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance);
+	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_nSingleInstance);
 	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_nCloseWindowWithEsc);
 	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);

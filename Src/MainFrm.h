@@ -108,6 +108,7 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
+	bool DoSelfCompare(const String& file, const String strDesc[] = nullptr);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();

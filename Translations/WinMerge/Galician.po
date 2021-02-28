@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-01-30 20:09+0100\n"
+"PO-Revision-Date: 2021-02-27 18:11+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,18 @@ msgstr "Copiar da &esquerda"
 #, c-format
 msgid "Copy fro&m Right"
 msgstr "Copiar da &dereita"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr "Copiar liñas seleccionadas para a dereita"
+
+msgid "Copy Selected Line(s) to Left"
+msgstr "Copiar liñas seleccionadas para a esquerda"
+
+msgid "Copy Selected Line(s) from Left"
+msgstr "Copiar liñas seleccionadas da esquerda"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Copiar liñas seleccionadas da dereita"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Seleccionar a diferenza entre liñas\tF4"
@@ -1279,9 +1291,8 @@ msgstr "Pe&char as ventás con 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Verificar automaticamente as rutas no diálogo Abrir"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Per&mitir executar só unha instancia"
+msgid "Single instance mode:"
+msgstr "Modo de instancia única"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2537,12 +2548,12 @@ msgstr "Non amosar esta &mensaxe de novo."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Para a ver esta caixa de mensaxe outra vez, preme no botón Restaurar na páxina Xeral do diálogo de Opcións."
 
-msgid "Color Schemes"
-msgstr "Esquemas de cores"
-
 #, c-format
 msgid "Syntax"
 msgstr "Sintaxe"
+
+msgid "Color Schemes"
+msgstr "Esquemas de cores"
 
 msgid "Folder Compare"
 msgstr "Comparar cartafoles"
@@ -2634,6 +2645,13 @@ msgstr "Arquivos HTML (*.htm,*.html)|*.htm;*.html|Todos os arquivos (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Arquivos XML (*.xml)|*.xml|Todos os arquivos(*.*)|*.*||"
+
+msgid "File Type"
+msgstr "Tipo de ficheiro"
+
+#, c-format
+msgid "Extension"
+msgstr "Extensión"
 
 #, c-format
 msgid "Name"
@@ -2770,6 +2788,9 @@ msgstr "Arquivo Theirs"
 #, c-format
 msgid "Mine File"
 msgstr "Arquivo Mine"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3240,10 +3261,6 @@ msgstr "Data dereita"
 #, c-format
 msgid "Middle Date"
 msgstr "Data centro"
-
-#, c-format
-msgid "Extension"
-msgstr "Extensión"
 
 #, c-format
 msgid "Left Size"
@@ -4347,4 +4364,11 @@ msgstr "Posición e texto liña a liña"
 
 msgid "Word-by-word position and text"
 msgstr "Posición e texto palabra a palabra"
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Permitir executar só unha instancia"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
 

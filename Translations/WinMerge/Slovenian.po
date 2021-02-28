@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-01-30 10:55+0100\n"
+"PO-Revision-Date: 2021-02-14 18:13+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -44,6 +44,18 @@ msgstr "Kopiraj iz l&eve"
 #, c-format
 msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
@@ -1278,9 +1290,8 @@ msgstr "Zapri okna s tipko '&Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Dovoli zagon &samo enega primerka programa"
+msgid "Single instance mode:"
+msgstr "Način za en primerek:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2532,12 +2543,12 @@ msgstr "Tega sporočila ne kaži več."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Za ponovni prikaz tega sporočila, pritisnite 'Ponastavi' na strani 'Splošno' pogovornega okna 'Možnosti'."
 
-msgid "Color Schemes"
-msgstr "Barvne sheme"
-
 #, c-format
 msgid "Syntax"
 msgstr "Sintaksa"
+
+msgid "Color Schemes"
+msgstr "Barvne sheme"
 
 msgid "Folder Compare"
 msgstr "Primerjava map"
@@ -2629,6 +2640,13 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Vse datoteke (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
+
+msgid "File Type"
+msgstr "Vrsta datoteke"
+
+#, c-format
+msgid "Extension"
+msgstr "Končnica"
 
 #, c-format
 msgid "Name"
@@ -2765,6 +2783,9 @@ msgstr "Njihova datoteka"
 #, c-format
 msgid "Mine File"
 msgstr "Vaša datoteka"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3235,10 +3256,6 @@ msgstr "Datum desne"
 #, c-format
 msgid "Middle Date"
 msgstr "Datum srednje"
-
-#, c-format
-msgid "Extension"
-msgstr "Končnica"
 
 #, c-format
 msgid "Left Size"
@@ -4341,4 +4358,11 @@ msgstr "Položaj vrstico po vrstico in besedilo"
 
 msgid "Word-by-word position and text"
 msgstr "Položaj besedo po besedo in besedilo"
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Dovoli zagon samo enega primerka programa"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
 

@@ -222,8 +222,8 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	bool bSingleInstance = cmdInfo.m_bSingleInstance.has_value() ?
-		*cmdInfo.m_bSingleInstance : GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
+	int nSingleInstance = cmdInfo.m_nSingleInstance.has_value() ?
+		*cmdInfo.m_nSingleInstance : GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 
 	// Create exclusion mutex name
 	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
@@ -238,7 +238,7 @@ BOOL CMergeApp::InitInstance()
 	HANDLE hMutex = CreateMutex(nullptr, FALSE, szMutexName);
 	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
-	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
+	if (nSingleInstance != 0 && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
 		HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
@@ -253,6 +253,14 @@ BOOL CMergeApp::InitInstance()
 			{
 				ReleaseMutex(hMutex);
 				CloseHandle(hMutex);
+				if (nSingleInstance > 1)
+				{
+					DWORD dwProcessId = 0;
+					GetWindowThreadProcessId(hWnd, &dwProcessId);
+					HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
+					if (hProcess)
+						WaitForSingleObject(hProcess, INFINITE);
+				}
 				return FALSE;
 			}
 		}
@@ -674,7 +682,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
 			String sFilepath = cmdInfo.m_Files[0];
-			if (IsProjectFile(sFilepath))
+			if (cmdInfo.m_bSelfCompare)
+			{
+				strDesc[0] = cmdInfo.m_sLeftDesc;
+				strDesc[1] = cmdInfo.m_sRightDesc;
+				bCompared = pMainFrame->DoSelfCompare(sFilepath, strDesc);
+			}
+			else if (IsProjectFile(sFilepath))
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}

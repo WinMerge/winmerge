@@ -46,6 +46,18 @@ msgstr "Kopiera från Vänster"
 msgid "Copy fro&m Right"
 msgstr "Kopiera från Höger"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Markera Radskillnad\tF4"
 
@@ -1280,9 +1292,8 @@ msgstr "Stäng fönster med ''Esc'':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Förgiltiga automatikt sökvägar i Öppna-dialogen"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Tillåt bara en upplaga att köra"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2528,12 +2539,12 @@ msgstr "Visa inte detta meddelande igen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr "MappJämförelse"
@@ -2624,6 +2635,13 @@ msgstr "HTML-filer (*.htm,*.html)|*.htm;*.html|Alla filer (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alla filer (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Filsuffix"
 
 #, c-format
 msgid "Name"
@@ -2757,6 +2775,9 @@ msgstr "Deras fil"
 #, c-format
 msgid "Mine File"
 msgstr "Min fil"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3202,10 +3223,6 @@ msgstr "Höger Datum"
 #, c-format
 msgid "Middle Date"
 msgstr "Mitter Datum"
-
-#, c-format
-msgid "Extension"
-msgstr "Filsuffix"
 
 #, c-format
 msgid "Left Size"
@@ -4261,5 +4278,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Tillåt bara en upplaga att köra"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

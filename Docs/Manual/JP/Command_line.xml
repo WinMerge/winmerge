@@ -40,6 +40,8 @@
 
       <arg><option>/s</option></arg>
 
+      <arg><option>/sw</option></arg>
+
       <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
@@ -55,6 +57,8 @@
       <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
 
@@ -216,6 +220,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>/s と同様にWinMergeウインドウを1つのインスタンスに制限します。
+        ただし、ウインドウを表示しているインスタンスが終了するまで待機します。
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/s-</option></term>
       <listitem>
         <para>"複数のインスタンスを起動しない"の設定値を無視して、
@@ -289,6 +302,13 @@
       <listitem>
         <para>読み取り専用として右側を開きます。
         比較時、右側を変更したくない場合に使用してください。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>指定された１つのファイルとそのファイルのコピーを比較します。</para>
       </listitem>
     </varlistentry>
 
@@ -476,5 +496,6 @@
         コンフリクトファイルと共に他のパスは使用できないことに注意してください。</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>

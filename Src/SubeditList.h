@@ -51,19 +51,37 @@ private:
  
 class CSubeditList : public CListCtrl
 {
+public:
+	enum class EditStyle
+	{
+		EDIT_BOX,
+		WILDCARD_DROP_LIST,
+	};
+
 // Construction
 public:
 	CSubeditList();
 
 // Attributes
-public:
+private:
+	std::set<bool> m_readOnlyColumns;							/**< Set of read-only columns */
 	std::set<int> m_binaryValueColumns;
+	std::vector<EditStyle> m_editStyle;							/**< Edit style for each column */
+	std::vector<int> m_limitTextSize;							/**< Character limit for each column */
+	std::vector<std::vector<String>> m_dropListFixedPattern;	/**< Wildcard drop list fixed pattern for each cell */
 
 // Operations
 public:
+	void SetReadOnlyColumn(int nCol) { m_readOnlyColumns.insert(nCol); };
 	void SetBooleanValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
 	void SetItemBooleanValue(int nItem, int nSubItem, bool value);
 	bool GetItemBooleanValue(int nItem, int nSubItem) const;
+	EditStyle GetEditStyle(int nCol) const;
+	void SetEditStyle(int nCol, EditStyle style);
+	int GetLimitTextSize(int nCol) const;
+	void SetLimitTextSize(int nCol, int nLimitTextSize);
+	String GetDropListFixedPattern(int nItem, int nSubItem) const;
+	void SetDropListFixedPattern(int nItem, int nSubItem, const String& fixedPattern);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -75,6 +93,7 @@ public:
 	virtual ~CSubeditList();
 
 	CInPlaceEdit *EditSubLabel(int nItem, int nCol);
+	void EditSubLabelWildcardDropList(int nItem, int nCol);
 	// Generated message map functions
 //protected:
 	//{{AFX_MSG(CSubeditList)

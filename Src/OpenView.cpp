@@ -77,6 +77,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
 	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
+	ON_COMMAND(ID_FILE_SAVE, OnSaveProject)
 	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, OnDropDownSaveProject)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(IDCANCEL, OnCancel)
@@ -211,7 +212,7 @@ void COpenView::OnInitialUpdate()
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
 
 	m_ctlPath[0].SetFileControlStates();
-	m_ctlPath[1].SetFileControlStates();
+	m_ctlPath[1].SetFileControlStates(true);
 	m_ctlPath[2].SetFileControlStates(true);
 
 	for (int file = 0; file < m_files.GetSize(); file++)
@@ -549,7 +550,7 @@ void COpenView::OnOK()
 	int nFiles = 0;
 	for (auto& strPath: m_strPath)
 	{
-		if (nFiles == 2 && strPath.empty())
+		if (nFiles >= 1 && strPath.empty())
 			break;
 		m_files.SetSize(nFiles + 1);
 		m_files[nFiles] = strPath;
@@ -560,8 +561,14 @@ void COpenView::OnOK()
 	// If left path is a project-file, load it
 	String ext;
 	paths::SplitFilename(m_strPath[0], nullptr, nullptr, &ext);
-	if (m_strPath[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
-		LoadProjectFile(m_strPath[0]);
+	if (nFiles == 1)
+	{
+		if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+			LoadProjectFile(m_strPath[0]);
+		else
+			GetMainFrame()->DoSelfCompare(m_strPath[0], nullptr);
+		return;
+	}
 
 	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
 
@@ -872,7 +879,12 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0])
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (bInvalid[1])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
+				{
+					if (pathType[0] == paths::IS_EXISTING_FILE && (paths.GetSize() == 1 || paths[1].empty()))
+						iStatusMsgId = IDS_OPEN_FILESDIRS;
+					else
+						iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
+				}
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
 					if (pathType[0] != pathType[1])

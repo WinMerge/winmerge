@@ -78,6 +78,7 @@ Localization:
   Dominique Saussereau <redguff@users.sourceforge.net>
   Matthieu Pupat
   gandf
+  Lolo S. <slolo2000 at hotmail.com>
 
 * Galician:
   Medulio
@@ -129,6 +130,7 @@ Localization:
   Wender Firmino <wender@pta.com.br>
   Felipe Periard Lopes <felipefpl@ig.com.br>
   Igor Rückert
+  jota11
 
 * Portuguese (Portugal):
   Nelson Simão
@@ -233,6 +235,7 @@ Other Contributors (code, ideas, testing..):
 * Jun Tajima
 * EugeneLaptev
 * ranjwarrior
+* elsonwei
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

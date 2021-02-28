@@ -41,6 +41,18 @@ msgstr "C&opiar da Esquerda"
 msgid "Copy fro&m Right"
 msgstr "C&opiar da Direita"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecionar diferença de linha\tF4"
 
@@ -1017,8 +1029,8 @@ msgstr "Fechar janela com 'Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verificar automaticamente localização na janela de abertura"
 
-msgid "All&ow only one instance to run"
-msgstr "Permitir apenas uma execução"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "Pe&rguntar ao fechar múltiplas janelas"
@@ -2042,11 +2054,11 @@ msgstr ""
 "Para tornar esta caixa de mensagem visível novamente, pressione o botão "
 "Redefinir na página Geral da caixa de diálogo Opções."
 
-msgid "Color Schemes"
-msgstr "Esquema de cores"
-
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Color Schemes"
+msgstr "Esquema de cores"
 
 msgid "Folder Compare"
 msgstr "Comparação de pastas"
@@ -2128,6 +2140,12 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Ficheiros XML (*.xml)|*.xml|Todos os ficheiros (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Extensão"
 
 msgid "Name"
 msgstr "Nome"
@@ -2249,6 +2267,9 @@ msgstr "O ficheiro deles"
 
 msgid "Mine File"
 msgstr "O meu ficheiro"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2689,9 +2710,6 @@ msgstr "Data da Direita"
 
 msgid "Middle Date"
 msgstr "Data do Meio"
-
-msgid "Extension"
-msgstr "Extensão"
 
 msgid "Left Size"
 msgstr "Lado Esquerdo"
@@ -3654,5 +3672,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Permitir apenas uma execução"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

@@ -63,6 +63,7 @@
 #include "CCrystalTextMarkers.h"
 #include "utils/hqbitmap.h"
 #include "UniFile.h"
+#include "TFile.h"
 
 #include "WindowsManagerDialog.h"
 
@@ -110,8 +111,6 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_TOOLS_CUSTOMIZECOLUMNS,	IDB_TOOLS_COLUMNS,				CMainFrame::MENU_ALL },
 	{ ID_TOOLS_GENERATEPATCH,		IDB_TOOLS_GENERATEPATCH,		CMainFrame::MENU_ALL },
 	{ ID_PLUGINS_LIST,				IDB_PLUGINS_LIST,				CMainFrame::MENU_ALL },
-	{ ID_COPY_FROM_LEFT,			IDB_COPY_FROM_LEFT,				CMainFrame::MENU_ALL },
-	{ ID_COPY_FROM_RIGHT,			IDB_COPY_FROM_RIGHT,			CMainFrame::MENU_ALL },
 	{ ID_FILE_PRINT,				IDB_FILE_PRINT,					CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_TOGGLE_BOOKMARK,		IDB_EDIT_TOGGLE_BOOKMARK,		CMainFrame::MENU_FILECMP },
@@ -120,6 +119,12 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_EDIT_CLEAR_ALL_BOOKMARKS,	IDB_EDIT_CLEAR_ALL_BOOKMARKS,	CMainFrame::MENU_FILECMP },
 	{ ID_VIEW_ZOOMIN,				IDB_VIEW_ZOOMIN,				CMainFrame::MENU_FILECMP },
 	{ ID_VIEW_ZOOMOUT,				IDB_VIEW_ZOOMOUT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_LEFT,			IDB_COPY_FROM_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_RIGHT,			IDB_COPY_FROM_RIGHT,			CMainFrame::MENU_FILECMP },
+	{ ID_LINES_R2L,					IDB_COPY_SELECTED_LINES_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_LINES_L2R,					IDB_COPY_SELECTED_LINES_TO_RIGHT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_LEFT,		IDB_COPY_SELECTED_LINES_FROM_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_RIGHT,		IDB_COPY_SELECTED_LINES_FROM_RIGHT,	CMainFrame::MENU_FILECMP },
 	{ ID_MERGE_COMPARE,				IDB_MERGE_COMPARE,				CMainFrame::MENU_FOLDERCMP },
 	{ ID_MERGE_COMPARE_LEFT1_LEFT2,		IDB_MERGE_COMPARE_LEFT1_LEFT2,	CMainFrame::MENU_FOLDERCMP },
 	{ ID_MERGE_COMPARE_RIGHT1_RIGHT2,	IDB_MERGE_COMPARE_RIGHT1_RIGHT2,CMainFrame::MENU_FOLDERCMP },
@@ -2071,7 +2076,7 @@ BOOL CMainFrame::CreateToolbar()
 	LoadToolbarImages();
 
 	UINT nID, nStyle;
-	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW })
+	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN })
 	{
 		int iImage;
 		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
@@ -2424,6 +2429,23 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	return conflictCompared;
 }
 
+bool CMainFrame::DoSelfCompare(const String& file, const String strDesc[] /*= nullptr*/)
+{
+	String ext = paths::FindExtension(file);
+	TempFilePtr wTemp(new TempFile());
+	String copiedFile = wTemp->Create(_T("self-compare_"), ext);
+	m_tempFiles.push_back(wTemp);
+
+	TFile(file).copyTo(copiedFile);
+
+	String strDesc2[2] = { 
+		(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Original File"),
+		(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("") };
+	DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	PathContext tmpPathContext(copiedFile, file);
+	return DoFileOpen(&tmpPathContext, dwFlags, strDesc2);
+}
+
 /**
  * @brief Get type of frame (File/Folder compare).
  * @param [in] pFrame Pointer to frame to check.
@@ -2462,7 +2484,19 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
 	ClientToScreen(&(pToolBar->rcButton));
 	BCMenu menu;
-	int id = (pToolBar->iItem == ID_FILE_NEW) ? IDR_POPUP_NEW : IDR_POPUP_DIFF_OPTIONS;
+	int id;
+	switch (pToolBar->iItem)
+	{
+	case ID_FILE_NEW:
+		id = IDR_POPUP_NEW;
+		break;
+	case ID_FILE_OPEN:
+		id = IDR_POPUP_OPEN;
+		break;
+	default:
+		id = IDR_POPUP_DIFF_OPTIONS;
+		break;
+	}
 	VERIFY(menu.LoadMenu(id));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
@@ -2562,9 +2596,10 @@ void CMainFrame::OnMRUs(UINT nID)
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
-	HMENU hMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
-	if (hMenu == nullptr)
+	CMenu *pMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu : pCmdUI->m_pMenu;
+	if (pMenu == nullptr)
 		return;
+	HMENU hMenu = pMenu->m_hMenu;
 	
 	// empty the menu
 	size_t i = ::GetMenuItemCount(hMenu);

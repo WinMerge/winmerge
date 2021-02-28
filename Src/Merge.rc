@@ -71,6 +71,11 @@ BEGIN
         MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
         MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
+        MENUITEM "Copy Selected Line(s) to Right", ID_LINES_L2R
+        MENUITEM "Copy Selected Line(s) to Left", ID_LINES_R2L
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT
+        MENUITEM SEPARATOR
         MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM SEPARATOR
@@ -885,6 +890,14 @@ BEGIN
     END
 END
 
+IDR_POPUP_OPEN MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "< Empty >",                   ID_NO_MRU
+    END
+END
+
 IDR_POPUP_PROJECT MENU
 BEGIN
     POPUP "_POPUP_"
@@ -1075,21 +1088,21 @@ BEGIN
     COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,39,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,56,240,10
-    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,68,240,10
+    LTEXT           "Single instance mode:",IDC_STATIC,7,67,240,10
+    COMBOBOX        IDC_SINGLE_INSTANCE,7,78,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,80,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,95,240,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,92,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,240,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,116,240,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,132,240,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,144,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Language:",IDC_STATIC,7,162,240,10
-    COMBOBOX        IDC_LANGUAGE_LIST,7,174,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,194,240,30
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,240,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,145,240,10
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language:",IDC_STATIC,7,175,240,10
+    COMBOBOX        IDC_LANGUAGE_LIST,7,187,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,207,240,30
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
@@ -1463,6 +1476,14 @@ BEGIN
     EDITTEXT        IDC_BREAK_CHARS,24,192,216,14,ES_AUTOHSCROLL
     LTEXT           "&Rendering Mode:",IDC_STATIC,6,214,240,10
     COMBOBOX        IDC_RENDERING_MODE,6,226,240,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+END
+
+IDD_PROPPAGE_EDITOR_SYNTAX DIALOGEX 0, 0, 255, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SYNTAX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 215
+    PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 161, 228, 88, 14
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -2048,6 +2069,10 @@ BEGIN
     BEGIN
     END
 
+    IDD_PROPPAGE_EDITOR_SYNTAX, DIALOG
+    BEGIN
+    END
+
     IDD_FILEFILTERS, DIALOG
     BEGIN
     END
@@ -2278,6 +2303,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -2468,6 +2494,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -2552,6 +2579,13 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0
+END
+
+IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
 END
 
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
@@ -2696,6 +2730,8 @@ BEGIN
     IDS_OPTIONSPG_GENERAL   "General"
     IDS_OPTIONSPG_COMPARE   "Compare"
     IDS_OPTIONSPG_EDITOR    "Editor"
+    IDS_OPTIONSPG_GENEDITOR "General"
+    IDS_OPTIONSPG_EDITOR_SYNTAX "Syntax"
     IDS_OPTIONSPG_COLORS    "Colors"
     IDS_OPTIONSPG_COLOR_SCHEMES "Color Schemes"
     IDS_OPTIONSPG_TEXTCOLORS "Text"
@@ -2777,6 +2813,13 @@ BEGIN
     IDS_COMPMETHOD_SIZE     "Size"
 END
 
+// EDITOR OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_SYNTAXTABLE_FILETYPE "File Type"
+    IDS_SYNTAXTABLE_EXTENSION "Extension"
+END
+
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
@@ -2825,6 +2868,7 @@ BEGIN
     IDS_CONFLICT_BASE_FILE  "Base File"
     IDS_CONFLICT_THEIRS_FILE "Theirs File"
     IDS_CONFLICT_MINE_FILE  "Mine File"
+    IDS_SELFCOMPARE_ORIGINAL_FILE "Original File"
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -3439,6 +3483,7 @@ BEGIN
     IDS_COLORSCHEME_INSTALLSHIELD "InstallShield"
     IDS_COLORSCHEME_JAVA    "Java"
     IDS_COLORSCHEME_JAVASCRIPT "JavaScript"
+    IDS_COLORSCHEME_JSON    "JSON"
     IDS_COLORSCHEME_LISP    "AutoLISP"
     IDS_COLORSCHEME_LUA     "Lua"
 END
@@ -3566,6 +3611,12 @@ BEGIN
     IDS_OCRRESULT_TEXTONLY "Text only"
     IDS_OCRRESULT_POS_LINE "Line-by-line position and text"
     IDS_OCRRESULT_POS_WORD "Word-by-word position and text"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
+    IDS_SINGLEINSTANCE_STR2 "Allow only one instance to run and wait for the instance to terminate"
 END
 
 #endif    // English (United States) resources

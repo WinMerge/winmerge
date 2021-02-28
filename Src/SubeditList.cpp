@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "SubeditList.h"
 #include "Win_VersionHelper.h"
+#include "WildcardDropList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,6 +39,149 @@ bool CSubeditList::GetItemBooleanValue(int nItem, int nSubItem) const
 {
 	CString text = GetItemText(nItem, nSubItem);
 	return (text.Compare(_T("true")) == 0 || text.Compare(_T("\u2611")) == 0);
+}
+
+/**
+ * @brief Get the edit style for the specified column.
+ * @param [in] nCol Column to get edit style
+ * @return@Edit style for the specified column
+ * @remarks Returns EditStyle::EDIT_BOX; as default if a column with no edit style is specified.
+ */
+CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
+{
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+
+	if (nCol < 0 || nCol >= nColumnCount)
+		return EditStyle::EDIT_BOX;
+
+	if (nCol >= m_editStyle.size())
+		return EditStyle::EDIT_BOX;
+
+	return m_editStyle.at(nCol);
+}
+
+/**
+ * @brief Set the edit style for the specified column.
+ * @param [in] nCol Column to set the edit style
+ * @param [in] style Edit style to set
+ */
+void CSubeditList::SetEditStyle(int nCol, EditStyle style)
+{
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nCol < 0 || nCol >= nColumnCount)
+		return;
+
+	for (size_t i = m_editStyle.size(); i <= nCol; i++)
+		m_editStyle.push_back(EditStyle::EDIT_BOX);
+
+	m_editStyle[nCol] = style;
+}
+
+/**
+ * @brief Get the character limit for the specified column.
+ * @param [in] nCol Column to get character limit
+ * @return@Character limit for the specified column
+ * @remarks Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+ */
+int CSubeditList::GetLimitTextSize(int nCol) const
+{
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+
+	if (nCol < 0 || nCol >= nColumnCount)
+		return 0;
+
+	// Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
+		return 0;
+
+	if (nCol >= m_limitTextSize.size())
+		return 0;
+
+	return m_limitTextSize.at(nCol);
+}
+
+/**
+ * @brief Set the character limit for the specified column.
+ * @param [in] nCol Column to set the character limit
+ * @param [in] nLimitTextSize Character limit to set
+ * @remarks Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+ */
+void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
+{
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nCol < 0 || nCol >= nColumnCount)
+		return;
+
+	// Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
+		return;
+
+	for (size_t i = m_limitTextSize.size(); i <= nCol; i++)
+		m_limitTextSize.push_back(0);
+
+	m_limitTextSize[nCol] = nLimitTextSize;
+}
+
+/**
+ * @brief Get the wildcard drop list fixed pattern for the specified cell.
+ * @param [in] nItem Th row index to get wildcard drop list fixed pattern
+ * @param [in] nSubItem The column to get wildcard drop list fixed pattern
+ * @return Wildcard drop list fixed pattern for the specified cell
+ */
+String CSubeditList::GetDropListFixedPattern(int nItem, int nSubItem) const
+{
+	int nItemCount = GetItemCount();
+	if (nItem < 0 || nItem >= nItemCount)
+		return _T("");
+
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nSubItem < 0 || nSubItem >= nColumnCount)
+		return _T("");
+
+	// This setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
+		return _T("");
+
+	if (nItem < m_dropListFixedPattern.size())
+		if (nSubItem < m_dropListFixedPattern[nItem].size())
+			return m_dropListFixedPattern[nItem][nSubItem];
+
+	return _T("");
+}
+
+/**
+ * @brief Set the wildcard drop list fixed pattern for the specified cell.
+ * @param [in] nItem The row index to set wildcard drop list fixed pattern
+ * @param [in] nSubItem The column to set wildcard drop list fixed pattern
+ * @param [in] fixedPattern Wildcard drop list fixed pattern to set
+ */
+void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String& fixedPattern)
+{
+	int nItemCount = GetItemCount();
+	if (nItem < 0 || nItem >= nItemCount)
+		return;
+
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nSubItem < 0 || nSubItem >= nColumnCount)
+		return;
+
+	// This setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
+	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
+		return;
+
+	for (size_t i = m_dropListFixedPattern.size(); i <= nItem; i++)
+		m_dropListFixedPattern.push_back(std::vector<String>());
+
+	for (size_t i = m_dropListFixedPattern[nItem].size(); i <= nSubItem; i++)
+		m_dropListFixedPattern[nItem].push_back(_T(""));
+
+	m_dropListFixedPattern[nItem][nSubItem] = fixedPattern;
 }
 
 // HitTestEx	- Determine the row index and column index for a point
@@ -121,6 +265,8 @@ CInPlaceEdit* CSubeditList::EditSubLabel( int nItem, int nCol )
 	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
 		return NULL;
 	 
+	if (GetEditStyle(nCol) != EditStyle::EDIT_BOX)
+		return NULL;
 	// Get the column offset
 	int offset = 0;
 	for( int i = 0; i < nCol; i++ )
@@ -161,6 +307,30 @@ CInPlaceEdit* CSubeditList::EditSubLabel( int nItem, int nCol )
 	pEdit->Create( dwStyle, rect, this, IDC_IPEDIT );
 
 	return pEdit;
+}
+
+/**
+ * @brief Start edit of a sub item label with wilcard drop list.
+ * @param [in] nItem The row index of the item to edit
+ * @param [in] nCol The column of the sub item
+ */
+void CSubeditList::EditSubLabelWildcardDropList( int nItem, int nCol )
+{
+	// Make sure that the item is visible
+	if( !EnsureVisible( nItem, TRUE ) ) return;
+
+	// Make sure that nCol is valid
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
+		return;
+
+	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
+		return;
+
+	CString pattern = GetDropListFixedPattern(nItem, nCol).c_str();
+	int nLimitTextSize = GetLimitTextSize(nCol);
+	WildcardDropList::OnItemActivate(m_hWnd, nItem, nCol, 4, pattern, true, nLimitTextSize);
 }
 
 void CSubeditList::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
@@ -214,24 +384,35 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 			// Add check for LVS_EDITLABELS
 			if (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS)
 			{
-				if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
-				{
-					CString text = GetItemText(index, colnum);
-					if (IsWin7_OrGreater())
+				if (m_readOnlyColumns.find(colnum) == m_readOnlyColumns.end())
+					if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
 					{
-						SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
-							_T("\u2610") : _T("\u2611"));
+						CString text = GetItemText(index, colnum);
+						if (IsWin7_OrGreater())
+						{
+							SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
+								_T("\u2610") : _T("\u2611"));
+						}
+						else
+						{
+							SetItemText(index, colnum, text.Compare(_T("true")) == 0 ?
+								_T("false") : _T("true"));
+						}
 					}
 					else
 					{
-						SetItemText(index, colnum, text.Compare(_T("true")) == 0 ?
-							_T("false") : _T("true"));
+						switch (GetEditStyle(colnum))
+						{
+						case EditStyle::EDIT_BOX:
+							EditSubLabel(index, colnum);
+							break;
+						case EditStyle::WILDCARD_DROP_LIST:
+							EditSubLabelWildcardDropList(index, colnum);
+							break;
+						default:
+							break;
+						}
 					}
-				}
-				else
-				{
-					EditSubLabel(index, colnum);
-				}
 			}
 		}
 		else

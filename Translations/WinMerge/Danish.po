@@ -45,6 +45,18 @@ msgstr ""
 msgid "Copy fro&m Right"
 msgstr ""
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "&Vælg linjeforskel\tF4""
 
@@ -1279,9 +1291,8 @@ msgstr "L&uk vinduer med 'Esc' tasten:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Verificer automatisk stinavnene i åben dialogen"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Til&lad kun et eksempel ad gangen"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -2516,12 +2527,12 @@ msgstr "Vis ikke denne &besked igen."
 msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-msgid "Color Schemes"
-msgstr ""
-
 #, c-format
 msgid "Syntax"
 msgstr "Syntaks"
+
+msgid "Color Schemes"
+msgstr ""
 
 msgid "Folder Compare"
 msgstr ""
@@ -2617,6 +2628,13 @@ msgstr "HTML Filer (*.htm,*.html)|*.htm;*.html|Alle filer (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML Filer (*.xml)|*.xml|Alle filer (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Udvidelse"
 
 #, c-format
 msgid "Name"
@@ -2750,6 +2768,9 @@ msgstr "Deres fil"
 #, c-format
 msgid "Mine File"
 msgstr "Min fil"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3201,10 +3222,6 @@ msgstr "Højre dato"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Udvidelse"
 
 #, c-format
 msgid "Left Size"
@@ -4216,5 +4233,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Tillad kun et eksempel ad gangen"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

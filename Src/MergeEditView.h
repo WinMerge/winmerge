@@ -97,6 +97,8 @@ private:
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
+	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
+
 // Operations
 public:
 	void RefreshOptions();
@@ -112,6 +114,7 @@ public:
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CPoint *pptStart = nullptr, const CPoint *ppEnd = nullptr);
+	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
 	CString GetLineText(int idx);
@@ -132,7 +135,7 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
-	void GotoLine(UINT nLine, bool bRealLine, int pane);
+	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
 	int GetTopSubLine() const { return m_nTopSubLine; }
@@ -258,16 +261,24 @@ protected:
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
-	afx_msg void OnX2Y(int srcPane, int dstPane);
+	afx_msg void OnX2Y(int srcPane, int dstPane, bool selectedLineOnly = false);
 	afx_msg void OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
+	afx_msg void OnLinesL2r();
+	afx_msg void OnUpdateLinesL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnLinesR2l();
+	afx_msg void OnUpdateLinesR2l(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
+	afx_msg void OnCopyLinesFromLeft();
+	afx_msg void OnUpdateCopyLinesFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
 	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
+	afx_msg void OnCopyLinesFromRight();
+	afx_msg void OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
 	afx_msg void OnClearSyncPoints();
 	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);

@@ -38,6 +38,18 @@ msgstr "So&ldan Kopyala"
 msgid "Copy fro&m Right"
 msgstr "Sağ&dan Kopyala"
 
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
 msgid "&Select Line Difference\tF4"
 msgstr "Farklı &Satırları Seç\tF4"
 
@@ -1014,8 +1026,8 @@ msgstr "'Esc' tuşu pencereleri &kapatsın:"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "'&Aç' penceresindeki yollar doğrulansın"
 
-msgid "All&ow only one instance to run"
-msgstr "Yalnız bir &WinMerge kopyası çalışsın"
+msgid "Single instance mode:"
+msgstr ""
 
 msgid "As&k when closing multiple windows"
 msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
@@ -2026,11 +2038,11 @@ msgstr ""
 "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel "
 "Grubu altındaki Sıfırla düğmesine tıklayın."
 
-msgid "Color Schemes"
-msgstr "Renk Temaları"
-
 msgid "Syntax"
 msgstr "Söz Dizimi"
+
+msgid "Color Schemes"
+msgstr "Renk Temaları"
 
 msgid "Folder Compare"
 msgstr "Klasör Karşılaştırma"
@@ -2110,6 +2122,12 @@ msgstr "HTML Dosyaları (*.htm,*.html)|*.htm;*.html|Tüm Dosyalar (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML Dosyaları (*.xml)|*.xml|Tüm Dosyalar (*.*)|*.*||"
+
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Uzantı"
 
 msgid "Name"
 msgstr "Ad"
@@ -2226,6 +2244,9 @@ msgstr "Başkalarının Dosyası"
 
 msgid "Mine File"
 msgstr "Benim Dosyam"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2658,9 +2679,6 @@ msgstr "Sağ Dosya Tarihi"
 
 msgid "Middle Date"
 msgstr "Orta Dosya Tarihi"
-
-msgid "Extension"
-msgstr "Uzantı"
 
 msgid "Left Size"
 msgstr "Sol Dosya Boyutu"
@@ -3602,5 +3620,11 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Yalnız bir WinMerge kopyası çalışsın"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 

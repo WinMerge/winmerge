@@ -85,6 +85,7 @@ typedef enum
 	SRC_INSTALLSHIELD,
 	SRC_JAVA,
 	SRC_JAVASCRIPT,
+	SRC_JSON,
 	SRC_LISP,
 	SRC_LUA,
 	SRC_NSIS,
@@ -127,7 +128,7 @@ struct TextDefinition
 	unsigned encoding;
 };
 
-extern TextDefinition m_SourceDefs[39];
+extern TextDefinition m_SourceDefs[40];
 
 bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
 bool IsXNumber(const TCHAR* pszChars, int nLength);
@@ -136,6 +137,8 @@ bool IsHtmlUser1Keyword(const TCHAR *pszChars, int nLength);
 bool IsHtmlUser2Keyword(const TCHAR *pszChars, int nLength);
 
 TextDefinition *GetTextType(const TCHAR *pszExt);
+TextDefinition* GetTextType(int index);
+void SetExtension(int index, const TCHAR *pszExts);
 
 unsigned ParseLinePlain(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAsp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

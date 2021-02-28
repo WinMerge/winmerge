@@ -40,6 +40,8 @@
 
       <arg><option>/s</option></arg>
 
+      <arg><option>/sw</option></arg>
+
       <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
@@ -55,6 +57,8 @@
       <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
 
@@ -217,6 +221,15 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>Limit the WinMerge window to one instance as well as the option /s.
+         However, it waits for the instance displaying the window to terminate.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/s-</option></term>
       <listitem>
         <para>Ensure that another instance is always executed, ignoring the
@@ -290,6 +303,13 @@
       <listitem>
         <para>Opens the right side as read-only. Use this
         when you don't want to change right side items in the compare.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>Compares the specified file with a copy of the file.</para>
       </listitem>
     </varlistentry>
 
@@ -474,5 +494,6 @@
         with a conflict file.</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>
