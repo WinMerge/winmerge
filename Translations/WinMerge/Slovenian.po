@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-02-14 18:13+0100\n"
+"PO-Revision-Date: 2021-03-02 09:02+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -46,16 +46,16 @@ msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice na desno"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice na levo"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice z leve"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice z desne"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Izberi razliko vrstice\tF4"
@@ -2782,7 +2782,7 @@ msgid "Mine File"
 msgstr "Vaša datoteka"
 
 msgid "Original File"
-msgstr ""
+msgstr "Izvirna datoteka"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -4362,4 +4362,3 @@ msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
-
