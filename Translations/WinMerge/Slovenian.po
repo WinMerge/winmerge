@@ -4362,3 +4362,4 @@ msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
+
