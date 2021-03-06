@@ -1,6 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <tchar.h>
 #include <vector>
 #include "FileTransform.h"
 #include "PluginManager.h"

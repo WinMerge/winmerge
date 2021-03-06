@@ -11,7 +11,6 @@
 #include <Poco/DirectoryIterator.h>
 #include <Poco/Timestamp.h>
 #include <windows.h>
-#include <tchar.h>
 #include "TFile.h"
 #include "UnicodeString.h"
 #include "DirItem.h"

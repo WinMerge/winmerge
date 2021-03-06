@@ -8,8 +8,6 @@
 #include "pch.h"
 #include "stringdiffs.h"
 #define NOMINMAX
-#include <windows.h>
-#include <tchar.h>
 #include <cassert>
 #include "CompareOptions.h"
 #include "stringdiffsi.h"

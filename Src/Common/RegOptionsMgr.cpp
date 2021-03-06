@@ -9,7 +9,6 @@
 #include "RegOptionsMgr.h"
 #include <windows.h>
 #include <Shlwapi.h>
-#include <tchar.h>
 #include <vector>
 #include "varprop.h"
 #include "OptionsMgr.h"
