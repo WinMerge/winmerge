@@ -196,6 +196,9 @@
     <ClCompile Include="FileFilterMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileFlags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="FileTextEncoding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1015,6 +1018,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileFilterMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFlags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileLocation.h">

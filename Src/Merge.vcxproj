@@ -728,6 +728,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="FileFiltersDlg.cpp" />
+    <ClCompile Include="FileFlags.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="FileOrFolderSelect.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1208,6 +1213,7 @@
     <ClInclude Include="FileFilterHelper.h" />
     <ClInclude Include="FileFilterMgr.h" />
     <ClInclude Include="FileFiltersDlg.h" />
+    <ClInclude Include="FileFlags.h" />
     <ClInclude Include="FileLocation.h" />
     <ClInclude Include="FileOrFolderSelect.h" />
     <ClInclude Include="FilepathEdit.h" />
