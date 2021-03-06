@@ -15,6 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#if __has_include(<Poco/RegularExpression.h>)
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
@@ -285,3 +286,4 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
     *Dest = dest;
     return 0;
 }
+#endif
