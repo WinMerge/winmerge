@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Xml Include="EN\xsl\htmlhelp.xsl">
+      <Filter>EN\xsl</Filter>
+    </Xml>
+    <Xml Include="EN\xsl\html.xsl">
+      <Filter>EN\xsl</Filter>
+    </Xml>
+    <Xml Include="EN\_Copyrights.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\_VersionNumbers.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\About_Doc.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Command_line.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Compare_bin.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Compare_dirs.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Compare_files.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Compare_images.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Compare_table.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Configuration.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Faq.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Filters.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Index.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Install.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Intro_diffs.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Introduction.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Locales.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Open_paths.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Plugins.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Quick_start.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\select_unpacker.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Shortcut_keys.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="EN\Version_control.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="JP\xsl\html.xsl">
+      <Filter>JP\xsl</Filter>
+    </Xml>
+    <Xml Include="JP\xsl\htmlhelp.xsl">
+      <Filter>JP\xsl</Filter>
+    </Xml>
+    <Xml Include="JP\_Copyrights.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\_VersionNumbers.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\About_Doc.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Command_line.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_bin.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_dirs.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_files.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_images.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_table.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Configuration.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Faq.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Filters.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Index.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Install.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Intro_diffs.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Introduction.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Locales.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Open_paths.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Plugins.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Quick_start.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\select_unpacker.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Shortcut_keys.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="JP\Version_control.xml">
+      <Filter>JP</Filter>
+    </Xml>
+    <Xml Include="Shared\xsl\common.xsl">
+      <Filter>Shared\xsl</Filter>
+    </Xml>
+    <Xml Include="Shared\xsl\html.xsl">
+      <Filter>Shared\xsl</Filter>
+    </Xml>
+    <Xml Include="Shared\xsl\htmlhelp.xsl">
+      <Filter>Shared\xsl</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="EN">
+      <UniqueIdentifier>{4c784180-831f-4789-8caa-2ad6080932cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EN\screenshots">
+      <UniqueIdentifier>{d3a562e7-0242-42c8-85ab-b9404d709c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EN\xsl">
+      <UniqueIdentifier>{b7a59913-75e6-4e3c-b008-e175fd359ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JP">
+      <UniqueIdentifier>{dc82f40f-2ca6-4b2f-89f2-29a9ddee8183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JP\screenshots">
+      <UniqueIdentifier>{402b2cf7-3634-4d5b-96cd-f74bb71d655a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JP\xsl">
+      <UniqueIdentifier>{dbfa7ab6-06cd-4d03-90d9-da62dc2fd019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{ad78118c-4dc7-421e-8946-21831c5bb588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\css">
+      <UniqueIdentifier>{77c55be5-aac3-4031-ae9c-2bb50c6b965d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\images">
+      <UniqueIdentifier>{5a1e5efe-0b2c-47cb-a802-15add03c71a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\xsl">
+      <UniqueIdentifier>{ca97e1b9-54c2-448a-bb91-0c3f89d25e20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="EN\screenshots\aborted.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\allleft_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\allright_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\binary.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\binarydiff.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\char-diff-01.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\copyl_adv_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\copyl_button.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\copyr_adv_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\copyr_button.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\ctx_menu_advanced.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\ctx_menu_copy1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\ctx_menu_simple.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\currentdiff_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\diff-blocks-01.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\diff_inline_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\equal.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\equaltextfile.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\error.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\file_headerbar1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp_context1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp_diffpane1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp_inlinediff.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp_margin1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filecomp_margin2.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\filemerged1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\fileskip.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\firstdiff_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldercmp_progress.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldercmp_unique1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldercmp_unique2.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldercomp1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldercomp_2same.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\folderdiff.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\foldersame.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\folderskip.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\folderup.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\folderup_disable.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\hexcmp1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\ignore-blank-lines.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\imgcmp1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\lastdiff_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\lfile.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\lfolder.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\line-diff-punctuation.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\linediff.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\locpane_currentdiff.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\locpane_diffs.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\locpane_moved_diffs.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\locpane_viewbar.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\merge_menu.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\missing_lines.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\moved-01.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\nav_uparrow_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\nextdiff_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\notequal.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\notequaltextfile.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\open_icon.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\OpenDlg1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\options_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\prevdiff_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\projfile_save.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\refresh_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\rfile.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\rfolder.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\simlines-diffs-off.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\simlines-diffs-on.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\tblcomp1.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\tfs_configure.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\treeview-01.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\undo_btn.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\wm_icon.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\word-diff-allwhite.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\word-diff-nochange.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="EN\screenshots\word-diff-nowhite.png">
+      <Filter>EN\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\aborted.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\allleft_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\allright_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\binary.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\binarydiff.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\char-diff-01.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\copyl_adv_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\copyl_button.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\copyr_adv_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\copyr_button.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\ctx_menu_advanced.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\ctx_menu_copy1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\ctx_menu_simple.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\currentdiff_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\diff-blocks-01.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\diff_inline_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\equal.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\equaltextfile.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\error.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp_context1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp_diffpane1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp_inlinediff.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp_margin1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filecomp_margin2.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\filemerged1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\fileskip.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\file_headerbar1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\firstdiff_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldercmp_progress.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldercmp_unique1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldercmp_unique2.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldercomp1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldercomp_2same.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\folderdiff.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\foldersame.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\folderskip.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\folderup.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\folderup_disable.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\hexcmp1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\ignore-blank-lines.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\imgcmp1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\lastdiff_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\lfile.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\lfolder.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\line-diff-punctuation.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\linediff.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\locpane_currentdiff.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\locpane_diffs.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\locpane_moved_diffs.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\locpane_viewbar.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\merge_menu.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\missing_lines.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\moved-01.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\nav_uparrow_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\nextdiff_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\notequal.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\notequaltextfile.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\OpenDlg1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\open_icon.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\options_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\prevdiff_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\projfile_save.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\refresh_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\rfile.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\rfolder.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\simlines-diffs-off.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\simlines-diffs-on.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\tblcomp1.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\tfs_configure.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\treeview-01.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\undo_btn.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\wm_icon.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\word-diff-allwhite.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\word-diff-nochange.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="JP\screenshots\word-diff-nowhite.png">
+      <Filter>JP\screenshots</Filter>
+    </Image>
+    <Image Include="Shared\images\head.gif">
+      <Filter>Shared\images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shared\css\all.css">
+      <Filter>Shared\css</Filter>
+    </None>
+    <None Include="Shared\css\help.css">
+      <Filter>Shared\css</Filter>
+    </None>
+    <None Include="Shared\css\print.css">
+      <Filter>Shared\css</Filter>
+    </None>
+  </ItemGroup>
+</Project>

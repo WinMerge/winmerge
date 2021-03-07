@@ -11,6 +11,19 @@ set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"
 if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
+setlocal enabledelayedexpansion
+if "%1" == "/build" (
+  if exist "%docbook_outputdir_final%\WinMerge.chm" (
+    copy "%docbook_outputdir_final%\WinMerge.chm" EN\WinMerge.chm 2> NUL > NUL
+  )
+  for /f "tokens=*" %%i in ('dir /a:-d /b /o:d /t:w EN') do set NEWEST=%%~nxi
+  del EN\WinMerge.chm 2> NUL
+  if "!NEWEST!" == "WinMerge.chm" goto :eof
+) else if "%1" == "/clean" (
+  del "%docbook_outputdir_final%\WinMerge.chm"
+  goto :eof
+)
+
 echo Copy images...
 if not exist "%docbook_outputdir%\images" mkdir "%docbook_outputdir%\images"
 copy "Shared\images\*.gif" "%docbook_outputdir%\images\."
