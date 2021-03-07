@@ -306,10 +306,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editlib", "Externals\crysta
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Manual", "Docs\Manual\Manual.vcxproj", "{E11617CA-2D87-4571-B22A-48C922D9A0F9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xdiff", "Externals\xdiff\xdiff.vcxitems", "{68F1D3A1-9DCA-4B3D-B245-F4ACA5F16563}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -795,6 +799,7 @@ Global
 		{91ED0FD4-86C9-4D7C-87C1-1B12F04DCAD0} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
 		{7515AC3C-389A-44CD-B940-A59DDE5B8AE3} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{68F1D3A1-9DCA-4B3D-B245-F4ACA5F16563} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
