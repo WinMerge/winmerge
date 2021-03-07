@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{30241c1b-b67c-4001-beef-af87888c36c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\internal">
+      <UniqueIdentifier>{5261e7aa-8063-44ee-9266-3f18734f2912}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest_main.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-all.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-death-test.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-filepath.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-port.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-printers.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-test-part.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-typed-test.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-death-test.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-message.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-param-test.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-printers.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-spi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-test-part.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-typed-test.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest_pred_impl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest_prod.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-death-test-internal.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-filepath.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-internal.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-linked_ptr.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-param-util-generated.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-param-util.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-port.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-string.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-tuple.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-type-util.h">
+      <Filter>include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\gtest-internal-inl.h" />
+  </ItemGroup>
+</Project>

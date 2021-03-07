@@ -32,9 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)xdiff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)xdiffi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,5 +53,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)xutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)xdiff.h" />
   </ItemGroup>
 </Project>

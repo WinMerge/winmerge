@@ -44,9 +44,6 @@
     <Filter Include="Boost\config\compiler">
       <UniqueIdentifier>{48b82f25-08b5-43e5-bc19-abd5bf4f0ea7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GNU diffutils">
-      <UniqueIdentifier>{16e1af2b-75c9-4deb-b49f-819018df0478}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MergeTest">
       <UniqueIdentifier>{63f0497b-0d8f-4660-b727-dac620d74635}</UniqueIdentifier>
     </Filter>
@@ -82,12 +79,6 @@
     </Filter>
     <Filter Include="Common\Source Files">
       <UniqueIdentifier>{ae04066b-7462-4a9b-8120-6d72fa5fe73e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Compare Engines\Source Files">
-      <UniqueIdentifier>{e80d7ff2-f4b2-4c37-8db5-e26835cd90cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Compare Engines\Header Files">
-      <UniqueIdentifier>{e0f6e1ca-9725-4a97-81da-adf12e7a4e42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -222,39 +213,6 @@
     </ClCompile>
     <ClCompile Include="UniMarkdownFile.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\analyze.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\lib\cmpbuf.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\context.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\Diff.cpp">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ed.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\GnuVersion.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ifdef.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\io.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\normal.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\side.c">
-      <Filter>GNU diffutils</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\util.c">
-      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
@@ -399,9 +357,6 @@
     </ClCompile>
     <ClCompile Include="MergeStatusBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\mystat.cpp">
-      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp">
       <Filter>MFCGui\Source Files</Filter>
@@ -607,21 +562,6 @@
     <ClCompile Include="Common\varprop.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteComparator.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteCompare.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\VersionInfo.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
@@ -648,9 +588,6 @@
     </ClCompile>
     <ClCompile Include="PropColorSchemes.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ImageCompare.cpp">
-      <Filter>Compare Engines\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PropCompareTable.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
@@ -830,18 +767,6 @@
     </ClInclude>
     <ClInclude Include="UniMarkdownFile.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\lib\cmpbuf.h">
-      <Filter>GNU diffutils</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\config.h">
-      <Filter>GNU diffutils</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\src\diff.h">
-      <Filter>GNU diffutils</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\src\system.h">
-      <Filter>GNU diffutils</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>MFCGui\Header Files</Filter>
@@ -1227,21 +1152,6 @@
     <ClInclude Include="Common\multiformatText.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompareEngines\BinaryCompare.h">
-      <Filter>Compare Engines\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\ByteComparator.h">
-      <Filter>Compare Engines\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\ByteCompare.h">
-      <Filter>Compare Engines\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\TimeSizeCompare.h">
-      <Filter>Compare Engines\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h">
-      <Filter>Compare Engines\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\VersionInfo.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
@@ -1268,9 +1178,6 @@
     </ClInclude>
     <ClInclude Include="PropColorSchemes.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\ImageCompare.h">
-      <Filter>Compare Engines\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropCompareTable.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
@@ -1394,10 +1301,7 @@
     <None Include="res\sigma.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="CHANGELO">
-      <Filter>ChangeLogs</Filter>
-    </None>
-    <None Include="..\Docs\Users\ChangeLog.txt">
+    <None Include="..\Docs\Users\ChangeLog.md">
       <Filter>ChangeLogs</Filter>
     </None>
   </ItemGroup>

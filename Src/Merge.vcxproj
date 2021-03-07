@@ -92,6 +92,8 @@
   <ImportGroup Label="Shared">
     <Import Project="..\Externals\crystaledit\editlib\editlib.vcxitems" Label="Shared" />
     <Import Project="..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
+    <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
+    <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -445,10 +447,6 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
-    <ClCompile Include="CompareEngines\ImageCompare.cpp">
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -477,11 +475,6 @@
     </ClCompile>
     <ClCompile Include="Common\ColorButton.cpp" />
     <ClCompile Include="Common\ExConverter.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -931,66 +924,6 @@
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
-    <ClCompile Include="diffutils\src\analyze.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\lib\cmpbuf.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\context.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\Diff.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ed.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\GnuVersion.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ifdef.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\io.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\normal.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\side.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\util.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\mystat.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteComparator.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1012,7 +945,6 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
-    <ClInclude Include="CompareEngines\ImageCompare.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
@@ -1026,7 +958,6 @@
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />
     <ClInclude Include="Common\ExConverter.h" />
-    <ClInclude Include="CompareEngines\BinaryCompare.h" />
     <ClInclude Include="CompareOptions.h" />
     <ClInclude Include="CompareStatisticsDlg.h" />
     <ClInclude Include="CompareStats.h" />
@@ -1201,14 +1132,6 @@
     <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
-    <ClInclude Include="diffutils\lib\cmpbuf.h" />
-    <ClInclude Include="diffutils\config.h" />
-    <ClInclude Include="diffutils\src\diff.h" />
-    <ClInclude Include="diffutils\src\system.h" />
-    <ClInclude Include="CompareEngines\ByteComparator.h" />
-    <ClInclude Include="CompareEngines\ByteCompare.h" />
-    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h" />
-    <ClInclude Include="CompareEngines\TimeSizeCompare.h" />
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1243,8 +1166,7 @@
     <None Include="res\right_to_browse.bmp" />
     <None Include="res\right_to_left.bmp" />
     <None Include="res\sigma.ico" />
-    <None Include="CHANGELO" />
-    <None Include="..\Docs\Users\ChangeLog.txt" />
+    <None Include="..\Docs\Users\ChangeLog.md" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc" />
