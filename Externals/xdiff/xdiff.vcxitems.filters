@@ -53,6 +53,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)xutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)xdiff.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)xdiff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
