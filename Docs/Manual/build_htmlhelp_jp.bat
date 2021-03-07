@@ -1,5 +1,6 @@
 @echo off
 
+setlocal enabledelayedexpansion
 pushd %~dp0
 call configuration.bat
 
@@ -11,17 +12,16 @@ set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"
 if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
-setlocal enabledelayedexpansion
 if "%1" == "/build" (
   if exist "%docbook_outputdir_final%\WinMergeJapanese.chm" (
     copy "%docbook_outputdir_final%\WinMergeJapanese.chm" JP\WinMergeJapanese.chm  2> NUL > NUL
   )
   for /f "tokens=*" %%i in ('dir /a:-d /b /o:d /t:w JP') do set NEWEST=%%~nxi
   del JP\WinMergeJapanese.chm 2> NUL
-  if "!NEWEST!" == "WinMergeJapanese.chm" goto :eof
+  if "!NEWEST!" == "WinMergeJapanese.chm" goto end
 ) else if "%1" == "/clean" (
   del "%docbook_outputdir_final%\WinMergeJapanese.chm"
-  goto :eof
+  goto end
 )
 
 echo Copy images...
@@ -65,4 +65,5 @@ goto end
 
 :end
 popd
+setlocal disabledelayedexpansion
 @echo on
