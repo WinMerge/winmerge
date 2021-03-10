@@ -444,7 +444,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	LoadOptions();
 
 	bool bResult;
-	if (m_nBufferType[0] == BUFFERTYPE::UNNAMED)
+	if (std::count(m_nBufferType, m_nBufferType + m_filePaths.GetSize(), BUFFERTYPE::UNNAMED) == m_filePaths.GetSize())
 	{
 		bResult = m_pImgMergeWindow->NewImages(m_filePaths.GetSize(), 1, 256, 256);
 	}
