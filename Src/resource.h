@@ -463,7 +463,8 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
-#define IDC_SUBSTITUTION_FILTERS 1324
+#define IDC_SUBSTITUTION_FILTERS        1324
+#define IDC_SAVE_CODEPAGE_BOM           1325
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
 #define IDC_PRESERVE_FILETIME           1328
