@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-27 18:11+0100\n"
+"PO-Revision-Date: 2021-03-13 13:59+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "Proxectos recentes"
 
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr "Fic&heiros ou cartafoles recentes"
+msgstr "Arqu&ivos ou cartafoles recentes"
 
 #, c-format
 msgid "< Empty >"
@@ -908,7 +908,7 @@ msgstr "Comparar non-horizontalmente"
 
 #, c-format
 msgid "First &left item with second left item"
-msgstr "Primeiro e&lemento esquedo con segundo elemento esquerdo"
+msgstr "Primeiro e&lemento esquerdo con segundo elemento esquerdo"
 
 #, c-format
 msgid "First &right item with second right item"
@@ -916,11 +916,11 @@ msgstr "Primeiro elemento de&reito con segundo elemento dereito"
 
 #, c-format
 msgid "&First left item with second right item"
-msgstr "&Primeiro elemento esquedo con segundo elemento dereito"
+msgstr "&Primeiro elemento esquerdo con segundo elemento dereito"
 
 #, c-format
 msgid "&Second left item with first right item"
-msgstr "&Segundo elemento esquedo con primeiro elemento dereito"
+msgstr "&Segundo elemento esquerdo con primeiro elemento dereito"
 
 #, c-format
 msgid "Co&mpare As"
@@ -1792,7 +1792,7 @@ msgid "&Rendering Mode:"
 msgstr "Modo de &renderizado:"
 
 msgid "File Filters"
-msgstr "Filtros de ficheiro"
+msgstr "Filtros de arquivo"
 
 msgid "Test..."
 msgstr "Probar…"
@@ -2134,7 +2134,7 @@ msgid "Table"
 msgstr "Tabla"
 
 msgid "File type"
-msgstr "Tipo de ficheiro"
+msgstr "Tipo de arquivo"
 
 msgid "&CSV"
 msgstr "&CSV"
@@ -2246,7 +2246,7 @@ msgid "&Enable plugins"
 msgstr "&Activar complementos"
 
 msgid "File filters:"
-msgstr "Filtros de ficheiro:"
+msgstr "Filtros de arquivo:"
 
 #, c-format
 msgid "Shell Integration"
@@ -2326,7 +2326,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "Delimitador personalizado-Valores separados"
 
 msgid "File Patterns:"
-msgstr "Patróns de ficheiro:"
+msgstr "Patróns de arquivo:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2334,7 +2334,7 @@ msgstr "Binario"
 
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr "&Patróns de ficheiro binario:"
+msgstr "&Patróns de arquivo binario:"
 
 #, c-format
 msgid "Frhed settings"
@@ -2357,7 +2357,7 @@ msgstr "Imaxen"
 
 #, c-format
 msgid "Image File &Patterns:"
-msgstr "&Patróns de ficheiros de imaxe:"
+msgstr "&Patróns de arquivos de imaxe:"
 
 msgid "&Enable image compare in folder compare"
 msgstr "&Activar a comparación de imaxes na comparación de cartafoles"
@@ -2644,7 +2644,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Arquivos XML (*.xml)|*.xml|Todos os arquivos(*.*)|*.*||"
 
 msgid "File Type"
-msgstr "Tipo de ficheiro"
+msgstr "Tipo de arquivo"
 
 #, c-format
 msgid "Extension"
@@ -2787,7 +2787,7 @@ msgid "Mine File"
 msgstr "Arquivo Mine"
 
 msgid "Original File"
-msgstr ""
+msgstr "Arquivo orixinal"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3693,11 +3693,11 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr "Queres pasar ao seguinte ficheiro?"
+msgstr "Queres pasar ao seguinte arquivo?"
 
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr "Queres pasar ao anterior ficheiro?"
+msgstr "Queres pasar ao anterior arquivo?"
 
 #, c-format
 msgid "Do you want to move to the next page?"
@@ -4208,7 +4208,7 @@ msgid ""
 "$linenum: Line number of the current cursor position"
 msgstr ""
 "Podes especificar os seguintes parámetro á ruta:\n"
-"$file: Nome da ruta do ficheiro actual\n"
+"$file: Nome da ruta do arquivo actual\n"
 "$linenum: Número de liña da posición actual do cursor"
 
 msgid "default"
@@ -4368,4 +4368,3 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
-
