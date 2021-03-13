@@ -2256,6 +2256,9 @@ msgstr "Hun bestand"
 msgid "Mine File"
 msgstr "Mijn bestand"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Regel: %s  Kolom: %d/%d  Teken: %d/%d  Regeleinde: %s"

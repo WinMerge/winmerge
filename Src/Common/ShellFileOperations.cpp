@@ -8,7 +8,6 @@
 #include "pch.h"
 #include "ShellFileOperations.h"
 #include <windows.h>
-#include <tchar.h>
 #include <vector>
 #include <shellAPI.h>
 #pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"

@@ -2250,6 +2250,9 @@ msgstr "他们的文件"
 msgid "Mine File"
 msgstr "我的文件"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  字符: %d/%d  换行符: %s"

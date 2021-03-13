@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-25 21:32+0000\n"
-"PO-Revision-Date: 2020-11-29 22:05+0000\n"
+"POT-Creation-Date: 2021-02-28 11:53+0000\n"
+"PO-Revision-Date: 2021-03-11 16:36+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -42,22 +42,22 @@ msgid "Copy fro&m Right"
 msgstr "C&opiar da Direita"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a direita"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a esquerda"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da esquerda"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da direita"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecionar diferença de linha\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Adicionar esta alteração aos &Filtros de Substituição"
 
 msgid "&Undo"
 msgstr "&Anular"
@@ -170,7 +170,7 @@ msgid "&Horizontal Wipe"
 msgstr "Limpeza &Horizontal"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "Seleção de &Retângulo"
 
 msgid "&Set Background Color"
 msgstr "Definir Cor de Fundo"
@@ -179,7 +179,7 @@ msgid "&Vector Image Scaling"
 msgstr "Escala da imagem &vetorial"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Comparar o &texto extraído da imagem"
 
 msgid "&File"
 msgstr "&Ficheiro"
@@ -596,7 +596,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Alternar tudo e linhas 0-9\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "&Inverter (ocultar linhas diferentes)"
 
 msgid "&Lock Panes"
 msgstr "Trancar Janelas"
@@ -1027,7 +1027,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verificar automaticamente localização na janela de abertura"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Modo de instância única:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Pe&rguntar ao fechar múltiplas janelas"
@@ -1132,10 +1132,10 @@ msgid "&Apply"
 msgstr "Aplicar"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Filtros de linha"
 
 msgid "Enable Line Filters"
-msgstr "Ignorar Linhas com as Seguintes Características"
+msgstr "Ativar filtros de linha"
 
 msgid "Regular Expressions (one per line):"
 msgstr "Termos Correntes (um por linha):"
@@ -1147,19 +1147,23 @@ msgid "Remove"
 msgstr "Remover"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Filtros de substituição"
 
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgid ""
+"The changes that appear on the panels as the listed pairs below will be "
+"ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
+"As alterações que aparecem nos painéis como os pares listados abaixo serão "
+"ignoradas ou marcadas como insignificantes. As correções não são afetadas."
 
 msgid "Enable"
-msgstr ""
+msgstr "Ativar"
 
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 msgid "Colors"
 msgstr "Cores"
@@ -1225,13 +1229,13 @@ msgid "System"
 msgstr "Sistema"
 
 msgid "&Send deleted files to Recycle Bin"
-msgstr "Enviar ficheiros eliminados para a Reciclagem"
+msgstr "Enviar ficheiro&s eliminados para a Reciclagem"
 
 msgid "&External editor:"
-msgstr "Editor &externo:"
+msgstr "&Editor externo:"
 
 msgid "&Filter folder:"
-msgstr "Filtro de pasta:"
+msgstr "&Filtro de pasta:"
 
 msgid "Temporary files folder"
 msgstr "Pasta de ficheiros temporários"
@@ -1243,7 +1247,7 @@ msgid "C&ustom folder:"
 msgstr "Pasta p&ersonalizada:"
 
 msgid "Br&owse..."
-msgstr "Procurar..."
+msgstr "Pr&ocurar..."
 
 msgid "Patch Generator"
 msgstr "Gerador de Patch"
@@ -1255,34 +1259,34 @@ msgid "File&2:"
 msgstr "Ficheiro&2:"
 
 msgid "&Swap"
-msgstr "Trocar"
+msgstr "&Troca"
 
 msgid "&Append to existing file"
-msgstr "Anexar a ficheiro existente"
+msgstr "&Anexar a ficheiro existente"
 
 msgid "&Result:"
-msgstr "Resultado:"
+msgstr "&Resultado:"
 
 msgid "Bro&wse..."
-msgstr "Procurar..."
+msgstr "Proc&urar..."
 
 msgid "&Format"
-msgstr "Formato"
+msgstr "&Formato"
 
 msgid "St&yle:"
-msgstr "Estilo:"
+msgstr "Est&ilo:"
 
 msgid "&Context:"
-msgstr "Contexto:"
+msgstr "&Contexto:"
 
 msgid "Ignor&e blank lines"
-msgstr "Ignorar linhas em branco"
+msgstr "Ignorar linhas &em branco"
 
 msgid "Inclu&de command line"
-msgstr "Incluir linha de comando"
+msgstr "Incluir linha &de comando"
 
 msgid "Open to e&xternal editor"
-msgstr "Abrir em editor externo"
+msgstr "Abrir em editor e&xterno"
 
 msgid "Defaults"
 msgstr "Predefinição"
@@ -1300,7 +1304,7 @@ msgid "Select Unpacker"
 msgstr "Selecionar Extrator"
 
 msgid "File unpacker:"
-msgstr "E&xtrator de Ficheiros:"
+msgstr "Extrator de ficheiros:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Mostrar todos os extratores, não verificar extensões."
@@ -1333,7 +1337,7 @@ msgid "Go to"
 msgstr "Ir para"
 
 msgid "G&o to:"
-msgstr "Ir para:"
+msgstr "&Ir para:"
 
 msgid "File"
 msgstr "Ficheiro"
@@ -1348,7 +1352,7 @@ msgid "&Difference"
 msgstr "&Diferença"
 
 msgid "&Go to"
-msgstr "Ir para"
+msgstr "&Ir para"
 
 msgid "Compare"
 msgstr "Comparar"
@@ -1357,13 +1361,13 @@ msgid "Whitespaces"
 msgstr "Espaço"
 
 msgid "&Compare"
-msgstr "Comparar"
+msgstr "&Comparar"
 
 msgid "&Ignore change"
-msgstr "Ignorar alteração"
+msgstr "&Ignorar alteração"
 
 msgid "I&gnore all"
-msgstr "Ignorar tudo"
+msgstr "I&gnorar tudo"
 
 msgid "Ignore blan&k lines"
 msgstr "Ignorar linhas em branco"
@@ -1384,7 +1388,7 @@ msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Desmarcar completamente as diferenças ignoradas"
 
 msgid "Editor"
 msgstr "Editor"
@@ -1429,7 +1433,7 @@ msgid "&Rendering Mode:"
 msgstr "Modo de &renderização:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Filtros de ficheiro"
 
 msgid "Test..."
 msgstr "Testar..."
@@ -1584,7 +1588,7 @@ msgid "&Copy to Clipboard"
 msgstr "Copiar para a Área de Transferência"
 
 msgid "Shared or Private Filter"
-msgstr "Filtro Partilhado ou Privado"
+msgstr "Filtro partilhado ou privado"
 
 msgid "Which type of filter do you want to create?"
 msgstr "Qual o tipo de filtro que deseja criar?"
@@ -1785,7 +1789,7 @@ msgid "&Enable plugins"
 msgstr "&Ativar plugins"
 
 msgid "File filters:"
-msgstr "Filtros de ficheiros:"
+msgstr "Filtros de ficheiro:"
 
 msgid "Shell Integration"
 msgstr "Integração Shell"
@@ -1886,7 +1890,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "&Ativar comparação de imagem na comparação de pasta"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Resultado do OCR:"
 
 msgid "&Hex View"
 msgstr "Vista Hex"
@@ -2139,7 +2143,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Ficheiros XML (*.xml)|*.xml|Todos os ficheiros (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de ficheiro"
 
 msgid "Extension"
 msgstr "Extensão"
@@ -2224,7 +2228,7 @@ msgstr ""
 "Não foi possível copiar o novo filtro de ficheiro para a pasta de filtros."
 
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "O filtro de ficheiro já existe. Substítuir filtro existente?"
+msgstr "O filtro de ficheiro já existe. Substituir filtro existente?"
 
 msgid "Regular expression"
 msgstr "Expressão regular"
@@ -2257,13 +2261,16 @@ msgid "Untitled right"
 msgstr "Sem título direita"
 
 msgid "Base File"
-msgstr ""
+msgstr "Ficheiro base"
 
 msgid "Theirs File"
 msgstr "O ficheiro deles"
 
 msgid "Mine File"
 msgstr "O meu ficheiro"
+
+msgid "Original File"
+msgstr "Ficheiro original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2454,8 +2461,19 @@ msgstr ""
 "Deseja guardar a versão não comprimida em outro ficheiro?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
+"O plugin '%2' não pode empacotar as suas alterações ao ficheiro do meio em "
+"'%1'.\n"
+"\n"
+"O ficheiro original não será alterado.\n"
+"\n"
+"Quer guardar a versão desembalada noutro ficheiro?"
 
 #, c-format
 msgid ""
@@ -3397,17 +3415,33 @@ msgstr ""
 "\n"
 "Combinar automaticamente (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
+msgid ""
+"\n"
+"First File"
 msgstr ""
+"\n"
+"Primeiro ficheiro"
 
-msgid "\nNext File"
+msgid ""
+"\n"
+"Next File"
 msgstr ""
+"\n"
+"Ficheiro seguinte"
 
-msgid "\nLast File"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
+"\n"
+"Último ficheiro"
 
-msgid "\nPrevious File"
+msgid ""
+"\n"
+"Previous File"
 msgstr ""
+"\n"
+"Ficheiro anterior"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3642,35 +3676,36 @@ msgstr "Página: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Rc: (%d, %d)  "
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Edit here>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Nenhuma diferença a selecionar encontrada"
 
 msgid "No differences found to add as substitution filter"
 msgstr ""
+"Nenhuma diferença encontrada para adicionar como filtro de substituição"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "O par já está presente na lista de Filtros de Substituição"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Adicionar esta alteração aos Filtros de Substituição?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Apenas texto"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posição e texto linha a linha"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Posição e texto palavra por palavra"
 
 msgid "Allow only one instance to run"
 msgstr "Permitir apenas uma execução"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-
+"Permitir apenas executar uma instância e esperar que a instância termine"

@@ -63,6 +63,7 @@
 #include "CCrystalTextMarkers.h"
 #include "utils/hqbitmap.h"
 #include "UniFile.h"
+#include "TFile.h"
 
 #include "WindowsManagerDialog.h"
 
@@ -2364,6 +2365,23 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 		LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
 	}
 	return conflictCompared;
+}
+
+bool CMainFrame::DoSelfCompare(const String& file, const String strDesc[] /*= nullptr*/)
+{
+	String ext = paths::FindExtension(file);
+	TempFilePtr wTemp(new TempFile());
+	String copiedFile = wTemp->Create(_T("self-compare_"), ext);
+	m_tempFiles.push_back(wTemp);
+
+	TFile(file).copyTo(copiedFile);
+
+	String strDesc2[2] = { 
+		(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Original File"),
+		(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("") };
+	DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	PathContext tmpPathContext(copiedFile, file);
+	return DoFileOpen(&tmpPathContext, dwFlags, strDesc2);
 }
 
 /**

@@ -2242,6 +2242,9 @@ msgstr "Başkalarının Dosyası"
 msgid "Mine File"
 msgstr "Benim Dosyam"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Satır: %s  Sütun: %d/%d  Karakter: %d/%d  Satır Sonu: %s"

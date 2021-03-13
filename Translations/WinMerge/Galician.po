@@ -2786,6 +2786,9 @@ msgstr "Arquivo Theirs"
 msgid "Mine File"
 msgstr "Arquivo Mine"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Lñ: %s  Col: %d/%d  Car: %d/%d  EOL: %s"

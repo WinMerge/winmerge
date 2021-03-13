@@ -58,6 +58,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
+
       <arg><option>/minimize</option></arg>
 
       <arg><option>/maximize</option></arg>
@@ -304,6 +306,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>指定された１つのファイルとそのファイルのコピーを比較します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>WinMergeウインドウ</primary>
         <secondary>最小化または最大化で開く</secondary>
@@ -487,5 +496,6 @@
         コンフリクトファイルと共に他のパスは使用できないことに注意してください。</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>

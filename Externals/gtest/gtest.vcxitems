@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{9ee35458-b145-444f-92b7-27ff72112c42}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-all.cc">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-death-test.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-filepath.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-port.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-printers.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-test-part.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-typed-test.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest_main.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-death-test.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-message.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-param-test.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-printers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-spi.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-test-part.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-typed-test.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest_pred_impl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest_prod.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-death-test-internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-filepath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-linked_ptr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-param-util-generated.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-param-util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-port.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-string.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-tuple.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\gtest-type-util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\gtest-internal-inl.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+  </ItemGroup>
+</Project>

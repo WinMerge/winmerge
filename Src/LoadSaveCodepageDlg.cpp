@@ -25,6 +25,7 @@ CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*= nullptr
 , m_bLoadSaveSameCodepage(true)
 // String m_sAffectsLeftString
 // String m_sAffectsRightString
+, m_bSaveCodepageBOM(false)
 , m_nLoadCodepage(-1)
 , m_nSaveCodepage(-1)
 , m_bEnableSaveCodepage(false)
@@ -55,6 +56,7 @@ void CLoadSaveCodepageDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_AFFECTS_RIGHT_BTN, m_AffectsRightBtn);
 	DDX_Text(pDX, IDC_LOAD_CODEPAGE_TEXTBOX, m_nLoadCodepage);
 	DDX_Text(pDX, IDC_SAVE_CODEPAGE_TEXTBOX, m_nSaveCodepage);
+	DDX_Check(pDX, IDC_SAVE_CODEPAGE_BOM, m_bSaveCodepageBOM);
 	//}}AFX_DATA_MAP
 }
 
@@ -190,6 +192,7 @@ void CLoadSaveCodepageDlg::UpdateSaveGroup()
 		EnableDlgItem(IDC_LOAD_SAVE_SAME_CODEPAGE, false);
 	bool EnableSave = m_bEnableSaveCodepage && !m_bLoadSaveSameCodepage;
 	EnableDlgItem(IDC_SAVE_CODEPAGE_TEXTBOX, EnableSave);
+	EnableDlgItem(IDC_SAVE_CODEPAGE_BOM, EnableSave);
 }
 
 /**

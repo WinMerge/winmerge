@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-02-13 21:43+0000\n"
-"PO-Revision-Date: 2021-02-15 08:08+0200\n"
+"POT-Creation-Date: 2021-02-28 11:53+0000\n"
+"PO-Revision-Date: 2021-03-01 07:07+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -42,16 +42,16 @@ msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) į dešinę"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) į kairę"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Pažymėti skirtumą\tF4"
@@ -2120,6 +2120,9 @@ msgstr "Jų failas"
 msgid "Mine File"
 msgstr "Mano failas"
 
+msgid "Original File"
+msgstr "Pradinis failas"
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d  EPF: %s"
@@ -2246,15 +2249,15 @@ msgstr "Failo įrašyti nepavyko.\n%1\n%2\rAr norite:\n\t- panaudoti kitą failo
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų dešiniajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų dešiniajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"

@@ -682,7 +682,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
 			String sFilepath = cmdInfo.m_Files[0];
-			if (IsProjectFile(sFilepath))
+			if (cmdInfo.m_bSelfCompare)
+			{
+				strDesc[0] = cmdInfo.m_sLeftDesc;
+				strDesc[1] = cmdInfo.m_sRightDesc;
+				bCompared = pMainFrame->DoSelfCompare(sFilepath, strDesc);
+			}
+			else if (IsProjectFile(sFilepath))
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}

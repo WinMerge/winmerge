@@ -63,6 +63,7 @@ public:
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */
 	int  m_nCodepage;  /**< Codepage. */
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
+	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
 
 	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
 	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */

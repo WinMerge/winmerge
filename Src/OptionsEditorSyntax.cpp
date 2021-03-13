@@ -7,7 +7,7 @@ namespace Options { namespace EditorSyntax
 {
 
 /** @brief Setting name for file type extension. */
-const TCHAR Section[] = _T("FileTypeExtension");
+const TCHAR Section[] = _T("FileTypes");
 
 /**
  * @brief Get the default value of the extension settings from OptionsMgr.
@@ -24,7 +24,7 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension)
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
 		{
-			String name = strutils::format(_T("%s/%s"), Section, def->name);
+			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			String exts = pOptionsMgr->GetDefault<String>(name);
 			pExtension[i-1] = exts;
 		}
@@ -48,7 +48,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
 		{
-			String name = strutils::format(_T("%s/%s"), Section, def->name);
+			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			pOptionsMgr->InitOption(name, String(def->exts));
 
 			// Register the settings read from the registry in CrystalLineParser.
@@ -73,7 +73,7 @@ void Load(COptionsMgr *pOptionsMgr, String* pExtension)
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
 		{
-			String name = strutils::format(_T("%s/%s"), Section, def->name);
+			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			String exts = pOptionsMgr->GetString(name);
 			pExtension[i-1] = exts;
 		}
@@ -96,7 +96,7 @@ void Save(COptionsMgr* pOptionsMgr, const String* const pExtension)
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
 		{
-			String name = strutils::format(_T("%s/%s"), Section, def->name);
+			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			pOptionsMgr->SaveOption(name, pExtension[i-1]);
 
 			// Save the extension settings to CrystalLineParser.

@@ -2733,6 +2733,9 @@ msgstr "Њихове датотеке"
 msgid "Mine File"
 msgstr "Моје датотеке"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""

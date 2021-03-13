@@ -2253,6 +2253,9 @@ msgstr "Техен файл"
 msgid "Mine File"
 msgstr "Мой файл"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ред: %s  колона: %d/%d  знак: %d/%d  EOL: %s"

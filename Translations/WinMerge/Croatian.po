@@ -2750,6 +2750,9 @@ msgstr "Tuđe datoteke"
 msgid "Mine File"
 msgstr "Moje datoteke"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""

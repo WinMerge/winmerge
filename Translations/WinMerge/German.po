@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-13 19:22+0200\n"
+"PO-Revision-Date: 2021-02-27 21:22+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -30,31 +30,31 @@ msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 
 #, c-format
 msgid "C&opy to Right"
-msgstr "&Nach rechts kopieren"
+msgstr "&Nach rechts kopieren\tAlt+Rechts"
 
 #, c-format
 msgid "Cop&y to Left"
-msgstr "N&ach links kopieren"
+msgstr "N&ach links kopieren\tAlt+Links"
 
 #, c-format
 msgid "Copy &from Left"
-msgstr "&Von links kopieren"
+msgstr "&Von links kopieren\tAlt+Umschalt+Rechts"
 
 #, c-format
 msgid "Copy fro&m Right"
-msgstr "V&on rechts kopieren"
+msgstr "V&on rechts kopieren\tAlt+Umschalt+Links"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) nach rechts kopieren"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) nach links kopieren"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von links kopieren"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von rechts kopieren"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
@@ -2673,6 +2673,9 @@ msgstr "Deren Datei"
 msgid "Mine File"
 msgstr "Meine Datei"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Zeile: %s  Spalte: %d/%d  Zeichen: %d/%d  EOL: %s"
@@ -2939,7 +2942,7 @@ msgstr "Linke Seite - Zielordner auswählen:"
 
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr "Mittlere Seite - Zielordner auswählen:"
+msgstr "Mitte - Zielordner auswählen:"
 
 #, c-format
 msgid "Right side - select destination folder:"
@@ -3196,15 +3199,15 @@ msgstr "Textdateien sind identisch"
 
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr "(Mitte und Rechts sind identisch)"
+msgstr " (Mitte und Rechts sind identisch)"
 
 #, c-format
 msgid "(Left and right are identical)"
-msgstr "(Links und Rechts sind identisch)"
+msgstr " (Links und Rechts sind identisch)"
 
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr "(Links und Mitte sind identisch)"
+msgstr " (Links und Mitte sind identisch)"
 
 #, c-format
 msgid "Text files are different"
@@ -3683,11 +3686,11 @@ msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
 #, c-format
 msgid "\nAll Right"
-msgstr "\nAlles nach rechts"
+msgstr "\nAlles nach rechts kopieren"
 
 #, c-format
 msgid "\nAll Left"
-msgstr "\nAlles nach links"
+msgstr "\nAlles nach links kopieren"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

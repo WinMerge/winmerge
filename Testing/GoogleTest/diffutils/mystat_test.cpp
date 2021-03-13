@@ -4,7 +4,6 @@
 #include "Environment.h"
 #include "paths.h"
 #include "diff.h"
-#include <Windows.h>
 
 TEST(diffutils, stat)
 {

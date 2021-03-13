@@ -2119,6 +2119,9 @@ msgstr "Их файл"
 msgid "Mine File"
 msgstr "Мой файл"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d  EOL: %s"

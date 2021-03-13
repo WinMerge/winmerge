@@ -19,10 +19,12 @@ public:
 	void SetLeftRightAffectStrings(const String & sAffectsLeft, const String & sAffectsMiddle, const String & sAffectsRight);
 	void EnableSaveCodepage(bool enable) { m_bEnableSaveCodepage = enable; }
 	void SetCodepages(int codepage) { m_nLoadCodepage = m_nSaveCodepage = codepage; }
+	void SetCodepageBOM(bool bom) { m_bSaveCodepageBOM = bom; }
 
 // Reading results
 	int GetLoadCodepage() const { return m_nLoadCodepage; }
 	int GetSaveCodepage() const { return m_nSaveCodepage; }
+	bool GetSaveCodepageBOM() const { return m_bSaveCodepageBOM; }
 	bool DoesAffectLeft() const { return m_bAffectsLeft; }
 	bool DoesAffectMiddle() const { return m_bAffectsMiddle; }
 	bool DoesAffectRight() const { return m_bAffectsRight; }
@@ -51,6 +53,7 @@ private:
 	String m_sAffectsRightString;
 	int m_nLoadCodepage;
 	int m_nSaveCodepage;
+	bool m_bSaveCodepageBOM;
 	bool m_bEnableSaveCodepage;
 	int m_nFiles;
 

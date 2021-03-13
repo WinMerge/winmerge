@@ -28,6 +28,7 @@ InnoSetup
 InstallShield
 Java
 JavaScript
+JSON
 Lua
 AutoLISP
 NSIS
@@ -80,3 +81,4 @@ CRLF
 &XOR
 &1:
 &2:
+&BOM

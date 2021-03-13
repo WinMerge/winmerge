@@ -2255,6 +2255,9 @@ msgstr "Ich súbor"
 msgid "Mine File"
 msgstr "Môj súbor"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Riad: %s  Stĺ: %d/%d  Zn: %d/%d  EOL: %s"
