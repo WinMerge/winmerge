@@ -827,10 +827,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	CloseNow();
-	if (nID == ID_MERGE_COMPARE_TEXT)
-		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
-	else
-		GetMainFrame()->ShowImgMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }
 
 void CHexMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)

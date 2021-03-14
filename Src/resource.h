@@ -19,6 +19,7 @@
 #define IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL 116
 #define IDR_POPUP_NEW                   117
 #define IDR_POPUP_OPEN                  118
+#define IDR_POPUP_COMPARE               119
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_PROPPAGE_GENERAL            205
@@ -1067,9 +1068,9 @@
 #define ID_MERGE_COMPARE                32869
 #define ID_MERGE_COMPARE_TEXT           32870
 #define ID_MERGE_COMPARE_TABLE          32871
-#define ID_MERGE_COMPARE_XML            32872
-#define ID_MERGE_COMPARE_HEX            32873
-#define ID_MERGE_COMPARE_IMAGE          32874
+#define ID_MERGE_COMPARE_HEX            32872
+#define ID_MERGE_COMPARE_IMAGE          32873
+#define ID_MERGE_COMPARE_XML            32874
 #define ID_MERGE_COMPARE_LEFT1_LEFT2    32875
 #define ID_MERGE_COMPARE_RIGHT1_RIGHT2  32876
 #define ID_MERGE_COMPARE_LEFT1_RIGHT2   32877
