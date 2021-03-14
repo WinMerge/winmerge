@@ -2422,9 +2422,6 @@ msgstr ""
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr ""
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""

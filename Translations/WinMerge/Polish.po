@@ -1916,9 +1916,6 @@ msgstr "\nPorównaniePlików\n\n\n\nWinMerge.PorównaniePlików\nWinMerge Porów
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nPorównywanieFolderów\n\n\n\nWinMerge.PorównywanieFolderów\nWinMerge Porównywanie Folderów"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Deweloperzy:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge został wydawany BEZ ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to wolne oprogramowanie więc mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź zakładkę \"GNU Powszechna Licencja Publiczna\" w menu Pomoc."
 

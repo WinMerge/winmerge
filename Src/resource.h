@@ -945,7 +945,6 @@
 #define ID_COPY_LINES_FROM_LEFT         34192
 #define ID_COPY_LINES_FROM_RIGHT        34193
 // String resources
-#define IDS_SPLASH_DEVELOPERS           38976
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
 #define IDS_MESSAGEBOX_CANCEL           39002

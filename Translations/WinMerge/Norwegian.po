@@ -2452,11 +2452,6 @@ msgstr ""
 "WinMerge.Mappesammenligning\n"
 "WinMerge Mappesammenligning"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Utviklere:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og du er velkommen til å videredistribuere den under visse omstendigheter; se GNU General Public License i Hjelp-menyen for detaljer."

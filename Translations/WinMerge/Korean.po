@@ -2478,11 +2478,6 @@ msgstr ""
 "WinMerge.폴더 비교\n"
 "WinMerge 폴더 비교"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"개발자:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge는 절대로 보증 없이 제공됩니다. 이 소프트웨어는 무료이며, 특정 상황에서 재배포는 환영합니다; 자세한 내용은 도움말 메뉴의 GNU 일반 공중 라이선스를 확인하세요."

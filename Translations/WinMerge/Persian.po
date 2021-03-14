@@ -2459,11 +2459,6 @@ msgstr ""
 " وينمرج.مقايسه پوشه\n"
 " مقايسه پوشه وينمرج"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr " توسعه دهنده گان : \n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
