@@ -3709,3 +3709,4 @@ msgstr "Permitir apenas uma execução"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
+
