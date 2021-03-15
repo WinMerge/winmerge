@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-03-14**:
+Status from **2021-03-16**:
 
 ## WinMerge
 
@@ -23,7 +23,7 @@ Status from **2021-03-14**:
 | Galician             |  1029 |       1029 |     0 |            0 |    100 % |  2021-03-13 |
 | German               |  1029 |       1028 |     0 |            1 |    100 % |  2021-02-27 |
 | Greek                |  1029 |        613 |     0 |          416 |     60 % |             |
-| Hungarian            |  1029 |        547 |     0 |          482 |     53 % |  2011-01-24 |
+| Hungarian            |  1029 |       1020 |     0 |            9 |     99 % |  2021-03-15 |
 | Italian              |  1029 |        918 |     0 |          111 |     89 % |  2019-07-12 |
 | Japanese             |  1029 |       1029 |     0 |            0 |    100 % |  2021-02-28 |
 | Korean               |  1029 |        872 |     0 |          157 |     85 % |  2018-02-05 |
@@ -64,7 +64,7 @@ Status from **2021-03-14**:
 | Galician             |    12 |         12 |     0 |            0 |    100 % |             |
 | German               |    12 |         12 |     0 |            0 |    100 % |  2019-02-01 |
 | Greek                |    12 |         12 |     0 |            0 |    100 % |             |
-| Hungarian            |    12 |          3 |     0 |            9 |     25 % |             |
+| Hungarian            |    12 |         12 |     0 |            0 |    100 % |             |
 | Italian              |    12 |         12 |     0 |            0 |    100 % |             |
 | Japanese             |    12 |         12 |     0 |            0 |    100 % |             |
 | Korean               |    12 |          3 |     0 |            9 |     25 % |             |
@@ -223,6 +223,7 @@ Status from **2021-03-14**:
  * Hungarian
    - [Márton Balázs](mailto:documan%20at%20users.sourceforge.net)
    - [Mihalicza József](mailto:jmihalicza%20at%20gmail.com)
+   - [Egyed Ferenc](mailto:efi99%20at%20freemail.hu)
 
  * Italian
    - [Michele Merega](mailto:michele.merega%20at%20ifminfomaster.com)

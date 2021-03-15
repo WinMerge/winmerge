@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-03-14</update>
+  <update>2021-03-16</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -350,12 +350,12 @@
     <translation>
       <language>Hungarian</language>
       <file>Hungarian.po</file>
-      <update>2011-01-24</update>
+      <update>2021-03-15</update>
       <strings>
         <count>1029</count>
-        <translated>547</translated>
+        <translated>1020</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>482</untranslated>
+        <untranslated>9</untranslated>
       </strings>
       <translators>
         <translator>
@@ -365,6 +365,10 @@
         <translator>
           <name>Mihalicza József</name>
           <mail>jmihalicza at gmail.com</mail>
+        </translator>
+        <translator>
+          <name>Egyed Ferenc</name>
+          <mail>efi99 at freemail.hu</mail>
         </translator>
       </translators>
     </translation>
@@ -983,9 +987,9 @@
       <update></update>
       <strings>
         <count>12</count>
-        <translated>3</translated>
+        <translated>12</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>9</untranslated>
+        <untranslated>0</untranslated>
       </strings>
     </translation>
     <translation>
