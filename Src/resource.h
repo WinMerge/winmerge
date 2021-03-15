@@ -44,7 +44,7 @@
 #define IDD_PROPPAGE_COLORS_SYNTAX      225
 #define IDD_DIRCMP_REPORT               226
 #define IDD_SHARED_FILTER               227
-#define IDD_PROP_ARCHIVE                228
+#define IDD_PROPPAGE_ARCHIVE            228
 #define IDD_COMPARE_STATISTICS          229
 #define IDD_COMPARE_STATISTICS3         230
 #define IDD_LOAD_SAVE_CODEPAGE          231
