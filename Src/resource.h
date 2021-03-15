@@ -71,7 +71,6 @@
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
-#define IDB_WINMERGE                    309
 #define IDR_MARGIN_ICONS_PNG            310
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
@@ -157,7 +156,6 @@
 #define IDI_COMPARE_ERROR               513
 #define IDI_FOLDERUP                    514
 #define IDI_FOLDERUP_DISABLE            515
-#define IDI_SIGMA                       516
 #define IDI_FILEFILTER                  517
 #define IDI_LINEFILTER                  518
 #define IDI_COMPARE_ABORTED             519
@@ -428,7 +426,6 @@
 #define IDC_IS_DIRECTORY                1275
 #define IDC_HEADER_FILTER_NAME          1276
 #define IDC_DEFAULT_STANDARD_COLORS     1277
-#define IDC_CUSTOM_COLORS_GROUP         1278
 #define IDC_WHITESPACE_COLOR_LABEL      1279
 #define IDC_TEXT_COLOR_LABEL            1280
 #define IDC_SELECTION_COLOR_LABEL       1281
@@ -551,10 +548,6 @@
 #define IDC_FLDCONFIRM_DONTASKAGAIN     1418
 #define IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES 1419
 #define IDC_LFILTER_CLEARBTN            1420
-#define IDC_SCRIPT_FIRST                1500
-#define IDC_SCRIPT_LAST                 1549
-#define IDC_PREDIFFERS_FIRST            1550
-#define IDC_PREDIFFERS_LAST             1599
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
@@ -660,7 +653,6 @@
 #define ID_RESCAN                       32789
 #define ID_GOTO_MOVED_LINE_LM           32790
 #define ID_GOTO_MOVED_LINE_MR           32791
-#define ID_EDIT_FIND_PREVIOUS           32799
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801
 #define ID_OPTIONS_SHOWUNIQUELEFT       32802
@@ -935,7 +927,6 @@
 #define ID_SWAPPANES_SWAP23             34171
 #define ID_SWAPPANES_SWAP13             34172
 #define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34173
-#define ID_FILE_COMPARE_PROPERTIES      34181
 #define ID_FIRSTFILE                    34182
 #define ID_PREVFILE                     34183
 #define ID_NEXTFILE                     34184
