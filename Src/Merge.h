@@ -100,6 +100,7 @@ public:
 	virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue) override;
 	virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL) override;
 	virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue) override;
+	virtual HINSTANCE LoadAppLangResourceDLL() override { return nullptr; }; // Disable loading lang resource dll
 
 // Implementation
 protected:
