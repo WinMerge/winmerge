@@ -17,7 +17,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "pch.h"
 #include "unicoder.h"
 #include <windows.h>
-#include <tchar.h>
 #include <cassert>
 #include <memory>
 #include <Poco/UnicodeConverter.h>

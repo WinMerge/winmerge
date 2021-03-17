@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <memory>
 #include "string_util.h"
+#include <Windows.h>
 
 #ifndef ICU_EXTERN
 #define ICU_EXTERN extern

@@ -497,9 +497,9 @@ BEGIN
         BEGIN
             MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -725,9 +725,11 @@ BEGIN
         END
         POPUP "Co&mpare As"
         BEGIN
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+            MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
@@ -887,6 +889,17 @@ BEGIN
         MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+    END
+END
+
+IDR_POPUP_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+        MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
+        MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
+        MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
     END
 END
 
@@ -1067,7 +1080,7 @@ BEGIN
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
 
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
-    DEFPUSHBUTTON   "Co&mpare",IDOK,316,245,70,20
+    CONTROL         "Co&mpare",IDOK,"Button",BS_SPLITBUTTON | WS_TABSTOP,316,245,70,20
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
 
@@ -1754,7 +1767,7 @@ BEGIN
     DEFPUSHBUTTON   "Close",IDOK,200,193,50,14
 END
 
-IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 278, 150
+IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 278, 163
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1766,15 +1779,17 @@ BEGIN
     LTEXT           "(Affects)",IDC_MIDDLE_FILES_LABEL,70,29,193,10
     CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,40,54,10
     LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,40,193,10
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,59,266,63
+    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,59,266,76
     LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,75,172,10
     COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,86,74,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,90,67,10
     COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,86,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&BOM",IDC_SAVE_CODEPAGE_BOM,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,86,107,165,10
     CONTROL         "&Use same codepage for both",IDC_LOAD_SAVE_SAME_CODEPAGE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,107,250,10
-    DEFPUSHBUTTON   "&Ok",IDOK,165,128,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,221,128,50,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,120,250,10
+    DEFPUSHBUTTON   "&Ok",IDOK,165,141,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,221,141,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
@@ -2690,7 +2705,6 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
     IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 END
 

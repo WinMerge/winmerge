@@ -1,8 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
-#include <tchar.h>
-
 #include "UnicodeString.h"
 
 namespace

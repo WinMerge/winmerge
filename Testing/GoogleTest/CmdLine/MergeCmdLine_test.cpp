@@ -1,7 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
-#include <tchar.h>
 #include <vector>
 #include "Constants.h"  // FFILEOPEN_* flags
 #include "UnicodeString.h"
@@ -53,7 +51,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -78,7 +76,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe "));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -103,7 +101,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe\t"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -128,7 +126,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe\n"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -154,7 +152,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -180,7 +178,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:\\Temp\\"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -206,7 +204,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe  C:\\Temp\\"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -232,7 +230,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe\tC:\\Temp\\"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -258,7 +256,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ "));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -284,7 +282,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:\\Temp\\\t"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -311,7 +309,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -338,7 +336,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -366,7 +364,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Temp3"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -394,7 +392,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Temp3"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -421,7 +419,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -448,7 +446,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -475,7 +473,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -502,7 +500,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -528,7 +526,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:/Temp/"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -554,7 +552,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe C:/Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -581,7 +579,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -608,7 +606,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -636,7 +634,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Temp3"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -664,7 +662,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Temp3"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -690,7 +688,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe \"C:\\Temp\\\""));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -716,7 +714,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe \"C:\\Program Files\\\""));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -743,7 +741,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -770,7 +768,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -797,7 +795,7 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Program Files2"), cmdInfo.m_Files[1]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -825,7 +823,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -853,7 +851,7 @@ namespace
 		EXPECT_EQ(_T("C:\\Program Files"), cmdInfo.m_Files[0]);
 		EXPECT_EQ(_T("C:\\Program Files2"), cmdInfo.m_Files[1]);
 		EXPECT_EQ(_T("C:\\Program Files3"), cmdInfo.m_Files[2]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -878,7 +876,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cp 1251"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -903,7 +901,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /cp 1251"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -928,7 +926,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cp windows1251"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -953,7 +951,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cp "));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -978,7 +976,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cp C:\\Temp "));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1004,7 +1002,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cp C:\\Temp C:\\Temp2"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp2"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1030,7 +1028,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl First C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1056,7 +1054,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl \"First desc\" C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1081,7 +1079,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl \"First desc\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1107,7 +1105,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dr First C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1133,7 +1131,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dr \"First desc\" C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1158,7 +1156,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dr \"First desc\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1184,7 +1182,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dm First C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1210,7 +1208,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dm \"First desc\" C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1235,7 +1233,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dm \"First desc\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1261,7 +1259,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl First -dr Second C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1287,7 +1285,7 @@ namespace
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl \"First desc\" -dr \"Second text\" C:\\Temp"));
 		EXPECT_EQ(1, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(_T("C:\\Temp"), cmdInfo.m_Files[0]);
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1312,7 +1310,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl \"First desc\" -dr \"Second text\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1337,7 +1335,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl First -dr \"Second text\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1362,7 +1360,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl \"First desc\" -dr Second"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1387,7 +1385,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl First -dr Second"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1412,7 +1410,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl First -dm Second -dr Third"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1437,7 +1435,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker CompareMSExcelFiles.sct"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1462,7 +1460,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /prediffer PrediffLineFilter.sct"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);
@@ -1554,7 +1552,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cfg Settings/TreeMode=1 -cfg Settings/ToolbarSize=0"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_EQ(_T("1"), cmdInfo.m_Options[_T("Settings/TreeMode")]);
 		EXPECT_EQ(_T("0"), cmdInfo.m_Options[_T("Settings/ToolbarSize")]);
 	}
@@ -1565,7 +1563,7 @@ namespace
 	{
 		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -dl -dr Second"));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
-		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
 		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
 		EXPECT_FALSE(cmdInfo.m_bRecurse);

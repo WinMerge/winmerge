@@ -78,8 +78,9 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
 	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
 	ON_COMMAND(ID_FILE_SAVE, OnSaveProject)
-	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, OnDropDownSaveProject)
+	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, (OnDropDown<ID_SAVE_PROJECT, IDR_POPUP_PROJECT>))
 	ON_COMMAND(IDOK, OnOK)
+	ON_NOTIFY(BCN_DROPDOWN, IDOK, (OnDropDown<IDOK, IDR_POPUP_COMPARE>))
 	ON_COMMAND(IDCANCEL, OnCancel)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_COPY, OnEditAction<WM_COPY>)
@@ -87,6 +88,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_CUT, OnEditAction<WM_CUT>)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditAction<WM_UNDO>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnCompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
@@ -158,6 +161,7 @@ void COpenView::OnInitialUpdate()
 		// fallback for XP 
 		SendDlgItemMessage(IDC_OPTIONS, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 		SendDlgItemMessage(ID_SAVE_PROJECT, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+		SendDlgItemMessage(IDOK, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 	}
 
 	m_sizeOrig = GetTotalSize();
@@ -534,12 +538,7 @@ void COpenView::OnSwapButton()
 	OnSwapButton(id1, id2);
 }
 
-/** 
- * @brief Called when dialog is closed with "OK".
- *
- * Checks that paths are valid and sets filters.
- */
-void COpenView::OnOK() 
+void COpenView::OnCompare(UINT nID)
 {
 	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
 	const String filterPrefix = _("[F] ");
@@ -548,7 +547,7 @@ void COpenView::OnOK()
 	TrimPaths();
 
 	int nFiles = 0;
-	for (auto& strPath: m_strPath)
+	for (auto& strPath : m_strPath)
 	{
 		if (nFiles >= 1 && strPath.empty())
 			break;
@@ -566,7 +565,7 @@ void COpenView::OnOK()
 		if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			LoadProjectFile(m_strPath[0]);
 		else
-			GetMainFrame()->DoSelfCompare(m_strPath[0], nullptr);
+			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr);
 		return;
 	}
 
@@ -643,10 +642,32 @@ void COpenView::OnOK()
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	PathContext tmpPathContext(pDoc->m_files);
-	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
-	GetMainFrame()->DoFileOpen(
-		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
+	if (nID == IDOK)
+	{
+		PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
+		GetMainFrame()->DoFileOpen(
+			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
+			nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
+	}
+	else
+	{
+		GetMainFrame()->DoFileOpen(nID, &m_files, pDoc->m_dwFlags.data());
+	}
+}
+
+void COpenView::OnUpdateCompare(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled());
+}
+
+/** 
+ * @brief Called when dialog is closed with "OK".
+ *
+ * Checks that paths are valid and sets filters.
+ */
+void COpenView::OnOK() 
+{
+	OnCompare(IDOK);
 }
 
 /** 
@@ -757,12 +778,12 @@ void COpenView::OnSaveProject()
 	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 }
 
-void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
+void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupID)
 {
 	CRect rcButton, rcView;
-	GetDlgItem(ID_SAVE_PROJECT)->GetWindowRect(&rcButton);
+	GetDlgItem(nID)->GetWindowRect(&rcButton);
 	BCMenu menu;
-	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
+	VERIFY(menu.LoadMenu(nPopupID));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
@@ -771,6 +792,12 @@ void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
 			rcButton.left, rcButton.bottom, GetMainFrame());
 	}
 	*pResult = 0;
+}
+
+template<UINT id, UINT popupid>
+void COpenView::OnDropDown(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	DropDown(pNMHDR, pResult, id, popupid);
 }
 
 /** 

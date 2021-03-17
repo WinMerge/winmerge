@@ -7,31 +7,10 @@
 
 #include "pch.h"
 #include "DirItem.h"
-#include <windows.h>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
 #include "DebugNew.h"
-
-/**
-	* @brief Convert file flags to string presentation.
-	* This function converts file flags to a string presentation that can be
-	* shown in the GUI.
-	* @return File flags as a string.
-	*/
-String FileFlags::ToString() const
-{
-	TCHAR sflags[5], *p = sflags;
-	if (attributes & FILE_ATTRIBUTE_READONLY)
-		*p++ = 'R';
-	if (attributes & FILE_ATTRIBUTE_HIDDEN)
-		*p++ = 'H';
-	if (attributes & FILE_ATTRIBUTE_SYSTEM)
-		*p++ = 'S';
-	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
-		*p++ = 'A';
-	return String{ sflags, p };
-}
 
 /**
  * @brief Set filename and path for the item.

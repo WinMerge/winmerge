@@ -686,7 +686,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(sFilepath, strDesc);
+				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
 			}
 			else if (IsProjectFile(sFilepath))
 			{

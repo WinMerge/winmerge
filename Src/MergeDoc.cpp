@@ -2866,7 +2866,7 @@ void CMergeDoc::SetTableProperties()
  * @param bRO [in] Is left/middle/right file read-only
  * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
- * @sa CMainFrame::ShowMergeDoc()
+ * @sa CMainFrame::ShowTextMergeDoc()
  */
 bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		const bool bRO[], const String strDesc[])
@@ -3521,10 +3521,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (m_pEncodingErrorBar!=nullptr && m_pEncodingErrorBar->IsWindowVisible())
 		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	if (nID == ID_MERGE_COMPARE_HEX)
-		GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
-	else
-		GetMainFrame()->ShowImgMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
 	GetParentFrame()->ShowWindow(SW_RESTORE);
 	GetParentFrame()->DestroyWindow();
 }

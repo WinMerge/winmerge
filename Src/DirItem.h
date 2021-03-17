@@ -10,18 +10,8 @@
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 #include <boost/flyweight.hpp>
+#include "FileFlags.h"
 #include "UnicodeString.h"
-
-/**
- * @brief Class for fileflags.
- */
-struct FileFlags
-{
-	unsigned attributes; /**< Fileattributes for item */
-	FileFlags() : attributes(0) { }
-	void reset() { attributes = 0; } /// Reset fileattributes
-	String ToString() const;
-};
 
 /**
  * @brief Information for file.

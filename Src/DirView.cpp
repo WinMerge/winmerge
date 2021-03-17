@@ -280,8 +280,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_MERGE_COMPARE_NONHORIZONTALLY, OnMergeCompareNonHorizontally)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnMergeCompareAs)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnUpdateMergeCompare)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnMergeCompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateMergeCompare)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
@@ -1524,10 +1524,7 @@ void CDirView::OpenSelectionAs(UINT id)
 		fileloc[pane].setPath(paths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
-	if (id == ID_MERGE_COMPARE_HEX)
-		GetMainFrame()->ShowHexMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, nullptr);
-	else
-		GetMainFrame()->ShowImgMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, nullptr);
+	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, nullptr);
 }
 
 /// User chose (context menu) delete left

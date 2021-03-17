@@ -41,49 +41,49 @@ msgstr "65001"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr ""
+msgstr "ShellExtension"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "WinMerge"
-msgstr ""
+msgstr "WinMerge"
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr ""
+msgstr "Megnyitás WinMerge-dzsel"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr ""
+msgstr "Legfeljebb 2 elemet válassz"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr ""
+msgstr "Összehasonlítás"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr ""
+msgstr "Összehasonlítás..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr ""
+msgstr "Összehasonlítás ezzel"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr ""
+msgstr "Mentsd el ezt az elérési utat. Válassz egy másik elérési utat az ezzel való összehasonlításhoz."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr ""
+msgstr "Összehasonlítás a mentett elérési úttal (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr ""
+msgstr "Az első újraválasztása"

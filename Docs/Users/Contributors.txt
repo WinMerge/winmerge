@@ -96,6 +96,7 @@ Localization:
 * Hungarian:
   Márton Balázs <documan@users.sourceforge.net>
   Mihalicza József <jmihalicza@gmail.com>
+  Egyed Ferenc <efi99 at freemail.hu>
 
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>

@@ -310,6 +310,8 @@ public:
 				return true;
 		return false;
 	}
+	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
+	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 
 // implementation methods
 private:
