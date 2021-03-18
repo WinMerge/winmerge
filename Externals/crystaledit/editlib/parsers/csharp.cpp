@@ -78,6 +78,7 @@ static const TCHAR * s_apszCppKeywordList[] =
     _T ("is"),
     _T ("lock"),
     _T ("long"),
+    _T ("nameof"),
     _T ("namespace"),
     _T ("new"),
     _T ("null"),
@@ -113,6 +114,8 @@ static const TCHAR * s_apszCppKeywordList[] =
     _T ("using"),
     _T ("virtual"),
     _T ("void"),
+    _T ("when"),
+    _T ("while"),
   };
 
 
