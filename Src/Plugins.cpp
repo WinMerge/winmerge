@@ -167,39 +167,33 @@ int GetPropertyGetsFromScript(IDispatch *piDispatch, vector<String>& namesArray,
 // search a function name in a scriptlet or activeX dll
 bool SearchScriptForMethodName(LPDISPATCH piDispatch, const wchar_t *functionName)
 {
-	bool bFound = false;
-
 	vector<String> namesArray;
 	vector<int> IdArray;
-	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
+	const int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 
-	String tfuncname = ucr::toTString(functionName);
-	int iFnc;
-	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
+	const String tfuncname = ucr::toTString(functionName);
+	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
 		if (namesArray[iFnc] == tfuncname)
-			bFound = true;
+			return true;
 	}
-	return bFound;
+	return false;
 }
 
 // search a property name (with get interface) in a scriptlet or activeX dll
 bool SearchScriptForDefinedProperties(IDispatch *piDispatch, const wchar_t *functionName)
 {
-	bool bFound = false;
-
 	vector<String> namesArray;
 	vector<int> IdArray;
-	int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
+	const int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
 
-	String tfuncname = ucr::toTString(functionName);
-	int iFnc;
-	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
+	const String tfuncname = ucr::toTString(functionName);
+	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
 		if (namesArray[iFnc] == tfuncname)
-			bFound = true;
+			return true;
 	}
-	return bFound;
+	return false;
 }
 
 
@@ -207,9 +201,7 @@ int CountMethodsInScript(LPDISPATCH piDispatch)
 {
 	vector<String> namesArray;
 	vector<int> IdArray;
-	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-
-	return nFnc;
+	return GetMethodsFromScript(piDispatch, namesArray, IdArray);
 }
 
 /** 
@@ -221,7 +213,7 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 
 	vector<String> namesArray;
 	vector<int> IdArray;
-	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
+	const int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 
 	if (methodIndex < nFnc)
 	{
