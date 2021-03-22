@@ -27,7 +27,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(LineFiltersDlg)
-	enum { IDD = IDD_PROPPAGE_FILTER };
+	enum { IDD = IDD_FILTERS_LINEFILTERS };
 	bool	m_bIgnoreRegExp;
 	//}}AFX_DATA
 

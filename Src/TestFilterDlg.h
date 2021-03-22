@@ -33,7 +33,7 @@ private:
 
 // Dialog Data
 	//{{AFX_DATA(CTestFilterDlg)
-	enum { IDD = IDD_TEST_FILTER };
+	enum { IDD = IDD_FILTERS_FILEFILTERS_TEST };
 		// NOTE: the ClassWizard will add data members here
 	//}}AFX_DATA
 
