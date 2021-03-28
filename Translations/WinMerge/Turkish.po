@@ -334,7 +334,7 @@ msgstr "&Orta Salt Okunur Olsun"
 msgid "Ri&ght Read-only"
 msgstr "S&ağ Salt Okunur Olsun"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "&Dosya Kodlaması..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Birleştir&me Kipi\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Yeniden Yük&le\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Dosya Kodlaması..."
 
 msgid "Reco&mpare As"
 msgstr "&Farklı Karşılaştır"

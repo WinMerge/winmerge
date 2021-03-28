@@ -414,8 +414,8 @@ msgid "Ri&ght Read-only"
 msgstr "De&sno samo-za-branje"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "&Kodiranje datoteke..."
+msgid "&File Encoding..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -630,10 +630,6 @@ msgstr "Združevalni način\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Znova nal&oži\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Reco&mpare As"

@@ -410,8 +410,8 @@ msgid "Ri&ght Read-only"
 msgstr "Ri&ght Read-only"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -627,10 +627,6 @@ msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Reco&mpare As"

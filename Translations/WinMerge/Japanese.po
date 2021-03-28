@@ -335,8 +335,8 @@ msgstr "中央を読み取り専用(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右側を読み取り専用(&G)"
 
-msgid "File En&coding..."
-msgstr "ファイル エンコーディング(&C)..."
+msgid "&File Encoding..."
+msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "すべて選択(&A)\tCtrl+A"
@@ -505,9 +505,6 @@ msgstr "マージモード(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"

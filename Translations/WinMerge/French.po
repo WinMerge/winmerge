@@ -420,8 +420,8 @@ msgid "Ri&ght Read-only"
 msgstr "Côté droi&t lecture seule"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "En&codage fichier..."
+msgid "&File Encoding..."
+msgstr "Encodage de fic&hier..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -637,10 +637,6 @@ msgstr "Mode &Fusion\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Recharger Ctrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Encodage de fic&hier..."
 
 #, c-format
 msgid "Reco&mpare As"

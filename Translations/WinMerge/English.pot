@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-14 23:41+0000\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -328,7 +328,7 @@ msgstr ""
 msgid "Ri&ght Read-only"
 msgstr ""
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr ""
 
 msgid "Select &All\tCtrl+A"
@@ -497,9 +497,6 @@ msgid "Mer&ge Mode\tF9"
 msgstr ""
 
 msgid "Re&load\tCtrl+F5"
-msgstr ""
-
-msgid "&File Encoding..."
 msgstr ""
 
 msgid "Reco&mpare As"

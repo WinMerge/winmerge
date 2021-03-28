@@ -331,8 +331,8 @@ msgstr "&Среден само за четене"
 msgid "Ri&ght Read-only"
 msgstr "Отдяс&но само за четене"
 
-msgid "File En&coding..."
-msgstr "Кодиране на &знаци…"
+msgid "&File Encoding..."
+msgstr "Избиране на &кодировка…"
 
 msgid "Select &All\tCtrl+A"
 msgstr "Избиране на &всичко\tCtrl+A"
@@ -501,9 +501,6 @@ msgstr "Режим на &сливане\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Пре&зареждане\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Избиране на &кодировка…"
 
 msgid "Reco&mpare As"
 msgstr "Сравняване &като"

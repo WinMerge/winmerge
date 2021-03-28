@@ -304,7 +304,7 @@ BEGIN
             MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "File En&coding...",           ID_FILE_ENCODING
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
@@ -813,6 +813,8 @@ BEGIN
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
         MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
     END
     POPUP "_HDR_POPUP_"
     BEGIN

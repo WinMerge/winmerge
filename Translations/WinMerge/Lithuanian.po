@@ -337,8 +337,8 @@ msgstr "V&idurinis tik skaitymui"
 msgid "Ri&ght Read-only"
 msgstr "&Dešinysis tik skaitymui"
 
-msgid "File En&coding..."
-msgstr "Failo ko&duotė..."
+msgid "&File Encoding..."
+msgstr "&Failo koduotė..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "P&ažymėti viską\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "Sulieji&mo režimas\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "&Atnaujinti\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Failo koduotė..."
 
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"

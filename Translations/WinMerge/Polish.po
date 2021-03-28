@@ -334,7 +334,7 @@ msgstr "Środkowy tylko do odczytu"
 msgid "Ri&ght Read-only"
 msgstr "Prawy tylko do odczytu"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Tryb scalania\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Odśwież\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Kodowanie pliku..."
 
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"

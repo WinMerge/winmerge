@@ -337,8 +337,8 @@ msgstr "中间只读(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右侧只读(&G)"
 
-msgid "File En&coding..."
-msgstr "文件编码(&C)"
+msgid "&File Encoding..."
+msgstr "文件编码(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "全选(&A)\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "合并模式(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "重新加载(&L)\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "文件编码(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"

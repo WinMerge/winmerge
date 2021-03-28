@@ -413,8 +413,8 @@ msgid "Ri&ght Read-only"
 msgstr "Samo za čitanje - d&esna"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -630,10 +630,6 @@ msgstr "Usporedni način"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Reco&mpare As"

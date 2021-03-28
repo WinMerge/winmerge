@@ -412,7 +412,7 @@ msgid "Ri&ght Read-only"
 msgstr "Fes la dre&ta només de lectura"
 
 #, c-format
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr ""
 
 #, c-format
@@ -628,10 +628,6 @@ msgstr "&Mode de combinació\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
 msgstr ""
 
 #, c-format

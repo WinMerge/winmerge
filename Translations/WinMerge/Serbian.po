@@ -411,8 +411,8 @@ msgid "Ri&ght Read-only"
 msgstr "Само за читање - д&есна"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Де&кодирање датотеке..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -628,10 +628,6 @@ msgstr "&Начин поређења\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Де&кодирање датотеке..."
 
 #, c-format
 msgid "Reco&mpare As"

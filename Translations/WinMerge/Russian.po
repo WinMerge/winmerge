@@ -336,7 +336,7 @@ msgstr "Середина только для чтения"
 msgid "Ri&ght Read-only"
 msgstr "С&права только для чтения"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Кодировка файла..."
 
 msgid "Select &All\tCtrl+A"
@@ -506,9 +506,6 @@ msgstr "Режим объединения\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Обновить\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Кодировка файла..."
 
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
