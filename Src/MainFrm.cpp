@@ -2126,7 +2126,7 @@ BOOL CMainFrame::CreateToolbar()
 	LoadToolbarImages();
 
 	UINT nID, nStyle;
-	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN })
+	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE })
 	{
 		int iImage;
 		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
@@ -2482,6 +2482,9 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	case ID_FILE_OPEN:
 		id = IDR_POPUP_OPEN;
+		break;
+	case ID_FILE_SAVE:
+		id = IDR_POPUP_SAVE;
 		break;
 	default:
 		id = IDR_POPUP_DIFF_OPTIONS;

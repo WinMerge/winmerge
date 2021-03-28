@@ -920,6 +920,20 @@ BEGIN
     END
 END
 
+IDR_POPUP_SAVE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
+        MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
+        MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
+        MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
+        MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
+    END
+END
+
 IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL MENU
 BEGIN
     POPUP "_POPUP_"

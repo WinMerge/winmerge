@@ -19,6 +19,7 @@
 #define IDR_POPUP_NEW                   117
 #define IDR_POPUP_OPEN                  118
 #define IDR_POPUP_COMPARE               119
+#define IDR_POPUP_SAVE                  120
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
