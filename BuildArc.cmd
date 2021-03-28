@@ -31,6 +31,8 @@ echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe"
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\files.txt"
 
@@ -152,5 +154,7 @@ echo ------------------------------------------------------------
 echo Pack archive...
 echo ------------------------------------------------------------
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+set PDBFILE="Build\%PLATFORM%\Release\WinMergeU.pdb"
+7z.exe a -t7z  "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%pdb.7z" %PDBFILE:\\=\%
 
 goto :eof
