@@ -84,8 +84,8 @@ TEST(SyntaxHighlight, Verilog)
 {
 	String projectRoot = getProjectRoot();
 	PathContext tFiles = {
-		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v"),
-		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v")
+		paths::ConcatPath(projectRoot, L"Testing/Data/FileFormats/Verilog.v"),
+		paths::ConcatPath(projectRoot, L"Testing/Data/FileFormats/Verilog.v")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILE_TO_ITSELF, 0U, 0U, IDS_FILE_TO_ITSELF);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
