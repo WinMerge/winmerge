@@ -92,7 +92,8 @@ copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" 
 
 rem Translations
 echo Copy Translations...
-copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
+del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\*.po" > NUL
+copy Build\%PLATFORM%\Release\Languages\Japanese.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
 
 rem ColorSchemes
 echo Copy ColorSchemes...
@@ -128,7 +129,6 @@ rem copy Build\%PLATFORM%\Frhed\frhed.exe "%DISTDIR%\%PLATFORMH%zip-version\WinM
 copy Build\%PLATFORM%\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
 copy Build\%PLATFORM%\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
 copy Build\%PLATFORM%\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
-copy Build\%PLATFORM%\Frhed\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
 copy Build\%PLATFORM%\Frhed\Languages\heksedit.lng "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
 
 rem WinIMerge
