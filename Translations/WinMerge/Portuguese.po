@@ -340,8 +340,8 @@ msgstr "Ler Apenas do &Meio"
 msgid "Ri&ght Read-only"
 msgstr "Ler Apenas da &Direita"
 
-msgid "File En&coding..."
-msgstr "A Codificar Ficheiro..."
+msgid "&File Encoding..."
+msgstr "Codificar Ficheiro..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Selecionar &Tudo\tCtrl+A"
@@ -510,9 +510,6 @@ msgstr "Modo Combinar\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Codificar Ficheiro..."
 
 msgid "Reco&mpare As"
 msgstr "Voltar a Comparar Como"

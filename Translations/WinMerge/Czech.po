@@ -416,8 +416,8 @@ msgid "Ri&ght Read-only"
 msgstr "Pr&avý pouze pro čtení"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Kódo&vání souborů"
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -633,10 +633,6 @@ msgstr "Režim sl&učování\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Kódo&vání souborů"
 
 #, c-format
 msgid "Reco&mpare As"

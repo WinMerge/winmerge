@@ -340,8 +340,8 @@ msgstr "&Stredný len na čítanie"
 msgid "Ri&ght Read-only"
 msgstr "&Pravý len na čítanie"
 
-msgid "File En&coding..."
-msgstr "&Kódovanie súborov ..."
+msgid "&File Encoding..."
+msgstr "&Kódovanie súboru..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Vybr&ať všetko\tCtrl+A"
@@ -510,9 +510,6 @@ msgstr "Režim &zlučenia\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Znova načítať\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Kódovanie súboru..."
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"

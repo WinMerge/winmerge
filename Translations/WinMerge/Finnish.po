@@ -414,8 +414,8 @@ msgid "Ri&ght Read-only"
 msgstr "Oikea vain luku"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "Tiedoston &koodaus..."
+msgid "&File Encoding..."
+msgstr "Tiedoston koodaus..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -631,10 +631,6 @@ msgstr "Yhdistäminen\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "&Lataa uudelleen\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Tiedoston koodaus..."
 
 #, c-format
 msgid "Reco&mpare As"

@@ -417,8 +417,8 @@ msgid "Ri&ght Read-only"
 msgstr "&g طرف راست فقط خواندني "
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "&F کدبندي پرونده ... "
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -634,10 +634,6 @@ msgstr "&M سبک پيوند \tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "&F کدبندي پرونده ... "
 
 #, c-format
 msgid "Reco&mpare As"

@@ -417,8 +417,8 @@ msgid "Ri&ght Read-only"
 msgstr "Lado &dereito só lectura"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "&Codificación dos arquivos…"
+msgid "&File Encoding..."
+msgstr "Codificación do ar&quivo…"
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -634,10 +634,6 @@ msgstr "&Modo mestura\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "R&ecargar\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Codificación do ar&quivo…"
 
 #, c-format
 msgid "Reco&mpare As"

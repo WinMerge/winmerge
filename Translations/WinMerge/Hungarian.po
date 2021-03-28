@@ -418,8 +418,8 @@ msgid "Ri&ght Read-only"
 msgstr "Jobb oldal csak olvasható"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "Fájlkódolás..."
+msgid "&File Encoding..."
+msgstr "&Fájl kódolás..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -635,10 +635,6 @@ msgstr "&Egyesítési mód\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Újratöltés\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "&Fájl kódolás..."
 
 #, c-format
 msgid "Reco&mpare As"

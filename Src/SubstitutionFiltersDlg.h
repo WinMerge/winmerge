@@ -23,7 +23,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(SubstitutionFiltersDlg)
-	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
+	enum { IDD = IDD_FILTERS_SUBSTITUTIONFILTERS };
 	bool m_bEnabled;
 	//}}AFX_DATA
 

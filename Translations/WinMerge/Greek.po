@@ -415,8 +415,8 @@ msgid "Ri&ght Read-only"
 msgstr "Δεξιό για Ανάγν&ωση μόνο"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "&Κωδικοσελίδα Αρχείου..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -632,10 +632,6 @@ msgstr "Λειτουργία Συγ&χωνεύσεως\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "&Κωδικοσελίδα Αρχείου..."
 
 #, c-format
 msgid "Reco&mpare As"

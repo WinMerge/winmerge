@@ -416,7 +416,7 @@ msgid "Ri&ght Read-only"
 msgstr "&Rechts schreibgeschützt"
 
 #, c-format
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Dateic&odierung..."
 
 #, c-format
@@ -633,10 +633,6 @@ msgstr "&Merge-Modus\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Neu &laden\tStrg+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Dateic&odierung..."
 
 #, c-format
 msgid "Reco&mpare As"

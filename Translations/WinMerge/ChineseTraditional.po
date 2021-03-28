@@ -420,8 +420,8 @@ msgid "Ri&ght Read-only"
 msgstr "右邊唯讀(&G)"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "檔案編碼(&C)..."
+msgid "&File Encoding..."
+msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -637,10 +637,6 @@ msgstr "開/關合併模式(&G)\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "重新載入(&L)\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Reco&mpare As"

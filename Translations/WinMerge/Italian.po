@@ -337,8 +337,8 @@ msgstr "File &centrale in sola lettura"
 msgid "Ri&ght Read-only"
 msgstr "F&ile di destra in sola lettura"
 
-msgid "File En&coding..."
-msgstr "Co&difica file..."
+msgid "&File Encoding..."
+msgstr "Codifica &file..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Se&leziona tutto\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "&Modalità unione\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "&Ricarica\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Codifica &file..."
 
 msgid "Reco&mpare As"
 msgstr "Riconfronta come"

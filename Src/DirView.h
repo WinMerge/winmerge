@@ -392,7 +392,7 @@ protected:
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
-	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);
+	void Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);

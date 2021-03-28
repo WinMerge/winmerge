@@ -420,8 +420,8 @@ msgid "Ri&ght Read-only"
 msgstr "오른쪽 읽기 전용(&G)"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "파일 인코딩(&C)..."
+msgid "&File Encoding..."
+msgstr "파일 인코딩(&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -637,10 +637,6 @@ msgstr "병합 모드(&G)\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "다시 불러오기(&L)\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "파일 인코딩(&F)..."
 
 #, c-format
 msgid "Reco&mpare As"

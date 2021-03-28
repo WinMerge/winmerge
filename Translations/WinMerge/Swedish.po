@@ -418,8 +418,8 @@ msgid "Ri&ght Read-only"
 msgstr "Höger Skrivskyddad"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "FilKodning ..."
+msgid "&File Encoding..."
+msgstr "Filkodning ..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -635,10 +635,6 @@ msgstr "SammanFogningsLäge\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Återladda\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Filkodning ..."
 
 #, c-format
 msgid "Reco&mpare As"

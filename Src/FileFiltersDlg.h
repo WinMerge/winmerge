@@ -34,7 +34,7 @@ private:
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
-	enum { IDD = IDD_FILEFILTERS };
+	enum { IDD = IDD_FILTERS_FILEFILTERS };
 	CListCtrl m_listFilters;
 	//}}AFX_DATA
 

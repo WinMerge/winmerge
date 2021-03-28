@@ -338,8 +338,8 @@ msgstr "الجزء الأوس&ط للقراءة فقط"
 msgid "Ri&ght Read-only"
 msgstr "الجزء الأي&من للقراءة فقط"
 
-msgid "File En&coding..."
-msgstr "&نوع ترميز الملف..."
+msgid "&File Encoding..."
+msgstr "ترمي&ز الملف..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "&تحديد الكل\tCtrl+A"
@@ -508,9 +508,6 @@ msgstr "&وضع الدمج\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "إ&عادة تحميل\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "ترمي&ز الملف..."
 
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"

@@ -1329,7 +1329,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 	return created;
 }
 
-void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker)
+void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker)
 {
 	bool isdir = false;
 	for (auto path : paths)
@@ -1367,7 +1367,10 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * in
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
 				strDesc[i] = sUntitled[i];
 			else
+			{
 				fileloc[i].setPath(paths[i]);
+				fileloc[i].encoding = encoding[i];
+			}
 		}
 
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
@@ -1424,19 +1427,20 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	const DIFFITEM *pdi[3] = {0}; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
 	int nPane[3];
+	FileTextEncoding encoding[3];
 	String errmsg;
 	bool success;
 	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, selectionType, pos1, pos2, pdi,
-				paths, sel1, sel2, isdir, nPane, errmsg, openableForDir);
+				paths, sel1, sel2, isdir, nPane, encoding, errmsg, openableForDir);
 	else if (pos2 && pos3)
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
-				paths, sel1, sel2, sel3, isdir, nPane, errmsg, openableForDir);
+				paths, sel1, sel2, sel3, isdir, nPane, encoding, errmsg, openableForDir);
 	else
 	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi, 
-				paths, sel1, isdir, nPane, errmsg, openableForDir);
+				paths, sel1, isdir, nPane, encoding, errmsg, openableForDir);
 		if (isdir)
 			CreateFoldersPair(paths);
 	}
@@ -1454,7 +1458,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
 
-	Open(paths, dwFlags, infoUnpacker);
+	Open(paths, dwFlags, encoding, infoUnpacker);
 }
 
 void CDirView::OpenSelectionAs(UINT id)
@@ -1495,19 +1499,20 @@ void CDirView::OpenSelectionAs(UINT id)
 	const DIFFITEM *pdi[3]; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
 	int nPane[3];
+	FileTextEncoding encoding[3];
 	String errmsg;
 	bool success;
 	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
-				paths, sel1, sel2, isdir, nPane, errmsg, false);
+				paths, sel1, sel2, isdir, nPane, encoding, errmsg, false);
 	else if (pos2 && pos3)
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
-				paths, sel1, sel2, sel3, isdir, nPane, errmsg, false);
+				paths, sel1, sel2, sel3, isdir, nPane, encoding, errmsg, false);
 	else
 	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi,
-				paths, sel1, isdir, nPane, errmsg, false);
+				paths, sel1, isdir, nPane, encoding, errmsg, false);
 	}
 	if (!success)
 	{
@@ -1522,6 +1527,7 @@ void CDirView::OpenSelectionAs(UINT id)
 	for (int pane = 0; pane < paths.GetSize(); pane++)
 	{
 		fileloc[pane].setPath(paths[pane]);
+		fileloc[pane].encoding = encoding[pane];
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
 	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, nullptr);
@@ -3689,6 +3695,7 @@ void CDirView::OnMergeCompareNonHorizontally()
 	if (dlg.DoModal() == IDOK && dlg.m_selectedButtons.size() > 0)
 	{
 		CDirDoc *pDoc = GetDocument();
+		FileTextEncoding encoding[3];
 		DWORD dwFlags[3] = {};
 		PathContext paths;
 		for (int nIndex = 0; nIndex < static_cast<int>(dlg.m_selectedButtons.size()); ++nIndex)
@@ -3696,11 +3703,14 @@ void CDirView::OnMergeCompareNonHorizontally()
 			int n = dlg.m_selectedButtons[nIndex];
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(n % 3) ? FFILEOPEN_READONLY : 0);
 			if (dlg.m_pdi[n / 3])
+			{
 				paths.SetPath(nIndex, GetItemFileName(pDoc->GetDiffContext(), *dlg.m_pdi[n / 3], n % 3));
+				encoding[nIndex] = dlg.m_pdi[n / 3]->diffFileInfo[n % 3].encoding;
+			}
 		}
 		if (paths.GetSize() == 1)
 			paths.SetRight(_T(""));
-		Open(paths, dwFlags);
+		Open(paths, dwFlags, encoding);
 	}
 }
 

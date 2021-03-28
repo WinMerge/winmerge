@@ -416,8 +416,8 @@ msgid "Ri&ght Read-only"
 msgstr "Dreapta numa&i-citire"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Codar&e caractere fişiere..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -633,10 +633,6 @@ msgstr "&Modul fuziune\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Codar&e caractere fişiere..."
 
 #, c-format
 msgid "Reco&mpare As"

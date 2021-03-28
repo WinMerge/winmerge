@@ -338,7 +338,7 @@ msgstr "Midden alleen-lezen"
 msgid "Ri&ght Read-only"
 msgstr "Rechts alleen-lezen"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Bestandscodering..."
 
 msgid "Select &All\tCtrl+A"
@@ -508,9 +508,6 @@ msgstr "Samenvoegmodus\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Opnieuw laden\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Bestandscodering..."
 
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"

@@ -341,8 +341,8 @@ msgstr "Lado med&io sólo lectura"
 msgid "Ri&ght Read-only"
 msgstr "Lado derec&ho sólo lectura"
 
-msgid "File En&coding..."
-msgstr "&Codificación de archivo..."
+msgid "&File Encoding..."
+msgstr "Codi&ficación de archivo..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Seleccion&ar todo\tCtrl+A"
@@ -511,9 +511,6 @@ msgstr "&Modo Combinación\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-msgid "&File Encoding..."
-msgstr "Codi&ficación de archivo..."
 
 msgid "Reco&mpare As"
 msgstr "Recomparar como"
