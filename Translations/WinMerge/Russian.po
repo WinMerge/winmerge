@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
-"PO-Revision-Date: 2021-01-31 00:00+0000\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
+"PO-Revision-Date: 2021-03-28 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -41,16 +41,16 @@ msgid "Copy fro&m Right"
 msgstr "Копировать справа"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Копировать выбранные строки вправо"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Копировать выбранные строки влево"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Копировать выбранные строки слева"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Копировать выбранные строки справа"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
@@ -132,7 +132,7 @@ msgstr "&Масштаб"
 
 #, c-format
 msgid "25%"
-msgstr "25%"
+msgstr ""
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
@@ -511,7 +511,7 @@ msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
 msgid "&XML"
-msgstr "&XML"
+msgstr ""
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"
@@ -1023,7 +1023,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Автопроверка пути в диалоге открытия файлов"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Режим одной копии:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Подтверждать закрытие окон"
@@ -1677,10 +1677,10 @@ msgid "File type"
 msgstr "Тип файла"
 
 msgid "&CSV"
-msgstr "&CSV"
+msgstr ""
 
 msgid "&TSV"
-msgstr "&TSV"
+msgstr ""
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
@@ -2048,7 +2048,7 @@ msgid "Filters"
 msgstr "Фильтры"
 
 msgid "[F] "
-msgstr "[F] "
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
@@ -2114,7 +2114,7 @@ msgid "Mine File"
 msgstr "Мой файл"
 
 msgid "Original File"
-msgstr ""
+msgstr "Исходный файл"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2723,7 +2723,7 @@ msgid "Cannot add a synchronization point at this line."
 msgstr "Невозможно добавить точку синхронизации в этой строке."
 
 msgid "The same file is opened in both panels."
-msgstr "На обоих панелях открыт один и тот же файл."
+msgstr "На обеих панелях открыт один и тот же файл."
 
 msgid "The selected files are identical."
 msgstr "Выбранные файлы идентичны."
@@ -3227,5 +3227,5 @@ msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 
