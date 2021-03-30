@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-03-28</update>
+  <update>2021-03-30</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>1028</count>
-        <translated>1020</translated>
+        <translated>1028</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>8</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -421,12 +421,12 @@
     <translation>
       <language>Korean</language>
       <file>Korean.po</file>
-      <update>2018-02-05</update>
+      <update>2021-03-30</update>
       <strings>
         <count>1028</count>
-        <translated>871</translated>
+        <translated>999</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>157</untranslated>
+        <untranslated>29</untranslated>
       </strings>
       <translators>
         <translator>
@@ -445,12 +445,16 @@
           <name>sheppaul</name>
           <mail>sheppaul at gmail.com</mail>
         </translator>
+        <translator>
+          <name>teamzamong</name>
+          <mail>teamzamong at gmail.com</mail>
+        </translator>
       </translators>
     </translation>
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-03-01</update>
+      <update>2021-03-29</update>
       <strings>
         <count>1028</count>
         <translated>1028</translated>
@@ -573,12 +577,12 @@
     <translation>
       <language>Russian</language>
       <file>Russian.po</file>
-      <update>2021-01-31</update>
+      <update>2021-03-28</update>
       <strings>
         <count>1028</count>
-        <translated>1015</translated>
+        <translated>1017</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>13</untranslated>
+        <untranslated>11</untranslated>
       </strings>
       <translators>
         <translator>

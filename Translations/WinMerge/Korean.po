@@ -2851,7 +2851,7 @@ msgstr "왼쪽 (첫 번째)와 가운데 (두 번째) 경로가 잘못되었습�
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "왼쪽 (첫 번째)와 오른쪽 (세 번째) 경로가 잘못되었습니다!"
 
-#, c-format
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "가운데 (두 번째)와 오른쪽 (세 번째) 경로가 잘못되었습니다!"
 
 #, c-format
@@ -4273,7 +4273,6 @@ msgstr "<수정>"
 
 msgid "No differences to select found"
 msgstr "선택할 차이점을 찾을 수 없습니다"
-
 
 msgid "No differences found to add as substitution filter"
 msgstr ""

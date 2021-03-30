@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-03-28**:
+Status from **2021-03-30**:
 
 ## WinMerge
 
@@ -16,7 +16,7 @@ Status from **2021-03-28**:
 | Croatian             |  1028 |        641 |     1 |          386 |     62 % |  2009-02-13 |
 | Czech                |  1028 |        613 |     0 |          415 |     60 % |             |
 | Danish               |  1028 |        650 |     0 |          378 |     63 % |  2013-01-13 |
-| Dutch                |  1028 |       1020 |     0 |            8 |     99 % |  2018-09-06 |
+| Dutch                |  1028 |       1028 |     0 |            0 |    100 % |  2018-09-06 |
 | English              |  1028 |       1028 |     0 |            0 |    100 % |  2021-03-28 |
 | Finnish              |  1028 |        914 |     0 |          114 |     89 % |             |
 | French               |  1028 |       1028 |     0 |            0 |    100 % |  2021-02-10 |
@@ -26,14 +26,14 @@ Status from **2021-03-28**:
 | Hungarian            |  1028 |       1019 |     0 |            9 |     99 % |  2021-03-15 |
 | Italian              |  1028 |        917 |     0 |          111 |     89 % |  2019-07-12 |
 | Japanese             |  1028 |       1028 |     0 |            0 |    100 % |  2021-02-28 |
-| Korean               |  1028 |        871 |     0 |          157 |     85 % |  2018-02-05 |
-| Lithuanian           |  1028 |       1028 |     0 |            0 |    100 % |  2021-03-01 |
+| Korean               |  1028 |        999 |     0 |           29 |     97 % |  2021-03-30 |
+| Lithuanian           |  1028 |       1028 |     0 |            0 |    100 % |  2021-03-29 |
 | Norwegian            |  1028 |        642 |     0 |          386 |     62 % |             |
 | Persian              |  1028 |        653 |     0 |          375 |     64 % |  2013-08-15 |
 | Polish               |  1028 |       1019 |     0 |            9 |     99 % |             |
 | Portuguese           |  1028 |       1028 |     0 |            0 |    100 % |  2021-03-11 |
 | Romanian             |  1028 |        571 |    44 |          413 |     60 % |             |
-| Russian              |  1028 |       1015 |     0 |           13 |     99 % |  2021-01-31 |
+| Russian              |  1028 |       1017 |     0 |           11 |     99 % |  2021-03-28 |
 | Serbian              |  1028 |        641 |     0 |          387 |     62 % |             |
 | Sinhala              |  1028 |        571 |    63 |          394 |     62 % |  2010-12-12 |
 | Slovak               |  1028 |        987 |     0 |           41 |     96 % |  2020-11-02 |
@@ -239,6 +239,7 @@ Status from **2021-03-28**:
    - [Lee Jae-Hong](mailto:pyrasis%20at%20users.sourceforge.net)
    - [Sushizang](mailto:sushizang%20at%20empal.com)
    - [sheppaul](mailto:sheppaul%20at%20gmail.com)
+   - [teamzamong](mailto:teamzamong%20at%20gmail.com)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)
