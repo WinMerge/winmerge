@@ -6,6 +6,7 @@
 # * Lee Jae-Hong <pyrasis at users.sourceforge.net>
 # * Sushizang <sushizang at empal.com>
 # * sheppaul <sheppaul at gmail.com>
+# * teamzamong <teamzamong at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Korean.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -15,8 +16,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-05 13:49+0900\n"
-"Last-Translator: sheppaul <sheppaul at gmail.com>\n"
+"PO-Revision-Date: 2021-03-30 16:46+0900\n"
+"Last-Translator: teamzamong <teamzamong at gmail.com>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,16 +50,16 @@ msgid "Copy fro&m Right"
 msgstr "오른쪽에서 복사(&M)"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "오른쪽으로 선택한 줄 복사"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "왼쪽으로 선택한 줄 복사"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "왼쪽에서 선택한 줄 복사"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "오른쪽에서 선택한 줄 복사"
 
 msgid "&Select Line Difference\tF4"
 msgstr "줄 차이점 선택(&S)\tF4"
@@ -90,10 +91,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "이동(&G)\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "왼쪽과 가운데 사이 이동된 줄로 이동\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "가운데와 오른쪽 사이 이동된 줄로 이동\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -109,7 +110,7 @@ msgid "&With..."
 msgstr "프로그램 선택(&W)..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "쉘 메뉴(&S)"
 
 #, c-format
 msgid "View &Differences"
@@ -124,7 +125,7 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "색 차이(색 거리 임계값) 무시(&I)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "삽입/삭제 감지(&E)"
 
 #, c-format
 msgid "&None"
@@ -154,7 +155,7 @@ msgstr "확대/축소(&Z)"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -194,23 +195,23 @@ msgid "&Adjust Offset"
 msgstr "오프셋 맞추기(&A)"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "수직 끌기(&V)"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "수평 끌기(&H)"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "직사각형 영역 선택(&R)"
 
 #, c-format
 msgid "&Set Background Color"
 msgstr "배경색 설정(&S)"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "벡터 이미지 확대/축소(&V)"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
 #, c-format
 msgid "&File"
@@ -222,10 +223,10 @@ msgstr "새로 만들기(&N)"
 
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "텍스트(&T)"
 
 msgid "T&able"
-msgstr ""
+msgstr "테이블(&A)"
 
 #, c-format
 msgid "&Binary"
@@ -469,13 +470,13 @@ msgid "Show &Right Only Different Items"
 msgstr "오른쪽만 다른 항목 보기(&R)"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "왼쪽만 없는 항목 보기(&E)"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "가운데만 없는 항목 보기(&D)"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "오른쪽만 없는 항목 보기(&H)"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -506,13 +507,13 @@ msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
 msgid "Swap &1st | 2nd"
-msgstr ""
+msgstr "첫 번째와 두 번째 맞바꾸기(&1)"
 
 msgid "Swap &2nd | 3rd"
-msgstr ""
+msgstr "두 번째와 세 번째 맞바꾸기(&2)"
 
 msgid "Swap 1st | &3rd"
-msgstr ""
+msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
 #, c-format
 msgid "Com&pare Statistics..."
@@ -759,7 +760,7 @@ msgid "&View Whitespace"
 msgstr "공백 보기(&V)"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "줄 바꿈 보기(&O)"
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -779,7 +780,7 @@ msgstr "자동 줄 바꿈(&R)"
 
 #, c-format
 msgid "Split V&ertically"
-msgstr "수직 분할"
+msgstr "수직 분할(&E)"
 
 #, c-format
 msgid "Diff &Pane"
@@ -892,14 +893,14 @@ msgstr "스크립트(&S)"
 
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "분할(&L)"
 
 #, c-format
 msgid "Comp&are"
 msgstr "비교(&A)"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "수평이 아닌 방식으로 비교(&I)..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1002,7 +1003,7 @@ msgid "with &External Editor"
 msgstr "외부 편집기로(&E)"
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "상위 폴더 열기(&P)"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1169,7 +1170,7 @@ msgstr "크기"
 
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "프로젝트 불러오기(&L)"
 
 #, c-format
 msgid "About WinMerge"
@@ -1188,11 +1189,11 @@ msgstr "공헌자"
 
 #, c-format
 msgid "Select Files or Folders"
-msgstr "폴더/파일 선택"
+msgstr "파일 또는 폴더 선택"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "첫 번째 파일 또는 폴더"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1200,7 +1201,7 @@ msgstr "읽기 전용(&A)"
 
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "첫 번째와 두 번째 맞바꾸기"
 
 #, c-format
 msgid "&Browse..."
@@ -1208,7 +1209,7 @@ msgstr "찾아보기(&B)"
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "두 번째 파일 또는 폴더"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1216,7 +1217,7 @@ msgstr "읽기 전용(&D)"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "두 번째와 세 번째 맞바꾸기"
 
 #, c-format
 msgid "B&rowse..."
@@ -1224,7 +1225,7 @@ msgstr "찾아보기(&R)"
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "세 번째 파일 또는 폴더 (선택)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1232,7 +1233,7 @@ msgstr "읽기 전용(&N)"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "첫 번째와 세 번째 맞바꾸기"
 
 #, c-format
 msgid "Browse..."
@@ -1240,7 +1241,7 @@ msgstr "찾아보기..."
 
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " 폴더: 필터"
 
 #, c-format
 msgid "&Select..."
@@ -1248,14 +1249,14 @@ msgstr "선택(&S)..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " 파일: 언패커 플러그인"
 
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "선택(&L)..."
 
 msgid "Co&mpare"
-msgstr ""
+msgstr "비교(&M)"
 
 #, c-format
 msgid "Cancel"
@@ -1275,10 +1276,10 @@ msgstr "일반"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "처음 차이점으로 자동 스크롤하기(&S)"
+msgstr "첫 차이점으로 자동 스크롤하기(&S)"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "줄 내 첫 차이점으로 자동 스크롤하기(&C)"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc'로 창 닫기(&O):"
@@ -1288,7 +1289,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "열기 대화 상자에서 경로 자동 확인하기"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "중복 실행 금지 모드:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1386,7 +1387,7 @@ msgid "Wh&ole file"
 msgstr "전체 파일(&O)"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "이전 찾기(&V)"
 
 #, c-format
 msgid "&Replace"
@@ -1417,7 +1418,7 @@ msgid "&Apply"
 msgstr "적용(&A)"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "줄 필터"
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1442,20 +1443,20 @@ msgid "The changes that appear on the panels as the listed pairs below will be i
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "허용"
 
 msgid "Add"
-msgstr ""
+msgstr "추가"
 
 msgid "Clear"
-msgstr ""
+msgstr "지우기"
 
 #, c-format
 msgid "Colors"
 msgstr "색상"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "색상 테마:"
 
 #, c-format
 msgid "Background"
@@ -1506,19 +1507,19 @@ msgid "Selected Word Diff:"
 msgstr "선택된 단어 차이점:"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "폴더 비교 색상 사용(&U)"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "같은 항목:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "다른 항목:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "존재하지 않는 항목:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "필터된 항목:"
 
 #, c-format
 msgid "Margin:"
@@ -1649,11 +1650,11 @@ msgstr "중지"
 
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "멈춤"
 
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "계속"
 
 #, c-format
 msgid "Comparing items..."
@@ -1716,7 +1717,7 @@ msgid "Ignore blan&k lines"
 msgstr "공백 줄 무시하기(&K)"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "주석 차이 무시하기(&O)"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1727,13 +1728,13 @@ msgid "&Match similar lines"
 msgstr "비슷한 줄 일치시키기(&M)"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "비교 알고리즘(실험 기능)(&A)"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "들여쓰기 휴리스틱 활성화(&H)"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "무시된 차이점 표시하지 않기"
 
 #, c-format
 msgid "Editor"
@@ -1788,10 +1789,10 @@ msgid "W&ord break characters:"
 msgstr "단어 분리 문자(&O):"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "렌더링 모드(&R)"
 
 msgid "File Filters"
-msgstr ""
+msgstr "파일 필터"
 
 msgid "Test..."
 msgstr "테스트..."
@@ -1916,7 +1917,7 @@ msgstr "함수 이름:"
 
 #, c-format
 msgid "Comments:"
-msgstr "코멘트:"
+msgstr "주석:"
 
 #, c-format
 msgid "Numbers:"
@@ -2126,28 +2127,28 @@ msgid "&Close"
 msgstr "닫기(&C)"
 
 msgid "Table"
-msgstr ""
+msgstr "테이블"
 
 msgid "File type"
-msgstr ""
+msgstr "파일 종류"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "사용자 설정 구분 기호(&D)"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "구분 기호(&E)"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "따옴표 내 줄바꿈 허용(&A)"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "따옴표 기호(&Q)"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2241,7 +2242,7 @@ msgid "&Enable plugins"
 msgstr "플러그인 사용"
 
 msgid "File filters:"
-msgstr ""
+msgstr "파일 필터:"
 
 #, c-format
 msgid "Shell Integration"
@@ -2268,10 +2269,10 @@ msgid "&Unregister shell extension"
 msgstr "쉘 확장자 등록 해제(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "현재 사용자만 쉘 확장자 등록(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "현재 사용자만 쉘 확장자 등록 해제(&L)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2302,22 +2303,22 @@ msgid "&Quick compare limit (MB):"
 msgstr "빠른 비교 제한 (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "바이너리 비교 제한 (MB)(&B)"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "CSV 파일 패턴(&C)"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "TSV 파일 패턴(&T)"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "사용자 설정 구분 기호"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "파일 패턴:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2351,10 +2352,10 @@ msgid "Image File &Patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "폴더 비교 시 이미지 비교 활성화(&E)"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCR 결과:"
 
 #, c-format
 msgid "&Hex View"
@@ -2534,10 +2535,10 @@ msgid "Syntax"
 msgstr "구문"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "색상 테마"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "폴더 비교"
 
 #, c-format
 msgid "Differences"
@@ -2564,10 +2565,10 @@ msgid "To right:"
 msgstr "오른쪽으로:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "가운데에서:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "가운데로:"
 
 #, c-format
 msgid "Version %1"
@@ -2628,7 +2629,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 파일 (*.xml)|*.xml|전체 파일 (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "파일 종류"
 
 #, c-format
 msgid "Extension"
@@ -2768,7 +2769,7 @@ msgid "Mine File"
 msgstr "내 파일"
 
 msgid "Original File"
-msgstr ""
+msgstr "원본 파일"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2820,23 +2821,23 @@ msgstr "폴더 선택"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "비교할 2-3개의 폴더 또는 파일을 선택하세요."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "왼쪽 (첫 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "가운데 (두 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "오른쪽 (두 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "오른쪽 (세 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -2844,22 +2845,21 @@ msgstr "양쪽 모두 잘못된 경로입니다!"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "왼쪽 (첫 번째)와 가운데 (두 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "왼쪽 (첫 번째)와 오른쪽 (세 번째) 경로가 잘못되었습니다!"
 
 #, c-format
-msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "가운데 (두 번째)와 오른쪽 (세 번째) 경로가 잘못되었습니다!"
 
 #, c-format
 msgid "All paths are invalid!"
-msgstr "전체 경로가 무효합니다!"
+msgstr "모든 경로가 잘못되었습니다!"
 
 msgid "Only enabled for file comparisons"
-msgstr ""
+msgstr "파일 비교 시에만 허용"
 
 #, c-format
 msgid "Cannot compare file and folder!"
@@ -2900,7 +2900,7 @@ msgstr ""
 "파일은 충돌 파일이 아닙니다."
 
 msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
-msgstr ""
+msgstr "매우 큰 파일을 비교하려고 합니다.\n파일 내용을 표시하려면 매우 많은 메모리가 필요합니다.\n파일 내용이 아닌 비교 결과만 표시하시겠습니까?"
 
 #, c-format
 msgid "Save As"
@@ -2956,7 +2956,7 @@ msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr ""
+msgstr "'%2' 플러그인은 가운데 파일에서 다시 '%1'으로 변경한 사항을 자료 변환할 수 없습니다.\n\n원본 파일은 변경되지 않을 것입니다.\n\n자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
 
 #, c-format
 msgid ""
@@ -3411,10 +3411,10 @@ msgid "Text files are different"
 msgstr "텍스트 파일이 다릅니다"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "이미지 파일이 동일합니다"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "이미지 파일이 다릅니다"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3594,7 +3594,7 @@ msgid "The report has been created successfully."
 msgstr "보고서를 성공적으로 만들었습니다."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "이 줄에 동기화 지점을 추가할 수 없습니다."
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3733,10 +3733,10 @@ msgid "Patch file successfully written."
 msgstr "패치 파일을 성공적으로 기록했습니다."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. 항목을 찾을 수 없습니다!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. 항목을 찾을 수 없습니다!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3846,10 +3846,10 @@ msgstr "없음"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "마커 색상 %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "새로운 패턴"
 
 #, c-format
 msgid "Type"
@@ -4004,16 +4004,16 @@ msgstr ""
 "자동 병합 (Ctrl+Alt+M)"
 
 msgid "\nFirst File"
-msgstr ""
+msgstr "\n첫 파일"
 
 msgid "\nNext File"
-msgstr ""
+msgstr "\n다음 파일"
 
 msgid "\nLast File"
-msgstr ""
+msgstr "\n 마지막 파일"
 
 msgid "\nPrevious File"
-msgstr ""
+msgstr "\n이전 파일"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."
@@ -4070,7 +4070,7 @@ msgid "G&o to Line %1"
 msgstr "%1줄로 이동(&O)"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "이동된 줄로 이동\tCtrl+Shift+G"
 
 #, c-format
 msgid "Disabled"
@@ -4110,7 +4110,7 @@ msgstr "왼쪽 탭 닫기(&L)"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "오른쪽 탭  닫기(&I)"
+msgstr "오른쪽 탭 닫기(&I)"
 
 #, c-format
 msgid "Close &Other Tabs"
@@ -4121,7 +4121,7 @@ msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Frhed가 설치되지 않았습니다."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4142,7 +4142,7 @@ msgstr ""
 "$linenum: 현재 커서 위치의 줄 번호"
 
 msgid "default"
-msgstr ""
+msgstr "기본"
 
 msgid "minimal"
 msgstr ""
@@ -4175,42 +4175,42 @@ msgid "DirectWrite Natural Symmetric"
 msgstr ""
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI 자식 창 또는 주 프레임 창"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "MDI 자식 창만"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "차이점"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "차이점 표시"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "깜박임"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "블록 크기"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "블록 투명도"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "색 거리 임계값"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "삽입/삭제 감지"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "없음"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
@@ -4222,11 +4222,11 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "오버레이"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "알파"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
@@ -4234,19 +4234,19 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "알파 블렌드"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "알파 블렌드 애니메이션"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "확대/축소"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "페이지:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4262,17 +4262,18 @@ msgstr ""
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr ""
+msgstr "페이지: %d/%d  확대/축소: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr ""
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<수정>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "선택할 차이점을 찾을 수 없습니다"
+
 
 msgid "No differences found to add as substitution filter"
 msgstr ""
@@ -4284,7 +4285,7 @@ msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"
-msgstr ""
+msgstr "텍스트만"
 
 msgid "Line-by-line position and text"
 msgstr ""
@@ -4297,5 +4298,5 @@ msgid "Allow only one instance to run"
 msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "중복 실행 금지 및 기존 실행 종료 대기"
 
