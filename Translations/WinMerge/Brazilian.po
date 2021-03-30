@@ -47,16 +47,16 @@ msgid "Copy fro&m Right"
 msgstr "Copiar d&a Direita"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a direita"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a esquerda"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da esquerda"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da direita"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecionar a Diferença da Linha\tF4"
@@ -2775,7 +2775,7 @@ msgid "Mine File"
 msgstr "Meu Arquivo"
 
 msgid "Original File"
-msgstr ""
+msgstr "Arquivo Original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
