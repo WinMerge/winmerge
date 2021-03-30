@@ -94,7 +94,7 @@ msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr "왼쪽과 가운데 사이 이동된 줄로 이동\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "왼쪽과 가운데 사이 이동된 줄로 이동\tCtrl+Shift+G"
+msgstr "가운데와 오른쪽 사이 이동된 줄로 이동\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -1728,7 +1728,7 @@ msgid "&Match similar lines"
 msgstr "비슷한 줄 일치시키기(&M)"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "비교 알고리즘(실험 기능, &A)"
+msgstr "비교 알고리즘(실험 기능)(&A)"
 
 msgid "Enable indent &heuristic"
 msgstr "들여쓰기 휴리스틱 활성화(&H)"
@@ -2269,10 +2269,10 @@ msgid "&Unregister shell extension"
 msgstr "쉘 확장자 등록 해제(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr "현재 사용자만 쉘 확장자 등록"
+msgstr "현재 사용자만 쉘 확장자 등록(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "현재 사용자만 쉘 확장자 등록 해제"
+msgstr "현재 사용자만 쉘 확장자 등록 해제(&L)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2303,7 +2303,7 @@ msgid "&Quick compare limit (MB):"
 msgstr "빠른 비교 제한 (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr "바이너리 비교 제한 (MB)"
+msgstr "바이너리 비교 제한 (MB)(&B)"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
