@@ -133,6 +133,7 @@ Localization:
   Felipe Periard Lopes <felipefpl@ig.com.br>
   Igor Rückert
   jota11
+  Gabriel Camargo Fukushima
 
 * Portuguese (Portugal):
   Nelson Simão
