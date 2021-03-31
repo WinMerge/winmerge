@@ -3041,6 +3041,12 @@ msgstr "您是否要移动到下一页?"
 msgid "Do you want to move to the previous page?"
 msgstr "您是否要移动到上一页?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"

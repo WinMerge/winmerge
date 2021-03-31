@@ -3002,6 +3002,12 @@ msgstr "هل تريد الإنتقال إلى الصفحة التالية؟"
 msgid "Do you want to move to the previous page?"
 msgstr "هل تريد العودة إلى الصفحة السابقة؟"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""

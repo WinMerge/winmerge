@@ -3029,6 +3029,12 @@ msgstr "Sonraki sayfaya geçmek ister misiniz?"
 msgid "Do you want to move to the previous page?"
 msgstr "Önceki sayfaya geçmek ister misiniz?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"

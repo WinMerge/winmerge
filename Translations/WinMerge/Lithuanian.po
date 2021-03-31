@@ -2760,6 +2760,12 @@ msgstr "Ar norite pereiti prie kito puslapio?"
 msgid "Do you want to move to the previous page?"
 msgstr "Ar norite pereiti prie praeito puslapio?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Skiriasi kairiojo (cp%d) ir dešiniojo (cp%d) failų koduotės.\nKiekvieno failo rodymas savoje koduotėje duos geresnį vaizdą, bet gali pavojingas suliejant ar kopijuojant.\nAr norite, kad abu failai būtų rodomi numatytoje „Windows“ koduotėje (rekomenduojama)?"

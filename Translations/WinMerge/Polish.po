@@ -2757,6 +2757,12 @@ msgstr "Czy chcesz przejść do następnej strony?"
 msgid "Do you want to move to the previous page?"
 msgstr "Czy chcesz przejść do poprzedniej strony?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Znaleziono różne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d) stronie.\nWyświetlanie każdego pliku z osobna w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/kopiowanie będzie niebezpieczne.\nCzy chcesz traktować oba pliki jako znajdujące się w domyślnej stronie kodowej systemu Windows (zalecane)?"

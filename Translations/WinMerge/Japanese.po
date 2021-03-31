@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-02-28 20:54+0900\n"
+"PO-Revision-Date: 2021-03-31 21:52+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3018,6 +3018,12 @@ msgstr "次のページに移動しますか?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "前のページに移動しますか?"
+
+msgid "Do you want to move to the first file?"
+msgstr "最初のファイルに移動しますか?"
+
+msgid "Do you want to move to the last file?"
+msgstr "最後のファイルに移動しますか?"
 
 #, c-format
 msgid ""
