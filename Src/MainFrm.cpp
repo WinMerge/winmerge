@@ -2364,7 +2364,7 @@ void CMainFrame::OnHelpCheckForUpdates()
 			// pass through
 		case 0:
 		{
-			String msg = _("Your software is up to date");
+			String msg = _("Your software is up to date.");
 			AfxMessageBox(msg.c_str(), MB_ICONINFORMATION);
 			break;
 		}
