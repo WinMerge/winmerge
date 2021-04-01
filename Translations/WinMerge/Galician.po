@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-03-13 13:59+0100\n"
+"PO-Revision-Date: 2021-04-01 11:58+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -3697,10 +3697,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Queres pasar á anterior páxina?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Queres pasar ao primeiro arquivo?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Queres pasar ao derradeiro arquivo?"
 
 #, c-format
 msgid ""
@@ -4363,4 +4363,3 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
-
