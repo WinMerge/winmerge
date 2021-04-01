@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-28 10:51+0000\n"
-"PO-Revision-Date: 2021-03-29 08:08+0200\n"
+"POT-Creation-Date: 2021-03-31 21:55+0000\n"
+"PO-Revision-Date: 2021-04-01 08:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2761,10 +2761,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Ar norite pereiti prie praeito puslapio?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Ar norite pereiti prie pirmo failo?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Ar norite pereiti prie paskutinio failo?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
