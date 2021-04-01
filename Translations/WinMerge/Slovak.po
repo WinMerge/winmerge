@@ -337,8 +337,8 @@ msgstr "&Stredný len na čítanie"
 msgid "Ri&ght Read-only"
 msgstr "&Pravý len na čítanie"
 
-msgid "File En&coding..."
-msgstr "&Kódovanie súborov ..."
+msgid "&File Encoding..."
+msgstr "&Kódovanie súboru..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Vybr&ať všetko\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "Režim &zlučenia\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Znova načítať\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Kódovanie súboru..."
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
@@ -1984,15 +1981,6 @@ msgstr ""
 "Porovnanie priečinkov WinMerge"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Vývojári:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3067,6 +3055,12 @@ msgstr "Chcete prejsť na ďalšiu stránku?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Chcete prejsť na predošlú stránku?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -338,8 +338,8 @@ msgstr "Lado med&io sólo lectura"
 msgid "Ri&ght Read-only"
 msgstr "Lado derec&ho sólo lectura"
 
-msgid "File En&coding..."
-msgstr "&Codificación de archivo..."
+msgid "&File Encoding..."
+msgstr "Codi&ficación de archivo..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Seleccion&ar todo\tCtrl+A"
@@ -508,9 +508,6 @@ msgstr "&Modo Combinación\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-msgid "&File Encoding..."
-msgstr "Codi&ficación de archivo..."
 
 msgid "Reco&mpare As"
 msgstr "Recomparar como"
@@ -1980,15 +1977,6 @@ msgstr ""
 "Comparar Carpeta de WinMerge"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Desarrolladores:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3045,6 +3033,12 @@ msgstr "¿Quieres pasar a la siguiente página?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "¿Quieres pasar a la página anterior?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""

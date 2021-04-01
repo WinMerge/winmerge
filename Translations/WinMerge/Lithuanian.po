@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-02-28 11:53+0000\n"
-"PO-Revision-Date: 2021-03-01 07:07+0200\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
+"PO-Revision-Date: 2021-03-29 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -337,8 +337,8 @@ msgstr "V&idurinis tik skaitymui"
 msgid "Ri&ght Read-only"
 msgstr "&Dešinysis tik skaitymui"
 
-msgid "File En&coding..."
-msgstr "Failo ko&duotė..."
+msgid "&File Encoding..."
+msgstr "&Failo koduotė..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "P&ažymėti viską\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "Sulieji&mo režimas\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "&Atnaujinti\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Failo koduotė..."
 
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
@@ -904,7 +901,7 @@ msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
+msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
@@ -1919,9 +1916,6 @@ msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge failų lyginimas"
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge katalogų lyginimas"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Kūrėjai:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Žinyno“ meniu punkte „GNU Bendroji viešoji licencija“."
 
@@ -2765,6 +2759,12 @@ msgstr "Ar norite pereiti prie kito puslapio?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Ar norite pereiti prie praeito puslapio?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

@@ -410,8 +410,8 @@ msgid "Ri&ght Read-only"
 msgstr "Ri&ght Read-only"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -627,10 +627,6 @@ msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -2447,11 +2443,6 @@ msgstr ""
 "WinMerge.ෆෝල්ඩරය සසඳන්න\n"
 "WinMerge ෆෝල්ඩරය සසඳන්න"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge නිසැකවම පොරොන්දු නැත. මෙය නිදහස් මෘදුකාංගයක් සහ කිසියම් පරිදියක් යටතේ ඔබව සාදරයෙන් පිලිගනිමු.දත්ත සඳහා උදවු ලේඛනය තුල ඇති GNU සාමාන්‍ය පොදු බලපත්‍රය බලන්න."
@@ -3627,6 +3618,12 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the previous page?"
+msgstr ""
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
 msgstr ""
 
 #, c-format

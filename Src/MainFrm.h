@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <memory>
+#include <optional>
 #include "MDITabBar.h"
 #include "PathContext.h"
 #include "OptionsDef.h"
@@ -90,12 +91,20 @@ public:
 	void FileNew(int nPanes, FRAMETYPE frameType, bool table);
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool DoFileOpen(UINT nID, const PathContext *pFiles = nullptr,
+		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
-	bool ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
-	bool ShowMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+	bool ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowTextMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
 		const String strDesc[], const String& strFileExt);
+	bool ShowTableMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -108,7 +117,7 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
-	bool DoSelfCompare(const String& file, const String strDesc[] = nullptr);
+	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();

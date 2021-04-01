@@ -337,8 +337,8 @@ msgstr "Ler Apenas do &Meio"
 msgid "Ri&ght Read-only"
 msgstr "Ler Apenas da &Direita"
 
-msgid "File En&coding..."
-msgstr "A Codificar Ficheiro..."
+msgid "&File Encoding..."
+msgstr "Codificar Ficheiro..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Selecionar &Tudo\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "Modo Combinar\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Codificar Ficheiro..."
 
 msgid "Reco&mpare As"
 msgstr "Voltar a Comparar Como"
@@ -1995,15 +1992,6 @@ msgstr ""
 "Comparação de pastas WinMerge"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Programadores:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3100,6 +3088,12 @@ msgstr "Deseja seguir para a próxima página?"
 msgid "Do you want to move to the previous page?"
 msgstr "Deseja retroceder para a página anterior?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3709,3 +3703,4 @@ msgstr "Permitir apenas uma execução"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
+

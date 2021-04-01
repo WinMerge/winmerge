@@ -417,8 +417,8 @@ msgid "Ri&ght Read-only"
 msgstr "右邊唯讀(&G)"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "檔案編碼(&C)..."
+msgid "&File Encoding..."
+msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -634,10 +634,6 @@ msgstr "開/關合併模式(&G)\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "重新載入(&L)\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -2463,11 +2459,6 @@ msgstr ""
 "WinMerge.資料夾比較\n"
 "WinMerge 資料夾比較"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"研發者：\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下再散發它；細節見說明選單中的 GNU 公共授權證。"
@@ -3645,6 +3636,12 @@ msgstr "你想要移動到下一頁嗎？"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "你想要移動到上一頁嗎？"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

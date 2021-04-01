@@ -335,8 +335,8 @@ msgstr "الجزء الأوس&ط للقراءة فقط"
 msgid "Ri&ght Read-only"
 msgstr "الجزء الأي&من للقراءة فقط"
 
-msgid "File En&coding..."
-msgstr "&نوع ترميز الملف..."
+msgid "&File Encoding..."
+msgstr "ترمي&ز الملف..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "&تحديد الكل\tCtrl+A"
@@ -505,9 +505,6 @@ msgstr "&وضع الدمج\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "إ&عادة تحميل\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "ترمي&ز الملف..."
 
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
@@ -1975,15 +1972,6 @@ msgstr ""
 "مقارنة المجلد عبر WinMerge"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"المطورون:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3013,6 +3001,12 @@ msgstr "هل تريد الإنتقال إلى الصفحة التالية؟"
 
 msgid "Do you want to move to the previous page?"
 msgstr "هل تريد العودة إلى الصفحة السابقة؟"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

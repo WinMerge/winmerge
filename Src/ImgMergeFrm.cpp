@@ -922,12 +922,7 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nId)
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	CloseNow();
-	if (nId == ID_MERGE_COMPARE_TEXT)
-		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
-	else if (nId == ID_MERGE_COMPARE_HEX)
-		GetMainFrame()->ShowHexMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
-	else
-		GetMainFrame()->ShowImgMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nId, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }
 
 void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
@@ -2063,7 +2058,7 @@ void CImgMergeFrame::OnImgCompareExtractedText()
 			SysFreeString(bstr);
 		}
 	}
-	GetMainFrame()->ShowMergeDoc(m_pDirDoc, m_filePaths.GetSize(), text, desc, _T(".yaml"));
+	GetMainFrame()->ShowTextMergeDoc(m_pDirDoc, m_filePaths.GetSize(), text, desc, _T(".yaml"));
 }
 
 /**

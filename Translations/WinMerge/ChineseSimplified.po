@@ -337,8 +337,8 @@ msgstr "中间只读(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右侧只读(&G)"
 
-msgid "File En&coding..."
-msgstr "文件编码(&C)"
+msgid "&File Encoding..."
+msgstr "文件编码(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "全选(&A)\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "合并模式(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "重新加载(&L)\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "文件编码(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
@@ -1984,15 +1981,6 @@ msgstr ""
 "WinMerge 文件夹比较"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"开发者:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3052,6 +3040,12 @@ msgstr "您是否要移动到下一页?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "您是否要移动到上一页?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -39,7 +39,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CSelectUnpackerDlg)
-	enum { IDD = IDD_SELECTUNPACKER };
+	enum { IDD = IDD_PLUGINS_SELECTUNPACKER };
 	CComboBox	m_cboUnpackerName;
 	bool	m_bNoExtensionCheck;
 	String	m_strDescription;

@@ -220,13 +220,28 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 	}
 }
 
+static String convertToTString(const char* start, const char* end)
+{
+	if (!ucr::CheckForInvalidUtf8(start, end - start))
+	{
+		return ucr::toTString(std::string(start, end));
+	}
+	else
+	{
+		bool lossy = false;
+		String text;
+		ucr::maketstring(text, start, end - start, -1, &lossy);
+		return text;
+	}
+}
+
 static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
 {
 	if (!enuType)
 		return dwCookie;
 	for (int i = startLine; i <= endLine; ++i)
 	{
-		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
+		String text = convertToTString(linbuf[i], linbuf[i + 1]);
 		int nActualItems = 0;
 		std::vector<CrystalLineParser::TEXTBLOCK> blocks(text.length());
 		dwCookie = enuType->ParseLineX(dwCookie, text.c_str(), static_cast<int>(text.length()), blocks.data(), nActualItems);
@@ -239,7 +254,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 	String filteredT;
 	for (int i = startLine; i <= endLine; ++i)
 	{
-		String text = ucr::toTString(std::string{ linbuf[i], linbuf[i + 1] });
+		String text = convertToTString(linbuf[i], linbuf[i + 1]);
 		unsigned textlen = static_cast<unsigned>(text.size());
 		if (!enuType)
 		{

@@ -304,7 +304,7 @@ BEGIN
             MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "File En&coding...",           ID_FILE_ENCODING
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
@@ -495,9 +495,9 @@ BEGIN
         BEGIN
             MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -722,9 +722,11 @@ BEGIN
         END
         POPUP "Co&mpare As"
         BEGIN
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+            MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
@@ -811,6 +813,8 @@ BEGIN
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
         MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -887,6 +891,17 @@ BEGIN
     END
 END
 
+IDR_POPUP_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+        MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
+        MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
+        MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+    END
+END
+
 IDR_POPUP_OPEN MENU
 BEGIN
     POPUP "_POPUP_"
@@ -902,6 +917,20 @@ BEGIN
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "&Load Project...",            ID_LOAD_PROJECT
         MENUITEM "Sa&ve Project...",            ID_SAVE_PROJECT
+    END
+END
+
+IDR_POPUP_SAVE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
+        MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
+        MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
+        MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
+        MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
     END
 END
 
@@ -1064,7 +1093,7 @@ BEGIN
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
 
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
-    DEFPUSHBUTTON   "Co&mpare",IDOK,316,245,70,20
+    CONTROL         "Co&mpare",IDOK,"Button",BS_SPLITBUTTON | WS_TABSTOP,316,245,70,20
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
 
@@ -1180,7 +1209,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
 END
 
-IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 530, 176
+IDD_FILTERS_LINEFILTERS DIALOGEX 0, 0, 530, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Line Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1193,7 +1222,7 @@ BEGIN
     PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,115,156,50,14
 END
 
-IDD_IGNORED_SUSBSTITUTIONS_DLG DIALOGEX 0, 0, 530, 176
+IDD_FILTERS_SUBSTITUTIONFILTERS DIALOGEX 0, 0, 530, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Substitution Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1375,7 +1404,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,275,143,50,14
 END
 
-IDD_SELECTUNPACKER DIALOGEX 0, 0, 318, 102
+IDD_PLUGINS_SELECTUNPACKER DIALOGEX 0, 0, 318, 102
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Select Unpacker"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1489,7 +1518,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
-IDD_FILEFILTERS DIALOGEX 0, 0, 530, 176
+IDD_FILTERS_FILEFILTERS DIALOGEX 0, 0, 530, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "File Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1625,7 +1654,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,211,76,50,14
 END
 
-IDD_SHARED_FILTER DIALOGEX 0, 0, 250, 75
+IDD_FILTERS_FILEFILTERS_SHARED DIALOGEX 0, 0, 250, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shared or Private Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1639,7 +1668,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,135,55,50,14
 END
 
-IDD_PROP_ARCHIVE DIALOGEX 0, 0, 255, 126
+IDD_PROPPAGE_ARCHIVE DIALOGEX 0, 0, 255, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Archive Support"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1776,7 +1805,7 @@ BEGIN
     PUSHBUTTON      "&Cancel",IDCANCEL,221,141,50,14
 END
 
-IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
+IDD_FILTERS_FILEFILTERS_TEST DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Test Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2031,11 +2060,11 @@ BEGIN
     BEGIN
     END
 
-    IDD_PROPPAGE_FILTER, DIALOG
+    IDD_FILTERS_LINEFILTERS, DIALOG
     BEGIN
     END
 
-    IDD_IGNORED_SUSBSTITUTIONS_DLG, DIALOG
+    IDD_FILTERS_SUBSTITUTIONFILTERS, DIALOG
     BEGIN
         BOTTOMMARGIN, 196
     END
@@ -2072,7 +2101,7 @@ BEGIN
     BEGIN
     END
 
-    IDD_FILEFILTERS, DIALOG
+    IDD_FILTERS_FILEFILTERS, DIALOG
     BEGIN
     END
 
@@ -2100,7 +2129,7 @@ BEGIN
     BEGIN
     END
 
-    IDD_PROP_ARCHIVE, DIALOG
+    IDD_PROPPAGE_ARCHIVE, DIALOG
     BEGIN
     END
 
@@ -2306,7 +2335,7 @@ BEGIN
     100, 0, 0, 0
 END
 
-IDD_PROP_ARCHIVE AFX_DIALOG_LAYOUT
+IDD_PROPPAGE_ARCHIVE AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
@@ -2616,12 +2645,12 @@ BEGIN
     0, 0, 100, 0
 END
 
-IDD_FILEFILTERS AFX_DIALOG_LAYOUT
+IDD_FILTERS_FILEFILTERS AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
 
-IDD_PROPPAGE_FILTER AFX_DIALOG_LAYOUT
+IDD_FILTERS_LINEFILTERS AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -2689,7 +2718,6 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
     IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 END
 
@@ -3259,6 +3287,8 @@ BEGIN
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
+    IDS_MOVE_TO_FIRSTFILE   "Do you want to move to the first file?"
+    IDS_MOVE_TO_LASTFILE    "Do you want to move to the last file?"
 END
 
 // Encoding issues

@@ -334,7 +334,7 @@ msgstr "&Orta Salt Okunur Olsun"
 msgid "Ri&ght Read-only"
 msgstr "S&ağ Salt Okunur Olsun"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "&Dosya Kodlaması..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Birleştir&me Kipi\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Yeniden Yük&le\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Dosya Kodlaması..."
 
 msgid "Reco&mpare As"
 msgstr "&Farklı Karşılaştır"
@@ -1977,15 +1974,6 @@ msgstr ""
 "WinMerge Klasör Karşılaştır"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Geliştiriciler:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -3040,6 +3028,12 @@ msgstr "Sonraki sayfaya geçmek ister misiniz?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Önceki sayfaya geçmek ister misiniz?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""

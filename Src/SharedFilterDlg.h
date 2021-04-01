@@ -30,7 +30,7 @@ protected:
 
 // Dialog Data
 	//{{AFX_DATA(CSharedFilterDlg)
-	enum { IDD = IDD_SHARED_FILTER };
+	enum { IDD = IDD_FILTERS_FILEFILTERS_SHARED };
 	//}}AFX_DATA
 
 // Overrides

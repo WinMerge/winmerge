@@ -414,8 +414,8 @@ msgid "Ri&ght Read-only"
 msgstr "De&sno samo-za-branje"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "&Kodiranje datoteke..."
+msgid "&File Encoding..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -630,10 +630,6 @@ msgstr "Združevalni način\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Znova nal&oži\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -2478,13 +2474,6 @@ msgstr ""
 "WinMerge.PrimerjavaMap\n"
 "WinMerge Primerjava map"
 
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Razvijalci:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge prihaja POPOLNOMA BREZ GARANCIJE. To je brezplačen program. Dobrodošli ste za njegovo razširjanje pod določenimi pogoji. Več o tem poglejte v GNU licenci v meniju Pomoč."
@@ -3701,6 +3690,12 @@ msgstr "Ali se želite premakniti na naslednjo stran?"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "Ali se želite premakniti na prejšnjo stran?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""

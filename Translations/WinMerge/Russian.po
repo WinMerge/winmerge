@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
-"PO-Revision-Date: 2021-01-31 00:00+0000\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
+"PO-Revision-Date: 2021-03-28 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -41,16 +41,16 @@ msgid "Copy fro&m Right"
 msgstr "Копировать справа"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Копировать выбранные строки вправо"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Копировать выбранные строки влево"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Копировать выбранные строки слева"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Копировать выбранные строки справа"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
@@ -132,7 +132,7 @@ msgstr "&Масштаб"
 
 #, c-format
 msgid "25%"
-msgstr "25%"
+msgstr ""
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
@@ -336,7 +336,7 @@ msgstr "Середина только для чтения"
 msgid "Ri&ght Read-only"
 msgstr "С&права только для чтения"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Кодировка файла..."
 
 msgid "Select &All\tCtrl+A"
@@ -507,14 +507,11 @@ msgstr "Режим объединения\tF9"
 msgid "Re&load\tCtrl+F5"
 msgstr "Обновить\tCtrl+F5"
 
-msgid "&File Encoding..."
-msgstr "Кодировка файла..."
-
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
 msgid "&XML"
-msgstr "&XML"
+msgstr ""
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"
@@ -1026,7 +1023,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Автопроверка пути в диалоге открытия файлов"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Режим одной копии:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Подтверждать закрытие окон"
@@ -1680,10 +1677,10 @@ msgid "File type"
 msgstr "Тип файла"
 
 msgid "&CSV"
-msgstr "&CSV"
+msgstr ""
 
 msgid "&TSV"
-msgstr "&TSV"
+msgstr ""
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
@@ -1918,9 +1915,6 @@ msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge Сравнение �
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Сравнение Папок"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Разработчики:\nДин Гримм (Dean Grimm), Кристиан Лист (Christian List), Киммо Варис (Kimmo Varis), Йохен Тухт (Jochen Tucht), Тим Герундт (Tim Gerundt), Такаши Саванака (Takashi Sawanaka), Гэл Хаммер (Gal Hammer), Александр Скиннер (Alexander Skinner)"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge поставляется БЕЗ КАКОЙ-ЛИБО ГАРАНТИИ. Это свободное ПО и мы приветствуем его распространение согласно некоторых условий; ознакомьтесь с GNU General Public License в меню Помощь для более подробной информации."
 
@@ -2054,7 +2048,7 @@ msgid "Filters"
 msgstr "Фильтры"
 
 msgid "[F] "
-msgstr "[F] "
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
@@ -2120,7 +2114,7 @@ msgid "Mine File"
 msgstr "Мой файл"
 
 msgid "Original File"
-msgstr ""
+msgstr "Исходный файл"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2729,7 +2723,7 @@ msgid "Cannot add a synchronization point at this line."
 msgstr "Невозможно добавить точку синхронизации в этой строке."
 
 msgid "The same file is opened in both panels."
-msgstr "На обоих панелях открыт один и тот же файл."
+msgstr "На обеих панелях открыт один и тот же файл."
 
 msgid "The selected files are identical."
 msgstr "Выбранные файлы идентичны."
@@ -2764,6 +2758,12 @@ msgstr "Перейти к следующей странице?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Перейти к предыдущей странице?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
@@ -3233,5 +3233,5 @@ msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 

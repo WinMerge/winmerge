@@ -334,7 +334,7 @@ msgstr "Środkowy tylko do odczytu"
 msgid "Ri&ght Read-only"
 msgstr "Prawy tylko do odczytu"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Tryb scalania\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Odśwież\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Kodowanie pliku..."
 
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
@@ -1916,9 +1913,6 @@ msgstr "\nPorównaniePlików\n\n\n\nWinMerge.PorównaniePlików\nWinMerge Porów
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nPorównywanieFolderów\n\n\n\nWinMerge.PorównywanieFolderów\nWinMerge Porównywanie Folderów"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Deweloperzy:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge został wydawany BEZ ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to wolne oprogramowanie więc mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź zakładkę \"GNU Powszechna Licencja Publiczna\" w menu Pomoc."
 
@@ -2762,6 +2756,12 @@ msgstr "Czy chcesz przejść do następnej strony?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Czy chcesz przejść do poprzedniej strony?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

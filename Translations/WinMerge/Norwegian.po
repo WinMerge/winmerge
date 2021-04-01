@@ -413,8 +413,8 @@ msgid "Ri&ght Read-only"
 msgstr "H&øyre skrivebeskyttet"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Filko&ding..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -630,10 +630,6 @@ msgstr "Sammenslå-&modus\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Filko&ding..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -2452,11 +2448,6 @@ msgstr ""
 "WinMerge.Mappesammenligning\n"
 "WinMerge Mappesammenligning"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Utviklere:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og du er velkommen til å videredistribuere den under visse omstendigheter; se GNU General Public License i Hjelp-menyen for detaljer."
@@ -3640,6 +3631,12 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the previous page?"
+msgstr ""
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
 msgstr ""
 
 #, c-format

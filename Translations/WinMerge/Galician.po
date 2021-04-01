@@ -414,8 +414,8 @@ msgid "Ri&ght Read-only"
 msgstr "Lado &dereito só lectura"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "&Codificación dos arquivos…"
+msgid "&File Encoding..."
+msgstr "Codificación do ar&quivo…"
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -631,10 +631,6 @@ msgstr "&Modo mestura\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "R&ecargar\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Codificación do ar&quivo…"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -2483,13 +2479,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Desenvolvedores:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge ofrécese sen GARANTÍA DE NINGUNHA CLASE. Este programa é software gratuíto e animámoste a distribuílo baixo certas condicións; consulta a Licenza Pública Xeral GNU no menú de Axuda para atopar máis información."
@@ -3706,6 +3695,12 @@ msgstr "Queres pasar á seguinte páxina?"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "Queres pasar á anterior páxina?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""
