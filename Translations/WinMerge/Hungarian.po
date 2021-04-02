@@ -47,16 +47,16 @@ msgid "Copy fro&m Right"
 msgstr "Másolás jobbról"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "A kijelölt sor(ok) jobbra másolása"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "A kijelölt sor(ok) balra másolása"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "A kijelölt sor(ok) másolása balról"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "A kijelölt sor(ok) másolása jobbról"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Az eltérés kijelölése\tF4"
@@ -897,7 +897,7 @@ msgstr "Felosztás"
 
 #, c-format
 msgid "Comp&are"
-msgstr "&Összehasonlítás"
+msgstr "&Összehasonlít"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Nem vízszintes összehasonlítás..."
@@ -1256,7 +1256,7 @@ msgid "Se&lect..."
 msgstr "Kiválasztás..."
 
 msgid "Co&mpare"
-msgstr "Összehasonlítás"
+msgstr "Összehasonlít"
 
 #, c-format
 msgid "Cancel"
@@ -1289,7 +1289,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Automatikus elérési út ellenőrzés a Megnyitás ablakban"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Egypéldányos mód:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1694,7 +1694,7 @@ msgstr "&Ugrás"
 
 #, c-format
 msgid "Compare"
-msgstr "Összehasonlítás"
+msgstr "Összehasonlít"
 
 #, c-format
 msgid "Whitespaces"
@@ -1702,7 +1702,7 @@ msgstr "Szóközök"
 
 #, c-format
 msgid "&Compare"
-msgstr "&Összehasonlítás"
+msgstr "&Összehasonlít"
 
 #, c-format
 msgid "&Ignore change"
@@ -1874,7 +1874,7 @@ msgid ""
 "Need to restart session."
 msgstr ""
 "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
-"A prrogram újraindítás szükséges."
+"A program újraindítás szükséges."
 
 msgid ""
 "Detect codepage for text files using mlang.dll\n"
@@ -2196,7 +2196,7 @@ msgstr "A fájl eredeti könyvtára"
 
 #, c-format
 msgid "&Global backup folder:"
-msgstr "Általános archivum könyvtár:"
+msgstr "Általános archívum könyvtár:"
 
 #, c-format
 msgid "Backup filename:"
@@ -2637,7 +2637,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML fájlok (*.xml)|*.xml|Minden fájl (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Fájltípus"
 
 #, c-format
 msgid "Extension"
@@ -2780,7 +2780,7 @@ msgid "Mine File"
 msgstr "Az én fájlom"
 
 msgid "Original File"
-msgstr ""
+msgstr "Eredeti fájl"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2804,11 +2804,11 @@ msgstr "Különbség: %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 különbséget találtam"
+msgstr "%1 különbség található"
 
 #, c-format
 msgid "1 Difference Found"
-msgstr "1 különbséget találtam"
+msgstr "1 különbség található"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -3639,7 +3639,7 @@ msgstr "Ugyanaz a fájl van megnyitva mindkét panelen."
 
 #, c-format
 msgid "The selected files are identical."
-msgstr "A kijelölt fájlok ugyanazok."
+msgstr "A kijelölt fájlok egyformák."
 
 #, c-format
 msgid "An error occurred while comparing the files."
@@ -3699,6 +3699,12 @@ msgstr "Továbblépsz a következő oldalra?"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "Visszalépsz az előző oldalra?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -3992,7 +3998,7 @@ msgid ""
 "Last Difference (Alt+End)"
 msgstr ""
 "\n"
-"Utolsó különbséghez (Alt+End)"
+"Utolsó különbség (Alt+End)"
 
 #, c-format
 msgid ""
@@ -4356,8 +4362,8 @@ msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
 msgid "Allow only one instance to run"
-msgstr ""
+msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Csak egy példány futhat és megvárja meg, amíg a példány leáll"
 

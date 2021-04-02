@@ -3290,6 +3290,8 @@ BEGIN
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
+    IDS_MOVE_TO_FIRSTFILE   "Do you want to move to the first file?"
+    IDS_MOVE_TO_LASTFILE    "Do you want to move to the last file?"
 END
 
 // Encoding issues

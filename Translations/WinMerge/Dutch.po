@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -40,16 +40,16 @@ msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Geselecteerde regel(s) naar rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Geselecteerde regel(s) naar links kopiëren"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Geselecteerde regel(s) vanaf links kopiëren"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
@@ -1025,7 +1025,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Modus enkele instantie:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Vragen bij sluiten van meerdere vensters"
@@ -2127,7 +2127,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-bestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Bestandstype"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -2250,7 +2250,7 @@ msgid "Mine File"
 msgstr "Mijn bestand"
 
 msgid "Original File"
-msgstr ""
+msgstr "Origineel bestand"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3067,6 +3067,12 @@ msgstr "Wilt u naar de volgende pagina gaan?"
 msgid "Do you want to move to the previous page?"
 msgstr "Wilt u naar de vorige pagina gaan?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3666,4 +3672,6 @@ msgstr "Slechts één draaiende instantie toestaan"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
+"Slechts één draaiende instantie toestaan en wachten totdat de instantie "
+"beëindigd is"
 

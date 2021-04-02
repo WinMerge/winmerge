@@ -164,3 +164,42 @@ void DIFFITEM::DelinkFromSiblings()
 	Flink = Blink = nullptr;
 }
 
+void DIFFCODE::swap(int idx1, int idx2)
+{
+	bool e[3] = { false, false, false };
+	for (int i = 0; i < 3; ++i)
+		e[i] = exists(i);
+	std::swap(e[idx1], e[idx2]);
+	setSideNone();
+	for (int i = 0; i < 3; ++i)
+		if (e[i]) setSideFlag(i);
+	bool binflag1 = (diffcode & (BINSIDE1 << idx1));
+	bool binflag2 = (diffcode & (BINSIDE1 << idx2));
+	Set(BINSIDE1 << idx1, binflag2 ? (BINSIDE1 << idx1) : 0);
+	Set(BINSIDE1 << idx2, binflag1 ? (BINSIDE1 << idx2) : 0);
+	if ((diffcode & THREEWAY) != 0)
+	{
+		int idx = -1;
+		switch (diffcode & COMPAREFLAGS3WAY)
+		{
+		case DIFF1STONLY:
+			if (idx1 == 0 || idx2 == 0)
+				idx = (idx1 == 0) ? idx2 : idx1;
+			break;
+		case DIFF2NDONLY:
+			if (idx1 == 1 || idx2 == 1)
+				idx = (idx1 == 1) ? idx2 : idx1;
+			break;
+		case DIFF3RDONLY:
+			if (idx1 == 2 || idx2 == 2)
+				idx = (idx1 == 2) ? idx2 : idx1;
+			break;
+		}
+		if (idx == 0)
+			Set(COMPAREFLAGS3WAY, DIFF1STONLY);
+		else if (idx == 1)
+			Set(COMPAREFLAGS3WAY, DIFF2NDONLY);
+		else if (idx == 2)
+			Set(COMPAREFLAGS3WAY, DIFF3RDONLY);
+	}
+}
