@@ -135,7 +135,7 @@ BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 /**
  * @brief Load a dll and import a number of functions.
  */
-static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
+static HMODULE DllProxyHelper(LPCSTR *proxy, LPCSTR dir)
 {
 	HMODULE handle = NULL;
 	if (LPCSTR name = *proxy)
@@ -151,7 +151,7 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 				0,
 				path,
 				sizeof path,
-				(va_list *)(&proxy + 1)
+				(va_list *)(&dir)
 			);
 			handle = LoadLibraryA(path);
 			if (handle)

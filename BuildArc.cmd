@@ -17,6 +17,7 @@ set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 if "%1" == "" (
   call :BuildZip 
   call :BuildZip x64
+  call :BuildZip ARM64
 ) else (
   call :BuildZip %1 
 )
@@ -80,14 +81,19 @@ for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
 rem Excecutables
 echo Copy Excecutables...
 copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-if not "%1" == "" (
+if "%1" == "x64" (
   copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 
 rem ShellExtension
 echo Copy ShellExtension...
-copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+if not "%1" == "ARM64" (
+  copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
+if "%1" == "ARM64" (
+  copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
 copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 
 rem Translations
