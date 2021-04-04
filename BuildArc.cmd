@@ -28,12 +28,15 @@ del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" 2> NUL
 
 (
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe"
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-PerUser-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-ARM64-Setup.exe"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
-echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-pdb.7z"
-echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\files.txt"
 
