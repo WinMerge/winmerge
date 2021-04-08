@@ -414,7 +414,7 @@ Source: ..\..\Build\ARM64\Release\WinMergeU.exe; DestDir: {app}; Flags: promptif
 Source: ..\..\Build\ARM64\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
 Source: ..\..\Build\ARM64\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 ; 32Bit Plugin Proxy
-;Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
 ;Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
@@ -679,16 +679,16 @@ Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: 
 ;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode; Components: ShellExtension32bit
 Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode
 Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode
-;Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle; Check: IsAdminInstallMode
-;Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle; Check: IsAdminInstallMode
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
 
 [UninstallRun]
 ;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode; Components: ShellExtension32bit
 ;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode; Components: ShellExtension32bit
 Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode
 Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode
-;Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServer"; Flags: waituntilidle; Check: IsAdminInstallMode
-;Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServer"; Flags: waituntilidle; Check: IsAdminInstallMode
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
 
 
 [UninstallDelete]
