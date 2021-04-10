@@ -1560,9 +1560,9 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Default Codepage",IDC_STATIC,7,7,241,93
     LTEXT           "Select the default codepage assumed when loading non-Unicode files:",IDC_STATIC,14,18,228,20
-    CONTROL         "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session.",IDC_DETECT_CODEPAGE,
+    CONTROL         "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session.",IDC_DETECT_CODEPAGE,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,105,230,30
-    CONTROL         "Detect codepage for text files using mlang.dll\nNeed to restart session.",IDC_DETECT_CODEPAGE2,
+    CONTROL         "Detect codepage for text files with mlang.dll\nNeed to restart session.",IDC_DETECT_CODEPAGE2,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,230,34
     COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,217,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,230,10
