@@ -3664,4 +3664,3 @@ msgstr "Позволи само едно стартирано копие"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

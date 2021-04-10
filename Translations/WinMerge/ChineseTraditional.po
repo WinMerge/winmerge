@@ -4205,4 +4205,3 @@ msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

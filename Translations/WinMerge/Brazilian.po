@@ -4362,4 +4362,3 @@ msgstr "Permitir somente uma instância a ser executada"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir somente uma instância a ser executada e esperar a instância ser fechada"
-

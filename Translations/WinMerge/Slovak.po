@@ -3647,4 +3647,3 @@ msgstr "Umožniť spustenie iba jednej inštancie"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

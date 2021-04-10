@@ -4239,4 +4239,3 @@ msgstr "اجازه اجراي همزمان تنها يک نسخه از نرم ا
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

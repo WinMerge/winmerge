@@ -4304,4 +4304,3 @@ msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
-

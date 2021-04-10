@@ -4175,4 +4175,3 @@ msgstr "Permite rularea unei singure instanţe"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

@@ -4186,4 +4186,3 @@ msgstr "එක් දෘෂ්ටාන්තයක් පමණක් සිද
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

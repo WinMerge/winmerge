@@ -3980,4 +3980,3 @@ msgstr "Nur eine Instanz zulassen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
-

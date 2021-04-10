@@ -3618,4 +3618,3 @@ msgstr "Yalnız bir WinMerge kopyası çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

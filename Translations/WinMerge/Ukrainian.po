@@ -4196,4 +4196,3 @@ msgstr "Дозволити запуск лише однієї копії"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

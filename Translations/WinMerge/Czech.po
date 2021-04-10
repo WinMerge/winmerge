@@ -4129,4 +4129,3 @@ msgstr "Povolit pouze jedno hlavní okno aplikace"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

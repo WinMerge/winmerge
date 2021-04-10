@@ -4296,4 +4296,3 @@ msgstr "Vain yksi instanssi kerrallaan"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

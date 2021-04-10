@@ -3232,4 +3232,3 @@ msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
-

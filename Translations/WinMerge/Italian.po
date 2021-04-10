@@ -3606,4 +3606,3 @@ msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

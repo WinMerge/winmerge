@@ -4234,4 +4234,3 @@ msgstr "Tillad kun et eksempel ad gangen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-
