@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-02-27 21:22+0200\n"
+"PO-Revision-Date: 2021-04-04 20:21+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -413,7 +413,7 @@ msgid "Ri&ght Read-only"
 msgstr "&Rechts schreibgeschützt"
 
 #, c-format
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Dateic&odierung..."
 
 #, c-format
@@ -630,10 +630,6 @@ msgstr "&Merge-Modus\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Neu &laden\tStrg+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Dateic&odierung..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1868,10 +1864,10 @@ msgstr "Standard-Codeseite"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wählen Sie die Standard-Codeseite aus, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "Codeseite für folgende Dateien ermitteln: .html, .rc, .xml\nBenötigt einen Neustart des Programmes."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Codeseite für Textdateien mit Hilfe von mlang.dll ermitteln\nBenötigt einen Neustart des Programmes."
 
 #, c-format
@@ -2422,9 +2418,6 @@ msgstr "\nDateivergleich\n\n\n\nWinMerge.Dateivergleich\nWinMerge Dateivergleich
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nOrdnervergleich\n\n\n\nWinMerge.Ordnervergleich\nWinMerge Ordnervergleich"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Entwickler:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben. Für Details sehen Sie sich die GNU General Public License unter dem Hilfe-Menü an."
@@ -2674,7 +2667,7 @@ msgid "Mine File"
 msgstr "Meine Datei"
 
 msgid "Original File"
-msgstr ""
+msgstr "Originaldatei"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3442,6 +3435,12 @@ msgstr "Möchten Sie zur nächsten Seite wechseln?"
 msgid "Do you want to move to the previous page?"
 msgstr "Möchten Sie zur vorherigen Seite wechseln?"
 
+msgid "Do you want to move to the first file?"
+msgstr "Möchten Sie zur ersten Datei wechseln?"
+
+msgid "Do you want to move to the last file?"
+msgstr "Möchten Sie zur letzten Datei wechseln?"
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Verschiedene Codeseiten in linker (cp%d) und rechter (cp%d) Datei gefunden.\nDie Anzeige jeder Datei in ihrer Codeseite verbessert die Anzeige, das Zusammenführen/Kopieren ist jedoch gefährlich.\nMöchten Sie beide Dateien mit der Standard-Windows-Codeseite behandeln (empfohlen)?"
@@ -3699,14 +3698,14 @@ msgstr "\nAutomatisch mischen (Strg+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nErste Datei"
 
-msgid "\nNext File"
-msgstr "\nNächste Datei"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nNächste Datei (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nLetzte Datei"
 
-msgid "\nPrevious File"
-msgstr "\nVorherige Datei"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nVorherige Datei (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."
@@ -3981,4 +3980,3 @@ msgstr "Nur eine Instanz zulassen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
-

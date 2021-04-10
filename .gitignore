@@ -27,8 +27,10 @@
 **/ipch
 **/BuildTmp
 **/Build
+**/objARM64
 **/obj64
 **/obj
+**/libARM64
 **/lib64
 **/lib
 **/Release
@@ -40,6 +42,8 @@
 **/Unicode Release
 **/Unicode Release*MinDependency
 **/Unicode Release*MinSize
+**/ARM64Release
+**/ARM64Debug
 **/x64Release
 **/x64Debug
 winmerge-cppcheck-build-dir/

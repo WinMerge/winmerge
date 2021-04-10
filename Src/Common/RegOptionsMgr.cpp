@@ -143,6 +143,40 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	return 0;
 }
 
+int CRegOptionsMgr::LoadValueFromBuf(const String& strName, DWORD type, const BYTE* data, varprop::VariantValue& value)
+{
+	int retVal = COption::OPT_OK;
+	int valType = value.GetType();
+	if (type == REG_SZ && valType == varprop::VT_STRING )
+	{
+		value.SetString((TCHAR *)&data[0]);
+		retVal = Set(strName, value);
+	}
+	else if (type == REG_DWORD)
+	{
+		if (valType == varprop::VT_INT)
+		{
+			DWORD dwordValue;
+			CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
+			value.SetInt(dwordValue);
+			retVal = Set(strName, value);
+		}
+		else if (valType == varprop::VT_BOOL)
+		{
+			DWORD dwordValue;
+			CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
+			value.SetBool(dwordValue > 0 ? true : false);
+			retVal = Set(strName, value);
+		}
+		else
+			retVal = COption::OPT_WRONG_TYPE;
+	}
+	else
+		retVal = COption::OPT_WRONG_TYPE;
+
+	return retVal;
+}
+
 /**
  * @brief Load value from registry.
  *
@@ -166,7 +200,6 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	std::vector<BYTE> data;
 	DWORD type = 0;
 	DWORD size = 0;
-	int valType = value.GetType();
 	int retVal = COption::OPT_OK;
 
 	SplitName(strName, strPath, strValueName);
@@ -185,34 +218,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	}
 	
 	if (retValReg == ERROR_SUCCESS)
-	{
-		if (type == REG_SZ && valType == varprop::VT_STRING )
-		{
-			value.SetString((TCHAR *)&data[0]);
-			retVal = Set(strName, value);
-		}
-		else if (type == REG_DWORD)
-		{
-			if (valType == varprop::VT_INT)
-			{
-				DWORD dwordValue;
-				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
-				value.SetInt(dwordValue);
-				retVal = Set(strName, value);
-			}
-			else if (valType == varprop::VT_BOOL)
-			{
-				DWORD dwordValue;
-				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
-				value.SetBool(dwordValue > 0 ? true : false);
-				retVal = Set(strName, value);
-			}
-			else
-				retVal = COption::OPT_WRONG_TYPE;
-		}
-		else
-			retVal = COption::OPT_WRONG_TYPE;
-	}
+		return LoadValueFromBuf(strName, type, data.data(), value);
 	else
 		retVal = COption::OPT_ERR;
 
@@ -305,11 +311,11 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	// This just checks if the value exists, LoadValueFromReg() below actually
 	// loads the value.
 	DWORD type = 0;
-	DWORD size = MAX_PATH_FULL;
+	BYTE dataBuf[MAX_PATH_FULL];
+	DWORD size = sizeof(dataBuf);
 	LONG retValReg;
 	if (hKey)
 	{
-		BYTE dataBuf[MAX_PATH_FULL];
 		dataBuf[0] = 0;
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 			0, &type, dataBuf, &size);
@@ -328,12 +334,15 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		{
 		}
 		// Value already exists so read it.
-		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
+		else if (retValReg == ERROR_SUCCESS)
+		{
+			varprop::VariantValue value(defaultValue);
+			retVal = LoadValueFromBuf(name, type, dataBuf, value);
+		}
+		else if (retValReg == ERROR_MORE_DATA)
 		{
 			varprop::VariantValue value(defaultValue);
 			retVal = LoadValueFromReg(hKey, name, value);
-			if (retVal == COption::OPT_OK)
-				retVal = Set(name, value);
 		}
 	}
 

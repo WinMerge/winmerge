@@ -331,8 +331,8 @@ msgstr "&Среден само за четене"
 msgid "Ri&ght Read-only"
 msgstr "Отдяс&но само за четене"
 
-msgid "File En&coding..."
-msgstr "Кодиране на &знаци…"
+msgid "&File Encoding..."
+msgstr "Избиране на &кодировка…"
 
 msgid "Select &All\tCtrl+A"
 msgstr "Избиране на &всичко\tCtrl+A"
@@ -501,9 +501,6 @@ msgstr "Режим на &сливане\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Пре&зареждане\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Избиране на &кодировка…"
 
 msgid "Reco&mpare As"
 msgstr "Сравняване &като"
@@ -1483,14 +1480,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Изберете стандартната кодова страница за не-Unicode файлове:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Разпознаване на кодовата страница за файлове: .html, .rc, .xml\n"
 "Изисква рестартиране."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Разпознаване на кодовата страница на текстовите файлове, чрез mlang.dll\n"
@@ -1980,15 +1977,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "Сравняване папки с WinMerge"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Разработчици:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -3077,6 +3065,12 @@ msgstr "Искате ли да преминете към следващата с
 msgid "Do you want to move to the previous page?"
 msgstr "Искате ли да преминете към предишната страница?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3387,10 +3381,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Следващ файл"
+"Следващ файл (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3401,10 +3395,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Предишен файл"
+"Предишен файл (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3670,4 +3664,3 @@ msgstr "Позволи само едно стартирано копие"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

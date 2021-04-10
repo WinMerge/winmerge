@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-02-28 20:54+0900\n"
+"PO-Revision-Date: 2021-03-31 21:52+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -335,8 +335,8 @@ msgstr "中央を読み取り専用(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右側を読み取り専用(&G)"
 
-msgid "File En&coding..."
-msgstr "ファイル エンコーディング(&C)..."
+msgid "&File Encoding..."
+msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "すべて選択(&A)\tCtrl+A"
@@ -505,9 +505,6 @@ msgstr "マージモード(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
@@ -1485,14 +1482,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
@@ -1980,13 +1977,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -2955,7 +2945,7 @@ msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますが?"
+msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #, c-format
 msgid ""
@@ -3028,6 +3018,12 @@ msgstr "次のページに移動しますか?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "前のページに移動しますか?"
+
+msgid "Do you want to move to the first file?"
+msgstr "最初のファイルに移動しますか?"
+
+msgid "Do you want to move to the last file?"
+msgstr "最後のファイルに移動しますか?"
 
 #, c-format
 msgid ""
@@ -3343,10 +3339,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"次のファイル"
+"次のファイル (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3357,10 +3353,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"前のファイル"
+"前のファイル (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
@@ -3622,4 +3618,3 @@ msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
-

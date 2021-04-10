@@ -334,7 +334,7 @@ msgstr "&Orta Salt Okunur Olsun"
 msgid "Ri&ght Read-only"
 msgstr "S&ağ Salt Okunur Olsun"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "&Dosya Kodlaması..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Birleştir&me Kipi\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Yeniden Yük&le\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Dosya Kodlaması..."
 
 msgid "Reco&mpare As"
 msgstr "&Farklı Karşılaştır"
@@ -1481,12 +1478,12 @@ msgstr "Varsayılan Kod Sayfası"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 ".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın\n"
 "(oturumun yeniden başlatılması gerekir)"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
 "(oturumun yeniden başlatılması gerekir)"
@@ -1975,15 +1972,6 @@ msgstr ""
 "\n"
 "WinMerge.KlasörKarşılaştır\n"
 "WinMerge Klasör Karşılaştır"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Geliştiriciler:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -3041,6 +3029,12 @@ msgstr "Sonraki sayfaya geçmek ister misiniz?"
 msgid "Do you want to move to the previous page?"
 msgstr "Önceki sayfaya geçmek ister misiniz?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3353,13 +3347,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3624,4 +3618,3 @@ msgstr "Yalnız bir WinMerge kopyası çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

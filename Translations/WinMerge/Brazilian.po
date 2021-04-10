@@ -47,16 +47,16 @@ msgid "Copy fro&m Right"
 msgstr "Copiar d&a Direita"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a direita"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para a esquerda"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da esquerda"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da direita"
 
 msgid "&Select Line Difference\tF4"
 msgstr "&Selecionar a Diferença da Linha\tF4"
@@ -415,8 +415,8 @@ msgid "Ri&ght Read-only"
 msgstr "So&mente-Leitura a Direita"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "Codificação do Ar&quivo..."
+msgid "&File Encoding..."
+msgstr "&Codificação do Arquivo..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -631,10 +631,6 @@ msgstr "&Modo de União\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "&Codificação do Arquivo..."
 
 msgid "Reco&mpare As"
 msgstr "Recomparar Como"
@@ -1869,14 +1865,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selecionar o código padrão da página assumido quando carregar arquivos não-unicode:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Detecte a info do código de página para estes arquivos : .html, .rc, .xml \n"
 "É necessário reiniciar a sessão."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Detecte o código de página pros arquivos de texto usando mlang.dll\n"
@@ -2482,13 +2478,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "Comparação das Pastas do WinMerge"
 
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Desenvolvedores:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "O WinMerge vem com ABSOLUTAMENTE NENHUMA GARANTIA. Este é um software livre e você é bem vindo pra redistribuí-lo sob certas circunstâncias; veja a Licença Pública Geral do GNU no menu de Ajuda para detalhes."
@@ -2786,7 +2775,7 @@ msgid "Mine File"
 msgstr "Meu Arquivo"
 
 msgid "Original File"
-msgstr ""
+msgstr "Arquivo Original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3706,6 +3695,12 @@ msgstr "Você quer mover para a próxima página?"
 msgid "Do you want to move to the previous page?"
 msgstr "Você quer mover para a página anterior?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -4065,10 +4060,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Próximo Arquivo"
+"Próximo Arquivo (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -4079,10 +4074,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Arquivo Anterior"
+"Arquivo Anterior (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "O desempacotador adaptado está aplicado a ambos os arquivos (somente um arquivo precisa da extensão)."
@@ -4367,4 +4362,3 @@ msgstr "Permitir somente uma instância a ser executada"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir somente uma instância a ser executada e esperar a instância ser fechada"
-

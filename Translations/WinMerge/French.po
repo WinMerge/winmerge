@@ -420,8 +420,8 @@ msgid "Ri&ght Read-only"
 msgstr "Côté droi&t lecture seule"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "En&codage fichier..."
+msgid "&File Encoding..."
+msgstr "Encodage de fic&hier..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -637,10 +637,6 @@ msgstr "Mode &Fusion\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Recharger Ctrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "Encodage de fic&hier..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1876,14 +1872,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Sélectionner la page de code par défaut utilisée lors du chargement de fichiers non-Unicode :"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Détecter la page de code pour ces fichiers: .html, .rc, .xml\n"
 "Nécessite de redémarrer la session."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Détecter la page de code des fichiers texte à l'aide de mlang.dll\n"
@@ -2488,14 +2484,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
-
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Développeurs:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -3716,6 +3704,12 @@ msgstr "Voulez-vous passer à la page suivante ?"
 msgid "Do you want to move to the previous page?"
 msgstr "Voulez-vous passer à la page précédente ?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -4075,10 +4069,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Fichier suivant"
+"Fichier suivant (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -4089,10 +4083,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Fichier précédent"
+"Fichier précédent (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Le décompresseur approprié est appliqué aux deux fichiers (un fichier seulement nécessite l'extension)."
@@ -4377,4 +4371,3 @@ msgstr "Permettre une seule instance en exécution"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
-

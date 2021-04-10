@@ -252,6 +252,9 @@
     <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\icu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\DiffCode\DiffCode_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">

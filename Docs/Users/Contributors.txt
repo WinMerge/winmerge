@@ -96,6 +96,7 @@ Localization:
 * Hungarian:
   Márton Balázs <documan@users.sourceforge.net>
   Mihalicza József <jmihalicza@gmail.com>
+  Egyed Ferenc <efi99 at freemail.hu>
 
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>
@@ -109,6 +110,7 @@ Localization:
   Lee Jae-Hong <pyrasis@users.sourceforge.net>
   Sushizang <sushizang@empal.com>
   sheppaul <sheppaul at gmail.com>
+  teamzamong <teamzamong at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
@@ -131,6 +133,7 @@ Localization:
   Felipe Periard Lopes <felipefpl@ig.com.br>
   Igor Rückert
   jota11
+  Gabriel Camargo Fukushima
 
 * Portuguese (Portugal):
   Nelson Simão

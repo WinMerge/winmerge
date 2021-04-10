@@ -23,7 +23,7 @@ public:
 	virtual void WriteOptions() override;
 
 // Dialog Data
-	enum { IDD = IDD_PROP_ARCHIVE };
+	enum { IDD = IDD_PROPPAGE_ARCHIVE };
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

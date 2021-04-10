@@ -413,8 +413,8 @@ msgid "Ri&ght Read-only"
 msgstr "Samo za čitanje - d&esna"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -630,10 +630,6 @@ msgstr "Usporedni način"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1868,12 +1864,12 @@ msgstr "Standardna kodna stranica"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Odaberite standardnu kodnu stranicu za učitanje ne-Unicode datoteka:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
 "Nije potrebno ponovno pokretanje."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2451,11 +2447,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "WinMerge Usporedba mapa"
-
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Razvojni tim:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #, fuzzy, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -3642,6 +3633,12 @@ msgstr ""
 msgid "Do you want to move to the previous page?"
 msgstr ""
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
@@ -3917,13 +3914,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4199,4 +4196,3 @@ msgstr "Samo jedna instanca WinMerge-a"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

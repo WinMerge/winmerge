@@ -417,8 +417,8 @@ msgid "Ri&ght Read-only"
 msgstr "右邊唯讀(&G)"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "檔案編碼(&C)..."
+msgid "&File Encoding..."
+msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -634,10 +634,6 @@ msgstr "開/關合併模式(&G)\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "重新載入(&L)\tCtrl+F5"
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1878,12 +1874,12 @@ msgstr "編碼頁"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
 "需要重新啟動程式。"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "偵測使用 mlang.dll 文字檔案的編碼頁資訊\n需要重新啟動程式。"
 
 #, c-format
@@ -2462,11 +2458,6 @@ msgstr ""
 "\n"
 "WinMerge.資料夾比較\n"
 "WinMerge 資料夾比較"
-
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"研發者：\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -3646,6 +3637,12 @@ msgstr "你想要移動到下一頁嗎？"
 msgid "Do you want to move to the previous page?"
 msgstr "你想要移動到上一頁嗎？"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
@@ -3926,13 +3923,13 @@ msgstr "\n自動合併 (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4208,4 +4205,3 @@ msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

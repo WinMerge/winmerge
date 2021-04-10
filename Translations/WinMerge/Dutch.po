@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-01-27 23:46+0000\n"
+"POT-Creation-Date: 2021-03-28 10:51+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -40,16 +40,16 @@ msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Geselecteerde regel(s) naar rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Geselecteerde regel(s) naar links kopiëren"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Geselecteerde regel(s) vanaf links kopiëren"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
@@ -335,7 +335,7 @@ msgstr "Midden alleen-lezen"
 msgid "Ri&ght Read-only"
 msgstr "Rechts alleen-lezen"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Bestandscodering..."
 
 msgid "Select &All\tCtrl+A"
@@ -505,9 +505,6 @@ msgstr "Samenvoegmodus\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Opnieuw laden\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Bestandscodering..."
 
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
@@ -1025,7 +1022,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Modus enkele instantie:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Vragen bij sluiten van meerdere vensters"
@@ -1493,14 +1490,14 @@ msgstr ""
 "Unicodebestanden:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml\n"
 "Herstarten sessie noodzakelijk."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
@@ -1990,13 +1987,6 @@ msgstr ""
 "WinMerge Mapvergelijking"
 
 msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Ontwikkelaars:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
-msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
@@ -2134,7 +2124,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-bestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Bestandstype"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -2257,7 +2247,7 @@ msgid "Mine File"
 msgstr "Mijn bestand"
 
 msgid "Original File"
-msgstr ""
+msgstr "Origineel bestand"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -3074,6 +3064,12 @@ msgstr "Wilt u naar de volgende pagina gaan?"
 msgid "Do you want to move to the previous page?"
 msgstr "Wilt u naar de vorige pagina gaan?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3390,10 +3386,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Volgend bestand"
+"Volgend bestand (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3404,10 +3400,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Vorig bestand"
+"Vorig bestand (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3673,4 +3669,5 @@ msgstr "Slechts één draaiende instantie toestaan"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-
+"Slechts één draaiende instantie toestaan en wachten totdat de instantie "
+"beëindigd is"

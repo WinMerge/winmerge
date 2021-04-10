@@ -240,14 +240,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
-	ON_COMMAND(ID_FIRSTFILE, OnFirstFile)
-	ON_UPDATE_COMMAND_UI(ID_FIRSTFILE, OnUpdateFirstFile)
-	ON_COMMAND(ID_PREVFILE, OnPrevFile)
-	ON_UPDATE_COMMAND_UI(ID_PREVFILE, OnUpdatePrevFile)
-	ON_COMMAND(ID_NEXTFILE, OnNextFile)
-	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
-	ON_COMMAND(ID_LASTFILE, OnLastFile)
-	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
 	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -2234,102 +2226,6 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(false);
-}
-
-/**
- * @brief Move to next file
- */
-void CMergeEditView::OnNextFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToNextFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to next file is updated
- */
-void CMergeEditView::OnUpdateNextFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsLastFile() : false;
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to previous file
- */
-void CMergeEditView::OnPrevFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToPrevFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to previous file is updated
- */
-void CMergeEditView::OnUpdatePrevFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();	
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsFirstFile() : false;
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to first file
- */
-void CMergeEditView::OnFirstFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToFirstFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to first file is updated
- */
-void CMergeEditView::OnUpdateFirstFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	bool enabled = pDirDoc ? !pDirDoc->IsFirstFile() : false;
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to last file
- */
-void CMergeEditView::OnLastFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToLastFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to last file item is updated
- */
-void CMergeEditView::OnUpdateLastFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	bool enabled = pDirDoc ? !pd->GetDirDoc()->IsLastFile() : false;
-	pCmdUI->Enable(enabled);
 }
 
 /**

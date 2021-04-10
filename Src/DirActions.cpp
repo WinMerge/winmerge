@@ -728,7 +728,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
  * return false if there was error or item was completely processed.
  */
 bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, bool & isdir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+		PathContext & paths, int & sel1, bool & isdir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	pdi[0] = &ctxt.GetDiffAt(pos1);
 	pdi[1] = pdi[0];
@@ -737,6 +737,9 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
 	if (!openableForDir && pdi[0]->diffcode.isDirectory()) return false;
 
 	paths = GetItemFileNames(ctxt, *pdi[0]);
+	encoding[0] = pdi[0]->diffFileInfo[0].encoding;
+	encoding[1] = pdi[0]->diffFileInfo[1].encoding;
+	encoding[2] = pdi[0]->diffFileInfo[2].encoding;
 
 	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
 		nPane[nIndex] = nIndex;
@@ -778,7 +781,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
  * return false if there was error or item was completely processed.
  */
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFFITEM *pos1, DIFFITEM *pos2, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	// Two items selected, get their info
 	pdi[0] = &ctxt.GetDiffAt(pos1);
@@ -822,6 +825,8 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
 	files2 = GetItemFileNames(ctxt, *pdi[1]);
 	paths.SetLeft(files1[nPane[0]]);
 	paths.SetRight(files2[nPane[1]]);
+	encoding[0] = pdi[0]->diffFileInfo[nPane[0]].encoding;
+	encoding[1] = pdi[1]->diffFileInfo[nPane[1]].encoding;
 
 	if (pdi[0]->diffcode.isDirectory())
 	{
@@ -853,7 +858,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
  * return false if there was error or item was completely processed.
  */
 bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3, const DIFFITEM *pdi[3],
-	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	String pathLeft, pathMiddle, pathRight;
 
@@ -972,6 +977,10 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2,
 	paths.SetLeft(pathLeft);
 	paths.SetMiddle(pathMiddle);
 	paths.SetRight(pathRight);
+
+	encoding[0] = pdi[0]->diffFileInfo[0].encoding;
+	encoding[1] = pdi[1]->diffFileInfo[1].encoding;
+	encoding[2] = pdi[2]->diffFileInfo[2].encoding;
 
 	if (pdi[0]->diffcode.isDirectory())
 	{

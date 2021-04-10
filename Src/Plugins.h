@@ -46,7 +46,7 @@ public:
 			m_lpDispatch->Release();
 	}
 
-	int LoadPlugin(const String & scriptletFilepath, const wchar_t *transformationEvent);
+	int LoadPlugin(const String & scriptletFilepath);
 
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
@@ -65,6 +65,7 @@ public:
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;
+	String      m_event;
 	bool        m_bAutomatic;
 	bool        m_disabled;
 	std::vector<FileFilterElementPtr> m_filters;
@@ -116,7 +117,7 @@ private:
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
 	int nTransformationEvents;
-	std::vector<PluginArrayPtr> m_aPluginsByEvent;
+	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
 };
 
 

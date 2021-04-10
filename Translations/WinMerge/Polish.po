@@ -334,7 +334,7 @@ msgstr "Środkowy tylko do odczytu"
 msgid "Ri&ght Read-only"
 msgstr "Prawy tylko do odczytu"
 
-msgid "File En&coding..."
+msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
 msgid "Select &All\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "Tryb scalania\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Odśwież\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Kodowanie pliku..."
 
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
@@ -1479,10 +1476,10 @@ msgstr "Domyślna strona kodowa"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wybierz domyślne kodowanie dla otwieranych plików nie będących plikami Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
 
 msgid "System codepage"
@@ -1915,9 +1912,6 @@ msgstr "\nPorównaniePlików\n\n\n\nWinMerge.PorównaniePlików\nWinMerge Porów
 
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nPorównywanieFolderów\n\n\n\nWinMerge.PorównywanieFolderów\nWinMerge Porównywanie Folderów"
-
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Deweloperzy:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge został wydawany BEZ ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to wolne oprogramowanie więc mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź zakładkę \"GNU Powszechna Licencja Publiczna\" w menu Pomoc."
@@ -2763,6 +2757,12 @@ msgstr "Czy chcesz przejść do następnej strony?"
 msgid "Do you want to move to the previous page?"
 msgstr "Czy chcesz przejść do poprzedniej strony?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Znaleziono różne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d) stronie.\nWyświetlanie każdego pliku z osobna w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/kopiowanie będzie niebezpieczne.\nCzy chcesz traktować oba pliki jako znajdujące się w domyślnej stronie kodowej systemu Windows (zalecane)?"
@@ -2973,14 +2973,14 @@ msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPierwszy plik"
 
-msgid "\nNext File"
-msgstr "\nNastępny plik"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nNastępny plik (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nOstatni plik"
 
-msgid "\nPrevious File"
-msgstr "\nPoprzedni plik"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPoprzedni plik (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
@@ -3232,4 +3232,3 @@ msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
-

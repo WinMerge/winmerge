@@ -334,8 +334,8 @@ msgstr "File &centrale in sola lettura"
 msgid "Ri&ght Read-only"
 msgstr "F&ile di destra in sola lettura"
 
-msgid "File En&coding..."
-msgstr "Co&difica file..."
+msgid "&File Encoding..."
+msgstr "Codifica &file..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Se&leziona tutto\tCtrl+A"
@@ -504,9 +504,6 @@ msgstr "&Modalità unione\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "&Ricarica\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "Codifica &file..."
 
 msgid "Reco&mpare As"
 msgstr "Riconfronta come"
@@ -1483,12 +1480,12 @@ msgstr ""
 "Scegli il codice pagina predefinito assegnato al caricamento di file non-"
 "Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Il rilevamento informazioni sul codice pagina per queste estensioni file: \n"
 " .html, .rc, .xml richiede il riavvio della sessione"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Il rilevamento codici di pagina per i file di testo usando mlang.dll\n"
 "richiede il riavvio della sessione"
@@ -1973,15 +1970,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "Comparazione cartelle WinMerge"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Sviluppatori:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -3033,6 +3021,12 @@ msgstr "Vuoi passare alla pagina successiva?"
 msgid "Do you want to move to the previous page?"
 msgstr "Vuoi passare alla pagina precedente?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
@@ -3340,13 +3334,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3612,4 +3606,3 @@ msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

@@ -337,8 +337,8 @@ msgstr "&Stredný len na čítanie"
 msgid "Ri&ght Read-only"
 msgstr "&Pravý len na čítanie"
 
-msgid "File En&coding..."
-msgstr "&Kódovanie súborov ..."
+msgid "&File Encoding..."
+msgstr "&Kódovanie súboru..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "Vybr&ať všetko\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "Režim &zlučenia\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "Znova načítať\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "&Kódovanie súboru..."
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
@@ -1488,12 +1485,12 @@ msgstr ""
 "Zvoľte predvolenú kódovú stránku, ktorá sa použije pri načítaní ne-Unicode "
 "súborov:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Zisťovať informácie o kódovej stránke pre tieto súbory: .html, .rc, .xml\n"
 "Potrebný reštart relácie."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Zisťovať kódovú stránku pre textové súbory pomocou súboru mlang.dll\n"
 "Potrebný reštart relácie."
@@ -1982,15 +1979,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "Porovnanie priečinkov WinMerge"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Vývojári:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -3068,6 +3056,12 @@ msgstr "Chcete prejsť na ďalšiu stránku?"
 msgid "Do you want to move to the previous page?"
 msgstr "Chcete prejsť na predošlú stránku?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3381,13 +3375,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid ""
@@ -3653,4 +3647,3 @@ msgstr "Umožniť spustenie iba jednej inštancie"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

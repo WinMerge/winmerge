@@ -337,8 +337,8 @@ msgstr "中间只读(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右侧只读(&G)"
 
-msgid "File En&coding..."
-msgstr "文件编码(&C)"
+msgid "&File Encoding..."
+msgstr "文件编码(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "全选(&A)\tCtrl+A"
@@ -507,9 +507,6 @@ msgstr "合并模式(&G)\tF9"
 
 msgid "Re&load\tCtrl+F5"
 msgstr "重新加载(&L)\tCtrl+F5"
-
-msgid "&File Encoding..."
-msgstr "文件编码(&F)..."
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
@@ -1486,14 +1483,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "检测下列文件的代码页：.html, .rc, .xml \n"
 "需要重启会话。"
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "使用 mlang.dll 检查文本文件的代码页\n"
@@ -1982,15 +1979,6 @@ msgstr ""
 "\n"
 "WinMerge.FolderCompare\n"
 "WinMerge 文件夹比较"
-
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"开发者:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -3053,6 +3041,12 @@ msgstr "您是否要移动到下一页?"
 msgid "Do you want to move to the previous page?"
 msgstr "您是否要移动到上一页?"
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files.\n"
@@ -3359,13 +3353,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid ""
@@ -3630,4 +3624,3 @@ msgstr "只允许运行一个实例"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

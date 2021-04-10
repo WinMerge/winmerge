@@ -104,7 +104,7 @@ CMergeApp::CMergeApp() :
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(false)
-, m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
+, m_bExitIfNoDiff(MergeCmdLineInfo::ExitNoDiff::Disabled)
 , m_pLineFilters(new LineFiltersList())
 , m_pSubstitutionFiltersList(new SubstitutionFiltersList())
 , m_pSyntaxColors(new SyntaxColors())
@@ -686,7 +686,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(sFilepath, strDesc);
+				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -1035,6 +1035,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 		// Overwrite read-only file
 		case IDYESTOALL:
 			bApplyToAll = true;  // Don't ask again (no break here)
+			[[fallthrough]];
 		case IDYES:
 			CFile::GetStatus(strSavePath.c_str(), status);
 			status.m_mtime = 0;		// Avoid unwanted changes

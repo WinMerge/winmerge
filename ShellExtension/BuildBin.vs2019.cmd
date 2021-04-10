@@ -11,6 +11,7 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 if "%1" == "" (
   call :BuildBin
   call :BuildBin x64
+  call :BuildBin ARM64
 ) else (
   call :BuildBin %1 
 )

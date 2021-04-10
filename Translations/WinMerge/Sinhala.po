@@ -410,8 +410,8 @@ msgid "Ri&ght Read-only"
 msgstr "Ri&ght Read-only"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -627,10 +627,6 @@ msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
 #, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "ගොනුව කේතීකරණය..."
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1865,10 +1861,10 @@ msgstr "Default Codepage"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Select the default codepage assumed when loading non-Unicode files:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2446,11 +2442,6 @@ msgstr ""
 "\n"
 "WinMerge.ෆෝල්ඩරය සසඳන්න\n"
 "WinMerge ෆෝල්ඩරය සසඳන්න"
-
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -3629,6 +3620,12 @@ msgstr ""
 msgid "Do you want to move to the previous page?"
 msgstr ""
 
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
+
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
@@ -3907,13 +3904,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4189,4 +4186,3 @@ msgstr "එක් දෘෂ්ටාන්තයක් පමණක් සිද
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-
