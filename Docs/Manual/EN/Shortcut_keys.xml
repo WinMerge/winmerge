@@ -180,6 +180,12 @@
         </row>
 
         <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Go to previous file</entry>
+        </row>
+
+        <row>
           <entry><keycap>F8</keycap></entry>
 
           <entry>Go to next difference</entry>
@@ -189,6 +195,12 @@
           <entry><keycap>Shift</keycap>+<keycap>F8</keycap></entry>
 
           <entry>Go to next conflict</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Go to next file</entry>
         </row>
 
         <row>
