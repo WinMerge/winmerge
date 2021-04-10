@@ -1871,12 +1871,12 @@ msgstr ""
 " موقعي که پرونده هاي غير يوني کد بارگيري مي شوند، انتخاب صفحه کد پيش فرض در "
 "نظر گرفته مي شود : "
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 " تشخيص اطلاعات صفحه کد براي اين پرونده ها : .html, .rc, .xml\n"
 " نيازمند جلسه شروع دوباره /  بازآغازي "
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
