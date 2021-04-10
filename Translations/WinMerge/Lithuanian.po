@@ -2976,14 +2976,14 @@ msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPirmas failas"
 
-msgid "\nNext File"
-msgstr "\nKitas failas"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nKitas failas (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nPaskutinis failas"
 
-msgid "\nPrevious File"
-msgstr "\nPraeitas failas"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."

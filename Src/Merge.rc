@@ -1000,8 +1000,10 @@ BEGIN
     VK_DOWN,        ID_NEXTCONFLICT,        VIRTKEY, SHIFT, ALT, NOINVERT
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F8,          ID_NEXTCONFLICT,        VIRTKEY, SHIFT, NOINVERT
+    VK_F8,          ID_NEXTFILE,            VIRTKEY, CONTROL, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVCONFLICT,        VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_PREVFILE,            VIRTKEY, CONTROL, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
@@ -3433,9 +3435,9 @@ BEGIN
     ID_ALL_LEFT             "\nAll Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
     ID_FIRSTFILE            "\nFirst File"
-    ID_NEXTFILE             "\nNext File"
+    ID_NEXTFILE             "\nNext File (Ctrl+F8)"
     ID_LASTFILE             "\nLast File"
-    ID_PREVFILE             "\nPrevious File"
+    ID_PREVFILE             "\nPrevious File (Ctrl+F7)"
 
 END
 

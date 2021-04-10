@@ -4012,14 +4012,14 @@ msgstr ""
 msgid "\nFirst File"
 msgstr "\n첫 파일"
 
-msgid "\nNext File"
-msgstr "\n다음 파일"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\n다음 파일 (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\n 마지막 파일"
 
-msgid "\nPrevious File"
-msgstr "\n이전 파일"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\n이전 파일 (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."

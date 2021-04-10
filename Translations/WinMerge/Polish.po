@@ -2973,14 +2973,14 @@ msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPierwszy plik"
 
-msgid "\nNext File"
-msgstr "\nNastępny plik"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nNastępny plik (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nOstatni plik"
 
-msgid "\nPrevious File"
-msgstr "\nPoprzedni plik"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPoprzedni plik (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."

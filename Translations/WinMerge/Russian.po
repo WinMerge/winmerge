@@ -2975,14 +2975,14 @@ msgstr "\nАвто объединение (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nПервый файл"
 
-msgid "\nNext File"
-msgstr "\nСледующий файл"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nСледующий файл (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nПоследний файл"
 
-msgid "\nPrevious File"
-msgstr "\nПредыдущий файл"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nПредыдущий файл (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Автоматический подбор распаковщика (укажите расширение хотя бы у одного из файлов)."

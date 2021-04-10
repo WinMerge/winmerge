@@ -3698,14 +3698,14 @@ msgstr "\nAutomatisch mischen (Strg+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nErste Datei"
 
-msgid "\nNext File"
-msgstr "\nNächste Datei"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nNächste Datei (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nLetzte Datei"
 
-msgid "\nPrevious File"
-msgstr "\nVorherige Datei"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nVorherige Datei (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."
