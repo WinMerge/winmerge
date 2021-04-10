@@ -2796,14 +2796,10 @@ private:
 LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 {
 	OpenSelection();
-	CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-	IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-	if (pMergeDoc == nullptr)
-		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 
 	auto *pReportFileName = reinterpret_cast<const TCHAR *>(wParam);
 	bool *pCompleted = reinterpret_cast<bool *>(lParam);
-	if (pMergeDoc != nullptr)
+	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
 		pMergeDoc->GenerateReport(pReportFileName);
 		pMergeDoc->CloseNow();
