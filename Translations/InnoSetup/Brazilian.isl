@@ -1,87 +1,87 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=FunÁıes Opcionais:
+OptionalFeatures=Fun√ß√µes Opcionais:
 CompanyName=Software Thingamahoochie
 
 ;Types
-TypicalInstallation=InstalaÁ„o TÌpica
-FullInstallation=InstalaÁ„o Completa
-CompactInstallation=InstalaÁ„o Compacta
-CustomInstallation=InstalaÁ„o Personalizada
+TypicalInstallation=Instala√ß√£o T√≠pica
+FullInstallation=Instala√ß√£o Completa
+CompactInstallation=Instala√ß√£o Compacta
+CustomInstallation=Instala√ß√£o Personalizada
 
 ;Components
-AppCoreFiles=Arquivos do Core do WinMerge
+AppCoreFiles=Arquivos do N√∫cleo do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed (editor hex Gr√°tis)
+WinIMerge=WinIMerge (Diferenciar/Unir Imagens)
+ArchiveSupport=Suporte pra Arquivos Compactados
+ShellExtension32bit=Extens√£o do Shell de 32 bits do WinMerge
+Patch=Patch do GnuWin32 pra Windows
 
 ;Localization Components
 Languages=Idiomas
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Menus e di·logos b˙lgaros
-CatalanLanguage=Menus e di·logos catal„os
-ChineseSimplifiedLanguage=Menus e di·logos chineses	(simplificados)
-ChineseTraditionalLanguage=Menus e di·logos chineses (tradicionais)
-CroatianLanguage=Menus e di·logos croatas
-CzechLanguage=Menus e di·logos tchecos
-DanishLanguage=Menus e di·logos dinamarqueses
-DutchLanguage=Menus e di·logos holandeses
-FinnishLanguage=Menus e di·logos finlandÍs
-FrenchLanguage=Menus e di·logos franceses
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=Menus e di·logos alem„es
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Menus e di·logos italianos
-JapaneseLanguage=Menus e di·logos japoneses
-KoreanLanguage=Menus e di·logos coreanos
-LithuanianLanguage=Menus e di·logos lituanos
-NorwegianLanguage=Menus e di·logos noruegueses
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Menus e di·logos poloneses
-PortugueseBrazilLanguage=Menus e di·logos portugueses (brasileiros)
-PortugueseLanguage=Menus e di·logos portugueses
-RomanianLanguage=Menus e di·logos romenos
-RussianLanguage=Menus e di·logos russos
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Menus e di·logos sinalis
-SlovakLanguage=Menus e di·logos eslovacos
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Menus e di·logos espanhÛis
-SwedishLanguage=Menus e di·logos suecos
-TurkishLanguage=Menus e di·logos turcos
-UkrainianLanguage=Ukrainian menus and dialogs
+ArabicLanguage=Menus e di√°logos √°rabes
+BasqueLanguage=Menus e di√°logos bascos
+BulgarianLanguage=Menus e di√°logos b√∫lgaros
+CatalanLanguage=Menus e di√°logos catal√£os
+ChineseSimplifiedLanguage=Menus e di√°logos chineses	(simplificados)
+ChineseTraditionalLanguage=Menus e di√°logos chineses (tradicionais)
+CroatianLanguage=Menus e di√°logos croatas
+CzechLanguage=Menus e di√°logos tchecos
+DanishLanguage=Menus e di√°logos dinamarqueses
+DutchLanguage=Menus e di√°logos holandeses
+FinnishLanguage=Menus e di√°logos finland√™s
+FrenchLanguage=Menus e di√°logos franceses
+GalicianLanguage=Menus e di√°logos galegos
+GermanLanguage=Menus e di√°logos alem√£es
+GreekLanguage=Menus e di√°logos gregos
+HungarianLanguage=Menus e di√°logos h√∫ngaros
+ItalianLanguage=Menus e di√°logos italianos
+JapaneseLanguage=Menus e di√°logos japoneses
+KoreanLanguage=Menus e di√°logos coreanos
+LithuanianLanguage=Menus e di√°logos lituanos
+NorwegianLanguage=Menus e di√°logos noruegueses
+PersianLanguage=Menus e di√°logos persas
+PolishLanguage=Menus e di√°logos poloneses
+PortugueseBrazilLanguage=Menus e di√°logos portugueses (brasileiros)
+PortugueseLanguage=Menus e di√°logos portugueses
+RomanianLanguage=Menus e di√°logos romenos
+RussianLanguage=Menus e di√°logos russos
+SerbianLanguage=Menus e di√°logos s√©rvios
+SinhalaLanguage=Menus e di√°logos cingal√™s
+SlovakLanguage=Menus e di√°logos eslovacos
+SlovenianLanguage=Menus e di√°logos eslovenos
+SpanishLanguage=Menus e di√°logos espanh√≥is
+SwedishLanguage=Menus e di√°logos suecos
+TurkishLanguage=Menus e di√°logos turcos
+UkrainianLanguage=Menus e di√°logos ucranianos
 
 ;Tasks
-ExplorerContextMenu=&Ativar a integraÁ„o com o menu de contexto do explorer
+ExplorerContextMenu=&Ativar a integra√ß√£o com o menu de contexto do explorer
 IntegrateTortoiseCVS=Integrar com o &TortoiseCVS
 IntegrateTortoiseGit=Integrar com o To&rtoiseGit
 IntegrateTortoiseSVN=Integrar com o T&ortoiseSVN
 IntegrateClearCase=Integrar com o Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Adicionar a pasta do WinMerge no seu caminho do sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=Uni√£o tripla
+ThreeWayMergeWizardPageDescription=Voc√™ usa o WinMerge como uma ferramenta de uni√£o tripla pro TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Registra o WinMerge como uma ferramenta de uni√£o tripla
+MergeAtRightPane=Unir no painel direito
+MergeAtCenterPane=Unir no painel do centro
+MergeAtLeftPane=Unir no painel esquerdo
+AutoMergeAtStartup=Auto-unir no tempo da inicializa√ß√£o
 
 ;Icon Labels
-ReadMe=Leia Me
-UsersGuide=Guia do Usu·rio
+ReadMe=Leia-me
+UsersGuide=Guia do Usu√°rio
 ViewStartMenuFolder=&Visualizar a Pasta do Menu Iniciar do WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=O instalador detectou que vocÍ mudou o local do seu menu iniciar de "s" para "s". VocÍ gostaria de apagar a pasta anterior do menu iniciar?
+DeletePreviousStartMenu=O instalador detectou que voc√™ mudou o local do seu menu iniciar de "s" para "s". Voc√™ gostaria de apagar a pasta anterior do menu iniciar?
 
 ; Project file description
 ProjectFileDesc=Arquivo do Projeto do WinMerge
