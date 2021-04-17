@@ -479,7 +479,7 @@ protected:
     virtual void OnDropSource (DROPEFFECT de);
     bool IsDraggingText () const;
 
-    virtual COLORREF GetColor (int nColorIndex);
+    virtual COLORREF GetColor (int nColorIndex) const;
     virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, bool & bDrawWhitespace);
     virtual bool GetItalic (int nColorIndex);
@@ -618,6 +618,7 @@ protected:
     //END SW
 
     std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
+    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 

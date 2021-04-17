@@ -129,7 +129,7 @@ public:
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
 	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
-	virtual COLORREF GetColor(int nColorIndex) override;
+	virtual COLORREF GetColor(int nColorIndex) const override;
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags

@@ -698,9 +698,9 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	return blocks;
 }
 
-COLORREF CMergeEditView::GetColor(int nColorIndex)
+COLORREF CMergeEditView::GetColor(int nColorIndex) const
 {
-	switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
+	switch (nColorIndex & ~COLORINDEX_MASK)
 	{
 	case COLORINDEX_HIGHLIGHTBKGND1:
 		return m_cachedColors.clrSelWordDiff;
