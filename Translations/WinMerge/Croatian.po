@@ -2757,6 +2757,10 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
+#, c-format
 msgid "Merge"
 msgstr "Usporedo"
 

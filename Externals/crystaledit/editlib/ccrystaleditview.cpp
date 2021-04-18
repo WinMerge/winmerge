@@ -1932,9 +1932,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x, y);
-              SetCursorPos (pt);
               SetSelection (pt, pt);
               SetAnchor (pt);
+              SetCursorPos (pt);
               EnsureVisible (pt);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -1966,9 +1966,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                   m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                              pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
                   CPoint pt (x, y);
-                  SetCursorPos (pt);
                   SetSelection (pt, pt);
                   SetAnchor (pt);
+                  SetCursorPos (pt);
                   EnsureVisible (pt);
                   // m_pTextBuffer->FlushUndoGroup (this);
                 }
@@ -1990,9 +1990,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                                          pszInsertStr, 1, y, x, CE_ACTION_AUTOINDENT);
               ptCursorPos.x = x + 1;
               ptCursorPos.y = y;
-              SetCursorPos (ptCursorPos);
               SetSelection (ptCursorPos, ptCursorPos);
               SetAnchor (ptCursorPos);
+              SetCursorPos (ptCursorPos);
               EnsureVisible (ptCursorPos);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -2035,9 +2035,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x - 1,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x + 1, y);
-              SetCursorPos (pt);
               SetSelection (pt, pt);
               SetAnchor (pt);
+              SetCursorPos (pt);
               EnsureVisible (pt);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -2197,9 +2197,9 @@ OnEditAutoExpand ()
                   ptCursorPos.x = x;
                   ptCursorPos.y = y;
                   ASSERT_VALIDTEXTPOS (ptCursorPos);
-                  SetCursorPos (ptCursorPos);
                   SetSelection (ptCursorPos, ptCursorPos);
                   SetAnchor (ptCursorPos);
+                  SetCursorPos (ptCursorPos);
                   OnEditOperation (CE_ACTION_TYPING, pszExpand, _tcslen(pszExpand));
                   ptCursorPos = GetCursorPos ();
                   if (pszSlash == nullptr)
@@ -2636,8 +2636,8 @@ void CCrystalEditView::OnEditGotoLastChange()
     return;
 
   // goto last change
-  SetCursorPos( ptLastChange );
   SetSelection( ptLastChange, ptLastChange );
+  SetCursorPos( ptLastChange );
   EnsureVisible( ptLastChange );
 }
 //END SW

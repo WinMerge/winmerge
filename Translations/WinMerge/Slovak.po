@@ -2258,6 +2258,10 @@ msgstr "Riadok: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Riad: %s  Stĺ: %d/%d  Zn: %d/%d"
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "Zlúčiť"
 

@@ -2252,6 +2252,10 @@ msgstr "Línea: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "Combinar"
 

@@ -2784,6 +2784,10 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "줄: %s  열: %d/%d  문자: %d/%d"
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
+#, c-format
 msgid "Merge"
 msgstr "병합"
 

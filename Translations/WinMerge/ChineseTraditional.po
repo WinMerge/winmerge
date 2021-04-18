@@ -2769,6 +2769,10 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
+#, c-format
 msgid "Merge"
 msgstr "合併"
 

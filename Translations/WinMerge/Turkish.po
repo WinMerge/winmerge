@@ -2245,6 +2245,10 @@ msgstr "Satır: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Satır: %s  Sütun: %d/%d  Karakter: %d/%d"
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "Birleştir"
 

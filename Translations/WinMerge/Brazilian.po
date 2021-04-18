@@ -2790,6 +2790,10 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Lin: %s  Col: %d/%d  Car: %d/%d"
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
+#, c-format
 msgid "Merge"
 msgstr "Unir"
 

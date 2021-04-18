@@ -2682,6 +2682,10 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Zeile: %s  Spalte: %d/%d  Zeichen: %d/%d"
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
+#, c-format
 msgid "Merge"
 msgstr "Merge"
 

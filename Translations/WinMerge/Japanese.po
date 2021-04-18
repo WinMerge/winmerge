@@ -2237,6 +2237,10 @@ msgstr "行: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  選択: %d | %d"
+
 msgid "Merge"
 msgstr "マージ"
 
