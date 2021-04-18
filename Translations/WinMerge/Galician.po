@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-04-01 11:58+0200\n"
+"PO-Revision-Date: 2021-04-18 17:49+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -2792,7 +2792,7 @@ msgstr "Lñ: %s  Col: %d/%d  Car: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Sel: %d | %d"
 
 #, c-format
 msgid "Merge"
