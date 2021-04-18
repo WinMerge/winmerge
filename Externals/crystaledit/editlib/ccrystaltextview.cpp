@@ -596,12 +596,11 @@ PreCreateWindow (CREATESTRUCT & cs)
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView drawing
 
-void CCrystalTextView::
-GetSelection (CPoint & ptStart, CPoint & ptEnd)
+std::pair<CPoint, CPoint> CCrystalTextView::
+GetSelection ()
 {
   PrepareSelBounds ();
-  ptStart = m_ptDrawSelStart;
-  ptEnd = m_ptDrawSelEnd;
+  return { m_ptDrawSelStart, m_ptDrawSelEnd };
 }
 
 bool CCrystalTextView::
@@ -651,9 +650,7 @@ GetColumnSelection (int nLineIndex, int & nSelBegin, int & nSelEnd)
 void CCrystalTextView::
 GetFullySelectedLines(int & firstLine, int & lastLine)
 {
-  CPoint ptStart;
-  CPoint ptEnd;
-  GetSelection(ptStart, ptEnd);
+  auto [ptStart, ptEnd] = GetSelection ();
 
   if (ptStart.x == 0)
     firstLine = ptStart.y;
@@ -5850,8 +5847,7 @@ GetSearchPos(DWORD dwSearchFlags)
   CPoint ptSearchPos;
   if (IsSelection())
     {
-      CPoint ptStart, ptEnd;
-      GetSelection(ptStart, ptEnd);
+      auto [ptStart, ptEnd] = GetSelection ();
       if( dwSearchFlags & FIND_DIRECTION_UP)
         ptSearchPos = ptStart;
       else
@@ -5919,8 +5915,7 @@ OnEditFind ()
   //  Take the current selection, if any
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       if (ptSelStart.y == ptSelEnd.y)
         GetText (ptSelStart, ptSelEnd, m_pFindTextDlg->m_sText);
     }
@@ -5972,8 +5967,7 @@ OnEditRepeat ()
     {
       if (IsSelection())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          auto [ptSelStart, ptSelEnd] = GetSelection ();
           GetText (ptSelStart, ptSelEnd, sText);
         }
       else
@@ -6033,8 +6027,7 @@ OnEditMark ()
   //  Take the current selection, if any
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto[ptSelStart, ptSelEnd] = GetSelection ();
       if (ptSelStart.y == ptSelEnd.y)
         GetText (ptSelStart, ptSelEnd, sText);
     }
@@ -6887,8 +6880,7 @@ void CCrystalTextView::OnEditFindIncremental( bool bFindNextOccurence /*= false*
   // calculate start point for search
   if( bFindNextOccurence )
     {
-      CPoint	selStart, selEnd;
-      GetSelection( selStart, selEnd );
+      auto[selStart, selEnd] = GetSelection ();
       m_incrementalSearchStartPos = (m_bIncrementalSearchBackward)? selStart : selEnd;
     }
 

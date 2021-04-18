@@ -296,9 +296,9 @@ protected :
     bool IsSelection () const;
     bool IsInsideSelection (const CPoint & ptTextPos);
     bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
-    void GetSelection (CPoint & ptStart, CPoint & ptEnd);
-    std::pair<CPoint, CPoint> GetSelection ()
-      { CPoint ptStart, ptEnd;  GetSelection(ptStart, ptEnd); return { ptStart, ptEnd }; }
+    std::pair<CPoint, CPoint> GetSelection ();
+    void GetSelection (CPoint & ptStart, CPoint & ptEnd)
+      { std::tie(ptStart, ptEnd) = GetSelection(); }
     void GetFullySelectedLines(int & firstLine, int & lastLine);
     virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
 

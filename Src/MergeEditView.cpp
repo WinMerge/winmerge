@@ -300,9 +300,8 @@ CString CMergeEditView::GetLineText(int idx)
  */
 CString CMergeEditView::GetSelectedText()
 {
-	CPoint ptStart, ptEnd;
 	CString strText;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (ptStart != ptEnd)
 		GetTextWithoutEmptys(ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, strText);
 	return strText;
@@ -415,8 +414,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		return;
 
 	int firstLine, lastLine;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (pptStart != nullptr)
 		ptStart = *pptStart;
 	if (pptEnd != nullptr)
@@ -538,8 +536,7 @@ void CMergeEditView::GetSelectedDiffs(int & firstDiff, int & lastDiff)
 		return;
 
 	int firstLine, lastLine;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	firstLine = ptStart.y;
 	lastLine = ptEnd.y;
 
@@ -568,8 +565,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 	CMergeDoc *pDoc = GetDocument();
 	std::map<int, std::vector<int>> ret;
 	std::map<int, std::vector<int> *> list;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
 	{
 		if (pDoc->m_diffList.LineToDiff(nLine) != -1)
@@ -1163,8 +1159,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditCopy()
 {
 	CMergeDoc * pDoc = GetDocument();
-	CPoint ptSelStart, ptSelEnd;
-	GetSelection(ptSelStart, ptSelEnd);
+	auto [ptSelStart, ptSelEnd] = GetSelection();
 
 	// Nothing selected
 	if (ptSelStart == ptSelEnd)
@@ -1201,9 +1196,8 @@ void CMergeEditView::OnEditCut()
 	if (!QueryEditable())
 		return;
 
-	CPoint ptSelStart, ptSelEnd;
 	CMergeDoc * pDoc = GetDocument();
-	GetSelection(ptSelStart, ptSelEnd);
+	auto [ptSelStart, ptSelEnd] = GetSelection();
 
 	// Nothing selected
 	if (ptSelStart == ptSelEnd)
@@ -1950,8 +1944,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		}
 	}
 
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (IsSelection() || pDoc->EqualCurrentWordDiff(srcPane, ptStart, ptEnd))
 	{
 		if (!m_bRectangularSelection)
@@ -2023,8 +2016,7 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		// If one or more diffs inside selection OR
 		// there is an active diff OR
 		// cursor is inside diff
-		CPoint ptStart, ptEnd;
-		GetSelection(ptStart, ptEnd);
+		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
 			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
@@ -3808,14 +3800,12 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
  */
 void CMergeEditView::OnEditCopyLineNumbers()
 {
-	CPoint ptStart;
-	CPoint ptEnd;
 	CString strText;
 	CString strLine;
 	CString strNumLine;
 
 	CMergeDoc *pDoc = GetDocument();
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 
 	// Get last selected line (having widest linenumber)
 	int line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
@@ -4637,8 +4627,7 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 		if (EnsureInDiff(pt))
 			SetCursorPos(pt);
 
-		CPoint ptSelStart, ptSelEnd;
-		GetSelection(ptSelStart, ptSelEnd);
+		auto [ptSelStart, ptSelEnd] = GetSelection();
 		if (EnsureInDiff(ptSelStart) || EnsureInDiff(ptSelEnd))
 			SetSelection(ptSelStart, ptSelEnd);
 	}
