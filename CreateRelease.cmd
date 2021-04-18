@@ -40,6 +40,10 @@ for /d %%d in (Build\x64\Release\?.*.*) do (
   mkdir ..\..\Build\Releases\PDB\%%~nxd\x64 2> NUL
   xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\x64\
 )
+for /d %%d in (Build\ARM64\Release\?.*.*) do (
+  mkdir ..\..\Build\Releases\PDB\%%~nxd\ARM64 2> NUL
+  xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\ARM64\
+)
 popd
 
 call UploadToVirusTotal.cmd

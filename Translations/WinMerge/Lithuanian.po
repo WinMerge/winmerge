@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-28 10:51+0000\n"
-"PO-Revision-Date: 2021-03-29 08:08+0200\n"
+"POT-Creation-Date: 2021-03-31 21:55+0000\n"
+"PO-Revision-Date: 2021-04-01 08:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1479,10 +1479,10 @@ msgstr "Numatytoji koduotė"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Parinkite numatytąją koduotę, kuri bus naudojama įkeliant ne Unicode failus:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "Aptikti koduotę šiems failams: .html, .rc, .xml\nReikės restartuoti sesiją."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
 
 msgid "System codepage"
@@ -2129,6 +2129,10 @@ msgstr "Eilutė: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d"
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "Sulieti"
 
@@ -2761,10 +2765,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Ar norite pereiti prie praeito puslapio?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Ar norite pereiti prie pirmo failo?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Ar norite pereiti prie paskutinio failo?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
@@ -2976,14 +2980,14 @@ msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPirmas failas"
 
-msgid "\nNext File"
-msgstr "\nKitas failas"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nKitas failas (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nPaskutinis failas"
 
-msgid "\nPrevious File"
-msgstr "\nPraeitas failas"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
@@ -3235,4 +3239,3 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
-

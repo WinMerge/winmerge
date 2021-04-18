@@ -1482,14 +1482,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
@@ -2237,6 +2237,10 @@ msgstr "行: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
 
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  選択: %d | %d"
+
 msgid "Merge"
 msgstr "マージ"
 
@@ -2945,7 +2949,7 @@ msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますが?"
+msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #, c-format
 msgid ""
@@ -3339,10 +3343,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"次のファイル"
+"次のファイル (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3353,10 +3357,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"前のファイル"
+"前のファイル (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
@@ -3618,4 +3622,3 @@ msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
-

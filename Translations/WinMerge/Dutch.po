@@ -1490,14 +1490,14 @@ msgstr ""
 "Unicodebestanden:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml\n"
 "Herstarten sessie noodzakelijk."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
@@ -2260,6 +2260,10 @@ msgstr "Regel: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Regel: %s  Kolom: %d/%d  Teken: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Samenvoegen"
@@ -3386,10 +3390,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Volgend bestand"
+"Volgend bestand (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3400,10 +3404,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Vorig bestand"
+"Vorig bestand (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3671,4 +3675,3 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
-

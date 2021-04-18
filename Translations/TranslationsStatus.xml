@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-03-31</update>
+  <update>2021-04-18</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -36,9 +36,9 @@
       <update>2021-02-14</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1027</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>3</untranslated>
       </strings>
       <translators>
         <translator>
@@ -229,10 +229,10 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2021-03-31</update>
+      <update>2021-04-18</update>
       <strings>
-        <count>1030</count>
-        <translated>1030</translated>
+        <count>1031</count>
+        <translated>1031</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>
@@ -254,9 +254,9 @@
       <update>2021-02-10</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1027</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>3</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -288,12 +288,12 @@
     <translation>
       <language>Galician</language>
       <file>Galician.po</file>
-      <update>2021-03-13</update>
+      <update>2021-04-01</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -308,12 +308,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-02-27</update>
+      <update>2021-04-04</update>
       <strings>
         <count>1030</count>
-        <translated>1027</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -353,9 +353,9 @@
       <update>2021-03-15</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1027</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>3</untranslated>
       </strings>
       <translators>
         <translator>
@@ -407,9 +407,9 @@
       <update>2021-03-31</update>
       <strings>
         <count>1030</count>
-        <translated>1030</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>0</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -424,9 +424,9 @@
       <update>2021-03-30</update>
       <strings>
         <count>1030</count>
-        <translated>999</translated>
+        <translated>998</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>31</untranslated>
+        <untranslated>32</untranslated>
       </strings>
       <translators>
         <translator>
@@ -454,12 +454,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-03-29</update>
+      <update>2021-04-01</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -512,9 +512,9 @@
       <update></update>
       <strings>
         <count>1030</count>
-        <translated>1019</translated>
+        <translated>1018</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>11</untranslated>
+        <untranslated>12</untranslated>
       </strings>
       <translators>
         <translator>
@@ -537,12 +537,12 @@
     <translation>
       <language>Portuguese</language>
       <file>Portuguese.po</file>
-      <update>2021-03-11</update>
+      <update>2021-04-10</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>
@@ -580,9 +580,9 @@
       <update>2021-03-28</update>
       <strings>
         <count>1030</count>
-        <translated>1017</translated>
+        <translated>1016</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>13</untranslated>
+        <untranslated>14</untranslated>
       </strings>
       <translators>
         <translator>
@@ -671,9 +671,9 @@
       <update>2021-03-02</update>
       <strings>
         <count>1030</count>
-        <translated>1028</translated>
+        <translated>1027</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>3</untranslated>
       </strings>
       <translators>
         <translator>
@@ -722,12 +722,12 @@
     <translation>
       <language>Swedish</language>
       <file>Swedish.po</file>
-      <update>2019-10-07</update>
+      <update>2021-04-10</update>
       <strings>
         <count>1030</count>
-        <translated>917</translated>
+        <translated>1029</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>113</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>

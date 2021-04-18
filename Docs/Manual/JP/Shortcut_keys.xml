@@ -169,7 +169,13 @@
         <row>
           <entry><keycap>Shift</keycap>+<keycap>F7</keycap></entry>
 
-          <entry>Go to previous conflict</entry>
+          <entry>前のコンフリクトへ移動</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>前のファイルへ移動</entry>
         </row>
 
         <row>
@@ -181,7 +187,13 @@
         <row>
           <entry><keycap>Shift</keycap>+<keycap>F8</keycap></entry>
 
-          <entry>Go to next conflict</entry>
+          <entry>次のコンフリクトへ移動</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>次のファイルへ移動</entry>
         </row>
 
         <row>

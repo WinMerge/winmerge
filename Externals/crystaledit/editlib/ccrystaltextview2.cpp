@@ -104,10 +104,10 @@ MoveLeft (bool bSelect)
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -137,10 +137,10 @@ MoveRight (bool bSelect)
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -171,10 +171,10 @@ MoveWordLeft (bool bSelect)
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -203,10 +203,10 @@ MoveWordRight (bool bSelect)
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -244,10 +244,10 @@ MoveUp (bool bSelect)
         m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
     }
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -288,10 +288,10 @@ MoveDown (bool bSelect)
         m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
     }
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -321,10 +321,10 @@ MoveHome (bool bSelect)
     m_ptCursorPos.x = nHomePos;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -339,10 +339,10 @@ MoveEnd (bool bSelect)
   *///END SW
   m_nIdealCharPos = INT_MAX;
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -378,10 +378,10 @@ MovePgUp (bool bSelect)
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);    //todo: no vertical scroll
 
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -420,10 +420,10 @@ MovePgDn (bool bSelect)
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);    //todo: no vertical scroll
 
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -433,10 +433,10 @@ MoveCtrlHome (bool bSelect)
   m_ptCursorPos.y = 0;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -446,10 +446,10 @@ MoveCtrlEnd (bool bSelect)
   m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
-  UpdateCaret ();
   if (!bSelect)
     m_ptAnchor = m_ptCursorPos;
   SetSelection (m_ptAnchor, m_ptCursorPos);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -644,9 +644,9 @@ OnLButtonDown (UINT nFlags, CPoint point)
             }
 
           m_ptCursorPos = ptEnd;
-          UpdateCaret ();
           EnsureVisible (m_ptCursorPos);
           SetSelection (ptStart, ptEnd);
+          UpdateCaret ();
 
           startDragging();
 
@@ -696,9 +696,9 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
           m_ptAnchor = ptStart;
           m_ptCursorPos = ptEnd;
-          UpdateCaret ();
           EnsureVisible (m_ptCursorPos);
           SetSelection (ptStart, ptEnd);
+          UpdateCaret ();
 
           startDragging();
 
@@ -791,8 +791,8 @@ OnMouseMove (UINT nFlags, CPoint point)
               m_ptCursorPos = ptNewCursorPos;
             }
           EnsureVisible(m_ptCursorPos);
-          UpdateCaret ();
           SetSelection (ptNewCursorPos, ptEnd);
+          UpdateCaret ();
           return;
         }
 
@@ -818,8 +818,8 @@ OnMouseMove (UINT nFlags, CPoint point)
 
       m_ptCursorPos = ptEnd;
       EnsureVisible(m_ptCursorPos);
-      UpdateCaret ();
       SetSelection (ptStart, ptEnd);
+      UpdateCaret ();
     }
 
   if (m_bPreparingToDrag)
@@ -872,8 +872,8 @@ OnLButtonUp (UINT nFlags, CPoint point)
       AdjustTextPoint (point);
       m_ptCursorPos = ClientToText (point);
       EnsureVisible (m_ptCursorPos);
-      UpdateCaret ();
       SetSelection (m_ptCursorPos, m_ptCursorPos);
+      UpdateCaret ();
     }
 
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);
@@ -1010,9 +1010,9 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
 
       m_ptAnchor = ptStart;
       m_ptCursorPos = ptEnd;
-      UpdateCaret ();
       EnsureVisible (m_ptCursorPos);
       SetSelection (ptStart, ptEnd);
+      UpdateCaret ();
       SetCapture ();
       m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
       ASSERT (m_nDragSelTimer != 0);

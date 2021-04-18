@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-11-22 04:53+0000\n"
-"PO-Revision-Date: 2019-10-07 10:13+0200\n"
+"PO-Revision-Date: 2021-04-10 08:33+0200\n"
 "Last-Translator: pgert <pgert at yahoo.se>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -47,22 +47,22 @@ msgid "Copy fro&m Right"
 msgstr "Kopiera från Höger"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Kopiera Valda Linjer till Höger"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Kopiera Valda Linjer till Vänster"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Kopiera Valda Linjer från Vänster"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Kopiera Valda Linjer från Höger"
 
 msgid "&Select Line Difference\tF4"
 msgstr "Markera Radskillnad\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Lägg till denna skillnad till Ersättningsfilter"
 
 #, c-format
 msgid "&Undo"
@@ -88,10 +88,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Gå till ...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Gå till Flyttad Linje Mellan Vänster och Mittern\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Gå till Flyttad Linje Mellan Mittern och Höger\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -119,7 +119,7 @@ msgstr "SkillnadsBlockStorlek"
 
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr "Åsidosätt FärgSkillnader (FärgSkillnadsTröskel)"
+msgstr "Åsidosätt Färgskillnader (FärgskillnadsTröskel)"
 
 msgid "Ins&ertion/Deletion Detection"
 msgstr "Upptäckning av Infogning/Radering"
@@ -152,7 +152,7 @@ msgstr "Zoom"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -189,26 +189,26 @@ msgstr "Flytta"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr "Anpassa Motvikt"
+msgstr "Anpassa Offset"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "Lodrät Wipe"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "Vågrät Wipe"
 
 msgid "&Rectangle Select"
-msgstr ""
+msgstr "Rektangel Välj"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr "Ställ in BakgrundsFärg"
+msgstr "Ställ in Bakgrundsfärg"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "Vector Avbild Skalning"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Jämför Extraherad Text Från Avbild"
 
 #, c-format
 msgid "&File"
@@ -223,7 +223,7 @@ msgid "&Text"
 msgstr "Text"
 
 msgid "T&able"
-msgstr ""
+msgstr "Tabell"
 
 #, c-format
 msgid "&Binary"
@@ -746,7 +746,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Växla Samtliga/0-9 Rader\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "Invertera (Dölj Olika Linjer)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -757,7 +757,7 @@ msgid "&View Whitespace"
 msgstr "Visa Mellanrum"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Visa EOL"
 
 #, c-format
 msgid "Vie&w Line Differences"
@@ -870,7 +870,7 @@ msgid "Cop&y All to Left"
 msgstr "Kopiera Allt till Vänster"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr ""
+msgstr "Auto-ena\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -897,7 +897,7 @@ msgid "Comp&are"
 msgstr "Jämför"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Jämför icke-Vågrätt ..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
@@ -1000,7 +1000,7 @@ msgid "with &External Editor"
 msgstr "med Extern Redigerare"
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "Öppna Föräldermapp ..."
 
 #, c-format
 msgid "Open Midd&le"
@@ -1276,7 +1276,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "Skrolla automatiskt till första skillnaden"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Skrolla automatiskt till första skillnaden i kön"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Stäng fönster med ''Esc'':"
@@ -1286,7 +1286,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Förgiltiga automatikt sökvägar i Öppna-dialogen"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Enskild upplaga läge:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1384,7 +1384,7 @@ msgid "Wh&ole file"
 msgstr "Hela filen"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Hitta Föregående"
 
 #, c-format
 msgid "&Replace"
@@ -1408,14 +1408,14 @@ msgstr "Ny"
 
 #, c-format
 msgid "&Background color:"
-msgstr "BakgrundsFärg:"
+msgstr "Bakgrundsfärg:"
 
 #, c-format
 msgid "&Apply"
 msgstr "Tillämpa"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Linjefilter"
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1434,26 +1434,26 @@ msgid "Remove"
 msgstr "Ta bort"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Ersättningsfilter"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "Ändringarna som åskådliggörs i panelerna som de listade paren nedanför kommer frånses och markeras som obetydliga. Patchar påverkas ej."
 
 msgid "Enable"
-msgstr ""
+msgstr "Möjliggör"
 
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 msgid "Clear"
-msgstr ""
+msgstr "Rensa"
 
 #, c-format
 msgid "Colors"
 msgstr "Färger"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Färgschema:"
 
 #, c-format
 msgid "Background"
@@ -1714,7 +1714,7 @@ msgid "Ignore blan&k lines"
 msgstr "Åsidosätt blanka rader"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Frånse kommentarskillnader"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1731,7 +1731,7 @@ msgid "Enable indent &heuristic"
 msgstr "Möjliggör IndragUppfinningsrikhet"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Avmarkera helt de åsidosatta skillnaderna"
 
 #, c-format
 msgid "Editor"
@@ -1786,10 +1786,10 @@ msgid "W&ord break characters:"
 msgstr "Ordbrytningstecken:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "Alstringsläge:"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Filfilter"
 
 msgid "Test..."
 msgstr "Testa..."
@@ -1866,12 +1866,16 @@ msgstr "FörvalsTextKodning"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Välj FörvalsTextKod att användas när icke-Unicodefiler öppnas:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
 msgstr ""
-"Urskilj TextKodning info för dessa filer: .html, .rc, .xml\n"
+"Urskilj TextKodning info för dessa slags filer: .html, .rc, .xml\n"
 "- behöver omstartning av sessionen."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
 msgstr ""
 "Urskilj TextKodning för textfiler med mlang.dll\n"
 "- behöver omstartning av sessionen."
@@ -2124,32 +2128,32 @@ msgid "&Close"
 msgstr "Stäng"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabell"
 
 msgid "File type"
-msgstr ""
+msgstr "Filtyp"
 
 msgid "&CSV"
-msgstr ""
+msgstr "CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Skräddarsydda Avgränsardelade Värden"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Avgränsningsfigur:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Tillåt nya linjer i citat"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Citatfigur:"
 
 #, c-format
 msgid "&Use customized text colors"
-msgstr "Använd anpassade TextFärger"
+msgstr "Använd anpassade textfärger"
 
 #, c-format
 msgid "Whitespace:"
@@ -2302,20 +2306,24 @@ msgstr "Högsta SnabbJämförelseStorlek (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "Högsta Binär JämförelseStorlek (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nAntal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+"\n"
+"Antal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "CSV Filmönster:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "TSV Filmönster:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Skräddarsydda Avgränsardelade Värden"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Filmönster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2349,10 +2357,10 @@ msgid "Image File &Patterns:"
 msgstr "AvbildsFilmönster:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Möjliggör avbildsjämförelse i mappjämförelse"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCR resultat:"
 
 #, c-format
 msgid "&Hex View"
@@ -2467,12 +2475,8 @@ msgstr ""
 "WinMerge.MappJämförelse\n"
 "WinMerge MappJämförelse"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; "
-"see the GNU General Public License in the Help menu for details."
-msgstr ""
-"WinMerge kommer med ABSOLUT INGA GARANTIER. Detta är fri programvara och Ni är välkommen att vidaredistribuera den under vissa "
-"omständigheter; se GNU General Public License i Hjälpmenyn för detaljer."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge kommer med ABSOLUT INGA GARANTIER. Detta är fri programvara och Ni är välkommen att vidaredistribuera den under vissa omständigheter; se GNU General Public License i Hjälpmenyn för detaljer."
 
 #, c-format
 msgid "&Abort"
@@ -2530,7 +2534,7 @@ msgid "Syntax"
 msgstr "Syntax"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Färgschema"
 
 msgid "Folder Compare"
 msgstr "MappJämförelse"
@@ -2560,10 +2564,10 @@ msgid "To right:"
 msgstr "Till höger:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Från mittern:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Till mittern:"
 
 #, c-format
 msgid "Version %1"
@@ -2623,7 +2627,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alla filer (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Filtyp"
 
 #, c-format
 msgid "Extension"
@@ -2725,7 +2729,10 @@ msgstr "Filterfilen finns redan. Vill Ni skriva över befintlig filterfil?"
 msgid "Regular expression"
 msgstr "Reguljärt uttryck"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "Filtren blev aktualiserade Vill Ni aktualisera alla öppna MappJämförelser?\n"
 "\n"
@@ -2752,7 +2759,7 @@ msgid "Untitled right"
 msgstr "Namnlös höger"
 
 msgid "Base File"
-msgstr ""
+msgstr "Huvudfil"
 
 #, c-format
 msgid "Theirs File"
@@ -2763,7 +2770,7 @@ msgid "Mine File"
 msgstr "Min fil"
 
 msgid "Original File"
-msgstr ""
+msgstr "Orginalfil"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2776,6 +2783,10 @@ msgstr "Rad: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -2894,8 +2905,16 @@ msgstr ""
 "%1\n"
 "är inte en Konfliktfil."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"Ni är på väg att jämföra mycket stora filer.\n"
+"Att visa filinnehållet kräver en mycket stor mängd minne.\n"
+"Vill Ni bara ha visat jämförelseresultatet, och inte innehållet i filerna?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2926,7 +2945,13 @@ msgstr ""
 "Vill Ni fortsätta i alla fall?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Det gick inte att spara filen.\n"
 "%1\n"
@@ -2947,11 +2972,21 @@ msgstr ""
 "\n"
 "Originalfilen blir inte ändrad.\n"
 "\n"
-"Vill Ni spara den uppackade versionen till en annan fil?"
+"Vill Ni spara den opackade versionen till en annan fil?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
+"Insticksprogram '%2' kan inte packa Era ändringar av mitterfilen tillbaks in i '%1'.\n"
+"\n"
+"Orginalfilen blir inte ändrad.\n"
+"\n"
+"Vill Ni spara den opackade versionen till en annan fil?"
 
 #, c-format
 msgid ""
@@ -2965,7 +3000,7 @@ msgstr ""
 "\n"
 "Originalfilen blir inte ändrad.\n"
 "\n"
-"Vill Ni spara den uppackade versionen till en annan fil?"
+"Vill Ni spara den opackade versionen till en annan fil?"
 
 #, c-format
 msgid ""
@@ -2987,7 +3022,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"är markerad som endast läsbar. Vill Ni ändå ändra i den?"
+"är markerad som endast läsbar. Vill Ni överskrida detta?"
 
 #, c-format
 msgid ""
@@ -3406,10 +3441,10 @@ msgid "Text files are different"
 msgstr "Textfiler är olika"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Avbildsfilerna är helt lika"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Avbildsfilerna är olika"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3449,7 +3484,7 @@ msgstr "Mitters ändringsdatum."
 
 #, c-format
 msgid "File's extension."
-msgstr "Filsuffix."
+msgstr "Filtillägg."
 
 #, c-format
 msgid "Left file size in bytes."
@@ -3587,7 +3622,7 @@ msgid "The report has been created successfully."
 msgstr "Rapporten har skapats."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Kan ej lägga till synkroniseringmarkör till denna linje."
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3604,14 +3639,18 @@ msgstr "Ett fel inträffade under jämförelsen av filerna."
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Tillfälliga filer kunde inte skapas. Kontrollera inställningarna för Era tillfälliga sökvägar."
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Dessa filer har olika radslutstyper.\n"
 "\n"
 "Vill Ni betrakta alla radslutstyper som likvärdiga för denna jämförelse?\n"
 "\n"
-"Bemärk: Om Ni alltid vill betrakta alla radslutstyper som likvärdiga, så markera alternativet 'Åsidosätt RadslutsSkillnader (Windows/"
-"Unix/Mac)' i Jämför-fliken i InställningsDialogen (finns under Redigera/Inställningar)."
+"Bemärk: Om Ni alltid vill betrakta alla radslutstyper som likvärdiga, så markera alternativet 'Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)' i Jämför-fliken i InställningsDialogen (finns under Redigera/Inställningar)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3652,15 +3691,18 @@ msgid "Do you want to move to the previous page?"
 msgstr "Vill Ni växla till föregående sida?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Vill Ni växla till den första filen?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Vill Ni växla till den sista filen?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Vänster (cp%d) och Höger (cp%d) fil har olika TextKodning.\n"
+"Vänster (cp%d) och Höger (cp%d) fil har olika TextKodningar.\n"
 "Att visa  filerna i deras egna Kodning ger en bättre visning men sammanfogning/kopiering blir farligt.\n"
 "Vill Ni att båda filer betraktas som att de är i Windows förvalda Kodning (anrådes)?"
 
@@ -3732,10 +3774,10 @@ msgid "Patch file successfully written."
 msgstr "Patchfilen sparad."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. objekt ej funnen!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. objekt ej funnen!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3790,7 +3832,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Mappen finns inte."
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "Arkivstöd är inte möjliggjort.\n"
 "Alla krävda komponenter (7-Zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.\n"
@@ -3844,10 +3889,10 @@ msgstr "Ingen"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Markeringsfärg %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Nytt Mönster"
 
 #, c-format
 msgid "Type"
@@ -3968,14 +4013,14 @@ msgid ""
 "All Right"
 msgstr ""
 "\n"
-"Allt Höger"
+"Helt Höger"
 
 msgid ""
 "\n"
 "All Left"
 msgstr ""
 "\n"
-"Allt Vänster"
+"Helt Vänster"
 
 msgid ""
 "\n"
@@ -3984,17 +4029,33 @@ msgstr ""
 "\n"
 "Auto Sammanfoga (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
+msgid ""
+"\n"
+"First File"
 msgstr ""
+"\n"
+"Första Filen"
 
-msgid "\nNext File"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
 msgstr ""
+"\n"
+"Nästa Fil (Ctrl+F8)"
 
-msgid "\nLast File"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
+"\n"
+"Sista Filen"
 
-msgid "\nPrevious File"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Föregående Fil (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Den valda uppackaren används för båda filerna (bara en fil behöver ha filsuffixet)."
@@ -4051,7 +4112,7 @@ msgid "G&o to Line %1"
 msgstr "Gå till rad %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Gå till Flyttad Linje\tCtrl+Shift+G"
 
 #, c-format
 msgid "Disabled"
@@ -4102,7 +4163,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Möjliggör Auto Högsta Bredd"
 
 msgid "Frhed is not installed."
-msgstr "Frhed är inte installerad"
+msgstr "Frhed är inte installerad."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4122,160 +4183,159 @@ msgstr ""
 "$linenum: Linjenumret för markörens nuvarande position"
 
 msgid "default"
-msgstr ""
+msgstr "förval"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimal"
 
 msgid "patience"
-msgstr ""
+msgstr "tålamod"
 
 msgid "histogram"
-msgstr ""
+msgstr "histogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirektSkriv Förval"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirektSkriv Aliaserat"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirektSkriv GDI Klassisk"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirektSkriv GDI Naturlig"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirektSkriv Naturlig"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirektSkriv Naturlig Symmetrisk"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI barnfönster eller huvudfönster"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "MDI barnfönster endast"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Skillnad"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Markera"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Blinka"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blockstorlek"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Block Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD Tröskel"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Infoga/Radera Upptäckning"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Lodrät"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Vågrät"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Övertäckning"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alpha Blend"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alpha Animation"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Sida:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Dist: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Dist: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr ""
+msgstr "Sida: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Rc: (%d, %d)  "
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Redigera här>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Ingen skillnad att välja funnen"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Inga skillnader funna att lägga till Ersättningsfilter"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "Paret är redan i listan av Ersättningsfilter"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Lägg till denna skillnad till Ersättningsfilter?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Endast text"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Linje-för-linje position och text"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Ord-för-ord position och text"
 
 #, c-format
 msgid "Allow only one instance to run"
-msgstr "Tillåt bara en upplaga att köra"
+msgstr "Tillåt endast en upplaga att köra"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
-
+msgstr "Tillåt endast en upplaga att köra och vänta på upplagan att avsluta"

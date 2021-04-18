@@ -1869,12 +1869,12 @@ msgstr ""
 "Vælg den standard codepage der antages når der indlæses filer der ikke er "
 "unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Find codepage automatisk for disse filer: .html, .rc, .xml\n"
 "WinMerge skal genstartes før dette tager effekt."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2769,6 +2769,10 @@ msgstr "Linje: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3950,13 +3954,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4234,4 +4238,3 @@ msgstr "Tillad kun et eksempel ad gangen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

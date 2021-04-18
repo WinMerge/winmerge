@@ -52,7 +52,9 @@ enum COLORINDEX
 	COLORINDEX_LAST, // Please keep this as last item (not counting masks or
 	                 // other special values)
     //
+    COLORINDEX_INTERMEDIATECOLOR = 0x40000000,
     COLORINDEX_APPLYFORCE = 0x80000000,
+    COLORINDEX_MASK = 0xC0000000,
 };
 
 const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;

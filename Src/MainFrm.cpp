@@ -242,12 +242,20 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
+	ON_COMMAND(ID_FIRSTFILE, OnFirstFile)
+	ON_UPDATE_COMMAND_UI(ID_FIRSTFILE, OnUpdateFirstFile)
+	ON_COMMAND(ID_PREVFILE, OnPrevFile)
+	ON_UPDATE_COMMAND_UI(ID_PREVFILE, OnUpdatePrevFile)
+	ON_COMMAND(ID_NEXTFILE, OnNextFile)
+	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
+	ON_COMMAND(ID_LASTFILE, OnLastFile)
+	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
-	//}}AFX_MSG_MAP
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /**
@@ -1960,15 +1968,8 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame != nullptr)
-	{
-		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (pMergeDoc == nullptr)
-			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc != nullptr)
-			pMergeDoc->CheckFileChanged();
-	}
+	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+		pMergeDoc->CheckFileChanged();
 	return 0;
 }
 
@@ -2089,15 +2090,8 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	CMDIFrameWnd::OnActivateApp(bActive, hTask);
 #endif
 
-	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame != nullptr)
-	{
-		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (pMergeDoc == nullptr)
-			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc != nullptr)
-			PostMessage(WM_USER+1);
-	}
+	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+		PostMessage(WM_USER+1);
 }
 
 BOOL CMainFrame::CreateToolbar()
@@ -2628,6 +2622,94 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 	pCmdUI->SetText(_T(""));
 }
 
+/**
+ * @brief Move to next file
+ */
+void CMainFrame::OnNextFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToNextFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to next file is updated
+ */
+void CMainFrame::OnUpdateNextFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsLastFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to previous file
+ */
+void CMainFrame::OnPrevFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToPrevFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to previous file is updated
+ */
+void CMainFrame::OnUpdatePrevFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to first file
+ */
+void CMainFrame::OnFirstFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToFirstFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to first file is updated
+ */
+void CMainFrame::OnUpdateFirstFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to last file
+ */
+void CMainFrame::OnLastFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToLastFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to last file item is updated
+ */
+void CMainFrame::OnUpdateLastFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsLastFile();
+	pCmdUI->Enable(enabled);
+}
+
 void CMainFrame::ReloadMenu()
 {
 	// set the menu of the main frame window
@@ -2699,6 +2781,17 @@ void CMainFrame::ReloadMenu()
 		// force redrawing the menu bar
 		pMainFrame->DrawMenuBar();
 	}
+}
+
+IMergeDoc* CMainFrame::GetActiveIMergeDoc()
+{
+	CFrameWnd* pFrame = GetActiveFrame();
+	if (!pFrame)
+		return nullptr;
+	IMergeDoc* pMergeDoc = dynamic_cast<IMergeDoc*>(pFrame->GetActiveDocument());
+	if (!pMergeDoc)
+		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+	return pMergeDoc;
 }
 
 void CMainFrame::UpdateDocTitle()

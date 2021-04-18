@@ -63,6 +63,7 @@ public:
 	~CHexMergeDoc();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
+	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;

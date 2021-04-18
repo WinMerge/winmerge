@@ -17,6 +17,7 @@ set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 if "%1" == "" (
   call :BuildZip 
   call :BuildZip x64
+  call :BuildZip ARM64
 ) else (
   call :BuildZip %1 
 )
@@ -27,12 +28,15 @@ del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" 2> NUL
 
 (
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe"
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-PerUser-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-ARM64-Setup.exe"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
-echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-pdb.7z"
-echo "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\files.txt"
 
@@ -86,8 +90,13 @@ if not "%1" == "" (
 
 rem ShellExtension
 echo Copy ShellExtension...
-copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+if not "%1" == "ARM64" (
+  copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
+if "%1" == "ARM64" (
+  copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
 copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 
 rem Translations

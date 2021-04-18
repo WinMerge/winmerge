@@ -260,7 +260,8 @@ std::shared_ptr<SubstitutionList> SubstitutionFiltersList::MakeSubstitutionList(
 					plist->Add(
 						ucr::toUTF8(item.pattern),
 						ucr::toUTF8(item.replacement),
-						item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+						(item.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS) |
+						 Poco::RegularExpression::RE_MULTILINE);
 				}
 				else
 				{

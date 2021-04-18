@@ -657,7 +657,16 @@ void COpenView::OnCompare(UINT nID)
 
 void COpenView::OnUpdateCompare(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled());
+	bool bFile = GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled();
+	if (!bFile)
+	{
+		UpdateData(true);
+		PathContext paths = PathContext(std::vector<String>(&m_strPath[0], &m_strPath[m_strPath[2].empty() ? 2 : 3]));
+		bFile = std::all_of(paths.begin(), paths.end(), [](const String& path) {
+				return paths::DoesPathExist(path) == paths::IS_EXISTING_FILE;
+			});
+	}
+	pCmdUI->Enable(bFile);
 }
 
 /** 

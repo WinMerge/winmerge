@@ -1480,12 +1480,12 @@ msgstr ""
 "Scegli il codice pagina predefinito assegnato al caricamento di file non-"
 "Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Il rilevamento informazioni sul codice pagina per queste estensioni file: \n"
 " .html, .rc, .xml richiede il riavvio della sessione"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Il rilevamento codici di pagina per i file di testo usando mlang.dll\n"
 "richiede il riavvio della sessione"
@@ -2243,6 +2243,10 @@ msgstr "Linea: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Car: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Unione"
@@ -3334,13 +3338,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3606,4 +3610,3 @@ msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

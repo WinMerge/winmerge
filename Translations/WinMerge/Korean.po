@@ -1869,12 +1869,12 @@ msgstr "기본 코드페이지"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "비유니코드 파일 열 때 사용할 기본 코드페이지:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "다음 파일의 코드페이지 정보 감지: .html, .rc, .xml\n"
 "세션을 재시작해야 함."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "mlang.dll을 이용해 텍스트 파일의 코드페이지 감지\n"
 "세션을 재시작해야 함."
@@ -2782,6 +2782,10 @@ msgstr "줄: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "줄: %s  열: %d/%d  문자: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -4012,14 +4016,14 @@ msgstr ""
 msgid "\nFirst File"
 msgstr "\n첫 파일"
 
-msgid "\nNext File"
-msgstr "\n다음 파일"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\n다음 파일 (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\n 마지막 파일"
 
-msgid "\nPrevious File"
-msgstr "\n이전 파일"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\n이전 파일 (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."
@@ -4304,4 +4308,3 @@ msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
-
