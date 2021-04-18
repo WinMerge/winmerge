@@ -27,7 +27,7 @@ for %%p in (%urls_destdirs%) do (
 )
 
 for %%i in (Build Build\X64 Build\ARM64) do (
-  for %%j in (Release Debug) do (
+  for %%j in (Release Debug Test) do (
     mkdir %%i\%%j\Merge7z 2> NUL
     mkdir %%i\%%j\WinIMerge 2> NUL
     mkdir %%i\%%j\Frhed 2> NUL
