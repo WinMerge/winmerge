@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-31 21:55+0000\n"
-"PO-Revision-Date: 2021-04-01 08:00+0200\n"
+"POT-Creation-Date: 2021-04-18 15:21+0000\n"
+"PO-Revision-Date: 2021-04-19 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1480,7 +1480,7 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Parinkite numatytąją koduotę, kuri bus naudojama įkeliant ne Unicode failus:"
 
 msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Aptikti koduotę šiems failams: .html, .rc, .xml\nReikės restartuoti sesiją."
+msgstr "Aptikti šio tipo failų koduotę: .html, .rc, .xml\nReikės restartuoti sesiją."
 
 msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
@@ -2131,7 +2131,7 @@ msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Paž: %d | %d"
 
 msgid "Merge"
 msgstr "Sulieti"
