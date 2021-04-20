@@ -440,13 +440,20 @@ static void OpenContributersFile(int&)
 	theApp.OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
 }
 
+static void OpenUrl(int&)
+{
+	theApp.OpenFile(WinMergeURL);
+}
+
 // App command to run the dialog
 void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.m_onclick_contributers += Poco::delegate(OpenContributersFile);
+	aboutDlg.m_onclick_url += Poco::delegate(OpenUrl);
 	aboutDlg.DoModal();
 	aboutDlg.m_onclick_contributers.clear();
+	aboutDlg.m_onclick_url.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -759,6 +766,29 @@ void CMergeApp::UpdateCodepageModule()
 void CMergeApp::OnHelp()
 {
 	ShowHelp();
+}
+
+void CMergeApp::OpenFile(LPCTSTR szFile)
+{
+	ShellExecute(::GetDesktopWindow(), _T("open"), szFile, 0, 0, SW_SHOWNORMAL);
+}
+
+void CMergeApp::EditFile(LPCTSTR szFile)
+{
+	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), szFile, 0, 0, SW_SHOWNORMAL);
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
+		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), szFile, 0, 0, SW_SHOWNORMAL);
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
+		OpenFileWith(szFile);
+}
+
+void CMergeApp::OpenFileWith(LPCTSTR szFile)
+{
+	CString sysdir;
+	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
+	sysdir.ReleaseBuffer();
+	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + szFile;
+	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg, sysdir, SW_SHOWNORMAL);
 }
 
 /**

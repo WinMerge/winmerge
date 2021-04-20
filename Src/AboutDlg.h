@@ -21,6 +21,7 @@ public:
 
 	AboutInfo m_info;
 	Poco::BasicEvent<int> m_onclick_contributers;
+	Poco::BasicEvent<int> m_onclick_url;
 
 private:
 	CAboutDlg(const CAboutDlg &);

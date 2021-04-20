@@ -87,6 +87,9 @@ public:
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
 	void ShowHelp(LPCTSTR helpLocation = nullptr);
+	static void OpenFile(LPCTSTR szFile);
+	static void EditFile(LPCTSTR szFile);
+	static void OpenFileWith(LPCTSTR szFile);
 	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	static void OpenParentFolder(LPCTSTR szFile);

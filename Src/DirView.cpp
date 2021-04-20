@@ -1760,11 +1760,7 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		DoOpenWith(stype);
+	theApp.EditFile(file.c_str());
 }
 
 /// Open with dialog for file on selected side
@@ -1775,11 +1771,7 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	CString sysdir;
-	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
-	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + file.c_str();
-	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg, sysdir, SW_SHOWNORMAL);
+	theApp.OpenFileWith(file.c_str());
 }
 
 /// Open selected file  on specified side to external editor

@@ -2310,7 +2310,7 @@ bool CMainFrame::AskCloseConfirmation()
 void CMainFrame::OnHelpReleasenotes()
 {
 	const String sPath = paths::ConcatPath(env::GetProgPath(), RelNotes);
-	ShellExecute(nullptr, _T("open"), sPath.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	theApp.OpenFile(sPath.c_str());
 }
 
 /**
@@ -2319,7 +2319,7 @@ void CMainFrame::OnHelpReleasenotes()
  */
 void CMainFrame::OnHelpTranslations()
 {
-	ShellExecute(nullptr, _T("open"), TranslationsUrl, nullptr, nullptr, SW_SHOWNORMAL);
+	theApp.OpenFile(TranslationsUrl);
 }
 
 /**

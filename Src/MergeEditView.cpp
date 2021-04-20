@@ -3851,13 +3851,7 @@ void CMergeEditView::OnOpenFile()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName.c_str(),
-			0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), sFileName.c_str(),
-			 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		OnOpenFileWith();
+	theApp.EditFile(sFileName.c_str());
 }
 
 /**
@@ -3871,14 +3865,7 @@ void CMergeEditView::OnOpenFileWith()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-
-	CString sysdir;
-	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH))
-		return;
-	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + sFileName.c_str();
-	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg,
-			sysdir, SW_SHOWNORMAL);
+	theApp.OpenFileWith(sFileName.c_str());
 }
 
 /**
