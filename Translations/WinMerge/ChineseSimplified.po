@@ -95,6 +95,9 @@ msgstr "使用外部编辑器(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "选择程序(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "打开上层文件夹(&P)..."
+
 msgid "S&hell Menu"
 msgstr "外壳菜单(&S)"
 
@@ -795,9 +798,6 @@ msgstr "打开左侧(&O)"
 
 msgid "with &External Editor"
 msgstr "用外部编辑器(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "打开上层文件夹(&P)..."
 
 msgid "Open Midd&le"
 msgstr "打开中间(&L)"

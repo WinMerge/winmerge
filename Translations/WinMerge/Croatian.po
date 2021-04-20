@@ -104,6 +104,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&S..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -996,9 +999,6 @@ msgstr "&Otvori lijevi"
 #, c-format
 msgid "with &External Editor"
 msgstr "&vanjskim uređivačem"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

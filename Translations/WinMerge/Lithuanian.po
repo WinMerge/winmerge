@@ -95,6 +95,9 @@ msgstr "Su Išoriniu r&edaktoriumi\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Su..."
 
+msgid "Open &Parent Folder..."
+msgstr "Atverti &tėvinį katalogą..."
+
 msgid "S&hell Menu"
 msgstr "&Sistemos meniu"
 
@@ -795,9 +798,6 @@ msgstr "&Atverti kairįjį"
 
 msgid "with &External Editor"
 msgstr "su išoriniu r&edaktoriumi"
-
-msgid "Open &Parent Folder..."
-msgstr "Atverti &tėvinį katalogą..."
 
 msgid "Open Midd&le"
 msgstr "Atverti &vidurinį"

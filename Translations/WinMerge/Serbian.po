@@ -103,6 +103,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Са"
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -993,9 +996,6 @@ msgstr "&Отвори леву"
 #, c-format
 msgid "with &External Editor"
 msgstr "са др&угим уређивачем"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

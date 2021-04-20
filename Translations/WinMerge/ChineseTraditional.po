@@ -106,6 +106,9 @@ msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
 msgid "&With..."
 msgstr "用(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -1004,9 +1007,6 @@ msgstr "開啟左邊(&O)"
 #, c-format
 msgid "with &External Editor"
 msgstr "用外在編輯器(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

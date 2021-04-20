@@ -102,6 +102,9 @@ msgstr "Ulkois&ella editorilla\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Ohjelmalla..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr "&Liittymävalikko"
 
@@ -996,9 +999,6 @@ msgstr "Avaa vasen"
 #, c-format
 msgid "with &External Editor"
 msgstr "ulkoisella &editorilla"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

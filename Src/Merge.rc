@@ -95,6 +95,7 @@ BEGIN
             MENUITEM "With &Registered Application", ID_FILE_OPEN_REGISTERED
             MENUITEM "With &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&With...",                    ID_FILE_OPEN_WITH
+            MENUITEM "Open &Parent Folder...",      ID_FILE_OPEN_PARENT_FOLDER
         END
         MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END

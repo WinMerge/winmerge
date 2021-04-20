@@ -95,6 +95,9 @@ msgstr "Com editor externo\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Com..."
 
+msgid "Open &Parent Folder..."
+msgstr "Abrir &Pasta principal..."
+
 msgid "S&hell Menu"
 msgstr "Menu da S&hell"
 
@@ -795,9 +798,6 @@ msgstr "Abrir Esquerda"
 
 msgid "with &External Editor"
 msgstr "com Editor &Externo"
-
-msgid "Open &Parent Folder..."
-msgstr "Abrir &Pasta principal..."
 
 msgid "Open Midd&le"
 msgstr "Abrir Meio"

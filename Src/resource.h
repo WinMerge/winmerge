@@ -740,6 +740,7 @@
 #define ID_FILE_OPEN_REGISTERED         32944
 #define ID_FILE_OPEN_WITHEDITOR         32945
 #define ID_FILE_OPEN_WITH               32946
+#define ID_FILE_OPEN_PARENT_FOLDER      32947
 #define ID_STATUS_MERGINGMODE           32960
 #define ID_STATUS_DIFFNUM               32961
 #define ID_STATUS_RIGHTDIR_RO           32962

@@ -104,6 +104,9 @@ msgstr "Mit &externem Editor\tStrg+Alt+E"
 msgid "&With..."
 msgstr "&Mit..."
 
+msgid "Open &Parent Folder..."
+msgstr "&Elternordner öffnen..."
+
 msgid "S&hell Menu"
 msgstr "S&hell-Menü"
 
@@ -996,9 +999,6 @@ msgstr "Links ö&ffnen"
 #, c-format
 msgid "with &External Editor"
 msgstr "Mit &externem Editor\tStrg+Alt+E"
-
-msgid "Open &Parent Folder..."
-msgstr "&Elternordner öffnen..."
 
 #, c-format
 msgid "Open Midd&le"

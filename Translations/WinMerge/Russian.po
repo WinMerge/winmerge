@@ -94,6 +94,9 @@ msgstr "Внешним редактором\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "С помощью..."
 
+msgid "Open &Parent Folder..."
+msgstr "Открыть &родительскую папку..."
+
 msgid "S&hell Menu"
 msgstr "Меню оболочки"
 
@@ -794,9 +797,6 @@ msgstr "Открыть левый"
 
 msgid "with &External Editor"
 msgstr "внешним редактором"
-
-msgid "Open &Parent Folder..."
-msgstr "Открыть &родительскую папку..."
 
 msgid "Open Midd&le"
 msgstr "Открыть средний"

@@ -92,6 +92,9 @@ msgstr "Con l'&editor esterno\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Con..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr "Men&u shell"
 
@@ -792,9 +795,6 @@ msgstr "Apri &file a sinistra"
 
 msgid "with &External Editor"
 msgstr "con l'editor &esterno"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 msgid "Open Midd&le"
 msgstr "Apri file &centrale"

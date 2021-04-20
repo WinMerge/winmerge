@@ -1801,8 +1801,7 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	String parentFolder = paths::GetParentPath(file);
-	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
+	theApp.OpenParentFolder(file.c_str());
 }
 
 /// User chose (context menu) open left

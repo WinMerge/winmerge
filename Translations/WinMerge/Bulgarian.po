@@ -89,6 +89,9 @@ msgstr "С &външен редактор\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&С…"
 
+msgid "Open &Parent Folder..."
+msgstr "&Родителска папка…"
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -789,9 +792,6 @@ msgstr "&Отвори в ляво"
 
 msgid "with &External Editor"
 msgstr "с &Външен Редактор"
-
-msgid "Open &Parent Folder..."
-msgstr "&Родителска папка…"
 
 msgid "Open Midd&le"
 msgstr "Отвори сре&ден"

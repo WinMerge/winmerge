@@ -106,6 +106,9 @@ msgstr "Med Extern Redigerare\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Med ..."
 
+msgid "Open &Parent Folder..."
+msgstr "Öppna Föräldermapp ..."
+
 msgid "S&hell Menu"
 msgstr "GränssnittsMeny"
 
@@ -998,9 +1001,6 @@ msgstr "Öppna Vänster"
 #, c-format
 msgid "with &External Editor"
 msgstr "med Extern Redigerare"
-
-msgid "Open &Parent Folder..."
-msgstr "Öppna Föräldermapp ..."
 
 #, c-format
 msgid "Open Midd&le"

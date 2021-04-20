@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-18 15:21+0000\n"
+"POT-Creation-Date: 2021-04-20 21:03+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -84,6 +84,9 @@ msgid "With &External Editor\tCtrl+Alt+E"
 msgstr ""
 
 msgid "&With..."
+msgstr ""
+
+msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
@@ -785,9 +788,6 @@ msgid "&Open Left"
 msgstr ""
 
 msgid "with &External Editor"
-msgstr ""
-
-msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "Open Midd&le"

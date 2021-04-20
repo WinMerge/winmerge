@@ -93,6 +93,9 @@ msgstr "باستخدام &محرر نصي خارجي\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "با&ستخدام..."
 
+msgid "Open &Parent Folder..."
+msgstr "المجلد الأساسي..."
+
 msgid "S&hell Menu"
 msgstr "&قائمة البرنامج الوسيطي (الغلاف)"
 
@@ -793,9 +796,6 @@ msgstr "&فتح الجزء الأيسر"
 
 msgid "with &External Editor"
 msgstr "باستخدام محرر خارجي"
-
-msgid "Open &Parent Folder..."
-msgstr "المجلد الأساسي..."
 
 msgid "Open Midd&le"
 msgstr "ف&تح الجزء الأوسط"

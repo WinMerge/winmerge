@@ -109,6 +109,9 @@ msgstr "외부 편집기로(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "프로그램 선택(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "상위 폴더 열기(&P)"
+
 msgid "S&hell Menu"
 msgstr "쉘 메뉴(&S)"
 
@@ -1001,9 +1004,6 @@ msgstr "왼쪽 열기(&O)"
 #, c-format
 msgid "with &External Editor"
 msgstr "외부 편집기로(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "상위 폴더 열기(&P)"
 
 #, c-format
 msgid "Open Midd&le"

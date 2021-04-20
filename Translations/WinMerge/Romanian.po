@@ -104,6 +104,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Cu..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -996,9 +999,6 @@ msgstr "Deschide stâ&nga"
 #, c-format
 msgid "with &External Editor"
 msgstr "cu editor &extern"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

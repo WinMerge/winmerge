@@ -92,6 +92,9 @@ msgstr "Dış düz&enleyici ile\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Birlikte aç..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr "&Sağ Tık Menüsü"
 
@@ -792,9 +795,6 @@ msgstr "S&ola Aç"
 
 msgid "with &External Editor"
 msgstr "Dış Düz&enleyici ile"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 msgid "Open Midd&le"
 msgstr "O&rtaya Aç"

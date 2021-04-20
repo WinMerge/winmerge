@@ -103,6 +103,9 @@ msgstr ""
 msgid "&With..."
 msgstr "Με..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -995,9 +998,6 @@ msgstr "Άνοιγμα Α&ριστερού"
 #, c-format
 msgid "with &External Editor"
 msgstr "μ&ε άλλη Εφαρμογή"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

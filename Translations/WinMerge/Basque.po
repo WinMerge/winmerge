@@ -107,6 +107,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Honekin..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -998,9 +1001,6 @@ msgstr "&Ireki Ezkerrekoa"
 
 msgid "with &External Editor"
 msgstr "&Kanpoko Editorearekin"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"

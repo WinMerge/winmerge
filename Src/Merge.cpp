@@ -829,6 +829,15 @@ void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 }
 
 /**
+ * @brief Open parent folder
+ */
+void CMergeApp::OpenParentFolder(LPCTSTR szFile)
+{
+	String parentFolder = paths::GetParentPath(szFile);
+	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
+}
+
+/**
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */

@@ -95,6 +95,9 @@ msgstr "&externým editorom\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "čí&m..."
 
+msgid "Open &Parent Folder..."
+msgstr "Otvoriť &nadradený priečinok..."
+
 msgid "S&hell Menu"
 msgstr "&Vzhľad ponuky"
 
@@ -795,9 +798,6 @@ msgstr "&Otvoriť ľavý"
 
 msgid "with &External Editor"
 msgstr "&externým editorom"
-
-msgid "Open &Parent Folder..."
-msgstr "Otvoriť &nadradený priečinok..."
 
 msgid "Open Midd&le"
 msgstr "Otvoriť &stredný"

@@ -93,6 +93,9 @@ msgstr "Met externe editor\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Met..."
 
+msgid "Open &Parent Folder..."
+msgstr "Bovenliggende map openen..."
+
 msgid "S&hell Menu"
 msgstr "Shellmenu"
 
@@ -793,9 +796,6 @@ msgstr "Links openen"
 
 msgid "with &External Editor"
 msgstr "met externe editor"
-
-msgid "Open &Parent Folder..."
-msgstr "Bovenliggende map openen..."
 
 msgid "Open Midd&le"
 msgstr "Midden openen"

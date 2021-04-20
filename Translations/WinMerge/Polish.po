@@ -92,6 +92,9 @@ msgstr "W zewnętrznym edytorze\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Z..."
 
+msgid "Open &Parent Folder..."
+msgstr "Otwórz nadrzędny katalog"
+
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
@@ -792,9 +795,6 @@ msgstr "&Otwórz lewą"
 
 msgid "with &External Editor"
 msgstr "w zewnętrznym &edytorze"
-
-msgid "Open &Parent Folder..."
-msgstr "Otwórz nadrzędny katalog"
 
 msgid "Open Midd&le"
 msgstr "Otwórz środkową"

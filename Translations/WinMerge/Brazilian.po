@@ -106,6 +106,9 @@ msgstr "Com o &Editor Externo\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Com..."
 
+msgid "Open &Parent Folder..."
+msgstr "Abrir Pasta &Parente..."
+
 msgid "S&hell Menu"
 msgstr "Menu de Conte&xto"
 
@@ -996,9 +999,6 @@ msgstr "&Abrir a Esquerda"
 #, c-format
 msgid "with &External Editor"
 msgstr "com &o Editor Externo"
-
-msgid "Open &Parent Folder..."
-msgstr "Abrir Pasta &Parente..."
 
 #, c-format
 msgid "Open Midd&le"

@@ -105,6 +105,9 @@ msgstr "Z zu&nanjim urejevalnikom\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Z..."
 
+msgid "Open &Parent Folder..."
+msgstr "Nad&rejena mapa..."
+
 msgid "S&hell Menu"
 msgstr "Meni &lupine"
 
@@ -996,9 +999,6 @@ msgstr "&Odpri levo"
 #, c-format
 msgid "with &External Editor"
 msgstr "z &zunanjim urejevalnikom"
-
-msgid "Open &Parent Folder..."
-msgstr "Nad&rejena mapa..."
 
 #, c-format
 msgid "Open Midd&le"

@@ -221,6 +221,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
+	ON_COMMAND(ID_FILE_OPEN_PARENT_FOLDER, OnOpenParentFolder)
 	ON_COMMAND(ID_SWAPPANES_SWAP12, OnViewSwapPanes12)
 	ON_COMMAND(ID_SWAPPANES_SWAP23, OnViewSwapPanes23)
 	ON_COMMAND(ID_SWAPPANES_SWAP13, OnViewSwapPanes13)
@@ -3894,6 +3895,21 @@ void CMergeEditView::OnOpenFileWithEditor()
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
 	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
+}
+
+/**
+ * @brief Open parent folder of active file
+ */
+void CMergeEditView::OnOpenParentFolder()
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != nullptr);
+
+	String sFileName = pDoc->m_filePaths[m_nThisPane];
+	if (sFileName.empty())
+		return;
+
+	theApp.OpenParentFolder(sFileName.c_str());
 }
 
 /**

@@ -93,6 +93,9 @@ msgstr "外部エディターで(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "プログラムの選択(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "親フォルダーを開く(&P)..."
+
 msgid "S&hell Menu"
 msgstr "シェルメニュー(&H)"
 
@@ -793,9 +796,6 @@ msgstr "左側を開く(&O)"
 
 msgid "with &External Editor"
 msgstr "外部エディターで(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "親フォルダーを開く(&P)..."
 
 msgid "Open Midd&le"
 msgstr "中央を開く(&L)"
