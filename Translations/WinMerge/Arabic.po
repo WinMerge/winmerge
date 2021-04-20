@@ -794,7 +794,7 @@ msgstr "إ&خفاء العناصر"
 msgid "&Open Left"
 msgstr "&فتح الجزء الأيسر"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "باستخدام محرر خارجي"
 
 msgid "Open Midd&le"

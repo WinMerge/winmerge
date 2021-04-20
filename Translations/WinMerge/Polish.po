@@ -793,8 +793,8 @@ msgstr "Ukryj elementy"
 msgid "&Open Left"
 msgstr "&Otwórz lewą"
 
-msgid "with &External Editor"
-msgstr "w zewnętrznym &edytorze"
+msgid "With &External Editor"
+msgstr "W zewnętrznym &edytorze"
 
 msgid "Open Midd&le"
 msgstr "Otwórz środkową"

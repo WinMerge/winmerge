@@ -790,8 +790,8 @@ msgstr "&Скрий"
 msgid "&Open Left"
 msgstr "&Отвори в ляво"
 
-msgid "with &External Editor"
-msgstr "с &Външен Редактор"
+msgid "With &External Editor"
+msgstr "C &Външен Редактор"
 
 msgid "Open Midd&le"
 msgstr "Отвори сре&ден"

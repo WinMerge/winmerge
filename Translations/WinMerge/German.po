@@ -997,7 +997,7 @@ msgid "&Open Left"
 msgstr "Links ö&ffnen"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "Mit &externem Editor\tStrg+Alt+E"
 
 #, c-format

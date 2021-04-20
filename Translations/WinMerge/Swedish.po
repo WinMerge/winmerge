@@ -999,8 +999,8 @@ msgid "&Open Left"
 msgstr "Öppna Vänster"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "med Extern Redigerare"
+msgid "With &External Editor"
+msgstr "Med Extern Redigerare"
 
 #, c-format
 msgid "Open Midd&le"

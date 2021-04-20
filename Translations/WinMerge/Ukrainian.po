@@ -998,8 +998,8 @@ msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "зо&внішнім редактором"
+msgid "With &External Editor"
+msgstr "Зо&внішнім редактором"
 
 #, c-format
 msgid "Open Midd&le"

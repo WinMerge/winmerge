@@ -796,7 +796,7 @@ msgstr "隐藏(&H)"
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "用外部编辑器(&E)"
 
 msgid "Open Midd&le"

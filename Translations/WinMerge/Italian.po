@@ -793,8 +793,8 @@ msgstr "&Nascondi elementi"
 msgid "&Open Left"
 msgstr "Apri &file a sinistra"
 
-msgid "with &External Editor"
-msgstr "con l'editor &esterno"
+msgid "With &External Editor"
+msgstr "Con l'editor &esterno"
 
 msgid "Open Midd&le"
 msgstr "Apri file &centrale"

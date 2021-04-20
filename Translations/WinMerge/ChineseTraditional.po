@@ -1005,7 +1005,7 @@ msgid "&Open Left"
 msgstr "開啟左邊(&O)"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "用外在編輯器(&E)"
 
 #, c-format

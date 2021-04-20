@@ -999,7 +999,7 @@ msgid "&Open Left"
 msgstr "Bal megnyitása"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Külső szerkesztővel"
 
 #, c-format

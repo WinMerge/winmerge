@@ -999,7 +999,7 @@ msgstr "&Ezkutatu Gaiak"
 msgid "&Open Left"
 msgstr "&Ireki Ezkerrekoa"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Kanpoko Editorearekin"
 
 #, c-format

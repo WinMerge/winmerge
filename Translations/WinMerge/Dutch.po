@@ -794,8 +794,8 @@ msgstr "Items verbergen"
 msgid "&Open Left"
 msgstr "Links openen"
 
-msgid "with &External Editor"
-msgstr "met externe editor"
+msgid "With &External Editor"
+msgstr "Met externe editor"
 
 msgid "Open Midd&le"
 msgstr "Midden openen"

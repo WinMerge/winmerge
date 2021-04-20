@@ -87,10 +87,10 @@ msgid "Op&en"
 msgstr "&Otvoriť"
 
 msgid "With &Registered Application"
-msgstr "&registrovanou aplikáciou"
+msgstr "&Registrovanou aplikáciou"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "&externým editorom\tCtrl+Alt+E"
+msgstr "&Externým editorom\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "čí&m..."
@@ -796,8 +796,8 @@ msgstr "&Skryť položky"
 msgid "&Open Left"
 msgstr "&Otvoriť ľavý"
 
-msgid "with &External Editor"
-msgstr "&externým editorom"
+msgid "With &External Editor"
+msgstr "&Externým editorom"
 
 msgid "Open Midd&le"
 msgstr "Otvoriť &stredný"

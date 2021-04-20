@@ -996,8 +996,8 @@ msgid "&Open Left"
 msgstr "Άνοιγμα Α&ριστερού"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "μ&ε άλλη Εφαρμογή"
+msgid "With &External Editor"
+msgstr "Μ&ε άλλη Εφαρμογή"
 
 #, c-format
 msgid "Open Midd&le"

@@ -997,8 +997,8 @@ msgid "&Open Left"
 msgstr "Avaa vasen"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "ulkoisella &editorilla"
+msgid "With &External Editor"
+msgstr "Ulkoisella &editorilla"
 
 #, c-format
 msgid "Open Midd&le"

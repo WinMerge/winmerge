@@ -994,7 +994,7 @@ msgid "&Open Left"
 msgstr "වම් පස විවෘත කරන්න"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "බාහිර සම්බන්ධකය සමග"
 
 #, c-format

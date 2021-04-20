@@ -793,7 +793,7 @@ msgstr "Ögeleri &Gizle"
 msgid "&Open Left"
 msgstr "S&ola Aç"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "Dış Düz&enleyici ile"
 
 msgid "Open Midd&le"

@@ -796,8 +796,8 @@ msgstr "Ocultar itens"
 msgid "&Open Left"
 msgstr "Abrir Esquerda"
 
-msgid "with &External Editor"
-msgstr "com Editor &Externo"
+msgid "With &External Editor"
+msgstr "Com Editor &Externo"
 
 msgid "Open Midd&le"
 msgstr "Abrir Meio"

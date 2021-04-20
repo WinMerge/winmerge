@@ -796,8 +796,8 @@ msgstr "&Slėpti elementus"
 msgid "&Open Left"
 msgstr "&Atverti kairįjį"
 
-msgid "with &External Editor"
-msgstr "su išoriniu r&edaktoriumi"
+msgid "With &External Editor"
+msgstr "Su išoriniu r&edaktoriumi"
 
 msgid "Open Midd&le"
 msgstr "Atverti &vidurinį"

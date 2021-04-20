@@ -1002,7 +1002,7 @@ msgid "&Open Left"
 msgstr "왼쪽 열기(&O)"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "외부 편집기로(&E)"
 
 #, c-format

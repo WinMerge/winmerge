@@ -998,8 +998,8 @@ msgid "&Open Left"
 msgstr "&Abrir arquivo esquerdo"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "cun &editor externo"
+msgid "With &External Editor"
+msgstr "Cun &editor externo"
 
 #, c-format
 msgid "Open Midd&le"

@@ -795,8 +795,8 @@ msgstr "&Скрыть"
 msgid "&Open Left"
 msgstr "Открыть левый"
 
-msgid "with &External Editor"
-msgstr "внешним редактором"
+msgid "With &External Editor"
+msgstr "Внешним редактором"
 
 msgid "Open Midd&le"
 msgstr "Открыть средний"

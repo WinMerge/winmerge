@@ -794,7 +794,7 @@ msgstr "選択項目を非表示(&H)"
 msgid "&Open Left"
 msgstr "左側を開く(&O)"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "外部エディターで(&E)"
 
 msgid "Open Midd&le"
