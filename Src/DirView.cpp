@@ -47,6 +47,7 @@
 #include "IntToIntMap.h"
 #include "PatchTool.h"
 #include "SyntaxColors.h"
+#include "Shell.h"
 #include <numeric>
 #include <functional>
 
@@ -1760,7 +1761,7 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	theApp.EditFile(file.c_str());
+	shell::Edit(file.c_str());
 }
 
 /// Open with dialog for file on selected side
@@ -1771,7 +1772,7 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	theApp.OpenFileWith(file.c_str());
+	shell::OpenWith(file.c_str());
 }
 
 /// Open selected file  on specified side to external editor
@@ -1793,7 +1794,7 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	theApp.OpenParentFolder(file.c_str());
+	shell::OpenParentFolder(file.c_str());
 }
 
 /// User chose (context menu) open left

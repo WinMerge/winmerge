@@ -35,7 +35,6 @@
 #include "DirView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
-#include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
@@ -53,6 +52,7 @@
 #include "stringdiffs.h"
 #include "TFile.h"
 #include "paths.h"
+#include "Shell.h"
 #include "CompareStats.h"
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
@@ -442,7 +442,7 @@ static void OpenContributersFile(int&)
 
 static void OpenUrl(int&)
 {
-	theApp.OpenFile(WinMergeURL);
+	shell::Open(WinMergeURL);
 }
 
 // App command to run the dialog
@@ -768,29 +768,6 @@ void CMergeApp::OnHelp()
 	ShowHelp();
 }
 
-void CMergeApp::OpenFile(LPCTSTR szFile)
-{
-	ShellExecute(::GetDesktopWindow(), _T("open"), szFile, 0, 0, SW_SHOWNORMAL);
-}
-
-void CMergeApp::EditFile(LPCTSTR szFile)
-{
-	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), szFile, 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), szFile, 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		OpenFileWith(szFile);
-}
-
-void CMergeApp::OpenFileWith(LPCTSTR szFile)
-{
-	CString sysdir;
-	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
-	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + szFile;
-	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg, sysdir, SW_SHOWNORMAL);
-}
-
 /**
  * @brief Open given file to external editor specified in options.
  * @param [in] file Full path to file to open.
@@ -848,26 +825,6 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 }
 
 /**
- * @brief Open file, if it exists, else open url
- */
-void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
-{
-	if (paths::DoesPathExist(szFile) == paths::IS_EXISTING_FILE)
-		ShellExecute(nullptr, _T("open"), _T("notepad.exe"), szFile, nullptr, SW_SHOWNORMAL);
-	else
-		ShellExecute(nullptr, _T("open"), szUrl, nullptr, nullptr, SW_SHOWNORMAL);
-}
-
-/**
- * @brief Open parent folder
- */
-void CMergeApp::OpenParentFolder(LPCTSTR szFile)
-{
-	String parentFolder = paths::GetParentPath(szFile);
-	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
-}
-
-/**
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */
@@ -884,7 +841,7 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 			::HtmlHelp(nullptr, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 		else
-			ShellExecute(nullptr, _T("open"), DocsURL, nullptr, nullptr, SW_SHOWNORMAL);
+			shell::Open(DocsURL);
 	}
 	else
 	{

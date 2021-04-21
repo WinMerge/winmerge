@@ -119,9 +119,9 @@ public:
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr);
-	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
-	void UpdateDocTitle();
-	void ReloadMenu();
+	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
+	static void UpdateDocTitle();
+	static void ReloadMenu();
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();

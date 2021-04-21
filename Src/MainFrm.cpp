@@ -64,7 +64,7 @@
 #include "utils/hqbitmap.h"
 #include "UniFile.h"
 #include "TFile.h"
-
+#include "Shell.h"
 #include "WindowsManagerDialog.h"
 
 using std::vector;
@@ -898,7 +898,7 @@ bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String t
 void CMainFrame::OnHelpGnulicense() 
 {
 	const String spath = paths::ConcatPath(env::GetProgPath(), LicenseFile);
-	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
+	shell::OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
 /**
@@ -2310,7 +2310,7 @@ bool CMainFrame::AskCloseConfirmation()
 void CMainFrame::OnHelpReleasenotes()
 {
 	const String sPath = paths::ConcatPath(env::GetProgPath(), RelNotes);
-	theApp.OpenFile(sPath.c_str());
+	shell::Open(sPath.c_str());
 }
 
 /**
@@ -2319,7 +2319,7 @@ void CMainFrame::OnHelpReleasenotes()
  */
 void CMainFrame::OnHelpTranslations()
 {
-	theApp.OpenFile(TranslationsUrl);
+	shell::Open(TranslationsUrl);
 }
 
 /**
@@ -2435,7 +2435,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
  * @param [in] pFrame Pointer to frame to check.
  * @return FRAMETYPE of the given frame.
 */
-CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
+CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame)
 {
 	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame));
 	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));

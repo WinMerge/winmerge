@@ -32,6 +32,7 @@
 #include "DirDoc.h"
 #include "ShellContextMenu.h"
 #include "editcmd.h"
+#include "Shell.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3851,7 +3852,7 @@ void CMergeEditView::OnOpenFile()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-	theApp.EditFile(sFileName.c_str());
+	shell::Edit(sFileName.c_str());
 }
 
 /**
@@ -3865,7 +3866,7 @@ void CMergeEditView::OnOpenFileWith()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-	theApp.OpenFileWith(sFileName.c_str());
+	shell::OpenWith(sFileName.c_str());
 }
 
 /**
@@ -3896,7 +3897,7 @@ void CMergeEditView::OnOpenParentFolder()
 	if (sFileName.empty())
 		return;
 
-	theApp.OpenParentFolder(sFileName.c_str());
+	shell::OpenParentFolder(sFileName.c_str());
 }
 
 /**
