@@ -4498,7 +4498,9 @@ void CMergeEditView::ZoomText(short amount)
 
 	if ( amount == 0)
 	{
-		nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
+		nPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
+		if (nPointSize ==  0)
+			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
 	}
 
 	nPointSize += amount;
