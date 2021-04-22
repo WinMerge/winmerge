@@ -21,10 +21,9 @@ jobs:
         # with:
         #   queries: security-and-quality
 
-      - name: Build
-        id: build
-        run: |
-          .\BuildAll.vs2019.cmd x64 -ci
+      - name: Autobuild
+        id: autobuild
+        uses: github/codeql-action/autobuild@v1
 
       - name: Perform CodeQL Analysis
         id: analyze_codeql
