@@ -21,17 +21,9 @@ jobs:
         # with:
         #   queries: security-and-quality
 
-      - name: Cache
-        id: cache_checkout
-        uses: actions/cache@v1.1.2
-        with:
-          path: Build/WinMergeDownloadDeps
-          key: WinMergeDownloadDeps
-
       - name: Build
         id: build
         run: |
-          .\DownloadDeps.cmd
           .\BuildAll.vs2019.cmd x64 -ci
 
       - name: Perform CodeQL Analysis
