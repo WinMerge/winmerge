@@ -412,7 +412,7 @@ msgstr ""
 msgid "Com&pare Statistics..."
 msgstr ""
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr ""
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr ""
 
 msgid "Language:"
@@ -1792,7 +1792,7 @@ msgstr ""
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 msgid "&Automatically expand all subfolders"

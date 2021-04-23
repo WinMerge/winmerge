@@ -518,7 +518,7 @@ msgid "Com&pare Statistics..."
 msgstr "St&atistika porovnání..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Obnovit\tF5"
 
 #, c-format
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické &dokončování:"
 
 #, c-format
@@ -2280,7 +2280,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Ignorovat časové rozdíly menší než 3 sekundy"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Zahrnout obsah jedinečných podsložek"
 
 #, c-format

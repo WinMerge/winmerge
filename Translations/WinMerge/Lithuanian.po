@@ -421,7 +421,7 @@ msgstr "Sukeisti 1-ą | &3-ią"
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Atnaujin&ti\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1038,7 +1038,7 @@ msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Gerai“ paspaudimo"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Lango „Atverti“ automatinis už&pildymas:"
 
 msgid "Language:"
@@ -1801,7 +1801,7 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Įtraukt&i unikalų pakatalogių turinį"
 
 msgid "&Automatically expand all subfolders"

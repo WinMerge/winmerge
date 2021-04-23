@@ -420,7 +420,7 @@ msgstr "Поменять 1-й | &3-й"
 msgid "Com&pare Statistics..."
 msgstr "Статистика сравнения..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Обновить\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1037,7 +1037,7 @@ msgstr "Показывать диалог \"Выбрать файлы или п�
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Закрывать диалог \"Выбрать файлы или папки\" при нажатии ОК"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
 msgid "Language:"
@@ -1800,7 +1800,7 @@ msgstr "&Останавливаться после первого отличия
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Игнорировать разницу времени менее 3 секунд"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Включая уникальное содержимое подпапок"
 
 msgid "&Automatically expand all subfolders"

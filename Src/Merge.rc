@@ -368,7 +368,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
     END
     POPUP "&Merge"
@@ -599,7 +599,7 @@ BEGIN
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&Merge"
     BEGIN
@@ -1127,7 +1127,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,240,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,145,240,10
+    LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,145,240,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,175,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,187,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -1940,7 +1940,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,239,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,239,10
-    CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
+    CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,239,10
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,239,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,

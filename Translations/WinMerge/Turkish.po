@@ -418,7 +418,7 @@ msgstr "1. ile &3. Ögeyi Değiştir"
 msgid "Com&pare Statistics..."
 msgstr "Karşılaştırma İstatistikleri..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ye&nile\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1035,7 +1035,7 @@ msgstr "\"Dosya ya da Klasör Seçin\" &penceresi açılışta görüntülensin"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Dosya ya da Klasör Seçin\" penceresi &Tamam ile kapatılsın"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "'Aç' penceresi otomatik olarak doldurulsun:"
 
 msgid "Language:"
@@ -1804,7 +1804,7 @@ msgstr "İlk fark&tan sonra durulsun"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 saniyeden az zaman farkları y&ok sayılsın"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Eşsiz a&lt klasör içerikleri katılsın"
 
 msgid "&Automatically expand all subfolders"
