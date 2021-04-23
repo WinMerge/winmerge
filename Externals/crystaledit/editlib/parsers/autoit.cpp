@@ -552,17 +552,17 @@ CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const TCHAR *pszChars, in
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
-          {
+            {
               DEFINE_BLOCK(nPos, COLORINDEX_STRING);
-          }
+            }
           else if (dwCookie & (COOKIE_USER1 ))
-          {
+            {
               DEFINE_BLOCK(nPos, COLORINDEX_USER1);
-          }
+            }
           else if (dwCookie & (COOKIE_VARIABLE))
-          {
+            {
               DEFINE_BLOCK(nPos, COLORINDEX_USER2);
-          }
+            }
           else if (dwCookie & COOKIE_PREPROCESSOR)
             {
               DEFINE_BLOCK (nPos, COLORINDEX_PREPROCESSOR);
@@ -603,7 +603,6 @@ out:
         {
           if (pszChars[I] == '\'')
             {
-
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;
             }
@@ -654,42 +653,42 @@ out:
       
       // Variable begins
       if (pszChars[I] == '@')
-      {
+        {
           DEFINE_BLOCK(I, COLORINDEX_USER1);
           dwCookie |= COOKIE_USER1;
           continue;
-      }
+        }
 
       // Variable ends
       if (dwCookie & COOKIE_USER1)
-      {
+        {
           if (!xisalnum(pszChars[I]))
-          {
+            {
               dwCookie &= ~COOKIE_USER1;
               bRedefineBlock = true;
               bDecIndex = true;
-          }
+            }
           continue;
-      }
+        }
       
       if (pszChars[I] == '$')
-      {
+        {
           DEFINE_BLOCK(I, COLORINDEX_USER2);
           dwCookie |= COOKIE_VARIABLE;
           continue;
-      }
+        }
 
       // Variable ends
       if (dwCookie & COOKIE_VARIABLE)
-      {
+        {
           if (!xisalnum(pszChars[I]))
-          {
+            {
               dwCookie &= ~COOKIE_VARIABLE;
               bRedefineBlock = true;
               bDecIndex = true;
-          }
+            }
           continue;
-      }
+        }
 
       //  Normal text
       if (pszChars[I] == '"')
