@@ -8,7 +8,7 @@ on:
 
 jobs:
   analyze:
-    name: CodeQL Analysis
+    name: Analyze
     runs-on: windows-latest
     steps:
       - name: Checkout repository
@@ -18,18 +18,11 @@ jobs:
       - name: Initialize CodeQL
         id: init_codeql
         uses: github/codeql-action/init@v1
-        # with:
-        #   queries: security-and-quality
-
-      - name: Cache
-        id: chache_checkout
-        uses: actions/cache@v1.1.2
         with:
-          path: Build/WinMergeDownloadDeps
-          key: WinMergeDownloadDeps
+          queries: security-and-quality
 
-      - name: Build
-        id: build
+      - name: CI Build
+        id: build_ci
         run: |
           .\DownloadDeps.cmd
           .\BuildAll.vs2019.cmd x64 -ci
