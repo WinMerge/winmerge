@@ -9,7 +9,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         id: checkout_repo
@@ -21,9 +21,8 @@ jobs:
         with:
           queries: security-and-quality
 
-      - name: CI Build
-        id: build_ci
-        shell: pwsh
+      - name: Build CMD
+        id: build_cmd
         run: |
           .\DownloadDeps.cmd
           .\BuildAll.vs2019.cmd x64 -ci
