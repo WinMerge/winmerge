@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_WM_CREATE()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
+	ON_WM_MOUSEWHEEL()
 	ON_WM_NCCALCSIZE()
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_FIND, OnEditFind)
@@ -203,6 +204,16 @@ void CHexMergeView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 		GetScrollInfo(SB_VERT, &si);
 		pScrollBar->SetScrollInfo(&si, SIF_ALL | SIF_DISABLENOSCROLL);
 	}
+}
+
+BOOL CHexMergeView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	if ((GetAsyncKeyState(VK_CONTROL) &0x8000) != 0) // if (nFlags & MK_CONTROL)
+	{
+		PostMessage(WM_COMMAND, zDelta < 0 ? ID_VIEW_ZOOMOUT : ID_VIEW_ZOOMIN);
+		return 1;
+	}
+	return 0;
 }
 
 /**
