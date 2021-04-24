@@ -522,8 +522,8 @@ msgid "Com&pare Statistics..."
 msgstr "統計比較結果(&P)"
 
 #, c-format
-msgid "Refre&sh\tF5"
-msgstr "重整(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "重整\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1313,8 +1313,8 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "點擊確定按鈕關閉「選擇檔案或資料夾」對話方塊"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "「開啟」對話方塊之自動完成(&P)："
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "「開啟」對話方塊之自動完成(&E)："
 
 #, c-format
 msgid "Language:"
@@ -2291,8 +2291,8 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異(&O)"
 
 #, c-format
-msgid "&Include unique subfolders contents"
-msgstr "包括獨一子資料夾(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "包括獨一子資料夾(&U)"
 
 #, c-format
 msgid "&Automatically expand all subfolders"

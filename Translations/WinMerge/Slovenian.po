@@ -518,7 +518,7 @@ msgid "Com&pare Statistics..."
 msgstr "&Statistika primerjave..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Osv&eži\tF5"
 
 #, c-format
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Vredu'"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 
 #, c-format
@@ -2282,7 +2282,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Prezri razlike manjše od 3 sekund"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Vključi unikatne vsebine podmap"
 
 #, c-format

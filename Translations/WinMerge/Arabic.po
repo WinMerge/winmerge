@@ -419,7 +419,7 @@ msgstr ""
 msgid "Com&pare Statistics..."
 msgstr "إحصائيات المقارنة..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&تحديث\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1038,7 +1038,7 @@ msgstr "عرض نافذة \"اختيار الملفات أو المجلدات\" 
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "إغلاق نافذة \"اختيار الملفات أو المجلدات\" عند الضغط على زر الموافقة"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "فتح نافذة الإكمال التلقائي:"
 
 msgid "Language:"
@@ -1807,7 +1807,7 @@ msgstr "&توقف بعد إيجاد الاختلاف الأول"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "ت&جاهل الاختلاف في الوقت في حال كان أقل من 3 ثواني"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "إ&دراج محتويات المجلدات الفرعية الفريدة"
 
 msgid "&Automatically expand all subfolders"
