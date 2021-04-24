@@ -1,12 +1,12 @@
 /**
- * @file IniOptionsMgr.cpp
+ * @file CIniOptionsMgr.cpp
  *
  * @brief Implementation of Ini file Options management class.
  *
  */
 
 #include "pch.h"
-#include "IniOptionsMgr.h"
+#include "CIniOptionsMgr.h"
 #include "OptionsMgr.h"
 #include <Windows.h>
 #include <codecvt>
@@ -16,20 +16,20 @@
 
 using std::filesystem::current_path;
 
-LPCWSTR IniOptionsMgr::lpFilePath = NULL;
+LPCWSTR CIniOptionsMgr::lpFilePath = NULL;
 
 LPCWSTR lpAppName = TEXT("WinMerge");
 LPCWSTR lpFileName = TEXT("\\winmerge.ini");
 
-IniOptionsMgr::IniOptionsMgr()
+CIniOptionsMgr::CIniOptionsMgr()
 {
 	InitializeCriticalSection(&m_cs);
 }
 
-IniOptionsMgr::~IniOptionsMgr()
+CIniOptionsMgr::~CIniOptionsMgr()
 {
 	DeleteCriticalSection(&m_cs);
-	delete[] IniOptionsMgr::lpFilePath;
+	delete[] CIniOptionsMgr::lpFilePath;
 }
 
 /**
@@ -37,7 +37,7 @@ IniOptionsMgr::~IniOptionsMgr()
  * @return TRUE if INI file exist,
  *   FALSE otherwise.
  */
-bool IniOptionsMgr::CheckIfIniFileExist()
+bool CIniOptionsMgr::CheckIfIniFileExist()
 {
 	std::ifstream f(GetFilePath());
 	return f.good();
@@ -47,9 +47,9 @@ bool IniOptionsMgr::CheckIfIniFileExist()
  * @brief Get path to INI file.
  * @return path to INI file
  */
-LPCWSTR IniOptionsMgr::GetFilePath()
+LPCWSTR CIniOptionsMgr::GetFilePath()
 {
-	if (IniOptionsMgr::lpFilePath == NULL)
+	if (CIniOptionsMgr::lpFilePath == NULL)
 	{
 		// create path
 		std::filesystem::path p = current_path();
@@ -62,13 +62,13 @@ LPCWSTR IniOptionsMgr::GetFilePath()
 		wcscpy_s(strCp, length, str.c_str());
 
 		// set path
-		IniOptionsMgr::lpFilePath = strCp;
+		CIniOptionsMgr::lpFilePath = strCp;
 	}
 
-	return IniOptionsMgr::lpFilePath;
+	return CIniOptionsMgr::lpFilePath;
 }
 
-int IniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& defaultValue)
+int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& defaultValue)
 {
 	// Check type & bail if null
 	int valType = defaultValue.GetType();
@@ -106,19 +106,19 @@ int IniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& d
 	return retVal;
 }
 
-int IniOptionsMgr::InitOption(const String& name, const String& defaultValue)
+int CIniOptionsMgr::InitOption(const String& name, const String& defaultValue)
 {
 	varprop::VariantValue defValue;
 	defValue.SetString(defaultValue);
 	return InitOption(name, defValue);
 }
 
-int IniOptionsMgr::InitOption(const String& name, const TCHAR* defaultValue)
+int CIniOptionsMgr::InitOption(const String& name, const TCHAR* defaultValue)
 {
 	return InitOption(name, String(defaultValue));
 }
 
-int IniOptionsMgr::InitOption(const String& name, int defaultValue, bool serializable)
+int CIniOptionsMgr::InitOption(const String& name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
 	int retVal = COption::OPT_OK;
@@ -131,14 +131,14 @@ int IniOptionsMgr::InitOption(const String& name, int defaultValue, bool seriali
 	return retVal;
 }
 
-int IniOptionsMgr::InitOption(const String& name, bool defaultValue)
+int CIniOptionsMgr::InitOption(const String& name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
 	defValue.SetBool(defaultValue);
 	return InitOption(name, defValue);
 }
 
-int IniOptionsMgr::SaveOption(const String& name)
+int CIniOptionsMgr::SaveOption(const String& name)
 {
 	if (!m_serializing) return COption::OPT_OK;
 
@@ -183,7 +183,7 @@ int IniOptionsMgr::SaveOption(const String& name)
 /**
  * @brief Set new value for option and save option to file
  */
-int IniOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& value)
+int CIniOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& value)
 {
 	int retVal = Set(name, value);
 	if (retVal == COption::OPT_OK)
@@ -194,7 +194,7 @@ int IniOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& v
 /**
  * @brief Set new string value for option and save option to file
  */
-int IniOptionsMgr::SaveOption(const String& name, const String& value)
+int CIniOptionsMgr::SaveOption(const String& name, const String& value)
 {
 	varprop::VariantValue val;
 	val.SetString(value);
@@ -207,12 +207,12 @@ int IniOptionsMgr::SaveOption(const String& name, const String& value)
 /**
  * @brief Set new string value for option and save option to file
  */
-int IniOptionsMgr::SaveOption(const String& name, const TCHAR* value)
+int CIniOptionsMgr::SaveOption(const String& name, const TCHAR* value)
 {
 	return SaveOption(name, String(value));
 }
 
-int IniOptionsMgr::SaveOption(const String& name, int value)
+int CIniOptionsMgr::SaveOption(const String& name, int value)
 {
 	varprop::VariantValue val;
 	val.SetInt(value);
@@ -222,7 +222,7 @@ int IniOptionsMgr::SaveOption(const String& name, int value)
 	return retVal;
 }
 
-int IniOptionsMgr::SaveOption(const String& name, bool value)
+int CIniOptionsMgr::SaveOption(const String& name, bool value)
 {
 	varprop::VariantValue val;
 	val.SetBool(value);
@@ -232,7 +232,7 @@ int IniOptionsMgr::SaveOption(const String& name, bool value)
 	return retVal;
 }
 
-int IniOptionsMgr::RemoveOption(const String& name)
+int CIniOptionsMgr::RemoveOption(const String& name)
 {
 	int retVal = COption::OPT_OK;
 
@@ -266,9 +266,9 @@ int IniOptionsMgr::RemoveOption(const String& name)
 	return retVal;
 }
 
-int IniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor) const
+int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor) const
 {
-	if (std::filesystem::copy_file(IniOptionsMgr::GetFilePath(), filename))
+	if (std::filesystem::copy_file(CIniOptionsMgr::GetFilePath(), filename))
 	{
 		return COption::OPT_OK;
 	}
@@ -278,9 +278,9 @@ int IniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor) c
 	}
 }
 
-int IniOptionsMgr::ImportOptions(const String& filename)
+int CIniOptionsMgr::ImportOptions(const String& filename)
 {
-	if (std::filesystem::copy_file(filename, IniOptionsMgr::GetFilePath()))
+	if (std::filesystem::copy_file(filename, CIniOptionsMgr::GetFilePath()))
 	{
 		return COption::OPT_OK;
 	}
@@ -290,7 +290,7 @@ int IniOptionsMgr::ImportOptions(const String& filename)
 	}
 }
 
-String IniOptionsMgr::ReadValueFromFile(const String& name)
+String CIniOptionsMgr::ReadValueFromFile(const String& name)
 {
 	const int size = 100;
 	LPWSTR buffor = new TCHAR[size];
@@ -298,7 +298,7 @@ String IniOptionsMgr::ReadValueFromFile(const String& name)
 	return buffor;
 }
 
-int IniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop::VariantValue& value)
+int CIniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop::VariantValue& value)
 {
 	int valType = value.GetType();
 	int retVal = COption::OPT_OK;
@@ -335,7 +335,7 @@ int IniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop:
  * @param [out] srPath Path (key) in registry
  * @param [out] strValue Value in registry
  */
-void IniOptionsMgr::SplitName(const String& strName, String& strPath,
+void CIniOptionsMgr::SplitName(const String& strName, String& strPath,
 	String& strValue) const
 {
 	size_t pos = strName.rfind('/');

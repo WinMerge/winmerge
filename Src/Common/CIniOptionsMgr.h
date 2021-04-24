@@ -1,5 +1,5 @@
 /**
- * @file IniOptionsMgr.h
+ * @file CIniOptionsMgr.h
  *
  * @brief Implementation of Ini file Options management class.
  *
@@ -14,11 +14,11 @@ class COptionsMgr;
 /**
  * @brief Ini-based implementation of OptionsMgr interface (q.v.).
  */
-class IniOptionsMgr : public COptionsMgr
+class CIniOptionsMgr : public COptionsMgr
 {
 public:
-	IniOptionsMgr();
-	virtual ~IniOptionsMgr();
+	CIniOptionsMgr();
+	virtual ~CIniOptionsMgr();
 
 	static bool CheckIfIniFileExist();
 

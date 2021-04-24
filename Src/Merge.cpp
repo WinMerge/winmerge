@@ -20,7 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsInit.h"
 #include "RegOptionsMgr.h"
-#include "IniOptionsMgr.h"
+#include "CIniOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
 #include "OpenView.h"
@@ -123,9 +123,9 @@ CMergeApp::CMergeApp() :
  */
 COptionsMgr *CreateOptionManager()
 {
-	if (IniOptionsMgr::CheckIfIniFileExist())
+	if (CIniOptionsMgr::CheckIfIniFileExist())
 	{
-		return new IniOptionsMgr();
+		return new CIniOptionsMgr();
 	}
 	else
 	{
@@ -578,8 +578,10 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (m_bNonInteractive && IsReallyIdle())
 		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
 
-	// TODO: fix
-	//static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseKeys();
+	if (typeid(*GetOptionsMgr()) == typeid(CRegOptionsMgr))
+	{
+		static_cast<CRegOptionsMgr*>(GetOptionsMgr())->CloseKeys();
+	}
 
 	return FALSE;
 }

@@ -616,7 +616,7 @@
     <ClCompile Include="Common\Shell.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\IniOptionsMgr.cpp">
+    <ClCompile Include="Common\CIniOptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1215,7 +1215,7 @@
     <ClInclude Include="Common\Shell.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\IniOptionsMgr.h">
+    <ClInclude Include="Common\CIniOptionsMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
