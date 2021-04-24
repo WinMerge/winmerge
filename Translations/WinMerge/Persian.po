@@ -105,6 +105,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&w با ..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -516,7 +519,7 @@ msgid "Com&pare Statistics..."
 msgstr "&r مقايسه آمارها ... "
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&s بازسازي \tF5"
 
 #, c-format
@@ -995,11 +998,8 @@ msgid "&Open Left"
 msgstr "&O بازکردن سمت چپي "
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&E با ويرايشگر بيروني "
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1306,7 +1306,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
 
 #, c-format
@@ -2287,7 +2287,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&o  چشم پوشي از تفاوت زماني کمتر از 3 ثانيه "
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

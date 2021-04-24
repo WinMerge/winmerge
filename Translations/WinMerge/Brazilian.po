@@ -106,6 +106,9 @@ msgstr "Com o &Editor Externo\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Com..."
 
+msgid "Open &Parent Folder..."
+msgstr "Abrir Pasta &Parente..."
+
 msgid "S&hell Menu"
 msgstr "Menu de Conte&xto"
 
@@ -517,7 +520,7 @@ msgid "Com&pare Statistics..."
 msgstr "Com&parar as Estatísticas..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Atualiz&ar\tF5"
 
 #, c-format
@@ -994,11 +997,8 @@ msgid "&Open Left"
 msgstr "&Abrir a Esquerda"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "com &o Editor Externo"
-
-msgid "Open &Parent Folder..."
-msgstr "Abrir Pasta &Parente..."
+msgid "With &External Editor"
+msgstr "Com &o Editor Externo"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão OK"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&uto-Conclusão do Diálogo-Abrir:"
 
 #, c-format
@@ -2286,7 +2286,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar as diferenças de tempo menores do que 3 segundos"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos únicos das sub-pastas"
 
 #, c-format

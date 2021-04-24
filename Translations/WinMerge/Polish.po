@@ -92,6 +92,9 @@ msgstr "W zewnętrznym edytorze\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Z..."
 
+msgid "Open &Parent Folder..."
+msgstr "Otwórz nadrzędny katalog"
+
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
@@ -415,7 +418,7 @@ msgstr "Zamień 1 | &3"
 msgid "Com&pare Statistics..."
 msgstr "Statystyki porównania..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Odśwież\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -790,11 +793,8 @@ msgstr "Ukryj elementy"
 msgid "&Open Left"
 msgstr "&Otwórz lewą"
 
-msgid "with &External Editor"
-msgstr "w zewnętrznym &edytorze"
-
-msgid "Open &Parent Folder..."
-msgstr "Otwórz nadrzędny katalog"
+msgid "With &External Editor"
+msgstr "W zewnętrznym &edytorze"
 
 msgid "Open Midd&le"
 msgstr "Otwórz środkową"
@@ -1035,7 +1035,7 @@ msgstr "Po uruchomieniu pokaż okno dialogowe \"wybierz pliki lub foldery\""
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Zamknij okno dialogowe \"wybierz pliki lub foldery\" przyciskiem OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otwórz okno dialogowe automatycznego uzu&pełniania:"
 
 msgid "Language:"
@@ -1798,7 +1798,7 @@ msgstr "Zatrzymaj po pierwszej różnicy"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignoruj różnice czasu mniejsze niż 3 sekundy"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Uwzględnij unikalną zawartość podfolderów"
 
 msgid "&Automatically expand all subfolders"

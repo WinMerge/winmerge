@@ -95,6 +95,9 @@ msgstr "Com editor externo\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Com..."
 
+msgid "Open &Parent Folder..."
+msgstr "Abrir &Pasta principal..."
+
 msgid "S&hell Menu"
 msgstr "Menu da S&hell"
 
@@ -418,7 +421,7 @@ msgstr "Trocar 1º | &3º"
 msgid "Com&pare Statistics..."
 msgstr "Comparar Estatísticas..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Atuali&zar\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -793,11 +796,8 @@ msgstr "Ocultar itens"
 msgid "&Open Left"
 msgstr "Abrir Esquerda"
 
-msgid "with &External Editor"
-msgstr "com Editor &Externo"
-
-msgid "Open &Parent Folder..."
-msgstr "Abrir &Pasta principal..."
+msgid "With &External Editor"
+msgstr "Com Editor &Externo"
 
 msgid "Open Midd&le"
 msgstr "Abrir Meio"
@@ -1040,7 +1040,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 "Fechar caixa de diálogo \"Pastas ou Ficheiros selecionados\" Ao clicar OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-completar Janela de Abertura:"
 
 msgid "Language:"
@@ -1822,7 +1822,7 @@ msgstr "Parar após primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos exclusivos da subpastas"
 
 msgid "&Automatically expand all subfolders"

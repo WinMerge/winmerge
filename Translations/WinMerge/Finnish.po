@@ -102,6 +102,9 @@ msgstr "Ulkois&ella editorilla\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Ohjelmalla..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr "&Liittymävalikko"
 
@@ -513,7 +516,7 @@ msgid "Com&pare Statistics..."
 msgstr "Vertaa tilastoja..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Päivitä\tF5"
 
 #, c-format
@@ -994,11 +997,8 @@ msgid "&Open Left"
 msgstr "Avaa vasen"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "ulkoisella &editorilla"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Ulkoisella &editorilla"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Sulje \"Valitse tiedostot tai kansiot\" dialogi klikkaamalla OK"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Avaa valintaikkuna 'Automaattinen täydennys':"
 
 #, c-format
@@ -2284,7 +2284,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Jätä alle 3 sekunnin aikaerot huomiotta"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "S&isällytä yksilölliset alikansioiden sisällöt"
 
 #, c-format

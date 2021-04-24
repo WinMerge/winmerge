@@ -104,6 +104,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&S..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -515,7 +518,7 @@ msgid "Com&pare Statistics..."
 msgstr "Usporedbena &statistika..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Osv&ježi\tF5"
 
 #, c-format
@@ -994,11 +997,8 @@ msgid "&Open Left"
 msgstr "&Otvori lijevi"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "&vanjskim uređivačem"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "&Vanjskim uređivačem"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otvori dijalog &samodovršenja"
 
 #, c-format
@@ -2280,7 +2280,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Zanemari razlike manje od 3 sekunde"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

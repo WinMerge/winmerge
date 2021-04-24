@@ -95,6 +95,9 @@ msgstr "使用外部编辑器(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "选择程序(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "打开上层文件夹(&P)..."
+
 msgid "S&hell Menu"
 msgstr "外壳菜单(&S)"
 
@@ -418,8 +421,8 @@ msgstr "交换组1与组&3"
 msgid "Com&pare Statistics..."
 msgstr "比较结果统计(&P)..."
 
-msgid "Refre&sh\tF5"
-msgstr "刷新(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "刷新\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "刷新选中项(&R)\tCtrl+F5"
@@ -793,11 +796,8 @@ msgstr "隐藏(&H)"
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "用外部编辑器(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "打开上层文件夹(&P)..."
 
 msgid "Open Midd&le"
 msgstr "打开中间(&L)"
@@ -1038,8 +1038,8 @@ msgstr "启动时显示“选择文件或文件夹”对话框"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "点击“确定”按钮时关闭“选择文件或文件夹”对话框"
 
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "“打开”对话框的自动完成(&P):"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "“打开”对话框的自动完成(&E):"
 
 msgid "Language:"
 msgstr "语言:"
@@ -1812,8 +1812,8 @@ msgstr "遇到首处差异后停止(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略小于3秒的时间差异(&O)"
 
-msgid "&Include unique subfolders contents"
-msgstr "包含仅在单侧的子文件夹内容(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "包含仅在单侧的子文件夹内容(&U)"
 
 msgid "&Automatically expand all subfolders"
 msgstr "自动展开所有子文件夹(&A)"

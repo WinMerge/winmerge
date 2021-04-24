@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-18 15:21+0000\n"
+"POT-Creation-Date: 2021-04-20 22:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -84,6 +84,9 @@ msgid "With &External Editor\tCtrl+Alt+E"
 msgstr ""
 
 msgid "&With..."
+msgstr ""
+
+msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
@@ -409,7 +412,7 @@ msgstr ""
 msgid "Com&pare Statistics..."
 msgstr ""
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr ""
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -784,10 +787,7 @@ msgstr ""
 msgid "&Open Left"
 msgstr ""
 
-msgid "with &External Editor"
-msgstr ""
-
-msgid "Open &Parent Folder..."
+msgid "With &External Editor"
 msgstr ""
 
 msgid "Open Midd&le"
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr ""
 
 msgid "Language:"
@@ -1792,7 +1792,7 @@ msgstr ""
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 msgid "&Automatically expand all subfolders"

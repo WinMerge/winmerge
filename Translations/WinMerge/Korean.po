@@ -109,6 +109,9 @@ msgstr "외부 편집기로(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "프로그램 선택(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "상위 폴더 열기(&P)"
+
 msgid "S&hell Menu"
 msgstr "쉘 메뉴(&S)"
 
@@ -520,8 +523,8 @@ msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
 
 #, c-format
-msgid "Refre&sh\tF5"
-msgstr "새로 고침(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "새로 고침\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -999,11 +1002,8 @@ msgid "&Open Left"
 msgstr "왼쪽 열기(&O)"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "외부 편집기로(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "상위 폴더 열기(&P)"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1308,8 +1308,8 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "확인 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "열기 대화 상자 자동 완성(&P):"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "열기 대화 상자 자동 완성(&E):"
 
 #, c-format
 msgid "Language:"
@@ -2287,8 +2287,8 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3초 이내의 시간 차이점 무시하기(&O)"
 
 #, c-format
-msgid "&Include unique subfolders contents"
-msgstr "유일한 하위 폴더 내용 포함하기(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "유일한 하위 폴더 내용 포함하기(&U)"
 
 #, c-format
 msgid "&Automatically expand all subfolders"

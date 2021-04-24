@@ -95,6 +95,7 @@ BEGIN
             MENUITEM "With &Registered Application", ID_FILE_OPEN_REGISTERED
             MENUITEM "With &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&With...",                    ID_FILE_OPEN_WITH
+            MENUITEM "Open &Parent Folder...",      ID_FILE_OPEN_PARENT_FOLDER
         END
         MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END
@@ -367,7 +368,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
     END
     POPUP "&Merge"
@@ -598,7 +599,7 @@ BEGIN
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&Merge"
     BEGIN
@@ -761,21 +762,21 @@ BEGIN
         POPUP "&Open Left"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_LEFT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "With &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_LEFT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_LEFT_PARENT_FOLDER
         END
         POPUP "Open Midd&le"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_MIDDLE
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
+            MENUITEM "With &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_MIDDLE_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_MIDDLE_PARENT_FOLDER
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "With &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_RIGHT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_RIGHT_PARENT_FOLDER
         END
@@ -1126,7 +1127,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,240,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,240,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,145,240,10
+    LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,145,240,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,175,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,187,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -1134,22 +1135,22 @@ BEGIN
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 305, 96
+IDD_EDIT_FIND DIALOGEX 30, 73, 324, 96
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,60,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,69,7,150,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,70,10
+    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,160,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,24,140,10
     CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,140,10
     CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,140,10
     CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,200,10
     CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,200,10
-    DEFPUSHBUTTON   "&Find Next",IDOK,226,7,72,14,WS_GROUP
-    PUSHBUTTON      "Find &Prev",IDC_EDIT_FINDPREV,226,24,72,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,226,41,72,14
+    DEFPUSHBUTTON   "&Find Next",IDOK,247,7,70,14,WS_GROUP
+    PUSHBUTTON      "Find &Prev",IDC_EDIT_FINDPREV,247,24,70,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,247,41,70,14
 END
 
 IDD_DIR_FILTER DIALOGEX 30, 73, 293, 74
@@ -1883,7 +1884,7 @@ BEGIN
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 115
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Confirm Copy"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1893,7 +1894,7 @@ BEGIN
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,10
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | ES_READONLY
-	CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
+    CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
     DEFPUSHBUTTON   "Yes",IDYES,174,95,50,14
     PUSHBUTTON      "No",IDNO,228,95,50,14
 END
@@ -1939,7 +1940,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,239,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,239,10
-    CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
+    CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,239,10
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,239,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
@@ -2292,9 +2293,9 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
     0, 0, 0, 0
+    100, 0, 0, 0,
+    100, 0, 0, 0,
 END
 
 IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT

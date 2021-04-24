@@ -87,13 +87,12 @@ public:
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
 	void ShowHelp(LPCTSTR helpLocation = nullptr);
-	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
-	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
-	bool CreateBackup(bool bFolder, const String& pszPath);
-	int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
+	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
+	static bool CreateBackup(bool bFolder, const String& pszPath);
+	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
-	void SetupTempPath();
+	static void SetupTempPath();
 	bool IsReallyIdle() const;
 
 	virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault) override;

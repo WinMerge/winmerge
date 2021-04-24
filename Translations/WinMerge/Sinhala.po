@@ -101,6 +101,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&සමග"
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -512,7 +515,7 @@ msgid "Com&pare Statistics..."
 msgstr "සංඛ්‍යාන විස්තර සසඳන්න..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "නැවත පණ ගැන්වීම\tF5"
 
 #, c-format
@@ -991,11 +994,8 @@ msgid "&Open Left"
 msgstr "වම් පස විවෘත කරන්න"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "බාහිර සම්බන්ධකය සමග"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1300,8 +1300,8 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "Op&en-dialog Auto-Completion:"
 
 #, c-format
 msgid "Language:"
@@ -2275,7 +2275,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "තත්පර 3 ට අඩු කාලච්ඡේද නොසලකා හරින්න"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

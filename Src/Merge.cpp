@@ -35,7 +35,6 @@
 #include "DirView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
-#include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
@@ -53,6 +52,7 @@
 #include "stringdiffs.h"
 #include "TFile.h"
 #include "paths.h"
+#include "Shell.h"
 #include "CompareStats.h"
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
@@ -440,13 +440,20 @@ static void OpenContributersFile(int&)
 	theApp.OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
 }
 
+static void OpenUrl(int&)
+{
+	shell::Open(WinMergeURL);
+}
+
 // App command to run the dialog
 void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.m_onclick_contributers += Poco::delegate(OpenContributersFile);
+	aboutDlg.m_onclick_url += Poco::delegate(OpenUrl);
 	aboutDlg.DoModal();
 	aboutDlg.m_onclick_contributers.clear();
+	aboutDlg.m_onclick_url.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -818,17 +825,6 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 }
 
 /**
- * @brief Open file, if it exists, else open url
- */
-void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
-{
-	if (paths::DoesPathExist(szFile) == paths::IS_EXISTING_FILE)
-		ShellExecute(nullptr, _T("open"), _T("notepad.exe"), szFile, nullptr, SW_SHOWNORMAL);
-	else
-		ShellExecute(nullptr, _T("open"), szUrl, nullptr, nullptr, SW_SHOWNORMAL);
-}
-
-/**
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */
@@ -845,7 +841,7 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 			::HtmlHelp(nullptr, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 		else
-			ShellExecute(nullptr, _T("open"), DocsURL, nullptr, nullptr, SW_SHOWNORMAL);
+			shell::Open(DocsURL);
 	}
 	else
 	{

@@ -103,6 +103,9 @@ msgstr ""
 msgid "&With..."
 msgstr "Με..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -514,7 +517,7 @@ msgid "Com&pare Statistics..."
 msgstr "Στατιστικά Συγκρίσεως..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ανα&νέωση\tF5"
 
 #, c-format
@@ -993,11 +996,8 @@ msgid "&Open Left"
 msgstr "Άνοιγμα Α&ριστερού"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "μ&ε άλλη Εφαρμογή"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Μ&ε άλλη Εφαρμογή"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1302,7 +1302,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Αυτόματη συμπλήρωση διαλόγου αν&οίγματος"
 
 #, c-format
@@ -2277,7 +2277,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Διαφορές ώρας μικρότερες των &3 δευτερολέπτων να αγνοούνται"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

@@ -106,6 +106,9 @@ msgstr "Külső szerkesztővel\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Egyéb programmal..."
 
+msgid "Open &Parent Folder..."
+msgstr "Szölőkönyvtár megnyitása..."
+
 msgid "S&hell Menu"
 msgstr "Intéző menü"
 
@@ -517,7 +520,7 @@ msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Frissítés\tF5"
 
 #, c-format
@@ -996,11 +999,8 @@ msgid "&Open Left"
 msgstr "Bal megnyitása"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Külső szerkesztővel"
-
-msgid "Open &Parent Folder..."
-msgstr "Szölőkönyvtár megnyitása..."
 
 #, c-format
 msgid "Open Midd&le"
@@ -1305,7 +1305,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Fájlok vagy könyvtárak választása\" bezárása az OK-val"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 
 #, c-format
@@ -2288,7 +2288,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Egyedi almappák tartalmai is"
 
 #, c-format

@@ -106,6 +106,9 @@ msgstr "Med Extern Redigerare\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Med ..."
 
+msgid "Open &Parent Folder..."
+msgstr "Öppna Föräldermapp ..."
+
 msgid "S&hell Menu"
 msgstr "GränssnittsMeny"
 
@@ -517,7 +520,7 @@ msgid "Com&pare Statistics..."
 msgstr "Jämför Statistik..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Aktualisera\tF5"
 
 #, c-format
@@ -996,11 +999,8 @@ msgid "&Open Left"
 msgstr "Öppna Vänster"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "med Extern Redigerare"
-
-msgid "Open &Parent Folder..."
-msgstr "Öppna Föräldermapp ..."
+msgid "With &External Editor"
+msgstr "Med Extern Redigerare"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1305,7 +1305,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Stäng \"Välj Filer eller Mappar\" dialogen då ''OK'' klickas"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Öppna-dialog Auto-Fullända:"
 
 #, c-format
@@ -2288,7 +2288,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Åsidosätt tidsskillnad mindre än 3 sekunder"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Inkludera unikt UndermappsInnehåll"
 
 #, c-format

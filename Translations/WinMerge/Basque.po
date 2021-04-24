@@ -107,6 +107,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Honekin..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -518,7 +521,7 @@ msgid "Com&pare Statistics..."
 msgstr "Alderatu Esta&tistikak..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ber&ritu\tF5"
 
 #, c-format
@@ -996,11 +999,8 @@ msgstr "&Ezkutatu Gaiak"
 msgid "&Open Left"
 msgstr "&Ireki Ezkerrekoa"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Kanpoko Editorearekin"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1305,7 +1305,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
 
 #, c-format
@@ -2281,7 +2281,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ezikusi 3 segundu baino gut&xiagoko ezberdintasunak"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
