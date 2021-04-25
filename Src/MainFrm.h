@@ -44,6 +44,7 @@ typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
 
 class PackingInfo;
 class CLanguageSelect;
+struct IMergeDoc;
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
 
@@ -118,11 +119,12 @@ public:
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr);
-	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
-	void UpdateDocTitle();
-	void ReloadMenu();
+	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
+	static void UpdateDocTitle();
+	static void ReloadMenu();
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
+	IMergeDoc* GetActiveIMergeDoc();
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -301,14 +303,22 @@ protected:
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnMRUs(UINT nID);
 	afx_msg void OnUpdateNoMRUs(CCmdUI* pCmdUI);
-    afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnFirstFile();
+	afx_msg void OnUpdateFirstFile(CCmdUI* pCmdUI);
+	afx_msg void OnPrevFile();
+	afx_msg void OnUpdatePrevFile(CCmdUI* pCmdUI);
+	afx_msg void OnNextFile();
+	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
+	afx_msg void OnLastFile();
+	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
-	//}}AFX_MSG
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:

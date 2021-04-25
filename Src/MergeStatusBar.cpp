@@ -173,19 +173,33 @@ void CMergeStatusBar::Resize(int widths[])
 
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
-		int paneWidth = widths[pane] - (pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
-			(3 * borderWidth));
-		if (paneWidth < borderWidth)
-			paneWidth = borderWidth;
+		int fixedPaneWidth = pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
+			(3 * borderWidth);
+		int paneWidth = widths[pane] - fixedPaneWidth;
+		int encodingWidth = pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth;
+		int roWidth = pointToPixel(RO_PANEL_WIDTH) - borderWidth;
+		int eolWidth = pointToPixel(EOL_PANEL_WIDTH) - borderWidth;
+		if (paneWidth < 0)
+		{
+			paneWidth = 0;
+			int restWidth = widths[pane] - paneWidth - borderWidth;
+			if (restWidth < 0) restWidth = 0;
+			roWidth = (roWidth + borderWidth) * restWidth / fixedPaneWidth - borderWidth;
+			if (roWidth < 0) roWidth = 0;
+			eolWidth = (eolWidth + borderWidth) * restWidth / fixedPaneWidth - borderWidth;
+			if (eolWidth < 0) eolWidth = 0;
+			encodingWidth = widths[pane] - (paneWidth + roWidth + eolWidth + 6 * borderWidth);
+			if (encodingWidth < 0) encodingWidth = 0;
+		}
 
 		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
 			SBPS_NORMAL, paneWidth);
 		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
-			SBT_OWNERDRAW, pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth);
+			SBT_OWNERDRAW, encodingWidth);
 		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
-			SBPS_NORMAL, pointToPixel(RO_PANEL_WIDTH) - borderWidth);
+			SBPS_NORMAL, roWidth);
 		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
-			SBT_OWNERDRAW, pointToPixel(EOL_PANEL_WIDTH) - borderWidth);
+			SBT_OWNERDRAW, eolWidth);
 	}
 }
 
@@ -206,6 +220,8 @@ CMergeStatusBar::MergeStatus::MergeStatus()
 , m_nChars(0)
 , m_nCodepage(-1)
 , m_bHasBom(false)
+, m_nSelectedLines(0)
+, m_nSelectedChars(0)
 , m_pWndStatusBar(nullptr)
 , m_base(0)
 {
@@ -231,6 +247,12 @@ void CMergeStatusBar::MergeStatus::Update()
 		{
 			strInfo.Format(_("Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s").c_str(),
 				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str(), m_nCodepage, m_sCodepageName.c_str());
+		}
+		if (m_nSelectedLines > 0)
+		{
+			CString strSelected;
+			strSelected.Format(_("  Sel: %d | %d").c_str(), m_nSelectedLines, m_nSelectedChars);
+			strInfo += strSelected;
 		}
 
 		if (m_nCodepage > 0)
@@ -274,10 +296,12 @@ static String EolString(const String & sEol)
 
 /// Receive status line info from crystal window and display
 void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
-		int nColumns, int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom)
+		int nColumns, int nChar, int nChars, int nSelectedLines, int nSelectedChars, LPCTSTR szEol, int nCodepage, bool bHasBom)
 {
 	if (m_sLine != szLine || m_nColumn != nColumn || m_nColumns != nColumns ||
-		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol != 0 || m_nCodepage != nCodepage || m_bHasBom != bHasBom)
+		m_nChar != nChar || m_nChars != nChars || 
+		m_nSelectedLines != nSelectedLines || m_nSelectedChars != nSelectedChars ||
+		m_sEol != szEol != 0 || m_nCodepage != nCodepage || m_bHasBom != bHasBom)
 	{
 		USES_CONVERSION;
 		m_sLine = szLine;
@@ -285,6 +309,8 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		m_nColumns = nColumns;
 		m_nChar = nChar;
 		m_nChars = nChars;
+		m_nSelectedLines = nSelectedLines;
+		m_nSelectedChars = nSelectedChars;
 		m_sEol = szEol;
 		m_sEolDisplay = EolString(m_sEol);
 		if (m_nCodepage != nCodepage || m_bHasBom != bHasBom)

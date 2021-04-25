@@ -596,12 +596,11 @@ PreCreateWindow (CREATESTRUCT & cs)
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView drawing
 
-void CCrystalTextView::
-GetSelection (CPoint & ptStart, CPoint & ptEnd)
+std::pair<CPoint, CPoint> CCrystalTextView::
+GetSelection ()
 {
   PrepareSelBounds ();
-  ptStart = m_ptDrawSelStart;
-  ptEnd = m_ptDrawSelEnd;
+  return { m_ptDrawSelStart, m_ptDrawSelEnd };
 }
 
 bool CCrystalTextView::
@@ -651,9 +650,7 @@ GetColumnSelection (int nLineIndex, int & nSelBegin, int & nSelEnd)
 void CCrystalTextView::
 GetFullySelectedLines(int & firstLine, int & lastLine)
 {
-  CPoint ptStart;
-  CPoint ptEnd;
-  GetSelection(ptStart, ptEnd);
+  auto [ptStart, ptEnd] = GetSelection ();
 
   if (ptStart.x == 0)
     firstLine = ptStart.y;
@@ -894,6 +891,15 @@ static void AppendEscapeAdv(CString & str, int & curpos, TCHAR c)
   int curlen = str.GetLength();
   LPTSTR szadd = str.GetBufferSetLength(curlen + 3) + curlen;
   curpos += wsprintf(szadd, _T("\t%02X"), static_cast<int>(c));
+}
+
+static COLORREF GetIntermediateColor (COLORREF a, COLORREF b)
+{
+  float ratio = 0.333f;
+  const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
+  const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
+  const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
+  return RGB(R, G, B);
 }
 
 int CCrystalTextView::
@@ -1328,14 +1334,16 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
+                  COLORREF crText2 = crText;
+                  COLORREF crBkgnd2 = crBkgnd;
                   if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
-                    m_pCrystalRenderer->SetTextColor(GetColor(nColorIndex));
-                  else
-                    m_pCrystalRenderer->SetTextColor(crText);
+                    crText2 = GetColor(nColorIndex);
                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
-                    m_pCrystalRenderer->SetBkColor(GetColor(nBgColorIndex));
-                  else
-                    m_pCrystalRenderer->SetBkColor(crBkgnd);
+                    crBkgnd2 = GetColor(nBgColorIndex);
+                  if (nColorIndex & COLORINDEX_INTERMEDIATECOLOR)
+                    crText2 = GetIntermediateColor(crText2, crBkgnd2);
+                  m_pCrystalRenderer->SetTextColor(crText2);
+                  m_pCrystalRenderer->SetBkColor(crBkgnd2);
 
                   m_pCrystalRenderer->SwitchFont(GetItalic(nColorIndex), GetBold(nColorIndex));
                   // we are sure to have less than 4095 characters because all the chars are visible
@@ -1436,8 +1444,8 @@ DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nB
           if (nSelBegin < nSelEnd)
             {
               DrawLineHelperImpl (ptOrigin, rcClip,
-                                  nColorIndex & ~COLORINDEX_APPLYFORCE,
-                                  nBgColorIndex & ~COLORINDEX_APPLYFORCE,
+                                  nColorIndex & ~COLORINDEX_MASK,
+                                  nBgColorIndex & ~COLORINDEX_MASK,
                                   GetColor (COLORINDEX_SELTEXT),
                                   GetColor (COLORINDEX_SELBKGND),
                                   nLineIndex,
@@ -1822,8 +1830,8 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
           (blocks1[i].m_nCharPos == blocks2[j].m_nCharPos))
         {
           mergedBlocks[k].m_nCharPos = blocks2[j].m_nCharPos;
-          if (blocks2[j].m_nColorIndex == COLORINDEX_NONE)
-            mergedBlocks[k].m_nColorIndex = blocks1[i].m_nColorIndex;
+          if ((blocks2[j].m_nColorIndex & ~COLORINDEX_MASK) == COLORINDEX_NONE)
+            mergedBlocks[k].m_nColorIndex = blocks1[i].m_nColorIndex | (blocks2[j].m_nColorIndex & COLORINDEX_MASK);
           else
             mergedBlocks[k].m_nColorIndex = blocks2[j].m_nColorIndex;
           if (blocks2[j].m_nBgColorIndex == COLORINDEX_NONE)
@@ -1837,8 +1845,9 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
           blocks1[i].m_nCharPos < blocks2[j].m_nCharPos))
         {
           mergedBlocks[k].m_nCharPos = blocks1[i].m_nCharPos;
-          if (blocks2.size() == 0 || blocks2[j - 1].m_nColorIndex == COLORINDEX_NONE)
-            mergedBlocks[k].m_nColorIndex = blocks1[i].m_nColorIndex;
+          if (blocks2.size() == 0 || (blocks2[j - 1].m_nColorIndex & ~COLORINDEX_MASK) == COLORINDEX_NONE)
+            mergedBlocks[k].m_nColorIndex = blocks1[i].m_nColorIndex | 
+              (blocks2.size() == 0 ? 0 : (blocks2[j - 1].m_nColorIndex & COLORINDEX_MASK));
           else
             mergedBlocks[k].m_nColorIndex = blocks2[j - 1].m_nColorIndex;
           if (blocks2.size() == 0 || blocks2[j - 1].m_nBgColorIndex == COLORINDEX_NONE)
@@ -1850,8 +1859,8 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
       else if (i >= blocks1.size() || (j < blocks2.size() && blocks1[i].m_nCharPos > blocks2[j].m_nCharPos))
         {
           mergedBlocks[k].m_nCharPos = blocks2[j].m_nCharPos;
-          if (i > 0 && blocks2[j].m_nColorIndex == COLORINDEX_NONE)
-            mergedBlocks[k].m_nColorIndex = blocks1[i - 1].m_nColorIndex;
+          if (i > 0 && (blocks2[j].m_nColorIndex & ~COLORINDEX_MASK) == COLORINDEX_NONE)
+            mergedBlocks[k].m_nColorIndex = blocks1[i - 1].m_nColorIndex | (blocks2[j].m_nColorIndex & COLORINDEX_MASK);
           else
             mergedBlocks[k].m_nColorIndex = blocks2[j].m_nColorIndex;
           if (i > 0 && blocks2[j].m_nBgColorIndex == COLORINDEX_NONE)
@@ -1876,6 +1885,49 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
 
   mergedBlocks.resize(j);
   return mergedBlocks;
+}
+
+std::vector<TEXTBLOCK>
+CCrystalTextView::GetWhitespaceTextBlocks(int nLineIndex) const
+{
+  const TCHAR *pszChars = GetLineChars(nLineIndex);
+  int nLineLength = GetLineLength(nLineIndex);
+  std::vector<TEXTBLOCK> blocks((nLineLength + 1) * 3);
+  blocks[0].m_nCharPos = 0;
+  blocks[0].m_nColorIndex = COLORINDEX_NONE;
+  blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
+  int nBlocks = 1;
+  if (pszChars != nullptr)
+    {
+      for (int i = 0; i < nLineLength; ++i)
+        {
+          if (pszChars[i] == ' ' || pszChars[i] == '\t')
+            {
+              blocks[nBlocks].m_nCharPos = i;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE | COLORINDEX_INTERMEDIATECOLOR;
+              blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+              while ((pszChars[i] == ' ' || pszChars[i] == '\t') && i < nLineLength)
+                  ++i;
+              if (i < nLineLength)
+                {
+                  blocks[nBlocks].m_nCharPos = i;
+                  blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+                  blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+                  ++nBlocks;
+                }
+            }
+        }
+    }
+  if (nBlocks == 0 || blocks[nBlocks].m_nColorIndex == COLORINDEX_NONE)
+    {
+      blocks[nBlocks].m_nCharPos = nLineLength;
+      blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE | COLORINDEX_INTERMEDIATECOLOR;
+      blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+      ++nBlocks;
+    }
+  blocks.resize(nBlocks);
+  return blocks;
 }
 
 std::vector<TEXTBLOCK>
@@ -1949,11 +2001,17 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), blocks.data(), nBlocks);
   ASSERT((*m_ParseCookies)[nLineIndex] != -1);
   blocks.resize(nBlocks);
-  
-  return MergeTextBlocks(blocks, 
-          (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0) ?
-          MergeTextBlocks(GetAdditionalTextBlocks(nLineIndex), GetMarkerTextBlocks(nLineIndex)) :
-          GetAdditionalTextBlocks(nLineIndex));
+
+  std::vector<TEXTBLOCK> additionalBlocks = GetAdditionalTextBlocks(nLineIndex);
+  std::vector<TEXTBLOCK> mergedBlocks;
+  if (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0)
+    mergedBlocks = MergeTextBlocks(additionalBlocks, GetMarkerTextBlocks(nLineIndex));
+  else
+    mergedBlocks = std::move(additionalBlocks);
+  std::vector<TEXTBLOCK> mergedBlocks2 = MergeTextBlocks(blocks, mergedBlocks);
+  if (m_bViewTabs || m_bViewEols)
+      return MergeTextBlocks(mergedBlocks2, GetWhitespaceTextBlocks(nLineIndex));
+  return mergedBlocks2;
 }
 
 void CCrystalTextView::
@@ -2195,24 +2253,29 @@ GetHTMLStyles ()
   };
 
   CString strStyles;
-  for (int f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
+  for (int i = 0; i < 2; i++)
     {
-      int nColorIndex = arColorIndices[f];
-      for (int b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
+      for (int f = 0; f < sizeof(arColorIndices) / sizeof(int); f++)
         {
-          int nBgColorIndex = arBgColorIndices[b];
-          COLORREF clr;
+          int nColorIndex = arColorIndices[f];
+          for (int b = 0; b < sizeof(arBgColorIndices) / sizeof(int); b++)
+            {
+              int nBgColorIndex = arBgColorIndices[b];
+              COLORREF clr;
 
-          strStyles += Fmt (_T(".sf%db%d {"), nColorIndex, nBgColorIndex);
-          clr = GetColor (nColorIndex);
-          strStyles += Fmt (_T("color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
-          clr = GetColor (nBgColorIndex);
-          strStyles += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
-          if (GetBold (nColorIndex))
-            strStyles += _T("font-weight: bold; ");
-          if (GetItalic (nColorIndex))
-            strStyles += _T("font-style: italic; ");
-          strStyles += _T("}\n");
+              strStyles += Fmt(_T(".sf%db%d%s {"), nColorIndex, nBgColorIndex, i == 0 ? _T("") : _T("i"));
+              clr = GetColor(nColorIndex);
+              if (i == 1)
+                clr = GetIntermediateColor(clr, GetColor(nBgColorIndex));
+              strStyles += Fmt(_T("color: #%02x%02x%02x; "), GetRValue(clr), GetGValue(clr), GetBValue(clr));
+              clr = GetColor(nBgColorIndex);
+              strStyles += Fmt(_T("background-color: #%02x%02x%02x; "), GetRValue(clr), GetGValue(clr), GetBValue(clr));
+              if (GetBold(nColorIndex))
+                strStyles += _T("font-weight: bold; ");
+              if (GetItalic(nColorIndex))
+                strStyles += _T("font-style: italic; ");
+              strStyles += _T("}\n");
+            }
         }
     }
   COLORREF clrSelMargin = GetColor(COLORINDEX_SELMARGIN);
@@ -2235,23 +2298,25 @@ CString CCrystalTextView::
 GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd)
 {
   CString strAttr;
-  COLORREF clr;
+  COLORREF clr, clrBk;
 
   if ((crText == CLR_NONE || (nColorIndex & COLORINDEX_APPLYFORCE)) && 
       (crBkgnd == CLR_NONE || (nBgColorIndex & COLORINDEX_APPLYFORCE)))
-    return Fmt(_T("class=\"sf%db%d\""), nColorIndex & ~COLORINDEX_APPLYFORCE, nBgColorIndex & ~COLORINDEX_APPLYFORCE);
+    return Fmt(_T("class=\"sf%db%d%s\""), nColorIndex & ~COLORINDEX_MASK, nBgColorIndex & ~COLORINDEX_MASK,
+      (nColorIndex & COLORINDEX_INTERMEDIATECOLOR) ? _T("i") : _T(""));
 
   if (crText == CLR_NONE || (nColorIndex & COLORINDEX_APPLYFORCE))
     clr = GetColor (nColorIndex);
   else
     clr = crText;
-  strAttr += Fmt (_T("style=\"color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
-
   if (crBkgnd == CLR_NONE || (nBgColorIndex & COLORINDEX_APPLYFORCE))
-    clr = GetColor (nBgColorIndex);
+    clrBk = GetColor (nBgColorIndex);
   else
-    clr = crBkgnd;
-  strAttr += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+    clrBk = crBkgnd;
+  if (nColorIndex & COLORINDEX_INTERMEDIATECOLOR)
+    clr = GetIntermediateColor(clr, clrBk);
+  strAttr += Fmt (_T("style=\"color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+  strAttr += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clrBk), GetGValue (clrBk), GetBValue (clrBk));
 
   if (GetBold (nColorIndex))
     strAttr += _T("font-weight: bold; ");
@@ -2328,11 +2393,11 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
 }
 
 COLORREF CCrystalTextView::
-GetColor (int nColorIndex)
+GetColor (int nColorIndex) const
 {
   if (m_pColors != nullptr)
     {
-      nColorIndex &= ~COLORINDEX_APPLYFORCE;
+      nColorIndex &= ~COLORINDEX_MASK;
       return m_pColors->GetColor(nColorIndex);
     }
   else
@@ -3799,7 +3864,7 @@ GetBold (int nColorIndex)
 {
   if (m_pColors  != nullptr)
     {
-      nColorIndex &= ~COLORINDEX_APPLYFORCE;
+      nColorIndex &= ~COLORINDEX_MASK;
       return m_pColors->GetBold(nColorIndex);
     }
   else
@@ -5782,8 +5847,7 @@ GetSearchPos(DWORD dwSearchFlags)
   CPoint ptSearchPos;
   if (IsSelection())
     {
-      CPoint ptStart, ptEnd;
-      GetSelection(ptStart, ptEnd);
+      auto [ptStart, ptEnd] = GetSelection ();
       if( dwSearchFlags & FIND_DIRECTION_UP)
         ptSearchPos = ptStart;
       else
@@ -5851,8 +5915,7 @@ OnEditFind ()
   //  Take the current selection, if any
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       if (ptSelStart.y == ptSelEnd.y)
         GetText (ptSelStart, ptSelEnd, m_pFindTextDlg->m_sText);
     }
@@ -5904,8 +5967,7 @@ OnEditRepeat ()
     {
       if (IsSelection())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          auto [ptSelStart, ptSelEnd] = GetSelection ();
           GetText (ptSelStart, ptSelEnd, sText);
         }
       else
@@ -5965,8 +6027,7 @@ OnEditMark ()
   //  Take the current selection, if any
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto[ptSelStart, ptSelEnd] = GetSelection ();
       if (ptSelStart.y == ptSelEnd.y)
         GetText (ptSelStart, ptSelEnd, sText);
     }
@@ -6819,8 +6880,7 @@ void CCrystalTextView::OnEditFindIncremental( bool bFindNextOccurence /*= false*
   // calculate start point for search
   if( bFindNextOccurence )
     {
-      CPoint	selStart, selEnd;
-      GetSelection( selStart, selEnd );
+      auto[selStart, selEnd] = GetSelection ();
       m_incrementalSearchStartPos = (m_bIncrementalSearchBackward)? selStart : selEnd;
     }
 

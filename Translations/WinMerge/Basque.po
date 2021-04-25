@@ -107,6 +107,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Honekin..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -521,7 +524,7 @@ msgid "Com&pare Statistics..."
 msgstr "Alderatu Esta&tistikak..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ber&ritu\tF5"
 
 #, c-format
@@ -999,11 +1002,8 @@ msgstr "&Ezkutatu Gaiak"
 msgid "&Open Left"
 msgstr "&Ireki Ezkerrekoa"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Kanpoko Editorearekin"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1308,7 +1308,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
 
 #, c-format
@@ -1868,12 +1868,12 @@ msgstr "Berezko Kode-orrialdea"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
 " .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2284,7 +2284,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ezikusi 3 segundu baino gut&xiagoko ezberdintasunak"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2758,6 +2758,10 @@ msgstr "Lerroa: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3918,13 +3922,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4199,4 +4203,3 @@ msgstr "Ahalbidetu ekinbide bat bakarrik "
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

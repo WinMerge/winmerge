@@ -105,6 +105,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&За допомогою..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -519,7 +522,7 @@ msgid "Com&pare Statistics..."
 msgstr "Порівняти статистики..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Поновити\tF5"
 
 #, c-format
@@ -998,11 +1001,8 @@ msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "зо&внішнім редактором"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Зо&внішнім редактором"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1307,7 +1307,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Діалог Автоматичного доповнення:"
 
 #, c-format
@@ -1868,12 +1868,12 @@ msgstr "Звичайна сторінка кодування"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Виявлення інформації про кодову сторінку для файлів\n"
 " .html, .rc, .xml вимагає перезапуску."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2284,7 +2284,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Нехтувати різницею часу, меншою 3 секунд"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2758,6 +2758,10 @@ msgstr "Рядок: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3917,13 +3921,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4199,4 +4203,3 @@ msgstr "Дозволити запуск лише однієї копії"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

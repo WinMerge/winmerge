@@ -4,13 +4,13 @@ set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.17.14.0/ShellExtension-1.17.14.0.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.4/Merge7z1900.4-win32.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.4/Merge7z1900.4-x64.zip!Build\X64 ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.4/Merge7z1900.4-ARM64.zip!Build\ARM64 ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-win32.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-x64.zip!Build\X64 ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-ARM64.zip!Build\ARM64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-win32.zip!Build ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-x64.zip!Build\X64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-ARM64.zip!Build\ARM64 ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.26/winimerge-1.0.26.0-exe.zip!Build ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.27/winimerge-1.0.27.0-exe.zip!Build ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
@@ -27,7 +27,7 @@ for %%p in (%urls_destdirs%) do (
 )
 
 for %%i in (Build Build\X64 Build\ARM64) do (
-  for %%j in (Release Debug) do (
+  for %%j in (Release Debug Test) do (
     mkdir %%i\%%j\Merge7z 2> NUL
     mkdir %%i\%%j\WinIMerge 2> NUL
     mkdir %%i\%%j\Frhed 2> NUL

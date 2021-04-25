@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-31 21:55+0000\n"
-"PO-Revision-Date: 2021-04-01 08:00+0200\n"
+"POT-Creation-Date: 2021-04-18 15:21+0000\n"
+"PO-Revision-Date: 2021-04-19 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -94,6 +94,9 @@ msgstr "Su Išoriniu r&edaktoriumi\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Su..."
+
+msgid "Open &Parent Folder..."
+msgstr "Atverti &tėvinį katalogą..."
 
 msgid "S&hell Menu"
 msgstr "&Sistemos meniu"
@@ -421,7 +424,7 @@ msgstr "Sukeisti 1-ą | &3-ią"
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Atnaujin&ti\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -796,11 +799,8 @@ msgstr "&Slėpti elementus"
 msgid "&Open Left"
 msgstr "&Atverti kairįjį"
 
-msgid "with &External Editor"
-msgstr "su išoriniu r&edaktoriumi"
-
-msgid "Open &Parent Folder..."
-msgstr "Atverti &tėvinį katalogą..."
+msgid "With &External Editor"
+msgstr "Su išoriniu r&edaktoriumi"
 
 msgid "Open Midd&le"
 msgstr "Atverti &vidurinį"
@@ -1041,7 +1041,7 @@ msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Gerai“ paspaudimo"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Lango „Atverti“ automatinis už&pildymas:"
 
 msgid "Language:"
@@ -1482,10 +1482,10 @@ msgstr "Numatytoji koduotė"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Parinkite numatytąją koduotę, kuri bus naudojama įkeliant ne Unicode failus:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Aptikti koduotę šiems failams: .html, .rc, .xml\nReikės restartuoti sesiją."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Aptikti šio tipo failų koduotę: .html, .rc, .xml\nReikės restartuoti sesiją."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
 
 msgid "System codepage"
@@ -1804,7 +1804,7 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Įtraukt&i unikalų pakatalogių turinį"
 
 msgid "&Automatically expand all subfolders"
@@ -2131,6 +2131,10 @@ msgstr "Eilutė: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  Paž: %d | %d"
 
 msgid "Merge"
 msgstr "Sulieti"
@@ -2979,14 +2983,14 @@ msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPirmas failas"
 
-msgid "\nNext File"
-msgstr "\nKitas failas"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nKitas failas (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nPaskutinis failas"
 
-msgid "\nPrevious File"
-msgstr "\nPraeitas failas"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
@@ -3238,4 +3242,3 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
-

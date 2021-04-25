@@ -402,7 +402,7 @@ bool CConfigLog::DoFile(String &sError)
  * @brief Parse Windows version data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetWindowsVer() const
+String CConfigLog::GetWindowsVer()
 {
 	CRegKeyEx key;
 	if (key.QueryRegMachine(_T("Software\\Microsoft\\Windows NT\\CurrentVersion")))
@@ -415,7 +415,7 @@ String CConfigLog::GetWindowsVer() const
  * @brief Parse Processor Information data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetProcessorInfo() const
+String CConfigLog::GetProcessorInfo()
 {
 	CRegKeyEx key;
 	String sProductName = _T("");
@@ -449,7 +449,7 @@ String CConfigLog::GetProcessorInfo() const
 /** 
  * @brief Return string representation of build flags (for reporting in config log)
  */
-String CConfigLog::GetBuildFlags() const
+String CConfigLog::GetBuildFlags()
 {
 	String flags;
 

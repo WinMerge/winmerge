@@ -48,6 +48,7 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
+	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
 	bool CloseNow() override;

@@ -103,6 +103,9 @@ msgstr "Amb l'&editor extern\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "A&mb..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -517,7 +520,7 @@ msgid "Com&pare Statistics..."
 msgstr "Estadístiques de &comparació..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Actualit&za\tF5"
 
 #, c-format
@@ -996,11 +999,8 @@ msgid "&Open Left"
 msgstr "Obre l'&esquerra"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "amb l'&editor extern"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Amb l'&editor extern"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1305,7 +1305,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Autocompletar al diàleg d'obrir:"
 
 #, c-format
@@ -1866,10 +1866,10 @@ msgstr "Pàgina de codis predeterminada"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selecciona la pàgina de codis predeterminada assumida en carregar fitxers no-Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2280,7 +2280,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignora diferències en l'&hora inferiors a 3 segons"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2723,6 +2723,10 @@ msgstr "Línia: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3848,13 +3852,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4130,4 +4134,3 @@ msgstr "Permet d'executar només una instància"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

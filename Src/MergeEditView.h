@@ -117,6 +117,7 @@ public:
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
+	std::pair<int, int> GetSelectedLineAndCharacterCount();
 	CString GetLineText(int idx);
 	CMergeDoc* GetDocument();
 	const CMergeDoc *GetDocument() const { return const_cast<CMergeEditView *>(this)->GetDocument(); }
@@ -129,7 +130,7 @@ public:
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
 	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
-	virtual COLORREF GetColor(int nColorIndex) override;
+	virtual COLORREF GetColor(int nColorIndex) const override;
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
@@ -193,8 +194,8 @@ public:
 // Implementation
 protected:
 	virtual ~CMergeEditView();
-	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz);
-	virtual void OnUpdateCaret();
+	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz) override;
+	virtual void OnUpdateCaret() override;
 	bool MergeModeKeyDown(MSG* pMsg);
 	int FindPrediffer(LPCTSTR prediffer) const;
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
@@ -342,6 +343,7 @@ protected:
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
+	afx_msg void OnOpenParentFolder();
 	afx_msg void OnViewSwapPanes12();
 	afx_msg void OnViewSwapPanes23();
 	afx_msg void OnViewSwapPanes13();
@@ -361,14 +363,6 @@ protected:
 	afx_msg void OnWindowSplit();
 	afx_msg void OnUpdateWindowSplit(CCmdUI* pCmdUI);
 	afx_msg void OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnFirstFile();
-	afx_msg void OnUpdateFirstFile(CCmdUI* pCmdUI);
-	afx_msg void OnPrevFile();
-	afx_msg void OnUpdatePrevFile(CCmdUI* pCmdUI);
-	afx_msg void OnNextFile();
-	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
-	afx_msg void OnLastFile();
-	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

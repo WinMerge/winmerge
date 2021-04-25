@@ -106,6 +106,9 @@ msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
 msgid "&With..."
 msgstr "用(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -522,8 +525,8 @@ msgid "Com&pare Statistics..."
 msgstr "統計比較結果(&P)"
 
 #, c-format
-msgid "Refre&sh\tF5"
-msgstr "重整(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "重整\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1005,11 +1008,8 @@ msgid "&Open Left"
 msgstr "開啟左邊(&O)"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "用外在編輯器(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1316,8 +1316,8 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "點擊確定按鈕關閉「選擇檔案或資料夾」對話方塊"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "「開啟」對話方塊之自動完成(&P)："
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "「開啟」對話方塊之自動完成(&E)："
 
 #, c-format
 msgid "Language:"
@@ -1877,12 +1877,12 @@ msgstr "編碼頁"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
 "需要重新啟動程式。"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "偵測使用 mlang.dll 文字檔案的編碼頁資訊\n需要重新啟動程式。"
 
 #, c-format
@@ -2294,8 +2294,8 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異(&O)"
 
 #, c-format
-msgid "&Include unique subfolders contents"
-msgstr "包括獨一子資料夾(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "包括獨一子資料夾(&U)"
 
 #, c-format
 msgid "&Automatically expand all subfolders"
@@ -2770,6 +2770,10 @@ msgstr "行： %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -3926,13 +3930,13 @@ msgstr "\n自動合併 (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4208,4 +4212,3 @@ msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

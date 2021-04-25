@@ -84,7 +84,7 @@ for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
 rem Excecutables
 echo Copy Excecutables...
 copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-if "%1" == "x64" (
+if not "%1" == "" (
   copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 

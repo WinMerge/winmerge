@@ -94,6 +94,9 @@ msgstr "Внешним редактором\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "С помощью..."
 
+msgid "Open &Parent Folder..."
+msgstr "Открыть &родительскую папку..."
+
 msgid "S&hell Menu"
 msgstr "Меню оболочки"
 
@@ -420,7 +423,7 @@ msgstr "Поменять 1-й | &3-й"
 msgid "Com&pare Statistics..."
 msgstr "Статистика сравнения..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Обновить\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -795,11 +798,8 @@ msgstr "&Скрыть"
 msgid "&Open Left"
 msgstr "Открыть левый"
 
-msgid "with &External Editor"
-msgstr "внешним редактором"
-
-msgid "Open &Parent Folder..."
-msgstr "Открыть &родительскую папку..."
+msgid "With &External Editor"
+msgstr "Внешним редактором"
 
 msgid "Open Midd&le"
 msgstr "Открыть средний"
@@ -1040,7 +1040,7 @@ msgstr "Показывать диалог \"Выбрать файлы или п�
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Закрывать диалог \"Выбрать файлы или папки\" при нажатии ОК"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
 msgid "Language:"
@@ -1481,10 +1481,10 @@ msgstr "Кодовая страница по умолчанию"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "Определять кодировку для этих файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Определять кодовую страницу для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
 
 msgid "System codepage"
@@ -1803,7 +1803,7 @@ msgstr "&Останавливаться после первого отличия
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Игнорировать разницу времени менее 3 секунд"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Включая уникальное содержимое подпапок"
 
 msgid "&Automatically expand all subfolders"
@@ -2130,6 +2130,10 @@ msgstr "Строка: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Объединение"
@@ -2978,14 +2982,14 @@ msgstr "\nАвто объединение (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nПервый файл"
 
-msgid "\nNext File"
-msgstr "\nСледующий файл"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nСледующий файл (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nПоследний файл"
 
-msgid "\nPrevious File"
-msgstr "\nПредыдущий файл"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nПредыдущий файл (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Автоматический подбор распаковщика (укажите расширение хотя бы у одного из файлов)."
@@ -3237,4 +3241,3 @@ msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
-

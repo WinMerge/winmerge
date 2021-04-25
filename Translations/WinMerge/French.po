@@ -111,6 +111,9 @@ msgstr "Avec un éditeur &externe\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Avec..."
 
+msgid "Open &Parent Folder..."
+msgstr "Ouvrir dossier& parent..."
+
 msgid "S&hell Menu"
 msgstr "Menu S&hell"
 
@@ -525,7 +528,7 @@ msgid "Com&pare Statistics..."
 msgstr "Statistiques de comparaison..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Actualiser\tF5"
 
 #, c-format
@@ -1004,11 +1007,8 @@ msgid "&Open Left"
 msgstr "Ouvrir à &Gauche"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "avec l'éditeur &externe"
-
-msgid "Open &Parent Folder..."
-msgstr "Ouvrir dossier& parent..."
+msgid "With &External Editor"
+msgstr "Avec l'éditeur &externe"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1313,7 +1313,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Fermez la boîte de dialogue \"sélectionner les fichiers ou dossiers\" en cliquant sur le bouton OK"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Remplissage de la boîte de dialogue d'ouverture :"
 
 #, c-format
@@ -1875,14 +1875,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Sélectionner la page de code par défaut utilisée lors du chargement de fichiers non-Unicode :"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Détecter la page de code pour ces fichiers: .html, .rc, .xml\n"
 "Nécessite de redémarrer la session."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Détecter la page de code des fichiers texte à l'aide de mlang.dll\n"
@@ -2296,7 +2296,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "I&gnorer les différences de temps de moins de 3 secondes"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Inclure le contenu des sous-dossiers uniques"
 
 #, c-format
@@ -2798,6 +2798,10 @@ msgstr "Ligne: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -4072,10 +4076,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Fichier suivant"
+"Fichier suivant (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -4086,10 +4090,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Fichier précédent"
+"Fichier précédent (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Le décompresseur approprié est appliqué aux deux fichiers (un fichier seulement nécessite l'extension)."
@@ -4374,4 +4378,3 @@ msgstr "Permettre une seule instance en exécution"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
-

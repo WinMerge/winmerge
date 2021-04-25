@@ -105,6 +105,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Med..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -519,7 +522,7 @@ msgid "Com&pare Statistics..."
 msgstr "Sammen&ligningsstatistikker..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Opdater\tF5"
 
 #, c-format
@@ -998,11 +1001,8 @@ msgid "&Open Left"
 msgstr "&Åben venstre"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "med en &ekstern editor"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Med en &ekstern editor"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1307,7 +1307,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Å&ben-dialog Auto-fuldførelse:"
 
 #, c-format
@@ -1872,12 +1872,12 @@ msgstr ""
 "Vælg den standard codepage der antages når der indlæses filer der ikke er "
 "unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Find codepage automatisk for disse filer: .html, .rc, .xml\n"
 "WinMerge skal genstartes før dette tager effekt."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2288,7 +2288,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskelle under 3 sekunder"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2772,6 +2772,10 @@ msgstr "Linje: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3953,13 +3957,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4237,4 +4241,3 @@ msgstr "Tillad kun et eksempel ad gangen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

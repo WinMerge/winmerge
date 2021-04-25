@@ -93,6 +93,9 @@ msgstr "外部エディターで(&E)\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "プログラムの選択(&W)..."
 
+msgid "Open &Parent Folder..."
+msgstr "親フォルダーを開く(&P)..."
+
 msgid "S&hell Menu"
 msgstr "シェルメニュー(&H)"
 
@@ -419,8 +422,8 @@ msgstr "1 番目と &3 番目を交換"
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
-msgid "Refre&sh\tF5"
-msgstr "最新の情報に更新(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "最新の情報に更新\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "選択項目を最新に更新(&R)\tCtrl+F5"
@@ -794,11 +797,8 @@ msgstr "選択項目を非表示(&H)"
 msgid "&Open Left"
 msgstr "左側を開く(&O)"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "外部エディターで(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "親フォルダーを開く(&P)..."
 
 msgid "Open Midd&le"
 msgstr "中央を開く(&L)"
@@ -1039,8 +1039,8 @@ msgstr "起動時に [ファイルまたはフォルダーの選択] ダイア�
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "[OK] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "[開く] ダイアログのオートコンプリート(&P):"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "[開く] ダイアログのオートコンプリート(&E):"
 
 msgid "Language:"
 msgstr "言語:"
@@ -1485,14 +1485,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
@@ -1814,8 +1814,8 @@ msgstr "最初の差異で比較を終了する(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
-msgid "&Include unique subfolders contents"
-msgstr "片方にしか存在しないサブフォルダー内も含める(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 
 msgid "&Automatically expand all subfolders"
 msgstr "自動的にサブフォルダーを展開する(&A)"
@@ -2239,6 +2239,10 @@ msgstr "行: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  選択: %d | %d"
 
 msgid "Merge"
 msgstr "マージ"
@@ -2948,7 +2952,7 @@ msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますが?"
+msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #, c-format
 msgid ""
@@ -3342,10 +3346,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"次のファイル"
+"次のファイル (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3356,10 +3360,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"前のファイル"
+"前のファイル (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
@@ -3621,4 +3625,3 @@ msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
-

@@ -104,6 +104,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Med..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -518,7 +521,7 @@ msgid "Com&pare Statistics..."
 msgstr "Sammen&lign statistikker..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Gjenoppfrisk\tF5"
 
 #, c-format
@@ -997,11 +1000,8 @@ msgid "&Open Left"
 msgstr "&Åpne venstre"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "med &eksternt redigeringsprogram"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Med &eksternt redigeringsprogram"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1306,7 +1306,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-fullførelse for Å&pne-dialog:"
 
 #, c-format
@@ -1867,12 +1867,12 @@ msgstr "Standard tegnsett"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
 "nødvendig å starte programmet på nytt"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2283,7 +2283,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskjeller mindre enn 3 sekunder"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2757,6 +2757,10 @@ msgstr "Linje: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3917,13 +3921,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4199,4 +4203,3 @@ msgstr "Tillat bare en instans å kjøre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

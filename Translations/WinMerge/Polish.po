@@ -92,6 +92,9 @@ msgstr "W zewnętrznym edytorze\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Z..."
 
+msgid "Open &Parent Folder..."
+msgstr "Otwórz nadrzędny katalog"
+
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
@@ -418,7 +421,7 @@ msgstr "Zamień 1 | &3"
 msgid "Com&pare Statistics..."
 msgstr "Statystyki porównania..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Odśwież\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -793,11 +796,8 @@ msgstr "Ukryj elementy"
 msgid "&Open Left"
 msgstr "&Otwórz lewą"
 
-msgid "with &External Editor"
-msgstr "w zewnętrznym &edytorze"
-
-msgid "Open &Parent Folder..."
-msgstr "Otwórz nadrzędny katalog"
+msgid "With &External Editor"
+msgstr "W zewnętrznym &edytorze"
 
 msgid "Open Midd&le"
 msgstr "Otwórz środkową"
@@ -1038,7 +1038,7 @@ msgstr "Po uruchomieniu pokaż okno dialogowe \"wybierz pliki lub foldery\""
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Zamknij okno dialogowe \"wybierz pliki lub foldery\" przyciskiem OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otwórz okno dialogowe automatycznego uzu&pełniania:"
 
 msgid "Language:"
@@ -1479,10 +1479,10 @@ msgstr "Domyślna strona kodowa"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wybierz domyślne kodowanie dla otwieranych plików nie będących plikami Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
 
 msgid "System codepage"
@@ -1801,7 +1801,7 @@ msgstr "Zatrzymaj po pierwszej różnicy"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignoruj różnice czasu mniejsze niż 3 sekundy"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Uwzględnij unikalną zawartość podfolderów"
 
 msgid "&Automatically expand all subfolders"
@@ -2128,6 +2128,10 @@ msgstr "Wiersz: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Wier: %s  Kol: %d/%d  Zn: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Scal"
@@ -2976,14 +2980,14 @@ msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPierwszy plik"
 
-msgid "\nNext File"
-msgstr "\nNastępny plik"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nNastępny plik (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nOstatni plik"
 
-msgid "\nPrevious File"
-msgstr "\nPoprzedni plik"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPoprzedni plik (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
@@ -3235,4 +3239,3 @@ msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
-

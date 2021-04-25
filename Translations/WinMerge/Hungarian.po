@@ -106,6 +106,9 @@ msgstr "Külső szerkesztővel\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Egyéb programmal..."
 
+msgid "Open &Parent Folder..."
+msgstr "Szölőkönyvtár megnyitása..."
+
 msgid "S&hell Menu"
 msgstr "Intéző menü"
 
@@ -520,7 +523,7 @@ msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Frissítés\tF5"
 
 #, c-format
@@ -999,11 +1002,8 @@ msgid "&Open Left"
 msgstr "Bal megnyitása"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Külső szerkesztővel"
-
-msgid "Open &Parent Folder..."
-msgstr "Szölőkönyvtár megnyitása..."
 
 #, c-format
 msgid "Open Midd&le"
@@ -1308,7 +1308,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Fájlok vagy könyvtárak választása\" bezárása az OK-val"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 
 #, c-format
@@ -1870,14 +1870,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
 "A program újraindítás szükséges."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Kódlap detektálása mlang.dll-t használó szövegfájlnál\n"
@@ -2291,7 +2291,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Egyedi almappák tartalmai is"
 
 #, c-format
@@ -2793,6 +2793,10 @@ msgstr "Sor: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Sor: %s  Oszlop: %d/%d  Karakter: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -4065,10 +4069,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Következő fájl"
+"Következő fájl (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -4079,10 +4083,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Előző fájl"
+"Előző fájl (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "A választott kicsomagoló lesz használva mindkét fájlnál (az egyik fájlnak csak a kiterjesztése lényeges)."
@@ -4366,4 +4370,3 @@ msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja meg, amíg a példány leáll"
-

@@ -104,6 +104,9 @@ msgstr ""
 msgid "&With..."
 msgstr "&Zvolit..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -518,7 +521,7 @@ msgid "Com&pare Statistics..."
 msgstr "St&atistika porovnání..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Obnovit\tF5"
 
 #, c-format
@@ -997,11 +1000,8 @@ msgid "&Open Left"
 msgstr "Otevřít &levé"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "externím &editorem"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Externím &editorem"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1306,7 +1306,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické &dokončování:"
 
 #, c-format
@@ -1869,10 +1869,10 @@ msgstr "Výchozí kódování"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Zvolte výchozí znakovou stránku, která se použije v případě načtení souborů, které nejsou v kódování Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2283,7 +2283,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Ignorovat časové rozdíly menší než 3 sekundy"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Zahrnout obsah jedinečných podsložek"
 
 #, c-format
@@ -2726,6 +2726,10 @@ msgstr "Řádek: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3850,13 +3854,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4132,4 +4136,3 @@ msgstr "Povolit pouze jedno hlavní okno aplikace"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

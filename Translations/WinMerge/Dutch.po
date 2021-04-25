@@ -93,6 +93,9 @@ msgstr "Met externe editor\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "Met..."
 
+msgid "Open &Parent Folder..."
+msgstr "Bovenliggende map openen..."
+
 msgid "S&hell Menu"
 msgstr "Shellmenu"
 
@@ -419,7 +422,7 @@ msgstr "1ste en 3de wisselen"
 msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Verversen\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -794,11 +797,8 @@ msgstr "Items verbergen"
 msgid "&Open Left"
 msgstr "Links openen"
 
-msgid "with &External Editor"
-msgstr "met externe editor"
-
-msgid "Open &Parent Folder..."
-msgstr "Bovenliggende map openen..."
+msgid "With &External Editor"
+msgstr "Met externe editor"
 
 msgid "Open Midd&le"
 msgstr "Midden openen"
@@ -1039,7 +1039,7 @@ msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
 
 msgid "Language:"
@@ -1493,14 +1493,14 @@ msgstr ""
 "Unicodebestanden:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml\n"
 "Herstarten sessie noodzakelijk."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
@@ -1822,7 +1822,7 @@ msgstr "Stoppen na eerste verschil"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Inhoud van unieke submappen insluiten"
 
 msgid "&Automatically expand all subfolders"
@@ -2263,6 +2263,10 @@ msgstr "Regel: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Regel: %s  Kolom: %d/%d  Teken: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Samenvoegen"
@@ -3389,10 +3393,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Volgend bestand"
+"Volgend bestand (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3403,10 +3407,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Vorig bestand"
+"Vorig bestand (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3674,4 +3678,3 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
-

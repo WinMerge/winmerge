@@ -13,6 +13,7 @@ struct IMergeDoc
 		Removed,
 	};
 
+	virtual CDirDoc* GetDirDoc() const = 0;
 	virtual void SetDirDoc(CDirDoc *pDirDoc) = 0;
 	virtual bool CloseNow(void) = 0;
 	virtual bool GenerateReport(const String &path) const = 0;

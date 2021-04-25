@@ -96,6 +96,9 @@ msgstr "Con &Editor Externo\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Con..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
@@ -422,7 +425,7 @@ msgstr "Intercambiar 1er | &3er"
 msgid "Com&pare Statistics..."
 msgstr "Estadísticas de &comparación..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ac&tualizar\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -797,11 +800,8 @@ msgstr "&Ocultar elementos"
 msgid "&Open Left"
 msgstr "Abrir archivo &Izquierdo"
 
-msgid "with &External Editor"
-msgstr "con un Editor &Externo"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Con un Editor &Externo"
 
 msgid "Open Midd&le"
 msgstr "Abrir archivo &Medio"
@@ -1042,7 +1042,7 @@ msgstr "Mostrar \"Seleccione Archivos o Carpetas\" al Iniciar"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Cerrar \"Seleccione Archivos o Carpetas\" al hacer clic en Comparar"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&uto-completar en diálogos de apertura:"
 
 msgid "Language:"
@@ -1487,12 +1487,12 @@ msgstr ""
 "Seleccione la página de códigos predeterminada a utilizar cuando se carguen "
 "archivos no Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Detectar página de códigos para éstos archivos : .html, .rc, .xml\n"
 "Se necesita reiniciar."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Detectar página de códigos para archivos de texto usando mlang.dll\n"
 "Necesita reiniciar sesión."
@@ -1813,7 +1813,7 @@ msgstr "De&tener después de la primer diferencia"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar diferencias de tiempo menores de 3 segundos"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluir contenidos únicos de subcarpetas"
 
 msgid "&Automatically expand all subfolders"
@@ -2253,6 +2253,10 @@ msgstr "Línea: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 msgid "Merge"
@@ -3355,13 +3359,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3626,4 +3630,3 @@ msgstr "Permitir solo una instancia en ejecución"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

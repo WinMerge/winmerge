@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-02-28 11:53+0000\n"
-"PO-Revision-Date: 2021-03-11 16:36+0000\n"
+"POT-Creation-Date: 2021-04-10 13:16+0000\n"
+"PO-Revision-Date: 2021-04-10 16:08+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -94,6 +94,9 @@ msgstr "Com editor externo\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "Com..."
+
+msgid "Open &Parent Folder..."
+msgstr "Abrir &Pasta principal..."
 
 msgid "S&hell Menu"
 msgstr "Menu da S&hell"
@@ -421,7 +424,7 @@ msgstr "Trocar 1º | &3º"
 msgid "Com&pare Statistics..."
 msgstr "Comparar Estatísticas..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Atuali&zar\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -796,11 +799,8 @@ msgstr "Ocultar itens"
 msgid "&Open Left"
 msgstr "Abrir Esquerda"
 
-msgid "with &External Editor"
-msgstr "com Editor &Externo"
-
-msgid "Open &Parent Folder..."
-msgstr "Abrir &Pasta principal..."
+msgid "With &External Editor"
+msgstr "Com Editor &Externo"
 
 msgid "Open Midd&le"
 msgstr "Abrir Meio"
@@ -1043,7 +1043,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 "Fechar caixa de diálogo \"Pastas ou Ficheiros selecionados\" Ao clicar OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-completar Janela de Abertura:"
 
 msgid "Language:"
@@ -1495,7 +1495,7 @@ msgstr ""
 "Unicode:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Detetar informação da página de código para estes ficheiros: .html, .rc, ."
@@ -1503,7 +1503,7 @@ msgstr ""
 "Necessário para reiniciar sessão."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Detetar página de código para ficheiros de texto que utilizam mlang.dll\n"
@@ -1825,7 +1825,7 @@ msgstr "Parar após primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos exclusivos da subpastas"
 
 msgid "&Automatically expand all subfolders"
@@ -2274,6 +2274,10 @@ msgstr "Linha: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Combinar"
@@ -3092,10 +3096,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Deseja retroceder para a página anterior?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Quer passar para o primeiro ficheiro?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Quer passar para o último ficheiro?"
 
 #, c-format
 msgid ""
@@ -3421,10 +3425,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Ficheiro seguinte"
+"Ficheiro seguinte (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -3435,10 +3439,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Ficheiro anterior"
+"Ficheiro anterior (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3706,4 +3710,3 @@ msgstr "Permitir apenas uma execução"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
-

@@ -193,8 +193,8 @@ public:
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
+	CDirDoc * GetDirDoc() const override { return m_pDirDoc; }
 	void SetDirDoc(CDirDoc * pDirDoc) override;
-	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	void SwapFiles(int nFromIndex, int nToIndex);

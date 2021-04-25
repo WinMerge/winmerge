@@ -92,6 +92,9 @@ msgstr "Dış düz&enleyici ile\tCtrl+Alt+E"
 msgid "&With..."
 msgstr "&Birlikte aç..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr "&Sağ Tık Menüsü"
 
@@ -418,7 +421,7 @@ msgstr "1. ile &3. Ögeyi Değiştir"
 msgid "Com&pare Statistics..."
 msgstr "Karşılaştırma İstatistikleri..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ye&nile\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -793,11 +796,8 @@ msgstr "Ögeleri &Gizle"
 msgid "&Open Left"
 msgstr "S&ola Aç"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "Dış Düz&enleyici ile"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 msgid "Open Midd&le"
 msgstr "O&rtaya Aç"
@@ -1038,7 +1038,7 @@ msgstr "\"Dosya ya da Klasör Seçin\" &penceresi açılışta görüntülensin"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Dosya ya da Klasör Seçin\" penceresi &Tamam ile kapatılsın"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "'Aç' penceresi otomatik olarak doldurulsun:"
 
 msgid "Language:"
@@ -1481,12 +1481,12 @@ msgstr "Varsayılan Kod Sayfası"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 ".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın\n"
 "(oturumun yeniden başlatılması gerekir)"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
 "(oturumun yeniden başlatılması gerekir)"
@@ -1807,7 +1807,7 @@ msgstr "İlk fark&tan sonra durulsun"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 saniyeden az zaman farkları y&ok sayılsın"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Eşsiz a&lt klasör içerikleri katılsın"
 
 msgid "&Automatically expand all subfolders"
@@ -2247,6 +2247,10 @@ msgstr "Satır: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Satır: %s  Sütun: %d/%d  Karakter: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 msgid "Merge"
 msgstr "Birleştir"
@@ -3350,13 +3354,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3621,4 +3625,3 @@ msgstr "Yalnız bir WinMerge kopyası çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
-

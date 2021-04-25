@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-03-02 09:02+0100\n"
+"PO-Revision-Date: 2021-04-24 22:03+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -104,6 +104,9 @@ msgstr "Z zu&nanjim urejevalnikom\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Z..."
+
+msgid "Open &Parent Folder..."
+msgstr "Nad&rejena mapa..."
 
 msgid "S&hell Menu"
 msgstr "Meni &lupine"
@@ -518,7 +521,7 @@ msgid "Com&pare Statistics..."
 msgstr "&Statistika primerjave..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Osv&eži\tF5"
 
 #, c-format
@@ -997,11 +1000,8 @@ msgid "&Open Left"
 msgstr "&Odpri levo"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "z &zunanjim urejevalnikom"
-
-msgid "Open &Parent Folder..."
-msgstr "Nad&rejena mapa..."
+msgid "With &External Editor"
+msgstr "Z zu&nanjim urejevalnikom"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1306,7 +1306,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Vredu'"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 
 #, c-format
@@ -1532,7 +1532,7 @@ msgstr "&Pošlji izbrisane datoteke v Koš"
 
 #, c-format
 msgid "&External editor:"
-msgstr "&Zunanji urejevalnik:"
+msgstr "Zu&nanji urejevalnik:"
 
 #, c-format
 msgid "&Filter folder:"
@@ -1604,7 +1604,7 @@ msgstr "&Vključi ukazno vrstico"
 
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "Odpri v zunanjem urejevalniku"
+msgstr "Odpri v zu&nanjem urejevalniku"
 
 #, c-format
 msgid "Defaults"
@@ -1865,14 +1865,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 "Zaznaj kodno stran v teh datotekah: .html, .rc, .xml\n"
 "Zahtevan je ponovni zagon seje."
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
@@ -2285,7 +2285,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Prezri razlike manjše od 3 sekund"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Vključi unikatne vsebine podmap"
 
 #, c-format
@@ -2787,6 +2787,10 @@ msgstr "Vrstica: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Vr: %s  St: %d/%d  Zn: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  Izb: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -3695,10 +3699,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Ali se želite premakniti na prejšnjo stran?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Ali se želite premakniti v prvo datoteko?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Ali se želite premakniti na zadnjo datoteko?"
 
 #, c-format
 msgid ""
@@ -4059,10 +4063,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Next File"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Naslednja datoteka"
+"Naslednja datoteka (Ctrl+F8)"
 
 msgid ""
 "\n"
@@ -4073,10 +4077,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Previous File"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Prejšnja datoteka"
+"Prejšnja datoteka (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Prilagojen razpakovalec se uporablja za obe datoteki (samo ena datoteka potrebuje končnico)."
@@ -4359,5 +4363,4 @@ msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
-
+msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"

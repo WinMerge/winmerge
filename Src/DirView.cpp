@@ -47,6 +47,7 @@
 #include "IntToIntMap.h"
 #include "PatchTool.h"
 #include "SyntaxColors.h"
+#include "Shell.h"
 #include <numeric>
 #include <functional>
 
@@ -1760,11 +1761,7 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		DoOpenWith(stype);
+	shell::Edit(file.c_str());
 }
 
 /// Open with dialog for file on selected side
@@ -1775,11 +1772,7 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	CString sysdir;
-	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
-	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + file.c_str();
-	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg, sysdir, SW_SHOWNORMAL);
+	shell::OpenWith(file.c_str());
 }
 
 /// Open selected file  on specified side to external editor
@@ -1801,8 +1794,7 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 	DirItemIterator dirBegin = SelBegin();
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
-	String parentFolder = paths::GetParentPath(file);
-	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
+	shell::OpenParentFolder(file.c_str());
 }
 
 /// User chose (context menu) open left
@@ -2796,14 +2788,10 @@ private:
 LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 {
 	OpenSelection();
-	CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-	IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-	if (pMergeDoc == nullptr)
-		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 
 	auto *pReportFileName = reinterpret_cast<const TCHAR *>(wParam);
 	bool *pCompleted = reinterpret_cast<bool *>(lParam);
-	if (pMergeDoc != nullptr)
+	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
 		pMergeDoc->GenerateReport(pReportFileName);
 		pMergeDoc->CloseNow();
