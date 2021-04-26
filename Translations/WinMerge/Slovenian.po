@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-03-02 09:02+0100\n"
+"PO-Revision-Date: 2021-04-24 22:03+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -998,7 +998,7 @@ msgstr "&Odpri levo"
 
 #, c-format
 msgid "With &External Editor"
-msgstr "Z &zunanjim urejevalnikom"
+msgstr "Z zu&nanjim urejevalnikom"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1529,7 +1529,7 @@ msgstr "&Pošlji izbrisane datoteke v Koš"
 
 #, c-format
 msgid "&External editor:"
-msgstr "&Zunanji urejevalnik:"
+msgstr "Zu&nanji urejevalnik:"
 
 #, c-format
 msgid "&Filter folder:"
@@ -1601,7 +1601,7 @@ msgstr "&Vključi ukazno vrstico"
 
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "Odpri v zunanjem urejevalniku"
+msgstr "Odpri v zu&nanjem urejevalniku"
 
 #, c-format
 msgid "Defaults"
@@ -2787,7 +2787,7 @@ msgstr "Vr: %s  St: %d/%d  Zn: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Izb: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -3696,10 +3696,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Ali se želite premakniti na prejšnjo stran?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Ali se želite premakniti v prvo datoteko?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Ali se želite premakniti na zadnjo datoteko?"
 
 #, c-format
 msgid ""
@@ -4360,4 +4360,4 @@ msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Dovoli, da se zažene samo en primerek, in počakaj, da se primerek dokonča"
+msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"

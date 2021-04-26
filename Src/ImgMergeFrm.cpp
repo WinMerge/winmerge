@@ -985,7 +985,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		else
 		{
 			for (int pane = 0; pane < nPaneCount; pane++)
-				w[pane] = rc.Width() / nPaneCount - 4;
+				w[pane] = rcMergeWindow.Width() / nPaneCount - 4;
 		}
 
 		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))

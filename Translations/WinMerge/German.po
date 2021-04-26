@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-04-04 20:21+0200\n"
+"PO-Revision-Date: 2021-04-24 21:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -519,7 +519,7 @@ msgstr "V&ergleichsstatistik..."
 
 #, c-format
 msgid "Refresh\tF5"
-msgstr "A&ktualisieren\tF5"
+msgstr "Aktualisieren\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -2683,7 +2683,7 @@ msgstr "Zeile: %s  Spalte: %d/%d  Zeichen: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Auswahl: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -3703,13 +3703,13 @@ msgid "\nFirst File"
 msgstr "\nErste Datei"
 
 msgid "\nNext File (Ctrl+F8)"
-msgstr "\nNächste Datei (Ctrl+F8)"
+msgstr "\nNächste Datei (Strg+F8)"
 
 msgid "\nLast File"
 msgstr "\nLetzte Datei"
 
 msgid "\nPrevious File (Ctrl+F7)"
-msgstr "\nVorherige Datei (Ctrl+F7)"
+msgstr "\nVorherige Datei (Strg+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Der passende Entpacker wird auf beide Dateien angewendet. Nur eine Datei benötigt die Erweiterung."
