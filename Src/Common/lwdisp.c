@@ -199,6 +199,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 			if (SUCCEEDED(sc = DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
 			{
 				sc = piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+				piClassFactory->lpVtbl->Release(piClassFactory);
 			}
 		}
 		if (pv == NULL)
