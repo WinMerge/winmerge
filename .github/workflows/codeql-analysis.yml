@@ -21,8 +21,8 @@ jobs:
         with:
           queries: security-and-quality
 
-      - name: Build CMD
-        id: build_cmd
+      - name: Build project
+        id: build_project
         shell: pwsh
         run: |
           .\DownloadDeps.cmd
