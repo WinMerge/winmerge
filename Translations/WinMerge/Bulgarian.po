@@ -415,7 +415,7 @@ msgstr "Разменяне на №1 с №&3"
 msgid "Com&pare Statistics..."
 msgstr "Статистика на &сравнение…"
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Презареждане\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1032,7 +1032,7 @@ msgstr "Показване „Избиране на файлове или пап
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Затваряне „Избиране на файлове или папки“ при избиране на бутон Добре"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
 
 msgid "Language:"
@@ -1809,7 +1809,7 @@ msgstr "&Спиране след първото различие"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Пренебрегване на времевите &разлики по-малки от 3 секунди"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Включи съдържанието на уникални подпапки"
 
 msgid "&Automatically expand all subfolders"

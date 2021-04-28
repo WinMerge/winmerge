@@ -518,7 +518,7 @@ msgid "Com&pare Statistics..."
 msgstr "Sammen&lign statistikker..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Gjenoppfrisk\tF5"
 
 #, c-format
@@ -1303,7 +1303,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-fullførelse for Å&pne-dialog:"
 
 #, c-format
@@ -2280,7 +2280,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskjeller mindre enn 3 sekunder"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

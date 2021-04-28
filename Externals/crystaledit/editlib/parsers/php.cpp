@@ -447,16 +447,10 @@ out:
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
                     }
-                  else
-                    {
-                      goto next;
-                    }
                 }
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
-next:
-              ;
             }
 
           //  Preprocessor start: $

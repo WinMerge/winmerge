@@ -519,7 +519,7 @@ msgid "Com&pare Statistics..."
 msgstr "Estatísticas da comparación…"
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Refrescar\tF5"
 
 #, c-format
@@ -1304,7 +1304,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Pechar o diálogo \"Selecciona arquivos ou cartafoles\" ao premer o botón Aceptar"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&utocompletar diálogo de apertura:"
 
 #, c-format
@@ -2287,7 +2287,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ig&norar diferenzas de tempo inferiores a 3 segundos"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluír contidos únicos dos subcartafoles"
 
 #, c-format

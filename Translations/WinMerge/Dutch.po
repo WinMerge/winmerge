@@ -419,7 +419,7 @@ msgstr "1ste en 3de wisselen"
 msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Verversen\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1036,7 +1036,7 @@ msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
 
 msgid "Language:"
@@ -1819,7 +1819,7 @@ msgstr "Stoppen na eerste verschil"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "Inhoud van unieke submappen insluiten"
 
 msgid "&Automatically expand all subfolders"

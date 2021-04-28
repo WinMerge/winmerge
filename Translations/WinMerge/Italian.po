@@ -418,7 +418,7 @@ msgstr "Scambia 1° | &3°"
 msgid "Com&pare Statistics..."
 msgstr "Statistic&he confronto..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "A&ggiorna\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1035,7 +1035,7 @@ msgstr "Visualizza la finestra “Seleziona file o cartelle” all'avvio"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Visualizza la finestra “Seleziona file o cartelle” quando si fa clic su OK"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Com&pletamento automatico selezione file:"
 
 msgid "Language:"
@@ -1806,7 +1806,7 @@ msgstr "&Fermati dopo la prima differenza"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignora differenze di tempo inferiori a 3 secondi"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Includi contenuti unici sotto-cartelle"
 
 msgid "&Automatically expand all subfolders"

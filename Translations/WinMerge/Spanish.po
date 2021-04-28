@@ -422,7 +422,7 @@ msgstr "Intercambiar 1er | &3er"
 msgid "Com&pare Statistics..."
 msgstr "Estadísticas de &comparación..."
 
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Ac&tualizar\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
@@ -1039,7 +1039,7 @@ msgstr "Mostrar \"Seleccione Archivos o Carpetas\" al Iniciar"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Cerrar \"Seleccione Archivos o Carpetas\" al hacer clic en Comparar"
 
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&uto-completar en diálogos de apertura:"
 
 msgid "Language:"
@@ -1810,7 +1810,7 @@ msgstr "De&tener después de la primer diferencia"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar diferencias de tiempo menores de 3 segundos"
 
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "&Incluir contenidos únicos de subcarpetas"
 
 msgid "&Automatically expand all subfolders"

@@ -419,8 +419,8 @@ msgstr "1 番目と &3 番目を交換"
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
-msgid "Refre&sh\tF5"
-msgstr "最新の情報に更新(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "最新の情報に更新\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "選択項目を最新に更新(&R)\tCtrl+F5"
@@ -1036,8 +1036,8 @@ msgstr "起動時に [ファイルまたはフォルダーの選択] ダイア�
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "[OK] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "[開く] ダイアログのオートコンプリート(&P):"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "[開く] ダイアログのオートコンプリート(&E):"
 
 msgid "Language:"
 msgstr "言語:"
@@ -1811,8 +1811,8 @@ msgstr "最初の差異で比較を終了する(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
-msgid "&Include unique subfolders contents"
-msgstr "片方にしか存在しないサブフォルダー内も含める(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 
 msgid "&Automatically expand all subfolders"
 msgstr "自動的にサブフォルダーを展開する(&A)"
