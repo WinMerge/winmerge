@@ -312,6 +312,7 @@ public:
 	}
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
+	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 
 // implementation methods
 private:
@@ -345,6 +346,13 @@ protected:
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
+	/**
+	 * Are automatic rescans enabled?
+	 * If automatic rescans are enabled then we rescan files after edit
+	 * events, unless timer suppresses rescan. We suppress rescans within
+	 * certain time from previous rescan.
+	 */
+	bool m_bAutomaticRescan;
 // friend access
 	friend class RescanSuppress;
 

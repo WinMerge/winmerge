@@ -121,6 +121,7 @@ CMergeDoc::CMergeDoc()
 , m_bAutoMerged(false)
 , m_nGroups(0)
 , m_pView{nullptr}
+, m_bAutomaticRescan(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -137,6 +138,8 @@ CMergeDoc::CMergeDoc()
 	}
 
 	m_bEnableRescan = true;
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
+
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
@@ -3186,6 +3189,8 @@ void CMergeDoc::RefreshOptions()
 {
 	DIFFOPTIONS options = {0};
 	
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
+
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
