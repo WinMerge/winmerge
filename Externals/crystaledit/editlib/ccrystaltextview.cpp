@@ -1510,7 +1510,7 @@ GetParseCookie (int nLineIndex)
     L--;
   L++;
 
-  int nBlocks;
+  int nBlocks = 0;
   while (L <= nLineIndex)
     {
       unsigned dwCookie = 0;
