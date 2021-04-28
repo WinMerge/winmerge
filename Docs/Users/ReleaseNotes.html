@@ -20,24 +20,93 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21611-beta-release-notes">WinMerge 2.16.11 Beta Release Notes</h1>
+<h1 id="winmerge-21612-release-notes">WinMerge 2.16.12 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-21612">What Is New in 2.16.12?</a></li>
 <li><a href="#what-is-new-in-21611-beta">What Is New in 2.16.11 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>March 2021</p>
+<p>April 2021</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
+<p>This is a WinMerge 2.16.12 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-21611-beta">What Is New in 2.16.11 Beta</h2>
+<h2 id="what-is-new-in-21612">What Is New in 2.16.12</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>GUI textstrings: grammatical corrections (PR #722)</li>
+<li>Added ARM64 support</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: Fix PHP syntax highlighting. (PR #751)</li>
+<li>BugFix: Strings in a multi-line diff block were not be replaced correctly when the substitution filters&#39; regular expression contained ^</li>
+<li>BugFix: Font size restoration with Ctrl+0 key did not work properly in Hi-DPI environment</li>
+<li>Make the width of the &#39;Find what&#39; label in Find dialog a little wider (osdn.net #42063)</li>
+<li>Fix conflicting accelerators (osdn.net #42064)</li>
+<li>[Feature Request] Selection Count on Status Bar (#135)</li>
+<li>Add C# 6.0 reserved words to style list (PR #719)</li>
+<li>FR: Add a shortcut key go to next file (#721)</li>
+<li>Update PHP syntax highlighting keyword list. (PR #724)</li>
+<li>autoit.cpp - Macros &gt;&gt; User 1 ..... Variable &gt;&gt; User 2 (PR #749)</li>
+<li>autoit.cpp - #CS #CE support (PR #753)</li>
+<li>Interrupt a inline diff process when it takes too long</li>
+<li>Make the color of characters that represent spaces and tabs lighter than other characters when the &quot;View Whitespace&quot; menu item is enabled</li>
+<li>Added &quot;Open Parent Folder&quot; menu item to the context menu</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Copy confirmation dialog has overlapped Yes/No Button (#739)</li>
+<li>BugFix: Comparison result was not updated by Swap operation in 3-way folder comparison (osdn.net #41901)</li>
+</ul>
+<h3 id="binary-compare">Binary compare</h3>
+<ul>
+<li>BugFix: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
+<li>BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
+</ul>
+<h3 id="image-compare">Image compare</h3>
+<ul>
+<li>BugFix: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
+<li>BugFix: The header bar widths were not calculated properly when the &#39;Split Vertically&#39; menu item is unchecked.</li>
+</ul>
+<h3 id="open-dialog">Open dialog</h3>
+<ul>
+<li>Make archive files openable as binary files from the pull-down menu.</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>BugFix: Fixed a rare crash when decompressing an archive file</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and DisplayXMLFiles (#755)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Brazilian (PR #711,#728,#729)</li>
+<li>Dutch (PR #706)</li>
+<li>Galician (PR #737)</li>
+<li>German (PR #718,#752)</li>
+<li>Hungarian (PR #712)</li>
+<li>Japanese</li>
+<li>Korean (PR #709)</li>
+<li>Lithuanian (PR #708,#713,#738,#754)</li>
+<li>Portuguese (PR #725)</li>
+<li>Slovenian</li>
+<li>Swedish (PR #720,#723)</li>
+<li>Russian (PR #707)</li>
+</ul></li>
+</ul>
+<h2 id="what-is-new-in-21611-beta">What Is New in 2.16.11 Beta</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>Make all OK strings same case (PR #593)</li>
 <li>Tab bar: Added shadows to help distinguish between active and inactive tabs</li>
 <li>Added drop-down menu to Open and Save icon on toolbar</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Basic syntax highlighter is broken (osdn.net #41440)</li>
 <li>BugFix: File is corrupted while saving differences in changed file (Ctrl+S) (#607)</li>
@@ -49,21 +118,21 @@
 <li>If -b or -w is also specified, -B now considers lines to be empty if they contain only white space (osdn.net #41355)</li>
 <li>Added BOM checkbox to the Codepage dialog.</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Program crash if you close a tab with the folder from where you opened current file (#645)</li>
 <li>BugFix: The title bar path was not updated when swapping files in a Zip file.</li>
 <li>BugFix: The codepage specified in the Codepage dialog did not affect the files to be opened.</li>
 </ul>
-<h3 id="image-compare">Image compare</h3>
+<h3 id="image-compare-1">Image compare</h3>
 <ul>
 <li>BugFix: The image on the right does not open if the file exists only on the right (osdn.net #41721)</li>
 </ul>
-<h3 id="open-dialog">Open dialog</h3>
+<h3 id="open-dialog-1">Open dialog</h3>
 <ul>
 <li>Added Text, Table, Binary and Image menu items to the Compare button in the &quot;Select Files or Folders&quot; window</li>
 </ul>
-<h3 id="archive-support">Archive support</h3>
+<h3 id="archive-support-1">Archive support</h3>
 <ul>
 <li>Rar5 support (#644)</li>
 </ul>
@@ -71,7 +140,7 @@
 <ul>
 <li>BugFix: Fix an issue where custom colors are not saved. (PR #648)</li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
 </ul>
@@ -79,7 +148,7 @@
 <ul>
 <li>Installer issue with Polish diacritics characters (#589)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>

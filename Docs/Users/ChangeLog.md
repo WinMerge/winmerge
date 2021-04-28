@@ -1,5 +1,81 @@
 # Change log
 
+## WinMerge 2.16.12 - 2021-04-xx
+
+### General
+
+- GUI textstrings: grammatical corrections (PR #722)
+- Added ARM64 support
+
+### File compare
+
+- BugFix: Fix PHP syntax highlighting. (PR #751)
+- BugFix: Strings in a multi-line diff block were not be replaced correctly
+    when the substitution filters' regular expression contained ^
+- BugFix: Font size restoration with Ctrl+0 key did not work properly in
+    Hi-DPI environment
+- Make the width of the 'Find what' label in Find dialog a little wider
+    (osdn.net #42063)
+- Fix conflicting accelerators (osdn.net #42064) 
+- [Feature Request] Selection Count on Status Bar (#135)
+- Add C# 6.0 reserved words to style list (PR #719)
+- FR: Add a shortcut key go to next file (#721)
+- Update PHP syntax highlighting keyword list. (PR #724)
+- autoit.cpp - Macros >> User 1 ..... Variable >> User 2 (PR #749)
+- autoit.cpp - #CS #CE support (PR #753)
+- Interrupt a inline diff process when it takes too long
+- Make the color of characters that represent spaces and tabs lighter than
+    other characters when the "View Whitespace" menu item is enabled
+- Added "Open Parent Folder" menu item to the context menu
+
+### Folder compare
+
+- BugFix: Copy confirmation dialog has overlapped Yes/No Button (#739)
+- BugFix: Comparison result was not updated by Swap operation in 3-way folder
+    comparison (osdn.net #41901)
+
+### Binary compare
+
+- BugFix: Next File or Previous File button on the toolbar did not work if the
+    active window was a binary compare window or an image compare window.
+- BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel
+
+### Image compare
+
+- BugFix: Next File or Previous File button on the toolbar did not work if the
+    active window was a binary compare window or an image compare window.
+- BugFix: The header bar widths were not calculated properly when the
+    'Split Vertically' menu item is unchecked.
+
+### Open dialog
+
+- Make archive files openable as binary files from the pull-down menu.
+
+### Archive support
+
+- BugFix: Fixed a rare crash when decompressing an archive file
+
+### Plugins
+
+- BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and
+    DisplayXMLFiles (#755)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #711,#728,#729)
+  - Dutch (PR #706)
+  - Galician (PR #737)
+  - German (PR #718,#752)
+  - Hungarian (PR #712)
+  - Japanese
+  - Korean (PR #709)
+  - Lithuanian (PR #708,#713,#738,#754)
+  - Portuguese (PR #725)
+  - Slovenian
+  - Swedish (PR #720,#723)
+  - Russian (PR #707)
+
 ## WinMerge 2.16.11 - 2021-03-28
 
 ### General
@@ -1057,7 +1133,7 @@
   - Make plugins configurable with settings dialog of each plugin
 
 ### Filters
-  - Update *.flt files for Visual Studio 2015 and 2017
+  - Update \*.flt files for Visual Studio 2015 and 2017
 
 ### Shell extension
   - Display another WinMerge icon in Explorer's context menu when a folder is
