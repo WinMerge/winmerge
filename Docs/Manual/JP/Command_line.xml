@@ -79,6 +79,40 @@
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noninteractive</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noprefs</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorews</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreblanklines</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecase</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreeol</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecodepage</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/unpacker</option>
+      <replaceable>unpacker name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/prediffer</option>
+      <replaceable>prediffer name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cp</option>
+      <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cfg</option>
+      <replaceable>name=value</replaceable></arg>
+
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
 
@@ -92,11 +126,9 @@
       rep="norepeat"><option>/o</option>
       <replaceable>outputpath</replaceable></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+      <arg choice="opt"
+      rep="norepeat"><option>/or</option>
+      <replaceable>reportpath</replaceable></arg>
 
     </cmdsynopsis></para>
 
@@ -382,6 +414,111 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>起動時、左側で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>起動時、中央で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>起動時、右側で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option><replaceable>leftpath</replaceable></option></term>
       <listitem>
         <para>左側で開くフォルダやファイルを指定します。
@@ -460,23 +597,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>/al</option></term>
+      <term><option>/or</option></term>
       <listitem>
-        <para>起動時、左側で自動マージします。</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/am</option></term>
-      <listitem>
-        <para>起動時、中央で自動マージします。</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/ar</option></term>
-      <listitem>
-        <para>起動時、右側で自動マージします。</para>
+        <para>TBD</para>
       </listitem>
     </varlistentry>
 

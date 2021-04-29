@@ -23,6 +23,12 @@
 #define new DEBUG_NEW
 #endif
 
+static void AdjustCharPosInTextBlocks(CrystalLineParser::TEXTBLOCK* pBuf, int startBlock, int endBlock, int offset)
+{
+  for (int i = startBlock; i <= endBlock; ++i)
+    pBuf[i].m_nCharPos += offset;
+}
+
 unsigned
 CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
@@ -92,7 +98,10 @@ out:
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf, nActualItems);
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
               else
@@ -106,7 +115,10 @@ out:
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</style>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf, nActualItems);
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_STYLE;
               else
@@ -129,7 +141,10 @@ out:
               case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
               default: pParseLineFunc = ParseLineJavaScript; break;
               }
-              dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf, nActualItems);
+              int nActualItemsEmbedded = 0;
+              dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_EXT_USER1;
               else
