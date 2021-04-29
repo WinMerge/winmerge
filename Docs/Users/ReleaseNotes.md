@@ -28,6 +28,9 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
     when the substitution filters' regular expression contained ^
 - BugFix: Font size restoration with Ctrl+0 key did not work properly in
     Hi-DPI environment
+- BugFix: Fixed a rare crash when enabling syntax highlight
+- BugFix: Fixed an issue where inline scripts in HTML files were not
+    highlighted correctly
 - Make the width of the 'Find what' label in Find dialog a little wider
     (osdn.net #42063)
 - Fix conflicting accelerators (osdn.net #42064) 
