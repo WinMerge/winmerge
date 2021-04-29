@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include <vector>
+#include <typeinfo>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -38,7 +39,10 @@ namespace Options
  */
 void Init(COptionsMgr *pOptions)
 {
-	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	if (typeid(*pOptions) == typeid(CRegOptionsMgr))
+	{
+		static_cast<CRegOptionsMgr*>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	}
 
 	LANGID LangId = GetUserDefaultLangID();
 	pOptions->InitOption(OPT_SELECTED_LANGUAGE, static_cast<int>(LangId));

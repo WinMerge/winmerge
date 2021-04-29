@@ -4,7 +4,7 @@
 //    Author: Dean Grimm
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  Merge.cpp
  *
  * @brief Defines the class behaviors for the application.
@@ -20,6 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsInit.h"
 #include "RegOptionsMgr.h"
+#include "CIniOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
 #include "OpenView.h"
@@ -99,7 +100,7 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
-, m_pOptions(new CRegOptionsMgr())
+, m_pOptions(CreateOptionManager())
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
@@ -113,6 +114,23 @@ CMergeApp::CMergeApp() :
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
+}
+
+/**
+ * @brief Chose which options manager should be initialized.
+ * @return IniOptionsMgr if initial config file exists,
+ *   CRegOptionsMgr otherwise.
+ */
+COptionsMgr *CreateOptionManager()
+{
+	if (CIniOptionsMgr::CheckIfIniFileExist())
+	{
+		return new CIniOptionsMgr();
+	}
+	else
+	{
+		return new CRegOptionsMgr();
+	}
 }
 
 CMergeApp::~CMergeApp()
@@ -228,7 +246,7 @@ BOOL CMergeApp::InitInstance()
 	// Create exclusion mutex name
 	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
 	DWORD dwLengthNeeded;
-	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME, 
+	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
 		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
 	TCHAR szMutexName[MAX_PATH + 40];
 	// Combine window class name and desktop name to form a unique mutex name.
@@ -465,7 +483,7 @@ void CMergeApp::OnAppAbout()
  * good place to do cleanups.
  * @return Application's exit value (returned from WinMain()).
  */
-int CMergeApp::ExitInstance() 
+int CMergeApp::ExitInstance()
 {
 	charsets_cleanup();
 
@@ -521,7 +539,7 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
 		nIDPrompt);
-	
+
 	if (m_pMainWnd->IsIconic())
 		m_pMainWnd->ShowWindow(SW_RESTORE);
 
@@ -545,7 +563,7 @@ bool CMergeApp::IsReallyIdle() const
     return idle;
 }
 
-BOOL CMergeApp::OnIdle(LONG lCount) 
+BOOL CMergeApp::OnIdle(LONG lCount)
 {
 	if (CWinApp::OnIdle(lCount))
 		return TRUE;
@@ -560,7 +578,10 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (m_bNonInteractive && IsReallyIdle())
 		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
 
-	static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseKeys();
+	if (typeid(*GetOptionsMgr()) == typeid(CRegOptionsMgr))
+	{
+		static_cast<CRegOptionsMgr*>(GetOptionsMgr())->CloseKeys();
+	}
 
 	return FALSE;
 }
@@ -711,7 +732,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr, 
+					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 					cmdInfo.m_sPreDiffer, infoUnpacker.get());
 			}
 		}
@@ -881,7 +902,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		String path;
 		String filename;
 		String ext;
-	
+
 		paths::SplitFilename(paths::GetLongPath(pszPath), &path, &filename, &ext);
 
 		// Determine backup folder
@@ -944,7 +965,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		{
 			success = !!CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
 		}
-		
+
 		if (!success)
 		{
 			String msg = strutils::format_string1(
@@ -1002,7 +1023,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	if (bFileExists && bFileRO)
 	{
 		UINT userChoice = 0;
-		
+
 		// Don't ask again if its already asked
 		if (bApplyToAll)
 			userChoice = IDYES;
@@ -1039,7 +1060,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			CFile::SetStatus(strSavePath.c_str(), status);
 			nRetVal = IDYES;
 			break;
-		
+
 		// Save to new filename (single) /skip this item (multiple)
 		case IDNO:
 			if (!bMultiFile)
@@ -1119,7 +1140,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	return true;
 }
 
-/** 
+/**
  * @brief Read project and perform comparison specified
  * @param [in] sProject Full path to project file.
  * @return `true` if loading project file and starting compare succeeded.
@@ -1129,7 +1150,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	ProjectFile project;
 	if (!LoadProjectFile(sProject, project))
 		return false;
-	
+
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
@@ -1254,7 +1275,7 @@ std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
  */
 void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 {
-	// sPathName will be added to the top of the MRU list. 
+	// sPathName will be added to the top of the MRU list.
 	// If sPathName already exists in the MRU list, it will be moved to the top
 	if (m_pRecentFileList != nullptr)    {
 		m_pRecentFileList->Add(sPathName);
