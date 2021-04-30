@@ -1126,7 +1126,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	ShowMessageBox(
 		strutils::format_string2(
-			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			_("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), unresolvedConflictCount)),
 		MB_ICONINFORMATION);
