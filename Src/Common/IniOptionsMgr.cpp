@@ -1,12 +1,12 @@
 /**
- * @file CIniOptionsMgr.cpp
+ * @file IniOptionsMgr.cpp
  *
  * @brief Implementation of Ini file Options management class.
  *
  */
 
 #include "pch.h"
-#include "CIniOptionsMgr.h"
+#include "IniOptionsMgr.h"
 #include "OptionsMgr.h"
 #include <Windows.h>
 #include <codecvt>

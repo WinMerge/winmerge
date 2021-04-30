@@ -20,7 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsInit.h"
 #include "RegOptionsMgr.h"
-#include "CIniOptionsMgr.h"
+#include "IniOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
 #include "OpenView.h"

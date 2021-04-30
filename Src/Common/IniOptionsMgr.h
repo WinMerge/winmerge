@@ -1,5 +1,5 @@
 /**
- * @file CIniOptionsMgr.h
+ * @file IniOptionsMgr.h
  *
  * @brief Implementation of Ini file Options management class.
  *
