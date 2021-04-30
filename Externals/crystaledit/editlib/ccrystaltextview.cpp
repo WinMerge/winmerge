@@ -367,7 +367,9 @@ LoadSettings ()
   CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
   bool bFontLoaded;
   CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
+  CString key = AfxGetApp ()->m_pszRegistryKey;
+  key += _T("\\") EDITPAD_SECTION;
+  if (reg.Open (HKEY_CURRENT_USER, key, KEY_READ))
     {
       reg.LoadNumber (_T ("DefaultEncoding"), (DWORD*) &CCrystalTextBuffer::m_nDefaultEncoding);
       for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
@@ -410,7 +412,9 @@ SaveSettings ()
 {
   CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
   CReg reg;
-  if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
+  CString key = AfxGetApp ()->m_pszRegistryKey;
+  key += _T("\\") EDITPAD_SECTION;
+  if (reg.Create (HKEY_CURRENT_USER, key, KEY_WRITE))
     {
       VERIFY (reg.SaveNumber (_T ("DefaultEncoding"), (DWORD) CCrystalTextBuffer::m_nDefaultEncoding));
       for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
@@ -3320,8 +3324,8 @@ OnInitialUpdate ()
   if (m_bRememberLastPos && !sDoc.IsEmpty ())
     {
       DWORD dwLastPos[3];
-      CString sKey = REG_EDITPAD;
-      sKey += _T ("\\Remembered");
+      CString sKey = AfxGetApp ()->m_pszRegistryKey;
+      sKey += _T ("\\") EDITPAD_SECTION _T ("\\Remembered");
       CReg reg;
       if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ) &&
         reg.LoadBinary (sDoc, (LPBYTE) dwLastPos, sizeof (dwLastPos)))
@@ -3415,23 +3419,12 @@ PrintFooter (CDC * pdc, int nPageNum)
 void CCrystalTextView::
 GetPrintMargins (long & nLeft, long & nTop, long & nRight, long & nBottom)
 {
-  nLeft = DEFAULT_PRINT_MARGIN;
-  nTop = DEFAULT_PRINT_MARGIN;
-  nRight = DEFAULT_PRINT_MARGIN;
-  nBottom = DEFAULT_PRINT_MARGIN;
-  CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
-    {
-      DWORD dwTemp;
-      if (reg.LoadNumber (_T ("PageLeft"), &dwTemp))
-        nLeft = dwTemp;
-      if (reg.LoadNumber (_T ("PageRight"), &dwTemp))
-        nRight = dwTemp;
-      if (reg.LoadNumber (_T ("PageTop"), &dwTemp))
-        nTop = dwTemp;
-      if (reg.LoadNumber (_T ("PageBottom"), &dwTemp))
-        nBottom = dwTemp;
-    }
+  CWinApp *pApp = AfxGetApp ();
+  ASSERT (pApp != nullptr);
+  nLeft   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageLeft"),   DEFAULT_PRINT_MARGIN);
+  nRight  = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageRight"),  DEFAULT_PRINT_MARGIN);
+  nTop    = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageTop"),    DEFAULT_PRINT_MARGIN);
+  nBottom = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageBottom"), DEFAULT_PRINT_MARGIN);
 }
 
 void CCrystalTextView::
@@ -3444,8 +3437,6 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
 
   m_rcPrintArea = m_ptPageArea;
   CSize szTopLeft, szBottomRight;
-  CWinApp *pApp = AfxGetApp ();
-  ASSERT (pApp != nullptr);
   GetPrintMargins (szTopLeft.cx, szTopLeft.cy, szBottomRight.cx, szBottomRight.cy);
   pdc->HIMETRICtoLP (&szTopLeft);
   pdc->HIMETRICtoLP (&szBottomRight);
@@ -5880,7 +5871,7 @@ FindText (const LastSearchInfos * lastSearch)
   m_dwLastSearchFlags = dwSearchFlags;
 
   //  Save search parameters to registry
-  VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), m_dwLastSearchFlags));
+  VERIFY (AfxGetApp ()->WriteProfileInt (EDITPAD_SECTION, _T ("FindFlags"), m_dwLastSearchFlags));
 
   return true;
 }
@@ -5888,9 +5879,6 @@ FindText (const LastSearchInfos * lastSearch)
 void CCrystalTextView::
 OnEditFind ()
 {
-  CWinApp *pApp = AfxGetApp ();
-  ASSERT (pApp != nullptr);
-
   if (m_pFindTextDlg == nullptr)
     m_pFindTextDlg = new CFindTextDlg (this);
 
@@ -5905,9 +5893,7 @@ OnEditFind ()
     }
   else
     {
-      DWORD dwFlags;
-      if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), &dwFlags))
-        dwFlags = 0;
+      DWORD dwFlags = AfxGetApp ()->GetProfileInt (EDITPAD_SECTION, _T("FindFlags"), 0);
       ConvertSearchFlagsToLastSearchInfos(lastSearch, dwFlags);
     }
   m_pFindTextDlg->UseLastSearch ();
@@ -6020,9 +6006,7 @@ void CCrystalTextView::
 OnEditMark ()
 {
   CString sText;
-  DWORD dwFlags;
-  if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), &dwFlags))
-    dwFlags = 0;
+  DWORD dwFlags = AfxGetApp ()->GetProfileInt (EDITPAD_SECTION, _T("MarkerFlags"), 0);
 
   //  Take the current selection, if any
   if (IsSelection ())
@@ -6045,7 +6029,7 @@ OnEditMark ()
   if (markerDlg.DoModal() == IDOK)
     {
       //  Save search parameters to registry
-      VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), markerDlg.GetLastSearchFlags()));
+      VERIFY (AfxGetApp ()->WriteProfileInt (EDITPAD_SECTION, _T ("MarkerFlags"), markerDlg.GetLastSearchFlags()));
       m_pMarkers->SaveToRegistry();
     }
 }
@@ -6064,39 +6048,20 @@ OnFilePageSetup ()
   dlg.m_psd.hDevMode = pd.hDevMode;
   dlg.m_psd.hDevNames = pd.hDevNames;
   dlg.m_psd.Flags |= PSD_INHUNDREDTHSOFMILLIMETERS|PSD_MARGINS;
-  dlg.m_psd.rtMargin.left = DEFAULT_PRINT_MARGIN;
-  dlg.m_psd.rtMargin.right = DEFAULT_PRINT_MARGIN;
-  dlg.m_psd.rtMargin.top = DEFAULT_PRINT_MARGIN;
-  dlg.m_psd.rtMargin.bottom = DEFAULT_PRINT_MARGIN;
-  CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
-    {
-      DWORD dwTemp;
-      if (reg.LoadNumber (_T ("PageWidth"), &dwTemp))
-        dlg.m_psd.ptPaperSize.x = dwTemp;
-      if (reg.LoadNumber (_T ("PageHeight"), &dwTemp))
-        dlg.m_psd.ptPaperSize.y = dwTemp;
-      if (reg.LoadNumber (_T ("PageLeft"), &dwTemp))
-        dlg.m_psd.rtMargin.left = dwTemp;
-      if (reg.LoadNumber (_T ("PageRight"), &dwTemp))
-        dlg.m_psd.rtMargin.right = dwTemp;
-      if (reg.LoadNumber (_T ("PageTop"), &dwTemp))
-        dlg.m_psd.rtMargin.top = dwTemp;
-      if (reg.LoadNumber (_T ("PageBottom"), &dwTemp))
-        dlg.m_psd.rtMargin.bottom = dwTemp;
-    }
+  dlg.m_psd.ptPaperSize.x   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageWidth"),  dlg.m_psd.ptPaperSize.x);
+  dlg.m_psd.ptPaperSize.y   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageHeight"), dlg.m_psd.ptPaperSize.y);
+  dlg.m_psd.rtMargin.left   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageLeft"),   DEFAULT_PRINT_MARGIN);
+  dlg.m_psd.rtMargin.right  = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageRight"),  DEFAULT_PRINT_MARGIN);
+  dlg.m_psd.rtMargin.top    = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageTop"),    DEFAULT_PRINT_MARGIN);
+  dlg.m_psd.rtMargin.bottom = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageBottom"), DEFAULT_PRINT_MARGIN);
   if (dlg.DoModal () == IDOK)
     {
-      CReg reg1;
-      if (reg1.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
-        {
-          VERIFY (reg1.SaveNumber (_T ("PageWidth"), dlg.m_psd.ptPaperSize.x));
-          VERIFY (reg1.SaveNumber (_T ("PageHeight"), dlg.m_psd.ptPaperSize.y));
-          VERIFY (reg1.SaveNumber (_T ("PageLeft"), dlg.m_psd.rtMargin.left));
-          VERIFY (reg1.SaveNumber (_T ("PageRight"), dlg.m_psd.rtMargin.right));
-          VERIFY (reg1.SaveNumber (_T ("PageTop"), dlg.m_psd.rtMargin.top));
-          VERIFY (reg1.SaveNumber (_T ("PageBottom"), dlg.m_psd.rtMargin.bottom));
-        }
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageWidth"), dlg.m_psd.ptPaperSize.x));
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageHeight"), dlg.m_psd.ptPaperSize.y));
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageLeft"), dlg.m_psd.rtMargin.left));
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageRight"), dlg.m_psd.rtMargin.right));
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageTop"), dlg.m_psd.rtMargin.top));
+      VERIFY (pApp->WriteProfileInt (EDITPAD_SECTION, _T ("PageBottom"), dlg.m_psd.rtMargin.bottom));
       pApp->SelectPrinter (dlg.m_psd.hDevNames, dlg.m_psd.hDevMode, false);
     }
 }
