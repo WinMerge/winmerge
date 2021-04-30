@@ -310,7 +310,7 @@ int CIniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop
 	}
 	else if (valType == varprop::VT_INT)
 	{
-		value.SetInt(std::stoi(textValue));
+		value.SetInt(std::stoul(textValue));
 		retVal = Set(strName, value);
 	}
 	else if (valType == varprop::VT_BOOL)
