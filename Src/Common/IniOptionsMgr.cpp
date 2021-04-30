@@ -22,6 +22,7 @@ LPCWSTR lpAppName = TEXT("WinMerge");
 LPCWSTR lpFileName = TEXT("\\winmerge.ini");
 
 CIniOptionsMgr::CIniOptionsMgr()
+	: m_serializing(true)
 {
 	InitializeCriticalSection(&m_cs);
 }
