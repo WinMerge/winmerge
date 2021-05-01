@@ -41,9 +41,6 @@ public:
 
 	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
-	virtual int ExportOptions(const String& filename, const bool bHexColor = false) const override;
-	virtual int ImportOptions(const String& filename) override;
-
 private:
 	CRITICAL_SECTION m_cs;
 	bool m_serializing;

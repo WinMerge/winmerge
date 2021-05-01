@@ -267,36 +267,12 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 	return retVal;
 }
 
-int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor) const
-{
-	if (std::filesystem::copy_file(CIniOptionsMgr::GetFilePath(), filename))
-	{
-		return COption::OPT_OK;
-	}
-	else
-	{
-		return COption::OPT_ERR;
-	}
-}
-
-int CIniOptionsMgr::ImportOptions(const String& filename)
-{
-	if (std::filesystem::copy_file(filename, CIniOptionsMgr::GetFilePath()))
-	{
-		return COption::OPT_OK;
-	}
-	else
-	{
-		return COption::OPT_ERR;
-	}
-}
-
 String CIniOptionsMgr::ReadValueFromFile(const String& name)
 {
 	const int size = 100;
-	LPWSTR buffor = new TCHAR[size];
-	DWORD result = GetPrivateProfileString(lpAppName, name.c_str(), NULL, buffor, size, GetFilePath());
-	return buffor;
+	std::unique_ptr<TCHAR> buffor{ new TCHAR[size] };
+	DWORD result = GetPrivateProfileString(lpAppName, name.c_str(), NULL, buffor.get(), size, GetFilePath());
+	return buffor.get();
 }
 
 int CIniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop::VariantValue& value)
