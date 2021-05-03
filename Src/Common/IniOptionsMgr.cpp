@@ -269,10 +269,24 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 
 String CIniOptionsMgr::ReadValueFromFile(const String& name)
 {
-	const int size = 100;
-	std::unique_ptr<TCHAR> buffor{ new TCHAR[size] };
-	DWORD result = GetPrivateProfileString(lpAppName, name.c_str(), NULL, buffor.get(), size, GetFilePath());
-	return buffor.get();
+	if (m_iniFileKeyValues.empty())
+	{
+		std::vector<TCHAR> str(32768);
+		if (GetPrivateProfileSection(lpAppName, str.data(), static_cast<DWORD>(str.size()), GetFilePath()) > 0)
+		{
+			TCHAR* p = str.data();
+			while (*p)
+			{
+				TCHAR* v = _tcschr(p, '=');
+				if (!v)
+					break;
+				size_t vlen = _tcslen(v);
+				m_iniFileKeyValues.insert_or_assign(String{ p, v - 1 }, String{v, v + vlen});
+				p = v + vlen + 1;
+			}
+		}
+	}
+	return m_iniFileKeyValues[name];
 }
 
 int CIniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop::VariantValue& value)

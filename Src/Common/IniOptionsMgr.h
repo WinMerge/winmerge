@@ -45,6 +45,7 @@ private:
 	CRITICAL_SECTION m_cs;
 	bool m_serializing;
 	static LPCWSTR lpFilePath;
+	std::map<String, String> m_iniFileKeyValues;
 
 	String ReadValueFromFile(const String& name);
 	int ParseValue(const String& strName, String& textValue, varprop::VariantValue& value);
