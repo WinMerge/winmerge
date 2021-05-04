@@ -280,6 +280,7 @@ String CIniOptionsMgr::ReadValueFromFile(const String& name)
 				TCHAR* v = _tcschr(p, '=');
 				if (!v)
 					break;
+				++v;
 				size_t vlen = _tcslen(v);
 				m_iniFileKeyValues.insert_or_assign(String{ p, v - 1 }, String{v, v + vlen});
 				p = v + vlen + 1;
