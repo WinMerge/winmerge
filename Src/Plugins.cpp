@@ -37,6 +37,8 @@
 #include "coretools.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "codepage_detect.h"
+#include "UniFile.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -372,6 +374,134 @@ static String GetCustomFilters(const String& name, const String& filtersTextDefa
 	else
 		return filtersTextDefault;
 }
+
+class UnpackerGeneratedFromEditorScript: public IDispatch
+{
+public:
+	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, int id) : m_pDispatch(pDispatch), m_funcid(id), m_nRef(0)
+	{
+		m_pDispatch->AddRef();
+	}
+
+	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override
+	{
+		return E_NOTIMPL;
+	}
+
+	ULONG STDMETHODCALLTYPE AddRef(void) override
+	{
+		return ++m_nRef;
+	}
+
+	ULONG STDMETHODCALLTYPE Release(void) override
+	{
+		if (--m_nRef == 0)
+		{
+			m_pDispatch->Release();
+			delete this;
+			return 0;
+		}
+		return m_nRef;
+	}
+
+	HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT* pctinfo) override
+	{
+		return E_NOTIMPL;
+	}
+
+	HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) override
+	{
+		return E_NOTIMPL;
+	}
+
+	HRESULT STDMETHODCALLTYPE GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId) override
+	{
+		for (unsigned i = 0; i < cNames; ++i)
+			rgDispId[i] = (wcscmp(L"UnpackFile", rgszNames[i]) == 0) ? 1 : -1;
+		return S_OK;
+	}
+
+	static HRESULT ReadFile(const String& path, String& text)
+	{
+		UniMemFile file;
+		if (!file.OpenReadOnly(path))
+			return E_ACCESSDENIED;
+		file.ReadBom();
+		if (!file.HasBom())
+		{
+			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+			FileTextEncoding encoding = codepage_detect::Guess(
+				paths::FindExtension(path), file.GetBase(),
+				file.GetFileSize() < codepage_detect::BufSize ? file.GetFileSize() : codepage_detect::BufSize,
+				iGuessEncodingType);
+			file.SetCodepage(encoding.m_codepage);
+		}
+		file.ReadStringAll(text);
+		file.Close();
+		return S_OK;
+	}
+
+	static HRESULT WriteFile(const String& path, const String& text)
+	{
+		UniStdioFile fileOut;
+		if (!fileOut.Open(path, _T("wb")))
+			return E_ACCESSDENIED;
+		fileOut.SetUnicoding(ucr::UNICODESET::UTF8);
+		fileOut.SetBom(true);
+		fileOut.WriteBom();
+		fileOut.WriteString(text);
+		fileOut.Close();
+		return S_OK;
+	}
+
+	HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) override
+	{
+		if (!pDispParams)
+			return DISP_E_BADVARTYPE;
+		if (dispIdMember != 1)
+			return E_NOTIMPL;
+
+		BSTR dstPath = pDispParams->rgvarg[2].bstrVal;
+		BSTR srcPath = pDispParams->rgvarg[3].bstrVal;
+
+		int changed = 0;
+		String text;
+		HRESULT hr = ReadFile(srcPath, text);
+		if (FAILED(hr))
+			return hr;
+		if (!plugin::InvokeTransformText(text, changed, m_pDispatch, m_funcid))
+			return E_FAIL;
+		hr = WriteFile(dstPath, text);
+		if (FAILED(hr))
+			return hr;
+
+		*pDispParams->rgvarg[1].pboolVal = VARIANT_TRUE;
+		pVarResult->boolVal = VARIANT_TRUE;
+		return S_OK;
+	}
+
+	static PluginInfoPtr MakePluginInfo(PluginInfo *pPluginBase, const String& funcname, int fncid)
+	{
+		PluginInfoPtr plugin(new PluginInfo);
+		plugin->m_lpDispatch = new UnpackerGeneratedFromEditorScript(pPluginBase->m_lpDispatch, fncid);
+		plugin->m_lpDispatch->AddRef();
+		plugin->m_name = pPluginBase->m_name + _T(":") + funcname;
+		plugin->m_description =
+			strutils::format_string2(_T("Unpacker to execute %1 script (automatically generated from %2)")
+				, funcname, pPluginBase->m_name);
+		plugin->m_disabled = false;
+		plugin->m_filtersTextDefault = _T(".");
+		plugin->m_filtersText = GetCustomFilters(plugin->m_name, plugin->m_filtersTextDefault);
+		plugin->m_bAutomatic = true;
+		plugin->m_event = L"FILE_PACK_UNPACK";
+		return plugin;
+	}
+
+private:
+	IDispatch *m_pDispatch;
+	int m_funcid;
+	int m_nRef;
+};
 
 /**
  * @brief Tiny structure that remembers current scriptlet & event info for calling Log
@@ -718,6 +848,24 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		{
 			// Plugin is bad
 			badScriptlets.push_back(scriptletFilepath);
+		}
+	}
+
+	if (plugins.find(L"EDITOR_SCRIPT") != plugins.end())
+	{
+		for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
+		{
+			std::vector<String> namesArray;
+			std::vector<int> idArray;
+			int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
+			for (int i = 0; i < validFuncs; ++i)
+			{
+				if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
+					plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
+				PluginInfoPtr pluginNew = UnpackerGeneratedFromEditorScript::MakePluginInfo(plugin.get(), namesArray[i], idArray[i]);
+				pluginNew->m_disabled = (disabled_plugin_list.find(pluginNew->m_name) != disabled_plugin_list.end());
+				plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
+			}
 		}
 	}
 
