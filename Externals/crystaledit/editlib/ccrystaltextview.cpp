@@ -492,7 +492,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_bRectangularSelection(false)
 , m_bColumnSelection(false)
 , m_nDragSelTimer(0)
-, m_bOverrideCaret(false)
+, m_bOvrMode(false)
 , m_nLastFindWhatLen(0)
 , m_nPrintPages(0)
 , m_nPrintLineHeight(0)
@@ -2783,8 +2783,17 @@ UpdateCaret ()
         CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x) >= m_nOffsetChar)
     {
       int nCaretHeight = GetLineVisible(m_ptCursorPos.y) ? GetLineHeight () : 0;
-      if (m_bOverrideCaret)  //UPDATE
-        CreateSolidCaret(GetCharWidth(), nCaretHeight);
+      if (m_bOvrMode)  //UPDATE
+        {
+          int nCaretWidth = GetCharWidth ();
+          if (m_ptCursorPos.x < GetLineLength (m_ptCursorPos.y))
+            {
+              const TCHAR* pszLine = GetLineChars  (m_ptCursorPos.y);
+              if (pszLine[m_ptCursorPos.x] != '\t')
+                  nCaretWidth *= GetCharCellCountFromChar (pszLine + m_ptCursorPos.x);
+            }
+          CreateSolidCaret (nCaretWidth, nCaretHeight);
+        }
       else
         CreateSolidCaret (2, nCaretHeight);
 

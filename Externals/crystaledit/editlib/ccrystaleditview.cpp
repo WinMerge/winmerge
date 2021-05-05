@@ -1145,6 +1145,7 @@ void CCrystalEditView::
 OnEditSwitchOvrmode ()
 {
   m_bOvrMode = !m_bOvrMode;
+  UpdateCaret ();
 }
 
 void CCrystalEditView::

@@ -68,7 +68,6 @@ protected:
     bool m_bSelectionPushed;
     CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
 private :
-    bool m_bOvrMode;
     CPoint m_ptDropPos;
     bool m_bAutoIndent;
 
