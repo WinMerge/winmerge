@@ -2777,7 +2777,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 		{
 			m_ptBuf[index]->FreeAll();
 			loadSuccess = LoadFile(filename.c_str(), index, readOnly,
-				GuessCodepageEncoding(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1));
+				codepage_detect::Guess(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1));
 		}
 	}
 	else
@@ -3172,7 +3172,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	strDesc[nBuffer] = _T("");
 	fileloc[nBuffer].setPath(path);
-	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
+	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 		MoveOnLoad(nBuffer, nLineIndex);
