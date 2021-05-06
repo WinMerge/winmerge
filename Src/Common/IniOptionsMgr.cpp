@@ -155,7 +155,7 @@ int CIniOptionsMgr::SaveOption(const String& name)
 	{
 		if (valType == varprop::VT_STRING)
 		{
-			String strVal = value.GetString();
+			String strVal = EscapeValue(value.GetString());
 			LPCWSTR text = strVal.c_str();
 			WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 		}
@@ -282,7 +282,8 @@ String CIniOptionsMgr::ReadValueFromFile(const String& name)
 					break;
 				++v;
 				size_t vlen = _tcslen(v);
-				m_iniFileKeyValues.insert_or_assign(String{ p, v - 1 }, String{v, v + vlen});
+				String value{ v, v + vlen };
+				m_iniFileKeyValues.insert_or_assign(String{ p, v - 1 }, UnescapeValue(value));
 				p = v + vlen + 1;
 			}
 		}

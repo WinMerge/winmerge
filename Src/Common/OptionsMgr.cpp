@@ -670,7 +670,7 @@ int COptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= 
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
-			strVal = value.GetString();
+			strVal = EscapeValue(value.GetString());
 		}
 
 		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
@@ -728,8 +728,9 @@ int COptionsMgr::ImportOptions(const String& filename)
 		{
 			TCHAR strVal[MAX_PATH_FULL] = {0};
 			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
-			value.SetString(strVal);
-			SaveOption(pKey, strVal);
+			String sVal = UnescapeValue(strVal);
+			value.SetString(sVal);
+			SaveOption(pKey, sVal);
 		}
 		Set(pKey, value);
 
@@ -742,3 +743,39 @@ int COptionsMgr::ImportOptions(const String& filename)
 	}
 	return retVal;
 }
+
+String COptionsMgr::EscapeValue(const String& text)
+{
+	String text2;
+	for (int i = 0; i < text.length(); ++i)
+	{
+		TCHAR ch = text[i];
+		if (ch == '\0' || ch == '\x1b' || ch == '\r' || ch == '\n')
+		{
+			text2 += '\x1b';
+			text2 += ch + '@';
+		}
+		else
+			text2 += ch;
+	}
+	return text2;
+}
+
+String COptionsMgr::UnescapeValue(const String& text)
+{
+	if (text.find('\x1b') == String::npos)
+		return text;
+	String text2;
+	for (int i = 0; i < text.length(); ++i)
+	{
+		if (text[i] == '\x1b' && i < text.length() - 1)
+		{
+			++i;
+			text2 += text[i] - '@';
+		}
+		else
+			text2 += text[i];
+	}
+	return text2;
+}
+

@@ -152,6 +152,9 @@ public:
 	virtual void SetSerializing(bool serializing=true) = 0;
 
 protected:
+	static String EscapeValue(const String& text);
+	static String UnescapeValue(const String& text);
+
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 
 private:
