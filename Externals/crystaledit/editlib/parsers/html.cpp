@@ -33,7 +33,10 @@ unsigned
 CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
+    {
+      unsigned dwCookieStrChar = ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & (COOKIE_STRING | COOKIE_CHAR)) : 0;
+      return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE|dwCookieStrChar);
+    }
 
   bool bRedefineBlock = true;
   if (!(dwCookie & COOKIE_ELEMENT))
@@ -349,7 +352,8 @@ next:
         }
     }
 
-  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE);
+  unsigned dwCookieChar = ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & COOKIE_CHAR) : 0;
+  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE | dwCookieChar);
   return dwCookie;
 }
 
