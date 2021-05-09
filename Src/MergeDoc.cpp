@@ -2775,9 +2775,13 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 		loadSuccess = LoadFile(filename.c_str(), index, readOnly, encoding);
 		if (FileLoadResult::IsLossy(loadSuccess))
 		{
-			m_ptBuf[index]->FreeAll();
-			loadSuccess = LoadFile(filename.c_str(), index, readOnly,
-				codepage_detect::Guess(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1));
+			// Determine the file encoding by looking at all the contents of the file, not just part of it
+			FileTextEncoding encodingNew = codepage_detect::Guess(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1);
+			if (encoding != encodingNew)
+			{
+				m_ptBuf[index]->FreeAll();
+				loadSuccess = LoadFile(filename.c_str(), index, readOnly, encodingNew);
+			}
 		}
 	}
 	else
