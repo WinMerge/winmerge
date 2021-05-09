@@ -2909,11 +2909,21 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	m_strBothFilenames.erase(m_strBothFilenames.length() - 1);
 
 	// Load files
-	DWORD nSuccess[3];
+	DWORD nSuccess[3] = { FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR };
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
+		if (!FileLoadResult::IsOk(nSuccess[nBuffer]))
+		{
+			CMergeEditFrame* pFrame = GetParentFrame();
+			if (pFrame != nullptr)
+			{
+				// Use verify macro to trap possible error in debug.
+				VERIFY(pFrame->DestroyWindow());
+			}
+			return false;
+		}
 	}
 
 	SetTableProperties();
@@ -2928,18 +2938,6 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		{
 			m_pInfoUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 		}
-	}
-
-	// Bail out if either side failed
-	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
-	{
-		CMergeEditFrame *pFrame = GetParentFrame();
-		if (pFrame != nullptr)
-		{
-			// Use verify macro to trap possible error in debug.
-			VERIFY(pFrame->DestroyWindow());
-		}
-		return false;
 	}
 
 	// Warn user if file load was lossy (bad encoding)
