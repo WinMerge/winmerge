@@ -103,6 +103,8 @@ public :
     void SetDisableBSAtSOL (bool bDisableBSAtSOL);
     bool GetDisableBSAtSOL () const;
 
+    void CopyProperties (CCrystalTextView* pSource) override;
+
     // Operations
 public :
     CCrystalEditView ();

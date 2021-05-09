@@ -1752,6 +1752,18 @@ SetDisableBSAtSOL (bool bDisableBSAtSOL)
 }
 
 void CCrystalEditView::
+CopyProperties (CCrystalTextView* pSource)
+{
+  CCrystalTextView::CopyProperties(pSource);
+  auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
+  if (!pSourceEditView)
+      return;
+  m_bDisableBSAtSOL = pSourceEditView->m_bDisableBSAtSOL;
+  m_bOvrMode = pSourceEditView->m_bOvrMode;
+  m_bAutoIndent = pSourceEditView->m_bAutoIndent;
+}
+
+void CCrystalEditView::
 OnEditRedo ()
 {
   DoEditRedo();
