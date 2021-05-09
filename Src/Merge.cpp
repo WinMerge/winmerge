@@ -123,9 +123,10 @@ CMergeApp::CMergeApp() :
  */
 COptionsMgr *CreateOptionManager()
 {
-	if (CIniOptionsMgr::CheckIfIniFileExist())
+	String iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
+	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
 	{
-		return new CIniOptionsMgr();
+		return new CIniOptionsMgr(iniFilePath);
 	}
 	else
 	{

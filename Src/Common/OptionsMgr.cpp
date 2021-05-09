@@ -779,3 +779,32 @@ String COptionsMgr::UnescapeValue(const String& text)
 	return text2;
 }
 
+/**
+ * @brief Split option name to path (in registry) and
+ * valuename (in registry).
+ *
+ * Option names are given as "full path", e.g. "Settings/AutomaticRescan".
+ * This function splits that to path "Settings/" and valuename
+ * "AutomaticRescan".
+ * @param [in] strName Option name
+ * @param [out] srPath Path (key) in registry
+ * @param [out] strValue Value in registry
+ */
+std::pair<String, String> COptionsMgr::SplitName(const String& strName)
+{
+	String strValue, strPath;
+	size_t pos = strName.rfind('/');
+	if (pos != String::npos)
+	{
+		size_t len = strName.length();
+		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
+		strPath = strName.substr(0, pos);  //Left(pos);
+	}
+	else
+	{
+		strValue = strName;
+		strPath.erase();
+	}
+	return { strPath, strValue };
+}
+

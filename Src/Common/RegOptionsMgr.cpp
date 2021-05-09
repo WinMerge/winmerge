@@ -9,7 +9,6 @@
 #include "RegOptionsMgr.h"
 #include <windows.h>
 #include <Shlwapi.h>
-#include <vector>
 #include "varprop.h"
 #include "OptionsMgr.h"
 
@@ -17,6 +16,7 @@
 
 struct AsyncWriterThreadParams
 {
+	AsyncWriterThreadParams(const String& name, const varprop::VariantValue& value) : name(name), value(value) {}
 	String name;
 	varprop::VariantValue value;
 };
@@ -40,34 +40,6 @@ CRegOptionsMgr::~CRegOptionsMgr()
 			break;
 	}
 	DeleteCriticalSection(&m_cs);
-}
-
-/**
- * @brief Split option name to path (in registry) and
- * valuename (in registry).
- *
- * Option names are given as "full path", e.g. "Settings/AutomaticRescan".
- * This function splits that to path "Settings/" and valuename
- * "AutomaticRescan".
- * @param [in] strName Option name
- * @param [out] srPath Path (key) in registry
- * @param [out] strValue Value in registry
- */
-void CRegOptionsMgr::SplitName(const String &strName, String &strPath,
-	String &strValue) const
-{
-	size_t pos = strName.rfind('/');
-	if (pos != String::npos)
-	{
-		size_t len = strName.length();
-		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
-		strPath = strName.substr(0, pos);  //Left(pos);
-	}
-	else
-	{
-		strValue = strName;
-		strPath.erase();
-	}
 }
 
 HKEY CRegOptionsMgr::OpenKey(const String& strPath, bool bAlwaysCreate)
@@ -128,10 +100,8 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	BOOL bRet;
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
-		AsyncWriterThreadParams *pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
-		String strPath;
-		String strValueName;
-		pThis->SplitName(pParam->name, strPath, strValueName);
+		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
+		auto [strPath, strValueName] = COptionsMgr::SplitName(pParam->name);
 		EnterCriticalSection(&pThis->m_cs);
 		HKEY hKey = pThis->OpenKey(strPath, true);
 		SaveValueToReg(hKey, strValueName, pParam->value);
@@ -194,15 +164,12 @@ int CRegOptionsMgr::LoadValueFromBuf(const String& strName, DWORD type, const BY
 int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	varprop::VariantValue &value)
 {
-	String strPath;
-	String strValueName;
 	LONG retValReg = 0;
 	std::vector<BYTE> data;
 	DWORD type = 0;
 	DWORD size = 0;
 	int retVal = COption::OPT_OK;
-
-	SplitName(strName, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(strName);
 
 	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,
@@ -299,9 +266,7 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		return AddOption(name, defaultValue);
 
 	// Figure out registry path, for saving value
-	String strPath;
-	String strValueName;
-	SplitName(name, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(name);
 
 	// Open key.
 	EnterCriticalSection(&m_cs);
@@ -379,7 +344,7 @@ int CRegOptionsMgr::InitOption(const String& name, int defaultValue, bool serial
 {
 	varprop::VariantValue defValue;
 	int retVal = COption::OPT_OK;
-	
+
 	defValue.SetInt(defaultValue);
 	if (serializable)
 		retVal = InitOption(name, defValue);
@@ -416,12 +381,10 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	int valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = COption::OPT_NOTFOUND;
-	
+
 	if (retVal == COption::OPT_OK)
 	{
-		AsyncWriterThreadParams *pParam = new AsyncWriterThreadParams();
-		pParam->name = name;
-		pParam->value = value;
+		auto* pParam = new AsyncWriterThreadParams(name, value);
 		InterlockedIncrement(&m_dwQueueCount);
 		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
 	}
@@ -489,11 +452,7 @@ int CRegOptionsMgr::SaveOption(const String& name, bool value)
 int CRegOptionsMgr::RemoveOption(const String& name)
 {
 	int retVal = COption::OPT_OK;
-
-	String strPath;
-	String strValueName;
-
-	SplitName(name, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(name);
 
 	if (!strValueName.empty())
 	{
@@ -503,7 +462,8 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	{
 		for (auto it = m_optionsMap.begin(); it != m_optionsMap.end(); )
 		{
-			if (it->first.find(strPath) == 0)
+			const String& key = it->first;
+			if (key.find(strPath) == 0 && key.length() > strPath.length() && key[strPath.length()] == '/')
 				it = m_optionsMap.erase(it);
 			else 
 				++it;

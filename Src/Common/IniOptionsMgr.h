@@ -17,12 +17,8 @@ class COptionsMgr;
 class CIniOptionsMgr : public COptionsMgr
 {
 public:
-	CIniOptionsMgr();
+	CIniOptionsMgr(const String& filePath);
 	virtual ~CIniOptionsMgr();
-
-	static bool CheckIfIniFileExist();
-
-	static LPCWSTR GetFilePath();
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
@@ -41,14 +37,18 @@ public:
 
 	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
+protected:
+	static std::map<String, String> Load(const String& iniFilePath);
+	int LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value);
+	const TCHAR *GetFilePath() const { return m_filePath.c_str(); }
+	int SaveValueToFile(const String& strValueName,
+		const varprop::VariantValue& value);
+	static DWORD WINAPI AsyncWriterThreadProc(void *pParam);
+
 private:
-	CRITICAL_SECTION m_cs;
 	bool m_serializing;
-	static LPCWSTR lpFilePath;
 	std::map<String, String> m_iniFileKeyValues;
-
-	String ReadValueFromFile(const String& name);
-	int ParseValue(const String& strName, String& textValue, varprop::VariantValue& value);
-
-	void SplitName(const String& strName, String& strPath, String& strValue) const;
+	String m_filePath;
+	DWORD m_dwThreadId;
+	HANDLE m_hThread;
 };

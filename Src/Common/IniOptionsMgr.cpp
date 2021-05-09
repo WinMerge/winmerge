@@ -7,66 +7,150 @@
 
 #include "pch.h"
 #include "IniOptionsMgr.h"
-#include "OptionsMgr.h"
 #include <Windows.h>
-#include <codecvt>
-#include <filesystem>
-#include <string>
-#include <fstream>
-
-using std::filesystem::current_path;
-
-LPCWSTR CIniOptionsMgr::lpFilePath = NULL;
+#include "OptionsMgr.h"
 
 LPCWSTR lpAppName = TEXT("WinMerge");
-LPCWSTR lpFileName = TEXT("\\winmerge.ini");
 
-CIniOptionsMgr::CIniOptionsMgr()
-	: m_serializing(true)
+struct AsyncWriterThreadParams
 {
-	InitializeCriticalSection(&m_cs);
+	AsyncWriterThreadParams(const String& name, const varprop::VariantValue& value) : name(name), value(value) {}
+	String name;
+	varprop::VariantValue value;
+};
+
+CIniOptionsMgr::CIniOptionsMgr(const String& filePath)
+	: m_serializing(true)
+	, m_filePath{filePath}
+	, m_dwThreadId(0)
+	, m_hThread(nullptr)
+{
+	m_iniFileKeyValues = Load(m_filePath);
+	m_hThread = CreateThread(nullptr, 0, AsyncWriterThreadProc, this, 0, &m_dwThreadId);
 }
 
 CIniOptionsMgr::~CIniOptionsMgr()
 {
-	DeleteCriticalSection(&m_cs);
-	delete[] CIniOptionsMgr::lpFilePath;
-}
-
-/**
- * @brief Checks wheter INI file exists.
- * @return TRUE if INI file exist,
- *   FALSE otherwise.
- */
-bool CIniOptionsMgr::CheckIfIniFileExist()
-{
-	std::ifstream f(GetFilePath());
-	return f.good();
-}
-
-/**
- * @brief Get path to INI file.
- * @return path to INI file
- */
-LPCWSTR CIniOptionsMgr::GetFilePath()
-{
-	if (CIniOptionsMgr::lpFilePath == NULL)
-	{
-		// create path
-		std::filesystem::path p = current_path();
-		p += lpFileName;
-
-		// change type
-		std::wstring str = p.wstring();
-		size_t length = str.length() + 1;
-		wchar_t* strCp = new wchar_t[length];
-		wcscpy_s(strCp, length, str.c_str());
-
-		// set path
-		CIniOptionsMgr::lpFilePath = strCp;
+	for (;;) {
+		PostThreadMessage(m_dwThreadId, WM_QUIT, 0, 0);
+		if (WaitForSingleObject(m_hThread, 1) != WAIT_TIMEOUT)
+			break;
 	}
+}
 
-	return CIniOptionsMgr::lpFilePath;
+DWORD WINAPI CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
+{
+	CIniOptionsMgr *pThis = reinterpret_cast<CIniOptionsMgr *>(pvThis);
+	MSG msg;
+	BOOL bRet;
+	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
+	{
+		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
+		pThis->SaveValueToFile(pParam->name, pParam->value);
+		delete pParam;
+	}
+	return 0;
+}
+
+std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
+{
+	std::map<String, String> iniFileKeyValues;
+	std::vector<TCHAR> str(32768);
+	if (GetPrivateProfileSection(lpAppName, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
+	{
+		TCHAR* p = str.data();
+		while (*p)
+		{
+			TCHAR* v = _tcschr(p, '=');
+			if (!v)
+				break;
+			++v;
+			size_t vlen = _tcslen(v);
+			String value{ v, v + vlen };
+			String key{ p, v - 1 };
+			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
+			p = v + vlen + 1;
+		}
+	}
+	return iniFileKeyValues;
+}
+
+int CIniOptionsMgr::LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value)
+{
+	int retVal = COption::OPT_OK;
+	int valType = value.GetType();
+	if (valType == varprop::VT_STRING)
+	{
+		value.SetString(textValue);
+		retVal = Set(strName, value);
+	}
+	else if (valType == varprop::VT_INT)
+	{
+		value.SetInt(std::stoul(textValue));
+		retVal = Set(strName, value);
+	}
+	else if (valType == varprop::VT_BOOL)
+	{
+		value.SetBool(textValue[0] == '1' ? true : false);
+		retVal = Set(strName, value);
+	}
+	else
+		retVal = COption::OPT_WRONG_TYPE;
+
+	return retVal;
+}
+
+int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantValue& value)
+{
+	BOOL retValReg = TRUE;
+	int valType = value.GetType();
+	int retVal = COption::OPT_OK;
+
+	if (valType == varprop::VT_STRING)
+	{
+		String strVal = EscapeValue(value.GetString());
+		LPCWSTR text = strVal.c_str();
+		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+	}
+	else if (valType == varprop::VT_INT)
+	{
+		DWORD dwordVal = value.GetInt();
+		String strVal = strutils::to_str(dwordVal);
+		LPCWSTR text = strVal.c_str();
+		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+	}
+	else if (valType == varprop::VT_BOOL)
+	{
+		DWORD dwordVal = value.GetBool() ? 1 : 0;
+		String strVal = strutils::to_str(dwordVal);
+		LPCWSTR text = strVal.c_str();
+		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+	}
+	else if (valType == varprop::VT_NULL)
+	{
+		auto [strPath, strValueName] = SplitName(name);
+		if (!strValueName.empty())
+			retValReg = WritePrivateProfileString(lpAppName, name.c_str(), nullptr, GetFilePath());
+		else
+		{
+			auto iniFileMap = Load(GetFilePath());
+			for (auto& [key, value2] : iniFileMap)
+			{
+				if (key.find(strPath) == 0 && key.length() > strPath.length() && key[strPath.length()] == '/')
+					retValReg = WritePrivateProfileString(lpAppName, key.c_str(), nullptr, GetFilePath());
+			}
+		}
+	}
+	else
+	{
+		retVal = COption::OPT_UNKNOWN_TYPE;
+	}
+		
+	if (!retValReg)
+	{
+		retVal = COption::OPT_ERR;
+	}
+	return retVal;
 }
 
 int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& defaultValue)
@@ -80,30 +164,22 @@ int CIniOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	if (!m_serializing)
 		return AddOption(name, defaultValue);
 
-	EnterCriticalSection(&m_cs);
-
-	// check if value exist
-	String textValue = ReadValueFromFile(name);
-	bool found = textValue.size() != 0;
-
 	// Actually save value into our in-memory options table
 	int retVal = AddOption(name, defaultValue);
 
 	// Update registry if successfully saved to in-memory table
 	if (retVal == COption::OPT_OK)
 	{
+		// check if value exist
+		bool found = m_iniFileKeyValues.find(name) != m_iniFileKeyValues.end();
 		if (found)
 		{
+			String textValue = m_iniFileKeyValues[name];
 			varprop::VariantValue value(defaultValue);
-			retVal = ParseValue(name, textValue, value);
-			if (retVal == COption::OPT_OK)
-			{
-				retVal = Set(name, value);
-			}
+			retVal = LoadValueFromBuf(name, textValue, value);
 		}
 	}
 
-	LeaveCriticalSection(&m_cs);
 	return retVal;
 }
 
@@ -153,30 +229,8 @@ int CIniOptionsMgr::SaveOption(const String& name)
 
 	if (retVal == COption::OPT_OK)
 	{
-		if (valType == varprop::VT_STRING)
-		{
-			String strVal = EscapeValue(value.GetString());
-			LPCWSTR text = strVal.c_str();
-			WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
-		}
-		else if (valType == varprop::VT_INT)
-		{
-			DWORD dwordVal = value.GetInt();
-			String strVal = strutils::to_str(dwordVal);
-			LPCWSTR text = strVal.c_str();
-			WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
-		}
-		else if (valType == varprop::VT_BOOL)
-		{
-			DWORD dwordVal = value.GetBool() ? 1 : 0;
-			String strVal = strutils::to_str(dwordVal);
-			LPCWSTR text = strVal.c_str();
-			WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
-		}
-		else
-		{
-			retVal = COption::OPT_UNKNOWN_TYPE;
-		}
+		auto* pParam = new AsyncWriterThreadParams(name, value);
+		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
 	}
 	return retVal;
 }
@@ -236,11 +290,7 @@ int CIniOptionsMgr::SaveOption(const String& name, bool value)
 int CIniOptionsMgr::RemoveOption(const String& name)
 {
 	int retVal = COption::OPT_OK;
-
-	String strPath;
-	String strValueName;
-
-	SplitName(name, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(name);
 
 	if (!strValueName.empty())
 	{
@@ -250,7 +300,8 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 	{
 		for (auto it = m_optionsMap.begin(); it != m_optionsMap.end(); )
 		{
-			if (it->first.find(strPath) == 0)
+			const String& key = it->first;
+			if (key.find(strPath) == 0 && key.length() > strPath.length() && key[strPath.length()] == '/')
 				it = m_optionsMap.erase(it);
 			else
 				++it;
@@ -258,89 +309,8 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 		retVal = COption::OPT_OK;
 	}
 
-	EnterCriticalSection(&m_cs);
-
-	WritePrivateProfileString(lpAppName, name.c_str(), NULL, GetFilePath());
-
-	LeaveCriticalSection(&m_cs);
+	auto* pParam = new AsyncWriterThreadParams(name, varprop::VariantValue());
+	PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
 
 	return retVal;
-}
-
-String CIniOptionsMgr::ReadValueFromFile(const String& name)
-{
-	if (m_iniFileKeyValues.empty())
-	{
-		std::vector<TCHAR> str(32768);
-		if (GetPrivateProfileSection(lpAppName, str.data(), static_cast<DWORD>(str.size()), GetFilePath()) > 0)
-		{
-			TCHAR* p = str.data();
-			while (*p)
-			{
-				TCHAR* v = _tcschr(p, '=');
-				if (!v)
-					break;
-				++v;
-				size_t vlen = _tcslen(v);
-				String value{ v, v + vlen };
-				m_iniFileKeyValues.insert_or_assign(String{ p, v - 1 }, UnescapeValue(value));
-				p = v + vlen + 1;
-			}
-		}
-	}
-	return m_iniFileKeyValues[name];
-}
-
-int CIniOptionsMgr::ParseValue(const String& strName, String& textValue, varprop::VariantValue& value)
-{
-	int valType = value.GetType();
-	int retVal = COption::OPT_OK;
-
-	if (valType == varprop::VT_STRING)
-	{
-		value.SetString(textValue);
-		retVal = Set(strName, value);
-	}
-	else if (valType == varprop::VT_INT)
-	{
-		value.SetInt(std::stoul(textValue));
-		retVal = Set(strName, value);
-	}
-	else if (valType == varprop::VT_BOOL)
-	{
-		value.SetBool(textValue[0] == '1' ? true : false);
-		retVal = Set(strName, value);
-	}
-	else
-		retVal = COption::OPT_WRONG_TYPE;
-
-	return retVal;
-}
-
-/**
- * @brief Split option name to path (in registry) and
- * valuename (in registry).
- *
- * Option names are given as "full path", e.g. "Settings/AutomaticRescan".
- * This function splits that to path "Settings/" and valuename
- * "AutomaticRescan".
- * @param [in] strName Option name
- * @param [out] srPath Path (key) in registry
- * @param [out] strValue Value in registry
- */
-void CIniOptionsMgr::SplitName(const String& strName, String& strPath,
-	String& strValue) const
-{
-	size_t pos = strName.rfind('/');
-	if (pos != String::npos)
-	{
-		size_t len = strName.length();
-		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
-		strPath = strName.substr(0, pos);  //Left(pos);
-	}
-	else
-	{
-		strValue = strName;
-		strPath.erase();
-	}
 }

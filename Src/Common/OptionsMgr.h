@@ -154,6 +154,7 @@ public:
 protected:
 	static String EscapeValue(const String& text);
 	static String UnescapeValue(const String& text);
+	static std::pair<String, String> SplitName(const String& strName);
 
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 
