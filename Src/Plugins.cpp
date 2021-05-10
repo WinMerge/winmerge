@@ -39,6 +39,7 @@
 #include "OptionsDef.h"
 #include "codepage_detect.h"
 #include "UniFile.h"
+#include "WinMergePluginBase.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -375,50 +376,21 @@ static String GetCustomFilters(const String& name, const String& filtersTextDefa
 		return filtersTextDefault;
 }
 
-class UnpackerGeneratedFromEditorScript: public IDispatch
+class UnpackerGeneratedFromEditorScript: public WinMergePluginBase
 {
 public:
-	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, int id) : m_pDispatch(pDispatch), m_funcid(id), m_nRef(0)
+	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, const std::wstring funcname, int id) : m_pDispatch(pDispatch), m_funcid(id)
 	{
+		m_sDescription =
+			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname);
+		m_sFileFilters = _T(".");
+		m_bIsAutomatic = true;
+		m_sEvent = L"FILE_PACK_UNPACK";
 		m_pDispatch->AddRef();
 	}
 
-	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override
+	virtual ~UnpackerGeneratedFromEditorScript()
 	{
-		return E_NOTIMPL;
-	}
-
-	ULONG STDMETHODCALLTYPE AddRef(void) override
-	{
-		return ++m_nRef;
-	}
-
-	ULONG STDMETHODCALLTYPE Release(void) override
-	{
-		if (--m_nRef == 0)
-		{
-			m_pDispatch->Release();
-			delete this;
-			return 0;
-		}
-		return m_nRef;
-	}
-
-	HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT* pctinfo) override
-	{
-		return E_NOTIMPL;
-	}
-
-	HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) override
-	{
-		return E_NOTIMPL;
-	}
-
-	HRESULT STDMETHODCALLTYPE GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId) override
-	{
-		for (unsigned i = 0; i < cNames; ++i)
-			rgDispId[i] = (wcscmp(L"UnpackFile", rgszNames[i]) == 0) ? 1 : -1;
-		return S_OK;
 	}
 
 	static HRESULT ReadFile(const String& path, String& text)
@@ -454,53 +426,27 @@ public:
 		return S_OK;
 	}
 
-	HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) override
+	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
 	{
-		if (!pDispParams)
-			return DISP_E_BADVARTYPE;
-		if (dispIdMember != 1)
-			return E_NOTIMPL;
-
-		BSTR dstPath = pDispParams->rgvarg[2].bstrVal;
-		BSTR srcPath = pDispParams->rgvarg[3].bstrVal;
-
-		int changed = 0;
 		String text;
-		HRESULT hr = ReadFile(srcPath, text);
+		HRESULT hr = ReadFile(fileSrc, text);
 		if (FAILED(hr))
 			return hr;
+		int changed = 0;
 		if (!plugin::InvokeTransformText(text, changed, m_pDispatch, m_funcid))
 			return E_FAIL;
-		hr = WriteFile(dstPath, text);
+		hr = WriteFile(fileDst, text);
 		if (FAILED(hr))
 			return hr;
-
-		*pDispParams->rgvarg[1].pboolVal = VARIANT_TRUE;
-		pVarResult->boolVal = VARIANT_TRUE;
+		*pSubcode = 0;
+		*pbChanged = VARIANT_TRUE;
+		*pbSuccess = VARIANT_TRUE;
 		return S_OK;
-	}
-
-	static PluginInfoPtr MakePluginInfo(PluginInfo *pPluginBase, const String& funcname, int fncid)
-	{
-		PluginInfoPtr plugin(new PluginInfo);
-		plugin->m_lpDispatch = new UnpackerGeneratedFromEditorScript(pPluginBase->m_lpDispatch, fncid);
-		plugin->m_lpDispatch->AddRef();
-		plugin->m_name = pPluginBase->m_name + _T(":") + funcname;
-		plugin->m_description =
-			strutils::format_string2(_T("Unpacker to execute %1 script (automatically generated from %2)")
-				, funcname, pPluginBase->m_name);
-		plugin->m_disabled = false;
-		plugin->m_filtersTextDefault = _T(".");
-		plugin->m_filtersText = GetCustomFilters(plugin->m_name, plugin->m_filtersTextDefault);
-		plugin->m_bAutomatic = true;
-		plugin->m_event = L"FILE_PACK_UNPACK";
-		return plugin;
 	}
 
 private:
 	IDispatch *m_pDispatch;
 	int m_funcid;
-	int m_nRef;
 };
 
 /**
@@ -524,18 +470,10 @@ struct ScriptInfo
  *
  * @return 1 if loaded plugin successfully, negatives for errors
  */
-int PluginInfo::LoadPlugin(const String & scriptletFilepath)
+int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch)
 {
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath);
-
-	// Search for the class "WinMergeScript"
-	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
-	if (lpDispatch == nullptr)
-	{
-		scinfo.Log(_T("WinMergeScript entry point not found"));
-		return -10; // error
-	}
 
 	// Ensure that interface is released if any bad exit or exception
 	AutoReleaser<IDispatch> drv(lpDispatch);
@@ -702,6 +640,27 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath)
 	return 1;
 }
 
+/**
+ * @brief Try to load a plugin
+ *
+ * @return 1 if loaded plugin successfully, negatives for errors
+ */
+int PluginInfo::LoadPlugin(const String & scriptletFilepath)
+{
+	// set up object in case we need to log info
+	ScriptInfo scinfo(scriptletFilepath);
+
+	// Search for the class "WinMergeScript"
+	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
+	if (lpDispatch == nullptr)
+	{
+		scinfo.Log(_T("WinMergeScript entry point not found"));
+		return -10; // error
+	}
+
+	return MakeInfo(scriptletFilepath, lpDispatch);
+}
+
 static void ReportPluginLoadFailure(const String & scriptletFilepath)
 {
 	AppErrorMessageBox(strutils::format(_T("Exception loading plugin\r\n%s"), scriptletFilepath));
@@ -862,8 +821,10 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 			{
 				if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
 					plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
-				PluginInfoPtr pluginNew = UnpackerGeneratedFromEditorScript::MakePluginInfo(plugin.get(), namesArray[i], idArray[i]);
-				pluginNew->m_disabled = (disabled_plugin_list.find(pluginNew->m_name) != disabled_plugin_list.end());
+				PluginInfoPtr pluginNew(new PluginInfo());
+				IDispatch *pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
+				pDispatch->AddRef();
+				pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
 				plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
 			}
 		}

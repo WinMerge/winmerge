@@ -1218,6 +1218,9 @@
     <ClInclude Include="Common\IniOptionsMgr.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WinMergePluginBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
