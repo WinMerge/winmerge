@@ -616,6 +616,9 @@
     <ClCompile Include="Common\Shell.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\IniOptionsMgr.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1211,6 +1214,12 @@
     </ClInclude>
     <ClInclude Include="Common\Shell.h">
       <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\IniOptionsMgr.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinMergePluginBase.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

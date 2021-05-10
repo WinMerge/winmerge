@@ -37,6 +37,9 @@
 #include "coretools.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "codepage_detect.h"
+#include "UniFile.h"
+#include "WinMergePluginBase.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -373,6 +376,79 @@ static String GetCustomFilters(const String& name, const String& filtersTextDefa
 		return filtersTextDefault;
 }
 
+class UnpackerGeneratedFromEditorScript: public WinMergePluginBase
+{
+public:
+	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, const std::wstring funcname, int id) : m_pDispatch(pDispatch), m_funcid(id)
+	{
+		m_sDescription =
+			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname);
+		m_sFileFilters = _T(".");
+		m_bIsAutomatic = true;
+		m_sEvent = L"FILE_PACK_UNPACK";
+		m_pDispatch->AddRef();
+	}
+
+	virtual ~UnpackerGeneratedFromEditorScript()
+	{
+	}
+
+	static HRESULT ReadFile(const String& path, String& text)
+	{
+		UniMemFile file;
+		if (!file.OpenReadOnly(path))
+			return E_ACCESSDENIED;
+		file.ReadBom();
+		if (!file.HasBom())
+		{
+			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+			FileTextEncoding encoding = codepage_detect::Guess(
+				paths::FindExtension(path), file.GetBase(),
+				file.GetFileSize() < codepage_detect::BufSize ? file.GetFileSize() : codepage_detect::BufSize,
+				iGuessEncodingType);
+			file.SetCodepage(encoding.m_codepage);
+		}
+		file.ReadStringAll(text);
+		file.Close();
+		return S_OK;
+	}
+
+	static HRESULT WriteFile(const String& path, const String& text)
+	{
+		UniStdioFile fileOut;
+		if (!fileOut.Open(path, _T("wb")))
+			return E_ACCESSDENIED;
+		fileOut.SetUnicoding(ucr::UNICODESET::UTF8);
+		fileOut.SetBom(true);
+		fileOut.WriteBom();
+		fileOut.WriteString(text);
+		fileOut.Close();
+		return S_OK;
+	}
+
+	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
+	{
+		String text;
+		HRESULT hr = ReadFile(fileSrc, text);
+		if (FAILED(hr))
+			return hr;
+		int changed = 0;
+		if (!plugin::InvokeTransformText(text, changed, m_pDispatch, m_funcid))
+			return E_FAIL;
+		hr = WriteFile(fileDst, text);
+		if (FAILED(hr))
+			return hr;
+		*pSubcode = 0;
+		*pbChanged = VARIANT_TRUE;
+		*pbSuccess = VARIANT_TRUE;
+		return S_OK;
+	}
+
+private:
+	IDispatch *m_pDispatch;
+	int m_funcid;
+};
+
 /**
  * @brief Tiny structure that remembers current scriptlet & event info for calling Log
  */
@@ -394,18 +470,10 @@ struct ScriptInfo
  *
  * @return 1 if loaded plugin successfully, negatives for errors
  */
-int PluginInfo::LoadPlugin(const String & scriptletFilepath)
+int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch)
 {
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath);
-
-	// Search for the class "WinMergeScript"
-	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
-	if (lpDispatch == nullptr)
-	{
-		scinfo.Log(_T("WinMergeScript entry point not found"));
-		return -10; // error
-	}
 
 	// Ensure that interface is released if any bad exit or exception
 	AutoReleaser<IDispatch> drv(lpDispatch);
@@ -572,6 +640,27 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath)
 	return 1;
 }
 
+/**
+ * @brief Try to load a plugin
+ *
+ * @return 1 if loaded plugin successfully, negatives for errors
+ */
+int PluginInfo::LoadPlugin(const String & scriptletFilepath)
+{
+	// set up object in case we need to log info
+	ScriptInfo scinfo(scriptletFilepath);
+
+	// Search for the class "WinMergeScript"
+	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
+	if (lpDispatch == nullptr)
+	{
+		scinfo.Log(_T("WinMergeScript entry point not found"));
+		return -10; // error
+	}
+
+	return MakeInfo(scriptletFilepath, lpDispatch);
+}
+
 static void ReportPluginLoadFailure(const String & scriptletFilepath)
 {
 	AppErrorMessageBox(strutils::format(_T("Exception loading plugin\r\n%s"), scriptletFilepath));
@@ -718,6 +807,26 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		{
 			// Plugin is bad
 			badScriptlets.push_back(scriptletFilepath);
+		}
+	}
+
+	if (plugins.find(L"EDITOR_SCRIPT") != plugins.end())
+	{
+		for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
+		{
+			std::vector<String> namesArray;
+			std::vector<int> idArray;
+			int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
+			for (int i = 0; i < validFuncs; ++i)
+			{
+				if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
+					plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
+				PluginInfoPtr pluginNew(new PluginInfo());
+				IDispatch *pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
+				pDispatch->AddRef();
+				pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
+				plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
+			}
 		}
 	}
 

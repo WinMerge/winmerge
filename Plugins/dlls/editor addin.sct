@@ -17,6 +17,11 @@
 <script language="VBS">
 Option Explicit
 
+Const WinMergeRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\"
+Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor addin.sct\"
+
+Dim wsh: Set wsh = CreateObject("WScript.Shell")
+
 Function get_PluginEvent()
          get_PluginEvent = "EDITOR_SCRIPT"
 End Function
@@ -25,12 +30,17 @@ Function get_PluginDescription()
          get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
+Function regRead(Key, DefaultValue)
+	regRead = DefaultValue
+	On Error Resume Next
+	regRead = wsh.RegRead(Key)
+End Function
+
 Function IsLangJapanese()
-    Dim languageId
-    languageId = 1033
-    On Error Resume Next
-    languageId = CLng(wsh.RegRead(REGKEY_PATH & "\Locale\LanguageId"))
-    IsLangJapanese = (languageId = 1041)
+	Dim languageId
+	On Error Resume Next
+	languageId = CLng(regRead(WinMergeRegKeyPath & "Locale\LanguageId", 1033))
+	IsLangJapanese = (languageId = 1041)
 End Function
 
 ' transformation functions
@@ -44,10 +54,11 @@ End Function
 
 Function ExecFilterCommand(Text)
 	Dim cmd
+	cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
 	If IsLangJapanese() Then
-		cmd = InputBox("現在の選択範囲の文字列をフィルタコマンドで処理した結果で置換します。コマンドを入力してください。")
+		cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
 	Else
-		cmd = InputBox("Enter filter command to replace the selection.")
+		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then
@@ -60,9 +71,7 @@ Function ExecFilterCommand(Text)
 
 	On Error Resume Next
 
-	Dim wsh
 	Dim path
-	Set wsh = CreateObject("WScript.Shell")
 	path = wsh.ExpandEnvironmentStrings("%TEMP%\_winmerge_addin_temp_.txt")
 
 	Dim fso
@@ -93,6 +102,8 @@ Function ExecFilterCommand(Text)
 	Loop
 
 	fso.DeleteFile path
+
+	wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
 
 End Function
 

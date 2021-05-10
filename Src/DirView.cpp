@@ -1523,15 +1523,22 @@ void CDirView::OpenSelectionAs(UINT id)
 	}
 
 	// Open identical and different files
+	const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
 	DWORD dwFlags[3] = { 0 };
+	String strDesc[3];
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < paths.GetSize(); pane++)
 	{
-		fileloc[pane].setPath(paths[pane]);
-		fileloc[pane].encoding = encoding[pane];
+		if (paths::DoesPathExist(paths[pane]) == paths::DOES_NOT_EXIST)
+			strDesc[pane] = sUntitled[pane];
+		else
+		{
+			fileloc[pane].setPath(paths[pane]);
+			fileloc[pane].encoding = encoding[pane];
+		}
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
-	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, nullptr);
+	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc);
 }
 
 /// User chose (context menu) delete left

@@ -47,6 +47,7 @@ public:
 	}
 
 	int LoadPlugin(const String & scriptletFilepath);
+	int MakeInfo(const String & scriptletFilepath, IDispatch *pDispatch);
 
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();

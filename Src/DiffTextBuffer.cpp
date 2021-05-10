@@ -275,7 +275,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-			FileTextEncoding encoding2 = GuessCodepageEncoding(pszFileName, iGuessEncodingType);
+			FileTextEncoding encoding2 = codepage_detect::Guess(pszFileName, iGuessEncodingType);
 			pufile->SetUnicoding(encoding2.m_unicoding);
 			pufile->SetCodepage(encoding2.m_codepage);
 			pufile->SetBom(encoding2.m_bom);
