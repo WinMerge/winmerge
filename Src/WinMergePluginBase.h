@@ -7,32 +7,48 @@ class WinMergePluginBase : public IDispatch, public ITypeInfo
 public:
 	enum
 	{
+		DISPID_PluginEvent = 1,
+		DISPID_PluginDescription,
+		DISPID_PluginIsAutomatic,
+		DISPID_PluginFileFilters,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
 		DISPID_ShowSettingsDialog,
-		DISPID_PluginFileFilters,
-		DISPID_PluginIsAutomatic,
-		DISPID_PluginDescription,
-		DISPID_PluginEvent,
 	};
-	struct MemberInfo { std::wstring name; DISPID id; int flags; };
+	struct MemberInfo
+	{
+		std::wstring name;
+		DISPID id;
+		short params;
+		short flags;
+		HRESULT (STDMETHODCALLTYPE *pFunc)(IDispatch *pDispatch, BSTR bstrText, BSTR* pbstrResult);
+	};
 
-	WinMergePluginBase() : m_nRef(0)
+	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
+		const std::wstring& sFileFilters = L"", bool bIsAutomatic = true)
+		: m_nRef(0)
+		, m_sEvent(sEvent)
+		, m_sDescription(sDescription)
+		, m_sFileFilters(sFileFilters)
+		, m_bIsAutomatic(bIsAutomatic)
 	{
 		static const MemberInfo memberInfo[] =
 		{
-			{ L"UnpackFile",         DISPID_UnpackFile,         DISPATCH_METHOD },
-			{ L"PackFile",           DISPID_PackFile ,          DISPATCH_METHOD },
-			{ L"ShowSettingsDialog", DISPID_ShowSettingsDialog, DISPATCH_METHOD },
-			{ L"PluginFileFilters",  DISPID_PluginFileFilters,  DISPATCH_PROPERTYGET },
-			{ L"PluginIsAutomatic",  DISPID_PluginIsAutomatic,  DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",  DISPID_PluginDescription,  DISPATCH_PROPERTYGET },
-			{ L"PluginEvent",        DISPID_PluginEvent,        DISPATCH_PROPERTYGET },
+			{ L"PluginEvent",        DISPID_PluginEvent,        0, DISPATCH_PROPERTYGET },
+			{ L"PluginDescription",  DISPID_PluginDescription,  0, DISPATCH_PROPERTYGET },
+			{ L"PluginIsAutomatic",  DISPID_PluginIsAutomatic,  0, DISPATCH_PROPERTYGET },
+			{ L"PluginFileFilters",  DISPID_PluginFileFilters,  0, DISPATCH_PROPERTYGET },
+			{ L"UnpackFile",         DISPID_UnpackFile,         4, DISPATCH_METHOD },
+			{ L"PackFile",           DISPID_PackFile ,          4, DISPATCH_METHOD },
+			{ L"ShowSettingsDialog", DISPID_ShowSettingsDialog, 0, DISPATCH_METHOD },
 		};
 		for (auto item : memberInfo)
 		{
+			if (item.id == DISPID_PluginIsAutomatic && sEvent == _T("EDITOR_SCRIPT"))
+				break;
+			m_mapNameToIndex.insert_or_assign(item.name, static_cast<int>(m_memberInfo.size()));
+			m_mapDispIdToIndex.insert_or_assign(item.id, static_cast<int>(m_memberInfo.size()));
 			m_memberInfo.push_back(item);
-			m_mapNameToIndex.emplace(item.name, item.id);
 		}
 	}
 
@@ -78,7 +94,7 @@ public:
 			auto it = m_mapNameToIndex.find(rgszNames[i]);
 			if (it == m_mapNameToIndex.end())
 				return DISP_E_UNKNOWNNAME;
-			rgDispId[i] = it->second;
+			rgDispId[i] = m_memberInfo[it->second].id;
 		}
 		return S_OK;
 	}
@@ -114,6 +130,15 @@ public:
 			}
 			case DISPID_ShowSettingsDialog:
 				hr = ShowSettingsDialog(&pVarResult->boolVal);
+				break;
+			default:
+				if (m_mapDispIdToIndex.find(dispIdMember) != m_mapDispIdToIndex.end())
+				{
+					BSTR bstrText = pDispParams->rgvarg[0].bstrVal;
+					pVarResult->vt = VT_BSTR;
+					BSTR* pbstrResult = &pVarResult->bstrVal;
+					hr = m_memberInfo[m_mapDispIdToIndex[dispIdMember]].pFunc(this, bstrText, pbstrResult);
+				}
 				break;
 			}
 		}
@@ -160,9 +185,12 @@ public:
 		if (index >= m_memberInfo.size())
 			return E_INVALIDARG;
 		auto* pFuncDesc = new FUNCDESC();
+		pFuncDesc->funckind = FUNC_DISPATCH;
 		pFuncDesc->invkind = static_cast<INVOKEKIND>(m_memberInfo[index].flags);
 		pFuncDesc->wFuncFlags = 0;
-		pFuncDesc->memid = index;
+		pFuncDesc->cParams = m_memberInfo[index].params;
+		pFuncDesc->memid = m_memberInfo[index].id;
+		pFuncDesc->callconv = CC_STDCALL;
 		*ppFuncDesc = pFuncDesc;
 		return S_OK;
 	}
@@ -174,9 +202,9 @@ public:
 	
 	HRESULT STDMETHODCALLTYPE GetNames(MEMBERID memid, BSTR *rgBstrNames, UINT cMaxNames, UINT *pcNames) override
 	{
-		if (memid >= m_memberInfo.size())
+		if (m_mapDispIdToIndex.find(memid) == m_mapDispIdToIndex.end())
 			return E_INVALIDARG;
-		*rgBstrNames = SysAllocString(m_memberInfo[memid].name.c_str());
+		*rgBstrNames = SysAllocString(m_memberInfo[m_mapDispIdToIndex[memid]].name.c_str());
 		*pcNames = 1;
 		return S_OK;
 	}
@@ -292,9 +320,19 @@ public:
 		return S_OK;
 	}
 
+	bool AddFunction(const std::wstring& name, HRESULT(STDMETHODCALLTYPE* pFunc)(IDispatch *pDispatch, BSTR bstrText, BSTR* pbstrResult))
+	{
+		DISPID dispid = static_cast<DISPID>(m_memberInfo.size()) + 100;
+		m_mapNameToIndex.insert_or_assign(name, static_cast<int>(m_memberInfo.size()));
+		m_mapDispIdToIndex.insert_or_assign(dispid, static_cast<int>(m_memberInfo.size()));
+		m_memberInfo.emplace_back(MemberInfo{ name, dispid, 1, DISPATCH_METHOD, pFunc });
+		return true;
+	}
+
 protected:
 	int m_nRef;
 	std::map<std::wstring, int> m_mapNameToIndex;
+	std::map<DISPID, int> m_mapDispIdToIndex;
 	std::vector<MemberInfo> m_memberInfo;
 	std::wstring m_sEvent;
 	std::wstring m_sDescription;
