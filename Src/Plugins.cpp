@@ -379,18 +379,20 @@ static String GetCustomFilters(const String& name, const String& filtersTextDefa
 class UnpackerGeneratedFromEditorScript: public WinMergePluginBase
 {
 public:
-	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, const std::wstring funcname, int id) : m_pDispatch(pDispatch), m_funcid(id)
+	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, const std::wstring funcname, int id)
+		: WinMergePluginBase(
+			L"FILE_PACK_UNPACK",
+			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname),
+			_T("."))
+		, m_pDispatch(pDispatch)
+		, m_funcid(id)
 	{
-		m_sDescription =
-			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname);
-		m_sFileFilters = _T(".");
-		m_bIsAutomatic = true;
-		m_sEvent = L"FILE_PACK_UNPACK";
 		m_pDispatch->AddRef();
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()
 	{
+		m_pDispatch->Release();
 	}
 
 	static HRESULT ReadFile(const String& path, String& text)
