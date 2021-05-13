@@ -29,6 +29,7 @@ public:
 	typedef std::map<String, PluginFileInfoPtr> PluginFileInfoMap;
 
 	~PluginManager();
+	void Reset() { m_pluginSettings.clear(); };
 	void SetPrediffSetting(const String& filteredFilenames, PLUGIN_MODE newsetting);
 	void SetPrediffSettingAll(PLUGIN_MODE newsetting);
 	void SetPrediffer(const String& filteredFilenames, const String& prediffer);
