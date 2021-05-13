@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2021-02-10 14:59+0100\n"
+"PO-Revision-Date: 2021-04-29 20:42+0200\n"
 "Last-Translator: Lolo S. <slolo2000 at hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -2801,7 +2801,7 @@ msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Sél: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -3712,10 +3712,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Voulez-vous passer à la page précédente ?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Voulez-vous passer au premier fichier ?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Voulez-vous passer au dernier fichier ?"
 
 #, c-format
 msgid ""

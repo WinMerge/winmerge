@@ -57,6 +57,15 @@ void CSelectUnpackerDlg::Initialize()
 	m_UnpackerPlugins.Add(automaticPlugin.get());
 	// add the real unpackers to the unpackers list
 	size_t i;
+	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
+	{
+		// during the dialog, we use a pointer to the scriptsOfThreads array
+		const PluginInfoPtr& plugin = piFileFolderScriptArray->at(i);
+		if (!plugin->m_disabled)
+		{
+			m_UnpackerPlugins.Add(plugin.get());
+		}
+	}
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
@@ -70,15 +79,6 @@ void CSelectUnpackerDlg::Initialize()
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
 		const PluginInfoPtr& plugin = piBufferScriptArray->at(i);
-		if (!plugin->m_disabled)
-		{
-			m_UnpackerPlugins.Add(plugin.get());
-		}
-	}
-	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
-	{
-		// during the dialog, we use a pointer to the scriptsOfThreads array
-		const PluginInfoPtr& plugin = piFileFolderScriptArray->at(i);
 		if (!plugin->m_disabled)
 		{
 			m_UnpackerPlugins.Add(plugin.get());

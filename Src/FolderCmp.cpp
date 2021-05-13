@@ -145,7 +145,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Unpacked files will be deleted at end of this function.
 			filepathTransformed[nIndex] = filepathUnpacked[nIndex];
 
-			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
+			encoding[nIndex] = codepage_detect::Guess(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 

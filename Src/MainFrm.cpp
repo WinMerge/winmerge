@@ -647,7 +647,7 @@ void CMainFrame::OnFileOpen()
 static void
 FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 {
-	fileloc.encoding = GuessCodepageEncoding(fileloc.filepath, iGuessEncoding);
+	fileloc.encoding = codepage_detect::Guess(fileloc.filepath, iGuessEncoding);
 }
 
 bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,

@@ -185,6 +185,8 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 	return cp;
 }
 
+namespace codepage_detect
+{
 /**
  * @brief Try to deduce encoding for this file.
  * @param [in] ext File extension.
@@ -192,37 +194,48 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
  * @param [in] len Size of the file contents string.
  * @return Codepage number.
  */
-static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, size_t len, int guessEncodingType)
+FileTextEncoding Guess(const String& ext, const void * src, size_t len, int guessEncodingType)
 {
+	FileTextEncoding encoding;
+	int bomsize = 0;
+	encoding.SetUnicoding(ucr::DetermineEncoding(reinterpret_cast<const unsigned char *>(src), len, &encoding.m_bom));
+	if (bomsize > 0)
+		encoding.m_bom = true;
+	if (encoding.m_unicoding != ucr::NONE)
+		return encoding;
 	unsigned cp = ucr::getDefaultCodepage();
-	if (!ucr::CheckForInvalidUtf8(src, len))
-		cp = ucr::CP_UTF_8;
-	else if (guessEncodingType & 2)
+	if (guessEncodingType != 0)
 	{
-		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv != nullptr && src != nullptr)
+		if (!ucr::CheckForInvalidUtf8(reinterpret_cast<const char*>(src), len))
+			cp = ucr::CP_UTF_8;
+		else if (guessEncodingType & 2)
 		{
-			int autodetectType = (unsigned)guessEncodingType >> 16;
-			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);
+			IExconverter* pexconv = Exconverter::getInstance();
+			if (pexconv != nullptr && src != nullptr)
+			{
+				int autodetectType = (unsigned)guessEncodingType >> 16;
+				cp = pexconv->detectInputCodepage(autodetectType, cp, reinterpret_cast<const char *>(src), len);
+			}
+		}
+		if (guessEncodingType & 1)
+		{
+			String lower_ext = strutils::makelower(ext);
+			if (lower_ext == _T(".rc"))
+			{
+				cp = demoGuessEncoding_rc(reinterpret_cast<const char *>(src), len, cp);
+			}
+			else if (lower_ext == _T(".htm") || lower_ext == _T(".html"))
+			{
+				cp = demoGuessEncoding_html(reinterpret_cast<const char *>(src), len, cp);
+			}
+			else if (lower_ext == _T(".xml") || lower_ext == _T(".xsl"))
+			{
+				cp = demoGuessEncoding_xml(reinterpret_cast<const char *>(src), len, cp);
+			}
 		}
 	}
-	if (guessEncodingType & 1)
-	{
-		String lower_ext = strutils::makelower(ext);
-		if (lower_ext == _T(".rc"))
-		{
-			cp = demoGuessEncoding_rc(src, len, cp);
-		}
-		else if (lower_ext == _T(".htm") || lower_ext == _T(".html"))
-		{
-			cp = demoGuessEncoding_html(src, len, cp);
-		}
-		else if (lower_ext == _T(".xml") || lower_ext == _T(".xsl"))
-		{
-			cp = demoGuessEncoding_xml(src, len, cp);
-		}
-	}
-	return cp;
+	encoding.SetCodepage(cp);
+	return encoding;
 }
 
 /**
@@ -231,57 +244,11 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  * @return Structure getting the encoding info.
  */
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen)
+FileTextEncoding Guess(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen)
 {
-	FileTextEncoding encoding;
 	CMarkdown::FileImage fi(filepath != _T("NUL") ? filepath.c_str() : nullptr, mapmaxlen);
-	encoding.SetCodepage(ucr::getDefaultCodepage());
-	encoding.m_bom = false;
-	switch (fi.nByteOrder)
-	{
-	case 8 + 2 + 0:
-		encoding.SetUnicoding(ucr::UCS2LE);
-		encoding.SetCodepage(ucr::CP_UCS2LE);
-		encoding.m_bom = true;
-		break;
-	case 8 + 2 + 1:
-		encoding.SetUnicoding(ucr::UCS2BE);
-		encoding.SetCodepage(ucr::CP_UCS2BE);
-		encoding.m_bom = true;
-		break;
-	case 8 + 1:
-		encoding.SetUnicoding(ucr::UTF8);
-		encoding.SetCodepage(ucr::CP_UTF_8);
-		encoding.m_bom = true;
-		break;
-	default:
-		encoding.m_bom = false;
-		break;
-	}
-	if (fi.nByteOrder < 4 && guessEncodingType != 0)
-	{
-		String ext = paths::FindExtension(filepath);
-		const char *src = (char *)fi.pImage;
-		size_t len = fi.cbImage;
-		if (len == static_cast<size_t>(mapmaxlen))
-		{
-			for (size_t i = len; i--; )
-			{
-				if (isspace((unsigned char)src[i]))
-				{
-					// make len an even number for ucs-2 detection
-					if ((i % 2) == 0)
-						len = i;
-					else
-						len = i + 1;
-					break;
-				}
-			}
-		}
-		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len, guessEncodingType))
-			encoding.SetCodepage(cp);
-		else
-			encoding.SetCodepage(ucr::getDefaultCodepage());
-	}
-	return encoding;
+	String ext = paths::FindExtension(filepath);
+	return Guess(ext, fi.pImage, fi.cbImage, guessEncodingType);
+}
+
 }

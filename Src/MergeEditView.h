@@ -92,6 +92,10 @@ private:
 
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 
+// Attributes
+public:
+	void CopyProperties (CCrystalTextView* pSource) override;
+
 // Operations
 public:
 	void RefreshOptions();

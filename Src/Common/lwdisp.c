@@ -451,7 +451,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 			}
 			else
 			{
-				ReportError(excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
+				ReportError(excepInfo.scode == 0 ? sc : excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
 			}
 			SysFreeString(excepInfo.bstrDescription);
 			SysFreeString(excepInfo.bstrSource);

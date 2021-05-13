@@ -146,7 +146,8 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
   SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == 0);
   m_mapExpand->RemoveAll ();
   CReg reg;
-  CString sKey = REG_EDITPAD _T("\\");
+  CString sKey = AfxGetApp ()->m_pszRegistryKey;
+  sKey += _T("\\") EDITPAD_SECTION _T("\\");
   sKey += def->name;
   sKey += _T ("\\Expand");
   if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ))
@@ -1144,6 +1145,7 @@ void CCrystalEditView::
 OnEditSwitchOvrmode ()
 {
   m_bOvrMode = !m_bOvrMode;
+  UpdateCaret ();
 }
 
 void CCrystalEditView::
@@ -1531,9 +1533,7 @@ OnEditReplace ()
     }
   else
     {
-      DWORD dwFlags;
-      if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), &dwFlags))
-        dwFlags = 0;
+      DWORD dwFlags = pApp->GetProfileInt (EDITPAD_SECTION, _T("ReplaceFlags"), 0);
       lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
@@ -1602,7 +1602,7 @@ SaveLastSearch(LastSearchInfos *lastSearch)
     }
 
   //  Save search parameters to registry
-  VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
+  VERIFY (AfxGetApp()->WriteProfileInt (EDITPAD_SECTION, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
 }
 
 /**
@@ -1749,6 +1749,18 @@ void CCrystalEditView::
 SetDisableBSAtSOL (bool bDisableBSAtSOL)
 {
   m_bDisableBSAtSOL = bDisableBSAtSOL;
+}
+
+void CCrystalEditView::
+CopyProperties (CCrystalTextView* pSource)
+{
+  CCrystalTextView::CopyProperties(pSource);
+  auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
+  if (!pSourceEditView)
+      return;
+  m_bDisableBSAtSOL = pSourceEditView->m_bDisableBSAtSOL;
+  m_bOvrMode = pSourceEditView->m_bOvrMode;
+  m_bAutoIndent = pSourceEditView->m_bAutoIndent;
 }
 
 void CCrystalEditView::

@@ -93,7 +93,7 @@ msgid "&With..."
 msgstr "Z..."
 
 msgid "Open &Parent Folder..."
-msgstr "Otwórz nadrzędny katalog"
+msgstr "Otwórz nadrzędny katalog..."
 
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
@@ -1693,7 +1693,7 @@ msgid "&Allow newlines in quotes"
 msgstr "Zezwalaj na nowe wiersze w cudzysłowach"
 
 msgid "&Quote character:"
-msgstr "Znak cudzysłowu"
+msgstr "Znak cudzysłowu:"
 
 msgid "&Use customized text colors"
 msgstr "Użyj niestandardowych kolorów tekstu"
@@ -2765,10 +2765,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Czy chcesz przejść do poprzedniej strony?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Czy chcesz przejść do pierwszego pliku?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Czy chcesz przejść do ostatniego pliku?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

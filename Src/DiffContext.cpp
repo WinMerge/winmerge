@@ -101,7 +101,7 @@ bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex)
 	if (!dfi.Update(filepath))
 		return false;
 	UpdateVersion(di, nIndex);
-	dfi.encoding = GuessCodepageEncoding(filepath, m_iGuessEncodingType);
+	dfi.encoding = codepage_detect::Guess(filepath, m_iGuessEncodingType);
 	return true;
 }
 

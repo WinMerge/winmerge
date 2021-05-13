@@ -268,9 +268,13 @@ bool CConfigLog::DoFile(String &sError)
 
 	if (!m_pfile->OpenCreateUtf8(m_sFileName))
 	{
-		const UniFile::UniError &err = m_pfile->GetLastUniError();
-		sError = err.GetError();
-		return false;
+		m_sFileName = paths::ConcatPath(env::GetTemporaryPath(), _T("WinMerge.txt"));
+		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+		{
+			const UniFile::UniError& err = m_pfile->GetLastUniError();
+			sError = err.GetError();
+			return false;
+		}
 	}
 	m_pfile->SetBom(true);
 	m_pfile->WriteBom();

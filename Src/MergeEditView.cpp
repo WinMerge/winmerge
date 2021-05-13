@@ -269,6 +269,15 @@ CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 	return GetDocument()->m_ptBuf[m_nThisPane].get();
 }
 
+void CMergeEditView::CopyProperties(CCrystalTextView* pSource)
+{
+	__super::CopyProperties(pSource);
+	auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
+	if (!pSourceEditView)
+		return;
+	m_bChangedSchemeManually = pSourceEditView->m_bChangedSchemeManually;
+}
+
 /**
  * @brief Update any resources necessary after a GUI language change
  */
@@ -3483,6 +3492,7 @@ void CMergeEditView::RefreshOptions()
 			SetTextType(def->type);
 		else
 			SetTextType(CrystalLineParser::SRC_PLAIN);
+		SetDisableBSAtSOL(false);
 	}
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
