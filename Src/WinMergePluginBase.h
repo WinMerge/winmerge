@@ -11,6 +11,7 @@ public:
 		DISPID_PluginDescription,
 		DISPID_PluginIsAutomatic,
 		DISPID_PluginFileFilters,
+		DISPID_PluginUnpackedFileExtension,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
 		DISPID_ShowSettingsDialog,
@@ -25,27 +26,32 @@ public:
 	};
 
 	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
-		const std::wstring& sFileFilters = L"", bool bIsAutomatic = true)
+		const std::wstring& sFileFilters = L"", const std::wstring& sUnpackedFileExtension = L"", 
+		bool bIsAutomatic = true)
 		: m_nRef(0)
 		, m_sEvent(sEvent)
 		, m_sDescription(sDescription)
 		, m_sFileFilters(sFileFilters)
+		, m_sUnpackedFileExtension(sUnpackedFileExtension)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
 		static const MemberInfo memberInfo[] =
 		{
-			{ L"PluginEvent",        DISPID_PluginEvent,        0, DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",  DISPID_PluginDescription,  0, DISPATCH_PROPERTYGET },
-			{ L"PluginIsAutomatic",  DISPID_PluginIsAutomatic,  0, DISPATCH_PROPERTYGET },
-			{ L"PluginFileFilters",  DISPID_PluginFileFilters,  0, DISPATCH_PROPERTYGET },
-			{ L"UnpackFile",         DISPID_UnpackFile,         4, DISPATCH_METHOD },
-			{ L"PackFile",           DISPID_PackFile ,          4, DISPATCH_METHOD },
-			{ L"ShowSettingsDialog", DISPID_ShowSettingsDialog, 0, DISPATCH_METHOD },
+			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
+			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
+			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
+			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
+			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
 		};
 		for (auto item : memberInfo)
 		{
 			if (item.id == DISPID_PluginIsAutomatic && sEvent == _T("EDITOR_SCRIPT"))
 				break;
+			if (item.id == DISPID_PluginUnpackedFileExtension && m_sUnpackedFileExtension.empty())
+				continue;
 			m_mapNameToIndex.insert_or_assign(item.name, static_cast<int>(m_memberInfo.size()));
 			m_mapDispIdToIndex.insert_or_assign(item.id, static_cast<int>(m_memberInfo.size()));
 			m_memberInfo.push_back(item);
@@ -146,21 +152,25 @@ public:
 		{
 			switch (dispIdMember)
 			{
-			case DISPID_PluginFileFilters:
+			case DISPID_PluginEvent:
 				pVarResult->vt = VT_BSTR;
-				hr = get_PluginFileFilters(&pVarResult->bstrVal);
-				break;
-			case DISPID_PluginIsAutomatic:
-				pVarResult->vt = VT_BOOL;
-				hr = get_PluginIsAutomatic(&pVarResult->boolVal);
+				hr = get_PluginEvent(&pVarResult->bstrVal);
 				break;
 			case DISPID_PluginDescription:
 				pVarResult->vt = VT_BSTR;
 				hr = get_PluginDescription(&pVarResult->bstrVal);
 				break;
-			case DISPID_PluginEvent:
+			case DISPID_PluginIsAutomatic:
+				pVarResult->vt = VT_BOOL;
+				hr = get_PluginIsAutomatic(&pVarResult->boolVal);
+				break;
+			case DISPID_PluginFileFilters:
 				pVarResult->vt = VT_BSTR;
-				hr = get_PluginEvent(&pVarResult->bstrVal);
+				hr = get_PluginFileFilters(&pVarResult->bstrVal);
+				break;
+			case DISPID_PluginUnpackedFileExtension:
+				pVarResult->vt = VT_BSTR;
+				hr = get_PluginUnpackedFileExtension(&pVarResult->bstrVal);
 				break;
 			}
 		}
@@ -296,6 +306,18 @@ public:
 		return E_NOTIMPL;
 	}
 
+	virtual HRESULT STDMETHODCALLTYPE get_PluginEvent(BSTR* pVal)
+	{
+		*pVal = SysAllocString(m_sEvent.c_str());
+		return S_OK;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE get_PluginDescription(BSTR* pVal)
+	{
+		*pVal = SysAllocString(m_sDescription.c_str());
+		return S_OK;
+	}
+
 	virtual HRESULT STDMETHODCALLTYPE get_PluginIsAutomatic(VARIANT_BOOL* pVal)
 	{
 		*pVal = m_bIsAutomatic ? -1 : 0;
@@ -308,15 +330,9 @@ public:
 		return S_OK;
 	}
 
-	virtual HRESULT STDMETHODCALLTYPE get_PluginDescription(BSTR* pVal)
+	virtual HRESULT STDMETHODCALLTYPE get_PluginUnpackedFileExtension(BSTR* pVal)
 	{
-		*pVal = SysAllocString(m_sDescription.c_str());
-		return S_OK;
-	}
-
-	virtual HRESULT STDMETHODCALLTYPE get_PluginEvent(BSTR* pVal)
-	{
-		*pVal = SysAllocString(m_sEvent.c_str());
+		*pVal = SysAllocString(m_sUnpackedFileExtension.c_str());
 		return S_OK;
 	}
 
@@ -337,6 +353,7 @@ protected:
 	std::wstring m_sEvent;
 	std::wstring m_sDescription;
 	std::wstring m_sFileFilters;
+	std::wstring m_sUnpackedFileExtension;
 	bool m_bIsAutomatic;
 };
 

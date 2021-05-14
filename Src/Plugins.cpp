@@ -383,7 +383,7 @@ public:
 		: WinMergePluginBase(
 			L"FILE_PACK_UNPACK",
 			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname),
-			_T("."))
+			_T("\\.nomatch$"))
 		, m_pDispatch(pDispatch)
 		, m_funcid(id)
 	{
