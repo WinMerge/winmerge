@@ -220,4 +220,6 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  */
 bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
 
+String GetUnpackedFileExtension(const String& filepath, const PackingInfo* handler);
+
 }
