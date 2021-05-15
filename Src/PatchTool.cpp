@@ -193,7 +193,7 @@ int CPatchTool::CreatePatch()
 	if (retVal)
 	{
 		if (m_bOpenToEditor)
-			theApp.OpenFileToExternalEditor(m_sPatchFile);
+			CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
 	}
 	return retVal;
 }

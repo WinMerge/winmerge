@@ -235,7 +235,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
  */
 void FileFiltersDlg::EditFileFilter(const String& path)
 {
-	theApp.OpenFileToExternalEditor(path);
+	CMergeApp::OpenFileToExternalEditor(path);
 }
 
 /**

@@ -1639,7 +1639,7 @@ void CMainFrame::OnSaveConfigData()
 	if (configLog.WriteLogFile(sError))
 	{
 		String sFileName = configLog.GetFileName();
-		theApp.OpenFileToExternalEditor(sFileName);
+		CMergeApp::OpenFileToExternalEditor(sFileName);
 	}
 	else
 	{

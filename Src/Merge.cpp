@@ -456,7 +456,7 @@ BOOL CMergeApp::InitInstance()
 
 static void OpenContributersFile(int&)
 {
-	theApp.OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
+	CMergeApp::OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
 }
 
 static void OpenUrl(int&)

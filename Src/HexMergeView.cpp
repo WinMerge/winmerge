@@ -309,11 +309,11 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
 	bool bApplyToAll = false;
-	if (theApp.HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
+	if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
 		return S_OK;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!theApp.CreateBackup(false, path))
+	if (!CMergeApp::CreateBackup(false, path))
 		return S_OK;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();

@@ -1791,7 +1791,7 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 
-	theApp.OpenFileToExternalEditor(file);
+	CMergeApp::OpenFileToExternalEditor(file);
 }
 
 void CDirView::DoOpenParentFolder(SIDE_TYPE stype)

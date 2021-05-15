@@ -1680,11 +1680,11 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 			strSavePath = theApp.m_strSaveAsPath;	
 	}
 
-	nRetVal = theApp.HandleReadonlySave(strSavePath, false, bApplyToAll);
+	nRetVal = CMergeApp::HandleReadonlySave(strSavePath, false, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return false;
 
-	if (!theApp.CreateBackup(false, strSavePath))
+	if (!CMergeApp::CreateBackup(false, strSavePath))
 		return false;
 
 	// false as long as the user is not satisfied

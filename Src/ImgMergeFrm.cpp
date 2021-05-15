@@ -688,9 +688,9 @@ bool CImgMergeFrame::DoFileSave(int pane)
 		{
 			String filename = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
 			bool bApplyToAll = false;
-			if (theApp.HandleReadonlySave(filename, false, bApplyToAll) == IDCANCEL)
+			if (CMergeApp::HandleReadonlySave(m_filePaths[pane], false, bApplyToAll) == IDCANCEL)
 				return false;
-			theApp.CreateBackup(false, filename);
+			CMergeApp::CreateBackup(false, m_filePaths[pane]);
 			if (!m_pImgMergeWindow->SaveImage(pane))
 			{
 				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
