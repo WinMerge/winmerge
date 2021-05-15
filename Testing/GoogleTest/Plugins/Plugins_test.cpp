@@ -55,9 +55,10 @@ namespace
 		PrediffingInfo *ip = nullptr;
 		PluginManager pm;
 		IPluginInfos *ppi = &pm;
+		int subcode = 0;
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
-		FileTransform::Unpacking(file, _T(".*\\.xls"), iu, &iu->m_subcode);
+		FileTransform::Unpacking(file, _T(".*\\.xls"), iu, &subcode);
 	}
 
 }  // namespace
