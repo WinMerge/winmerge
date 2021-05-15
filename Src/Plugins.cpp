@@ -936,6 +936,16 @@ void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 	}
 }
 
+PluginInfo* CScriptsOfThread::GetUnpackerPluginByFilter(const String& filteredText)
+{
+	PluginInfo *plugin = GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
+	if (plugin == nullptr)
+		plugin = GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
+	if (plugin == nullptr)
+		plugin = GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
+	return plugin;
+}
+
 PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
 {
 	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);

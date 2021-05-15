@@ -538,6 +538,16 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	return (nChanged != 0);
 }
 
+String GetUnpackedFileExtension(const String& filepath, const PackingInfo* handler)
+{
+	PluginInfo* plugin = nullptr;
+	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL && !handler->m_PluginName.empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, handler->m_PluginName.c_str());
+	else
+		plugin = CAllThreadsScripts::GetActiveSet()->GetUnpackerPluginByFilter(filepath);
+	return plugin ? plugin->m_ext : _T("");
+}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
