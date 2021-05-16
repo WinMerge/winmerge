@@ -194,6 +194,13 @@ public:
 				hr = PackFile(fileSrc, fileDst, pbChanged, subcode, pbSuccess);
 				break;
 			}
+			case DISPID_IsFolder:
+			{
+				BSTR file = pDispParams->rgvarg[0].bstrVal;
+				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
+				hr = IsFolder(file, pbSuccess);
+				break;
+			}
 			case DISPID_UnpackFolder:
 			{
 				BSTR fileSrc = pDispParams->rgvarg[3].bstrVal;
