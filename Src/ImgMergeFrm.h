@@ -19,6 +19,7 @@
 #include "LocationBar.h"
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
+#include "FileTransform.h"
 
 class CDirDoc;
 
@@ -57,6 +58,7 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
@@ -92,12 +94,13 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
+	bool OpenImages();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool DoFileSave(int pane);
-	bool DoFileSaveAs(int pane);
+	bool DoFileSaveAs(int pane, bool packing = true);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
@@ -114,6 +117,8 @@ private:
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;
+	PackingInfo m_infoUnpacker;
+	int m_unpackerSubcode[3];
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

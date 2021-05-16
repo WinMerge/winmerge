@@ -653,9 +653,20 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
+	ASSERT(pDirDoc != nullptr);
+
 	if (sReportFile.empty() && pDirDoc->CompareFilesIfFilesAreLarge(nFiles, ifileloc))
 		return false;
 
+	String unpackedFileExtension;
+	if (infoUnpacker && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+	{
+		std::vector<String> filepaths(nFiles);
+		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
+			[](auto& file) { return file.filepath; });
+		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
+		unpackedFileExtension = FileTransform::GetUnpackedFileExtension(filteredFilenames, infoUnpacker);
+	}
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
 	filterImg.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
@@ -663,9 +674,10 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
-		if (filterImg.includeFile(ifileloc[pane].filepath) && CImgMergeFrame::IsLoadable())
+		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
+		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
-		else if (filterBin.includeFile(ifileloc[pane].filepath) && CHexMergeView::IsLoadable())
+		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
 			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 	}
 	return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
@@ -829,6 +841,8 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	if (pHexMergeDoc == nullptr)
 		return false;
 
+	pHexMergeDoc->SetUnpacker(infoUnpacker);
+
 	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc))
 		return false;
 
@@ -848,7 +862,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	if (!CImgMergeFrame::menu.m_hMenu)
 		CImgMergeFrame::menu.m_hMenu = NewImgMergeViewMenu();
 	pImgMergeFrame->SetSharedMenu(CImgMergeFrame::menu.m_hMenu);
-
+	pImgMergeFrame->SetUnpacker(infoUnpacker);
 	pImgMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pImgMergeFrame);
 		

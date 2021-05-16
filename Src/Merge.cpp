@@ -1087,6 +1087,17 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	return nRetVal;
 }
 
+String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName)
+{
+	return strutils::format_string2(
+		pane == 0 ? 
+			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
+			: (pane == paneCount - 1) ? 
+				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
+				: _("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
+		path, pluginName);
+}
+
 /**
  * @brief Is specified file a project file?
  * @param [in] filepath Full path to file to check.

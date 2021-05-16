@@ -1546,22 +1546,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		if (m_nBuffers == 3)
-		{
-			str = strutils::format_string2(
-				nBuffer == 0 ? 
-					_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
-					: (nBuffer == 1 ? 
-					_("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"): 
-					_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")),
-				strPath, pInfoTempUnpacker->m_PluginName);
-		}
-		else
-		{
-			str = strutils::format_string2(nBuffer == 0 ? _("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?") : 
-				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
-				strPath, pInfoTempUnpacker->m_PluginName);
-		}
+		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, pInfoTempUnpacker->m_PluginName);
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 	}
