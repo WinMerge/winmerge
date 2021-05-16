@@ -230,12 +230,11 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!FileTransform::Unpacking(infoUnpacker, m_strTempFileName, sToFindUnpacker))
+	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcode, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
-	m_unpackerSubcode = infoUnpacker->m_subcode;
 
 	// we use the same unpacker for both files, so it must be defined after first file
 	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_AUTO);
@@ -547,58 +546,32 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		String csTempFileName = sIntermediateFilename;
-		infoUnpacker->m_subcode = m_unpackerSubcode;
-		if (!FileTransform::Packing(csTempFileName, *infoUnpacker))
-		{
-			try
-			{
-				TFile(sIntermediateFilename).remove();
-			}
-			catch (Exception& e)
-			{
-				LogErrorStringUTF8(e.displayText());
-			}
-			// returns now, don't overwrite the original file
-			return SAVE_PACK_FAILED;
-		}
-		// the temp filename may have changed during packing
-		if (csTempFileName != sIntermediateFilename)
-		{
-			try
-			{
-				TFile(sIntermediateFilename).remove();
-			}
-			catch (Exception& e)
-			{
-				LogErrorStringUTF8(e.displayText());
-			}
-			sIntermediateFilename = csTempFileName;
-		}
-
-		// Write tempfile over original file
+		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcode);
 		try
 		{
-			TFile file1(sIntermediateFilename);
-			file1.copyTo(pszFileName);
-			file1.remove();
-			if (bClearModifiedFlag)
-			{
-				SetModified(false);
-				m_nSyncPosition = m_nUndoPosition;
-			}
-			bSaveSuccess = true;
-
-			// remember revision number on save
-			m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
-
-			// redraw line revision marks
-			UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
+			TFile(sIntermediateFilename).remove();
 		}
 		catch (Exception& e)
 		{
 			LogErrorStringUTF8(e.displayText());
 		}
+		if (!bSaveSuccess)
+		{
+			// returns now, don't overwrite the original file
+			return SAVE_PACK_FAILED;
+		}
+
+		if (bClearModifiedFlag)
+		{
+			SetModified(false);
+			m_nSyncPosition = m_nUndoPosition;
+		}
+
+		// remember revision number on save
+		m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
+
+		// redraw line revision marks
+		UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
 	}
 	else
 	{

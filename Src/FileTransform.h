@@ -83,14 +83,11 @@ class PackingInfo : public PluginForFile
 public:
 	explicit PackingInfo(PLUGIN_MODE Mode = FileTransform::g_UnpackerMode)
 	: PluginForFile(Mode)
-	, m_subcode(0)
 	, m_pufile(nullptr)
 	, m_bDisallowMixedEOL(false)
 	{
 	}
 public:
-	/// keep some info from unpacking for packing
-	int			m_subcode;
 	/// text type to override syntax highlighting
 	String		m_textType;
 	/// custom UniFile
@@ -140,7 +137,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
  */
 bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
 
-bool Unpacking(PackingInfo * handler, String & filepath, const String& filteredText);
+bool Unpacking(PackingInfo * handler, int * handlerSubcode, String & filepath, const String& filteredText);
 
 /**
  * @brief Prepare one file for saving, known handler
@@ -152,7 +149,9 @@ bool Unpacking(PackingInfo * handler, String & filepath, const String& filteredT
  * @note Event FILE_PACK
  * Never do Unicode conversion, it was done in SaveFromFile
  */
-bool Packing(String & filepath, PackingInfo handler);
+bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode);
+
+bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, int handlerSubcode);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -220,6 +219,6 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  */
 bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
 
-String GetUnpackedFileExtension(const String& filepath, const PackingInfo* handler);
+String GetUnpackedFileExtension(const String& filteredFilenames, const PackingInfo* handler);
 
 }

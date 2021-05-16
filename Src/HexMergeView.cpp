@@ -16,6 +16,7 @@
 #include "Merge.h"
 #include "MainFrm.h"
 #include "HexMergeView.h"
+#include "HexMergeDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Environment.h"
@@ -96,6 +97,7 @@ END_MESSAGE_MAP()
 CHexMergeView::CHexMergeView()
 : m_pif(nullptr)
 , m_nThisPane(0)
+, m_unpackerSubcode(0)
 {
 }
 
@@ -267,7 +269,11 @@ IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
  */
 HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 {
-	HANDLE h = CreateFile(path, GENERIC_READ,
+	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
+	String strTempFileName = path;
+	if (!FileTransform::Unpacking(pDoc->GetUnpacker(), &m_unpackerSubcode, strTempFileName, path))
+		return E_FAIL;
+	HANDLE h = CreateFile(strTempFileName.c_str(), GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
 		0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
@@ -297,7 +303,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 /**
  * @brief Save file
  */
-HRESULT CHexMergeView::SaveFile(LPCTSTR path)
+HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 {
 	// Warn user in case file has been changed by someone else
 	if (IsFileChangedOnDisk(path) == IMergeDoc::FileChange::Changed)
@@ -309,11 +315,11 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
 	bool bApplyToAll = false;
-	if (theApp.HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
+	if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
 		return S_OK;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!theApp.CreateBackup(false, path))
+	if (!CMergeApp::CreateBackup(false, path))
 		return S_OK;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();
@@ -337,9 +343,29 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	CloseHandle(h);
 	if (hr != S_OK)
 		return hr;
-	hr = SE(CopyFile(sIntermediateFilename.c_str(), path, FALSE));
-	if (hr != S_OK)
-		return hr;
+
+	if (packing)
+	{
+		CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
+		if (!FileTransform::Packing(sIntermediateFilename, path, *pDoc->GetUnpacker(), m_unpackerSubcode))
+		{
+			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, pDoc->GetUnpacker()->m_PluginName);
+			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+			if (answer == IDOK)
+			{
+				pDoc->SaveAs(m_nThisPane, false);
+				return S_OK;
+			}
+			return S_OK;
+		}
+	}
+	else
+	{
+		hr = SE(CopyFile(sIntermediateFilename.c_str(), path, FALSE));
+		if (hr != S_OK)
+			return hr;
+	}
+
 	m_fileInfo.Update(path);
 	SetSavePoint();
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));

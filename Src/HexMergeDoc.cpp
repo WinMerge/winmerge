@@ -332,7 +332,7 @@ void CHexMergeDoc::DoFileSave(int nBuffer)
 	}
 }
 
-void CHexMergeDoc::DoFileSaveAs(int nBuffer)
+void CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 {
 	const String &path = m_filePaths.GetPath(nBuffer);
 	String strPath;
@@ -345,7 +345,7 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		title = _("Save Middle File As");
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
-		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
+		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str(), packing)) == IDCANCEL)
 			return;
 		if (path.empty())
 		{
