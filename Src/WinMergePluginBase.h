@@ -12,8 +12,12 @@ public:
 		DISPID_PluginIsAutomatic,
 		DISPID_PluginFileFilters,
 		DISPID_PluginUnpackedFileExtension,
+		DISPID_PrediffFile,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
+		DISPID_IsFolder,
+		DISPID_UnpackFolder,
+		DISPID_PackFolder,
 		DISPID_ShowSettingsDialog,
 	};
 	struct MemberInfo
@@ -35,7 +39,16 @@ public:
 		, m_sUnpackedFileExtension(sUnpackedFileExtension)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
-		static const MemberInfo memberInfo[] =
+		static const MemberInfo memberInfo_FILE_PREDIFF[] =
+		{
+			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
+			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
+			{ L"PrediffFile",                 DISPID_PrediffFile,                 3, DISPATCH_METHOD },
+			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
+		};
+		static const MemberInfo memberInfo_FILE_PACK_UNPACK[] =
 		{
 			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
 			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
@@ -46,15 +59,53 @@ public:
 			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
 			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
 		};
-		for (auto item : memberInfo)
+		static const MemberInfo memberInfo_FILE_FOLDER_PACK_UNPACK[] =
 		{
-			if (item.id == DISPID_PluginIsAutomatic && sEvent == _T("EDITOR_SCRIPT"))
-				break;
-			if (item.id == DISPID_PluginUnpackedFileExtension && m_sUnpackedFileExtension.empty())
-				continue;
-			m_mapNameToIndex.insert_or_assign(item.name, static_cast<int>(m_memberInfo.size()));
-			m_mapDispIdToIndex.insert_or_assign(item.id, static_cast<int>(m_memberInfo.size()));
-			m_memberInfo.push_back(item);
+			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
+			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
+			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
+			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
+			{ L"IsFolder",                    DISPID_IsFolder,                    1, DISPATCH_METHOD },
+			{ L"UnpackFolder",                DISPID_UnpackFolder,                4, DISPATCH_METHOD },
+			{ L"PackFolder",                  DISPID_PackFolder,                  4, DISPATCH_METHOD },
+			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
+		};
+		static const MemberInfo memberInfo_EDITOR_SCRIPT[] =
+		{
+			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
+			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+		};
+		size_t memberInfoCount;
+		const MemberInfo* memberInfo;
+		if (sEvent == L"FILE_PREDIFF")
+		{
+			memberInfo = memberInfo_FILE_PREDIFF;
+			memberInfoCount = std::size(memberInfo_FILE_PREDIFF);
+		}
+		else if (sEvent == L"FILE_PACK_UNPACK")
+		{
+			memberInfo = memberInfo_FILE_PACK_UNPACK;
+			memberInfoCount = std::size(memberInfo_FILE_PACK_UNPACK);
+		}
+		else if (sEvent == L"FILE_FOLDER_PACK_UNPACK")
+		{
+			memberInfo = memberInfo_FILE_FOLDER_PACK_UNPACK;
+			memberInfoCount = std::size(memberInfo_FILE_FOLDER_PACK_UNPACK);
+		}
+		else
+		{
+			memberInfo = memberInfo_EDITOR_SCRIPT;
+			memberInfoCount = std::size(memberInfo_EDITOR_SCRIPT);
+		}
+		for (size_t i = 0; i < memberInfoCount; ++i)
+		{
+			auto& member = memberInfo[i];
+			m_mapNameToIndex.insert_or_assign(member.name, static_cast<int>(m_memberInfo.size()));
+			m_mapDispIdToIndex.insert_or_assign(member.id, static_cast<int>(m_memberInfo.size()));
+			m_memberInfo.push_back(member);
 		}
 	}
 
@@ -114,6 +165,15 @@ public:
 		{
 			switch (dispIdMember)
 			{
+			case DISPID_PrediffFile:
+			{
+				BSTR fileSrc = pDispParams->rgvarg[2].bstrVal;
+				BSTR fileDst = pDispParams->rgvarg[1].bstrVal;
+				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[0].pboolVal;
+				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
+				hr = PrediffFile(fileSrc, fileDst, pbChanged, pbSuccess);
+				break;
+			}
 			case DISPID_UnpackFile:
 			{
 				BSTR fileSrc = pDispParams->rgvarg[3].bstrVal;
@@ -132,6 +192,26 @@ public:
 				INT subcode = pDispParams->rgvarg[0].intVal;
 				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
 				hr = PackFile(fileSrc, fileDst, pbChanged, subcode, pbSuccess);
+				break;
+			}
+			case DISPID_UnpackFolder:
+			{
+				BSTR fileSrc = pDispParams->rgvarg[3].bstrVal;
+				BSTR folderDst = pDispParams->rgvarg[2].bstrVal;
+				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[1].pboolVal;
+				INT* pSubcode = &pDispParams->rgvarg[0].intVal;
+				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
+				hr = UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode, pbSuccess);
+				break;
+			}
+			case DISPID_PackFolder:
+			{
+				BSTR folderSrc = pDispParams->rgvarg[3].bstrVal;
+				BSTR fileDst = pDispParams->rgvarg[2].bstrVal;
+				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[1].pboolVal;
+				INT subcode = pDispParams->rgvarg[0].intVal;
+				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
+				hr = PackFolder(folderSrc, fileDst, pbChanged, subcode, pbSuccess);
 				break;
 			}
 			case DISPID_ShowSettingsDialog:
@@ -288,6 +368,12 @@ public:
 	{
 	}
 	
+	virtual HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess)
+	{
+		*pbSuccess = VARIANT_FALSE;
+		return E_NOTIMPL;
+	}
+
 	virtual HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess)
 	{
 		*pbSuccess = VARIANT_FALSE;
@@ -295,6 +381,24 @@ public:
 	}
 
 	virtual HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess)
+	{
+		*pbSuccess = VARIANT_FALSE;
+		return E_NOTIMPL;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE IsFolder(BSTR file, VARIANT_BOOL* pbFolder)
+	{
+		*pbFolder = VARIANT_FALSE;
+		return E_NOTIMPL;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE PackFolder(BSTR folderSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess)
+	{
+		*pbSuccess = VARIANT_FALSE;
+		return E_NOTIMPL;
+	}
+
+	virtual HRESULT STDMETHODCALLTYPE UnpackFolder(BSTR fileSrc, BSTR folderDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess)
 	{
 		*pbSuccess = VARIANT_FALSE;
 		return E_NOTIMPL;
