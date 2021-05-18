@@ -619,6 +619,9 @@
     <ClCompile Include="Common\IniOptionsMgr.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InternalPlugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">

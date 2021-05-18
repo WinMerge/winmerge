@@ -138,9 +138,13 @@ public:
 	static CScriptsOfThread * GetActiveSet();
 	/// by convention, the scripts for main thread must be created before all others
 	static bool bInMainThread(CScriptsOfThread * scripts);
+	using InternalPluginLoaderFuncPtr = void(*)(std::map<String, PluginArrayPtr>& aPluginsByEvent);
+	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
+	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static std::vector<CScriptsOfThread *> m_aAvailableThreads;
+	static inline InternalPluginLoaderFuncPtr m_funcInternalPluginsLoader = nullptr;
 };
 
 /**
