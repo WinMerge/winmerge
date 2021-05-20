@@ -3,6 +3,7 @@
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/FileStream.h>
 #include <Poco/SAX/SAXParser.h>
+#include <Poco/SAX/SAXException.h>
 #include <Poco/SAX/ContentHandler.h>
 #include <Poco/SAX/Attributes.h>
 #include <Poco/Exception.h>
@@ -94,6 +95,7 @@ struct Info
 	String m_fileFilters;
 	bool m_isAutomatic = false;
 	String m_unpackedFileExtension;
+	String m_extendedProperties;
 	std::unique_ptr<Method> m_prediffFile;
 	std::unique_ptr<Method> m_unpackFile;
 	std::unique_ptr<Method> m_packFile;
@@ -113,6 +115,7 @@ public:
 	inline static const std::string FileFiltersElement = "file-filters";
 	inline static const std::string IsAutomaticElement = "is-automatic";
 	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extention";
+	inline static const std::string ExtendedPropertiesElement = "extended-properties";
 	inline static const std::string PrediffFileElement = "prediff-file";
 	inline static const std::string UnpackFileElement = "unpack-file";
 	inline static const std::string PackFileElement = "pack-file";
@@ -166,6 +169,8 @@ public:
 					}
 					else if (localName == UnpackedFileExtensionElement)
 						plugin.m_unpackedFileExtension = value;
+					else if (localName == ExtendedPropertiesElement)
+						plugin.m_extendedProperties = value;
 				}
 				else if (localName == PrediffFileElement)
 				{
@@ -286,7 +291,7 @@ class InternalPlugin : public WinMergePluginBase
 {
 public:
 	InternalPlugin(Info& info)
-		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_isAutomatic)
+		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_isAutomatic)
 		, m_info(info)
 	{
 	}
@@ -414,7 +419,7 @@ struct Loader
 		CAllThreadsScripts::RegisterInternalPluginsLoader(&Load);
 	}
 
-	static void Load(std::map<String, PluginArrayPtr>& plugins)
+	static bool Load(std::map<String, PluginArrayPtr>& plugins, String& errmsg)
 	{
 		if (plugins.find(L"EDITOR_SCRIPT") != plugins.end())
 		{
@@ -444,6 +449,11 @@ struct Loader
 		{
 			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\InternalPlugins.xml"))));
 		}
+		catch (Poco::XML::SAXParseException& e)
+		{
+			errmsg = ucr::toTString(e.message());
+			return false;
+		}
 		catch (Poco::FileNotFoundException&)
 		{
 		}
@@ -458,6 +468,7 @@ struct Loader
 			pluginNew->MakeInfo(info.m_name, pDispatch);
 			plugins[info.m_event]->push_back(pluginNew);
 		}
+		return true;
 	}
 	inline static std::list<Info> m_plugins;
 } g_loader;

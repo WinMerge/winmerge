@@ -63,6 +63,7 @@ public:
 	LPDISPATCH  m_lpDispatch;
 	String      m_name; // usually filename, except for special cases (like auto or no)
 	String      m_ext;
+	String      m_extendedProperties;
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;
@@ -138,7 +139,7 @@ public:
 	static CScriptsOfThread * GetActiveSet();
 	/// by convention, the scripts for main thread must be created before all others
 	static bool bInMainThread(CScriptsOfThread * scripts);
-	using InternalPluginLoaderFuncPtr = void(*)(std::map<String, PluginArrayPtr>& aPluginsByEvent);
+	using InternalPluginLoaderFuncPtr = bool (*)(std::map<String, PluginArrayPtr>& aPluginsByEvent, String& errmsg);
 	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
 	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
 private:

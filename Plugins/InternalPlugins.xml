@@ -6,6 +6,7 @@
     <file-filters value="\.xml$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".xml" />
+    <extended-properties value="ProcessType=Prettify;FileType=XML;MenuCaption=Pretty XML" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Formatters\html-tidy5\tidy.exe" -xml --char-encoding raw -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
@@ -16,6 +17,7 @@
     <file-filters value="\.json$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".json" />
+    <extended-properties value="ProcessType=Prettify;FileType=JSON;MenuCaption=Pretty JSON" />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Formatters\jq\jq.exe" "" &gt; "${DST_FILE}"</command>
     </unpack-file>
@@ -23,9 +25,10 @@
   <plugin name="Graphviz Visualizer">
     <event value="FILE_PACK_UNPACK" />
     <description value="Graphviz Visualizer" />
-    <file-filters value="\.dot$;\.gv$" />
+    <file-filters value="\.gv;$\.dot$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".png" />
+    <extended-properties value="ProcessType=Visualize;FileType=Graphviz;MenuCaption=Graphviz" />
     <unpack-file>
       <command>dot.exe -Tpng -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>

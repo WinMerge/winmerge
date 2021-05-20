@@ -538,13 +538,30 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		if (FAILED(h) || ret.vt != VT_BSTR)
 		{
 			scinfo.Log(_T("Plugin had PluginUnpackedFileExtension property, but error getting its value"));
-			return -100; // error (Plugin had PluginUnpackedFileExtenstion property, but error getting its value)
+			return -100; // error (Plugin had PluginUnpackedFileExtension property, but error getting its value)
 		}
 		m_ext = ucr::toTString(ret.bstrVal);
 	}
 	else
 	{
 		m_ext.clear();
+	}
+	VariantClear(&ret);
+
+	// get optional property PluginUnpackedFileExtenstion
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginExtendedProperties"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginExtendedProperties", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginExtendedProperties property, but error getting its value"));
+			return -110; // error (Plugin had PluginExtendedProperties property, but error getting its value)
+		}
+		m_extendedProperties = ucr::toTString(ret.bstrVal);
+	}
+	else
+	{
+		m_extendedProperties.clear();
 	}
 	VariantClear(&ret);
 
@@ -705,14 +722,14 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
  *
  * @return Returns an array of valid LPDISPATCH
  */
-static std::map<String, PluginArrayPtr> GetAvailableScripts() 
+static std::map<String, PluginArrayPtr> GetAvailableScripts()
 {
 	vector<String>& scriptlets = LoadTheScriptletList();
 	std::unordered_set<String> disabled_plugin_list = GetDisabledPluginList();
 	std::map<std::wstring, PluginArrayPtr> plugins;
 
 	std::list<String> badScriptlets;
-	for (size_t i = 0 ; i < scriptlets.size() ; i++)
+	for (size_t i = 0; i < scriptlets.size(); i++)
 	{
 		// Note all the info about the plugin
 		PluginInfoPtr plugin(new PluginInfo);
@@ -735,7 +752,11 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 	}
 
 	if (CAllThreadsScripts::GetInternalPluginsLoader())
-		CAllThreadsScripts::GetInternalPluginsLoader()(plugins);
+	{
+		String errmsg;
+		if (!CAllThreadsScripts::GetInternalPluginsLoader()(plugins, errmsg))
+			AppErrorMessageBox(errmsg);
+	}
 
 	// Remove any bad plugins from the cache
 	// This might be a good time to see if the user wants to abort or continue

@@ -12,6 +12,7 @@ public:
 		DISPID_PluginIsAutomatic,
 		DISPID_PluginFileFilters,
 		DISPID_PluginUnpackedFileExtension,
+		DISPID_PluginExtendedProperties,
 		DISPID_PrediffFile,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
@@ -31,12 +32,14 @@ public:
 
 	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
 		const std::wstring& sFileFilters = L"", const std::wstring& sUnpackedFileExtension = L"", 
+		const std::wstring& sExtendedProperties = L"",
 		bool bIsAutomatic = true)
 		: m_nRef(0)
 		, m_sEvent(sEvent)
 		, m_sDescription(sDescription)
 		, m_sFileFilters(sFileFilters)
 		, m_sUnpackedFileExtension(sUnpackedFileExtension)
+		, m_sExtendedProperties(sExtendedProperties)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
 		static const MemberInfo memberInfo_FILE_PREDIFF[] =
@@ -45,6 +48,7 @@ public:
 			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginExtendedProperties",    DISPID_PluginExtendedProperties,    0, DISPATCH_PROPERTYGET },
 			{ L"PrediffFile",                 DISPID_PrediffFile,                 3, DISPATCH_METHOD },
 			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
 		};
@@ -55,6 +59,7 @@ public:
 			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
+			{ L"PluginExtendedProperties",    DISPID_PluginExtendedProperties,    0, DISPATCH_PROPERTYGET },
 			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
 			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
 			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
@@ -66,6 +71,7 @@ public:
 			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
 			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
+			{ L"PluginExtendedProperties",    DISPID_PluginExtendedProperties,    0, DISPATCH_PROPERTYGET },
 			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
 			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
 			{ L"IsFolder",                    DISPID_IsFolder,                    1, DISPATCH_METHOD },
@@ -77,6 +83,7 @@ public:
 		{
 			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
 			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginExtendedProperties",    DISPID_PluginExtendedProperties,    0, DISPATCH_PROPERTYGET },
 		};
 		size_t memberInfoCount;
 		const MemberInfo* memberInfo;
@@ -259,6 +266,9 @@ public:
 				pVarResult->vt = VT_BSTR;
 				hr = get_PluginUnpackedFileExtension(&pVarResult->bstrVal);
 				break;
+			case DISPID_PluginExtendedProperties:
+				pVarResult->vt = VT_BSTR;
+				hr = get_PluginExtendedProperties(&pVarResult->bstrVal);
 			}
 		}
 		return hr;
@@ -447,6 +457,12 @@ public:
 		return S_OK;
 	}
 
+	virtual HRESULT STDMETHODCALLTYPE get_PluginExtendedProperties(BSTR* pVal)
+	{
+		*pVal = SysAllocString(m_sExtendedProperties.c_str());
+		return S_OK;
+	}
+
 	bool AddFunction(const std::wstring& name, HRESULT(STDMETHODCALLTYPE* pFunc)(IDispatch *pDispatch, BSTR bstrText, BSTR* pbstrResult))
 	{
 		DISPID dispid = static_cast<DISPID>(m_memberInfo.size()) + 100;
@@ -465,6 +481,7 @@ protected:
 	std::wstring m_sDescription;
 	std::wstring m_sFileFilters;
 	std::wstring m_sUnpackedFileExtension;
+	std::wstring m_sExtendedProperties;
 	bool m_bIsAutomatic;
 };
 
