@@ -441,8 +441,8 @@ struct Loader
 			}
 		}
 
-		m_plugins.clear();
-		XMLHandler handler(&m_plugins);
+		std::list<Info> internalPlugins;
+		XMLHandler handler(&internalPlugins);
 		SAXParser parser;
 		parser.setContentHandler(&handler);
 		try
@@ -458,7 +458,7 @@ struct Loader
 		{
 		}
 
-		for (auto& info : m_plugins)
+		for (auto& info : internalPlugins)
 		{
 			if (plugins.find(info.m_event) == plugins.end())
 				plugins[info.m_event].reset(new PluginArray);
@@ -470,7 +470,6 @@ struct Loader
 		}
 		return true;
 	}
-	inline static std::list<Info> m_plugins;
 } g_loader;
 
 }

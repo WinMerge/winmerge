@@ -514,9 +514,6 @@ msgstr "&Atnaujinti\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Atša&ukti\tCtrl+Z"
 

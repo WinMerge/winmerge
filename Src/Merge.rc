@@ -498,7 +498,6 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -727,7 +726,6 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"

@@ -211,9 +211,6 @@
     <ClCompile Include="TempFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UniMarkdownFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -772,9 +769,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TempFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UniMarkdownFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">

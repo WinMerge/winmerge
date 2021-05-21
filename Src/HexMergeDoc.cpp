@@ -832,6 +832,6 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 
 void CHexMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_HEX);
 }
 

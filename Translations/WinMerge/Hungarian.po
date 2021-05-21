@@ -641,10 +641,6 @@ msgid "Reco&mpare As"
 msgstr "Újra összehasonlítás mint"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Visszavonás\tCtrl+Z"
 

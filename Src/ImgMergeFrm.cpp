@@ -953,7 +953,7 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nId)
 
 void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
 }
 
 void  CImgMergeFrame::OnWindowChangePane() 

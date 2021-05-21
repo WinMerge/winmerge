@@ -638,10 +638,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr ""
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Α&ναίρεση\tCtrl+Z"
 

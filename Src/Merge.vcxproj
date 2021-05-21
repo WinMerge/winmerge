@@ -1115,11 +1115,6 @@
     </ClCompile>
     <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="TrDialogs.cpp" />
-    <ClCompile Include="UniMarkdownFile.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1336,7 +1331,6 @@
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
     <ClInclude Include="TrDialogs.h" />
-    <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="WildcardDropList.h" />

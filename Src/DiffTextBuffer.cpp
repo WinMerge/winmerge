@@ -251,9 +251,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniFile *pufile = infoUnpacker->m_pufile;
-	if (pufile == nullptr)
-		pufile = new UniMemFile;
+	UniFile *pufile = new UniMemFile;
 
 	// Now we only use the UniFile interface
 	// which is something we could implement for HTTP and/or FTP files
@@ -427,8 +425,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLFSTYLE::AUTOMATIC &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		infoUnpacker!=nullptr && infoUnpacker->m_bDisallowMixedEOL)
+		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();

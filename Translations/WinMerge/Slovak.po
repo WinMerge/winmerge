@@ -514,9 +514,6 @@ msgstr "Znova načítať\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Späť\tCtrl+Z"
 

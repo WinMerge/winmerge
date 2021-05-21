@@ -514,9 +514,6 @@ msgstr "重新加载(&L)\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"
 

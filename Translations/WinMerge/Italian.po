@@ -511,9 +511,6 @@ msgstr "&Ricarica\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Riconfronta come"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Annulla\tCtrl+Z"
 

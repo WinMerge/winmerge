@@ -16,7 +16,6 @@
 #include <Poco/Exception.h>
 #include "Plugins.h"
 #include "multiformatText.h"
-#include "UniMarkdownFile.h"
 #include "Environment.h"
 #include "TFile.h"
 
@@ -203,18 +202,6 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 // scan plugins for the first handler
 bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
-	// PLUGIN_MODE::PLUGIN_BUILTIN_XML : read source file through custom UniFile
-	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML)
-	{
-		handler->m_pufile = new UniMarkdownFile;
-		handler->m_textType = _T("xml");
-		handler->m_bDisallowMixedEOL = true;
-		handler->m_PluginName.erase(); // Make FileTransform_Packing() a NOP
-		// Leave eToBeScanned alone so above lines will continue to execute on
-		// subsequent calls to this function
-		return true;
-	}
-
 	storageForPlugins bufferData;
 	bufferData.SetDataFileAnsi(filepath);
 

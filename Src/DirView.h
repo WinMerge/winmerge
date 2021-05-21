@@ -364,7 +364,6 @@ protected:
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();
 	afx_msg void OnMergeCompareNonHorizontally();
-	afx_msg void OnMergeCompareXML();
 	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>

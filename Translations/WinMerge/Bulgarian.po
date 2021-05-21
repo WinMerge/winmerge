@@ -508,9 +508,6 @@ msgstr "Пре&зареждане\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Сравняване &като"
 
-msgid "&XML"
-msgstr "Файлове на &XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменяне\tCtrl+Z"
 

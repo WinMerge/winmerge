@@ -641,10 +641,6 @@ msgid "Reco&mpare As"
 msgstr "Återjämför som"
 
 #, c-format
-msgid "&XML"
-msgstr "XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Ångra\tCtrl+Z"
 

@@ -23,7 +23,6 @@ enum class PLUGIN_MODE
 	// Modes for "unpacking"
 	PLUGIN_MANUAL,
 	PLUGIN_AUTO,
-	PLUGIN_BUILTIN_XML,
 
 	// Modes for "prediffing"
 	PREDIFF_MANUAL = PLUGIN_MANUAL,
@@ -83,16 +82,9 @@ class PackingInfo : public PluginForFile
 public:
 	explicit PackingInfo(PLUGIN_MODE Mode = FileTransform::g_UnpackerMode)
 	: PluginForFile(Mode)
-	, m_pufile(nullptr)
-	, m_bDisallowMixedEOL(false)
 	{
 	}
 public:
-	/// text type to override syntax highlighting
-	String		m_textType;
-	/// custom UniFile
-	UniFile*	m_pufile;
-	bool		m_bDisallowMixedEOL;
 };
 
 /**

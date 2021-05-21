@@ -511,9 +511,6 @@ msgstr "Yeniden Yük&le\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "&Farklı Karşılaştır"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Geri A&l\tCtrl+Z"
 

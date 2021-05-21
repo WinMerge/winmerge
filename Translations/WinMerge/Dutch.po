@@ -512,9 +512,6 @@ msgstr "Opnieuw laden\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
-msgid "&XML"
-msgstr "XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Ongedaan maken\tCtrl+Z"
 

@@ -512,9 +512,6 @@ msgstr "再読み込み(&L)\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
 
-msgid "&XML"
-msgstr "XML(&X)"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
 

@@ -513,9 +513,6 @@ msgstr "Обновить\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
-msgid "&XML"
-msgstr ""
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"
 

@@ -639,10 +639,6 @@ msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Razveljavi\tCtrl+Z"
 

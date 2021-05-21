@@ -644,10 +644,6 @@ msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "실행 취소(&U)\tCtrl+Z"
 

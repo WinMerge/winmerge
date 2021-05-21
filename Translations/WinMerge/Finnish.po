@@ -637,10 +637,6 @@ msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Kumoa\tCtrl+Z"
 

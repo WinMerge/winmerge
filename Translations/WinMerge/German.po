@@ -639,10 +639,6 @@ msgid "Reco&mpare As"
 msgstr "Erneut ver&gleichen als"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Rückgängig\tStrg+Z"
 

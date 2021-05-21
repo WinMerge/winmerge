@@ -643,10 +643,6 @@ msgid "Reco&mpare As"
 msgstr "重新比較(&M)"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "復原(&U)\tCtrl+Z"
 

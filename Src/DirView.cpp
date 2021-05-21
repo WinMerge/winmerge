@@ -279,8 +279,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
 	ON_COMMAND(ID_MERGE_COMPARE_NONHORIZONTALLY, OnMergeCompareNonHorizontally)
-	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnMergeCompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateMergeCompare)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
@@ -3709,13 +3707,6 @@ void CDirView::OnMergeCompareNonHorizontally()
 	}
 }
 
-void CDirView::OnMergeCompareXML()
-{
-	CWaitCursor waitstatus;
-	PackingInfo packingInfo(PLUGIN_MODE::PLUGIN_BUILTIN_XML);
-	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo, false);
-}
-
 void CDirView::OnMergeCompareAs(UINT nID)
 {
 	CWaitCursor waitstatus;
@@ -3724,8 +3715,7 @@ void CDirView::OnMergeCompareAs(UINT nID)
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
-	bool openableForDir = (pCmdUI->m_nID != ID_MERGE_COMPARE_XML &&
-						   pCmdUI->m_nID != ID_MERGE_COMPARE_HEX &&
+	bool openableForDir = (pCmdUI->m_nID != ID_MERGE_COMPARE_HEX &&
 						   pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
 
 	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);

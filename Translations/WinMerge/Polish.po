@@ -511,9 +511,6 @@ msgstr "Odśwież\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Ponownie porównaj jako"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Cofnij\tCtrl+Z"
 

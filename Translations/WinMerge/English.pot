@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
+"POT-Creation-Date: 2021-05-22 08:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -503,9 +503,6 @@ msgid "Re&load\tCtrl+F5"
 msgstr ""
 
 msgid "Reco&mpare As"
-msgstr ""
-
-msgid "&XML"
 msgstr ""
 
 msgid "&Undo\tCtrl+Z"

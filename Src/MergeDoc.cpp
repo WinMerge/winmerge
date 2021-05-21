@@ -96,8 +96,6 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
 	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
-	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	//}}AFX_MSG_MAP
@@ -3030,10 +3028,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (bFiltersEnabled && m_pInfoUnpacker->m_textType.length())
-				sext[nBuffer] = m_pInfoUnpacker->m_textType;
-			else
-				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
+			sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {
 				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
 				if (bTyped[nBuffer])
@@ -3472,8 +3467,7 @@ void CMergeDoc::OnFileRecompareAsText()
 
 void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML ||
-		m_ptBuf[0]->GetTableEditing());
+	pCmdUI->Enable(m_ptBuf[0]->GetTableEditing());
 }
 
 void CMergeDoc::OnFileRecompareAsTable()
@@ -3487,19 +3481,6 @@ void CMergeDoc::OnFileRecompareAsTable()
 void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
-}
-
-void CMergeDoc::OnFileRecompareAsXML()
-{
-	m_bEnableTableEditing = false;
-	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_BUILTIN_XML);
-	SetUnpacker(&infoUnpacker);
-	OnFileReload();
-}
-
-void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
-{
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_BUILTIN_XML);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)
