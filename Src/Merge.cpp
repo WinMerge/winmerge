@@ -803,7 +803,7 @@ void CMergeApp::OnHelp()
  */
 void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* = 1*/)
 {
-	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
+	String sCmd = env::ExpandEnvironmentVariables(GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD));
 	String sFile(file);
 	strutils::replace(sCmd, _T("$linenum"), strutils::to_str(nLineNumber));
 
