@@ -89,6 +89,7 @@ struct Method
 struct Info
 {
 	Info(const String& name) : m_name(name) {}
+	Info(Info&& info) = default;
 	String m_name;
 	String m_event;
 	String m_description;
@@ -290,9 +291,9 @@ private:
 class InternalPlugin : public WinMergePluginBase
 {
 public:
-	InternalPlugin(Info& info)
+	InternalPlugin(Info&& info)
 		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_isAutomatic)
-		, m_info(info)
+		, m_info(std::move(info))
 	{
 	}
 
@@ -409,7 +410,7 @@ public:
 	}
 
 private:
-	Info& m_info;
+	Info m_info;
 };
 
 struct Loader
@@ -441,8 +442,8 @@ struct Loader
 			}
 		}
 
-		m_plugins.clear();
-		XMLHandler handler(&m_plugins);
+		std::list<Info> internalPlugins;
+		XMLHandler handler(&internalPlugins);
 		SAXParser parser;
 		parser.setContentHandler(&handler);
 		try
@@ -458,19 +459,20 @@ struct Loader
 		{
 		}
 
-		for (auto& info : m_plugins)
+		for (auto& info : internalPlugins)
 		{
-			if (plugins.find(info.m_event) == plugins.end())
-				plugins[info.m_event].reset(new PluginArray);
+			String event = info.m_event;
+			String name = info.m_name;
+			if (plugins.find(event) == plugins.end())
+				plugins[event].reset(new PluginArray);
 			PluginInfoPtr pluginNew(new PluginInfo());
-			IDispatch* pDispatch = new InternalPlugin(info);
+			IDispatch* pDispatch = new InternalPlugin(std::move(info));
 			pDispatch->AddRef();
-			pluginNew->MakeInfo(info.m_name, pDispatch);
-			plugins[info.m_event]->push_back(pluginNew);
+			pluginNew->MakeInfo(name, pDispatch);
+			plugins[event]->push_back(pluginNew);
 		}
 		return true;
 	}
-	inline static thread_local std::list<Info> m_plugins;
 } g_loader;
 
 }
