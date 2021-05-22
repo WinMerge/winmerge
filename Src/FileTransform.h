@@ -213,4 +213,10 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 
 String GetUnpackedFileExtension(const String& filteredFilenames, const PackingInfo* handler);
 
+std::pair<
+	std::vector<std::tuple<String, String, unsigned>>,
+	std::map<String, std::vector<std::tuple<String, String, unsigned>>>
+>
+CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId);
+
 }

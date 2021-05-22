@@ -773,10 +773,12 @@
 #define ID_DIR_SHELL_CONTEXT_MENU_LEFT  33002
 #define ID_DIR_SHELL_CONTEXT_MENU_MIDDLE 33003
 #define ID_DIR_SHELL_CONTEXT_MENU_RIGHT 33004
-#define ID_SCRIPT_FIRST                 33012
-#define ID_SCRIPT_LAST                  33059
-#define ID_PREDIFFERS_FIRST             33060
-#define ID_PREDIFFERS_LAST              33107
+#define ID_SCRIPT_FIRST                 33010
+#define ID_SCRIPT_LAST                  33039
+#define ID_PREDIFFERS_FIRST             33040
+#define ID_PREDIFFERS_LAST              33069
+#define ID_UNPACKERS_FIRST              33070
+#define ID_UNPACKERS_LAST               33099
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
 #define ID_LOCBAR_GOTODIFF              33114

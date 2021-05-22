@@ -122,6 +122,9 @@ public:
 	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
 	static void UpdateDocTitle();
 	static void ReloadMenu();
+	static void AppendPluginMenus(CMenu* pMenu, const String& filteredFilenames,
+		const std::vector<std::wstring> events, unsigned baseId);
+	static String GetPluginNameById(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();

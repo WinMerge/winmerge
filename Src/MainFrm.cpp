@@ -1161,6 +1161,13 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/)
 {
+	if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
+	{
+		PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
+		handler.m_PluginName = GetPluginNameById(nID,
+			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+		return DoFileOpen(pFiles, dwFlags, strDesc, L"", false, nullptr, L"", &handler);
+	}
 	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
@@ -2795,6 +2802,42 @@ void CMainFrame::ReloadMenu()
 		// force redrawing the menu bar
 		pMainFrame->DrawMenuBar();
 	}
+}
+
+void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
+	const std::vector<std::wstring> events, unsigned baseId)
+{
+	auto [suggestedPlugins, otherPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
+	for (const auto& [caption, name, id] : suggestedPlugins)
+		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
+	for (const auto& [processType, pluginList] : otherPlugins)
+	{
+		CMenu* pPopup = new CMenu();
+		pPopup->CreatePopupMenu();
+		for (const auto& [caption, name, id] : pluginList)
+			pPopup->AppendMenu(MF_STRING, id, caption.c_str());
+		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(pPopup->m_hMenu), processType.c_str());
+		pPopup->Detach();
+	}
+}
+
+String CMainFrame::GetPluginNameById(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
+{
+	auto [suggestedPlugins, otherPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	for (const auto& [caption, name, id] : suggestedPlugins)
+	{
+		if (id == idSearch)
+			return name;
+	}
+	for (const auto& [processType, pluginList] : otherPlugins)
+	{
+		for (const auto& [caption, name, id] : pluginList)
+		{
+			if (id == idSearch)
+				return name;
+		}
+	}
+	return {};
 }
 
 IMergeDoc* CMainFrame::GetActiveIMergeDoc()

@@ -559,6 +559,43 @@ String GetUnpackedFileExtension(const String& filteredFilenames, const PackingIn
 	return plugin ? plugin->m_ext : _T("");
 }
 
+std::pair<
+	std::vector<std::tuple<String, String, unsigned>>,
+	std::map<String, std::vector<std::tuple<String, String, unsigned>>>
+>
+CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId)
+{
+	std::vector<std::tuple<String, String, unsigned>> suggestedPlugins;
+	std::map<String, std::vector<std::tuple<String, String, unsigned>>> otherPlugins;
+	unsigned id = baseId;
+	for (const auto& event: events)
+	{
+		auto pScriptArray =
+			CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(event.c_str());
+		for (auto& plugin : *pScriptArray)
+		{
+			const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+			const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+			const String caption = menuCaption.has_value() ?
+				String{ menuCaption->data(), menuCaption->size() } : plugin->m_name;
+			const String process = processType.has_value() ?
+				String{ processType->data(), processType->size() } : _T("Others");
+			if (plugin->TestAgainstRegList(filteredFilenames))
+			{
+				suggestedPlugins.emplace_back(caption, plugin->m_name, id);
+			}
+			else
+			{
+				if (otherPlugins.find(process) == otherPlugins.end())
+					otherPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
+				otherPlugins[process].emplace_back(caption, plugin->m_name, id);
+			}
+			id++;
+		}
+	}
+	return { suggestedPlugins, otherPlugins };
+}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////

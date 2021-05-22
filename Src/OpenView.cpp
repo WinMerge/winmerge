@@ -90,6 +90,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnCompare)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateCompare)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
@@ -797,6 +798,13 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
+		UpdateData(TRUE);
+		String tmpPath[3];
+		for (int i = 0; i < 3; i++)
+			tmpPath[i] = m_strPath[i].empty() ? _T("#.#") : m_strPath[i];
+		String filteredFilenames = strutils::join(std::begin(tmpPath), std::end(tmpPath), _T("|"));
+		CMainFrame::AppendPluginMenus(pPopup, filteredFilenames,
+			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
 			rcButton.left, rcButton.bottom, GetMainFrame());
 	}
