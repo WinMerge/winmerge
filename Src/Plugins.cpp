@@ -164,46 +164,6 @@ int GetPropertyGetsFromScript(IDispatch *piDispatch, vector<String>& namesArray,
 }
 
 
-// search a function name in a scriptlet or activeX dll
-bool SearchScriptForMethodName(LPDISPATCH piDispatch, const wchar_t *functionName)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	const int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-
-	const String tfuncname = ucr::toTString(functionName);
-	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
-	{
-		if (namesArray[iFnc] == tfuncname)
-			return true;
-	}
-	return false;
-}
-
-// search a property name (with get interface) in a scriptlet or activeX dll
-bool SearchScriptForDefinedProperties(IDispatch *piDispatch, const wchar_t *functionName)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	const int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
-
-	const String tfuncname = ucr::toTString(functionName);
-	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
-	{
-		if (namesArray[iFnc] == tfuncname)
-			return true;
-	}
-	return false;
-}
-
-
-int CountMethodsInScript(LPDISPATCH piDispatch)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	return GetMethodsFromScript(piDispatch, namesArray, IdArray);
-}
-
 /** 
  * @return ID of the function or -1 if no function with this index
  */
@@ -320,6 +280,17 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 	return false;
 }
 
+std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& name) const
+{
+	for (auto& item : strutils::split(m_extendedProperties, ';'))
+	{
+		auto keyvalue = strutils::split(item, '=');
+		if (keyvalue[0] == name && keyvalue.size() > 1)
+			return keyvalue[1];
+	}
+	return {};
+}
+
 /**
  * @brief Log technical explanation, in English, of script error
  */
@@ -402,11 +373,23 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// Ensure that interface is released if any bad exit or exception
 	AutoReleaser<IDispatch> drv(lpDispatch);
 
+	std::vector<String> propNamesArray;
+	std::vector<String> methodNamesArray;
+	std::vector<int> IdArray;
+	const int nPropFnc = plugin::GetPropertyGetsFromScript(lpDispatch, propNamesArray, IdArray);
+	const int nMethodFnc = plugin::GetMethodsFromScript(lpDispatch, methodNamesArray, IdArray);
+	propNamesArray.resize(nPropFnc);
+	methodNamesArray.resize(nMethodFnc);
+	auto SearchScriptForDefinedProperties = [&propNamesArray](const TCHAR* name) -> bool
+	{ return std::find(propNamesArray.begin(), propNamesArray.end(), name) != propNamesArray.end(); };
+	auto SearchScriptForMethodName = [&methodNamesArray](const TCHAR* name) -> bool
+	{ return std::find(methodNamesArray.begin(), methodNamesArray.end(), name) != methodNamesArray.end(); };
+
 	// Is this plugin for this transformationEvent ?
 	VARIANT ret;
 	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
-	if (!plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
+	if (!SearchScriptForDefinedProperties(L"PluginEvent"))
 	{
 		scinfo.Log(_T("PluginEvent method missing"));
 		return -20; // error
@@ -427,29 +410,29 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	bool bFound = true;
 	if (m_event == _T("BUFFER_PREDIFF"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
+		bFound &= SearchScriptForMethodName(L"PrediffBufferW");
 	}
 	else if (m_event == _T("FILE_PREDIFF"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffFile");
+		bFound &= SearchScriptForMethodName(L"PrediffFile");
 	}
 	else if (m_event == _T("BUFFER_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackBufferA");
+		bFound &= SearchScriptForMethodName(L"UnpackBufferA");
+		bFound &= SearchScriptForMethodName(L"PackBufferA");
 	}
 	else if (m_event == _T("FILE_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= SearchScriptForMethodName(L"UnpackFile");
+		bFound &= SearchScriptForMethodName(L"PackFile");
 	}
 	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"IsFolder");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFolder");
+		bFound &= SearchScriptForMethodName(L"IsFolder");
+		bFound &= SearchScriptForMethodName(L"UnpackFile");
+		bFound &= SearchScriptForMethodName(L"PackFile");
+		bFound &= SearchScriptForMethodName(L"UnpackFolder");
+		bFound &= SearchScriptForMethodName(L"PackFolder");
 	}
 	if (!bFound)
 	{
@@ -462,7 +445,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// there may be several functions inside one script, count the number of functions
 	if (m_event == _T("EDITOR_SCRIPT"))
 	{
-		m_nFreeFunctions = plugin::CountMethodsInScript(lpDispatch);
+		m_nFreeFunctions = static_cast<int>(methodNamesArray.size());
 		if (m_nFreeFunctions == 0)
 			// error (Plugin doesn't offer any method, what is this ?)
 			return -50;
@@ -470,7 +453,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 
 
 	// get optional property PluginDescription
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+	if (SearchScriptForDefinedProperties(L"PluginDescription"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -489,7 +472,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 
 	// get PluginFileFilters
 	bool hasPluginFileFilters = false;
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
+	if (SearchScriptForDefinedProperties(L"PluginFileFilters"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -508,7 +491,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	VariantClear(&ret);
 
 	// get optional property PluginIsAutomatic
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
+	if (SearchScriptForDefinedProperties(L"PluginIsAutomatic"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BOOL)
@@ -532,7 +515,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	VariantClear(&ret);
 
 	// get optional property PluginUnpackedFileExtenstion
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginUnpackedFileExtension"))
+	if (SearchScriptForDefinedProperties(L"PluginUnpackedFileExtension"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginUnpackedFileExtension", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -548,8 +531,8 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	VariantClear(&ret);
 
-	// get optional property PluginUnpackedFileExtenstion
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginExtendedProperties"))
+	// get optional property PluginExtendedProperties
+	if (SearchScriptForDefinedProperties(_T("PluginExtendedProperties")))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginExtendedProperties", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)

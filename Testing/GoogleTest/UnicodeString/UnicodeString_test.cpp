@@ -359,4 +359,32 @@ namespace
 		EXPECT_TRUE(String(257, ' ') == strutils::format(_T("%s"), String(257, ' ').c_str()));
 	}
 
+	TEST_F(UnicodeStringTest, Split)
+	{
+		{
+			std::vector<StringView> ary = strutils::split(_T("a,bb,c"), ',');
+			EXPECT_EQ(ary.size(), 3);
+			EXPECT_TRUE(ary[0] == _T("a"));
+			EXPECT_TRUE(ary[1] == _T("bb"));
+			EXPECT_TRUE(ary[2] == _T("c"));
+		}
+		{
+			std::vector<StringView> ary = strutils::split(_T(",b,"), ',');
+			EXPECT_EQ(ary.size(), 3);
+			EXPECT_TRUE(ary[0] == _T(""));
+			EXPECT_TRUE(ary[1] == _T("b"));
+			EXPECT_TRUE(ary[2] == _T(""));
+		}
+		{
+			std::vector<StringView> ary = strutils::split(_T("a"), ',');
+			EXPECT_EQ(ary.size(), 1);
+			EXPECT_TRUE(ary[0] == _T("a"));
+		}
+		{
+			std::vector<StringView> ary = strutils::split(_T(""), ',');
+			EXPECT_EQ(ary.size(), 1);
+			EXPECT_TRUE(ary[0] == _T(""));
+		}
+	}
+
 }  // namespace

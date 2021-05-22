@@ -14,6 +14,7 @@
 #include <Poco/Foundation.h>
 #include <string>
 #include <vector>
+#include <optional>
 #include <windows.h>
 #include <oleauto.h>
 #include <memory>
@@ -57,6 +58,8 @@ public:
 	 * @param szTest String of filenames, delimited with '|'
 	 */
 	bool TestAgainstRegList(const String& szTest) const;
+
+	std::optional<StringView> GetExtendedPropertyValue(const String& name) const;
 
 public:
 	String      m_filepath;
@@ -179,11 +182,6 @@ bool IsWindowsScriptThere();
 int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<String>& namesArray, std::vector<int>& IdArray);
 
 /**
- * @brief Get the number of methods in the script
- * @note For free function scripts (EDITOR_SCRIPT)
- */
-int CountMethodsInScript(LPDISPATCH piDispatch);
-
 /**
  * @brief Get the ID of the a free function
  * @param methodOrdinal : index of the free function (0,1,2...)

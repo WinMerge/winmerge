@@ -114,7 +114,7 @@ public:
 	inline static const std::string DescriptionElement = "description";
 	inline static const std::string FileFiltersElement = "file-filters";
 	inline static const std::string IsAutomaticElement = "is-automatic";
-	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extention";
+	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extension";
 	inline static const std::string ExtendedPropertiesElement = "extended-properties";
 	inline static const std::string PrediffFileElement = "prediff-file";
 	inline static const std::string UnpackFileElement = "unpack-file";
