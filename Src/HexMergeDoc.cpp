@@ -99,6 +99,7 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -424,6 +425,11 @@ void CHexMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
+}
+
+bool CHexMergeDoc::GetReadOnly(int nBuffer) const
+{
+	return m_pView[nBuffer]->GetReadOnly();
 }
 
 /**

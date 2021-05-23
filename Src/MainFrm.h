@@ -124,7 +124,7 @@ public:
 	static void ReloadMenu();
 	static void AppendPluginMenus(CMenu* pMenu, const String& filteredFilenames,
 		const std::vector<std::wstring> events, unsigned baseId);
-	static String GetPluginNameById(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId);
+	static String GetPluginNameByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();
@@ -312,6 +312,7 @@ protected:
 	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
 	afx_msg void OnLastFile();
 	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();

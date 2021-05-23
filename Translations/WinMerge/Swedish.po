@@ -4335,3 +4335,24 @@ msgstr "Tillåt endast en upplaga att köra"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Tillåt endast en upplaga att köra och vänta på upplagan att avsluta"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Others"
+msgstr ""
+
+msgid "Pretty XML"
+msgstr ""
+
+msgid "Pretty JSON"
+msgstr ""

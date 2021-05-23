@@ -727,6 +727,7 @@
 #define ID_SUGGESTED_PLUGINS            32884
 #define ID_NOT_SUGGESTED_PLUGINS        32885
 #define ID_RELOAD_PLUGINS               32886
+#define ID_NO_UNPACKER                  32887
 #define ID_WINDOW_CHANGE_PANE           32896
 #define ID_WINDOW_CLOSEALL              32897
 #define ID_HELP_CONTENTS                32912
@@ -778,7 +779,7 @@
 #define ID_PREDIFFERS_FIRST             33040
 #define ID_PREDIFFERS_LAST              33069
 #define ID_UNPACKERS_FIRST              33070
-#define ID_UNPACKERS_LAST               33099
+#define ID_UNPACKERS_LAST               33110
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
 #define ID_LOCBAR_GOTODIFF              33114
@@ -1393,6 +1394,14 @@
 #define IDS_IGNSUB_STR5                 44178
 #define IDS_SINGLEINSTANCE_STR1         44179
 #define IDS_SINGLEINSTANCE_STR2         44180
+#define IDS_PLUGIN_ALL                  44200
+#define IDS_PLUGIN_PROCESS_TYPE1        44201
+#define IDS_PLUGIN_PROCESS_TYPE2        44202
+#define IDS_PLUGIN_PROCESS_TYPE3        44203
+#define IDS_PLUGIN_PROCESS_TYPE4        44204
+#define IDS_PLUGIN_PROCESS_TYPE5        44205
+#define IDS_PLUGIN_MENU_CAPTION1        44211
+#define IDS_PLUGIN_MENU_CAPTION2        44212
 
 // Next default values for new objects
 // 

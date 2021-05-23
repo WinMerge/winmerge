@@ -498,6 +498,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -726,6 +727,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
@@ -3648,6 +3650,18 @@ STRINGTABLE
 BEGIN
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance to run and wait for the instance to terminate"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_ALL           "Al&l"
+    IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
+    IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
+    IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
+    IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
+    IDS_PLUGIN_PROCESS_TYPE5 "Others"
+    IDS_PLUGIN_MENU_CAPTION1 "Pretty XML"
+    IDS_PLUGIN_MENU_CAPTION2 "Pretty JSON"
 END
 
 #endif    // English (United States) resources

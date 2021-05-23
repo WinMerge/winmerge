@@ -21,5 +21,8 @@ struct IMergeDoc
 	virtual void DirDocClosing(CDirDoc * pDirDoc) = 0;
 	virtual void CheckFileChanged() = 0;
 	virtual void SetUnpacker(const PackingInfo *infoUnpacker) = 0;
+	virtual int GetFileCount() const = 0;
+	virtual String GetPath(int pane) const = 0;
+	virtual bool GetReadOnly(int pane) const = 0;
 };
 

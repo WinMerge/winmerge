@@ -253,7 +253,7 @@ public:
 		: WinMergePluginBase(
 			L"FILE_PACK_UNPACK",
 			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)"), funcname),
-			L"\\.nomatch$", L"", L"ProcessType=Editor Script")
+			L"\\.nomatch$", L"", L"ProcessType=Editor script")
 		, m_pDispatch(pDispatch)
 		, m_funcid(id)
 	{

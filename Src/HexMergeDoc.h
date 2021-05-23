@@ -72,6 +72,9 @@ public:
 	const PackingInfo* GetUnpacker() const { return &m_infoUnpacker; };
 	PackingInfo* GetUnpacker() { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker;  };
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; }
+	bool GetReadOnly(int pane) const override;
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();

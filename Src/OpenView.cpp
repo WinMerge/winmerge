@@ -801,7 +801,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 		UpdateData(TRUE);
 		String tmpPath[3];
 		for (int i = 0; i < 3; i++)
-			tmpPath[i] = m_strPath[i].empty() ? _T("#.#") : m_strPath[i];
+			tmpPath[i] = m_strPath[i].empty() ? _T("|.|") : m_strPath[i];
 		String filteredFilenames = strutils::join(std::begin(tmpPath), std::end(tmpPath), _T("|"));
 		CMainFrame::AppendPluginMenus(pPopup, filteredFilenames,
 			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);

@@ -197,6 +197,9 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; } 
+	bool GetReadOnly(int pane) const override { return m_ptBuf[pane]->m_bReadOnly; }
 	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }

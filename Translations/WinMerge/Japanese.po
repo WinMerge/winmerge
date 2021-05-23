@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-03-31 21:52+0900\n"
+"PO-Revision-Date: 2021-05-23 14:41+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -3619,3 +3619,24 @@ msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
+
+msgid "Al&l"
+msgstr "すべて(&L)"
+
+msgid "Prettification"
+msgstr "整形"
+
+msgid "Content Extraction"
+msgstr "内容抽出"
+
+msgid "Visualization"
+msgstr "視覚化"
+
+msgid "Others"
+msgstr "その他"
+
+msgid "Pretty XML"
+msgstr "整形されたXML"
+
+msgid "Pretty JSON"
+msgstr "整形されたJSON"

@@ -250,6 +250,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
 	ON_COMMAND(ID_LASTFILE, OnLastFile)
 	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
+	ON_UPDATE_COMMAND_UI(ID_NO_UNPACKER, OnUpdateNoUnpacker)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -703,6 +704,16 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return GetMainFrame()->ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	default:
+		if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
+		{
+			PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
+			handler.m_PluginName = GetPluginNameByMenuId(nID,
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+			PathContext paths;
+			for (int i = 0; i < nFiles; ++i)
+				paths.SetPath(i, ifileloc[i].filepath);
+			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, _T(""), &handler);
+		}
 		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	}
@@ -1161,13 +1172,6 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/)
 {
-	if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
-	{
-		PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
-		handler.m_PluginName = GetPluginNameById(nID,
-			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
-		return DoFileOpen(pFiles, dwFlags, strDesc, L"", false, nullptr, L"", &handler);
-	}
 	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
@@ -2056,18 +2060,23 @@ void CMainFrame::OnSaveProject()
 		theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
 	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
-	PathContext paths;
 	CFrameWnd * pFrame = GetActiveFrame();
 	FRAMETYPE frame = GetFrameType(pFrame);
 
-	if (frame == FRAME_FILE)
+	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
 	{
-		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-		pOpenDoc->m_files = pMergeDoc->m_filePaths;
-		for (int pane = 0; pane < pOpenDoc->m_files.GetSize(); ++pane)
-			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_PROJECT : 0);
-		pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-		pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int pane = 0; pane < pMergeDoc->GetFileCount(); ++pane)
+			{
+				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+				paths.SetPath(pane, pMergeDoc->GetPath(pane));
+			}
+			pOpenDoc->m_files = paths;
+			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+			pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+		}
 	}
 	else if (frame == FRAME_FOLDER)
 	{
@@ -2731,6 +2740,22 @@ void CMainFrame::OnUpdateLastFile(CCmdUI* pCmdUI)
 	pCmdUI->Enable(enabled);
 }
 
+void CMainFrame::OnUpdateNoUnpacker(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable();
+	pCmdUI->m_pMenu->DeleteMenu(pCmdUI->m_nID, MF_BYCOMMAND);
+
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+	{
+		PathContext paths;
+		for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+			paths.SetPath(i, pMergeDoc->GetPath(i));
+		String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+		CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
+			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+	}
+}
+
 void CMainFrame::ReloadMenu()
 {
 	// set the menu of the main frame window
@@ -2807,29 +2832,36 @@ void CMainFrame::ReloadMenu()
 void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
 	const std::vector<std::wstring> events, unsigned baseId)
 {
-	auto [suggestedPlugins, otherPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
+	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
+
 	for (const auto& [caption, name, id] : suggestedPlugins)
-		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
-	for (const auto& [processType, pluginList] : otherPlugins)
+		pMenu->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+
+	CMenu popupAll;
+	popupAll.CreatePopupMenu();
+	pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
+
+	for (const auto& [processType, pluginList] : allPlugins)
 	{
-		CMenu* pPopup = new CMenu();
-		pPopup->CreatePopupMenu();
+		CMenu popup;
+		popup.CreatePopupMenu();
 		for (const auto& [caption, name, id] : pluginList)
-			pPopup->AppendMenu(MF_STRING, id, caption.c_str());
-		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(pPopup->m_hMenu), processType.c_str());
-		pPopup->Detach();
+			popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+		popupAll.AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
+		popup.Detach();
 	}
+	popupAll.Detach();
 }
 
-String CMainFrame::GetPluginNameById(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
+String CMainFrame::GetPluginNameByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
 {
-	auto [suggestedPlugins, otherPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
 	for (const auto& [caption, name, id] : suggestedPlugins)
 	{
 		if (id == idSearch)
 			return name;
 	}
-	for (const auto& [processType, pluginList] : otherPlugins)
+	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id] : pluginList)
 		{

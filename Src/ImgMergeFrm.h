@@ -59,6 +59,9 @@ public:
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; }
+	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;

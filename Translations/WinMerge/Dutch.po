@@ -3672,3 +3672,24 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Others"
+msgstr ""
+
+msgid "Pretty XML"
+msgstr ""
+
+msgid "Pretty JSON"
+msgstr ""
