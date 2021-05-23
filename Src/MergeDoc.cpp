@@ -3504,6 +3504,9 @@ void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)
 {
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+	
 	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)
