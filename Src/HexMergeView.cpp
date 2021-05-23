@@ -35,7 +35,7 @@ static HRESULT NTAPI SE(BOOL f)
 {
 	if (f)
 		return S_OK;
-	HRESULT hr = (HRESULT)::GetLastError();
+	HRESULT hr = HRESULT_FROM_WIN32(::GetLastError());
 	ASSERT(hr != NULL);
 	if (hr == NULL)
 		hr = E_UNEXPECTED;
@@ -310,17 +310,17 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 	{
 		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
 		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
-			return S_OK;
+			return E_FAIL;
 	}
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
 	bool bApplyToAll = false;
 	if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
-		return S_OK;
+		return E_FAIL;
 	path = strPath.c_str();
 	// Take a chance to create a backup
 	if (!CMergeApp::CreateBackup(false, path))
-		return S_OK;
+		return E_FAIL;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();
 	String sIntermediateFilename = env::GetTemporaryFileName(tempPath, _T("MRG_"), 0);
@@ -344,9 +344,9 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 	if (hr != S_OK)
 		return hr;
 
-	if (packing)
+	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
+	if (packing && !pDoc->GetUnpacker()->m_PluginName.empty())
 	{
-		CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
 		if (!FileTransform::Packing(sIntermediateFilename, path, *pDoc->GetUnpacker(), m_unpackerSubcode))
 		{
 			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, pDoc->GetUnpacker()->m_PluginName);
