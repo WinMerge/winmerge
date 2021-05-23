@@ -84,8 +84,8 @@ public:
 	String GetDescription(int pane) const { return m_strDesc[pane]; };
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 private:
-	void DoFileSave(int nBuffer);
-	void DoFileSaveAs(int nBuffer, bool packing = true);
+	bool DoFileSave(int nBuffer);
+	bool DoFileSaveAs(int nBuffer, bool packing = true);
 	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
 	void RecompareAs(UINT id);
 // Implementation data

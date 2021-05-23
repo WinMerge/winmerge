@@ -231,15 +231,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[0]->SaveFile(pathLeft.c_str())))
-				{
-				case 0:
-					bLSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bLSaveSuccess = DoFileSave(0);
+				if (!bLSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -250,15 +244,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[1]->SaveFile(pathMiddle.c_str())))
-				{
-				case 0:
-					bMSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bMSaveSuccess = DoFileSave(1);
+				if (!bMSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -269,15 +257,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[m_nBuffers - 1]->SaveFile(pathRight.c_str())))
-				{
-				case 0:
-					bRSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bRSaveSuccess = DoFileSave(m_nBuffers - 1);
+				if (!bRSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -317,23 +299,30 @@ void CHexMergeDoc::OnFileSave()
 		DoFileSave(nBuffer);
 }
 
-void CHexMergeDoc::DoFileSave(int nBuffer)
+bool CHexMergeDoc::DoFileSave(int nBuffer)
 {
+	bool result = false;
 	if (m_pView[nBuffer]->GetModified())
 	{
 		if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
-			DoFileSaveAs(nBuffer);
+			result = DoFileSaveAs(nBuffer);
 		else
 		{
 			const String &path = m_filePaths.GetPath(nBuffer);
-			if (Try(m_pView[nBuffer]->SaveFile(path.c_str())) == IDCANCEL)
-				return;
+			HRESULT hr = m_pView[nBuffer]->SaveFile(path.c_str());
+			if (Try(hr) == IDCANCEL)
+				return false;
+			if (FAILED(hr))
+				return DoFileSaveAs(nBuffer);
+			result = true;
+			if (result)
+				UpdateDiffItem(m_pDirDoc);
 		}
-		UpdateDiffItem(m_pDirDoc);
 	}
+	return result;
 }
 
-void CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
+bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 {
 	const String &path = m_filePaths.GetPath(nBuffer);
 	String strPath;
@@ -346,8 +335,11 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		title = _("Save Middle File As");
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
-		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str(), packing)) == IDCANCEL)
-			return;
+		HRESULT hr = m_pView[nBuffer]->SaveFile(strPath.c_str());
+		if (Try(hr) == IDCANCEL)
+			return false;
+		if (FAILED(hr))
+			return false;
 		if (path.empty())
 		{
 			// We are saving scratchpad (unnamed file)
@@ -358,7 +350,9 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateDiffItem(m_pDirDoc);
 		UpdateHeaderPath(nBuffer);
+		return true;
 	}
+	return false;
 }
 
 /**
