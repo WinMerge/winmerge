@@ -12,6 +12,9 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -129,6 +132,9 @@ Function get_PluginIsAutomatic()
 	get_PluginIsAutomatic = True
 End Function
 
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Word;MenuCaption=MS-Word"
+End Function
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim wd 
