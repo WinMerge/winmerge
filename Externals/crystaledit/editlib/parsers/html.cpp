@@ -150,6 +150,21 @@ out:
               nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_EXT_USER1;
+              else if ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR)))
+                {
+                  // A closing tag in a comment or string.
+                  if (dwCookie & COOKIE_EXT_COMMENT)
+                    {
+                      DEFINE_BLOCK(I, COLORINDEX_COMMENT);
+                    }
+                  else if (dwCookie & (COOKIE_STRING | COOKIE_CHAR))
+                    {
+                      DEFINE_BLOCK(I, COLORINDEX_STRING);
+                    }
+                  nextI += 2;    // Length of "?>"
+                  dwCookie |= COOKIE_EXT_USER1;
+                  bRedefineBlock = true;
+                }
               else
                 {
                   dwCookie = 0;
