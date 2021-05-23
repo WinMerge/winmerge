@@ -581,12 +581,15 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 			const String process = processType.has_value() ?
 				String{ processType->data(), processType->size() } : _T("Others");
 
-			if (plugin->TestAgainstRegList(filteredFilenames))
+			if (!plugin->m_disabled && plugin->TestAgainstRegList(filteredFilenames))
 				suggestedPlugins.emplace_back(caption, plugin->m_name, id);
 
-			if (allPlugins.find(process) == allPlugins.end())
-				allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
-			allPlugins[process].emplace_back(caption, plugin->m_name, id);
+			if (!plugin->m_disabled)
+			{
+				if (allPlugins.find(process) == allPlugins.end())
+					allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
+				allPlugins[process].emplace_back(caption, plugin->m_name, id);
+			}
 			id++;
 		}
 	}

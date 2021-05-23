@@ -426,18 +426,21 @@ struct Loader
 		{
 			for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
 			{
-				std::vector<String> namesArray;
-				std::vector<int> idArray;
-				int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
-				for (int i = 0; i < validFuncs; ++i)
+				if (!plugin->m_disabled)
 				{
-					if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
-						plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
-					PluginInfoPtr pluginNew(new PluginInfo());
-					IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
-					pDispatch->AddRef();
-					pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
-					plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
+					std::vector<String> namesArray;
+					std::vector<int> idArray;
+					int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
+					for (int i = 0; i < validFuncs; ++i)
+					{
+						if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
+							plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
+						PluginInfoPtr pluginNew(new PluginInfo());
+						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
+						pDispatch->AddRef();
+						pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
+						plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
+					}
 				}
 			}
 		}
