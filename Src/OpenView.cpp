@@ -44,7 +44,9 @@
 
 // Timer ID and timeout for delaying path validity check
 const UINT IDT_CHECKFILES = 1;
+const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
+const int RETRY_MAX = 3;
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /** @brief Location for Open-dialog specific help to open. */
@@ -56,18 +58,12 @@ IMPLEMENT_DYNCREATE(COpenView, CFormView)
 
 BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	//{{AFX_MSG_MAP(COpenView)
-	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPathButton<0>)
-	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPathButton<1>)
-	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPathButton<2>)
+	ON_CONTROL_RANGE(BN_CLICKED, IDC_PATH0_BUTTON, IDC_PATH2_BUTTON, OnPathButton)
 	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP12_BUTTON, (OnSwapButton<IDC_PATH1_COMBO, IDC_PATH2_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
-	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePathCombo<0>)
-	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePathCombo<1>)
-	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePathCombo<2>)
-	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent<0>)
-	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent<1>)
-	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent<2>)
+	ON_CONTROL_RANGE(CBN_SELCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSelchangePathCombo)
+	ON_CONTROL_RANGE(CBN_EDITCHANGE, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnEditEvent)
 	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
@@ -81,8 +77,10 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
 	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
-	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, OnDropDownSaveProject)
+	ON_COMMAND(ID_FILE_SAVE, OnSaveProject)
+	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, (OnDropDown<ID_SAVE_PROJECT, IDR_POPUP_PROJECT>))
 	ON_COMMAND(IDOK, OnOK)
+	ON_NOTIFY(BCN_DROPDOWN, IDOK, (OnDropDown<IDOK, IDR_POPUP_COMPARE>))
 	ON_COMMAND(IDCANCEL, OnCancel)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_COPY, OnEditAction<WM_COPY>)
@@ -90,6 +88,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_CUT, OnEditAction<WM_CUT>)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditAction<WM_UNDO>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnCompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
@@ -113,6 +113,7 @@ COpenView::COpenView()
 	, m_bReadOnly {false, false, false}
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
 	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
+	, m_retryCount(0)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -160,6 +161,7 @@ void COpenView::OnInitialUpdate()
 		// fallback for XP 
 		SendDlgItemMessage(IDC_OPTIONS, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 		SendDlgItemMessage(ID_SAVE_PROJECT, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+		SendDlgItemMessage(IDOK, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 	}
 
 	m_sizeOrig = GetTotalSize();
@@ -214,7 +216,7 @@ void COpenView::OnInitialUpdate()
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
 
 	m_ctlPath[0].SetFileControlStates();
-	m_ctlPath[1].SetFileControlStates();
+	m_ctlPath[1].SetFileControlStates(true);
 	m_ctlPath[2].SetFileControlStates(true);
 
 	for (int file = 0; file < m_files.GetSize(); file++)
@@ -314,7 +316,7 @@ void COpenView::OnPaint()
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
 	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
-    dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+	dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
 	// Draw the resize gripper in the Lower Right corner.
 	CRect rcGrip = rc;
@@ -392,7 +394,7 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 					SetCursor(m_hIconRotate);
 					break;
 				}
-				// fall through
+				[[fallthrough]];
 			default:
 				SetCursor(m_hCursorNo);
 				break;
@@ -447,7 +449,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			WINDOWPLACEMENT wp;
+			WINDOWPLACEMENT wp = {};
 			wp.length = sizeof wp;
 			pFrameWnd->GetWindowPlacement(&wp);
 			CRect rc;
@@ -483,8 +485,12 @@ LRESULT COpenView::OnNcHitTest(CPoint point)
 	return CFormView::OnNcHitTest(point);
 }
 
-void COpenView::OnButton(int index)
+/** 
+ * @brief Called when "Browse..." button is selected for N path.
+ */
+void COpenView::OnPathButton(UINT nId)
 {
+	const int index = nId - IDC_PATH0_BUTTON;
 	String s;
 	String sfolder;
 	UpdateData(TRUE); 
@@ -516,17 +522,7 @@ void COpenView::OnButton(int index)
 	}	
 }
 
-/** 
- * @brief Called when "Browse..." button is selected for N path.
- */
-template <int N>
-void COpenView::OnPathButton()
-{
-	OnButton(N);
-}
-
-template<int id1, int id2>
-void COpenView::OnSwapButton() 
+void COpenView::OnSwapButton(int id1, int id2)
 {
 	String s1, s2;
 	GetDlgItemText(id1, s1);
@@ -536,12 +532,13 @@ void COpenView::OnSwapButton()
 	SetDlgItemText(id2, s2);
 }
 
-/** 
- * @brief Called when dialog is closed with "OK".
- *
- * Checks that paths are valid and sets filters.
- */
-void COpenView::OnOK() 
+template<int id1, int id2>
+void COpenView::OnSwapButton() 
+{
+	OnSwapButton(id1, id2);
+}
+
+void COpenView::OnCompare(UINT nID)
 {
 	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
 	const String filterPrefix = _("[F] ");
@@ -550,9 +547,9 @@ void COpenView::OnOK()
 	TrimPaths();
 
 	int nFiles = 0;
-	for (auto& strPath: m_strPath)
+	for (auto& strPath : m_strPath)
 	{
-		if (nFiles == 2 && strPath.empty())
+		if (nFiles >= 1 && strPath.empty())
 			break;
 		m_files.SetSize(nFiles + 1);
 		m_files[nFiles] = strPath;
@@ -563,8 +560,14 @@ void COpenView::OnOK()
 	// If left path is a project-file, load it
 	String ext;
 	paths::SplitFilename(m_strPath[0], nullptr, nullptr, &ext);
-	if (m_strPath[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
-		LoadProjectFile(m_strPath[0]);
+	if (nFiles == 1)
+	{
+		if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+			LoadProjectFile(m_strPath[0]);
+		else
+			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr);
+		return;
+	}
 
 	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
 
@@ -594,6 +597,7 @@ void COpenView::OnOK()
 
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
+	KillTimer(IDT_RETRY);
 
 	String filter(strutils::trim_ws(m_strExt));
 
@@ -638,10 +642,41 @@ void COpenView::OnOK()
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	PathContext tmpPathContext(pDoc->m_files);
-	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
-	GetMainFrame()->DoFileOpen(
-		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
+	if (nID == IDOK)
+	{
+		PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
+		GetMainFrame()->DoFileOpen(
+			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
+			nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
+	}
+	else
+	{
+		GetMainFrame()->DoFileOpen(nID, &m_files, pDoc->m_dwFlags.data());
+	}
+}
+
+void COpenView::OnUpdateCompare(CCmdUI *pCmdUI)
+{
+	bool bFile = GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled();
+	if (!bFile)
+	{
+		UpdateData(true);
+		PathContext paths = PathContext(std::vector<String>(&m_strPath[0], &m_strPath[m_strPath[2].empty() ? 2 : 3]));
+		bFile = std::all_of(paths.begin(), paths.end(), [](const String& path) {
+				return paths::DoesPathExist(path) == paths::IS_EXISTING_FILE;
+			});
+	}
+	pCmdUI->Enable(bFile);
+}
+
+/** 
+ * @brief Called when dialog is closed with "OK".
+ *
+ * Checks that paths are valid and sets filters.
+ */
+void COpenView::OnOK() 
+{
+	OnCompare(IDOK);
 }
 
 /** 
@@ -752,12 +787,12 @@ void COpenView::OnSaveProject()
 	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 }
 
-void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
+void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupID)
 {
 	CRect rcButton, rcView;
-	GetDlgItem(ID_SAVE_PROJECT)->GetWindowRect(&rcButton);
+	GetDlgItem(nID)->GetWindowRect(&rcButton);
 	BCMenu menu;
-	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
+	VERIFY(menu.LoadMenu(nPopupID));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
@@ -766,6 +801,12 @@ void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
 			rcButton.left, rcButton.bottom, GetMainFrame());
 	}
 	*pResult = 0;
+}
+
+template<UINT id, UINT popupid>
+void COpenView::OnDropDown(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	DropDown(pNMHDR, pResult, id, popupid);
 }
 
 /** 
@@ -837,8 +878,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
-		int iStatusMsgId = 0;
-		int iUnpackerStatusMsgId = 0;
+		paths::PATH_EXISTENCE pathType[3] = {paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST};
+		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
 		UpdateButtonStatesThreadParams *pParams = reinterpret_cast<UpdateButtonStatesThreadParams *>(msg.wParam);
 		PathContext paths = pParams->m_paths;
@@ -854,18 +895,18 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		if (!bProject)
 		{
-			if (paths::DoesPathExist(paths[0], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[0] = true;
-			if (paths::DoesPathExist(paths[1], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[1] = true;
-			if (paths.GetSize() > 2 && paths::DoesPathExist(paths[2], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[2] = true;
+			for (int i = 0; i < paths.GetSize(); ++i)
+			{
+				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
+				if (pathType[i] == paths::DOES_NOT_EXIST)
+					bInvalid[i] = true;
+			}
 		}
 
 		// Enable buttons as appropriate
 		if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 		{
-			paths::PATH_EXISTENCE pathsType = paths::DOES_NOT_EXIST;
+			paths::PATH_EXISTENCE pathsType = pathType[0];
 
 			if (paths.GetSize() <= 2)
 			{
@@ -874,11 +915,15 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0])
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (bInvalid[1])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
+				{
+					if (pathType[0] == paths::IS_EXISTING_FILE && (paths.GetSize() == 1 || paths[1].empty()))
+						iStatusMsgId = IDS_OPEN_FILESDIRS;
+					else
+						iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
+				}
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
-					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == paths::DOES_NOT_EXIST)
+					if (pathType[0] != pathType[1])
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
@@ -902,13 +947,14 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
 				{
-					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == paths::DOES_NOT_EXIST)
+					if (pathType[0] != pathType[1] || pathType[0] != pathType[2])
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
+			if (iStatusMsgId != IDS_OPEN_FILESDIRS)
+				pathsType = paths::DOES_NOT_EXIST;
 			bIsaFileCompare = (pathsType == paths::IS_EXISTING_FILE);
 			bIsaFolderCompare = (pathsType == paths::IS_EXISTING_DIR);
 			// Both will be `false` if incompatibilities or something is missing
@@ -954,10 +1000,7 @@ void COpenView::UpdateButtonStates()
 
 	UpdateButtonStatesThreadParams *pParams = new UpdateButtonStatesThreadParams;
 	pParams->m_hWnd = this->m_hWnd;
-	if (m_strPath[2].empty())
-		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1]);
-	else
-		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1], m_strPath[2]);
+	pParams->m_paths = PathContext(std::vector<String>(&m_strPath[0], &m_strPath[m_strPath[2].empty() ? 2 : 3]));
 
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER + 2, (WPARAM)pParams, 0);
 }
@@ -981,8 +1024,9 @@ void COpenView::TerminateThreadIfRunning()
 /**
  * @brief Called when user changes selection in left/middle/right path's combo box.
  */
-void COpenView::OnSelchangeCombo(int index) 
+void COpenView::OnSelchangePathCombo(UINT nId) 
 {
+	const int index = nId - IDC_PATH0_COMBO;
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
@@ -993,12 +1037,6 @@ void COpenView::OnSelchangeCombo(int index)
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
-}
-
-template <int N>
-void COpenView::OnSelchangePathCombo() 
-{
-	OnSelchangeCombo(N);
 }
 
 void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult) 
@@ -1023,9 +1061,9 @@ void COpenView::OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
 /**
  * @brief Called every time paths are edited.
  */
-template <int N>
-void COpenView::OnEditEvent()
+void COpenView::OnEditEvent(UINT nID)
 {
+	const int N = nID - IDC_PATH0_COMBO;
 	if (CEdit *const edit = m_ctlPath[N].GetEditCtrl())
 	{
 		int const len = edit->GetWindowTextLength();
@@ -1055,7 +1093,7 @@ void COpenView::OnEditEvent()
  */
 void COpenView::OnTimer(UINT_PTR nIDEvent)
 {
-	if (nIDEvent == IDT_CHECKFILES)
+	if (nIDEvent == IDT_CHECKFILES || nIDEvent == IDT_RETRY)
 		UpdateButtonStates();
 
 	CFormView::OnTimer(nIDEvent);
@@ -1085,7 +1123,7 @@ void COpenView::OnSelectUnpacker()
 
 	// let the user select a handler
 	CSelectUnpackerDlg dlg(m_files[0], this);
-	PackingInfo infoUnpacker(PLUGIN_AUTO);
+	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
 
 	if (dlg.DoModal() == IDOK)
@@ -1100,9 +1138,10 @@ void COpenView::OnSelectUnpacker()
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
-	bool bIsaFolderCompare = LOWORD(wParam) != 0;
-	bool bIsaFileCompare = HIWORD(wParam) != 0;
-	bool bProject = HIWORD(lParam) != 0;
+	const bool bIsaFolderCompare = LOWORD(wParam) != 0;
+	const bool bIsaFileCompare = HIWORD(wParam) != 0;
+	const bool bProject = HIWORD(lParam) != 0;
+	const int iStatusMsgId = LOWORD(lParam);
 
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 
@@ -1110,14 +1149,24 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	EnableDlgItem(IDC_UNPACKER_EDIT, bIsaFileCompare);
 	EnableDlgItem(IDC_SELECT_UNPACKER, bIsaFileCompare);
 
-	
 	EnableDlgItem(IDC_FILES_DIRS_GROUP3,  bIsaFolderCompare);
 	EnableDlgItem(IDC_EXT_COMBO, bIsaFolderCompare);
 	EnableDlgItem(IDC_SELECT_FILTER, bIsaFolderCompare);
 	EnableDlgItem(IDC_RECURS_CHECK, bIsaFolderCompare);
 	
-	SetStatus(LOWORD(lParam));
+	SetStatus(iStatusMsgId);
 
+	if (iStatusMsgId != IDS_OPEN_FILESDIRS && m_retryCount <= RETRY_MAX)
+	{
+		if (m_retryCount == 0)
+			SetTimer(IDT_RETRY, CHECKFILES_TIMEOUT, nullptr);
+		m_retryCount++;
+	}
+	else
+	{
+		KillTimer(IDT_RETRY);
+		m_retryCount = 0;
+	}
 	return 0;
 }
 
@@ -1263,12 +1312,17 @@ void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 		UpdateButtonStates();
 }
 
-template <int MSG, int WPARAM, int LPARAM>
-void COpenView::OnEditAction()
+void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
 {
 	CWnd *pCtl = GetFocus();
 	if (pCtl != nullptr)
-		pCtl->PostMessage(MSG, WPARAM, LPARAM);
+		pCtl->PostMessage(msg, wParam, lParam);
+}
+
+template <int MSG, int WPARAM, int LPARAM>
+void COpenView::OnEditAction()
+{
+	OnEditAction(MSG, WPARAM, LPARAM);
 }
 
 /**

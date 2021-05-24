@@ -57,21 +57,21 @@ enum
  * @brief Types for buffer. Buffer's type defines behavior
  * of buffer when saving etc.
  * 
- * Difference between BUFFER_NORMAL and BUFFER_NORMAL_NAMED is
+ * Difference between BUFFERTYPE::NORMAL and BUFFERTYPE::NORMAL_NAMED is
  * that _NAMED has description text given and which is shown
  * instead of filename.
  *
- * BUFFER_UNNAMED is created empty buffer (scratchpad), it has
+ * BUFFERTYPE::UNNAMED is created empty buffer (scratchpad), it has
  * no filename, and default description is given for it. After
  * this buffer is saved it becomes _SAVED. It is not equal to
  * NORMAL_NAMED, since scratchpads don't have plugins etc.
  */
-enum BUFFERTYPE
+enum class BUFFERTYPE
 {
-	BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-	BUFFER_NORMAL_NAMED, /**< Normal, description given */
-	BUFFER_UNNAMED, /**< Empty, created buffer */
-	BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+	NORMAL = 0, /**< Normal, file loaded from disk */
+	NORMAL_NAMED, /**< Normal, description given */
+	UNNAMED, /**< Empty, created buffer */
+	UNNAMED_SAVED, /**< Empty buffer saved with filename */
 };
 
 struct WordDiff {
@@ -171,9 +171,11 @@ public:
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff = -1, int lastWordDiff = -1);
+	void CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstLineDiff = -1, int lastLineDiff = -1);
 	void DoAutoMerge(int dstPane);
 	bool SanityCheckDiff(DIFFRANGE dr) const;
 	bool WordListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
@@ -191,11 +193,11 @@ public:
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
+	CDirDoc * GetDirDoc() const override { return m_pDirDoc; }
 	void SetDirDoc(CDirDoc * pDirDoc) override;
-	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
-	void SwapFiles();
+	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
 	CLocationView * GetLocationView() { return m_pLocationView; }
@@ -258,6 +260,7 @@ public:
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
+	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
 	void ClearWordDiffCache(int nDiff = -1);
@@ -307,6 +310,9 @@ public:
 				return true;
 		return false;
 	}
+	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
+	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
+	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 
 // implementation methods
 private:
@@ -334,11 +340,19 @@ protected:
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;
+	bool m_bInvertDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
+	/**
+	 * Are automatic rescans enabled?
+	 * If automatic rescans are enabled then we rescan files after edit
+	 * events, unless timer suppresses rescan. We suppress rescans within
+	 * certain time from previous rescan.
+	 */
+	bool m_bAutomaticRescan;
 // friend access
 	friend class RescanSuppress;
 
@@ -374,6 +388,7 @@ protected:
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
+	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

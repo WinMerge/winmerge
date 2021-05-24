@@ -1,5 +1,10 @@
-# This file is part from WinMerge <http://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
+#
+# Translators:
+# * Afyonlu <afyonlu@users.sourceforge.net>
+# * Ozkan UNVER <turquaz37915 at users.sourceforge.net>
+# * Kaya Zeren <translator at zeron.net>
 #
 msgid ""
 msgstr ""
@@ -219,7 +224,7 @@ msgid "< Empty >"
 msgstr "< Boş >"
 
 msgid "E&xit\tCtrl+Q"
-msgstr "Çı&k\tCtrl+Q"
+msgstr "Çı&kış\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Düz&enle"
@@ -1741,7 +1746,7 @@ msgid "Backup filename:"
 msgstr "Yedek dosyası adının:"
 
 msgid "&Append .bak extension"
-msgstr "Sonun&a .bak uzantısı eklensin"
+msgstr "Sonun&a '.bak' uzantısı eklensin"
 
 msgid "A&ppend timestamp"
 msgstr "Sonuna tarih da&mgası eklensin"
@@ -3214,7 +3219,7 @@ msgid ""
 "See manual for more info about archive support and how to enable it."
 msgstr ""
 "Sıkıştırılmış dosya desteği etkinleştirilmemiş.\n"
-"Sıkıştırılmış dosya desteği için gereken bileşenler bulunamadı (7-zip ya da "
+"Sıkıştırılmış dosya desteği için gereken bileşenler bulunamadı (7-Zip ya da "
 "Merge7z*.dll).\n"
 "Sıkıştırılmış dosya desteği ve nasıl etkinleştirileceği ile ilgili ayrıntılı "
 "bilgi almak için kullanım kitabına bakabilirsiniz."
@@ -3740,24 +3745,3 @@ msgstr "Yalnız bir kopyanın çalışsın ve kopyanın sonlandırılması bekle
 
 #~ msgid "VHDL"
 #~ msgstr "VHDL"
-
-#~ msgid "Compa&re Statistics"
-#~ msgstr "İstatistikleri Ka&rşılaştır"
-
-#~ msgid "&Table"
-#~ msgstr "&Tablo"
-
-#~ msgid "&Refresh"
-#~ msgstr "&Yenile"
-
-#~ msgid "Whitespace"
-#~ msgstr "Beyaz boşluklar"
-
-#~ msgid " Categories"
-#~ msgstr " Gruplar"
-
-#~ msgid "Marker colors"
-#~ msgstr "İşaretleyici renkleri"
-
-#~ msgid "Custom text colors"
-#~ msgstr "Özel metin renkleri"

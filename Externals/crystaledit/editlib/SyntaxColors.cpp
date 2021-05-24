@@ -180,7 +180,7 @@ void SyntaxColors::SetDefaults()
  * @param [in] Index index of color to set (COLORINDEX).
  * @param [in] color New color value.
  */
-void SyntaxColors::SetColor(UINT index, COLORREF color)
+void SyntaxColors::SetColor(unsigned index, COLORREF color)
 {
 	m_colors[index] = color;
 }
@@ -190,7 +190,7 @@ void SyntaxColors::SetColor(UINT index, COLORREF color)
  * @param [in] Index index of color to set (COLORINDEX).
  * @param [in] bold If true bold is enabled.
  */
-void SyntaxColors::SetBold(UINT index, bool bold)
+void SyntaxColors::SetBold(unsigned index, bool bold)
 {
 	m_bolds[index] = bold;
 }

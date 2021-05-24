@@ -46,7 +46,7 @@ struct IListCtrl;
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
-const UINT DefColumnWidth = 150;
+const UINT DefColumnWidth = 111;
 
 /**
  * @brief Directory compare results view.
@@ -104,6 +104,13 @@ public:
 	void MoveToPrevDiff();
 	void OpenNextDiff();
 	void OpenPrevDiff();
+	void OpenFirstFile();
+	void OpenLastFile();
+	void OpenNextFile();
+	void OpenPrevFile();
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	void SetActivePane(int pane);
 
 // Implementation types
@@ -323,7 +330,10 @@ protected:
 	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	template <int pane1, int pane2>
 	afx_msg void OnViewSwapPanes();
+	template <int pane1, int pane2>
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
@@ -382,7 +392,7 @@ protected:
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
-	void Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker = nullptr);
+	void Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
@@ -405,6 +415,8 @@ private:
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const;
+	int GetDefColumnWidth() const { return MulDiv(DefColumnWidth, CClientDC(const_cast<CDirView *>(this)).GetDeviceCaps(LOGPIXELSX), 72); };
+
 public:
 	DirItemIterator Begin() const { return DirItemIterator(m_pIList.get()); }
 	DirItemIterator End() const { return DirItemIterator(); }

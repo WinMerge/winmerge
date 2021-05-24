@@ -4,7 +4,7 @@
 //    Author: Dean Grimm
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  Merge.cpp
  *
  * @brief Defines the class behaviors for the application.
@@ -20,6 +20,7 @@
 #include "OptionsMgr.h"
 #include "OptionsInit.h"
 #include "RegOptionsMgr.h"
+#include "IniOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
 #include "OpenView.h"
@@ -35,10 +36,9 @@
 #include "DirView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
-#include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
-#include "FilterCommentsManager.h"
+#include "SubstitutionFiltersList.h"
 #include "SyntaxColors.h"
 #include "CCrystalTextMarkers.h"
 #include "OptionsSyntaxColors.h"
@@ -53,6 +53,7 @@
 #include "stringdiffs.h"
 #include "TFile.h"
 #include "paths.h"
+#include "Shell.h"
 #include "CompareStats.h"
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
@@ -99,20 +100,38 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
-, m_pOptions(new CRegOptionsMgr())
+, m_pOptions(CreateOptionManager())
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(false)
-, m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
+, m_bExitIfNoDiff(MergeCmdLineInfo::ExitNoDiff::Disabled)
 , m_pLineFilters(new LineFiltersList())
-, m_pFilterCommentsManager(new FilterCommentsManager())
+, m_pSubstitutionFiltersList(new SubstitutionFiltersList())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
+}
+
+/**
+ * @brief Chose which options manager should be initialized.
+ * @return IniOptionsMgr if initial config file exists,
+ *   CRegOptionsMgr otherwise.
+ */
+COptionsMgr *CreateOptionManager()
+{
+	String iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
+	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
+	{
+		return new CIniOptionsMgr(iniFilePath);
+	}
+	else
+	{
+		return new CRegOptionsMgr();
+	}
 }
 
 CMergeApp::~CMergeApp()
@@ -149,6 +168,8 @@ BOOL CMergeApp::InitInstance()
 
 	InitCommonControls();    // initialize common control library
 	CWinApp::InitInstance(); // call parent class method
+
+	m_imageForInitializingGdiplus.Load((IStream*)nullptr); // initialize GDI+
 
 	// Runtime switch so programmer may set this in interactive debugger
 	int dbgmem = 0;
@@ -220,13 +241,13 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	bool bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
-		(true == cmdInfo.m_bSingleInstance);
+	int nSingleInstance = cmdInfo.m_nSingleInstance.has_value() ?
+		*cmdInfo.m_nSingleInstance : GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 
 	// Create exclusion mutex name
 	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
 	DWORD dwLengthNeeded;
-	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME, 
+	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
 		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
 	TCHAR szMutexName[MAX_PATH + 40];
 	// Combine window class name and desktop name to form a unique mutex name.
@@ -236,7 +257,7 @@ BOOL CMergeApp::InitInstance()
 	HANDLE hMutex = CreateMutex(nullptr, FALSE, szMutexName);
 	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
-	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
+	if (nSingleInstance != 0 && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
 		HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
@@ -251,6 +272,14 @@ BOOL CMergeApp::InitInstance()
 			{
 				ReleaseMutex(hMutex);
 				CloseHandle(hMutex);
+				if (nSingleInstance > 1)
+				{
+					DWORD dwProcessId = 0;
+					GetWindowThreadProcessId(hWnd, &dwProcessId);
+					HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
+					if (hProcess)
+						WaitForSingleObject(hProcess, INFINITE);
+				}
 				return FALSE;
 			}
 		}
@@ -306,6 +335,9 @@ BOOL CMergeApp::InitInstance()
 		if (!oldFilter.empty())
 			m_pLineFilters->Import(oldFilter);
 	}
+
+	if (m_pSubstitutionFiltersList != nullptr)
+		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 
 	// Check if filter folder is set, and create it if not
 	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
@@ -397,9 +429,8 @@ BOOL CMergeApp::InitInstance()
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
 	pMainFrame->MDISetMenu(pNewMenu, nullptr);
 
-	// The main window has been initialized, so activate and update it.
+	// The main window has been initialized, so activate it.
 	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
-	pMainFrame->UpdateWindow();
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!
@@ -425,7 +456,12 @@ BOOL CMergeApp::InitInstance()
 
 static void OpenContributersFile(int&)
 {
-	theApp.OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
+	CMergeApp::OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
+}
+
+static void OpenUrl(int&)
+{
+	shell::Open(WinMergeURL);
 }
 
 // App command to run the dialog
@@ -433,8 +469,10 @@ void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.m_onclick_contributers += Poco::delegate(OpenContributersFile);
+	aboutDlg.m_onclick_url += Poco::delegate(OpenUrl);
 	aboutDlg.DoModal();
 	aboutDlg.m_onclick_contributers.clear();
+	aboutDlg.m_onclick_url.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -446,7 +484,7 @@ void CMergeApp::OnAppAbout()
  * good place to do cleanups.
  * @return Application's exit value (returned from WinMain()).
  */
-int CMergeApp::ExitInstance() 
+int CMergeApp::ExitInstance()
 {
 	charsets_cleanup();
 
@@ -458,7 +496,7 @@ int CMergeApp::ExitInstance()
 	ClearTempfolder(temp);
 
 	// Cleanup left over tempfiles from previous instances.
-	// Normally this should not neet to do anything - but if for some reason
+	// Normally this should not need to do anything - but if for some reason
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
 
@@ -502,7 +540,7 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
 		nIDPrompt);
-	
+
 	if (m_pMainWnd->IsIconic())
 		m_pMainWnd->ShowWindow(SW_RESTORE);
 
@@ -526,7 +564,7 @@ bool CMergeApp::IsReallyIdle() const
     return idle;
 }
 
-BOOL CMergeApp::OnIdle(LONG lCount) 
+BOOL CMergeApp::OnIdle(LONG lCount)
 {
 	if (CWinApp::OnIdle(lCount))
 		return TRUE;
@@ -541,7 +579,10 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (m_bNonInteractive && IsReallyIdle())
 		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
 
-	static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseKeys();
+	if (typeid(*GetOptionsMgr()) == typeid(CRegOptionsMgr))
+	{
+		static_cast<CRegOptionsMgr*>(GetOptionsMgr())->CloseKeys();
+	}
 
 	return FALSE;
 }
@@ -620,6 +661,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		UpdateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
 
+	// Set compare method
+	if (cmdInfo.m_nCompMethod.has_value())
+		GetOptionsMgr()->Set(OPT_CMP_METHOD, *cmdInfo.m_nCompMethod);
+
 	// Unless the user has requested to see WinMerge's usage open files for
 	// comparison.
 	if (cmdInfo.m_bShowUsage)
@@ -666,7 +711,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
 			String sFilepath = cmdInfo.m_Files[0];
-			if (IsProjectFile(sFilepath))
+			if (cmdInfo.m_bSelfCompare)
+			{
+				strDesc[0] = cmdInfo.m_sLeftDesc;
+				strDesc[1] = cmdInfo.m_sRightDesc;
+				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
+			}
+			else if (IsProjectFile(sFilepath))
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}
@@ -682,7 +733,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr, 
+					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 					cmdInfo.m_sPreDiffer, infoUnpacker.get());
 			}
 		}
@@ -752,7 +803,7 @@ void CMergeApp::OnHelp()
  */
 void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* = 1*/)
 {
-	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
+	String sCmd = env::ExpandEnvironmentVariables(GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD));
 	String sFile(file);
 	strutils::replace(sCmd, _T("$linenum"), strutils::to_str(nLineNumber));
 
@@ -796,17 +847,6 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 }
 
 /**
- * @brief Open file, if it exists, else open url
- */
-void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
-{
-	if (paths::DoesPathExist(szFile) == paths::IS_EXISTING_FILE)
-		ShellExecute(nullptr, _T("open"), _T("notepad.exe"), szFile, nullptr, SW_SHOWNORMAL);
-	else
-		ShellExecute(nullptr, _T("open"), szUrl, nullptr, nullptr, SW_SHOWNORMAL);
-}
-
-/**
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */
@@ -823,7 +863,7 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 			::HtmlHelp(nullptr, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 		else
-			ShellExecute(nullptr, _T("open"), DocsURL, nullptr, nullptr, SW_SHOWNORMAL);
+			shell::Open(DocsURL);
 	}
 	else
 	{
@@ -863,7 +903,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		String path;
 		String filename;
 		String ext;
-	
+
 		paths::SplitFilename(paths::GetLongPath(pszPath), &path, &filename, &ext);
 
 		// Determine backup folder
@@ -926,7 +966,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		{
 			success = !!CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
 		}
-		
+
 		if (!success)
 		{
 			String msg = strutils::format_string1(
@@ -984,7 +1024,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	if (bFileExists && bFileRO)
 	{
 		UINT userChoice = 0;
-		
+
 		// Don't ask again if its already asked
 		if (bApplyToAll)
 			userChoice = IDYES;
@@ -1002,7 +1042,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			else
 			{
 				// Single file
-				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
+				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1013,6 +1053,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 		// Overwrite read-only file
 		case IDYESTOALL:
 			bApplyToAll = true;  // Don't ask again (no break here)
+			[[fallthrough]];
 		case IDYES:
 			CFile::GetStatus(strSavePath.c_str(), status);
 			status.m_mtime = 0;		// Avoid unwanted changes
@@ -1020,7 +1061,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			CFile::SetStatus(strSavePath.c_str(), status);
 			nRetVal = IDYES;
 			break;
-		
+
 		// Save to new filename (single) /skip this item (multiple)
 		case IDNO:
 			if (!bMultiFile)
@@ -1044,6 +1085,17 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 		}
 	}
 	return nRetVal;
+}
+
+String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName)
+{
+	return strutils::format_string2(
+		pane == 0 ? 
+			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
+			: (pane == paneCount - 1) ? 
+				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
+				: _("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
+		path, pluginName);
 }
 
 /**
@@ -1072,7 +1124,7 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to open project file");
+		String sErr = _("Unknown error attempting to open project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
@@ -1090,7 +1142,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to save project file");
+		String sErr = _("Unknown error attempting to save project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
@@ -1100,7 +1152,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	return true;
 }
 
-/** 
+/**
  * @brief Read project and perform comparison specified
  * @param [in] sProject Full path to project file.
  * @return `true` if loading project file and starting compare succeeded.
@@ -1110,7 +1162,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	ProjectFile project;
 	if (!LoadProjectFile(sProject, project))
 		return false;
-	
+
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
@@ -1235,7 +1287,7 @@ std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
  */
 void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 {
-	// sPathName will be added to the top of the MRU list. 
+	// sPathName will be added to the top of the MRU list.
 	// If sPathName already exists in the MRU list, it will be moved to the top
 	if (m_pRecentFileList != nullptr)    {
 		m_pRecentFileList->Add(sPathName);

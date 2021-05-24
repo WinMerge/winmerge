@@ -4,7 +4,6 @@
 #include "unicoder.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
-#include <Windows.h>
 
 CRegOptionsMgr m_optionsMgr;
 

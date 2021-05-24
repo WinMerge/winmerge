@@ -135,7 +135,7 @@ BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 /**
  * @brief Load a dll and import a number of functions.
  */
-static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
+static HMODULE DllProxyHelper(LPCSTR *proxy, LPCSTR dir)
 {
 	HMODULE handle = NULL;
 	if (LPCSTR name = *proxy)
@@ -151,7 +151,7 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 				0,
 				path,
 				sizeof path,
-				(va_list *)(&proxy + 1)
+				(va_list *)(&dir)
 			);
 			handle = LoadLibraryA(path);
 			if (handle)
@@ -192,6 +192,7 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 HRESULT Format7zDLL::Interface::CreateObject(const GUID *interfaceID, void **outObject)
 {
 	PROPVARIANT value;
+	PropVariantInit(&value);
 	HRESULT result = proxy->GetHandlerProperty(NArchive::NHandlerPropID::kClassID, &value);
 	if SUCCEEDED(result)
 	{
@@ -264,16 +265,31 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
  */
 Merge7z::Format::Inspector *Format7zDLL::Interface::Open(HWND hwndParent, LPCTSTR path)
 {
-	Inspector *inspector = new Inspector(this, path);
+	Inspector* inspector = nullptr;
 	try
 	{
-		inspector->Init(hwndParent);
+		Interface* pFormat = this;
+		while (pFormat)
+		{
+			inspector = new Inspector(pFormat, path);
+			try
+			{
+				inspector->Init(hwndParent);
+				break;
+			}
+			catch (Complain* complain)
+			{
+				inspector->Free();
+				inspector = 0;
+				pFormat = pFormat->next;
+				if (!pFormat)
+					throw complain;
+			}
+		}
 	}
 	catch (Complain *complain)
 	{
 		complain->Alert(hwndParent);
-		inspector->Free();
-		inspector = 0;
 	}
 	return inspector;
 }
@@ -694,38 +710,61 @@ STDMETHODIMP Format7zDLL::Proxy::GetHandlerProperty(PROPID propID, PROPVARIANT *
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 
-DEFINE_FORMAT(CFormat7z,		07, "7z", "7z\xBC\xAF\x27\x1C");
-DEFINE_FORMAT(CArjHandler,		04, "arj", "\x60\xEA");
-DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2", "BZh");
-DEFINE_FORMAT(CCabHandler,		08, "cab", "MSCF");
-DEFINE_FORMAT(CCpioHandler,		ED, "cpio", "");
-DEFINE_FORMAT(CDebHandler,		EC, "deb", "!<arch>\n");
-DEFINE_FORMAT(CLzhHandler,		06, "lzh lha", "@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
-DEFINE_FORMAT(CGZipHandler,		EF, "gz tgz", "\x1F\x8B");
-DEFINE_FORMAT(CRarHandler,		03, "rar", "Rar!\x1a\x07\x00");
-DEFINE_FORMAT(CRpmHandler,		EB, "rpm", "");
-DEFINE_FORMAT(CTarHandler,		EE, "tar", "");
-DEFINE_FORMAT(CZHandler,		05, "z", "\x1F\x9D");
 DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi", "PK\x03\x04");
-DEFINE_FORMAT(CChmHandler,		E9, "chm chi chq chw hxs hxi hxr hxq hxw lit", "ITSF");
-DEFINE_FORMAT(CIsoHandler,		E7, "iso", "");
+DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2", "BZh");
+DEFINE_FORMAT(CRarHandler,		03, "rar", "Rar!\x1a\x07\x00");
+DEFINE_FORMAT(CArjHandler,		04, "arj", "\x60\xEA");
+DEFINE_FORMAT(CZHandler,		05, "z", "\x1F\x9D");
+DEFINE_FORMAT(CLzhHandler,		06, "lzh lha", "@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
+DEFINE_FORMAT(CFormat7z,		07, "7z", "7z\xBC\xAF\x27\x1C");
+DEFINE_FORMAT(CCabHandler,		08, "cab", "MSCF");
 DEFINE_FORMAT(CNsisHandler,		09, "", "@@@@\xEF\xBE\xAD\xDENullsoftInst");
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 449
-DEFINE_FORMAT(CWimHandler,		E6, "wim swm", "MSWIM\x00\x00\x00");
-#endif
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 452
-DEFINE_FORMAT(CComHandler,		E5, "", "\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
-#endif
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 458
-DEFINE_FORMAT(CLzmaHandler,		0A, "lzma lzma86", "");
-#endif
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 459
-DEFINE_FORMAT(CXarHandler,		E1, "", "xar!\x00\x1C");
+DEFINE_FORMAT(CLzmaHandler,		0A, "lzma", "");
+DEFINE_FORMAT(CLzma86Handler,	0B, "lzma86", "");
+DEFINE_FORMAT(CXzHandler,		0C, "xz", "\xFD" "7zXZ" "\0");
+//DEFINE_FORMAT(CPpmdHandler,	0D, "ppmd", "");
+
+//DEFINE_FORMAT(CCOFFHandler,	C6, "obj", "L\x01");
+//DEFINE_FORMAT(CExtHandler,	C7, "ext ext2 ext3 ext4", "");
+//DEFINE_FORMAT(CVMDKHandler,	C8, "vmdk", "KDMV");
+//DEFINE_FORMAT(CVDIHandler,	C9, "vdi", "<<< Oracle VM VirtualBox Disk Image >>>");
+//DEFINE_FORMAT(CQcowHandler,	CA, "qcow qcow2 qcow2c", "");
+//DEFINE_FORMAT(CGPTHandler,	CB, "gpt", "EFI PART\0\0\x01\0");
+DEFINE_FORMAT(CRar5Handler,		CC, "rar", "Rar!\x1a\x07\x01\x00");
+//DEFINE_FORMAT(CIHEXHandler,	CD, "ihex", "");
+//DEFINE_FORMAT(CHxsHandler,	CE, "hxs hxi hxr hxq hxw lit", "");
+//DEFINE_FORMAT(CTEHandler,		CF, "te", "");
+//DEFINE_FORMAT(CUEFIcHandler,	D0, "scap", "");
+//DEFINE_FORMAT(CUEFIsHandler,	D1, "uefif", "");
+//DEFINE_FORMAT(CSquashFSHandler,	D2, "squashfs", "");
+//DEFINE_FORMAT(CCramFSHandler,	D3, "cramfs", "Compressed ROMFS");
+//DEFINE_FORMAT(CApmHandler,	D4, "apm", "");
+//DEFINE_FORMAT(CMslzHandler,	D5, "mslz", "");
+//DEFINE_FORMAT(CFlvHandler,	D6, "flv", "FLV\x01");
+//DEFINE_FORMAT(CSwfHandler,	D7, "swf", "");
+//DEFINE_FORMAT(CSwfcHandler,	D8, "swfc", "");
+//DEFINE_FORMAT(CNtfsHandler,	D9, "ntfs", "NTFS    \0");
+//DEFINE_FORMAT(CFatHandler,	DA, "fat", "\x55\xAA");
+//DEFINE_FORMAT(CMbrHandler,	DB, "mbr", "");
+//DEFINE_FORMAT(CVhdHandler,	DC, "vhd", "conectix");
+//DEFINE_FORMAT(CPeHandler,		DD, "exe dll msi cpl", "MZ");
+DEFINE_FORMAT(CElfHandler,		DE, "elf", "");
+//DEFINE_FORMAT(CMachOHandler,	DF, "macho", "");
+//DEFINE_FORMAT(CUdfHandler,	E0, "udf", "");
+DEFINE_FORMAT(CXarHandler,		E1, "xar pkg", "xar!\x00\x1C");
 DEFINE_FORMAT(CMubHandler,		E2, "mub", "");
 DEFINE_FORMAT(CHfsHandler,		E3, "hfs", "");
 DEFINE_FORMAT(CDmgHandler,		E4, "dmg", "");
-DEFINE_FORMAT(CElfHandler,		DE, "elf", "");
-#endif
+DEFINE_FORMAT(CComHandler,		E5, "", "\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
+DEFINE_FORMAT(CWimHandler,		E6, "wim swm", "MSWIM\x00\x00\x00");
+DEFINE_FORMAT(CIsoHandler,		E7, "iso", "");
+//DEFINE_FORMAT(CSplitHandler,	EA, "001 002 003 004 005 006 007 008 009", "");
+DEFINE_FORMAT(CChmHandler,		E9, "chm chi chq chw hxs hxi hxr hxq hxw lit", "ITSF");
+DEFINE_FORMAT(CRpmHandler,		EB, "rpm", "");
+DEFINE_FORMAT(CDebHandler,		EC, "deb", "!<arch>\n");
+DEFINE_FORMAT(CCpioHandler,		ED, "cpio", "");
+DEFINE_FORMAT(CTarHandler,		EE, "tar", "");
+DEFINE_FORMAT(CGZipHandler,		EF, "gz tgz", "\x1F\x8B");
 
 /**
  * @brief Construct Merge7z interface.

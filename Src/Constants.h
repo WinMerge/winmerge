@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include "UnicodeString.h"
+
 /** @brief URL for hyperlink in About-dialog. */
 const TCHAR WinMergeURL[] = _T("https://winmerge.org/");
 

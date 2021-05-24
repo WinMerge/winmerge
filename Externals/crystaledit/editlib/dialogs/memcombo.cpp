@@ -17,7 +17,6 @@
 #include "StdAfx.h"
 #include "editreg.h"
 #include "memcombo.h"
-#include "../utils/registry.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -70,26 +69,13 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
   if(!cnt)
     return;
   CClientDC      dc(&Control);
-  NONCLIENTMETRICS  info = { 0 };
-  CFont        oFont, *oldFont;
+  CFont        *oldFont;
   int          width = 0, nMax = ::GetSystemMetrics(SM_CXSCREEN) - 48;
   CRect        rc;
   CSize        size;
 
-  SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
-  info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
-  info.lfMenuFont.lfWidth = 0;
-  info.lfMenuFont.lfWeight = FW_THIN;
-  info.lfMenuFont.lfItalic = false;
-  info.lfMenuFont.lfUnderline = false;
-  info.lfMenuFont.lfCharSet = DEFAULT_CHARSET;
-  info.lfMenuFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
-  info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-  info.lfMenuFont.lfQuality = DEFAULT_QUALITY;
-  info.lfMenuFont.lfPitchAndFamily = FF_SWISS;
-  _tcscpy_s(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
-  oFont.CreateFontIndirect(&info.lfMenuFont);
-  oldFont = dc.SelectObject(&oFont);
+  CFont *pFont = Control.GetFont();
+  oldFont = dc.SelectObject(pFont);
   if(lpszText != nullptr && *lpszText != 0) {
     size = dc.GetTextExtent(lpszText);
     width = size.cx;
@@ -103,6 +89,7 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
         width = size.cx;
     }
   }
+  width += GetSystemMetrics(SM_CXVSCROLL) + 2 * GetSystemMetrics(SM_CXEDGE);
   Control.GetClientRect(rc);
   Control.ClientToScreen(rc);
   if(rc.left + width > nMax)
@@ -151,37 +138,28 @@ Fill (LPCTSTR text)
 void CMemComboBox::
 LoadSettings ()
 {
-  CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
-    {
-      static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
-      CString value;
+  static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
 
-      for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
-        {
-          if (reg.LoadString (name[i], value))
-            {
-              groups.SetAt (name[i], value);
-            }
-        }
+  for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
+    {
+      auto value = AfxGetApp ()->GetProfileString (EDITPAD_SECTION, name[i], _T(""));
+      if (!value.IsEmpty ())
+        groups.SetAt (name[i], value);
     }
 }
 
 void CMemComboBox::
 SaveSettings ()
 {
-  CReg reg;
-  if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
-    {
-      POSITION pos = groups.GetStartPosition ();
-      CString name, value;
+  POSITION pos = groups.GetStartPosition ();
+  CString name, value;
 
-      while (pos)
-        {
-          groups.GetNextAssoc (pos, name, value);
-          VERIFY (reg.SaveString (name, value));
-        }
+  while (pos)
+    {
+      groups.GetNextAssoc (pos, name, value);
+      VERIFY (AfxGetApp ()->WriteProfileString (EDITPAD_SECTION, name, value));
     }
+  
 }
 
 void CMemComboBox::

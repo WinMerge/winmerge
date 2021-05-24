@@ -35,7 +35,7 @@ void PropArchive::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropArchive, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropArchive, OptionsPanel)
 	ON_BN_CLICKED(IDC_ARCHIVE_ENABLE, OnEnableClicked)
 END_MESSAGE_MAP()
 

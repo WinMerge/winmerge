@@ -80,6 +80,7 @@ private:
 	HCURSOR const m_hCursorNo;
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
+	int m_retryCount;
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -98,36 +99,37 @@ protected:
 	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
-	void OnButton(int index);
-	void OnSelchangeCombo(int index);
 	void LoadComboboxStates();
 	void SaveComboboxStates();
 	String AskProjectFileName(bool bOpen);
+	void DropDown(NMHDR *pNMHDR, LRESULT *pResult, UINT nID, UINT nPopupID);
 
 // Generated message map functions
 protected:
 	//{{AFX_MSG(COpenView)
-	template <int N>
-	afx_msg void OnPathButton();
+	afx_msg void OnPathButton(UINT nID);
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
+	afx_msg void OnCompare(UINT nID);
+	afx_msg void OnUpdateCompare(CCmdUI *pCmdUI);
 	afx_msg void OnLoadProject();
 	afx_msg void OnSaveProject();
-	afx_msg void OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult);
-	template <int N>
-	afx_msg void OnSelchangePathCombo();
+	template<UINT id, UINT popupid>
+	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSelchangePathCombo(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSwapButton(int id1, int id2);
 	template<int id1, int id2>
 	afx_msg void OnSwapButton();
-	template <int N>
-	afx_msg void OnEditEvent();
+	afx_msg void OnEditEvent(UINT nID);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnOptions();
-	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnEditAction(int msg, WPARAM wParam, LPARAM LPARAM);
 	template <int MSG, int WPARAM = 0, int LPARAM = 0>
 	afx_msg void OnEditAction();
 	afx_msg void OnHelp();

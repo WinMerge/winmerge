@@ -25,8 +25,8 @@ using Poco::Exception;
 namespace FileTransform
 {
 
-PLUGIN_MODE g_UnpackerMode = PLUGIN_MANUAL;
-PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
+PLUGIN_MODE g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
+PLUGIN_MODE g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 
 
@@ -66,7 +66,7 @@ bool getPackUnpackPlugin(const String& pluginName, PluginInfo*& plugin, bool& bW
 }
 
 // known handler
-bool Packing(String & filepath, PackingInfo handler)
+bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
 {
 	// no handler : return true
 	if (handler.m_PluginName.empty())
@@ -91,7 +91,7 @@ bool Packing(String & filepath, PackingInfo handler)
 		bHandled = plugin::InvokePackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
-			piScript, handler.m_subcode);
+			piScript, handlerSubcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -99,7 +99,7 @@ bool Packing(String & filepath, PackingInfo handler)
 	{
 		bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
-			piScript, handler.m_subcode);
+			piScript, handlerSubcode);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -116,6 +116,26 @@ bool Packing(String & filepath, PackingInfo handler)
 	}
 
 	return bSuccess;
+}
+
+bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, int handlerSubcode)
+{
+	String csTempFileName = srcFilepath;
+	if (!Packing(csTempFileName, handler, handlerSubcode))
+		return false;
+	try
+	{
+		TFile file1(csTempFileName);
+		file1.copyTo(dstFilepath);
+		if (srcFilepath!= csTempFileName)
+			file1.remove();
+		return true;
+	}
+	catch (Poco::Exception& e)
+	{
+		LogErrorStringUTF8(e.displayText());
+		return false;
+	}
 }
 
 // known handler
@@ -166,7 +186,8 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 		return false;
 
 	// valid the subcode
-	*handlerSubcode = subcode;
+	if (handlerSubcode)
+		*handlerSubcode = subcode;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -182,8 +203,8 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 // scan plugins for the first handler
 bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
-	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
-	if (handler->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML)
+	// PLUGIN_MODE::PLUGIN_BUILTIN_XML : read source file through custom UniFile
+	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML)
 	{
 		handler->m_pufile = new UniMarkdownFile;
 		handler->m_textType = _T("xml");
@@ -197,6 +218,8 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	storageForPlugins bufferData;
 	bufferData.SetDataFileAnsi(filepath);
 
+	// temporary subcode 
+	int subcode = 0;
 	// control value
 	bool bHandled = false;
 
@@ -213,7 +236,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		bHandled = plugin::InvokeUnpackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
-			plugin->m_lpDispatch, handler->m_subcode);
+			plugin->m_lpDispatch, subcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -229,7 +252,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 			handler->m_PluginName = plugin->m_name;
 			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 				bufferData.GetNChanged(),
-				plugin->m_lpDispatch, handler->m_subcode);
+				plugin->m_lpDispatch, subcode);
 			if (bHandled)
 				bufferData.ValidateNewBuffer();
 		}
@@ -239,15 +262,16 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	{
 		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
 		handler->m_PluginName = _T("");
-		handler->m_subcode = 0;
+		subcode = 0;
 		bHandled = true;
 	}
 
 	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	// assign the sucode
-	*handlerSubcode = handler->m_subcode;
+	if (handlerSubcode)
+		*handlerSubcode = subcode;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -259,12 +283,12 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	return bSuccess;
 }
 
-bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
+bool Unpacking(PackingInfo *handler, int * handlerSubcode, String& filepath, const String& filteredText)
 {
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
-		return Unpacking(filepath, filteredText, handler, &handler->m_subcode);
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
+		return Unpacking(filepath, filteredText, handler, handlerSubcode);
 	else
-		return Unpacking(filepath, handler, &handler->m_subcode);
+		return Unpacking(filepath, handler, handlerSubcode);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -405,7 +429,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	}
 
 	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -419,7 +443,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 
 bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
 {
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
 	else
 		return Prediffing(filepath, *handler, bMayOverwrite);
@@ -536,6 +560,16 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	plugin::InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
+}
+
+String GetUnpackedFileExtension(const String& filteredFilenames, const PackingInfo* handler)
+{
+	PluginInfo* plugin = nullptr;
+	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL && !handler->m_PluginName.empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, handler->m_PluginName.c_str());
+	else
+		plugin = CAllThreadsScripts::GetActiveSet()->GetUnpackerPluginByFilter(filteredFilenames);
+	return plugin ? plugin->m_ext : _T("");
 }
 
 }

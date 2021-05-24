@@ -740,6 +740,19 @@ int iseolch (char ch)
   return ch=='\n' || ch=='\r';
 }
 
+int is_blank_line (char const *pch, char const *limit)
+{
+  while (pch < limit)
+    {
+      if ((*pch) == '\n' || (*pch) == '\r')
+        break;
+      if ((*pch) != ' ' && (*pch) != '\t')
+        return 0;
+      pch++;
+    }
+  return 1;
+}
+
 /* Look at a hunk of edit script and report the range of lines in each file
    that it applies to.  HUNK is the start of the hunk, which is a chain
    of `struct change'.  The first and last line numbers of file 0 are stored in
@@ -754,7 +767,10 @@ int iseolch (char ch)
    set to 0.  */
 
 void
-analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *last1, int *deletes, int *inserts, const struct file_data fd[])
+analyze_hunk (struct change *hunk, 
+    int *first0, int *last0, 
+    int *first1, int *last1, 
+    int *deletes, int *inserts, const struct file_data fd[])
 {
   int l0, l1, show_from, show_to;
   int i;
@@ -775,18 +791,37 @@ analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *la
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(fd[0].linbuf[i][0]) &&
-            fd[0].linbuf[i][0] != 0))
-          {
-            trivial = 0;
-          }
-
+        {
+          if (!ignore_blank_lines_flag)
+            {
+              trivial = 0;
+            }
+          else if (ignore_all_space_flag | ignore_space_change_flag)
+            {
+              if (!is_blank_line(fd[0].linbuf[i], fd[0].linbuf[i + 1]))
+                trivial = 0;
+            }
+          else if (!iseolch(fd[0].linbuf[i][0]) && fd[0].linbuf[i][0] != 0)
+            {
+              trivial = 0;
+            }
+        }
       for (i = next->line1; i <= l1 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(fd[1].linbuf[i][0]) &&
-            fd[1].linbuf[i][0] != 0))
-          {
-            trivial = 0;
-          }
+        {
+          if (!ignore_blank_lines_flag)
+            {
+              trivial = 0;
+            }
+          else if (ignore_all_space_flag | ignore_space_change_flag)
+            {
+              if (!is_blank_line(fd[1].linbuf[i], fd[1].linbuf[i + 1]))
+                trivial = 0;
+            }
+          else if (!iseolch(fd[1].linbuf[i][0]) && fd[1].linbuf[i][0] != 0)
+            {
+              trivial = 0;
+            }
+        }
     }
   while ((next = next->link) != NULL);
 

@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FFB6D02A-782B-48EF-8398-7F8862859616}</ProjectGuid>
+    <SccProjectName />
+    <SccLocalPath />
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '16'">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Build\$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Build\$(Platform)\$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">..\..\Build\$(Platform)\$(Configuration)\Merge7z\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Build\$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Build\$(Platform)\$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">..\..\Build\$(Platform)\$(Configuration)\Merge7z\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">..\..\BuildTmp\$(ProjectName)\$(Platform)\$(Configuration)/</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Merge7z</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Merge7z</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Merge7z</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Merge7z</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Merge7z</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Merge7z</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;shell32.lib;ole32.lib;oleaut32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)/Merge7z1602.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)/</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;shell32.lib;ole32.lib;oleaut32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
+      <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>$(IntDir)/Merge7z1602.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Merge7z.def" />
+    <None Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\FM.ico" />
+    <None Include="revision.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.h" />
+    <ClInclude Include="Merge7z.h" />
+    <ClInclude Include="Merge7zCommon.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="tools.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\DLL.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\ErrorMsg.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileIO.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\Windows\Control\ListView.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\PropVariant.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\PropVariantConv.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\ResourceString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Synchronization.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\IntToString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\Lang.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\MyString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Archive\Common\OutStreamWithCRC.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\StringConvert.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\StringToInt.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\TextConfig.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\UTFConvert.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveExtractCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveOpenCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\DefaultName.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Control\Dialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\EnumDirItems.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ExtractCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FileStreams.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\UniqBlocks.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\FormatUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\LangUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\LoadCodecs.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MessagesDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\OpenArchive.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OpenCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OverwriteDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PasswordDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgramLocation.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PropertyName.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\ProgressUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Compress\CopyCoder.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\UpdateCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI2.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Window.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ExtractingFilePath.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\PropIDUTils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SetProperties.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileDir.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileFind.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileName.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilePathAutoRename.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\LimitedStreams.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamObjects.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\MyVector.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\Wildcard.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\7zCrc.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\Alloc.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\CpuArch.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\Threads.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\C\7zCrcOpt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Merge7z907.cpp" />
+    <ClCompile Include="Merge7zCommon.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tools.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\DLL.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\ErrorMsg.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileIO.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileLink.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\Windows\Control\ListView.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\PropVariant.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\PropVariantConv.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\ResourceString.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Synchronization.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\IntToString.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\Lang.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\MyString.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Archive\Common\OutStreamWithCRC.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\StringConvert.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\StringToInt.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\TextConfig.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\UTFConvert.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Common\ArchiveExtractCallback.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\DefaultName.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Control\Dialog.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\EnumDirItems.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ExtractCallback.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FileStreams.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\UniqBlocks.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\FormatUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\LangUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\LoadCodecs.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MessagesDialog.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\OpenArchive.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OpenCallback.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OverwriteDialog.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PasswordDialog.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgramLocation.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgressDialog2.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PropertyName.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\ProgressUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\PropId.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Compress\CopyCoder.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\UpdateCallback.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI2.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Window.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Common\ExtractingFilePath.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\PropIDUTils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SetProperties.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileDir.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileFind.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileName.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilePathAutoRename.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\LimitedStreams.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamObjects.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\MyVector.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\Wildcard.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\C\7zCrc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\C\Alloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\C\CpuArch.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\C\Threads.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\7zG.exe.manifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

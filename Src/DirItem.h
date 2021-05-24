@@ -10,19 +10,8 @@
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 #include <boost/flyweight.hpp>
+#include "FileFlags.h"
 #include "UnicodeString.h"
-#include "FileVersion.h"
-
-/**
- * @brief Class for fileflags.
- */
-struct FileFlags
-{
-	unsigned attributes; /**< Fileattributes for item */
-	FileFlags() : attributes(0) { }
-	void reset() { attributes = 0; } /// Reset fileattributes
-	String ToString() const;
-};
 
 /**
  * @brief Information for file.
@@ -40,7 +29,6 @@ struct DirItem
 	Poco::File::FileSize size; /**< file size in bytes, FILE_SIZE_NONE (== -1) means file does not exist*/
 	boost::flyweight<String> filename; /**< filename for this item */
 	boost::flyweight<String> path; /**< full path (excluding filename) for the item */
-	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 	
 	enum : uint64_t { FILE_SIZE_NONE = UINT64_MAX };

@@ -38,7 +38,7 @@ void PropMarkerColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(PropMarkerColors, CDialog)
+BEGIN_MESSAGE_MAP(PropMarkerColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropMarkerColors)
 	ON_COMMAND_RANGE(IDC_MARKER0_BKGD_COLOR, IDC_MARKER3_BKGD_COLOR, OnMarkerColors)
 	//}}AFX_MSG_MAP

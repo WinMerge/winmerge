@@ -14,6 +14,7 @@ IF "%OS%" == ""                          Set DLLPATH=%0\..\ShellExtension.dll
 IF "%PROCESSOR_ARCHITECTURE%" == "x86"   Set DLLPATH=%~dp0%ShellExtensionU.dll
 IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" Set DLLPATH=%~dp0%ShellExtensionX64.dll
 IF "%PROCESSOR_ARCHITECTURE%" == "IA64"  Set DLLPATH=%~dp0%ShellExtensionX64.dll
+IF "%PROCESSOR_ARCHITECTURE%" == "ARM64" Set DLLPATH=%~dp0%ShellExtensionARM64.dll
 
 IF "%1" == "/u" Goto Uninstall
 IF "%1" == "/U" Goto Uninstall
@@ -34,7 +35,7 @@ IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" Call :Execute "%~dp0\WinMerge32Bit
 Goto End
 
 :Execute
-Ver | %WINDIR%\System32\Find "Version 5." > NUL
+Ver | %WINDIR%\System32\Find " 5." > NUL
 IF NOT ERRORLEVEL 1 (
   rem Windows 2000, XP, Sever 2003
   %1 %2 %3

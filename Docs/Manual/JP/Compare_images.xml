@@ -110,6 +110,20 @@
             Threshold</emphasis> which helps to ignore color differences.</para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term>Ins/Del Detection</term>
+          <listitem>
+            <para>TBD</para>
+            <itemizedlist>
+              <listitem><guilabel>None</guilabel></listitem>
+              <listitem><guilabel>Vertical</guilabel></listitem>
+              <listitem><guilabel>Horizontal</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
       </variablelist>
     </section>
 

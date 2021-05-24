@@ -102,7 +102,7 @@ bool ParseConflictFile(const String& conflictFileName,
 	bool success4 = baseRevision.Open(baseRevisionFileName, _T("wb"));
 
 	// detect codepage of conflict file
-	FileTextEncoding encoding = GuessCodepageEncoding(conflictFileName, iGuessEncodingType);
+	FileTextEncoding encoding = codepage_detect::Guess(conflictFileName, iGuessEncodingType);
 
 	conflictFile.SetUnicoding(encoding.m_unicoding);
 	conflictFile.SetBom(encoding.m_bom);

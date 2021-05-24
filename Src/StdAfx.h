@@ -57,7 +57,6 @@
 #include <functional>
 #include <cassert>
 #include <ctime>
-#include <tchar.h>
 
 /**
  * @name User-defined Windows-messages

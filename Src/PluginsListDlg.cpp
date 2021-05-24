@@ -96,9 +96,9 @@ void PluginsListDlg::InitList()
 void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
+	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	AddPluginsToList(L"FILE_PACK_UNPACK", type);
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type);
 	AddPluginsToList(L"BUFFER_PREDIFF", type);

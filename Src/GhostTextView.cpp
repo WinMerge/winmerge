@@ -205,7 +205,7 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 
 void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		int nEndLine, int nEndChar, CString &text,
-		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pGhostTextBuffer != nullptr)
@@ -224,7 +224,7 @@ void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool
 
 	PrepareSelBounds ();
 
-	CString sEol = m_pGhostTextBuffer->GetStringEol (CRLF_STYLE_DOS);
+	CString sEol = m_pGhostTextBuffer->GetStringEol (CRLFSTYLE::DOS);
 
 	int nBufSize = 1;
 	for (int L = m_ptDrawSelStart.y; L <= m_ptDrawSelEnd.y; L++)

@@ -512,7 +512,7 @@ static void unslash(std::wstring &s)
 {
 	wchar_t *p = &*s.begin();
 	wchar_t *q = p;
-	wchar_t c;
+	wchar_t c = {};
 	do
 	{
 		wchar_t *r = q + 1;
@@ -551,7 +551,7 @@ static void unslash(std::wstring &s)
 			}
 			if (q >= r)
 				break;
-			// fall through
+			[[fallthrough]];
 		default:
 			*p = c;
 			q = r;
@@ -590,6 +590,26 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::wstring format;
 	std::wstring msgstr;
 	std::wstring directive;
+	auto addToMap = [&]() {
+		ps = nullptr;
+		if (!msgctxt.empty())
+			unslash(msgctxt);
+		if (!msgid.empty())
+			unslash(msgid);
+		if (msgstr.empty())
+			msgstr = msgid;
+		unslash(msgstr);
+		if (!msgid.empty())
+		{
+			if (msgctxt.empty())
+				m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
+			else
+				m_map_msgid_to_msgstr.insert_or_assign(L"\x01\"" + msgctxt + L"\"" + msgid, msgstr);
+		}
+		msgctxt.erase();
+		msgid.erase();
+		msgstr.erase();
+	};
 	while (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 	{
 		if (wchar_t *p1 = EatPrefix(buf, L"#,"))
@@ -626,27 +646,12 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			}
 			else
 			{
-				ps = nullptr;
-				if (!msgctxt.empty())
-					unslash(msgctxt);
-				if (!msgid.empty())
-					unslash(msgid);
-				if (msgstr.empty())
-					msgstr = msgid;
-				unslash(msgstr);
-				if (!msgid.empty())
-				{
-					if (msgctxt.empty())
-						m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
-					else
-						m_map_msgid_to_msgstr.insert_or_assign(L"\x01\"" + msgctxt + L"\"" + msgid, msgstr);
-				}
-				msgctxt.erase();
-				msgid.erase();
-				msgstr.erase();
+				addToMap();
 			}
 		}
 	}
+	if (ps != nullptr)
+		addToMap();
 	fclose(f);
 	return true;
 }

@@ -19,8 +19,6 @@ CompareOptions::CompareOptions()
 , m_bIgnoreBlankLines(false)
 , m_bIgnoreCase(false)
 , m_bIgnoreEOLDifference(false)
-, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
-, m_bIndentHeuristic(true)
 {
 }
 
@@ -32,8 +30,6 @@ CompareOptions::CompareOptions(const CompareOptions & options)
 , m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
 , m_bIgnoreCase(options.m_bIgnoreCase)
 , m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
-, m_diffAlgorithm(options.m_diffAlgorithm)
-, m_bIndentHeuristic(options.m_bIndentHeuristic)
 {
 }
 
@@ -45,6 +41,9 @@ DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
 : CompareOptions(options)
 , m_contextLines(options.m_contextLines)
 , m_filterCommentsLines(options.m_filterCommentsLines)
+, m_diffAlgorithm(options.m_diffAlgorithm)
+, m_bIndentHeuristic(options.m_bIndentHeuristic)
+, m_bCompletelyBlankOutIgnoredDiffereneces(options.m_bCompletelyBlankOutIgnoredDiffereneces)
 , m_outputStyle(options.m_outputStyle)
 {
 }
@@ -73,6 +72,54 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
+}
+
+/**
+ * @brief Default constructor.
+ */
+QuickCompareOptions::QuickCompareOptions()
+: m_bStopAfterFirstDiff(false)
+{
+
+}
+
+/**
+ * @brief Default constructor.
+ */
+DiffutilsOptions::DiffutilsOptions()
+: m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_contextLines(0)
+, m_filterCommentsLines(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
+, m_bIndentHeuristic(true)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+{
+}
+
+/**
+ * @brief Constructor cloning CompareOptions.
+ * @param [in] options CompareOptions instance to clone.
+ */
+DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
+: CompareOptions(options)
+, m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_contextLines(0)
+, m_filterCommentsLines(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
+, m_bIndentHeuristic(true)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+{
+}
+
+/**
+ * @brief Sets options from DIFFOPTIONS structure.
+ * @param [in] options Diffutils options.
+ */
+void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
+{
+	CompareOptions::SetFromDiffOptions(options);
+	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
+	m_filterCommentsLines = options.bFilterCommentsLines;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{
@@ -92,47 +139,6 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 		throw "Unknown diff algorithm value!";
 		break;
 	}
-}
-
-/**
- * @brief Default constructor.
- */
-QuickCompareOptions::QuickCompareOptions()
-: m_bStopAfterFirstDiff(false)
-{
-
-}
-
-/**
- * @brief Default constructor.
- */
-DiffutilsOptions::DiffutilsOptions()
-: m_outputStyle(DIFF_OUTPUT_NORMAL)
-, m_contextLines(0)
-, m_filterCommentsLines(false)
-{
-}
-
-/**
- * @brief Constructor cloning CompareOptions.
- * @param [in] options CompareOptions instance to clone.
- */
-DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
-: CompareOptions(options)
-, m_outputStyle(DIFF_OUTPUT_NORMAL)
-, m_contextLines(0)
-, m_filterCommentsLines(false)
-{
-}
-
-/**
- * @brief Sets options from DIFFOPTIONS structure.
- * @param [in] options Diffutils options.
- */
-void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
-{
-	CompareOptions::SetFromDiffOptions(options);
-	m_filterCommentsLines = options.bFilterCommentsLines;
 }
 
 /**
@@ -214,6 +220,7 @@ void DiffutilsOptions::SetToDiffUtils()
  */
 void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 {
+	options.bCompletelyBlankOutIgnoredChanges = m_bCompletelyBlankOutIgnoredDiffereneces;
 	options.bFilterCommentsLines = m_filterCommentsLines;
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
 	options.bIgnoreCase = m_bIgnoreCase;

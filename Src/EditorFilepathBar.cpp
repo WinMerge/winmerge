@@ -83,10 +83,10 @@ void CEditorFilePathBar::Resize()
 	if (m_hWnd == nullptr)
 		return;
 
-	WINDOWPLACEMENT infoBar;
+	WINDOWPLACEMENT infoBar = {};
 	GetWindowPlacement(&infoBar);
 
-	int widths[3];
+	int widths[3] = {};
 	for (int pane = 0; pane < m_nPanes; pane++)
 		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes);
 	Resize(widths);

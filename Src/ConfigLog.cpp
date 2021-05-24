@@ -268,9 +268,13 @@ bool CConfigLog::DoFile(String &sError)
 
 	if (!m_pfile->OpenCreateUtf8(m_sFileName))
 	{
-		const UniFile::UniError &err = m_pfile->GetLastUniError();
-		sError = err.GetError();
-		return false;
+		m_sFileName = paths::ConcatPath(env::GetTemporaryPath(), _T("WinMerge.txt"));
+		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+		{
+			const UniFile::UniError& err = m_pfile->GetLastUniError();
+			sError = err.GetError();
+			return false;
+		}
 	}
 	m_pfile->SetBom(true);
 	m_pfile->WriteBom();
@@ -356,6 +360,7 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T(        " WinMerge:            Path names are relative to the Code File's directory.\r\n"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionU.dll"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionX64.dll"));
+	WriteVersionOf1(2, _T(".\\ShellExtensionARM64.dll"));
 	WriteVersionOf1(2, _T(".\\Frhed\\hekseditU.dll"));
 	WriteVersionOf1(2, _T(".\\WinIMerge\\WinIMergeLib.dll"));
 	WriteVersionOf1(2, _T(".\\Merge7z\\7z.dll"));
@@ -401,7 +406,7 @@ bool CConfigLog::DoFile(String &sError)
  * @brief Parse Windows version data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetWindowsVer() const
+String CConfigLog::GetWindowsVer()
 {
 	CRegKeyEx key;
 	if (key.QueryRegMachine(_T("Software\\Microsoft\\Windows NT\\CurrentVersion")))
@@ -414,7 +419,7 @@ String CConfigLog::GetWindowsVer() const
  * @brief Parse Processor Information data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetProcessorInfo() const
+String CConfigLog::GetProcessorInfo()
 {
 	CRegKeyEx key;
 	String sProductName = _T("");
@@ -448,7 +453,7 @@ String CConfigLog::GetProcessorInfo() const
 /** 
  * @brief Return string representation of build flags (for reporting in config log)
  */
-String CConfigLog::GetBuildFlags() const
+String CConfigLog::GetBuildFlags()
 {
 	String flags;
 

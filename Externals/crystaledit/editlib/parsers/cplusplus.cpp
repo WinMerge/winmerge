@@ -35,7 +35,7 @@
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszCppKeywordList[] =
+static const TCHAR * s_apszCppKeywordList[] =
   {
     _T ("__asm"),
     _T ("__based"),
@@ -158,7 +158,7 @@ static LPCTSTR s_apszCppKeywordList[] =
     _T ("xalloc"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("BOOL"),
     _T ("BSTR"),
@@ -228,26 +228,34 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsCppKeyword (LPCTSTR pszChars, int nLength)
+IsCppKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszCppKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineC (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineC (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+{
+  return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsCppKeyword, IsUser1Keyword);
+}
+
+unsigned
+CrystalLineParser::ParseLineCJava (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems,
+	bool (*IsKeyword)(const TCHAR *pszChars, int nLength),
+	bool (*IsUser1Keyword)(const TCHAR *pszChars, int nLength))
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -412,11 +420,11 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsCppKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+              if (IsKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
                 }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsUser1Keyword && IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
                 }
@@ -457,7 +465,7 @@ out:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsUser1Keyword && IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
         }

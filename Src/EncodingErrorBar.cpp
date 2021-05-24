@@ -29,7 +29,7 @@ void CEncodingErrorBar::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CEncodingErrorBar, CDialogBar)
+BEGIN_MESSAGE_MAP(CEncodingErrorBar, CTrDialogBar)
 	//{{AFX_MSG_MAP(CEncodingErrorBar)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()

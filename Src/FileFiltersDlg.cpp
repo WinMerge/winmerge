@@ -33,7 +33,7 @@ static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
-IMPLEMENT_DYNCREATE(FileFiltersDlg, CPropertyPage)
+IMPLEMENT_DYNCREATE(FileFiltersDlg, CTrPropertyPage)
 
 /**
  * @brief Constructor.
@@ -56,7 +56,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
+BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
@@ -198,6 +198,8 @@ void FileFiltersDlg::OnOK()
 	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
 	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
 
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
+
 	CDialog::OnOK();
 }
 
@@ -233,7 +235,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
  */
 void FileFiltersDlg::EditFileFilter(const String& path)
 {
-	theApp.OpenFileToExternalEditor(path);
+	CMergeApp::OpenFileToExternalEditor(path);
 }
 
 /**

@@ -152,11 +152,11 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM &di);
 bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilterSettings& filter);
 
 bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
+		PathContext &paths, int & sel1, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir = true);
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFFITEM *pos1, DIFFITEM *pos2, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
+		PathContext &paths, int & sel1, int & sel2, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir = true);
 bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3, const DIFFITEM *pdi[3],
-		PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg, bool openableForDir = true);
+		PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir = true);
 
 void GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di, String& strLeft, String& strRight);
 PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di);
@@ -165,7 +165,9 @@ int GetColImage(const DIFFITEM &di);
 
 void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask);
 void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
-void SetDiffSide(DIFFITEM& di, unsigned diffcode);
+void CopyDiffSide(DIFFITEM& di, int src, int dst);
+void UnsetDiffSide(DIFFITEM& di, int index);
+void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored);
 void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask);
 void SetItemViewFlag(CDiffContext& ctxt, unsigned flag, unsigned mask);
@@ -709,7 +711,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->m_PluginOrPredifferMode == PLUGIN_AUTO || !prediffer->m_PluginName.empty())
+			if (prediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_AUTO || !prediffer->m_PluginName.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;

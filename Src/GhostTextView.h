@@ -106,7 +106,7 @@ public:
 
 	void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
-			CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
+			CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,
 			bool bExcludeInvisibleLines = true);
 	void GetTextWithoutEmptysInColumnSelection (CString & text,
 			bool bExcludeInvisibleLines = true);

@@ -7,7 +7,7 @@ CompanyName=Thingamahoochie Software
 ;Types
 TypicalInstallation=Tipièna namestitev
 FullInstallation=Popolna namestitev
-CompactInstallation=Kompaktna namestitev
+CompactInstallation=Strnjena namestitev
 CustomInstallation=Namestitev po meri
 
 ;Components
@@ -78,7 +78,7 @@ AutoMergeAtStartup=Samodejno združi ob zagonu
 ;Icon Labels
 ReadMe=Beri me
 UsersGuide=Uporabniški priroènik
-ViewStartMenuFolder=&Ogled si mape zaèetnega menija WinMerge
+ViewStartMenuFolder=&Ogled mape zaèetnega menija WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Namestitveni program je zaznal, da ste spremenili mesto svojega zaèetnega menija iz "%s" v "%s".  Ali želite izbrisati prejšnjo mapo zaèetnega menija?

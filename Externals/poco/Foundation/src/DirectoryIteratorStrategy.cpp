@@ -61,7 +61,7 @@ const std::string ChildrenFirstTraverse::next(Stack* itStack, bool* isFinished)
 	poco_check_ptr(isFinished);
 	poco_assert(!(*isFinished));
 
-	std::stack<DirectoryIterator> it;
+	//std::stack<DirectoryIterator> it;
 
 	//_depthDeterminer(it);
 

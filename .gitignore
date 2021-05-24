@@ -1,20 +1,3 @@
-
-**/.vs
-**/ipch
-**/BuildTmp
-**/Build
-**/obj64
-**/obj
-**/lib64
-**/lib
-**/x64Release
-**/Release
-**/x64Debug
-**/Debug
-**/Unicode Debug
-**/Unicode Release
-winmerge-cppcheck-build-dir/
-
 *.exe
 *.dll
 *.pdb
@@ -39,15 +22,52 @@ winmerge-cppcheck-build-dir/
 *.log
 *.diagsession
 *.asm
-
-Testing/Data/ShellFileOpTest/File1.txt
-Translations/WinMerge/MergeLang.lastbuild
-/ShellExtension/dlldata.c
-/ShellExtension/ShellExtension.h
-/ShellExtension/ShellExtension_i.c
-/ShellExtension/ShellExtension_p.c
-Translations/WinMerge/TranslationsStatus.html
-Translations/WinMerge/TranslationsStatus.wiki
-Translations/WinMerge/TranslationsStatus.xml
+*.swp
+**/.vs
+**/ipch
+**/BuildTmp
+**/Build
+**/objARM64
+**/obj64
+**/obj
+**/libARM64
+**/lib64
+**/lib
+**/Release
+**/Debug
+**/DebugU
+**/Release*MinDependency
+**/Release*MinSize
+**/Unicode Debug
+**/Unicode Release
+**/Unicode Release*MinDependency
+**/Unicode Release*MinSize
+**/ARM64Release
+**/ARM64Debug
+**/x64Release
+**/x64Debug
+winmerge-cppcheck-build-dir/
 Docs/Manual/Tools/ReadMe_ENG.html
-*.asm
+Testing/Data/ShellFileOpTest/File1.txt
+Testing/result-*.txt
+Translations/WinMerge/MergeLang.lastbuild
+ShellExtension/*_i.c
+ShellExtension/*_p.c
+ShellExtension/dlldata.c
+ShellExtension/ShellExtension.h
+ShellExtension/ShellExtension_i.c
+ShellExtension/ShellExtension_p.c
+Plugins/**/dlldata.c
+Plugins/**/*_i.c
+Plugins/**/*_i.h
+Plugins/**/*_p.c
+Plugins/src_VCPP/DisplayBinaryFiles/DisplayBinaryFiles.h
+Plugins/src_VCPP/DisplayXMLFiles/DisplayXMLFiles.h
+Plugins/src_VCPP/HideFirstLetter/HideFirstLetter.h
+Plugins/src_VCPP/EditBinaryFiles/EditBinaryFiles.h
+Plugins/src_VCPP/IgnoreColumns/IgnoreColumns.h
+Plugins/src_VCPP/IgnoreCommentsC/IgnoreCommentsC.h
+Plugins/src_VCPP/IgnoreFieldsComma/IgnoreFieldsComma.h
+Plugins/src_VCPP/IgnoreFieldsTab/IgnoreFieldsTab.h
+Plugins/src_VCPP/WatchBeginningOfLog/WatchBeginningOfLog.h
+Plugins/src_VCPP/WatchEndOfLog/WatchEndOfLog.h

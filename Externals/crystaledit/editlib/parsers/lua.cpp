@@ -25,7 +25,7 @@
 #endif
 
 //  Lua keywords
-static LPCTSTR s_apszLuaKeywordList[] =
+static const TCHAR * s_apszLuaKeywordList[] =
   {
 _T ("and"),
 _T ("break"),
@@ -51,13 +51,13 @@ _T ("while"),
   };
 
 static bool
-IsLuaKeyword (LPCTSTR pszChars, int nLength)
+IsLuaKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszLuaKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineLua (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineLua (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000);

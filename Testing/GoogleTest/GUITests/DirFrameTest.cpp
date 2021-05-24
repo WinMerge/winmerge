@@ -20,7 +20,7 @@ public:
 		std::string dir1 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir1\\").u8string();
 		std::string dir2 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir2\\").u8string();
 		std::string lang = std::to_string(GetParam());
-		m_hwndWinMerge = execWinMerge(("/noprefs /maxmize /cfg Locale/LanguageId=" + lang + " /r " + dir1 + " " + dir2).c_str());
+		m_hwndWinMerge = execWinMerge(("/noprefs /maximize /cfg Locale/LanguageId=" + lang + " /r " + dir1 + " " + dir2).c_str());
 	}
 
 	virtual ~DirFrameTest()
@@ -180,8 +180,8 @@ TEST_P(DirFrameTest, ViewFont)
 
 TEST_P(DirFrameTest, ViewSwapPanes)
 {
-	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
-	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
+	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
+	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 }
 
 TEST_P(DirFrameTest, ViewCompareStatistics)

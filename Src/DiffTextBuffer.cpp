@@ -57,20 +57,20 @@ static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 {
 	// Check if file has more than one EOL type.
 	if (!IsTextFileStylePure(stats))
-			return CRLF_STYLE_MIXED;
+			return CRLFSTYLE::MIXED;
 	else if (stats.ncrlfs >= stats.nlfs)
 	{
 		if (stats.ncrlfs >= stats.ncrs)
-			return CRLF_STYLE_DOS;
+			return CRLFSTYLE::DOS;
 		else
-			return CRLF_STYLE_MAC;
+			return CRLFSTYLE::MAC;
 	}
 	else
 	{
 		if (stats.nlfs >= stats.ncrs)
-			return CRLF_STYLE_UNIX;
+			return CRLFSTYLE::UNIX;
 		else
-			return CRLF_STYLE_MAC;
+			return CRLFSTYLE::MAC;
 	}
 }
 
@@ -230,15 +230,14 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!FileTransform::Unpacking(infoUnpacker, m_strTempFileName, sToFindUnpacker))
+	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcode, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
-	m_unpackerSubcode = infoUnpacker->m_subcode;
 
 	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_AUTO);
+	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = m_strTempFileName.c_str();
 
@@ -275,7 +274,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-			FileTextEncoding encoding2 = GuessCodepageEncoding(pszFileName, iGuessEncodingType);
+			FileTextEncoding encoding2 = codepage_detect::Guess(pszFileName, iGuessEncodingType);
 			pufile->SetUnicoding(encoding2.m_unicoding);
 			pufile->SetCodepage(encoding2.m_codepage);
 			pufile->SetBom(encoding2.m_bom);
@@ -341,11 +340,11 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	
 		
 		//Try to determine current CRLF mode (most frequent)
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+		if (nCrlfStyle == CRLFSTYLE::AUTOMATIC)
 		{
 			nCrlfStyle = GetTextFileStyle(pufile->GetTxtStats());
 		}
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 3);
+		ASSERT (nCrlfStyle != CRLFSTYLE::AUTOMATIC);
 		SetCRLFMode(nCrlfStyle);
 		
 		//  At least one empty line must present
@@ -413,12 +412,12 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  */
 int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= nullptr*/,
-		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)
 {
-	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
-		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
+	ASSERT (nCrlfStyle == CRLFSTYLE::AUTOMATIC || nCrlfStyle == CRLFSTYLE::DOS ||
+		nCrlfStyle == CRLFSTYLE::UNIX || nCrlfStyle == CRLFSTYLE::MAC);
 	ASSERT (m_bInit);
 
 	if (nLines == -1)
@@ -427,13 +426,13 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	if (pszFileName.empty())
 		return SAVE_FAILED;	// No filename, cannot save...
 
-	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
+	if (nCrlfStyle == CRLFSTYLE::AUTOMATIC &&
 		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		infoUnpacker!=nullptr && infoUnpacker->m_bDisallowMixedEOL)
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 3);
+		ASSERT(nCrlfStyle != CRLFSTYLE::AUTOMATIC);
 	}
 
 	bool bOpenSuccess = true;
@@ -519,7 +518,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		}
 
 		// normal line : append an EOL
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_MIXED)
+		if (nCrlfStyle == CRLFSTYLE::AUTOMATIC || nCrlfStyle == CRLFSTYLE::MIXED)
 		{
 			// either the EOL of the line (when preserve original EOL chars is on)
 			sLine += GetLineEol(line);
@@ -547,58 +546,32 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		String csTempFileName = sIntermediateFilename;
-		infoUnpacker->m_subcode = m_unpackerSubcode;
-		if (!FileTransform::Packing(csTempFileName, *infoUnpacker))
-		{
-			try
-			{
-				TFile(sIntermediateFilename).remove();
-			}
-			catch (Exception& e)
-			{
-				LogErrorStringUTF8(e.displayText());
-			}
-			// returns now, don't overwrite the original file
-			return SAVE_PACK_FAILED;
-		}
-		// the temp filename may have changed during packing
-		if (csTempFileName != sIntermediateFilename)
-		{
-			try
-			{
-				TFile(sIntermediateFilename).remove();
-			}
-			catch (Exception& e)
-			{
-				LogErrorStringUTF8(e.displayText());
-			}
-			sIntermediateFilename = csTempFileName;
-		}
-
-		// Write tempfile over original file
+		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcode);
 		try
 		{
-			TFile file1(sIntermediateFilename);
-			file1.copyTo(pszFileName);
-			file1.remove();
-			if (bClearModifiedFlag)
-			{
-				SetModified(false);
-				m_nSyncPosition = m_nUndoPosition;
-			}
-			bSaveSuccess = true;
-
-			// remember revision number on save
-			m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
-
-			// redraw line revision marks
-			UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
+			TFile(sIntermediateFilename).remove();
 		}
 		catch (Exception& e)
 		{
 			LogErrorStringUTF8(e.displayText());
 		}
+		if (!bSaveSuccess)
+		{
+			// returns now, don't overwrite the original file
+			return SAVE_PACK_FAILED;
+		}
+
+		if (bClearModifiedFlag)
+		{
+			SetModified(false);
+			m_nSyncPosition = m_nUndoPosition;
+		}
+
+		// remember revision number on save
+		m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
+
+		// redraw line revision marks
+		UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
 	}
 	else
 	{

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>MergeLang</ProjectName>
+    <ProjectGuid>{4B011DDA-2279-437D-903C-8028913AF31B}</ProjectGuid>
+    <RootNamespace>MergeLang</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '16'">$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\Build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\Build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="Merge.rc">
+      <Command>pushd ..\Translations\WinMerge
+
+date /t &gt; MergeLang.lastbuild
+attrib -a English.pot
+del English.pot.prev English.pot.flt English.pot.prev.flt 2&gt; NUL
+move English.pot English.pot.prev 2&gt; NUL
+cscript CreateMasterPotFile.vbs
+attrib -a English.pot
+findstr /v POT-Creation-Date English.pot &gt; English.pot.flt
+findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
+fc English.pot.flt English.pot.prev.flt
+if not errorlevel 1 (
+  copy /y English.pot.prev English.pot
+) else (
+  set POT_UPDATED=true
+)
+del English.pot.prev English.pot.flt English.pot.prev.flt
+set LIB=
+powershell -ExecutionPolicy ByPass -File UpdatePoFilesFromPotFile.ps1
+if "%POT_UPDATED%" == "true" (
+  pushd ..
+  for %%i in ("%LOCALAPPDATA%\Programs\Python\Python39" "C:\Python39") do (
+    if exist "%%~i\python.exe" (
+      "%%~i\python.exe" GetTranslationsStatus.py
+    )
+  ) 
+  popd
+)
+popd
+</Command>
+      <Outputs>$(ProjectDir)..\Translations\WinMerge\MergeLang.lastbuild</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Translations\WinMerge\Arabic.po" />
+    <None Include="..\Translations\WinMerge\Basque.po" />
+    <None Include="..\Translations\WinMerge\Brazilian.po" />
+    <None Include="..\Translations\WinMerge\Bulgarian.po" />
+    <None Include="..\Translations\WinMerge\Catalan.po" />
+    <None Include="..\Translations\WinMerge\ChineseSimplified.po" />
+    <None Include="..\Translations\WinMerge\ChineseTraditional.po" />
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\Croatian.po" />
+    <None Include="..\Translations\WinMerge\Czech.po" />
+    <None Include="..\Translations\WinMerge\Danish.po" />
+    <None Include="..\Translations\WinMerge\Dutch.po" />
+    <None Include="..\Translations\WinMerge\English.pot" />
+    <None Include="..\Translations\WinMerge\Finnish.po" />
+    <None Include="..\Translations\WinMerge\French.po" />
+    <None Include="..\Translations\WinMerge\Galician.po" />
+    <None Include="..\Translations\WinMerge\German.po" />
+    <None Include="..\Translations\WinMerge\Greek.po" />
+    <None Include="..\Translations\WinMerge\Hungarian.po" />
+    <None Include="..\Translations\WinMerge\Italian.po" />
+    <None Include="..\Translations\WinMerge\Japanese.po" />
+    <None Include="..\Translations\WinMerge\Korean.po" />
+    <None Include="..\Translations\WinMerge\Lithuanian.po" />
+    <None Include="..\Translations\WinMerge\Norwegian.po" />
+    <None Include="..\Translations\WinMerge\Persian.po" />
+    <None Include="..\Translations\WinMerge\Polish.po" />
+    <None Include="..\Translations\WinMerge\Portuguese.po" />
+    <None Include="..\Translations\WinMerge\Romanian.po" />
+    <None Include="..\Translations\WinMerge\Russian.po" />
+    <None Include="..\Translations\WinMerge\Serbian.po" />
+    <None Include="..\Translations\WinMerge\Sinhala.po" />
+    <None Include="..\Translations\WinMerge\Slovak.po" />
+    <None Include="..\Translations\WinMerge\Slovenian.po" />
+    <None Include="..\Translations\WinMerge\Spanish.po" />
+    <None Include="..\Translations\WinMerge\Swedish.po" />
+    <None Include="..\Translations\WinMerge\Turkish.po" />
+    <None Include="..\Translations\WinMerge\Ukrainian.po" />
+    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

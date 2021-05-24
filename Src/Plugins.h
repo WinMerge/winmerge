@@ -46,7 +46,8 @@ public:
 			m_lpDispatch->Release();
 	}
 
-	int LoadPlugin(const String & scriptletFilepath, const wchar_t *transformationEvent);
+	int LoadPlugin(const String & scriptletFilepath);
+	int MakeInfo(const String & scriptletFilepath, IDispatch *pDispatch);
 
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
@@ -65,6 +66,7 @@ public:
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;
+	String      m_event;
 	bool        m_bAutomatic;
 	bool        m_disabled;
 	std::vector<FileFilterElementPtr> m_filters;
@@ -94,6 +96,7 @@ friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
+	PluginInfo * GetUnpackerPluginByFilter(const String& filteredText);
 	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
@@ -116,7 +119,7 @@ private:
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
 	int nTransformationEvents;
-	std::vector<PluginArrayPtr> m_aPluginsByEvent;
+	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
 };
 
 

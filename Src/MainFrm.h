@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <memory>
+#include <optional>
 #include "MDITabBar.h"
 #include "PathContext.h"
 #include "OptionsDef.h"
@@ -43,6 +44,7 @@ typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
 
 class PackingInfo;
 class CLanguageSelect;
+struct IMergeDoc;
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
 
@@ -87,12 +89,22 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	void FileNew(int nPanes);
+	void FileNew(int nPanes, FRAMETYPE frameType, bool table);
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool DoFileOpen(UINT nID, const PathContext *pFiles = nullptr,
+		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
-	bool ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowTextMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+	bool ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+		const String strDesc[], const String& strFileExt);
+	bool ShowTableMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
@@ -106,11 +118,13 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
-	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
-	void UpdateDocTitle();
-	void ReloadMenu();
+	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr);
+	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
+	static void UpdateDocTitle();
+	static void ReloadMenu();
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
+	IMergeDoc* GetActiveIMergeDoc();
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -154,8 +168,7 @@ protected:
 				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
 				BOOL bMaximized;
 				HWND hwndActive = reinterpret_cast<HWND>(SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized)));
-				if ((bMaximized || (message == WM_MDICREATE && 
-					(!hwndActive || !GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK)))) &&
+				if ((bMaximized || (message == WM_MDICREATE && !hwndActive)) &&
 					SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
 				{
 					SetRedraw(FALSE);
@@ -168,8 +181,6 @@ protected:
 					KillTimer(m_nRedrawTimer);
 					SetRedraw(TRUE);
 					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
-					GetMainFrame()->GetActiveFrame()->OnUpdateFrameTitle(TRUE);
-					GetMainFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0, TRUE, TRUE);
 				}
 				break;
 			}
@@ -248,8 +259,8 @@ protected:
 	afx_msg void OnUpdateReloadPlugins(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
+	template <int nFiles, FRAMETYPE frameType, bool table = false>
 	afx_msg void OnFileNew();
-	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
@@ -275,11 +286,11 @@ protected:
 	afx_msg void OnFileOpenConflict();
 	afx_msg void OnPluginsList();
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
-	afx_msg void OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
-	afx_msg void OnDiffCaseSensitive();
-	afx_msg void OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCase();
+	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCP();
@@ -290,14 +301,22 @@ protected:
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnMRUs(UINT nID);
 	afx_msg void OnUpdateNoMRUs(CCmdUI* pCmdUI);
-    afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnFirstFile();
+	afx_msg void OnUpdateFirstFile(CCmdUI* pCmdUI);
+	afx_msg void OnPrevFile();
+	afx_msg void OnUpdatePrevFile(CCmdUI* pCmdUI);
+	afx_msg void OnNextFile();
+	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
+	afx_msg void OnLastFile();
+	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
-	//}}AFX_MSG
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:

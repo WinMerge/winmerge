@@ -42,7 +42,6 @@
 ;      1.  WinMerge
 ;      2.  Read Me
 ;      3.  Users's Guide
-;      4.  WinMerge on the Web
 ; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Not yet possible (Limited by Inno Setup):
@@ -140,7 +139,7 @@ Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translatio
 Name: Italian; MessagesFile: compiler:Languages\Italian.isl,..\..\Translations\InnoSetup\Italian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
 Name: Japanese; MessagesFile: compiler:Languages\Japanese.isl,..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Korean.isl,..\..\Translations\InnoSetup\Korean.isl
-Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.isl
+Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Lithuanian.isl,..\..\Translations\InnoSetup\Lithuanian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt
 Name: Norwegian; MessagesFile: compiler:Languages\Norwegian.isl,..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Farsi.isl,..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: compiler:Languages\Polish.isl,..\..\Translations\InnoSetup\Polish.isl
@@ -150,7 +149,7 @@ Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Romania
 Name: Russian; MessagesFile: compiler:Languages\Russian.isl,..\..\Translations\InnoSetup\Russian.isl
 Name: Serbian; MessagesFile: compiler:Languages\SerbianCyrillic.isl,..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
 Name: Sinhala; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Sinhala.islu,..\..\Translations\InnoSetup\Sinhala.islu
-Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Slovak.isl,..\..\Translations\InnoSetup\Slovak.isl
+Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Slovak.isl,..\..\Translations\InnoSetup\Slovak.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Slovak.txt
 Name: Slovenian; MessagesFile: compiler:Languages\Slovenian.isl,..\..\Translations\InnoSetup\Slovenian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt
 Name: Spanish; MessagesFile: compiler:Languages\Spanish.isl,..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
 Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Swedish.isl,..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
@@ -415,7 +414,7 @@ Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags:
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\X64\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\X64\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\X64\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\X64\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\X64\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
@@ -471,6 +470,7 @@ Source: ..\..\Translations\WinMerge\Serbian.po; DestDir: {app}\Languages; Compon
 Source: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt; DestDir: {app}\Docs; Components: Languages\Serbian
 Source: ..\..\Translations\WinMerge\Sinhala.po; DestDir: {app}\Languages; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Slovak.txt; DestDir: {app}\Docs; Components: Languages\Slovak
 Source: ..\..\Translations\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt; DestDir: {app}\Docs; Components: Languages\Slovenian
 Source: ..\..\Translations\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
@@ -545,7 +545,6 @@ Name: "{app}\MergePlugins"
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmerge.org
 
 ;Desktop Icon
 Name: {commondesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon

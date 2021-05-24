@@ -365,13 +365,13 @@
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.xls</filename><filename
-            class="extension">*.xlsx</filename><filename
-            class="extension">*.xlsm</filename><filename
-            class="extension">*.xlsb</filename><filename
-            class="extension">*.xla</filename><filename
-            class="extension">*.xlax</filename><filename
-            class="extension">*.xltx</filename><filename
+            <seg><filename class="extension">*.xls</filename>, <filename
+            class="extension">*.xlsx</filename>, <filename
+            class="extension">*.xlsm</filename>, <filename
+            class="extension">*.xlsb</filename>, <filename
+            class="extension">*.xla</filename>, <filename
+            class="extension">*.xlax</filename>, <filename
+            class="extension">*.xltx</filename>, <filename
             class="extension">*.xltm</filename></seg>
 
             <seg>No</seg>
@@ -380,46 +380,6 @@
 
             <seg><trademark class="registered">Microsoft</trademark>
             <application>Excel</application></seg>
-          </seglistitem>
-        </segmentedlist></para>
-    </section>
-
-    <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.sct<indexterm>
-          <primary>CompareMSWordFiles.sct plugin file</primary>
-        </indexterm></filename></title>
-
-      <para><trademark
-      class="registered">Microsoft</trademark> <application>Word</application>
-      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
-
-      <para><segmentedlist>
-          <segtitle>分類</segtitle>
-
-          <segtitle>ファイルフィルタ</segtitle>
-
-          <segtitle>書き戻し</segtitle>
-
-          <segtitle>設定ダイアログサポート</segtitle>
-
-          <segtitle>依存するもの</segtitle>
-
-          <seglistitem>
-            <seg>展開プラグイン</seg>
-
-	    <seg><filename class="extension">*.doc</filename>, <filename
-            class="extension">*.docx</filename>, <filename
-            class="extension">*.docm</filename>, <filename
-            class="extension">*.dot</filename>, <filename
-            class="extension">*.dotx</filename>, <filename
-            class="extension">*.dotm</filename></seg>
-
-            <seg>No</seg>
-
-            <seg>Yes</seg>
-
-            <seg><trademark class="registered">Microsoft</trademark>
-            <application>Word</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -509,6 +469,46 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles.sct<indexterm>
+          <primary>CompareMSWordFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>Word</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+            class="extension">*.docx</filename>, <filename
+            class="extension">*.docm</filename>, <filename
+            class="extension">*.dot</filename>, <filename
+            class="extension">*.dotx</filename>, <filename
+            class="extension">*.dotm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="EditorAddin">
       <title><filename>editor addin.sct<indexterm>
           <primary>editor addin.sct plugin file</primary>
@@ -563,7 +563,7 @@
           <primary>IgnoreColumns.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です</para>
+      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です。</para>
 
       <para>このプラグインはタブ付きのファイルをサポートしていないことに注意してください。
       プラグインは失敗しませんが、すべてのタブは通常の文字として扱われます。
@@ -659,7 +659,7 @@
             class="extension">*.php</filename>, <filename
             class="extension">*.js</filename>, <filename
             class="extension">*.cs</filename>, <filename
-            class="extension">*.ts</filename>,</seg>
+            class="extension">*.ts</filename></seg>
 
             <seg>No</seg>
           </seglistitem>

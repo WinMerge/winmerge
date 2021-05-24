@@ -16,6 +16,7 @@
 #include "Merge.h"
 #include "MainFrm.h"
 #include "HexMergeView.h"
+#include "HexMergeDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Environment.h"
@@ -34,7 +35,7 @@ static HRESULT NTAPI SE(BOOL f)
 {
 	if (f)
 		return S_OK;
-	HRESULT hr = (HRESULT)::GetLastError();
+	HRESULT hr = HRESULT_FROM_WIN32(::GetLastError());
 	ASSERT(hr != NULL);
 	if (hr == NULL)
 		hr = E_UNEXPECTED;
@@ -63,6 +64,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_WM_CREATE()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
+	ON_WM_MOUSEWHEEL()
 	ON_WM_NCCALCSIZE()
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_FIND, OnEditFind)
@@ -95,6 +97,7 @@ END_MESSAGE_MAP()
 CHexMergeView::CHexMergeView()
 : m_pif(nullptr)
 , m_nThisPane(0)
+, m_unpackerSubcode(0)
 {
 }
 
@@ -205,6 +208,16 @@ void CHexMergeView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 	}
 }
 
+BOOL CHexMergeView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	if ((GetAsyncKeyState(VK_CONTROL) &0x8000) != 0) // if (nFlags & MK_CONTROL)
+	{
+		PostMessage(WM_COMMAND, zDelta < 0 ? ID_VIEW_ZOOMOUT : ID_VIEW_ZOOMIN);
+		return 1;
+	}
+	return 0;
+}
+
 /**
  * @brief Synchronize file path bar activation states
  */
@@ -240,15 +253,15 @@ IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 {
 	DiffFileInfo dfi;
 	if (!dfi.Update(path))
-		return IMergeDoc::FileRemoved;
+		return IMergeDoc::FileChange::Removed;
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
 	int64_t timeDiff = dfi.mtime - m_fileInfo.mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo.size))
-		return IMergeDoc::FileChanged;
-	return IMergeDoc::FileNoChange;
+		return IMergeDoc::FileChange::Changed;
+	return IMergeDoc::FileChange::NoChange;
 }
 
 /**
@@ -256,7 +269,11 @@ IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
  */
 HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 {
-	HANDLE h = CreateFile(path, GENERIC_READ,
+	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
+	String strTempFileName = path;
+	if (!FileTransform::Unpacking(pDoc->GetUnpacker(), &m_unpackerSubcode, strTempFileName, path))
+		return E_FAIL;
+	HANDLE h = CreateFile(strTempFileName.c_str(), GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
 		0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
@@ -286,24 +303,24 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 /**
  * @brief Save file
  */
-HRESULT CHexMergeView::SaveFile(LPCTSTR path)
+HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 {
 	// Warn user in case file has been changed by someone else
-	if (IsFileChangedOnDisk(path) == IMergeDoc::FileChanged)
+	if (IsFileChangedOnDisk(path) == IMergeDoc::FileChange::Changed)
 	{
 		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
 		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
-			return S_OK;
+			return E_FAIL;
 	}
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
 	bool bApplyToAll = false;
-	if (theApp.HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
-		return S_OK;
+	if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
+		return E_FAIL;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!theApp.CreateBackup(false, path))
-		return S_OK;
+	if (!CMergeApp::CreateBackup(false, path))
+		return E_FAIL;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();
 	String sIntermediateFilename = env::GetTemporaryFileName(tempPath, _T("MRG_"), 0);
@@ -326,9 +343,29 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	CloseHandle(h);
 	if (hr != S_OK)
 		return hr;
-	hr = SE(CopyFile(sIntermediateFilename.c_str(), path, FALSE));
-	if (hr != S_OK)
-		return hr;
+
+	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
+	if (packing && !pDoc->GetUnpacker()->m_PluginName.empty())
+	{
+		if (!FileTransform::Packing(sIntermediateFilename, path, *pDoc->GetUnpacker(), m_unpackerSubcode))
+		{
+			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, pDoc->GetUnpacker()->m_PluginName);
+			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+			if (answer == IDOK)
+			{
+				pDoc->SaveAs(m_nThisPane, false);
+				return S_OK;
+			}
+			return S_OK;
+		}
+	}
+	else
+	{
+		hr = SE(CopyFile(sIntermediateFilename.c_str(), path, FALSE));
+		if (hr != S_OK)
+			return hr;
+	}
+
 	m_fileInfo.Update(path);
 	SetSavePoint();
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "DirItem.h"
+#include "FileVersion.h"
 #include "FileTextEncoding.h"
 #include "FileTextStats.h"
 
@@ -19,6 +20,7 @@
 struct DiffFileInfo : public DirItem
 {
 // data
+	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileTextEncoding encoding; /**< unicode or codepage info */
 	FileTextStats m_textStats; /**< EOL, zero-byte etc counts */
 

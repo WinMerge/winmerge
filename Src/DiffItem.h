@@ -50,12 +50,12 @@ struct DIFFCODE
 		// These can always be packed down in the future
 		TEXTFLAGS=0x3FU, TEXT=0x1U, BIN=0x2U, BINSIDE1=0x4U, BINSIDE2=0x8U, BINSIDE3=0x10U, IMAGE=0x20U,
 		TYPEFLAGS=0xC0U, FILE=0x40U, DIR=0x80U,
-		SIDEFLAGS=0x700U, FIRST=0x100U, SECOND=0x200U, THIRD=0x400U, BOTH=0x300U, ALL=0x700U,
-		COMPAREFLAGS=0x7000U, NOCMP=0x0000U, SAME=0x1000U, DIFF=0x2000U, CMPERR=0x3000U, CMPABORT=0x4000U,
+		COMPAREFLAGS=0x7000U, NOCMP=0x0000U, DIFF=0x1000U, SAME=0x2000U, CMPERR=0x3000U, CMPABORT=0x4000U,
 		COMPAREFLAGS3WAY=0x18000U, DIFFALL=0x0000U, DIFF1STONLY=0x8000U, DIFF2NDONLY=0x10000U, DIFF3RDONLY=0x18000U,
 		FILTERFLAGS=0x20000U, INCLUDED=0x00000U, SKIPPED=0x20000U,
 		SCANFLAGS=0x100000U, NEEDSCAN=0x100000U,
 		THREEWAYFLAGS=0x200000U, THREEWAY=0x200000U,
+		SIDEFLAGS=0x70000000U, FIRST=0x10000000U, SECOND=0x20000000U, THIRD=0x40000000U, BOTH=0x30000000U, ALL=0x70000000U,
 	};
 
 	unsigned diffcode;
@@ -156,16 +156,7 @@ public:
 	// rescan
 	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }
 
-	void swap(int idx1, int idx2)
-	{
-		bool e[3] = { false, false, false };
-		for (int i = 0; i < 3; ++i)
-			e[i] = exists(i);
-		std::swap(e[idx1], e[idx2]);
-		setSideNone();
-		for (int i = 0; i < 3; ++i)
-			if (e[i]) setSideFlag(i);
-	}
+	void swap(int idx1, int idx2);
 };
 
 enum ViewCustomFlags

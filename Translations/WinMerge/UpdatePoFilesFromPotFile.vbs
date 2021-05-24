@@ -199,7 +199,7 @@ End Function
 ''
 ' ...
 Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguagePoContent, ByVal sCharset)
-  Dim sBakPath, oPoFile, sKey, oEnglish, oLanguage
+  Dim sBakPath, oPoFile, sKey, oEnglish, oLanguage, i
   
   '--------------------------------------------------------------------------------
   ' Backup the old PO file...
@@ -222,6 +222,7 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
   oPoFile.WriteText oLanguage.sMsgId2
   oPoFile.WriteText oLanguage.sMsgStr2
   oPoFile.WriteText vbLf
+  i = 0
   For Each sKey In oEnglishPotContent.Keys 'For all English content...
     If sKey <> "__head__" Then
       Set oEnglish = oEnglishPotContent(sKey)
@@ -237,8 +238,11 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
       oPoFile.WriteText oLanguage.sMsgCtxt2
       oPoFile.WriteText oLanguage.sMsgId2
       oPoFile.WriteText oLanguage.sMsgStr2
-      oPoFile.WriteText vbLf
+      If i < oEnglishPotContent.Count - 1 Then
+        oPoFile.WriteText vbLf
+      End If
     End If
+    i = i + 1
   Next
   oPoFile.SaveToFile sPoPath, 2
   oPoFile.Close

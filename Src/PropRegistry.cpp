@@ -40,7 +40,7 @@ void PropRegistry::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(PropRegistry, CDialog)
+BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
 	//{{AFX_MSG_MAP(PropRegistry)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	ON_BN_CLICKED(IDC_FILTER_USER_BROWSE, OnBrowseFilterPath)

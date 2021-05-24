@@ -45,24 +45,24 @@ namespace
 	TEST_F(CodepageDetectTest, GuessCodepageEncoding0)
 	{
 		FileTextEncoding enc;
-		enc = GuessCodepageEncoding(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), 0);
+		enc = codepage_detect::Guess(_T("../../Data/Unicode/UCS-2LE/DiffItem.h"), 0);
 		EXPECT_EQ(1200, enc.m_codepage);
 		EXPECT_EQ(true, enc.m_bom);
 		EXPECT_EQ(ucr::UCS2LE, enc.m_unicoding);
-		enc = GuessCodepageEncoding(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), 0);
+		enc = codepage_detect::Guess(_T("../../Data/Unicode/UCS-2BE/DiffItem.h"), 0);
 		EXPECT_EQ(1201, enc.m_codepage);
 		EXPECT_EQ(true, enc.m_bom);
 		EXPECT_EQ(ucr::UCS2BE, enc.m_unicoding);
-		enc = GuessCodepageEncoding(_T("../../Data/Unicode/UTF-8/DiffItem.h"), 0);
+		enc = codepage_detect::Guess(_T("../../Data/Unicode/UTF-8/DiffItem.h"), 0);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(true, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
-		enc = GuessCodepageEncoding(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), 0);
+		enc = codepage_detect::Guess(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), 0);
 		EXPECT_EQ(ucr::getDefaultCodepage(), enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
 
-		enc = GuessCodepageEncoding(_T("abcdefg12345"), 0);
+		enc = codepage_detect::Guess(_T("abcdefg12345"), 0);
 		EXPECT_EQ(ucr::getDefaultCodepage(), enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
@@ -71,22 +71,22 @@ namespace
 	TEST_F(CodepageDetectTest, GuessCodepageEncoding1)
 	{
 		FileTextEncoding enc;
-		enc = GuessCodepageEncoding(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), 1);
+		enc = codepage_detect::Guess(_T("../../Data/Unicode/UTF-8-NOBOM/DiffItem.h"), 1);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
 
-		enc = GuessCodepageEncoding(_T("../../../Docs/Manual/EN/About_Doc.xml"), 1);
+		enc = codepage_detect::Guess(_T("../../../Docs/Manual/EN/About_Doc.xml"), 1);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
 
-		enc = GuessCodepageEncoding(_T("../../../Docs/Developers/readme-developers.html"), 1);
+		enc = codepage_detect::Guess(_T("../../../Docs/Developers/readme-developers.html"), 1);
 		EXPECT_EQ(28591, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
 
-		enc = GuessCodepageEncoding(_T("../../../ShellExtension/Languages/ShellExtensionRussian.rc"), 1);
+		enc = codepage_detect::Guess(_T("../../../ShellExtension/Languages/ShellExtensionRussian.rc"), 1);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(true, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);

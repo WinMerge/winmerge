@@ -38,7 +38,7 @@ public:
 	enum { IDD = IDD_GENERATE_PATCH };
 	CComboBox m_comboStyle;
 	CSuperComboBox m_comboContext;
-	bool m_caseSensitive;
+	bool m_ignoreCase;
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
 	CSuperComboBox m_ctlResult;

@@ -44,6 +44,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_piAbortable(nullptr)
 , m_bStopAfterFirstDiff(false)
 , m_pFilterList(nullptr)
+, m_pSubstitutionList(nullptr)
 , m_pContentCompareOptions(nullptr)
 , m_pQuickCompareOptions(nullptr)
 , m_pOptions(nullptr)
@@ -57,7 +58,6 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_nBinaryCompareLimit(0)
 , m_bEnableImageCompare(false)
 , m_dColorDistanceThreshold(0.0)
-, m_pFilterCommentsManager(nullptr)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)
@@ -101,7 +101,7 @@ bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex)
 	if (!dfi.Update(filepath))
 		return false;
 	UpdateVersion(di, nIndex);
-	dfi.encoding = GuessCodepageEncoding(filepath, m_iGuessEncodingType);
+	dfi.encoding = codepage_detect::Guess(filepath, m_iGuessEncodingType);
 	return true;
 }
 

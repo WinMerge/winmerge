@@ -97,11 +97,11 @@ public:
 
 	// Constructor of the class for direct providing of the message strings.
 	CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
-		CString strTitle = _T(""), UINT nStyle = MB_OK, UINT nHelp = 0 );
+		CString strTitle = _T(""), UINT nStyle = MB_OK, UINT nHelp = 0, const CString& strRegistryKey = _T("") );
 
 	// Constructor of the class for loading the strings from the resources.
 	CMessageBoxDialog ( CWnd* pParent, UINT nMessageID, UINT nTitleID = 0,
-		UINT nStyle = MB_OK, UINT nHelp = 0 );
+		UINT nStyle = MB_OK, UINT nHelp = 0, const CString& strRegistryKey = _T("") );
 
 	// Default destructor of the class.
 	virtual ~CMessageBoxDialog ( );

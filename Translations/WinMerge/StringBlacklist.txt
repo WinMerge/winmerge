@@ -14,6 +14,7 @@ Version 1.0
 WinMerge
 ../Version.h
 ASP
+AutoIt
 Basic
 C/C++
 C#
@@ -26,6 +27,9 @@ INI
 InnoSetup
 InstallShield
 Java
+JavaScript
+JSON
+Lua
 AutoLISP
 NSIS
 Pascal
@@ -42,6 +46,7 @@ SQL
 TCL
 TEX
 Verilog
+VHDL
 XML
 Visual SourceSafe
 Rational ClearCase
@@ -76,3 +81,4 @@ CRLF
 &XOR
 &1:
 &2:
+&BOM

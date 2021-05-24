@@ -240,25 +240,25 @@ sip24_final(struct siphash *H) {
   switch (left) {
   case 7:
     b |= (uint64_t)H->buf[6] << 48;
-    /* fall through */
+    [[fallthrough]];
   case 6:
     b |= (uint64_t)H->buf[5] << 40;
-    /* fall through */
+    [[fallthrough]];
   case 5:
     b |= (uint64_t)H->buf[4] << 32;
-    /* fall through */
+    [[fallthrough]];
   case 4:
     b |= (uint64_t)H->buf[3] << 24;
-    /* fall through */
+    [[fallthrough]];
   case 3:
     b |= (uint64_t)H->buf[2] << 16;
-    /* fall through */
+    [[fallthrough]];
   case 2:
     b |= (uint64_t)H->buf[1] << 8;
-    /* fall through */
+    [[fallthrough]];
   case 1:
     b |= (uint64_t)H->buf[0] << 0;
-    /* fall through */
+    [[fallthrough]];
   case 0:
     break;
   }

@@ -84,14 +84,20 @@ BEGIN
     BUTTON      ID_L2RNEXT
     BUTTON      ID_R2LNEXT
     SEPARATOR
-    BUTTON      ID_OPTIONS
-    SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
     SEPARATOR
     BUTTON      ID_AUTO_MERGE
     SEPARATOR
+    BUTTON      ID_FIRSTFILE
+    BUTTON      ID_PREVFILE
+    BUTTON      ID_NEXTFILE
+    BUTTON      ID_LASTFILE
+    SEPARATOR
+    BUTTON      ID_OPTIONS
+    SEPARATOR
     BUTTON      ID_REFRESH
+    SEPARATOR
 END
 
 
@@ -113,8 +119,6 @@ IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 IDB_TOOLBAR_ENABLED8BIT BITMAP                  "res\\ToolbarEnabled8bit.bmp"
 IDB_TOOLBAR_ENABLED     BITMAP                  "res\\ToolbarEnabled.bmp"
 IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
-IDB_TOOLBAR_ENABLED_MASK BITMAP                 "res\\ToolbarEnabledMask.bmp"
-IDB_TOOLBAR_ENABLED_MASK32 BITMAP               "res\\ToolbarEnabledMask32.bmp"
 IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"
@@ -154,6 +158,10 @@ IDB_MIDDLE_TO_LEFT      BITMAP                  "res\\middle_to_left.bmp"
 IDB_MIDDLE_TO_RIGHT     BITMAP                  "res\\middle_to_right.bmp"
 IDB_COPY_FROM_LEFT      BITMAP                  "res\\from_left.bmp"
 IDB_COPY_FROM_RIGHT     BITMAP                  "res\\from_right.bmp"
+IDB_COPY_SELECTED_LINES_TO_LEFT BITMAP          "res\\selected_lines_to_left.bmp"
+IDB_COPY_SELECTED_LINES_TO_RIGHT BITMAP         "res\\selected_lines_to_right.bmp"
+IDB_COPY_SELECTED_LINES_FROM_LEFT BITMAP        "res\\selected_lines_from_left.bmp"
+IDB_COPY_SELECTED_LINES_FROM_RIGHT BITMAP       "res\\selected_lines_from_right.bmp"
 IDB_LEFT_TO_BROWSE      BITMAP                  "res\\left_to_browse.bmp"
 IDB_MIDDLE_TO_BROWSE    BITMAP                  "res\\middle_to_browse.bmp"
 IDB_RIGHT_TO_BROWSE     BITMAP                  "res\\right_to_browse.bmp"
@@ -163,13 +171,19 @@ IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
 IDB_VIEW_ZOOMIN         BITMAP                  "res\\zoom_in.bmp"
 IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
-IDB_FILE_NEW3           BITMAP                  "res\\New3_16.bmp"
 IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
 IDB_MERGE_COMPARE       BITMAP                  "res\\compare.bmp"
 IDB_MERGE_COMPARE_LEFT1_LEFT2 BITMAP            "res\\compare_left1_left2.bmp"
 IDB_MERGE_COMPARE_RIGHT1_RIGHT2 BITMAP          "res\\compare_right1_right2.bmp"
 IDB_MERGE_COMPARE_LEFT1_RIGHT2 BITMAP           "res\\compare_left1_right2.bmp"
 IDB_MERGE_COMPARE_LEFT2_RIGHT1 BITMAP           "res\\compare_left2_right1.bmp"
+IDB_FILE_NEW_TABLE      BITMAP                  "res\\new_table.bmp"
+IDB_FILE_NEW_HEX        BITMAP                  "res\\new_hex.bmp"
+IDB_FILE_NEW_IMAGE      BITMAP                  "res\\new_image.bmp"
+IDB_FILE_NEW3           BITMAP                  "res\\new3.bmp"
+IDB_FILE_NEW3_TABLE     BITMAP                  "res\\new3_table.bmp"
+IDB_FILE_NEW3_HEX       BITMAP                  "res\\new3_hex.bmp"
+IDB_FILE_NEW3_IMAGE     BITMAP                  "res\\new3_image.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -206,7 +220,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge\0"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(c) 1996-2020 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "(c) 1996-2021 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMergeU.EXE\0"
             VALUE "PrivateBuild", STRPRIVATEBUILD
             VALUE "ProductName", "WinMerge\0"

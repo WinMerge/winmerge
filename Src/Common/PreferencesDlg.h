@@ -13,6 +13,7 @@
 #include "PropGeneral.h"
 #include "PropCompare.h"
 #include "PropEditor.h"
+#include "PropEditorSyntax.h"
 #include "PropRegistry.h"
 #include "PropColorSchemes.h"
 #include "PropMergeColors.h"
@@ -58,6 +59,7 @@ protected:
 	PropGeneral m_pageGeneral;
 	PropCompare m_pageCompare;
 	PropEditor m_pageEditor;
+	PropEditorSyntax m_pageEditorSyntax;
 	PropRegistry m_pageSystem;
 	PropCodepage m_pageCodepage;
 	PropColorSchemes m_pageColorSchemes;

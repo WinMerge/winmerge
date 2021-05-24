@@ -54,7 +54,7 @@ Every language has his one batch files. Paths to the installed tools are written
    Creates the English HTML files *without ads* under the folder `\Build\Manual\html-en`.
 
  * `build_html_en.bat withads`  
-   Creates the English HTML files *with adds* under the folder `\Build\Manual\html-en`.
+   Creates the English HTML files *with ads* under the folder `\Build\Manual\html-en`.
 
  * `build_htmlhelp_en.bat`  
    Creates the English CHM file under the folder `Build\Manual\htmlhelp`.

@@ -16,7 +16,7 @@
   <para>WinMergeをコマンドラインから実行するには以下の書式のうちの1つを使用します:</para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command>WinMerge<optional>U</optional></command>
+      <command>WinMergeU</command>
 
       <arg choice="opt" rep="norepeat"><option>/?</option></arg>
     </cmdsynopsis></para>
@@ -31,11 +31,18 @@
       <arg choice="opt" rep="norepeat"><option>/f</option>
       <replaceable>filter</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/m</option>
+      <replaceable>compare-method</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
 
       <arg><option>/s</option></arg>
+
+      <arg><option>/sw</option></arg>
+
+      <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
@@ -50,6 +57,8 @@
       <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
 
@@ -70,6 +79,40 @@
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noninteractive</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noprefs</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorews</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreblanklines</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecase</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreeol</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecodepage</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/unpacker</option>
+      <replaceable>unpacker name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/prediffer</option>
+      <replaceable>prediffer name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cp</option>
+      <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cfg</option>
+      <replaceable>name=value</replaceable></arg>
+
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
 
@@ -83,11 +126,9 @@
       rep="norepeat"><option>/o</option>
       <replaceable>outputpath</replaceable></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+      <arg choice="opt"
+      rep="norepeat"><option>/or</option>
+      <replaceable>reportpath</replaceable></arg>
 
     </cmdsynopsis></para>
 
@@ -158,6 +199,22 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>compare method</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/m</option></term>
+      <listitem>
+        <para>フォルダ比較方法を指定します。
+        次のキーワードが指定できます。<userinput>Full</userinput>,
+        <userinput>Quick</userinput>, <userinput>Binary</userinput>,
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/x</option></term>
       <listitem>
         <para>同一ファイルの比較をしたときにWinMergeを閉じます。
@@ -191,6 +248,23 @@
         この引数を指定しなかった場合、複数のウインドウが開かれる可能性があります:
         設定によっては、新しい比較が既に存在するウインドウで実行されることも新しいウインドウで
         実行されることもあります。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>/s と同様にWinMergeウインドウを1つのインスタンスに制限します。
+        ただし、ウインドウを表示しているインスタンスが終了するまで待機します。
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>"複数のインスタンスを起動しない"の設定値を無視して、
+        常に別のインスタンスが起動されるようにします。</para>
       </listitem>
     </varlistentry>
 
@@ -264,6 +338,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>指定された１つのファイルとそのファイルのコピーを比較します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>WinMergeウインドウ</primary>
         <secondary>最小化または最大化で開く</secondary>
@@ -333,6 +414,111 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>起動時、左側で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>起動時、中央で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>起動時、右側で自動マージします。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option><replaceable>leftpath</replaceable></option></term>
       <listitem>
         <para>左側で開くフォルダやファイルを指定します。
@@ -354,8 +540,9 @@
         <para>右側で開くフォルダやファイルを指定します。
         </para>
 
-        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方
+        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方(または3つすべて)
         (<option><replaceable>leftpath</replaceable></option> と
+        (<option><replaceable>middlepath</replaceable></option> と)
         <option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォルダかファイルのどちらか)
         を指し差なければなりません。
         もし、WinMergeが指定したパスのどちらかを見つけることができなければ、
@@ -378,6 +565,7 @@
           当然ながら、<filename class="directory">C:\Folder2</filename>がファイル名
           <filename>File.txt</filename>を含んでいなければ、コマンドは不正とみなされます。</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 
@@ -409,23 +597,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>/al</option></term>
+      <term><option>/or</option></term>
       <listitem>
-        <para>起動時、左側で自動マージします。</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/am</option></term>
-      <listitem>
-        <para>起動時、中央で自動マージします。</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/ar</option></term>
-      <listitem>
-        <para>起動時、右側で自動マージします。</para>
+        <para>TBD</para>
       </listitem>
     </varlistentry>
 
@@ -445,5 +619,6 @@
         コンフリクトファイルと共に他のパスは使用できないことに注意してください。</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>

@@ -59,8 +59,8 @@ static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destinati
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Copy");
-	String strQuestion = count == 1 ? _("Are you sure you want to copy:") : 
-		strutils::format(_("Are you sure you want to copy %d items:").c_str(), count);
+	String strQuestion = count == 1 ? _("Are you sure you want to copy?") : 
+		strutils::format(_("Are you sure you want to copy %d items?").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);
@@ -83,8 +83,8 @@ static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destinati
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Move");
-	String strQuestion = count == 1 ? _("Are you sure you want to move:") : 
-		strutils::format(_("Are you sure you want to move %d items:").c_str(), count);
+	String strQuestion = count == 1 ? _("Are you sure you want to move?") : 
+		strutils::format(_("Are you sure you want to move %d items?").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);
@@ -253,8 +253,8 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_SYNC:
 		bUpdateSrc = true;
 		bUpdateDest = true;
-		di.diffcode.setSideFlag(act.UIDestination);
-		if (act.dirflag || ctxt.GetCompareDirs() > 2)
+		CopyDiffSide(di, act.UIOrigin, act.UIDestination);
+		if (ctxt.GetCompareDirs() > 2)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 		else
 			SetDiffCompare(di, DIFFCODE::SAME);
@@ -268,7 +268,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		}
 		else
 		{
-			di.diffcode.unsetSideFlag(act.UIOrigin);
+			UnsetDiffSide(di, act.UIOrigin);
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 			bUpdateSrc = true;
 		}
@@ -276,9 +276,9 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	}
 
 	if (bUpdateSrc)
-		ctxt.UpdateStatusFromDisk(&di, act.UIOrigin);
+		UpdateStatusFromDisk(ctxt, di, act.UIOrigin);
 	if (bUpdateDest)
-		ctxt.UpdateStatusFromDisk(&di, act.UIDestination);
+		UpdateStatusFromDisk(ctxt, di, act.UIDestination);
 
 	if (bRemoveItem)
 		return UPDATEITEM_REMOVE;
@@ -728,7 +728,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
  * return false if there was error or item was completely processed.
  */
 bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, bool & isdir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+		PathContext & paths, int & sel1, bool & isdir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	pdi[0] = &ctxt.GetDiffAt(pos1);
 	pdi[1] = pdi[0];
@@ -737,6 +737,9 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
 	if (!openableForDir && pdi[0]->diffcode.isDirectory()) return false;
 
 	paths = GetItemFileNames(ctxt, *pdi[0]);
+	encoding[0] = pdi[0]->diffFileInfo[0].encoding;
+	encoding[1] = pdi[0]->diffFileInfo[1].encoding;
+	encoding[2] = pdi[0]->diffFileInfo[2].encoding;
 
 	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
 		nPane[nIndex] = nIndex;
@@ -778,7 +781,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
  * return false if there was error or item was completely processed.
  */
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFFITEM *pos1, DIFFITEM *pos2, const DIFFITEM *pdi[3],
-		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	// Two items selected, get their info
 	pdi[0] = &ctxt.GetDiffAt(pos1);
@@ -822,6 +825,8 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
 	files2 = GetItemFileNames(ctxt, *pdi[1]);
 	paths.SetLeft(files1[nPane[0]]);
 	paths.SetRight(files2[nPane[1]]);
+	encoding[0] = pdi[0]->diffFileInfo[nPane[0]].encoding;
+	encoding[1] = pdi[1]->diffFileInfo[nPane[1]].encoding;
 
 	if (pdi[0]->diffcode.isDirectory())
 	{
@@ -853,7 +858,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
  * return false if there was error or item was completely processed.
  */
 bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3, const DIFFITEM *pdi[3],
-	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg, bool openableForDir /*= true*/)
+	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], FileTextEncoding encoding[3], String& errmsg, bool openableForDir /*= true*/)
 {
 	String pathLeft, pathMiddle, pathRight;
 
@@ -973,6 +978,10 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2,
 	paths.SetMiddle(pathMiddle);
 	paths.SetRight(pathRight);
 
+	encoding[0] = pdi[0]->diffFileInfo[0].encoding;
+	encoding[1] = pdi[1]->diffFileInfo[1].encoding;
+	encoding[2] = pdi[2]->diffFileInfo[2].encoding;
+
 	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
@@ -1083,13 +1092,34 @@ int GetColImage(const DIFFITEM &di)
 }
 
 /**
- * @brief Set side status of diffitem
+ * @brief Copy side status of diffitem
  * @note This does not update UI - ReloadItemStatus() does
  * @sa CDirDoc::ReloadItemStatus()
  */
-void SetDiffSide(DIFFITEM& di, unsigned diffcode)
+void CopyDiffSide(DIFFITEM& di, int src, int dst)
 {
-	SetDiffStatus(di, diffcode, DIFFCODE::SIDEFLAGS);
+	if (di.diffcode.exists(src))
+		di.diffcode.diffcode |= (DIFFCODE::FIRST << dst);
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+			CopyDiffSide(*pdic, src, dst);
+	}
+}
+
+/**
+ * @brief Unset side status of diffitem
+ * @note This does not update UI - ReloadItemStatus() does
+ * @sa CDirDoc::ReloadItemStatus()
+ */
+void UnsetDiffSide(DIFFITEM& di, int index)
+{
+	di.diffcode.diffcode &= ~(DIFFCODE::FIRST << index);
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+			UnsetDiffSide(*pdic, index);
+	}
 }
 
 /**
@@ -1115,10 +1145,25 @@ void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask)
 
 	// Update DIFFITEM code (comparison result)
 	assert( ((~mask) & diffcode) == 0 ); // make sure they only set flags in their mask
+
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
-
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+			SetDiffStatus(*pdic, diffcode, mask);
+	}
 	// update DIFFITEM time (and other disk info), and tell views
+}
+
+void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index)
+{
+	ctxt.UpdateStatusFromDisk(&di, index);
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+			UpdateStatusFromDisk(ctxt, *pdic, index);
+	}
 }
 
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored)

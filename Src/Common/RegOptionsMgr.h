@@ -39,13 +39,10 @@ public:
 
 	virtual void SetSerializing(bool serializing=true) override { m_serializing = serializing; }
 
-	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const override;
-	virtual int ImportOptions(const String& filename) override;
-
 protected:
 	HKEY OpenKey(const String& strPath, bool bAlwaysCreate);
 	void CloseKey(HKEY hKey, const String& strPath);
-	void SplitName(const String &strName, String &strPath, String &strValue) const;
+	int LoadValueFromBuf(const String& strName, DWORD type, const BYTE* data, varprop::VariantValue &value);
 	int LoadValueFromReg(HKEY hKey, const String& strName,
 		varprop::VariantValue &value);
 	static int SaveValueToReg(HKEY hKey, const String& strValueName,

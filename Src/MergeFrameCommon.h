@@ -6,6 +6,9 @@
  */
 #pragma once
 
+#include "UnicodeString.h"
+#include "PathContext.h"
+
 class CMergeFrameCommon: public CMDIChildWnd
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
@@ -14,6 +17,8 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
+	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
+	static String GetTitleString(const PathContext& paths, const String desc[]);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();
@@ -25,6 +30,7 @@ protected:
 	int m_nLastSplitPos[2];
 private:
 	bool m_bActivated;
+	HICON m_hCurrent;
 	HICON m_hIdentical;
 	HICON m_hDifferent;
 

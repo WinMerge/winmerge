@@ -19,6 +19,7 @@
 #include "LocationBar.h"
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
+#include "FileTransform.h"
 
 class CDirDoc;
 
@@ -28,12 +29,12 @@ class CDirDoc;
 class CImgMergeFrame : public CMergeFrameCommon,public IMergeDoc
 {
 	private:
-	enum BUFFERTYPE
+	enum class BUFFERTYPE
 	{
-		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-		BUFFER_NORMAL_NAMED, /**< Normal, description given */
-		BUFFER_UNNAMED, /**< Empty, created buffer */
-		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+		NORMAL = 0, /**< Normal, file loaded from disk */
+		NORMAL_NAMED, /**< Normal, description given */
+		UNNAMED, /**< Empty, created buffer */
+		UNNAMED_SAVED, /**< Empty buffer saved with filename */
 	};
 
 	using CMDIChildWnd::Create;
@@ -48,6 +49,7 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
+	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
 	bool CloseNow() override;
@@ -56,6 +58,7 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
@@ -91,12 +94,13 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
+	bool OpenImages();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool DoFileSave(int pane);
-	bool DoFileSaveAs(int pane);
+	bool DoFileSaveAs(int pane, bool packing = true);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
@@ -113,6 +117,8 @@ private:
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;
+	PackingInfo m_infoUnpacker;
+	int m_unpackerSubcode[3];
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -148,6 +154,13 @@ private:
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
+	afx_msg void OnEditCut();
+	afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
+	afx_msg void OnEditCopy();
+	afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
+	afx_msg void OnEditPaste();
+	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
+	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
@@ -207,6 +220,7 @@ private:
 	afx_msg void OnImgVectorImageScaling(UINT nId);
 	afx_msg void OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
+	afx_msg void OnImgCompareExtractedText();
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

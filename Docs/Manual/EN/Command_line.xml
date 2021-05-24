@@ -31,11 +31,18 @@
       <arg choice="opt" rep="norepeat"><option>/f</option>
       <replaceable>filter</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/m</option>
+      <replaceable>compare-method</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
 
       <arg><option>/s</option></arg>
+
+      <arg><option>/sw</option></arg>
+
+      <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
@@ -50,6 +57,8 @@
       <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
 
@@ -70,6 +79,40 @@
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noninteractive</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noprefs</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorews</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreblanklines</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecase</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreeol</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecodepage</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/unpacker</option>
+      <replaceable>unpacker name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/prediffer</option>
+      <replaceable>prediffer name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cp</option>
+      <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cfg</option>
+      <replaceable>name=value</replaceable></arg>
+
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
 
@@ -83,11 +126,9 @@
       rep="norepeat"><option>/o</option>
       <replaceable>outputpath</replaceable></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+      <arg choice="opt"
+      rep="norepeat"><option>/or</option>
+      <replaceable>reportpath</replaceable></arg>
 
     </cmdsynopsis></para>
 
@@ -159,6 +200,22 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>compare method</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/m</option></term>
+      <listitem>
+        <para>Sets the compare method to use for the comparison.
+        This can be one of the keywords <userinput>Full</userinput>,
+        <userinput>Quick</userinput>, <userinput>Binary</userinput>,
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/x</option></term>
       <listitem>
         <para>Closes WinMerge (after displaying an information
@@ -192,6 +249,23 @@
         same instance. Without this parameter, multiple windows are allowed:
         depending on other settings, a new compare might open in the existing
         window or in a new window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>Limit the WinMerge window to one instance as well as the option /s.
+         However, it waits for the instance displaying the window to terminate.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>Ensure that another instance is always executed, ignoring the
+        value of the "Allow only one instance to run" option.</para>
       </listitem>
     </varlistentry>
 
@@ -265,6 +339,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>Compares the specified file with a copy of the file.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
         <secondary>opening minimized or maximized</secondary>
@@ -288,21 +369,21 @@
     <varlistentry>
       <term><option>/fl</option></term>
       <listitem>
-        <para>Sets focus to the left side at startup</para>
+        <para>Sets focus to the left side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Sets focus to the middle side at startup</para>
+        <para>Sets focus to the middle side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fr</option></term>
       <listitem>
-        <para>Sets focus to the right side at startup</para>
+        <para>Sets focus to the right side at startup.</para>
       </listitem>
     </varlistentry>
 
@@ -334,6 +415,111 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>Auto-merges at the left side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>Auto-merges at the middle side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>Auto-merges at the right side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>leftpath</option></term>
       <listitem>
         <para>Specifies the folder, file or project file to open on the left side.</para>
@@ -352,8 +538,9 @@
       <listitem>
         <para>Specifies the folder, file or project file to open on the right side.</para>
 
-        <para>WinMerge cannot compare files to folders, so both path parameters
-        (<option><replaceable>leftpath</replaceable></option> and
+        <para>WinMerge cannot compare files to folders, so the path parameters
+        (<option><replaceable>leftpath</replaceable></option>,
+        <option><replaceable>middlepath</replaceable></option> and
         <option><replaceable>rightpath</replaceable></option>) must point to the
         same target type (either folders or files). If WinMerge cannot find either
         of the specified paths, it opens the Select Files or Folders dialog, where
@@ -376,6 +563,7 @@
           class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
           contain a file named <filename>File.txt</filename>.</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 
@@ -408,23 +596,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>/al</option></term>
+      <term><option>/or</option></term>
       <listitem>
-        <para>Auto-merges at the left side at startup.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/am</option></term>
-      <listitem>
-        <para>Auto-merges at the middle side at startup.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/ar</option></term>
-      <listitem>
-        <para>Auto-merges at the right side at startup.</para>
+        <para>TBD</para>
       </listitem>
     </varlistentry>
 
@@ -443,5 +617,6 @@
         with a conflict file.</para>
       </listitem>
     </varlistentry>
+
   </variablelist>
 </article>

@@ -134,18 +134,18 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!FileTransform::Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
+				if (!FileTransform::Unpacking(infoUnpacker, nullptr, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file
-				assert(!infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MANUAL);
+				assert(infoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 			}
 
 			// As we keep handles open on unpacked files, Transform() may not delete them.
 			// Unpacked files will be deleted at end of this function.
 			filepathTransformed[nIndex] = filepathUnpacked[nIndex];
 
-			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
+			encoding[nIndex] = codepage_detect::Guess(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 
@@ -211,7 +211,10 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
-				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+				if (m_pCtxt->m_pSubstitutionList != nullptr)
+					m_pDiffUtilsEngine->SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
+				else
+					m_pDiffUtilsEngine->ClearSubstitutionList();
 			}
 			if (tFiles.GetSize() == 2)
 			{
@@ -251,11 +254,21 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 				code = DIFFCODE::FILE;
 
+				String Ext = tFiles[0];
+				size_t PosOfDot = Ext.rfind('.');
+				if (PosOfDot != String::npos)
+					Ext.erase(0, PosOfDot + 1);
+
 				CDiffWrapper dw;
 				DiffList diffList;
 				DIFFSTATUS status;
 
 				diffList.Clear();
+				dw.SetCompareFiles(tFiles);
+				dw.SetOptions(m_pCtxt->GetOptions());
+				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
+				dw.SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
+				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 					script10, script12,
@@ -426,7 +439,7 @@ exitPrepAndCompare:
 	{
 		if (m_pBinaryCompare == nullptr)
 			m_pBinaryCompare.reset(new BinaryCompare());
-
+		m_pBinaryCompare->SetAbortable(m_pCtxt->GetAbortable());
 		PathContext tFiles;
 		GetComparePaths(m_pCtxt, di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);

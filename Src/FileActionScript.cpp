@@ -82,7 +82,7 @@ int FileActionScript::CreateOperationsScripts()
 		{
 			if (bContinue)
 			{
-				if (!theApp.CreateBackup(true, (*iter).dest))
+				if (!CMergeApp::CreateBackup(true, (*iter).dest))
 				{
 					String strErr = _("Error backing up file");
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);

@@ -2,7 +2,7 @@
 #include "crystallineparser.h"
 
 //  HTML keywords
-static LPCTSTR s_apszHtmlKeywordList[] =
+static const TCHAR * s_apszHtmlKeywordList[] =
 {
   _T("A"),
   _T("ABBR"),
@@ -98,7 +98,7 @@ static LPCTSTR s_apszHtmlKeywordList[] =
   _T("UL"),
   _T("VAR"),
 };
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
 {
   _T("ABBR"),
   _T("ACCEPT"),
@@ -224,7 +224,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
   _T("WIDTH"),
 };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
 {
   _T("aacute"),
   _T("Aacute"),
@@ -347,7 +347,7 @@ CrystalLineParser::IsHtmlUser2Keyword (const TCHAR *pszChars, int nLength)
 }
 
 bool
-CrystalLineParser::IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int(*compare)(LPCTSTR, LPCTSTR, size_t))
+CrystalLineParser::IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t))
 {
   TCHAR **base = (TCHAR **)pszKeywordList;
   size_t lim;

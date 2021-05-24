@@ -146,7 +146,8 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
   SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == 0);
   m_mapExpand->RemoveAll ();
   CReg reg;
-  CString sKey = REG_EDITPAD _T("\\");
+  CString sKey = AfxGetApp ()->m_pszRegistryKey;
+  sKey += _T("\\") EDITPAD_SECTION _T("\\");
   sKey += def->name;
   sKey += _T ("\\Expand");
   if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ))
@@ -295,8 +296,7 @@ DeleteCurrentSelection ()
 {
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
 
       CPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -320,8 +320,7 @@ DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool
       if (bFlushUndoGroup)
         m_pTextBuffer->BeginUndoGroup ();
 
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
 
       int nSelLeft, nSelRight;
       GetColumnSelection (m_ptDrawSelStart.y, nSelLeft, nSelRight);
@@ -524,9 +523,8 @@ Paste ()
       CPoint ptCursorPos;
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
-    
+          auto [ptSelStart, ptSelEnd] = GetSelection ();
+
           ptCursorPos = ptSelStart;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
@@ -575,8 +573,7 @@ Cut ()
   if (!IsSelection ())
     return;
 
-  CPoint ptSelStart, ptSelEnd;
-  GetSelection (ptSelStart, ptSelEnd);
+  auto [ptSelStart, ptSelEnd] = GetSelection ();
   CString text;
   if (!m_bRectangularSelection)
     GetText (ptSelStart, ptSelEnd, text);
@@ -605,8 +602,7 @@ OnEditDelete ()
   if (!QueryEditable () || m_pTextBuffer == nullptr)
     return;
 
-  CPoint ptSelStart, ptSelEnd;
-  GetSelection (ptSelStart, ptSelEnd);
+  auto [ptSelStart, ptSelEnd] = GetSelection ();
   if (ptSelStart == ptSelEnd)
     {
       if (ptSelEnd.x == GetLineLength (ptSelEnd.y))
@@ -690,8 +686,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
           CPoint ptCursorPos;
           if (IsSelection ())
             {
-              CPoint ptSelStart, ptSelEnd;
-              GetSelection (ptSelStart, ptSelEnd);
+              auto [ptSelStart, ptSelEnd] = GetSelection ();
         
               ptCursorPos = ptSelStart;
               /*SetAnchor (ptCursorPos);
@@ -734,17 +729,15 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
           m_pTextBuffer->BeginUndoGroup (m_bMergeUndo);
           m_bMergeUndo = true;
 
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          auto [ptSelStart, ptSelEnd] = GetSelection ();
           CPoint ptCursorPos;
           if (ptSelStart != ptSelEnd)
             {
               ptCursorPos = ptSelStart;
               if (IsSelection ())
                 {
-                  CPoint ptSelStart1, ptSelEnd1;
-                  GetSelection (ptSelStart1, ptSelEnd1);
-            
+                  auto [ptSelStart1, ptSelEnd1] = GetSelection ();
+
                   /*SetAnchor (ptCursorPos);
                   SetSelection (ptCursorPos, ptCursorPos);
                   SetCursorPos (ptCursorPos);
@@ -988,8 +981,7 @@ OnEditTab ()
   // Text selected, no overwrite mode, replace sel with tab
   if (IsSelection ())
     {
-      CPoint ptSelStart1, ptSelEnd1;
-      GetSelection (ptSelStart1, ptSelEnd1);
+      auto [ptSelStart1, ptSelEnd1] = GetSelection ();
 
       /*SetAnchor (ptCursorPos);
       SetSelection (ptCursorPos, ptCursorPos);
@@ -1026,8 +1018,7 @@ OnEditUntab ()
   bool bTabify = false;
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       bTabify = ptSelStart.y != ptSelEnd.y;
     }
 
@@ -1035,8 +1026,7 @@ OnEditUntab ()
     {
       m_pTextBuffer->BeginUndoGroup ();
 
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       int nStartLine = ptSelStart.y;
       int nEndLine = ptSelEnd.y;
       ptSelStart.x = 0;
@@ -1155,6 +1145,7 @@ void CCrystalEditView::
 OnEditSwitchOvrmode ()
 {
   m_bOvrMode = !m_bOvrMode;
+  UpdateCaret ();
 }
 
 void CCrystalEditView::
@@ -1542,9 +1533,7 @@ OnEditReplace ()
     }
   else
     {
-      DWORD dwFlags;
-      if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), &dwFlags))
-        dwFlags = 0;
+      DWORD dwFlags = pApp->GetProfileInt (EDITPAD_SECTION, _T("ReplaceFlags"), 0);
       lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
@@ -1613,7 +1602,7 @@ SaveLastSearch(LastSearchInfos *lastSearch)
     }
 
   //  Save search parameters to registry
-  VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
+  VERIFY (AfxGetApp()->WriteProfileInt (EDITPAD_SECTION, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
 }
 
 /**
@@ -1637,8 +1626,7 @@ ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGr
   CPoint ptCursorPos;
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
 
       ptCursorPos = ptSelStart;
 
@@ -1761,6 +1749,18 @@ void CCrystalEditView::
 SetDisableBSAtSOL (bool bDisableBSAtSOL)
 {
   m_bDisableBSAtSOL = bDisableBSAtSOL;
+}
+
+void CCrystalEditView::
+CopyProperties (CCrystalTextView* pSource)
+{
+  CCrystalTextView::CopyProperties(pSource);
+  auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
+  if (!pSourceEditView)
+      return;
+  m_bDisableBSAtSOL = pSourceEditView->m_bDisableBSAtSOL;
+  m_bOvrMode = pSourceEditView->m_bOvrMode;
+  m_bAutoIndent = pSourceEditView->m_bAutoIndent;
 }
 
 void CCrystalEditView::
@@ -1932,9 +1932,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x, y);
-              SetCursorPos (pt);
               SetSelection (pt, pt);
               SetAnchor (pt);
+              SetCursorPos (pt);
               EnsureVisible (pt);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -1966,9 +1966,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                   m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                              pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
                   CPoint pt (x, y);
-                  SetCursorPos (pt);
                   SetSelection (pt, pt);
                   SetAnchor (pt);
+                  SetCursorPos (pt);
                   EnsureVisible (pt);
                   // m_pTextBuffer->FlushUndoGroup (this);
                 }
@@ -1990,9 +1990,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                                          pszInsertStr, 1, y, x, CE_ACTION_AUTOINDENT);
               ptCursorPos.x = x + 1;
               ptCursorPos.y = y;
-              SetCursorPos (ptCursorPos);
               SetSelection (ptCursorPos, ptCursorPos);
               SetAnchor (ptCursorPos);
+              SetCursorPos (ptCursorPos);
               EnsureVisible (ptCursorPos);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -2035,9 +2035,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x - 1,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x + 1, y);
-              SetCursorPos (pt);
               SetSelection (pt, pt);
               SetAnchor (pt);
+              SetCursorPos (pt);
               EnsureVisible (pt);
               // m_pTextBuffer->FlushUndoGroup (this);
             }
@@ -2197,9 +2197,9 @@ OnEditAutoExpand ()
                   ptCursorPos.x = x;
                   ptCursorPos.y = y;
                   ASSERT_VALIDTEXTPOS (ptCursorPos);
-                  SetCursorPos (ptCursorPos);
                   SetSelection (ptCursorPos, ptCursorPos);
                   SetAnchor (ptCursorPos);
+                  SetCursorPos (ptCursorPos);
                   OnEditOperation (CE_ACTION_TYPING, pszExpand, _tcslen(pszExpand));
                   ptCursorPos = GetCursorPos ();
                   if (pszSlash == nullptr)
@@ -2352,8 +2352,7 @@ OnEditLowerCase ()
   if (IsSelection ())
     {
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
       text.MakeLower ();
@@ -2362,8 +2361,7 @@ OnEditLowerCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart1, ptSelEnd1;
-          GetSelection (ptSelStart1, ptSelEnd1);
+          auto [ptSelStart1, ptSelEnd1] = GetSelection ();
     
           ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
@@ -2400,8 +2398,7 @@ OnEditUpperCase ()
   if (IsSelection ())
     {
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
       text.MakeUpper ();
@@ -2410,8 +2407,7 @@ OnEditUpperCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart1, ptSelEnd1;
-          GetSelection (ptSelStart1, ptSelEnd1);
+          auto [ptSelStart1, ptSelEnd1] = GetSelection ();
     
           ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
@@ -2448,8 +2444,7 @@ OnEditSwapCase ()
   if (IsSelection ())
     {
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
       int nLen = text.GetLength ();
@@ -2462,8 +2457,7 @@ OnEditSwapCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart1, ptSelEnd1;
-          GetSelection (ptSelStart1, ptSelEnd1);
+          auto [ptSelStart1, ptSelEnd1] = GetSelection ();
     
           ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
@@ -2500,8 +2494,7 @@ OnEditCapitalize ()
   if (IsSelection ())
     {
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
       int nLen = text.GetLength ();
@@ -2527,8 +2520,7 @@ OnEditCapitalize ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart1, ptSelEnd1;
-          GetSelection (ptSelStart1, ptSelEnd1);
+          auto [ptSelStart1, ptSelEnd1] = GetSelection ();
     
           ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
@@ -2565,8 +2557,7 @@ OnEditSentence ()
   if (IsSelection ())
     {
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
       int nLen = text.GetLength ();
@@ -2596,8 +2587,7 @@ OnEditSentence ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart1, ptSelEnd1;
-          GetSelection (ptSelStart1, ptSelEnd1);
+          auto [ptSelStart1, ptSelEnd1] = GetSelection ();
     
           ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
@@ -2636,8 +2626,8 @@ void CCrystalEditView::OnEditGotoLastChange()
     return;
 
   // goto last change
-  SetCursorPos( ptLastChange );
   SetSelection( ptLastChange, ptLastChange );
+  SetCursorPos( ptLastChange );
   EnsureVisible( ptLastChange );
 }
 //END SW
@@ -2801,8 +2791,7 @@ OnToolsCharCoding ()
     {
       CWaitCursor wait;
       CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString sText;
       GetText (ptSelStart, ptSelEnd, sText);
       CCharConvDlg dlg;
@@ -2854,8 +2843,7 @@ OnEditDeleteWord ()
     MoveWordRight (true);
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
 
       m_pTextBuffer->BeginUndoGroup ();
 
@@ -2878,8 +2866,7 @@ OnEditDeleteWordBack ()
     MoveWordLeft (true);
   if (IsSelection ())
     {
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
+      auto [ptSelStart, ptSelEnd] = GetSelection ();
 
       m_pTextBuffer->BeginUndoGroup ();
 
