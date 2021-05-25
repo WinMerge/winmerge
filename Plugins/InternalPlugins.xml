@@ -6,7 +6,7 @@
     <file-filters value="\.xml$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".xml" />
-    <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Pretty XML" />
+    <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Pretty XML;GenerateEditorScript" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Formatters\html-tidy5\tidy.exe" -xml --char-encoding raw -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
@@ -17,7 +17,7 @@
     <file-filters value="\.json$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".json" />
-    <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Pretty JSON" />
+    <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Pretty JSON;GenerateEditorScript" />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Formatters\jq\jq.exe" "" &gt; "${DST_FILE}"</command>
     </unpack-file>

@@ -285,8 +285,13 @@ std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& nam
 	for (auto& item : strutils::split(m_extendedProperties, ';'))
 	{
 		auto keyvalue = strutils::split(item, '=');
-		if (keyvalue[0] == name && keyvalue.size() > 1)
-			return keyvalue[1];
+		if (keyvalue[0] == name)
+		{
+			if (keyvalue.size() > 1)
+				return keyvalue[1];
+			else
+				return _("");
+		}
 	}
 	return {};
 }

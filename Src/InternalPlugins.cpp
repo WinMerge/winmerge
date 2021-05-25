@@ -23,6 +23,7 @@
 #include "codepage_detect.h"
 #include "UniFile.h"
 #include "WinMergePluginBase.h"
+#include "TempFile.h"
 
 using Poco::XML::SAXParser;
 using Poco::XML::ContentHandler;
@@ -288,6 +289,51 @@ private:
 	int m_funcid;
 };
 
+class EditorScriptGeneratedFromUnpacker: public WinMergePluginBase
+{
+public:
+	EditorScriptGeneratedFromUnpacker(IDispatch* pDispatch, const String& funcname)
+		: WinMergePluginBase(
+			L"EDITOR_SCRIPT",
+			strutils::format_string1(_T("EditorScript (automatically generated)"), _T("")),
+			L"\\.nomatch$", L"", L"")
+		, m_pDispatch(pDispatch)
+	{
+		m_pDispatch->AddRef();
+		AddFunction(ucr::toUTF16(funcname), CallUnpackFile);
+	}
+
+	virtual ~EditorScriptGeneratedFromUnpacker()
+	{
+		m_pDispatch->Release();
+	}
+
+	static HRESULT STDMETHODCALLTYPE CallUnpackFile(IDispatch *pDispatch, BSTR text, BSTR* pbstrResult)
+	{
+		TempFile src, dst;
+		String fileSrc = src.Create();
+		String fileDst = dst.Create();
+		HRESULT hr = WriteFile(fileSrc, text);
+		if (FAILED(hr))
+			return hr;
+		int changed = 0;
+		int subcode = 0;
+		auto* thisObj = static_cast<EditorScriptGeneratedFromUnpacker*>(pDispatch);
+		if (!plugin::InvokeUnpackFile(fileSrc, fileDst, changed, thisObj->m_pDispatch, subcode))
+			return E_FAIL;
+		String unpackedText;
+		hr = ReadFile(fileDst, unpackedText);
+		if (FAILED(hr))
+			return hr;
+		*pbstrResult = SysAllocStringLen(ucr::toUTF16(unpackedText).c_str(), 
+			static_cast<unsigned>(unpackedText.length()));
+		return S_OK;
+	}
+
+private:
+	IDispatch* m_pDispatch;
+};
+
 class InternalPlugin : public WinMergePluginBase
 {
 public:
@@ -426,7 +472,7 @@ struct Loader
 		{
 			for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
 			{
-				if (!plugin->m_disabled)
+				if (!plugin->m_disabled && plugin->GetExtendedPropertyValue(_T("GenerateUnpacker")).has_value())
 				{
 					std::vector<String> namesArray;
 					std::vector<int> idArray;
@@ -474,6 +520,26 @@ struct Loader
 			pluginNew->MakeInfo(name, pDispatch);
 			plugins[event]->push_back(pluginNew);
 		}
+
+		if (plugins.find(L"FILE_PACK_UNPACK") != plugins.end())
+		{
+			for (auto plugin : *plugins[L"FILE_PACK_UNPACK"])
+			{
+				if (!plugin->m_disabled && plugin->GetExtendedPropertyValue(_T("GenerateEditorScript")).has_value())
+				{
+					if (plugins.find(L"EDITOR_SCRIPT") == plugins.end())
+						plugins[L"EDITOR_SCRIPT"].reset(new PluginArray);
+					PluginInfoPtr pluginNew(new PluginInfo());
+					auto menuCaption =  plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+					String funcname = menuCaption.has_value() ? String{menuCaption->data(), menuCaption->length() } : plugin->m_name;
+					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(plugin->m_lpDispatch, funcname);
+					pDispatch->AddRef();
+					pluginNew->MakeInfo(plugin->m_name + _T(": Editor script"), pDispatch);
+					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
+				}
+			}
+		}
+
 		return true;
 	}
 } g_loader;
