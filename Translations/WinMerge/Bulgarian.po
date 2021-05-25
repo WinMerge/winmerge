@@ -1772,6 +1772,9 @@ msgstr "Включване на &добавките"
 msgid "File filters:"
 msgstr "Филтри за файлове:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Сливане със системата"
 

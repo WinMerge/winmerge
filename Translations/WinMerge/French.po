@@ -2246,6 +2246,9 @@ msgstr "&Activer les plugins"
 msgid "File filters:"
 msgstr "Filtres de fichier :"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Intégration à l'explorateur"

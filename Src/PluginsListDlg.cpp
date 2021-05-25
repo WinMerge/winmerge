@@ -21,7 +21,7 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
-	ON_BN_CLICKED(IDC_PLUGIN_FILEFILTERS_DEFAULTS, OnBnClickedFileFiltesDefaults)
+	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
 	ON_CBN_CLOSEUP(IDC_PLUGIN_FILEFILTERS, OnCloseUpPatterns)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
@@ -177,7 +177,10 @@ void PluginsListDlg::OnBnClickedFileFiltesDefaults()
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersTextDefault);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomaticDefault);
+	}
 }
 
 void PluginsListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
@@ -193,6 +196,7 @@ void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
 		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		WildcardRemoveDuplicatePatterns(plugin->m_filtersText);
 		plugin->LoadFilterString();
+		plugin->m_bAutomatic = !!IsDlgButtonChecked(IDC_PLUGIN_AUTOMATIC);
 	}
 }
 
@@ -200,7 +204,10 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+	}
 }
 
 /**

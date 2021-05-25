@@ -2241,6 +2241,9 @@ msgstr "Bővítmény&ek bekapcsolása"
 msgid "File filters:"
 msgstr "Fájlszűrők:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Integrálás az Intézőbe"

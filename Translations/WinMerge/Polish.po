@@ -1761,6 +1761,9 @@ msgstr "Włącz wtyczki"
 msgid "File filters:"
 msgstr "Filtry plików:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Integracja z powłoką"
 

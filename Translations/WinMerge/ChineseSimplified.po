@@ -1775,6 +1775,9 @@ msgstr "启用插件(&E)"
 msgid "File filters:"
 msgstr "文件过滤器:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "外壳集成"
 

@@ -2240,6 +2240,9 @@ msgstr "&E فعال سازي افزايه ها "
 msgid "File filters:"
 msgstr ""
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr " يکپارچه سازي پوسته "

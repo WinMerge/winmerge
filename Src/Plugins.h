@@ -72,6 +72,7 @@ public:
 	String      m_description;
 	String      m_event;
 	bool        m_bAutomatic;
+	bool        m_bAutomaticDefault;
 	bool        m_disabled;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)

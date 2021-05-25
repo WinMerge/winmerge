@@ -1773,6 +1773,9 @@ msgstr "&Habilitar plugins"
 msgid "File filters:"
 msgstr "Filtros de archivos:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Integración"
 

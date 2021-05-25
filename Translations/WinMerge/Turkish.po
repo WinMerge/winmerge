@@ -1767,6 +1767,9 @@ msgstr "&Eklentiler kullanılsın"
 msgid "File filters:"
 msgstr "Dosya süzgeçleri:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Sağ Tık Menüsü"
 

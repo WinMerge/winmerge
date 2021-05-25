@@ -2240,6 +2240,9 @@ msgstr "플러그인 사용"
 msgid "File filters:"
 msgstr "파일 필터:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "쉘 통합"

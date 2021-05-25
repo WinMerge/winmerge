@@ -1770,6 +1770,9 @@ msgstr "تفعيل الإضافات"
 msgid "File filters:"
 msgstr ""
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "دمج الطرفية"
 

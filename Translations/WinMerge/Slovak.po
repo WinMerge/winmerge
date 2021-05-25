@@ -1774,6 +1774,9 @@ msgstr "&Povoliť rozšírenia"
 msgid "File filters:"
 msgstr "Filtre súborov:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Integrácia prostredia"
 

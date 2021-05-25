@@ -1764,6 +1764,9 @@ msgstr "Įjungti &papildinius"
 msgid "File filters:"
 msgstr "Failų filtrai:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Integr. Windows aplinkoje"
 

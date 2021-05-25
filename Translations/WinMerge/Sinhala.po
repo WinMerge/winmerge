@@ -2228,6 +2228,9 @@ msgstr "&උපකාරක බලය වැඩිකිරීම"
 msgid "File filters:"
 msgstr ""
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "කවච සංකලනය කිරීම"

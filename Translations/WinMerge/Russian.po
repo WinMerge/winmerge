@@ -1763,6 +1763,9 @@ msgstr "&Включить плагины"
 msgid "File filters:"
 msgstr "Фильтры файлов:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"
 

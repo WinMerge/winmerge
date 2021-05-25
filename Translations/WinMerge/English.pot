@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-05-23 14:39+0000\n"
+"POT-Creation-Date: 2021-05-25 21:24+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1753,6 +1753,9 @@ msgid "&Enable plugins"
 msgstr ""
 
 msgid "File filters:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffer for the plugin"
 msgstr ""
 
 msgid "Shell Integration"

@@ -2244,6 +2244,9 @@ msgstr "啟用外掛(&E)"
 msgid "File filters:"
 msgstr ""
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "併入檔案總管介面"

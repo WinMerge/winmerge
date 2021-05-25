@@ -1782,6 +1782,9 @@ msgstr "Plugins inschakelen"
 msgid "File filters:"
 msgstr "Bestandsfilters:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Shell-integratie"
 

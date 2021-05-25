@@ -2241,6 +2241,9 @@ msgstr "Möjliggör InsticksProgram"
 msgid "File filters:"
 msgstr "FilFilter:"
 
+msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "GränssnittsIntegration"
