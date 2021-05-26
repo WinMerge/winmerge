@@ -347,14 +347,13 @@ public:
 	{
 	}
 
-	static String createScript(const Script& script)
+	static HRESULT createScript(const Script& script, TempFile& tempFile)
 	{
-		String path = env::GetTemporaryFileName(env::GetTemporaryPath(), _T ("_SC")) + script.m_fileExtension;
-		WriteFile(path, script.m_body, false);
-		return path;
+		String path = tempFile.Create(_T(""), script.m_fileExtension);
+		return WriteFile(path, script.m_body, false);
 	}
 
-	static HRESULT launchProgram(const String& sCmd, WORD wShowWindow)
+	static HRESULT launchProgram(const String& sCmd, WORD wShowWindow, const String* psOutputFile, DWORD &dwExitCode)
 	{
 		if (_wgetenv(L"WINMERGE_HOME") == nullptr)
 			_wputenv_s(L"WINMERGE_HOME", env::GetProgPath().c_str());
@@ -370,6 +369,7 @@ public:
 		if (!retVal)
 			return HRESULT_FROM_WIN32(GetLastError());
 		WaitForSingleObject(processInfo.hProcess, INFINITE);
+		GetExitCodeProcess(processInfo.hProcess, &dwExitCode);
 		CloseHandle(processInfo.hThread);
 		CloseHandle(processInfo.hProcess);
 		return S_OK;
@@ -384,17 +384,17 @@ public:
 			return S_OK;
 		}
 		String command = m_info.m_prediffFile->m_command;
-		String scriptPath;
+		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
 		if (m_info.m_prediffFile->m_script)
 		{
-			scriptPath = createScript(*m_info.m_prediffFile->m_script);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptPath);
+			createScript(*m_info.m_prediffFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		HRESULT hr = launchProgram(command, SW_SHOW);
-		if (!scriptPath.empty())
-			DeleteFile(scriptPath.c_str());
+		String sOutputFile;
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
 
 		*pbChanged = SUCCEEDED(hr);
 		*pbSuccess = SUCCEEDED(hr);
@@ -411,17 +411,17 @@ public:
 			return S_OK;
 		}
 		String command = m_info.m_unpackFile->m_command;
-		String scriptPath;
+		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
 		if (m_info.m_unpackFile->m_script)
 		{
-			scriptPath = createScript(*m_info.m_unpackFile->m_script);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptPath);
+			createScript(*m_info.m_unpackFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		HRESULT hr = launchProgram(command, SW_SHOW);
-		if (!scriptPath.empty())
-			DeleteFile(scriptPath.c_str());
+		String sOutputFile;
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
 
 		*pSubcode = 0;
 		*pbChanged = SUCCEEDED(hr);
@@ -438,17 +438,17 @@ public:
 			return S_OK;
 		}
 		String command = m_info.m_packFile->m_command;
-		String scriptPath;
+		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
 		if (m_info.m_packFile->m_script)
 		{
-			scriptPath = createScript(*m_info.m_packFile->m_script);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptPath);
+			createScript(*m_info.m_packFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		HRESULT hr = launchProgram(command, SW_SHOW);
-		if (!scriptPath.empty())
-			DeleteFile(scriptPath.c_str());
+		String sOutputFile;
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
 
 		*pbChanged = SUCCEEDED(hr);
 		*pbSuccess = SUCCEEDED(hr);
