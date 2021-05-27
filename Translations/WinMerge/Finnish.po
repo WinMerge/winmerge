@@ -1120,6 +1120,10 @@ msgid "Ig&nore all"
 msgstr "Hylkää kaikki"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ohita tyhjät rivit"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
 
@@ -1130,6 +1134,9 @@ msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Ohita koodisivuerot"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1706,13 +1713,6 @@ msgstr "Hylkää muutos"
 #, c-format
 msgid "I&gnore all"
 msgstr "Hylkää kaikki"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ohita tyhjät rivit"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

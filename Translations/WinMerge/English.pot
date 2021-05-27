@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
+"POT-Creation-Date: 2021-05-27 08:43+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -888,6 +888,9 @@ msgstr ""
 msgid "Ig&nore all"
 msgstr ""
 
+msgid "Ignore blan&k lines"
+msgstr ""
+
 msgid "Ignore &case"
 msgstr ""
 
@@ -895,6 +898,9 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
 
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 msgid "&Include Subfolders"
@@ -1345,12 +1351,6 @@ msgid "&Ignore change"
 msgstr ""
 
 msgid "I&gnore all"
-msgstr ""
-
-msgid "Ignore blan&k lines"
-msgstr ""
-
-msgid "Ignore c&omment differences"
 msgstr ""
 
 msgid "E&nable moved block detection"

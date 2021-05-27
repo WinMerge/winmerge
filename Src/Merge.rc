@@ -860,23 +860,25 @@ BEGIN
     BEGIN
         POPUP "W&hitespaces"
         BEGIN
-            MENUITEM "Com&pare",                    IDC_DIFF_WHITESPACE_COMPARE
-            MENUITEM "I&gnore changes",             IDC_DIFF_WHITESPACE_IGNORE
-            MENUITEM "Ig&nore all",                 IDC_DIFF_WHITESPACE_IGNOREALL
+            MENUITEM "Com&pare",                    ID_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             ID_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Ignore &case",                IDC_DIFF_IGNORECASE
-        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
-        MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
+        MENUITEM "Ignore blan&k lines",         ID_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case",                ID_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore c&omment differences" ,ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
+        MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
         BEGIN
-            MENUITEM "Full Contents",               ID_COMPMETHOD_FULL_CONTENTS
-            MENUITEM "Quick Contents",              ID_COMPMETHOD_QUICK_CONTENTS
-            MENUITEM "Binary Contents",             ID_COMPMETHOD_BINARY_CONTENTS
-            MENUITEM "Modified Date",               ID_COMPMETHOD_MODDATE
-            MENUITEM "Modified Date and Size",      ID_COMPMETHOD_DATESIZE
-            MENUITEM "Size",                        ID_COMPMETHOD_SIZE
+            MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
         END
     END
 END

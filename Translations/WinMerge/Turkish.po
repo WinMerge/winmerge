@@ -895,6 +895,9 @@ msgstr "Değişiklikler &yok sayılsın"
 msgid "Ig&nore all"
 msgstr "Tümü y&ok sayılsın"
 
+msgid "Ignore blan&k lines"
+msgstr "Boş satırlar yo&k sayılsın"
+
 msgid "Ignore &case"
 msgstr "BÜYÜK-küçük &harf ayrımı yapılmasın"
 
@@ -903,6 +906,9 @@ msgstr "Satı&r sonu farklılıkları yok sayılsın (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Ko&d sayfası farklılıkları yok sayılsın"
+
+msgid "Ignore c&omment differences"
+msgstr "Yo&rum farklılıkları yok sayılsın"
 
 msgid "&Include Subfolders"
 msgstr "A&lt klasörler katılsın"
@@ -1361,12 +1367,6 @@ msgstr "&Değişiklik yok sayılsın"
 
 msgid "I&gnore all"
 msgstr "Tümü &yok sayılsın"
-
-msgid "Ignore blan&k lines"
-msgstr "Boş satırlar yo&k sayılsın"
-
-msgid "Ignore c&omment differences"
-msgstr "Yo&rum farklılıkları yok sayılsın"
 
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
@@ -3691,57 +3691,3 @@ msgstr "Yalnız bir kopya çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Yalnız bir kopyanın çalışsın ve kopyanın sonlandırılması beklensin"
-
-#~ msgid "&Goto..."
-#~ msgstr "&Git..."
-
-#~ msgid "&New\tCtrl+N"
-#~ msgstr "Ye&ni\tCtrl+N"
-
-#~ msgid "E&xit"
-#~ msgstr "Çı&kış"
-
-#~ msgid "Cl&ose"
-#~ msgstr "&Kapat"
-
-#~ msgid "File En&coding..."
-#~ msgstr "&Dosya Kodlaması..."
-
-#~ msgid "&Print..."
-#~ msgstr "&Yazdır..."
-
-#~ msgid "Moved Block for &Current Diff"
-#~ msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
-
-#~ msgid "Case sensi&tive"
-#~ msgstr "BÜYÜK-küçük &harf ayrımı yapılsın"
-
-#~ msgid "Go To"
-#~ msgstr "Git"
-
-#~ msgid "G&oto:"
-#~ msgstr "&Git:"
-
-#~ msgid "Comments"
-#~ msgstr "Açıklamalar"
-
-#~ msgid "Filter Comments"
-#~ msgstr "Açıklamalar süzülsün"
-
-#~ msgid "Filefilters"
-#~ msgstr "Dosya Süzgeçleri"
-
-#~ msgid ""
-#~ "Developers:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-#~ msgstr ""
-#~ "Geliştiriciler:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"
