@@ -1117,6 +1117,10 @@ msgid "Ig&nore all"
 msgstr "Нехтувати всюди"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Нехтувати порожніми &лініями"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Нехтувати р&егістр"
 
@@ -1126,6 +1130,9 @@ msgstr "Нехтувати різницею в кінцях рядків (Win/Un
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1703,13 +1710,6 @@ msgstr "Нехтувати зміненими пропусками"
 #, c-format
 msgid "I&gnore all"
 msgstr "Нехтувати &всіма пропусками"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Нехтувати порожніми &лініями"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

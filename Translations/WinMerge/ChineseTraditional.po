@@ -1124,6 +1124,10 @@ msgid "Ig&nore all"
 msgstr "忽略全部(&N)"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "忽略空白行(&K)"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
 
@@ -1134,6 +1138,9 @@ msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "忽略代碼頁不同(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1712,13 +1719,6 @@ msgstr "忽略空白數量之變動而造成的差異(&H)"
 #, c-format
 msgid "I&gnore all"
 msgstr "忽略空白處之任何差異(&A)"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "忽略空白行(&K)"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

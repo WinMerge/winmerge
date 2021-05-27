@@ -1116,6 +1116,10 @@ msgid "Ig&nore all"
 msgstr "Prezri &vse"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Prezri prazne &vrstice"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Prezri &velikost znakov"
 
@@ -1126,6 +1130,9 @@ msgstr "&Prezri različnost vrste znakov za konec vrstice (EOL)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "P&rezri razlike kodnih strani"
+
+msgid "Ignore c&omment differences"
+msgstr "Prezri razlike v k&omentarjih"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1701,13 +1708,6 @@ msgstr "&Prezri spremembe"
 #, c-format
 msgid "I&gnore all"
 msgstr "P&rezri vse"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Prezri prazne &vrstice"
-
-msgid "Ignore c&omment differences"
-msgstr "Prezri razlike v k&omentarjih"
 
 #, c-format
 msgid "E&nable moved block detection"

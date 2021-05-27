@@ -893,6 +893,9 @@ msgstr "Игнорировать изменения"
 msgid "Ig&nore all"
 msgstr "Игнорировать все"
 
+msgid "Ignore blan&k lines"
+msgstr "Игнорировать пуст&ые строки"
+
 msgid "Ignore &case"
 msgstr "Игнорировать р&егистр"
 
@@ -901,6 +904,9 @@ msgstr "Игнорировать концы строк (Win/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Игнорировать отличия кодовых страниц"
+
+msgid "Ignore c&omment differences"
+msgstr "Игнорировать отличия в комментариях"
 
 msgid "&Include Subfolders"
 msgstr "&Включая подпапки"
@@ -1351,12 +1357,6 @@ msgstr "Игнорировать измененные невидимые"
 
 msgid "I&gnore all"
 msgstr "Игнорировать &все невидимые"
-
-msgid "Ignore blan&k lines"
-msgstr "Игнорировать пуст&ые строки"
-
-msgid "Ignore c&omment differences"
-msgstr "Игнорировать отличия в комментариях"
 
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"

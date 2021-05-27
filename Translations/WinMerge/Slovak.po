@@ -894,6 +894,9 @@ msgstr "I&gnorovať zmeny"
 msgid "Ig&nore all"
 msgstr "Ig&norovať všetko"
 
+msgid "Ignore blan&k lines"
+msgstr "Ignorovať prázdne riad&ky"
+
 msgid "Ignore &case"
 msgstr "Ignorovať m&alé/VEĽKÉ"
 
@@ -902,6 +905,9 @@ msgstr "Igno&rovať rozdiely v zakončení riadkov (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Ignorovať rozdiely kódových stránok"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 msgid "&Include Subfolders"
 msgstr "&Zahrnúť podpriečinky"
@@ -1356,12 +1362,6 @@ msgstr "&Ignorovať zmeny"
 
 msgid "I&gnore all"
 msgstr "I&gnorovať všetko"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorovať prázdne riad&ky"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Povoliť &zisťovanie presunu bloku"

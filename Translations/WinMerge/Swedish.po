@@ -1118,6 +1118,10 @@ msgid "Ig&nore all"
 msgstr "Åsidosätt allt"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Åsidosätt blanka rader"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
 
@@ -1128,6 +1132,9 @@ msgstr "Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Åsidosätt TextKodningsSkillnader"
+
+msgid "Ignore c&omment differences"
+msgstr "Frånse kommentarskillnader"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1704,13 +1711,6 @@ msgstr "Åsidosätt skillnad"
 #, c-format
 msgid "I&gnore all"
 msgstr "Åsidosätt samtliga"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Åsidosätt blanka rader"
-
-msgid "Ignore c&omment differences"
-msgstr "Frånse kommentarskillnader"
 
 #, c-format
 msgid "E&nable moved block detection"

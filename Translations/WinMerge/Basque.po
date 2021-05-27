@@ -1118,6 +1118,10 @@ msgid "Ig&nore all"
 msgstr "E&zikusi denak"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ezikusi &lerro zuriak"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ezikusi &kasua"
 
@@ -1127,6 +1131,9 @@ msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1703,13 +1710,6 @@ msgstr "&Ezikusi aldaketa"
 #, c-format
 msgid "I&gnore all"
 msgstr "E&zikusi denak"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ezikusi &lerro zuriak"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

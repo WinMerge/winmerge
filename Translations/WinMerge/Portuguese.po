@@ -894,6 +894,9 @@ msgstr "Ignorar alterações"
 msgid "Ig&nore all"
 msgstr "Ignorar todas"
 
+msgid "Ignore blan&k lines"
+msgstr "Ignorar linhas em branco"
+
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas/minúsculas"
 
@@ -902,6 +905,9 @@ msgstr "Igno&rar diferentes tipos de ficheiros (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenças nas páginas de código"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorar diferenças de c&omentários"
 
 msgid "&Include Subfolders"
 msgstr "Incluir Sub-ficheiros"
@@ -1362,12 +1368,6 @@ msgstr "&Ignorar alteração"
 
 msgid "I&gnore all"
 msgstr "I&gnorar tudo"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorar linhas em branco"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorar diferenças de c&omentários"
 
 msgid "E&nable moved block detection"
 msgstr "Ativar deteção de bloco movido"

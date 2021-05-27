@@ -1116,6 +1116,10 @@ msgid "Ig&nore all"
 msgstr "&Alle ignorieren"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "&Leerzeilen ignorieren"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "&Groß-/Kleinschreibung ignorieren"
 
@@ -1126,6 +1130,9 @@ msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "&Codeseiten-Unterschiede ignorieren"
+
+msgid "Ignore c&omment differences"
+msgstr "Kommentarunterschiede ignorieren"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1702,13 +1709,6 @@ msgstr "Änderung &ignorieren"
 #, c-format
 msgid "I&gnore all"
 msgstr "&Alle ignorieren"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "&Leerzeilen ignorieren"
-
-msgid "Ignore c&omment differences"
-msgstr "Kommentarunterschiede ignorieren"
 
 #, c-format
 msgid "E&nable moved block detection"

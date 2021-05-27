@@ -1115,6 +1115,10 @@ msgid "Ig&nore all"
 msgstr "I&gnora'ls tots"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "&Ignora les línies en blanc"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ignora &majúscules/minúscules"
 
@@ -1124,6 +1128,9 @@ msgstr ""
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1701,13 +1708,6 @@ msgstr "Ignora els &canvis en els espais"
 #, c-format
 msgid "I&gnore all"
 msgstr "Ignora t&ots els espais"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "&Ignora les línies en blanc"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

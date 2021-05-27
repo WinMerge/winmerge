@@ -1112,6 +1112,10 @@ msgstr "වෙනස්කම් නොසලකා හරින්න"
 msgid "Ig&nore all"
 msgstr "සියල්ල නොසලකා හරින්න"
 
+#, c-format
+msgid "Ignore blan&k lines"
+msgstr "හිස් පේළි නොසලකා හරින්න"
+
 #, fuzzy, c-format
 msgid "Ignore &case"
 msgstr "Ignore &case"
@@ -1122,6 +1126,9 @@ msgstr "Igno&re carriage return differences (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1699,13 +1706,6 @@ msgstr "වෙනස නොසලකා හරින්න "
 #, c-format
 msgid "I&gnore all"
 msgstr "සියල්ල නොසලකා හරින්න"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "හිස් පේළි නොසලකා හරින්න"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, fuzzy, c-format
 msgid "E&nable moved block detection"

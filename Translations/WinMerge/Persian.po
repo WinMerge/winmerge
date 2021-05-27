@@ -1117,6 +1117,10 @@ msgid "Ig&nore all"
 msgstr "&n چشم پوشي از همه "
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "&k چشم پوشي از خطوط خالي "
+
+#, c-format
 msgid "Ignore &case"
 msgstr "&c چشم پوشي از اندازه حروف "
 
@@ -1126,6 +1130,9 @@ msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر س�
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1707,13 +1714,6 @@ msgstr "&I چشم پوشي از تغيير "
 #, c-format
 msgid "I&gnore all"
 msgstr "&g چشم پوشي از همگي "
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "&k چشم پوشي از خطوط خالي "
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

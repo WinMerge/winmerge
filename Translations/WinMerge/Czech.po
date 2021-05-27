@@ -1116,6 +1116,10 @@ msgid "Ig&nore all"
 msgstr "Ignorovat &všechny"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ignorovat prázdné řá&dky"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ignorovat &malá a velká písmena"
 
@@ -1125,6 +1129,9 @@ msgstr "Ignorovat rozdíly v &koncích řádků (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1704,13 +1711,6 @@ msgstr "Ignorovat &změny"
 #, c-format
 msgid "I&gnore all"
 msgstr "Ignorovat &všechny"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ignorovat prázdné řá&dky"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

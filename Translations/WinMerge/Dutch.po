@@ -892,6 +892,9 @@ msgstr "Wijzigingen negeren"
 msgid "Ig&nore all"
 msgstr "Alles negeren"
 
+msgid "Ignore blan&k lines"
+msgstr "Lege regels negeren"
+
 msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
 
@@ -900,6 +903,9 @@ msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
+
+msgid "Ignore c&omment differences"
+msgstr "Opmerkingsverschillen negeren"
 
 msgid "&Include Subfolders"
 msgstr "Ook in submappen"
@@ -1360,12 +1366,6 @@ msgstr "Wijziging negeren"
 
 msgid "I&gnore all"
 msgstr "Alles negeren"
-
-msgid "Ignore blan&k lines"
-msgstr "Lege regels negeren"
-
-msgid "Ignore c&omment differences"
-msgstr "Opmerkingsverschillen negeren"
 
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
