@@ -362,9 +362,18 @@ public:
 		STARTUPINFO stInfo = { sizeof(STARTUPINFO) };
 		stInfo.dwFlags = STARTF_USESHOWWINDOW;
 		stInfo.wShowWindow = wShowWindow;
+		if (psOutputFile && !psOutputFile->empty())
+		{
+			SECURITY_ATTRIBUTES sa{ sizeof(sa) };
+			sa.bInheritHandle = true;
+			stInfo.hStdError = CreateFile(psOutputFile->c_str(), GENERIC_READ | GENERIC_WRITE,
+				FILE_SHARE_READ | FILE_SHARE_WRITE, &sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+			stInfo.hStdOutput = stInfo.hStdError;
+			stInfo.dwFlags |= STARTF_USESTDHANDLES;
+		}
 		PROCESS_INFORMATION processInfo;
 		bool retVal = !!CreateProcess(nullptr, (LPTSTR)command.c_str(),
-			nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
+			nullptr, nullptr, TRUE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 			&stInfo, &processInfo);
 		if (!retVal)
 			return HRESULT_FROM_WIN32(GetLastError());
@@ -372,6 +381,8 @@ public:
 		GetExitCodeProcess(processInfo.hProcess, &dwExitCode);
 		CloseHandle(processInfo.hThread);
 		CloseHandle(processInfo.hProcess);
+		if (stInfo.hStdError != nullptr && stInfo.hStdError != INVALID_HANDLE_VALUE)
+			CloseHandle(stInfo.hStdError);
 		return S_OK;
 	}
 
@@ -392,9 +403,10 @@ public:
 			createScript(*m_info.m_prediffFile->m_script, scriptFile);
 			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		String sOutputFile;
+		TempFile stderrFile;
+		String sOutputFile = stderrFile.Create();
 		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
+		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
 
 		*pbChanged = SUCCEEDED(hr);
 		*pbSuccess = SUCCEEDED(hr);
@@ -419,9 +431,10 @@ public:
 			createScript(*m_info.m_unpackFile->m_script, scriptFile);
 			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		String sOutputFile;
+		TempFile stderrFile;
+		String sOutputFile = stderrFile.Create();
 		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
+		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
 
 		*pSubcode = 0;
 		*pbChanged = SUCCEEDED(hr);
@@ -446,9 +459,10 @@ public:
 			createScript(*m_info.m_packFile->m_script, scriptFile);
 			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
 		}
-		String sOutputFile;
+		TempFile stderrFile;
+		String sOutputFile = stderrFile.Create();
 		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_SHOW, &sOutputFile, dwExitCode);
+		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
 
 		*pbChanged = SUCCEEDED(hr);
 		*pbSuccess = SUCCEEDED(hr);
