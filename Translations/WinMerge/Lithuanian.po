@@ -897,6 +897,9 @@ msgstr "I&gnoruoti pokyčius"
 msgid "Ig&nore all"
 msgstr "Ig&noruoti visus"
 
+msgid "Ignore blan&k lines"
+msgstr "Nepaisyti &tuščių eilučių"
+
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
@@ -905,6 +908,9 @@ msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
+
+msgid "Ignore c&omment differences"
+msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
@@ -1355,12 +1361,6 @@ msgstr "&Ignoruoti pokyčius"
 
 msgid "I&gnore all"
 msgstr "I&gnoruoti visus"
-
-msgid "Ignore blan&k lines"
-msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore c&omment differences"
-msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"

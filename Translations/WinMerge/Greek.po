@@ -1119,6 +1119,10 @@ msgid "Ig&nore all"
 msgstr "Να Αγνοηθούν Ό&λα"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Οι &κενές γραμμές να αγνοούνται"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Διάκριση μεταξύ Πεζών/&Κεφαλαίων ανενεργός"
 
@@ -1128,6 +1132,9 @@ msgstr "Διαφορές χαρακτήρων &τερματισμού (Win/Unix/
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1705,13 +1712,6 @@ msgstr "Η μεταβολή να α&γνοείται"
 #, c-format
 msgid "I&gnore all"
 msgstr "Να αγνοούνται τα &πάντα"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Οι &κενές γραμμές να αγνοούνται"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

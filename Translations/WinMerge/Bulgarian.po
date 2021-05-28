@@ -891,6 +891,9 @@ msgstr "Пренебре&гване на променените"
 msgid "Ig&nore all"
 msgstr "Пре&небрегване на всички"
 
+msgid "Ignore blan&k lines"
+msgstr "Пренебрегване на пра&зни редове"
+
 msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
 
@@ -899,6 +902,9 @@ msgstr "Пренебрегване на &знаци за нов ред (Windows/
 
 msgid "Ignore codepage &differences"
 msgstr "Пренебрегване на &разлики в кодова страница"
+
+msgid "Ignore c&omment differences"
+msgstr "Пренебрегване на разлики в &коментари"
 
 msgid "&Include Subfolders"
 msgstr "&Включително подпапките"
@@ -1355,12 +1361,6 @@ msgstr "&Пренебрегване на променените"
 
 msgid "I&gnore all"
 msgstr "Пренебре&гване на всички"
-
-msgid "Ignore blan&k lines"
-msgstr "Пренебрегване на пра&зни редове"
-
-msgid "Ignore c&omment differences"
-msgstr "Пренебрегване на разлики в &коментари"
 
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"

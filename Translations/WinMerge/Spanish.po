@@ -898,6 +898,9 @@ msgstr "I&gnorar cambios"
 msgid "Ig&nore all"
 msgstr "Ig&norar todos"
 
+msgid "Ignore blan&k lines"
+msgstr "Ignorar diferencias de líneas &vacías"
+
 msgid "Ignore &case"
 msgstr "Ignorar MAYÚSCULAS/minús&culas"
 
@@ -906,6 +909,9 @@ msgstr "Igno&rar saltos de línea diferentes (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferencias en página de códigos"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 msgid "&Include Subfolders"
 msgstr "&Incluir subcarpetas"
@@ -1358,12 +1364,6 @@ msgstr "&Ignorar cambios"
 
 msgid "I&gnore all"
 msgstr "I&gnorar todos"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorar diferencias de líneas &vacías"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Habilitar detecció&n de bloques movidos"

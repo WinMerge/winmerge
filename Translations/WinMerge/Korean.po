@@ -1125,6 +1125,10 @@ msgid "Ig&nore all"
 msgstr "모두 무시하기(&N)"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "공백 줄 무시하기(&K)"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
 
@@ -1135,6 +1139,9 @@ msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "코드페이지 차이 무시하기(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "주석 차이 무시하기(&O)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1711,13 +1718,6 @@ msgstr "변경사항 무시하기(&H)"
 #, c-format
 msgid "I&gnore all"
 msgstr "모두 무시하기(&G)"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "공백 줄 무시하기(&K)"
-
-msgid "Ignore c&omment differences"
-msgstr "주석 차이 무시하기(&O)"
 
 #, c-format
 msgid "E&nable moved block detection"
