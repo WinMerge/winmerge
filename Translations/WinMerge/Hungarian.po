@@ -324,7 +324,7 @@ msgstr "&Bővítmények"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Bővitmények beállításai..."
+msgstr "Bővitmény beállítások..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -1867,7 +1867,7 @@ msgid ""
 "Need to restart session."
 msgstr ""
 "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
-"A program újraindítás szükséges."
+"A program újraindítása szükséges."
 
 msgid ""
 "Detect codepage for text files with mlang.dll\n"
@@ -4365,7 +4365,7 @@ msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Csak egy példány futhat és megvárja meg, amíg a példány leáll"
+msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgid "Al&l"
 msgstr ""
