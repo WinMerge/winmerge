@@ -20,14 +20,7 @@ public:
 		DISPID_PackFolder,
 		DISPID_ShowSettingsDialog,
 	};
-	struct MemberInfo
-	{
-		std::wstring name;
-		DISPID id;
-		short params;
-		short flags;
-		HRESULT (STDMETHODCALLTYPE *pFunc)(IDispatch *pDispatch, BSTR bstrText, BSTR* pbstrResult);
-	};
+	using ScriptFuncPtr = HRESULT(STDMETHODCALLTYPE*)(IDispatch* pDispatch, BSTR bstrText, BSTR* pbstrResult);
 
 	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
 		const std::wstring& sFileFilters = L"", const std::wstring& sUnpackedFileExtension = L"", 
@@ -39,73 +32,87 @@ public:
 		, m_sUnpackedFileExtension(sUnpackedFileExtension)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
-		static const MemberInfo memberInfo_FILE_PREDIFF[] =
+		static PARAMDATA paramData_Prediff[] =
+		{ {L"fileSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, };
+		static PARAMDATA paramData_UnpackFile[] =
+		{ {L"fileSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"pSubcode", VT_I4 | VT_BYREF}, };
+		static PARAMDATA paramData_PackFile[] =
+		{ {L"fileSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"subcode", VT_I4}, };
+		static PARAMDATA paramData_IsFolder[] =
+		{ {L"fileSrc", VT_BSTR}, };
+		static PARAMDATA paramData_UnpackFolder[] =
+		{ {L"fileSrc", VT_BSTR}, {L"folderDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"pSubcode", VT_I4 | VT_BYREF}, };
+		static PARAMDATA paramData_PackFolder[] =
+		{ {L"folderSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"subcode", VT_I4}, };
+		static PARAMDATA paramData_Empty[] =
+		{ {L"", VT_EMPTY} };
+		static METHODDATA methodData_FILE_PREDIFF[] =
 		{
-			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
-			{ L"PrediffFile",                 DISPID_PrediffFile,                 3, DISPATCH_METHOD },
-			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL  },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PrediffFile",                 paramData_Prediff,      DISPID_PrediffFile,                 4, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL  },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          5, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
 		};
-		static const MemberInfo memberInfo_FILE_PACK_UNPACK[] =
+		static METHODDATA methodData_FILE_PACK_UNPACK[] =
 		{
-			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
-			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
-			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
-			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL  },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"UnpackFile",                  paramData_UnpackFile,   DISPID_UnpackFile,                  5, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL  },
+			{ L"PackFile",                    paramData_PackFile,     DISPID_PackFile ,                   6, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL  },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          7, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
 		};
-		static const MemberInfo memberInfo_FILE_FOLDER_PACK_UNPACK[] =
+		static METHODDATA methodData_FILE_FOLDER_PACK_UNPACK[] =
 		{
-			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginIsAutomatic",           DISPID_PluginIsAutomatic,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginFileFilters",           DISPID_PluginFileFilters,           0, DISPATCH_PROPERTYGET },
-			{ L"PluginUnpackedFileExtension", DISPID_PluginUnpackedFileExtension, 0, DISPATCH_PROPERTYGET },
-			{ L"UnpackFile",                  DISPID_UnpackFile,                  4, DISPATCH_METHOD },
-			{ L"PackFile",                    DISPID_PackFile ,                   4, DISPATCH_METHOD },
-			{ L"IsFolder",                    DISPID_IsFolder,                    1, DISPATCH_METHOD },
-			{ L"UnpackFolder",                DISPID_UnpackFolder,                4, DISPATCH_METHOD },
-			{ L"PackFolder",                  DISPID_PackFolder,                  4, DISPATCH_METHOD },
-			{ L"ShowSettingsDialog",          DISPID_ShowSettingsDialog,          0, DISPATCH_METHOD },
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"UnpackFile",                  paramData_UnpackFile,   DISPID_UnpackFile,                  5, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
+			{ L"PackFile",                    paramData_PackFile,     DISPID_PackFile ,                   6, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
+			{ L"IsFolder",                    paramData_IsFolder,     DISPID_IsFolder,                    7, CC_STDCALL, 1, DISPATCH_METHOD,      VT_BOOL },
+			{ L"UnpackFolder",                paramData_UnpackFolder, DISPID_UnpackFolder,                8, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
+			{ L"PackFolder",                  paramData_PackFolder,   DISPID_PackFolder,                  9, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,         10, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
 		};
-		static const MemberInfo memberInfo_EDITOR_SCRIPT[] =
+		static METHODDATA methodData_EDITOR_SCRIPT[] =
 		{
-			{ L"PluginEvent",                 DISPID_PluginEvent,                 0, DISPATCH_PROPERTYGET },
-			{ L"PluginDescription",           DISPID_PluginDescription,           0, DISPATCH_PROPERTYGET },
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 		};
-		size_t memberInfoCount;
-		const MemberInfo* memberInfo;
+		const METHODDATA* pMethodData;
+		size_t methodDataCount = 0;
 		if (sEvent == L"FILE_PREDIFF")
 		{
-			memberInfo = memberInfo_FILE_PREDIFF;
-			memberInfoCount = std::size(memberInfo_FILE_PREDIFF);
+			methodDataCount = sizeof(methodData_FILE_PREDIFF) / sizeof(methodData_FILE_PREDIFF[0]);
+			pMethodData = methodData_FILE_PREDIFF;
 		}
 		else if (sEvent == L"FILE_PACK_UNPACK")
 		{
-			memberInfo = memberInfo_FILE_PACK_UNPACK;
-			memberInfoCount = std::size(memberInfo_FILE_PACK_UNPACK);
+			methodDataCount = sizeof(methodData_FILE_PACK_UNPACK) / sizeof(methodData_FILE_PACK_UNPACK[0]);
+			pMethodData = methodData_FILE_PACK_UNPACK;
 		}
 		else if (sEvent == L"FILE_FOLDER_PACK_UNPACK")
 		{
-			memberInfo = memberInfo_FILE_FOLDER_PACK_UNPACK;
-			memberInfoCount = std::size(memberInfo_FILE_FOLDER_PACK_UNPACK);
+			methodDataCount = sizeof(methodData_FILE_FOLDER_PACK_UNPACK) / sizeof(methodData_FILE_FOLDER_PACK_UNPACK[0]);
+			pMethodData = methodData_FILE_FOLDER_PACK_UNPACK;
 		}
 		else
 		{
-			memberInfo = memberInfo_EDITOR_SCRIPT;
-			memberInfoCount = std::size(memberInfo_EDITOR_SCRIPT);
+			methodDataCount = sizeof(methodData_EDITOR_SCRIPT) / sizeof(methodData_EDITOR_SCRIPT[0]);
+			pMethodData = methodData_EDITOR_SCRIPT;
 		}
-		for (size_t i = 0; i < memberInfoCount; ++i)
+		for (size_t i = 0; i < methodDataCount; ++i)
 		{
-			auto& member = memberInfo[i];
-			m_mapNameToIndex.insert_or_assign(member.name, static_cast<int>(m_memberInfo.size()));
-			m_mapDispIdToIndex.insert_or_assign(member.id, static_cast<int>(m_memberInfo.size()));
-			m_memberInfo.push_back(member);
+			auto& methodData = pMethodData[i];
+			m_mapNameToIndex.insert_or_assign(methodData.szName, static_cast<int>(m_methodData.size()));
+			m_mapDispIdToIndex.insert_or_assign(methodData.dispid, static_cast<int>(m_methodData.size()));
+			m_methodData.push_back(methodData);
 		}
 	}
 
@@ -133,7 +140,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT* pctinfo) override
 	{
-		*pctinfo = static_cast<UINT>(m_memberInfo.size());
+		*pctinfo = static_cast<UINT>(m_methodData.size());
 		return S_OK;
 	}
 
@@ -151,7 +158,7 @@ public:
 			auto it = m_mapNameToIndex.find(rgszNames[i]);
 			if (it == m_mapNameToIndex.end())
 				return DISP_E_UNKNOWNNAME;
-			rgDispId[i] = m_memberInfo[it->second].id;
+			rgDispId[i] = m_methodData[it->second].dispid;
 		}
 		return S_OK;
 	}
@@ -230,7 +237,7 @@ public:
 					BSTR bstrText = pDispParams->rgvarg[0].bstrVal;
 					pVarResult->vt = VT_BSTR;
 					BSTR* pbstrResult = &pVarResult->bstrVal;
-					hr = m_memberInfo[m_mapDispIdToIndex[dispIdMember]].pFunc(this, bstrText, pbstrResult);
+					hr = m_mapScriptFuncs[dispIdMember].second(this, bstrText, pbstrResult);
 				}
 				break;
 			}
@@ -267,7 +274,9 @@ public:
 	HRESULT STDMETHODCALLTYPE GetTypeAttr(TYPEATTR** ppTypeAttr) override
 	{
 		auto* pTypeAttr = new TYPEATTR();
-		pTypeAttr->cFuncs = static_cast<WORD>(m_memberInfo.size());
+		pTypeAttr->cFuncs = static_cast<WORD>(m_methodData.size());
+		pTypeAttr->typekind = TKIND_DISPATCH;
+		pTypeAttr->cbAlignment = 8;
 		*ppTypeAttr = pTypeAttr;
 		return S_OK;
 	}
@@ -279,15 +288,23 @@ public:
 	
 	HRESULT STDMETHODCALLTYPE GetFuncDesc(UINT index, FUNCDESC** ppFuncDesc) override
 	{
-		if (index >= m_memberInfo.size())
+		if (index >= m_methodData.size())
 			return E_INVALIDARG;
 		auto* pFuncDesc = new FUNCDESC();
+		const METHODDATA& methodData = m_methodData[index];
 		pFuncDesc->funckind = FUNC_DISPATCH;
-		pFuncDesc->invkind = static_cast<INVOKEKIND>(m_memberInfo[index].flags);
+		pFuncDesc->invkind = static_cast<INVOKEKIND>(methodData.wFlags);
 		pFuncDesc->wFuncFlags = 0;
-		pFuncDesc->cParams = m_memberInfo[index].params;
-		pFuncDesc->memid = m_memberInfo[index].id;
-		pFuncDesc->callconv = CC_STDCALL;
+		pFuncDesc->cParams = static_cast<short>(methodData.cArgs);
+		pFuncDesc->memid = methodData.dispid;
+		pFuncDesc->callconv = methodData.cc;
+		if (methodData.cArgs > 0)
+		{
+			pFuncDesc->lprgelemdescParam = new ELEMDESC[methodData.cArgs];
+			for (int i = 0; i < methodData.cArgs; ++i)
+				pFuncDesc->lprgelemdescParam[i].tdesc.vt = methodData.ppdata[i].vt;
+		}
+		pFuncDesc->elemdescFunc.tdesc.vt = methodData.vtReturn;
 		*ppFuncDesc = pFuncDesc;
 		return S_OK;
 	}
@@ -301,8 +318,15 @@ public:
 	{
 		if (m_mapDispIdToIndex.find(memid) == m_mapDispIdToIndex.end())
 			return E_INVALIDARG;
-		*rgBstrNames = SysAllocString(m_memberInfo[m_mapDispIdToIndex[memid]].name.c_str());
-		*pcNames = 1;
+		const METHODDATA& methodData = m_methodData[m_mapDispIdToIndex[memid]];
+		for (int i = 0; i < cMaxNames && i < methodData.cArgs + 1; i++)
+		{
+			if (i == 0)
+				rgBstrNames[i] = SysAllocString(methodData.szName);
+			else
+				rgBstrNames[i] = SysAllocString(methodData.ppdata[i - 1].szName);
+			*pcNames = i + 1;
+		}
 		return S_OK;
 	}
 	
@@ -368,6 +392,7 @@ public:
 	
 	void STDMETHODCALLTYPE ReleaseFuncDesc(FUNCDESC *pFuncDesc) override
 	{
+		delete pFuncDesc->lprgelemdescParam;
 		delete pFuncDesc;
 	}
 	
@@ -447,12 +472,20 @@ public:
 		return S_OK;
 	}
 
-	bool AddFunction(const std::wstring& name, HRESULT(STDMETHODCALLTYPE* pFunc)(IDispatch *pDispatch, BSTR bstrText, BSTR* pbstrResult))
+	bool AddFunction(const std::wstring& name, ScriptFuncPtr pFunc)
 	{
-		DISPID dispid = static_cast<DISPID>(m_memberInfo.size()) + 100;
-		m_mapNameToIndex.insert_or_assign(name, static_cast<int>(m_memberInfo.size()));
-		m_mapDispIdToIndex.insert_or_assign(dispid, static_cast<int>(m_memberInfo.size()));
-		m_memberInfo.emplace_back(MemberInfo{ name, dispid, 1, DISPATCH_METHOD, pFunc });
+		static PARAMDATA paramData_ScriptFunc[] =
+		{ {L"text", VT_BSTR} };
+		unsigned index = static_cast<int>(m_methodData.size());
+		DISPID dispid = static_cast<DISPID>(m_methodData.size()) + 100;
+		m_mapNameToIndex.insert_or_assign(name, index);
+		m_mapDispIdToIndex.insert_or_assign(dispid, index);
+		m_mapScriptFuncs.insert_or_assign(dispid, std::pair{name, pFunc});
+		METHODDATA methodData =
+		{
+			const_cast<OLECHAR *>(m_mapScriptFuncs[dispid].first.c_str()), paramData_ScriptFunc, dispid, index, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR
+		};
+		m_methodData.emplace_back(methodData);
 		return true;
 	}
 
@@ -460,7 +493,8 @@ protected:
 	int m_nRef;
 	std::map<std::wstring, int> m_mapNameToIndex;
 	std::map<DISPID, int> m_mapDispIdToIndex;
-	std::vector<MemberInfo> m_memberInfo;
+	std::vector<METHODDATA> m_methodData;
+	std::map<DISPID, std::pair<std::wstring, ScriptFuncPtr>> m_mapScriptFuncs;
 	std::wstring m_sEvent;
 	std::wstring m_sDescription;
 	std::wstring m_sFileFilters;
