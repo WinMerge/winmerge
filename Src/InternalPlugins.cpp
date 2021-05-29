@@ -289,6 +289,160 @@ private:
 	int m_funcid;
 };
 
+class InternalPlugin : public WinMergePluginBase
+{
+public:
+	InternalPlugin(Info&& info)
+		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_isAutomatic)
+		, m_info(std::move(info))
+	{
+	}
+
+	virtual ~InternalPlugin()
+	{
+	}
+
+	static HRESULT createScript(const Script& script, TempFile& tempFile)
+	{
+		String path = tempFile.Create(_T(""), script.m_fileExtension);
+		return WriteFile(path, script.m_body, false);
+	}
+
+	static HRESULT launchProgram(const String& sCmd, WORD wShowWindow, DWORD &dwExitCode)
+	{
+		TempFile stderrFile;
+		String sOutputFile = stderrFile.Create();
+		if (_wgetenv(L"WINMERGE_HOME") == nullptr)
+			_wputenv_s(L"WINMERGE_HOME", env::GetProgPath().c_str());
+		String command = sCmd;
+		strutils::replace(command, _T("${WINMERGE_HOME}"), env::GetProgPath());
+		STARTUPINFO stInfo = { sizeof(STARTUPINFO) };
+		stInfo.dwFlags = STARTF_USESHOWWINDOW;
+		stInfo.wShowWindow = wShowWindow;
+		SECURITY_ATTRIBUTES sa{ sizeof(sa) };
+		sa.bInheritHandle = true;
+		stInfo.hStdError = CreateFile(sOutputFile.c_str(), GENERIC_READ | GENERIC_WRITE,
+			FILE_SHARE_READ | FILE_SHARE_WRITE, &sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		stInfo.hStdOutput = stInfo.hStdError;
+		stInfo.dwFlags |= STARTF_USESTDHANDLES;
+		PROCESS_INFORMATION processInfo;
+		bool retVal = !!CreateProcess(nullptr, (LPTSTR)command.c_str(),
+			nullptr, nullptr, TRUE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
+			&stInfo, &processInfo);
+		if (!retVal)
+			return HRESULT_FROM_WIN32(GetLastError());
+		WaitForSingleObject(processInfo.hProcess, INFINITE);
+		GetExitCodeProcess(processInfo.hProcess, &dwExitCode);
+		CloseHandle(processInfo.hThread);
+		CloseHandle(processInfo.hProcess);
+		DWORD dwStdErrorSize = 0;
+		if (stInfo.hStdError != nullptr && stInfo.hStdError != INVALID_HANDLE_VALUE)
+		{
+			DWORD dwStdErrorSizeHigh = 0;
+			dwStdErrorSize = GetFileSize(stInfo.hStdError, &dwStdErrorSizeHigh);
+			CloseHandle(stInfo.hStdError);
+		}
+		if (dwStdErrorSize > 0)
+		{
+			String error;
+			ReadFile(sOutputFile, error);
+			ICreateErrorInfo* pCreateErrorInfo = nullptr;
+			if (SUCCEEDED(CreateErrorInfo(&pCreateErrorInfo)))
+			{
+				pCreateErrorInfo->SetSource(const_cast<OLECHAR*>(command.c_str()));
+				pCreateErrorInfo->SetDescription(const_cast<OLECHAR*>(ucr::toUTF16(error).c_str()));
+				IErrorInfo* pErrorInfo = nullptr;
+				pCreateErrorInfo->QueryInterface(&pErrorInfo);
+				SetErrorInfo(0, pErrorInfo);
+				pErrorInfo->Release();
+				pCreateErrorInfo->Release();
+				return DISP_E_EXCEPTION;
+			}
+		}
+		return S_OK;
+	}
+
+	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_prediffFile)
+		{
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		String command = m_info.m_prediffFile->m_command;
+		TempFile scriptFile;
+		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
+		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		if (m_info.m_prediffFile->m_script)
+		{
+			createScript(*m_info.m_prediffFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_unpackFile)
+		{
+			*pSubcode = 0;
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		String command = m_info.m_unpackFile->m_command;
+		TempFile scriptFile;
+		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
+		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		if (m_info.m_unpackFile->m_script)
+		{
+			createScript(*m_info.m_unpackFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pSubcode = 0;
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+	HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_packFile)
+		{
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		String command = m_info.m_packFile->m_command;
+		TempFile scriptFile;
+		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
+		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		if (m_info.m_packFile->m_script)
+		{
+			createScript(*m_info.m_packFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+private:
+	Info m_info;
+};
+
 class EditorScriptGeneratedFromUnpacker: public WinMergePluginBase
 {
 public:
@@ -319,8 +473,24 @@ public:
 		int changed = 0;
 		int subcode = 0;
 		auto* thisObj = static_cast<EditorScriptGeneratedFromUnpacker*>(pDispatch);
-		if (!plugin::InvokeUnpackFile(fileSrc, fileDst, changed, thisObj->m_pDispatch, subcode))
-			return E_FAIL;
+		auto* pInternalPlugin = dynamic_cast<InternalPlugin*>(thisObj->m_pDispatch);
+		if (pInternalPlugin)
+		{
+			BSTR bstrFileSrc = SysAllocString(ucr::toUTF16(fileSrc).c_str());
+			BSTR bstrFileDst= SysAllocString(ucr::toUTF16(fileDst).c_str());
+			VARIANT_BOOL bChanged;
+			VARIANT_BOOL bSuccess;
+			hr = pInternalPlugin->UnpackFile(bstrFileSrc, bstrFileDst, &bChanged, &subcode, &bSuccess);
+			SysFreeString(bstrFileSrc);
+			SysFreeString(bstrFileDst);
+			if (FAILED(hr))
+				return hr;
+		}
+		else
+		{
+			if (!plugin::InvokeUnpackFile(fileSrc, fileDst, changed, thisObj->m_pDispatch, subcode))
+				return E_FAIL;
+		}
 		String unpackedText;
 		hr = ReadFile(fileDst, unpackedText);
 		if (FAILED(hr))
@@ -332,145 +502,6 @@ public:
 
 private:
 	IDispatch* m_pDispatch;
-};
-
-class InternalPlugin : public WinMergePluginBase
-{
-public:
-	InternalPlugin(Info&& info)
-		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_isAutomatic)
-		, m_info(std::move(info))
-	{
-	}
-
-	virtual ~InternalPlugin()
-	{
-	}
-
-	static HRESULT createScript(const Script& script, TempFile& tempFile)
-	{
-		String path = tempFile.Create(_T(""), script.m_fileExtension);
-		return WriteFile(path, script.m_body, false);
-	}
-
-	static HRESULT launchProgram(const String& sCmd, WORD wShowWindow, const String* psOutputFile, DWORD &dwExitCode)
-	{
-		if (_wgetenv(L"WINMERGE_HOME") == nullptr)
-			_wputenv_s(L"WINMERGE_HOME", env::GetProgPath().c_str());
-		String command = sCmd;
-		strutils::replace(command, _T("${WINMERGE_HOME}"), env::GetProgPath());
-		STARTUPINFO stInfo = { sizeof(STARTUPINFO) };
-		stInfo.dwFlags = STARTF_USESHOWWINDOW;
-		stInfo.wShowWindow = wShowWindow;
-		if (psOutputFile && !psOutputFile->empty())
-		{
-			SECURITY_ATTRIBUTES sa{ sizeof(sa) };
-			sa.bInheritHandle = true;
-			stInfo.hStdError = CreateFile(psOutputFile->c_str(), GENERIC_READ | GENERIC_WRITE,
-				FILE_SHARE_READ | FILE_SHARE_WRITE, &sa, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-			stInfo.hStdOutput = stInfo.hStdError;
-			stInfo.dwFlags |= STARTF_USESTDHANDLES;
-		}
-		PROCESS_INFORMATION processInfo;
-		bool retVal = !!CreateProcess(nullptr, (LPTSTR)command.c_str(),
-			nullptr, nullptr, TRUE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
-			&stInfo, &processInfo);
-		if (!retVal)
-			return HRESULT_FROM_WIN32(GetLastError());
-		WaitForSingleObject(processInfo.hProcess, INFINITE);
-		GetExitCodeProcess(processInfo.hProcess, &dwExitCode);
-		CloseHandle(processInfo.hThread);
-		CloseHandle(processInfo.hProcess);
-		if (stInfo.hStdError != nullptr && stInfo.hStdError != INVALID_HANDLE_VALUE)
-			CloseHandle(stInfo.hStdError);
-		return S_OK;
-	}
-
-	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_prediffFile)
-		{
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_prediffFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		if (m_info.m_prediffFile->m_script)
-		{
-			createScript(*m_info.m_prediffFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		TempFile stderrFile;
-		String sOutputFile = stderrFile.Create();
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
-
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
-	}
-
-	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_unpackFile)
-		{
-			*pSubcode = 0;
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_unpackFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		if (m_info.m_unpackFile->m_script)
-		{
-			createScript(*m_info.m_unpackFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		TempFile stderrFile;
-		String sOutputFile = stderrFile.Create();
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
-
-		*pSubcode = 0;
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
-	}
-
-	HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_packFile)
-		{
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_packFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		if (m_info.m_packFile->m_script)
-		{
-			createScript(*m_info.m_packFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		TempFile stderrFile;
-		String sOutputFile = stderrFile.Create();
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, &sOutputFile, dwExitCode);
-
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
-	}
-
-private:
-	Info m_info;
 };
 
 struct Loader

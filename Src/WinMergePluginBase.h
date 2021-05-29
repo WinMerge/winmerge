@@ -47,17 +47,15 @@ public:
 		{ {L"fileSrc", VT_BSTR}, {L"folderDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"pSubcode", VT_I4 | VT_BYREF}, };
 		static PARAMDATA paramData_PackFolder[] =
 		{ {L"folderSrc", VT_BSTR}, {L"fileDst", VT_BSTR}, {L"pbChanged", VT_BOOL | VT_BYREF}, {L"subcode", VT_I4}, };
-		static PARAMDATA paramData_Empty[] =
-		{ {L"", VT_EMPTY} };
 		static METHODDATA methodData_FILE_PREDIFF[] =
 		{
-			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
-			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
-			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL  },
-			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
-			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
-			{ L"PrediffFile",                 paramData_Prediff,      DISPID_PrediffFile,                 5, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL  },
-			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          6, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PrediffFile",                 paramData_Prediff,      DISPID_PrediffFile,                 5, CC_STDCALL, 3, DISPATCH_METHOD,      VT_BOOL },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          6, CC_STDCALL, 0, DISPATCH_METHOD,      VT_VOID },
 		};
 		static METHODDATA methodData_FILE_PACK_UNPACK[] =
 		{
@@ -69,7 +67,7 @@ public:
 			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
 			{ L"UnpackFile",                  paramData_UnpackFile,   DISPID_UnpackFile,                  6, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL  },
 			{ L"PackFile",                    paramData_PackFile,     DISPID_PackFile ,                   7, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL  },
-			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          8, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,          8, CC_STDCALL, 0, DISPATCH_METHOD,      VT_VOID  },
 		};
 		static METHODDATA methodData_FILE_FOLDER_PACK_UNPACK[] =
 		{
@@ -77,20 +75,21 @@ public:
 			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL },
 			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR  },
+			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"UnpackFile",                  paramData_UnpackFile,   DISPID_UnpackFile,                  6, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
 			{ L"PackFile",                    paramData_PackFile,     DISPID_PackFile ,                   7, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
 			{ L"IsFolder",                    paramData_IsFolder,     DISPID_IsFolder,                    8, CC_STDCALL, 1, DISPATCH_METHOD,      VT_BOOL },
 			{ L"UnpackFolder",                paramData_UnpackFolder, DISPID_UnpackFolder,                9, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
 			{ L"PackFolder",                  paramData_PackFolder,   DISPID_PackFolder,                 10, CC_STDCALL, 4, DISPATCH_METHOD,      VT_BOOL },
-			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,         11, CC_STDCALL, 0, DISPATCH_METHOD,      VT_EMPTY },
+			{ L"ShowSettingsDialog",          nullptr,                DISPID_ShowSettingsDialog,         11, CC_STDCALL, 0, DISPATCH_METHOD,      VT_VOID },
 		};
 		static METHODDATA methodData_EDITOR_SCRIPT[] =
 		{
 			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 		};
 		const METHODDATA* pMethodData;
 		size_t methodDataCount = 0;
@@ -277,6 +276,13 @@ public:
 				pVarResult->vt = VT_BSTR;
 				hr = get_PluginExtendedProperties(&pVarResult->bstrVal);
 			}
+		}
+		if (hr == DISP_E_EXCEPTION && pExcepInfo)
+		{
+			IErrorInfo* pErrorInfo = nullptr;
+			GetErrorInfo(0, &pErrorInfo);
+			pErrorInfo->GetDescription(&pExcepInfo->bstrDescription);
+			pErrorInfo->GetSource(&pExcepInfo->bstrSource);
 		}
 		return hr;
 	}

@@ -503,7 +503,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	else
 	{
-		if (hasPluginFileFilters)
+		if (hasPluginFileFilters && m_event != _T("EDITOR_SCRIPT"))
 		{
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but lacked PluginIsAutomatic property"));
 			// PluginIsAutomatic property is mandatory for Plugins with PluginFileFilters property
