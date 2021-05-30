@@ -574,23 +574,51 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 			CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(event.c_str());
 		for (auto& plugin : *pScriptArray)
 		{
-			const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
-			const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-			const String caption = menuCaption.has_value() ?
-				String{ menuCaption->data(), menuCaption->size() } : plugin->m_name;
-			const String process = processType.has_value() ?
-				String{ processType->data(), processType->size() } : _T("Others");
-
-			if (!plugin->m_disabled && plugin->TestAgainstRegList(filteredFilenames))
-				suggestedPlugins.emplace_back(caption, plugin->m_name, id);
-
 			if (!plugin->m_disabled)
 			{
-				if (allPlugins.find(process) == allPlugins.end())
-					allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
-				allPlugins[process].emplace_back(caption, plugin->m_name, id);
+				if (event != L"EDITOR_SCRIPT")
+				{
+					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+					const String caption = menuCaption.has_value() ?
+						String{ menuCaption->data(), menuCaption->size() } : plugin->m_name;
+					const String process = processType.has_value() ?
+						String{ processType->data(), processType->size() } : _T("Others");
+
+					if (plugin->TestAgainstRegList(filteredFilenames))
+						suggestedPlugins.emplace_back(caption, plugin->m_name, id);
+
+					if (allPlugins.find(process) == allPlugins.end())
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
+					allPlugins[process].emplace_back(caption, plugin->m_name, id);
+
+					id++;
+				}
+				else
+				{
+					LPDISPATCH piScript = plugin->m_lpDispatch;
+					std::vector<String> scriptNamesArray;
+					std::vector<int> scriptIdsArray;
+					int nScriptFnc = plugin::GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
+					bool matched = plugin->TestAgainstRegList(filteredFilenames);
+					for (int i = 0; i < nScriptFnc; ++i, ++id)
+					{
+						const auto menuCaption = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".MenuCaption"));
+						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
+						if (!processType.has_value())
+							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+						const String caption = menuCaption.has_value() ?
+							String{ menuCaption->data(), menuCaption->size() } : scriptNamesArray[i];
+						const String process = processType.has_value() ?
+							String{ processType->data(), processType->size() } : _T("Others");
+						if (matched)
+							suggestedPlugins.emplace_back(caption, plugin->m_name, id);
+						if (allPlugins.find(process) == allPlugins.end())
+							allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned>>());
+						allPlugins[process].emplace_back(caption, plugin->m_name, id);
+					}
+				}
 			}
-			id++;
 		}
 	}
 	return { suggestedPlugins, allPlugins };

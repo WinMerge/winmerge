@@ -47,8 +47,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Избиране на разликите на реда\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Избиране &различията на реда\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавяне на промяна към заместващи &филтри"
@@ -67,6 +67,12 @@ msgstr "&Копиране"
 
 msgid "&Paste"
 msgstr "По&ставяне"
+
+msgid "&Scripts"
+msgstr "&Скриптове"
+
+msgid "< Empty >"
+msgstr "<празно>"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Отиване &към…\tCtrl+G"
@@ -216,9 +222,6 @@ msgstr "Последни проекти"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Последни &файлове и папки"
-
-msgid "< Empty >"
-msgstr "<празно>"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Изход\tCtrl+Q"
@@ -523,9 +526,6 @@ msgstr "&Копиране\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Поставяне\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Избиране &различията на реда\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "Търс&ене…\tCtrl+F"
 
@@ -693,9 +693,6 @@ msgstr "Изтриване точки за &синхронизация"
 
 msgid "&Prediffer"
 msgstr ""
-
-msgid "&Scripts"
-msgstr "&Скриптове"
 
 msgid "Sp&lit"
 msgstr "Ра&зделяне"

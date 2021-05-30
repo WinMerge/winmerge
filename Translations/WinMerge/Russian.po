@@ -52,8 +52,8 @@ msgstr "Копировать выбранные строки слева"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Копировать выбранные строки справа"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Выбрать отличие\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Выбрать отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавить это изменение в &фильтры замены"
@@ -72,6 +72,12 @@ msgstr "&Копировать"
 
 msgid "&Paste"
 msgstr "&Вставить"
+
+msgid "&Scripts"
+msgstr "&Скрипты"
+
+msgid "< Empty >"
+msgstr "< Нет >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
@@ -221,9 +227,6 @@ msgstr "Недавние проекты"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Недавние файлы и папки"
-
-msgid "< Empty >"
-msgstr "< Нет >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "В&ыход\tCtrl+Q"
@@ -528,9 +531,6 @@ msgstr "&Копировать\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставить\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Выбрать отличие\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "&Найти...\tCtrl+F"
 
@@ -698,9 +698,6 @@ msgstr "Очистить точки синхронизации"
 
 msgid "&Prediffer"
 msgstr "&Предсравнение"
-
-msgid "&Scripts"
-msgstr "&Скрипты"
 
 msgid "Sp&lit"
 msgstr "Разделить"

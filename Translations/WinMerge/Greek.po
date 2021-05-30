@@ -55,8 +55,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "Επιλογή Δια&φοράς Γραμμής\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Επιλο&γή Διαφοράς Γραμμής\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -80,6 +81,14 @@ msgstr "Αντι&γραφή"
 #, c-format
 msgid "&Paste"
 msgstr "Προ&σάρτηση"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Μακ&ροεντολές"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Άδειο >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Μετά&βαση...\tCtrl+G"
@@ -259,10 +268,6 @@ msgstr "Πρόσ&φατα Έργα"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Άδειο >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Έξοδο&ς\tCtrl+Q"
@@ -658,10 +663,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Επιλο&γή Διαφοράς Γραμμής\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Ανα&ζήτηση...\tCtrl+F"
 
@@ -879,10 +880,6 @@ msgstr ""
 #, c-format
 msgid "&Prediffer"
 msgstr "Προεπε&ξεργαστής Διαφορών"
-
-#, c-format
-msgid "&Scripts"
-msgstr "Μακ&ροεντολές"
 
 #, c-format
 msgid "Sp&lit"

@@ -76,7 +76,7 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT
         MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
@@ -85,6 +85,11 @@ BEGIN
         MENUITEM "Cu&t",                        ID_EDIT_CUT
         MENUITEM "&Copy",                       ID_EDIT_COPY
         MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM

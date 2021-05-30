@@ -56,7 +56,8 @@ msgstr "Ausgewählte Zeile(n) von links kopieren"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Ausgewählte Zeile(n) von rechts kopieren"
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -81,6 +82,14 @@ msgstr "&Kopieren"
 #, c-format
 msgid "&Paste"
 msgstr "&Einfügen"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Skripte"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Leer >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Gehe zu...\tStrg+G"
@@ -260,10 +269,6 @@ msgstr "Kürzliche Projekte"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Kürzlich&e Dateien oder Ordner"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Leer >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Beenden\tStrg+Q"
@@ -659,10 +664,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Einfügen\tStrg+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Zeilen&unterschied markieren\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "&Suchen...\tStrg+F"
 
@@ -880,10 +881,6 @@ msgstr "S&ynchronisationspunkt entfernen"
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
-
-#, c-format
-msgid "&Scripts"
-msgstr "&Skripte"
 
 #, c-format
 msgid "Sp&lit"

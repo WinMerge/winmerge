@@ -254,7 +254,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
 	ON_COMMAND(ID_LASTFILE, OnLastFile)
 	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
-	ON_UPDATE_COMMAND_UI(ID_NO_UNPACKER, OnUpdateNoUnpacker)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -447,17 +446,6 @@ static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmen
 	return GetSubmenu(menu, bFirstSubmenu);
 }
 
-/** 
- * @brief Find the scripts submenu from the main menu
- * As now this is the first submenu in "Edit" menu
- * We find the "Edit" menu by looking for a menu 
- *  starting with ID_EDIT_UNDO.
- */
-HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
-{
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, false);
-}
-
 /**
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Plugins" menu
@@ -627,6 +615,38 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 	
 	if (!bSysMenu)
 	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+				paths.SetPath(i, pMergeDoc->GetPath(i));
+			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
+			if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			{
+				CMenu* pMenu = pPopupMenu;
+				// empty the menu
+				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_IMAGE - ID_MERGE_COMPARE_TEXT); --i)
+					pMenu->DeleteMenu(i, MF_BYPOSITION);
+
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames,
+					{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+			}
+			else if (topMenuId == ID_PLUGINS_LIST || topMenuId == ID_NO_EDIT_SCRIPTS)
+			{
+				CMenu* pMenu = (topMenuId == ID_PLUGINS_LIST) ? 
+					pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 3) : pPopupMenu;
+				ASSERT(pMenu != nullptr);
+
+				// empty the menu
+				int i = pMenu->GetMenuItemCount();
+				while (i--)
+					pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, ID_SCRIPT_FIRST);
+			}
+		}
+
 		if (BCMenu::IsMenu(pPopupMenu))
 		{
 			BCMenu::UpdateMenu(pPopupMenu);
@@ -882,7 +902,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	pDirDoc->AddMergeDoc(pImgMergeFrame);
 		
 	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
-		return ShowTextMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+		return false;
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{
@@ -1600,14 +1620,6 @@ void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
 
 void CMainFrame::OnReloadPlugins()
 {
-	// delete all script interfaces
-	// (interfaces will be created again automatically when WinMerge needs them)
-	CAllThreadsScripts::GetActiveSet()->FreeAllScripts();
-
-	// update the editor scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_hMenuDefault);
-	if (scriptsSubmenu != nullptr)
-		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 	UpdatePrediffersMenu();
 }
 
@@ -2766,22 +2778,6 @@ void CMainFrame::OnUpdateLastFile(CCmdUI* pCmdUI)
 		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			enabled = !pDirDoc->IsLastFile();
 	pCmdUI->Enable(enabled);
-}
-
-void CMainFrame::OnUpdateNoUnpacker(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable();
-	pCmdUI->m_pMenu->DeleteMenu(pCmdUI->m_nID, MF_BYCOMMAND);
-
-	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-	{
-		PathContext paths;
-		for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
-			paths.SetPath(i, pMergeDoc->GetPath(i));
-		String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
-		CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
-			{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
-	}
 }
 
 void CMainFrame::ReloadMenu()

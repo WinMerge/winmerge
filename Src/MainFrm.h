@@ -85,7 +85,6 @@ public:
 	HMENU NewImgMergeViewMenu();
 	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
-	HMENU GetScriptsSubmenu(HMENU mainMenu);
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
@@ -316,7 +315,6 @@ protected:
 	afx_msg void OnUpdateNextFile(CCmdUI* pCmdUI);
 	afx_msg void OnLastFile();
 	afx_msg void OnUpdateLastFile(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();

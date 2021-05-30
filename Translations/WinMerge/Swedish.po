@@ -58,8 +58,9 @@ msgstr "Kopiera Valda Linjer från Vänster"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopiera Valda Linjer från Höger"
 
-msgid "&Select Line Difference\tF4"
-msgstr "Markera Radskillnad\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Markera RadSkillnad\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Lägg till denna skillnad till Ersättningsfilter"
@@ -83,6 +84,14 @@ msgstr "Kopiera"
 #, c-format
 msgid "&Paste"
 msgstr "Klistra in"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Manus"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Tom >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Gå till ...\tCtrl+G"
@@ -262,10 +271,6 @@ msgstr "Nyliga Projekt"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Nyliga Filer eller Mappar"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Tom >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Avsluta\tCtrl+Q"
@@ -661,10 +666,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "Klistra in\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Markera RadSkillnad\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Sök ...\tCtrl+F"
 
@@ -882,10 +883,6 @@ msgstr "Rensa SynkroniseringsMarkörer"
 #, c-format
 msgid "&Prediffer"
 msgstr "PreDiffer"
-
-#, c-format
-msgid "&Scripts"
-msgstr "Manus"
 
 #, c-format
 msgid "Sp&lit"

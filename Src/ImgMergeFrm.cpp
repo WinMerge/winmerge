@@ -1068,7 +1068,9 @@ bool CImgMergeFrame::OpenImages()
 	{
 		strTempFileName[pane] = m_filePaths[pane];
 		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcode[pane], strTempFileName[pane], filteredFilenames))
-			return false;
+		{
+			//return false;
+		}
 	}
 	if (m_filePaths.GetSize() == 2)
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());

@@ -58,8 +58,9 @@ msgstr "Copiar a(s) linha(s) selecionada(s) da esquerda"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Copiar a(s) linha(s) selecionada(s) da direita"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Selecionar a Diferença da Linha\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Selecionar a &Diferença da Linha\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Adicionar esta mudança aos &filtros de substituição"
@@ -83,6 +84,14 @@ msgstr "&Copiar"
 #, c-format
 msgid "&Paste"
 msgstr "&Colar"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Scripts"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Vazio >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Ir para...\tCtrl+G"
@@ -262,10 +271,6 @@ msgstr "Projetos Recentes"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Arquivos ou P&astas Recentes"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Vazio >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "S&air\tCtrl+Q"
@@ -659,10 +664,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Colar\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Selecionar a &Diferença da Linha\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "A&char...\tCtrl+F"
 
@@ -880,10 +881,6 @@ msgstr "Limpar Pont&os de Sincronização"
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
-
-#, c-format
-msgid "&Scripts"
-msgstr "&Scripts"
 
 #, c-format
 msgid "Sp&lit"

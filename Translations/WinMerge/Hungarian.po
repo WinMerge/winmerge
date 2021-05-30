@@ -58,8 +58,9 @@ msgstr "A kijelölt sor(ok) másolása balról"
 msgid "Copy Selected Line(s) from Right"
 msgstr "A kijelölt sor(ok) másolása jobbról"
 
-msgid "&Select Line Difference\tF4"
-msgstr "Az eltérés kijelölése\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Eltérés kijelölése\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
@@ -83,6 +84,14 @@ msgstr "&Másolás"
 #, c-format
 msgid "&Paste"
 msgstr "&Beillesztés"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Szkriptek"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Üres >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Ugrás...\tCtrl+G"
@@ -262,10 +271,6 @@ msgstr "Legutóbbi projektek"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Legutóbbi fájlok és mappák"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Üres >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Kilépés\tCtrl+Q"
@@ -661,10 +666,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Eltérés kijelölése\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Keresé&s...\tCtrl+F"
 
@@ -882,10 +883,6 @@ msgstr "Szinkronizációs pontok törlése"
 #, c-format
 msgid "&Prediffer"
 msgstr "&Elővizsgáló"
-
-#, c-format
-msgid "&Scripts"
-msgstr "&Szkriptek"
 
 #, c-format
 msgid "Sp&lit"

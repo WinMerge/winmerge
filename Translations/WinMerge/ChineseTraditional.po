@@ -58,8 +58,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "選取行內差異(&S)\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "選取行內差異(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -83,6 +84,14 @@ msgstr "複製(&C)"
 #, c-format
 msgid "&Paste"
 msgstr "貼上(&P)"
+
+#, c-format
+msgid "&Scripts"
+msgstr "隨譯即行碼(&S)"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< 無 >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "跳至(&G)...\tCtrl+G"
@@ -262,10 +271,6 @@ msgstr "最近開啟的專案"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "最近開啟檔案或資料夾(&I)"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< 無 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "結束(&X)\tCtrl+Q"
@@ -663,10 +668,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "貼上(&P)\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "選取行內差異(&D)\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "尋找(&I)...\tCtrl+F"
 
@@ -888,10 +889,6 @@ msgstr "清除同步點(&H)"
 #, c-format
 msgid "&Prediffer"
 msgstr "先行處理器(&P)"
-
-#, c-format
-msgid "&Scripts"
-msgstr "隨譯即行碼(&S)"
 
 #, c-format
 msgid "Sp&lit"

@@ -53,8 +53,8 @@ msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Pažymėti skirtumą\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Pažymėti &skirtumą"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
@@ -73,6 +73,12 @@ msgstr "&Kopijuoti"
 
 msgid "&Paste"
 msgstr "Įter&pti"
+
+msgid "&Scripts"
+msgstr "&Skriptai"
+
+msgid "< Empty >"
+msgstr "< Tuščia >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Per&eiti į...\tCtrl+G"
@@ -222,9 +228,6 @@ msgstr "Paskutinieji projektai"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Paskiausiai naudoti fa&ilai ar katalogai"
-
-msgid "< Empty >"
-msgstr "< Tuščia >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Išeiti\tCtrl+Q"
@@ -529,9 +532,6 @@ msgstr "&Kopijuoti\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Pažymėti &skirtumą"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "R&asti...\tCtrl+F"
 
@@ -699,9 +699,6 @@ msgstr "Išvalyti sinc&hronizavino taškus"
 
 msgid "&Prediffer"
 msgstr "&Parengėjas"
-
-msgid "&Scripts"
-msgstr "&Skriptai"
 
 msgid "Sp&lit"
 msgstr "Pada&linti"

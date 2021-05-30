@@ -250,15 +250,18 @@ private:
 class UnpackerGeneratedFromEditorScript : public WinMergePluginBase
 {
 public:
-	UnpackerGeneratedFromEditorScript(IDispatch* pDispatch, const std::wstring funcname, int id)
+	UnpackerGeneratedFromEditorScript(const PluginInfo& plugin, const std::wstring funcname, int id)
 		: WinMergePluginBase(
 			L"FILE_PACK_UNPACK",
 			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)"), funcname),
-			L"\\.nomatch$", L"", L"ProcessType=Editor script")
-		, m_pDispatch(pDispatch)
+			L"\\.nomatch$", L"")
+		, m_pDispatch(plugin.m_lpDispatch)
 		, m_funcid(id)
 	{
 		m_pDispatch->AddRef();
+		auto menuCaption = plugin.GetExtendedPropertyValue(funcname + _T(".MenuCaption"));
+		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
+		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption));
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()
@@ -446,12 +449,12 @@ private:
 class EditorScriptGeneratedFromUnpacker: public WinMergePluginBase
 {
 public:
-	EditorScriptGeneratedFromUnpacker(IDispatch* pDispatch, const String& funcname)
+	EditorScriptGeneratedFromUnpacker(const PluginInfo& plugin, const String& funcname)
 		: WinMergePluginBase(
 			L"EDITOR_SCRIPT",
 			strutils::format_string1(_T("EditorScript (automatically generated)"), _T("")),
-			L"\\.nomatch$", L"", L"")
-		, m_pDispatch(pDispatch)
+			plugin.m_filtersText, L"", plugin.m_extendedProperties)
+		, m_pDispatch(plugin.m_lpDispatch)
 	{
 		m_pDispatch->AddRef();
 		AddFunction(ucr::toUTF16(funcname), CallUnpackFile);
@@ -527,7 +530,7 @@ struct Loader
 						if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
 							plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
 						PluginInfoPtr pluginNew(new PluginInfo());
-						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
+						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(*plugin, namesArray[i], idArray[i]);
 						pDispatch->AddRef();
 						pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
 						plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
@@ -577,7 +580,7 @@ struct Loader
 					PluginInfoPtr pluginNew(new PluginInfo());
 					auto menuCaption =  plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					String funcname = menuCaption.has_value() ? String{menuCaption->data(), menuCaption->length() } : plugin->m_name;
-					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(plugin->m_lpDispatch, funcname);
+					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, funcname);
 					pDispatch->AddRef();
 					pluginNew->MakeInfo(plugin->m_name + _T(": Editor script"), pDispatch);
 					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);

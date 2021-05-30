@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-05-27 21:21+0000\n"
+"POT-Creation-Date: 2021-05-30 18:37+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr ""
 
 msgid "Add this change to Substitution &Filters"
@@ -63,6 +63,12 @@ msgid "&Copy"
 msgstr ""
 
 msgid "&Paste"
+msgstr ""
+
+msgid "&Scripts"
+msgstr ""
+
+msgid "< Empty >"
 msgstr ""
 
 msgid "&Go to...\tCtrl+G"
@@ -212,9 +218,6 @@ msgid "Recent Projects"
 msgstr ""
 
 msgid "Recent F&iles Or Folders"
-msgstr ""
-
-msgid "< Empty >"
 msgstr ""
 
 msgid "E&xit\tCtrl+Q"
@@ -520,9 +523,6 @@ msgstr ""
 msgid "&Paste\tCtrl+V"
 msgstr ""
 
-msgid "Select Line &Difference\tF4"
-msgstr ""
-
 msgid "F&ind...\tCtrl+F"
 msgstr ""
 
@@ -689,9 +689,6 @@ msgid "Clear Sync&hronization Points"
 msgstr ""
 
 msgid "&Prediffer"
-msgstr ""
-
-msgid "&Scripts"
 msgstr ""
 
 msgid "Sp&lit"

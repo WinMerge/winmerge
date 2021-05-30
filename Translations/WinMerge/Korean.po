@@ -61,8 +61,9 @@ msgstr "왼쪽에서 선택한 줄 복사"
 msgid "Copy Selected Line(s) from Right"
 msgstr "오른쪽에서 선택한 줄 복사"
 
-msgid "&Select Line Difference\tF4"
-msgstr "줄 차이점 선택(&S)\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "줄 차이점 선택(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -86,6 +87,14 @@ msgstr "복사(&C)"
 #, c-format
 msgid "&Paste"
 msgstr "붙여넣기(&P)"
+
+#, c-format
+msgid "&Scripts"
+msgstr "스크립트(&S)"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< 비어 있음 >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "이동(&G)\tCtrl+G"
@@ -265,10 +274,6 @@ msgstr "최근 프로젝트"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "최근 파일/폴더(&I)"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< 비어 있음 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "종료(&X)\tCtrl+Q"
@@ -664,10 +669,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "줄 차이점 선택(&D)\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "찾기(&I)...\tCtrl+F"
 
@@ -885,10 +886,6 @@ msgstr "동기화 지점 지우기(&H)"
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
-
-#, c-format
-msgid "&Scripts"
-msgstr "스크립트(&S)"
 
 #, c-format
 msgid "Sp&lit"

@@ -54,7 +54,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Valitse riviero\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -79,6 +80,14 @@ msgstr "&Kopioi"
 #, c-format
 msgid "&Paste"
 msgstr "Lii&tä"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Skriptit"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Tyhjä >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Siirry...\tCtrl+G"
@@ -258,10 +267,6 @@ msgstr "Viimeiset projektit"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Viimeaikaiset t&iedostot tai kansiot"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Tyhjä >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Poistu\tCtrl+Q"
@@ -657,10 +662,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Valitse riviero\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Ets&i...\tCtrl+F"
 
@@ -880,10 +881,6 @@ msgstr "Poista syn&kronointipisteet"
 #, c-format
 msgid "&Prediffer"
 msgstr "Esivertailu"
-
-#, c-format
-msgid "&Scripts"
-msgstr "Skriptit"
 
 #, c-format
 msgid "Sp&lit"

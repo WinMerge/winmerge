@@ -89,7 +89,7 @@ public:
 			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginUnpackedFileExtension", nullptr,                DISPID_PluginUnpackedFileExtension, 3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 		};
 		const METHODDATA* pMethodData;
 		size_t methodDataCount = 0;

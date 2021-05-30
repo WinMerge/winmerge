@@ -225,7 +225,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_SWAPPANES_SWAP12, OnViewSwapPanes12)
 	ON_COMMAND(ID_SWAPPANES_SWAP23, OnViewSwapPanes23)
 	ON_COMMAND(ID_SWAPPANES_SWAP13, OnViewSwapPanes13)
-	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -2894,40 +2893,6 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Create the dynamic submenu for scripts
- */
-HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
-{
-	// get scripts list
-	std::vector<String> functionNamesList = FileTransform::GetFreeFunctionsInScripts(L"EDITOR_SCRIPT");
-
-	// empty the menu
-	size_t i = GetMenuItemCount(hMenu);
-	while (i --)
-		DeleteMenu(hMenu, 0, MF_BYPOSITION);
-
-	if (functionNamesList.size() == 0)
-	{
-		// no script : create a <empty> entry
-		AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, _("< Empty >").c_str());
-	}
-	else
-	{
-		// or fill in the submenu with the scripts names
-		int ID = ID_SCRIPT_FIRST;	// first ID in menu
-		for (i = 0 ; i < functionNamesList.size() ; i++, ID++)
-			AppendMenu(hMenu, MF_STRING, ID, functionNamesList[i].c_str());
-
-		functionNamesList.clear();
-	}
-
-	if (!plugin::IsWindowsScriptThere())
-		AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
-
-	return hMenu;
-}
-
-/**
  * @brief Create the dynamic submenu for prediffers
  *
  * @note The plugins are grouped in (suggested) and (not suggested)
@@ -3516,19 +3481,6 @@ void CMergeEditView::OnScripts(UINT nID )
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
-}
-
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
-{
-	// append the scripts submenu
-	HMENU scriptsSubmenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
-	if (scriptsSubmenu != nullptr)
-		createScriptsSubmenu(scriptsSubmenu);
-
-	pCmdUI->Enable(true);
 }
 
 /**
@@ -4752,4 +4704,3 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	}
 }
-

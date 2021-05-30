@@ -50,7 +50,7 @@ msgstr "Seçilmiş satır(lar)ı soldan kopyala"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Seçilmiş satır(lar)ı sağdan kopyala"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -70,6 +70,12 @@ msgstr "K&opyala"
 
 msgid "&Paste"
 msgstr "Ya&pıştır"
+
+msgid "&Scripts"
+msgstr "&Betikler"
+
+msgid "< Empty >"
+msgstr "< Boş >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Git...\tCtrl+G"
@@ -219,9 +225,6 @@ msgstr "Son kullanılan projeler"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Son dosya ya da k&lasörler"
-
-msgid "< Empty >"
-msgstr "< Boş >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Çı&kış\tCtrl+Q"
@@ -527,9 +530,6 @@ msgstr "&Kopyala\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Satır &farkını seç\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "&Bul...\tCtrl+F"
 
@@ -697,9 +697,6 @@ msgstr "Eşitleme noktalarını &sil"
 
 msgid "&Prediffer"
 msgstr "Ön &farklılaştırıcı"
-
-msgid "&Scripts"
-msgstr "&Betikler"
 
 msgid "Sp&lit"
 msgstr "Bö&l"

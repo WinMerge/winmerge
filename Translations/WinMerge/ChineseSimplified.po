@@ -53,8 +53,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "选中行内差异(&S)\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "选中行内差异(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -73,6 +73,12 @@ msgstr "复制(&C)"
 
 msgid "&Paste"
 msgstr "粘贴(&P)"
+
+msgid "&Scripts"
+msgstr "脚本(&S)"
+
+msgid "< Empty >"
+msgstr "< 空 >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "转到(&G)...\tCtrl+G"
@@ -222,9 +228,6 @@ msgstr "最近打开的工程"
 
 msgid "Recent F&iles Or Folders"
 msgstr "最近打开的文件或文件夹(&I)"
-
-msgid "< Empty >"
-msgstr "< 空 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "退出(&X)\tCtrl+Q"
@@ -529,9 +532,6 @@ msgstr "复制(&C)\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "选中行内差异(&D)\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "查找(&I)...\tCtrl+F"
 
@@ -699,9 +699,6 @@ msgstr "清除同步点(&H)"
 
 msgid "&Prediffer"
 msgstr "预处理(&P)"
-
-msgid "&Scripts"
-msgstr "脚本(&S)"
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"

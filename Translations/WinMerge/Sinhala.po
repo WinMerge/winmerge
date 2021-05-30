@@ -53,8 +53,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "පේලි අතර වෙනස තේරීම\tF4"
+#, fuzzy, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Select Line &Difference\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -78,6 +79,14 @@ msgstr "පිටපත් කිරීම"
 #, c-format
 msgid "&Paste"
 msgstr "ඇලවීම"
+
+#, fuzzy, c-format
+msgid "&Scripts"
+msgstr "&Scripts"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< හිස් >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "යන්න\tCtrl+G"
@@ -257,10 +266,6 @@ msgstr "මෑතදී කළ ව්‍යාපෘති"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< හිස් >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr " නික්මීම\tCtrl+Q"
@@ -655,10 +660,6 @@ msgstr "පිටපත් කිරීම\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "ඇලවීම\tCtrl+V"
 
-#, fuzzy, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Select Line &Difference\tF4"
-
 #, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "සොයන්න...\tCtrl+F"
@@ -877,10 +878,6 @@ msgstr ""
 #, fuzzy, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
-
-#, fuzzy, c-format
-msgid "&Scripts"
-msgstr "&Scripts"
 
 #, c-format
 msgid "Sp&lit"

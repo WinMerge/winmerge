@@ -34,7 +34,7 @@ Function get_PluginDescription()
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "GenerateUnpacker"
+	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make uppercase;MakeLower.MenuCaption=Make lowercase;SortAscending.MenuCaption=Sort ascending;SortDescending.MenuCaption=Sort descending;ExecFilterCommand.MenuCaption=Execute filter command"
 End Function
 
 Function regRead(Key, DefaultValue)

@@ -51,7 +51,7 @@ msgstr "Geselecteerde regel(s) vanaf links kopiëren"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -71,6 +71,12 @@ msgstr "Kopiëren"
 
 msgid "&Paste"
 msgstr "Plakken"
+
+msgid "&Scripts"
+msgstr "Scripts"
+
+msgid "< Empty >"
+msgstr "< Leeg >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Gaan naar...\tCtrl+G"
@@ -220,9 +226,6 @@ msgstr "Recente Projecten"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Recente bestanden of mappen"
-
-msgid "< Empty >"
-msgstr "< Leeg >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Afsluiten\tCtrl+Q"
@@ -527,9 +530,6 @@ msgstr "Kopiëren\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Regelverschil selecteren\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"
 
@@ -697,9 +697,6 @@ msgstr "Synchronisatiepunten wissen"
 
 msgid "&Prediffer"
 msgstr "Voorvergelijking"
-
-msgid "&Scripts"
-msgstr "Scripts"
 
 msgid "Sp&lit"
 msgstr "Splitsen"

@@ -51,8 +51,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "تحديد الاختلاف في الس&طر\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "تحديد الاختلاف في السطر"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -71,6 +71,12 @@ msgstr "&نسخ"
 
 msgid "&Paste"
 msgstr "&لصق"
+
+msgid "&Scripts"
+msgstr "لغة نصية (سكريبت)"
+
+msgid "< Empty >"
+msgstr "<فارغ>"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "ال&ذهاب إلى...\tCtrl+G"
@@ -220,9 +226,6 @@ msgstr "المشاريع الأخيرة"
 
 msgid "Recent F&iles Or Folders"
 msgstr "الملفات أو المجلدات الأخيرة"
-
-msgid "< Empty >"
-msgstr "<فارغ>"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&خروج\tCtrl+Q"
@@ -527,9 +530,6 @@ msgstr "&نسخ"
 msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
 
-msgid "Select Line &Difference\tF4"
-msgstr "تحديد الاختلاف في السطر"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "&بحث"
 
@@ -697,9 +697,6 @@ msgstr "مسح كل نقاط المزامنة"
 
 msgid "&Prediffer"
 msgstr "الفروقات المسبقة"
-
-msgid "&Scripts"
-msgstr "لغة نصية (سكريبت)"
 
 msgid "Sp&lit"
 msgstr "فصل"

@@ -54,8 +54,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Seleccionar dif. de línea\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Seleccionar &dif. de línea\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -74,6 +74,12 @@ msgstr "&Copiar"
 
 msgid "&Paste"
 msgstr "&Pegar"
+
+msgid "&Scripts"
+msgstr "&Scripts"
+
+msgid "< Empty >"
+msgstr "< Vacío >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Ir &a...\tCtrl+G"
@@ -223,9 +229,6 @@ msgstr "Proyectos recientes"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Arch&ivos o Carpetas Recientes"
-
-msgid "< Empty >"
-msgstr "< Vacío >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Salir\tCtrl+Q"
@@ -530,9 +533,6 @@ msgstr "&Copiar\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar &dif. de línea\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "&Buscar...\tCtrl+F"
 
@@ -700,9 +700,6 @@ msgstr "Limpiar puntos de sincroni&zación"
 
 msgid "&Prediffer"
 msgstr "&Precomparación"
-
-msgid "&Scripts"
-msgstr "&Scripts"
 
 msgid "Sp&lit"
 msgstr "&Dividir"

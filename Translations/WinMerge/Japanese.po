@@ -51,8 +51,8 @@ msgstr "選択した行を左からコピー"
 msgid "Copy Selected Line(s) from Right"
 msgstr "選択した行を右からコピー"
 
-msgid "&Select Line Difference\tF4"
-msgstr "行内差異を選択(&S)\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "行内差異を選択(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "この差異を置換フィルターに追加する(&F)"
@@ -71,6 +71,12 @@ msgstr "コピー(&C)"
 
 msgid "&Paste"
 msgstr "貼り付け(&P)"
+
+msgid "&Scripts"
+msgstr "スクリプト(&S)"
+
+msgid "< Empty >"
+msgstr "< なし >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "移動(&G)...\tCtrl+G"
@@ -220,9 +226,6 @@ msgstr "最近使用したプロジェクト"
 
 msgid "Recent F&iles Or Folders"
 msgstr "最近使用したファイルまたはフォルダー(&I)"
-
-msgid "< Empty >"
-msgstr "< なし >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "終了(&X)\tCtrl+Q"
@@ -527,9 +530,6 @@ msgstr "コピー(&C)\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "行内差異を選択(&D)\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"
 
@@ -697,9 +697,6 @@ msgstr "同期ポイントのクリア(&H)"
 
 msgid "&Prediffer"
 msgstr "比較前処理プラグイン(&P)"
-
-msgid "&Scripts"
-msgstr "スクリプト(&S)"
 
 msgid "Sp&lit"
 msgstr "分割(&L)"

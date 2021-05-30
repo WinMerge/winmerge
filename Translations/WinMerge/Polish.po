@@ -50,7 +50,7 @@ msgstr "Kopiuj zaznaczone wiersze z lewej"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopiuj zaznaczone wiersze z prawej"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "Zaznacz różniące się wiersze\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -70,6 +70,12 @@ msgstr "Kopiuj"
 
 msgid "&Paste"
 msgstr "Wklej"
+
+msgid "&Scripts"
+msgstr "&Skrypty"
+
+msgid "< Empty >"
+msgstr "< Pusty >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Idź do...\tCtrl+G"
@@ -219,9 +225,6 @@ msgstr "Ostatnie projekty"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Ostatnie pliki lub foldery"
-
-msgid "< Empty >"
-msgstr "< Pusty >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Zakończ\tCtrl+Q"
@@ -526,9 +529,6 @@ msgstr "Kopiuj\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Wklej\tCtrl+V"
 
-msgid "Select Line &Difference\tF4"
-msgstr "Zaznacz różniące się wiersze\tF4"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "Znajdź...\tCtrl+F"
 
@@ -696,9 +696,6 @@ msgstr "Wyczyść punkty sync&hronizacji"
 
 msgid "&Prediffer"
 msgstr "Różnicowanie wstępne"
-
-msgid "&Scripts"
-msgstr "&Skrypty"
 
 msgid "Sp&lit"
 msgstr "Podzie&lone"
