@@ -1417,7 +1417,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 	// Now handle the various cases of what was selected
 
-	if (pos1 == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(pos1))
 	{
 		OpenSpecialItems(pos1, pos2, pos3);
 		return;
@@ -1489,7 +1489,7 @@ void CDirView::OpenSelectionAs(UINT id)
 
 	// Now handle the various cases of what was selected
 
-	if (pos1 == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(pos1))
 	{
 		ASSERT(false);
 		return;
@@ -1647,7 +1647,7 @@ DIFFITEM &CDirView::GetDiffItem(int sel)
 	DIFFITEM *diffpos = GetItemKey(sel);
 
 	// If it is special item, return empty DIFFITEM
-	if (diffpos == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(diffpos))
 	{
 		return *DIFFITEM::GetEmptyItem();
 	}
@@ -1657,7 +1657,7 @@ DIFFITEM &CDirView::GetDiffItem(int sel)
 void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 {
 	DIFFITEM *diffpos = GetItemKey(sel);
-	if (diffpos == (DIFFITEM*)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(diffpos))
 		return;
 	if (m_bTreeMode)
 	{
@@ -1722,7 +1722,7 @@ int CDirView::GetItemIndex(DIFFITEM *key)
 void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) const
 {
 	DIFFITEM *diffpos = GetItemKey(sel);
-	if (diffpos == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(diffpos))
 	{
 		strLeft.erase();
 		strRight.erase();
@@ -1741,7 +1741,7 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
 void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 {
 	DIFFITEM *diffpos = GetItemKey(sel);
-	if (diffpos == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(diffpos))
 	{
 		for (int nIndex = 0; nIndex < GetDocument()->m_nDirs; nIndex++)
 			paths->SetPath(nIndex, _T(""));
@@ -1895,7 +1895,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool op
 		if (!openableForDir)
 		{
 			const DIFFITEM& di1 = GetDiffItem(sel1);
-			if (di1.diffcode.isDirectory())
+			if (di1.diffcode.isDirectory() || IsDiffItemSpecial(GetItemKey(sel1)))
 			{
 				pCmdUI->Enable(FALSE);
 				return;
@@ -3014,7 +3014,7 @@ void CDirView::OnSelectAll()
 		{
 			// Don't select special items (SPECIAL_ITEM_POS)
 			DIFFITEM *diffpos = GetItemKey(i);
-			if (diffpos != (DIFFITEM *)SPECIAL_ITEM_POS)
+			if (!IsDiffItemSpecial(diffpos))
 				m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 		}
 	}
@@ -3351,7 +3351,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		// Don't show number to special items
 		DIFFITEM *pos = GetItemKey(focusItem);
-		if (pos != (DIFFITEM *)SPECIAL_ITEM_POS)
+		if (!IsDiffItemSpecial(pos))
 		{
 			// If compare is non-recursive reduce special items count
 			bool bRecursive = GetDiffContext().m_bRecursive;
@@ -3724,9 +3724,8 @@ void CDirView::OnMergeCompareAs(UINT nID)
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
-	bool openableForDir = (pCmdUI->m_nID != ID_MERGE_COMPARE_XML &&
-						   pCmdUI->m_nID != ID_MERGE_COMPARE_HEX &&
-						   pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
+	bool openableForDir = !(pCmdUI->m_nID >= ID_MERGE_COMPARE_TEXT &&
+						    pCmdUI->m_nID <= ID_MERGE_COMPARE_XML);
 
 	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);
 }
@@ -4046,7 +4045,7 @@ void CDirView::OnSearch()
 	for (int currRow = nRows - 1; currRow >= 0; currRow--)
 	{
 		DIFFITEM *pos = GetItemKey(currRow);
-		if (pos == (DIFFITEM *)SPECIAL_ITEM_POS)
+		if (IsDiffItemSpecial(pos))
 			continue;
 
 		bool bFound = false;
@@ -4258,7 +4257,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	int nIdx = pParam->item.iItem;
 	int i = m_pColItems->ColPhysToLog(pParam->item.iSubItem);
 	DIFFITEM *key = GetItemKey(nIdx);
-	if (key == (DIFFITEM *)SPECIAL_ITEM_POS)
+	if (IsDiffItemSpecial(key))
 	{
 		if (m_pColItems->IsColName(i))
 		{
