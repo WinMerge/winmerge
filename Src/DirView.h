@@ -86,6 +86,7 @@ public:
 	void LoadColumnHeaderItems();
 	DIFFITEM *GetItemKey(int idx) const;
 	int GetItemIndex(DIFFITEM *key);
+	bool IsDiffItemSpecial(const DIFFITEM* diffpos) const { return diffpos == reinterpret_cast<DIFFITEM*>(SPECIAL_ITEM_POS); };
 	// for populating list
 	void DeleteItem(int sel, bool removeDIFFITEM = false);
 	void DeleteAllDisplayItems();
