@@ -280,7 +280,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
 	ON_COMMAND(ID_MERGE_COMPARE_NONHORIZONTALLY, OnMergeCompareNonHorizontally)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnMergeCompareAs)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnMergeCompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateMergeCompare)
+	ON_UPDATE_COMMAND_UI(ID_NO_UNPACKER, OnUpdateNoUnpacker)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
@@ -327,7 +329,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
@@ -338,6 +339,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
 	ON_BN_CLICKED(IDC_COMPARISON_PAUSE, OnBnClickedComparisonPause)
 	ON_BN_CLICKED(IDC_COMPARISON_CONTINUE, OnBnClickedComparisonContinue)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3725,6 +3727,22 @@ template<SELECTIONTYPE seltype>
 void CDirView::OnUpdateMergeCompare2(CCmdUI *pCmdUI)
 {
 	DoUpdateOpen(seltype, pCmdUI);
+}
+
+void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable();
+	pCmdUI->m_pMenu->DeleteMenu(pCmdUI->m_nID, MF_BYCOMMAND);
+
+	int sel = GetSingleSelectedItem();
+	if (sel == -1 || GetItemKey(sel) == reinterpret_cast<DIFFITEM *>(SPECIAL_ITEM_POS))
+		return;
+
+	PathContext paths;
+	GetItemFileNames(sel, &paths);
+	String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+	CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
+		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
 }
 
 void CDirView::OnViewCompareStatistics()

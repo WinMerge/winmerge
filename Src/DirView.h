@@ -368,6 +368,7 @@ protected:
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
 	afx_msg void OnHelp();
