@@ -1895,7 +1895,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool op
 		if (!openableForDir)
 		{
 			const DIFFITEM& di1 = GetDiffItem(sel1);
-			if (di1.diffcode.isDirectory())
+			if (di1.diffcode.isDirectory() || GetItemKey(sel1) == reinterpret_cast<DIFFITEM*>(SPECIAL_ITEM_POS))
 			{
 				pCmdUI->Enable(FALSE);
 				return;
@@ -3724,9 +3724,8 @@ void CDirView::OnMergeCompareAs(UINT nID)
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
-	bool openableForDir = (pCmdUI->m_nID != ID_MERGE_COMPARE_XML &&
-						   pCmdUI->m_nID != ID_MERGE_COMPARE_HEX &&
-						   pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
+	bool openableForDir = !(pCmdUI->m_nID >= ID_MERGE_COMPARE_TEXT &&
+						    pCmdUI->m_nID <= ID_MERGE_COMPARE_XML);
 
 	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);
 }
