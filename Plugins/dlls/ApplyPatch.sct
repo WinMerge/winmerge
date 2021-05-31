@@ -232,7 +232,7 @@ Function GetPatchExeFolder()
     On Error Resume Next
     winMergeExePath = "C:\Program Files\WinMerge\WinMergeU.exe"
     winMergeExePath = wsh.RegRead(REGKEY_PATH & "\Executable")
-    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "GnuWin32\bin")
+    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "Commands\GnuWin32\bin")
 End Function
 
 Function SafeUBound(ary)

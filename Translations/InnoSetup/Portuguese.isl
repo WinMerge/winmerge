@@ -18,7 +18,7 @@ Frhed=Frhed(Editor hex gratuito)
 WinIMerge=WinIMerge (Dividir/Juntar Imagens)
 ArchiveSupport=Suporte de ficheiros
 ShellExtension32bit=Extensão Shell WinMerge 32 bits
-Patch=Pacote GnuWin32 para Windows
+Commands=Pacote GnuWin32 para Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Idiomas

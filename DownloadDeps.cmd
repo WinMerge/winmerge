@@ -43,14 +43,16 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     mkdir %%i\%%j\Filters 2> NUL
     mkdir %%i\%%j\ColorSchemes 2> NUL
     mkdir %%i\%%j\MergePlugins 2> NUL
-    mkdir %%i\%%j\Formatters\jq 2> NUL
-    mkdir %%i\%%j\Formatters\html-tidy5 2> NUL
+    mkdir %%i\%%j\Commands\jq 2> NUL
+    mkdir %%i\%%j\Commands\html-tidy5 2> NUL
+    mkdir %%i\%%j\Commands\GnuWin32 2> NUL
     xcopy /s/y %%i\Merge7z %%i\%%j\Merge7z\
     xcopy /s/y %%i\Frhed %%i\%%j\Frhed\
-    copy Build\jq\jq-win32.exe %%i\%%j\Formatters\jq\jq.exe
-    copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Formatters\jq\
-    copy Build\html-tidy5\bin\tidy.* %%i\%%j\Formatters\html-tidy5\
-    copy Build\html-tidy5\tidy-html5-5.4.0\README\LICENSE.md %%i\%%j\Formatters\html-tidy5\
+    xcopy /s/y Build\GnuWin32 %%i\%%j\Commands\GnuWin32\
+    copy Build\jq\jq-win32.exe %%i\%%j\Commands\jq\jq.exe
+    copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Commands\jq\
+    copy Build\html-tidy5\bin\tidy.* %%i\%%j\Commands\html-tidy5\
+    copy Build\html-tidy5\tidy-html5-5.4.0\README\LICENSE.md %%i\%%j\Commands\html-tidy5\
     xcopy /s/y Filters %%i\%%j\Filters\
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\

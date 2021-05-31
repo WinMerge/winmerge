@@ -18,7 +18,7 @@ Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Sprog
