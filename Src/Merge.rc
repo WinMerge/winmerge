@@ -3668,8 +3668,15 @@ BEGIN
     IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
     IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
     IDS_PLUGIN_PROCESS_TYPE5 "Others"
-    IDS_PLUGIN_MENU_CAPTION1 "Pretty XML"
-    IDS_PLUGIN_MENU_CAPTION2 "Pretty JSON"
+    IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
+    IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
+    IDS_PLUGIN_MENU_CAPTION3  "Sort Ascending"
+    IDS_PLUGIN_MENU_CAPTION4  "Sort Descending"
+    IDS_PLUGIN_MENU_CAPTION5  "Apply Filter Command..."
+    IDS_PLUGIN_MENU_CAPTION6  "Insert Date"
+    IDS_PLUGIN_MENU_CAPTION7  "Insert Time"
+    IDS_PLUGIN_MENU_CAPTION8  "Pretty XML"
+    IDS_PLUGIN_MENU_CAPTION9  "Pretty JSON"
 END
 
 #endif    // English (United States) resources

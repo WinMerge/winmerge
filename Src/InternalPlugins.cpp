@@ -345,7 +345,7 @@ public:
 			dwStdErrorSize = GetFileSize(stInfo.hStdError, &dwStdErrorSizeHigh);
 			CloseHandle(stInfo.hStdError);
 		}
-		if (dwStdErrorSize > 0)
+		if (dwExitCode != 0 && dwStdErrorSize > 0)
 		{
 			String error;
 			ReadFile(sOutputFile, error);

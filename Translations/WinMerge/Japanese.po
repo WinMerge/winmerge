@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-05-25 21:31+0900\n"
+"PO-Revision-Date: 2021-05-31 21:21+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3634,6 +3634,27 @@ msgstr "視覚化"
 
 msgid "Others"
 msgstr "その他"
+
+msgid "Make Uppercase"
+msgstr "大文字に変換"
+
+msgid "Make Lowercase"
+msgstr "小文字に変換"
+
+msgid "Sort Ascending"
+msgstr "昇順にソート"
+
+msgid "Sort Descending"
+msgstr "降順にソート"
+
+msgid "Apply Filter Command..."
+msgstr "フィルタコマンドを適用..."
+
+msgid "Insert Date"
+msgstr "日付を挿入"
+
+msgid "Insert Time"
+msgstr "時刻を挿入"
 
 msgid "Pretty XML"
 msgstr "整形されたXML"

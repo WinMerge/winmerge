@@ -26,7 +26,7 @@ Function get_PluginDescription()
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "InsertDate.MenuCaption=Insert date;InsertTime.MenuCaption=Insert time"
+	get_PluginExtendedProperties = "InsertDate.MenuCaption=Insert Date;InsertTime.MenuCaption=Insert Time"
 End Function
 
 ' transformation functions

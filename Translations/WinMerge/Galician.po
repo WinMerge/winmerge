@@ -4379,6 +4379,27 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Sort Ascending"
+msgstr ""
+
+msgid "Sort Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
 msgid "Pretty XML"
 msgstr ""
 

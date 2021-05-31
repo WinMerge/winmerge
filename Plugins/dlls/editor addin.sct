@@ -26,15 +26,15 @@ Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor 
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
 
 Function get_PluginEvent()
-         get_PluginEvent = "EDITOR_SCRIPT"
+	get_PluginEvent = "EDITOR_SCRIPT"
 End Function
 
 Function get_PluginDescription()
-         get_PluginDescription = "Basic text functions for the context menu"
+	get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make uppercase;MakeLower.MenuCaption=Make lowercase;SortAscending.MenuCaption=Sort ascending;SortDescending.MenuCaption=Sort descending;ExecFilterCommand.MenuCaption=Execute filter command"
+	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make Uppercase;MakeLower.MenuCaption=Make Lowercase;SortAscending.MenuCaption=Sort Ascending;SortDescending.MenuCaption=Sort Descending;ExecFilterCommand.MenuCaption=Apply Filter Command..."
 End Function
 
 Function regRead(Key, DefaultValue)

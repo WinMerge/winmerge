@@ -135,6 +135,7 @@ End Function
 Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Word;MenuCaption=MS-Word"
 End Function
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim wd 
