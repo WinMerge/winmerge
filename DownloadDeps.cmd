@@ -54,7 +54,7 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     xcopy /s/y Filters %%i\%%j\Filters\
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
-    xcopy /s/y Plugins\InternalPlugins.xml %%i\%%j\MergePlugins\
+    xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
     if "%%i" == "Build" (
       copy Build\WinIMerge\bin\WinIMergeLib.dll %%i\%%j\WinIMerge\
       copy Plugins\dlls\*.dll %%i\%%j\MergePlugins\

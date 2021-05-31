@@ -545,7 +545,7 @@ struct Loader
 		parser.setContentHandler(&handler);
 		try
 		{
-			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\InternalPlugins.xml"))));
+			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"))));
 		}
 		catch (Poco::XML::SAXParseException& e)
 		{
