@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-05-31 21:21+0900\n"
+"PO-Revision-Date: 2021-06-01 20:21+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3656,8 +3656,23 @@ msgstr "日付を挿入"
 msgid "Insert Time"
 msgstr "時刻を挿入"
 
-msgid "Pretty XML"
-msgstr "整形されたXML"
+msgid "Apply Patch"
+msgstr "パッチ適用"
+
+msgid "Ignore Columns"
+msgstr "指定列を無視"
+
+msgid "Ignore Commonts (C-Family Languages)"
+msgstr "コメントを無視(C系言語)"
+
+msgid "Ignore CSV Fields"
+msgstr "CSVの指定列を無視"
+
+msgid "Ignore TSV Fields"
+msgstr "TSVの指定列を無視"
 
 msgid "Pretty JSON"
 msgstr "整形されたJSON"
+
+msgid "Pretty XML"
+msgstr "整形されたXML"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-05-31 21:15+0000\n"
+"POT-Creation-Date: 2021-06-01 20:42+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3264,9 +3264,24 @@ msgstr ""
 msgid "Insert Time"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Apply Patch"
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Commonts (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
 msgstr ""
 
 msgid "Pretty JSON"
+msgstr ""
+
+msgid "Pretty XML"
 msgstr ""
 

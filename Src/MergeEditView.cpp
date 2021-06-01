@@ -2908,8 +2908,8 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 {
 	// empty the menu
-	int i = GetMenuItemCount(hMenu);
-	while (i --)
+	int j = GetMenuItemCount(hMenu);
+	while (j --)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
 	CMergeDoc *pd = GetDocument();
@@ -2919,9 +2919,10 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
 
 	// get the scriptlet files
-	PluginArray * piScriptArray = 
+	PluginArray* piScriptArray[2];
+	piScriptArray[0] =
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	PluginArray * piScriptArray2 = 
+	piScriptArray[1] =
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
 
 	// build the menu : first part, suggested plugins
@@ -2931,21 +2932,18 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	size_t iScript;
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
+	for (int i = 0; i < 2; ++i)
 	{
-		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
-			continue;
+		for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
+		{
+			const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
+			if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
+				continue;
+			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
 
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
-			continue;
-
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+			AppendMenu(hMenu, MF_STRING, ID, caption.c_str());
+		}
 	}
 
 	// build the menu : second part, others plugins
@@ -2954,21 +2952,19 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
+	for (int i = 0; i < 2; ++i)
 	{
-		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
-			continue;
+		for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
+		{
+			const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
+			if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
+				continue;
 
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
-			continue;
+			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
 
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+			AppendMenu(hMenu, MF_STRING, ID, caption.c_str());
+		}
 	}
 
 	// compute the m_CurrentPredifferID (to set the radio button)
@@ -2982,18 +2978,15 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	else
 	{
 		ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-		for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
+		for (int i = 0; i < 2; ++i)
 		{
-			const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-			if (prediffer.m_PluginName == plugin->m_name)
-				m_CurrentPredifferID = ID;
+			for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
+			{
+				const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
+				if (prediffer.m_PluginName == plugin->m_name)
+					m_CurrentPredifferID = ID;
 
-		}
-		for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-		{
-			const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-			if (prediffer.m_PluginName == plugin->m_name)
-				m_CurrentPredifferID = ID;
+			}
 		}
 	}
 

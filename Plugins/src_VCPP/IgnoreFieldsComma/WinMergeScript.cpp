@@ -164,17 +164,21 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 	return S_OK;
 }
 
-// not used yet
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
 	*pVal = SysAllocString(L"\\.csv$");
 	return S_OK;
 }
 
-// not used yet
 STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 {
 	*pVal = VARIANT_TRUE;
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
+{
+	*pVal = SysAllocString(L"MenuCaption=Ignore CSV Fields");
 	return S_OK;
 }
 

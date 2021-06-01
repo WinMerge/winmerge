@@ -1,23 +1,26 @@
 <scriptlet>
 <implements type="Automation" id="dispatcher">
-    <property name="PluginEvent">
-        <get/>
-    </property>
-    <property name="PluginDescription">
-        <get/>
-    </property>
-    <property name="PluginFileFilters">
-        <get/>
-    </property>
-    <property name="PluginIsAutomatic">
-        <get/>
-    </property>
-    <method name="UnpackFile"/>
-    <method name="PackFile"/>
-    <method name="IsFolder"/>
-    <method name="UnpackFolder"/>
-    <method name="PackFolder"/>
-    <method name="ShowSettingsDialog"/>
+	<property name="PluginEvent">
+		<get/>
+	</property>
+	<property name="PluginDescription">
+		<get/>
+	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
+	<property name="PluginIsAutomatic">
+		<get/>
+	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
+	<method name="UnpackFile"/>
+	<method name="PackFile"/>
+	<method name="IsFolder"/>
+	<method name="UnpackFolder"/>
+	<method name="PackFolder"/>
+	<method name="ShowSettingsDialog"/>
 </implements>
 
 <script language="VBS">
@@ -64,6 +67,10 @@ End Function
 
 Function get_PluginIsAutomatic()
     get_PluginIsAutomatic = True
+End Function
+
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "MenuCaption=Apply Patch"
 End Function
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
