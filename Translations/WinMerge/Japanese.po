@@ -3662,7 +3662,7 @@ msgstr "パッチ適用"
 msgid "Ignore Columns"
 msgstr "指定列を無視"
 
-msgid "Ignore Commonts (C-Family Languages)"
+msgid "Ignore Comments (C-Family Languages)"
 msgstr "コメントを無視(C系言語)"
 
 msgid "Ignore CSV Fields"

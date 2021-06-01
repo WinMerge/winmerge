@@ -2942,7 +2942,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
 
-			AppendMenu(hMenu, MF_STRING, ID, caption.c_str());
+			AppendMenu(hMenu, MF_STRING, ID, tr(ucr::toUTF8(caption)).c_str());
 		}
 	}
 
@@ -2963,7 +2963,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
 
-			AppendMenu(hMenu, MF_STRING, ID, caption.c_str());
+			AppendMenu(hMenu, MF_STRING, ID, tr(ucr::toUTF8(caption)).c_str());
 		}
 	}
 

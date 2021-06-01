@@ -3677,11 +3677,12 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION7  "Insert Time"
     IDS_PLUGIN_MENU_CAPTION8  "Apply Patch"
     IDS_PLUGIN_MENU_CAPTION9  "Ignore Columns"
-    IDS_PLUGIN_MENU_CAPTION10 "Ignore Commonts (C-Family Languages)"
+    IDS_PLUGIN_MENU_CAPTION10 "Ignore Comments (C-Family Languages)"
     IDS_PLUGIN_MENU_CAPTION11 "Ignore CSV Fields"
     IDS_PLUGIN_MENU_CAPTION12 "Ignore TSV Fields"
-    IDS_PLUGIN_MENU_CAPTION13 "Pretty JSON"
-    IDS_PLUGIN_MENU_CAPTION14 "Pretty XML"
+    IDS_PLUGIN_MENU_CAPTION13 "Substitution Filters"
+    IDS_PLUGIN_MENU_CAPTION14 "Pretty JSON"
+    IDS_PLUGIN_MENU_CAPTION15 "Pretty XML"
 END
 
 #endif    // English (United States) resources

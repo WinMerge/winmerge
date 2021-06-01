@@ -3629,7 +3629,7 @@ msgstr ""
 msgid "Ignore Columns"
 msgstr ""
 
-msgid "Ignore Commonts (C-Family Languages)"
+msgid "Ignore Comments (C-Family Languages)"
 msgstr ""
 
 msgid "Ignore CSV Fields"
