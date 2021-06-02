@@ -53,6 +53,7 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Commands\jq\
     copy Build\html-tidy5\bin\tidy.* %%i\%%j\Commands\html-tidy5\
     copy Build\html-tidy5\tidy-html5-5.4.0\README\LICENSE.md %%i\%%j\Commands\html-tidy5\
+    xcopy /s/y Plugins\Commands %%i\%%j\Commands
     xcopy /s/y Filters %%i\%%j\Filters\
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\

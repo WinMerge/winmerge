@@ -33,7 +33,7 @@
       <command>dot.exe -Tpng -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="General Content Extractor">
+  <plugin name="General Content Extractor (Apache Tika)">
     <event value="FILE_PACK_UNPACK" />
     <description value="General Content Extractor (Apache Tika)" />
     <file-filters value="\.*$" />
@@ -41,7 +41,7 @@
     <unpacked-file-extension value=".txt" />
     <extended-properties value="ProcessType=Content Extraction;MenuCaption=Extracted Content by Apache Tika;GenerateEditorScript" />
     <unpack-file>
-	    <command>cmd /c java -jar "${WINMERGE_HOME}\Commands\apache-tika\tika-app.jar" -t "${SRC_FILE}" &gt; "${DST_FILE}"</command>
+      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <!--
