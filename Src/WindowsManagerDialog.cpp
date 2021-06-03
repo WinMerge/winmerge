@@ -29,8 +29,7 @@ CWindowsManagerDialog::~CWindowsManagerDialog()
 {
 	if (NULL != m_pIL->GetSafeHandle())
 		m_pIL->DeleteImageList();
-	if (NULL != m_pIL)
-		delete m_pIL;
+	delete m_pIL;
 }
 
 void CWindowsManagerDialog::DoDataExchange(CDataExchange* pDX)
