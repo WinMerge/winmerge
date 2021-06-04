@@ -640,13 +640,20 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	bool bCompared = false;
 	String strDesc[3];
 	std::unique_ptr<PackingInfo> infoUnpacker;
+	std::unique_ptr<PrediffingInfo> infoPrediffer;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
-	if (!cmdInfo.m_sUnpacker.empty())
+	if (!cmdInfo.m_sUnpackers.empty())
 	{
 		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoUnpacker->m_PluginName = cmdInfo.m_sUnpacker;
+		infoUnpacker->m_PluginNames = cmdInfo.m_sUnpackers;
+	}
+
+	if (!cmdInfo.m_sPreDiffers.empty())
+	{
+		infoPrediffer.reset(new PrediffingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
+		infoPrediffer->m_PluginNames = cmdInfo.m_sPreDiffers;
 	}
 
 	// Set the global file filter.
@@ -699,14 +706,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer, infoUnpacker.get());
+				infoPrediffer.get(), infoUnpacker.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer, infoUnpacker.get());
+				infoPrediffer.get(), infoUnpacker.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -734,7 +741,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					cmdInfo.m_sPreDiffer, infoUnpacker.get());
+					infoPrediffer.get(), infoUnpacker.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -1087,8 +1094,9 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	return nRetVal;
 }
 
-String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName)
+String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin)
 {
+	String pluginName = strutils::join(plugin.m_PluginNames.begin(), plugin.m_PluginNames.end(), _T("|"));
 	return strutils::format_string2(
 		pane == 0 ? 
 			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")

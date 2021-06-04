@@ -43,6 +43,7 @@ typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
 
 class PackingInfo;
+class PrediffingInfo;
 class CLanguageSelect;
 struct IMergeDoc;
 
@@ -90,7 +91,9 @@ public:
 
 	void FileNew(int nPanes, FRAMETYPE frameType, bool table);
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
-		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
+		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr, const PackingInfo * infoUnpacker = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],

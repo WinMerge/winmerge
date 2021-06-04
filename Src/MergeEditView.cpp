@@ -2973,7 +2973,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		m_CurrentPredifferID = 0;
-	else if (prediffer.m_PluginName.empty())
+	else if (prediffer.m_PluginNames.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 	else
 	{
@@ -2983,7 +2983,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 			for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
 			{
 				const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
-				if (prediffer.m_PluginName == plugin->m_name)
+				if (prediffer.m_PluginNames[0] == plugin->m_name)
 					m_CurrentPredifferID = ID;
 
 			}
@@ -3495,7 +3495,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	}
 
 	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.m_PluginName.empty())
+	if (prediffer.m_PluginNames.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
@@ -3543,7 +3543,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		// All flags are set correctly during the construction
 		PrediffingInfo *infoPrediffer = new PrediffingInfo;
 		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-		infoPrediffer->m_PluginName.clear();
+		infoPrediffer->m_PluginNames.clear();
 		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
 		return;
@@ -3563,7 +3563,8 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	if (pluginNumber < piScriptArray->size())
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
-		prediffer.m_PluginName = plugin->m_name;
+		prediffer.m_PluginNames.clear();
+		prediffer.m_PluginNames.push_back(plugin->m_name);
 	}
 	else
 	{
@@ -3571,7 +3572,8 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		if (pluginNumber >= piScriptArray2->size())
 			return;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
-		prediffer.m_PluginName = plugin->m_name;
+		prediffer.m_PluginNames.clear();
+		prediffer.m_PluginNames.push_back(plugin->m_name);
 	}
 
 	// update data for the radio button

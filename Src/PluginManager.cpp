@@ -62,10 +62,10 @@ void PluginManager::SetPrediffSettingAll(PLUGIN_MODE newsetting)
 	}
 }
 
-void PluginManager::SetPrediffer(const String& filteredFilenames, const String & prediffer)
+void PluginManager::SetPrediffer(const String& filteredFilenames, const std::vector<String> & prediffers)
 {
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
 	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-	infoPrediffer->m_PluginName = prediffer;
+	infoPrediffer->m_PluginNames = prediffers;
 }

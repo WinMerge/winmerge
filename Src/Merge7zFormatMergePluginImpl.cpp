@@ -33,8 +33,8 @@ Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 	PluginInfo *plugin = nullptr;
 	if (format->m_infoUnpacker.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", path);
-	else if (!format->m_infoUnpacker.m_PluginName.empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.m_PluginName);
+	else if (!format->m_infoUnpacker.m_PluginNames.empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.m_PluginNames[0]);
 	if (plugin == nullptr)
 		return nullptr;
 	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))

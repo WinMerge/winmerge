@@ -711,7 +711,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_AUTO || !prediffer->m_PluginName.empty())
+			if (prediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_AUTO || !prediffer->m_PluginNames.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;

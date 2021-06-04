@@ -268,7 +268,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (infoUnpacker->m_PluginName.length() > 0)
+		if (!infoUnpacker->m_PluginNames.empty())
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);

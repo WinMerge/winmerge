@@ -731,12 +731,12 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
 			PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
-			handler.m_PluginName = GetPluginNameByMenuId(nID,
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+			handler.m_PluginNames.push_back(GetPluginNameByMenuId(nID,
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
 			PathContext paths;
 			for (int i = 0; i < nFiles; ++i)
 				paths.SetPath(i, ifileloc[i].filepath);
-			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, _T(""), &handler);
+			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, nullptr, &handler);
 		}
 		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
@@ -1048,12 +1048,12 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] dwRightFlags Right-side flags.
  * @param [in] bRecurse Do we run recursive (folder) compare?
  * @param [in] pDirDoc Dir compare document to use.
- * @param [in] prediffer Prediffer plugin name.
+ * @param [in] infoPrediffer Prediffer plugin name.
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
 bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
-	String prediffer /*= _T("")*/, const PackingInfo *infoUnpacker /*= nullptr*/)
+	const PrediffingInfo *infoPrediffer /*= nullptr*/, const PackingInfo *infoUnpacker /*= nullptr*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
@@ -1174,10 +1174,10 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
 			fileloc[nPane].setPath(tFiles[nPane]);
 
-		if (!prediffer.empty())
+		if (infoPrediffer && !infoPrediffer->m_PluginNames.empty())
 		{
 			String strBothFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
-			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
+			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->m_PluginNames);
 		}
 
 		ShowAutoMergeDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,

@@ -74,8 +74,8 @@ public:
 	String m_sRightDesc; /**< Right side file's description. */
 
 	String m_sFileFilter; /**< File filter mask. */
-	String m_sPreDiffer; /**< Pre-differ name. */
-	String m_sUnpacker; /**< Unpacker name. */
+	std::vector<String> m_sPreDiffers; /**< Pre-differ names. */
+	std::vector<String> m_sUnpackers; /**< Unpacker names. */
 
 	String m_sOutputpath;
 	String m_sReportFile;

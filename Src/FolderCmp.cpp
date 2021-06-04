@@ -21,6 +21,7 @@
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 #include "FileFilterHelper.h"
+#include "MergeApp.h"
 #include "DebugNew.h"
 
 using CompareEngines::ByteCompare;

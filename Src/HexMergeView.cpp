@@ -345,11 +345,11 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 		return hr;
 
 	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
-	if (packing && !pDoc->GetUnpacker()->m_PluginName.empty())
+	if (packing && !pDoc->GetUnpacker()->m_PluginNames.empty())
 	{
 		if (!FileTransform::Packing(sIntermediateFilename, path, *pDoc->GetUnpacker(), m_unpackerSubcode))
 		{
-			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, pDoc->GetUnpacker()->m_PluginName);
+			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, *pDoc->GetUnpacker());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 			if (answer == IDOK)
 			{

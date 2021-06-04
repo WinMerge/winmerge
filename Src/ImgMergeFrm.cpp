@@ -698,7 +698,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
 
-					String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), m_filePaths[pane], m_infoUnpacker.m_PluginName);
+					String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), m_filePaths[pane], m_infoUnpacker);
 					int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 					if (answer == IDOK)
 						return DoFileSaveAs(pane, false);
@@ -727,7 +727,7 @@ RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
-		if (packing && !m_infoUnpacker.m_PluginName.empty())
+		if (packing && !m_infoUnpacker.m_PluginNames.empty())
 		{
 			String tempPath = env::GetTemporaryPath();
 			filename = ucr::toUTF16(env::GetTemporaryFileName(tempPath, _T("MRG_"), 0)
@@ -749,7 +749,7 @@ RETRY:
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
 
-				String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), strPath, m_infoUnpacker.m_PluginName);
+				String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), strPath, m_infoUnpacker);
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 				if (answer == IDOK)
 					return DoFileSaveAs(pane, false);

@@ -13,7 +13,6 @@
 
 #include <vector>
 #include "UnicodeString.h"
-#include "MergeApp.h"
 
 /**
  * @brief Modes for plugin (Modes for prediffing included)
@@ -49,25 +48,26 @@ public:
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
 		m_PluginOrPredifferMode = Mode;
-		if (Mode != PLUGIN_MODE::PLUGIN_AUTO)
-		{
-			m_PluginName.erase();
-		}
-		else
-		{
-			m_PluginName = _("<Automatic>");
-		}
+		m_PluginNames.clear();
 	};
 	explicit PluginForFile(PLUGIN_MODE Mode) 
 	{
 		Initialize(Mode);
 	};
+	String GetPluginNames(const String& delim) const
+	{
+		return strutils::join(m_PluginNames.begin(), m_PluginNames.end(), delim);
+	}
+	const std::vector<String>& GetPluginNames() const
+	{
+		return m_PluginNames;
+	}
 public:
 	/// PLUGIN_AUTO if the plugin will be defined during the first use (via scan of all available plugins)
 	PLUGIN_MODE	m_PluginOrPredifferMode;
 
 	/// plugin name when it is defined
-	String		m_PluginName;
+	std::vector<String> m_PluginNames;
 };
 
 /**

@@ -1348,7 +1348,7 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, _T(""), infoUnpacker);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, nullptr, infoUnpacker);
 	}
 	else
 	{

@@ -510,7 +510,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.m_PluginName.empty())
+		if (!infoPrediffer.m_PluginNames.empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -1545,7 +1545,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, pInfoTempUnpacker->m_PluginName);
+		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, *pInfoTempUnpacker);
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 	}
@@ -2111,12 +2111,12 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginName.empty())
-		pluginNames += m_pInfoUnpacker->m_PluginName + _T("&");
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginNames.empty())
+		pluginNames += m_pInfoUnpacker->GetPluginNames(_T(",")) + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
-	if (!prediffer.m_PluginName.empty())
-		pluginNames += prediffer.m_PluginName + _T("&");
+	if (!prediffer.m_PluginNames.empty())
+		pluginNames += prediffer.GetPluginNames(_T(",")) + _T("&");
 	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
@@ -3379,7 +3379,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, _T(""), &infoUnpacker);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, nullptr, &infoUnpacker);
 			CloseNow();
 		}
 		else
