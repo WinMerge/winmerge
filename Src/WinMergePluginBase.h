@@ -192,7 +192,7 @@ public:
 				BSTR fileSrc = pDispParams->rgvarg[3].bstrVal;
 				BSTR fileDst = pDispParams->rgvarg[2].bstrVal;
 				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[1].pboolVal;
-				INT* pSubcode = &pDispParams->rgvarg[0].intVal;
+				INT* pSubcode = pDispParams->rgvarg[0].pintVal;
 				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
 				hr = UnpackFile(fileSrc, fileDst, pbChanged, pSubcode, pbSuccess);
 				break;
@@ -219,7 +219,7 @@ public:
 				BSTR fileSrc = pDispParams->rgvarg[3].bstrVal;
 				BSTR folderDst = pDispParams->rgvarg[2].bstrVal;
 				VARIANT_BOOL* pbChanged = pDispParams->rgvarg[1].pboolVal;
-				INT* pSubcode = &pDispParams->rgvarg[0].intVal;
+				INT* pSubcode = pDispParams->rgvarg[0].pintVal;
 				VARIANT_BOOL* pbSuccess = &pVarResult->boolVal;
 				hr = UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode, pbSuccess);
 				break;

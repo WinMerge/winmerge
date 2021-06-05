@@ -1455,6 +1455,31 @@ namespace
 		EXPECT_EQ(std::vector<String>{ _T("CompareMSExcelFiles.sct") }, cmdInfo.m_sUnpackers);
 	}
 
+	TEST_F(MergeCmdLineInfoTest, Unpacker2)
+	{
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker \"CompareMSExcelFiles.sct, editor addin.sct:MakeUpper\""));
+		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ(_T(""), cmdInfo.m_sLeftDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
+		EXPECT_EQ(0, cmdInfo.m_sPreDiffers.size());
+		std::vector<String> expected = std::vector<String>{ _T("CompareMSExcelFiles.sct"), _T("editor addin.sct:MakeUpper") };
+		EXPECT_EQ(expected, cmdInfo.m_sUnpackers);
+	}
+
 	// Prediffer
 	TEST_F(MergeCmdLineInfoTest, Prediffer1)
 	{
@@ -1477,6 +1502,31 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(std::vector<String>{ _T("PrediffLineFilter.sct") }, cmdInfo.m_sPreDiffers);
+		EXPECT_EQ(0, cmdInfo.m_sUnpackers.size());
+	}
+
+	TEST_F(MergeCmdLineInfoTest, Prediffer2)
+	{
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /prediffer \"PrediffLineFilter.sct, IgnoreColumns.dll \""));
+		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ(_T(""), cmdInfo.m_sLeftDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
+		std::vector<String> expected = std::vector<String>{ _T("PrediffLineFilter.sct"), _T("IgnoreColumns.dll") };
+		EXPECT_EQ(expected, cmdInfo.m_sPreDiffers);
 		EXPECT_EQ(0, cmdInfo.m_sUnpackers.size());
 	}
 

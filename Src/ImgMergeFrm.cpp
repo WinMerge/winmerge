@@ -169,7 +169,6 @@ CImgMergeFrame::CImgMergeFrame()
 , m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 , m_bRO{}
 , m_nActivePane(-1)
-, m_unpackerSubcode{}
 {
 }
 
@@ -693,7 +692,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			}
 			if (filename != m_filePaths[pane])
 			{
-				if (!FileTransform::Packing(filename, m_filePaths[pane], m_infoUnpacker, m_unpackerSubcode[pane]))
+				if (!FileTransform::Packing(filename, m_filePaths[pane], m_infoUnpacker, m_unpackerSubcodes[pane]))
 				{
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -744,7 +743,7 @@ RETRY:
 		}
 		if (filename != strPath)
 		{
-			if (!FileTransform::Packing(filename, strPath, m_infoUnpacker, m_unpackerSubcode[pane]))
+			if (!FileTransform::Packing(filename, strPath, m_infoUnpacker, m_unpackerSubcodes[pane]))
 			{
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -1067,7 +1066,7 @@ bool CImgMergeFrame::OpenImages()
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcode[pane], strTempFileName[pane], filteredFilenames))
+		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames))
 		{
 			//return false;
 		}

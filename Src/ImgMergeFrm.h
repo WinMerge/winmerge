@@ -121,7 +121,7 @@ private:
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
-	int m_unpackerSubcode[3];
+	std::vector<int> m_unpackerSubcodes[3];
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
