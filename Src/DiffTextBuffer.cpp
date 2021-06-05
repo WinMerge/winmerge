@@ -82,7 +82,6 @@ static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
 : m_pOwnerDoc(pDoc)
 , m_nThisPane(pane)
-, m_unpackerSubcode(0)
 , m_bMixedEOL(false)
 {
 }
@@ -230,7 +229,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcode, m_strTempFileName, sToFindUnpacker))
+	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -543,7 +542,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcode);
+		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcodes);
 		try
 		{
 			TFile(sIntermediateFilename).remove();

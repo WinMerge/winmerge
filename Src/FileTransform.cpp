@@ -73,7 +73,7 @@ bool getPackUnpackPlugin(const std::vector<String>& pluginNames, std::vector<std
 }
 
 // known handler
-bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
+bool Packing(String & filepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes)
 {
 	// no handler : return true
 	if (handler.m_PluginNames.empty())
@@ -84,6 +84,7 @@ bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
 	if (!getPackUnpackPlugin(handler.m_PluginNames, plugins, true))
 		return false;
 
+	auto itSubcode = handlerSubcodes.rbegin();
 	for (auto& [plugin, bWithFile] : plugins)
 	{
 		bool bHandled = false;
@@ -99,7 +100,7 @@ bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
 			bHandled = plugin::InvokePackFile(srcFileName,
 				dstFileName,
 				bufferData.GetNChanged(),
-				piScript, handlerSubcode);
+				piScript, *itSubcode);
 			if (bHandled)
 				bufferData.ValidateNewFile();
 		}
@@ -107,7 +108,7 @@ bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
 		{
 			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
 				bufferData.GetNChanged(),
-				piScript, handlerSubcode);
+				piScript, *itSubcode);
 			if (bHandled)
 				bufferData.ValidateNewBuffer();
 		}
@@ -123,14 +124,15 @@ bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode)
 			if (!bSuccess)
 				return false;
 		}
+		++itSubcode;
 	}
 	return true;
 }
 
-bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, int handlerSubcode)
+bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes)
 {
 	String csTempFileName = srcFilepath;
-	if (!Packing(csTempFileName, handler, handlerSubcode))
+	if (!Packing(csTempFileName, handler, handlerSubcodes))
 		return false;
 	try
 	{
@@ -148,7 +150,7 @@ bool Packing(const String& srcFilepath, const String& dstFilepath, const Packing
 }
 
 // known handler
-bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
+bool Unpacking(String & filepath, const PackingInfo * handler, std::vector<int> * handlerSubcodes)
 {
 	// no handler : return true
 	if (handler == nullptr || handler->m_PluginNames.empty())
@@ -159,6 +161,9 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	if (!getPackUnpackPlugin(handler->m_PluginNames, plugins, false))
 		return false;
 
+	if (handlerSubcodes)
+		handlerSubcodes->clear();
+
 	for (auto& [plugin, bWithFile] : plugins)
 	{
 		bool bHandled = false;
@@ -166,7 +171,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 		bufferData.SetDataFileAnsi(filepath);
 
 		// temporary subcode 
-		int subcode;
+		int subcode = 0;
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		if (bWithFile)
@@ -196,8 +201,8 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 			return false;
 
 		// valid the subcode
-		if (handlerSubcode)
-			*handlerSubcode = subcode;
+		if (handlerSubcodes)
+			handlerSubcodes->push_back(subcode);
 
 		// if the buffer changed, write it before leaving
 		if (bufferData.GetNChangedValid() > 0)
@@ -212,7 +217,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 
 
 // scan plugins for the first handler
-bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
+bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, std::vector<int> * handlerSubcodes)
 {
 	handler->m_PluginNames.clear();
 
@@ -223,6 +228,9 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	int subcode = 0;
 	// control value
 	bool bHandled = false;
+
+	if (handlerSubcodes)
+		handlerSubcodes->clear();
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
 	if (plugin == nullptr)
@@ -271,8 +279,8 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 	// assign the sucode
-	if (handlerSubcode)
-		*handlerSubcode = subcode;
+	if (handlerSubcodes)
+		handlerSubcodes->push_back(subcode);
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -284,12 +292,12 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	return bSuccess;
 }
 
-bool Unpacking(PackingInfo *handler, int * handlerSubcode, String& filepath, const String& filteredText)
+bool Unpacking(PackingInfo *handler, std::vector<int> * handlerSubcodes, String& filepath, const String& filteredText)
 {
 	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-		return Unpacking(filepath, filteredText, handler, handlerSubcode);
+		return Unpacking(filepath, filteredText, handler, handlerSubcodes);
 	else
-		return Unpacking(filepath, handler, handlerSubcode);
+		return Unpacking(filepath, handler, handlerSubcodes);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

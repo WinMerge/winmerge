@@ -121,15 +121,15 @@ namespace FileTransform
  * @note Event FILE_UNPACK
  * Apply only the first correct handler
  */
-bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode);
+bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, std::vector<int> * handlerSubcodes);
 /**
  * @brief Prepare one file for loading, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
+bool Unpacking(String & filepath, const PackingInfo * handler, std::vector<int> * handlerSubcodes);
 
-bool Unpacking(PackingInfo * handler, int * handlerSubcode, String & filepath, const String& filteredText);
+bool Unpacking(PackingInfo * handler, std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText);
 
 /**
  * @brief Prepare one file for saving, known handler
@@ -141,9 +141,9 @@ bool Unpacking(PackingInfo * handler, int * handlerSubcode, String & filepath, c
  * @note Event FILE_PACK
  * Never do Unicode conversion, it was done in SaveFromFile
  */
-bool Packing(String & filepath, const PackingInfo& handler, int handlerSubcode);
+bool Packing(String & filepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes);
 
-bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, int handlerSubcode);
+bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
