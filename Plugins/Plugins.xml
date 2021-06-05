@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <plugins>
-  <plugin name="XML Prettier">
+  <plugin name="XML-Prettier">
     <event value="FILE_PACK_UNPACK" />
     <description value="XML Prettier" />
     <file-filters value="\.xml$" />
@@ -11,7 +11,7 @@
       <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" -xml -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="JSON Prettier">
+  <plugin name="JSON-Prettier">
     <event value="FILE_PACK_UNPACK" />
     <description value="JSON Prettier" />
     <file-filters value="\.json$" />
@@ -22,7 +22,7 @@
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" "" &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="Graphviz Visualizer">
+  <plugin name="Graphviz-Visualizer">
     <event value="FILE_PACK_UNPACK" />
     <description value="Graphviz Visualizer" />
     <file-filters value="\.gv;$\.dot$" />
@@ -33,19 +33,19 @@
       <command>dot.exe -Tpng -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="General Content Extractor (Apache Tika)">
+  <plugin name="Apache-Tika">
     <event value="FILE_PACK_UNPACK" />
-    <description value="General Content Extractor (Apache Tika)" />
+    <description value="General content extractor with Apache Tika" />
     <file-filters value="\.*$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".txt" />
-    <extended-properties value="ProcessType=Content Extraction;MenuCaption=Extracted Content by Apache Tika;GenerateEditorScript" />
+    <extended-properties value="ProcessType=Content Extraction;MenuCaption=Apache Tika;GenerateEditorScript" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <!--
-  <plugin name="VBScript test">
+  <plugin name="VBScript-test">
     <event value="FILE_PACK_UNPACK" />
     <description value="VBScript test" />
     <file-filters value="\.nomatch$" />

@@ -32,7 +32,7 @@ public:
 	void Reset() { m_pluginSettings.clear(); };
 	void SetPrediffSetting(const String& filteredFilenames, PLUGIN_MODE newsetting);
 	void SetPrediffSettingAll(PLUGIN_MODE newsetting);
-	void SetPrediffer(const String& filteredFilenames, const std::vector<String>& prediffers);
+	void SetPrediffer(const String& filteredFilenames, const String& predifferExpression);
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 

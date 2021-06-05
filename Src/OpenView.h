@@ -51,7 +51,7 @@ public:
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpackers;
+	String	m_strUnpackerExpression;
 	//}}AFX_DATA
 
 // other public data

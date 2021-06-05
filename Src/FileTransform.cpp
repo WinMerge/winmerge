@@ -22,66 +22,169 @@
 
 using Poco::Exception;
 
-namespace FileTransform
-{
-
-PLUGIN_MODE g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
-PLUGIN_MODE g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
 
-bool getPackUnpackPlugin(const std::vector<String>& pluginNames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse)
+
+std::vector<std::pair<String, String>> PluginForFile::ParseExpression(String& errorMessage) const
 {
-	for (const auto& pluginName : pluginNames)
+	std::vector<std::pair<String, String>> result;
+	bool inQuotes = false;
+	TCHAR quoteChar = 0;
+	std::vector<String> tokens;
+	String token, name, param;
+	for (const TCHAR* p = m_PluginExpression.c_str(); *p;)
 	{
-		bool bWithFile = true;
-		PluginInfo *plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
-		if (plugin == nullptr)
+		while (isspace(*p)) p++;
+		while (*p)
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
-			if (plugin == nullptr)
+			if (!inQuotes)
 			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
-				if (plugin == nullptr)
+				if (*p == '"' || *p == '\'')
 				{
-					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-					if (plugin == nullptr)
+					inQuotes = true;
+					quoteChar = *p;
+				}
+				else if (isspace(*p))
+				{
+					break;
+				}
+				else if (*p == '|')
+					break;
+				else
+					token += *p;
+			}
+			else
+			{
+				if (*p == quoteChar)
+				{
+					if (*(p + 1) == quoteChar)
 					{
-						AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+						token += *p;
+						++p;
 					}
 					else
 					{
-						plugin = nullptr;
-						AppErrorMessageBox(strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName));
+						inQuotes = false;
 					}
-					return false;
 				}
+				else
+				{
+					token += *p;
+				}
+			}
+			++p;
+		}
+		if (name.empty())
+		{
+			name = token;
+			if (name.empty())
+				errorMessage = _T("Missing plugin name in plugin expression: ") + m_PluginExpression;
+		}
+		else
+		{
+			param += token + ((*p == ' ') ? _T(" ") : _T(""));
+		}
+		if (!isspace(*p))
+		{
+			result.emplace_back(name, strutils::trim_ws_end(param));
+			name.clear();
+			param.clear();
+		}
+		if (*p)
+			++p;
+		token.clear();
+	}
+	if (inQuotes)
+		errorMessage = _T("Missing quotation mark in plugin expression: ") + m_PluginExpression;
+	return result;
+}
+
+bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse, String *pPluginExpressionResolved) const
+{
+	String expressionResolved;
+	String errorMessage;
+	auto result = ParseExpression(errorMessage);
+	if (!errorMessage.empty())
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+	for (const auto& [pluginName, params] : result)
+	{
+		PluginInfo* plugin = nullptr;
+		bool bWithFile = true;
+		if (pluginName == _T("<Automatic>"))
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredFilenames);
+			if (plugin == nullptr)
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredFilenames);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredFilenames);
 				bWithFile = false;
 			}
 		}
-		if (bReverse)
-			plugins.insert(plugins.begin(), { plugin, bWithFile });
 		else
-			plugins.push_back({ plugin, bWithFile });
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
+				if (plugin == nullptr)
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
+					if (plugin == nullptr)
+					{
+						plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+						if (plugin == nullptr)
+						{
+							AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+						}
+						else
+						{
+							plugin = nullptr;
+							AppErrorMessageBox(strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName));
+						}
+						return false;
+					}
+					bWithFile = false;
+				}
+			}
+		}
+		if (plugin)
+		{
+			if (expressionResolved.empty())
+				expressionResolved = plugin->m_name;
+			else
+				expressionResolved += _T("|") + plugin->m_name;
+			if (!params.empty())
+			{
+				String paramsQuoted = params;
+				strutils::replace(paramsQuoted, _T("'"), _T("''"));
+				expressionResolved += _T(" '") + paramsQuoted+ _T("'");
+			}
+			if (bReverse)
+				plugins.insert(plugins.begin(), { plugin, bWithFile });
+			else
+				plugins.push_back({ plugin, bWithFile });
+		}
 	}
+	if (pPluginExpressionResolved)
+		*pPluginExpressionResolved = expressionResolved;
 	return true;
 }
 
 // known handler
-bool Packing(String & filepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes)
+bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubcodes) const
 {
 	// no handler : return true
-	if (handler.m_PluginNames.empty())
+	if (m_PluginExpression.empty())
 		return true;
 
 	// control value
 	std::vector<std::pair<PluginInfo*, bool>> plugins;
-	if (!getPackUnpackPlugin(handler.m_PluginNames, plugins, true))
+	if (!GetPackUnpackPlugin(_T(""), plugins, true, nullptr))
 		return false;
 
 	auto itSubcode = handlerSubcodes.rbegin();
@@ -129,10 +232,10 @@ bool Packing(String & filepath, const PackingInfo& handler, const std::vector<in
 	return true;
 }
 
-bool Packing(const String& srcFilepath, const String& dstFilepath, const PackingInfo& handler, const std::vector<int>& handlerSubcodes)
+bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes) const
 {
 	String csTempFileName = srcFilepath;
-	if (!Packing(csTempFileName, handler, handlerSubcodes))
+	if (!Packing(csTempFileName, handlerSubcodes))
 		return false;
 	try
 	{
@@ -149,16 +252,15 @@ bool Packing(const String& srcFilepath, const String& dstFilepath, const Packing
 	}
 }
 
-// known handler
-bool Unpacking(String & filepath, const PackingInfo * handler, std::vector<int> * handlerSubcodes)
+bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText)
 {
 	// no handler : return true
-	if (handler == nullptr || handler->m_PluginNames.empty())
+	if (m_PluginExpression.empty())
 		return true;
 
 	// control value
 	std::vector<std::pair<PluginInfo*, bool>> plugins;
-	if (!getPackUnpackPlugin(handler->m_PluginNames, plugins, false))
+	if (!GetPackUnpackPlugin(filteredText, plugins, false, &m_PluginExpression))
 		return false;
 
 	if (handlerSubcodes)
@@ -215,138 +317,97 @@ bool Unpacking(String & filepath, const PackingInfo * handler, std::vector<int> 
 	return true;
 }
 
-
-// scan plugins for the first handler
-bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, std::vector<int> * handlerSubcodes)
+String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) const
 {
-	handler->m_PluginNames.clear();
-
-	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
-
-	// temporary subcode 
-	int subcode = 0;
-	// control value
-	bool bHandled = false;
-
-	if (handlerSubcodes)
-		handlerSubcodes->clear();
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
-	if (plugin != nullptr)
+	String ext;
+	std::vector<std::pair<PluginInfo*, bool>> plugins;
+	if (GetPackUnpackPlugin(filteredFilenames, plugins, false, nullptr))
 	{
-		handler->m_PluginNames.push_back(plugin->m_name);
-		// use a temporary dest name
-		bufferData.SetDestFileExtension(plugin->m_ext);
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokeUnpackFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch, subcode);
-		if (bHandled)
-			bufferData.ValidateNewFile();
+		for (auto& [plugin, bWithFile] : plugins)
+			ext += plugin->m_ext;
 	}
-
-	// We can not assume that the file is text, so use a safearray and not a BSTR
-	// TODO : delete this event ? 	Is anyone going to use this ?
-
-	if (!bHandled)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
-		if (plugin != nullptr)
-		{
-			handler->m_PluginNames.push_back(plugin->m_name);
-			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
-				bufferData.GetNChanged(),
-				plugin->m_lpDispatch, subcode);
-			if (bHandled)
-				bufferData.ValidateNewBuffer();
-		}
-	}
-
-	if (!bHandled)
-	{
-		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
-		handler->m_PluginNames.clear();
-		subcode = 0;
-		bHandled = true;
-	}
-
-	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-
-	// assign the sucode
-	if (handlerSubcodes)
-		handlerSubcodes->push_back(subcode);
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-bool Unpacking(PackingInfo *handler, std::vector<int> * handlerSubcodes, String& filepath, const String& filteredText)
-{
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-		return Unpacking(filepath, filteredText, handler, handlerSubcodes);
-	else
-		return Unpacking(filepath, handler, handlerSubcodes);
+	return ext;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
 
-bool getPrediffPlugin(const std::vector<String>& pluginNames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse)
+bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse, String *pPluginExpressionResolved) const
 {
-	for (const auto& pluginName : pluginNames)
+	String expressionResolved;
+	String errorMessage;
+	auto result = ParseExpression(errorMessage);
+	if (!errorMessage.empty())
 	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+	for (const auto& [pluginName, params] : result)
+	{
+		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
-		PluginInfo *plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
-		if (plugin == nullptr)
+		if (pluginName == _T("<Automatic>"))
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredFilenames);
+			if (plugin == nullptr)
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredFilenames);
+		}
+		else
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
 			if (plugin == nullptr)
 			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
 				if (plugin == nullptr)
 				{
-					AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+					if (plugin == nullptr)
+					{
+						AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+					}
+					else
+					{
+						plugin = nullptr;
+						AppErrorMessageBox(strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName));
+					}
+					return false;
 				}
-				else
-				{
-					plugin = nullptr;
-					AppErrorMessageBox(strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName));
-				}
-				return false;
+				bWithFile = false;
 			}
-			bWithFile = false;
 		}
-		if (bReverse)
-			plugins.insert(plugins.begin(), { plugin, bWithFile });
-		else
-			plugins.push_back({ plugin, bWithFile });
+		if (plugin)
+		{
+			if (expressionResolved.empty())
+				expressionResolved = plugin->m_name;
+			else
+				expressionResolved += _T("|") + plugin->m_name;
+			if (!params.empty())
+			{
+				String paramsQuoted = params;
+				strutils::replace(paramsQuoted, _T("'"), _T("''"));
+				expressionResolved += _T(" '") + paramsQuoted+ _T("'");
+			}
+			if (bReverse)
+				plugins.insert(plugins.begin(), { plugin, bWithFile });
+			else
+				plugins.push_back({ plugin, bWithFile });
+		}
 	}
+	if (pPluginExpressionResolved)
+		*pPluginExpressionResolved = expressionResolved;
 	return true;
 }
 
-// known handler
-bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
+bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite)
 {
 	// no handler : return true
-	if (handler.m_PluginNames.empty())
+	if (m_PluginExpression.empty())
 		return true;
 
 	// control value
 	bool bHandled = false;
 	std::vector<std::pair<PluginInfo*, bool>> plugins;
-	if (!getPrediffPlugin(handler.m_PluginNames, plugins, false))
+	if (!GetPrediffPlugin(filteredText, plugins, false, &m_PluginExpression))
 		return false;
 
 	for (const auto& [plugin, bWithFile] : plugins)
@@ -396,79 +457,11 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	return true;
 }
 
-
-// scan plugins for the first handler
-bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite)
+namespace FileTransform
 {
-	handler->m_PluginNames.clear();
 
-	storageForPlugins bufferData;
-	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
-	// TODO : set the codepage
-	// bufferData.SetCodepage();
-
-	// control value
-	bool bHandled = false;
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredText);
-	if (plugin != nullptr)
-	{
-		handler->m_PluginNames.push_back(plugin->m_name);
-		// use a temporary dest name
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokePrediffFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch);
-		if (bHandled)
-			bufferData.ValidateNewFile();
-	}
-
-	if (!bHandled)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredText);
-		if (plugin != nullptr)
-		{
-			handler->m_PluginNames.push_back(plugin->m_name);
-			// probably it is for VB/VBscript so use a BSTR as argument
-			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
-				bufferData.GetNChanged(),
-				plugin->m_lpDispatch);
-			if (bHandled)
-				bufferData.ValidateNewBuffer();
-		}
-	}
-
-	if (!bHandled)
-	{
-		// we didn't find any prediffer, that is OK anyway
-		handler->m_PluginNames.clear();
-		bHandled = true;
-	}
-
-	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
-{
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
-	else
-		return Prediffing(filepath, *handler, bMayOverwrite);
-}
-
+PLUGIN_MODE g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
+PLUGIN_MODE g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -580,16 +573,6 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	plugin::InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
-}
-
-String GetUnpackedFileExtension(const String& filteredFilenames, const PackingInfo* handler)
-{
-	PluginInfo* plugin = nullptr;
-	if (handler->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL && !handler->m_PluginNames.empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, handler->m_PluginNames.back().c_str());
-	else
-		plugin = CAllThreadsScripts::GetActiveSet()->GetUnpackerPluginByFilter(filteredFilenames);
-	return plugin ? plugin->m_ext : _T("");
 }
 
 std::pair<

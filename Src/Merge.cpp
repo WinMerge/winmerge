@@ -644,16 +644,16 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
-	if (!cmdInfo.m_sUnpackers.empty())
+	if (!cmdInfo.m_sUnpackerExpression.empty())
 	{
 		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoUnpacker->m_PluginNames = cmdInfo.m_sUnpackers;
+		infoUnpacker->m_PluginExpression = cmdInfo.m_sUnpackerExpression;
 	}
 
-	if (!cmdInfo.m_sPreDiffers.empty())
+	if (!cmdInfo.m_sPreDifferExpression.empty())
 	{
 		infoPrediffer.reset(new PrediffingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoPrediffer->m_PluginNames = cmdInfo.m_sPreDiffers;
+		infoPrediffer->m_PluginExpression = cmdInfo.m_sPreDifferExpression;
 	}
 
 	// Set the global file filter.
@@ -1096,7 +1096,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 
 String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin)
 {
-	String pluginName = strutils::join(plugin.m_PluginNames.begin(), plugin.m_PluginNames.end(), _T("|"));
+	String pluginName = plugin.GetPluginExpression();
 	return strutils::format_string2(
 		pane == 0 ? 
 			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")

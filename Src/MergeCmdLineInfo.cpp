@@ -305,18 +305,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		else if (param == _T("prediffer"))
 		{
 			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
-			String prediffers;
-			q = EatParam(q, prediffers);
-			for (const auto& view : strutils::split(prediffers, ','))
-				m_sPreDiffers.emplace_back(strutils::trim_ws({view.data(), view.length()}));
+			q = EatParam(q, m_sPreDifferExpression);
 		}
 		else if (param == _T("unpacker"))
 		{
 			// Get unpacker if specified (otherwise unpacker will be blank, which is default)
-			String unpackers;
-			q = EatParam(q, unpackers);
-			for (const auto& view : strutils::split(unpackers, ','))
-				m_sUnpackers.emplace_back(strutils::trim_ws({view.data(), view.length()}));
+			q = EatParam(q, m_sUnpackerExpression);
 		}
 		else if (param == _T("wl"))
 		{

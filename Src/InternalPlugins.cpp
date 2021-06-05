@@ -534,7 +534,7 @@ struct Loader
 						PluginInfoPtr pluginNew(new PluginInfo());
 						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(*plugin, namesArray[i], idArray[i]);
 						pDispatch->AddRef();
-						pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
+						pluginNew->MakeInfo(namesArray[i], pDispatch);
 						plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
 					}
 				}
@@ -584,7 +584,7 @@ struct Loader
 					String funcname = menuCaption.has_value() ? String{menuCaption->data(), menuCaption->length() } : plugin->m_name;
 					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, funcname);
 					pDispatch->AddRef();
-					pluginNew->MakeInfo(plugin->m_name + _T(": Editor script"), pDispatch);
+					pluginNew->MakeInfo(plugin->m_name, pDispatch);
 					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
 				}
 			}

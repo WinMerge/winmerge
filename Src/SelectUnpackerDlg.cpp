@@ -43,8 +43,6 @@ void CSelectUnpackerDlg::Initialize()
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	m_pPlugins.clear();
-
 	PluginArray * piFileScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
 	PluginArray * piBufferScriptArray = 
@@ -107,42 +105,16 @@ CSelectUnpackerDlg::~CSelectUnpackerDlg()
 
 void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 {
-	// default value
-	m_pPlugins.clear();
-
-	if (infoHandler != nullptr && infoHandler->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-		// automatic unpacker
-		m_pPlugins.push_back(automaticPlugin.get());
-	else if (infoHandler)
-	{
-		// find the initial unpacker
-		int i;
-		for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
-		{
-			PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
-			for (const auto& pluginName : infoHandler->m_PluginNames)
-			{
-				if (pPlugin->m_name == pluginName)
-					m_pPlugins.push_back(pPlugin);
-			}
-		}
-	}
+	if (infoHandler)
+		m_strPluginExpression = infoHandler->GetPluginExpression();
 }
 
 const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 {
-	if (m_pPlugins.empty())
-		return PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL);
-	else if (m_pPlugins[0] == automaticPlugin.get())
-		return PackingInfo(PLUGIN_MODE::PLUGIN_AUTO);
-	else
-	{
-		// build a real plugin unpacker
-		PackingInfo infoHandler;
-		infoHandler.m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-		infoHandler.m_PluginNames = m_strPluginNames;
-		return infoHandler;
-	}
+	// build a real plugin unpacker
+	PackingInfo infoHandler;
+	infoHandler.m_PluginExpression = m_strPluginExpression;
+	return infoHandler;
 }
 
 
@@ -201,7 +173,7 @@ void CSelectUnpackerDlg::prepareListbox()
 			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
 		{
 			m_cboUnpackerName.AddString(pPlugin->m_name.c_str());
-			if (!m_pPlugins.empty() && pPlugin == m_pPlugins[0])
+			if (m_strPluginExpression == pPlugin->m_name)
 				sel = m_cboUnpackerName.GetCount()-1;
 		}
 	}
@@ -227,37 +199,41 @@ void CSelectUnpackerDlg::OnUnpackerAllowAll()
 
 void CSelectUnpackerDlg::OnSelchangeUnpackerName() 
 {
+	PluginInfo* pPlugin = nullptr;
 	int i = m_cboUnpackerName.GetCurSel();
-	if (i <= 0)
+	if (i == 0)
 	{
-		m_pPlugins.clear();
-		m_strPluginNames.clear();
+		pPlugin = noPlugin.get();
+		m_strPluginExpression.clear();
+	}
+	else if (i == 1)
+	{
+		pPlugin = automaticPlugin.get();
+		m_strPluginExpression = _T("<Automatic>");
 	}
 	else
 	{
 		// initialize with the default unpacker
-		m_pPlugins.clear();
-		m_strPluginNames.clear();
-		PluginInfo* pPlugin;
+		m_strPluginExpression.clear();
 		CString cstrPluginName;
 		m_cboUnpackerName.GetWindowText(cstrPluginName);
-		m_strPluginNames.push_back((const TCHAR *)cstrPluginName);
+		m_strPluginExpression = cstrPluginName;
 		for (int j = 0 ; j < m_UnpackerPlugins.GetSize() ; j++)
 		{
-			pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
-			if (m_strPluginNames[0] == pPlugin->m_name)
+			PluginInfo *pPluginTmp = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
+			if (m_strPluginExpression == pPluginTmp->m_name)
 			{
-				m_pPlugins.push_back(pPlugin);
+				pPlugin = pPluginTmp;
 				break;
 			}
 		}
+
 	}
 
-	if (!m_pPlugins.empty())
+	if (!pPlugin)
 	{
-		m_strPluginNames[0] = m_pPlugins[0]->m_name;
-		m_strDescription = m_pPlugins[0]->m_description;
-		m_strExtensions = m_pPlugins[0]->m_filtersText;
+		m_strDescription = pPlugin->m_description;
+		m_strExtensions = pPlugin->m_filtersText;
 	}
 
 	UpdateData (FALSE);

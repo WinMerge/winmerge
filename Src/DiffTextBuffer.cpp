@@ -229,14 +229,12 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker))
+	if (infoUnpacker && !infoUnpacker->Unpacking(&m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
 
-	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = m_strTempFileName.c_str();
 
@@ -267,7 +265,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (!infoUnpacker->m_PluginNames.empty())
+		if (!infoUnpacker->GetPluginExpression().empty())
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -542,7 +540,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcodes);
+		bSaveSuccess = infoUnpacker->Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes);
 		try
 		{
 			TFile(sIntermediateFilename).remove();

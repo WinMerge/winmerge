@@ -1,6 +1,6 @@
 @echo off
 set DOWNLOAD_URL=https://ftp.riken.jp/net/apache/tika/2.0.0-BETA/tika-app-2.0.0-BETA.jar
-set TIKA_PATH=WinMerge\Apache-Tika\tika-app-2.0.0-BETA.jar
+set TIKA_PATH=WinMerge\Commands\Apache-Tika\tika-app-2.0.0-BETA.jar
 set MESSAGE='Apache Tika is not installed. Do you want to download it from %DOWNLOAD_URL%?'
 set TITLE='Apache Tika Plugin'
 

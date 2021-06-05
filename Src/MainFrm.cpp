@@ -690,7 +690,7 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
 			[](auto& file) { return file.filepath; });
 		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
-		unpackedFileExtension = FileTransform::GetUnpackedFileExtension(filteredFilenames, infoUnpacker);
+		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames);
 	}
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
@@ -731,8 +731,8 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
 			PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
-			handler.m_PluginNames.push_back(GetPluginNameByMenuId(nID,
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+			handler.m_PluginExpression = GetPluginNameByMenuId(nID,
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
 			PathContext paths;
 			for (int i = 0; i < nFiles; ++i)
 				paths.SetPath(i, ifileloc[i].filepath);
@@ -1174,10 +1174,10 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
 			fileloc[nPane].setPath(tFiles[nPane]);
 
-		if (infoPrediffer && !infoPrediffer->m_PluginNames.empty())
+		if (infoPrediffer && !infoPrediffer->GetPluginExpression().empty())
 		{
 			String strBothFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
-			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->m_PluginNames);
+			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginExpression());
 		}
 
 		ShowAutoMergeDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,

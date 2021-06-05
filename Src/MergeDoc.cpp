@@ -510,7 +510,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.m_PluginNames.empty())
+		if (!infoPrediffer.GetPluginExpression().empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -2111,12 +2111,12 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginNames.empty())
-		pluginNames += m_pInfoUnpacker->GetPluginNames(_T(",")) + _T("&");
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->GetPluginExpression().empty())
+		pluginNames += m_pInfoUnpacker->GetPluginExpression() + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
-	if (!prediffer.m_PluginNames.empty())
-		pluginNames += prediffer.GetPluginNames(_T(",")) + _T("&");
+	if (!prediffer.GetPluginExpression().empty())
+		pluginNames += prediffer.GetPluginExpression() + _T("&");
 	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 

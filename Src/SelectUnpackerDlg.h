@@ -68,9 +68,7 @@ protected:
 	String m_filteredFilenames;
 
 	/// current plugin choice
-	std::vector<PluginInfo*> m_pPlugins;
-	/// current plugin choice
-	std::vector<String> m_strPluginNames;
+	String m_strPluginExpression;
 
 	void prepareListbox();
 

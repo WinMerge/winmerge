@@ -692,7 +692,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			}
 			if (filename != m_filePaths[pane])
 			{
-				if (!FileTransform::Packing(filename, m_filePaths[pane], m_infoUnpacker, m_unpackerSubcodes[pane]))
+				if (!m_infoUnpacker.Packing(filename, m_filePaths[pane], m_unpackerSubcodes[pane]))
 				{
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -726,7 +726,7 @@ RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
-		if (packing && !m_infoUnpacker.m_PluginNames.empty())
+		if (packing && !m_infoUnpacker.GetPluginExpression().empty())
 		{
 			String tempPath = env::GetTemporaryPath();
 			filename = ucr::toUTF16(env::GetTemporaryFileName(tempPath, _T("MRG_"), 0)
@@ -743,7 +743,7 @@ RETRY:
 		}
 		if (filename != strPath)
 		{
-			if (!FileTransform::Packing(filename, strPath, m_infoUnpacker, m_unpackerSubcodes[pane]))
+			if (!m_infoUnpacker.Packing(filename, strPath, m_unpackerSubcodes[pane]))
 			{
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
@@ -1066,7 +1066,7 @@ bool CImgMergeFrame::OpenImages()
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames))
+		if (!m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames))
 		{
 			//return false;
 		}

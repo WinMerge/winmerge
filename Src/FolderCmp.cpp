@@ -135,11 +135,8 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!FileTransform::Unpacking(infoUnpacker, nullptr, filepathUnpacked[nIndex], filteredFilenames))
+				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
-
-				// we use the same plugins for both files, so they must be defined before second file
-				assert(infoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 			}
 
 			// As we keep handles open on unpacked files, Transform() may not delete them.

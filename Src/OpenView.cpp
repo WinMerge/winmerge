@@ -142,7 +142,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PATH2_READONLY, m_bReadOnly[2]);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
-	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpackers);
+	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpackerExpression);
 	//}}AFX_DATA_MAP
 }
 
@@ -210,7 +210,7 @@ void COpenView::OnInitialUpdate()
 	m_files = pDoc->m_files;
 	m_bRecurse = pDoc->m_bRecurse;
 	m_strExt = pDoc->m_strExt;
-	m_strUnpackers = pDoc->m_strUnpackers;
+	m_strUnpackerExpression = pDoc->m_strUnpackerExpression;
 	m_infoHandler = pDoc->m_infoHandler;
 	m_dwFlags[0] = pDoc->m_dwFlags[0];
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
@@ -278,7 +278,7 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
-	m_strUnpackers = m_infoHandler.GetPluginNames(_T(","));
+	m_strUnpackerExpression = m_infoHandler.GetPluginExpression();
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
@@ -633,7 +633,7 @@ void COpenView::OnCompare(UINT nID)
 	pDoc->m_files = m_files;
 	pDoc->m_bRecurse = m_bRecurse;
 	pDoc->m_strExt = m_strExt;
-	pDoc->m_strUnpackers = m_strUnpackers;
+	pDoc->m_strUnpackerExpression = m_strUnpackerExpression;
 	pDoc->m_infoHandler = m_infoHandler;
 	pDoc->m_dwFlags[0] = m_dwFlags[0];
 	pDoc->m_dwFlags[1] = m_dwFlags[1];
@@ -986,8 +986,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 void COpenView::UpdateResources()
 {
 	theApp.m_pLangDlg->RetranslateDialog(m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
-	if (m_strUnpackers != m_infoHandler.GetPluginNames(_T(",")))
-		m_strUnpackers = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
+	if (m_strUnpackerExpression != m_infoHandler.GetPluginExpression())
+		m_strUnpackerExpression = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
 }
 
 /** 
@@ -1141,10 +1141,10 @@ void COpenView::OnSelectUnpacker()
 	{
 		m_infoHandler = dlg.GetInfoHandler();
 
-		if (m_infoHandler.m_PluginNames.empty())
-			m_strUnpackers = theApp.LoadString(m_infoHandler.m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL ? IDS_USERCHOICE_NONE : IDS_USERCHOICE_AUTOMATIC);
+		if (m_infoHandler.GetPluginExpression().empty())
+			m_strUnpackerExpression = theApp.LoadString(IDS_USERCHOICE_NONE);
 		else
-			m_strUnpackers = m_infoHandler.GetPluginNames(_T(","));
+			m_strUnpackerExpression = m_infoHandler.GetPluginExpression();
 
 		UpdateData(FALSE);
 	}
@@ -1204,7 +1204,7 @@ void COpenView::SetStatus(UINT msgID)
  */
 void COpenView::SetUnpackerStatus(UINT msgID)
 {
-	String msg = (msgID == 0 ? m_strUnpackers : theApp.LoadString(msgID));
+	String msg = (msgID == 0 ? m_strUnpackerExpression : theApp.LoadString(msgID));
 	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
 }
 
