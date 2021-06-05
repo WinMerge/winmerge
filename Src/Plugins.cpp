@@ -404,9 +404,11 @@ public:
 		if (!file.HasBom())
 		{
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+			int64_t fileSize = file.GetFileSize();
 			FileTextEncoding encoding = codepage_detect::Guess(
-				paths::FindExtension(path), file.GetBase(),
-				file.GetFileSize() < codepage_detect::BufSize ? file.GetFileSize() : codepage_detect::BufSize,
+				paths::FindExtension(path), file.GetBase(), static_cast<size_t>(
+					fileSize < static_cast<int64_t>(codepage_detect::BufSize) ?
+						fileSize : static_cast<int64_t>(codepage_detect::BufSize)),
 				iGuessEncodingType);
 			file.SetCodepage(encoding.m_codepage);
 		}

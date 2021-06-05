@@ -183,7 +183,7 @@ static void initializeRatios(std::vector<int>& ratios, int n)
 static void updateRatios(CSplitterWnd& wnd, int pane, int newpos, std::vector<int>& ratios, bool horizontal)
 {
 	const int n = horizontal ? wnd.GetColumnCount(): wnd.GetRowCount();
-	if (n != ratios.size())
+	if (static_cast<size_t>(n) != ratios.size())
 		initializeRatios(ratios, n);
 
 	int sum = 0;
@@ -221,7 +221,7 @@ void CSplitterWndEx::EqualizeRows()
 	if (m_nRows < 2)
 		return;
 
-	if (m_nRows != m_rowRatios.size())
+	if (static_cast<size_t>(m_nRows) != m_rowRatios.size())
 		initializeRatios(m_rowRatios, m_nRows);
 
 	int i;
@@ -252,7 +252,7 @@ void CSplitterWndEx::EqualizeCols()
 	if (m_nCols < 2)
 		return;
 
-	if (m_nCols != m_colRatios.size())
+	if (static_cast<size_t>(m_nCols) != m_colRatios.size())
 		initializeRatios(m_colRatios, m_nCols);
 
 	int i;
