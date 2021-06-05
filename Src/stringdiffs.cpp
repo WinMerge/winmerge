@@ -650,7 +650,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 		switch (ses[i])
 		{
 		case '+':
-			if (i + 1 < ses.size() && ses[i + 1] == '-')
+			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '-')
 			{
 				edscript.push_back('!');
 				i++;
@@ -663,7 +663,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 			}
 			break;
 		case '-':
-			if (i + 1 < ses.size() && ses[i + 1] == '+')
+			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '+')
 			{
 				edscript.push_back('!');
 				i++;
