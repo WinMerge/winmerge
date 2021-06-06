@@ -436,10 +436,10 @@ bool CDiffWrapper::RunFileDiff()
 				String sError = strutils::format(
 					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
 					strFileTemp[file].c_str(),
-					m_infoPrediffer->GetPluginExpression().c_str());
+					m_infoPrediffer->GetPluginPipeline().c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->m_PluginExpression.clear();
+				m_infoPrediffer->ClearPluginPipeline();
 			}
 		}
 	}

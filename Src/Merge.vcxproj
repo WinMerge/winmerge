@@ -1063,7 +1063,7 @@
     <ClCompile Include="SaveClosingDlg.cpp" />
     <ClCompile Include="Common\scbarcf.cpp" />
     <ClCompile Include="Common\scbarg.cpp" />
-    <ClCompile Include="SelectUnpackerDlg.cpp" />
+    <ClCompile Include="SelectPluginDlg.cpp" />
     <ClCompile Include="SharedFilterDlg.cpp" />
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1313,7 +1313,7 @@
     <ClInclude Include="SaveClosingDlg.h" />
     <ClInclude Include="Common\scbarcf.h" />
     <ClInclude Include="Common\scbarg.h" />
-    <ClInclude Include="SelectUnpackerDlg.h" />
+    <ClInclude Include="SelectPluginDlg.h" />
     <ClInclude Include="SharedFilterDlg.h" />
     <ClInclude Include="Common\ShellContextMenu.h" />
     <ClInclude Include="Common\ShellFileOperations.h" />

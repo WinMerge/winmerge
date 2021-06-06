@@ -62,10 +62,10 @@ void PluginManager::SetPrediffSettingAll(PLUGIN_MODE newsetting)
 	}
 }
 
-void PluginManager::SetPrediffer(const String& filteredFilenames, const String& predifferExpression)
+void PluginManager::SetPrediffer(const String& filteredFilenames, const String& predifferPipeline)
 {
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
 	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-	infoPrediffer->m_PluginExpression = predifferExpression;
+	infoPrediffer->SetPluginPipeline(predifferPipeline);
 }

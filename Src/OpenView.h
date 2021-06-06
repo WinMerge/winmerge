@@ -46,18 +46,18 @@ public:
 	enum { IDD = IDD_OPEN };
 	CSuperComboBox	m_ctlExt;
 	CSuperComboBox	m_ctlPath[3];
+	CSuperComboBox	m_ctlUnpackerPipeline;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpackerExpression;
+	String	m_strUnpackerPipeline;
 	//}}AFX_DATA
 
 // other public data
 	/// unpacker info
 	std::array<DWORD, 3> m_dwFlags;
-	PackingInfo m_infoHandler;
 
 // Attributes
 public:
@@ -95,7 +95,6 @@ public:
 
 protected:
 	void SetStatus(UINT msgID);
-	void SetUnpackerStatus(UINT msgID);
 	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();

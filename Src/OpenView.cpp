@@ -19,7 +19,7 @@
 #include "OpenDoc.h"
 #include "ProjectFile.h"
 #include "paths.h"
-#include "SelectUnpackerDlg.h"
+#include "SelectPluginDlg.h"
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
@@ -134,6 +134,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PATH0_COMBO, m_ctlPath[0]);
 	DDX_Control(pDX, IDC_PATH1_COMBO, m_ctlPath[1]);
 	DDX_Control(pDX, IDC_PATH2_COMBO, m_ctlPath[2]);
+	DDX_Control(pDX, IDC_UNPACKER_COMBO, m_ctlUnpackerPipeline);
 	DDX_CBStringExact(pDX, IDC_PATH0_COMBO, m_strPath[0]);
 	DDX_CBStringExact(pDX, IDC_PATH1_COMBO, m_strPath[1]);
 	DDX_CBStringExact(pDX, IDC_PATH2_COMBO, m_strPath[2]);
@@ -142,7 +143,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PATH2_READONLY, m_bReadOnly[2]);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
-	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpackerExpression);
+	DDX_CBStringExact(pDX, IDC_UNPACKER_COMBO, m_strUnpackerPipeline);
 	//}}AFX_DATA_MAP
 }
 
@@ -210,8 +211,7 @@ void COpenView::OnInitialUpdate()
 	m_files = pDoc->m_files;
 	m_bRecurse = pDoc->m_bRecurse;
 	m_strExt = pDoc->m_strExt;
-	m_strUnpackerExpression = pDoc->m_strUnpackerExpression;
-	m_infoHandler = pDoc->m_infoHandler;
+	m_strUnpackerPipeline = pDoc->m_strUnpackerPipeline;
 	m_dwFlags[0] = pDoc->m_dwFlags[0];
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
@@ -219,6 +219,7 @@ void COpenView::OnInitialUpdate()
 	m_ctlPath[0].SetFileControlStates();
 	m_ctlPath[1].SetFileControlStates(true);
 	m_ctlPath[2].SetFileControlStates(true);
+	m_ctlUnpackerPipeline.SetFileControlStates(true);
 
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
@@ -231,6 +232,8 @@ void COpenView::OnInitialUpdate()
 	m_ctlPath[1].AttachSystemImageList();
 	m_ctlPath[2].AttachSystemImageList();
 	LoadComboboxStates();
+
+	m_ctlUnpackerPipeline.SetWindowText(m_strUnpackerPipeline.c_str());
 
 	bool bDoUpdateData = true;
 	for (auto& strPath: m_strPath)
@@ -264,7 +267,7 @@ void COpenView::OnInitialUpdate()
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		EnableDlgItem(IDOK, true);
-		EnableDlgItem(IDC_UNPACKER_EDIT, true);
+		EnableDlgItem(IDC_UNPACKER_COMBO, true);
 		EnableDlgItem(IDC_SELECT_UNPACKER, true);
 	}
 
@@ -278,10 +281,8 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
-	m_strUnpackerExpression = m_infoHandler.GetPluginExpression();
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
-	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
 
 	m_pDropHandler = new DropHandler(std::bind(&COpenView::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -633,8 +634,7 @@ void COpenView::OnCompare(UINT nID)
 	pDoc->m_files = m_files;
 	pDoc->m_bRecurse = m_bRecurse;
 	pDoc->m_strExt = m_strExt;
-	pDoc->m_strUnpackerExpression = m_strUnpackerExpression;
-	pDoc->m_infoHandler = m_infoHandler;
+	pDoc->m_strUnpackerPipeline = m_strUnpackerPipeline;
 	pDoc->m_dwFlags[0] = m_dwFlags[0];
 	pDoc->m_dwFlags[1] = m_dwFlags[1];
 	pDoc->m_dwFlags[2] = m_dwFlags[2];
@@ -645,7 +645,8 @@ void COpenView::OnCompare(UINT nID)
 	PathContext tmpPathContext(pDoc->m_files);
 	if (nID == IDOK)
 	{
-		PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
+		PackingInfo tmpPackingInfo;
+		tmpPackingInfo.SetPluginPipeline(pDoc->m_strUnpackerPipeline);
 		GetMainFrame()->DoFileOpen(
 			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
 			nullptr, _T(""), pDoc->m_bRecurse, nullptr, nullptr, &tmpPackingInfo);
@@ -658,7 +659,7 @@ void COpenView::OnCompare(UINT nID)
 
 void COpenView::OnUpdateCompare(CCmdUI *pCmdUI)
 {
-	bool bFile = GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled();
+	bool bFile = GetDlgItem(IDC_UNPACKER_COMBO)->IsWindowEnabled();
 	if (!bFile)
 	{
 		UpdateData(true);
@@ -780,6 +781,8 @@ void COpenView::OnSaveProject()
 		projItem.SetFilter(strExt);
 	}
 	projItem.SetSubfolders(m_bRecurse);
+	if (!m_strUnpackerPipeline.empty())
+		projItem.SetUnpacker(m_strUnpackerPipeline);
 	project.Items().push_back(projItem);
 
 	if (!theApp.SaveProjectFile(fileName, project))
@@ -798,7 +801,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
-		if (GetDlgItem(IDC_UNPACKER_EDIT)->IsWindowEnabled())
+		if (GetDlgItem(IDC_UNPACKER_COMBO)->IsWindowEnabled())
 		{
 			UpdateData(TRUE);
 			String tmpPath[3];
@@ -852,6 +855,7 @@ void COpenView::LoadComboboxStates()
 	m_ctlPath[1].LoadState(_T("Files\\Right"));
 	m_ctlPath[2].LoadState(_T("Files\\Option"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
+	m_ctlUnpackerPipeline.LoadState(_T("Files\\Unpacker"));
 }
 
 /** 
@@ -863,6 +867,7 @@ void COpenView::SaveComboboxStates()
 	m_ctlPath[1].SaveState(_T("Files\\Right"));
 	m_ctlPath[2].SaveState(_T("Files\\Option"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
+	m_ctlUnpackerPipeline.SaveState(_T("Files\\Unpacker"));
 }
 
 struct UpdateButtonStatesThreadParams
@@ -986,8 +991,6 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 void COpenView::UpdateResources()
 {
 	theApp.m_pLangDlg->RetranslateDialog(m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
-	if (m_strUnpackerExpression != m_infoHandler.GetPluginExpression())
-		m_strUnpackerExpression = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
 }
 
 /** 
@@ -1133,18 +1136,14 @@ void COpenView::OnSelectUnpacker()
 		return;
 
 	// let the user select a handler
-	CSelectUnpackerDlg dlg(m_files[0], this);
-	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-	dlg.SetInitialInfoHandler(&infoUnpacker);
+	CSelectPluginDlg dlg(m_files[0], this);
+	dlg.SetPluginPipeline(m_strUnpackerPipeline);
 
 	if (dlg.DoModal() == IDOK)
 	{
-		m_infoHandler = dlg.GetInfoHandler();
-
-		if (m_infoHandler.GetPluginExpression().empty())
-			m_strUnpackerExpression = theApp.LoadString(IDS_USERCHOICE_NONE);
-		else
-			m_strUnpackerExpression = m_infoHandler.GetPluginExpression();
+		m_strUnpackerPipeline = dlg.GetPluginPipeline();
+		if (m_strUnpackerPipeline.empty())
+			m_strUnpackerPipeline = theApp.LoadString(IDS_USERCHOICE_NONE);
 
 		UpdateData(FALSE);
 	}
@@ -1160,7 +1159,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 
 	EnableDlgItem(IDC_FILES_DIRS_GROUP4, bIsaFileCompare);
-	EnableDlgItem(IDC_UNPACKER_EDIT, bIsaFileCompare);
+	EnableDlgItem(IDC_UNPACKER_COMBO, bIsaFileCompare);
 	EnableDlgItem(IDC_SELECT_UNPACKER, bIsaFileCompare);
 
 	EnableDlgItem(IDC_FILES_DIRS_GROUP3,  bIsaFolderCompare);
@@ -1194,18 +1193,6 @@ void COpenView::SetStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg);
-}
-
-/**
- * @brief Set the plugin edit box text.
- * Plugin edit box is at the same time a plugin status view. This function
- * sets the status text.
- * @param [in] msgID Resource ID of status text to set.
- */
-void COpenView::SetUnpackerStatus(UINT msgID)
-{
-	String msg = (msgID == 0 ? m_strUnpackerExpression : theApp.LoadString(msgID));
-	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
 }
 
 /** 

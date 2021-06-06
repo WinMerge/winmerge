@@ -42,7 +42,7 @@
 #include "SubstitutionFiltersList.h"
 #include "TempFile.h"
 #include "codepage_detect.h"
-#include "SelectUnpackerDlg.h"
+#include "SelectPluginDlg.h"
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
@@ -510,7 +510,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.GetPluginExpression().empty())
+		if (!infoPrediffer.GetPluginPipeline().empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -2111,12 +2111,12 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->GetPluginExpression().empty())
-		pluginNames += m_pInfoUnpacker->GetPluginExpression() + _T("&");
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->GetPluginPipeline().empty())
+		pluginNames += m_pInfoUnpacker->GetPluginPipeline() + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
-	if (!prediffer.GetPluginExpression().empty())
-		pluginNames += prediffer.GetPluginExpression() + _T("&");
+	if (!prediffer.GetPluginPipeline().empty())
+		pluginNames += prediffer.GetPluginPipeline() + _T("&");
 	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
@@ -3366,14 +3366,14 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
 	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0], nullptr);
+	CSelectPluginDlg dlg(m_filePaths[0], nullptr);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
 	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-	dlg.SetInitialInfoHandler(&infoUnpacker);
+	dlg.SetPluginPipeline(infoUnpacker.GetPluginPipeline());
 
 	if (dlg.DoModal() == IDOK)
 	{
-		infoUnpacker = dlg.GetInfoHandler();
+		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
 		Merge7zFormatMergePluginScope scope(&infoUnpacker);
 		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{

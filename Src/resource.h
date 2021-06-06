@@ -36,7 +36,7 @@
 #define IDD_LOAD_SAVE_CODEPAGE          231
 #define IDD_CONFIRM_COPY                236
 #define IDD_PLUGINS_LIST                237
-#define IDD_PLUGINS_SELECTUNPACKER      238
+#define IDD_PLUGINS_SELECTPLUGIN        238
 #define IDD_DIR_FILTER                  240
 #define IDD_ENCODINGERROR               241
 #define IDD_SELECT_FILES_OR_FOLDERS     247
@@ -250,11 +250,12 @@
 #define IDC_FILES_DIRS_GROUP2           1084
 #define IDC_FILES_DIRS_GROUP3           1085
 #define IDC_FILES_DIRS_GROUP4           1086
-#define IDC_UNPACKER_NAME               1089
-#define IDC_UNPACKER_ALLOW_ALL          1090
-#define IDC_UNPACKER_SUPPORTED_EXTENSIONS 1091
-#define IDC_UNPACKER_DESCRIPTION        1092
-#define IDC_UNPACKER_EDIT               1093
+#define IDC_PLUGIN_NAME                 1089
+#define IDC_PLUGIN_ALLOW_ALL            1090
+#define IDC_PLUGIN_SUPPORTED_EXTENSIONS 1091
+#define IDC_PLUGIN_DESCRIPTION          1092
+#define IDC_PLUGIN_COMBO                1093
+#define IDC_UNPACKER_COMBO              1099
 #define IDC_SELECT_UNPACKER             1094
 #define IDC_EXT_EDITOR_BROWSE           1095
 #define IDC_EXT_EDITOR_PATH             1096

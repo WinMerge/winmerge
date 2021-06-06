@@ -2971,9 +2971,9 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.GetPluginExpression().find(_T("<Automatic>")) != String::npos)
+	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
 		m_CurrentPredifferID = 0;
-	else if (prediffer.GetPluginExpression().empty())
+	else if (prediffer.GetPluginPipeline().empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 	else
 	{
@@ -2983,7 +2983,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 			for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
 			{
 				const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
-				if (prediffer.GetPluginExpression() == plugin->m_name)
+				if (prediffer.GetPluginPipeline() == plugin->m_name)
 					m_CurrentPredifferID = ID;
 			}
 		}
@@ -3487,14 +3487,14 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.GetPluginExpression().find(_T("<Automatic>")) != String::npos)
+	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
 	{
 		pCmdUI->SetRadio(false);
 		return;
 	}
 
 	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.GetPluginExpression().empty())
+	if (prediffer.GetPluginPipeline().empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
@@ -3541,7 +3541,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		m_CurrentPredifferID = nID;
 		// All flags are set correctly during the construction
 		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->m_PluginExpression.clear();
+		infoPrediffer->ClearPluginPipeline();
 		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
 		return;
@@ -3555,13 +3555,13 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer;
-	prediffer.m_PluginExpression.clear();
+	prediffer.ClearPluginPipeline();
 
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
-		prediffer.m_PluginExpression = plugin->m_name;
+		prediffer.SetPluginPipeline(plugin->m_name);
 	}
 	else
 	{
@@ -3569,7 +3569,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 		if (pluginNumber >= piScriptArray2->size())
 			return;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
-		prediffer.m_PluginExpression = plugin->m_name;
+		prediffer.SetPluginPipeline(plugin->m_name);
 	}
 
 	// update data for the radio button

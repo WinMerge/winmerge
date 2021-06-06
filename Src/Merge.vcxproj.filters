@@ -460,7 +460,7 @@
     <ClCompile Include="SaveClosingDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SelectUnpackerDlg.cpp">
+    <ClCompile Include="SelectPluginDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SharedFilterDlg.cpp">
@@ -1056,7 +1056,7 @@
     <ClInclude Include="SaveClosingDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SelectUnpackerDlg.h">
+    <ClInclude Include="SelectPluginDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SharedFilterDlg.h">

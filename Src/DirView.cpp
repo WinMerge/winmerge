@@ -24,7 +24,7 @@
 #include "MainFrm.h"
 #include "resource.h"
 #include "FileTransform.h"
-#include "SelectUnpackerDlg.h"
+#include "SelectPluginDlg.h"
 #include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
@@ -2691,14 +2691,14 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename, this);
+		CSelectPluginDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename, this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-		dlg.SetInitialInfoHandler(&infoUnpacker);
+		dlg.SetPluginPipeline(infoUnpacker.GetPluginPipeline());
 
 		if (dlg.DoModal() == IDOK)
 		{
-			infoUnpacker = dlg.GetInfoHandler();
+			infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
 			OpenSelection(SELECTIONTYPE_NORMAL, &infoUnpacker, false);
 		}
 	}

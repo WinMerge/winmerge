@@ -4,5 +4,7 @@
 		<left>C:\Temp\Left</left>
 		<right>C:\Temp\Right</right>
 		<filter>Filter Name</filter>
+		<prediffer>IgnoreColumns.dll</prediffer>
+		<unpacker>CompareMSExcelFiles.sct</unpacker>
 	</paths>
 </project>

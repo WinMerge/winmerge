@@ -344,7 +344,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 		return hr;
 
 	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
-	if (packing && !pDoc->GetUnpacker()->GetPluginExpression().empty())
+	if (packing && !pDoc->GetUnpacker()->GetPluginPipeline().empty())
 	{
 		if (!pDoc->GetUnpacker()->Packing(sIntermediateFilename, path, m_unpackerSubcodes))
 		{

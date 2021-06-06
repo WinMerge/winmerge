@@ -644,16 +644,16 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
-	if (!cmdInfo.m_sUnpackerExpression.empty())
+	if (!cmdInfo.m_sUnpackerPipeline.empty())
 	{
 		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoUnpacker->m_PluginExpression = cmdInfo.m_sUnpackerExpression;
+		infoUnpacker->SetPluginPipeline(cmdInfo.m_sUnpackerPipeline);
 	}
 
-	if (!cmdInfo.m_sPreDifferExpression.empty())
+	if (!cmdInfo.m_sPreDifferPipeline.empty())
 	{
 		infoPrediffer.reset(new PrediffingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoPrediffer->m_PluginExpression = cmdInfo.m_sPreDifferExpression;
+		infoPrediffer->SetPluginPipeline(cmdInfo.m_sPreDifferPipeline);
 	}
 
 	// Set the global file filter.
@@ -1096,7 +1096,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 
 String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin)
 {
-	String pluginName = plugin.GetPluginExpression();
+	String pluginName = plugin.GetPluginPipeline();
 	return strutils::format_string2(
 		pane == 0 ? 
 			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
@@ -1174,6 +1174,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
+		std::unique_ptr<PrediffingInfo> pInfoPrediffer;
+		std::unique_ptr<PackingInfo> pInfoUnpacker;
 		PathContext tFiles;
 		bool bRecursive = false;
 		projItem.GetPaths(tFiles, bRecursive);
@@ -1202,6 +1204,16 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		}
 		if (projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
+		if (projItem.HasPrediffer())
+		{
+			pInfoPrediffer.reset(new PrediffingInfo());
+			pInfoPrediffer->SetPluginPipeline(projItem.GetPrediffer());
+		}
+		if (projItem.HasUnpacker())
+		{
+			pInfoUnpacker.reset(new PackingInfo());
+			pInfoUnpacker->SetPluginPipeline(projItem.GetUnpacker());
+		}
 
 		DWORD dwFlags[3] = {
 			static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
@@ -1225,7 +1237,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
-		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive);
+		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
+			nullptr, pInfoPrediffer.get(), pInfoUnpacker.get());
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());

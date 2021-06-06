@@ -31,10 +31,10 @@ Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
 	Merge7zFormatMergePluginImpl *format = GetInstance();
 	PluginInfo *plugin = nullptr;
-	if (format->m_infoUnpacker.GetPluginExpression().find(_T("<Automatic>")) != String::npos)
+	if (format->m_infoUnpacker.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", path);
-	else if (!format->m_infoUnpacker.GetPluginExpression().empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.GetPluginExpression());
+	else if (!format->m_infoUnpacker.GetPluginPipeline().empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.GetPluginPipeline());
 	if (plugin == nullptr)
 		return nullptr;
 	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))

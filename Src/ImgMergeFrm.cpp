@@ -726,7 +726,7 @@ RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
-		if (packing && !m_infoUnpacker.GetPluginExpression().empty())
+		if (packing && !m_infoUnpacker.GetPluginPipeline().empty())
 		{
 			String tempPath = env::GetTemporaryPath();
 			filename = ucr::toUTF16(env::GetTemporaryFileName(tempPath, _T("MRG_"), 0)

@@ -67,8 +67,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Empty command line containing space
@@ -92,8 +92,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Empty command line containing tab
@@ -117,8 +117,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Empty command line containing tab
@@ -142,8 +142,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -168,8 +168,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -194,8 +194,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -220,8 +220,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -246,8 +246,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -272,8 +272,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path
@@ -298,8 +298,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths
@@ -325,8 +325,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths
@@ -352,8 +352,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with three paths
@@ -380,8 +380,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with three paths
@@ -408,8 +408,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, spaces between
@@ -435,8 +435,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, spaces between
@@ -462,8 +462,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, tab between
@@ -489,8 +489,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, EOL between
@@ -516,8 +516,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path, Linux separators
@@ -542,8 +542,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left path, Linux separators
@@ -568,8 +568,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, Linux separators
@@ -595,8 +595,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right paths, Linux separators
@@ -622,8 +622,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with three paths, Linux separators
@@ -650,8 +650,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with three paths, Linux separators
@@ -678,8 +678,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left quoted path
@@ -704,8 +704,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left quoted path
@@ -730,8 +730,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left quoted and right non-quoted path
@@ -757,8 +757,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left non-quoted and right quoted path
@@ -784,8 +784,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with left and right quoted paths
@@ -811,8 +811,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with third path quoted
@@ -839,8 +839,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with three quoted paths
@@ -867,8 +867,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with a correct codepage 
@@ -892,8 +892,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with a correct codepage and with '/'
@@ -917,8 +917,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with a wrong specified codepage
@@ -942,8 +942,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with a missed codepage
@@ -967,8 +967,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Command line with a missed codepage and with left path
@@ -992,8 +992,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 	
 	// Missed codepage with both paths
@@ -1018,8 +1018,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Left description
@@ -1044,8 +1044,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Left description
@@ -1070,8 +1070,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Left description
@@ -1095,8 +1095,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Right description
@@ -1121,8 +1121,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("First"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Right description
@@ -1147,8 +1147,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("First desc"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Right description
@@ -1172,8 +1172,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("First desc"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Middle description
@@ -1198,8 +1198,8 @@ namespace
 		EXPECT_EQ(_T("First"), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Middle description
@@ -1224,8 +1224,8 @@ namespace
 		EXPECT_EQ(_T("First desc"), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Middle description
@@ -1249,8 +1249,8 @@ namespace
 		EXPECT_EQ(_T("First desc"), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1275,8 +1275,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1301,8 +1301,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second text"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1326,8 +1326,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second text"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1351,8 +1351,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second text"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1376,8 +1376,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Both descriptions
@@ -1401,8 +1401,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Three descriptions
@@ -1426,8 +1426,8 @@ namespace
 		EXPECT_EQ(_T("Second"), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Third"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Unpacker
@@ -1451,8 +1451,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T("CompareMSExcelFiles.sct"), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T("CompareMSExcelFiles.sct"), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Prediffer
@@ -1476,8 +1476,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T("PrediffLineFilter.sct"), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T("PrediffLineFilter.sct"), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 
 	// Compare method
@@ -1579,8 +1579,8 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
 		EXPECT_EQ(_T("Second"), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
-		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferExpression);
-		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerExpression);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDifferPipeline);
+		EXPECT_EQ(_T(""), cmdInfo.m_sUnpackerPipeline);
 	}
 #endif
 

@@ -5,13 +5,13 @@
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
- * @file  SelectUnpackerDlg.cpp
+ * @file  SelectPluginDlg.cpp
  *
  * @brief Unpacker plugin selection dialog implementation.
  */
 
 #include "stdafx.h"
-#include "SelectUnpackerDlg.h"
+#include "SelectPluginDlg.h"
 #include "Plugins.h"
 #include "FileTransform.h"
 #include "OptionsMgr.h"
@@ -24,11 +24,11 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-// CSelectUnpackerDlg dialog
+// CSelectPluginDlg dialog
 
-void CSelectUnpackerDlg::Initialize()
+void CSelectPluginDlg::Initialize()
 {
-	//{{AFX_DATA_INIT(CSelectUnpackerDlg)
+	//{{AFX_DATA_INIT(CSelectPluginDlg)
 	m_bNoExtensionCheck = false;
 	m_strDescription = _T("");
 	m_strExtensions = _T("");
@@ -51,8 +51,8 @@ void CSelectUnpackerDlg::Initialize()
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_FOLDER_PACK_UNPACK");
 
 	// add the default unpackers to the unpackers list
-	m_UnpackerPlugins.Add(noPlugin.get());
-	m_UnpackerPlugins.Add(automaticPlugin.get());
+	m_Plugins.Add(noPlugin.get());
+	m_Plugins.Add(automaticPlugin.get());
 	// add the real unpackers to the unpackers list
 	size_t i;
 	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
@@ -61,7 +61,7 @@ void CSelectUnpackerDlg::Initialize()
 		const PluginInfoPtr& plugin = piFileFolderScriptArray->at(i);
 		if (!plugin->m_disabled)
 		{
-			m_UnpackerPlugins.Add(plugin.get());
+			m_Plugins.Add(plugin.get());
 		}
 	}
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
@@ -70,7 +70,7 @@ void CSelectUnpackerDlg::Initialize()
 		const PluginInfoPtr& plugin = piFileScriptArray->at(i);
 		if (!plugin->m_disabled)
 		{
-			m_UnpackerPlugins.Add(plugin.get());
+			m_Plugins.Add(plugin.get());
 		}
 	}
 	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
@@ -79,77 +79,60 @@ void CSelectUnpackerDlg::Initialize()
 		const PluginInfoPtr& plugin = piBufferScriptArray->at(i);
 		if (!plugin->m_disabled)
 		{
-			m_UnpackerPlugins.Add(plugin.get());
+			m_Plugins.Add(plugin.get());
 		}
 	}
 }
 
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*= nullptr*/)
-	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename)
+CSelectPluginDlg::CSelectPluginDlg(const String& filename, CWnd* pParent /*= nullptr*/)
+	: CTrDialog(CSelectPluginDlg::IDD, pParent), m_filteredFilenames(filename)
 {
 	Initialize();
 }
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/)
-	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename1 + _T("|") + filename2)
+CSelectPluginDlg::CSelectPluginDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/)
+	: CTrDialog(CSelectPluginDlg::IDD, pParent), m_filteredFilenames(filename1 + _T("|") + filename2)
 {
 	Initialize();
 }
 
 
-CSelectUnpackerDlg::~CSelectUnpackerDlg()
+CSelectPluginDlg::~CSelectPluginDlg()
 {
 }
 
-
-void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
-{
-	if (infoHandler)
-		m_strPluginExpression = infoHandler->GetPluginExpression();
-}
-
-const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
-{
-	// build a real plugin unpacker
-	PackingInfo infoHandler;
-	infoHandler.m_PluginExpression = m_strPluginExpression;
-	return infoHandler;
-}
-
-
-
-void CSelectUnpackerDlg::DoDataExchange(CDataExchange* pDX)
+void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CSelectUnpackerDlg)
-	DDX_Control(pDX, IDC_UNPACKER_NAME, m_cboUnpackerName);
-	DDX_Check(pDX, IDC_UNPACKER_ALLOW_ALL, m_bNoExtensionCheck);
-	DDX_Text(pDX, IDC_UNPACKER_DESCRIPTION, m_strDescription);
-	DDX_Text(pDX, IDC_UNPACKER_SUPPORTED_EXTENSIONS, m_strExtensions);
+	//{{AFX_DATA_MAP(CSelectPluginDlg)
+	DDX_Control(pDX, IDC_PLUGIN_NAME, m_cboPluginName);
+	DDX_Check(pDX, IDC_PLUGIN_ALLOW_ALL, m_bNoExtensionCheck);
+	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
+	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CSelectUnpackerDlg, CTrDialog)
-	//{{AFX_MSG_MAP(CSelectUnpackerDlg)
-	ON_BN_CLICKED(IDC_UNPACKER_ALLOW_ALL, OnUnpackerAllowAll)
-	ON_CBN_SELCHANGE(IDC_UNPACKER_NAME, OnSelchangeUnpackerName)
-	ON_CBN_SELENDOK(IDC_UNPACKER_NAME, OnSelchangeUnpackerName)
+BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
+	//{{AFX_MSG_MAP(CSelectPluginDlg)
+	ON_BN_CLICKED(IDC_PLUGIN_ALLOW_ALL, OnUnpackerAllowAll)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
+	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CSelectUnpackerDlg message handlers
+// CSelectPluginDlg message handlers
 
-void CSelectUnpackerDlg::OnOK() 
+void CSelectPluginDlg::OnOK() 
 {
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 
 	CTrDialog::OnOK();
 }
 
-BOOL CSelectUnpackerDlg::OnInitDialog() 
+BOOL CSelectPluginDlg::OnInitDialog() 
 {
 	CTrDialog::OnInitDialog();
 
@@ -161,67 +144,67 @@ BOOL CSelectUnpackerDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CSelectUnpackerDlg::prepareListbox() 
+void CSelectPluginDlg::prepareListbox() 
 {
 	int sel = -1;
 	int i;
-	for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
+	for (i = 0 ; i < m_Plugins.GetSize() ; i++)
 	{
-		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
+		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_Plugins.GetAt(i));
 		if (pPlugin == noPlugin.get() || pPlugin == automaticPlugin.get() 
 				|| m_bNoExtensionCheck 
 			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
 		{
-			m_cboUnpackerName.AddString(pPlugin->m_name.c_str());
-			if (m_strPluginExpression == pPlugin->m_name)
-				sel = m_cboUnpackerName.GetCount()-1;
+			m_cboPluginName.AddString(pPlugin->m_name.c_str());
+			if (m_strPluginPipeline == pPlugin->m_name)
+				sel = m_cboPluginName.GetCount()-1;
 		}
 	}
 
 	if (sel == -1)
-		m_cboUnpackerName.SelectString(-1, noPlugin->m_name.c_str());
+		m_cboPluginName.SelectString(-1, noPlugin->m_name.c_str());
 	else
-		m_cboUnpackerName.SetCurSel(sel);
+		m_cboPluginName.SetCurSel(sel);
 
 	OnSelchangeUnpackerName();
 }
 
-void CSelectUnpackerDlg::OnUnpackerAllowAll() 
+void CSelectPluginDlg::OnUnpackerAllowAll() 
 {
 	UpdateData ();
 
-	m_cboUnpackerName.ResetContent();
+	m_cboPluginName.ResetContent();
 
 	prepareListbox();
 
 	UpdateData (FALSE);
 }
 
-void CSelectUnpackerDlg::OnSelchangeUnpackerName() 
+void CSelectPluginDlg::OnSelchangeUnpackerName() 
 {
 	PluginInfo* pPlugin = nullptr;
-	int i = m_cboUnpackerName.GetCurSel();
+	int i = m_cboPluginName.GetCurSel();
 	if (i == 0)
 	{
 		pPlugin = noPlugin.get();
-		m_strPluginExpression.clear();
+		m_strPluginPipeline.clear();
 	}
 	else if (i == 1)
 	{
 		pPlugin = automaticPlugin.get();
-		m_strPluginExpression = _T("<Automatic>");
+		m_strPluginPipeline = _T("<Automatic>");
 	}
 	else
 	{
 		// initialize with the default unpacker
-		m_strPluginExpression.clear();
+		m_strPluginPipeline.clear();
 		CString cstrPluginName;
-		m_cboUnpackerName.GetWindowText(cstrPluginName);
-		m_strPluginExpression = cstrPluginName;
-		for (int j = 0 ; j < m_UnpackerPlugins.GetSize() ; j++)
+		m_cboPluginName.GetWindowText(cstrPluginName);
+		m_strPluginPipeline = cstrPluginName;
+		for (int j = 0 ; j < m_Plugins.GetSize() ; j++)
 		{
-			PluginInfo *pPluginTmp = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
-			if (m_strPluginExpression == pPluginTmp->m_name)
+			PluginInfo *pPluginTmp = static_cast<PluginInfo*> (m_Plugins.GetAt(j));
+			if (m_strPluginPipeline == pPluginTmp->m_name)
 			{
 				pPlugin = pPluginTmp;
 				break;
@@ -230,7 +213,7 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 
 	}
 
-	if (!pPlugin)
+	if (pPlugin)
 	{
 		m_strDescription = pPlugin->m_description;
 		m_strExtensions = pPlugin->m_filtersText;

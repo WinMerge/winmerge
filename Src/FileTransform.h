@@ -47,22 +47,23 @@ public:
 	void Initialize(PLUGIN_MODE Mode)
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
-		m_PluginExpression = (Mode == PLUGIN_MODE::PLUGIN_AUTO) ? _T("<Automatic>") : _T("");
+		m_PluginPipeline = (Mode == PLUGIN_MODE::PLUGIN_AUTO) ? _T("<Automatic>") : _T("");
 	};
 	explicit PluginForFile(PLUGIN_MODE Mode) 
 	{
 		Initialize(Mode);
 	};
-	const String& GetPluginExpression() const
-	{
-		return m_PluginExpression;
-	}
+	const String& GetPluginPipeline() const { return m_PluginPipeline; }
+	void SetPluginPipeline(const String& pluginPipeline) { m_PluginPipeline = pluginPipeline; }
+	void ClearPluginPipeline() { m_PluginPipeline.clear(); }
 
-	std::vector<std::pair<String, String>> ParseExpression(String& errorMessage) const;
+	std::vector<std::pair<String, String>> ParsePluginPipeline(String& errorMessage) const;
 
-public:
+	bool IsValidPluginPipeline() const;
+
+protected:
 	/// plugin name when it is defined
-	String m_PluginExpression;
+	String m_PluginPipeline;
 };
 
 /**
@@ -80,7 +81,9 @@ public:
 	{
 	}
 
-	bool GetPackUnpackPlugin(const String& filteredFilenames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse, String *pPluginExpressionResolved) const;
+	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
+		std::vector<std::pair<PluginInfo*, bool>>& plugins,
+		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
 	// WinMerge uses one of these entry points to call a plugin
@@ -130,7 +133,9 @@ public:
 	{
 	}
 
-	bool GetPrediffPlugin(const String& filteredFilenames, std::vector<std::pair<PluginInfo*, bool>>& plugins, bool bReverse, String* pPluginExpressionResolved) const;
+	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
+		std::vector<std::pair<PluginInfo*, bool>>& plugins,
+		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
 	 * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -194,8 +199,8 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
 bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
 
 std::pair<
-	std::vector<std::tuple<String, String, unsigned>>,
-	std::map<String, std::vector<std::tuple<String, String, unsigned>>>
+	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,
+	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>>
 >
 CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId);
 

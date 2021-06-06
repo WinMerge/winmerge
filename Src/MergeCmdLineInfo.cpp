@@ -305,12 +305,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		else if (param == _T("prediffer"))
 		{
 			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
-			q = EatParam(q, m_sPreDifferExpression);
+			q = EatParam(q, m_sPreDifferPipeline);
 		}
 		else if (param == _T("unpacker"))
 		{
 			// Get unpacker if specified (otherwise unpacker will be blank, which is default)
-			q = EatParam(q, m_sUnpackerExpression);
+			q = EatParam(q, m_sUnpackerPipeline);
 		}
 		else if (param == _T("wl"))
 		{

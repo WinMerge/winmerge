@@ -15,8 +15,9 @@ IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 COpenDoc::COpenDoc() :
 	m_bRecurse(false)
 ,	m_dwFlags()
-,	m_infoHandler{}
 {
+	PackingInfo infoHandler;
+	m_strUnpackerPipeline = infoHandler.GetPluginPipeline();
 }
 
 BOOL COpenDoc::OnNewDocument()
