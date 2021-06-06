@@ -1627,9 +1627,6 @@ msgstr "Izberite razpakovalca"
 msgid "File unpacker:"
 msgstr "Razpakovalec datoteke:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži vse razpakovalce, ne glede na končnico."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Seznam končnic:"
@@ -1637,6 +1634,15 @@ msgstr "Seznam končnic:"
 #, c-format
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Prikaži vse razpakovalce, ne glede na končnico."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

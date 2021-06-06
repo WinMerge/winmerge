@@ -1628,9 +1628,6 @@ msgstr "Selectează dezarhivator"
 msgid "File unpacker:"
 msgstr "Dezarhivator fişiere:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Listă extensii:"
@@ -1638,6 +1635,15 @@ msgstr "Listă extensii:"
 #, c-format
 msgid "Description:"
 msgstr "Descriere:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

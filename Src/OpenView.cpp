@@ -1136,15 +1136,10 @@ void COpenView::OnSelectUnpacker()
 		return;
 
 	// let the user select a handler
-	CSelectPluginDlg dlg(m_files[0], this);
-	dlg.SetPluginPipeline(m_strUnpackerPipeline);
-
+	CSelectPluginDlg dlg(m_strUnpackerPipeline, m_files[0], this);
 	if (dlg.DoModal() == IDOK)
 	{
 		m_strUnpackerPipeline = dlg.GetPluginPipeline();
-		if (m_strUnpackerPipeline.empty())
-			m_strUnpackerPipeline = theApp.LoadString(IDS_USERCHOICE_NONE);
-
 		UpdateData(FALSE);
 	}
 }

@@ -1290,14 +1290,20 @@ msgstr "Wybierz program rozpakowujący"
 msgid "File unpacker:"
 msgstr "Plik rozpakowujący:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Pokaż wszystkie programy rozpakowujące, nie sprawdzaj rozszerzenia."
-
 msgid "Extensions list:"
 msgstr "Lista rozszerzeń:"
 
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Pokaż wszystkie programy rozpakowujące, nie sprawdzaj rozszerzenia."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Zatrzymaj"

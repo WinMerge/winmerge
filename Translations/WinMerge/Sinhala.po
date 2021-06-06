@@ -1625,9 +1625,6 @@ msgstr "Select Unpacker"
 msgid "File unpacker:"
 msgstr "File unpacker:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr ""
-
 #, fuzzy, c-format
 msgid "Extensions list:"
 msgstr "Extensions list:"
@@ -1635,6 +1632,15 @@ msgstr "Extensions list:"
 #, c-format
 msgid "Description:"
 msgstr " විස්තරය:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

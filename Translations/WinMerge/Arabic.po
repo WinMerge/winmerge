@@ -1295,14 +1295,20 @@ msgstr "اختيار أداة فك الحزمة"
 msgid "File unpacker:"
 msgstr "أداة فك الملف:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "عرض كل أدوات فك الحزم، لا تتحقق من امتداد الملف."
-
 msgid "Extensions list:"
 msgstr "قائمة امتدادات الملفات:"
 
 msgid "Description:"
 msgstr "الوصف:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "عرض كل أدوات فك الحزم، لا تتحقق من امتداد الملف."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "إيقاف"

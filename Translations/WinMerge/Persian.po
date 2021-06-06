@@ -1633,9 +1633,6 @@ msgstr " انتخاب بازکننده بسته "
 msgid "File unpacker:"
 msgstr " باز کننده بسته پرونده : "
 
-msgid "Display all unpackers, don't check the extension."
-msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "
-
 #, c-format
 msgid "Extensions list:"
 msgstr " فهرست توسعه ها : "
@@ -1643,6 +1640,15 @@ msgstr " فهرست توسعه ها : "
 #, c-format
 msgid "Description:"
 msgstr " توصيف : "
+
+msgid "Display all unpackers, don't check the extension."
+msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

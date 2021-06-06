@@ -57,9 +57,12 @@ public:
 	void SetPluginPipeline(const String& pluginPipeline) { m_PluginPipeline = pluginPipeline; }
 	void ClearPluginPipeline() { m_PluginPipeline.clear(); }
 
-	std::vector<std::pair<String, String>> ParsePluginPipeline(String& errorMessage) const;
+	std::vector<std::tuple<String, String, TCHAR>> ParsePluginPipeline(String& errorMessage) const;
+	static std::vector<std::tuple<String, String, TCHAR>> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
+	static String MakePipeline(const std::vector<std::tuple<String, String, TCHAR>> list);
 
 	bool IsValidPluginPipeline() const;
+	static bool IsValidPluginPipeline(const String& pluginPipeline);
 
 protected:
 	/// plugin name when it is defined

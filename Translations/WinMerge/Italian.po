@@ -1292,14 +1292,20 @@ msgstr "Seleziona decompressore"
 msgid "File unpacker:"
 msgstr "Decompressore di file:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Visualizza tutti i decompressori, non verificare l'estensione."
-
 msgid "Extensions list:"
 msgstr "Elenco estensioni:"
 
 msgid "Description:"
 msgstr "Descrizione:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Visualizza tutti i decompressori, non verificare l'estensione."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Stop"

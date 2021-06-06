@@ -1303,14 +1303,20 @@ msgstr "Selecionar Extrator"
 msgid "File unpacker:"
 msgstr "Extrator de ficheiros:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Mostrar todos os extratores, não verificar extensões."
-
 msgid "Extensions list:"
 msgstr "Lista de extensões:"
 
 msgid "Description:"
 msgstr "Descrição:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Mostrar todos os extratores, não verificar extensões."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Parar"

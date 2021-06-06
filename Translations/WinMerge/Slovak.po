@@ -1297,14 +1297,20 @@ msgstr "Vybrať pakovač"
 msgid "File unpacker:"
 msgstr "Súbor pakovača:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Zobraziť všetky pakovače, nekontrolovať príponu."
-
 msgid "Extensions list:"
 msgstr "Zoznam prípon:"
 
 msgid "Description:"
 msgstr "Popis:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Zobraziť všetky pakovače, nekontrolovať príponu."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Zastaviť"

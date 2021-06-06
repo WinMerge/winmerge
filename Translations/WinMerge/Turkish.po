@@ -1299,14 +1299,20 @@ msgstr "Ayıklayıcı seçin"
 msgid "File unpacker:"
 msgstr "Dosya ayıklayıcı:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
-
 msgid "Extensions list:"
 msgstr "Uzantı Listesi:"
 
 msgid "Description:"
 msgstr "Açıklama:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Durdur"

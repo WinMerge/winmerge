@@ -1630,9 +1630,6 @@ msgstr "Kicsomagoló kiválasztása"
 msgid "File unpacker:"
 msgstr "Fájl kicsomagoló:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Kiterjesztések listája:"
@@ -1640,6 +1637,15 @@ msgstr "Kiterjesztések listája:"
 #, c-format
 msgid "Description:"
 msgstr "Leírás:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

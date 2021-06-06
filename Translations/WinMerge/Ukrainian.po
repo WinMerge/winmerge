@@ -1629,9 +1629,6 @@ msgstr "Вибір розпакувальника"
 msgid "File unpacker:"
 msgstr "Файл розпакувальника:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показувати всі розпакувальники, не перевіряючи розширення."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Список розширень:"
@@ -1639,6 +1636,15 @@ msgstr "Список розширень:"
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Показувати всі розпакувальники, не перевіряючи розширення."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

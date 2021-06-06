@@ -2690,12 +2690,9 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 	if (sel != -1)
 	{
-		// let the user choose a handler
-		CSelectPluginDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename, this);
-		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-		dlg.SetPluginPipeline(infoUnpacker.GetPluginPipeline());
-
+		// let the user choose a handler
+		CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), GetDiffItem(sel).diffFileInfo[0].filename, this);
 		if (dlg.DoModal() == IDOK)
 		{
 			infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());

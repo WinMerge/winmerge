@@ -1628,9 +1628,6 @@ msgstr "Izbor arhivera"
 msgid "File unpacker:"
 msgstr "Arhiver datoteka:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži sve arhivere bez provjere ekstenzije."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Popis ekstenzija"
@@ -1638,6 +1635,15 @@ msgstr "Popis ekstenzija"
 #, c-format
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Prikaži sve arhivere bez provjere ekstenzije."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

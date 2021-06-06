@@ -1613,9 +1613,6 @@ msgstr "Избор архивера"
 msgid "File unpacker:"
 msgstr "Архивер датотека"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr ""
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Попис наставака:"
@@ -1623,6 +1620,15 @@ msgstr "Попис наставака:"
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

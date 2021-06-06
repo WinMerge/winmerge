@@ -1301,14 +1301,20 @@ msgstr "Uitpakker kiezen"
 msgid "File unpacker:"
 msgstr "Bestandsuitpakker:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
-
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
 
 msgid "Description:"
 msgstr "Beschrijving:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Stoppen"

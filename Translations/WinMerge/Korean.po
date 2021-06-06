@@ -1633,9 +1633,6 @@ msgstr "언패커 선택"
 msgid "File unpacker:"
 msgstr "파일 언패커:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "확장자 목록:"
@@ -1643,6 +1640,15 @@ msgstr "확장자 목록:"
 #, c-format
 msgid "Description:"
 msgstr "설명:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

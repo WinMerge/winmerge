@@ -3365,12 +3365,9 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
  */
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
-	// let the user choose a handler
-	CSelectPluginDlg dlg(m_filePaths[0], nullptr);
-	// create now a new infoUnpacker to initialize the manual/automatic flag
 	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-	dlg.SetPluginPipeline(infoUnpacker.GetPluginPipeline());
-
+	// let the user choose a handler
+	CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), m_filePaths[0], nullptr);
 	if (dlg.DoModal() == IDOK)
 	{
 		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());

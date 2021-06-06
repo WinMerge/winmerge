@@ -1629,9 +1629,6 @@ msgstr "Seleccionar desempaquetador"
 msgid "File unpacker:"
 msgstr "Desempaquetador de arquivos:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Listaxe de extensións:"
@@ -1639,6 +1636,15 @@ msgstr "Listaxe de extensións:"
 #, c-format
 msgid "Description:"
 msgstr "Descrición:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

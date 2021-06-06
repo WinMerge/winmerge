@@ -1296,14 +1296,20 @@ msgstr "Seleccionar Desempaquetador"
 msgid "File unpacker:"
 msgstr "Desempaquet.:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Mostrar todos los desempaquetadores, no comprobar exts."
-
 msgid "Extensions list:"
 msgstr "Extensiones:"
 
 msgid "Description:"
 msgstr "Descripción:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Mostrar todos los desempaquetadores, no comprobar exts."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Detener"

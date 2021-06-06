@@ -1630,9 +1630,6 @@ msgstr "Välj Uppackare"
 msgid "File unpacker:"
 msgstr "Fil-uppackare:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Visa alla uppackare, kontrollera inte filsuffixet."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "FilsuffixLista:"
@@ -1640,6 +1637,15 @@ msgstr "FilsuffixLista:"
 #, c-format
 msgid "Description:"
 msgstr "Beskrivning:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Visa alla uppackare, kontrollera inte filsuffixet."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

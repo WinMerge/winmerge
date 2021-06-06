@@ -26,14 +26,19 @@ using Poco::Exception;
 // transformations : packing unpacking
 
 
-std::vector<std::pair<String, String>> PluginForFile::ParsePluginPipeline(String& errorMessage) const
+std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipeline(String& errorMessage) const
 {
-	std::vector<std::pair<String, String>> result;
+	return ParsePluginPipeline(m_PluginPipeline, errorMessage);
+}
+
+std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipeline(const String& pluginPipeline, String& errorMessage)
+{
+	std::vector<std::tuple<String, String, TCHAR>> result;
 	bool inQuotes = false;
 	TCHAR quoteChar = 0;
 	std::vector<String> tokens;
 	String token, name, param;
-	for (const TCHAR* p = m_PluginPipeline.c_str(); *p;)
+	for (const TCHAR* p = pluginPipeline.c_str(); *p;)
 	{
 		while (_istspace(*p)) p++;
 		while (*p)
@@ -79,7 +84,7 @@ std::vector<std::pair<String, String>> PluginForFile::ParsePluginPipeline(String
 		{
 			name = token;
 			if (name.empty())
-				errorMessage = _T("Missing plugin name in plugin pipeline: ") + m_PluginPipeline;
+				errorMessage = _T("Missing plugin name in plugin pipeline: ") + pluginPipeline;
 		}
 		else
 		{
@@ -87,35 +92,60 @@ std::vector<std::pair<String, String>> PluginForFile::ParsePluginPipeline(String
 		}
 		if (!_istspace(*p))
 		{
-			result.emplace_back(name, strutils::trim_ws_end(param));
+			result.emplace_back(name, strutils::trim_ws_end(param), quoteChar);
 			name.clear();
 			param.clear();
+			quoteChar = 0;
 		}
 		if (*p)
 			++p;
 		token.clear();
 	}
 	if (inQuotes)
-		errorMessage = _T("Missing quotation mark in plugin pipeline: ") + m_PluginPipeline;
+		errorMessage = _T("Missing quotation mark in plugin pipeline: ") + pluginPipeline;
 	return result;
+}
+
+String PluginForFile::MakePipeline(const std::vector<std::tuple<String, String, TCHAR>> list)
+{
+	String pipeline;
+	for (const auto& [name, params, quoteChar] : list)
+	{
+		if (pipeline.empty())
+			pipeline = name;
+		else
+			pipeline += _T("|") + name;
+		if (!params.empty())
+		{
+			String paramsQuoted = params;
+			strutils::replace(paramsQuoted, _T("'"), _T("''"));
+			pipeline += _T(" '") + paramsQuoted + _T("'");
+		}
+	}
+	return pipeline;
+}
+
+bool PluginForFile::IsValidPluginPipeline(const String& pluginPipeline)
+{
+	String errorMessage;
+	auto result = ParsePluginPipeline(pluginPipeline, errorMessage);
+	return errorMessage.empty();
 }
 
 bool PluginForFile::IsValidPluginPipeline() const
 {
-	String errorMessage;
-	auto result = ParsePluginPipeline(errorMessage);
-	return errorMessage.empty();
+	return IsValidPluginPipeline(m_PluginPipeline);
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
 	std::vector<std::pair<PluginInfo*, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	String expressionResolved;
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	for (const auto& [pluginName, params] : result)
+	std::vector<std::tuple<String, String, TCHAR>> pipelineResolved;
+	for (const auto& [pluginName, params, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -161,16 +191,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		}
 		if (plugin)
 		{
-			if (expressionResolved.empty())
-				expressionResolved = plugin->m_name;
-			else
-				expressionResolved += _T("|") + plugin->m_name;
-			if (!params.empty())
-			{
-				String paramsQuoted = params;
-				strutils::replace(paramsQuoted, _T("'"), _T("''"));
-				expressionResolved += _T(" '") + paramsQuoted+ _T("'");
-			}
+			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
 			if (bReverse)
 				plugins.insert(plugins.begin(), { plugin, bWithFile });
 			else
@@ -178,7 +199,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		}
 	}
 	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = expressionResolved;
+		*pPluginPipelineResolved = MakePipeline(pipelineResolved);
 	return true;
 }
 
@@ -352,11 +373,11 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	std::vector<std::pair<PluginInfo*, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	String expressionResolved;
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	for (const auto& [pluginName, params] : result)
+	std::vector<std::tuple<String, String, TCHAR>> pipelineResolved;
+	for (const auto& [pluginName, params, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -392,16 +413,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		}
 		if (plugin)
 		{
-			if (expressionResolved.empty())
-				expressionResolved = plugin->m_name;
-			else
-				expressionResolved += _T("|") + plugin->m_name;
-			if (!params.empty())
-			{
-				String paramsQuoted = params;
-				strutils::replace(paramsQuoted, _T("'"), _T("''"));
-				expressionResolved += _T(" '") + paramsQuoted+ _T("'");
-			}
+			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
 			if (bReverse)
 				plugins.insert(plugins.begin(), { plugin, bWithFile });
 			else
@@ -409,7 +421,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		}
 	}
 	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = expressionResolved;
+		*pPluginPipelineResolved = MakePipeline(pipelineResolved);
 	return true;
 }
 

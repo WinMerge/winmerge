@@ -1627,9 +1627,6 @@ msgstr "Επιλογή Αποσυμπιεστικού"
 msgid "File unpacker:"
 msgstr "Αποσυμπιεστικό Αρχείων:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Εμφάνιση όλων των αποσυμπιεστικών, να μην ελέγχεται η επέκταση."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Κατάλογος Επεκτάσεων:"
@@ -1637,6 +1634,15 @@ msgstr "Κατάλογος Επεκτάσεων:"
 #, c-format
 msgid "Description:"
 msgstr "Περιγραφή:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Εμφάνιση όλων των αποσυμπιεστικών, να μην ελέγχεται η επέκταση."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

@@ -1628,9 +1628,6 @@ msgstr "Valitse purkaja"
 msgid "File unpacker:"
 msgstr "Tiedoston purkaja:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Päätelista:"
@@ -1638,6 +1635,15 @@ msgstr "Päätelista:"
 #, c-format
 msgid "Description:"
 msgstr "Kuvaus:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

@@ -29,11 +29,10 @@ private:
 
 public:
 // Construction
-	CSelectPluginDlg(const String& filename, CWnd* pParent /*= nullptr*/);
-	CSelectPluginDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename, CWnd* pParent /*= nullptr*/);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/);
 	~CSelectPluginDlg();
 
-	void SetPluginPipeline(const String& pluginPipeline) { m_strPluginPipeline = pluginPipeline; }
 	const String& CSelectPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
 
 // Dialog Data
@@ -56,7 +55,7 @@ public:
 // Implementation
 protected:
 	/// arrays for string describing the available plugins
-	CPtrArray  m_Plugins;
+	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> m_Plugins;
 
 	// const data "no plugin"
 	std::unique_ptr<PluginInfo> noPlugin;
@@ -77,6 +76,7 @@ protected:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUnpackerAllowAll();
 	afx_msg void OnSelchangeUnpackerName();
+	afx_msg void OnClickedAddPipe();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

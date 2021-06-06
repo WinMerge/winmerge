@@ -1293,14 +1293,20 @@ msgstr "Избиране на приложение"
 msgid "File unpacker:"
 msgstr "Файлов разархиватор:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr ""
-
 msgid "Extensions list:"
 msgstr "Списък на разширенията:"
 
 msgid "Description:"
 msgstr "Описание:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Спиране"

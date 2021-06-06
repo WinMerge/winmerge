@@ -1638,9 +1638,6 @@ msgstr "選取解壓縮程式"
 msgid "File unpacker:"
 msgstr "檔案解壓縮程式："
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "顯示所有解壓縮程式，不要檢查副檔名"
-
 #, c-format
 msgid "Extensions list:"
 msgstr "副檔名清單："
@@ -1648,6 +1645,15 @@ msgstr "副檔名清單："
 #, c-format
 msgid "Description:"
 msgstr "描述："
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "顯示所有解壓縮程式，不要檢查副檔名"
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

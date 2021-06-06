@@ -1630,9 +1630,6 @@ msgstr "Zvolit převaděč"
 msgid "File unpacker:"
 msgstr "&Převaděč souborů:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Seznam přípon:"
@@ -1640,6 +1637,15 @@ msgstr "Seznam přípon:"
 #, c-format
 msgid "Description:"
 msgstr "Popis:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

@@ -1292,14 +1292,20 @@ msgstr "Выбор распаковщика"
 msgid "File unpacker:"
 msgstr "Файл распаковщика:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показывать все распаковщики, не проверять расширение."
-
 msgid "Extensions list:"
 msgstr "Список расширений:"
 
 msgid "Description:"
 msgstr "Описание:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Показывать все распаковщики, не проверять расширение."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Остановить"

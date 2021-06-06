@@ -1630,9 +1630,6 @@ msgstr "Hautatu Despaketatzailea"
 msgid "File unpacker:"
 msgstr "Agiri Despaketatzailea:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Luzapen zerrenda:"
@@ -1640,6 +1637,15 @@ msgstr "Luzapen zerrenda:"
 #, c-format
 msgid "Description:"
 msgstr "Azalpena:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

@@ -1627,9 +1627,6 @@ msgstr "Tria el desempaquetador"
 msgid "File unpacker:"
 msgstr "&Desempaquetador de fitxer:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "&Visualitza tots els desempaquetadors sense verificar l'extensió."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "&Llistat d'extensions:"
@@ -1637,6 +1634,15 @@ msgstr "&Llistat d'extensions:"
 #, c-format
 msgid "Description:"
 msgstr "&Descripció:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "&Visualitza tots els desempaquetadors sense verificar l'extensió."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

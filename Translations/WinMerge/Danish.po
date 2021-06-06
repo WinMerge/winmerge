@@ -1631,9 +1631,6 @@ msgstr "Vælg udpakker"
 msgid "File unpacker:"
 msgstr "Fil udpakker:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Vis all udpakkerer, tjek ikke extension."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Extension liste:"
@@ -1641,6 +1638,15 @@ msgstr "Extension liste:"
 #, c-format
 msgid "Description:"
 msgstr "Beskrivelse:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Vis all udpakkerer, tjek ikke extension."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

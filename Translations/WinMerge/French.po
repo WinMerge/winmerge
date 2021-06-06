@@ -1635,9 +1635,6 @@ msgstr "Sélectionner le décompresseur"
 msgid "File unpacker:"
 msgstr "Décompresseur :"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afficher tous les décompresseurs, ignorer les extensions."
-
 #, c-format
 msgid "Extensions list:"
 msgstr "Liste des extensions :"
@@ -1645,6 +1642,15 @@ msgstr "Liste des extensions :"
 #, c-format
 msgid "Description:"
 msgstr "Description :"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Afficher tous les décompresseurs, ignorer les extensions."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"

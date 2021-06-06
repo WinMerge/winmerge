@@ -1296,14 +1296,20 @@ msgstr "选择解包程序"
 msgid "File unpacker:"
 msgstr "文件解包程序:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "不检查扩展名，显示所有解包器。"
-
 msgid "Extensions list:"
 msgstr "扩展名:"
 
 msgid "Description:"
 msgstr "描述:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "不检查扩展名，显示所有解包器。"
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "停止"

@@ -1293,14 +1293,20 @@ msgstr "Parinkti išpakuotoją"
 msgid "File unpacker:"
 msgstr "Failo išpakuotojas:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
-
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
 
 msgid "Description:"
 msgstr "Aprašas:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Sustoti"

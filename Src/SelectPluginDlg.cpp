@@ -16,12 +16,11 @@
 #include "FileTransform.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "unicoder.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlg dialog
@@ -43,56 +42,23 @@ void CSelectPluginDlg::Initialize()
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	PluginArray * piFileScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
-	PluginArray * piBufferScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
-	PluginArray * piFileFolderScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_FOLDER_PACK_UNPACK");
-
-	// add the default unpackers to the unpackers list
-	m_Plugins.Add(noPlugin.get());
-	m_Plugins.Add(automaticPlugin.get());
-	// add the real unpackers to the unpackers list
-	size_t i;
-	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
-	{
-		// during the dialog, we use a pointer to the scriptsOfThreads array
-		const PluginInfoPtr& plugin = piFileFolderScriptArray->at(i);
-		if (!plugin->m_disabled)
-		{
-			m_Plugins.Add(plugin.get());
-		}
-	}
-	for (i = 0 ; i < piFileScriptArray->size() ; i++)
-	{
-		// during the dialog, we use a pointer to the scriptsOfThreads array
-		const PluginInfoPtr& plugin = piFileScriptArray->at(i);
-		if (!plugin->m_disabled)
-		{
-			m_Plugins.Add(plugin.get());
-		}
-	}
-	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
-	{
-		// during the dialog, we use a pointer to the scriptsOfThreads array
-		const PluginInfoPtr& plugin = piBufferScriptArray->at(i);
-		if (!plugin->m_disabled)
-		{
-			m_Plugins.Add(plugin.get());
-		}
-	}
+	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames,
+		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, 0).second;
 }
 
 
-CSelectPluginDlg::CSelectPluginDlg(const String& filename, CWnd* pParent /*= nullptr*/)
-	: CTrDialog(CSelectPluginDlg::IDD, pParent), m_filteredFilenames(filename)
+CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename, CWnd* pParent /*= nullptr*/)
+	: CTrDialog(CSelectPluginDlg::IDD, pParent)
+	, m_strPluginPipeline(pluginPipeline)
+	, m_filteredFilenames(filename)
 {
 	Initialize();
 }
 
-CSelectPluginDlg::CSelectPluginDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/)
-	: CTrDialog(CSelectPluginDlg::IDD, pParent), m_filteredFilenames(filename1 + _T("|") + filename2)
+CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/)
+	: CTrDialog(CSelectPluginDlg::IDD, pParent)
+	, m_strPluginPipeline(pluginPipeline)
+	, m_filteredFilenames(filename1 + _T("|") + filename2)
 {
 	Initialize();
 }
@@ -110,6 +76,7 @@ void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PLUGIN_ALLOW_ALL, m_bNoExtensionCheck);
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
 	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
+	DDX_Text(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
 	//}}AFX_DATA_MAP
 }
 
@@ -119,6 +86,7 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_PLUGIN_ALLOW_ALL, OnUnpackerAllowAll)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
+	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -140,6 +108,8 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	prepareListbox();
 
+	UpdateData(FALSE);
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -147,26 +117,30 @@ BOOL CSelectPluginDlg::OnInitDialog()
 void CSelectPluginDlg::prepareListbox() 
 {
 	int sel = -1;
-	int i;
-	for (i = 0 ; i < m_Plugins.GetSize() ; i++)
+	int i = 0;
+	m_cboPluginName.AddString(noPlugin->m_name.c_str());
+	m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
+	for (const auto& [processType, pluginList] : m_Plugins)
 	{
-		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_Plugins.GetAt(i));
-		if (pPlugin == noPlugin.get() || pPlugin == automaticPlugin.get() 
-				|| m_bNoExtensionCheck 
-			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
+		m_cboPluginName.AddString((_T("[") + tr(ucr::toUTF8(processType)) + _T("]")).c_str());
+		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
-			m_cboPluginName.AddString(pPlugin->m_name.c_str());
-			if (m_strPluginPipeline == pPlugin->m_name)
-				sel = m_cboPluginName.GetCount()-1;
+			if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames))
+			{
+				m_cboPluginName.AddString(name.c_str());
+				if (m_strPluginPipeline == name)
+					sel = m_cboPluginName.GetCount() - 1;
+			}
 		}
 	}
 
 	if (sel == -1)
 		m_cboPluginName.SelectString(-1, noPlugin->m_name.c_str());
 	else
+	{
 		m_cboPluginName.SetCurSel(sel);
-
-	OnSelchangeUnpackerName();
+		OnSelchangeUnpackerName();
+	}
 }
 
 void CSelectPluginDlg::OnUnpackerAllowAll() 
@@ -178,6 +152,12 @@ void CSelectPluginDlg::OnUnpackerAllowAll()
 	prepareListbox();
 
 	UpdateData (FALSE);
+}
+
+void CSelectPluginDlg::OnClickedAddPipe()
+{
+	m_strPluginPipeline += _T("|");
+	UpdateData(FALSE);
 }
 
 void CSelectPluginDlg::OnSelchangeUnpackerName() 
@@ -197,20 +177,36 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	else
 	{
 		// initialize with the default unpacker
-		m_strPluginPipeline.clear();
 		CString cstrPluginName;
 		m_cboPluginName.GetWindowText(cstrPluginName);
-		m_strPluginPipeline = cstrPluginName;
-		for (int j = 0 ; j < m_Plugins.GetSize() ; j++)
+		String pluginName = cstrPluginName.Trim();
+		for (const auto& [processType, pluginList] : m_Plugins)
 		{
-			PluginInfo *pPluginTmp = static_cast<PluginInfo*> (m_Plugins.GetAt(j));
-			if (m_strPluginPipeline == pPluginTmp->m_name)
+			for (const auto& [caption, name, id, plugin] : pluginList)
 			{
-				pPlugin = pPluginTmp;
-				break;
+				if (pluginName == name)
+				{
+					String pluginPipeline = strutils::trim_ws(m_strPluginPipeline);
+					if (!pluginPipeline.empty() && pluginPipeline.back() == '|')
+						pluginPipeline += _T("dummy");
+					String errorMessage;
+					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
+					if (parseResult.empty())
+					{
+						parseResult.emplace_back(name, _T(""), '\0');
+					}
+					else
+					{
+						auto [namedummy, params, quoteChar] = parseResult.back();
+						parseResult.pop_back();
+						parseResult.emplace_back(name, params, quoteChar);
+					}
+					m_strPluginPipeline = PluginForFile::MakePipeline(parseResult);
+					pPlugin = plugin;
+					break;
+				}
 			}
 		}
-
 	}
 
 	if (pPlugin)

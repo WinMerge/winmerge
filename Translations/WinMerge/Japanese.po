@@ -1295,14 +1295,20 @@ msgstr "展開プラグインの選択"
 msgid "File unpacker:"
 msgstr "ファイル展開プラグイン:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "拡張子を無視してすべての展開プラグインを表示する。"
-
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
 
 msgid "Description:"
 msgstr "説明:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "拡張子を無視してすべての展開プラグインを表示する。"
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "停止"
