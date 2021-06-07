@@ -549,6 +549,25 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	VariantClear(&ret);
 
+	// get optional property PluginIsAutomatic
+	if (SearchScriptForDefinedProperties(L"PluginArguments"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginArguments", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginArguments property, but error getting its value"));
+			return -120; // error (Plugin had PluginArguments property, but error getting its value)
+		}
+		m_argumentsDefault = ucr::toTString(ret.bstrVal);
+		m_hasArgumentProperty = true;
+	}
+	else
+	{
+		m_argumentsDefault.clear();
+		m_hasArgumentProperty = false;
+	}
+	m_arguments = GetCustomSetting(m_name, _T("arguments"), m_argumentsDefault);
+
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 
@@ -1479,6 +1498,17 @@ bool InvokeShowSettingsDialog(IDispatch *piScript)
 	VariantClear(&vboolHandled);
 
 	return (bSuccess);
+}
+
+bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
+{
+	// argument text  
+	VARIANT vbstrArgs;
+	vbstrArgs.vt = VT_BSTR;
+	vbstrArgs.bstrVal = SysAllocString(ucr::toUTF16(args).c_str());
+
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginArguments", opPut[1], vbstrArgs);
+	return SUCCEEDED(h);
 }
 
 }

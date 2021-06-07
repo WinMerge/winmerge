@@ -37,7 +37,12 @@ class PluginInfo
 {
 public:
 	PluginInfo()
-		: m_lpDispatch(nullptr), m_filters(NULL), m_bAutomatic(false), m_nFreeFunctions(0), m_disabled(false)
+		: m_lpDispatch(nullptr)
+		, m_filters(NULL)
+		, m_bAutomatic(false)
+		, m_nFreeFunctions(0)
+		, m_disabled(false)
+		, m_hasArgumentProperty(false)
 	{	
 	}
 
@@ -67,6 +72,8 @@ public:
 	String      m_name; // usually filename, except for special cases (like auto or no)
 	String      m_ext;
 	String      m_extendedProperties;
+	String      m_arguments;
+	String      m_argumentsDefault;
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;
@@ -74,6 +81,7 @@ public:
 	bool        m_bAutomatic;
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;
+	bool        m_hasArgumentProperty;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -248,4 +256,8 @@ bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & n
  */
 bool InvokeShowSettingsDialog(LPDISPATCH piScript);
 
+/**
+ * @brief Set value to the plugin "PluginArguments" property 
+ */
+bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
 }

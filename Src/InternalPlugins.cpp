@@ -100,6 +100,7 @@ struct Info
 	bool m_isAutomatic = false;
 	String m_unpackedFileExtension;
 	String m_extendedProperties;
+	String m_arguments;
 	std::unique_ptr<Method> m_prediffFile;
 	std::unique_ptr<Method> m_unpackFile;
 	std::unique_ptr<Method> m_packFile;
@@ -120,6 +121,7 @@ public:
 	inline static const std::string IsAutomaticElement = "is-automatic";
 	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extension";
 	inline static const std::string ExtendedPropertiesElement = "extended-properties";
+	inline static const std::string ArgumentsElement = "arguments";
 	inline static const std::string PrediffFileElement = "prediff-file";
 	inline static const std::string UnpackFileElement = "unpack-file";
 	inline static const std::string PackFileElement = "pack-file";
@@ -175,6 +177,8 @@ public:
 						plugin.m_unpackedFileExtension = value;
 					else if (localName == ExtendedPropertiesElement)
 						plugin.m_extendedProperties = value;
+					else if (localName == ArgumentsElement)
+						plugin.m_arguments = value;
 				}
 				else if (localName == PrediffFileElement)
 				{
@@ -259,6 +263,7 @@ public:
 			L"\\.nomatch$", L"")
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_funcid(id)
+		, m_hasArgumentsProperty(plugin.m_hasArgumentProperty)
 	{
 		m_pDispatch->AddRef();
 		auto menuCaption = plugin.GetExtendedPropertyValue(funcname + _T(".MenuCaption"));
@@ -277,6 +282,8 @@ public:
 		HRESULT hr = ReadFile(fileSrc, text);
 		if (FAILED(hr))
 			return hr;
+		if (m_hasArgumentsProperty && !plugin::InvokePutPluginArguments(m_sArguments, m_pDispatch))
+			return E_FAIL;
 		int changed = 0;
 		if (!plugin::InvokeTransformText(text, changed, m_pDispatch, m_funcid))
 			return E_FAIL;
@@ -292,13 +299,14 @@ public:
 private:
 	IDispatch* m_pDispatch;
 	int m_funcid;
+	bool m_hasArgumentsProperty;
 };
 
 class InternalPlugin : public WinMergePluginBase
 {
 public:
 	InternalPlugin(Info&& info)
-		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_isAutomatic)
+		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_arguments, info.m_isAutomatic)
 		, m_info(std::move(info))
 	{
 	}
@@ -379,6 +387,7 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		strutils::replace(command, _T("${ARGS}"), m_sArguments);
 		if (m_info.m_prediffFile->m_script)
 		{
 			createScript(*m_info.m_prediffFile->m_script, scriptFile);
@@ -405,6 +414,7 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		strutils::replace(command, _T("${ARGS}"), m_sArguments);
 		if (m_info.m_unpackFile->m_script)
 		{
 			createScript(*m_info.m_unpackFile->m_script, scriptFile);
@@ -431,6 +441,7 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		strutils::replace(command, _T("${ARGS}"), m_sArguments);
 		if (m_info.m_packFile->m_script)
 		{
 			createScript(*m_info.m_packFile->m_script, scriptFile);
@@ -455,7 +466,7 @@ public:
 		: WinMergePluginBase(
 			L"EDITOR_SCRIPT",
 			strutils::format_string1(_T("EditorScript (automatically generated)"), _T("")),
-			plugin.m_filtersText, L"", plugin.m_extendedProperties)
+			plugin.m_filtersText, L"", plugin.m_extendedProperties, plugin.m_arguments)
 		, m_pDispatch(plugin.m_lpDispatch)
 	{
 		m_pDispatch->AddRef();

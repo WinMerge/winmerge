@@ -14,4 +14,4 @@ if not exist %TIKA_PATH% (
     start "Downloading..." /WAIT powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %DOWNLOAD_URL% -Outfile %TIKA_PATH%"
   )
 )
-java -jar %TIKA_PATH% --encoding=UTF-8 -t "%~1" > "%~2"
+java -jar %TIKA_PATH% --encoding=UTF-8 %1 "%~2" > "%~3"

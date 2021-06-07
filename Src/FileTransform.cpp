@@ -138,7 +138,7 @@ bool PluginForFile::IsValidPluginPipeline() const
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::pair<PluginInfo*, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ParsePluginPipeline(errorMessage);
@@ -193,9 +193,9 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		{
 			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
 			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, bWithFile });
+				plugins.insert(plugins.begin(), { plugin, params, bWithFile });
 			else
-				plugins.push_back({ plugin, bWithFile });
+				plugins.push_back({ plugin, params, bWithFile });
 		}
 	}
 	if (pPluginPipelineResolved)
@@ -212,7 +212,7 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 
 	// control value
 	String errorMessage;
-	std::vector<std::pair<PluginInfo*, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
 	if (!GetPackUnpackPlugin(_T(""), true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -220,13 +220,20 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 	}
 
 	auto itSubcode = handlerSubcodes.rbegin();
-	for (auto& [plugin, bWithFile] : plugins)
+	for (auto& [plugin, params, bWithFile] : plugins)
 	{
 		bool bHandled = false;
 		storageForPlugins bufferData;
 		bufferData.SetDataFileAnsi(filepath);
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+
+		if (plugin->m_hasArgumentProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+				return false;
+		}
+
 		if (bWithFile)
 		{
 			// use a temporary dest name
@@ -292,7 +299,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 
 	// control value
 	String errorMessage;
-	std::vector<std::pair<PluginInfo*, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
 	if (!GetPackUnpackPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -302,7 +309,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 	if (handlerSubcodes)
 		handlerSubcodes->clear();
 
-	for (auto& [plugin, bWithFile] : plugins)
+	for (auto& [plugin, params, bWithFile] : plugins)
 	{
 		bool bHandled = false;
 		storageForPlugins bufferData;
@@ -312,6 +319,13 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		int subcode = 0;
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+
+		if (plugin->m_hasArgumentProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+				return false;
+		}
+
 		if (bWithFile)
 		{
 			// use a temporary dest name
@@ -357,10 +371,10 @@ String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) co
 {
 	String ext;
 	String errorMessage;
-	std::vector<std::pair<PluginInfo*, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, plugins, nullptr, errorMessage))
 	{
-		for (auto& [plugin, bWithFile] : plugins)
+		for (auto& [plugin, params, bWithFile] : plugins)
 			ext += plugin->m_ext;
 	}
 	return ext;
@@ -370,7 +384,7 @@ String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) co
 // transformation prediffing
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::pair<PluginInfo*, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ParsePluginPipeline(errorMessage);
@@ -415,9 +429,9 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		{
 			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
 			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, bWithFile });
+				plugins.insert(plugins.begin(), { plugin, params, bWithFile });
 			else
-				plugins.push_back({ plugin, bWithFile });
+				plugins.push_back({ plugin, params, bWithFile });
 		}
 	}
 	if (pPluginPipelineResolved)
@@ -434,14 +448,14 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 	// control value
 	bool bHandled = false;
 	String errorMessage;
-	std::vector<std::pair<PluginInfo*, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
 	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
 
-	for (const auto& [plugin, bWithFile] : plugins)
+	for (const auto& [plugin, params, bWithFile] : plugins)
 	{
 		storageForPlugins bufferData;
 		// detect Ansi or Unicode file
@@ -450,6 +464,13 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 		// bufferData.SetCodepage();
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+
+		if (plugin->m_hasArgumentProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+				return false;
+		}
+
 		if (bWithFile)
 		{
 			// use a temporary dest name
@@ -574,7 +595,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent
 	return sNamesArray;
 }
 
-bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)
+bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen)
 {
 	if (iFncChosen < 0)
 		return false;
@@ -595,13 +616,21 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	if (iScript >= piScriptArray->size())
 		return false;
 
+	PluginInfo* plugin = piScriptArray->at(iScript).get();
+
 	// iFncChosen is the index of the function in the script file
 	// we must convert it to the function ID
-	int fncID = plugin::GetMethodIDInScript(piScriptArray->at(iScript)->m_lpDispatch, iFncChosen);
+	int fncID = plugin::GetMethodIDInScript(plugin->m_lpDispatch, iFncChosen);
+
+	if (plugin->m_hasArgumentProperty)
+	{
+		if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, plugin->m_lpDispatch))
+			return false;
+	}
 
 	// execute the transform operation
 	int nChanged = 0;
-	plugin::InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
+	plugin::InvokeTransformText(text, nChanged, plugin->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
 }

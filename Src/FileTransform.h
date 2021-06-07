@@ -85,7 +85,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::pair<PluginInfo*, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
@@ -137,7 +137,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::pair<PluginInfo*, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -199,7 +199,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  *
  * @note Event EDITOR_SCRIPT, ?
  */
-bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
+bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen);
 
 std::pair<
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,
