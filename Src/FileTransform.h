@@ -44,6 +44,13 @@ extern PLUGIN_MODE g_PredifferMode;
 class PluginForFile
 {
 public:
+	struct PipelineItem
+	{
+		String name;
+		String args;
+		TCHAR quoteChar;
+	};
+
 	void Initialize(PLUGIN_MODE Mode)
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
@@ -57,9 +64,9 @@ public:
 	void SetPluginPipeline(const String& pluginPipeline) { m_PluginPipeline = pluginPipeline; }
 	void ClearPluginPipeline() { m_PluginPipeline.clear(); }
 
-	std::vector<std::tuple<String, String, TCHAR>> ParsePluginPipeline(String& errorMessage) const;
-	static std::vector<std::tuple<String, String, TCHAR>> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
-	static String MakePipeline(const std::vector<std::tuple<String, String, TCHAR>> list);
+	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
+	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
+	static String MakePipeline(const std::vector<PipelineItem> list);
 
 	bool IsValidPluginPipeline() const;
 	static bool IsValidPluginPipeline(const String& pluginPipeline);

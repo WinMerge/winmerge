@@ -1619,13 +1619,11 @@ msgstr "Μετακίνηση προς τα &άνω"
 msgid "Move &Down"
 msgstr "Μετακίνηση προς τα &κάτω"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Επιλογή Αποσυμπιεστικού"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Αποσυμπιεστικό Αρχείων:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1634,6 +1632,9 @@ msgstr "Κατάλογος Επεκτάσεων:"
 #, c-format
 msgid "Description:"
 msgstr "Περιγραφή:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Εμφάνιση όλων των αποσυμπιεστικών, να μην ελέγχεται η επέκταση."

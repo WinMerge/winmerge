@@ -1617,13 +1617,11 @@ msgstr "ඉහළට ගෙනියන්න"
 msgid "Move &Down"
 msgstr "පහළට ගෙනියන්න"
 
-#, fuzzy, c-format
-msgid "Select Unpacker"
-msgstr "Select Unpacker"
+msgid "Select Plugin"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "File unpacker:"
-msgstr "File unpacker:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "Extensions list:"
@@ -1632,6 +1630,9 @@ msgstr "Extensions list:"
 #, c-format
 msgid "Description:"
 msgstr " විස්තරය:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr ""

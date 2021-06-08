@@ -1289,17 +1289,20 @@ msgstr "التحرك إلى الأ&على"
 msgid "Move &Down"
 msgstr "التحرك إلى الأ&سفل"
 
-msgid "Select Unpacker"
-msgstr "اختيار أداة فك الحزمة"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "أداة فك الملف:"
+msgid "Plugin Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "قائمة امتدادات الملفات:"
 
 msgid "Description:"
 msgstr "الوصف:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "عرض كل أدوات فك الحزم، لا تتحقق من امتداد الملف."

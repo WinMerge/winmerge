@@ -1622,13 +1622,11 @@ msgstr "Flytta Upp"
 msgid "Move &Down"
 msgstr "Flytta Ned"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Välj Uppackare"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Fil-uppackare:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1637,6 +1635,9 @@ msgstr "FilsuffixLista:"
 #, c-format
 msgid "Description:"
 msgstr "Beskrivning:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Visa alla uppackare, kontrollera inte filsuffixet."

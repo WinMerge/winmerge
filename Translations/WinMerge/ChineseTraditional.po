@@ -1630,13 +1630,11 @@ msgstr "上移(&U)"
 msgid "Move &Down"
 msgstr "下移(&D)"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "選取解壓縮程式"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "檔案解壓縮程式："
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1643,9 @@ msgstr "副檔名清單："
 #, c-format
 msgid "Description:"
 msgstr "描述："
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "顯示所有解壓縮程式，不要檢查副檔名"

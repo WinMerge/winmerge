@@ -1625,13 +1625,11 @@ msgstr "&U جابجايي به بالا "
 msgid "Move &Down"
 msgstr " جابجايي به پايين "
 
-#, c-format
-msgid "Select Unpacker"
-msgstr " انتخاب بازکننده بسته "
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr " باز کننده بسته پرونده : "
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1640,6 +1638,9 @@ msgstr " فهرست توسعه ها : "
 #, c-format
 msgid "Description:"
 msgstr " توصيف : "
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "

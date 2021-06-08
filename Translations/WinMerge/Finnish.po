@@ -1620,13 +1620,11 @@ msgstr "Siirrä ylös"
 msgid "Move &Down"
 msgstr "Siirrä alas"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Valitse purkaja"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Tiedoston purkaja:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1635,6 +1633,9 @@ msgstr "Päätelista:"
 #, c-format
 msgid "Description:"
 msgstr "Kuvaus:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."

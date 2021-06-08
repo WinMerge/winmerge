@@ -26,14 +26,14 @@ using Poco::Exception;
 // transformations : packing unpacking
 
 
-std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipeline(String& errorMessage) const
+std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(String& errorMessage) const
 {
 	return ParsePluginPipeline(m_PluginPipeline, errorMessage);
 }
 
-std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipeline(const String& pluginPipeline, String& errorMessage)
+std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(const String& pluginPipeline, String& errorMessage)
 {
-	std::vector<std::tuple<String, String, TCHAR>> result;
+	std::vector<PluginForFile::PipelineItem> result;
 	bool inQuotes = false;
 	TCHAR quoteChar = 0;
 	std::vector<String> tokens;
@@ -92,7 +92,7 @@ std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipelin
 		}
 		if (!_istspace(*p))
 		{
-			result.emplace_back(name, strutils::trim_ws_end(param), quoteChar);
+			result.push_back({name, strutils::trim_ws_end(param), quoteChar});
 			name.clear();
 			param.clear();
 			quoteChar = 0;
@@ -106,20 +106,20 @@ std::vector<std::tuple<String, String, TCHAR>> PluginForFile::ParsePluginPipelin
 	return result;
 }
 
-String PluginForFile::MakePipeline(const std::vector<std::tuple<String, String, TCHAR>> list)
+String PluginForFile::MakePipeline(const std::vector<PluginForFile::PipelineItem> list)
 {
 	String pipeline;
-	for (const auto& [name, params, quoteChar] : list)
+	for (const auto& [name, args, quoteChar] : list)
 	{
 		if (pipeline.empty())
 			pipeline = name;
 		else
 			pipeline += _T("|") + name;
-		if (!params.empty())
+		if (!args.empty())
 		{
-			String paramsQuoted = params;
-			strutils::replace(paramsQuoted, _T("'"), _T("''"));
-			pipeline += _T(" '") + paramsQuoted + _T("'");
+			String argsQuoted = args;
+			strutils::replace(argsQuoted, _T("'"), _T("''"));
+			pipeline += _T(" '") + argsQuoted + _T("'");
 		}
 	}
 	return pipeline;
@@ -144,8 +144,8 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	std::vector<std::tuple<String, String, TCHAR>> pipelineResolved;
-	for (const auto& [pluginName, params, quoteChar] : result)
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	for (const auto& [pluginName, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -191,11 +191,11 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		}
 		if (plugin)
 		{
-			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
+			pipelineResolved.push_back({ plugin->m_name, args, quoteChar });
 			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, params, bWithFile });
+				plugins.insert(plugins.begin(), { plugin, args, bWithFile });
 			else
-				plugins.push_back({ plugin, params, bWithFile });
+				plugins.push_back({ plugin, args, bWithFile });
 		}
 	}
 	if (pPluginPipelineResolved)
@@ -220,7 +220,7 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 	}
 
 	auto itSubcode = handlerSubcodes.rbegin();
-	for (auto& [plugin, params, bWithFile] : plugins)
+	for (auto& [plugin, args, bWithFile] : plugins)
 	{
 		bool bHandled = false;
 		storageForPlugins bufferData;
@@ -230,7 +230,7 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
 				return false;
 		}
 
@@ -309,7 +309,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 	if (handlerSubcodes)
 		handlerSubcodes->clear();
 
-	for (auto& [plugin, params, bWithFile] : plugins)
+	for (auto& [plugin, args, bWithFile] : plugins)
 	{
 		bool bHandled = false;
 		storageForPlugins bufferData;
@@ -322,7 +322,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
 				return false;
 		}
 
@@ -374,7 +374,7 @@ String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) co
 	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, plugins, nullptr, errorMessage))
 	{
-		for (auto& [plugin, params, bWithFile] : plugins)
+		for (auto& [plugin, args, bWithFile] : plugins)
 			ext += plugin->m_ext;
 	}
 	return ext;
@@ -390,8 +390,8 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
-	std::vector<std::tuple<String, String, TCHAR>> pipelineResolved;
-	for (const auto& [pluginName, params, quoteChar] : result)
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	for (const auto& [pluginName, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -427,11 +427,11 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		}
 		if (plugin)
 		{
-			pipelineResolved.emplace_back(plugin->m_name, params, quoteChar);
+			pipelineResolved.push_back({ plugin->m_name, args, quoteChar });
 			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, params, bWithFile });
+				plugins.insert(plugins.begin(), { plugin, args, bWithFile });
 			else
-				plugins.push_back({ plugin, params, bWithFile });
+				plugins.push_back({ plugin, args, bWithFile });
 		}
 	}
 	if (pPluginPipelineResolved)
@@ -455,7 +455,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 		return false;
 	}
 
-	for (const auto& [plugin, params, bWithFile] : plugins)
+	for (const auto& [plugin, args, bWithFile] : plugins)
 	{
 		storageForPlugins bufferData;
 		// detect Ansi or Unicode file
@@ -467,7 +467,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
 				return false;
 		}
 
@@ -595,7 +595,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent
 	return sNamesArray;
 }
 
-bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen)
+bool Interactive(String & text, const String& args, const wchar_t *TransformationEvent, int iFncChosen)
 {
 	if (iFncChosen < 0)
 		return false;
@@ -624,7 +624,7 @@ bool Interactive(String & text, const String& params, const wchar_t *Transformat
 
 	if (plugin->m_hasArgumentProperty)
 	{
-		if (!plugin::InvokePutPluginArguments(params.empty() ? plugin->m_arguments : params, plugin->m_lpDispatch))
+		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, plugin->m_lpDispatch))
 			return false;
 	}
 

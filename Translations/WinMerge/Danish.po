@@ -1623,13 +1623,11 @@ msgstr "Flyt &op"
 msgid "Move &Down"
 msgstr "Flyt &ned"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Vælg udpakker"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Fil udpakker:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1638,6 +1636,9 @@ msgstr "Extension liste:"
 #, c-format
 msgid "Description:"
 msgstr "Beskrivelse:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Vis all udpakkerer, tjek ikke extension."

@@ -1287,17 +1287,20 @@ msgstr "Perkelti a&ukštyn"
 msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
-msgid "Select Unpacker"
-msgstr "Parinkti išpakuotoją"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Failo išpakuotojas:"
+msgid "Plugin Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
 
 msgid "Description:"
 msgstr "Aprašas:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."

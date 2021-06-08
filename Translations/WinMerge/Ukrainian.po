@@ -1621,13 +1621,11 @@ msgstr "&Вгору"
 msgid "Move &Down"
 msgstr "В&низ"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Вибір розпакувальника"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Файл розпакувальника:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1636,6 +1634,9 @@ msgstr "Список розширень:"
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Показувати всі розпакувальники, не перевіряючи розширення."

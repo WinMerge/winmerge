@@ -25,12 +25,12 @@ class CSelectPluginDlg : public CTrDialog
 {
 private:
 // Construction
-	void Initialize();
+	void Initialize(bool unpacker);
 
 public:
 // Construction
-	CSelectPluginDlg(const String& pluginPipeline, const String& filename, CWnd* pParent /*= nullptr*/);
-	CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker = true, CWnd* pParent = nullptr);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, bool unpacker = true, CWnd* pParent = nullptr);
 	~CSelectPluginDlg();
 
 	const String& CSelectPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
@@ -42,6 +42,9 @@ public:
 	bool	m_bNoExtensionCheck;
 	String	m_strDescription;
 	String	m_strExtensions;
+	String	m_strArguments;
+	String	m_strPluginPipeline;
+	
 	//}}AFX_DATA
 
 
@@ -65,9 +68,6 @@ protected:
 	// input value
 	String m_filteredFilenames;
 
-	/// current plugin choice
-	String m_strPluginPipeline;
-
 	void prepareListbox();
 
 	// Generated message map functions
@@ -77,6 +77,7 @@ protected:
 	afx_msg void OnUnpackerAllowAll();
 	afx_msg void OnSelchangeUnpackerName();
 	afx_msg void OnClickedAddPipe();
+	afx_msg void OnChangePipeline();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

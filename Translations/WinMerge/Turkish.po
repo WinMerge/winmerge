@@ -1293,17 +1293,20 @@ msgstr "Y&ukarı taşı"
 msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
-msgid "Select Unpacker"
-msgstr "Ayıklayıcı seçin"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Dosya ayıklayıcı:"
+msgid "Plugin Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Uzantı Listesi:"
 
 msgid "Description:"
 msgstr "Açıklama:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."

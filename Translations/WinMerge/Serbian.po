@@ -1605,13 +1605,11 @@ msgstr "Помери &горе"
 msgid "Move &Down"
 msgstr "Помери &доле"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Избор архивера"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Архивер датотека"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1620,6 +1618,9 @@ msgstr "Попис наставака:"
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr ""

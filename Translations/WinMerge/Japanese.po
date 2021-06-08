@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-07 23:51+0900\n"
+"PO-Revision-Date: 2021-06-08 09:10+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1289,17 +1289,20 @@ msgstr "上へ(&U)"
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
-msgid "Select Unpacker"
-msgstr "展開プラグインの選択"
+msgid "Select Plugin"
+msgstr "プラグインの選択"
 
-msgid "File unpacker:"
-msgstr "ファイル展開プラグイン:"
+msgid "Plugin Name:"
+msgstr "プラグイン名:"
 
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
 
 msgid "Description:"
 msgstr "説明:"
+
+msgid "Default arguments:"
+msgstr "デフォルト引数:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "拡張子を無視してすべての展開プラグインを表示する。"

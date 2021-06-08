@@ -1627,13 +1627,11 @@ msgstr "&Monter"
 msgid "Move &Down"
 msgstr "&Descendre"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Sélectionner le décompresseur"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Décompresseur :"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1642,6 +1640,9 @@ msgstr "Liste des extensions :"
 #, c-format
 msgid "Description:"
 msgstr "Description :"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Afficher tous les décompresseurs, ignorer les extensions."

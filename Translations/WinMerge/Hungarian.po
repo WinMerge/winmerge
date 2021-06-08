@@ -1622,13 +1622,11 @@ msgstr "Mozgatás fel"
 msgid "Move &Down"
 msgstr "Mozgatás le"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Kicsomagoló kiválasztása"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Fájl kicsomagoló:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1637,6 +1635,9 @@ msgstr "Kiterjesztések listája:"
 #, c-format
 msgid "Description:"
 msgstr "Leírás:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."

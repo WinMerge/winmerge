@@ -1622,13 +1622,11 @@ msgstr "Mugitu &Gora"
 msgid "Move &Down"
 msgstr "Mugitu &Behera"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Hautatu Despaketatzailea"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Agiri Despaketatzailea:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1637,6 +1635,9 @@ msgstr "Luzapen zerrenda:"
 #, c-format
 msgid "Description:"
 msgstr "Azalpena:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."

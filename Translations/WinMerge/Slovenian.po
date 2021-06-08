@@ -1619,13 +1619,11 @@ msgstr "Premakni navz&gor"
 msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Izberite razpakovalca"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Razpakovalec datoteke:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1634,6 +1632,9 @@ msgstr "Seznam končnic:"
 #, c-format
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Prikaži vse razpakovalce, ne glede na končnico."

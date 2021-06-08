@@ -1287,17 +1287,20 @@ msgstr "На&горе"
 msgid "Move &Down"
 msgstr "На&долу"
 
-msgid "Select Unpacker"
-msgstr "Избиране на приложение"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Файлов разархиватор:"
+msgid "Plugin Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Списък на разширенията:"
 
 msgid "Description:"
 msgstr "Описание:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr ""

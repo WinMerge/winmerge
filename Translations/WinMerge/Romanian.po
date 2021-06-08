@@ -1620,13 +1620,11 @@ msgstr "Mută mai s&us"
 msgid "Move &Down"
 msgstr "Mută mai &jos"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Selectează dezarhivator"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Dezarhivator fişiere:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1635,6 +1633,9 @@ msgstr "Listă extensii:"
 #, c-format
 msgid "Description:"
 msgstr "Descriere:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."

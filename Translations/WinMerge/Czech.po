@@ -1622,13 +1622,11 @@ msgstr "&Nahoru"
 msgid "Move &Down"
 msgstr "&Dolů"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Zvolit převaděč"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "&Převaděč souborů:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1637,6 +1635,9 @@ msgstr "Seznam přípon:"
 #, c-format
 msgid "Description:"
 msgstr "Popis:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."

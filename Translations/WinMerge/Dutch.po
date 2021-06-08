@@ -1295,17 +1295,20 @@ msgstr "Omhoog verplaatsen"
 msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
-msgid "Select Unpacker"
-msgstr "Uitpakker kiezen"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Bestandsuitpakker:"
+msgid "Plugin Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
 
 msgid "Description:"
 msgstr "Beschrijving:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Alle uitpakkers weergeven zonder extensie te controleren."

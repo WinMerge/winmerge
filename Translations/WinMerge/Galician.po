@@ -1621,13 +1621,11 @@ msgstr "Mover E&nriba"
 msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Seleccionar desempaquetador"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Desempaquetador de arquivos:"
+msgid "Plugin Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1636,6 +1634,9 @@ msgstr "Listaxe de extensións:"
 #, c-format
 msgid "Description:"
 msgstr "Descrición:"
+
+msgid "Default arguments:"
+msgstr ""
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
