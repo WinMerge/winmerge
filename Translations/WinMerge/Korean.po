@@ -883,9 +883,15 @@ msgstr "동기화 지점 추가(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "동기화 지점 지우기(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -2244,7 +2250,10 @@ msgstr "플러그인 사용"
 msgid "File filters:"
 msgstr "파일 필터:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -4363,8 +4372,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

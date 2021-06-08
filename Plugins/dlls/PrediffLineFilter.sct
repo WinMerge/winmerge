@@ -70,7 +70,7 @@ Function get_PluginIsAutomatic()
 End Function
 
 Function get_PluginExtendedProperties()
-  get_PluginExtendedProperties = "MenuCaption=Substitution Filters"
+  get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
 End Function
 
 Function SafeUBound(ary)

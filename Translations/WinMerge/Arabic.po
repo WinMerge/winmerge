@@ -695,8 +695,14 @@ msgstr "إضافة نقطة مزامنة\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "مسح كل نقاط المزامنة"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "الفروقات المسبقة"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "فصل"
@@ -1776,7 +1782,10 @@ msgstr "تفعيل الإضافات"
 msgid "File filters:"
 msgstr ""
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 msgid "Shell Integration"
@@ -3647,8 +3656,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

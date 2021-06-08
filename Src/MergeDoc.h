@@ -380,6 +380,7 @@ protected:
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnApplyPrediffer();
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();

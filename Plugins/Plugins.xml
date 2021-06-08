@@ -1,42 +1,42 @@
 <?xml version="1.0"?>
 <plugins>
-  <plugin name="XML-Prettier">
+  <plugin name="PrettifyXML">
     <event value="FILE_PACK_UNPACK" />
     <description value="XML Prettier" />
     <file-filters value="\.xml$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".xml" />
-    <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Pretty XML;GenerateEditorScript" />
+    <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Prettify XML;GenerateEditorScript" />
     <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
     <unpack-file>
     <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" -xml ${ARGS} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="JSON-Prettier">
+  <plugin name="PrettifyJSON">
     <event value="FILE_PACK_UNPACK" />
     <description value="JSON Prettier" />
     <file-filters value="\.json$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".json" />
-    <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Pretty JSON;GenerateEditorScript" />
+    <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Prettify JSON;GenerateEditorScript" />
     <arguments value="&quot;&quot;" />
     <unpack-file>
     <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${ARGS} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="Graphviz-Visualizer">
+  <plugin name="VisualizeGraphviz">
     <event value="FILE_PACK_UNPACK" />
     <description value="Graphviz Visualizer" />
     <file-filters value="\.gv;$\.dot$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".png" />
-    <extended-properties value="ProcessType=Visualization;FileType=Graphviz;MenuCaption=Graphviz" />
+    <extended-properties value="ProcessType=Visualization;FileType=Graphviz;MenuCaption=Visualize Graphviz" />
     <arguments value="" />
     <unpack-file>
       <command>dot.exe -Tpng ${ARGS} -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="Apache-Tika">
+  <plugin name="ApacheTika">
     <event value="FILE_PACK_UNPACK" />
     <description value="General content extractor with Apache Tika" />
     <file-filters value="\.*$" />

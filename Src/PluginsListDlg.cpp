@@ -123,13 +123,16 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		m_list.SetItemText(ind, 1, pluginType.c_str());
 		m_list.SetItemText(ind, 2, plugin->m_description.c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
+		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
 }
 
 PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 {
-	String name = m_list.GetItemText(m_list.GetNextItem(-1, LVNI_SELECTED), 0);
-	return CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, name);
+	int ind = m_list.GetNextItem(-1, LVNI_SELECTED);
+	if (ind < 0)
+		return nullptr;
+	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
 /**
@@ -179,6 +182,7 @@ void PluginsListDlg::OnBnClickedFileFiltesDefaults()
 	if (plugin)
 	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersTextDefault);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_argumentsDefault);
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomaticDefault);
 	}
 }
@@ -196,6 +200,7 @@ void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
 		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		WildcardRemoveDuplicatePatterns(plugin->m_filtersText);
 		plugin->LoadFilterString();
+		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
 		plugin->m_bAutomatic = !!IsDlgButtonChecked(IDC_PLUGIN_AUTOMATIC);
 	}
 }
@@ -206,6 +211,7 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 	if (plugin)
 	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
 	}
 }

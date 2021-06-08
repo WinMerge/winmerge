@@ -886,9 +886,15 @@ msgstr "新增同步點(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "清除同步點(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "先行處理器(&P)"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -2248,7 +2254,10 @@ msgstr "啟用外掛(&E)"
 msgid "File filters:"
 msgstr ""
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -4264,8 +4273,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

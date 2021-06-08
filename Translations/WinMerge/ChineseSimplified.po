@@ -697,8 +697,14 @@ msgstr "添加同步点(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "清除同步点(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "预处理(&P)"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"
@@ -1781,7 +1787,10 @@ msgstr "启用插件(&E)"
 msgid "File filters:"
 msgstr "文件过滤器:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 msgid "Shell Integration"
@@ -3686,8 +3695,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

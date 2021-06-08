@@ -697,8 +697,14 @@ msgstr "Įdėti &sinchronizavimo tašką\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Išvalyti sinc&hronizavino taškus"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Parengėjas"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Pada&linti"
@@ -1770,7 +1776,10 @@ msgstr "Įjungti &papildinius"
 msgid "File filters:"
 msgstr "Failų filtrai:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 msgid "Shell Integration"
@@ -3297,8 +3306,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

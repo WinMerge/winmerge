@@ -88,6 +88,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
+	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
@@ -3365,23 +3366,22 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
  */
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
-	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 	// let the user choose a handler
-	CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), m_filePaths[0], nullptr);
+	CSelectPluginDlg dlg(m_pInfoUnpacker->GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
 	if (dlg.DoModal() == IDOK)
 	{
-		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
-		Merge7zFormatMergePluginScope scope(&infoUnpacker);
+		m_pInfoUnpacker->SetPluginPipeline(dlg.GetPluginPipeline());
+		Merge7zFormatMergePluginScope scope(m_pInfoUnpacker.get());
 		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, nullptr, &infoUnpacker);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, nullptr, m_pInfoUnpacker.get());
 			CloseNow();
 		}
 		else
 		{
-			SetUnpacker(&infoUnpacker);
 			OnFileReload();
 		}
 		return true;
@@ -3425,6 +3425,20 @@ void CMergeDoc::OnFileEncoding()
 void CMergeDoc::OnCtxtOpenWithUnpacker() 
 {
 	OpenWithUnpackerDialog();
+}
+
+void CMergeDoc::OnApplyPrediffer() 
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	// let the user choose a handler
+	CSelectPluginDlg dlg(prediffer.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false);
+	if (dlg.DoModal() != IDOK)
+		return;
+	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
+	SetPrediffer(&prediffer);
+	FlushAndRescan(true);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()

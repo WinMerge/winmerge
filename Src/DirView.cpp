@@ -2692,7 +2692,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	{
 		PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
 		// let the user choose a handler
-		CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), GetDiffItem(sel).diffFileInfo[0].filename, this);
+		CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), GetDiffItem(sel).diffFileInfo[0].filename, true, this);
 		if (dlg.DoModal() == IDOK)
 		{
 			infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
@@ -3739,7 +3739,7 @@ void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
 	GetItemFileNames(sel, &paths);
 	String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 	CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
-		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
 }
 
 void CDirView::OnViewCompareStatistics()

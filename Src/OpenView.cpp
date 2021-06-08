@@ -809,7 +809,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 				tmpPath[i] = m_strPath[i].empty() ? _T("|.|") : m_strPath[i];
 			String filteredFilenames = strutils::join(std::begin(tmpPath), std::end(tmpPath), _T("|"));
 			CMainFrame::AppendPluginMenus(pPopup, filteredFilenames,
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
 		}
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 			rcButton.left, rcButton.bottom, GetMainFrame());
@@ -1136,7 +1136,7 @@ void COpenView::OnSelectUnpacker()
 		return;
 
 	// let the user select a handler
-	CSelectPluginDlg dlg(m_strUnpackerPipeline, m_files[0], this);
+	CSelectPluginDlg dlg(m_strUnpackerPipeline, m_files[0], true, this);
 	if (dlg.DoModal() == IDOK)
 	{
 		m_strUnpackerPipeline = dlg.GetPluginPipeline();

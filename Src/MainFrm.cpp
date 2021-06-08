@@ -413,28 +413,22 @@ void CMainFrame::OnDestroy(void)
 		RevokeDragDrop(m_hWnd);
 }
 
-static HMENU GetSubmenu(HMENU menu, bool bFirstSubmenu)
+static HMENU GetSubmenu(HMENU menu, int nthSubmenu)
 {
-	if (!bFirstSubmenu)
+	for (int nth = 0, i = 0; i < ::GetMenuItemCount(menu); i++)
 	{
-		// look for last submenu
-		for (int i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
-			if (::GetSubMenu(menu, i) != nullptr)
+		if (::GetSubMenu(menu, i) != nullptr)
+		{
+			if (nth == nthSubmenu)
 				return ::GetSubMenu(menu, i);
+			nth++;
+		}
 	}
-	else
-	{
-		// look for first submenu
-		for (int i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
-			if (::GetSubMenu(menu, i) != nullptr)
-				return ::GetSubMenu(menu, i);
-	}
-
 	// error, submenu not found
 	return nullptr;
 }
 
-static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
+static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, int nthSubmenu)
 {
 	int i;
 	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
@@ -443,7 +437,7 @@ static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmen
 	HMENU menu = ::GetSubMenu(mainMenu, i);
 	if (!menu)
 		return nullptr;
-	return GetSubmenu(menu, bFirstSubmenu);
+	return GetSubmenu(menu, nthSubmenu);
 }
 
 /**
@@ -454,7 +448,7 @@ static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmen
  */
 HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 {
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, true);
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, 1);
 }
 
 /**
@@ -622,7 +616,11 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				paths.SetPath(i, pMergeDoc->GetPath(i));
 			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
-			if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			if (topMenuId == ID_NO_PREDIFFER)
+			{
+				UpdatePrediffersMenu();
+			}
+			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
@@ -630,12 +628,11 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
 				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames,
-					{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST);
+					{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
 			}
-			else if (topMenuId == ID_PLUGINS_LIST || topMenuId == ID_NO_EDIT_SCRIPTS)
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
 			{
-				CMenu* pMenu = (topMenuId == ID_PLUGINS_LIST) ? 
-					pPopupMenu->GetSubMenu(pPopupMenu->GetMenuItemCount() - 3) : pPopupMenu;
+				CMenu* pMenu = pPopupMenu;
 				ASSERT(pMenu != nullptr);
 
 				// empty the menu
@@ -643,7 +640,26 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, ID_SCRIPT_FIRST);
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, false, ID_SCRIPT_FIRST);
+			}
+			else if (topMenuId == ID_PLUGINS_LIST)
+			{
+				for (int j = 0; j < 2; j++)
+				{
+					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 3));
+					ASSERT(pMenu != nullptr);
+
+					// empty the menu
+					int i = pMenu->GetMenuItemCount();
+					while (i--)
+						pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+					if (j == 0)
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames,
+							{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, false, ID_UNPACKERS_FIRST);
+					else
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, false, ID_SCRIPT_FIRST);
+				}
 			}
 		}
 
@@ -2854,16 +2870,21 @@ void CMainFrame::ReloadMenu()
 }
 
 void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
-	const std::vector<std::wstring> events, unsigned baseId)
+	const std::vector<std::wstring> events, bool addAllMenu, unsigned baseId)
 {
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
 
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
 		pMenu->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
 
+	CMenu* pMenu2 = pMenu;
 	CMenu popupAll;
-	popupAll.CreatePopupMenu();
-	pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
+	if (addAllMenu)
+	{
+		popupAll.CreatePopupMenu();
+		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
+		pMenu2 = &popupAll;
+	}
 
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
@@ -2871,7 +2892,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		popup.CreatePopupMenu();
 		for (const auto& [caption, name, id, plugin] : pluginList)
 			popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
-		popupAll.AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
+		pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
 		popup.Detach();
 	}
 	popupAll.Detach();

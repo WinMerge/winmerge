@@ -879,9 +879,15 @@ msgstr "Engadir punto de &sincronización\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Eliminar puntos de sincroni&zación"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Prec&omparación"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -2244,7 +2250,10 @@ msgstr "&Activar complementos"
 msgid "File filters:"
 msgstr "Filtros de arquivo:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -4422,8 +4431,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

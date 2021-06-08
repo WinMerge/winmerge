@@ -697,8 +697,14 @@ msgstr "Pridať &synchronizačný bod\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Vymazať sync&hronizačné body"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Predbežné spracovanie rozdielov"
+
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Od&deliť"
@@ -1780,7 +1786,10 @@ msgstr "&Povoliť rozšírenia"
 msgid "File filters:"
 msgstr "Filtre súborov:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 msgid "Shell Integration"
@@ -3709,8 +3718,11 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
-msgid "Pretty JSON"
+msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
-msgid "Pretty XML"
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
 msgstr ""

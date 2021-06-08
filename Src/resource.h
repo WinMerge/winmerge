@@ -742,6 +742,7 @@
 #define ID_NOT_SUGGESTED_PLUGINS        32885
 #define ID_RELOAD_PLUGINS               32886
 #define ID_NO_UNPACKER                  32887
+#define ID_APPLY_PREDIFFER              32888
 #define ID_WINDOW_CHANGE_PANE           32896
 #define ID_WINDOW_CLOSEALL              32897
 #define ID_HELP_CONTENTS                32912

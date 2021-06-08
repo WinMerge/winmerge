@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-08 09:10+0900\n"
+"PO-Revision-Date: 2021-06-09 00:17+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -695,8 +695,14 @@ msgstr "同期ポイントの追加(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "同期ポイントのクリア(&H)"
 
+msgid "Unpac&ker"
+msgstr "展開プラグイン(&K)"
+
 msgid "&Prediffer"
 msgstr "比較前処理プラグイン(&P)"
+
+msgid "Apply Pre&differ..."
+msgstr "比較前処理プラグインを適用(&D)..."
 
 msgid "Sp&lit"
 msgstr "分割(&L)"
@@ -1780,7 +1786,10 @@ msgstr "プラグインを有効にする(&E)"
 msgid "File filters:"
 msgstr "ファイルフィルター:"
 
-msgid "Enable &automatic unpacking/prediffer for the plugin"
+msgid "&Plugin arguments:"
+msgstr "プラグイン引数(&P):"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr "自動展開/自動比較前処理をこのプラグインで有効にする"
 
 msgid "Shell Integration"
@@ -3680,8 +3689,11 @@ msgstr "CSVの指定列を無視"
 msgid "Ignore TSV Fields"
 msgstr "TSVの指定列を無視"
 
-msgid "Pretty JSON"
-msgstr "整形されたJSON"
+msgid "Apply Prediff Substitution Filters"
+msgstr "比較前処理置換フィルタ"
 
-msgid "Pretty XML"
-msgstr "整形されたXML"
+msgid "Prettify JSON"
+msgstr "JSON整形"
+
+msgid "Prettify XML"
+msgstr "XML整形"

@@ -513,7 +513,6 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		m_bAutomaticDefault = false;
 	}
 	VariantClear(&ret);
-	m_bAutomatic = GetCustomSetting(m_name, _T("automatic"), m_bAutomaticDefault ? _T("true") : _T("false"))[0] == 't';
 
 	// get optional property PluginUnpackedFileExtenstion
 	if (SearchScriptForDefinedProperties(L"PluginUnpackedFileExtension"))
@@ -566,12 +565,13 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		m_argumentsDefault.clear();
 		m_hasArgumentProperty = false;
 	}
-	m_arguments = GetCustomSetting(m_name, _T("arguments"), m_argumentsDefault);
-
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 
-	m_filtersText = GetCustomSetting(m_name, _T("filters"), m_filtersTextDefault);
+	String uniqueName = m_event + _T(".") + m_name;
+	m_bAutomatic = GetCustomSetting(uniqueName, _T("automatic"), m_bAutomaticDefault ? _T("true") : _T("false"))[0] == 't';
+	m_arguments = GetCustomSetting(uniqueName, _T("arguments"), m_argumentsDefault);
+	m_filtersText = GetCustomSetting(uniqueName, _T("filters"), m_filtersTextDefault);
 	LoadFilterString();
 
 	// Clear the autorelease holder
@@ -837,10 +837,12 @@ void CScriptsOfThread::SaveSettings()
 				ary.push_back(_T("disabled"));
 			if (plugin->m_filtersTextDefault != plugin->m_filtersText)
 				ary.push_back(_T("filters:") + plugin->m_filtersText);
+			if (plugin->m_argumentsDefault != plugin->m_arguments)
+				ary.push_back(_T("arguments:") + plugin->m_arguments);
 			if (plugin->m_bAutomaticDefault != plugin->m_bAutomatic)
 				ary.push_back(String(_T("automatic:")) + (plugin->m_bAutomatic ? _T("true") : _T("false")));
 			if (!ary.empty())
-				list.push_back(plugin->m_name + _T("=") + strutils::join(ary.begin(), ary.end(), _T("|")));
+				list.push_back(plugin->m_event + _T(".") + plugin->m_name + _T("=") + strutils::join(ary.begin(), ary.end(), _T("|")));
 		}
 	}
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, strutils::join(list.begin(), list.end(), _T("\t")));
