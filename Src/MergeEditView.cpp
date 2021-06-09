@@ -201,6 +201,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_WM_VSCROLL ()
@@ -3497,6 +3498,16 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
+}
+
+/**
+ * @brief Update "Prediffer" menuitem
+ */
+void CMergeEditView::OnUpdateNoPrediffer(CCmdUI* pCmdUI)
+{
+	// recreate the sub menu (to fill the "selected prediffers")
+	GetMainFrame()->UpdatePrediffersMenu();
+	pCmdUI->Enable();
 }
 
 void CMergeEditView::OnNoPrediffer()

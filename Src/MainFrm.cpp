@@ -616,11 +616,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				paths.SetPath(i, pMergeDoc->GetPath(i));
 			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
-			if (topMenuId == ID_NO_PREDIFFER)
-			{
-				UpdatePrediffersMenu();
-			}
-			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
@@ -2874,6 +2870,11 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 {
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
 
+	if (!addAllMenu)
+	{
+		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+	}
+
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
 		pMenu->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
 
@@ -2884,6 +2885,11 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		popupAll.CreatePopupMenu();
 		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
 		pMenu2 = &popupAll;
+	}
+	else
+	{
+		pMenu->AppendMenu(MF_SEPARATOR, 0);
+		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 	}
 
 	for (const auto& [processType, pluginList] : allPlugins)
