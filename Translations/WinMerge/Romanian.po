@@ -1083,13 +1083,20 @@ msgstr "Copie numele de &fişier"
 msgid "Prediffer Settings"
 msgstr "Setări prediferenţiator"
 
-#, c-format
-msgid "&No prediffer"
-msgstr "Fără predifere&nţiator"
+#, fuzzy, c-format
+msgid "<None>"
+msgstr "<Deloc>"
+
+#, fuzzy, c-format
+msgid "<Automatic>"
+msgstr "<Automat>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Auto prediferenţiator"
+msgid "&Select..."
+msgstr "&Selectează..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Mergi la difere&nţă"
@@ -1243,10 +1250,6 @@ msgstr "Răsfoieşte:"
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Selectează..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3955,14 +3958,6 @@ msgstr "Setări pentru plug-in-uri"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nu s-a găsit WSH - scripurile .sct sunt dezactivate"
-
-#, fuzzy, c-format
-msgid "<None>"
-msgstr "<Deloc>"
-
-#, fuzzy, c-format
-msgid "<Automatic>"
-msgstr "<Automat>"
 
 #, c-format
 msgid "G&o to Line %1"

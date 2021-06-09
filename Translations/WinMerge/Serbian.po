@@ -1081,12 +1081,19 @@ msgid "Prediffer Settings"
 msgstr "Својства дефинисаног поређења"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "Нема дефинисаног поређења"
+msgid "<None>"
+msgstr "<Ништа>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Аутоматски дефиниши поређење"
+msgid "<Automatic>"
+msgstr "<Аутоматски>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Изабери..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Иди &на разлику"
@@ -1232,10 +1239,6 @@ msgstr "Преглед..."
 
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Изабери..."
 
 msgid " File: Unpacker Plugin"
 msgstr ""
@@ -3948,14 +3951,6 @@ msgstr "Подешавања додатака"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH није нађен - .sct скрипте су онемогућене"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ништа>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Аутоматски>"
 
 #, c-format
 msgid "G&o to Line %1"

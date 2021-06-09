@@ -1083,12 +1083,19 @@ msgid "Prediffer Settings"
 msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "Χωρίς προεπεξεργασία διαφορών"
+msgid "<None>"
+msgstr "<Ουδέν>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Αυτόματη επιλογή προεπεξεργαστή διαφορών"
+msgid "<Automatic>"
+msgstr "<Αυτόματο>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Επιλογή..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Μετά&βαση σε Διαφορά"
@@ -1242,10 +1249,6 @@ msgstr "Ανα&ζήτηση..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Επιλογή..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3954,14 +3957,6 @@ msgstr "Ρυθμίσεις Αρθρωμάτων"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Το Περιβάλλον Διερμηνείας Windows (WSH) δε βρέθηκε - η χρήση αρχείων δέσμης ενεργειών .sct είναι απενεργοποιημένη"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ουδέν>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Αυτόματο>"
 
 #, c-format
 msgid "G&o to Line %1"

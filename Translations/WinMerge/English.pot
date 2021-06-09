@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-08 23:32+0000\n"
+"POT-Creation-Date: 2021-06-09 21:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -861,10 +861,16 @@ msgstr ""
 msgid "Prediffer Settings"
 msgstr ""
 
-msgid "&No prediffer"
+msgid "<None>"
 msgstr ""
 
-msgid "Auto prediffer"
+msgid "<Automatic>"
+msgstr ""
+
+msgid "&Select..."
+msgstr ""
+
+msgid "Unpacker Settings"
 msgstr ""
 
 msgid "G&o to Diff"
@@ -982,9 +988,6 @@ msgid "Browse..."
 msgstr ""
 
 msgid " Folder: Filter"
-msgstr ""
-
-msgid "&Select..."
 msgstr ""
 
 msgid " File: Unpacker Plugin"
@@ -3025,12 +3028,6 @@ msgid "Plugin Settings"
 msgstr ""
 
 msgid "WSH not found - .sct scripts disabled"
-msgstr ""
-
-msgid "<None>"
-msgstr ""
-
-msgid "<Automatic>"
 msgstr ""
 
 #, c-format

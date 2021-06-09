@@ -1086,12 +1086,19 @@ msgid "Prediffer Settings"
 msgstr "PreDiffer Inställningar"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "Ingen PreDiffer"
+msgid "<None>"
+msgstr "<Ingen>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Auto PreDiffer"
+msgid "<Automatic>"
+msgstr "<Automatisk>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Välj ..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Gå till Skillnad"
@@ -1245,10 +1252,6 @@ msgstr "Bläddra ..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Mapp: Filter"
-
-#, c-format
-msgid "&Select..."
-msgstr "Välj ..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4110,14 +4113,6 @@ msgstr "InsticksSättningar"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Windows Script Host ('wscript.exe') hittades inte - .sct manus är förhindrade"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ingen>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatisk>"
 
 #, c-format
 msgid "G&o to Line %1"

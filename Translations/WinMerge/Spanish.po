@@ -871,11 +871,17 @@ msgstr "Copiar &nombre de archivo"
 msgid "Prediffer Settings"
 msgstr "Config. precomparación"
 
-msgid "&No prediffer"
-msgstr "Si&n precomparación"
+msgid "<None>"
+msgstr "<Ninguno>"
 
-msgid "Auto prediffer"
-msgstr "Auto precomparación"
+msgid "<Automatic>"
+msgstr "<Automático>"
+
+msgid "&Select..."
+msgstr "&Seleccionar..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Ir a &diferencia"
@@ -993,9 +999,6 @@ msgstr "Examinar..."
 
 msgid " Folder: Filter"
 msgstr " Carpeta: Filtro"
-
-msgid "&Select..."
-msgstr "&Seleccionar..."
 
 msgid " File: Unpacker Plugin"
 msgstr ""
@@ -3417,12 +3420,6 @@ msgstr "Configuración de plugins"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH no encontrado - scripts .sct deshabilitados"
-
-msgid "<None>"
-msgstr "<Ninguno>"
-
-msgid "<Automatic>"
-msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"

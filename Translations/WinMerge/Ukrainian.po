@@ -1085,12 +1085,19 @@ msgid "Prediffer Settings"
 msgstr "Параметри попереднього порівняння"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Нема попереднього порівняння"
+msgid "<None>"
+msgstr "<Нема>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "&Автоматичне попереднє порівняння"
+msgid "<Automatic>"
+msgstr "<Автоматично>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Вибрати..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Перейти до &відмінності"
@@ -1244,10 +1251,6 @@ msgstr "Перегляд ..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "Вибрати..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3976,14 +3979,6 @@ msgstr "Налаштування доповнення"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не знайдений - .sct сценарії вимкнуті"
-
-#, c-format
-msgid "<None>"
-msgstr "<Нема>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Автоматично>"
 
 #, c-format
 msgid "G&o to Line %1"

@@ -869,11 +869,17 @@ msgstr "Копировать имя файла"
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
 
-msgid "&No prediffer"
-msgstr "&Без предсравнения"
+msgid "<None>"
+msgstr "<Нет>"
 
-msgid "Auto prediffer"
-msgstr "&Автопредсравнение"
+msgid "<Automatic>"
+msgstr "<Автоматически>"
+
+msgid "&Select..."
+msgstr "Выбрать..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Перейти к &отличию"
@@ -991,9 +997,6 @@ msgstr "Обзор..."
 
 msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
-
-msgid "&Select..."
-msgstr "Выбрать..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
@@ -3034,12 +3037,6 @@ msgstr "Настройки плагина"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не найден - .sct скрипты отключены"
-
-msgid "<None>"
-msgstr "<Нет>"
-
-msgid "<Automatic>"
-msgstr "<Автоматически>"
 
 #, c-format
 msgid "G&o to Line %1"

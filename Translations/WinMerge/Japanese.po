@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-09 00:17+0900\n"
+"PO-Revision-Date: 2021-06-09 23:48+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -868,11 +868,17 @@ msgstr "ファイル名をコピー(&F)"
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
 
-msgid "&No prediffer"
-msgstr "使用しない(&N)"
+msgid "<None>"
+msgstr "<なし>"
 
-msgid "Auto prediffer"
-msgstr "自動"
+msgid "<Automatic>"
+msgstr "<自動>"
+
+msgid "&Select..."
+msgstr "選択(&S)..."
+
+msgid "Unpacker Settings"
+msgstr "展開プラグイン設定"
 
 msgid "G&o to Diff"
 msgstr "差異へ移動(&O)"
@@ -990,9 +996,6 @@ msgstr "参照..."
 
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
-
-msgid "&Select..."
-msgstr "選択(&S)..."
 
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
@@ -3412,12 +3415,6 @@ msgstr "プラグイン設定"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH が見つかりません - .sct スクリプトは無効化されました"
-
-msgid "<None>"
-msgstr "<なし>"
-
-msgid "<Automatic>"
-msgstr "<自動>"
 
 #, c-format
 msgid "G&o to Line %1"

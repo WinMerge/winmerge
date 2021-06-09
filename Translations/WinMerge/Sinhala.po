@@ -1080,13 +1080,20 @@ msgstr "ගොනුවෙ නම  පිටපත් කිරීම"
 msgid "Prediffer Settings"
 msgstr "Prediffer Settings"
 
-#, fuzzy, c-format
-msgid "&No prediffer"
-msgstr "&No prediffer"
+#, c-format
+msgid "<None>"
+msgstr "<None>"
 
-#, fuzzy, c-format
-msgid "Auto prediffer"
-msgstr "Auto prediffer"
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatic>"
+
+#, c-format
+msgid "&Select..."
+msgstr "තෝරන්න..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "G&oto Diff"
@@ -1240,10 +1247,6 @@ msgstr "සැරි සරන්න..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "තෝරන්න..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3966,14 +3969,6 @@ msgstr "Plugin Settings"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH not found - .sct scripts disabled"
-
-#, c-format
-msgid "<None>"
-msgstr "<None>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatic>"
 
 #, c-format
 msgid "G&o to Line %1"

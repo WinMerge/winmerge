@@ -867,11 +867,17 @@ msgstr "Kopiuj nazwę pliku"
 msgid "Prediffer Settings"
 msgstr "Ustawienia różnicowania wstępnego"
 
-msgid "&No prediffer"
-msgstr "Bez róż&nicowania wstępnego"
+msgid "<None>"
+msgstr "<Brak>"
 
-msgid "Auto prediffer"
-msgstr "Automatyczne różnicowanie wstępne"
+msgid "<Automatic>"
+msgstr "<Automatycznie>"
+
+msgid "&Select..."
+msgstr "Wybierz..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Idź d&o różnicy"
@@ -989,9 +995,6 @@ msgstr "Przeglądaj..."
 
 msgid " Folder: Filter"
 msgstr " Folder: filtr"
-
-msgid "&Select..."
-msgstr "Wybierz..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Plik: wypakowana wtyczka"
@@ -3032,12 +3035,6 @@ msgstr "Ustawienia wtyczki"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nie znaleziono WSH – skrypty .sct wyłączone"
-
-msgid "<None>"
-msgstr "<Brak>"
-
-msgid "<Automatic>"
-msgstr "<Automatycznie>"
 
 #, c-format
 msgid "G&o to Line %1"

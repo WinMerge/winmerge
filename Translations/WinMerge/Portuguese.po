@@ -870,11 +870,17 @@ msgstr "Co&piar Nome do Ficheiro"
 msgid "Prediffer Settings"
 msgstr "Definições de pré-diferenciação"
 
-msgid "&No prediffer"
-msgstr "Não pré-diferenciar"
+msgid "<None>"
+msgstr "<Nenhum>"
 
-msgid "Auto prediffer"
-msgstr "Pré-diferenciação manual"
+msgid "<Automatic>"
+msgstr "<Automático>"
+
+msgid "&Select..."
+msgstr "Selecionar..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Ir para Diff"
@@ -992,9 +998,6 @@ msgstr "Procurar..."
 
 msgid " Folder: Filter"
 msgstr " Pasta: Filtro"
-
-msgid "&Select..."
-msgstr "Selecionar..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Ficheiro: Unpacker Plugin"
@@ -3495,12 +3498,6 @@ msgstr "Definições de Plugins"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH não encontrado - scripts .sct desativados"
-
-msgid "<None>"
-msgstr "<Nenhum>"
-
-msgid "<Automatic>"
-msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"

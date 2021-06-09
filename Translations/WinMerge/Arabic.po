@@ -868,11 +868,17 @@ msgstr "نسخ اسم الملف"
 msgid "Prediffer Settings"
 msgstr "إعدادات الاختلافات المسبقة"
 
-msgid "&No prediffer"
-msgstr "لا يوجد اختلافات مسبقة"
+msgid "<None>"
+msgstr "<لا يوجد>"
 
-msgid "Auto prediffer"
-msgstr "اختلافات مسبقة تلقائية"
+msgid "<Automatic>"
+msgstr "<تلقائي>"
+
+msgid "&Select..."
+msgstr "&تحديد..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "الذهاب إلى أداة مقارنة الملفات Diff"
@@ -992,9 +998,6 @@ msgstr "بحث..."
 
 msgid " Folder: Filter"
 msgstr " مجلد: مرشح"
-
-msgid "&Select..."
-msgstr "&تحديد..."
 
 msgid " File: Unpacker Plugin"
 msgstr " ملف: إضافة فك الحزمة"
@@ -3379,12 +3382,6 @@ msgstr "إعدادات الإضافات"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH غير موجود - .sct سكربت معطل"
-
-msgid "<None>"
-msgstr "<لا يوجد>"
-
-msgid "<Automatic>"
-msgstr "<تلقائي>"
 
 #, c-format
 msgid "G&o to Line %1"

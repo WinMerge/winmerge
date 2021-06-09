@@ -657,7 +657,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
  * @brief Apply specified setting for prediffing to all selected items
  */
 template<class InputIterator>
-void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, PLUGIN_MODE newsetting)
+void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, bool unpacker, const String& pluginPipeline)
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
@@ -680,7 +680,10 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
 			PackingInfo * infoUnpacker = nullptr;
 			PrediffingInfo * infoPrediffer = nullptr;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-			infoPrediffer->Initialize(newsetting);
+			if (unpacker)
+				infoUnpacker->SetPluginPipeline(pluginPipeline);
+			else
+				infoPrediffer->SetPluginPipeline(pluginPipeline);
 		}
 	}
 }
@@ -689,12 +692,13 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
  * @brief Updates just before displaying plugin context view in list
  */
 template<class InputIterator>
-std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt)
+std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, bool unpacker)
 {
-	int nPredifferYes = 0;
-	int nPredifferNo = 0;
+	int nNone = 0;
+	int nAuto = 0;
+	int nOthers = 0;
 	if( !ctxt.m_bPluginsEnabled || ctxt.m_piPluginInfos == nullptr ) 
-		return std::make_pair(nPredifferYes, nPredifferNo);
+		return std::make_tuple(nNone, nAuto, nOthers);
 
 	for (InputIterator it = begin; it != end; ++it)
 	{
@@ -708,16 +712,19 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 		{
 			PathContext tFiles = GetItemFileNames(ctxt, di);
 			String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
-			PackingInfo * unpacker;
-			PrediffingInfo * prediffer;
-			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (!prediffer->GetPluginPipeline().empty())
-				nPredifferYes ++;
+			PackingInfo * infoUnpacker;
+			PrediffingInfo * infoPrediffer;
+			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+			String pluginPipeline = unpacker ? infoUnpacker->GetPluginPipeline() : infoPrediffer->GetPluginPipeline();
+			if (pluginPipeline.empty())
+				nNone++;
+			else if (pluginPipeline == _T("<Automatic>"))
+				nAuto++;
 			else
-				nPredifferNo ++;
+				nOthers++;
 		}
 	}
-	return std::make_pair(nPredifferYes, nPredifferNo);
+	return std::make_tuple(nNone, nAuto, nOthers);
 }
 
 template<class InputIterator>

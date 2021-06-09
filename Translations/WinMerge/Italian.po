@@ -867,11 +867,17 @@ msgstr "Copia nome del &file"
 msgid "Prediffer Settings"
 msgstr "Impostazioni prediffer"
 
-msgid "&No prediffer"
-msgstr "&Nessun prediffer"
+msgid "<None>"
+msgstr "<Nessuno>"
 
-msgid "Auto prediffer"
-msgstr "Prediffer &automatico"
+msgid "<Automatic>"
+msgstr "<Automatico>"
+
+msgid "&Select..."
+msgstr "Sele&ziona..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Vai alla &differenza"
@@ -989,9 +995,6 @@ msgstr "Sfoglia..."
 
 msgid " Folder: Filter"
 msgstr "Cartella: filtro"
-
-msgid "&Select..."
-msgstr "Sele&ziona..."
 
 msgid " File: Unpacker Plugin"
 msgstr "File: plugin Decompressore"
@@ -3400,12 +3403,6 @@ msgstr "Impostazioni plugin"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH non trovato - script .sct disattivati"
-
-msgid "<None>"
-msgstr "<Nessuno>"
-
-msgid "<Automatic>"
-msgstr "<Automatico>"
 
 #, c-format
 msgid "G&o to Line %1"

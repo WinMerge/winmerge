@@ -1085,12 +1085,19 @@ msgid "Prediffer Settings"
 msgstr "Configuración da precomparación"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Sen precomparación"
+msgid "<None>"
+msgstr "<Ningún>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Precomparación automática"
+msgid "<Automatic>"
+msgstr "<Automático>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Seleccionar…"
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "I&r ás diferenzas"
@@ -1244,10 +1251,6 @@ msgstr "Explorar…"
 #, c-format
 msgid " Folder: Filter"
 msgstr " Cartafol: Filtro"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Seleccionar…"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4137,14 +4140,6 @@ msgstr "Configuración do complemento"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH non atopado - scripts .sct desactivados"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ningún>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"

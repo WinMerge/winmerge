@@ -605,8 +605,6 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
  */
 void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu) 
 {
-	CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
-	
 	if (!bSysMenu)
 	{
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
@@ -616,7 +614,11 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				paths.SetPath(i, pMergeDoc->GetPath(i));
 			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
-			if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			if (topMenuId == ID_NO_PREDIFFER)
+			{
+				UpdatePrediffersMenu();
+			}
+			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
@@ -659,10 +661,15 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 			}
 		}
 
+		CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
 		if (BCMenu::IsMenu(pPopupMenu))
 		{
 			BCMenu::UpdateMenu(pPopupMenu);
 		}
+	}
+	else
+	{
+		CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
 	}
 }
 

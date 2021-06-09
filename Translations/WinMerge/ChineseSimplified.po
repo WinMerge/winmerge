@@ -870,11 +870,17 @@ msgstr "复制文件名(&F)"
 msgid "Prediffer Settings"
 msgstr "设置预处理器"
 
-msgid "&No prediffer"
-msgstr "无预处理器(&N)"
+msgid "<None>"
+msgstr "<无>"
 
-msgid "Auto prediffer"
-msgstr "自动预处理"
+msgid "<Automatic>"
+msgstr "<自动>"
+
+msgid "&Select..."
+msgstr "选择(&S)..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "转到差异(&O)"
@@ -992,9 +998,6 @@ msgstr "浏览..."
 
 msgid " Folder: Filter"
 msgstr " 文件夹: 过滤器"
-
-msgid "&Select..."
-msgstr "选择(&S)..."
 
 msgid " File: Unpacker Plugin"
 msgstr " 文件: 解包插件"
@@ -3418,12 +3421,6 @@ msgstr "插件设置"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH 未找到 - .sct 脚本已禁用"
-
-msgid "<None>"
-msgstr "<无>"
-
-msgid "<Automatic>"
-msgstr "<自动>"
 
 #, c-format
 msgid "G&o to Line %1"

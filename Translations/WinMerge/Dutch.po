@@ -868,11 +868,17 @@ msgstr "Bestandsnaam kopiëren"
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"
 
-msgid "&No prediffer"
-msgstr "Geen voorvergelijking"
+msgid "<None>"
+msgstr "<None>"
 
-msgid "Auto prediffer"
-msgstr "Automatische voorvergelijking"
+msgid "<Automatic>"
+msgstr "<Automatic>"
+
+msgid "&Select..."
+msgstr "Selecteren..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Ga naar verschil"
@@ -990,9 +996,6 @@ msgstr "Bladeren..."
 
 msgid " Folder: Filter"
 msgstr "Map: filter"
-
-msgid "&Select..."
-msgstr "Selecteren..."
 
 msgid " File: Unpacker Plugin"
 msgstr "Bestand: uitpak-plugin"
@@ -3463,12 +3466,6 @@ msgstr "Plugin-instellingen"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH niet gevonden - .sct scripts uitgeschakeld"
-
-msgid "<None>"
-msgstr "<None>"
-
-msgid "<Automatic>"
-msgstr "<Automatic>"
 
 #, c-format
 msgid "G&o to Line %1"

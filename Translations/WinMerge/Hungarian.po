@@ -1086,12 +1086,19 @@ msgid "Prediffer Settings"
 msgstr "Elővizsgáló beállítások"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Nincs elővizsgálat"
+msgid "<None>"
+msgstr "<Nincs>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Automatikus elővizsgálat"
+msgid "<Automatic>"
+msgstr "<Automatikus>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
@@ -1245,10 +1252,6 @@ msgstr "Tallózás..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Mappa: Szűrő"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4138,14 +4141,6 @@ msgstr "Beállítások"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "A WSH nem található - Az .sct szkriptek le lesznek tiltva"
-
-#, c-format
-msgid "<None>"
-msgstr "<Nincs>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatikus>"
 
 #, c-format
 msgid "G&o to Line %1"

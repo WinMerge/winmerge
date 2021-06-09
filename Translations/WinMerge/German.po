@@ -1084,12 +1084,19 @@ msgid "Prediffer Settings"
 msgstr "&Prediffer-Einstellungen"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Kein Prediffer"
+msgid "<None>"
+msgstr "<Keine>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "&Auto-Prediffer"
+msgid "<Automatic>"
+msgstr "<Automatisch>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Zum Unterschied g&ehen"
@@ -1243,10 +1250,6 @@ msgstr "Su&chen..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Ordner: Filter"
-
-#, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3760,14 +3763,6 @@ msgstr "Plugin-Einstellungen"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH nicht gefunden - SCT-Skripte deaktiviert."
-
-#, c-format
-msgid "<None>"
-msgstr "<Keine>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatisch>"
 
 #, c-format
 msgid "G&o to Line %1"

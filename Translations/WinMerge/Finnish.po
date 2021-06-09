@@ -1084,12 +1084,19 @@ msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "Ei esivertailua"
+msgid "<None>"
+msgstr "<Ei mitään>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Automaattinen esivertailu"
+msgid "<Automatic>"
+msgstr "<Automaattinen>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Valitse..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Siirry eroon"
@@ -1243,10 +1250,6 @@ msgstr "Selaa..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
-
-#, c-format
-msgid "&Select..."
-msgstr "Valitse..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4070,14 +4073,6 @@ msgstr "Lisäosien asetukset"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ei löytynyt - .sct skriptit poistettu käytöstä"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ei mitään>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automaattinen>"
 
 #, c-format
 msgid "G&o to Line %1"

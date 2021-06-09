@@ -227,8 +227,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_RIGHT, OnCtxtDirShellContextMenu<SIDE_RIGHT>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
-	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
+	ON_COMMAND_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnPluginSettings)
+	ON_COMMAND_RANGE(ID_UNPACKER_SETTINGS_NONE, ID_UNPACKER_SETTINGS_SELECT, OnPluginSettings)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnUpdatePluginMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACKER_SETTINGS_NONE, ID_UNPACKER_SETTINGS_SELECT, OnUpdatePluginMode)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_LEFT, OnCopyPathnames<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_MIDDLE, OnCopyPathnames<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyPathnames<SIDE_RIGHT>)
@@ -3029,16 +3031,39 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
 /**
  * @brief Handle clicks in plugin context view in list
  */
-void CDirView::OnPluginPredifferMode(UINT nID)
+void CDirView::OnPluginSettings(UINT nID)
 {
-	ApplyPluginPrediffSetting(SelBegin(), SelEnd(), GetDiffContext(), 
-		(nID == ID_PREDIFF_AUTO) ? PLUGIN_MODE::PLUGIN_AUTO : PLUGIN_MODE::PLUGIN_MANUAL);
+	bool unpacker = (ID_UNPACKER_SETTINGS_NONE <= nID && nID <= ID_UNPACKER_SETTINGS_SELECT);
+	String pluginPipeline;
+	switch (nID)
+	{
+	case ID_PREDIFFER_SETTINGS_NONE:
+	case ID_UNPACKER_SETTINGS_NONE:
+		pluginPipeline = _T("");
+		break;
+	case ID_PREDIFFER_SETTINGS_AUTO:
+	case ID_UNPACKER_SETTINGS_AUTO:
+		pluginPipeline = _T("<Automatic>");
+		break;
+	case ID_PREDIFFER_SETTINGS_SELECT:
+	case ID_UNPACKER_SETTINGS_SELECT:
+		String filename;
+		int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
+		if (sel != -1)
+			filename = GetDiffItem(sel).diffFileInfo[0].filename;
+		CSelectPluginDlg dlg(pluginPipeline, filename, unpacker, this);
+		if (dlg.DoModal() != IDOK)
+			return;
+		pluginPipeline = dlg.GetPluginPipeline();
+		break;
+	}
+	ApplyPluginPipeline(SelBegin(), SelEnd(), GetDiffContext(), unpacker, pluginPipeline);
 }
 
 /**
  * @brief Updates just before displaying plugin context view in list
  */
-void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
+void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 {
 	// 2004-04-03, Perry
 	// CMainFrame::OnUpdatePluginUnpackMode handles this for global unpacking
@@ -3053,10 +3078,12 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	if (pPopup == nullptr)
 		return;
 
-	std::pair<int, int> counts = CountPredifferYesNo(SelBegin(), SelEnd(), GetDiffContext());
+	bool unpacker = (ID_UNPACKER_SETTINGS_NONE <= pCmdUI->m_nID && pCmdUI->m_nID <= ID_UNPACKER_SETTINGS_SELECT);
+	auto counts = CountPluginNoneAutoOthers(SelBegin(), SelEnd(), GetDiffContext(), unpacker);
 
-	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (counts.first > 0));
-	CheckContextMenu(pPopup, ID_PREDIFF_MANUAL, (counts.second > 0));
+	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_NONE   : ID_PREDIFFER_SETTINGS_NONE,   (std::get<0>(counts) > 0));
+	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_AUTO   : ID_PREDIFFER_SETTINGS_AUTO,   (std::get<1>(counts) > 0));
+	CheckContextMenu(pPopup, unpacker ? ID_UNPACKER_SETTINGS_SELECT : ID_PREDIFFER_SETTINGS_SELECT, (std::get<2>(counts) > 0));
 }
 
 /**

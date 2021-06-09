@@ -1089,12 +1089,19 @@ msgid "Prediffer Settings"
 msgstr "Prediffer 설정"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "prediffer 없음(&N)"
+msgid "<None>"
+msgstr "<없음>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "자동 prediffer"
+msgid "<Automatic>"
+msgstr "<자동>"
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "차이점으로 이동(&O)"
@@ -1248,10 +1255,6 @@ msgstr "찾아보기..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " 폴더: 필터"
-
-#, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4078,14 +4081,6 @@ msgstr "플러그인 설정"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH이 없습니다 - .sct 스크립트 비활성화"
-
-#, c-format
-msgid "<None>"
-msgstr "<없음>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<자동>"
 
 #, c-format
 msgid "G&o to Line %1"

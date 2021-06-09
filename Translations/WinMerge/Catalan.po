@@ -1083,12 +1083,19 @@ msgid "Prediffer Settings"
 msgstr "Ajustos de prediferenciació"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Sense prediferenciació"
+msgid "<None>"
+msgstr "<Cap>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Prediferenciació &automàtica"
+msgid "<Automatic>"
+msgstr "<Automàtic>"
+
+#, c-format
+msgid "&Select..."
+msgstr "T&ria..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Vé&s a la diferència"
@@ -1242,10 +1249,6 @@ msgstr "N&avega..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "T&ria..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3907,14 +3910,6 @@ msgstr "Ajustos del connector"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "No s'ha trobat el WSH - seqüències d'ordres .sct inhabilitades"
-
-#, c-format
-msgid "<None>"
-msgstr "<Cap>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automàtic>"
 
 #, c-format
 msgid "G&o to Line %1"

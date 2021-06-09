@@ -1084,12 +1084,19 @@ msgid "Prediffer Settings"
 msgstr "Dodaci - postavke "
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Nema dodataka"
+msgid "<None>"
+msgstr "Ništa"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Automatski dodaci"
+msgid "<Automatic>"
+msgstr "Automatski"
+
+#, c-format
+msgid "&Select..."
+msgstr "Oda&bir..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Idi &na razliku"
@@ -1243,10 +1250,6 @@ msgstr "Odabir..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "Oda&bir..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3976,14 +3979,6 @@ msgstr "Postavke dodataka"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH dodatak nije nađen! - .sct skripte su onemogućene"
-
-#, c-format
-msgid "<None>"
-msgstr "Ništa"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "Automatski"
 
 #, c-format
 msgid "G&o to Line %1"

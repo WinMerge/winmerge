@@ -1085,12 +1085,19 @@ msgid "Prediffer Settings"
 msgstr " تنظيمهاي پيش فرق گذار  "
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&N بدون پيش فرق گذار "
+msgid "<None>"
+msgstr "<هيچکدام>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr " پيش فرق گذار خودکار "
+msgid "<Automatic>"
+msgstr "<خودکار>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&S انتخاب ... "
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "&o برو به محل تفاوت "
@@ -1244,10 +1251,6 @@ msgstr " مرور ... "
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&S انتخاب ... "
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4019,14 +4022,6 @@ msgstr " قرارگاههاي افزايه ها"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr " .sct پيدا نشد -  دست نوشته ها غير فعال شد WSH  "
-
-#, c-format
-msgid "<None>"
-msgstr "<هيچکدام>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<خودکار>"
 
 #, c-format
 msgid "G&o to Line %1"

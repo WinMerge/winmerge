@@ -870,11 +870,17 @@ msgstr "Kopijuoti &failo vardą"
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"
 
-msgid "&No prediffer"
-msgstr "&Nėra parengėjo"
+msgid "<None>"
+msgstr "<Nėra>"
 
-msgid "Auto prediffer"
-msgstr "Automatinis parengėjas"
+msgid "<Automatic>"
+msgstr "<Automatinis>"
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Pereiti prie skirtum&o"
@@ -992,9 +998,6 @@ msgstr "Rasti..."
 
 msgid " Folder: Filter"
 msgstr " Katalogams: Filtras"
-
-msgid "&Select..."
-msgstr "Pa&rinkti..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Failams: Išpakuotojas"
@@ -3035,12 +3038,6 @@ msgstr "Papildinio nuostatos"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nerastas WSH - .sct skriptai išjungti"
-
-msgid "<None>"
-msgstr "<Nėra>"
-
-msgid "<Automatic>"
-msgstr "<Automatinis>"
 
 #, c-format
 msgid "G&o to Line %1"

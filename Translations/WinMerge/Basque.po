@@ -1086,12 +1086,19 @@ msgid "Prediffer Settings"
 msgstr "Aurrezberdintasun Ezarpenak"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Ez aurrezberd"
+msgid "<None>"
+msgstr "<Ezer ez>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Berez aurrezberd"
+msgid "<Automatic>"
+msgstr "<Berezgaitasunez>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Hautatu..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Jo&an Ezberd"
@@ -1245,10 +1252,6 @@ msgstr "Bilatu..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Hautatu..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3977,14 +3980,6 @@ msgstr "Plugin Ezarpenak"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ez da aurkitu - .sct eskriptak ezgaituta"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ezer ez>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Berezgaitasunez>"
 
 #, c-format
 msgid "G&o to Line %1"

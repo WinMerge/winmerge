@@ -1092,12 +1092,19 @@ msgid "Prediffer Settings"
 msgstr "先行處理器設定"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "不要先行處理器(&N)"
+msgid "<None>"
+msgstr "<無>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "自動先行處理器"
+msgid "<Automatic>"
+msgstr "<自動>"
+
+#, c-format
+msgid "&Select..."
+msgstr "選取(&S)..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "至差異區塊(&O)"
@@ -1251,10 +1258,6 @@ msgstr "瀏覽..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "選取(&S)..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3985,14 +3988,6 @@ msgstr "外掛設定"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "找不到 WSH - 停用 .sct 指令碼"
-
-#, c-format
-msgid "<None>"
-msgstr "<無>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<自動>"
 
 #, c-format
 msgid "G&o to Line %1"

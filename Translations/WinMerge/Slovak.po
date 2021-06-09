@@ -870,11 +870,17 @@ msgstr "Kopírovať názov &súboru"
 msgid "Prediffer Settings"
 msgstr "Nastavenia predspracovania rozdielov"
 
-msgid "&No prediffer"
-msgstr "&Bez predspracovania rozdielov"
+msgid "<None>"
+msgstr "<Žiadny>"
 
-msgid "Auto prediffer"
-msgstr "&Automatické predspracovanie rozdielov"
+msgid "<Automatic>"
+msgstr "<Automatické>"
+
+msgid "&Select..."
+msgstr "&Vybrať..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Ch&oď na rozdiel"
@@ -992,9 +998,6 @@ msgstr "Prehľadávať..."
 
 msgid " Folder: Filter"
 msgstr " Priečinok: Filter"
-
-msgid "&Select..."
-msgstr "&Vybrať..."
 
 msgid " File: Unpacker Plugin"
 msgstr " File: Rozšírenie rozbaľovača"
@@ -3441,12 +3444,6 @@ msgstr "Nastavenia rozšírení"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH nenájdené - .sct skripty sú zakázané"
-
-msgid "<None>"
-msgstr "<Žiadny>"
-
-msgid "<Automatic>"
-msgstr "<Automatické>"
 
 #, c-format
 msgid "G&o to Line %1"

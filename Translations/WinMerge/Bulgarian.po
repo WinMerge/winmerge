@@ -864,10 +864,16 @@ msgstr "Копиране на &името"
 msgid "Prediffer Settings"
 msgstr ""
 
-msgid "&No prediffer"
-msgstr ""
+msgid "<None>"
+msgstr "<Няма>"
 
-msgid "Auto prediffer"
+msgid "<Automatic>"
+msgstr "<Автоматично>"
+
+msgid "&Select..."
+msgstr "&Избиране…"
+
+msgid "Unpacker Settings"
 msgstr ""
 
 msgid "G&o to Diff"
@@ -986,9 +992,6 @@ msgstr "Разглеждане…"
 
 msgid " Folder: Filter"
 msgstr " Папка: Филтър"
-
-msgid "&Select..."
-msgstr "&Избиране…"
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: Unpacker добавка"
@@ -3458,12 +3461,6 @@ msgstr "Настройки на добавките"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не е намерен - скриптовете на .sct са забранени"
-
-msgid "<None>"
-msgstr "<Няма>"
-
-msgid "<Automatic>"
-msgstr "<Автоматично>"
 
 #, c-format
 msgid "G&o to Line %1"

@@ -1091,12 +1091,19 @@ msgid "Prediffer Settings"
 msgstr "Paramètres de pré-comparaison"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "Au&cun"
+msgid "<None>"
+msgstr "<Aucun>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Au&tomatique"
+msgid "<Automatic>"
+msgstr "<Automatique>"
+
+#, c-format
+msgid "&Select..."
+msgstr "C&hoisir..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Atteindre la différence courante"
@@ -1250,10 +1257,6 @@ msgstr "Parc&ourir..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Dossier : filtre"
-
-#, c-format
-msgid "&Select..."
-msgstr "C&hoisir..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4145,14 +4148,6 @@ msgstr "Paramètres des plugins"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH non trouvé - les scripts .sct sont désactivés"
-
-#, c-format
-msgid "<None>"
-msgstr "<Aucun>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatique>"
 
 #, c-format
 msgid "G&o to Line %1"

@@ -1084,11 +1084,18 @@ msgid "Prediffer Settings"
 msgstr ""
 
 #, c-format
-msgid "&No prediffer"
-msgstr ""
+msgid "<None>"
+msgstr "<žádný>"
 
 #, c-format
-msgid "Auto prediffer"
+msgid "<Automatic>"
+msgstr "<automaticky>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Vy&brat..."
+
+msgid "Unpacker Settings"
 msgstr ""
 
 msgid "G&o to Diff"
@@ -1243,10 +1250,6 @@ msgstr "Pr&ocházet..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "Vy&brat..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -3909,14 +3912,6 @@ msgstr "Nastavení pluginů"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Program Windows Script Host nebyl nalezen - skripty .sct jsou vypnuté"
-
-#, c-format
-msgid "<None>"
-msgstr "<žádný>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<automaticky>"
 
 #, c-format
 msgid "G&o to Line %1"

@@ -847,8 +847,15 @@ IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
+    END
+    POPUP "Unpacker Settings"
+    BEGIN
+        MENUITEM "<None>",                      ID_UNPACKER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_UNPACKER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_UNPACKER_SETTINGS_SELECT
     END
 END
 

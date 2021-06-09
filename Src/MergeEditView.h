@@ -317,7 +317,6 @@ protected:
 	afx_msg void OnShellMenu();
 	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
-	afx_msg void OnUpdateNoPrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnNoPrediffer();
 	afx_msg void OnPrediffer(UINT nID );

@@ -868,11 +868,17 @@ msgstr "&Dosya adını kopyala"
 msgid "Prediffer Settings"
 msgstr "Ön farklılaştırıcı ayarları"
 
-msgid "&No prediffer"
-msgstr "Ö&n farklılaştırıcı yok"
+msgid "<None>"
+msgstr "<Yok>"
 
-msgid "Auto prediffer"
-msgstr "Otomatik ön farklılaştırıcı"
+msgid "<Automatic>"
+msgstr "<Otomatik>"
+
+msgid "&Select..."
+msgstr "Seçi&n..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Fa&rka git"
@@ -990,9 +996,6 @@ msgstr "Göz at..."
 
 msgid " Folder: Filter"
 msgstr " Klasör: Süzgeç"
-
-msgid "&Select..."
-msgstr "Seçi&n..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
@@ -3481,12 +3484,6 @@ msgstr "Eklenti ayarları"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Windows Script Host bulunamadı - .sct betikleri etkisizleştirildi"
-
-msgid "<None>"
-msgstr "<Yok>"
-
-msgid "<Automatic>"
-msgstr "<Otomatik>"
 
 #, c-format
 msgid "G&o to Line %1"

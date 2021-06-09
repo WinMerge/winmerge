@@ -3276,7 +3276,9 @@ bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc);
+	PrediffingInfo infoPrediffer;
+	GetPrediffer(&infoPrediffer);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &infoPrediffer, m_pInfoUnpacker.get());
 	CDocument::SetTitle(sTitle.c_str());
 }
 

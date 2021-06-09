@@ -1084,12 +1084,19 @@ msgid "Prediffer Settings"
 msgstr "Nastavitve predogleda razlik"
 
 #, c-format
-msgid "&No prediffer"
-msgstr "&Brez predogleda razlik"
+msgid "<None>"
+msgstr "<Brez>"
 
 #, c-format
-msgid "Auto prediffer"
-msgstr "Samodejni predogled razlik"
+msgid "<Automatic>"
+msgstr "<Samodejno>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Izberi..."
+
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "G&o to Diff"
 msgstr "Pojdi &na razliko"
@@ -1243,10 +1250,6 @@ msgstr "Prebrskaj..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Mapa: Filter"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Izberi..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -4132,14 +4135,6 @@ msgstr "Nastavitve vtičnika"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ni najden - skripti '.sct' so onemogočeni"
-
-#, c-format
-msgid "<None>"
-msgstr "<Brez>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Samodejno>"
 
 #, c-format
 msgid "G&o to Line %1"
