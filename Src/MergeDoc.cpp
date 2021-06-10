@@ -3278,7 +3278,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
 	PrediffingInfo infoPrediffer;
 	GetPrediffer(&infoPrediffer);
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &infoPrediffer, m_pInfoUnpacker.get());
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, m_pInfoUnpacker.get(), &infoPrediffer);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
