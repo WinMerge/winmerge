@@ -143,7 +143,6 @@ public:
 	virtual int GetEmptySubLines( int nLineIndex ) override;
 	virtual void InvalidateSubLineIndexCache( int nLineIndex ) override;
 	void RepaintLocationPane();
-	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
@@ -192,7 +191,6 @@ protected:
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz) override;
 	virtual void OnUpdateCaret() override;
 	bool MergeModeKeyDown(MSG* pMsg);
-	int FindPrediffer(LPCTSTR prediffer) const;
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 	void OnNext3wayDiff(int type);
 	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);

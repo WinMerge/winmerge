@@ -3441,6 +3441,7 @@ void CMergeDoc::OnApplyPrediffer()
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
 	SetPrediffer(&prediffer);
 	FlushAndRescan(true);
+	SetTitle(nullptr);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()

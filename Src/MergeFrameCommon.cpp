@@ -163,7 +163,7 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 		plugin = _T("P");
 	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
 		plugin += _T("U");
-	return sTitle + (plugin.empty() ? _T("") : (_T(" [") + plugin + _T("]")));
+	return sTitle + (plugin.empty() ? _T("") : (_T(" (") + plugin + _T(")")));
 }
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

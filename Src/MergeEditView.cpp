@@ -3513,6 +3513,7 @@ void CMergeEditView::OnPrediffer(UINT nID )
 
 	SetPredifferByMenu(nID);
 	pd->FlushAndRescan(true);
+	pd->SetTitle(nullptr);
 }
 
 /**
@@ -3566,48 +3567,6 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 
 	// update the prediffer and rescan
 	pd->SetPrediffer(&prediffer);
-}
-
-/**
- * @brief Look through available prediffers, and return ID of requested one, if found
- */
-int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
-{
-	size_t i;
-	int ID = ID_PREDIFFERS_FIRST;
-
-	// Search file prediffers
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	for (i=0; i<piScriptArray->size(); ++i, ++ID)
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(i);
-		if (plugin->m_name == prediffer)
-			return ID;
-	}
-
-	// Search buffer prediffers
-	PluginArray * piScriptArray2 = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-	for (i=0; i<piScriptArray2->size(); ++i, ++ID)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(i);
-		if (plugin->m_name == prediffer)
-			return ID;
-	}
-	return -1;
-}
-
-
-/**
- * @brief Look through available prediffers, and return ID of requested one, if found
- */
-bool CMergeEditView::SetPredifferByName(const CString & prediffer)
-{
-	int id = FindPrediffer(prediffer);
-	if (id<0) return false;
-	SetPredifferByMenu(id);
-	return true;
 }
 
 /** 
