@@ -2875,6 +2875,9 @@ void CMainFrame::ReloadMenu()
 void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
 	const std::vector<std::wstring> events, bool addAllMenu, unsigned baseId)
 {
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return;
+
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
 
 	if (!addAllMenu)

@@ -254,9 +254,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 	pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
 	
-	//Reset the cache for the Automatic/Manual Unpacking/Prediffer settings to take effect
-	m_pluginman.Reset();
-
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 }
@@ -285,6 +282,8 @@ void CDirDoc::Rescan()
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan && !m_bGeneratingReport)
 	{
+		// Reset the cache for the Automatic/Manual Unpacking/Prediffer settings to take effect
+		m_pluginman.Reset();
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
 	}
