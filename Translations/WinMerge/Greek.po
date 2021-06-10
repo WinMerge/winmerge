@@ -3287,6 +3287,14 @@ msgid "Binary"
 msgstr "Δυαδικό"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Αποσυμπιεστικό"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Προεπεξεργαστής Διαφορών"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Η σύγκριση των αρχείων είναι αδύνατη"
 
@@ -3528,6 +3536,12 @@ msgstr "Αριθμός διαφορών στο αρχείο. Αυτός ο αρ�
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Εμφανίζει έναν αστερίσκο (*) εάν το αρχείο είναι δυαδικό."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3827,14 +3841,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Τύπος"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Αποσυμπιεστικό"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Προεπεξεργαστής Διαφορών"
 
 #, c-format
 msgid "Editor script"

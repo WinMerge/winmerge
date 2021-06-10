@@ -2800,6 +2800,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binary"
 
+msgid "Unpacker"
+msgstr "Ayıklayıcı"
+
+msgid "Prediffer"
+msgstr "Ön farklılaştırıcı"
+
 msgid "Unable to compare files"
 msgstr "Dosyalar karşılaştırılamıyor"
 
@@ -2997,6 +3003,12 @@ msgstr "Dosyadaki fark sayısı. Bu sayıya yok sayılan farklar katılmamışt�
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Dosya binary ise yıldız (*) ile görüntülensin."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3288,12 +3300,6 @@ msgstr "Yeni örnek"
 
 msgid "Type"
 msgstr "Tür"
-
-msgid "Unpacker"
-msgstr "Ayıklayıcı"
-
-msgid "Prediffer"
-msgstr "Ön farklılaştırıcı"
 
 msgid "Editor script"
 msgstr "Düzenleyici betiği"

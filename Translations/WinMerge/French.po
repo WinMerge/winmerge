@@ -3375,6 +3375,14 @@ msgid "Binary"
 msgstr "Binaire"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Décompresseur"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Pré-comparaison"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Impossible de comparer les fichiers"
 
@@ -3616,6 +3624,12 @@ msgstr "Nombre de différences dans le fichier. Ce nombre n'inclut pas les diff�
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Indique un astérisque (*) si le fichier est binaire."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3930,14 +3944,6 @@ msgstr "Nouveau modèle"
 #, c-format
 msgid "Type"
 msgstr "Type"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Décompresseur"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Pré-comparaison"
 
 #, c-format
 msgid "Editor script"

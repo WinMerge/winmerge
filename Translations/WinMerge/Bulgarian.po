@@ -2790,6 +2790,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Двоичен"
 
+msgid "Unpacker"
+msgstr ""
+
+msgid "Prediffer"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Не може да бъде извършено сравняване на файлове"
 
@@ -2987,6 +2993,12 @@ msgstr "Брой различия във файла. Не включва пре�
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показва звездичка (*), ако файлът е двоичен."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3277,12 +3289,6 @@ msgstr ""
 
 msgid "Type"
 msgstr "Вид"
-
-msgid "Unpacker"
-msgstr ""
-
-msgid "Prediffer"
-msgstr ""
 
 msgid "Editor script"
 msgstr ""

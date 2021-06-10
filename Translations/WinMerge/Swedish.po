@@ -3360,6 +3360,14 @@ msgid "Binary"
 msgstr "Binär"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Uppackare"
+
+#, c-format
+msgid "Prediffer"
+msgstr "PreDiffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Kan inte jämföra filerna"
 
@@ -3599,6 +3607,12 @@ msgstr "Antalet skillnader i filen. Detta antal omfattar inte åsidosatta skilln
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Visar stjärna (*) om filen är binär."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3912,14 +3926,6 @@ msgstr "Nytt Mönster"
 #, c-format
 msgid "Type"
 msgstr "Typ"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Uppackare"
-
-#, c-format
-msgid "Prediffer"
-msgstr "PreDiffer"
 
 #, c-format
 msgid "Editor script"

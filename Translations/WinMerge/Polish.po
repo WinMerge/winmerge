@@ -2521,6 +2521,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binarny"
 
+msgid "Unpacker"
+msgstr "Program rozpakowujący"
+
+msgid "Prediffer"
+msgstr "Różnicowanie wstępne"
+
 msgid "Unable to compare files"
 msgstr "Nie można porównać plików"
 
@@ -2712,6 +2718,12 @@ msgstr "Liczba różnic w pliku. Liczba ta nie zawiera zignorowanych różnic."
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Pokazuje gwiazdkę (*) jeśli plik jest binarny."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2931,12 +2943,6 @@ msgstr "Nowy wzorzec"
 
 msgid "Type"
 msgstr "Typ"
-
-msgid "Unpacker"
-msgstr "Program rozpakowujący"
-
-msgid "Prediffer"
-msgstr "Różnicowanie wstępne"
 
 msgid "Editor script"
 msgstr "Skrypt edytora"

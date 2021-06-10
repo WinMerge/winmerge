@@ -3253,6 +3253,14 @@ msgid "Binary"
 msgstr "Binari"
 
 #, c-format
+msgid "Unpacker"
+msgstr ""
+
+#, c-format
+msgid "Prediffer"
+msgstr ""
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "No es pot comparar els fitxers"
 
@@ -3494,6 +3502,12 @@ msgstr "Nombre de diferències al fitxer. Aquest nombre no inclou les diferènci
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Mostra un asterisc (*) si el fitxer és binari."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3779,14 +3793,6 @@ msgstr ""
 
 #, c-format
 msgid "Type"
-msgstr ""
-
-#, c-format
-msgid "Unpacker"
-msgstr ""
-
-#, c-format
-msgid "Prediffer"
 msgstr ""
 
 #, c-format

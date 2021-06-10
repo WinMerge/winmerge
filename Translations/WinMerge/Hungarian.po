@@ -3368,6 +3368,14 @@ msgid "Binary"
 msgstr "Bináris"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Kitömörítő"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Elővizsgáló"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Nem lehet összehasonlítani a fájlokat"
 
@@ -3609,6 +3617,12 @@ msgstr "Különbségek száma a fájlban. Ez a szám nem tartalmazza a mellőzö
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "(*) látható, ha a fájl bináris."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3923,14 +3937,6 @@ msgstr "Új fajta"
 #, c-format
 msgid "Type"
 msgstr "Típus"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Kitömörítő"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Elővizsgáló"
 
 #, c-format
 msgid "Editor script"

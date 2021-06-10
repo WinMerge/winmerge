@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-09 21:26+0000\n"
+"POT-Creation-Date: 2021-06-10 21:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2515,6 +2515,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr ""
 
+msgid "Unpacker"
+msgstr ""
+
+msgid "Prediffer"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr ""
 
@@ -2705,6 +2711,12 @@ msgid "Number of differences in file. This number does not include ignored diffe
 msgstr ""
 
 msgid "Shows an asterisk (*) if the file is binary."
+msgstr ""
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
 msgstr ""
 
 #, c-format
@@ -2924,12 +2936,6 @@ msgid "New Pattern"
 msgstr ""
 
 msgid "Type"
-msgstr ""
-
-msgid "Unpacker"
-msgstr ""
-
-msgid "Prediffer"
 msgstr ""
 
 msgid "Editor script"

@@ -649,7 +649,7 @@ void COpenView::OnCompare(UINT nID)
 		tmpPackingInfo.SetPluginPipeline(pDoc->m_strUnpackerPipeline);
 		GetMainFrame()->DoFileOpen(
 			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
-			nullptr, _T(""), pDoc->m_bRecurse, nullptr, nullptr, &tmpPackingInfo);
+			nullptr, _T(""), pDoc->m_bRecurse, nullptr, &tmpPackingInfo, nullptr);
 	}
 	else
 	{

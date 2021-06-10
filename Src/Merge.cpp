@@ -706,14 +706,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoPrediffer.get(), infoUnpacker.get());
+				infoUnpacker.get(), infoPrediffer.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoPrediffer.get(), infoUnpacker.get());
+				infoUnpacker.get(), infoPrediffer.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -741,7 +741,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					infoPrediffer.get(), infoUnpacker.get());
+					infoUnpacker.get(), infoPrediffer.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -1238,7 +1238,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
 		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
-			nullptr, pInfoPrediffer.get(), pInfoUnpacker.get());
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());

@@ -93,7 +93,7 @@ public:
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
-		const PrediffingInfo * infoPrediffer = nullptr, const PackingInfo * infoUnpacker = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],

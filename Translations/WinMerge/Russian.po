@@ -2523,6 +2523,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Двоичный"
 
+msgid "Unpacker"
+msgstr "Распаковщик"
+
+msgid "Prediffer"
+msgstr "Предсравнение"
+
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
 
@@ -2714,6 +2720,12 @@ msgstr "Количество отличий в файле. Это количес
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показать звездочку (*) если файл двоичный."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2933,12 +2945,6 @@ msgstr "Новый шаблон"
 
 msgid "Type"
 msgstr "Тип"
-
-msgid "Unpacker"
-msgstr "Распаковщик"
-
-msgid "Prediffer"
-msgstr "Предсравнение"
 
 msgid "Editor script"
 msgstr "Редактор скриптов"

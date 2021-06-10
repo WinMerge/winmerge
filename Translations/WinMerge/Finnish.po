@@ -3328,6 +3328,14 @@ msgid "Binary"
 msgstr "Binääri"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Purkaja"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Esivertailu"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Tiedostoja ei voi verrata"
 
@@ -3569,6 +3577,12 @@ msgstr "Erojen määrä tiedostossa. Tämä luku ei sisällä ohitettuja eroja."
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Näyttää tähden(*), jos tiedosto on binäärinen."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3871,14 +3885,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Tyyppi"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Purkaja"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Esivertailu"
 
 #, c-format
 msgid "Editor script"

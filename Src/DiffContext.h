@@ -151,6 +151,8 @@ public:
 
 	const DIFFOPTIONS *GetOptions() const { return m_pOptions.get(); }
 
+	void GetComparePaths(const DIFFITEM& di, PathContext& tFiles) const;
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IDiffFilter * m_pImgfileFilter; /**< Interface for image file filtering */
 	IPluginInfos * m_piPluginInfos;

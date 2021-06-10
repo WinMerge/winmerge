@@ -3362,6 +3362,14 @@ msgid "Binary"
 msgstr "Dvojiško"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Razpakovalec"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Predpregled razlik"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Datotek ni mogoče primerjati"
 
@@ -3603,6 +3611,12 @@ msgstr "Število razlik v datoteki. Ta številka ne vsebuje prezrtih razlik."
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Prikaže zvezdico (*) če je datoteka dvojiška."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3917,14 +3931,6 @@ msgstr "Nov vzorec"
 #, c-format
 msgid "Type"
 msgstr "Vrsta"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Razpakovalec"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Predpregled razlik"
 
 #, c-format
 msgid "Editor script"

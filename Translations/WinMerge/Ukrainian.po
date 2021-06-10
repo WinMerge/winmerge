@@ -3308,6 +3308,14 @@ msgid "Binary"
 msgstr "Бінарний"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Розпакувальник"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Нехтувач"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Неможливо порівняти файли"
 
@@ -3549,6 +3557,12 @@ msgstr "Кількість відмінностей у файлі. Ігноро�
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показати зірочку (*) якщо файл бінарний."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3849,14 +3863,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Тип"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Розпакувальник"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Нехтувач"
 
 #, c-format
 msgid "Editor script"

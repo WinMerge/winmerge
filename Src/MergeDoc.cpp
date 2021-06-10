@@ -3379,7 +3379,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, nullptr, m_pInfoUnpacker.get());
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, m_pInfoUnpacker.get(), nullptr);
 			CloseNow();
 		}
 		else

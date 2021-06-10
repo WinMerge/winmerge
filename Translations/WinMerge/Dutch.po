@@ -2791,6 +2791,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binair"
 
+msgid "Unpacker"
+msgstr "Uitpakker"
+
+msgid "Prediffer"
+msgstr "Voorvergelijken"
+
 msgid "Unable to compare files"
 msgstr "Kan bestanden niet vergelijken"
 
@@ -2989,6 +2995,12 @@ msgstr ""
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Geeft een asterisk (*) weer als het bestand binair is."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3270,12 +3282,6 @@ msgstr "Nieuw patroon"
 
 msgid "Type"
 msgstr "Type"
-
-msgid "Unpacker"
-msgstr "Uitpakker"
-
-msgid "Prediffer"
-msgstr "Voorvergelijken"
 
 msgid "Editor script"
 msgstr "Editor-script"

@@ -247,3 +247,31 @@ bool CDiffContext::ShouldAbort() const
 {
 	return m_piAbortable!=nullptr && m_piAbortable->ShouldAbort();
 }
+
+/**
+ * @brief Get actual compared paths from DIFFITEM.
+ * @param [in] pCtx Pointer to compare context.
+ * @param [in] di DiffItem from which the paths are created.
+ * @param [out] left Gets the left compare path.
+ * @param [out] right Gets the right compare path.
+ * @note If item is unique, same path is returned for both.
+ */
+void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) const
+{
+	int nDirs = GetCompareDirs();
+
+	tFiles.SetSize(nDirs);
+
+	for (int nIndex = 0; nIndex < nDirs; nIndex++)
+	{
+		if (di.diffcode.exists(nIndex))
+		{
+			tFiles.SetPath(nIndex,
+				paths::ConcatPath(GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
+		}
+		else
+		{
+			tFiles.SetPath(nIndex, _T("NUL"), false);
+		}
+	}
+}

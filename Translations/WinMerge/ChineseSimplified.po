@@ -2771,6 +2771,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "二进制"
 
+msgid "Unpacker"
+msgstr "解包器"
+
+msgid "Prediffer"
+msgstr "预处理器"
+
 msgid "Unable to compare files"
 msgstr "无法比较文件"
 
@@ -2966,6 +2972,12 @@ msgstr "文件中的差异数。不包括忽略的差异。"
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "在二进制文件处显示星号(*)。"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3243,12 +3255,6 @@ msgstr "新模式"
 
 msgid "Type"
 msgstr "类型"
-
-msgid "Unpacker"
-msgstr "解包器"
-
-msgid "Prediffer"
-msgstr "预处理器"
 
 msgid "Editor script"
 msgstr "编辑器脚本"

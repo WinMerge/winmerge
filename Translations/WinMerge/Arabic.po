@@ -2745,6 +2745,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "ثنائي"
 
+msgid "Unpacker"
+msgstr "فك الحزمة"
+
+msgid "Prediffer"
+msgstr "اختلافات مسبقة"
+
 msgid "Unable to compare files"
 msgstr "لا يمكن مقارنة الملفات"
 
@@ -2942,6 +2948,12 @@ msgstr "عدد الاختلافات في الملف. هذه العدد لا يش
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "ضع علامة النجمة (*) إذا كان الملف ثنائي."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3205,12 +3217,6 @@ msgstr ""
 
 msgid "Type"
 msgstr "النوع"
-
-msgid "Unpacker"
-msgstr "فك الحزمة"
-
-msgid "Prediffer"
-msgstr "اختلافات مسبقة"
 
 msgid "Editor script"
 msgstr "محرر اللغة النصية (سكريبت)"

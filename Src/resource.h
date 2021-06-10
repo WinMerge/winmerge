@@ -1180,6 +1180,8 @@
 #define IDS_COLHDR_NIDIFFS              41814
 #define IDS_COLHDR_NSDIFFS              41815
 #define IDS_COLHDR_BINARY               41816
+#define IDS_COLHDR_UNPACKER             41817
+#define IDS_COLHDR_PREDIFFER            41818
 #define IDS_CANT_COMPARE_FILES          41831
 #define IDS_ABORTED_ITEM                41832
 #define IDS_FILE_SKIPPED                41833
@@ -1244,6 +1246,8 @@
 #define IDS_COLDESC_NIDIFFS             41944
 #define IDS_COLDESC_NSDIFFS             41945
 #define IDS_COLDESC_BINARY              41946
+#define IDS_COLDESC_UNPACKER            41947
+#define IDS_COLDESC_PREDIFFER           41948
 #define IDS_DIRECTORY_REPORT_TITLE      41962
 #define IDS_REPORT_COMMALIST            41963
 #define IDS_REPORT_TABLIST              41964

@@ -3300,6 +3300,14 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "ද්වීමය "
 
+#, fuzzy, c-format
+msgid "Unpacker"
+msgstr "Unpacker"
+
+#, fuzzy, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "ලිපිගොනු සංසන්දනය කිරීමට නොහැකිය"
@@ -3542,6 +3550,12 @@ msgstr "Number of differences in file. This number does not include ignored diff
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Shows an asterisk (*) if the file is binary."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3839,14 +3853,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Type"
-
-#, fuzzy, c-format
-msgid "Unpacker"
-msgstr "Unpacker"
-
-#, fuzzy, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
 
 #, c-format
 msgid "Editor script"

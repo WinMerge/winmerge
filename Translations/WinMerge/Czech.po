@@ -3256,6 +3256,14 @@ msgid "Binary"
 msgstr "Binární"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Převaděč"
+
+#, c-format
+msgid "Prediffer"
+msgstr ""
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Soubory nelze porovnat"
 
@@ -3497,6 +3505,12 @@ msgstr "Počet rozdílů v souboru. Neobsahuje ignorované rozdíly."
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Ukáže hvězdičku (*), pokud je soubor binární"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3782,14 +3796,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Typ"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Převaděč"
-
-#, c-format
-msgid "Prediffer"
-msgstr ""
 
 #, c-format
 msgid "Editor script"

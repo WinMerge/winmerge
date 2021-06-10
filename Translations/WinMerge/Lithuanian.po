@@ -2524,6 +2524,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binarinis"
 
+msgid "Unpacker"
+msgstr "Išpakavimo programa"
+
+msgid "Prediffer"
+msgstr "Parengėjas"
+
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
 
@@ -2715,6 +2721,12 @@ msgstr "Skirtumų skaičius faile. Šis skaičius neapima ignoruotų skirtumų."
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Rodyti žvaigždutę (*) jei failas yra binarinis."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2934,12 +2946,6 @@ msgstr "Naujas šablonas"
 
 msgid "Type"
 msgstr "Tipas"
-
-msgid "Unpacker"
-msgstr "Išpakavimo programa"
-
-msgid "Prediffer"
-msgstr "Parengėjas"
 
 msgid "Editor script"
 msgstr "Redaktoriaus skriptas"

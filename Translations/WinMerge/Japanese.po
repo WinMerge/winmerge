@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-09 23:48+0900\n"
+"PO-Revision-Date: 2021-06-10 21:21+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2758,6 +2758,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "バイナリ"
 
+msgid "Unpacker"
+msgstr "展開プラグイン"
+
+msgid "Prediffer"
+msgstr "比較前処理プラグイン"
+
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"
 
@@ -2912,7 +2918,7 @@ msgid "Middle side file version, only for some filetypes."
 msgstr "中央ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 msgid "Short comparison result."
-msgstr "短い形式の比較結果を表示です。"
+msgstr "短い形式の比較結果を表示します。"
 
 msgid "Left side attributes."
 msgstr "左側の属性です。"
@@ -2949,6 +2955,12 @@ msgstr "ファイル内の差異の数です。この数値は無視した差異
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "バイナリ ファイルの場合にアスタリスク (*) を表示します。"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr "展開プラグイン名またはパイプラインを表示します。"
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "比較前処理プラグイン名またはパイプラインを表示します。"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3223,12 +3235,6 @@ msgstr "新しいパターン"
 
 msgid "Type"
 msgstr "タイプ"
-
-msgid "Unpacker"
-msgstr "展開プラグイン"
-
-msgid "Prediffer"
-msgstr "比較前処理プラグイン"
 
 msgid "Editor script"
 msgstr "エディター スクリプト"

@@ -3284,6 +3284,14 @@ msgid "Binary"
 msgstr "Бинарни"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Распакивање"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Дефинисано поређење"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Не могу упоредити датотеке"
 
@@ -3525,6 +3533,12 @@ msgstr "Број разлика у датотеци.Овај број не ук�
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Приказује звездицу (*), ако је датотека бинарна"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3821,14 +3835,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Врста"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Распакивање"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Дефинисано поређење"
 
 #, c-format
 msgid "Editor script"

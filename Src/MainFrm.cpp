@@ -755,7 +755,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 			PathContext paths;
 			for (int i = 0; i < nFiles; ++i)
 				paths.SetPath(i, ifileloc[i].filepath);
-			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, nullptr, &handler);
+			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, &handler, nullptr);
 		}
 		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
@@ -1072,7 +1072,7 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  */
 bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
-	const PrediffingInfo *infoPrediffer /*= nullptr*/, const PackingInfo *infoUnpacker /*= nullptr*/)
+	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
@@ -2899,11 +2899,21 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 	}
 
+	std::vector<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
+		processTypes.push_back(processType);
+	auto it = std::find(processTypes.begin(), processTypes.end(), _T("Others"));
+	if (it != processTypes.end())
+	{
+		processTypes.erase(it);
+		processTypes.push_back(_T("Others"));
+	}
+
+	for (const auto& processType: processTypes)
 	{
 		CMenu popup;
 		popup.CreatePopupMenu();
-		for (const auto& [caption, name, id, plugin] : pluginList)
+		for (const auto& [caption, name, id, plugin] : allPlugins[processType])
 			popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
 		pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
 		popup.Detach();

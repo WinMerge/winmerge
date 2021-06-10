@@ -3334,6 +3334,14 @@ msgid "Binary"
 msgstr "바이너리"
 
 #, c-format
+msgid "Unpacker"
+msgstr "언패커"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "파일을 비교할 수 없습니다"
 
@@ -3575,6 +3583,12 @@ msgstr "파일 내 차이점의 개수. 이 숫자는 무시된 차이점을 포
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "바이너리 파일이면 * 표시를 보입니다"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3879,14 +3893,6 @@ msgstr "새로운 패턴"
 #, c-format
 msgid "Type"
 msgstr "형식"
-
-#, c-format
-msgid "Unpacker"
-msgstr "언패커"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
 
 #, c-format
 msgid "Editor script"

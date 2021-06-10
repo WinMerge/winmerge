@@ -2780,6 +2780,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binárny"
 
+msgid "Unpacker"
+msgstr "Archivačný program"
+
+msgid "Prediffer"
+msgstr "Predbežné spracovanie rozdielov"
+
 msgid "Unable to compare files"
 msgstr "Nemožno porovnať súbory"
 
@@ -2978,6 +2984,12 @@ msgstr ""
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Zobrazí hviezdičku (*) ak je súbor binárny."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3265,12 +3277,6 @@ msgstr "Nový vzor"
 
 msgid "Type"
 msgstr "Typ"
-
-msgid "Unpacker"
-msgstr "Archivačný program"
-
-msgid "Prediffer"
-msgstr "Predbežné spracovanie rozdielov"
 
 msgid "Editor script"
 msgstr "Skript editora"

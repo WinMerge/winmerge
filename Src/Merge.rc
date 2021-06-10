@@ -3172,6 +3172,8 @@ BEGIN
     IDS_COLHDR_NIDIFFS      "Ignored Diff"
     IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
+    IDS_COLHDR_UNPACKER     "Unpacker"
+    IDS_COLHDR_PREDIFFER    "Prediffer"
 END
 
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
@@ -3273,6 +3275,8 @@ BEGIN
     IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
     IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Shows an asterisk (*) if the file is binary."
+    IDS_COLDESC_UNPACKER    "Unpacker plugin name or pipeline."
+    IDS_COLDESC_PREDIFFER   "Prediffer plugin name or pipeline."
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

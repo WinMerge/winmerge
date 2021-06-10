@@ -29,8 +29,6 @@ using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;
 using CompareEngines::ImageCompare;
 
-static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
-
 FolderCmp::FolderCmp(CDiffContext *pCtxt)
 : m_pCtxt(pCtxt)
 , m_pDiffUtilsEngine(nullptr)
@@ -98,7 +96,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			m_diffFileData.m_textStats[nIndex].clear();
 
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		struct change *script10 = nullptr;
 		struct change *script12 = nullptr;
 		struct change *script02 = nullptr;
@@ -439,7 +437,7 @@ exitPrepAndCompare:
 			m_pBinaryCompare.reset(new BinaryCompare());
 		m_pBinaryCompare->SetAbortable(m_pCtxt->GetAbortable());
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
@@ -459,7 +457,7 @@ exitPrepAndCompare:
 		}
 
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(tFiles, di);
 	}
 	else
@@ -471,30 +469,3 @@ exitPrepAndCompare:
 	return code;
 }
 
-/**
- * @brief Get actual compared paths from DIFFITEM.
- * @param [in] pCtx Pointer to compare context.
- * @param [in] di DiffItem from which the paths are created.
- * @param [out] left Gets the left compare path.
- * @param [out] right Gets the right compare path.
- * @note If item is unique, same path is returned for both.
- */
-void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & tFiles)
-{
-	int nDirs = pCtxt->GetCompareDirs();
-
-	tFiles.SetSize(nDirs);
-
-	for (int nIndex = 0; nIndex < nDirs; nIndex++)
-	{
-		if (di.diffcode.exists(nIndex))
-		{
-			tFiles.SetPath(nIndex,
-				paths::ConcatPath(pCtxt->GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
-		}
-		else
-		{
-			tFiles.SetPath(nIndex, _T("NUL"), false);
-		}
-	}
-}

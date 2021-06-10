@@ -3310,6 +3310,14 @@ msgid "Binary"
 msgstr "Binarioa"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Despaketatzailea"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Aurrezberd"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Ezinezkoa agiriak alderatzea"
 
@@ -3551,6 +3559,12 @@ msgstr "Agirian dauden ezberdintasun zenbatekoa. Zenbateko honek ez ditu barnebi
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Erakutsi asteriskoa (*) agiria binarioa bada."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3850,14 +3864,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Mota"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Despaketatzailea"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Aurrezberd"
 
 #, c-format
 msgid "Editor script"

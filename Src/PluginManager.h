@@ -40,5 +40,5 @@ public:
 private:
 	// Data
 	PluginFileInfoMap m_pluginSettings;
-	Poco::FastMutex m_mutex;
+	mutable Poco::FastMutex m_mutex;
 };
