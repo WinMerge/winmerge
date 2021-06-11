@@ -2916,6 +2916,9 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// title
 	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
+	
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return hMenu;
 
 	// get the scriptlet files
 	PluginArray* piScriptArray[2];

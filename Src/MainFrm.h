@@ -261,7 +261,7 @@ protected:
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginPrediffMode(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPrediffMode(UINT nID);
-	afx_msg void OnUpdateReloadPlugins(CCmdUI* pCmdUI);
+	afx_msg void OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
 	template <int nFiles, FRAMETYPE frameType, bool table = false>
