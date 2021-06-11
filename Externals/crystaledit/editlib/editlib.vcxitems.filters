@@ -168,6 +168,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\siod.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\smarty.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sql.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
