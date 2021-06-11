@@ -851,13 +851,14 @@
 #define IDS_COLORSCHEME_SGML            33183
 #define IDS_COLORSCHEME_SH              33184
 #define IDS_COLORSCHEME_SIOD            33185
-#define IDS_COLORSCHEME_SQL             33186
-#define IDS_COLORSCHEME_TCL             33187
-#define IDS_COLORSCHEME_TEX             33188
-#define IDS_COLORSCHEME_VERILOG         33189
-#define IDS_COLORSCHEME_VHDL            33190
-#define IDS_COLORSCHEME_XML             33191
-#define ID_COLORSCHEME_LAST             33191 // = IDS_COLORSCHEME_XML
+#define IDS_COLORSCHEME_SMARTY          33186
+#define IDS_COLORSCHEME_SQL             33187
+#define IDS_COLORSCHEME_TCL             33188
+#define IDS_COLORSCHEME_TEX             33189
+#define IDS_COLORSCHEME_VERILOG         33190
+#define IDS_COLORSCHEME_VHDL            33191
+#define IDS_COLORSCHEME_XML             33192
+#define ID_COLORSCHEME_LAST             33192 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
