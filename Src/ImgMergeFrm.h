@@ -146,8 +146,9 @@ private:
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
-	afx_msg void OnFileRecompareAs(UINT nId);
+	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
+	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnWindowChangePane();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();

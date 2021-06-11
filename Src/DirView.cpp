@@ -165,8 +165,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenWith<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT_PARENT_FOLDER, OnCtxtDirOpenParentFolder<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_PARENT_FOLDER, OnUpdateCtxtDirOpenParentFolder<SIDE_RIGHT>)
-	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
-	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	ON_UPDATE_COMMAND_UI(ID_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITHEDITOR, OnUpdateCtxtDirOpenWithEditor<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_OPEN_MIDDLE_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_MIDDLE>)
@@ -2693,7 +2693,7 @@ void CDirView::OnCustomizeColumns()
 	GetOptionsMgr()->SaveOption(keyname, m_pColItems->SaveColumnOrders());
 }
 
-void CDirView::OnCtxtOpenWithUnpacker()
+void CDirView::OnOpenWithUnpacker()
 {
 	int sel = -1;
 	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);

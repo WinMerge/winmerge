@@ -295,7 +295,6 @@ public:
 	virtual ~CMergeDoc();
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
-	bool OpenWithUnpackerDialog();
 	bool GenerateReport(const String& sFileName) const override;
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
@@ -379,7 +378,7 @@ protected:
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnToolsGeneratePatch();
-	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnApplyPrediffer();
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();

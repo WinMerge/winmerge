@@ -27,6 +27,7 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
+#include "SelectPluginDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
 #include "DropHandler.h"
@@ -75,6 +76,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
@@ -933,7 +935,7 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
-void CImgMergeFrame::OnFileRecompareAs(UINT nId)
+void CImgMergeFrame::OnFileRecompareAs(UINT nID)
 {
 	FileLocation fileloc[3];
 	DWORD dwFlags[3];
@@ -948,12 +950,29 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nId)
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nId, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }
 
 void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
+}
+
+void CImgMergeFrame::OnOpenWithUnpacker()
+{
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
+	if (dlg.DoModal() == IDOK)
+	{
+		PackingInfo infoUnpacker;
+		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
+		PathContext paths = m_filePaths;
+		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		CloseNow();
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, strDesc, _T(""),
+			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr);
+	}
 }
 
 void  CImgMergeFrame::OnWindowChangePane() 

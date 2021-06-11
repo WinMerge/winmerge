@@ -25,6 +25,7 @@
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
+#include "SelectPluginDlg.h"
 #include "DiffList.h"
 #include "paths.h"
 #include "OptionsMgr.h"
@@ -101,6 +102,7 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -828,6 +830,23 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	CloseNow();
 	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+}
+
+void CHexMergeDoc::OnOpenWithUnpacker()
+{
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
+	if (dlg.DoModal() == IDOK)
+	{
+		PackingInfo infoUnpacker;
+		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
+		PathContext paths = m_filePaths;
+		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		CloseNow();
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, strDesc, _T(""),
+			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr);
+	}
 }
 
 void CHexMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)

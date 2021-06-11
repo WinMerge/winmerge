@@ -124,6 +124,7 @@ protected:
 	afx_msg void OnRefresh();
 	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
+	afx_msg void OnOpenWithUnpacker();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

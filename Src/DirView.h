@@ -289,7 +289,7 @@ protected:
 	afx_msg void OnUpdateStatusMiddleRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
 	afx_msg void OnCustomizeColumns();
-	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg LRESULT OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam);

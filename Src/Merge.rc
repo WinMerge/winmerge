@@ -409,7 +409,7 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -676,7 +676,7 @@ BEGIN
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN

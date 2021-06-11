@@ -736,7 +736,7 @@
 #define ID_MERGE_COMPARE_LEFT2_RIGHT1   32878
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
-#define ID_POPUP_OPEN_WITH_UNPACKER     32882
+#define ID_OPEN_WITH_UNPACKER           32882
 #define ID_NO_PREDIFFER                 32883
 #define ID_SUGGESTED_PLUGINS            32884
 #define ID_NOT_SUGGESTED_PLUGINS        32885

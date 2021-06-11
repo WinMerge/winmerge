@@ -87,7 +87,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
-	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
@@ -3363,37 +3363,6 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 }
 
 /**
- * @brief Display unpacker dialog to user & handle user's choices
- */
-bool CMergeDoc::OpenWithUnpackerDialog()
-{
-	// let the user choose a handler
-	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
-	if (dlg.DoModal() == IDOK)
-	{
-		m_infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
-		Merge7zFormatMergePluginScope scope(&m_infoUnpacker);
-		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
-		{
-			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
-			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &m_infoUnpacker, nullptr);
-			CloseNow();
-		}
-		else
-		{
-			OnFileReload();
-		}
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-/**
  * @brief Reloads the opened files
  */
 void CMergeDoc::OnFileReload()
@@ -3423,9 +3392,21 @@ void CMergeDoc::OnFileEncoding()
 	DoFileEncodingDialog();
 }
 
-void CMergeDoc::OnCtxtOpenWithUnpacker() 
+void CMergeDoc::OnOpenWithUnpacker()
 {
-	OpenWithUnpackerDialog();
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
+	if (dlg.DoModal() == IDOK)
+	{
+		PackingInfo infoUnpacker;
+		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
+		PathContext paths = m_filePaths;
+		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		CloseNow();
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, strDesc, _T(""),
+			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr);
+	}
 }
 
 void CMergeDoc::OnApplyPrediffer() 
@@ -3456,7 +3437,7 @@ void CMergeDoc::OnBnClickedPlugin()
 	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
 		return;
 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	OpenWithUnpackerDialog();
+	OnOpenWithUnpacker();
 }
 
 void CMergeDoc::OnBnClickedHexView()
