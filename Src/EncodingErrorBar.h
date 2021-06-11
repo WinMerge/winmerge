@@ -36,6 +36,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CEncodingErrorBar)
+	afx_msg void OnUpdateBnClickedPlugin(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

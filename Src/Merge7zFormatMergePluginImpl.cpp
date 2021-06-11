@@ -8,6 +8,9 @@
 #include "paths.h"
 #include "Plugins.h"
 #include "Merge7zFormatRegister.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "MergeApp.h"
 #include <list>
 #include <Poco/Mutex.h>
 
@@ -29,6 +32,8 @@ static Merge7zFormatMergePluginImpl *GetInstance()
 
 Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return nullptr;
 	Merge7zFormatMergePluginImpl *format = GetInstance();
 	PluginInfo *plugin = nullptr;
 	if (format->m_infoUnpacker.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)

@@ -17,7 +17,7 @@ COpenDoc::COpenDoc() :
 ,	m_dwFlags()
 {
 	PackingInfo infoHandler;
-	m_strUnpackerPipeline = infoHandler.GetPluginPipeline();
+	m_strUnpackerPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoHandler.GetPluginPipeline() : _T("");
 }
 
 BOOL COpenDoc::OnNewDocument()
