@@ -30,8 +30,8 @@ public:
 
 	~PluginManager();
 	void Reset() { m_pluginSettings.clear(); };
-	void SetPrediffSetting(const String& filteredFilenames, PLUGIN_MODE newsetting);
-	void SetPrediffSettingAll(PLUGIN_MODE newsetting);
+	void SetPrediffSetting(const String& filteredFilenames, bool automatic);
+	void SetPrediffSettingAll(bool automatic);
 	void SetPrediffer(const String& filteredFilenames, const String& predifferPipeline);
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
@@ -40,5 +40,5 @@ public:
 private:
 	// Data
 	PluginFileInfoMap m_pluginSettings;
-	mutable Poco::FastMutex m_mutex;
+	Poco::FastMutex m_mutex;
 };

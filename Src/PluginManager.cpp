@@ -42,22 +42,22 @@ void PluginManager::FetchPluginInfos(const String& filteredFilenames,
 /**
  * @brief Store specified prediff choice for specified comparison
  */
-void PluginManager::SetPrediffSetting(const String& filteredFilenames, PLUGIN_MODE newsetting)
+void PluginManager::SetPrediffSetting(const String& filteredFilenames, bool automatic)
 {
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
 	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-	infoPrediffer->Initialize(newsetting);
+	infoPrediffer->Initialize(automatic);
 }
 
-void PluginManager::SetPrediffSettingAll(PLUGIN_MODE newsetting)
+void PluginManager::SetPrediffSettingAll(bool automatic)
 {
 	FastMutex::ScopedLock lock(m_mutex);
 	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
 	{
 		PluginFileInfoPtr fi;
 		fi.reset(new PluginFileInfo);
-		fi->m_infoPrediffer.Initialize(newsetting);
+		fi->m_infoPrediffer.Initialize(automatic);
 		(*it).second = fi;
 	}
 }

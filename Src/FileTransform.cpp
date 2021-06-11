@@ -133,18 +133,6 @@ String PluginForFile::MakePipeline(const std::vector<PluginForFile::PipelineItem
 	return pipeline;
 }
 
-bool PluginForFile::IsValidPluginPipeline(const String& pluginPipeline)
-{
-	String errorMessage;
-	auto result = ParsePluginPipeline(pluginPipeline, errorMessage);
-	return errorMessage.empty();
-}
-
-bool PluginForFile::IsValidPluginPipeline() const
-{
-	return IsValidPluginPipeline(m_PluginPipeline);
-}
-
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
@@ -524,8 +512,8 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 namespace FileTransform
 {
 
-PLUGIN_MODE g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
-PLUGIN_MODE g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
+bool AutoUnpacking = false;
+bool AutoPrediffing = false;
 
 ////////////////////////////////////////////////////////////////////////////////
 

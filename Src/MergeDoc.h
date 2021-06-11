@@ -337,7 +337,7 @@ protected:
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
-	std::unique_ptr<PackingInfo> m_pInfoUnpacker;
+	PackingInfo m_infoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */

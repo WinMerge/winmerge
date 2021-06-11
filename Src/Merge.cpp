@@ -302,8 +302,8 @@ BOOL CMergeApp::InitInstance()
 	charsets_init();
 	UpdateCodepageModule();
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
+	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
+	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
@@ -646,13 +646,13 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 	if (!cmdInfo.m_sUnpackerPipeline.empty())
 	{
-		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
+		infoUnpacker.reset(new PackingInfo(false));
 		infoUnpacker->SetPluginPipeline(cmdInfo.m_sUnpackerPipeline);
 	}
 
 	if (!cmdInfo.m_sPreDifferPipeline.empty())
 	{
-		infoPrediffer.reset(new PrediffingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
+		infoPrediffer.reset(new PrediffingInfo(false));
 		infoPrediffer->SetPluginPipeline(cmdInfo.m_sPreDifferPipeline);
 	}
 

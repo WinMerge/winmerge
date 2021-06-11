@@ -115,7 +115,6 @@ CMergeDoc::CMergeDoc()
 , m_CurWordDiff{ -1, static_cast<size_t>(-1), -1 }
 , m_pDirDoc(nullptr)
 , m_bMixedEol(false)
-, m_pInfoUnpacker(new PackingInfo)
 , m_pEncodingErrorBar(nullptr)
 , m_bHasSyncPoints(false)
 , m_bAutoMerged(false)
@@ -217,7 +216,7 @@ void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
 {
 	if (infoNewHandler != nullptr)
 	{
-		*m_pInfoUnpacker = *infoNewHandler;
+		m_infoUnpacker = *infoNewHandler;
 	}
 }
 
@@ -1548,7 +1547,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	{
 		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, *pInfoTempUnpacker);
 		// replace the unpacker with a "do nothing" unpacker
-		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
+		pInfoTempUnpacker->Initialize(false);
 	}
 	else
 	{
@@ -1644,9 +1643,9 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	}
 
 	// use a temp packer
-	// first copy the m_pInfoUnpacker
+	// first copy the m_infoUnpacker
 	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+	PackingInfo infoTempUnpacker = m_infoUnpacker;
 
 	bSaveSuccess = false;
 	
@@ -1758,9 +1757,9 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	String strSavePath(szPath);
 
 	// use a temp packer
-	// first copy the m_pInfoUnpacker
+	// first copy the m_infoUnpacker
 	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+	PackingInfo infoTempUnpacker = m_infoUnpacker;
 
 	bSaveSuccess = false;
 	// false as long as the user is not satisfied
@@ -2112,8 +2111,8 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->GetPluginPipeline().empty())
-		pluginNames += m_pInfoUnpacker->GetPluginPipeline() + _T("&");
+	if (!m_infoUnpacker.GetPluginPipeline().empty())
+		pluginNames += m_infoUnpacker.GetPluginPipeline() + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
 	if (!prediffer.GetPluginPipeline().empty())
@@ -2669,7 +2668,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 
 	CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC;
 	CString sOpenError;
-	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker.get(),
+	retVal = pBuf->LoadFromFile(sFileName, &m_infoUnpacker,
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
@@ -2925,7 +2924,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	{ 
 		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
 		{
-			m_pInfoUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
+			m_infoUnpacker.Initialize(false);
 		}
 	}
 
@@ -3278,7 +3277,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
 	PrediffingInfo infoPrediffer;
 	GetPrediffer(&infoPrediffer);
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, m_pInfoUnpacker.get(), &infoPrediffer);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
@@ -3369,17 +3368,17 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
 	// let the user choose a handler
-	CSelectPluginDlg dlg(m_pInfoUnpacker->GetPluginPipeline(),
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
 		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
 	if (dlg.DoModal() == IDOK)
 	{
-		m_pInfoUnpacker->SetPluginPipeline(dlg.GetPluginPipeline());
-		Merge7zFormatMergePluginScope scope(m_pInfoUnpacker.get());
+		m_infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
+		Merge7zFormatMergePluginScope scope(&m_infoUnpacker);
 		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, m_pInfoUnpacker.get(), nullptr);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &m_infoUnpacker, nullptr);
 			CloseNow();
 		}
 		else

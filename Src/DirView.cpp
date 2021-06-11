@@ -2699,7 +2699,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 	if (sel != -1)
 	{
-		PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
+		PackingInfo infoUnpacker(true);
 		// let the user choose a handler
 		CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), GetDiffItem(sel).diffFileInfo[0].filename, true, this);
 		if (dlg.DoModal() == IDOK)

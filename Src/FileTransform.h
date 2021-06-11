@@ -16,24 +16,10 @@
 
 class PluginInfo;
 
-/**
- * @brief Modes for plugin (Modes for prediffing included)
- */
-enum class PLUGIN_MODE
-{
-	// Modes for "unpacking"
-	PLUGIN_MANUAL,
-	PLUGIN_AUTO,
-
-	// Modes for "prediffing"
-	PREDIFF_MANUAL = PLUGIN_MANUAL,
-	PREDIFF_AUTO = PLUGIN_AUTO,
-};
-
 namespace FileTransform
 {
-extern PLUGIN_MODE g_UnpackerMode;
-extern PLUGIN_MODE g_PredifferMode;
+extern bool AutoUnpacking;
+extern bool AutoPrediffing;
 }
 
 /**
@@ -51,14 +37,14 @@ public:
 		TCHAR quoteChar;
 	};
 
-	void Initialize(PLUGIN_MODE Mode)
+	void Initialize(bool automatic)
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
-		m_PluginPipeline = (Mode == PLUGIN_MODE::PLUGIN_AUTO) ? _T("<Automatic>") : _T("");
+		m_PluginPipeline = automatic ? _T("<Automatic>") : _T("");
 	};
-	explicit PluginForFile(PLUGIN_MODE Mode) 
+	explicit PluginForFile(bool automatic) 
 	{
-		Initialize(Mode);
+		Initialize(automatic);
 	};
 	const String& GetPluginPipeline() const { return m_PluginPipeline; }
 	void SetPluginPipeline(const String& pluginPipeline) { m_PluginPipeline = pluginPipeline; }
@@ -67,9 +53,6 @@ public:
 	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePipeline(const std::vector<PipelineItem> list);
-
-	bool IsValidPluginPipeline() const;
-	static bool IsValidPluginPipeline(const String& pluginPipeline);
 
 protected:
 	/// plugin name when it is defined
@@ -86,8 +69,8 @@ protected:
 class PackingInfo : public PluginForFile
 {
 public:
-	explicit PackingInfo(PLUGIN_MODE Mode = FileTransform::g_UnpackerMode)
-	: PluginForFile(Mode)
+	explicit PackingInfo(bool automatic = FileTransform::AutoUnpacking)
+	: PluginForFile(automatic)
 	{
 	}
 
@@ -138,8 +121,8 @@ public:
 class PrediffingInfo : public PluginForFile
 {
 public:
-	explicit PrediffingInfo(PLUGIN_MODE Mode = FileTransform::g_PredifferMode)
-	: PluginForFile(Mode)
+	explicit PrediffingInfo(bool automatic = FileTransform::AutoPrediffing)
+	: PluginForFile(automatic)
 	{
 	}
 

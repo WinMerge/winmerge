@@ -749,7 +749,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 	default:
 		if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
 		{
-			PackingInfo handler(PLUGIN_MODE::PLUGIN_MANUAL);
+			PackingInfo handler(false);
 			handler.SetPluginPipeline(GetPluginNameByMenuId(nID,
 				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
 			PathContext paths;
@@ -1067,6 +1067,7 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] dwRightFlags Right-side flags.
  * @param [in] bRecurse Do we run recursive (folder) compare?
  * @param [in] pDirDoc Dir compare document to use.
+ * @param [in] infoUnpacker Unpacker plugin name.
  * @param [in] infoPrediffer Prediffer plugin name.
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
@@ -1077,8 +1078,8 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
+	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
+	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
@@ -1583,13 +1584,13 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		FileTransform::g_UnpackerMode = PLUGIN_MODE::PLUGIN_MANUAL;
+		FileTransform::AutoUnpacking = false;
 		break;
 	case ID_UNPACK_AUTO:
-		FileTransform::g_UnpackerMode = PLUGIN_MODE::PLUGIN_AUTO;
+		FileTransform::AutoUnpacking = true;
 		break;
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(FileTransform::g_UnpackerMode));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(FileTransform::AutoUnpacking));
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
@@ -1597,27 +1598,27 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_MANUAL == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(!FileTransform::AutoUnpacking);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_AUTO == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(FileTransform::AutoUnpacking);
 }
 void CMainFrame::OnPluginPrediffMode(UINT nID )
 {
 	switch (nID)
 	{
 	case ID_PREDIFFER_MANUAL:
-		FileTransform::g_PredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
+		FileTransform::AutoPrediffing = false;
 		break;
 	case ID_PREDIFFER_AUTO:
-		FileTransform::g_PredifferMode = PLUGIN_MODE::PLUGIN_AUTO;
+		FileTransform::AutoPrediffing = true;
 		break;
 	}
 	PrediffingInfo infoPrediffer;
 	for (auto pMergeDoc : GetAllMergeDocs())
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
-		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_PredifferMode);
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, static_cast<int>(FileTransform::g_PredifferMode));
+		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::AutoPrediffing);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::AutoPrediffing);
 }
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
@@ -1625,9 +1626,9 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_MANUAL == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(!FileTransform::AutoPrediffing);
 	if (pCmdUI->m_nID == ID_PREDIFFER_AUTO)
-		pCmdUI->SetRadio(PLUGIN_MODE::PLUGIN_AUTO == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(FileTransform::AutoPrediffing);
 }
 /**
  * @brief Called when "Reload Plugins" item is updated

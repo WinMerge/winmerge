@@ -20,6 +20,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include <set>
 #include <Poco/Mutex.h>
 #include <Poco/ScopedLock.h>
 #include <Poco/RegularExpression.h>
@@ -720,6 +721,51 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 	}
 }
 
+static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
+{
+	std::vector<std::vector<String>> eventsAry = 
+	{
+		{ L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
+		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
+		{ L"EDITOR_SCRIPT"},
+	};
+	for (const auto& events: eventsAry)
+	{
+		std::set<String> pluginNames;
+		for (const auto& event : events)
+		{
+			if (plugins.find(event) != plugins.end())
+			{
+				for (const auto& plugin : *plugins[event])
+				{
+					String name = paths::RemoveExtension(plugin->m_name);
+					if (pluginNames.find(name) != pluginNames.end())
+					{
+						if (pluginNames.find(plugin->m_name) != pluginNames.end())
+						{
+							for (int i = 0; ; i++)
+							{
+								String nameNew = name + strutils::format(_T("(%d)"), i + 2);
+								if (pluginNames.find(nameNew) == pluginNames.end())
+								{
+									name = nameNew;
+									break;
+								}
+							}
+						}
+						else
+						{
+							name = plugin->m_name;
+						}
+					}
+					plugin->m_name = name;
+					pluginNames.insert(name);
+				}
+			}
+		}
+	}
+}
+
 /** 
  * @brief Get available scriptlets for an event
  *
@@ -767,6 +813,8 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		RemoveScriptletCandidate(badScriptlets.front());
 		badScriptlets.pop_front();
 	}
+
+	ResolveNameConflict(plugins);
 
 	return plugins;
 }
@@ -902,6 +950,10 @@ PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEven
 		{
 			for (size_t j = 0; j < pArray->size(); j++)
 				if (pArray->at(j)->m_name == name)
+					return pArray->at(j).get();
+			String name2 = paths::RemoveExtension(name);
+			for (size_t j = 0; j < pArray->size(); j++)
+				if (pArray->at(j)->m_name == name2)
 					return pArray->at(j).get();
 		}
 	}
