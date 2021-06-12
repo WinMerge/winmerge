@@ -210,7 +210,7 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 					if (parseResult.empty())
 						parseResult.push_back({ name, _T(""), '\0' });
 					parseResult.back().name = name;
-					m_strPluginPipeline = PluginForFile::MakePipeline(parseResult);
+					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;
 					break;
 				}

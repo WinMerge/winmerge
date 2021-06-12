@@ -61,4 +61,233 @@ namespace
 		iu->Unpacking(&subcodes, file, _T(".*\\.xls"));
 	}
 
+	TEST_F(PluginsTest, ParsePluginPipeline)
+	{
+		String errorMessage;
+		auto parseResult = PluginForFile::ParsePluginPipeline(_T(""), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(0, parseResult.size());
+		String pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T(""), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(0, parseResult.size());
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T(""), pluginPipeline);
+
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("<Automatic>"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("<Automatic>"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("<Automatic>"), pluginPipeline);
+
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" <Automatic> "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("<Automatic>"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("<Automatic>"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("'a b'"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'a b'"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("'a''b'"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a'b"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'a''b'"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("a' 'b"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'a b'"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("a' '\"b\""), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T(""), parseResult[0].args);
+		EXPECT_EQ('"', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("\"a b\""), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("\"a b"), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand dir c:\\"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir c:\\"), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("ExecFilterCommand dir c:\\"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" ExecFilterCommand  dir  c:\\ "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir c:\\"), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("ExecFilterCommand dir c:\\"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand  'dir  c:\\ '"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'ExecFilterCommand' 'dir  c:\\ '"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand  'dir  c:\\ ' "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'ExecFilterCommand' 'dir  c:\\ '"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" 'a b'  'dir  c:\\ ' "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'a b' 'dir  c:\\ '"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" 'a b'  dir  c:\\  "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T("dir c:\\"), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'a b' 'dir c:\\'"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" 'a b'  \"dir  c:\\ \" "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(1, parseResult.size());
+		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('"', parseResult[0].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("\"a b\" \"dir  c:\\ \""), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand dir|MakeUpper"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir"), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		EXPECT_EQ(_T("MakeUpper"), parseResult[1].name);
+		EXPECT_EQ(_T(""), parseResult[1].args);
+		EXPECT_EQ(0, parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("ExecFilterCommand dir|MakeUpper"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand dir | MakeUpper "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir"), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		EXPECT_EQ(_T("MakeUpper"), parseResult[1].name);
+		EXPECT_EQ(_T(""), parseResult[1].args);
+		EXPECT_EQ(0, parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("ExecFilterCommand dir|MakeUpper"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" ExecFilterCommand dir | MakeUpper "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir"), parseResult[0].args);
+		EXPECT_EQ(0, parseResult[0].quoteChar);
+		EXPECT_EQ(_T("MakeUpper"), parseResult[1].name);
+		EXPECT_EQ(_T(""), parseResult[1].args);
+		EXPECT_EQ(0, parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("ExecFilterCommand dir|MakeUpper"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" ExecFilterCommand 'dir  c:\\ ' | MakeUpper "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		EXPECT_EQ(_T("MakeUpper"), parseResult[1].name);
+		EXPECT_EQ(_T(""), parseResult[1].args);
+		EXPECT_EQ(0, parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'ExecFilterCommand' 'dir  c:\\ '|MakeUpper"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("ExecFilterCommand 'dir c:\\'|ExecFilterCommand 'sort'"), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir c:\\"), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[1].name);
+		EXPECT_EQ(_T("sort"), parseResult[1].args);
+		EXPECT_EQ('\'', parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'ExecFilterCommand' 'dir c:\\'|'ExecFilterCommand' 'sort'"), pluginPipeline);
+
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" ExecFilterCommand 'dir  c:\\ ' | ExecFilterCommand ' sort ' "), errorMessage);
+		EXPECT_TRUE(errorMessage.empty());
+		EXPECT_EQ(2, parseResult.size());
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[0].name);
+		EXPECT_EQ(_T("dir  c:\\ "), parseResult[0].args);
+		EXPECT_EQ('\'', parseResult[0].quoteChar);
+		EXPECT_EQ(_T("ExecFilterCommand"), parseResult[1].name);
+		EXPECT_EQ(_T(" sort "), parseResult[1].args);
+		EXPECT_EQ('\'', parseResult[1].quoteChar);
+		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
+		EXPECT_EQ(_T("'ExecFilterCommand' 'dir  c:\\ '|'ExecFilterCommand' ' sort '"), pluginPipeline);
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("|"), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T(" | "), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("MakeUpper|"), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("MakeUpper | "), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("MakeUpper||"), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+
+		parseResult = PluginForFile::ParsePluginPipeline(_T("MakeUpper | | "), errorMessage);
+		EXPECT_TRUE(!errorMessage.empty());
+	}
+
 }  // namespace

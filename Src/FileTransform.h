@@ -52,7 +52,7 @@ public:
 
 	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
-	static String MakePipeline(const std::vector<PipelineItem> list);
+	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
 
 protected:
 	/// plugin name when it is defined

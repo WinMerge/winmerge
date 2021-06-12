@@ -39,9 +39,12 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 	TCHAR quoteChar = 0;
 	std::vector<String> tokens;
 	String token, name, param;
-	for (const TCHAR* p = pluginPipeline.c_str(); *p;)
+	errorMessage.clear();
+	const TCHAR* p = pluginPipeline.c_str();
+	while (_istspace(*p)) p++;
+	while (*p)
 	{
-		while (_istspace(*p)) p++;
+		TCHAR sep = 0;
 		while (*p)
 		{
 			if (!inQuotes)
@@ -53,10 +56,14 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 				}
 				else if (_istspace(*p))
 				{
+					sep = *p;
 					break;
 				}
 				else if (*p == '|')
+				{
+					sep = *p;
 					break;
+				}
 				else
 					token += *p;
 			}
@@ -84,38 +91,52 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		if (name.empty())
 		{
 			name = token;
-			if (name.empty())
-				errorMessage = _T("Missing plugin name in plugin pipeline: ") + pluginPipeline;
 		}
 		else
 		{
-			param += token + ((*p == ' ') ? _T(" ") : _T(""));
+			if (!param.empty())
+				param += _T(" ");
+			param += token;
 		}
-		if (!_istspace(*p))
+		while (_istspace(*p)) p++;
+		if (*p == '|')
+			sep = *p;
+		if (sep == '|')
+			p++;
+		token.clear();
+		if (sep == '|' || !*p)
 		{
-			result.push_back({name, strutils::trim_ws_end(param), quoteChar});
+			if (name.empty() || (sep == '|' && !*p))
+			{
+				errorMessage = _T("Missing plugin name in plugin pipeline: ") + pluginPipeline;
+				break;
+			}
+			result.push_back({ name, !quoteChar ? strutils::trim_ws_end(param) : param, quoteChar });
 			name.clear();
 			param.clear();
 			quoteChar = 0;
 		}
-		if (*p)
-			++p;
-		token.clear();
-	}
+	};
 	if (inQuotes)
 		errorMessage = _T("Missing quotation mark in plugin pipeline: ") + pluginPipeline;
 	return result;
 }
 
-String PluginForFile::MakePipeline(const std::vector<PluginForFile::PipelineItem> list)
+String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::PipelineItem>& list)
 {
 	String pipeline;
 	for (const auto& [name, args, quoteChar] : list)
 	{
+		String nameQuoted = name;
+		if (quoteChar)
+		{
+			strutils::replace(nameQuoted, String(1, quoteChar), String(2, quoteChar));
+			nameQuoted = strutils::format(_T("%c%s%c"), quoteChar, nameQuoted, quoteChar);
+		}
 		if (pipeline.empty())
-			pipeline = name;
+			pipeline = nameQuoted;
 		else
-			pipeline += _T("|") + name;
+			pipeline += _T("|") + nameQuoted;
 		if (!args.empty())
 		{
 			if (quoteChar)
@@ -195,7 +216,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		}
 	}
 	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePipeline(pipelineResolved);
+		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 	return true;
 }
 
@@ -435,7 +456,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 		}
 	}
 	if (pPluginPipelineResolved)
-		*pPluginPipelineResolved = MakePipeline(pipelineResolved);
+		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
 	return true;
 }
 
