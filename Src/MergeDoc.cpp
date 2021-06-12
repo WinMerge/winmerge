@@ -261,7 +261,7 @@ void CMergeDoc::Serialize(CArchive& ar)
 static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine, int nLines)
 {
 	// and we don't repack the file
-	PackingInfo * tempPacker = nullptr;
+	PackingInfo tempPacker(false);
 
 	// write buffer out to temporary file
 	String sError;
@@ -1537,7 +1537,7 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
  * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
 bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
-	int nBuffer, PackingInfo * pInfoTempUnpacker)
+	int nBuffer, PackingInfo& infoTempUnpacker)
 {
 	String s;
 	String str;
@@ -1552,9 +1552,9 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, *pInfoTempUnpacker);
+		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, infoTempUnpacker);
 		// replace the unpacker with a "do nothing" unpacker
-		pInfoTempUnpacker->Initialize(false);
+		infoTempUnpacker.Initialize(false);
 	}
 	else
 	{
@@ -1581,7 +1581,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
 			nSaveResult = pBuffer->SaveToFile(strSavePath, false, sError,
-				pInfoTempUnpacker);
+				infoTempUnpacker);
 
 			if (nSaveResult == SAVE_DONE)
 			{
@@ -1699,13 +1699,13 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	String sError;
 	if (nSaveErrorCode == SAVE_DONE)
 		// We have a filename, just try to save
-		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, false, sError, &infoTempUnpacker);
+		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, false, sError, infoTempUnpacker);
 
 	if (nSaveErrorCode != SAVE_DONE)
 	{
 		// Saving failed, user may save to another location if wants to
 		do
-			result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, &infoTempUnpacker);
+			result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, infoTempUnpacker);
 		while (!result);
 	}
 
@@ -1783,7 +1783,7 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	// Loop until user succeeds saving or cancels
 	String sError;
 	do
-		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, &infoTempUnpacker);
+		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, infoTempUnpacker);
 	while (!result);
 
 	// Saving succeeded with given/selected filename
@@ -2659,7 +2659,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 
 	CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC;
 	CString sOpenError;
-	retVal = pBuf->LoadFromFile(sFileName, &m_infoUnpacker,
+	retVal = pBuf->LoadFromFile(sFileName, m_infoUnpacker,
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,

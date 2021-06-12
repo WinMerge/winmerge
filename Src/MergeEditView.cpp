@@ -3468,7 +3468,8 @@ void CMergeEditView::RefreshOptions()
 void CMergeEditView::OnScripts(UINT nID )
 {
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
-	String text = GetSelectedText();
+	CString ctext = GetSelectedText();
+	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
 	bool bChanged = FileTransform::Interactive(text, _T(""), L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);

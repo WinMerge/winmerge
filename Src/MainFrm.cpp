@@ -2922,11 +2922,11 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	std::vector<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
 		processTypes.push_back(processType);
-	auto it = std::find(processTypes.begin(), processTypes.end(), _T("Others"));
+	auto it = std::find(processTypes.begin(), processTypes.end(), _T("&Others"));
 	if (it != processTypes.end())
 	{
 		processTypes.erase(it);
-		processTypes.push_back(_T("Others"));
+		processTypes.push_back(_T("&Others"));
 	}
 
 	for (const auto& processType: processTypes)

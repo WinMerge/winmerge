@@ -178,7 +178,7 @@ public:
 	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
-		int nBuffer, PackingInfo * pInfoTempUnpacker);
+		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int pane, int line);

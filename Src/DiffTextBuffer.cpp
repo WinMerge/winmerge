@@ -221,7 +221,7 @@ OnNotifyLineHasBeenEdited(int nLine)
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
 int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
-		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
+		PackingInfo& infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
 		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
@@ -229,7 +229,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (infoUnpacker && !infoUnpacker->Unpacking(&m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker))
+	if (!infoUnpacker.Unpacking(&m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -265,7 +265,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (!infoUnpacker->GetPluginPipeline().empty())
+		if (!infoUnpacker.GetPluginPipeline().empty())
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -406,7 +406,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (const String& pszFileName,
-		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= nullptr*/,
+		bool bTempFile, String & sError, PackingInfo& infoUnpacker /*= nullptr*/,
 		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)
@@ -538,9 +538,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	{
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
-		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = infoUnpacker->Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes);
+		bSaveSuccess = infoUnpacker.Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes);
 		try
 		{
 			TFile(sIntermediateFilename).remove();

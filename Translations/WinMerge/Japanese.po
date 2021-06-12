@@ -1301,8 +1301,8 @@ msgstr "下へ(&D)"
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
-msgid "Plugin Name:"
-msgstr "プラグイン名:"
+msgid "Plugin &Name:"
+msgstr "プラグイン名(&N):"
 
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
@@ -3653,8 +3653,8 @@ msgstr "内容抽出"
 msgid "Visualization"
 msgstr "視覚化"
 
-msgid "Others"
-msgstr "その他"
+msgid "&Others"
+msgstr "その他(&O)"
 
 msgid "Make Uppercase"
 msgstr "大文字に変換"

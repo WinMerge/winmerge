@@ -176,6 +176,18 @@ STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 	return S_OK;
 }
 
+STDMETHODIMP CWinMergeScript::get_PluginArguments(BSTR *pVal)
+{
+	*pVal = m_bstrArguments.Copy();
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::put_PluginArguments(BSTR val)
+{
+	m_bstrArguments = val;
+	return S_OK;
+}
+
 STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
 {
 	*pVal = SysAllocString(L"MenuCaption=Ignore Columns");
@@ -188,7 +200,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	long nSize = *pSize;
 	WCHAR * pEndText = pBeginText + nSize;
 
-	CString rangestr = GetColumnRangeString();
+	CString rangestr = (m_bstrArguments.Length() > 0) ? m_bstrArguments.m_str : GetColumnRangeString();
 
 	int nExcludedRanges = CreateArrayFromRangeString(rangestr, NULL);
 	int (* aExcludedRanges)[2] = new int[nExcludedRanges][2];

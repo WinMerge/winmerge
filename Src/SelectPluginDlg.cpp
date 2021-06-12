@@ -128,9 +128,27 @@ void CSelectPluginDlg::prepareListbox()
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
 	m_cboPluginName.AddString(noPlugin->m_name.c_str());
 	m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
+
+	std::vector<String> processTypes;
 	for (const auto& [processType, pluginList] : m_Plugins)
+		processTypes.push_back(processType);
+
+	auto itFound = std::find(processTypes.begin(), processTypes.end(), _T("&Others"));
+	if (itFound != processTypes.end())
 	{
-		m_cboPluginName.AddString((_T("[") + tr(ucr::toUTF8(processType)) + _T("]")).c_str());
+		processTypes.erase(itFound);
+		processTypes.push_back(_T("&Others"));
+	}
+
+	for (const auto& processType : processTypes)
+	{
+		const auto& pluginList = m_Plugins[processType];
+		String processTypeTranslated = tr(ucr::toUTF8(processType));
+		auto it = processTypeTranslated.find(_("(&"));
+		if (it != String::npos)
+			processTypeTranslated.erase(it, it + 2);
+		strutils::replace(processTypeTranslated, _T("&"), _T(""));
+		m_cboPluginName.AddString((_T("[") + processTypeTranslated + _T("]")).c_str());
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (!name.empty() && name != _T("<Automatic>"))

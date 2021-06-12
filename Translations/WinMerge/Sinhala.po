@@ -1629,7 +1629,7 @@ msgstr "පහළට ගෙනියන්න"
 msgid "Select Plugin"
 msgstr ""
 
-msgid "Plugin Name:"
+msgid "Plugin &Name:"
 msgstr ""
 
 #, fuzzy, c-format
@@ -4216,7 +4216,7 @@ msgstr ""
 msgid "Visualization"
 msgstr ""
 
-msgid "Others"
+msgid "&Others"
 msgstr ""
 
 msgid "Make Uppercase"

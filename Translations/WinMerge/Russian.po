@@ -1298,7 +1298,7 @@ msgstr "В&низ"
 msgid "Select Plugin"
 msgstr ""
 
-msgid "Plugin Name:"
+msgid "Plugin &Name:"
 msgstr ""
 
 msgid "Extensions list:"
@@ -3269,7 +3269,7 @@ msgstr ""
 msgid "Visualization"
 msgstr ""
 
-msgid "Others"
+msgid "&Others"
 msgstr ""
 
 msgid "Make Uppercase"

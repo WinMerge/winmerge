@@ -296,6 +296,13 @@ public:
 		return S_OK;
 	}
 
+	HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess) override
+	{
+		*pbChanged = VARIANT_FALSE;
+		*pbSuccess = VARIANT_FALSE;
+		return S_OK;
+	}
+
 private:
 	IDispatch* m_pDispatch;
 	int m_funcid;

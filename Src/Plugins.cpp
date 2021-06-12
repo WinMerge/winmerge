@@ -1491,7 +1491,12 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	// argument text  
 	VARIANT pvPszBuf;
 	pvPszBuf.vt = VT_BSTR;
-	pvPszBuf.bstrVal = SysAllocString(ucr::toUTF16(text).c_str());
+#ifdef _UNICODE
+	pvPszBuf.bstrVal = SysAllocStringLen(text.data(), static_cast<unsigned>(text.length()));
+#else
+	std::wstring wtext = ucr::toUTF16(text);
+	pvPszBuf.bstrVal = SysAllocStringLen(wtext.data(), static_cast<unsigned>(wtext.length()));
+#endif
 	// argument transformed text 
 	VARIANT vTransformed;
 	vTransformed.vt = VT_BSTR;
@@ -1503,7 +1508,12 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 
 	if (! FAILED(h) && vTransformed.bstrVal)
 	{
-		text = ucr::toTString(vTransformed.bstrVal);
+#ifdef _UNICODE
+		text = String(vTransformed.bstrVal, SysStringLen(vTransformed.bstrVal));
+#else
+		std::wstring wtext2 = std::wstring(vTransformed.bstrVal, SysStringLen(vTransformed.bstrVal));
+		text = ucr::toTString(wtext2);
+#endif
 		changed = true;
 	}
 	else
