@@ -1078,9 +1078,8 @@ msgstr "Αντιγραφή πλήρους Δια&δρομής"
 msgid "Copy &Filename"
 msgstr "Αντιγραφή Ο&νόματος"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
+msgid "Unpacker Settings"
+msgstr ""
 
 #, c-format
 msgid "<None>"
@@ -1094,8 +1093,9 @@ msgstr "<Αυτόματο>"
 msgid "&Select..."
 msgstr "&Επιλογή..."
 
-msgid "Unpacker Settings"
-msgstr ""
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 
 msgid "G&o to Diff"
 msgstr "Μετά&βαση σε Διαφορά"
@@ -4250,4 +4250,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

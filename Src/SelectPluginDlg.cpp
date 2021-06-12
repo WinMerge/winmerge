@@ -133,11 +133,14 @@ void CSelectPluginDlg::prepareListbox()
 		m_cboPluginName.AddString((_T("[") + tr(ucr::toUTF8(processType)) + _T("]")).c_str());
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
-			if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames))
+			if (!name.empty() && name != _T("<Automatic>"))
 			{
-				m_cboPluginName.AddString(name.c_str());
-				if (lastPluginName == name)
-					sel = m_cboPluginName.GetCount() - 1;
+				if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames))
+				{
+					m_cboPluginName.AddString(name.c_str());
+					if (lastPluginName == name)
+						sel = m_cboPluginName.GetCount() - 1;
+				}
 			}
 		}
 	}

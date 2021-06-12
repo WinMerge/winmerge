@@ -108,7 +108,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		{
 			if (name.empty() || (sep == '|' && !*p))
 			{
-				errorMessage = _T("Missing plugin name in plugin pipeline: ") + pluginPipeline;
+				errorMessage = strutils::format_string1(_("Missing plugin name in plugin pipeline: %1"), pluginPipeline);
 				break;
 			}
 			result.push_back({ name, !quoteChar ? strutils::trim_ws_end(param) : param, quoteChar });
@@ -118,7 +118,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		}
 	};
 	if (inQuotes)
-		errorMessage = _T("Missing quotation mark in plugin pipeline: ") + pluginPipeline;
+		errorMessage = strutils::format_string1(_("Missing quotation mark in plugin pipeline: %1"), pluginPipeline);
 	return result;
 }
 
@@ -665,6 +665,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>> suggestedPlugins;
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> allPlugins;
 	unsigned id = baseId;
+	bool addedNoneAutomatic = false;
 	for (const auto& event: events)
 	{
 		auto pScriptArray =
@@ -675,6 +676,14 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 			{
 				if (event != L"EDITOR_SCRIPT")
 				{
+					if (!addedNoneAutomatic)
+					{
+						String process = _("Others");
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(_("<None>"), _(""), id++, plugin.get());
+						allPlugins[process].emplace_back(_("<Automatic>"), _("<Automatic>"), id++, plugin.get());
+						addedNoneAutomatic = true;
+					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
 					const String caption = menuCaption.has_value() ?

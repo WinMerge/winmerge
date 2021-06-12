@@ -1079,8 +1079,7 @@ msgstr "Kopírovat celé &umístění"
 msgid "Copy &Filename"
 msgstr "Kopírovat &název souboru"
 
-#, c-format
-msgid "Prediffer Settings"
+msgid "Unpacker Settings"
 msgstr ""
 
 #, c-format
@@ -1095,7 +1094,8 @@ msgstr "<automaticky>"
 msgid "&Select..."
 msgstr "Vy&brat..."
 
-msgid "Unpacker Settings"
+#, c-format
+msgid "Prediffer Settings"
 msgstr ""
 
 msgid "G&o to Diff"
@@ -4205,4 +4205,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

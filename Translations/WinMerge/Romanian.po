@@ -1079,9 +1079,8 @@ msgstr "&Copie calea întreagă"
 msgid "Copy &Filename"
 msgstr "Copie numele de &fişier"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "Setări prediferenţiator"
+msgid "Unpacker Settings"
+msgstr ""
 
 #, fuzzy, c-format
 msgid "<None>"
@@ -1095,8 +1094,9 @@ msgstr "<Automat>"
 msgid "&Select..."
 msgstr "&Selectează..."
 
-msgid "Unpacker Settings"
-msgstr ""
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Setări prediferenţiator"
 
 msgid "G&o to Diff"
 msgstr "Mergi la difere&nţă"
@@ -4251,4 +4251,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

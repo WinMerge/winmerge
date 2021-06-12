@@ -1078,9 +1078,8 @@ msgstr "&Copia el camí sencer al fitxer"
 msgid "Copy &Filename"
 msgstr "Copia el nom del &fitxer"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "Ajustos de prediferenciació"
+msgid "Unpacker Settings"
+msgstr ""
 
 #, c-format
 msgid "<None>"
@@ -1094,8 +1093,9 @@ msgstr "<Automàtic>"
 msgid "&Select..."
 msgstr "T&ria..."
 
-msgid "Unpacker Settings"
-msgstr ""
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Ajustos de prediferenciació"
 
 msgid "G&o to Diff"
 msgstr "Vé&s a la diferència"
@@ -4203,4 +4203,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

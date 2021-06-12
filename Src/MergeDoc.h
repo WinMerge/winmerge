@@ -186,9 +186,11 @@ public:
 	void SetEditedAfterRescan(int nBuffer);
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
 	void SetUnpacker(const PackingInfo * infoUnpacker);
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
+	const PrediffingInfo *GetPrediffer() const override;
 	void AddMergeViews(CMergeEditView * pView[3]);
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
@@ -371,7 +373,6 @@ protected:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileEncoding();
 	afx_msg void OnDiffContext(UINT nID);

@@ -864,8 +864,8 @@ msgstr "Copia &percorso completo"
 msgid "Copy &Filename"
 msgstr "Copia nome del &file"
 
-msgid "Prediffer Settings"
-msgstr "Impostazioni prediffer"
+msgid "Unpacker Settings"
+msgstr ""
 
 msgid "<None>"
 msgstr "<Nessuno>"
@@ -876,8 +876,8 @@ msgstr "<Automatico>"
 msgid "&Select..."
 msgstr "Sele&ziona..."
 
-msgid "Unpacker Settings"
-msgstr ""
+msgid "Prediffer Settings"
+msgstr "Impostazioni prediffer"
 
 msgid "G&o to Diff"
 msgstr "Vai alla &differenza"
@@ -3687,4 +3687,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

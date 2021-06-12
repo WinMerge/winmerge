@@ -58,7 +58,9 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
+	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }

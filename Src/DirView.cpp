@@ -1547,7 +1547,11 @@ void CDirView::OpenSelectionAs(UINT id)
 		}
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
-	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc);
+	PackingInfo* infoUnpacker = nullptr;
+	PrediffingInfo* infoPrediffer = nullptr;
+	String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+	GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker);
 }
 
 /// User chose (context menu) delete left

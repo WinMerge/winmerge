@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-10 21:21+0900\n"
+"PO-Revision-Date: 2021-06-12 16:49+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -865,8 +865,8 @@ msgstr "フルパスをコピー(&C)"
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
-msgid "Prediffer Settings"
-msgstr "比較前処理プラグイン設定"
+msgid "Unpacker Settings"
+msgstr "展開プラグイン設定"
 
 msgid "<None>"
 msgstr "<なし>"
@@ -877,8 +877,8 @@ msgstr "<自動>"
 msgid "&Select..."
 msgstr "選択(&S)..."
 
-msgid "Unpacker Settings"
-msgstr "展開プラグイン設定"
+msgid "Prediffer Settings"
+msgstr "比較前処理プラグイン設定"
 
 msgid "G&o to Diff"
 msgstr "差異へ移動(&O)"
@@ -3700,3 +3700,14 @@ msgstr "JSON整形"
 
 msgid "Prettify XML"
 msgstr "XML整形"
+
+msgid "Visualize Graphviz"
+msgstr "Graphviz視覚化"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "プラグインパイプラインにプラグイン名が指定されていません: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "プラグインパイプラインが引用符で閉じていません: %1"

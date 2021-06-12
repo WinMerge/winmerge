@@ -80,7 +80,6 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
@@ -224,9 +223,17 @@ void CMergeDoc::SetPrediffer(const PrediffingInfo * infoPrediffer)
 {
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 }
+
 void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
 {
 	m_diffWrapper.GetPrediffer(infoPrediffer);
+}
+
+const PrediffingInfo* CMergeDoc::GetPrediffer() const
+{
+	static PrediffingInfo infoPrediffer;
+	m_diffWrapper.GetPrediffer(&infoPrediffer);
+	return &infoPrediffer;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2105,22 +2112,6 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Update plugin name
- * @param [in] pCmdUI UI component to update.
- */
-void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
-{
-	String pluginNames;
-	if (!m_infoUnpacker.GetPluginPipeline().empty())
-		pluginNames += m_infoUnpacker.GetPluginPipeline() + _T("&");
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-	if (!prediffer.GetPluginPipeline().empty())
-		pluginNames += prediffer.GetPluginPipeline() + _T("&");
-	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
-}
-
-/**
  * @brief Change number of diff context lines
  */
 void CMergeDoc::OnDiffContext(UINT nID)
@@ -3403,9 +3394,9 @@ void CMergeDoc::OnOpenWithUnpacker()
 		PathContext paths = m_filePaths;
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		int nID = m_bEnableTableEditing.value_or(true) ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 		CloseNow();
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, strDesc, _T(""),
-			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr);
+		GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 }
 
@@ -3455,8 +3446,6 @@ void CMergeDoc::OnOK()
 void CMergeDoc::OnFileRecompareAsText()
 {
 	m_bEnableTableEditing = false;
-	PackingInfo infoUnpacker;
-	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }
 
@@ -3468,8 +3457,6 @@ void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 void CMergeDoc::OnFileRecompareAsTable()
 {
 	m_bEnableTableEditing = true;
-	PackingInfo infoUnpacker;
-	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }
 
@@ -3485,16 +3472,28 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	
 	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
+	String strDesc[3];
+	int nBuffers = m_nBuffers;
+	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	PackingInfo infoUnpacker;
+	infoUnpacker.SetPluginPipeline(m_infoUnpacker.GetPluginPipeline());
+
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+		strDesc[pane] = m_strDesc[pane];
 	}
-	if (m_pEncodingErrorBar!=nullptr && m_pEncodingErrorBar->IsWindowVisible())
-		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	GetMainFrame()->ShowMergeDoc(nID, m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
-	GetParentFrame()->ShowWindow(SW_RESTORE);
-	GetParentFrame()->DestroyWindow();
+	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, 
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+		nID =  m_bEnableTableEditing.value_or(false) ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+	}
+
+	CloseNow();
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
 }
 
 // Return file extension either from file name 

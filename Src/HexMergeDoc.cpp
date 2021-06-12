@@ -822,14 +822,24 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	int nBuffers = m_nBuffers;
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
 		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	PackingInfo infoUnpacker;
+	infoUnpacker.SetPluginPipeline(m_infoUnpacker.GetPluginPipeline());
+
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
 		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
 		dwFlags[nBuffer] = m_pView[nBuffer]->GetReadOnly() ? FFILEOPEN_READONLY : 0;
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
+	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, 
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+		nID = ID_MERGE_COMPARE_HEX;
+	}
+
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
 }
 
 void CHexMergeDoc::OnOpenWithUnpacker()
@@ -844,8 +854,7 @@ void CHexMergeDoc::OnOpenWithUnpacker()
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, strDesc, _T(""),
-			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr);
+		GetMainFrame()->DoFileOpen(ID_MERGE_COMPARE_HEX, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 }
 

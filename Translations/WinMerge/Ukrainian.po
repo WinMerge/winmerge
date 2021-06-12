@@ -1080,9 +1080,8 @@ msgstr "&Скопіювати повний шлях"
 msgid "Copy &Filename"
 msgstr "Скопіювати &ім'я файлу"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "Параметри попереднього порівняння"
+msgid "Unpacker Settings"
+msgstr ""
 
 #, c-format
 msgid "<None>"
@@ -1096,8 +1095,9 @@ msgstr "<Автоматично>"
 msgid "&Select..."
 msgstr "Вибрати..."
 
-msgid "Unpacker Settings"
-msgstr ""
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Параметри попереднього порівняння"
 
 msgid "G&o to Diff"
 msgstr "Перейти до &відмінності"
@@ -4272,4 +4272,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""

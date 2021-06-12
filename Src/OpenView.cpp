@@ -642,18 +642,19 @@ void COpenView::OnCompare(UINT nID)
 	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
+	PackingInfo tmpPackingInfo;
+	tmpPackingInfo.SetPluginPipeline(pDoc->m_strUnpackerPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
 	if (nID == IDOK)
 	{
-		PackingInfo tmpPackingInfo;
-		tmpPackingInfo.SetPluginPipeline(pDoc->m_strUnpackerPipeline);
 		GetMainFrame()->DoFileOpen(
 			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
 			nullptr, _T(""), pDoc->m_bRecurse, nullptr, &tmpPackingInfo, nullptr);
 	}
 	else
 	{
-		GetMainFrame()->DoFileOpen(nID, &m_files, pDoc->m_dwFlags.data());
+		GetMainFrame()->DoFileOpen(
+			nID, &m_files, pDoc->m_dwFlags.data(), nullptr, _T(""), &tmpPackingInfo);
 	}
 }
 

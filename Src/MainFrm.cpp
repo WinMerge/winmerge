@@ -1216,14 +1216,15 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 }
 
 bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles /*= nullptr*/,
-	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/)
+	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/,
+	const String& sReportFile /*= _T("")*/, const PackingInfo *infoUnpacker /*= nullptr*/)
 {
 	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
 		fileloc[pane].setPath((*pFiles)[pane]);
 	return ShowMergeDoc(nID, pDirDoc, pFiles->GetSize(), fileloc,
-		dwFlags, strDesc);
+		dwFlags, nullptr, sReportFile, infoUnpacker);
 }
 
 void CMainFrame::UpdateFont(FRAMETYPE frame)
@@ -2114,6 +2115,7 @@ void CMainFrame::OnSaveProject()
 			pOpenDoc->m_files = paths;
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 			pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker()->GetPluginPipeline();
 		}
 	}
 	else if (frame == FRAME_FOLDER)
@@ -2711,7 +2713,19 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetText(_T(""));
+	if (auto pMergeDoc = GetActiveIMergeDoc())
+	{
+		String pluginNames;
+		const PackingInfo* infoUnpacker = pMergeDoc->GetUnpacker();
+		if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+			pluginNames += infoUnpacker->GetPluginPipeline() + _T("&");
+		const PrediffingInfo* infoPrediffer = pMergeDoc->GetPrediffer();
+		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+			pluginNames += infoPrediffer->GetPluginPipeline() + _T("&");
+		pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
+	}
+	else
+		pCmdUI->SetText(_T(""));
 }
 
 /**

@@ -845,17 +845,17 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
-    BEGIN
-        MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
-        MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
-        MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
-    END
     POPUP "Unpacker Settings"
     BEGIN
         MENUITEM "<None>",                      ID_UNPACKER_SETTINGS_NONE
         MENUITEM "<Automatic>",                 ID_UNPACKER_SETTINGS_AUTO
         MENUITEM "&Select...",                  ID_UNPACKER_SETTINGS_SELECT
+    END
+    POPUP "Prediffer Settings"
+    BEGIN
+        MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
     END
 END
 
@@ -3707,6 +3707,9 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION13 "Apply Prediff Substitution Filters"
     IDS_PLUGIN_MENU_CAPTION14 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION15 "Prettify XML"
+    IDS_PLUGIN_MENU_CAPTION16 "Visualize Graphviz"
+    IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
 END
 
 #endif    // English (United States) resources

@@ -94,8 +94,9 @@ public:
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr);
-	bool DoFileOpen(UINT nID, const PathContext *pFiles = nullptr,
-		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr);
+	bool DoFileOpen(UINT nID, const PathContext* pFiles = nullptr,
+		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
+		const String& sReportFile = _T(""), const PackingInfo* infoUnpacker = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],

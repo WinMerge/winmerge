@@ -1081,9 +1081,8 @@ msgstr "Kopiera hela Sökvägen"
 msgid "Copy &Filename"
 msgstr "Kopiera Filnamn"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "PreDiffer Inställningar"
+msgid "Unpacker Settings"
+msgstr ""
 
 #, c-format
 msgid "<None>"
@@ -1097,8 +1096,9 @@ msgstr "<Automatisk>"
 msgid "&Select..."
 msgstr "Välj ..."
 
-msgid "Unpacker Settings"
-msgstr ""
+#, c-format
+msgid "Prediffer Settings"
+msgstr "PreDiffer Inställningar"
 
 msgid "G&o to Diff"
 msgstr "Gå till Skillnad"
@@ -4411,4 +4411,15 @@ msgid "Prettify JSON"
 msgstr ""
 
 msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr ""
