@@ -399,6 +399,9 @@
     <ClCompile Include="..\..\Src\SubstitutionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\smarty.cpp">
+      <Filter>editlib\parses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\codepage_detect.h">

@@ -44,6 +44,7 @@ TextDefinition m_SourceDefs[] =
 	SRC_SGML, _T ("Sgml"), _T ("sgml"), &ParseLineSgml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
 	SRC_SH, _T ("Shell"), _T ("sh;conf"), &ParseLineSh, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
 	SRC_SIOD, _T ("SIOD"), _T ("scm"), &ParseLineSiod, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
+	SRC_SMARTY, _T("Smarty"), _T("tpl"), &ParseLineSmarty, SRCOPT_AUTOINDENT | SRCOPT_BRACEGNU, /*2,*/ _T("{*"), _T("*}"), _T(""), (DWORD)-1,
 	SRC_SQL, _T ("SQL"), _T ("sql"), &ParseLineSql, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
 	SRC_TCL, _T ("TCL"), _T ("tcl"), &ParseLineTcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
 	SRC_TEX, _T ("TEX"), _T ("tex;sty;clo;ltx;fd;dtx"), &ParseLineTex, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("%"), (DWORD)-1,

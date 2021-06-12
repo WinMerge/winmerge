@@ -42,6 +42,7 @@ Ruby
 Rust
 SGML
 SIOD
+Smarty
 SQL
 TCL
 TEX
