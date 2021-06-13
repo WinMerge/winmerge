@@ -627,8 +627,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_IMAGE - ID_MERGE_COMPARE_TEXT); --i)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames,
-					{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 			}
 			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
 			{
@@ -655,8 +654,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 						pMenu->DeleteMenu(0, MF_BYPOSITION);
 
 					if (j == 0)
-						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames,
-							{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, false, ID_UNPACKERS_FIRST);
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, false, ID_UNPACKERS_FIRST);
 					else
 						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, false, ID_SCRIPT_FIRST);
 				}
@@ -749,7 +747,8 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return GetMainFrame()->ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	default:
-		break;
+		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker);
 	}
 }
 
@@ -1213,7 +1212,7 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles /*= nullptr*/,
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
 		fileloc[pane].setPath((*pFiles)[pane]);
 	return ShowMergeDoc(nID, pDirDoc, pFiles->GetSize(), fileloc,
-		dwFlags, nullptr, sReportFile, infoUnpacker);
+		dwFlags, strDesc, sReportFile, infoUnpacker);
 }
 
 void CMainFrame::UpdateFont(FRAMETYPE frame)
@@ -2472,7 +2471,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	return conflictCompared;
 }
 
-bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDesc[] /*= nullptr*/)
+bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDesc[] /*= nullptr*/,
+	const PackingInfo *infoUnpacker /*= nullptr*/)
 {
 	String ext = paths::FindExtension(file);
 	TempFilePtr wTemp(new TempFile());
@@ -2486,7 +2486,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("") };
 	DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 	PathContext tmpPathContext(copiedFile, file);
-	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2);
+	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker);
 }
 
 /**
@@ -2922,10 +2922,26 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	{
 		CMenu popup;
 		popup.CreatePopupMenu();
-		for (const auto& [caption, name, id, plugin] : allPlugins[processType])
-			popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
-		pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
+		if (processType.empty())
+		{
+			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
+				pMenu2->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+		}
+		else
+		{
+			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
+				popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+			pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
+		}
 		popup.Detach();
+	}
+
+	if (addAllMenu)
+	{
+		if (baseId == ID_UNPACKERS_FIRST)
+			pMenu2->AppendMenu(MF_STRING, ID_OPEN_WITH_UNPACKER, _("&Select...").c_str());
+		else if (baseId == ID_PREDIFFERS_FIRST)
+			pMenu2->AppendMenu(MF_STRING, ID_APPLY_PREDIFFER, _("&Select...").c_str());
 	}
 	popupAll.Detach();
 }

@@ -152,6 +152,7 @@ void PluginsListDlg::OnBnClickedOk()
 	}
 
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
+	CAllThreadsScripts::ReloadCustomSettings();
 	OnOK();
 }
 

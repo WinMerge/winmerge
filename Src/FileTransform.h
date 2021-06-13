@@ -214,4 +214,7 @@ std::pair<
 >
 CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId);
 
+inline const std::vector<String> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" };
+inline const std::vector<String> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF" };
+
 }

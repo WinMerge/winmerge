@@ -678,7 +678,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 				{
 					if (!addedNoneAutomatic)
 					{
-						String process = _T("&Others");
+						String process = _T("");
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
 						allPlugins[process].emplace_back(_T("<None>"), _T(""), id++, plugin.get());
 						allPlugins[process].emplace_back(_T("<Automatic>"), _T("<Automatic>"), id++, plugin.get());

@@ -565,9 +565,16 @@ void COpenView::OnCompare(UINT nID)
 	if (nFiles == 1)
 	{
 		if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
-			LoadProjectFile(m_strPath[0]);
+		{
+			theApp.LoadAndOpenProjectFile(m_strPath[0]);
+		}
 		else
-			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr);
+		{
+			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
+			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+				tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo);
+		}
 		return;
 	}
 
@@ -642,18 +649,27 @@ void COpenView::OnCompare(UINT nID)
 	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
+	// Copy the values in pDoc as it will be invalid when COpenFrame is closed. 
 	PackingInfo tmpPackingInfo(pDoc->m_strUnpackerPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
+	std::array<DWORD, 3> dwFlags = pDoc->m_dwFlags;
+	bool recurse = pDoc->m_bRecurse;
 	if (nID == IDOK)
 	{
 		GetMainFrame()->DoFileOpen(
-			&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(),
-			nullptr, _T(""), pDoc->m_bRecurse, nullptr, &tmpPackingInfo, nullptr);
+			&tmpPathContext, dwFlags.data(),
+			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+	}
+	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		GetMainFrame()->DoFileOpen(
+			&tmpPathContext, dwFlags.data(),
+			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 	}
 	else
 	{
-		GetMainFrame()->DoFileOpen(
-			nID, &m_files, pDoc->m_dwFlags.data(), nullptr, _T(""), &tmpPackingInfo);
+		GetMainFrame()->DoFileOpen(nID, &tmpPathContext, dwFlags.data(), nullptr, _T(""), &tmpPackingInfo);
 	}
 }
 
@@ -734,6 +750,8 @@ void COpenView::OnLoadProject()
 		m_bReadOnly[2] = projItem.GetRightReadOnly();
 	}
 	m_strExt = projItem.GetFilter();
+	if (projItem.HasUnpacker())
+		m_strUnpackerPipeline = projItem.GetUnpacker();
 
 	UpdateData(FALSE);
 	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
@@ -808,8 +826,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 			for (int i = 0; i < 3; i++)
 				tmpPath[i] = m_strPath[i].empty() ? _T("|.|") : m_strPath[i];
 			String filteredFilenames = strutils::join(std::begin(tmpPath), std::end(tmpPath), _T("|"));
-			CMainFrame::AppendPluginMenus(pPopup, filteredFilenames,
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
+			CMainFrame::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 		}
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 			rcButton.left, rcButton.bottom, GetMainFrame());
@@ -1235,51 +1252,6 @@ void COpenView::OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult)
 	GetMainFrame()->ScreenToClient(&dropDown.rcButton);
 	GetMainFrame()->SendMessage(WM_NOTIFY, dropDown.hdr.idFrom, reinterpret_cast<LPARAM>(&dropDown));
 	*pResult = 0;
-}
-
-/** 
- * @brief Read paths and filter from project file.
- * Reads the given project file. After the file is read, found paths and
- * filter is updated to dialog GUI. Other possible settings found in the
- * project file are kept in memory and used later when loading paths
- * selected.
- * @param [in] path Path to the project file.
- * @return `true` if the project file was successfully loaded, `false` otherwise.
- */
-bool COpenView::LoadProjectFile(const String &path)
-{
-	String filterPrefix = _("[F] ");
-	ProjectFile prj;
-
-	if (!theApp.LoadProjectFile(path, prj))
-		return false;
-	if (prj.Items().size() == 0)
-		return false;
-	bool recurse;
-	ProjectFileItem& projItem = *prj.Items().begin();
-	projItem.GetPaths(m_files, recurse);
-	m_bRecurse = recurse;
-	m_dwFlags[0] &= ~FFILEOPEN_READONLY;
-	m_dwFlags[0] |= projItem.GetLeftReadOnly() ?	FFILEOPEN_READONLY : 0;
-	if (m_files.GetSize() < 3)
-	{
-		m_dwFlags[1] &= ~FFILEOPEN_READONLY;
-		m_dwFlags[1] |= projItem.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
-	}
-	else
-	{
-		m_dwFlags[1] &= ~FFILEOPEN_READONLY;
-		m_dwFlags[1] |= projItem.GetMiddleReadOnly() ? FFILEOPEN_READONLY : 0;
-		m_dwFlags[2] &= ~FFILEOPEN_READONLY;
-		m_dwFlags[2] |= projItem.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
-	}
-	if (projItem.HasFilter())
-	{
-		m_strExt = strutils::trim_ws(projItem.GetFilter());
-		if (m_strExt[0] != '*')
-			m_strExt.insert(0, filterPrefix);
-	}
-	return true;
 }
 
 /** 

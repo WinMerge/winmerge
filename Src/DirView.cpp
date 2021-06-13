@@ -1560,8 +1560,7 @@ void CDirView::OpenSelectionAs(UINT id)
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
 		PackingInfo infoUnpacker(
-				CMainFrame::GetPluginNameByMenuId(id, 
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+				CMainFrame::GetPluginNameByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 	else
@@ -3802,7 +3801,7 @@ void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
 
 	String filteredFilenames = GetDiffContext().GetFilteredFilenames(*GetItemKey(sel));
 	CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
-		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
+		FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 }
 
 void CDirView::OnViewCompareStatistics()

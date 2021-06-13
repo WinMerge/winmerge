@@ -121,7 +121,7 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
-	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr);
+	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr, const PackingInfo* infoUnpacker = nullptr);
 	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
 	static void UpdateDocTitle();
 	static void ReloadMenu();

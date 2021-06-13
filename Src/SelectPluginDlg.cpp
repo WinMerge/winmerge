@@ -43,9 +43,7 @@ void CSelectPluginDlg::Initialize(bool unpacker)
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	std::vector<std::wstring> events = unpacker ?
-		std::vector<std::wstring>{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" } :
-		std::vector<std::wstring>{ L"BUFFER_PREDIFF", L"FILE_PREDIFF" };
+	std::vector<std::wstring> events = unpacker ?  FileTransform::UnpackerEventNames : FileTransform::PredifferEventNames;
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
 }
 
@@ -148,7 +146,8 @@ void CSelectPluginDlg::prepareListbox()
 		if (it != String::npos)
 			processTypeTranslated.erase(it, it + 2);
 		strutils::replace(processTypeTranslated, _T("&"), _T(""));
-		m_cboPluginName.AddString((_T("[") + processTypeTranslated + _T("]")).c_str());
+		if (!processTypeTranslated.empty())
+			m_cboPluginName.AddString((_T("[") + processTypeTranslated + _T("]")).c_str());
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (!name.empty() && name != _T("<Automatic>"))

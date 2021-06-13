@@ -569,12 +569,6 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 
-	String uniqueName = m_event + _T(".") + m_name;
-	m_bAutomatic = GetCustomSetting(uniqueName, _T("automatic"), m_bAutomaticDefault ? _T("true") : _T("false"))[0] == 't';
-	m_arguments = GetCustomSetting(uniqueName, _T("arguments"), m_argumentsDefault);
-	m_filtersText = GetCustomSetting(uniqueName, _T("filters"), m_filtersTextDefault);
-	LoadFilterString();
-
 	// Clear the autorelease holder
 	drv.p = nullptr;
 
@@ -766,6 +760,22 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 	}
 }
 
+static void LoadCustomSettings(std::map<std::wstring, PluginArrayPtr> plugins)
+{
+	for (const auto& [event, pluginAry] : plugins)
+	{
+		for (const auto& plugin : *pluginAry)
+		{
+			String uniqueName = event + _T(".") + plugin->m_name;
+			plugin->m_disabled = (GetCustomSetting(uniqueName, _T("disabled"), _T("false"))[0] != 'f');
+			plugin->m_bAutomatic = GetCustomSetting(uniqueName, _T("automatic"), plugin->m_bAutomaticDefault ? _T("true") : _T("false"))[0] == 't';
+			plugin->m_arguments = GetCustomSetting(uniqueName, _T("arguments"), plugin->m_argumentsDefault);
+			plugin->m_filtersText = GetCustomSetting(uniqueName, _T("filters"), plugin->m_filtersTextDefault);
+			plugin->LoadFilterString();
+		}
+	}
+}
+
 /** 
  * @brief Get available scriptlets for an event
  *
@@ -787,7 +797,6 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		if (rtn == 1)
 		{
 			// Plugin has this event
-			plugin->m_disabled = (GetCustomSetting(plugin->m_name, _T("disabled"), _T("false"))[0] != 'f');
 			if (plugins.find(plugin->m_event) == plugins.end())
 				plugins[plugin->m_event].reset(new PluginArray);
 			plugins[plugin->m_event]->push_back(plugin);
@@ -815,6 +824,7 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 	}
 
 	ResolveNameConflict(plugins);
+	LoadCustomSettings(plugins);
 
 	return plugins;
 }
@@ -1012,6 +1022,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 	assert(false);
 	return nullptr;
 }
+
 CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
@@ -1026,6 +1037,16 @@ bool CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	return (scripts == m_aAvailableThreads[0]);
+}
+
+void CAllThreadsScripts::ReloadCustomSettings()
+{
+	{
+		FastMutex::ScopedLock lock(scriptletsSem);
+		customSettingsMap.clear();
+	}
+	for (auto& thread : m_aAvailableThreads)
+		LoadCustomSettings(thread->m_aPluginsByEvent);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

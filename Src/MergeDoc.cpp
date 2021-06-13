@@ -3393,7 +3393,7 @@ void CMergeDoc::OnOpenWithUnpacker()
 		PathContext paths = m_filePaths;
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
-		int nID = m_bEnableTableEditing.value_or(true) ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+		int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 		CloseNow();
 		GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
@@ -3485,9 +3485,8 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, 
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
-		nID =  m_bEnableTableEditing.value_or(false) ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 	}
 
 	CloseNow();

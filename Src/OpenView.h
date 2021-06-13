@@ -95,7 +95,6 @@ public:
 
 protected:
 	void SetStatus(UINT msgID);
-	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
 	void LoadComboboxStates();

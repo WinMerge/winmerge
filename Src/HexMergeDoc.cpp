@@ -832,8 +832,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, 
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = ID_MERGE_COMPARE_HEX;
 	}
 

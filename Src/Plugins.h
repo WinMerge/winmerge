@@ -154,6 +154,7 @@ public:
 	using InternalPluginLoaderFuncPtr = bool (*)(std::map<String, PluginArrayPtr>& aPluginsByEvent, String& errmsg);
 	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
 	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
+	static void ReloadCustomSettings();
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static std::vector<CScriptsOfThread *> m_aAvailableThreads;
