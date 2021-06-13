@@ -118,7 +118,11 @@ void CWindowsManagerDialog::PopulateList()
 		sText.Empty();
 		HICON hIcon = pArrChild->GetAt(i)->GetIcon(FALSE);
 		if (NULL == hIcon)
-			hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		{
+			hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+			if (NULL == hIcon)
+				hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		}
 		m_pIL->Add(hIcon);
 		const CDocument* pDoc = pArrChild->GetAt(i)->GetActiveDocument();
 		if (nullptr != pDoc)
