@@ -645,16 +645,10 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
 	if (!cmdInfo.m_sUnpackerPipeline.empty())
-	{
-		infoUnpacker.reset(new PackingInfo(false));
-		infoUnpacker->SetPluginPipeline(cmdInfo.m_sUnpackerPipeline);
-	}
+		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpackerPipeline));
 
 	if (!cmdInfo.m_sPreDifferPipeline.empty())
-	{
-		infoPrediffer.reset(new PrediffingInfo(false));
-		infoPrediffer->SetPluginPipeline(cmdInfo.m_sPreDifferPipeline);
-	}
+		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDifferPipeline));
 
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
@@ -1204,16 +1198,10 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		}
 		if (projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
-		if (projItem.HasPrediffer())
-		{
-			pInfoPrediffer.reset(new PrediffingInfo());
-			pInfoPrediffer->SetPluginPipeline(projItem.GetPrediffer());
-		}
 		if (projItem.HasUnpacker())
-		{
-			pInfoUnpacker.reset(new PackingInfo());
-			pInfoUnpacker->SetPluginPipeline(projItem.GetUnpacker());
-		}
+			pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
+		if (projItem.HasPrediffer())
+			pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
 
 		DWORD dwFlags[3] = {
 			static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),

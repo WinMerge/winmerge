@@ -123,15 +123,15 @@ public:
 		{
 			currentItem.m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
 		}
-		else if (nodename == Prediffer_element_name)
-		{
-			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
-			currentItem.m_bHasPrediffer = true;
-		}
 		else if (nodename == Unpacker_element_name)
 		{
 			currentItem.m_unpacker += xmlch2tstr(ch + start, length);
 			currentItem.m_bHasUnpacker = true;
+		}
+		else if (nodename == Prediffer_element_name)
+		{
+			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasPrediffer = true;
 		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
@@ -297,10 +297,10 @@ bool ProjectFile::Save(const String& path) const
 				if (!item.m_paths.GetMiddle().empty())
 					writeElement(writer, Middle_ro_element_name, item.m_bMiddleReadOnly ? "1" : "0");
 				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
-				if (!item.m_prediffer.empty())
-					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
 				if (!item.m_unpacker.empty())
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
+				if (!item.m_prediffer.empty())
+					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
 			}
 			writer.endElement("", "", Paths_element_name);
 		}

@@ -668,17 +668,9 @@ void ApplyPluginPipeline(const InputIterator& begin, const InputIterator& end, c
 		const DIFFITEM& di = *it;
 		if (!di.diffcode.isDirectory())
 		{
-			String filteredFilenames;
-			for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
-			{
-				if (di.diffcode.exists(i))
-				{
-					if (!filteredFilenames.empty()) filteredFilenames += _T("|");
-					filteredFilenames += ::GetItemFileName(ctxt, di, i);
-				}
-			}
 			PackingInfo * infoUnpacker = nullptr;
 			PrediffingInfo * infoPrediffer = nullptr;
+			String filteredFilenames = ctxt.GetFilteredFilenames(di);
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 			if (unpacker)
 				infoUnpacker->SetPluginPipeline(pluginPipeline);
@@ -710,10 +702,9 @@ std::tuple<int, int, int> CountPluginNoneAutoOthers(const InputIterator& begin, 
 		if (!di.diffcode.isDirectory() && !di.diffcode.isBin() && IsItemExistAll(ctxt, di)
 			&& !di.diffcode.isResultFiltered())
 		{
-			PathContext tFiles = GetItemFileNames(ctxt, di);
-			String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 			PackingInfo * infoUnpacker;
 			PrediffingInfo * infoPrediffer;
+			String filteredFilenames = ctxt.GetFilteredFilenames(di);
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 			String pluginPipeline = unpacker ? infoUnpacker->GetPluginPipeline() : infoPrediffer->GetPluginPipeline();
 			if (pluginPipeline.empty())

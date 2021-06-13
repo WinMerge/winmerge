@@ -749,18 +749,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return GetMainFrame()->ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	default:
-		if (nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
-		{
-			PackingInfo handler(false);
-			handler.SetPluginPipeline(GetPluginNameByMenuId(nID,
-				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
-			PathContext paths;
-			for (int i = 0; i < nFiles; ++i)
-				paths.SetPath(i, ifileloc[i].filepath);
-			return DoFileOpen(&paths, dwFlags, strDesc, _T(""), true, nullptr, &handler, nullptr);
-		}
-		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker);
+		break;
 	}
 }
 

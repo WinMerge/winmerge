@@ -276,3 +276,11 @@ void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) con
 		}
 	}
 }
+
+String CDiffContext::GetFilteredFilenames(const DIFFITEM& di) const
+{
+	PathContext paths;
+	GetComparePaths(di, paths);
+	return GetFilteredFilenames(paths);
+}
+

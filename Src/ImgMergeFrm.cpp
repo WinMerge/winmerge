@@ -943,8 +943,7 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nID)
 	int nBuffers = m_filePaths.GetSize();
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc :
 		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
-	PackingInfo infoUnpacker;
-	infoUnpacker.SetPluginPipeline(m_infoUnpacker.GetPluginPipeline());
+	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
@@ -974,8 +973,7 @@ void CImgMergeFrame::OnOpenWithUnpacker()
 		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
 	if (dlg.DoModal() == IDOK)
 	{
-		PackingInfo infoUnpacker;
-		infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
+		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
 		PathContext paths = m_filePaths;
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };

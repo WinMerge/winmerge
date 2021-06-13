@@ -111,7 +111,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 		// Transformation happens here
 		// text used for automatic mode : plugin filter must match it
-		String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
+		String filteredFilenames = CDiffContext::GetFilteredFilenames(tFiles);
 
 		PackingInfo * infoUnpacker = nullptr;
 		PrediffingInfo * infoPrediffer = nullptr;

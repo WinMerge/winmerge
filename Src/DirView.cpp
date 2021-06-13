@@ -1362,24 +1362,29 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding
 		// then it was set in a previous diff after unpacking, so we trust it
 
 		// Open identical and different files
+		PathContext filteredPaths;
 		FileLocation fileloc[3];
 		String strDesc[3];
 		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
 		for (int i = 0; i < paths.GetSize(); ++i)
 		{
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
+			{
 				strDesc[i] = sUntitled[i];
+				filteredPaths.SetPath(i, _T("NUL"), false);
+			}
 			else
 			{
 				fileloc[i].setPath(paths[i]);
 				fileloc[i].encoding = encoding[i];
+				filteredPaths.SetPath(i, paths[i], false);
 			}
 		}
 
 		if (!infoUnpacker)
 		{
 			PrediffingInfo* infoPrediffer = nullptr;
-			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+			String filteredFilenames = CDiffContext::GetFilteredFilenames(filteredPaths);
 			GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		}
 
@@ -1535,23 +1540,37 @@ void CDirView::OpenSelectionAs(UINT id)
 	const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
 	DWORD dwFlags[3] = { 0 };
 	String strDesc[3];
+	PathContext filteredPaths;
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < paths.GetSize(); pane++)
 	{
 		if (paths::DoesPathExist(paths[pane]) == paths::DOES_NOT_EXIST)
+		{
 			strDesc[pane] = sUntitled[pane];
+			filteredPaths.SetPath(pane, _T("NUL"), false);
+		}
 		else
 		{
 			fileloc[pane].setPath(paths[pane]);
 			fileloc[pane].encoding = encoding[pane];
+			filteredPaths.SetPath(pane, paths[pane]);
 		}
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
-	PackingInfo* infoUnpacker = nullptr;
-	PrediffingInfo* infoPrediffer = nullptr;
-	String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
-	GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-	GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker);
+	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
+	{
+		PackingInfo infoUnpacker(
+				CMainFrame::GetPluginNameByMenuId(id, 
+				{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, ID_UNPACKERS_FIRST));
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+	}
+	else
+	{
+		PackingInfo* infoUnpacker = nullptr;
+		PrediffingInfo* infoPrediffer = nullptr;
+		GetDiffContext().FetchPluginInfos(CDiffContext::GetFilteredFilenames(filteredPaths), &infoUnpacker, &infoPrediffer);
+		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker);
+	}
 }
 
 /// User chose (context menu) delete left
@@ -2703,13 +2722,17 @@ void CDirView::OnOpenWithUnpacker()
 	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 	if (sel != -1)
 	{
-		PackingInfo infoUnpacker(true);
+		PackingInfo* infoUnpacker = nullptr;
+		PrediffingInfo* infoPrediffer = nullptr;
+		CDiffContext& ctxt = GetDiffContext();
+		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
+		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		// let the user choose a handler
-		CSelectPluginDlg dlg(infoUnpacker.GetPluginPipeline(), GetDiffItem(sel).diffFileInfo[0].filename, true, this);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, true, this);
 		if (dlg.DoModal() == IDOK)
 		{
-			infoUnpacker.SetPluginPipeline(dlg.GetPluginPipeline());
-			OpenSelection(SELECTIONTYPE_NORMAL, &infoUnpacker, false);
+			PackingInfo infoUnpackerNew(dlg.GetPluginPipeline());
+			OpenSelection(SELECTIONTYPE_NORMAL, &infoUnpackerNew, false);
 		}
 	}
 
@@ -3058,11 +3081,14 @@ void CDirView::OnPluginSettings(UINT nID)
 		break;
 	case ID_PREDIFFER_SETTINGS_SELECT:
 	case ID_UNPACKER_SETTINGS_SELECT:
-		String filename;
 		int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-		if (sel != -1)
-			filename = GetDiffItem(sel).diffFileInfo[0].filename;
-		CSelectPluginDlg dlg(pluginPipeline, filename, unpacker, this);
+		PackingInfo* infoUnpacker = nullptr;
+		PrediffingInfo* infoPrediffer = nullptr;
+		CDiffContext& ctxt = GetDiffContext();
+		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
+		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+		GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, unpacker, this);
 		if (dlg.DoModal() != IDOK)
 			return;
 		pluginPipeline = dlg.GetPluginPipeline();
@@ -3774,9 +3800,7 @@ void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
 	if (sel == -1 || GetItemKey(sel) == reinterpret_cast<DIFFITEM *>(SPECIAL_ITEM_POS))
 		return;
 
-	PathContext paths;
-	GetItemFileNames(sel, &paths);
-	String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+	String filteredFilenames = GetDiffContext().GetFilteredFilenames(*GetItemKey(sel));
 	CMainFrame::AppendPluginMenus(pCmdUI->m_pMenu, filteredFilenames,
 		{ L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" }, true, ID_UNPACKERS_FIRST);
 }

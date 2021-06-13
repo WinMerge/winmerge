@@ -732,9 +732,7 @@ static String GetPluginPipeline(const CDiffContext* pCtxt, const DIFFITEM& di, b
 		return _T("");
 	PackingInfo* pInfoUnpacker = nullptr;
 	PrediffingInfo * pInfoPrediffer = nullptr;
-	PathContext tFiles;
-	pCtxt->GetComparePaths(di, tFiles);
-	String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
+	String filteredFilenames = pCtxt->GetFilteredFilenames(di);
 	const_cast<CDiffContext *>(pCtxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
 	if (unpacker)
 		return pInfoUnpacker ? pInfoUnpacker->GetPluginPipeline() : _T("");

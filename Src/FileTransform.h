@@ -41,11 +41,18 @@ public:
 	{
 		// and init Plugin/Prediffer mode and Plugin name accordingly
 		m_PluginPipeline = automatic ? _T("<Automatic>") : _T("");
-	};
+	}
+
 	explicit PluginForFile(bool automatic) 
 	{
 		Initialize(automatic);
-	};
+	}
+
+	explicit PluginForFile(const String& pluginPipeline)
+	: m_PluginPipeline(pluginPipeline)
+	{
+	}
+
 	const String& GetPluginPipeline() const { return m_PluginPipeline; }
 	void SetPluginPipeline(const String& pluginPipeline) { m_PluginPipeline = pluginPipeline; }
 	void ClearPluginPipeline() { m_PluginPipeline.clear(); }
@@ -71,6 +78,11 @@ class PackingInfo : public PluginForFile
 public:
 	explicit PackingInfo(bool automatic = FileTransform::AutoUnpacking)
 	: PluginForFile(automatic)
+	{
+	}
+
+	explicit PackingInfo(const String& pluginPipeline)
+	: PluginForFile(pluginPipeline)
 	{
 	}
 
@@ -123,6 +135,11 @@ class PrediffingInfo : public PluginForFile
 public:
 	explicit PrediffingInfo(bool automatic = FileTransform::AutoPrediffing)
 	: PluginForFile(automatic)
+	{
+	}
+
+	explicit PrediffingInfo(const String& pluginPipeline)
+	: PluginForFile(pluginPipeline)
 	{
 	}
 

@@ -16,6 +16,8 @@
 	</property>
 	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
+	<method name="RemoveDuplicates"/>
+	<method name="CountDuplicates"/>
 	<method name="SortAscending"/>
 	<method name="SortDescending"/>
 	<method name="ExecFilterCommand"/>
@@ -39,7 +41,7 @@ Function get_PluginDescription()
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make Uppercase;MakeLower.MenuCaption=Make Lowercase;SortAscending.MenuCaption=Sort Ascending;SortDescending.MenuCaption=Sort Descending;ExecFilterCommand.MenuCaption=Apply Filter Command..."
+	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make Uppercase;MakeLower.MenuCaption=Make Lowercase;RemoveDuplicates.MenuCaption=Remove Duplicate Lines;CountDuplicates.MenuCaption=Count Duplicate Lines;SortAscending.MenuCaption=Sort Lines Ascending;SortDescending.MenuCaption=Sort Lines Descending;ExecFilterCommand.MenuCaption=Apply Filter Command..."
 End Function
 
 Function get_PluginArguments()
@@ -135,6 +137,59 @@ End Function
 </script>
 
 <script language="JScript">
+
+function RemoveDuplicates(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var newlines = new Array();
+	var dic = {};
+	var lasteol = false;
+
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+		lasteol = true;
+	}
+	for (var i = 0, j = 0; i < lines.length; i++) {
+		var line = lines[i];
+		if (typeof dic[line] === 'undefined') {
+			dic[line] = 1;
+			newlines[j] = line;
+			j++;
+		}
+	}
+	if (lasteol)
+		newlines[j] = "";
+	return newlines.join(eol);
+}
+
+function CountDuplicates(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var newlines = new Array();
+	var dic = {};
+
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+	}
+	
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i];
+		if (typeof dic[line] === 'undefined') {
+			dic[line] = 1;
+			newlines[j] = line;
+			j++;
+		} else {
+			dic[line]++;
+		}
+	}
+	var j = 0;
+	for (var line in dic) {
+		newlines[j] = line + '\t' + dic[line];
+		j++;
+	}
+	newlines[j] = "";
+	return newlines.join(eol);
+}
 
 function SortAscending(Text) {
 	var eol = Text.match(/\r\n|\n|\r/);

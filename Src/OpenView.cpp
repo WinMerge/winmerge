@@ -642,8 +642,7 @@ void COpenView::OnCompare(UINT nID)
 	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
-	PackingInfo tmpPackingInfo;
-	tmpPackingInfo.SetPluginPipeline(pDoc->m_strUnpackerPipeline);
+	PackingInfo tmpPackingInfo(pDoc->m_strUnpackerPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
 	if (nID == IDOK)
 	{
