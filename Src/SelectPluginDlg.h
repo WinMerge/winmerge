@@ -14,6 +14,7 @@
 #include <vector>
 #include <memory>
 #include "TrDialogs.h"
+#include "SuperComboBox.h"
 #include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,7 @@ public:
 	String	m_strExtensions;
 	String	m_strArguments;
 	String	m_strPluginPipeline;
+	CSuperComboBox m_ctlPluginPipeline;
 	
 	//}}AFX_DATA
 
@@ -64,6 +66,7 @@ protected:
 	std::unique_ptr<PluginInfo> noPlugin;
 	// const data "automatic plugin"
 	std::unique_ptr<PluginInfo> automaticPlugin;
+	bool m_bUnpacker;
 
 	// input value
 	String m_filteredFilenames;

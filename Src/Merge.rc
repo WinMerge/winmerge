@@ -1442,7 +1442,7 @@ BEGIN
     CONTROL         "Display all unpackers, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,92,90,220,12
     LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,104,83,10
-    EDITTEXT        IDC_PLUGIN_PIPELINE,92,104,220,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,104,220,95
     PUSHBUTTON      "&Add pipe",IDC_PLUGIN_ADDPIPE,136,120,70,14
     DEFPUSHBUTTON   "OK",IDOK,210,120,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,264,120,50,14
@@ -3694,20 +3694,22 @@ BEGIN
     IDS_PLUGIN_PROCESS_TYPE5 "&Others"
     IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
     IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
-    IDS_PLUGIN_MENU_CAPTION3  "Sort Ascending"
-    IDS_PLUGIN_MENU_CAPTION4  "Sort Descending"
-    IDS_PLUGIN_MENU_CAPTION5  "Apply Filter Command..."
-    IDS_PLUGIN_MENU_CAPTION6  "Insert Date"
-    IDS_PLUGIN_MENU_CAPTION7  "Insert Time"
-    IDS_PLUGIN_MENU_CAPTION8  "Apply Patch"
-    IDS_PLUGIN_MENU_CAPTION9  "Ignore Columns"
-    IDS_PLUGIN_MENU_CAPTION10 "Ignore Comments (C-Family Languages)"
-    IDS_PLUGIN_MENU_CAPTION11 "Ignore CSV Fields"
-    IDS_PLUGIN_MENU_CAPTION12 "Ignore TSV Fields"
-    IDS_PLUGIN_MENU_CAPTION13 "Apply Prediff Substitution Filters"
-    IDS_PLUGIN_MENU_CAPTION14 "Prettify JSON"
-    IDS_PLUGIN_MENU_CAPTION15 "Prettify XML"
-    IDS_PLUGIN_MENU_CAPTION16 "Visualize Graphviz"
+    IDS_PLUGIN_MENU_CAPTION3  "Remove Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION4  "Count Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION5  "Sort Lines Ascending"
+    IDS_PLUGIN_MENU_CAPTION6  "Sort Lines Descending"
+    IDS_PLUGIN_MENU_CAPTION7  "Apply Filter Command..."
+    IDS_PLUGIN_MENU_CAPTION8  "Insert Date"
+    IDS_PLUGIN_MENU_CAPTION9  "Insert Time"
+    IDS_PLUGIN_MENU_CAPTION10 "Apply Patch"
+    IDS_PLUGIN_MENU_CAPTION11 "Ignore Columns"
+    IDS_PLUGIN_MENU_CAPTION12 "Ignore Comments (C-Family Languages)"
+    IDS_PLUGIN_MENU_CAPTION13 "Ignore CSV Fields"
+    IDS_PLUGIN_MENU_CAPTION14 "Ignore TSV Fields"
+    IDS_PLUGIN_MENU_CAPTION15 "Apply Prediff Substitution Filters"
+    IDS_PLUGIN_MENU_CAPTION16 "Prettify JSON"
+    IDS_PLUGIN_MENU_CAPTION17 "Prettify XML"
+    IDS_PLUGIN_MENU_CAPTION18 "Visualize Graphviz"
     IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
 END

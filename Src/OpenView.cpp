@@ -568,7 +568,7 @@ void COpenView::OnCompare(UINT nID)
 		{
 			theApp.LoadAndOpenProjectFile(m_strPath[0]);
 		}
-		else
+		else if (!paths::IsDirectory(m_strPath[0]))
 		{
 			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)

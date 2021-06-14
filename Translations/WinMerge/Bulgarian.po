@@ -3708,10 +3708,16 @@ msgstr ""
 msgid "Make Lowercase"
 msgstr ""
 
-msgid "Sort Ascending"
+msgid "Remove Duplicate Lines"
 msgstr ""
 
-msgid "Sort Descending"
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
 msgstr ""
 
 msgid "Apply Filter Command..."

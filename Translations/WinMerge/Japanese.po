@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-12 16:49+0900\n"
+"PO-Revision-Date: 2021-06-14 09:13+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3662,10 +3662,16 @@ msgstr "大文字に変換"
 msgid "Make Lowercase"
 msgstr "小文字に変換"
 
-msgid "Sort Ascending"
+msgid "Remove Duplicate Lines"
+msgstr "重複行を削除"
+
+msgid "Count Duplicate Lines"
+msgstr "重複行をカウント"
+
+msgid "Sort Lines Ascending"
 msgstr "昇順にソート"
 
-msgid "Sort Descending"
+msgid "Sort Lines Descending"
 msgstr "降順にソート"
 
 msgid "Apply Filter Command..."

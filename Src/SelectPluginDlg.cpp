@@ -52,6 +52,7 @@ CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& f
 	: CTrDialog(CSelectPluginDlg::IDD, pParent)
 	, m_strPluginPipeline(pluginPipeline)
 	, m_filteredFilenames(filename)
+	, m_bUnpacker(unpacker)
 {
 	Initialize(unpacker);
 }
@@ -60,6 +61,7 @@ CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& f
 	: CTrDialog(CSelectPluginDlg::IDD, pParent)
 	, m_strPluginPipeline(pluginPipeline)
 	, m_filteredFilenames(filename1 + _T("|") + filename2)
+	, m_bUnpacker(unpacker)
 {
 	Initialize(unpacker);
 }
@@ -77,8 +79,9 @@ void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PLUGIN_ALLOW_ALL, m_bNoExtensionCheck);
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
 	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
-	DDX_Text(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
 	DDX_Text(pDX, IDC_PLUGIN_ARGUMENTS, m_strArguments);
+	DDX_Control(pDX, IDC_PLUGIN_PIPELINE, m_ctlPluginPipeline);
+	DDX_CBStringExact(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
 	//}}AFX_DATA_MAP
 }
 
@@ -99,6 +102,7 @@ END_MESSAGE_MAP()
 void CSelectPluginDlg::OnOK() 
 {
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
+	m_ctlPluginPipeline.SaveState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
 
 	CTrDialog::OnOK();
 }
@@ -110,6 +114,8 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
 
 	prepareListbox();
+	m_ctlPluginPipeline.SetFileControlStates(true);
+	m_ctlPluginPipeline.LoadState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
 
 	UpdateData(FALSE);
 
