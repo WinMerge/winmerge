@@ -1581,6 +1581,11 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 		FileTransform::AutoUnpacking = true;
 		break;
 	}
+	for (auto pDirDoc : GetAllDirDocs())
+	{
+		pDirDoc->GetPluginManager().SetUnpackerSettingAll(FileTransform::AutoUnpacking);
+		pDirDoc->UpdateAllViews(nullptr);
+	}
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(FileTransform::AutoUnpacking));
 }
 
@@ -1593,6 +1598,7 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
 		pCmdUI->SetRadio(FileTransform::AutoUnpacking);
 }
+
 void CMainFrame::OnPluginPrediffMode(UINT nID )
 {
 	switch (nID)
@@ -1608,7 +1614,10 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 	for (auto pMergeDoc : GetAllMergeDocs())
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
+	{
 		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::AutoPrediffing);
+		pDirDoc->UpdateAllViews(nullptr);
+	}
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::AutoPrediffing);
 }
 

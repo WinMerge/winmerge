@@ -145,7 +145,7 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	// if a prediffer fails, we consider it is not the good one, that's all
 	// FileTransform_Prediffing returns `false` only if the prediffer works, 
 	// but the data can not be saved to disk (no more place ??)
-	if (infoPrediffer && !infoPrediffer->Prediffing(filepathTransformed, filteredFilenames, bMayOverwrite))
+	if (infoPrediffer && !infoPrediffer->Prediffing(filepathTransformed, filteredFilenames, bMayOverwrite, { filepath }))
 		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)

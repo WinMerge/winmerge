@@ -282,8 +282,6 @@ void CDirDoc::Rescan()
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan && !m_bGeneratingReport)
 	{
-		// Reset the cache for the Automatic/Manual Unpacking/Prediffer settings to take effect
-		m_pluginman.Reset();
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
 	}

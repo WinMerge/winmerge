@@ -39,27 +39,18 @@ void PluginManager::FetchPluginInfos(const String& filteredFilenames,
 	*infoPrediffer = &fi->m_infoPrediffer;
 }
 
-/**
- * @brief Store specified prediff choice for specified comparison
- */
-void PluginManager::SetPrediffSetting(const String& filteredFilenames, bool automatic)
+void PluginManager::SetUnpackerSettingAll(bool automatic)
 {
-	PackingInfo * infoUnpacker = nullptr;
-	PrediffingInfo * infoPrediffer = nullptr;
-	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-	infoPrediffer->Initialize(automatic);
+	FastMutex::ScopedLock lock(m_mutex);
+	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
+		it->second->m_infoUnpacker.Initialize(automatic);
 }
 
 void PluginManager::SetPrediffSettingAll(bool automatic)
 {
 	FastMutex::ScopedLock lock(m_mutex);
 	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
-	{
-		PluginFileInfoPtr fi;
-		fi.reset(new PluginFileInfo);
-		fi->m_infoPrediffer.Initialize(automatic);
-		(*it).second = fi;
-	}
+		it->second->m_infoPrediffer.Initialize(automatic);
 }
 
 void PluginManager::SetPrediffer(const String& filteredFilenames, const String& predifferPipeline)

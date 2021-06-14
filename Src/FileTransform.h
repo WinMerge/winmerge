@@ -60,6 +60,7 @@ public:
 	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
+	static String ReplaceVariables(const String& str, const std::vector<StringView>& variables);
 
 protected:
 	/// plugin name when it is defined
@@ -106,7 +107,7 @@ public:
 	 * @note Event FILE_UNPACK
 	 * Apply only the first correct handler
 	 */
-	bool Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText);
+	bool Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables);
 
 	/**
 	 * @brief Prepare one file for saving, known handler
@@ -118,9 +119,9 @@ public:
 	 * @note Event FILE_PACK
 	 * Never do Unicode conversion, it was done in SaveFromFile
 	 */
-	bool Packing(String & filepath, const std::vector<int>& handlerSubcodes) const;
+	bool Packing(String & filepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes) const;
+	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
 	String GetUnpackedFileExtension(const String& filteredFilenames) const;
 };
@@ -158,7 +159,7 @@ public:
 	 * @note Event FILE_PREDIFF BUFFER_PREDIFF
 	 * Apply only the first correct handler
 	 */
-	bool Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite);
+	bool Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables);
 };
 
 namespace FileTransform

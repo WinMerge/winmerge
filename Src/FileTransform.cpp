@@ -14,6 +14,7 @@
 #include "FileTransform.h"
 #include <vector>
 #include <Poco/Exception.h>
+#include <Poco/Mutex.h>
 #include "Plugins.h"
 #include "multiformatText.h"
 #include "Environment.h"
@@ -22,6 +23,8 @@
 #include "MergeApp.h"
 
 using Poco::Exception;
+
+static Poco::FastMutex g_mutex;
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
@@ -154,6 +157,38 @@ String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::Pipeli
 	return pipeline;
 }
 
+String PluginForFile::ReplaceVariables(const String& str, const std::vector<StringView>& variables)
+{
+	String newstr;
+	for (const TCHAR* p = str.c_str(); *p; ++p)
+	{
+		if (*p == '%' && *(p + 1) != 0)
+		{
+			++p;
+			TCHAR c = *p;
+			if (c == '%')
+			{
+				newstr += '%';
+			}
+			else if (c >= '1' && c <= '9')
+			{
+				if ((c - '1') < variables.size())
+					newstr += String{ variables[(c - '1')].data(), variables[(c - '1')].length() };
+			}
+			else
+			{
+				newstr += *(p - 1);
+				newstr += c;
+			}
+		}
+		else
+		{
+			newstr += *p;
+		}
+	}
+	return newstr;
+}
+
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
@@ -221,7 +256,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 }
 
 // known handler
-bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubcodes) const
+bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
 {
 	// no handler : return true
 	if (m_PluginPipeline.empty())
@@ -244,10 +279,11 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 		bufferData.SetDataFileAnsi(filepath);
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
+			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 
@@ -288,10 +324,10 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 	return true;
 }
 
-bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes) const
+bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
 {
 	String csTempFileName = srcFilepath;
-	if (!Packing(csTempFileName, handlerSubcodes))
+	if (!Packing(csTempFileName, handlerSubcodes, variables))
 		return false;
 	try
 	{
@@ -308,7 +344,7 @@ bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, 
 	}
 }
 
-bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText)
+bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables)
 {
 	// no handler : return true
 	if (m_PluginPipeline.empty())
@@ -336,10 +372,11 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		int subcode = 0;
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
+			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 
@@ -460,7 +497,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	return true;
 }
 
-bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite)
+bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables)
 {
 	// no handler : return true
 	if (m_PluginPipeline.empty())
@@ -485,10 +522,11 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 		// bufferData.SetCodepage();
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
 
 		if (plugin->m_hasArgumentProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, piScript))
+			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 

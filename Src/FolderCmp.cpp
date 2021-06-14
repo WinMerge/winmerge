@@ -133,7 +133,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames))
+				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames, { tFiles[nIndex] }))
 					goto exitPrepAndCompare;
 			}
 

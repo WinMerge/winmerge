@@ -58,7 +58,7 @@ namespace
 		std::vector<int> subcodes;
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
-		iu->Unpacking(&subcodes, file, _T(".*\\.xls"));
+		iu->Unpacking(&subcodes, file, _T(".*\\.xls"), { file });
 	}
 
 	TEST_F(PluginsTest, ParsePluginPipeline)
@@ -288,6 +288,19 @@ namespace
 
 		parseResult = PluginForFile::ParsePluginPipeline(_T("MakeUpper | | "), errorMessage);
 		EXPECT_TRUE(!errorMessage.empty());
+	}
+
+	TEST_F(PluginsTest, ReplaceVariable)
+	{
+		String result;
+		EXPECT_EQ(_T(""), PluginForFile::ReplaceVariables(_T(""), {_T("abc")}));
+		EXPECT_EQ(_T("abc"), PluginForFile::ReplaceVariables(_T("%1"), {_T("abc")}));
+		EXPECT_EQ(_T("%1"), PluginForFile::ReplaceVariables(_T("%%1"), {_T("abc")}));
+		EXPECT_EQ(_T("%1a"), PluginForFile::ReplaceVariables(_T("%%1a"), {_T("abc")}));
+		EXPECT_EQ(_T(""), PluginForFile::ReplaceVariables(_T("%2"), {_T("abc")}));
+		EXPECT_EQ(_T("%TIME%"), PluginForFile::ReplaceVariables(_T("%TIME%"), {_T("abc")}));
+		EXPECT_EQ(_T("aaaabcaaa"), PluginForFile::ReplaceVariables(_T("aaa%1aaa"), {_T("abc")}));
+		EXPECT_EQ(_T("abcdef"), PluginForFile::ReplaceVariables(_T("%1%2"), {_T("abc"), _T("def")}));
 	}
 
 }  // namespace
