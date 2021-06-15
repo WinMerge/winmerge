@@ -4389,6 +4389,9 @@ msgstr ""
 msgid "Apply Filter Command..."
 msgstr ""
 
+msgid "Tokenize..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr ""
 

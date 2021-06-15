@@ -3677,6 +3677,9 @@ msgstr "降順にソート"
 msgid "Apply Filter Command..."
 msgstr "フィルタコマンドを適用..."
 
+msgid "Tokenize..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr "日付を挿入"
 

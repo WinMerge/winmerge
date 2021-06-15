@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-14 09:12+0000\n"
+"POT-Creation-Date: 2021-06-15 08:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3283,6 +3283,9 @@ msgid "Sort Lines Descending"
 msgstr ""
 
 msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
 msgstr ""
 
 msgid "Insert Date"
