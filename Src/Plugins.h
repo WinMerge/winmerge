@@ -42,7 +42,7 @@ public:
 		, m_bAutomatic(false)
 		, m_nFreeFunctions(0)
 		, m_disabled(false)
-		, m_hasArgumentProperty(false)
+		, m_hasArgumentsProperty(false)
 	{	
 	}
 
@@ -81,7 +81,7 @@ public:
 	bool        m_bAutomatic;
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;
-	bool        m_hasArgumentProperty;
+	bool        m_hasArgumentsProperty;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;

@@ -263,7 +263,7 @@ public:
 			L"\\.nomatch$", L"")
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_funcid(id)
-		, m_hasArgumentsProperty(plugin.m_hasArgumentProperty)
+		, m_hasArgumentsProperty(plugin.m_hasArgumentsProperty)
 	{
 		m_pDispatch->AddRef();
 		auto menuCaption = plugin.GetExtendedPropertyValue(funcname + _T(".MenuCaption"));
@@ -394,7 +394,9 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		strutils::replace(command, _T("${ARGS}"), m_sArguments);
+		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
+		for (size_t i = 0; i < args.size(); ++i)
+			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
 		if (m_info.m_prediffFile->m_script)
 		{
 			createScript(*m_info.m_prediffFile->m_script, scriptFile);
@@ -421,7 +423,9 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		strutils::replace(command, _T("${ARGS}"), m_sArguments);
+		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
+		for (size_t i = 0; i < args.size(); ++i)
+			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
 		if (m_info.m_unpackFile->m_script)
 		{
 			createScript(*m_info.m_unpackFile->m_script, scriptFile);
@@ -448,7 +452,9 @@ public:
 		TempFile scriptFile;
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		strutils::replace(command, _T("${ARGS}"), m_sArguments);
+		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
+		for (size_t i = 0; i < args.size(); ++i)
+			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
 		if (m_info.m_packFile->m_script)
 		{
 			createScript(*m_info.m_packFile->m_script, scriptFile);

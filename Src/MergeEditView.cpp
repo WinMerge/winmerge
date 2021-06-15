@@ -3465,14 +3465,15 @@ void CMergeEditView::RefreshOptions()
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
-void CMergeEditView::OnScripts(UINT nID )
+void CMergeEditView::OnScripts(UINT nID)
 {
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
 	CString ctext = GetSelectedText();
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = FileTransform::Interactive(text, _T(""), L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
+	bool bChanged = FileTransform::Interactive(text, _T(""), L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST,
+		{ GetDocument()->m_filePaths[m_nThisPane] });
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);

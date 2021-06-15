@@ -31,7 +31,7 @@ Const WinMergeRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\"
 Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor addin.sct\"
 
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
-Dim arguments: arguments = ""
+Dim arguments: arguments = Array()
 
 Function get_PluginEvent()
 	get_PluginEvent = "EDITOR_SCRIPT"
@@ -46,11 +46,11 @@ Function get_PluginExtendedProperties()
 End Function
 
 Function get_PluginArguments()
-	get_PluginArguments = arguments
+	get_PluginArguments = Join(arguments, Chr(0))
 End Function
 
 Sub put_PluginArguments(NewValue)
-	arguments = NewValue
+	arguments = Split(NewValue, Chr(0))
 End Sub
 
 Function regRead(Key, DefaultValue)
@@ -75,9 +75,44 @@ Function MakeLower(Text)
 	MakeLower = LCase(Text)
 End Function
 
+Function ReplaceVariables(ByVal str)
+	Dim newstr
+	Dim pos
+	Dim foundpos
+	Dim ch
+	pos = 1
+	Do While True
+		foundpos = InStr(pos, str, "%")
+		If foundpos > 0 Then
+			ch = Mid(str, foundpos + 1, 1)
+			If ch = "%" Then
+				newstr = newstr & "%"
+				pos = foundpos + 2
+			ElseIf IsNumeric(ch) Then
+				newstr = newstr & Mid(str, pos, foundpos - pos)
+				If CLng(ch) <= UBound(arguments) Then
+					newstr = newstr & arguments(CLng(ch))
+				End If
+				pos = foundpos + 2
+			Else
+				newstr = newstr & Mid(str, pos, foundpos - pos + 1)
+				pos = foundpos + 1
+			End If
+		Else
+			newstr = newstr & Mid(str, pos)
+			Exit Do
+		End If
+	Loop
+	ReplaceVariables = newstr
+End Function
+
 Function ExecFilterCommand(Text)
 	Dim cmd
-	If arguments = "" Then
+	Dim firstArgument: firstArgument = ""
+	If UBound(arguments) >= 0 Then
+		firstArgument = arguments(0)
+	End If
+	If firstArgument = "" Then
 		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
 		If IsLangJapanese() Then
 			cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
@@ -87,8 +122,9 @@ Function ExecFilterCommand(Text)
 		If cmd <> "" Then
 			wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
 		End If
+		cmd = ReplaceVariables(cmd)
 	Else
-		cmd = arguments
+		cmd = arguments(0)
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then

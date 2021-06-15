@@ -559,12 +559,12 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 			return -120; // error (Plugin had PluginArguments property, but error getting its value)
 		}
 		m_argumentsDefault = ucr::toTString(ret.bstrVal);
-		m_hasArgumentProperty = true;
+		m_hasArgumentsProperty = true;
 	}
 	else
 	{
 		m_argumentsDefault.clear();
-		m_hasArgumentProperty = false;
+		m_hasArgumentsProperty = false;
 	}
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
@@ -1590,7 +1590,8 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
 	// argument text  
 	VARIANT vbstrArgs;
 	vbstrArgs.vt = VT_BSTR;
-	vbstrArgs.bstrVal = SysAllocString(ucr::toUTF16(args).c_str());
+	std::wstring wargs = ucr::toUTF16(args);
+	vbstrArgs.bstrVal = SysAllocStringLen(wargs.data(), static_cast<unsigned>(wargs.size()));
 
 	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginArguments", opPut[1], vbstrArgs);
 	return SUCCEEDED(h);

@@ -60,7 +60,7 @@ public:
 	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
-	static String ReplaceVariables(const String& str, const std::vector<StringView>& variables);
+	static String MakeArguments(const String& str, const std::vector<StringView>& variables);
 
 protected:
 	/// plugin name when it is defined
@@ -207,7 +207,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  *
  * @note Event EDITOR_SCRIPT, ?
  */
-bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen);
+bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables);
 
 std::pair<
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,

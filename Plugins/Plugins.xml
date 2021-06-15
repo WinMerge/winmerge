@@ -9,7 +9,7 @@
     <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Prettify XML;GenerateEditorScript" />
     <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
     <unpack-file>
-    <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" -xml ${ARGS} -o "${DST_FILE}" "${SRC_FILE}"</command>
+    <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" -xml ${0} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyJSON">
@@ -21,7 +21,7 @@
     <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Prettify JSON;GenerateEditorScript" />
     <arguments value="&quot;&quot;" />
     <unpack-file>
-    <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${ARGS} &gt; "${DST_FILE}"</command>
+    <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${0} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="VisualizeGraphviz">
@@ -33,7 +33,7 @@
     <extended-properties value="ProcessType=Visualization;FileType=Graphviz;MenuCaption=Visualize Graphviz" />
     <arguments value="" />
     <unpack-file>
-      <command>dot.exe -Tpng ${ARGS} -o"${DST_FILE}" "${SRC_FILE}"</command>
+      <command>dot.exe -Tpng ${0} -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="ApacheTika">
@@ -45,7 +45,7 @@
     <extended-properties value="ProcessType=Content Extraction;MenuCaption=Apache Tika;GenerateEditorScript" />
     <arguments value="-t" />
     <unpack-file>
-      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" ${ARGS} "${SRC_FILE}" "${DST_FILE}"</command>
+      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" ${0} "${SRC_FILE}" "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <!--

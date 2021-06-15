@@ -157,10 +157,10 @@ String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::Pipeli
 	return pipeline;
 }
 
-String PluginForFile::ReplaceVariables(const String& str, const std::vector<StringView>& variables)
+String PluginForFile::MakeArguments(const String& pipelineArgs, const std::vector<StringView>& variables)
 {
 	String newstr;
-	for (const TCHAR* p = str.c_str(); *p; ++p)
+	for (const TCHAR* p = pipelineArgs.c_str(); *p; ++p)
 	{
 		if (*p == '%' && *(p + 1) != 0)
 		{
@@ -185,6 +185,11 @@ String PluginForFile::ReplaceVariables(const String& str, const std::vector<Stri
 		{
 			newstr += *p;
 		}
+	}
+	for (const auto& var : variables)
+	{
+		newstr += String(1, '\0');
+		newstr += var;
 	}
 	return newstr;
 }
@@ -281,9 +286,9 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasArgumentProperty)
+		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 
@@ -374,9 +379,9 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasArgumentProperty)
+		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 
@@ -524,9 +529,9 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
-		if (plugin->m_hasArgumentProperty)
+		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(ReplaceVariables(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
 				return false;
 		}
 
@@ -654,7 +659,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent
 	return sNamesArray;
 }
 
-bool Interactive(String & text, const String& args, const wchar_t *TransformationEvent, int iFncChosen)
+bool Interactive(String & text, const String& args, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables)
 {
 	if (iFncChosen < 0)
 		return false;
@@ -681,9 +686,9 @@ bool Interactive(String & text, const String& args, const wchar_t *Transformatio
 	// we must convert it to the function ID
 	int fncID = plugin::GetMethodIDInScript(plugin->m_lpDispatch, iFncChosen);
 
-	if (plugin->m_hasArgumentProperty)
+	if (plugin->m_hasArgumentsProperty)
 	{
-		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : args, plugin->m_lpDispatch))
+		if (!plugin::InvokePutPluginArguments(PluginForFile::MakeArguments(args.empty() ? plugin->m_arguments : args, variables), plugin->m_lpDispatch))
 			return false;
 	}
 

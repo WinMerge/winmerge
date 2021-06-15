@@ -293,14 +293,15 @@ namespace
 	TEST_F(PluginsTest, ReplaceVariable)
 	{
 		String result;
-		EXPECT_EQ(_T(""), PluginForFile::ReplaceVariables(_T(""), {_T("abc")}));
-		EXPECT_EQ(_T("abc"), PluginForFile::ReplaceVariables(_T("%1"), {_T("abc")}));
-		EXPECT_EQ(_T("%1"), PluginForFile::ReplaceVariables(_T("%%1"), {_T("abc")}));
-		EXPECT_EQ(_T("%1a"), PluginForFile::ReplaceVariables(_T("%%1a"), {_T("abc")}));
-		EXPECT_EQ(_T(""), PluginForFile::ReplaceVariables(_T("%2"), {_T("abc")}));
-		EXPECT_EQ(_T("%TIME%"), PluginForFile::ReplaceVariables(_T("%TIME%"), {_T("abc")}));
-		EXPECT_EQ(_T("aaaabcaaa"), PluginForFile::ReplaceVariables(_T("aaa%1aaa"), {_T("abc")}));
-		EXPECT_EQ(_T("abcdef"), PluginForFile::ReplaceVariables(_T("%1%2"), {_T("abc"), _T("def")}));
+		EXPECT_STREQ(_T(""), PluginForFile::MakeArguments(_T(""), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("%"), PluginForFile::MakeArguments(_T("%"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("abc"), PluginForFile::MakeArguments(_T("%1"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("%1"), PluginForFile::MakeArguments(_T("%%1"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("%1a"), PluginForFile::MakeArguments(_T("%%1a"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T(""), PluginForFile::MakeArguments(_T("%2"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("%TIME%"), PluginForFile::MakeArguments(_T("%TIME%"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("aaaabcaaa"), PluginForFile::MakeArguments(_T("aaa%1aaa"), {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("abcdef"), PluginForFile::MakeArguments(_T("%1%2"), {_T("abc"), _T("def")}).c_str());
 	}
 
 }  // namespace
