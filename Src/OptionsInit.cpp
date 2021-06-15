@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include <vector>
+#include <typeinfo>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -38,7 +39,10 @@ namespace Options
  */
 void Init(COptionsMgr *pOptions)
 {
-	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	if (typeid(*pOptions) == typeid(CRegOptionsMgr))
+	{
+		static_cast<CRegOptionsMgr*>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	}
 
 	LANGID LangId = GetUserDefaultLangID();
 	pOptions->InitOption(OPT_SELECTED_LANGUAGE, static_cast<int>(LangId));
@@ -110,7 +114,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
 	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
-	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths::ConcatPath(env::GetWindowsDirectory(), _T("NOTEPAD.EXE")));
+	pOptions->InitOption(OPT_EXT_EDITOR_CMD, _T("%windir%\\NOTEPAD.EXE"));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
 	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0);
 	pOptions->InitOption(OPT_MERGE_MODE, false);

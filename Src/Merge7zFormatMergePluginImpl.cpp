@@ -49,7 +49,8 @@ HRESULT Merge7zFormatMergePluginImpl::DeCompressArchive(HWND, LPCTSTR path, LPCT
 		return E_FAIL;
 	paths::CreateIfNeeded(path);
 	int nChanged = 0;
-	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.m_subcode) ? S_OK : E_FAIL;
+	int subcode = 0;
+	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, subcode) ? S_OK : E_FAIL;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *)

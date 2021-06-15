@@ -182,6 +182,19 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 	return true;
 }
 
+String ExpandEnvironmentVariables(const String& text)
+{
+	TCHAR buf[512];
+	buf[0] = 0;
+	const unsigned size = sizeof(buf) / sizeof(buf[0]);
+	const unsigned expandedSize = ::ExpandEnvironmentStrings(text.c_str(), buf, size);
+	if (expandedSize <= size)
+		return buf;
+	std::vector<TCHAR> newbuf(expandedSize);
+	::ExpandEnvironmentStrings(text.c_str(), newbuf.data(), expandedSize);
+	return newbuf.data();
+}
+
 /**
  * @brief Load registry keys from .reg file if existing .reg file
  */

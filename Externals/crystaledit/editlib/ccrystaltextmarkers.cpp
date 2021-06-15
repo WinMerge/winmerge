@@ -9,7 +9,6 @@
 #include "ccrystaltextmarkers.h"
 #include "ccrystaltextview.h"
 #include "editreg.h"
-#include "utils/registry.h"
 #include <algorithm>
 
 CCrystalTextMarkers::CCrystalTextMarkers() :
@@ -145,12 +144,11 @@ bool CCrystalTextMarkers::Deserialize(const CString& value)
 
 bool CCrystalTextMarkers::SaveToRegistry() const
 {
-    return RegSaveString(HKEY_CURRENT_USER, REG_EDITPAD, _T ("Marker") + m_sGroupName, Serialize());
+    return AfxGetApp()->WriteProfileString (EDITPAD_SECTION, _T ("Marker") + m_sGroupName, Serialize());
 }
 
 bool CCrystalTextMarkers::LoadFromRegistry()
 {
-	CString value;
-	RegLoadString(HKEY_CURRENT_USER, REG_EDITPAD, _T ("Marker") + m_sGroupName, value);
+	auto value = AfxGetApp()->GetProfileString (EDITPAD_SECTION, _T ("Marker") + m_sGroupName, _T(""));
 	return Deserialize(value);
 }

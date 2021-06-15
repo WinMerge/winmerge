@@ -1120,6 +1120,10 @@ msgid "Ig&nore all"
 msgstr "Zanemari &sve"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Zanemari prazne &retke"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Zanemari V/m &slova"
 
@@ -1129,6 +1133,9 @@ msgstr "&Zanemari različitost oznaka završetka retka (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1706,13 +1713,6 @@ msgstr "Zanemari &izmjene"
 #, c-format
 msgid "I&gnore all"
 msgstr "Zanemari &sve"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Zanemari prazne &retke"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

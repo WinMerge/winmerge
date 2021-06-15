@@ -30,9 +30,10 @@ public:
 protected: // create from serialization only
 	CHexMergeView();
 	DECLARE_DYNCREATE(CHexMergeView)
+	int m_unpackerSubcode;
 public:
 	HRESULT LoadFile(LPCTSTR);
-	HRESULT SaveFile(LPCTSTR);
+	HRESULT SaveFile(LPCTSTR, bool packing = true);
 	IHexEditorWindow *GetInterface() const { return m_pif; }
 	BYTE *GetBuffer(int);
 	int GetLength();

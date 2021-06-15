@@ -121,6 +121,7 @@ CMergeDoc::CMergeDoc()
 , m_bAutoMerged(false)
 , m_nGroups(0)
 , m_pView{nullptr}
+, m_bAutomaticRescan(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -137,6 +138,8 @@ CMergeDoc::CMergeDoc()
 	}
 
 	m_bEnableRescan = true;
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
+
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
@@ -1123,7 +1126,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	ShowMessageBox(
 		strutils::format_string2(
-			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			_("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), unresolvedConflictCount)),
 		MB_ICONINFORMATION);
@@ -1543,22 +1546,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		if (m_nBuffers == 3)
-		{
-			str = strutils::format_string2(
-				nBuffer == 0 ? 
-					_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
-					: (nBuffer == 1 ? 
-					_("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"): 
-					_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")),
-				strPath, pInfoTempUnpacker->m_PluginName);
-		}
-		else
-		{
-			str = strutils::format_string2(nBuffer == 0 ? _("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?") : 
-				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
-				strPath, pInfoTempUnpacker->m_PluginName);
-		}
+		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, pInfoTempUnpacker->m_PluginName);
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 	}
@@ -1677,11 +1665,11 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 			strSavePath = theApp.m_strSaveAsPath;	
 	}
 
-	nRetVal = theApp.HandleReadonlySave(strSavePath, false, bApplyToAll);
+	nRetVal = CMergeApp::HandleReadonlySave(strSavePath, false, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return false;
 
-	if (!theApp.CreateBackup(false, strSavePath))
+	if (!CMergeApp::CreateBackup(false, strSavePath))
 		return false;
 
 	// false as long as the user is not satisfied
@@ -2772,9 +2760,13 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 		loadSuccess = LoadFile(filename.c_str(), index, readOnly, encoding);
 		if (FileLoadResult::IsLossy(loadSuccess))
 		{
-			m_ptBuf[index]->FreeAll();
-			loadSuccess = LoadFile(filename.c_str(), index, readOnly,
-				GuessCodepageEncoding(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1));
+			// Determine the file encoding by looking at all the contents of the file, not just part of it
+			FileTextEncoding encodingNew = codepage_detect::Guess(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1);
+			if (encoding != encodingNew)
+			{
+				m_ptBuf[index]->FreeAll();
+				loadSuccess = LoadFile(filename.c_str(), index, readOnly, encodingNew);
+			}
 		}
 	}
 	else
@@ -2906,11 +2898,21 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	m_strBothFilenames.erase(m_strBothFilenames.length() - 1);
 
 	// Load files
-	DWORD nSuccess[3];
+	DWORD nSuccess[3] = { FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR };
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
+		if (!FileLoadResult::IsOk(nSuccess[nBuffer]))
+		{
+			CMergeEditFrame* pFrame = GetParentFrame();
+			if (pFrame != nullptr)
+			{
+				// Use verify macro to trap possible error in debug.
+				VERIFY(pFrame->DestroyWindow());
+			}
+			return false;
+		}
 	}
 
 	SetTableProperties();
@@ -2925,18 +2927,6 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		{
 			m_pInfoUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
 		}
-	}
-
-	// Bail out if either side failed
-	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
-	{
-		CMergeEditFrame *pFrame = GetParentFrame();
-		if (pFrame != nullptr)
-		{
-			// Use verify macro to trap possible error in debug.
-			VERIFY(pFrame->DestroyWindow());
-		}
-		return false;
 	}
 
 	// Warn user if file load was lossy (bad encoding)
@@ -3169,7 +3159,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	strDesc[nBuffer] = _T("");
 	fileloc[nBuffer].setPath(path);
-	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
+	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 		MoveOnLoad(nBuffer, nLineIndex);
@@ -3186,6 +3176,8 @@ void CMergeDoc::RefreshOptions()
 {
 	DIFFOPTIONS options = {0};
 	
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
+
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
@@ -3512,6 +3504,9 @@ void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)
 {
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+	
 	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)

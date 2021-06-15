@@ -300,6 +300,7 @@
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sgml.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sh.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\siod.cpp" />
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\smarty.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sql.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\tcl.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\tex.cpp" />

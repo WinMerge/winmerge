@@ -331,6 +331,24 @@ bool UniMemFile::ReadString(String & line, bool * lossy)
 	return ReadString(line, eol, lossy);
 }
 
+bool UniMemFile::ReadStringAll(String& text)
+{
+	text.clear();
+	bool lossy = false, lossytmp = false;
+	text.reserve(static_cast<size_t>(m_filesize));
+	bool last = false;
+	do
+	{
+		String tmp, eol;
+		last = ReadString(tmp, eol, &lossytmp);
+		text += tmp;
+		text += eol;
+		if (lossytmp)
+			lossy = true;
+	} while (last);
+	return lossy;
+}
+
 /**
  * @brief Append characters to string.
  * This function appends characters to the string. The storage for the string
@@ -809,6 +827,12 @@ bool UniStdioFile::ReadString(String & line, bool * lossy)
 }
 
 bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
+{
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
+	return false;
+}
+
+bool UniStdioFile::ReadStringAll(String & line)
 {
 	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;

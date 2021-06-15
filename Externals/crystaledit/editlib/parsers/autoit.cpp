@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////
 //  File:    autoit.cpp
-//  Version: 1.1.0.5
-//  Updated: 23-Apr-2021
+//  Version: 1.1.0.6
+//  Updated: 26-Apr-2021
 //
 //  Copyright:  Ferdinand Prantl, portions by Stcherbatchenko Andrei
 //  E-mail:     prantl@ff.cuni.cz
@@ -625,12 +625,13 @@ out:
         {
           if (bFirstChar && pszChars[I] == '#' &&
               ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#ce"),            3 * sizeof(TCHAR)) == 0) ||
+               (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CE"),            3 * sizeof(TCHAR)) == 0) ||
                (I + 13 <= nLength && memcmp(&pszChars[I], _T("#comments-end"), 13 * sizeof(TCHAR)) == 0)))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
               bFirstChar = false;
-              I += pszChars[I + 2] == 'e' ? 2 : 12;
+              I += ((pszChars[I + 2] == 'e') || (pszChars[I + 2] == 'E')) ? 2 : 12;
             }
           if (!xisspace (pszChars[I]))
             bFirstChar = false;
@@ -711,6 +712,7 @@ out:
           if (pszChars[I] == '#')
             {
               if ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#cs"),              3 * sizeof(TCHAR)) == 0) ||
+                  (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CS"),              3 * sizeof(TCHAR)) == 0) ||
                   (I + 15 <= nLength && memcmp(&pszChars[I], _T("#comments-start"), 15 * sizeof(TCHAR)) == 0))
                 {
                   DEFINE_BLOCK (I, COLORINDEX_COMMENT);

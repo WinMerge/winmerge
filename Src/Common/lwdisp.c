@@ -199,6 +199,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 			if (SUCCEEDED(sc = DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
 			{
 				sc = piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+				piClassFactory->lpVtbl->Release(piClassFactory);
 			}
 		}
 		if (pv == NULL)
@@ -450,7 +451,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 			}
 			else
 			{
-				ReportError(excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
+				ReportError(excepInfo.scode == 0 ? sc : excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
 			}
 			SysFreeString(excepInfo.bstrDescription);
 			SysFreeString(excepInfo.bstrSource);

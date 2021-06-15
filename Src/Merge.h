@@ -3,7 +3,7 @@
 //    Copyright (C) 1997  Dean P. Grimm
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  Merge.h
  *
  * @brief main header file for the MERGE application
@@ -45,7 +45,7 @@ class CCrystalTextMarkers;
 
 enum { IDLE_TIMER = 9754 };
 
-/** 
+/**
  * @brief WinMerge application class
  */
 class CMergeApp : public CWinApp
@@ -73,7 +73,7 @@ public:
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
-	bool TranslateString(const std::string&, String&) const; 
+	bool TranslateString(const std::string&, String&) const;
 	std::wstring LoadDialogCaption(LPCTSTR) const;
 
 	CMergeApp();
@@ -90,6 +90,7 @@ public:
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
+	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();
@@ -174,12 +175,13 @@ private:
 
 extern CMergeApp theApp;
 
-/** 
+/**
  * @brief Set flag so that application will broadcast notification at next
  * idle time (via WM_TIMER id=IDLE_TIMER)
  */
 inline void CMergeApp::SetNeedIdleTimer()
 {
-	m_bNeedIdleTimer = true; 
+	m_bNeedIdleTimer = true;
 }
 
+COptionsMgr* CreateOptionManager();

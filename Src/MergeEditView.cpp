@@ -64,7 +64,6 @@ CMergeEditView::CMergeEditView()
 , m_nThisGroup(0)
 , m_bDetailView(false)
 , m_piMergeEditStatus(nullptr)
-, m_bAutomaticRescan(false)
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
@@ -268,6 +267,15 @@ CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
 CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 {
 	return GetDocument()->m_ptBuf[m_nThisPane].get();
+}
+
+void CMergeEditView::CopyProperties(CCrystalTextView* pSource)
+{
+	__super::CopyProperties(pSource);
+	auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
+	if (!pSourceEditView)
+		return;
+	m_bChangedSchemeManually = pSourceEditView->m_bChangedSchemeManually;
 }
 
 /**
@@ -2339,7 +2347,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 	pDoc->UpdateHeaderPath(m_nThisPane);
 
 	// If automatic rescan enabled, rescan after edit events
-	if (m_bAutomaticRescan)
+	if (pDoc->GetAutomaticRescan())
 	{
 		// keep document up to date	
 		// (Re)start timer to rescan only when user edits text
@@ -3464,8 +3472,6 @@ void CMergeEditView::RefreshOptions()
 	RENDERING_MODE nRenderingMode = static_cast<RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 	SetRenderingMode(nRenderingMode);
 
-	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
-
 	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)
 		SetInsertTabs(true);
 	else
@@ -3486,6 +3492,7 @@ void CMergeEditView::RefreshOptions()
 			SetTextType(def->type);
 		else
 			SetTextType(CrystalLineParser::SRC_PLAIN);
+		SetDisableBSAtSOL(false);
 	}
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
@@ -3882,7 +3889,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
+	CMergeApp::OpenFileToExternalEditor(sFileName, nRealLine);
 }
 
 /**
@@ -4281,9 +4288,6 @@ void CMergeEditView::DocumentsLoaded()
 	{
 		SetTopMargin(false);
 	}
-
-	// Enable/disable automatic rescan (rescanning after edit)
-	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
 
 	// SetTextType will revert to language dependent defaults for tab
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));

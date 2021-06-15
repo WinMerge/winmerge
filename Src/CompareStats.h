@@ -71,6 +71,7 @@ public:
 	~CompareStats();
 	void SetCompareThreadCount(int nCompareThreads)
 	{
+		m_rgThreadState.clear();
 		m_rgThreadState.resize(nCompareThreads);
 	}
 	void BeginCompare(const DIFFITEM *di, int iCompareThread)

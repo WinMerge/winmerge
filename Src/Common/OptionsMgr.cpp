@@ -30,6 +30,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "OptionsMgr.h"
 #include <algorithm>
 #include <cassert>
+#include <Windows.h>
+
+constexpr int MAX_PATH_FULL = 32767;
 
 static bool GetAsInt(const String& str, int & val);
 
@@ -630,3 +633,178 @@ String COptionsMgr::ExpandShortName(const String& shortname) const
 	}
 	return (nmatched == 1) ? matchedkey : _T("");
 }
+
+/**
+ * @brief Export options to file.
+ *
+ * This function enumerates through our options storage and saves
+ * every option name and value to file.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return
+ * - COption::OPT_OK when succeeds
+ * - COption::OPT_ERR when writing to the file fails
+ */
+int COptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
+{
+	int retVal = COption::OPT_OK;
+	OptionsMap::const_iterator optIter = m_optionsMap.begin();
+	while (optIter != m_optionsMap.end() && retVal == COption::OPT_OK)
+	{
+		const String name(optIter->first);
+		String strVal;
+		varprop::VariantValue value = optIter->second.Get();
+		if (value.GetType() == varprop::VT_BOOL)
+		{
+			if (value.GetBool())
+				strVal = _T("1");
+			else
+				strVal = _T("0");
+		}
+		else if (value.GetType() == varprop::VT_INT)
+		{
+			if ( bHexColor && (strutils::makelower(name).find(String(_T("color"))) != std::string::npos) )
+				strVal = strutils::format(_T("0x%06x"), value.GetInt());
+			else
+				strVal = strutils::to_str(value.GetInt());
+		}
+		else if (value.GetType() == varprop::VT_STRING)
+		{
+			strVal = EscapeValue(value.GetString());
+		}
+
+		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+				strVal.c_str(), filename.c_str());
+		if (!bRet)
+			retVal = COption::OPT_ERR;
+		++optIter;
+	}
+	return retVal;
+}
+
+/**
+ * @brief Import options from file.
+ *
+ * This function reads options values and names from given file and
+ * updates values to our options storage. If valuename does not exist
+ * already in options storage its is not created.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return
+ * - COption::OPT_OK when succeeds
+ * - COption::OPT_NOTFOUND if file wasn't found or didn't contain values
+ */
+int COptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = COption::OPT_OK;
+	const int BufSize = 20480; // This should be enough for a long time..
+	TCHAR buf[BufSize] = {0};
+	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
+
+	// Query keys - returns NUL separated strings
+	DWORD len = GetPrivateProfileString(_T("WinMerge"), nullptr, _T(""),buf, BufSize, filename.c_str());
+	if (len == 0)
+		return COption::OPT_NOTFOUND;
+
+	TCHAR *pKey = buf;
+	while (*pKey != '\0')
+	{
+		varprop::VariantValue value = Get(pKey);
+		if (value.GetType() == varprop::VT_BOOL)
+		{
+			bool boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str()) == 1;
+			value.SetBool(boolVal);
+			SaveOption(pKey, boolVal);
+		}
+		else if (value.GetType() == varprop::VT_INT)
+		{
+			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
+			if (strutils::makelower(pKey).find(String(_T("color"))) != std::string::npos)
+				intVal = static_cast<int>(oleTranslateColor(static_cast<unsigned>(intVal)));
+			value.SetInt(intVal);
+			SaveOption(pKey, intVal);
+		}
+		else if (value.GetType() == varprop::VT_STRING)
+		{
+			TCHAR strVal[MAX_PATH_FULL] = {0};
+			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
+			String sVal = UnescapeValue(strVal);
+			value.SetString(sVal);
+			SaveOption(pKey, sVal);
+		}
+		Set(pKey, value);
+
+		pKey += _tcslen(pKey);
+
+		// Check: pointer is not past string end, and next char is not null
+		// double NUL char ends the keynames string
+		if ((pKey < buf + len) && (*(pKey + 1) != '\0'))
+			pKey++;
+	}
+	return retVal;
+}
+
+String COptionsMgr::EscapeValue(const String& text)
+{
+	String text2;
+	for (size_t i = 0; i < text.length(); ++i)
+	{
+		TCHAR ch = text[i];
+		if (ch == '\0' || ch == '\x1b' || ch == '\r' || ch == '\n')
+		{
+			text2 += '\x1b';
+			text2 += ch + '@';
+		}
+		else
+			text2 += ch;
+	}
+	return text2;
+}
+
+String COptionsMgr::UnescapeValue(const String& text)
+{
+	if (text.find('\x1b') == String::npos)
+		return text;
+	String text2;
+	for (size_t i = 0; i < text.length(); ++i)
+	{
+		if (text[i] == '\x1b' && i < text.length() - 1)
+		{
+			++i;
+			text2 += text[i] - '@';
+		}
+		else
+			text2 += text[i];
+	}
+	return text2;
+}
+
+/**
+ * @brief Split option name to path (in registry) and
+ * valuename (in registry).
+ *
+ * Option names are given as "full path", e.g. "Settings/AutomaticRescan".
+ * This function splits that to path "Settings/" and valuename
+ * "AutomaticRescan".
+ * @param [in] strName Option name
+ * @param [out] srPath Path (key) in registry
+ * @param [out] strValue Value in registry
+ */
+std::pair<String, String> COptionsMgr::SplitName(const String& strName)
+{
+	String strValue, strPath;
+	size_t pos = strName.rfind('/');
+	if (pos != String::npos)
+	{
+		size_t len = strName.length();
+		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
+		strPath = strName.substr(0, pos);  //Left(pos);
+	}
+	else
+	{
+		strValue = strName;
+		strPath.erase();
+	}
+	return { strPath, strValue };
+}
+

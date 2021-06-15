@@ -289,12 +289,16 @@ protected:
 	afx_msg void OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreBlankLines();
+	afx_msg void OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCase();
 	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCP();
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreComments();
+	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
 	afx_msg void OnIncludeSubfolders();
 	afx_msg void OnUpdateIncludeSubfolders(CCmdUI* pCmdUI);
 	afx_msg void OnCompareMethod(UINT nID);

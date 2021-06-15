@@ -30,6 +30,7 @@
 #include "FileLocation.h"
 #include "Constants.h"
 #include "DropHandler.h"
+#include "Environment.h"
 #include <cmath>
 
 #ifdef _DEBUG
@@ -167,6 +168,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 , m_bRO{}
 , m_nActivePane(-1)
+, m_unpackerSubcode{}
 {
 }
 
@@ -264,18 +266,9 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
 	m_strDesc[nBuffer] = _T("");
 
-	if (m_filePaths.GetSize() == 2)
-		m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str());
-	else
-		m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str(), ucr::toUTF16(m_filePaths[2]).c_str());
-
+	OpenImages();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
-
-		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
-			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
-	}
 
 	UpdateHeaderPath(nBuffer);
 	UpdateLastCompareResult();
@@ -300,7 +293,7 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 
 	AfxMessageBox(
 		strutils::format_string2(
-			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			_("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
 		MB_ICONINFORMATION);
@@ -450,10 +443,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	}
 	else
 	{
-		if (m_filePaths.GetSize() == 2)
-			bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str());
-		else
-			bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str(), ucr::toUTF16(m_filePaths[2]).c_str());
+		bResult = OpenImages();
 	}
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
@@ -688,9 +678,10 @@ bool CImgMergeFrame::DoFileSave(int pane)
 		{
 			String filename = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
 			bool bApplyToAll = false;
-			if (theApp.HandleReadonlySave(filename, false, bApplyToAll) == IDCANCEL)
+			if (CMergeApp::HandleReadonlySave(m_filePaths[pane], false, bApplyToAll) == IDCANCEL)
 				return false;
-			theApp.CreateBackup(false, filename);
+			CMergeApp::CreateBackup(false, m_filePaths[pane]);
+			int savepoint = m_pImgMergeWindow->GetSavePoint(pane);
 			if (!m_pImgMergeWindow->SaveImage(pane))
 			{
 				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
@@ -699,6 +690,20 @@ bool CImgMergeFrame::DoFileSave(int pane)
 					return DoFileSaveAs(pane);
 				return false;
 			}
+			if (filename != m_filePaths[pane])
+			{
+				if (!FileTransform::Packing(filename, m_filePaths[pane], m_infoUnpacker, m_unpackerSubcode[pane]))
+				{
+					// Restore save point
+					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
+
+					String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), m_filePaths[pane], m_infoUnpacker.m_PluginName);
+					int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+					if (answer == IDOK)
+						return DoFileSaveAs(pane, false);
+					return false;
+				}
+			}
 		}
 		UpdateDiffItem(m_pDirDoc);
 		m_fileInfo[pane].Update(m_filePaths[pane]);
@@ -706,7 +711,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 	return true;
 }
 
-bool CImgMergeFrame::DoFileSaveAs(int pane)
+bool CImgMergeFrame::DoFileSaveAs(int pane, bool packing)
 {
 	const String &path = m_filePaths.GetPath(pane);
 	String strPath;
@@ -721,6 +726,13 @@ RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
+		if (packing && !m_infoUnpacker.m_PluginName.empty())
+		{
+			String tempPath = env::GetTemporaryPath();
+			filename = ucr::toUTF16(env::GetTemporaryFileName(tempPath, _T("MRG_"), 0)
+				+ paths::FindExtension(m_pImgMergeWindow->GetFileName(pane)));
+		}
+		int savepoint = m_pImgMergeWindow->GetSavePoint(pane);
 		if (!m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 		{
 			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), strPath, GetSysError());
@@ -728,6 +740,20 @@ RETRY:
 			if (answer == IDOK)
 				goto RETRY;
 			return false;
+		}
+		if (filename != strPath)
+		{
+			if (!FileTransform::Packing(filename, strPath, m_infoUnpacker, m_unpackerSubcode[pane]))
+			{
+				// Restore save point
+				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
+
+				String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), strPath, m_infoUnpacker.m_PluginName);
+				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+				if (answer == IDOK)
+					return DoFileSaveAs(pane, false);
+				return false;
+			}
 		}
 		if (path.empty())
 		{
@@ -832,7 +858,7 @@ void CImgMergeFrame::OnFileReload()
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return;
-	m_pImgMergeWindow->ReloadImages();
+	OpenImages();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 }
@@ -985,7 +1011,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		else
 		{
 			for (int pane = 0; pane < nPaneCount; pane++)
-				w[pane] = rc.Width() / nPaneCount - 4;
+				w[pane] = rcMergeWindow.Width() / nPaneCount - 4;
 		}
 
 		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
@@ -1030,6 +1056,24 @@ void CImgMergeFrame::UpdateAutoPaneResize()
 
 void CImgMergeFrame::UpdateSplitter()
 {
+}
+
+bool CImgMergeFrame::OpenImages()
+{
+	bool bResult;
+	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
+	String strTempFileName[3];
+	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+	{
+		strTempFileName[pane] = m_filePaths[pane];
+		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcode[pane], strTempFileName[pane], filteredFilenames))
+			return false;
+	}
+	if (m_filePaths.GetSize() == 2)
+		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
+	else
+		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+	return bResult;
 }
 
 /**

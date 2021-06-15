@@ -55,7 +55,7 @@ CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
 	if (nCol < 0 || nCol >= nColumnCount)
 		return EditStyle::EDIT_BOX;
 
-	if (nCol >= m_editStyle.size())
+	if (static_cast<size_t>(nCol) >= m_editStyle.size())
 		return EditStyle::EDIT_BOX;
 
 	return m_editStyle.at(nCol);
@@ -73,7 +73,7 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 	if (nCol < 0 || nCol >= nColumnCount)
 		return;
 
-	for (size_t i = m_editStyle.size(); i <= nCol; i++)
+	for (size_t i = m_editStyle.size(); i <= static_cast<size_t>(nCol); i++)
 		m_editStyle.push_back(EditStyle::EDIT_BOX);
 
 	m_editStyle[nCol] = style;
@@ -97,7 +97,7 @@ int CSubeditList::GetLimitTextSize(int nCol) const
 	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return 0;
 
-	if (nCol >= m_limitTextSize.size())
+	if (static_cast<size_t>(nCol) >= m_limitTextSize.size())
 		return 0;
 
 	return m_limitTextSize.at(nCol);
@@ -120,7 +120,7 @@ void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
 	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
-	for (size_t i = m_limitTextSize.size(); i <= nCol; i++)
+	for (size_t i = m_limitTextSize.size(); i <= static_cast<size_t>(nCol); i++)
 		m_limitTextSize.push_back(0);
 
 	m_limitTextSize[nCol] = nLimitTextSize;
@@ -147,8 +147,8 @@ String CSubeditList::GetDropListFixedPattern(int nItem, int nSubItem) const
 	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
 		return _T("");
 
-	if (nItem < m_dropListFixedPattern.size())
-		if (nSubItem < m_dropListFixedPattern[nItem].size())
+	if (static_cast<size_t>(nItem) < m_dropListFixedPattern.size())
+		if (static_cast<size_t>(nSubItem) < m_dropListFixedPattern[nItem].size())
 			return m_dropListFixedPattern[nItem][nSubItem];
 
 	return _T("");
@@ -175,10 +175,10 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
 	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
-	for (size_t i = m_dropListFixedPattern.size(); i <= nItem; i++)
+	for (size_t i = m_dropListFixedPattern.size(); i <= static_cast<size_t>(nItem); i++)
 		m_dropListFixedPattern.push_back(std::vector<String>());
 
-	for (size_t i = m_dropListFixedPattern[nItem].size(); i <= nSubItem; i++)
+	for (size_t i = m_dropListFixedPattern[nItem].size(); i <= static_cast<size_t>(nSubItem); i++)
 		m_dropListFixedPattern[nItem].push_back(_T(""));
 
 	m_dropListFixedPattern[nItem][nSubItem] = fixedPattern;

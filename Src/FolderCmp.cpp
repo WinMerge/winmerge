@@ -134,7 +134,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!FileTransform::Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
+				if (!FileTransform::Unpacking(infoUnpacker, nullptr, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file
@@ -145,7 +145,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Unpacked files will be deleted at end of this function.
 			filepathTransformed[nIndex] = filepathUnpacked[nIndex];
 
-			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
+			encoding[nIndex] = codepage_detect::Guess(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 

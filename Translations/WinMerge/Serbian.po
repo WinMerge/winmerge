@@ -1117,6 +1117,10 @@ msgid "Ig&nore all"
 msgstr "За&немари све"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Занемари пра&зне редове"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Занемари под&ударност"
 
@@ -1126,6 +1130,9 @@ msgstr "Занемари &разлике ознака завршетка ред�
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1689,13 +1696,6 @@ msgstr "Занемар&и промене"
 #, c-format
 msgid "I&gnore all"
 msgstr "Зане&мари све"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Занемари пра&зне редове"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

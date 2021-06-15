@@ -35,7 +35,7 @@ IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" Call :Execute "%~dp0\WinMerge32Bit
 Goto End
 
 :Execute
-Ver | %WINDIR%\System32\Find "Version 5." > NUL
+Ver | %WINDIR%\System32\Find " 5." > NUL
 IF NOT ERRORLEVEL 1 (
   rem Windows 2000, XP, Sever 2003
   %1 %2 %3

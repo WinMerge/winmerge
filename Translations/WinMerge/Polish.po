@@ -93,7 +93,7 @@ msgid "&With..."
 msgstr "Z..."
 
 msgid "Open &Parent Folder..."
-msgstr "Otwórz nadrzędny katalog"
+msgstr "Otwórz nadrzędny katalog..."
 
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
@@ -894,6 +894,9 @@ msgstr "I&gnoruj zmiany"
 msgid "Ig&nore all"
 msgstr "Ig&noruj wszystkie"
 
+msgid "Ignore blan&k lines"
+msgstr "Ignoruj puste wiersze"
+
 msgid "Ignore &case"
 msgstr "Ignoruj wielkości liter"
 
@@ -902,6 +905,9 @@ msgstr "Igno&ruj znaki końca linii (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Ignoruj różnice strony ko&dowej"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignoruj różnice w komentarzach"
 
 msgid "&Include Subfolders"
 msgstr "Uwzględn&ij podfoldery"
@@ -1353,12 +1359,6 @@ msgstr "Ignoruj zmiany"
 msgid "I&gnore all"
 msgstr "Ignoruj wszystkie"
 
-msgid "Ignore blan&k lines"
-msgstr "Ignoruj puste wiersze"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignoruj różnice w komentarzach"
-
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
@@ -1690,7 +1690,7 @@ msgid "&Allow newlines in quotes"
 msgstr "Zezwalaj na nowe wiersze w cudzysłowach"
 
 msgid "&Quote character:"
-msgstr "Znak cudzysłowu"
+msgstr "Znak cudzysłowu:"
 
 msgid "&Use customized text colors"
 msgstr "Użyj niestandardowych kolorów tekstu"
@@ -2762,10 +2762,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Czy chcesz przejść do poprzedniej strony?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Czy chcesz przejść do pierwszego pliku?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Czy chcesz przejść do ostatniego pliku?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"

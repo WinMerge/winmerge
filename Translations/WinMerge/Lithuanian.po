@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-18 15:21+0000\n"
-"PO-Revision-Date: 2021-04-19 08:08+0200\n"
+"POT-Creation-Date: 2021-04-20 22:26+0000\n"
+"PO-Revision-Date: 2021-04-26 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -422,7 +422,7 @@ msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
 msgid "Refresh\tF5"
-msgstr "Atnaujin&ti\tF5"
+msgstr "Atnaujinti\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "&Atnaujinti pažymėtą\tCtrl+F5"
@@ -897,6 +897,9 @@ msgstr "I&gnoruoti pokyčius"
 msgid "Ig&nore all"
 msgstr "Ig&noruoti visus"
 
+msgid "Ignore blan&k lines"
+msgstr "Nepaisyti &tuščių eilučių"
+
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
@@ -905,6 +908,9 @@ msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
+
+msgid "Ignore c&omment differences"
+msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
@@ -1039,7 +1045,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Gerai“ paspaudimo"
 
 msgid "Op&en-dialog Auto-Completion:"
-msgstr "Lango „Atverti“ automatinis už&pildymas:"
+msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 
 msgid "Language:"
 msgstr "Kalba:"
@@ -1355,12 +1361,6 @@ msgstr "&Ignoruoti pokyčius"
 
 msgid "I&gnore all"
 msgstr "I&gnoruoti visus"
-
-msgid "Ignore blan&k lines"
-msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore c&omment differences"
-msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -1802,7 +1802,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
 msgid "Include &unique subfolders contents"
-msgstr "Įtraukt&i unikalų pakatalogių turinį"
+msgstr "Įtraukti &unikalų pakatalogių turinį"
 
 msgid "&Automatically expand all subfolders"
 msgstr "&Automatiškai išskleisti visus pakatalogius"

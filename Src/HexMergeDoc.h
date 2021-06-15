@@ -13,6 +13,7 @@
 #include "PathContext.h"
 #include "FileLocation.h"
 #include "IMergeDoc.h"
+#include "FileTransform.h"
 
 class CDirDoc;
 class CHexMergeFrame;
@@ -68,6 +69,9 @@ public:
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	bool GenerateReport(const String& sFileName) const override { return true; }
+	const PackingInfo* GetUnpacker() const { return &m_infoUnpacker; };
+	PackingInfo* GetUnpacker() { return &m_infoUnpacker; };
+	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker;  };
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();
@@ -75,9 +79,10 @@ public:
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; };
+	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 private:
-	void DoFileSave(int nBuffer);
-	void DoFileSaveAs(int nBuffer);
+	bool DoFileSave(int nBuffer);
+	bool DoFileSaveAs(int nBuffer, bool packing = true);
 	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
 	void RecompareAs(UINT id);
 // Implementation data
@@ -86,6 +91,7 @@ protected:
 	CDirDoc * m_pDirDoc;
 	String m_strDesc[3]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[3];
+	PackingInfo m_infoUnpacker;
 
 // Generated message map functions
 protected:

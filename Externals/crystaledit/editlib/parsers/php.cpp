@@ -254,7 +254,7 @@ unsigned
 CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);
 
   const TCHAR *pszCommentBegin = nullptr;
   const TCHAR *pszCommentEnd = nullptr;
@@ -447,16 +447,10 @@ out:
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
                     }
-                  else
-                    {
-                      goto next;
-                    }
                 }
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
-next:
-              ;
             }
 
           //  Preprocessor start: $
@@ -520,6 +514,6 @@ next:
         }
     }
 
-  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING);
+  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);
   return dwCookie;
 }

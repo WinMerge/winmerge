@@ -895,6 +895,9 @@ msgstr "تجاهل التغييرات"
 msgid "Ig&nore all"
 msgstr "تجاهل الكل"
 
+msgid "Ignore blan&k lines"
+msgstr "تجاهل الأسطر الفارغة"
+
 msgid "Ignore &case"
 msgstr "تجاهل حالة الحرف (للغة الإنجليزية)"
 
@@ -905,6 +908,9 @@ msgstr ""
 
 msgid "Ignore codepage &differences"
 msgstr "تجاهل اختلافات ترميز الصفحة"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 msgid "&Include Subfolders"
 msgstr "تضمين المجلدات الفرعية"
@@ -1357,12 +1363,6 @@ msgstr "تجاهل الت&غييرات"
 
 msgid "I&gnore all"
 msgstr "تجاهل ال&كل"
-
-msgid "Ignore blan&k lines"
-msgstr "تجاهل الأسطر الفارغة"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "&تفعيل كشف المجموعات التي نقلها"

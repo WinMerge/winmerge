@@ -72,13 +72,6 @@ public:
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 
 protected:
-	/**
-	 * Are automatic rescans enabled?
-	 * If automatic rescans are enabled then we rescan files after edit
-	 * events, unless timer suppresses rescan. We suppress rescans within
-	 * certain time from previous rescan.
-	 */
-	bool m_bAutomaticRescan;
 	/// first line of diff (first displayable line)
 	int m_lineBegin;
 	/// last line of diff (last displayable line)
@@ -99,10 +92,13 @@ private:
 
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 
+// Attributes
+public:
+	void CopyProperties (CCrystalTextView* pSource) override;
+
 // Operations
 public:
 	void RefreshOptions();
-	bool EnableRescan(bool bEnable);
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText) override;
@@ -372,16 +368,6 @@ protected:
 inline CMergeDoc* CMergeEditView::GetDocument()
    { return reinterpret_cast<CMergeDoc*>(m_pDocument); }
 #endif
-
-/**
- * @brief Enable/Disable automatic rescanning
- */
-inline bool CMergeEditView::EnableRescan(bool bEnable)
-{
-	bool bOldValue = m_bAutomaticRescan;
-	m_bAutomaticRescan = bEnable;
-	return bOldValue;
-}
 
 /**
  * @brief Check if cursor is inside difference.

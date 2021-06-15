@@ -169,6 +169,8 @@ struct IImgMergeWindow
 	virtual bool IsCancellable() const = 0;
 	virtual bool IsRectangleSelectionVisible(int pane) const = 0;
 	virtual BSTR ExtractTextFromImage(int pane, int page, OCR_RESULT_TYPE resultType) = 0;
+	virtual int GetSavePoint(int pane) const = 0;
+	virtual void SetSavePoint(int pane, int pos) = 0;
 };
 
 struct IImgToolWindow

@@ -656,7 +656,7 @@ prepare_text_end (struct file_data *current, short side)
       r = u0; // skip the BOM
     }
 
-  if (buffered_chars == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
+  if (buffered_chars - bomsize == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
     current->missing_newline = 0;
   else
     {
