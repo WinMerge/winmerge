@@ -359,32 +359,53 @@ namespace
 		EXPECT_TRUE(String(257, ' ') == strutils::format(_T("%s"), String(257, ' ').c_str()));
 	}
 
-	TEST_F(UnicodeStringTest, Split)
+	TEST_F(UnicodeStringTest, Join)
 	{
-		{
-			std::vector<StringView> ary = strutils::split(_T("a,bb,c"), ',');
-			EXPECT_EQ(ary.size(), 3);
-			EXPECT_TRUE(ary[0] == _T("a"));
-			EXPECT_TRUE(ary[1] == _T("bb"));
-			EXPECT_TRUE(ary[2] == _T("c"));
-		}
-		{
-			std::vector<StringView> ary = strutils::split(_T(",b,"), ',');
-			EXPECT_EQ(ary.size(), 3);
-			EXPECT_TRUE(ary[0] == _T(""));
-			EXPECT_TRUE(ary[1] == _T("b"));
-			EXPECT_TRUE(ary[2] == _T(""));
-		}
-		{
-			std::vector<StringView> ary = strutils::split(_T("a"), ',');
-			EXPECT_EQ(ary.size(), 1);
-			EXPECT_TRUE(ary[0] == _T("a"));
-		}
-		{
-			std::vector<StringView> ary = strutils::split(_T(""), ',');
-			EXPECT_EQ(ary.size(), 1);
-			EXPECT_TRUE(ary[0] == _T(""));
-		}
+		std::vector<String> strs;
+		strs = std::vector<String>{ _T("") };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>();
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""), _T("") };
+		EXPECT_EQ(_T("|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a") };
+		EXPECT_EQ(_T("a"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b") };
+		EXPECT_EQ(_T("a|b"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""),  _T("b") };
+		EXPECT_EQ(_T("|b"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("") };
+		EXPECT_EQ(_T("a|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("a|b|c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("|b|c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T(""), _T("c") };
+		EXPECT_EQ(_T("a||c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("") };
+		EXPECT_EQ(_T("a|b|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+
+		strs = std::vector<String>{ };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("") };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T(""), _T("")};
+		EXPECT_EQ(_T("|"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("A|B|C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T(""),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("|B|C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T(""), _T("c") };
+		EXPECT_EQ(_T("A||C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("") };
+		EXPECT_EQ(_T("A|B|"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
 	}
 
 }  // namespace
