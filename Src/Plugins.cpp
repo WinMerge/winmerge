@@ -270,8 +270,6 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 		if (pos == String::npos)
 			pos = 0;
 		sLine = sLine.substr(0, pos);
-		if (sPiece.empty())
-			continue;
 		sPiece = strutils::makeupper(strutils::trim_ws_begin(sPiece));
 
 		if (::TestAgainstRegList(&m_filters, sPiece))

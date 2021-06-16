@@ -10,6 +10,9 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
 	<property name="PluginArguments">
 		<get/>
 		<put/>
@@ -41,8 +44,29 @@ Function get_PluginDescription()
 	get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
+Function get_PluginFileFilters()
+	get_PluginFileFilters= ".*"
+End Function
+
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "GenerateUnpacker;MakeUpper.MenuCaption=Make Uppercase;MakeLower.MenuCaption=Make Lowercase;RemoveDuplicates.MenuCaption=Remove Duplicate Lines;CountDuplicates.MenuCaption=Count Duplicate Lines;SortAscending.MenuCaption=Sort Lines Ascending;SortDescending.MenuCaption=Sort Lines Descending;ExecFilterCommand.MenuCaption=Apply Filter Command...;Tokenize.MenuCaption=Tokenize..."
+	get_PluginExtendedProperties = _
+	"GenerateUnpacker;" & _
+	"MakeUpper.MenuCaption=Make Uppercase;" & _
+	"MakeUpper.Description=Make selection uppercase;" & _
+	"MakeLower.MenuCaption=Make Lowercase;" & _
+	"MakeLower.Description=Make selection lowercase;" & _
+	"RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" & _
+	"RemoveDuplicates.Description=Remove duplicate lines;" & _
+	"CountDuplicates.MenuCaption=Count Duplicate Lines;" & _
+	"CountDuplicates.Description=Count duplicate lines;" & _
+	"SortAscending.MenuCaption=Sort Lines Ascending;" & _
+	"SortAscending.Description=Sort lines Ascending;" & _
+	"SortDescending.MenuCaption=Sort Lines Descending;" & _
+	"SortDescending.Description=Sort lines descending;" & _
+	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
+	"ExecFilterCommand.Description=Apply filter command. When used as an Unpacker, you can specify a filter command as a plugin argument. %1 in the argument is replaced with the file name.;" & _
+	"Tokenize.MenuCaption=Tokenize...;" & _
+	"Tokenize.Description=Tokenize selection. When used as an Unpacker, you can specify a regular expression for tokenizing as a plugin argument."
 End Function
 
 Function get_PluginArguments()

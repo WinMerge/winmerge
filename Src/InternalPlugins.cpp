@@ -265,6 +265,9 @@ public:
 		, m_funcid(id)
 		, m_hasArgumentsProperty(plugin.m_hasArgumentsProperty)
 	{
+		auto desc = plugin.GetExtendedPropertyValue(funcname + _T(".Description"));
+		if (desc.has_value())
+			m_sDescription = *desc;
 		m_pDispatch->AddRef();
 		auto menuCaption = plugin.GetExtendedPropertyValue(funcname + _T(".MenuCaption"));
 		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
@@ -478,8 +481,8 @@ public:
 	EditorScriptGeneratedFromUnpacker(const PluginInfo& plugin, const String& funcname)
 		: WinMergePluginBase(
 			L"EDITOR_SCRIPT",
-			strutils::format_string1(_T("EditorScript (automatically generated)"), _T("")),
-			plugin.m_filtersText, L"", plugin.m_extendedProperties, plugin.m_arguments)
+			plugin.m_description,
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments)
 		, m_pDispatch(plugin.m_lpDispatch)
 	{
 		m_pDispatch->AddRef();

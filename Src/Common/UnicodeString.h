@@ -71,7 +71,7 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	result.reserve(sum);
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += *it;
 	}
 	return result;
@@ -83,7 +83,7 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	String result;
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += func(*it);
 	}
 	return result;
