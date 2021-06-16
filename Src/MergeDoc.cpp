@@ -3033,7 +3033,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			if (bFiltersEnabled && m_pInfoUnpacker->m_textType.length())
 				sext[nBuffer] = m_pInfoUnpacker->m_textType;
 			else
-				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
+				sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {
 				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
 				if (bTyped[nBuffer])
