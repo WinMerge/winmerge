@@ -707,6 +707,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 {
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>> suggestedPlugins;
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> allPlugins;
+	std::map<String, int> captions;
 	unsigned id = baseId;
 	bool addedNoneAutomatic = false;
 	for (const auto& event: events)
@@ -723,16 +724,16 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					{
 						String process = _T("");
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
-						allPlugins[process].emplace_back(_T("<None>"), _T(""), id++, plugin.get());
-						allPlugins[process].emplace_back(_T("<Automatic>"), _T("<Automatic>"), id++, plugin.get());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, plugin.get());
+						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, plugin.get());
 						addedNoneAutomatic = true;
 					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-					const String caption = menuCaption.has_value() ?
-						String{ menuCaption->data(), menuCaption->size() } : plugin->m_name;
-					const String process = processType.has_value() ?
-						String{ processType->data(), processType->size() } : _T("&Others");
+					const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
+						String{ menuCaption->data(), menuCaption->size() } : plugin->m_name));
+					const String process = tr(ucr::toUTF8(processType.has_value() ?
+						String{ processType->data(), processType->size() } : _T("&Others")));
 
 					if (plugin->TestAgainstRegList(filteredFilenames))
 						suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
@@ -740,7 +741,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					if (allPlugins.find(process) == allPlugins.end())
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
 					allPlugins[process].emplace_back(caption, plugin->m_name, id, plugin.get());
-
+					captions[caption]++;
 					id++;
 				}
 				else
@@ -756,10 +757,10 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
 						if (!processType.has_value())
 							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-						const String caption = menuCaption.has_value() ?
-							String{ menuCaption->data(), menuCaption->size() } : scriptNamesArray[i];
-						const String process = processType.has_value() ?
-							String{ processType->data(), processType->size() } : _T("&Others");
+						const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
+							String{ menuCaption->data(), menuCaption->size() } : scriptNamesArray[i]));
+						const String process = tr(ucr::toUTF8(processType.has_value() ?
+							String{ processType->data(), processType->size() } : _T("&Others")));
 						if (matched)
 							suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
 						if (allPlugins.find(process) == allPlugins.end())
@@ -770,6 +771,18 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 			}
 		}
 	}
+	auto ResolveConflictMenuCaptions = [&captions](auto& plugins)
+	{
+		for (auto& plugin : plugins)
+		{
+			const String& caption = std::get<0>(plugin);
+			if (captions[caption] > 1)
+				std::get<0>(plugin) = caption + _T("(") + std::get<1>(plugin) + _T(")");
+		}
+	};
+	ResolveConflictMenuCaptions(suggestedPlugins);
+	for (auto& [processType, plugins] : allPlugins)
+		ResolveConflictMenuCaptions(plugins);
 	return { suggestedPlugins, allPlugins };
 }
 

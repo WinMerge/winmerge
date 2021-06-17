@@ -149,31 +149,31 @@
 
       <itemizedlist>
         <listitem>
-          <para><function>MakeUpper</function></para>
+          <para><function>Make Uppercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>MakeLower</function></para>
+          <para><function>Make Lowercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortAscending</function></para>
+          <para><function>Sort Lines Ascending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortDescending</function></para>
+          <para><function>Sort Lines Descending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>ExecFilterCommand</function></para>
+          <para><function>Apply Filter Command...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>InsertDate</function></para>
+          <para><function>Insert Date</function></para>
         </listitem>
 
         <listitem>
-          <para><function>InsertTime</function></para>
+          <para><function>Insert Time</function></para>
         </listitem>
       </itemizedlist>
 
@@ -757,37 +757,40 @@
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to
+          <simpara><guimenuitem>Make Uppercase</guimenuitem> convert the selection to
           UPPER CASE.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
+          <simpara><guimenuitem>Make Lowercase</guimenuitem> convert the selection to
           lower case.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>SortAscending</guimenuitem> sort the selection 
+          <simpara><guimenuitem>Sort Lines Ascending</guimenuitem> sort the selection 
           in ascending order.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>SortDescending</guimenuitem> sort the selection 
+          <simpara><guimenuitem>Sort Lines Descending</guimenuitem> sort the selection 
           in descending order.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> replace the selection 
-          with the output of the specified filter command.</simpara>
+          <simpara><guimenuitem>Apply Filter Command...</guimenuitem> replace the selection 
+          with the output of the specified filter command.
+          Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
         </listitem>
       </itemizedlist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
+          <segtitle>File filter</segtitle>
           <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
+            <seg>*</seg>
             <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
@@ -806,12 +809,12 @@
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>InsertDate</guimenuitem> insert date in the
+          <simpara><guimenuitem>Insert Date</guimenuitem> insert date in the
           current locale format.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>InsertTime</guimenuitem> insert time in the
+          <simpara><guimenuitem>Insert Time</guimenuitem> insert time in the
           current locale format.</simpara>
         </listitem>
       </itemizedlist>
@@ -819,10 +822,14 @@
       <para><segmentedlist>
           <segtitle>Category</segtitle>
 
+          <segtitle>File filter</segtitle>
+
           <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
+
+            <seg>*</seg>
 
             <seg>No</seg>
           </seglistitem>

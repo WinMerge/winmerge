@@ -168,11 +168,11 @@
         </listitem>
 
         <listitem>
-          <para><function>InsertDate</function></para>
+          <para><function>Insert Date</function></para>
         </listitem>
 
         <listitem>
-          <para><function>InsertTime</function></para>
+          <para><function>Insert Time</function></para>
         </listitem>
       </itemizedlist>
 
@@ -792,6 +792,58 @@
         </segmentedlist></para>
     </section>
 
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>editor addin plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Adds five functions to the <menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニュー:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>大文字に変換</guimenuitem> convert the selection to
+          UPPER CASE.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>小文字に変換</guimenuitem> convert the selection to
+          lower case.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>昇順にソート</guimenuitem> sort the selection 
+          in ascending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>降順にソート</guimenuitem> sort the selection 
+          in descending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> replace the selection 
+          with the output of the specified filter command.
+          Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>エディタ補完</seg>
+            <seg>*</seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_datetime">
       <title><filename>insert datetime<indexterm>
           <primary>insert datetime plugin file</primary>
@@ -805,12 +857,12 @@
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>InsertDate</guimenuitem> insert date in the
+          <simpara><guimenuitem>日付を挿入</guimenuitem> insert date in the
           current locale format.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>InsertTime</guimenuitem> insert time in the
+          <simpara><guimenuitem>時刻を挿入</guimenuitem> insert time in the
           current locale format.</simpara>
         </listitem>
       </itemizedlist>
@@ -818,10 +870,14 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
+          <segtitle>ファイルフィルタ</segtitle>
+
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Editor complement</seg>
+            <seg>エディタ補完</seg>
+
+            <seg>*</seg>
 
             <seg>No</seg>
           </seglistitem>

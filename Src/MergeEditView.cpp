@@ -201,6 +201,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_WM_VSCROLL ()
@@ -2917,76 +2918,41 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	// title
 	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
 	
+	m_CurrentPredifferID = ID_NO_PREDIFFER;
+
 	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 		return hMenu;
 
+	// compute the m_CurrentPredifferID (to set the radio button)
+	PrediffingInfo prediffer;
+	pd->GetPrediffer(&prediffer);
+
 	// get the scriptlet files
-	PluginArray* piScriptArray[2];
-	piScriptArray[0] =
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	piScriptArray[1] =
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
+	const auto& [ suggestedPlugins, allPlugins ]= FileTransform::CreatePluginMenuInfos(
+		pd->m_strBothFilenames, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
 
 	// build the menu : first part, suggested plugins
 	// title
 	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
-	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	size_t iScript;
-	for (int i = 0; i < 2; ++i)
-	{
-		for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
-		{
-			const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
-			if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
-				continue;
-			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
-			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
-
-			AppendMenu(hMenu, MF_STRING, ID, tr(ucr::toUTF8(caption)).c_str());
-		}
-	}
+	for (const auto& [caption, name, id, plugin ] : suggestedPlugins)
+		AppendMenu(hMenu, MF_STRING, id, caption.c_str());
 
 	// build the menu : second part, others plugins
 	// title
 	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
-	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	for (int i = 0; i < 2; ++i)
+	for (const auto& [processType, pluginAry] : allPlugins)
 	{
-		for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
+		for (const auto& [caption, name, id, plugin] : pluginAry)
 		{
-			const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
-			if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
-				continue;
-
-			auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
-			String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : plugin->m_name;
-
-			AppendMenu(hMenu, MF_STRING, ID, tr(ucr::toUTF8(caption)).c_str());
-		}
-	}
-
-	// compute the m_CurrentPredifferID (to set the radio button)
-	PrediffingInfo prediffer;
-	pd->GetPrediffer(&prediffer);
-
-	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
-		m_CurrentPredifferID = 0;
-	else if (prediffer.GetPluginPipeline().empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-	else
-	{
-		ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-		for (int i = 0; i < 2; ++i)
-		{
-			for (iScript = 0; iScript < piScriptArray[i]->size(); iScript++, ID++)
+			if (!name.empty())
 			{
-				const PluginInfoPtr& plugin = piScriptArray[i]->at(iScript);
+				AppendMenu(hMenu, MF_STRING, id, caption.c_str());
 				if (prediffer.GetPluginPipeline() == plugin->m_name)
-					m_CurrentPredifferID = ID;
+					m_CurrentPredifferID = id;
 			}
 		}
 	}
@@ -3526,50 +3492,27 @@ void CMergeEditView::OnPrediffer(UINT nID )
  * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
  * ID_NO_PREDIFFER, & specific prediffers.
  */
-void CMergeEditView::SetPredifferByMenu(UINT nID )
+void CMergeEditView::SetPredifferByMenu(UINT nID)
 {
 	CMergeDoc *pd = GetDocument();
 	ASSERT(pd != nullptr);
 
-	if (nID == ID_NO_PREDIFFER)
-	{
-		m_CurrentPredifferID = nID;
-		// All flags are set correctly during the construction
-		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->ClearPluginPipeline();
-		pd->SetPrediffer(infoPrediffer);
-		pd->FlushAndRescan(true);
-		return;
-	}
-
-	// get the scriptlet files
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	PluginArray * piScriptArray2 = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-
-	// build a PrediffingInfo structure fom the ID
-	PrediffingInfo prediffer;
-	prediffer.ClearPluginPipeline();
-
-	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
-	if (pluginNumber < piScriptArray->size())
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
-		prediffer.SetPluginPipeline(plugin->m_name);
-	}
-	else
-	{
-		pluginNumber -= piScriptArray->size();
-		if (pluginNumber >= piScriptArray2->size())
-			return;
-		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
-		prediffer.SetPluginPipeline(plugin->m_name);
-	}
-
 	// update data for the radio button
 	m_CurrentPredifferID = nID;
 
+	if (nID == ID_NO_PREDIFFER)
+	{
+		// All flags are set correctly during the construction
+		PrediffingInfo infoPrediffer(false);
+		pd->SetPrediffer(&infoPrediffer);
+		return;
+	}
+
+	String pluginName = CMainFrame::GetPluginNameByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+
+	// build a PrediffingInfo structure fom the ID
+	PrediffingInfo prediffer(pluginName);
+	
 	// update the prediffer and rescan
 	pd->SetPrediffer(&prediffer);
 }

@@ -2901,7 +2901,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	}
 
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
-		pMenu->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
 
 	CMenu* pMenu2 = pMenu;
 	CMenu popupAll;
@@ -2920,11 +2920,11 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	std::vector<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
 		processTypes.push_back(processType);
-	auto it = std::find(processTypes.begin(), processTypes.end(), _T("&Others"));
+	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
 	if (it != processTypes.end())
 	{
 		processTypes.erase(it);
-		processTypes.push_back(_T("&Others"));
+		processTypes.push_back(_("&Others"));
 	}
 
 	for (const auto& processType: processTypes)
@@ -2934,13 +2934,13 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		if (processType.empty())
 		{
 			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
-				pMenu2->AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
+				pMenu2->AppendMenu(MF_STRING, id, caption.c_str());
 		}
 		else
 		{
 			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
-				popup.AppendMenu(MF_STRING, id, tr(ucr::toUTF8(caption)).c_str());
-			pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), tr(ucr::toUTF8(processType)).c_str());
+				popup.AppendMenu(MF_STRING, id, caption.c_str());
+			pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), processType.c_str());
 		}
 		popup.Detach();
 	}

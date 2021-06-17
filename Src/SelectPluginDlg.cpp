@@ -137,23 +137,23 @@ void CSelectPluginDlg::prepareListbox()
 	for (const auto& [processType, pluginList] : m_Plugins)
 		processTypes.push_back(processType);
 
-	auto itFound = std::find(processTypes.begin(), processTypes.end(), _T("&Others"));
+	auto itFound = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
 	if (itFound != processTypes.end())
 	{
 		processTypes.erase(itFound);
-		processTypes.push_back(_T("&Others"));
+		processTypes.push_back(_("&Others"));
 	}
 
 	for (const auto& processType : processTypes)
 	{
 		const auto& pluginList = m_Plugins[processType];
-		String processTypeTranslated = tr(ucr::toUTF8(processType));
-		auto it = processTypeTranslated.find(_("(&"));
+		String processType2 = processType;
+		auto it = processType2.find(_("(&"));
 		if (it != String::npos)
-			processTypeTranslated.erase(it, it + 2);
-		strutils::replace(processTypeTranslated, _T("&"), _T(""));
-		if (!processTypeTranslated.empty())
-			m_cboPluginName.AddString((_T("[") + processTypeTranslated + _T("]")).c_str());
+			processType2.erase(it, it + 2);
+		strutils::replace(processType2, _T("&"), _T(""));
+		if (!processType2.empty())
+			m_cboPluginName.AddString((_T("[") + processType2 + _T("]")).c_str());
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (!name.empty() && name != _T("<Automatic>"))
