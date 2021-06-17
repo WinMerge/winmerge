@@ -91,6 +91,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnCompare)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateCompare)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnCompare)
+	ON_COMMAND_RANGE(ID_OPEN_WITH_UNPACKER, ID_OPEN_WITH_UNPACKER, OnCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
@@ -666,6 +667,17 @@ void COpenView::OnCompare(UINT nID)
 		GetMainFrame()->DoFileOpen(
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+	}
+	else if (ID_OPEN_WITH_UNPACKER)
+	{
+		CSelectPluginDlg dlg(pDoc->m_strUnpackerPipeline, tmpPathContext[0], true, this);
+		if (dlg.DoModal() == IDOK)
+		{
+			tmpPackingInfo.SetPluginPipeline(dlg.GetPluginPipeline());
+			GetMainFrame()->DoFileOpen(
+				&tmpPathContext, dwFlags.data(),
+				nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+		}
 	}
 	else
 	{

@@ -345,8 +345,8 @@
       </indexterm></title>
 
     <section id="CompareMSExcelFiles">
-      <title><filename>CompareMSExcelFiles.sct<indexterm>
-          <primary>CompareMSExcelFiles.sct plugin file</primary>
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>CompareMSExcelFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text contents of a <trademark
@@ -357,6 +357,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Packing</segtitle>
 
@@ -378,6 +380,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -387,8 +391,8 @@
     </section>
 
     <section id="Plugins_powerpnt">
-      <title><filename>CompareMSPowerPointFiles.sct<indexterm>
-          <primary>CompareMSPowerPointFiles.sct plugin file</primary>
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>CompareMSPowerPointFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text content of a <trademark
@@ -399,6 +403,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Packing</segtitle>
 
@@ -420,6 +426,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -429,8 +437,8 @@
     </section>
 
     <section id="Plugins_visio">
-      <title><filename>CompareMSVisioFiles.sct<indexterm>
-          <primary>CompareMSVisioFiles.sct plugin file</primary>
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>CompareMSVisioFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text content of a <trademark
@@ -441,6 +449,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Packing</segtitle>
 
@@ -463,6 +473,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -472,8 +484,8 @@
     </section>
 
     <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.sct<indexterm>
-          <primary>CompareMSWordFiles.sct plugin file</primary>
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>CompareMSWordFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text content of a <trademark
@@ -484,6 +496,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Packing</segtitle>
 
@@ -503,6 +517,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -512,8 +528,8 @@
     </section>
 
     <section id="IgnoreColumns">
-      <title><filename>IgnoreColumns.dll<indexterm>
-          <primary>IgnoreColumns.dll plugin file</primary>
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>IgnoreColumns plugin file</primary>
         </indexterm></filename></title>
 
       <para>This plugin ignores characters at specified columns. The first
@@ -545,7 +561,7 @@
       </itemizedlist>
 
       <example>
-        <title><filename>IgnoreColumns.dll</filename> examples</title>
+        <title><filename>IgnoreColumns</filename> examples</title>
 
         <variablelist>
           <varlistentry>
@@ -574,6 +590,8 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Plugin argument</segtitle>
+
           <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
@@ -587,8 +605,8 @@
     </section>
 
     <section>
-      <title><filename>IgnoreCommentsC.dll<indexterm>
-          <primary>IgnoreCommentsC.dll plugin file</primary>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>IgnoreCommentsC plugin file</primary>
         </indexterm></filename></title>
 
       <para>The plugin ignores comments within<constant> //</constant>... and
@@ -599,6 +617,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Settings dialog support</segtitle>
 
@@ -616,13 +636,15 @@
             class="extension">*.ts</filename></seg>
 
             <seg>No</seg>
+
+            <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsComma.dll<indexterm>
-          <primary>IgnoreFieldsComma.dll plugin file</primary>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>IgnoreFieldsComma plugin file</primary>
         </indexterm></filename></title>
 
       <para>This plugin is for files with fields and commas as delimiters (CSV
@@ -638,6 +660,8 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Plugin argument</segtitle>
+
           <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
@@ -646,13 +670,15 @@
             <seg><filename class="extension">*.csv</filename></seg>
 
             <seg>Yes</seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsTab.dll<indexterm>
-          <primary>IgnoreFieldsTab.dll plugin file</primary>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>IgnoreFieldsTab plugin file</primary>
         </indexterm></filename></title>
 
       <para>This plugin is for files that use fields and tabs as delimiters
@@ -669,6 +695,8 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Plugin argument</segtitle>
+
           <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
@@ -677,13 +705,15 @@
             <seg><filename class="extension">*.txt</filename></seg>
 
             <seg>Yes</seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreLeadingLineNumbers.dll<indexterm>
-          <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>IgnoreLeadingLineNumbers plugin file</primary>
         </indexterm></filename></title>
 
       <para>This plugin ignores the leading line numbers in text files (for
@@ -693,6 +723,8 @@
           <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin argument</segtitle>
 
           <segtitle>Settings dialog support</segtitle>
 
@@ -705,14 +737,16 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg><xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="EditorAddin">
-      <title><filename>editor addin.sct<indexterm>
-          <primary>editor addin.sct plugin file</primary>
+      <title><filename>editor addin<indexterm>
+          <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
       <para>Adds five functions to the <menuchoice>
@@ -760,8 +794,8 @@
     </section>
 
     <section id="Plugins_datetime">
-      <title><filename>insert datetime.sct<indexterm>
-          <primary>insert datetime.sct plugin file</primary>
+      <title><filename>insert datetime<indexterm>
+          <primary>insert datetime plugin file</primary>
         </indexterm></filename></title>
 
       <para>Adds two functions to the <menuchoice>

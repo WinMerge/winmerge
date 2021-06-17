@@ -160,7 +160,7 @@ STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"Ignore some fields - ignored fields list from the plugin name");
+	*pVal = SysAllocString(L"Ignore some fields - ignored fields list from the plugin name or the plugin argument");
 	return S_OK;
 }
 

@@ -25,6 +25,7 @@
 	<method name="SortDescending"/>
 	<method name="ExecFilterCommand"/>
 	<method name="Tokenize"/>
+	<method name="Trim"/>
 </implements>
 
 <script language="VBS">
@@ -66,7 +67,9 @@ Function get_PluginExtendedProperties()
 	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
 	"ExecFilterCommand.Description=Apply filter command. When used as an Unpacker, you can specify a filter command as a plugin argument. %1 in the argument is replaced with the file name.;" & _
 	"Tokenize.MenuCaption=Tokenize...;" & _
-	"Tokenize.Description=Tokenize selection. When used as an Unpacker, you can specify a regular expression for tokenizing as a plugin argument."
+	"Tokenize.Description=Tokenize selection. When used as an Unpacker, you can specify a regular expression for tokenizing as a plugin argument.;" & _
+	"Trim.MenuCaption=Trim Spaces;" & _
+	"Trim.Description=Trim spaces;"
 End Function
 
 Function get_PluginArguments()
@@ -130,13 +133,17 @@ Function ReplaceVariables(ByVal str)
 	ReplaceVariables = newstr
 End Function
 
-Function ExecFilterCommand(Text)
-	Dim cmd
+Function IsFirstArgumentEmpty()
 	Dim firstArgument: firstArgument = ""
 	If UBound(arguments) >= 0 Then
 		firstArgument = arguments(0)
 	End If
-	If firstArgument = "" Then
+	IsFirstArgumentEmpty = (firstArgument = "")
+End Function
+
+Function ExecFilterCommand(Text)
+	Dim cmd
+	If IsFirstArgumentEmpty() Then
 		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
 		If IsLangJapanese() Then
 			cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
@@ -198,7 +205,7 @@ End Function
 ' port from WinMerge2011
 Function Tokenize(Text)
 	Dim pattern
-	If arguments = "" Then
+	If IsFirstArgumentEmpty() Then
 		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
 		If IsLangJapanese() Then
 			pattern = InputBox("トークン分割する区切りを正規表現で入力してください (例: [^\w]+):", "Tokenize", pattern)
@@ -311,6 +318,15 @@ function SortDescending(Text) {
 	} else {
 		return lines.sort(function(a, b) { return a < b ? 1 : -1; }).join(eol);
 	}
+}
+
+function Trim(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	for (var i = 0; i < lines.length; i++) {
+		lines[i] = lines[i].replace(/^\s+|\s+$/g, "");
+	}
+	return lines.join(eol);
 }
 
 </script>

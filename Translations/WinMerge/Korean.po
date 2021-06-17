@@ -4361,6 +4361,9 @@ msgstr ""
 msgid "Tokenize..."
 msgstr ""
 
+msgid "Trim Spaces"
+msgstr ""
+
 msgid "Insert Date"
 msgstr ""
 
