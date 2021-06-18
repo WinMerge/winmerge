@@ -70,7 +70,7 @@ Function get_PluginIsAutomatic()
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "MenuCaption=Apply Patch"
+	get_PluginExtendedProperties = "MenuCaption=Apply Patch..."
 End Function
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)

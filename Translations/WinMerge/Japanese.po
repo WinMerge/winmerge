@@ -3689,8 +3689,8 @@ msgstr "日付を挿入"
 msgid "Insert Time"
 msgstr "時刻を挿入"
 
-msgid "Apply Patch"
-msgstr "パッチ適用"
+msgid "Apply Patch..."
+msgstr "パッチ適用..."
 
 msgid "Ignore Columns"
 msgstr "指定列を無視"

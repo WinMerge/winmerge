@@ -3703,7 +3703,7 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION9  "Trim Spaces"
     IDS_PLUGIN_MENU_CAPTION10 "Insert Date"
     IDS_PLUGIN_MENU_CAPTION11 "Insert Time"
-    IDS_PLUGIN_MENU_CAPTION12 "Apply Patch"
+    IDS_PLUGIN_MENU_CAPTION12 "Apply Patch..."
     IDS_PLUGIN_MENU_CAPTION13 "Ignore Columns"
     IDS_PLUGIN_MENU_CAPTION14 "Ignore Comments (C-Family Languages)"
     IDS_PLUGIN_MENU_CAPTION15 "Ignore CSV Fields"

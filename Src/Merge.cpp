@@ -644,11 +644,11 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
-	if (!cmdInfo.m_sUnpackerPipeline.empty())
-		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpackerPipeline));
+	if (!cmdInfo.m_sUnpacker.empty())
+		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
 
-	if (!cmdInfo.m_sPreDifferPipeline.empty())
-		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDifferPipeline));
+	if (!cmdInfo.m_sPreDiffer.empty())
+		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())

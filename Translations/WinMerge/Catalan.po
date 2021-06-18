@@ -4193,7 +4193,7 @@ msgstr ""
 msgid "Insert Time"
 msgstr ""
 
-msgid "Apply Patch"
+msgid "Apply Patch..."
 msgstr ""
 
 msgid "Ignore Columns"

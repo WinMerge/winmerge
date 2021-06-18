@@ -74,8 +74,8 @@ public:
 	String m_sRightDesc; /**< Right side file's description. */
 
 	String m_sFileFilter; /**< File filter mask. */
-	String m_sPreDifferPipeline; /**< Pre-differ name or expression. */
-	String m_sUnpackerPipeline; /**< Unpacker name or expression. */
+	String m_sPreDiffer; /**< Pre-differ name. */
+	String m_sUnpacker; /**< Unpacker name. */
 
 	String m_sOutputpath;
 	String m_sReportFile;
