@@ -52,6 +52,7 @@ Const PLUGIN_NAME = "ApplyPatch.sct WinMerge Plugin"
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim PrevFileName: PrevFileName = ""
 
 Function get_PluginEvent()
     get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
@@ -66,7 +67,7 @@ Function get_PluginFileFilters()
 End Function
 
 Function get_PluginIsAutomatic()
-    get_PluginIsAutomatic = True
+    get_PluginIsAutomatic = False
 End Function
 
 Function get_PluginExtendedProperties()
@@ -80,6 +81,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
     If Not IsPatchFile(fileSrc) Then
         ' FIXME:
+        PrevFileName = fileSrc
         fso.CopyFile fileSrc, fileDst
         pbChanged = True
         pSubcode = 1
@@ -87,7 +89,11 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
         Exit Function
     End If
 
-    filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+    If PrevFileName <> "" Then
+        filePatched = PrevFileName
+    Else
+        filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+    End If
     If IsPatchFile(filePatched) Then
         filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Right\Item_0")
     End If

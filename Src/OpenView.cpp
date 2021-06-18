@@ -668,7 +668,7 @@ void COpenView::OnCompare(UINT nID)
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 	}
-	else if (ID_OPEN_WITH_UNPACKER)
+	else if (nID == ID_OPEN_WITH_UNPACKER)
 	{
 		CSelectPluginDlg dlg(pDoc->m_strUnpackerPipeline, tmpPathContext[0], true, this);
 		if (dlg.DoModal() == IDOK)

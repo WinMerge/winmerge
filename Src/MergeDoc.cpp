@@ -3387,16 +3387,20 @@ void CMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
 		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
-	if (dlg.DoModal() == IDOK)
-	{
-		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
-		PathContext paths = m_filePaths;
-		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
-		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
-		int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+
+	PackingInfo infoUnpacker(dlg.GetPluginPipeline());
+	PathContext paths = m_filePaths;
+	DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+	String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+
+	if (GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker))
 		CloseNow();
-		GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
-	}
 }
 
 void CMergeDoc::OnApplyPrediffer() 
@@ -3489,8 +3493,8 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 	}
 
-	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+	if (GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker))
+		CloseNow();
 }
 
 // Return file extension either from file name 
