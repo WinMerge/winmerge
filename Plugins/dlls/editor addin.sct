@@ -17,6 +17,10 @@
 		<get/>
 		<put/>
 	</property>
+	<property name="PluginVariables">
+		<get/>
+		<put/>
+	</property>
 	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
 	<method name="RemoveDuplicates"/>
@@ -35,7 +39,8 @@ Const WinMergeRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\"
 Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor addin.sct\"
 
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
-Dim arguments: arguments = Array()
+Dim arguments: arguments = ""
+Dim variables: variables = Array()
 
 Function get_PluginEvent()
 	get_PluginEvent = "EDITOR_SCRIPT"
@@ -73,11 +78,19 @@ Function get_PluginExtendedProperties()
 End Function
 
 Function get_PluginArguments()
-	get_PluginArguments = Join(arguments, Chr(0))
+	get_PluginArguments = arguments
 End Function
 
 Sub put_PluginArguments(NewValue)
-	arguments = Split(NewValue, Chr(0))
+	arguments = NewValue
+End Sub
+
+Function get_PluginVariables()
+	get_PluginVariables = Join(ariables, Chr(0))
+End Function
+
+Sub put_PluginVariables(NewValue)
+	variables = Split(NewValue, Chr(0))
 End Sub
 
 Function regRead(Key, DefaultValue)
@@ -117,8 +130,8 @@ Function ReplaceVariables(ByVal str)
 				pos = foundpos + 2
 			ElseIf IsNumeric(ch) Then
 				newstr = newstr & Mid(str, pos, foundpos - pos)
-				If CLng(ch) <= UBound(arguments) Then
-					newstr = newstr & arguments(CLng(ch))
+				If CLng(ch) <= UBound(variables) Then
+					newstr = newstr & variables(CLng(ch))
 				End If
 				pos = foundpos + 2
 			Else
@@ -134,11 +147,7 @@ Function ReplaceVariables(ByVal str)
 End Function
 
 Function IsFirstArgumentEmpty()
-	Dim firstArgument: firstArgument = ""
-	If UBound(arguments) >= 0 Then
-		firstArgument = arguments(0)
-	End If
-	IsFirstArgumentEmpty = (firstArgument = "")
+	IsFirstArgumentEmpty = (Trim(arguments) = "")
 End Function
 
 Function ExecFilterCommand(Text)
@@ -155,7 +164,7 @@ Function ExecFilterCommand(Text)
 		End If
 		cmd = ReplaceVariables(cmd)
 	Else
-		cmd = arguments(0)
+		cmd = arguments
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then

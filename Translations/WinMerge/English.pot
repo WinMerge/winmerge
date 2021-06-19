@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-18 09:11+0000\n"
+"POT-Creation-Date: 2021-06-20 00:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3261,6 +3261,9 @@ msgstr ""
 msgid "Visualization"
 msgstr ""
 
+msgid "Data Query"
+msgstr ""
+
 msgid "&Others"
 msgstr ""
 
@@ -3322,6 +3325,15 @@ msgid "Prettify XML"
 msgstr ""
 
 msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV"
+msgstr ""
+
+msgid "Query TSV"
+msgstr ""
+
+msgid "Query JSON"
 msgstr ""
 
 #, c-format

@@ -40,8 +40,8 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 	std::vector<PluginForFile::PipelineItem> result;
 	bool inQuotes = false;
 	TCHAR quoteChar = 0;
-	std::vector<String> tokens;
-	String token, name, param;
+	std::vector<String> args;
+	String token, name;
 	errorMessage.clear();
 	const TCHAR* p = pluginPipeline.c_str();
 	while (_istspace(*p)) p++;
@@ -97,9 +97,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		}
 		else
 		{
-			if (!param.empty())
-				param += _T(" ");
-			param += token;
+			args.push_back(token);
 		}
 		while (_istspace(*p)) p++;
 		if (*p == '|')
@@ -114,9 +112,9 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 				errorMessage = strutils::format_string1(_("Missing plugin name in plugin pipeline: %1"), pluginPipeline);
 				break;
 			}
-			result.push_back({ name, !quoteChar ? strutils::trim_ws_end(param) : param, quoteChar });
+			result.push_back({ name, args, quoteChar });
 			name.clear();
-			param.clear();
+			args.clear();
 			quoteChar = 0;
 		}
 	};
@@ -127,82 +125,101 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 
 String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::PipelineItem>& list)
 {
+	int i = 0;
 	String pipeline;
 	for (const auto& [name, args, quoteChar] : list)
 	{
-		String nameQuoted = name;
 		if (quoteChar)
 		{
+			String nameQuoted = name;
 			strutils::replace(nameQuoted, String(1, quoteChar), String(2, quoteChar));
-			nameQuoted = strutils::format(_T("%c%s%c"), quoteChar, nameQuoted, quoteChar);
+			pipeline += strutils::format(_T("%c%s%c"), quoteChar, nameQuoted, quoteChar);
 		}
-		if (pipeline.empty())
-			pipeline = nameQuoted;
 		else
-			pipeline += _T("|") + nameQuoted;
+		{
+			pipeline += name;
+		}
 		if (!args.empty())
 		{
-			if (quoteChar)
+			for (const auto& arg : args)
 			{
-				String argsQuoted = args;
-				strutils::replace(argsQuoted, String(1, quoteChar), String(2, quoteChar));
-				pipeline += strutils::format(_T(" %c%s%c"), quoteChar, argsQuoted, quoteChar);
-			}
-			else
-			{
-				pipeline += _T(" ") + args;
+				if (quoteChar)
+				{
+					String argQuoted = arg;
+					strutils::replace(argQuoted, String(1, quoteChar), String(2, quoteChar));
+					pipeline += strutils::format(_T(" %c%s%c"), quoteChar, argQuoted, quoteChar);
+				}
+				else
+				{
+					pipeline += _T(" ") + arg;
+				}
 			}
 		}
+		if (i < list.size() - 1)
+			pipeline += _T("|");
+		i++;
 	}
 	return pipeline;
 }
 
-String PluginForFile::MakeArguments(const String& pipelineArgs, const std::vector<StringView>& variables)
+String PluginForFile::MakeArguments(const std::vector<String>& args, const std::vector<StringView>& variables)
 {
 	String newstr;
-	for (const TCHAR* p = pipelineArgs.c_str(); *p; ++p)
+	int i = 0;
+	for (const auto& arg : args)
 	{
-		if (*p == '%' && *(p + 1) != 0)
+		String newarg;
+		for (const TCHAR* p = arg.c_str(); *p; ++p)
 		{
-			++p;
-			TCHAR c = *p;
-			if (c == '%')
+			if (*p == '%' && *(p + 1) != 0)
 			{
-				newstr += '%';
-			}
-			else if (c >= '1' && c <= '9')
-			{
-				if ((c - '1') < variables.size())
-					newstr += String{ variables[(c - '1')].data(), variables[(c - '1')].length() };
+				++p;
+				TCHAR c = *p;
+				if (c == '%')
+				{
+					newarg += '%';
+				}
+				else if (c >= '1' && c <= '9')
+				{
+					if ((c - '1') < variables.size())
+						newarg += String{ variables[(c - '1')].data(), variables[(c - '1')].length() };
+				}
+				else
+				{
+					newarg += *(p - 1);
+					newarg += c;
+				}
 			}
 			else
 			{
-				newstr += *(p - 1);
-				newstr += c;
+				newarg += *p;
 			}
+		}
+		if (newarg.find_first_of(_T(" \"")) != String::npos)
+		{
+			strutils::replace(newarg, _T("\""), _T("\"\""));
+			newstr += _T("\"") + newarg + _T("\"");
 		}
 		else
 		{
-			newstr += *p;
+			newstr += newarg;
 		}
-	}
-	for (const auto& var : variables)
-	{
-		newstr += String(1, '\0');
-		newstr += var;
+		if (i < args.size() - 1)
+			newstr += ' ';
+		i++;
 	}
 	return newstr;
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	for (const auto& [pluginName, args, quoteChar] : result)
+	for (auto& [pluginName, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -248,7 +265,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bRev
 		}
 		if (plugin)
 		{
-			pipelineResolved.push_back({ plugin->m_name, args, quoteChar });
+			pipelineResolved.push_back({plugin->m_name, args, quoteChar });
 			if (bReverse)
 				plugins.insert(plugins.begin(), { plugin, args, bWithFile });
 			else
@@ -269,7 +286,7 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(_T(""), true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -286,9 +303,14 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+				return false;
+		}
 		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
 				return false;
 		}
 
@@ -357,7 +379,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -379,9 +401,14 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+				return false;
+		}
 		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
 				return false;
 		}
 
@@ -430,7 +457,7 @@ String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) co
 {
 	String ext;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, plugins, nullptr, errorMessage))
 	{
 		for (auto& [plugin, args, bWithFile] : plugins)
@@ -443,14 +470,14 @@ String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) co
 // transformation prediffing
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ParsePluginPipeline(errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	for (const auto& [pluginName, args, quoteChar] : result)
+	for (auto& [pluginName, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
 		bool bWithFile = true;
@@ -511,7 +538,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 	// control value
 	bool bHandled = false;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, String, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -529,9 +556,14 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
 
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+				return false;
+		}
 		if (plugin->m_hasArgumentsProperty)
 		{
-			if (!plugin::InvokePutPluginArguments(MakeArguments(args.empty() ? plugin->m_arguments : args, variables), piScript))
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
 				return false;
 		}
 
@@ -659,7 +691,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent
 	return sNamesArray;
 }
 
-bool Interactive(String & text, const String& args, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables)
+bool Interactive(String & text, const std::vector<String>& args, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables)
 {
 	if (iFncChosen < 0)
 		return false;
@@ -686,9 +718,14 @@ bool Interactive(String & text, const String& args, const wchar_t *Transformatio
 	// we must convert it to the function ID
 	int fncID = plugin::GetMethodIDInScript(plugin->m_lpDispatch, iFncChosen);
 
+	if (plugin->m_hasVariablesProperty)
+	{
+		if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), plugin->m_lpDispatch))
+			return false;
+	}
 	if (plugin->m_hasArgumentsProperty)
 	{
-		if (!plugin::InvokePutPluginArguments(PluginForFile::MakeArguments(args.empty() ? plugin->m_arguments : args, variables), plugin->m_lpDispatch))
+		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : PluginForFile::MakeArguments(args, variables), plugin->m_lpDispatch))
 			return false;
 	}
 

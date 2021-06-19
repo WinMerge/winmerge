@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-17 07:55+0900\n"
+"PO-Revision-Date: 2021-06-20 00:06+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3653,6 +3653,9 @@ msgstr "内容抽出"
 msgid "Visualization"
 msgstr "視覚化"
 
+msgid "Data Query"
+msgstr "データ問い合わせ"
+
 msgid "&Others"
 msgstr "その他(&O)"
 
@@ -3715,6 +3718,15 @@ msgstr "XML整形"
 
 msgid "Visualize Graphviz"
 msgstr "Graphviz視覚化"
+
+msgid "Query CSV"
+msgstr ""
+
+msgid "Query TSV"
+msgstr ""
+
+msgid "Query JSON"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

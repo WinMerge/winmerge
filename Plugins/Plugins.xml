@@ -2,26 +2,62 @@
 <plugins>
   <plugin name="PrettifyXML">
     <event value="FILE_PACK_UNPACK" />
-    <description value="XML Prettier" />
+    <description value="XML Prettier with html-tidy5" />
     <file-filters value="\.xml$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".xml" />
-    <extended-properties value="ProcessType=Prettification;FileType=XML;MenuCaption=Prettify XML;GenerateEditorScript" />
-    <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
+    <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify XML;GenerateEditorScript" />
+    <arguments value="-xml -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
     <unpack-file>
-    <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" -xml ${0} -o "${DST_FILE}" "${SRC_FILE}"</command>
+    <command>"${WINMERGE_HOME}\Commands\html-tidy5\tidy.exe" ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyJSON">
     <event value="FILE_PACK_UNPACK" />
-    <description value="JSON Prettier" />
+    <description value="JSON Prettier with jq" />
     <file-filters value="\.json$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".json" />
-    <extended-properties value="ProcessType=Prettification;FileType=JSON;MenuCaption=Prettify JSON;GenerateEditorScript" />
+    <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify JSON;GenerateEditorScript" />
     <arguments value="&quot;&quot;" />
     <unpack-file>
-    <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${0} &gt; "${DST_FILE}"</command>
+    <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="QueryCSV">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="CSV Querier with q command" />
+    <file-filters value="\.csv$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".csv" />
+    <extended-properties value="ProcessType=Data Query;MenuCaption=Query CSV;GenerateEditorScript" />
+    <arguments value="&quot;SELECT * FROM -&quot;" />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\q\q.bat" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="QueryTSV">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="TSV Querier with q command" />
+    <file-filters value="\.tsv$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".tsv" />
+    <extended-properties value="ProcessType=Data Query;MenuCaption=Query TSV;GenerateEditorScript" />
+    <arguments value="-t &quot;SELECT * FROM -&quot;" />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\q\q.bat" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="QueryJSON">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="JSON Querier with jq command" />
+    <file-filters value="\.json$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".json" />
+    <extended-properties value="ProcessType=Data Query;MenuCaption=Query JSON;GenerateEditorScript" />
+    <arguments value="&quot;&quot;" />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${*} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="VisualizeGraphviz">
@@ -30,10 +66,10 @@
     <file-filters value="\.gv;$\.dot$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".png" />
-    <extended-properties value="ProcessType=Visualization;FileType=Graphviz;MenuCaption=Visualize Graphviz" />
-    <arguments value="" />
+    <extended-properties value="ProcessType=Visualization;MenuCaption=Visualize Graphviz" />
+    <arguments value="-Tpng" />
     <unpack-file>
-      <command>dot.exe -Tpng ${0} -o"${DST_FILE}" "${SRC_FILE}"</command>
+      <command>dot.exe ${*} -o"${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="ApacheTika">
@@ -43,9 +79,9 @@
     <is-automatic value="false" />
     <unpacked-file-extension value=".txt" />
     <extended-properties value="ProcessType=Content Extraction;MenuCaption=Apache Tika;GenerateEditorScript" />
-    <arguments value="-t" />
+    <arguments value="-eUTF-8 -t" />
     <unpack-file>
-      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" ${0} "${SRC_FILE}" "${DST_FILE}"</command>
+      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}" "${*}"</command>
     </unpack-file>
   </plugin>
   <!--

@@ -82,6 +82,7 @@ public:
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;
 	bool        m_hasArgumentsProperty;
+	bool        m_hasVariablesProperty;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -261,4 +262,9 @@ bool InvokeShowSettingsDialog(LPDISPATCH piScript);
  * @brief Set value to the plugin "PluginArguments" property 
  */
 bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
+
+/**
+ * @brief Set value to the plugin "PluginVariables" property 
+ */
+bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
 }

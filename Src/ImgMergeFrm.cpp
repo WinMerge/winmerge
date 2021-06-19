@@ -578,7 +578,11 @@ BOOL CImgMergeFrame::DestroyWindow()
 	SaveActivePane();
 	SaveOptions();
 	SaveWindowState();
-	return CMergeFrameCommon::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 void CImgMergeFrame::LoadOptions()
@@ -1248,11 +1252,7 @@ bool CImgMergeFrame::CloseNow()
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	SaveOptions();
-	MDIActivate();
-	MDIDestroy();
+	DestroyWindow();
 	return true;
 }
 

@@ -68,7 +68,7 @@ if not "%1" == "" (
 )
 
 rem Create folder structure
-for %%i in (ColorSchemes Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge Merge7z\Lang GnuWin32) do (
+for %%i in (ColorSchemes Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge Merge7z\Lang Commands\Apache-Tika Commands\q Commands\GnuWin32) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -154,9 +154,20 @@ if "%1" == "" (
   copy Build\WinIMerge\bin64\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 
+rem Commands
+xcopy /s/y Plugins\Commands "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands"
+
 rem Patch
 echo Copy Patch...
-xcopy /s/y Build\GnuWin32 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\GnuWin32\" > NUL
+xcopy /s/y Build\GnuWin32 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\GnuWin32\" > NUL
+
+rem Copy jq...
+copy Build\jq\jq-win32.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\jq\jq.exe" > NUL
+copy Build\jq\jq-jq-1.4\COPYING "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\jq\" > NUL
+
+rem Copy html-tidy5...
+copy Build\html-tidy5\bin\tidy.* "%DISTDIR%\%PLATFORMH%zip-version\Commands\html-tidy5\" > NUL
+copy Build\html-tidy5\tidy-html5-5.4.0\README\LICENSE.md "%DISTDIR%\%PLATFORMH%zip-version\Commands\html-tidy5\" > NUL
 
 echo.
 echo ------------------------------------------------------------

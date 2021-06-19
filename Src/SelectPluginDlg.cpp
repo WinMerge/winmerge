@@ -234,7 +234,7 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 					String errorMessage;
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
-						parseResult.push_back({ name, _T(""), '\0' });
+						parseResult.push_back({ name, {}, '\0' });
 					parseResult.back().name = name;
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;

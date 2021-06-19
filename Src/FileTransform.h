@@ -33,7 +33,7 @@ public:
 	struct PipelineItem
 	{
 		String name;
-		String args;
+		std::vector<String> args;
 		TCHAR quoteChar;
 	};
 
@@ -60,7 +60,7 @@ public:
 	std::vector<PipelineItem> ParsePluginPipeline(String& errorMessage) const;
 	static std::vector<PipelineItem> ParsePluginPipeline(const String& pluginPipeline, String& errorMessage);
 	static String MakePluginPipeline(const std::vector<PipelineItem>& list);
-	static String MakeArguments(const String& str, const std::vector<StringView>& variables);
+	static String MakeArguments(const std::vector<String>& args, const std::vector<StringView>& variables);
 
 protected:
 	/// plugin name when it is defined
@@ -88,7 +88,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
@@ -145,7 +145,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, String, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -207,7 +207,7 @@ std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent
  *
  * @note Event EDITOR_SCRIPT, ?
  */
-bool Interactive(String & text, const String& params, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables);
+bool Interactive(String & text, const std::vector<String>& params, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables);
 
 std::pair<
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,

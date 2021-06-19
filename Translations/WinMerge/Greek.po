@@ -4204,6 +4204,9 @@ msgstr ""
 msgid "Visualization"
 msgstr ""
 
+msgid "Data Query"
+msgstr ""
+
 msgid "&Others"
 msgstr ""
 
@@ -4265,6 +4268,15 @@ msgid "Prettify XML"
 msgstr ""
 
 msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV"
+msgstr ""
+
+msgid "Query TSV"
+msgstr ""
+
+msgid "Query JSON"
 msgstr ""
 
 #, c-format

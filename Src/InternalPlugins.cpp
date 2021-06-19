@@ -264,6 +264,7 @@ public:
 		, m_pDispatch(plugin.m_lpDispatch)
 		, m_funcid(id)
 		, m_hasArgumentsProperty(plugin.m_hasArgumentsProperty)
+		, m_hasVariablesProperty(plugin.m_hasVariablesProperty)
 	{
 		auto desc = plugin.GetExtendedPropertyValue(funcname + _T(".Description"));
 		if (desc.has_value())
@@ -285,6 +286,8 @@ public:
 		HRESULT hr = ReadFile(fileSrc, text);
 		if (FAILED(hr))
 			return hr;
+		if (m_hasVariablesProperty && !plugin::InvokePutPluginVariables(ucr::toTString(fileSrc), m_pDispatch))
+			return E_FAIL;
 		if (m_hasArgumentsProperty && !plugin::InvokePutPluginArguments(m_sArguments, m_pDispatch))
 			return E_FAIL;
 		int changed = 0;
@@ -310,6 +313,7 @@ private:
 	IDispatch* m_pDispatch;
 	int m_funcid;
 	bool m_hasArgumentsProperty;
+	bool m_hasVariablesProperty;
 };
 
 class InternalPlugin : public WinMergePluginBase
@@ -323,6 +327,91 @@ public:
 
 	virtual ~InternalPlugin()
 	{
+	}
+
+	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_prediffFile)
+		{
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		TempFile scriptFile;
+		String command = replaceMacros(m_info.m_prediffFile->m_command, fileSrc, fileDst);
+		if (m_info.m_prediffFile->m_script)
+		{
+			createScript(*m_info.m_prediffFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_unpackFile)
+		{
+			*pSubcode = 0;
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		TempFile scriptFile;
+		String command = replaceMacros(m_info.m_unpackFile->m_command, fileSrc, fileDst);
+		if (m_info.m_unpackFile->m_script)
+		{
+			createScript(*m_info.m_unpackFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pSubcode = 0;
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+	HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_packFile)
+		{
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		TempFile scriptFile;
+		String command = replaceMacros(m_info.m_packFile->m_command, fileSrc, fileDst);
+		if (m_info.m_packFile->m_script)
+		{
+			createScript(*m_info.m_packFile->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
+protected:
+
+	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
+	{
+		String command = cmd;
+		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
+		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		std::vector<StringView> vars = strutils::split(m_sVariables, '\0');
+		for (size_t i = 0; i < vars.size(); ++i)
+			strutils::replace(command, strutils::format(_T("${%d}"), i), { vars[i].data(), vars[i].length() });
+		strutils::replace(command, _T("${*}"), m_sArguments);
+		return command;
 	}
 
 	static HRESULT createScript(const Script& script, TempFile& tempFile)
@@ -383,92 +472,6 @@ public:
 			}
 		}
 		return S_OK;
-	}
-
-	HRESULT STDMETHODCALLTYPE PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_prediffFile)
-		{
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_prediffFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
-		for (size_t i = 0; i < args.size(); ++i)
-			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
-		if (m_info.m_prediffFile->m_script)
-		{
-			createScript(*m_info.m_prediffFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
-
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
-	}
-
-	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_unpackFile)
-		{
-			*pSubcode = 0;
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_unpackFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
-		for (size_t i = 0; i < args.size(); ++i)
-			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
-		if (m_info.m_unpackFile->m_script)
-		{
-			createScript(*m_info.m_unpackFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
-
-		*pSubcode = 0;
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
-	}
-
-	HRESULT STDMETHODCALLTYPE PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT subcode, VARIANT_BOOL* pbSuccess) override
-	{
-		if (!m_info.m_packFile)
-		{
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_OK;
-		}
-		String command = m_info.m_packFile->m_command;
-		TempFile scriptFile;
-		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
-		strutils::replace(command, _T("${DST_FILE}"), fileDst);
-		std::vector<StringView> args = strutils::split(m_sArguments, '\0');
-		for (size_t i = 0; i < args.size(); ++i)
-			strutils::replace(command, strutils::format(_T("${%d}"), i), { args[i].data(), args[i].length() });
-		if (m_info.m_packFile->m_script)
-		{
-			createScript(*m_info.m_packFile->m_script, scriptFile);
-			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
-		}
-		DWORD dwExitCode;
-		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
-
-		*pbChanged = SUCCEEDED(hr);
-		*pbSuccess = SUCCEEDED(hr);
-		return hr;
 	}
 
 private:

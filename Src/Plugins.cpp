@@ -547,7 +547,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	VariantClear(&ret);
 
-	// get optional property PluginIsAutomatic
+	// get optional property PluginArguments
 	if (SearchScriptForDefinedProperties(L"PluginArguments"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginArguments", opGet[0], nullptr);
@@ -564,6 +564,10 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		m_argumentsDefault.clear();
 		m_hasArgumentsProperty = false;
 	}
+
+	// get optional property PluginVariables
+	m_hasVariablesProperty = SearchScriptForDefinedProperties(L"PluginVariables");
+
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 
@@ -1592,6 +1596,18 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
 	vbstrArgs.bstrVal = SysAllocStringLen(wargs.data(), static_cast<unsigned>(wargs.size()));
 
 	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginArguments", opPut[1], vbstrArgs);
+	return SUCCEEDED(h);
+}
+
+bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
+{
+	// argument text  
+	VARIANT vbstrVars;
+	vbstrVars.vt = VT_BSTR;
+	std::wstring wvars = ucr::toUTF16(vars);
+	vbstrVars.bstrVal = SysAllocStringLen(wvars.data(), static_cast<unsigned>(wvars.size()));
+
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginVariables", opPut[1], vbstrVars);
 	return SUCCEEDED(h);
 }
 

@@ -2636,7 +2636,7 @@ bool CMergeDoc::CloseNow()
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 
-	GetParentFrame()->CloseNow();
+	GetParentFrame()->DestroyWindow();
 	return true;
 }
 

@@ -200,7 +200,11 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	long nSize = *pSize;
 	WCHAR * pEndText = pBeginText + nSize;
 
-	CString rangestr = (m_bstrArguments.Length() > 0) ? m_bstrArguments.m_str : GetColumnRangeString();
+	int argc = 0;
+	wchar_t **argv = CommandLineToArgvW(m_bstrArguments.m_str, &argc);
+	CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+	if (argv)
+		LocalFree(argv);
 
 	int nExcludedRanges = CreateArrayFromRangeString(rangestr, NULL);
 	int (* aExcludedRanges)[2] = new int[nExcludedRanges][2];
