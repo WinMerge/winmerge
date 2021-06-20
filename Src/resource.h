@@ -1462,6 +1462,7 @@
 #define IDS_PLUGIN_MENU_CAPTION30       44240
 #define IDS_PLUGIN_MISSING_PLUGIN_NAME  44241
 #define IDS_PLUGIN_MISSING_QUOTATION_MARK 44242
+#define IDS_PLUGIN_TITLE1               44243
 
 // Next default values for new objects
 // 

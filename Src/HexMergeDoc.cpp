@@ -832,7 +832,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = ID_MERGE_COMPARE_HEX;
 	}
 
@@ -843,7 +843,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 void CHexMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false, true);
 	if (dlg.DoModal() == IDOK)
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());

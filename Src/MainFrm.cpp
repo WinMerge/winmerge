@@ -52,6 +52,7 @@
 #include "PreferencesDlg.h"
 #include "FileOrFolderSelect.h"
 #include "PluginsListDlg.h"
+#include "SelectPluginDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
 #include "OptionsFont.h"
@@ -2955,21 +2956,31 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	popupAll.Detach();
 }
 
-String CMainFrame::GetPluginNameByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
+String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
 {
+	PluginInfo* pluginFound = nullptr;
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
 	{
 		if (id == idSearch)
-			return name;
+			pluginFound = plugin;
 	}
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (id == idSearch)
-				return name;
+				pluginFound = plugin;
 		}
+	}
+	if (pluginFound)
+	{
+		if (!pluginFound->m_argumentsRequired)
+			return pluginFound->m_name;
+		CSelectPluginDlg dlg(pluginFound->m_name, _T(""), (baseId == ID_UNPACKERS_FIRST), true);
+		if (dlg.DoModal() != IDOK)
+			return {};
+		return dlg.GetPluginPipeline();
 	}
 	return {};
 }

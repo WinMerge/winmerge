@@ -3713,11 +3713,12 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION18 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION19 "Prettify XML"
     IDS_PLUGIN_MENU_CAPTION20 "Visualize Graphviz"
-    IDS_PLUGIN_MENU_CAPTION21 "Query CSV"
-    IDS_PLUGIN_MENU_CAPTION22 "Query TSV"
-    IDS_PLUGIN_MENU_CAPTION23 "Query JSON"
+    IDS_PLUGIN_MENU_CAPTION21 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION22 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION23 "Query JSON Data..."
     IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
+    IDS_PLUGIN_TITLE1        "Specify plugin arguments"
 END
 
 #endif    // English (United States) resources

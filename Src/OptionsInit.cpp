@@ -202,7 +202,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, _T(""));
 	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, false);
 	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, false);
-	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);
+	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, true);
 
 	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0);
 	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);

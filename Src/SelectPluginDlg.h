@@ -30,8 +30,7 @@ private:
 
 public:
 // Construction
-	CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker = true, CWnd* pParent = nullptr);
-	CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, bool unpacker = true, CWnd* pParent = nullptr);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker = true, bool argumentRequired = false, CWnd* pParent = nullptr);
 	~CSelectPluginDlg();
 
 	const String& CSelectPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
@@ -67,6 +66,7 @@ protected:
 	// const data "automatic plugin"
 	std::unique_ptr<PluginInfo> automaticPlugin;
 	bool m_bUnpacker;
+	bool m_bArgumentRequired;
 
 	// input value
 	String m_filteredFilenames;

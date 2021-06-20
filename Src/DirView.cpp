@@ -1560,7 +1560,7 @@ void CDirView::OpenSelectionAs(UINT id)
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
 		PackingInfo infoUnpacker(
-				CMainFrame::GetPluginNameByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				CMainFrame::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 	else
@@ -2727,7 +2727,7 @@ void CDirView::OnOpenWithUnpacker()
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		// let the user choose a handler
-		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, true, this);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, true, false, this);
 		if (dlg.DoModal() == IDOK)
 		{
 			PackingInfo infoUnpackerNew(dlg.GetPluginPipeline());
@@ -3087,7 +3087,7 @@ void CDirView::OnPluginSettings(UINT nID)
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, unpacker, this);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, unpacker, false, this);
 		if (dlg.DoModal() != IDOK)
 			return;
 		pluginPipeline = dlg.GetPluginPipeline();

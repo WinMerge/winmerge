@@ -561,8 +561,8 @@ Source: ..\..\Build\WinIMerge\bin\vcomp140.dll; DestDir: {app}; Components: WinI
 ;GnuWin32 Patch for Windows
 Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands
 ; HTML Tidy
-Source: ..\..\Build\html-tidy5\bin\*.*; DestDir: {app}\Commands\html-tidy5; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\html-tidy5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\html-tidy5; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
 ; jq
 Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
 Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands

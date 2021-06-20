@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-20 00:06+0900\n"
+"PO-Revision-Date: 2021-06-20 13:31+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3719,14 +3719,14 @@ msgstr "XML整形"
 msgid "Visualize Graphviz"
 msgstr "Graphviz視覚化"
 
-msgid "Query CSV"
-msgstr ""
+msgid "Query CSV Data..."
+msgstr "CSVデータの問い合わせ..."
 
-msgid "Query TSV"
-msgstr ""
+msgid "Query TSV Data..."
+msgstr "TSVデータの問い合わせ..."
 
-msgid "Query JSON"
-msgstr ""
+msgid "Query JSON Data..."
+msgstr "JSONデータの問い合わせ..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
@@ -3735,3 +3735,6 @@ msgstr "プラグインパイプラインにプラグイン名が指定されて
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "プラグインパイプラインが引用符で閉じていません: %1"
+
+msgid "Specify plugin arguments"
+msgstr "プラグイン引数を指定してください"

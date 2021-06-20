@@ -63,11 +63,6 @@ namespace
 		if (!fileOut.Open(path, _T("wb")))
 			return HRESULT_FROM_WIN32(GetLastError());
 		fileOut.SetUnicoding(ucr::UNICODESET::UTF8);
-		if (bom)
-		{
-			fileOut.SetBom(true);
-			fileOut.WriteBom();
-		}
 		fileOut.WriteString(text);
 		fileOut.Close();
 		return S_OK;
@@ -272,7 +267,8 @@ public:
 		m_pDispatch->AddRef();
 		auto menuCaption = plugin.GetExtendedPropertyValue(funcname + _T(".MenuCaption"));
 		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
-		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption));
+		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption))
+			+ (plugin.GetExtendedPropertyValue(funcname + _T(".ArgumentsRequired")).has_value() ? L";ArgumentsRequired" : L"");
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()

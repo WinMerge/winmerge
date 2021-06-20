@@ -3508,7 +3508,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID)
 		return;
 	}
 
-	String pluginName = CMainFrame::GetPluginNameByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer(pluginName);

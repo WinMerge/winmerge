@@ -70,9 +70,11 @@ Function get_PluginExtendedProperties()
 	"SortDescending.MenuCaption=Sort Lines Descending;" & _
 	"SortDescending.Description=Sort lines descending;" & _
 	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
-	"ExecFilterCommand.Description=Apply filter command. When used as an Unpacker, you can specify a filter command as a plugin argument. %1 in the argument is replaced with the file name.;" & _
+	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & "Arguments: filter command. %1 is replaced with the file name.;" & _
+	"ExecFilterCommand.ArgumentsRequired;" & _
 	"Tokenize.MenuCaption=Tokenize...;" & _
-	"Tokenize.Description=Tokenize selection. When used as an Unpacker, you can specify a regular expression for tokenizing as a plugin argument.;" & _
+	"Tokenize.Description=Tokenize selection. " & vbCrLf & "Arguments: a regular expression for tokenizing. (e.g. [^\w]+);" & _
+	"Tokenize.ArgumentsRequired;" & _
 	"Trim.MenuCaption=Trim Spaces;" & _
 	"Trim.Description=Trim spaces;"
 End Function

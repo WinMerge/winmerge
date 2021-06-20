@@ -48,24 +48,16 @@ void CSelectPluginDlg::Initialize(bool unpacker)
 }
 
 
-CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker /*= true */, CWnd* pParent /*= nullptr*/)
+CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename,
+	bool unpacker /*= true */, bool argumentRequired/*= false  */, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CSelectPluginDlg::IDD, pParent)
 	, m_strPluginPipeline(pluginPipeline)
 	, m_filteredFilenames(filename)
 	, m_bUnpacker(unpacker)
+	, m_bArgumentRequired(argumentRequired)
 {
 	Initialize(unpacker);
 }
-
-CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename1, const String& filename2, bool unpacker /*= true */, CWnd* pParent /*= nullptr*/)
-	: CTrDialog(CSelectPluginDlg::IDD, pParent)
-	, m_strPluginPipeline(pluginPipeline)
-	, m_filteredFilenames(filename1 + _T("|") + filename2)
-	, m_bUnpacker(unpacker)
-{
-	Initialize(unpacker);
-}
-
 
 CSelectPluginDlg::~CSelectPluginDlg()
 {
@@ -119,6 +111,19 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	UpdateData(FALSE);
 
+	if (m_bArgumentRequired)
+	{
+		SetWindowText(_("Specify plugin arguments").c_str());
+		String args;
+		CString pipeline;
+		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, args);
+		m_ctlPluginPipeline.GetWindowText(pipeline);
+		m_strPluginPipeline = pipeline + _T(" ") + args.c_str();
+		m_ctlPluginPipeline.SetWindowText(m_strPluginPipeline.c_str());
+		m_ctlPluginPipeline.SetFocus();
+		return FALSE;
+	}
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -158,7 +163,7 @@ void CSelectPluginDlg::prepareListbox()
 		{
 			if (!name.empty() && name != _T("<Automatic>"))
 			{
-				if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames))
+				if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames) || lastPluginName == name)
 				{
 					m_cboPluginName.AddString(name.c_str());
 					if (lastPluginName == name)

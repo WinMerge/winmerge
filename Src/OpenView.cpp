@@ -573,7 +573,7 @@ void COpenView::OnCompare(UINT nID)
 		{
 			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
-				tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo);
 		}
 		return;
@@ -663,14 +663,14 @@ void COpenView::OnCompare(UINT nID)
 	}
 	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
-		tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginNameByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->DoFileOpen(
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 	}
 	else if (nID == ID_OPEN_WITH_UNPACKER)
 	{
-		CSelectPluginDlg dlg(pDoc->m_strUnpackerPipeline, tmpPathContext[0], true, this);
+		CSelectPluginDlg dlg(pDoc->m_strUnpackerPipeline, tmpPathContext[0], true, false, this);
 		if (dlg.DoModal() == IDOK)
 		{
 			tmpPackingInfo.SetPluginPipeline(dlg.GetPluginPipeline());
@@ -1165,7 +1165,7 @@ void COpenView::OnSelectUnpacker()
 		return;
 
 	// let the user select a handler
-	CSelectPluginDlg dlg(m_strUnpackerPipeline, m_files[0], true, this);
+	CSelectPluginDlg dlg(m_strUnpackerPipeline, m_files[0], true, false, this);
 	if (dlg.DoModal() == IDOK)
 	{
 		m_strUnpackerPipeline = dlg.GetPluginPipeline();

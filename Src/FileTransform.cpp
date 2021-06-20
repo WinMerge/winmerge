@@ -129,7 +129,7 @@ String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::Pipeli
 	String pipeline;
 	for (const auto& [name, args, quoteChar] : list)
 	{
-		if (quoteChar)
+		if (quoteChar && name.find_first_of(_T(" '\"")) != String::npos)
 		{
 			String nameQuoted = name;
 			strutils::replace(nameQuoted, String(1, quoteChar), String(2, quoteChar));
@@ -384,6 +384,14 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
+	}
+
+	for (auto& [plugin, args, bWithFile] : plugins)
+	{
+		if (plugin->m_argumentsRequired && args.empty())
+		{
+
+		}
 	}
 
 	if (handlerSubcodes)
