@@ -3400,7 +3400,7 @@ void CMergeDoc::OnOpenWithUnpacker()
 	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 
 	if (GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker))
-		CloseNow();
+		GetParentFrame()->DestroyWindow();
 }
 
 void CMergeDoc::OnApplyPrediffer() 
@@ -3494,7 +3494,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	}
 
 	if (GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker))
-		CloseNow();
+		GetParentFrame()->DestroyWindow();
 }
 
 // Return file extension either from file name 

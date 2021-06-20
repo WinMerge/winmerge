@@ -2960,17 +2960,15 @@ String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vecto
 {
 	PluginInfo* pluginFound = nullptr;
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
-	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
-	{
-		if (id == idSearch)
-			pluginFound = plugin;
-	}
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (id == idSearch)
+			{
 				pluginFound = plugin;
+				break;
+			}
 		}
 	}
 	if (pluginFound)

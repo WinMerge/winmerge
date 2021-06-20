@@ -755,6 +755,10 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	std::map<String, int> captions;
 	unsigned id = baseId;
 	bool addedNoneAutomatic = false;
+	static PluginInfo noPlugin;
+	static PluginInfo autoPlugin;
+	if (autoPlugin.m_name.empty())
+		autoPlugin.m_name = _T("<Automatic>");
 	for (const auto& event: events)
 	{
 		auto pScriptArray =
@@ -769,8 +773,8 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					{
 						String process = _T("");
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
-						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, plugin.get());
-						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, plugin.get());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, &noPlugin);
+						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, &autoPlugin);
 						addedNoneAutomatic = true;
 					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
