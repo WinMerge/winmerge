@@ -16,6 +16,7 @@
 #include "locality.h"
 #include "paths.h"
 #include "MergeApp.h"
+#include "FileTransform.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -57,6 +58,8 @@ const char *COLHDR_MENCODING    = N_("Middle Encoding");
 const char *COLHDR_NIDIFFS      = N_("Ignored Diff");
 const char *COLHDR_NSDIFFS      = N_("Differences");
 const char *COLHDR_BINARY       = NC_("DirView|ColumnHeader", "Binary");
+const char *COLHDR_UNPACKER     = N_("Unpacker");
+const char *COLHDR_PREDIFFER    = N_("Prediffer");
 
 const char *COLDESC_FILENAME    = N_("Filename or folder name.");
 const char *COLDESC_DIR         = N_("Subfolder name when subfolders are included.");
@@ -91,6 +94,8 @@ const char *COLDESC_MENCODING   = N_("Middle side encoding.");
 const char *COLDESC_NIDIFFS     = N_("Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged.");
 const char *COLDESC_NSDIFFS     = N_("Number of differences in file. This number does not include ignored differences.");
 const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binary.");
+const char *COLDESC_UNPACKER    = N_("Unpacker plugin name or pipeline.");
+const char *COLDESC_PREDIFFER   = N_("Prediffer plugin name or pipeline.");
 }
 
 /**
@@ -721,6 +726,30 @@ static String ColREOLTypeGet(const CDiffContext * pCtxt, const void *p)
 	return GetEOLType(pCtxt, &di, pCtxt->GetCompareDirs() < 3 ? 1 : 2);
 }
 
+static String GetPluginPipeline(const CDiffContext* pCtxt, const DIFFITEM& di, bool unpacker)
+{
+	if (di.diffcode.isDirectory())
+		return _T("");
+	PackingInfo* pInfoUnpacker = nullptr;
+	PrediffingInfo * pInfoPrediffer = nullptr;
+	String filteredFilenames = pCtxt->GetFilteredFilenames(di);
+	const_cast<CDiffContext *>(pCtxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	if (unpacker)
+		return pInfoUnpacker ? pInfoUnpacker->GetPluginPipeline() : _T("");
+	else
+		return pInfoPrediffer ? pInfoPrediffer->GetPluginPipeline() : _T("");
+}
+
+static String ColUnpackerGet(const CDiffContext * pCtxt, const void *p)
+{
+	return GetPluginPipeline(pCtxt, *static_cast<const DIFFITEM *>(p), true);
+}
+
+static String ColPredifferGet(const CDiffContext * pCtxt, const void *p)
+{
+	return GetPluginPipeline(pCtxt, *static_cast<const DIFFITEM *>(p), false);
+}
+
 /**
  * @}
  */
@@ -985,6 +1014,8 @@ static DirColInfo f_cols[] =
 	{ _T("Snidiffs"), nullptr, COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
 	{ _T("Leoltype"), nullptr, COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColUnpackerGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPredifferGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 static DirColInfo f_cols3[] =
 {
@@ -1021,6 +1052,8 @@ static DirColInfo f_cols3[] =
 	{ _T("Leoltype"), nullptr, COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Meoltype"), nullptr, COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColUnpackerGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPredifferGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
 /**

@@ -876,13 +876,6 @@ String toTString(const std::string& str)
 #endif
 }
 
-std::wstring toUTF16(const String& tstr)
-{
-	std::wstring wstr;
-	toUTF16(tstr, wstr);
-	return wstr;
-}
-
 void toUTF16(const String& tstr, std::wstring& wstr)
 {
 #ifdef UNICODE

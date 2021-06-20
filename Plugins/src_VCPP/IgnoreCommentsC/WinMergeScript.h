@@ -43,6 +43,7 @@ public:
 	STDMETHOD(UnpackBufferA)(/*[in]*/ SAFEARRAY ** pBuffer, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[in]*/ INT * pSubcode, /*[out, retval]*/ VARIANT_BOOL * pbSuccess);
 	STDMETHOD(PrediffBufferW)(BSTR *pText, INT *pSize, VARIANT_BOOL *pbChanged, VARIANT_BOOL *pbHandled);
 	STDMETHOD(ShowSettingsDialog)(/*[out, retval]*/ VARIANT_BOOL * pbHandled);
+	STDMETHOD(get_PluginExtendedProperties)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginIsAutomatic)(/*[out, retval]*/ VARIANT_BOOL *pVal);
 	STDMETHOD(get_PluginFileFilters)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginDescription)(/*[out, retval]*/ BSTR *pVal);

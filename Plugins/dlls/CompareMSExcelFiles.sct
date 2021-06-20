@@ -15,6 +15,9 @@
 	<property name="PluginUnpackedFileExtension">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -388,6 +391,10 @@ End Function
 
 Function get_PluginUnpackedFileExtension()
 	get_PluginUnpackedFileExtension = ".tsv"
+End Function
+
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
 End Function
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)

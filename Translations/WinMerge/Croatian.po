@@ -56,8 +56,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Označi različite retke\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Istakni &razliku\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -81,6 +82,14 @@ msgstr "&Kopiraj"
 #, c-format
 msgid "&Paste"
 msgstr "&Zalijepi"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Skripte"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< ništa >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Idi &na redak\tCtrl+G"
@@ -260,10 +269,6 @@ msgstr "Zadnje usporedbe"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< ništa >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "I&zlaz\tCtrl+Q"
@@ -639,10 +644,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Poništi\tCtrl+Z"
 
@@ -661,10 +662,6 @@ msgstr "&Kopiraj\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Istakni &razliku\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -881,13 +878,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Dodaci"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Skripte"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1080,17 +1079,24 @@ msgstr "&Kopiraj stazu"
 msgid "Copy &Filename"
 msgstr "Kopiraj &naziv datoteke"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "Ništa"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "Automatski"
+
+#, c-format
+msgid "&Select..."
+msgstr "Oda&bir..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Dodaci - postavke "
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Nema dodataka"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automatski dodaci"
 
 msgid "G&o to Diff"
 msgstr "Idi &na razliku"
@@ -1244,10 +1250,6 @@ msgstr "Odabir..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "Oda&bir..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1627,16 +1629,11 @@ msgstr "Pomakni &gore"
 msgid "Move &Down"
 msgstr "Pomakni &dole"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Izbor arhivera"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Arhiver datoteka:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži sve arhivere bez provjere ekstenzije."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1642,18 @@ msgstr "Popis ekstenzija"
 #, c-format
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Prikaži sve arhivere bez provjere ekstenzije."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -2235,6 +2244,12 @@ msgid "&Enable plugins"
 msgstr "&Omogući dodatke"
 
 msgid "File filters:"
+msgstr ""
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -3294,6 +3309,14 @@ msgid "Binary"
 msgstr "Binarno"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Raspakiravač"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Ne mogu usporediti datoteke"
 
@@ -3535,6 +3558,12 @@ msgstr "Broj razlika u datoteci. Zanemarene razlike nisu uključene."
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Prikaži zvjezdicu (*) uz binarnu datoteku."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3836,14 +3865,6 @@ msgid "Type"
 msgstr "Tip"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Raspakiravač"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
-
-#, c-format
 msgid "Editor script"
 msgstr "Uređivač skripti"
 
@@ -3964,14 +3985,6 @@ msgstr "Postavke dodataka"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH dodatak nije nađen! - .sct skripte su onemogućene"
-
-#, c-format
-msgid "<None>"
-msgstr "Ništa"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "Automatski"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4199,4 +4212,102 @@ msgid "Allow only one instance to run"
 msgstr "Samo jedna instanca WinMerge-a"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

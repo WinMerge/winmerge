@@ -135,7 +135,7 @@ void DiffFileData::Reset()
  */
 bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
-	const String& filteredFilenames, PrediffingInfo * infoPrediffer)
+	const String& filteredFilenames, PrediffingInfo& infoPrediffer)
 {
 	// third step : prediff (plugins)
 	bool bMayOverwrite =  // temp variable set each time it is used
@@ -145,7 +145,7 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	// if a prediffer fails, we consider it is not the good one, that's all
 	// FileTransform_Prediffing returns `false` only if the prediffer works, 
 	// but the data can not be saved to disk (no more place ??)
-	if (!FileTransform::Prediffing(infoPrediffer, filepathTransformed, filteredFilenames, bMayOverwrite))
+	if (!infoPrediffer.Prediffing(filepathTransformed, filteredFilenames, bMayOverwrite, { filepath }))
 		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)

@@ -52,8 +52,8 @@ msgstr "Копировать выбранные строки слева"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Копировать выбранные строки справа"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Выбрать отличие\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Выбрать отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавить это изменение в &фильтры замены"
@@ -72,6 +72,12 @@ msgstr "&Копировать"
 
 msgid "&Paste"
 msgstr "&Вставить"
+
+msgid "&Scripts"
+msgstr "&Скрипты"
+
+msgid "< Empty >"
+msgstr "< Нет >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
@@ -221,9 +227,6 @@ msgstr "Недавние проекты"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Недавние файлы и папки"
-
-msgid "< Empty >"
-msgstr "< Нет >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "В&ыход\tCtrl+Q"
@@ -513,9 +516,6 @@ msgstr "Обновить\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
-msgid "&XML"
-msgstr ""
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"
 
@@ -530,9 +530,6 @@ msgstr "&Копировать\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставить\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Выбрать отличие\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Найти...\tCtrl+F"
@@ -699,11 +696,14 @@ msgstr "Добавить точку синхронизации\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Очистить точки синхронизации"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Предсравнение"
 
-msgid "&Scripts"
-msgstr "&Скрипты"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Разделить"
@@ -866,14 +866,20 @@ msgstr "Копировать полный путь"
 msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+msgid "<None>"
+msgstr "<Нет>"
+
+msgid "<Automatic>"
+msgstr "<Автоматически>"
+
+msgid "&Select..."
+msgstr "Выбрать..."
+
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
-
-msgid "&No prediffer"
-msgstr "&Без предсравнения"
-
-msgid "Auto prediffer"
-msgstr "&Автопредсравнение"
 
 msgid "G&o to Diff"
 msgstr "Перейти к &отличию"
@@ -991,9 +997,6 @@ msgstr "Обзор..."
 
 msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
-
-msgid "&Select..."
-msgstr "Выбрать..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
@@ -1292,20 +1295,29 @@ msgstr "&Вверх"
 msgid "Move &Down"
 msgstr "В&низ"
 
-msgid "Select Unpacker"
-msgstr "Выбор распаковщика"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Файл распаковщика:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показывать все распаковщики, не проверять расширение."
+msgid "Plugin &Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Список расширений:"
 
 msgid "Description:"
 msgstr "Описание:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Показывать все распаковщики, не проверять расширение."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Остановить"
@@ -1765,6 +1777,12 @@ msgstr "&Включить плагины"
 
 msgid "File filters:"
 msgstr "Фильтры файлов:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"
@@ -2505,6 +2523,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Двоичный"
 
+msgid "Unpacker"
+msgstr "Распаковщик"
+
+msgid "Prediffer"
+msgstr "Предсравнение"
+
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
 
@@ -2696,6 +2720,12 @@ msgstr "Количество отличий в файле. Это количес
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показать звездочку (*) если файл двоичный."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2916,12 +2946,6 @@ msgstr "Новый шаблон"
 msgid "Type"
 msgstr "Тип"
 
-msgid "Unpacker"
-msgstr "Распаковщик"
-
-msgid "Prediffer"
-msgstr "Предсравнение"
-
 msgid "Editor script"
 msgstr "Редактор скриптов"
 
@@ -3019,12 +3043,6 @@ msgstr "Настройки плагина"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не найден - .sct скрипты отключены"
-
-msgid "<None>"
-msgstr "<Нет>"
-
-msgid "<Automatic>"
-msgstr "<Автоматически>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3238,3 +3256,101 @@ msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

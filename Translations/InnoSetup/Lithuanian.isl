@@ -18,7 +18,7 @@ Frhed=„Frhed“ (nemokamas ðeðioliktainis redaktorius)
 WinIMerge=„WinIMerge“ (vaizdø Diff/Merge)
 ArchiveSupport=Archyvø palaikymas
 ShellExtension32bit=32-bitø „WinMerge ShellExtension“
-Patch=GnuWin32 pataisa „Windows“
+Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq
 
 ;Localization Components
 Languages=Kalbos

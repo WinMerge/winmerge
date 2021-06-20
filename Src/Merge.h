@@ -37,6 +37,7 @@ class LineFiltersList;
 class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
+class PackingInfo;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -90,7 +91,7 @@ public:
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
-	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName);
+	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();

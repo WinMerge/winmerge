@@ -50,7 +50,7 @@ msgstr "Seçilmiş satır(lar)ı soldan kopyala"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Seçilmiş satır(lar)ı sağdan kopyala"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -70,6 +70,12 @@ msgstr "K&opyala"
 
 msgid "&Paste"
 msgstr "Ya&pıştır"
+
+msgid "&Scripts"
+msgstr "&Betikler"
+
+msgid "< Empty >"
+msgstr "< Boş >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Git...\tCtrl+G"
@@ -219,9 +225,6 @@ msgstr "Son kullanılan projeler"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Son dosya ya da k&lasörler"
-
-msgid "< Empty >"
-msgstr "< Boş >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Çı&kış\tCtrl+Q"
@@ -512,9 +515,6 @@ msgstr "Yeniden yük&le\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "&Farklı karşılaştır"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Geri a&l\tCtrl+Z"
 
@@ -529,9 +529,6 @@ msgstr "&Kopyala\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Satır &farkını seç\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Bul...\tCtrl+F"
@@ -698,11 +695,14 @@ msgstr "Eşitleme noktası &ekle\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Eşitleme noktalarını &sil"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "Ön &farklılaştırıcı"
 
-msgid "&Scripts"
-msgstr "&Betikler"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Bö&l"
@@ -865,14 +865,20 @@ msgstr "Tam yolu &kopyala"
 msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+msgid "<None>"
+msgstr "<Yok>"
+
+msgid "<Automatic>"
+msgstr "<Otomatik>"
+
+msgid "&Select..."
+msgstr "Seçi&n..."
+
 msgid "Prediffer Settings"
 msgstr "Ön farklılaştırıcı ayarları"
-
-msgid "&No prediffer"
-msgstr "Ö&n farklılaştırıcı yok"
-
-msgid "Auto prediffer"
-msgstr "Otomatik ön farklılaştırıcı"
 
 msgid "G&o to Diff"
 msgstr "Fa&rka git"
@@ -990,9 +996,6 @@ msgstr "Göz at..."
 
 msgid " Folder: Filter"
 msgstr " Klasör: Süzgeç"
-
-msgid "&Select..."
-msgstr "Seçi&n..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
@@ -1299,20 +1302,29 @@ msgstr "Y&ukarı taşı"
 msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
-msgid "Select Unpacker"
-msgstr "Ayıklayıcı seçin"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Dosya ayıklayıcı:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
+msgid "Plugin &Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Uzantı Listesi:"
 
 msgid "Description:"
 msgstr "Açıklama:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Durdur"
@@ -1780,6 +1792,12 @@ msgstr "&Eklentiler kullanılsın"
 
 msgid "File filters:"
 msgstr "Dosya süzgeçleri:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Sağ tık menüsü"
@@ -2782,6 +2800,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binary"
 
+msgid "Unpacker"
+msgstr "Ayıklayıcı"
+
+msgid "Prediffer"
+msgstr "Ön farklılaştırıcı"
+
 msgid "Unable to compare files"
 msgstr "Dosyalar karşılaştırılamıyor"
 
@@ -2979,6 +3003,12 @@ msgstr "Dosyadaki fark sayısı. Bu sayıya yok sayılan farklar katılmamışt�
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Dosya binary ise yıldız (*) ile görüntülensin."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3271,12 +3301,6 @@ msgstr "Yeni örnek"
 msgid "Type"
 msgstr "Tür"
 
-msgid "Unpacker"
-msgstr "Ayıklayıcı"
-
-msgid "Prediffer"
-msgstr "Ön farklılaştırıcı"
-
 msgid "Editor script"
 msgstr "Düzenleyici betiği"
 
@@ -3466,12 +3490,6 @@ msgstr "Eklenti ayarları"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Windows Script Host bulunamadı - .sct betikleri etkisizleştirildi"
-
-msgid "<None>"
-msgstr "<Yok>"
-
-msgid "<Automatic>"
-msgstr "<Otomatik>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3691,3 +3709,101 @@ msgstr "Yalnız bir kopya çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Yalnız bir kopyanın çalışsın ve kopyanın sonlandırılması beklensin"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

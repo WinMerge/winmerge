@@ -19,7 +19,6 @@ public:
 	TempFile() {}
 	~TempFile();
 	String Create(const String& prefix = _T(""), const String& ext = _T(""));
-	String CreateFromFile(const String& filepath, const String& prefix);
 	/**
 	 * @brief Get temp file path (including filename).
 	 * @return Full path to temp file.

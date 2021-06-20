@@ -2,16 +2,34 @@
 
 <implements type="Automation" id="dispatcher">
 	<property name="PluginEvent">
-	          <get/>
-        </property>
+		<get/>
+	</property>
 	<property name="PluginDescription">
-	          <get/>
-        </property>
-      	<method name="MakeUpper"/>
+		<get/>
+	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
+	<property name="PluginArguments">
+		<get/>
+		<put/>
+	</property>
+	<property name="PluginVariables">
+		<get/>
+		<put/>
+	</property>
+	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
+	<method name="RemoveDuplicates"/>
+	<method name="CountDuplicates"/>
 	<method name="SortAscending"/>
 	<method name="SortDescending"/>
 	<method name="ExecFilterCommand"/>
+	<method name="Tokenize"/>
+	<method name="Trim"/>
 </implements>
 
 <script language="VBS">
@@ -21,14 +39,61 @@ Const WinMergeRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\"
 Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor addin.sct\"
 
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim arguments: arguments = ""
+Dim variables: variables = Array()
 
 Function get_PluginEvent()
-         get_PluginEvent = "EDITOR_SCRIPT"
+	get_PluginEvent = "EDITOR_SCRIPT"
 End Function
 
 Function get_PluginDescription()
-         get_PluginDescription = "Basic text functions for the context menu"
+	get_PluginDescription = "Basic text functions for the context menu"
 End Function
+
+Function get_PluginFileFilters()
+	get_PluginFileFilters= ".*"
+End Function
+
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = _
+	"GenerateUnpacker;" & _
+	"MakeUpper.MenuCaption=Make Uppercase;" & _
+	"MakeUpper.Description=Make selection uppercase;" & _
+	"MakeLower.MenuCaption=Make Lowercase;" & _
+	"MakeLower.Description=Make selection lowercase;" & _
+	"RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" & _
+	"RemoveDuplicates.Description=Remove duplicate lines;" & _
+	"CountDuplicates.MenuCaption=Count Duplicate Lines;" & _
+	"CountDuplicates.Description=Count duplicate lines;" & _
+	"SortAscending.MenuCaption=Sort Lines Ascending;" & _
+	"SortAscending.Description=Sort lines Ascending;" & _
+	"SortDescending.MenuCaption=Sort Lines Descending;" & _
+	"SortDescending.Description=Sort lines descending;" & _
+	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
+	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & "Arguments: filter command. %1 is replaced with the file name.;" & _
+	"ExecFilterCommand.ArgumentsRequired;" & _
+	"Tokenize.MenuCaption=Tokenize...;" & _
+	"Tokenize.Description=Tokenize selection. " & vbCrLf & "Arguments: a regular expression for tokenizing. (e.g. [^\w]+);" & _
+	"Tokenize.ArgumentsRequired;" & _
+	"Trim.MenuCaption=Trim Spaces;" & _
+	"Trim.Description=Trim spaces;"
+End Function
+
+Function get_PluginArguments()
+	get_PluginArguments = arguments
+End Function
+
+Sub put_PluginArguments(NewValue)
+	arguments = NewValue
+End Sub
+
+Function get_PluginVariables()
+	get_PluginVariables = Join(ariables, Chr(0))
+End Function
+
+Sub put_PluginVariables(NewValue)
+	variables = Split(NewValue, Chr(0))
+End Sub
 
 Function regRead(Key, DefaultValue)
 	regRead = DefaultValue
@@ -52,13 +117,56 @@ Function MakeLower(Text)
 	MakeLower = LCase(Text)
 End Function
 
+Function ReplaceVariables(ByVal str)
+	Dim newstr
+	Dim pos
+	Dim foundpos
+	Dim ch
+	pos = 1
+	Do While True
+		foundpos = InStr(pos, str, "%")
+		If foundpos > 0 Then
+			ch = Mid(str, foundpos + 1, 1)
+			If ch = "%" Then
+				newstr = newstr & "%"
+				pos = foundpos + 2
+			ElseIf IsNumeric(ch) Then
+				newstr = newstr & Mid(str, pos, foundpos - pos)
+				If CLng(ch) <= UBound(variables) Then
+					newstr = newstr & variables(CLng(ch))
+				End If
+				pos = foundpos + 2
+			Else
+				newstr = newstr & Mid(str, pos, foundpos - pos + 1)
+				pos = foundpos + 1
+			End If
+		Else
+			newstr = newstr & Mid(str, pos)
+			Exit Do
+		End If
+	Loop
+	ReplaceVariables = newstr
+End Function
+
+Function IsFirstArgumentEmpty()
+	IsFirstArgumentEmpty = (Trim(arguments) = "")
+End Function
+
 Function ExecFilterCommand(Text)
 	Dim cmd
-	cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
-	If IsLangJapanese() Then
-		cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
+	If IsFirstArgumentEmpty() Then
+		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
+		If IsLangJapanese() Then
+			cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
+		Else
+			cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
+		End If
+		If cmd <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
+		End If
+		cmd = ReplaceVariables(cmd)
 	Else
-		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
+		cmd = arguments
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then
@@ -103,14 +211,96 @@ Function ExecFilterCommand(Text)
 
 	fso.DeleteFile path
 
-	wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
-
 End Function
 
+' port from WinMerge2011
+Function Tokenize(Text)
+	Dim pattern
+	If IsFirstArgumentEmpty() Then
+		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
+		If IsLangJapanese() Then
+			pattern = InputBox("トークン分割する区切りを正規表現で入力してください (例: [^\w]+):", "Tokenize", pattern)
+		Else
+			pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
+		End If
+		If pattern <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "Tokenize", pattern
+		End If
+	Else
+		pattern = arguments
+	End If
+	If pattern = "" Then
+		If IsLangJapanese() Then
+			Err.Raise 30001, , "キャンセルされました"
+		Else
+			Err.Raise 30001, , "Canceled"
+		End If
+		Exit Function
+	End If
+	Dim re
+	Set re = New RegExp
+	re.Global = True
+	re.IgnoreCase = True
+	re.Pattern = pattern
+	Tokenize = re.Replace(Text, vbCrLf)
+End Function
 
 </script>
 
 <script language="JScript">
+
+function RemoveDuplicates(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var newlines = new Array();
+	var dic = {};
+	var lasteol = false;
+
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+		lasteol = true;
+	}
+	for (var i = 0, j = 0; i < lines.length; i++) {
+		var line = lines[i];
+		if (typeof dic[line] === 'undefined') {
+			dic[line] = 1;
+			newlines[j] = line;
+			j++;
+		}
+	}
+	if (lasteol)
+		newlines[j] = "";
+	return newlines.join(eol);
+}
+
+function CountDuplicates(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var newlines = new Array();
+	var dic = {};
+
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+	}
+	
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i];
+		if (typeof dic[line] === 'undefined') {
+			dic[line] = 1;
+			newlines[j] = line;
+			j++;
+		} else {
+			dic[line]++;
+		}
+	}
+	var j = 0;
+	for (var line in dic) {
+		newlines[j] = line + '\t' + dic[line];
+		j++;
+	}
+	newlines[j] = "";
+	return newlines.join(eol);
+}
 
 function SortAscending(Text) {
 	var eol = Text.match(/\r\n|\n|\r/);
@@ -139,6 +329,15 @@ function SortDescending(Text) {
 	} else {
 		return lines.sort(function(a, b) { return a < b ? 1 : -1; }).join(eol);
 	}
+}
+
+function Trim(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	for (var i = 0; i < lines.length; i++) {
+		lines[i] = lines[i].replace(/^\s+|\s+$/g, "");
+	}
+	return lines.join(eol);
 }
 
 </script>

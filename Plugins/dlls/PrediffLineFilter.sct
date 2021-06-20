@@ -12,6 +12,9 @@
   <property name="PluginIsAutomatic">
     <get/>
   </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
   <method name="PrediffBufferW"/>
   <method name="ShowSettingsDialog"/>
 </implements>
@@ -64,6 +67,10 @@ End Function
 
 Function get_PluginIsAutomatic()
   get_PluginIsAutomatic = True
+End Function
+
+Function get_PluginExtendedProperties()
+  get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
 End Function
 
 Function SafeUBound(ary)

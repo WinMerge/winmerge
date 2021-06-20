@@ -142,4 +142,30 @@ TEST_F(SimpleRightTest, GetFilter)
 	ASSERT_TRUE(filter.empty());
 }
 
+/**
+ * @brief Make sure prediffer is not get.
+ */
+TEST_F(SimpleRightTest, GetPrediffer)
+{
+	// We don't have a prediffer
+	bool bHasPrediffer = m_pProjectFileItem->HasPrediffer();
+	ASSERT_TRUE(bHasPrediffer == false);
+
+	String prediffer = m_pProjectFileItem->GetPrediffer();
+	ASSERT_TRUE(prediffer.empty());
+}
+
+/**
+ * @brief Make sure unpacker is not get.
+ */
+TEST_F(SimpleRightTest, GetUnpacker)
+{
+	// We don't have a unpacker
+	bool bHasUnpacker = m_pProjectFileItem->HasUnpacker();
+	ASSERT_TRUE(bHasUnpacker == false);
+
+	String unpacker = m_pProjectFileItem->GetUnpacker();
+	ASSERT_TRUE(unpacker.empty());
+}
+
 }

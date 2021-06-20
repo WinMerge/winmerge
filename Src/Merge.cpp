@@ -302,8 +302,8 @@ BOOL CMergeApp::InitInstance()
 	charsets_init();
 	UpdateCodepageModule();
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
+	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
+	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
@@ -640,14 +640,15 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	bool bCompared = false;
 	String strDesc[3];
 	std::unique_ptr<PackingInfo> infoUnpacker;
+	std::unique_ptr<PrediffingInfo> infoPrediffer;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
 	if (!cmdInfo.m_sUnpacker.empty())
-	{
-		infoUnpacker.reset(new PackingInfo(PLUGIN_MODE::PLUGIN_MANUAL));
-		infoUnpacker->m_PluginName = cmdInfo.m_sUnpacker;
-	}
+		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
+
+	if (!cmdInfo.m_sPreDiffer.empty())
+		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
@@ -699,14 +700,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer, infoUnpacker.get());
+				infoUnpacker.get(), infoPrediffer.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				cmdInfo.m_sPreDiffer, infoUnpacker.get());
+				infoUnpacker.get(), infoPrediffer.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -734,7 +735,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					cmdInfo.m_sPreDiffer, infoUnpacker.get());
+					infoUnpacker.get(), infoPrediffer.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -1087,8 +1088,9 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	return nRetVal;
 }
 
-String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const String& pluginName)
+String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin)
 {
+	String pluginName = plugin.GetPluginPipeline();
 	return strutils::format_string2(
 		pane == 0 ? 
 			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
@@ -1166,6 +1168,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
+		std::unique_ptr<PrediffingInfo> pInfoPrediffer;
+		std::unique_ptr<PackingInfo> pInfoUnpacker;
 		PathContext tFiles;
 		bool bRecursive = false;
 		projItem.GetPaths(tFiles, bRecursive);
@@ -1194,6 +1198,10 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		}
 		if (projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
+		if (projItem.HasUnpacker())
+			pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
+		if (projItem.HasPrediffer())
+			pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
 
 		DWORD dwFlags[3] = {
 			static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
@@ -1217,7 +1225,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
-		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive);
+		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());

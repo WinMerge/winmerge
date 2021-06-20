@@ -188,7 +188,11 @@ BOOL CHexMergeFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 /**
@@ -380,15 +384,6 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
-}
-
-/// Document commanding us to close
-void CHexMergeFrame::CloseNow()
-{
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	MDIActivate();
-	MDIDestroy();
 }
 
 /**

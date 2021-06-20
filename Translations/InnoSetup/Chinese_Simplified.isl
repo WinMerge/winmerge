@@ -18,7 +18,7 @@ Frhed=Frhed(免费十六进制编辑器)
 WinIMerge=WinIMerge(图像差异/合并)
 ArchiveSupport=压缩文件支持
 ShellExtension32bit=32 位 WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=语言包（菜单和对话框）

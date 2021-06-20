@@ -430,22 +430,17 @@ bool CDiffWrapper::RunFileDiff()
 
 			// this can only fail if the data can not be saved back (no more
 			// place on disk ???) What to do then ??
-			if (!FileTransform::Prediffing(m_infoPrediffer.get(), strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp))
+			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp, { strFileTemp[file] }))
 			{
 				// display a message box
 				String sError = strutils::format(
 					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
 					strFileTemp[file].c_str(),
-					m_infoPrediffer->m_PluginName.c_str());
+					m_infoPrediffer->GetPluginPipeline().c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-				m_infoPrediffer->m_PluginName.erase();
+				m_infoPrediffer->ClearPluginPipeline();
 			}
-
-			// We use the same plugin for both files, so it must be defined before
-			// second file
-			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_MANUAL);
 		}
 	}
 
