@@ -157,6 +157,14 @@
         </listitem>
 
         <listitem>
+          <para><function>Remove Duplicate Lines</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Count Duplicate Lines</function></para>
+        </listitem>
+
+        <listitem>
           <para><function>Sort Lines Ascending</function></para>
         </listitem>
 
@@ -166,6 +174,14 @@
 
         <listitem>
           <para><function>Apply Filter Command...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Tokenize...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trim Spaces</function></para>
         </listitem>
 
         <listitem>
@@ -284,8 +300,8 @@
     <section>
       <title>Applying prediffer plugins in the Folder Compare window</title>
 
-      <para>With prediffer plugins, you set the mode (<firstterm>Auto
-      prediffer</firstterm> or <firstterm>No prediffer</firstterm>) for
+      <para>With prediffer plugins, you set the mode (<firstterm>&lt;Automatic&gt;
+      </firstterm> or <firstterm>&lt;None&gt;</firstterm>) or the plugin name for
       individual files. (Contrast this with unpacker plugins, where you set the
       mode for all files.) That is, some files in the same folder have different
       prediffer modes.</para>
@@ -299,12 +315,12 @@
 
       <itemizedlist>
         <listitem>
-          <para><guisubmenu>Auto Prediffer</guisubmenu> selects the first
+          <para><guisubmenu>&lt;Automatic&gt;</guisubmenu> selects the first
           prediffer plugin available for the file type.</para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>No prediffer</guisubmenu> means that no prediffer
+          <para><guisubmenu>&lt;None&gt;</guisubmenu> means that no prediffer
           plugin is used.</para>
         </listitem>
       </itemizedlist>
@@ -313,7 +329,7 @@
 
       <note>
         <para>When you open a subfolder during a non-recursive compare, the mode
-        is always reset to <guimenuitem>No prediffer</guimenuitem>.</para>
+        is always reset to <guimenuitem>&lt;None&gt;</guimenuitem>.</para>
       </note>
 
       <para>When you open a file from the Folder Compare window, your prediffer
@@ -767,6 +783,16 @@
         </listitem>
 
         <listitem>
+          <simpara><guimenuitem>Remove Duplicate Lines</guimenuitem> remove duplicate lines in the selection. 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Count Duplicate Lines</guimenuitem> remove duplicate lines in the selection and insert the number of duplicate lines on the right. 
+          </simpara>
+        </listitem>
+
+        <listitem>
           <simpara><guimenuitem>Sort Lines Ascending</guimenuitem> sort the selection 
           in ascending order.</simpara>
         </listitem>
@@ -780,6 +806,16 @@
           <simpara><guimenuitem>Apply Filter Command...</guimenuitem> replace the selection 
           with the output of the specified filter command.
           Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Tokenize...</guimenuitem> TBD
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Trim Spaces</guimenuitem> TBD
+          </simpara>
         </listitem>
       </itemizedlist>
 

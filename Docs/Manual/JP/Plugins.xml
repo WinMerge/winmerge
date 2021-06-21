@@ -148,23 +148,39 @@
 
       <itemizedlist>
         <listitem>
-          <para><function>MakeUpper</function></para>
+          <para><function>Make Uppercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>MakeLower</function></para>
+          <para><function>Make Lowercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortAscending</function></para>
+          <para><function>Remove Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortDescending</function></para>
+          <para><function>Count Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>ExecFilterCommand</function></para>
+          <para><function>Sort Lines Ascending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sort Lines Descending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Apply Filter Command...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Tokenize...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trim Spaces</function></para>
         </listitem>
 
         <listitem>
@@ -281,8 +297,8 @@
     <section>
       <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
 
-      <para>比較前処理プラグインでは、モード(<firstterm>自動比較前処理</firstterm>または
-      <firstterm>比較前処理なし</firstterm>）を個々のファイルに設定します。 
+      <para>比較前処理プラグインでは、モード(<firstterm>&lt;Automatic&gt;</firstterm>または
+      <firstterm>&lt;None&gt;</firstterm>）またはプラグイン名を個々のファイルに設定します。 
       （これをすべてのファイルのモードを設定する展開プラグインと比較してください。）
       つまり、同じフォルダー内のいくつかのファイルには異なる比較前処理モードがあります。
       </para>
@@ -296,13 +312,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><guisubmenu>自動</guisubmenu> は、
+          <para><guisubmenu>&lt;Automatic&gt;</guisubmenu> は、
           指定したファイルのタイプに使用できる比較前処理プラグインの最初のものを選択します。
           </para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>使用しない</guisubmenu>は、
+          <para><guisubmenu>&lt;None&gt;</guisubmenu>は、
           比較前処理プラグインを使用しません。</para>
         </listitem>
       </itemizedlist>
@@ -311,7 +327,7 @@
 
       <note>
         <para>非再帰比較中にサブフォルダーを開くと、モードは常に
-        <guimenuitem>なし</guimenuitem>にリセットされます。</para>
+        <guimenuitem>&lt;None&gt;</guimenuitem>にリセットされます。</para>
       </note>
 
       <para>フォルダ比較ウィンドウからファイルを開くと、
@@ -815,6 +831,16 @@
         </listitem>
 
         <listitem>
+          <simpara><guimenuitem>重複行を削除</guimenuitem> remove duplicate lines in the selection. 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>重複行をカウント</guimenuitem> remove duplicate lines in the selection and insert the number of duplicate lines on the right. 
+          </simpara>
+        </listitem>
+
+        <listitem>
           <simpara><guimenuitem>昇順にソート</guimenuitem> sort the selection 
           in ascending order.</simpara>
         </listitem>
@@ -828,6 +854,16 @@
           <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> replace the selection 
           with the output of the specified filter command.
           Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>トークン分割...</guimenuitem> TBD
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> TBD
+          </simpara>
         </listitem>
       </itemizedlist>
 
