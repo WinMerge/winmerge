@@ -59,8 +59,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "Hautatu &Lerro Ezberdintasuna\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Hautatu Lerro &Ezberdintasunak\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -84,6 +85,14 @@ msgstr "&Kopiatu"
 #, c-format
 msgid "&Paste"
 msgstr "&Itsatsi"
+
+#, c-format
+msgid "&Scripts"
+msgstr "E&skriptak"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Hutsik >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Joan hona...\tCtrl+G"
@@ -263,10 +272,6 @@ msgstr "Azken Egitasmoak"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Hutsik >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Ir&ten\tCtrl+Q"
@@ -645,10 +650,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desegin\tCtrl+Z"
 
@@ -667,10 +668,6 @@ msgstr "&Kopiatu\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Hautatu Lerro &Ezberdintasunak\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -887,13 +884,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Au&rrezberdintasuna"
 
-#, c-format
-msgid "&Scripts"
-msgstr "E&skriptak"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1085,17 +1084,24 @@ msgstr "Kopiatu Helburu O&soa"
 msgid "Copy &Filename"
 msgstr "Kopiatu &Agirizena"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ezer ez>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Berezgaitasunez>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Hautatu..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Aurrezberdintasun Ezarpenak"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Ez aurrezberd"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Berez aurrezberd"
 
 msgid "G&o to Diff"
 msgstr "Jo&an Ezberd"
@@ -1125,6 +1131,10 @@ msgid "Ig&nore all"
 msgstr "E&zikusi denak"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ezikusi &lerro zuriak"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ezikusi &kasua"
 
@@ -1134,6 +1144,9 @@ msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1242,10 +1255,6 @@ msgstr "Bilatu..."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Hautatu..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1625,16 +1634,11 @@ msgstr "Mugitu &Gora"
 msgid "Move &Down"
 msgstr "Mugitu &Behera"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Hautatu Despaketatzailea"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Agiri Despaketatzailea:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1643,6 +1647,21 @@ msgstr "Luzapen zerrenda:"
 #, c-format
 msgid "Description:"
 msgstr "Azalpena:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1710,13 +1729,6 @@ msgstr "&Ezikusi aldaketa"
 #, c-format
 msgid "I&gnore all"
 msgstr "E&zikusi denak"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ezikusi &lerro zuriak"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2239,6 +2251,12 @@ msgid "&Enable plugins"
 msgstr "Gaitu &pluginak"
 
 msgid "File filters:"
+msgstr ""
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -3298,6 +3316,14 @@ msgid "Binary"
 msgstr "Binarioa"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Despaketatzailea"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Aurrezberd"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Ezinezkoa agiriak alderatzea"
 
@@ -3539,6 +3565,12 @@ msgstr "Agirian dauden ezberdintasun zenbatekoa. Zenbateko honek ez ditu barnebi
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Erakutsi asteriskoa (*) agiria binarioa bada."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3840,14 +3872,6 @@ msgid "Type"
 msgstr "Mota"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Despaketatzailea"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Aurrezberd"
-
-#, c-format
 msgid "Editor script"
 msgstr "Editatzaile eskripta"
 
@@ -3968,14 +3992,6 @@ msgstr "Plugin Ezarpenak"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ez da aurkitu - .sct eskriptak ezgaituta"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ezer ez>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Berezgaitasunez>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4202,4 +4218,102 @@ msgid "Allow only one instance to run"
 msgstr "Ahalbidetu ekinbide bat bakarrik "
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

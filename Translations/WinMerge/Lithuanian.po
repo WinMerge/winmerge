@@ -53,8 +53,8 @@ msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Pažymėti skirtumą\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Pažymėti &skirtumą"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
@@ -73,6 +73,12 @@ msgstr "&Kopijuoti"
 
 msgid "&Paste"
 msgstr "Įter&pti"
+
+msgid "&Scripts"
+msgstr "&Skriptai"
+
+msgid "< Empty >"
+msgstr "< Tuščia >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Per&eiti į...\tCtrl+G"
@@ -222,9 +228,6 @@ msgstr "Paskutinieji projektai"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Paskiausiai naudoti fa&ilai ar katalogai"
-
-msgid "< Empty >"
-msgstr "< Tuščia >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Išeiti\tCtrl+Q"
@@ -517,9 +520,6 @@ msgstr "&Atnaujinti\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Atša&ukti\tCtrl+Z"
 
@@ -534,9 +534,6 @@ msgstr "&Kopijuoti\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Pažymėti &skirtumą"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "R&asti...\tCtrl+F"
@@ -703,11 +700,14 @@ msgstr "Įdėti &sinchronizavimo tašką\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Išvalyti sinc&hronizavino taškus"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Parengėjas"
 
-msgid "&Scripts"
-msgstr "&Skriptai"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Pada&linti"
@@ -870,14 +870,20 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+msgid "<None>"
+msgstr "<Nėra>"
+
+msgid "<Automatic>"
+msgstr "<Automatinis>"
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
+
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"
-
-msgid "&No prediffer"
-msgstr "&Nėra parengėjo"
-
-msgid "Auto prediffer"
-msgstr "Automatinis parengėjas"
 
 msgid "G&o to Diff"
 msgstr "Pereiti prie skirtum&o"
@@ -900,6 +906,9 @@ msgstr "I&gnoruoti pokyčius"
 msgid "Ig&nore all"
 msgstr "Ig&noruoti visus"
 
+msgid "Ignore blan&k lines"
+msgstr "Nepaisyti &tuščių eilučių"
+
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
@@ -908,6 +917,9 @@ msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
+
+msgid "Ignore c&omment differences"
+msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
@@ -989,9 +1001,6 @@ msgstr "Rasti..."
 
 msgid " Folder: Filter"
 msgstr " Katalogams: Filtras"
-
-msgid "&Select..."
-msgstr "Pa&rinkti..."
 
 msgid " File: Unpacker Plugin"
 msgstr " Failams: Išpakuotojas"
@@ -1290,20 +1299,32 @@ msgstr "Perkelti a&ukštyn"
 msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
-msgid "Select Unpacker"
-msgstr "Parinkti išpakuotoją"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Failo išpakuotojas:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+msgid "Plugin &Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
 
 msgid "Description:"
 msgstr "Aprašas:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -1358,12 +1379,6 @@ msgstr "&Ignoruoti pokyčius"
 
 msgid "I&gnore all"
 msgstr "I&gnoruoti visus"
-
-msgid "Ignore blan&k lines"
-msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore c&omment differences"
-msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -1769,6 +1784,12 @@ msgstr "Įjungti &papildinius"
 
 msgid "File filters:"
 msgstr "Failų filtrai:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Integr. Windows aplinkoje"
@@ -2509,6 +2530,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binarinis"
 
+msgid "Unpacker"
+msgstr "Išpakavimo programa"
+
+msgid "Prediffer"
+msgstr "Parengėjas"
+
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
 
@@ -2700,6 +2727,12 @@ msgstr "Skirtumų skaičius faile. Šis skaičius neapima ignoruotų skirtumų."
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Rodyti žvaigždutę (*) jei failas yra binarinis."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2920,12 +2953,6 @@ msgstr "Naujas šablonas"
 msgid "Type"
 msgstr "Tipas"
 
-msgid "Unpacker"
-msgstr "Išpakavimo programa"
-
-msgid "Prediffer"
-msgstr "Parengėjas"
-
 msgid "Editor script"
 msgstr "Redaktoriaus skriptas"
 
@@ -3023,12 +3050,6 @@ msgstr "Papildinio nuostatos"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nerastas WSH - .sct skriptai išjungti"
-
-msgid "<None>"
-msgstr "<Nėra>"
-
-msgid "<Automatic>"
-msgstr "<Automatinis>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3242,3 +3263,101 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

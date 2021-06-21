@@ -114,7 +114,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
 	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
-	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths::ConcatPath(env::GetWindowsDirectory(), _T("NOTEPAD.EXE")));
+	pOptions->InitOption(OPT_EXT_EDITOR_CMD, _T("%windir%\\NOTEPAD.EXE"));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
 	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0);
 	pOptions->InitOption(OPT_MERGE_MODE, false);
@@ -199,11 +199,11 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_ARCHIVE_FILTER_INDEX, 1);
 
 	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
-	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
-	pOptions->InitOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, _T(""));
-	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(PLUGIN_MODE::PLUGIN_MANUAL));
-	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, static_cast<int>(PLUGIN_MODE::PLUGIN_MANUAL));
-	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);
+	pOptions->InitOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, false);
+	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, false);
+	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, true);
+	pOptions->InitOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, false);
 
 	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0);
 	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);

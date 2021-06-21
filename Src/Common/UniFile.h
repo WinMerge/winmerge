@@ -168,7 +168,6 @@ protected:
  */
 class UniMemFile : public UniLocalFile
 {
-	friend class UniMarkdownFile;
 public:
 	enum AccessMode
 	{

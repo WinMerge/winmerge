@@ -20,167 +20,104 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21612-release-notes">WinMerge 2.16.12 Release Notes</h1>
+<h1 id="winmerge-21613-beta-release-notes">WinMerge 2.16.13 Beta Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21612">What Is New in 2.16.12?</a></li>
-<li><a href="#what-is-new-in-21611-beta">What Is New in 2.16.11 beta?</a></li>
+<li><a href="#what-is-new-in-21613-beta">What Is New in 2.16.13 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>April 2021</p>
+<p>June 2021</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.12 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
 <p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-21612">What Is New in 2.16.12</h2>
+<h2 id="what-is-new-in-21613-beta">What Is New in 2.16.13 Beta</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>GUI textstrings: grammatical corrections (PR #722)</li>
-<li>Added ARM64 support</li>
+<li>BugFix: Register.bat did not work properly on the Chinese version of Windows XP (#780)</li>
+<li>Possibility to store settings in INI file (#248) (PR #750)</li>
+<li>FeatureRequest - Ignoring options - lack in &quot;button menu&quot; (#804)</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>BugFix: Fix PHP syntax highlighting. (PR #751)</li>
-<li>BugFix: Strings in a multi-line diff block were not be replaced correctly when the substitution filters&#39; regular expression contained ^</li>
-<li>BugFix: Font size restoration with Ctrl+0 key did not work properly in Hi-DPI environment</li>
-<li>BugFix: Fixed a rare crash when enabling syntax highlight</li>
-<li>BugFix: Fixed an issue where inline scripts in HTML files were not highlighted correctly</li>
-<li>Make the width of the &#39;Find what&#39; label in Find dialog a little wider (osdn.net #42063)</li>
-<li>Fix conflicting accelerators (osdn.net #42064)</li>
-<li>[Feature Request] Selection Count on Status Bar (#135)</li>
-<li>Add C# 6.0 reserved words to style list (PR #719)</li>
-<li>FR: Add a shortcut key go to next file (#721)</li>
-<li>Update PHP syntax highlighting keyword list. (PR #724)</li>
-<li>autoit.cpp - Macros &gt;&gt; User 1 ..... Variable &gt;&gt; User 2 (PR #749)</li>
-<li>autoit.cpp - #CS #CE support (PR #753)</li>
-<li>Interrupt a inline diff process when it takes too long</li>
-<li>Make the color of characters that represent spaces and tabs lighter than other characters when the &quot;View Whitespace&quot; menu item is enabled</li>
-<li>Added &quot;Open Parent Folder&quot; menu item to the context menu</li>
+<li>BugFix: Fix PHP syntax highlighting. (PR #782, PR #802)</li>
+<li>BugFix: BS key did not work at the beginning of the line after splitting the pane or clicking the OK button in the Options dialog.</li>
+<li>BugFix: The edited contents were discarded when the &quot;Recompare As&quot; menu item was selected after editing the file</li>
+<li>BugFix: Incorrect comparison (#834) (This bug occured when enabling both the &#39;Ignore blank lines&#39; option and the &#39;Completely unhighlight the ignored differences&#39; option.)</li>
+<li>Add Smarty syntax highlighting. (PR #821)</li>
+<li>Thicken the caret in overwrite mode (osdn.net #42179)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Copy confirmation dialog has overlapped Yes/No Button (#739)</li>
-<li>BugFix: Comparison result was not updated by Swap operation in 3-way folder comparison (osdn.net #41901)</li>
+<li>BugFix: Different Files are Identical? (#768) (When comparing files with only BOM and no contents, the comparison result became unstable because it referred to the uninitialized memory.)</li>
+<li>BugFix: Fix a crash when re-comparing folders (osdn.net #42219)</li>
 </ul>
 <h3 id="binary-compare">Binary compare</h3>
 <ul>
-<li>BugFix: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
-<li>BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
+<li>BugFix: The file could not be saved after creating a new one</li>
+<li>Made Unpacker plugins available for image compare and binary compare</li>
 </ul>
 <h3 id="image-compare">Image compare</h3>
 <ul>
-<li>BugFix: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
-<li>BugFix: The header bar widths were not calculated properly when the &#39;Split Vertically&#39; menu item is unchecked.</li>
-</ul>
-<h3 id="open-dialog">Open dialog</h3>
-<ul>
-<li>Make archive files openable as binary files from the pull-down menu.</li>
-</ul>
-<h3 id="archive-support">Archive support</h3>
-<ul>
-<li>BugFix: Fixed a rare crash when decompressing an archive file</li>
+<li>BugFix: Error on try to show differences between two different gif (#784)</li>
+<li>Made Unpacker plugins available for image compare and binary compare</li>
 </ul>
 <h3 id="plugins">Plugins</h3>
 <ul>
-<li>BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and DisplayXMLFiles (#755)</li>
+<li>Improve plugin system (PR #797)
+<ul>
+<li>Added categorized Unpacker plugin menu items to various menus</li>
+<li>Made it possible to specify multiple Unpacker/Prediffer plugins by concatenating them with | and to specify arguments.</li>
+<li>Allowed Unpacker/Prediffer plugins to be specified for multiple files at once in Folder Compare window. The specified plugin will be visible in the Unpacker and Prediffer columns</li>
+<li>Add &quot;(U)&quot; or &quot;(P)&quot; to the tab title of the window opened by the Unpacker/Prediffer plugin.</li>
+<li>Allowed the plugin settings dialog to specify default arguments that will be used when no plugin arguments are specified</li>
+<li>Allowed plugins used by Automatic Unpacking/Prediffing to be excluded in the plugin settings dialog</li>
+<li>New unpacker plugins:
+<ul>
+<li>ApacheTika</li>
+<li>PrettifyJSON</li>
+<li>PrettifyXML</li>
+<li>QueryCSV</li>
+<li>QueryTSV</li>
+<li>QueryJSON</li>
+<li>MakeUpper</li>
+<li>MakeLower</li>
+<li>RemoveDuplicates</li>
+<li>CountDuplicates</li>
+<li>SortAscending</li>
+<li>SortDescending</li>
+<li>ExecFilterCommand</li>
+<li>Tokenize</li>
+<li>Trim</li>
+<li>VisualizeGraphviz</li>
+</ul></li>
+<li>New editor script plugins:
+<ul>
+<li>RemoveDuplicates</li>
+<li>CountDuplicates</li>
+<li>Tokenize</li>
+<li>Trim</li>
+<li>ApacheTika</li>
+<li>PrettifyJSON</li>
+<li>PrettifyXML</li>
+</ul></li>
+</ul></li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
+<li>BugFix: Fix an issue where a message is not translated.(PR #763)</li>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #711,#728,#729)</li>
-<li>Dutch (PR #706)</li>
-<li>Galician (PR #737)</li>
-<li>German (PR #718,#752)</li>
-<li>Hungarian (PR #712)</li>
+<li>French (PR #762)</li>
 <li>Japanese</li>
-<li>Korean (PR #709)</li>
-<li>Lithuanian (PR #708,#713,#738,#754)</li>
-<li>Portuguese (PR #725)</li>
-<li>Slovenian</li>
-<li>Swedish (PR #720,#723)</li>
-<li>Russian (PR #707)</li>
+<li>Polish (PR #769)</li>
+<li>Turkish (PR #803)</li>
+<li>Russian (PR #761)</li>
 </ul></li>
-</ul>
-<h2 id="what-is-new-in-21611-beta">What Is New in 2.16.11 Beta</h2>
-<h3 id="general-1">General</h3>
-<ul>
-<li>Make all OK strings same case (PR #593)</li>
-<li>Tab bar: Added shadows to help distinguish between active and inactive tabs</li>
-<li>Added drop-down menu to Open and Save icon on toolbar</li>
-</ul>
-<h3 id="file-compare-1">File compare</h3>
-<ul>
-<li>BugFix: Basic syntax highlighter is broken (osdn.net #41440)</li>
-<li>BugFix: File is corrupted while saving differences in changed file (Ctrl+S) (#607)</li>
-<li>BugFix: Fix an issue where the syntax highlighting scheme is not applied to the split second File pane and the Diff pane when changing it. (PR #624)</li>
-<li>BugFix: The position selected by clicking while holding down the shift key is incorrect. (sf.net #2237)</li>
-<li>BugFix: Fix an issue where the comment filter might not work properly if the file is non-UTF-8 and the comment contains non-ascii characters.</li>
-<li>Add a feature to set up default highlighting by a file extension (PR #627)</li>
-<li>Add &quot;Copy Selected Line(s) to/from Left/Right&quot; feature (#463) (PR #642)</li>
-<li>If -b or -w is also specified, -B now considers lines to be empty if they contain only white space (osdn.net #41355)</li>
-<li>Added BOM checkbox to the Codepage dialog.</li>
-</ul>
-<h3 id="folder-compare-1">Folder compare</h3>
-<ul>
-<li>BugFix: Program crash if you close a tab with the folder from where you opened current file (#645)</li>
-<li>BugFix: The title bar path was not updated when swapping files in a Zip file.</li>
-<li>BugFix: The codepage specified in the Codepage dialog did not affect the files to be opened.</li>
-</ul>
-<h3 id="image-compare-1">Image compare</h3>
-<ul>
-<li>BugFix: The image on the right does not open if the file exists only on the right (osdn.net #41721)</li>
-</ul>
-<h3 id="open-dialog-1">Open dialog</h3>
-<ul>
-<li>Added Text, Table, Binary and Image menu items to the Compare button in the &quot;Select Files or Folders&quot; window</li>
-</ul>
-<h3 id="archive-support-1">Archive support</h3>
-<ul>
-<li>Rar5 support (#644)</li>
-</ul>
-<h3 id="options-dialog">Options dialog</h3>
-<ul>
-<li>BugFix: Fix an issue where custom colors are not saved. (PR #648)</li>
-</ul>
-<h3 id="plugins-1">Plugins</h3>
-<ul>
-<li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
-</ul>
-<h3 id="installer">Installer</h3>
-<ul>
-<li>Installer issue with Polish diacritics characters (#589)</li>
-</ul>
-<h3 id="translations-1">Translations</h3>
-<ul>
-<li>Translation updates:
-<ul>
-<li>Bulgarian (PR #599,#625)</li>
-<li>Brazilian (PR #633)</li>
-<li>French (PR #637,#649,#658,#659)</li>
-<li>Galician (PR #587,#650,#677)</li>
-<li>German (PR #632,#651)</li>
-<li>Hungarian (PR #682,#683,#685)</li>
-<li>Japanese</li>
-<li>Lithuanian (PR #634,#653)</li>
-<li>Polish (PR #597,#673)</li>
-<li>Portuguese (PR #674)</li>
-<li>Slovenian</li>
-<li>Russian (PR #588)</li>
-</ul></li>
-</ul>
-<h3 id="command-line">Command line</h3>
-<ul>
-<li>Single instance mode does not work when launched from Visual Studio 2019 (#622) (Added /sw command line option)</li>
 </ul>
 <h3 id="internals">Internals</h3>
 <ul>
-<li>BugFix: Plugins\src_VCPP\VCPPPlugins.vs2017.sln can&#39;t open projects any more because in revision 69455da the projects were renamed. (#598)</li>
-<li>BugFix: OutputFile of plugin project DisplayXMLFiles is different that the other projects (#600)</li>
-<li>BugFix: WinMergeScript.rgs files in Plugins\src_VCPP projects are not found. (#605)</li>
-<li>BugFix: typeinfoex.h(189): warning C4701: potentially uninitialized local variable &#39;pTypeLib&#39; used (#605)</li>
-<li>BugFix: Plugins project DisplayXMLFiles.vcxproj contains &quot;Unicode Release MinSize&quot; configuration but was removed (#611)</li>
-<li>Expression is always true (#612,PR #613)</li>
-<li>Plugins.cpp function SearchScriptForMethodName can be improved (#690)</li>
+<li>Update CWindowsManagerDialog (PR #811)</li>
+<li>Update CWindowsManagerDialog - check some pointers for null and made safe casts (PR #824)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>

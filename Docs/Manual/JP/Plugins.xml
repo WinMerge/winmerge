@@ -20,7 +20,7 @@
 
     <listitem>
       <para><filename class="directory">MergePlugins</filename>
-      サブフォルダにインストールされます。WinMergeでは、いくつかのプラグインをインストールすることができます。</para>
+      サブフォルダにインストールされます。WinMergeは、いくつかのプラグインをインストールします。</para>
     </listitem>
 
     <listitem>
@@ -148,31 +148,47 @@
 
       <itemizedlist>
         <listitem>
-          <para><function>MakeUpper</function></para>
+          <para><function>Make Uppercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>MakeLower</function></para>
+          <para><function>Make Lowercase</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortAscending</function></para>
+          <para><function>Remove Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>SortDescending</function></para>
+          <para><function>Count Duplicate Lines</function></para>
         </listitem>
 
         <listitem>
-          <para><function>ExecFilterCommand</function></para>
+          <para><function>Sort Lines Ascending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>InsertDate</function></para>
+          <para><function>Sort Lines Descending</function></para>
         </listitem>
 
         <listitem>
-          <para><function>InsertTime</function></para>
+          <para><function>Apply Filter Command...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Tokenize...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trim Spaces</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insert Date</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insert Time</function></para>
         </listitem>
       </itemizedlist>
 
@@ -281,8 +297,8 @@
     <section>
       <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
 
-      <para>比較前処理プラグインでは、モード(<firstterm>自動比較前処理</firstterm>または
-      <firstterm>比較前処理なし</firstterm>）を個々のファイルに設定します。 
+      <para>比較前処理プラグインでは、モード(<firstterm>&lt;Automatic&gt;</firstterm>または
+      <firstterm>&lt;None&gt;</firstterm>）またはプラグイン名を個々のファイルに設定します。 
       （これをすべてのファイルのモードを設定する展開プラグインと比較してください。）
       つまり、同じフォルダー内のいくつかのファイルには異なる比較前処理モードがあります。
       </para>
@@ -296,13 +312,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><guisubmenu>自動</guisubmenu> は、
+          <para><guisubmenu>&lt;Automatic&gt;</guisubmenu> は、
           指定したファイルのタイプに使用できる比較前処理プラグインの最初のものを選択します。
           </para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>使用しない</guisubmenu>は、
+          <para><guisubmenu>&lt;None&gt;</guisubmenu>は、
           比較前処理プラグインを使用しません。</para>
         </listitem>
       </itemizedlist>
@@ -311,7 +327,7 @@
 
       <note>
         <para>非再帰比較中にサブフォルダーを開くと、モードは常に
-        <guimenuitem>なし</guimenuitem>にリセットされます。</para>
+        <guimenuitem>&lt;None&gt;</guimenuitem>にリセットされます。</para>
       </note>
 
       <para>フォルダ比較ウィンドウからファイルを開くと、
@@ -343,8 +359,8 @@
       </indexterm></title>
 
     <section id="CompareMSExcelFiles">
-      <title><filename>CompareMSExcelFiles.sct<indexterm>
-          <primary>CompareMSExcelFiles.sct plugin file</primary>
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>CompareMSExcelFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para><trademark
@@ -355,6 +371,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>書き戻し</segtitle>
 
@@ -376,6 +394,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -385,8 +405,8 @@
     </section>
 
     <section id="Plugins_powerpnt">
-      <title><filename>CompareMSPowerPointFiles.sct<indexterm>
-          <primary>CompareMSPowerPointFiles.sct plugin file</primary>
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>CompareMSPowerPointFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para><trademark
@@ -397,6 +417,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>書き戻し</segtitle>
 
@@ -418,6 +440,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -427,8 +451,8 @@
     </section>
 
     <section id="Plugins_visio">
-      <title><filename>CompareMSVisioFiles.sct<indexterm>
-          <primary>CompareMSVisioFiles.sct plugin file</primary>
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>CompareMSVisioFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para><trademark
@@ -439,6 +463,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>書き戻し</segtitle>
 
@@ -461,6 +487,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -470,8 +498,8 @@
     </section>
 
     <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.sct<indexterm>
-          <primary>CompareMSWordFiles.sct plugin file</primary>
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>CompareMSWordFiles plugin file</primary>
         </indexterm></filename></title>
 
       <para><trademark
@@ -482,6 +510,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>書き戻し</segtitle>
 
@@ -501,6 +531,8 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg>Yes</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
@@ -510,8 +542,8 @@
     </section>
 
     <section id="EditorAddin">
-      <title><filename>editor addin.sct<indexterm>
-          <primary>editor addin.sct plugin file</primary>
+      <title><filename>editor addin<indexterm>
+          <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
       <para>5つの機能を<menuchoice>
@@ -559,8 +591,8 @@
     </section>
 
     <section id="IgnoreColumns">
-      <title><filename>IgnoreColumns.dll<indexterm>
-          <primary>IgnoreColumns.dll plugin file</primary>
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>IgnoreColumns plugin file</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です。</para>
@@ -592,7 +624,7 @@
       </itemizedlist>
 
       <example>
-        <title><filename>IgnoreColumns.dll</filename> examples</title>
+        <title><filename>IgnoreColumns</filename> examples</title>
 
         <variablelist>
           <varlistentry>
@@ -620,6 +652,8 @@
 
           <segtitle>ファイルフィルタ</segtitle>
 
+          <segtitle>プラグイン引数</segtitle>
+
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
@@ -633,8 +667,8 @@
     </section>
 
     <section>
-      <title><filename>IgnoreCommentsC.dll<indexterm>
-          <primary>IgnoreCommentsC.dll plugin file</primary>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>IgnoreCommentsC plugin file</primary>
         </indexterm></filename></title>
 
       <para>このプラグインはC言語, C++, PHP, JavaScript ファイルの<constant> //</constant>... と
@@ -645,6 +679,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>設定ダイアログサポート</segtitle>
 
@@ -662,13 +698,15 @@
             class="extension">*.ts</filename></seg>
 
             <seg>No</seg>
+
+            <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsComma.dll<indexterm>
-          <primary>IgnoreFieldsComma.dll plugin file</primary>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>IgnoreFieldsComma plugin file</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、フィールドとコンマを区切り文字として使用するファイル用です
@@ -684,6 +722,8 @@
 
           <segtitle>ファイルフィルタ</segtitle>
 
+          <segtitle>プラグイン引数</segtitle>
+
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
@@ -692,13 +732,15 @@
             <seg><filename class="extension">*.csv</filename></seg>
 
             <seg>Yes</seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsTab.dll<indexterm>
-          <primary>IgnoreFieldsTab.dll plugin file</primary>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>IgnoreFieldsTab plugin file</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、フィールドとタブを区切り記号として使用するファイル用です
@@ -716,6 +758,8 @@
 
           <segtitle>ファイルフィルタ</segtitle>
 
+          <segtitle>プラグイン引数</segtitle>
+
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
@@ -724,13 +768,15 @@
             <seg><filename class="extension">*.txt</filename></seg>
 
             <seg>Yes</seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
-      <title><filename>IgnoreLeadingLineNumbers.dll<indexterm>
-          <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>IgnoreLeadingLineNumbers plugin file</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、テキストファイル
@@ -741,6 +787,8 @@
           <segtitle>分類</segtitle>
 
           <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
 
           <segtitle>設定ダイアログサポート</segtitle>
 
@@ -753,14 +801,88 @@
 
             <seg>No</seg>
 
+            <seg>No</seg>
+
             <seg><xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>editor addin plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Adds five functions to the <menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニュー:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>大文字に変換</guimenuitem> convert the selection to
+          UPPER CASE.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>小文字に変換</guimenuitem> convert the selection to
+          lower case.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>重複行を削除</guimenuitem> remove duplicate lines in the selection. 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>重複行をカウント</guimenuitem> remove duplicate lines in the selection and insert the number of duplicate lines on the right. 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>昇順にソート</guimenuitem> sort the selection 
+          in ascending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>降順にソート</guimenuitem> sort the selection 
+          in descending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> replace the selection 
+          with the output of the specified filter command.
+          Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>トークン分割...</guimenuitem> TBD
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> TBD
+          </simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>エディタ補完</seg>
+            <seg>*</seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_datetime">
-      <title><filename>insert datetime.sct<indexterm>
-          <primary>insert datetime.sct plugin file</primary>
+      <title><filename>insert datetime<indexterm>
+          <primary>insert datetime plugin file</primary>
         </indexterm></filename></title>
 
       <para><menuchoice>
@@ -771,12 +893,12 @@
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>InsertDate</guimenuitem> insert date in the
+          <simpara><guimenuitem>日付を挿入</guimenuitem> insert date in the
           current locale format.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>InsertTime</guimenuitem> insert time in the
+          <simpara><guimenuitem>時刻を挿入</guimenuitem> insert time in the
           current locale format.</simpara>
         </listitem>
       </itemizedlist>
@@ -784,10 +906,14 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
+          <segtitle>ファイルフィルタ</segtitle>
+
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Editor complement</seg>
+            <seg>エディタ補完</seg>
+
+            <seg>*</seg>
 
             <seg>No</seg>
           </seglistitem>

@@ -29,8 +29,7 @@ CWindowsManagerDialog::~CWindowsManagerDialog()
 {
 	if (NULL != m_pIL->GetSafeHandle())
 		m_pIL->DeleteImageList();
-	if (NULL != m_pIL)
-		delete m_pIL;
+	delete m_pIL;
 }
 
 void CWindowsManagerDialog::DoDataExchange(CDataExchange* pDX)
@@ -116,15 +115,22 @@ void CWindowsManagerDialog::PopulateList()
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* pArrChild = m_pFrame->GetChildArray();
 	for (int i = 0; i < pArrChild->GetSize(); ++i)
 	{
-		HICON hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+		sText.Empty();
+		HICON hIcon = pArrChild->GetAt(i)->GetIcon(FALSE);
 		if (NULL == hIcon)
-			hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		{
+			hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+			if (NULL == hIcon)
+				hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		}
 		m_pIL->Add(hIcon);
-		sText = pArrChild->GetAt(i)->GetActiveDocument()->GetPathName();
-		if(sText.IsEmpty())
+		const CDocument* pDoc = pArrChild->GetAt(i)->GetActiveDocument();
+		if (nullptr != pDoc)
+			sText = pDoc->GetPathName();
+		if (sText.IsEmpty())
 			pArrChild->GetAt(i)->GetWindowText(sText);
 		m_List.InsertItem(i, sText, m_pIL->GetImageCount() - 1);
-		m_List.SetItemData(i, (DWORD_PTR)pArrChild->GetAt(i));
+		m_List.SetItemData(i, reinterpret_cast<DWORD_PTR>(pArrChild->GetAt(i)));
 	}
 }
 // adjust size to listctrl column and dialog
@@ -224,7 +230,7 @@ void CWindowsManagerDialog::OnDestroy()
 
 	const int nIndex = m_List.GetNextItem(-1, LVNI_SELECTED);
 	if (nIndex >= 0 && nIndex < m_List.GetItemCount())
-		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATE, 0, (LPARAM)m_List.GetItemData(nIndex));
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATE, 0, static_cast<LPARAM>(m_List.GetItemData(nIndex)));
 }
 
 LRESULT CWindowsManagerDialog::OnIsOpen(WPARAM wParam, LPARAM lParam)

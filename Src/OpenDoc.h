@@ -22,8 +22,7 @@ public:
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpacker;
-	PackingInfo m_infoHandler;
+	String	m_strUnpackerPipeline;
 
 protected:
 	virtual BOOL OnNewDocument();

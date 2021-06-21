@@ -56,7 +56,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "&Marker linjeforskjell\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -81,6 +82,14 @@ msgstr "Ko&pier"
 #, c-format
 msgid "&Paste"
 msgstr "&Lim inn"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Skript"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Tom >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Gå &til...\tCtrl+G"
@@ -260,10 +269,6 @@ msgstr "Seneste prosjekter"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Tom >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Avslutt\tCtrl+Q"
@@ -642,10 +647,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Angre\tCtrl+Z"
 
@@ -664,10 +665,6 @@ msgstr "Ko&pier\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Lim inn\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "&Marker linjeforskjell\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -884,13 +881,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Skript"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1083,17 +1082,24 @@ msgstr "&Kopier full bane"
 msgid "Copy &Filename"
 msgstr "Kopier &filnavn"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ingen>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatisk>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Velg..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Prediffer-innstillinger"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Ingen prediffer"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Auto-prediffer"
 
 msgid "G&o to Diff"
 msgstr "G&å til forskjell"
@@ -1123,6 +1129,10 @@ msgid "Ig&nore all"
 msgstr "Ig&norer alle"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ignorer blan&ke linjer"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ignorer store/små &bokstaver"
 
@@ -1132,6 +1142,9 @@ msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1240,10 +1253,6 @@ msgstr "Bla gjennom.."
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Velg..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1623,16 +1632,11 @@ msgstr "Flytt &opp"
 msgid "Move &Down"
 msgstr "Flytt &ned"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Velg utpakker"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Filutpakker:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Vis alle utpakkere, ikke kontroller filtype."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1641,6 +1645,21 @@ msgstr "Filetypeliste:"
 #, c-format
 msgid "Description:"
 msgstr "Beskrivelse:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Vis alle utpakkere, ikke kontroller filtype."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1709,13 +1728,6 @@ msgstr "Ignorer e&ndringer"
 #, c-format
 msgid "I&gnore all"
 msgstr "Ignorer &alle"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ignorer blan&ke linjer"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2238,6 +2250,12 @@ msgid "&Enable plugins"
 msgstr "&Aktiver programtillegg"
 
 msgid "File filters:"
+msgstr ""
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -3297,6 +3315,14 @@ msgid "Binary"
 msgstr "Binær"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Utpakker"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Kan ikke sammenligne filer"
 
@@ -3538,6 +3564,12 @@ msgstr "Antall forskjeller i filen. Dette antall inkluderer ikke ignorerte forsk
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Viser asterisk (*) hvis filen er binær."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3839,14 +3871,6 @@ msgid "Type"
 msgstr "Type"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Utpakker"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
-
-#, c-format
 msgid "Editor script"
 msgstr "Redigeringsskript"
 
@@ -3967,14 +3991,6 @@ msgstr "Innstillinger for programtillegg"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ikke funnet - .sct skript ikke aktivert"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ingen>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatisk>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4202,4 +4218,102 @@ msgid "Allow only one instance to run"
 msgstr "Tillat bare en instans å kjøre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

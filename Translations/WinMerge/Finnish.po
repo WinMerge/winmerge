@@ -54,7 +54,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Valitse riviero\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -79,6 +80,14 @@ msgstr "&Kopioi"
 #, c-format
 msgid "&Paste"
 msgstr "Lii&tä"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Skriptit"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Tyhjä >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Siirry...\tCtrl+G"
@@ -258,10 +267,6 @@ msgstr "Viimeiset projektit"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Viimeaikaiset t&iedostot tai kansiot"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Tyhjä >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Poistu\tCtrl+Q"
@@ -640,10 +645,6 @@ msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Kumoa\tCtrl+Z"
 
@@ -662,10 +663,6 @@ msgstr "Kopioi\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Valitse riviero\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -884,13 +881,15 @@ msgstr "Lisää &synkronointipiste\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Poista syn&kronointipisteet"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Esivertailu"
 
-#, c-format
-msgid "&Scripts"
-msgstr "Skriptit"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1083,17 +1082,24 @@ msgstr "Kopioi täysi polku"
 msgid "Copy &Filename"
 msgstr "Kopioi tiedostonimi"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ei mitään>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automaattinen>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Valitse..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Ei esivertailua"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automaattinen esivertailu"
 
 msgid "G&o to Diff"
 msgstr "Siirry eroon"
@@ -1123,6 +1129,10 @@ msgid "Ig&nore all"
 msgstr "Hylkää kaikki"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ohita tyhjät rivit"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
 
@@ -1133,6 +1143,9 @@ msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Ohita koodisivuerot"
+
+msgid "Ignore c&omment differences"
+msgstr ""
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1240,10 +1253,6 @@ msgstr "Selaa..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
-
-#, c-format
-msgid "&Select..."
-msgstr "Valitse..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1623,16 +1632,11 @@ msgstr "Siirrä ylös"
 msgid "Move &Down"
 msgstr "Siirrä alas"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Valitse purkaja"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Tiedoston purkaja:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1641,6 +1645,21 @@ msgstr "Päätelista:"
 #, c-format
 msgid "Description:"
 msgstr "Kuvaus:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1709,13 +1728,6 @@ msgstr "Hylkää muutos"
 #, c-format
 msgid "I&gnore all"
 msgstr "Hylkää kaikki"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ohita tyhjät rivit"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2242,6 +2254,12 @@ msgid "&Enable plugins"
 msgstr "Ota laajennukset käyttöön"
 
 msgid "File filters:"
+msgstr ""
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -3316,6 +3334,14 @@ msgid "Binary"
 msgstr "Binääri"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Purkaja"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Esivertailu"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Tiedostoja ei voi verrata"
 
@@ -3557,6 +3583,12 @@ msgstr "Erojen määrä tiedostossa. Tämä luku ei sisällä ohitettuja eroja."
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Näyttää tähden(*), jos tiedosto on binäärinen."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3861,14 +3893,6 @@ msgid "Type"
 msgstr "Tyyppi"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Purkaja"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Esivertailu"
-
-#, c-format
 msgid "Editor script"
 msgstr "Muokkainskripti"
 
@@ -4061,14 +4085,6 @@ msgstr "Lisäosien asetukset"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ei löytynyt - .sct skriptit poistettu käytöstä"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ei mitään>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automaattinen>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4302,4 +4318,102 @@ msgid "Allow only one instance to run"
 msgstr "Vain yksi instanssi kerrallaan"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

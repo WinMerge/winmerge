@@ -51,7 +51,7 @@ msgstr "Geselecteerde regel(s) vanaf links kopiëren"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -71,6 +71,12 @@ msgstr "Kopiëren"
 
 msgid "&Paste"
 msgstr "Plakken"
+
+msgid "&Scripts"
+msgstr "Scripts"
+
+msgid "< Empty >"
+msgstr "< Leeg >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Gaan naar...\tCtrl+G"
@@ -220,9 +226,6 @@ msgstr "Recente Projecten"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Recente bestanden of mappen"
-
-msgid "< Empty >"
-msgstr "< Leeg >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Afsluiten\tCtrl+Q"
@@ -515,9 +518,6 @@ msgstr "Opnieuw laden\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
 
-msgid "&XML"
-msgstr "XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "Ongedaan maken\tCtrl+Z"
 
@@ -532,9 +532,6 @@ msgstr "Kopiëren\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Regelverschil selecteren\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"
@@ -701,11 +698,14 @@ msgstr "Synchronisatiepunt toevoegen\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Synchronisatiepunten wissen"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "Voorvergelijking"
 
-msgid "&Scripts"
-msgstr "Scripts"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Splitsen"
@@ -868,14 +868,20 @@ msgstr "Volledig pad kopiëren"
 msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+msgid "<None>"
+msgstr "<None>"
+
+msgid "<Automatic>"
+msgstr "<Automatic>"
+
+msgid "&Select..."
+msgstr "Selecteren..."
+
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"
-
-msgid "&No prediffer"
-msgstr "Geen voorvergelijking"
-
-msgid "Auto prediffer"
-msgstr "Automatische voorvergelijking"
 
 msgid "G&o to Diff"
 msgstr "Ga naar verschil"
@@ -898,6 +904,9 @@ msgstr "Wijzigingen negeren"
 msgid "Ig&nore all"
 msgstr "Alles negeren"
 
+msgid "Ignore blan&k lines"
+msgstr "Lege regels negeren"
+
 msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
 
@@ -906,6 +915,9 @@ msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
+
+msgid "Ignore c&omment differences"
+msgstr "Opmerkingsverschillen negeren"
 
 msgid "&Include Subfolders"
 msgstr "Ook in submappen"
@@ -987,9 +999,6 @@ msgstr "Bladeren..."
 
 msgid " Folder: Filter"
 msgstr "Map: filter"
-
-msgid "&Select..."
-msgstr "Selecteren..."
 
 msgid " File: Unpacker Plugin"
 msgstr "Bestand: uitpak-plugin"
@@ -1298,20 +1307,32 @@ msgstr "Omhoog verplaatsen"
 msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
-msgid "Select Unpacker"
-msgstr "Uitpakker kiezen"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Bestandsuitpakker:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+msgid "Plugin &Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
 
 msgid "Description:"
 msgstr "Beschrijving:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Stoppen"
@@ -1366,12 +1387,6 @@ msgstr "Wijziging negeren"
 
 msgid "I&gnore all"
 msgstr "Alles negeren"
-
-msgid "Ignore blan&k lines"
-msgstr "Lege regels negeren"
-
-msgid "Ignore c&omment differences"
-msgstr "Opmerkingsverschillen negeren"
 
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
@@ -1787,6 +1802,12 @@ msgstr "Plugins inschakelen"
 
 msgid "File filters:"
 msgstr "Bestandsfilters:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Shell-integratie"
@@ -2776,6 +2797,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binair"
 
+msgid "Unpacker"
+msgstr "Uitpakker"
+
+msgid "Prediffer"
+msgstr "Voorvergelijken"
+
 msgid "Unable to compare files"
 msgstr "Kan bestanden niet vergelijken"
 
@@ -2974,6 +3001,12 @@ msgstr ""
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Geeft een asterisk (*) weer als het bestand binair is."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3256,12 +3289,6 @@ msgstr "Nieuw patroon"
 msgid "Type"
 msgstr "Type"
 
-msgid "Unpacker"
-msgstr "Uitpakker"
-
-msgid "Prediffer"
-msgstr "Voorvergelijken"
-
 msgid "Editor script"
 msgstr "Editor-script"
 
@@ -3451,12 +3478,6 @@ msgstr "Plugin-instellingen"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH niet gevonden - .sct scripts uitgeschakeld"
-
-msgid "<None>"
-msgstr "<None>"
-
-msgid "<Automatic>"
-msgstr "<Automatic>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3678,3 +3699,101 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

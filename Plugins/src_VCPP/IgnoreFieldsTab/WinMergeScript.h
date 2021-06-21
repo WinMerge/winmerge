@@ -22,7 +22,7 @@ class ATL_NO_VTABLE CWinMergeScript :
 	public IDispatchImpl<IWinMergeScript, &IID_IWinMergeScript, &LIBID_IgnoreFieldsTabLib, 1, 0, CComTypeInfoHolderFileOnly>
 {
 public:
-	CWinMergeScript()
+	CWinMergeScript() : m_bstrArguments(L"")
 	{
 	}
 
@@ -39,10 +39,16 @@ END_COM_MAP()
 public:
 	STDMETHOD(PrediffBufferW)(/*[in]*/ BSTR * pText, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[out, retval]*/ VARIANT_BOOL * pbHandled);
 	STDMETHOD(ShowSettingsDialog)(/*[out, retval]*/ VARIANT_BOOL * pbHandled);
+	STDMETHOD(get_PluginExtendedProperties)(/*[out, retval]*/ BSTR *pVal);
+	STDMETHOD(get_PluginArguments)(/*[out, retval]*/ BSTR *pVal);
+	STDMETHOD(put_PluginArguments)(/*[in]*/ BSTR val);
 	STDMETHOD(get_PluginIsAutomatic)(/*[out, retval]*/ VARIANT_BOOL *pVal);
 	STDMETHOD(get_PluginFileFilters)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginDescription)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginEvent)(/*[out, retval]*/ BSTR *pVal);
+
+protected:
+	CComBSTR m_bstrArguments;
 };
 
 #endif //__WINMERGESCRIPT_H_

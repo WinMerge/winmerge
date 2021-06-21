@@ -272,6 +272,7 @@
     <ClCompile Include="..\editlib\parsers\sgml.cpp" />
     <ClCompile Include="..\editlib\parsers\sh.cpp" />
     <ClCompile Include="..\editlib\parsers\siod.cpp" />
+    <ClCompile Include="..\editlib\parsers\smarty.cpp" />
     <ClCompile Include="..\editlib\parsers\sql.cpp" />
     <ClCompile Include="..\editlib\parsers\tcl.cpp" />
     <ClCompile Include="..\editlib\parsers\tex.cpp" />

@@ -23,7 +23,7 @@ private :
 	int m_nThisPane; /**< Left/Right side */
 	String m_strTempPath; /**< Temporary files folder. */
 	String m_strTempFileName; /**< Temporary file name. */
-	int m_unpackerSubcode; /**< Plugin information. */
+	std::vector<int> m_unpackerSubcodes; /**< Plugin information. */
 	bool m_bMixedEOL; /**< EOL style of this buffer is mixed? */
 
 	/** 
@@ -51,11 +51,11 @@ public :
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
-	int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
+	int LoadFromFile(LPCTSTR pszFileName, PackingInfo& infoUnpacker,
 		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
-		PackingInfo * infoUnpacker = nullptr, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,
+		PackingInfo& infoUnpacker, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,
 		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }

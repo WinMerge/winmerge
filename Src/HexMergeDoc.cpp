@@ -25,6 +25,7 @@
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
+#include "SelectPluginDlg.h"
 #include "DiffList.h"
 #include "paths.h"
 #include "OptionsMgr.h"
@@ -99,7 +100,9 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -230,15 +233,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[0]->SaveFile(pathLeft.c_str())))
-				{
-				case 0:
-					bLSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bLSaveSuccess = DoFileSave(0);
+				if (!bLSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -249,15 +246,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[1]->SaveFile(pathMiddle.c_str())))
-				{
-				case 0:
-					bMSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bMSaveSuccess = DoFileSave(1);
+				if (!bMSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -268,15 +259,9 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		{
 			if (dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				switch (Try(m_pView[m_nBuffers - 1]->SaveFile(pathRight.c_str())))
-				{
-				case 0:
-					bRSaveSuccess = true;
-					break;
-				case IDCANCEL:
+				bRSaveSuccess = DoFileSave(m_nBuffers - 1);
+				if (!bRSaveSuccess)
 					result = false;
-					break;
-				}
 			}
 			else
 			{
@@ -316,23 +301,30 @@ void CHexMergeDoc::OnFileSave()
 		DoFileSave(nBuffer);
 }
 
-void CHexMergeDoc::DoFileSave(int nBuffer)
+bool CHexMergeDoc::DoFileSave(int nBuffer)
 {
+	bool result = false;
 	if (m_pView[nBuffer]->GetModified())
 	{
 		if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
-			DoFileSaveAs(nBuffer);
+			result = DoFileSaveAs(nBuffer);
 		else
 		{
 			const String &path = m_filePaths.GetPath(nBuffer);
-			if (Try(m_pView[nBuffer]->SaveFile(path.c_str())) == IDCANCEL)
-				return;
+			HRESULT hr = m_pView[nBuffer]->SaveFile(path.c_str());
+			if (Try(hr) == IDCANCEL)
+				return false;
+			if (FAILED(hr))
+				return DoFileSaveAs(nBuffer);
+			result = true;
+			if (result)
+				UpdateDiffItem(m_pDirDoc);
 		}
-		UpdateDiffItem(m_pDirDoc);
 	}
+	return result;
 }
 
-void CHexMergeDoc::DoFileSaveAs(int nBuffer)
+bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 {
 	const String &path = m_filePaths.GetPath(nBuffer);
 	String strPath;
@@ -345,8 +337,11 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		title = _("Save Middle File As");
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
-		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
-			return;
+		HRESULT hr = m_pView[nBuffer]->SaveFile(strPath.c_str());
+		if (Try(hr) == IDCANCEL)
+			return false;
+		if (FAILED(hr))
+			return false;
 		if (path.empty())
 		{
 			// We are saving scratchpad (unnamed file)
@@ -357,7 +352,9 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateDiffItem(m_pDirDoc);
 		UpdateHeaderPath(nBuffer);
+		return true;
 	}
+	return false;
 }
 
 /**
@@ -426,6 +423,11 @@ void CHexMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 	m_pDirDoc = pDirDoc;
 }
 
+bool CHexMergeDoc::GetReadOnly(int nBuffer) const
+{
+	return m_pView[nBuffer]->GetReadOnly();
+}
+
 /**
  * @brief Return pointer to parent frame
  */
@@ -452,7 +454,7 @@ bool CHexMergeDoc::CloseNow()
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 
-	GetParentFrame()->CloseNow();
+	GetParentFrame()->DestroyWindow();
 	return true;
 }
 
@@ -643,7 +645,7 @@ void CHexMergeDoc::RefreshOptions()
  */
 void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
@@ -820,18 +822,43 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	int nBuffers = m_nBuffers;
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
 		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
+
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
 		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
 		dwFlags[nBuffer] = m_pView[nBuffer]->GetReadOnly() ? FFILEOPEN_READONLY : 0;
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
+	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1;
+	}
+
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+}
+
+void CHexMergeDoc::OnOpenWithUnpacker()
+{
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+	if (dlg.DoModal() == IDOK)
+	{
+		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
+		PathContext paths = m_filePaths;
+		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		CloseNow();
+		GetMainFrame()->DoFileOpen(
+			GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1,
+			&paths, dwFlags, strDesc, _T(""), &infoUnpacker);
+	}
 }
 
 void CHexMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_HEX);
 }
 

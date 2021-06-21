@@ -57,8 +57,9 @@ msgstr "Copiar liñas seleccionadas da esquerda"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Copiar liñas seleccionadas da dereita"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Seleccionar a diferenza entre liñas\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Seleccionar diferen&zas de liña\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Engadir este cambio aos &Filtros de substitución"
@@ -82,6 +83,14 @@ msgstr "&Copiar"
 #, c-format
 msgid "&Paste"
 msgstr "&Pegar"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Scripts"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Baleiro >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Ir a…\tCtrl+G"
@@ -261,10 +270,6 @@ msgstr "Proxectos recentes"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Arqu&ivos ou cartafoles recentes"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Baleiro >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "S&aír\tCtrl+Q"
@@ -643,10 +648,6 @@ msgid "Reco&mpare As"
 msgstr "Volver comparar como"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desfacer\tCtrl+Z"
 
@@ -665,10 +666,6 @@ msgstr "&Copiar\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar diferen&zas de liña\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -885,13 +882,15 @@ msgstr "Engadir punto de &sincronización\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Eliminar puntos de sincroni&zación"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Prec&omparación"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Scripts"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1084,17 +1083,24 @@ msgstr "&Copiar ruta completa"
 msgid "Copy &Filename"
 msgstr "Copiar nome do &arquivo"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ningún>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automático>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Seleccionar…"
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Configuración da precomparación"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Sen precomparación"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Precomparación automática"
 
 msgid "G&o to Diff"
 msgstr "I&r ás diferenzas"
@@ -1124,6 +1130,10 @@ msgid "Ig&nore all"
 msgstr "Ig&norar todo"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ignorar &liñas en branco"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas e minúsculas"
 
@@ -1134,6 +1144,9 @@ msgstr "Igno&rar diferenzas nos saltos de liña (Windows/Unix/Mac)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenzas de codificación"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorar diferenzas nos c&omentarios"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1241,10 +1254,6 @@ msgstr "Explorar…"
 #, c-format
 msgid " Folder: Filter"
 msgstr " Cartafol: Filtro"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Seleccionar…"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1624,16 +1633,11 @@ msgstr "Mover E&nriba"
 msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Seleccionar desempaquetador"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Desempaquetador de arquivos:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1642,6 +1646,21 @@ msgstr "Listaxe de extensións:"
 #, c-format
 msgid "Description:"
 msgstr "Descrición:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1710,13 +1729,6 @@ msgstr "&Ignorar cambio"
 #, c-format
 msgid "I&gnore all"
 msgstr "&Ignorar todo"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ignorar &liñas en branco"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorar diferenzas nos c&omentarios"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2246,6 +2258,12 @@ msgstr "&Activar complementos"
 
 msgid "File filters:"
 msgstr "Filtros de arquivo:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"
@@ -3355,6 +3373,14 @@ msgid "Binary"
 msgstr "Binario"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Desempaquetador"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Precomparación"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Non se puido comparar os arquivos"
 
@@ -3596,6 +3622,12 @@ msgstr "Número de diferenzas no arquivo. Este número non inclúe as diferenzas
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Amosa un asterisco (*) se o arquivo é binario."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3912,14 +3944,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Desempaquetador"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Precomparación"
-
-#, c-format
 msgid "Editor script"
 msgstr "Script do Editor"
 
@@ -4128,14 +4152,6 @@ msgstr "Configuración do complemento"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH non atopado - scripts .sct desactivados"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ningún>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automático>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4370,3 +4386,101 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""
