@@ -541,51 +541,262 @@
         </segmentedlist></para>
     </section>
 
-    <section id="EditorAddin">
-      <title><filename>editor addin<indexterm>
-          <primary>editor addin plugin file</primary>
+    <section id="Plugins_prettifyxml">
+      <title><filename>PrettifyXML<indexterm>
+          <primary>PrettifyXML plugin file</primary>
         </indexterm></filename></title>
 
-      <para>5つの機能を<menuchoice>
-          <guimenu>プラグイン</guimenu>
-
-          <guisubmenu>スクリプト</guisubmenu>
-        </menuchoice> メニューに追加します:</para>
-
-      <itemizedlist>
-        <listitem>
-          <simpara><guimenuitem>MakeUpper</guimenuitem> は、選択範囲を大文字に変換します。
-          </simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>MakeLower</guimenuitem> 選択範囲を小文字に変換します。
-          </simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>SortAscending</guimenuitem> 選択範囲を昇順でソートします。
-          </simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>SortDescending</guimenuitem> 選択範囲を降順でソートします。
-          </simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> 指定したフィルタコマンドの出力で選択範囲を置換します。
-          </simpara>
-        </listitem>
-      </itemizedlist>
+      <para>TBD</para>
 
       <para><segmentedlist>
-          <segtitle>分類</segtitle>
-          <segtitle>設定ダイアログサポート</segtitle>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
 
           <seglistitem>
-            <seg>Editor complement</seg>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.xml</filename>
+            </seg>
+
             <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_prettifyjson">
+      <title><filename>PrettifyJSON<indexterm>
+          <primary>PrettifyJSON plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.json</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_querycsv">
+      <title><filename>QueryCSV<indexterm>
+          <primary>QueryCSV plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.csv</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_querycsv">
+      <title><filename>QueryTSV<indexterm>
+          <primary>QueryTSV plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.tsv</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_queryjson">
+      <title><filename>QueryJSON<indexterm>
+          <primary>QueryJSON plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.json</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_visualizegraphviz">
+      <title><filename>VisualizeGraphviz<indexterm>
+          <primary>VisualizeGraphviz plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.gv</filename>,
+              <filename class="extension">,*.dot</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_apachetika">
+      <title><filename>ApacheTika<indexterm>
+          <primary>ApacheTika plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>TBD</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.*</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
