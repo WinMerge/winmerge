@@ -289,7 +289,7 @@ protected:
 	afx_msg void OnUpdateStatusMiddleRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
 	afx_msg void OnCustomizeColumns();
-	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg LRESULT OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam);
@@ -300,8 +300,8 @@ protected:
 	afx_msg void OnCtxtDirShellContextMenu();
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
-	afx_msg void OnPluginPredifferMode(UINT nID);
-	afx_msg void OnUpdatePluginPredifferMode(CCmdUI* pCmdUI);
+	afx_msg void OnPluginSettings(UINT nID);
+	afx_msg void OnUpdatePluginMode(CCmdUI* pCmdUI);
 	template<SIDE_TYPE side>
 	afx_msg void OnCopyPathnames();
 	afx_msg void OnCopyBothPathnames();
@@ -365,11 +365,11 @@ protected:
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();
 	afx_msg void OnMergeCompareNonHorizontally();
-	afx_msg void OnMergeCompareXML();
 	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
 	afx_msg void OnHelp();

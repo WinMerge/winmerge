@@ -661,6 +661,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp" />
+    <ClCompile Include="InternalPlugins.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1059,7 +1063,7 @@
     <ClCompile Include="SaveClosingDlg.cpp" />
     <ClCompile Include="Common\scbarcf.cpp" />
     <ClCompile Include="Common\scbarg.cpp" />
-    <ClCompile Include="SelectUnpackerDlg.cpp" />
+    <ClCompile Include="SelectPluginDlg.cpp" />
     <ClCompile Include="SharedFilterDlg.cpp" />
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1111,11 +1115,6 @@
     </ClCompile>
     <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="TrDialogs.cpp" />
-    <ClCompile Include="UniMarkdownFile.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1314,7 +1313,7 @@
     <ClInclude Include="SaveClosingDlg.h" />
     <ClInclude Include="Common\scbarcf.h" />
     <ClInclude Include="Common\scbarg.h" />
-    <ClInclude Include="SelectUnpackerDlg.h" />
+    <ClInclude Include="SelectPluginDlg.h" />
     <ClInclude Include="SharedFilterDlg.h" />
     <ClInclude Include="Common\ShellContextMenu.h" />
     <ClInclude Include="Common\ShellFileOperations.h" />
@@ -1332,7 +1331,6 @@
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
     <ClInclude Include="TrDialogs.h" />
-    <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="WildcardDropList.h" />

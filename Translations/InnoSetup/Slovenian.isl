@@ -18,7 +18,7 @@ Frhed=Frhed(Brezplaèni 16-tiški urejevalnik)
 WinIMerge=WinIMerge (Slika razlik/združitev)
 ArchiveSupport=Podpora arhivov
 ShellExtension32bit=32-bitna razširitev lupine WinMerge
-Patch=GnuWin32 popravek za Windows
+Commands=GnuWin32 popravek za Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Jeziki

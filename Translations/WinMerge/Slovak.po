@@ -53,8 +53,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Vybrať rozdiely riadkov\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Vybrať riadky roz&dielov\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -73,6 +73,12 @@ msgstr "&Kopírovať"
 
 msgid "&Paste"
 msgstr "&Prilepiť"
+
+msgid "&Scripts"
+msgstr "&Skripty"
+
+msgid "< Empty >"
+msgstr "< Prázdne >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Prejsť na...\tCtrl+G"
@@ -222,9 +228,6 @@ msgstr "Naposledy otvorené projekty"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Naposledy otvorené sú&bory alebo projekty"
-
-msgid "< Empty >"
-msgstr "< Prázdne >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Koniec\tCtrl+Q"
@@ -514,9 +517,6 @@ msgstr "Znova načítať\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
 
-msgid "&XML"
-msgstr "&XML"
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Späť\tCtrl+Z"
 
@@ -531,9 +531,6 @@ msgstr "&Kopírovať\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepiť\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Vybrať riadky roz&dielov\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Hľadať...\tCtrl+F"
@@ -700,11 +697,14 @@ msgstr "Pridať &synchronizačný bod\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Vymazať sync&hronizačné body"
 
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Predbežné spracovanie rozdielov"
 
-msgid "&Scripts"
-msgstr "&Skripty"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr "Od&deliť"
@@ -867,14 +867,20 @@ msgstr "&Kopírovať plnú cestu"
 msgid "Copy &Filename"
 msgstr "Kopírovať názov &súboru"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+msgid "<None>"
+msgstr "<Žiadny>"
+
+msgid "<Automatic>"
+msgstr "<Automatické>"
+
+msgid "&Select..."
+msgstr "&Vybrať..."
+
 msgid "Prediffer Settings"
 msgstr "Nastavenia predspracovania rozdielov"
-
-msgid "&No prediffer"
-msgstr "&Bez predspracovania rozdielov"
-
-msgid "Auto prediffer"
-msgstr "&Automatické predspracovanie rozdielov"
 
 msgid "G&o to Diff"
 msgstr "Ch&oď na rozdiel"
@@ -992,9 +998,6 @@ msgstr "Prehľadávať..."
 
 msgid " Folder: Filter"
 msgstr " Priečinok: Filter"
-
-msgid "&Select..."
-msgstr "&Vybrať..."
 
 msgid " File: Unpacker Plugin"
 msgstr " File: Rozšírenie rozbaľovača"
@@ -1297,20 +1300,29 @@ msgstr "Posunúť &hore"
 msgid "Move &Down"
 msgstr "Posunúť &dole"
 
-msgid "Select Unpacker"
-msgstr "Vybrať pakovač"
+msgid "Select Plugin"
+msgstr ""
 
-msgid "File unpacker:"
-msgstr "Súbor pakovača:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Zobraziť všetky pakovače, nekontrolovať príponu."
+msgid "Plugin &Name:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Zoznam prípon:"
 
 msgid "Description:"
 msgstr "Popis:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Zobraziť všetky pakovače, nekontrolovať príponu."
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 msgid "Stop"
 msgstr "Zastaviť"
@@ -1776,6 +1788,12 @@ msgstr "&Povoliť rozšírenia"
 
 msgid "File filters:"
 msgstr "Filtre súborov:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Integrácia prostredia"
@@ -2762,6 +2780,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binárny"
 
+msgid "Unpacker"
+msgstr "Archivačný program"
+
+msgid "Prediffer"
+msgstr "Predbežné spracovanie rozdielov"
+
 msgid "Unable to compare files"
 msgstr "Nemožno porovnať súbory"
 
@@ -2960,6 +2984,12 @@ msgstr ""
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Zobrazí hviezdičku (*) ak je súbor binárny."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3248,12 +3278,6 @@ msgstr "Nový vzor"
 msgid "Type"
 msgstr "Typ"
 
-msgid "Unpacker"
-msgstr "Archivačný program"
-
-msgid "Prediffer"
-msgstr "Predbežné spracovanie rozdielov"
-
 msgid "Editor script"
 msgstr "Skript editora"
 
@@ -3426,12 +3450,6 @@ msgstr "Nastavenia rozšírení"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH nenájdené - .sct skripty sú zakázané"
-
-msgid "<None>"
-msgstr "<Žiadny>"
-
-msgid "<Automatic>"
-msgstr "<Automatické>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3650,4 +3668,102 @@ msgid "Allow only one instance to run"
 msgstr "Umožniť spustenie iba jednej inštancie"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

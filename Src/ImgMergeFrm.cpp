@@ -27,6 +27,7 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
+#include "SelectPluginDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
 #include "DropHandler.h"
@@ -73,7 +74,9 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
@@ -168,7 +171,6 @@ CImgMergeFrame::CImgMergeFrame()
 , m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 , m_bRO{}
 , m_nActivePane(-1)
-, m_unpackerSubcode{}
 {
 }
 
@@ -576,7 +578,11 @@ BOOL CImgMergeFrame::DestroyWindow()
 	SaveActivePane();
 	SaveOptions();
 	SaveWindowState();
-	return CMergeFrameCommon::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 void CImgMergeFrame::LoadOptions()
@@ -692,12 +698,12 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			}
 			if (filename != m_filePaths[pane])
 			{
-				if (!FileTransform::Packing(filename, m_filePaths[pane], m_infoUnpacker, m_unpackerSubcode[pane]))
+				if (!m_infoUnpacker.Packing(filename, m_filePaths[pane], m_unpackerSubcodes[pane], { m_filePaths[pane] }))
 				{
 					// Restore save point
 					m_pImgMergeWindow->SetSavePoint(pane, savepoint);
 
-					String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), m_filePaths[pane], m_infoUnpacker.m_PluginName);
+					String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), m_filePaths[pane], m_infoUnpacker);
 					int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 					if (answer == IDOK)
 						return DoFileSaveAs(pane, false);
@@ -726,7 +732,7 @@ RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
-		if (packing && !m_infoUnpacker.m_PluginName.empty())
+		if (packing && !m_infoUnpacker.GetPluginPipeline().empty())
 		{
 			String tempPath = env::GetTemporaryPath();
 			filename = ucr::toUTF16(env::GetTemporaryFileName(tempPath, _T("MRG_"), 0)
@@ -743,12 +749,12 @@ RETRY:
 		}
 		if (filename != strPath)
 		{
-			if (!FileTransform::Packing(filename, strPath, m_infoUnpacker, m_unpackerSubcode[pane]))
+			if (!m_infoUnpacker.Packing(filename, strPath, m_unpackerSubcodes[pane], { strPath }))
 			{
 				// Restore save point
 				m_pImgMergeWindow->SetSavePoint(pane, savepoint);
 
-				String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), strPath, m_infoUnpacker.m_PluginName);
+				String str = CMergeApp::GetPackingErrorMessage(pane, m_pImgMergeWindow->GetPaneCount(), strPath, m_infoUnpacker);
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 				if (answer == IDOK)
 					return DoFileSaveAs(pane, false);
@@ -933,7 +939,7 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
-void CImgMergeFrame::OnFileRecompareAs(UINT nId)
+void CImgMergeFrame::OnFileRecompareAs(UINT nID)
 {
 	FileLocation fileloc[3];
 	DWORD dwFlags[3];
@@ -941,19 +947,42 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nId)
 	int nBuffers = m_filePaths.GetSize();
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc :
 		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
+
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
 		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
 		dwFlags[nBuffer] = m_bRO[nBuffer] ? FFILEOPEN_READONLY : 0;
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
+	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		nID = ID_MERGE_COMPARE_IMAGE;
+	}
+
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nId, pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
 }
 
 void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_IMAGE);
+}
+
+void CImgMergeFrame::OnOpenWithUnpacker()
+{
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+	if (dlg.DoModal() == IDOK)
+	{
+		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
+		PathContext paths = m_filePaths;
+		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+		CloseNow();
+		GetMainFrame()->DoFileOpen(ID_MERGE_COMPARE_IMAGE, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
+	}
 }
 
 void  CImgMergeFrame::OnWindowChangePane() 
@@ -1039,7 +1068,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
  */
 void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 		SetWindowText(sTitle.c_str());
@@ -1066,8 +1095,10 @@ bool CImgMergeFrame::OpenImages()
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!FileTransform::Unpacking(&m_infoUnpacker, &m_unpackerSubcode[pane], strTempFileName[pane], filteredFilenames))
-			return false;
+		if (!m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, { strTempFileName[pane] }))
+		{
+			//return false;
+		}
 	}
 	if (m_filePaths.GetSize() == 2)
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
@@ -1221,11 +1252,7 @@ bool CImgMergeFrame::CloseNow()
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	SaveOptions();
-	MDIActivate();
-	MDIDestroy();
+	DestroyWindow();
 	return true;
 }
 

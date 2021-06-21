@@ -12,6 +12,10 @@ https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-ARM64.zip!Build\ARM64 ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.29/winimerge-1.0.29.0-exe.zip!Build ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
+https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-win32.zip!Build\tidy-html5 ^
+https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
+https://github.com/stedolan/jq/releases/download/jq-1.4/jq-win32.exe!Build\jq ^
+https://github.com/stedolan/jq/archive/refs/tags/jq-1.4.zip!Build\jq ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -22,7 +26,12 @@ for %%p in (%urls_destdirs%) do (
     if not exist %downloadsdir%\%%~nxu (
       powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %%u -Outfile %downloadsdir%\%%~nxu"
     )
-    7z x %downloadsdir%\%%~nxu -aoa -o%%v
+    if "%%~xu" == ".zip" (
+      7z x %downloadsdir%\%%~nxu -aoa -o%%v
+    ) else (
+      mkdir %%v > NUL
+      copy %downloadsdir%\%%~nxu %%v
+    )
   )
 )
 
@@ -34,11 +43,21 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     mkdir %%i\%%j\Filters 2> NUL
     mkdir %%i\%%j\ColorSchemes 2> NUL
     mkdir %%i\%%j\MergePlugins 2> NUL
+    mkdir %%i\%%j\Commands\jq 2> NUL
+    mkdir %%i\%%j\Commands\tidy-html5 2> NUL
+    mkdir %%i\%%j\Commands\GnuWin32 2> NUL
     xcopy /s/y %%i\Merge7z %%i\%%j\Merge7z\
     xcopy /s/y %%i\Frhed %%i\%%j\Frhed\
+    xcopy /s/y Build\GnuWin32 %%i\%%j\Commands\GnuWin32\
+    copy Build\jq\jq-win32.exe %%i\%%j\Commands\jq\jq.exe
+    copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Commands\jq\
+    copy Build\tidy-html5\bin\tidy.* %%i\%%j\Commands\tidy-html5\
+    copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md %%i\%%j\Commands\tidy-html5\
+    xcopy /s/y Plugins\Commands %%i\%%j\Commands
     xcopy /s/y Filters %%i\%%j\Filters\
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
+    xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
     if "%%i" == "Build" (
       copy Build\WinIMerge\bin\WinIMergeLib.dll %%i\%%j\WinIMerge\
       copy Plugins\dlls\*.dll %%i\%%j\MergePlugins\

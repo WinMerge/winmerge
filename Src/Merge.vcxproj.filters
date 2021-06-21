@@ -211,9 +211,6 @@
     <ClCompile Include="TempFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UniMarkdownFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -463,7 +460,7 @@
     <ClCompile Include="SaveClosingDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SelectUnpackerDlg.cpp">
+    <ClCompile Include="SelectPluginDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SharedFilterDlg.cpp">
@@ -619,6 +616,9 @@
     <ClCompile Include="Common\IniOptionsMgr.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InternalPlugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -769,9 +769,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TempFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UniMarkdownFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -1059,7 +1056,7 @@
     <ClInclude Include="SaveClosingDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SelectUnpackerDlg.h">
+    <ClInclude Include="SelectPluginDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SharedFilterDlg.h">

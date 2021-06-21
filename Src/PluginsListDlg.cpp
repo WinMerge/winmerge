@@ -21,7 +21,7 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
-	ON_BN_CLICKED(IDC_PLUGIN_FILEFILTERS_DEFAULTS, OnBnClickedFileFiltesDefaults)
+	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
 	ON_CBN_CLOSEUP(IDC_PLUGIN_FILEFILTERS, OnCloseUpPatterns)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
@@ -123,13 +123,16 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		m_list.SetItemText(ind, 1, pluginType.c_str());
 		m_list.SetItemText(ind, 2, plugin->m_description.c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
+		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
 }
 
 PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 {
-	String name = m_list.GetItemText(m_list.GetNextItem(-1, LVNI_SELECTED), 0);
-	return CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, name);
+	int ind = m_list.GetNextItem(-1, LVNI_SELECTED);
+	if (ind < 0)
+		return nullptr;
+	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
 /**
@@ -149,6 +152,7 @@ void PluginsListDlg::OnBnClickedOk()
 	}
 
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
+	CAllThreadsScripts::ReloadCustomSettings();
 	OnOK();
 }
 
@@ -177,7 +181,11 @@ void PluginsListDlg::OnBnClickedFileFiltesDefaults()
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersTextDefault);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_argumentsDefault);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomaticDefault);
+	}
 }
 
 void PluginsListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
@@ -193,6 +201,8 @@ void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
 		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		WildcardRemoveDuplicatePatterns(plugin->m_filtersText);
 		plugin->LoadFilterString();
+		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
+		plugin->m_bAutomatic = !!IsDlgButtonChecked(IDC_PLUGIN_AUTOMATIC);
 	}
 }
 
@@ -200,7 +210,11 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+	}
 }
 
 /**

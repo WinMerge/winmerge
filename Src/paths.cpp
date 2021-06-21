@@ -123,6 +123,12 @@ String FindExtension(const String& path)
 	return ::PathFindExtension(path.c_str());
 }
 
+String RemoveExtension(const String& path)
+{
+	String ext = FindExtension(path);
+	return path.substr(0, path.length() - ext.length());
+}
+
 /** 
  * @brief Strip trailing slas.
  * This function strips trailing slash from given path. Root paths are special

@@ -18,7 +18,7 @@ Frhed=Frhed(Ingyenes hexa editor)
 WinIMerge=WinIMerge(Kép Eltérés/Egyesítés)
 ArchiveSupport=Archivum támogatása
 ShellExtension32bit=32-bit WinMerge helyi menü kiterjesztés
-Patch=GnuWin32 Patch a Windowshoz
+Commands=GnuWin32 Patch a Windowshoz/HTML Tidy/jq
 
 ;Localization Components
 Languages=Nyelvek

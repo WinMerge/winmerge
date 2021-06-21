@@ -178,7 +178,7 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
 Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
-Name: Patch; Description: {cm:Patch}; Flags: disablenouninstallwarning; Types: full typical
+Name: Commands; Description: {cm:Commands}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -520,6 +520,7 @@ Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: comparetimestamp 
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
+Source: ..\..\Plugins\Plugins.xml; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
@@ -558,7 +559,17 @@ Source: ..\..\Build\WinIMerge\bin\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Fl
 Source: ..\..\Build\WinIMerge\bin\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows
-Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\GnuWin32; Flags: recursesubdirs; Components: Patch
+Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands
+; HTML Tidy
+Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
+; jq
+Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands
+; Apache Tika
+Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
+; q
+Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
 
 [Dirs]
 Name: "{app}\MergePlugins"
