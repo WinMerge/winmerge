@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-20 13:31+0900\n"
+"PO-Revision-Date: 2021-06-21 21:20+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1315,6 +1315,9 @@ msgstr "デフォルト引数:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "拡張子を無視してすべての展開プラグインを表示する。"
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "展開プラグイン適用後、ファイルを同じウインドウタイプで開く。(&O)"
 
 msgid "&Plugin Pipeline:"
 msgstr "プラグインパイプライン(&P):"

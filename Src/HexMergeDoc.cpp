@@ -833,7 +833,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		nID = ID_MERGE_COMPARE_HEX;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1;
 	}
 
 	CloseNow();
@@ -843,7 +843,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 void CHexMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false, true);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
 	if (dlg.DoModal() == IDOK)
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
@@ -851,7 +851,9 @@ void CHexMergeDoc::OnOpenWithUnpacker()
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
-		GetMainFrame()->DoFileOpen(ID_MERGE_COMPARE_HEX, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
+		GetMainFrame()->DoFileOpen(
+			GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1,
+			&paths, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 }
 

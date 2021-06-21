@@ -29,6 +29,7 @@ void CSelectPluginDlg::Initialize(bool unpacker)
 {
 	//{{AFX_DATA_INIT(CSelectPluginDlg)
 	m_bNoExtensionCheck = false;
+	m_bOpenInSameFrameType = false;
 	m_strDescription = _T("");
 	m_strExtensions = _T("");
 	m_strArguments = _T("");
@@ -69,6 +70,7 @@ void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CSelectPluginDlg)
 	DDX_Control(pDX, IDC_PLUGIN_NAME, m_cboPluginName);
 	DDX_Check(pDX, IDC_PLUGIN_ALLOW_ALL, m_bNoExtensionCheck);
+	DDX_Check(pDX, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
 	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
 	DDX_Text(pDX, IDC_PLUGIN_ARGUMENTS, m_strArguments);
@@ -93,7 +95,10 @@ END_MESSAGE_MAP()
 
 void CSelectPluginDlg::OnOK() 
 {
+	UpdateData(TRUE);
+
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	m_ctlPluginPipeline.SaveState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
 
 	CTrDialog::OnOK();
@@ -104,10 +109,13 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	CTrDialog::OnInitDialog();
 
 	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
+	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
 
 	prepareListbox();
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
+
+	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_bUnpacker);
 
 	UpdateData(FALSE);
 
@@ -255,6 +263,8 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 		m_strExtensions = pPlugin->m_filtersText;
 		m_strArguments = pPlugin->m_arguments;
 	}
+
+	m_bOpenInSameFrameType = IsDlgButtonChecked(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE);
 
 	UpdateData (FALSE);
 }

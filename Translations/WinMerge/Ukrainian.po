@@ -1650,6 +1650,9 @@ msgstr ""
 msgid "Display all unpackers, don't check the extension."
 msgstr "Показувати всі розпакувальники, не перевіряючи розширення."
 
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
 msgid "&Plugin Pipeline:"
 msgstr ""
 

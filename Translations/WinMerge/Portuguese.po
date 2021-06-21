@@ -1324,6 +1324,9 @@ msgstr ""
 msgid "Display all unpackers, don't check the extension."
 msgstr "Mostrar todos os extratores, não verificar extensões."
 
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
 msgid "&Plugin Pipeline:"
 msgstr ""
 

@@ -33,7 +33,7 @@
     <extended-properties value="ProcessType=Data Query;MenuCaption=Query CSV Data...;ArgumentsRequired" />
     <arguments value="&quot;SELECT * FROM -&quot;" />
     <unpack-file>
-      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\q\q.bat" ${*} &gt; "${DST_FILE}"</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\q\q.bat" -d , ${*} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="QueryTSV">
