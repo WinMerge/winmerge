@@ -20,13 +20,13 @@ IF "%1" == "/u" Goto Uninstall
 IF "%1" == "/U" Goto Uninstall
 
 Echo Registering ShellExtension.dll for current user only...
-%WINDIR%\System32\RegSvr32 /n /i:user "%DLLPATH%"
+%WINDIR%\System32\RegSvr32 /n /s /i:user "%DLLPATH%"
 IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" "%~dp0\WinMerge32BitPluginProxy.exe" /RegServerPerUser
 Goto End
 
 :Uninstall
 Echo UnRegistering ShellExtension.dll for current user only...
-%WINDIR%\System32\RegSvr32 /u /n /i:user "%DLLPATH%"
+%WINDIR%\System32\RegSvr32 /u /s /n /i:user "%DLLPATH%"
 IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" "%~dp0\WinMerge32BitPluginProxy.exe" /UnregServerPerUser
 Goto End
 
