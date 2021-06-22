@@ -958,7 +958,7 @@ void CImgMergeFrame::OnFileRecompareAs(UINT nID)
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		nID = ID_MERGE_COMPARE_IMAGE;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_IMAGE : -1;
 	}
 
 	CloseNow();
@@ -981,7 +981,9 @@ void CImgMergeFrame::OnOpenWithUnpacker()
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
-		GetMainFrame()->DoFileOpen(ID_MERGE_COMPARE_IMAGE, &paths, dwFlags, strDesc, _T(""), &infoUnpacker);
+		GetMainFrame()->DoFileOpen(
+			GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_IMAGE: -1,
+			&paths, dwFlags, strDesc, _T(""), &infoUnpacker);
 	}
 }
 

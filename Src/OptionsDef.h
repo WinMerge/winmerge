@@ -274,6 +274,7 @@ extern const String OPT_PLUGINS_CUSTOM_SETTINGS_LIST OP("Settings/PluginsCustomS
 extern const String OPT_PLUGINS_UNPACKER_MODE OP("Settings/UnpackerMode");
 extern const String OPT_PLUGINS_PREDIFFER_MODE OP("Settings/PredifferMode");
 extern const String OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION OP("Plugins/UnpackDontCheckExtension");
+extern const String OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE OP("Plugins/OpenInSameFrameType");
 
 // Startup options
 extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP OP("Settings/ShowFileDialog");

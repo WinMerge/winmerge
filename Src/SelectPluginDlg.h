@@ -40,6 +40,7 @@ public:
 	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
 	CComboBox	m_cboPluginName;
 	bool	m_bNoExtensionCheck;
+	bool	m_bOpenInSameFrameType;
 	String	m_strDescription;
 	String	m_strExtensions;
 	String	m_strArguments;

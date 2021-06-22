@@ -1654,6 +1654,9 @@ msgstr ""
 msgid "Display all unpackers, don't check the extension."
 msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
 
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
 msgid "&Plugin Pipeline:"
 msgstr ""
 

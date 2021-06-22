@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.13 - 2021-06-xx
+## WinMerge 2.16.13 - 2021-06-22
 
 ### General
 
@@ -16,6 +16,9 @@
     the pane or clicking the OK button in the Options dialog.
 - BugFix: The edited contents were discarded when the "Recompare As" menu item
     was selected after editing the file
+- BugFix: Incorrect comparison (#834)
+    (This bug occured when enabling both the 'Ignore blank lines' option and
+     the 'Completely unhighlight the ignored differences' option.)
 - Add Smarty syntax highlighting. (PR #821)
 - Thicken the caret in overwrite mode (osdn.net #42179)
 

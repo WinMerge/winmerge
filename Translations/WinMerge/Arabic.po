@@ -1316,6 +1316,9 @@ msgstr ""
 msgid "Display all unpackers, don't check the extension."
 msgstr "عرض كل أدوات فك الحزم، لا تتحقق من امتداد الملف."
 
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
 msgid "&Plugin Pipeline:"
 msgstr ""
 

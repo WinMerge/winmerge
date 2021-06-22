@@ -972,7 +972,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces &&
+					QtyLinesLeft == QtyLinesRight)
 					op = OP_NONE;
 				if (op != OP_NONE)
 					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);

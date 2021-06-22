@@ -1659,6 +1659,9 @@ msgstr ""
 msgid "Display all unpackers, don't check the extension."
 msgstr "顯示所有解壓縮程式，不要檢查副檔名"
 
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
 msgid "&Plugin Pipeline:"
 msgstr ""
 
