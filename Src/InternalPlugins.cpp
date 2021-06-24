@@ -573,15 +573,24 @@ struct Loader
 		parser.setContentHandler(&handler);
 		try
 		{
-			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"))));
+			for (const auto& path : {
+				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml")),
+				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"))
+				})
+			{
+				try
+				{
+					parser.parse(ucr::toUTF8(path));
+				}
+				catch (Poco::FileNotFoundException&)
+				{
+				}
+			}
 		}
 		catch (Poco::XML::SAXParseException& e)
 		{
 			errmsg = ucr::toTString(e.message());
 			return false;
-		}
-		catch (Poco::FileNotFoundException&)
-		{
 		}
 
 		for (auto& info : internalPlugins)

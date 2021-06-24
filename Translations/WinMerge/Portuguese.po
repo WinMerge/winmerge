@@ -3774,6 +3774,9 @@ msgstr ""
 msgid "Trim Spaces"
 msgstr ""
 
+msgid "Select Columns..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr ""
 

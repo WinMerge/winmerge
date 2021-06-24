@@ -20,8 +20,6 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
-#include "FileTransform.h"
-#include "Plugins.h"
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
@@ -67,7 +65,6 @@ CMergeEditView::CMergeEditView()
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
-, m_CurrentPredifferID(0)
 , m_bChangedSchemeManually(false)
 {
 	SetParser(&m_xParser);
@@ -200,10 +197,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
-	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
-	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
-	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_WM_VSCROLL ()
 	ON_WM_HSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
@@ -2893,74 +2886,6 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Create the dynamic submenu for prediffers
- *
- * @note The plugins are grouped in (suggested) and (not suggested)
- *       The IDs follow the order of GetAvailableScripts
- *       For example :
- *				suggested 0         ID_1ST + 0 
- *				suggested 1         ID_1ST + 2 
- *				suggested 2         ID_1ST + 5 
- *				not suggested 0     ID_1ST + 1 
- *				not suggested 1     ID_1ST + 3 
- *				not suggested 2     ID_1ST + 4 
- */
-HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
-{
-	// empty the menu
-	int j = GetMenuItemCount(hMenu);
-	while (j --)
-		DeleteMenu(hMenu, 0, MF_BYPOSITION);
-
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	// title
-	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
-	
-	m_CurrentPredifferID = ID_NO_PREDIFFER;
-
-	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		return hMenu;
-
-	// compute the m_CurrentPredifferID (to set the radio button)
-	PrediffingInfo prediffer;
-	pd->GetPrediffer(&prediffer);
-
-	// get the scriptlet files
-	const auto& [ suggestedPlugins, allPlugins ]= FileTransform::CreatePluginMenuInfos(
-		pd->m_strBothFilenames, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
-
-	// build the menu : first part, suggested plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
-
-	for (const auto& [caption, name, id, plugin ] : suggestedPlugins)
-		AppendMenu(hMenu, MF_STRING, id, caption.c_str());
-
-	// build the menu : second part, others plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
-
-	for (const auto& [processType, pluginAry] : allPlugins)
-	{
-		for (const auto& [caption, name, id, plugin] : pluginAry)
-		{
-			if (!name.empty())
-			{
-				AppendMenu(hMenu, MF_STRING, id, caption.c_str());
-				if (prediffer.GetPluginPipeline() == plugin->m_name)
-					m_CurrentPredifferID = id;
-			}
-		}
-	}
-
-	return hMenu;
-}
-
-/**
  * @brief Offer a context menu built with scriptlet/ActiveX functions
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -3443,78 +3368,6 @@ void CMergeEditView::OnScripts(UINT nID)
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
-}
-
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-	PrediffingInfo prediffer;
-	pd->GetPrediffer(&prediffer);
-
-	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
-	{
-		pCmdUI->SetRadio(false);
-		return;
-	}
-
-	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.GetPluginPipeline().empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-
-	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
-}
-
-void CMergeEditView::OnNoPrediffer()
-{
-	OnPrediffer(ID_NO_PREDIFFER);
-}
-/**
- * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
- */
-void CMergeEditView::OnPrediffer(UINT nID )
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	SetPredifferByMenu(nID);
-	pd->FlushAndRescan(true);
-	pd->SetTitle(nullptr);
-}
-
-/**
- * @brief Handler for all prediffer choices.
- * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
- * ID_NO_PREDIFFER, & specific prediffers.
- */
-void CMergeEditView::SetPredifferByMenu(UINT nID)
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	// update data for the radio button
-	m_CurrentPredifferID = nID;
-
-	if (nID == ID_NO_PREDIFFER)
-	{
-		// All flags are set correctly during the construction
-		PrediffingInfo infoPrediffer(false);
-		pd->SetPrediffer(&infoPrediffer);
-		return;
-	}
-
-	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
-
-	// build a PrediffingInfo structure fom the ID
-	PrediffingInfo prediffer(pluginName);
-	
-	// update the prediffer and rescan
-	pd->SetPrediffer(&prediffer);
 }
 
 /** 
