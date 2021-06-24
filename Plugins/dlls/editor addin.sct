@@ -31,6 +31,7 @@
 	<method name="Tokenize"/>
 	<method name="Trim"/>
 	<method name="SelectColumns"/>
+	<method name="SelectLines"/>
 </implements>
 
 <script language="VBS">
@@ -80,7 +81,10 @@ Function get_PluginExtendedProperties()
 	"Trim.Description=Trim spaces;" & _
 	"SelectColumns.MenuCaption=Select Columns...;" & _
 	"SelectColumns.Description=Select some columns." & vbCrLf & "Arguments: list of column ranges to select. (e.g. -3,5-10,30-);" & _
-	"SelectColumns.ArgumentsRequired;"
+	"SelectColumns.ArgumentsRequired;" & _
+	"SelectLines.MenuCaption=Select Lines...;" & _
+	"SelectLines.Description=Select some lines." & vbCrLf & "Arguments: list of line ranges to select. (e.g. -3,5-10,30-);" & _
+	"SelectLines.ArgumentsRequired;"
 End Function
 
 Function get_PluginArguments()
@@ -136,7 +140,7 @@ Function ReplaceVariables(ByVal str)
 				pos = foundpos + 2
 			ElseIf IsNumeric(ch) Then
 				newstr = newstr & Mid(str, pos, foundpos - pos)
-				If CLng(ch) <= UBound(variables) Then
+				If CLng(ch) <= SafeUBound(variables) Then
 					newstr = newstr & variables(CLng(ch))
 				End If
 				pos = foundpos + 2
@@ -239,11 +243,12 @@ Function ParseRanges(ByVal rangeText)
 		If SafeUBound(ary2) > 0 Then
 			rangeTo = Trim(ary2(1))
 		End If
-		If Not IsNumeric(rangeFrom) And Not IsNumeric(rangeTo) Then
-			ary(i) = vbEmpty
-		Else
+		If IsNumeric(rangeFrom) Or IsNumeric(rangeTo) Then
 			If Not IsNumeric(rangeFrom) Then rangeFrom = 1
-			If Not IsNumeric(rangeTo) Then rangeTo = 1000000000
+			If Not IsNumeric(rangeTo)   Then rangeTo   = 1000000000
+			If CDbl(rangeFrom) < 1 Or CDbl(rangeFrom) > 1000000000 Then rangeFrom = 1
+			If CDbl(rangeTo)   < 1 Or CDbl(rangeTo)   > 1000000000 Then rangeTo   = 1
+			If CDbl(rangeFrom) > CDbl(rangeTo) Then rangeTo = rangeFrom
 			Redim preserve aryRanges(j)
 			aryRanges(j) = Array(CLng(rangeFrom), CLng(rangeTo))
 			j = j + 1
@@ -261,7 +266,7 @@ Function SelectColumns(Text)
 	If IsFirstArgumentEmpty() Then
 		rangesStr = regRead(PluginRegKeyPath & "SelectColumns", "")
 		If IsLangJapanese() Then
-			rangesStr = InputBox("選択する列番号または列番号の範囲を1つまたはカンマ区切りで複数指定してください (例: -3,5-10,30-):", "SelectColumns", ranges)
+			rangesStr = InputBox("抽出する列番号または列番号の範囲を1つまたはカンマ区切りで複数指定してください (例: -3,5-10,30-):", "SelectColumns", ranges)
 		Else
 			rangesStr = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-):", "SelectColumns", rangesStr)
 		End If
@@ -282,7 +287,7 @@ Function SelectColumns(Text)
 	ranges = ParseRanges(rangesStr)
 	Set re = New RegExp
 	re.Global = False
-	re.IgnoreCase = True
+	re.IgnoreCase = False
 	re.Pattern = "\r\n|\n|\r"
 	Set matches = re.Execute(Text)
 	If matches.Count > 0 Then
@@ -299,6 +304,63 @@ Function SelectColumns(Text)
 		lines(i) = line
 	Next
 	SelectColumns = Join(lines, eol)
+End Function
+
+Function SelectLines(Text)
+	Dim rangesStr, ranges
+	Dim re
+	Dim matches
+	Dim lines, newlines(), eol
+	Dim i, j, k
+	If IsFirstArgumentEmpty() Then
+		rangesStr = regRead(PluginRegKeyPath & "SelectLines", "")
+		If IsLangJapanese() Then
+			rangesStr = InputBox("抽出する行番号または行番号の範囲を1つまたはカンマ区切りで複数指定してください (例: -3,5-10,30-):", "SelectLines", ranges)
+		Else
+			rangesStr = InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-):", "SelectLines", rangesStr)
+		End If
+		If rangesStr <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "SelectLines", rangesStr
+		End If
+	Else
+		rangesStr = arguments
+	End If
+	If rangesStr = "" Then
+		If IsLangJapanese() Then
+			Err.Raise 30001, , "キャンセルされました"
+		Else
+			Err.Raise 30001, , "Canceled"
+		End If
+		Exit Function
+	End If
+	ranges = ParseRanges(rangesStr)
+	Set re = New RegExp
+	re.Global = False
+	re.IgnoreCase = False
+	re.Pattern = "\r\n|\n|\r"
+	Set matches = re.Execute(Text)
+	If matches.Count > 0 Then
+		eol = matches(0).Value
+	End If
+	lines = Split(Text, eol)
+	k = 0
+	For i = 0 To SafeUBound(ranges) 
+		For j = ranges(i)(0) - 1 To ranges(i)(1) - 1
+			If j < SafeUBound(lines) Then
+				ReDim Preserve newlines(k)
+				newlines(k) = lines(j)
+				k = k + 1
+			End If
+		Next
+	Next
+	If SafeUBound(lines) >= 0 Then
+		If lines(SafeUBound(lines)) = "" Then
+			ReDim Preserve newlines(k)
+			newlines(k) = ""
+			k = k + 1
+		End If
+	End If
+	SelectLines = Join(newlines, eol)
 End Function
 
 ' port from WinMerge2011

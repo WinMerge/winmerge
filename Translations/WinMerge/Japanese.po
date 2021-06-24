@@ -3690,7 +3690,10 @@ msgid "Trim Spaces"
 msgstr "行頭行末の空白を削除"
 
 msgid "Select Columns..."
-msgstr "列範囲の抽出..."
+msgstr "列の抽出..."
+
+msgid "Select Lines..."
+msgstr "行の抽出..."
 
 msgid "Insert Date"
 msgstr "日付を挿入"

@@ -4431,6 +4431,9 @@ msgstr ""
 msgid "Select Columns..."
 msgstr ""
 
+msgid "Select Lines..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr ""
 

@@ -3745,6 +3745,9 @@ msgstr "Spaties verwijderen"
 msgid "Select Columns..."
 msgstr "Kolommen selecteren..."
 
+msgid "Select Lines..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr "Datum invoegen"
 
