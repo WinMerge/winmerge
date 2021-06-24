@@ -30,6 +30,7 @@
 	<method name="ExecFilterCommand"/>
 	<method name="Tokenize"/>
 	<method name="Trim"/>
+	<method name="SelectColumns"/>
 </implements>
 
 <script language="VBS">
@@ -76,7 +77,10 @@ Function get_PluginExtendedProperties()
 	"Tokenize.Description=Tokenize selection. " & vbCrLf & "Arguments: a regular expression for tokenizing. (e.g. [^\w]+);" & _
 	"Tokenize.ArgumentsRequired;" & _
 	"Trim.MenuCaption=Trim Spaces;" & _
-	"Trim.Description=Trim spaces;"
+	"Trim.Description=Trim spaces;" & _
+	"SelectColumns.MenuCaption=Select Columns...;" & _
+	"SelectColumns.Description=Select some columns." & vbCrLf & "Arguments: list of column ranges to select. (e.g. -3,5-10,30-);" & _
+	"SelectColumns.ArgumentsRequired;"
 End Function
 
 Function get_PluginArguments()
@@ -211,6 +215,90 @@ Function ExecFilterCommand(Text)
 
 	fso.DeleteFile path
 
+End Function
+
+Function SafeUBound(ary)
+	SafeUBound = -1
+	On Error Resume Next
+	SafeUBound = UBound(ary)
+End Function
+
+Function ParseRanges(ByVal rangeText)
+	Dim i, j
+	Dim ary, ary2, aryRanges()
+	Dim rangeFrom, rangeTo
+	ary = Split(rangeText, ",")
+	j = 0
+	For i = 0 To SafeUBound(ary)
+		ary2 = Split(ary(i), "-")
+		rangeFrom = ""
+		If SafeUBound(ary2) >= 0 Then
+			rangeFrom = Trim(ary2(0))
+		End If
+		rangeTo = rangeFrom
+		If SafeUBound(ary2) > 0 Then
+			rangeTo = Trim(ary2(1))
+		End If
+		If Not IsNumeric(rangeFrom) And Not IsNumeric(rangeTo) Then
+			ary(i) = vbEmpty
+		Else
+			If Not IsNumeric(rangeFrom) Then rangeFrom = 1
+			If Not IsNumeric(rangeTo) Then rangeTo = 1000000000
+			Redim preserve aryRanges(j)
+			aryRanges(j) = Array(CLng(rangeFrom), CLng(rangeTo))
+			j = j + 1
+		End If
+	Next
+	ParseRanges = aryRanges
+End Function
+
+Function SelectColumns(Text)
+	Dim rangesStr, ranges
+	Dim re
+	Dim matches
+	Dim lines, eol, line
+	Dim i, j
+	If IsFirstArgumentEmpty() Then
+		rangesStr = regRead(PluginRegKeyPath & "SelectColumns", "")
+		If IsLangJapanese() Then
+			rangesStr = InputBox("選択する列番号または列番号の範囲を1つまたはカンマ区切りで複数指定してください (例: -3,5-10,30-):", "SelectColumns", ranges)
+		Else
+			rangesStr = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-):", "SelectColumns", rangesStr)
+		End If
+		If rangesStr <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "SelectColumns", rangesStr
+		End If
+	Else
+		rangesStr = arguments
+	End If
+	If rangesStr = "" Then
+		If IsLangJapanese() Then
+			Err.Raise 30001, , "キャンセルされました"
+		Else
+			Err.Raise 30001, , "Canceled"
+		End If
+		Exit Function
+	End If
+	ranges = ParseRanges(rangesStr)
+	Set re = New RegExp
+	re.Global = False
+	re.IgnoreCase = True
+	re.Pattern = "\r\n|\n|\r"
+	Set matches = re.Execute(Text)
+	If matches.Count > 0 Then
+		eol = matches(0).Value
+	End If
+	lines = Split(Text, eol)
+	For i = 0 To SafeUBound(lines)
+		line = ""
+		For j = 0 To SafeUBound(ranges) 
+			If ranges(j)(0) <= Len(lines(i)) Then
+				line = line & Mid(lines(i), ranges(j)(0), ranges(j)(1) - ranges(j)(0) + 1)
+			End If
+		Next
+		lines(i) = line
+	Next
+	SelectColumns = Join(lines, eol)
 End Function
 
 ' port from WinMerge2011
