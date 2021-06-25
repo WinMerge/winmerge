@@ -3309,6 +3309,9 @@ msgstr "Šalinti tarpus"
 msgid "Select Columns..."
 msgstr ""
 
+msgid "Select Lines..."
+msgstr ""
+
 msgid "Insert Date"
 msgstr "Įterpti datą"
 
