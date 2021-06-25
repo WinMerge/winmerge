@@ -4388,7 +4388,7 @@ msgid "Al&l"
 msgstr "Minden"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Megjelenés optimalizálás"
 
 msgid "Content Extraction"
 msgstr "Tartalom kibontás"
@@ -4427,13 +4427,13 @@ msgid "Tokenize..."
 msgstr "Tokenizálás..."
 
 msgid "Trim Spaces"
-msgstr "Szóközök levágása"
+msgstr "Szóközök ritkítása"
 
 msgid "Select Columns..."
-msgstr "Oszlopok választása"
+msgstr "Oszlopok választása..."
 
 msgid "Select Lines..."
-msgstr "Sorok választása"
+msgstr "Sorok választása..."
 
 msgid "Insert Date"
 msgstr "Dátum beszúrása"
@@ -4448,7 +4448,7 @@ msgid "Ignore Columns"
 msgstr "Oszlopok figyelmen kívül hagyása"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "Megjegyzések figyelmen kívül hagyása (C-Family Nyelvek)"
+msgstr "Megjegyzések figyelmen kívül hagyása (C-típusú programnyelvek)"
 
 msgid "Ignore CSV Fields"
 msgstr "CSV mezők mellőzése"
@@ -4457,16 +4457,16 @@ msgid "Ignore TSV Fields"
 msgstr "TSV mezők mellőzése"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "JSON formázása"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "XML formázása"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz vizualizálás"
 
 msgid "Query CSV Data..."
 msgstr "CSV adatok lekérdezése..."
