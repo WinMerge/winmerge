@@ -11,6 +11,7 @@
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "unicoder.h"
 #include "Merge.h"
 
 /** @brief Location for plugins specific help to open. */
@@ -121,7 +122,7 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
 		m_list.SetItemText(ind, 1, pluginType.c_str());
-		m_list.SetItemText(ind, 2, plugin->m_description.c_str());
+		m_list.SetItemText(ind, 2, tr(ucr::toUTF8(plugin->m_description)).c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
 		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
