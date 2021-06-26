@@ -82,7 +82,6 @@ static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
 : m_pOwnerDoc(pDoc)
 , m_nThisPane(pane)
-, m_unpackerSubcode(0)
 , m_bMixedEOL(false)
 {
 }
@@ -222,7 +221,7 @@ OnNotifyLineHasBeenEdited(int nLine)
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
 int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
-		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
+		PackingInfo& infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
 		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
@@ -230,14 +229,12 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!FileTransform::Unpacking(infoUnpacker, &m_unpackerSubcode, m_strTempFileName, sToFindUnpacker))
+	if (!infoUnpacker.Unpacking(&m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker, { m_strTempFileName }))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
 
-	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = m_strTempFileName.c_str();
 
@@ -251,9 +248,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniFile *pufile = infoUnpacker->m_pufile;
-	if (pufile == nullptr)
-		pufile = new UniMemFile;
+	UniFile *pufile = new UniMemFile;
 
 	// Now we only use the UniFile interface
 	// which is something we could implement for HTTP and/or FTP files
@@ -270,7 +265,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (infoUnpacker->m_PluginName.length() > 0)
+		if (!infoUnpacker.GetPluginPipeline().empty())
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -411,7 +406,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (const String& pszFileName,
-		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= nullptr*/,
+		bool bTempFile, String & sError, PackingInfo& infoUnpacker /*= nullptr*/,
 		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)
@@ -427,8 +422,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLFSTYLE::AUTOMATIC &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		infoUnpacker!=nullptr && infoUnpacker->m_bDisallowMixedEOL)
+		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -544,9 +538,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	{
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
-		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = FileTransform::Packing(sIntermediateFilename, pszFileName, *infoUnpacker, m_unpackerSubcode);
+		bSaveSuccess = infoUnpacker.Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes, { pszFileName });
 		try
 		{
 			TFile(sIntermediateFilename).remove();

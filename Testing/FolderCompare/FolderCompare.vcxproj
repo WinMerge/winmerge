@@ -300,6 +300,7 @@
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sgml.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sh.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\siod.cpp" />
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\smarty.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\sql.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\tcl.cpp" />
     <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\tex.cpp" />
@@ -913,20 +914,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\stringdiffs.cpp" />
     <ClCompile Include="..\..\Src\SubstitutionList.cpp" />
-    <ClCompile Include="..\..\Src\UniMarkdownFile.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">pch.h</PrecompiledHeaderFile>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\varprop.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
@@ -1066,7 +1053,6 @@
     <ClInclude Include="..\..\Src\Common\UniFile.h" />
     <ClInclude Include="..\..\Src\stringdiffs.h" />
     <ClInclude Include="..\..\Src\SubstitutionList.h" />
-    <ClInclude Include="..\..\Src\UniMarkdownFile.h" />
     <ClInclude Include="..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\Src\CompareEngines\ByteComparator.h" />
     <ClInclude Include="..\..\Src\CompareEngines\ByteCompare.h" />

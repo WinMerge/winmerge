@@ -76,7 +76,7 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT
         MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
@@ -85,6 +85,11 @@ BEGIN
         MENUITEM "Cu&t",                        ID_EDIT_CUT
         MENUITEM "&Copy",                       ID_EDIT_COPY
         MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
@@ -404,7 +409,7 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -498,7 +503,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -667,12 +672,17 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        POPUP "Unpac&ker"
+        BEGIN
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
+        END
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
             MENUITEM "<PlaceHolder>",               ID_NO_PREDIFFER
         END
+        MENUITEM "Apply Pre&differ...",         ID_APPLY_PREDIFFER
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
@@ -727,7 +737,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
@@ -835,10 +845,17 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
+    POPUP "Unpacker Settings"
+    BEGIN
+        MENUITEM "<None>",                      ID_UNPACKER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_UNPACKER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_UNPACKER_SETTINGS_SELECT
+    END
     POPUP "Prediffer Settings"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
     END
 END
 
@@ -860,23 +877,25 @@ BEGIN
     BEGIN
         POPUP "W&hitespaces"
         BEGIN
-            MENUITEM "Com&pare",                    IDC_DIFF_WHITESPACE_COMPARE
-            MENUITEM "I&gnore changes",             IDC_DIFF_WHITESPACE_IGNORE
-            MENUITEM "Ig&nore all",                 IDC_DIFF_WHITESPACE_IGNOREALL
+            MENUITEM "Com&pare",                    ID_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             ID_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Ignore &case",                IDC_DIFF_IGNORECASE
-        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
-        MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
+        MENUITEM "Ignore blan&k lines",         ID_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case",                ID_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore c&omment differences" ,ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
+        MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
         BEGIN
-            MENUITEM "Full Contents",               ID_COMPMETHOD_FULL_CONTENTS
-            MENUITEM "Quick Contents",              ID_COMPMETHOD_QUICK_CONTENTS
-            MENUITEM "Binary Contents",             ID_COMPMETHOD_BINARY_CONTENTS
-            MENUITEM "Modified Date",               ID_COMPMETHOD_MODDATE
-            MENUITEM "Modified Date and Size",      ID_COMPMETHOD_DATESIZE
-            MENUITEM "Size",                        ID_COMPMETHOD_SIZE
+            MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
         END
     END
 END
@@ -1092,7 +1111,7 @@ BEGIN
 
     GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
     LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,86,11
-    EDITTEXT        IDC_UNPACKER_EDIT,240,209,140,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
 
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
@@ -1407,21 +1426,28 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,275,143,50,14
 END
 
-IDD_PLUGINS_SELECTUNPACKER DIALOGEX 0, 0, 318, 102
+IDD_PLUGINS_SELECTPLUGIN DIALOGEX 0, 0, 318, 152
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Select Unpacker"
+CAPTION "Select Plugin"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,168,84,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,222,84,50,14
-    LTEXT           "File unpacker:",IDC_STATIC,7,9,83,10
-    COMBOBOX        IDC_UNPACKER_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Display all unpackers, don't check the extension.",IDC_UNPACKER_ALLOW_ALL,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,92,64,220,20
-    LTEXT           "Extensions list:",IDC_STATIC,7,26,63,10
-    LTEXT           "Description:",IDC_STATIC,7,43,63,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,92,38,220,24,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "Plugin &Name:",IDC_STATIC,7,9,83,10
+    COMBOBOX        IDC_PLUGIN_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Extensions list:",IDC_STATIC,7,26,83,10
+    EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Description:",IDC_STATIC,7,43,83,10
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    CONTROL         "Display all unpackers, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
+    CONTROL         "&Open files in the same window type after unpacking.",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12
+    LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,118,83,10
+    CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,116,220,95
+    PUSHBUTTON      "&Add pipe",IDC_PLUGIN_ADDPIPE,136,134,70,14
+    DEFPUSHBUTTON   "OK",IDOK,210,134,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,264,134,50,14
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 256, 60
@@ -1899,20 +1925,23 @@ BEGIN
     PUSHBUTTON      "No",IDNO,228,95,50,14
 END
 
-IDD_PLUGINS_LIST DIALOGEX 0, 0, 470, 231
+IDD_PLUGINS_LIST DIALOGEX 0, 0, 470, 257
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Plugins"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Enable plugins",IDC_PLUGINS_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,266,10
     CONTROL         "",IDC_PLUGINSLIST_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,22,456,155
-    LTEXT           "File filters:",IDC_STATIC,7,190,70,10
-    COMBOBOX        IDC_PLUGIN_FILEFILTERS,80,187,305,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Defaults",IDC_PLUGIN_FILEFILTERS_DEFAULTS,393,187,70,14
-    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,210,95,14
-    DEFPUSHBUTTON   "OK",IDOK,293,210,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,354,210,50,14
-    PUSHBUTTON      "Help",ID_HELP,413,210,50,14
+    LTEXT           "File filters:",IDC_STATIC,7,183,70,10
+    COMBOBOX        IDC_PLUGIN_FILEFILTERS,80,183,305,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Plugin arguments:",IDC_STATIC,7,200,70,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,80,200,305,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
+    PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
+    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,236,95,14
+    DEFPUSHBUTTON   "OK",IDOK,293,236,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,354,236,50,14
+    PUSHBUTTON      "Help",ID_HELP,413,236,50,14
 END
 
 IDD_PROPPAGE_SHELL DIALOGEX 0, 0, 255, 242
@@ -3145,6 +3174,8 @@ BEGIN
     IDS_COLHDR_NIDIFFS      "Ignored Diff"
     IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
+    IDS_COLHDR_UNPACKER     "Unpacker"
+    IDS_COLHDR_PREDIFFER    "Prediffer"
 END
 
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
@@ -3246,6 +3277,8 @@ BEGIN
     IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
     IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Shows an asterisk (*) if the file is binary."
+    IDS_COLDESC_UNPACKER    "Unpacker plugin name or pipeline."
+    IDS_COLDESC_PREDIFFER   "Prediffer plugin name or pipeline."
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -3537,6 +3570,7 @@ BEGIN
     IDS_COLORSCHEME_SGML    "SGML"
     IDS_COLORSCHEME_SH      "Shell"
     IDS_COLORSCHEME_SIOD    "SIOD"
+    IDS_COLORSCHEME_SMARTY  "Smarty"
     IDS_COLORSCHEME_SQL     "SQL"
     IDS_COLORSCHEME_TCL     "TCL"
 END
@@ -3650,6 +3684,48 @@ STRINGTABLE
 BEGIN
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance to run and wait for the instance to terminate"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_ALL           "Al&l"
+    IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
+    IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
+    IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
+    IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
+    IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
+    IDS_PLUGIN_PROCESS_TYPE6 "&Others"
+    IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
+    IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
+    IDS_PLUGIN_MENU_CAPTION3  "Remove Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION4  "Count Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION5  "Sort Lines Ascending"
+    IDS_PLUGIN_MENU_CAPTION6  "Sort Lines Descending"
+    IDS_PLUGIN_MENU_CAPTION7  "Reverse Columns"
+    IDS_PLUGIN_MENU_CAPTION8  "Reverse Lines"
+    IDS_PLUGIN_MENU_CAPTION9  "Replace..."
+    IDS_PLUGIN_MENU_CAPTION10 "Apply Filter Command..."
+    IDS_PLUGIN_MENU_CAPTION11 "Tokenize..."
+    IDS_PLUGIN_MENU_CAPTION12 "Trim Spaces"
+    IDS_PLUGIN_MENU_CAPTION13 "Select Columns..."
+    IDS_PLUGIN_MENU_CAPTION14 "Select Lines..."
+    IDS_PLUGIN_MENU_CAPTION15 "Insert Date"
+    IDS_PLUGIN_MENU_CAPTION16 "Insert Time"
+    IDS_PLUGIN_MENU_CAPTION17 "Apply Patch..."
+    IDS_PLUGIN_MENU_CAPTION18 "Ignore Columns"
+    IDS_PLUGIN_MENU_CAPTION19 "Ignore Comments (C-Family Languages)"
+    IDS_PLUGIN_MENU_CAPTION20 "Ignore CSV Fields"
+    IDS_PLUGIN_MENU_CAPTION21 "Ignore TSV Fields"
+    IDS_PLUGIN_MENU_CAPTION22 "Apply Prediff Substitution Filters"
+    IDS_PLUGIN_MENU_CAPTION23 "Prettify JSON"
+    IDS_PLUGIN_MENU_CAPTION24 "Prettify XML"
+    IDS_PLUGIN_MENU_CAPTION25 "Visualize Graphviz"
+    IDS_PLUGIN_MENU_CAPTION26 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION27 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION28 "Query JSON Data..."
+    IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
+    IDS_PLUGIN_TITLE1        "Specify plugin arguments"
 END
 
 #endif    // English (United States) resources

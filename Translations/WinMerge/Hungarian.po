@@ -58,8 +58,9 @@ msgstr "A kijelölt sor(ok) másolása balról"
 msgid "Copy Selected Line(s) from Right"
 msgstr "A kijelölt sor(ok) másolása jobbról"
 
-msgid "&Select Line Difference\tF4"
-msgstr "Az eltérés kijelölése\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Eltérés kijelölése\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
@@ -83,6 +84,14 @@ msgstr "&Másolás"
 #, c-format
 msgid "&Paste"
 msgstr "&Beillesztés"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Szkriptek"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Üres >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Ugrás...\tCtrl+G"
@@ -263,10 +272,6 @@ msgstr "Legutóbbi projektek"
 msgid "Recent F&iles Or Folders"
 msgstr "Legutóbbi fájlok és mappák"
 
-#, c-format
-msgid "< Empty >"
-msgstr "< Üres >"
-
 msgid "E&xit\tCtrl+Q"
 msgstr "&Kilépés\tCtrl+Q"
 
@@ -324,7 +329,7 @@ msgstr "&Bővítmények"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Bővitmények beállításai..."
+msgstr "Bővitmény beállítások..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -641,10 +646,6 @@ msgid "Reco&mpare As"
 msgstr "Újra összehasonlítás mint"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Visszavonás\tCtrl+Z"
 
@@ -663,10 +664,6 @@ msgstr "&Másolás\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Eltérés kijelölése\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -883,13 +880,15 @@ msgstr "Hozzáadás és szinkronizációs pont\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Szinkronizációs pontok törlése"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Elővizsgáló"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Szkriptek"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1082,17 +1081,24 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Nincs>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatikus>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Elővizsgáló beállítások"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Nincs elővizsgálat"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automatikus elővizsgálat"
 
 msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
@@ -1122,6 +1128,10 @@ msgid "Ig&nore all"
 msgstr "Összes mellőzése"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Üres sorok mellőzése"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "&Kis-nagybetű különbségek mellőzése"
 
@@ -1132,6 +1142,9 @@ msgstr "Sorvég különbségek mellőzése"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Kódtábla különbségek mellőzése"
+
+msgid "Ignore c&omment differences"
+msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1239,10 +1252,6 @@ msgstr "Tallózás..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Mappa: Szűrő"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1622,16 +1631,11 @@ msgstr "Mozgatás fel"
 msgid "Move &Down"
 msgstr "Mozgatás le"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Kicsomagoló kiválasztása"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Fájl kicsomagoló:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1640,6 +1644,21 @@ msgstr "Kiterjesztések listája:"
 #, c-format
 msgid "Description:"
 msgstr "Leírás:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1708,13 +1727,6 @@ msgstr "&Változtatás mellőzése"
 #, c-format
 msgid "I&gnore all"
 msgstr "Összes mellőzése"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Üres sorok mellőzése"
-
-msgid "Ignore c&omment differences"
-msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1871,7 +1883,7 @@ msgid ""
 "Need to restart session."
 msgstr ""
 "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
-"A program újraindítás szükséges."
+"A program újraindítása szükséges."
 
 msgid ""
 "Detect codepage for text files with mlang.dll\n"
@@ -2244,6 +2256,12 @@ msgstr "Bővítmény&ek bekapcsolása"
 
 msgid "File filters:"
 msgstr "Fájlszűrők:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"
@@ -3353,6 +3371,14 @@ msgid "Binary"
 msgstr "Bináris"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Kitömörítő"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Elővizsgáló"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Nem lehet összehasonlítani a fájlokat"
 
@@ -3594,6 +3620,12 @@ msgstr "Különbségek száma a fájlban. Ez a szám nem tartalmazza a mellőzö
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "(*) látható, ha a fájl bináris."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3910,14 +3942,6 @@ msgid "Type"
 msgstr "Típus"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Kitömörítő"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Elővizsgáló"
-
-#, c-format
 msgid "Editor script"
 msgstr "Szkript szerkesztő"
 
@@ -4126,14 +4150,6 @@ msgstr "Beállítások"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "A WSH nem található - Az .sct szkriptek le lesznek tiltva"
-
-#, c-format
-msgid "<None>"
-msgstr "<Nincs>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatikus>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4366,4 +4382,117 @@ msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Csak egy példány futhat és megvárja meg, amíg a példány leáll"
+msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
+
+msgid "Al&l"
+msgstr "Minden"
+
+msgid "Prettification"
+msgstr "Megjelenés optimalizálás"
+
+msgid "Content Extraction"
+msgstr "Tartalom kibontás"
+
+msgid "Visualization"
+msgstr "Megjelenítés"
+
+msgid "Data Query"
+msgstr "Adatlekérdezés"
+
+msgid "&Others"
+msgstr "Egyéb"
+
+msgid "Make Uppercase"
+msgstr "Nagybetűsítés"
+
+msgid "Make Lowercase"
+msgstr "Kisbetűsítés"
+
+msgid "Remove Duplicate Lines"
+msgstr "Duplikált sorok eltávolítása"
+
+msgid "Count Duplicate Lines"
+msgstr "Duplikált sorok megszámlálása"
+
+msgid "Sort Lines Ascending"
+msgstr "Sorok növekvő rendezése"
+
+msgid "Sort Lines Descending"
+msgstr "Sorok csökkenőő rendezése""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr "Szűrőparancs alkalmazása..."
+
+msgid "Tokenize..."
+msgstr "Tokenizálás..."
+
+msgid "Trim Spaces"
+msgstr "Szóközök ritkítása"
+
+msgid "Select Columns..."
+msgstr "Oszlopok választása..."
+
+msgid "Select Lines..."
+msgstr "Sorok választása..."
+
+msgid "Insert Date"
+msgstr "Dátum beszúrása"
+
+msgid "Insert Time"
+msgstr "Időpont beszúrása"
+
+msgid "Apply Patch..."
+msgstr "Patch alkalmazása..."
+
+msgid "Ignore Columns"
+msgstr "Oszlopok figyelmen kívül hagyása"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Megjegyzések figyelmen kívül hagyása (C-típusú programnyelvek)"
+
+msgid "Ignore CSV Fields"
+msgstr "CSV mezők mellőzése"
+
+msgid "Ignore TSV Fields"
+msgstr "TSV mezők mellőzése"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
+
+msgid "Prettify JSON"
+msgstr "JSON formázása"
+
+msgid "Prettify XML"
+msgstr "XML formázása"
+
+msgid "Visualize Graphviz"
+msgstr "Graphviz vizualizálás"
+
+msgid "Query CSV Data..."
+msgstr "CSV adatok lekérdezése..."
+
+msgid "Query TSV Data..."
+msgstr "TSV adatok lekérdezése..."
+
+msgid "Query JSON Data..."
+msgstr "JSON adatok lekérdezése..."
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Hiányzó bővítménynév a beépülő modulban: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Hiányzó idézőjel a beépülő modulban: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Plugin argumentumok megadása"

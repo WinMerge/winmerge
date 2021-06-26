@@ -40,6 +40,8 @@ const char Subfolders_element_name[] = "subfolders";
 const char Left_ro_element_name[] = "left-readonly";
 const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
+const char Unpacker_element_name[] = "unpacker";
+const char Prediffer_element_name[] = "prediffer";
 
 namespace
 {
@@ -121,6 +123,16 @@ public:
 		{
 			currentItem.m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
 		}
+		else if (nodename == Unpacker_element_name)
+		{
+			currentItem.m_unpacker += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasUnpacker = true;
+		}
+		else if (nodename == Prediffer_element_name)
+		{
+			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasPrediffer = true;
+		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
 	void processingInstruction(const XMLString& target, const XMLString& data) {}
@@ -145,6 +157,8 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasRight(false)
 , m_bHasFilter(false)
 , m_bHasSubfolders(false)
+, m_bHasUnpacker(false)
+, m_bHasPrediffer(false)
 , m_subfolders(-1)
 , m_bLeftReadOnly(false)
 , m_bMiddleReadOnly(false)
@@ -283,6 +297,10 @@ bool ProjectFile::Save(const String& path) const
 				if (!item.m_paths.GetMiddle().empty())
 					writeElement(writer, Middle_ro_element_name, item.m_bMiddleReadOnly ? "1" : "0");
 				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
+				if (!item.m_unpacker.empty())
+					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
+				if (!item.m_prediffer.empty())
+					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
 			}
 			writer.endElement("", "", Paths_element_name);
 		}

@@ -8,6 +8,7 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 #include <tchar.h>
 
 #ifdef _UNICODE
@@ -17,6 +18,7 @@
 #endif // _UNICODE
 
 typedef std_tchar(string) String;
+typedef std_tchar(string_view) StringView;
 
 namespace strutils
 {
@@ -69,7 +71,7 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	result.reserve(sum);
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += *it;
 	}
 	return result;
@@ -81,11 +83,13 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	String result;
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += func(*it);
 	}
 	return result;
 }
+
+std::vector<StringView> split(StringView str, TCHAR delim);
 
 inline String to_str(int val) { return strutils::format(_T("%d"), val); }
 inline String to_str(unsigned val) { return strutils::format(_T("%u"), val); }

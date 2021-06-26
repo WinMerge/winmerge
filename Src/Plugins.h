@@ -14,6 +14,7 @@
 #include <Poco/Foundation.h>
 #include <string>
 #include <vector>
+#include <optional>
 #include <windows.h>
 #include <oleauto.h>
 #include <memory>
@@ -36,7 +37,12 @@ class PluginInfo
 {
 public:
 	PluginInfo()
-		: m_lpDispatch(nullptr), m_filters(NULL), m_bAutomatic(false), m_nFreeFunctions(0), m_disabled(false)
+		: m_lpDispatch(nullptr)
+		, m_filters(NULL)
+		, m_bAutomatic(false)
+		, m_nFreeFunctions(0)
+		, m_disabled(false)
+		, m_hasArgumentsProperty(false)
 	{	
 	}
 
@@ -58,17 +64,26 @@ public:
 	 */
 	bool TestAgainstRegList(const String& szTest) const;
 
+	std::optional<StringView> GetExtendedPropertyValue(const String& name) const;
+
 public:
 	String      m_filepath;
 	LPDISPATCH  m_lpDispatch;
 	String      m_name; // usually filename, except for special cases (like auto or no)
 	String      m_ext;
+	String      m_extendedProperties;
+	String      m_arguments;
+	String      m_argumentsDefault;
 	String      m_filtersText;
 	String      m_filtersTextDefault;
 	String      m_description;
 	String      m_event;
 	bool        m_bAutomatic;
+	bool        m_bAutomaticDefault;
 	bool        m_disabled;
+	bool        m_hasArgumentsProperty;
+	bool        m_hasVariablesProperty;
+	bool        m_argumentsRequired;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -138,9 +153,14 @@ public:
 	static CScriptsOfThread * GetActiveSet();
 	/// by convention, the scripts for main thread must be created before all others
 	static bool bInMainThread(CScriptsOfThread * scripts);
+	using InternalPluginLoaderFuncPtr = bool (*)(std::map<String, PluginArrayPtr>& aPluginsByEvent, String& errmsg);
+	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
+	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
+	static void ReloadCustomSettings();
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static std::vector<CScriptsOfThread *> m_aAvailableThreads;
+	static inline InternalPluginLoaderFuncPtr m_funcInternalPluginsLoader = nullptr;
 };
 
 /**
@@ -174,11 +194,6 @@ bool IsWindowsScriptThere();
 int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<String>& namesArray, std::vector<int>& IdArray);
 
 /**
- * @brief Get the number of methods in the script
- * @note For free function scripts (EDITOR_SCRIPT)
- */
-int CountMethodsInScript(LPDISPATCH piDispatch);
-
 /**
  * @brief Get the ID of the a free function
  * @param methodOrdinal : index of the free function (0,1,2...)
@@ -244,4 +259,13 @@ bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & n
  */
 bool InvokeShowSettingsDialog(LPDISPATCH piScript);
 
+/**
+ * @brief Set value to the plugin "PluginArguments" property 
+ */
+bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
+
+/**
+ * @brief Set value to the plugin "PluginVariables" property 
+ */
+bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
 }

@@ -747,7 +747,7 @@ int COptionsMgr::ImportOptions(const String& filename)
 String COptionsMgr::EscapeValue(const String& text)
 {
 	String text2;
-	for (int i = 0; i < text.length(); ++i)
+	for (size_t i = 0; i < text.length(); ++i)
 	{
 		TCHAR ch = text[i];
 		if (ch == '\0' || ch == '\x1b' || ch == '\r' || ch == '\n')
@@ -766,7 +766,7 @@ String COptionsMgr::UnescapeValue(const String& text)
 	if (text.find('\x1b') == String::npos)
 		return text;
 	String text2;
-	for (int i = 0; i < text.length(); ++i)
+	for (size_t i = 0; i < text.length(); ++i)
 	{
 		if (text[i] == '\x1b' && i < text.length() - 1)
 		{

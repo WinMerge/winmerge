@@ -26,6 +26,7 @@
 #include "DirDoc.h"
 #include "files.h"
 #include "FileTransform.h"
+#include "Plugins.h"
 #include "unicoder.h"
 #include "UniFile.h"
 #include "OptionsDef.h"
@@ -42,7 +43,7 @@
 #include "SubstitutionFiltersList.h"
 #include "TempFile.h"
 #include "codepage_detect.h"
-#include "SelectUnpackerDlg.h"
+#include "SelectPluginDlg.h"
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
@@ -80,14 +81,18 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
-	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
+	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
@@ -96,9 +101,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
 	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
-	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -115,13 +119,13 @@ CMergeDoc::CMergeDoc()
 , m_CurWordDiff{ -1, static_cast<size_t>(-1), -1 }
 , m_pDirDoc(nullptr)
 , m_bMixedEol(false)
-, m_pInfoUnpacker(new PackingInfo)
 , m_pEncodingErrorBar(nullptr)
 , m_bHasSyncPoints(false)
 , m_bAutoMerged(false)
 , m_nGroups(0)
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
+, m_CurrentPredifferID(0)
 {
 	DIFFOPTIONS options = {0};
 
@@ -217,7 +221,7 @@ void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
 {
 	if (infoNewHandler != nullptr)
 	{
-		*m_pInfoUnpacker = *infoNewHandler;
+		m_infoUnpacker = *infoNewHandler;
 	}
 }
 
@@ -225,9 +229,17 @@ void CMergeDoc::SetPrediffer(const PrediffingInfo * infoPrediffer)
 {
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 }
+
 void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
 {
 	m_diffWrapper.GetPrediffer(infoPrediffer);
+}
+
+const PrediffingInfo* CMergeDoc::GetPrediffer() const
+{
+	static PrediffingInfo infoPrediffer;
+	m_diffWrapper.GetPrediffer(&infoPrediffer);
+	return &infoPrediffer;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -255,7 +267,7 @@ void CMergeDoc::Serialize(CArchive& ar)
 static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine, int nLines)
 {
 	// and we don't repack the file
-	PackingInfo * tempPacker = nullptr;
+	PackingInfo tempPacker(false);
 
 	// write buffer out to temporary file
 	String sError;
@@ -511,7 +523,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.m_PluginName.empty())
+		if (!infoPrediffer.GetPluginPipeline().empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -1531,7 +1543,7 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
  * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
 bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
-	int nBuffer, PackingInfo * pInfoTempUnpacker)
+	int nBuffer, PackingInfo& infoTempUnpacker)
 {
 	String s;
 	String str;
@@ -1546,9 +1558,9 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, pInfoTempUnpacker->m_PluginName);
+		str = CMergeApp::GetPackingErrorMessage(nBuffer, m_nBuffers, strPath, infoTempUnpacker);
 		// replace the unpacker with a "do nothing" unpacker
-		pInfoTempUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
+		infoTempUnpacker.Initialize(false);
 	}
 	else
 	{
@@ -1575,7 +1587,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
 			nSaveResult = pBuffer->SaveToFile(strSavePath, false, sError,
-				pInfoTempUnpacker);
+				infoTempUnpacker);
 
 			if (nSaveResult == SAVE_DONE)
 			{
@@ -1644,9 +1656,9 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	}
 
 	// use a temp packer
-	// first copy the m_pInfoUnpacker
+	// first copy the m_infoUnpacker
 	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+	PackingInfo infoTempUnpacker = m_infoUnpacker;
 
 	bSaveSuccess = false;
 	
@@ -1693,13 +1705,13 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	String sError;
 	if (nSaveErrorCode == SAVE_DONE)
 		// We have a filename, just try to save
-		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, false, sError, &infoTempUnpacker);
+		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, false, sError, infoTempUnpacker);
 
 	if (nSaveErrorCode != SAVE_DONE)
 	{
 		// Saving failed, user may save to another location if wants to
 		do
-			result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, &infoTempUnpacker);
+			result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, infoTempUnpacker);
 		while (!result);
 	}
 
@@ -1758,9 +1770,9 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	String strSavePath(szPath);
 
 	// use a temp packer
-	// first copy the m_pInfoUnpacker
+	// first copy the m_infoUnpacker
 	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+	PackingInfo infoTempUnpacker = m_infoUnpacker;
 
 	bSaveSuccess = false;
 	// false as long as the user is not satisfied
@@ -1777,7 +1789,7 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	// Loop until user succeeds saving or cancels
 	String sError;
 	do
-		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, &infoTempUnpacker);
+		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, infoTempUnpacker);
 	while (!result);
 
 	// Saving succeeded with given/selected filename
@@ -2103,22 +2115,6 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		strutils::replace(s, _T("%2"), sCnt);
 	}
 	pCmdUI->SetText(s.c_str());
-}
-
-/**
- * @brief Update plugin name
- * @param [in] pCmdUI UI component to update.
- */
-void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
-{
-	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginName.empty())
-		pluginNames += m_pInfoUnpacker->m_PluginName + _T("&");
-	PrediffingInfo prediffer;
-	GetPrediffer(&prediffer);
-	if (!prediffer.m_PluginName.empty())
-		pluginNames += prediffer.m_PluginName + _T("&");
-	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
 /**
@@ -2646,7 +2642,7 @@ bool CMergeDoc::CloseNow()
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 
-	GetParentFrame()->CloseNow();
+	GetParentFrame()->DestroyWindow();
 	return true;
 }
 
@@ -2669,7 +2665,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 
 	CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC;
 	CString sOpenError;
-	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker.get(),
+	retVal = pBuf->LoadFromFile(sFileName, m_infoUnpacker,
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
@@ -2925,7 +2921,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	{ 
 		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
 		{
-			m_pInfoUnpacker->Initialize(PLUGIN_MODE::PLUGIN_MANUAL);
+			m_infoUnpacker.Initialize(false);
 		}
 	}
 
@@ -3030,10 +3026,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (bFiltersEnabled && m_pInfoUnpacker->m_textType.length())
-				sext[nBuffer] = m_pInfoUnpacker->m_textType;
-			else
-				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
+			sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {
 				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
 				if (bTyped[nBuffer])
@@ -3279,7 +3272,9 @@ bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc);
+	PrediffingInfo infoPrediffer;
+	GetPrediffer(&infoPrediffer);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
@@ -3365,41 +3360,6 @@ void CMergeDoc::SwapFiles(int nFromIndex, int nToIndex)
 }
 
 /**
- * @brief Display unpacker dialog to user & handle user's choices
- */
-bool CMergeDoc::OpenWithUnpackerDialog()
-{
-	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0], nullptr);
-	// create now a new infoUnpacker to initialize the manual/automatic flag
-	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_AUTO);
-	dlg.SetInitialInfoHandler(&infoUnpacker);
-
-	if (dlg.DoModal() == IDOK)
-	{
-		infoUnpacker = dlg.GetInfoHandler();
-		Merge7zFormatMergePluginScope scope(&infoUnpacker);
-		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
-		{
-			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
-			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, _T(""), &infoUnpacker);
-			CloseNow();
-		}
-		else
-		{
-			SetUnpacker(&infoUnpacker);
-			OnFileReload();
-		}
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-/**
  * @brief Reloads the opened files
  */
 void CMergeDoc::OnFileReload()
@@ -3429,9 +3389,174 @@ void CMergeDoc::OnFileEncoding()
 	DoFileEncodingDialog();
 }
 
-void CMergeDoc::OnCtxtOpenWithUnpacker() 
+void CMergeDoc::OnOpenWithUnpacker()
 {
-	OpenWithUnpackerDialog();
+	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+
+	PackingInfo infoUnpacker(dlg.GetPluginPipeline());
+	PathContext paths = m_filePaths;
+	DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+	String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
+	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+
+	if (GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker))
+		GetParentFrame()->DestroyWindow();
+}
+
+void CMergeDoc::OnApplyPrediffer() 
+{
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	// let the user choose a handler
+	CSelectPluginDlg dlg(prediffer.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false, false);
+	if (dlg.DoModal() != IDOK)
+		return;
+	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
+	SetPrediffer(&prediffer);
+	m_CurrentPredifferID = -1;
+	FlushAndRescan(true);
+	SetTitle(nullptr);
+}
+
+/**
+ * @brief Create the dynamic submenu for prediffers
+ *
+ * @note The plugins are grouped in (suggested) and (not suggested)
+ *       The IDs follow the order of GetAvailableScripts
+ *       For example :
+ *				suggested 0         ID_1ST + 0 
+ *				suggested 1         ID_1ST + 2 
+ *				suggested 2         ID_1ST + 5 
+ *				not suggested 0     ID_1ST + 1 
+ *				not suggested 1     ID_1ST + 3 
+ *				not suggested 2     ID_1ST + 4 
+ */
+HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
+{
+	// empty the menu
+	int j = GetMenuItemCount(hMenu);
+	while (j --)
+		DeleteMenu(hMenu, 0, MF_BYPOSITION);
+
+	// title
+	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
+	
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return hMenu;
+
+	m_CurrentPredifferID = -1;
+
+	// compute the m_CurrentPredifferID (to set the radio button)
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	if (prediffer.GetPluginPipeline().empty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+
+	// get the scriptlet files
+	const auto& [ suggestedPlugins, allPlugins ]= FileTransform::CreatePluginMenuInfos(
+		m_strBothFilenames, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+
+	// build the menu : first part, suggested plugins
+	// title
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
+	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+
+	for (const auto& [caption, name, id, plugin ] : suggestedPlugins)
+		AppendMenu(hMenu, MF_STRING, id, caption.c_str());
+
+	// build the menu : second part, others plugins
+	// title
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
+	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+
+	String lastPluginName;
+	String errorMessage;
+	auto result = prediffer.ParsePluginPipeline(errorMessage);
+	if (result.size() > 0)
+		lastPluginName = result.back().name;
+	
+	for (const auto& [processType, pluginAry] : allPlugins)
+	{
+		for (const auto& [caption, name, id, plugin] : pluginAry)
+		{
+			if (!name.empty())
+			{
+				AppendMenu(hMenu, MF_STRING, id, caption.c_str());
+				if (lastPluginName == plugin->m_name)
+					m_CurrentPredifferID = id;
+			}
+		}
+	}
+
+	return hMenu;
+}
+
+/**
+ * @brief Called when an editor script item is updated
+ */
+void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+
+	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
+	{
+		pCmdUI->SetRadio(false);
+		return;
+	}
+
+	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
+	if (prediffer.GetPluginPipeline().empty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+
+	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
+}
+
+/**
+ * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ */
+void CMergeDoc::OnPrediffer(UINT nID )
+{
+	SetPredifferByMenu(nID);
+	FlushAndRescan(true);
+	SetTitle(nullptr);
+}
+
+/**
+ * @brief Handler for all prediffer choices.
+ * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
+ * ID_NO_PREDIFFER, & specific prediffers.
+ */
+void CMergeDoc::SetPredifferByMenu(UINT nID)
+{
+	// update data for the radio button
+	m_CurrentPredifferID = nID;
+
+	if (nID == ID_NO_PREDIFFER)
+	{
+		// All flags are set correctly during the construction
+		PrediffingInfo infoPrediffer(false);
+		SetPrediffer(&infoPrediffer);
+		return;
+	}
+
+	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+
+	// build a PrediffingInfo structure fom the ID
+	PrediffingInfo prediffer(pluginName);
+	
+	// update the prediffer and rescan
+	SetPrediffer(&prediffer);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()
@@ -3447,7 +3572,7 @@ void CMergeDoc::OnBnClickedPlugin()
 	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
 		return;
 	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	OpenWithUnpackerDialog();
+	OnOpenWithUnpacker();
 }
 
 void CMergeDoc::OnBnClickedHexView()
@@ -3465,41 +3590,23 @@ void CMergeDoc::OnOK()
 void CMergeDoc::OnFileRecompareAsText()
 {
 	m_bEnableTableEditing = false;
-	PackingInfo infoUnpacker;
-	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }
 
 void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_MODE::PLUGIN_BUILTIN_XML ||
-		m_ptBuf[0]->GetTableEditing());
+	pCmdUI->Enable(m_ptBuf[0]->GetTableEditing());
 }
 
 void CMergeDoc::OnFileRecompareAsTable()
 {
 	m_bEnableTableEditing = true;
-	PackingInfo infoUnpacker;
-	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }
 
 void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
-}
-
-void CMergeDoc::OnFileRecompareAsXML()
-{
-	m_bEnableTableEditing = false;
-	PackingInfo infoUnpacker(PLUGIN_MODE::PLUGIN_BUILTIN_XML);
-	SetUnpacker(&infoUnpacker);
-	OnFileReload();
-}
-
-void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
-{
-	pCmdUI->Enable(m_pInfoUnpacker->m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_BUILTIN_XML);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)
@@ -3509,16 +3616,27 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	
 	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
+	String strDesc[3];
+	int nBuffers = m_nBuffers;
+	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
+
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+		strDesc[pane] = m_strDesc[pane];
 	}
-	if (m_pEncodingErrorBar!=nullptr && m_pEncodingErrorBar->IsWindowVisible())
-		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	GetMainFrame()->ShowMergeDoc(nID, m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
-	GetParentFrame()->ShowWindow(SW_RESTORE);
-	GetParentFrame()->DestroyWindow();
+	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+	{
+		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+	}
+
+	if (GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker))
+		GetParentFrame()->DestroyWindow();
 }
 
 // Return file extension either from file name 

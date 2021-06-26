@@ -85,9 +85,6 @@ private:
 	unsigned fTimerWaitingForIdle;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
-	/// active prediffer ID : helper to check the radio button
-	int m_CurrentPredifferID;
-
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
@@ -143,8 +140,6 @@ public:
 	virtual int GetEmptySubLines( int nLineIndex ) override;
 	virtual void InvalidateSubLineIndexCache( int nLineIndex ) override;
 	void RepaintLocationPane();
-	bool SetPredifferByName(const CString & prediffer);
-	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
 	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo) override;
@@ -156,10 +151,6 @@ public:
 	CMergeEditView *GetGroupView(int nPane) const;
 
 	virtual void OnDisplayDiff(int nDiff=0);
-
-	// to customize the mergeview menu
-	static HMENU createScriptsSubmenu(HMENU hMenu);
-	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 	bool IsInitialized() const;
 	bool IsCursorInDiff() const;
@@ -193,7 +184,6 @@ protected:
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz) override;
 	virtual void OnUpdateCaret() override;
 	bool MergeModeKeyDown(MSG* pMsg);
-	int FindPrediffer(LPCTSTR prediffer) const;
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 	void OnNext3wayDiff(int type);
 	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);
@@ -318,10 +308,6 @@ protected:
 	afx_msg void OnShellMenu();
 	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
-	afx_msg void OnUpdateNoPrediffer(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
-	afx_msg void OnNoPrediffer();
-	afx_msg void OnPrediffer(UINT nID );
 	afx_msg void OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnEditCopyLineNumbers();
@@ -343,7 +329,6 @@ protected:
 	afx_msg void OnViewSwapPanes12();
 	afx_msg void OnViewSwapPanes23();
 	afx_msg void OnViewSwapPanes13();
-	afx_msg void OnUpdateNoEditScripts(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();
 	afx_msg void OnViewMargin();

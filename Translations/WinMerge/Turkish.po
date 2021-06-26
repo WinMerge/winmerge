@@ -289,6 +289,7 @@ msgstr "Eklentile&ri yeniden yükle"
 msgid "&Window"
 msgstr "&Pencere"
 
+#| msgid "&Paste\tCtrl+V"
 msgid "Cl&ose\tCtrl+W"
 msgstr "Ka&pat\tCtrl+W"
 
@@ -3813,72 +3814,3 @@ msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
 
 msgid "Specify plugin arguments"
 msgstr "Eklenti değişkenlerini belirtin"
-
-#~ msgid "&Select Line Difference\tF4"
-#~ msgstr "Satır &farkını seç\tF4"
-
-#~ msgid "&XML"
-#~ msgstr "&XML"
-
-#~ msgid "&No prediffer"
-#~ msgstr "Ö&n farklılaştırıcı yok"
-
-#~ msgid "Auto prediffer"
-#~ msgstr "Otomatik ön farklılaştırıcı"
-
-#~ msgid "Select Unpacker"
-#~ msgstr "Ayıklayıcı seçin"
-
-#~ msgid "File unpacker:"
-#~ msgstr "Dosya ayıklayıcı:"
-
-#~ msgid "&Goto..."
-#~ msgstr "&Git..."
-
-#~ msgid "&New\tCtrl+N"
-#~ msgstr "Ye&ni\tCtrl+N"
-
-#~ msgid "E&xit"
-#~ msgstr "Çı&kış"
-
-#~ msgid "Cl&ose"
-#~ msgstr "&Kapat"
-
-#~ msgid "File En&coding..."
-#~ msgstr "&Dosya Kodlaması..."
-
-#~ msgid "&Print..."
-#~ msgstr "&Yazdır..."
-
-#~ msgid "Moved Block for &Current Diff"
-#~ msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
-
-#~ msgid "Case sensi&tive"
-#~ msgstr "BÜYÜK-küçük &harf ayrımı yapılsın"
-
-#~ msgid "Go To"
-#~ msgstr "Git"
-
-#~ msgid "G&oto:"
-#~ msgstr "&Git:"
-
-#~ msgid "Comments"
-#~ msgstr "Açıklamalar"
-
-#~ msgid "Filefilters"
-#~ msgstr "Dosya Süzgeçleri"
-
-#~ msgid ""
-#~ "Developers:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-#~ msgstr ""
-#~ "Geliştiriciler:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"

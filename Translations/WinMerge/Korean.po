@@ -61,8 +61,9 @@ msgstr "왼쪽에서 선택한 줄 복사"
 msgid "Copy Selected Line(s) from Right"
 msgstr "오른쪽에서 선택한 줄 복사"
 
-msgid "&Select Line Difference\tF4"
-msgstr "줄 차이점 선택(&S)\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "줄 차이점 선택(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -86,6 +87,14 @@ msgstr "복사(&C)"
 #, c-format
 msgid "&Paste"
 msgstr "붙여넣기(&P)"
+
+#, c-format
+msgid "&Scripts"
+msgstr "스크립트(&S)"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< 비어 있음 >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "이동(&G)\tCtrl+G"
@@ -265,10 +274,6 @@ msgstr "최근 프로젝트"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "최근 파일/폴더(&I)"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< 비어 있음 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "종료(&X)\tCtrl+Q"
@@ -644,10 +649,6 @@ msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "실행 취소(&U)\tCtrl+Z"
 
@@ -666,10 +667,6 @@ msgstr "복사(&C)\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "줄 차이점 선택(&D)\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -886,13 +883,15 @@ msgstr "동기화 지점 추가(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "동기화 지점 지우기(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#, c-format
-msgid "&Scripts"
-msgstr "스크립트(&S)"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1085,17 +1084,24 @@ msgstr "전체 경로 복사(&C)"
 msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<없음>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<자동>"
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Prediffer 설정"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "prediffer 없음(&N)"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "자동 prediffer"
 
 msgid "G&o to Diff"
 msgstr "차이점으로 이동(&O)"
@@ -1125,6 +1131,10 @@ msgid "Ig&nore all"
 msgstr "모두 무시하기(&N)"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "공백 줄 무시하기(&K)"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
 
@@ -1135,6 +1145,9 @@ msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "코드페이지 차이 무시하기(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "주석 차이 무시하기(&O)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1242,10 +1255,6 @@ msgstr "찾아보기..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " 폴더: 필터"
-
-#, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1625,16 +1634,11 @@ msgstr "위로(&U)"
 msgid "Move &Down"
 msgstr "아래로(&D)"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "언패커 선택"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "파일 언패커:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1643,6 +1647,21 @@ msgstr "확장자 목록:"
 #, c-format
 msgid "Description:"
 msgstr "설명:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1711,13 +1730,6 @@ msgstr "변경사항 무시하기(&H)"
 #, c-format
 msgid "I&gnore all"
 msgstr "모두 무시하기(&G)"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "공백 줄 무시하기(&K)"
-
-msgid "Ignore c&omment differences"
-msgstr "주석 차이 무시하기(&O)"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2243,6 +2255,12 @@ msgstr "플러그인 사용"
 
 msgid "File filters:"
 msgstr "파일 필터:"
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"
@@ -3319,6 +3337,14 @@ msgid "Binary"
 msgstr "바이너리"
 
 #, c-format
+msgid "Unpacker"
+msgstr "언패커"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "파일을 비교할 수 없습니다"
 
@@ -3560,6 +3586,12 @@ msgstr "파일 내 차이점의 개수. 이 숫자는 무시된 차이점을 포
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "바이너리 파일이면 * 표시를 보입니다"
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3866,14 +3898,6 @@ msgid "Type"
 msgstr "형식"
 
 #, c-format
-msgid "Unpacker"
-msgstr "언패커"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
-
-#, c-format
 msgid "Editor script"
 msgstr "편집기 스크립트"
 
@@ -4066,14 +4090,6 @@ msgstr "플러그인 설정"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH이 없습니다 - .sct 스크립트 비활성화"
-
-#, c-format
-msgid "<None>"
-msgstr "<없음>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<자동>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4308,3 +4324,116 @@ msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

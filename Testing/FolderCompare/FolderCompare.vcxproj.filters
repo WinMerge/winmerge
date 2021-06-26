@@ -150,9 +150,6 @@
     <ClCompile Include="..\..\Src\Common\UniFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\UniMarkdownFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -399,6 +396,9 @@
     <ClCompile Include="..\..\Src\SubstitutionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\parsers\smarty.cpp">
+      <Filter>editlib\parses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\codepage_detect.h">
@@ -516,9 +516,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\UniFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\UniMarkdownFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\varprop.h">

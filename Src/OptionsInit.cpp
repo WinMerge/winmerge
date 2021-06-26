@@ -199,11 +199,11 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_ARCHIVE_FILTER_INDEX, 1);
 
 	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
-	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
-	pOptions->InitOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, _T(""));
-	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(PLUGIN_MODE::PLUGIN_MANUAL));
-	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, static_cast<int>(PLUGIN_MODE::PLUGIN_MANUAL));
-	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);
+	pOptions->InitOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, false);
+	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, false);
+	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, true);
+	pOptions->InitOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, false);
 
 	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0);
 	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);

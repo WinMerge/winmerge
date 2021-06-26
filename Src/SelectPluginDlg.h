@@ -5,7 +5,7 @@
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
 /**
- *  @file SelectUnpackerDlg.h : 
+ *  @file SelectPluginDlg.h : 
  *
  *  @brief Declaration file for the dialog SelectUnpacker
  */ 
@@ -14,42 +14,45 @@
 #include <vector>
 #include <memory>
 #include "TrDialogs.h"
+#include "SuperComboBox.h"
 #include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
-// CSelectUnpackerDlgDlg dialog
+// CSelectPluginDlgDlg dialog
 
-class PackingInfo;
 class PluginInfo;
 
-class CSelectUnpackerDlg : public CTrDialog
+class CSelectPluginDlg : public CTrDialog
 {
 private:
 // Construction
-	void Initialize();
+	void Initialize(bool unpacker);
 
 public:
 // Construction
-	CSelectUnpackerDlg(const String& filename, CWnd* pParent /*= nullptr*/);
-	CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/);
-	~CSelectUnpackerDlg();
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker = true, bool argumentRequired = false, CWnd* pParent = nullptr);
+	~CSelectPluginDlg();
 
-	void SetInitialInfoHandler(PackingInfo * infoHandler);
-	const PackingInfo GetInfoHandler();
+	const String& CSelectPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
 
 // Dialog Data
-	//{{AFX_DATA(CSelectUnpackerDlg)
-	enum { IDD = IDD_PLUGINS_SELECTUNPACKER };
-	CComboBox	m_cboUnpackerName;
+	//{{AFX_DATA(CSelectPluginDlg)
+	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
+	CComboBox	m_cboPluginName;
 	bool	m_bNoExtensionCheck;
+	bool	m_bOpenInSameFrameType;
 	String	m_strDescription;
 	String	m_strExtensions;
+	String	m_strArguments;
+	String	m_strPluginPipeline;
+	CSuperComboBox m_ctlPluginPipeline;
+	
 	//}}AFX_DATA
 
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CSelectUnpackerDlg)
+	//{{AFX_VIRTUAL(CSelectPluginDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -57,29 +60,28 @@ public:
 // Implementation
 protected:
 	/// arrays for string describing the available plugins
-	CPtrArray  m_UnpackerPlugins;
+	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> m_Plugins;
 
 	// const data "no plugin"
 	std::unique_ptr<PluginInfo> noPlugin;
 	// const data "automatic plugin"
 	std::unique_ptr<PluginInfo> automaticPlugin;
+	bool m_bUnpacker;
+	bool m_bArgumentRequired;
 
 	// input value
 	String m_filteredFilenames;
 
-	/// current plugin choice
-	PluginInfo * m_pPlugin;
-	/// current plugin choice
-	String m_strPluginName;
-
 	void prepareListbox();
 
 	// Generated message map functions
-	//{{AFX_MSG(CSelectUnpackerDlg)
+	//{{AFX_MSG(CSelectPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUnpackerAllowAll();
 	afx_msg void OnSelchangeUnpackerName();
+	afx_msg void OnClickedAddPipe();
+	afx_msg void OnChangePipeline();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -57,8 +57,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&S انتخاب خط تفاوت \tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "&D انتخاب خط تفاوت \tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -82,6 +83,14 @@ msgstr "&C رونوشت برداري "
 #, c-format
 msgid "&Paste"
 msgstr "&P چسباندن "
+
+#, c-format
+msgid "&Scripts"
+msgstr "&S دست نويسها "
+
+#, c-format
+msgid "< Empty >"
+msgstr "<خالي>"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&G برو به ... \tCtrl+G"
@@ -261,10 +270,6 @@ msgstr " پروژه هاي) طرحهاي اخير) "
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "<خالي>"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&x خروج \tCtrl+Q"
@@ -640,10 +645,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&U بي اثر شدن آخرين دستور \tCtrl+Z"
 
@@ -662,10 +663,6 @@ msgstr "&C رونوشت برداري \tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&P چسباندن \tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "&D انتخاب خط تفاوت \tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -882,13 +879,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&P پيش فرق گذار "
 
-#, c-format
-msgid "&Scripts"
-msgstr "&S دست نويسها "
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -1081,17 +1080,24 @@ msgstr "&C رونوشت برداري کل مسير "
 msgid "Copy &Filename"
 msgstr "&F رونوشت برداري نام پرونده"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<هيچکدام>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<خودکار>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&S انتخاب ... "
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr " تنظيمهاي پيش فرق گذار  "
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&N بدون پيش فرق گذار "
-
-#, c-format
-msgid "Auto prediffer"
-msgstr " پيش فرق گذار خودکار "
 
 msgid "G&o to Diff"
 msgstr "&o برو به محل تفاوت "
@@ -1121,6 +1127,10 @@ msgid "Ig&nore all"
 msgstr "&n چشم پوشي از همه "
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "&k چشم پوشي از خطوط خالي "
+
+#, c-format
 msgid "Ignore &case"
 msgstr "&c چشم پوشي از اندازه حروف "
 
@@ -1130,6 +1140,9 @@ msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر س�
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1238,10 +1251,6 @@ msgstr " مرور ... "
 #, c-format
 msgid " Folder: Filter"
 msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&S انتخاب ... "
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1625,16 +1634,11 @@ msgstr "&U جابجايي به بالا "
 msgid "Move &Down"
 msgstr " جابجايي به پايين "
 
-#, c-format
-msgid "Select Unpacker"
-msgstr " انتخاب بازکننده بسته "
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr " باز کننده بسته پرونده : "
-
-msgid "Display all unpackers, don't check the extension."
-msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1643,6 +1647,21 @@ msgstr " فهرست توسعه ها : "
 #, c-format
 msgid "Description:"
 msgstr " توصيف : "
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1711,13 +1730,6 @@ msgstr "&I چشم پوشي از تغيير "
 #, c-format
 msgid "I&gnore all"
 msgstr "&g چشم پوشي از همگي "
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "&k چشم پوشي از خطوط خالي "
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2242,6 +2254,12 @@ msgid "&Enable plugins"
 msgstr "&E فعال سازي افزايه ها "
 
 msgid "File filters:"
+msgstr ""
+
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
 
 #, c-format
@@ -3317,6 +3335,14 @@ msgid "Binary"
 msgstr " دودويي "
 
 #, c-format
+msgid "Unpacker"
+msgstr " باز کننده بسته "
+
+#, c-format
+msgid "Prediffer"
+msgstr " پيش فرق گذار "
+
+#, c-format
 msgid "Unable to compare files"
 msgstr " ناتوان از همسنجي پرونده هاست"
 
@@ -3565,6 +3591,12 @@ msgstr ""
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr " نمايش يک ستاره * در صورتيکه پرونده دودويي باشد "
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3879,14 +3911,6 @@ msgid "Type"
 msgstr " نوع "
 
 #, c-format
-msgid "Unpacker"
-msgstr " باز کننده بسته "
-
-#, c-format
-msgid "Prediffer"
-msgstr " پيش فرق گذار "
-
-#, c-format
 msgid "Editor script"
 msgstr "دست نوشته براي ويراستار   "
 
@@ -4007,14 +4031,6 @@ msgstr " قرارگاههاي افزايه ها"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr " .sct پيدا نشد -  دست نوشته ها غير فعال شد WSH  "
-
-#, c-format
-msgid "<None>"
-msgstr "<هيچکدام>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<خودکار>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4242,4 +4258,117 @@ msgid "Allow only one instance to run"
 msgstr "اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

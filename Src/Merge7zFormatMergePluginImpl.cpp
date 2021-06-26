@@ -8,6 +8,9 @@
 #include "paths.h"
 #include "Plugins.h"
 #include "Merge7zFormatRegister.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "MergeApp.h"
 #include <list>
 #include <Poco/Mutex.h>
 
@@ -29,12 +32,14 @@ static Merge7zFormatMergePluginImpl *GetInstance()
 
 Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return nullptr;
 	Merge7zFormatMergePluginImpl *format = GetInstance();
 	PluginInfo *plugin = nullptr;
-	if (format->m_infoUnpacker.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
+	if (format->m_infoUnpacker.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", path);
-	else if (!format->m_infoUnpacker.m_PluginName.empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.m_PluginName);
+	else if (!format->m_infoUnpacker.GetPluginPipeline().empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.GetPluginPipeline());
 	if (plugin == nullptr)
 		return nullptr;
 	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))

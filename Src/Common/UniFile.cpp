@@ -335,7 +335,7 @@ bool UniMemFile::ReadStringAll(String& text)
 {
 	text.clear();
 	bool lossy = false, lossytmp = false;
-	text.reserve(m_filesize);
+	text.reserve(static_cast<size_t>(m_filesize));
 	bool last = false;
 	do
 	{

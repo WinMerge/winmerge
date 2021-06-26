@@ -33,7 +33,6 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 

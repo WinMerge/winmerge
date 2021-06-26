@@ -64,6 +64,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sgml.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\siod.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\smarty.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sql.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tcl.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tex.cpp" />
