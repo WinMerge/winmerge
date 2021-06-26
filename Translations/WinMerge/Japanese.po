@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-24 08:54+0900\n"
+"PO-Revision-Date: 2021-06-26 17:03+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3679,6 +3679,15 @@ msgstr "昇順にソート"
 
 msgid "Sort Lines Descending"
 msgstr "降順にソート"
+
+msgid "Reverse Columns"
+msgstr "列を逆順"
+
+msgid "Reverse Lines"
+msgstr "行を逆順"
+
+msgid "Replace..."
+msgstr "置換..."
 
 msgid "Apply Filter Command..."
 msgstr "フィルタコマンドを適用..."

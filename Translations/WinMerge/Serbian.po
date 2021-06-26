@@ -4225,6 +4225,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 

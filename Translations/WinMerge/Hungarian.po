@@ -4420,6 +4420,15 @@ msgstr "Sorok növekvő rendezése"
 msgid "Sort Lines Descending"
 msgstr "Sorok csökkenőő rendezése""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr "Szűrőparancs alkalmazása..."
 
