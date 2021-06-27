@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-10 13:16+0000\n"
-"PO-Revision-Date: 2021-04-10 16:08+0100\n"
+"POT-Creation-Date: 2021-06-24 20:41+0000\n"
+"PO-Revision-Date: 2021-06-25 13:23+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -275,10 +275,10 @@ msgid "P&lugin Settings..."
 msgstr "Definições de P&lugin..."
 
 msgid "Ma&nual Prediffer"
-msgstr "Divisão Manual"
+msgstr "Diferenciação Manual"
 
 msgid "A&utomatic Prediffer"
-msgstr "Divisão Automática"
+msgstr "Diferenciação a&utomática"
 
 msgid "&Manual Unpacking"
 msgstr "E&xtração Manual"
@@ -701,13 +701,13 @@ msgid "Clear Sync&hronization Points"
 msgstr "Limpar Pontos de Sincronização"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Desempacotador"
 
 msgid "&Prediffer"
 msgstr "Pré-diferenciar"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Aplicar Pré&diferenciar..."
 
 msgid "Sp&lit"
 msgstr "Di&vidir"
@@ -871,7 +871,7 @@ msgid "Copy &Filename"
 msgstr "Co&piar Nome do Ficheiro"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Definições de desempacotador"
 
 msgid "<None>"
 msgstr "<Nenhum>"
@@ -1310,10 +1310,10 @@ msgid "Move &Down"
 msgstr "Mover para &Baixo"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Selecionar plugin"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "&Nome do Plugin:"
 
 msgid "Extensions list:"
 msgstr "Lista de extensões:"
@@ -1322,19 +1322,19 @@ msgid "Description:"
 msgstr "Descrição:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Argumentos padrão:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Mostrar todos os extratores, não verificar extensões."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "&Abrir ficheiros no mesmo tipo de janela após desempacotar."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "&Plugin Pipeline:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "&Adicionar tubo"
 
 msgid "Stop"
 msgstr "Parar"
@@ -1807,10 +1807,10 @@ msgid "File filters:"
 msgstr "Filtros de ficheiro:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Argumentos &Plugin:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Ativar o desempacotamento/diferenciamento &automático para o plugin"
 
 msgid "Shell Integration"
 msgstr "Integração Shell"
@@ -2298,7 +2298,7 @@ msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Sel: %d | %d"
 
 msgid "Merge"
 msgstr "Combinar"
@@ -3024,10 +3024,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Apresenta um asterisco (*) se ficheiro for binário."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Desempacotar nome de plugin ou pipeline."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Pré-diferenciar nome de plugin ou pipeline."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3733,99 +3733,114 @@ msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Al&l"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Pretificação"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Extração de conteúdo"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Visualização"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Consulta de dados"
 
 msgid "&Others"
-msgstr ""
+msgstr "&Outros"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Converter para maiúsculas"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Converter para minúsculas"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Remover linhas duplicadas"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Contagem de linhas duplicadas"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Ordem de linhas ascendente"
 
 msgid "Sort Lines Descending"
+msgstr "Ordem de linhas descendente"
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
 msgstr ""
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Aplicar comando de filtro..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizar..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Espaços de corte"
+
+msgid "Select Columns..."
+msgstr "Selecionar colunas..."
+
+msgid "Select Lines..."
+msgstr "Selecionar linhas..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Inserir data"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Inserir hora"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Aplique correção..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Ignorar colunas"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Ignorar comentários (linguagens da família C)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Ignorar campos de CSV"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Ignorar campos de TSV"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Aplicar filtros de substituição pré-diferenciar"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Embelezar JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Embelezar XML"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Visualizar Graphviz"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Consultar dados CSV..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Consultar dados TSV..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "Consultar dados JSON..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Nome de plugin ausente no pipeline plugin: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Marca de cotação ausente no pipeline plugin: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Especifique argumentos de plugin"

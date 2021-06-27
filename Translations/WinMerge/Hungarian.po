@@ -4388,99 +4388,114 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Minden"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Megjelenés optimalizálás"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Tartalom kibontás"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Megjelenítés"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Adatlekérdezés"
 
 msgid "&Others"
-msgstr ""
+msgstr "Egyéb"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Nagybetűsítés"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Kisbetűsítés"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Duplikált sorok eltávolítása"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Duplikált sorok megszámlálása"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Sorok növekvő rendezése"
 
 msgid "Sort Lines Descending"
+msgstr "Sorok csökkenőő rendezése""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
 msgstr ""
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Szűrőparancs alkalmazása..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizálás..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Szóközök ritkítása"
+
+msgid "Select Columns..."
+msgstr "Oszlopok választása..."
+
+msgid "Select Lines..."
+msgstr "Sorok választása..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Dátum beszúrása"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Időpont beszúrása"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Patch alkalmazása..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Oszlopok figyelmen kívül hagyása"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Megjegyzések figyelmen kívül hagyása (C-típusú programnyelvek)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "CSV mezők mellőzése"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "TSV mezők mellőzése"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "JSON formázása"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "XML formázása"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz vizualizálás"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "CSV adatok lekérdezése..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "TSV adatok lekérdezése..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "JSON adatok lekérdezése..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Hiányzó bővítménynév a beépülő modulban: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Hiányzó idézőjel a beépülő modulban: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Plugin argumentumok megadása"

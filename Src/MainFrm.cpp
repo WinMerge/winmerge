@@ -1680,7 +1680,7 @@ void CMainFrame::UpdatePrediffersMenu()
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();
 		if (pEditView != nullptr)
-			pEditView->createPrediffersSubmenu(prediffersSubmenu);
+			pEditView->GetDocument()->createPrediffersSubmenu(prediffersSubmenu);
 		else
 		{
 			// no view or dir view : display an empty submenu

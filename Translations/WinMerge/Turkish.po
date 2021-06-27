@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
-"PO-Revision-Date: 2021-05-24 08:39+0300\n"
+"POT-Creation-Date: 2021-06-24 08:53+0000\n"
+"PO-Revision-Date: 2021-06-25 19:47+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -54,7 +54,7 @@ msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr "&Bu değişikliği Değişiklik Süzgeçlerine ekle"
+msgstr "&Bu değişikliği değişiklik süzgeçlerine ekle"
 
 msgid "&Undo"
 msgstr "Geri a&l"
@@ -699,13 +699,13 @@ msgid "Clear Sync&hronization Points"
 msgstr "Eşitleme noktalarını &sil"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "&Ayıklayıcı"
 
 msgid "&Prediffer"
 msgstr "Ön &farklılaştırıcı"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Ön &farklılaştırma uygula..."
 
 msgid "Sp&lit"
 msgstr "Bö&l"
@@ -869,7 +869,7 @@ msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Ayıklayıcı ayarları"
 
 msgid "<None>"
 msgstr "<Yok>"
@@ -1306,10 +1306,10 @@ msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Eklenti seçin"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Eklenti &adı:"
 
 msgid "Extensions list:"
 msgstr "Uzantı Listesi:"
@@ -1318,19 +1318,19 @@ msgid "Description:"
 msgstr "Açıklama:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Varsayılan değişkenler:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "&Eklenti bağlantı yolu:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "&Bağlantı ekle"
 
 msgid "Stop"
 msgstr "Durdur"
@@ -1800,10 +1800,10 @@ msgid "File filters:"
 msgstr "Dosya süzgeçleri:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "&Eklenti değişkenleri:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Eklenti için &otomatik ayıklayıcı/ön farklılaştırıcı etkinleştirilsin"
 
 msgid "Shell Integration"
 msgstr "Sağ tık menüsü"
@@ -3011,10 +3011,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Dosya binary ise yıldız (*) ile görüntülensin."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Ayıklayıcı eklentisi adı ya da bağlantı yolu"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Ön farklılaştırma eklentisi adı ya da bağlantı yolu"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3717,99 +3717,115 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Yalnız bir kopyanın çalışsın ve kopyanın sonlandırılması beklensin"
 
 msgid "Al&l"
-msgstr ""
+msgstr "&Tümü"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Sadeleştirme"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "İçerik ayıklama"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Görselleştirme"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Veri sorgusu"
 
 msgid "&Others"
-msgstr ""
+msgstr "&Diğerleri"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Büyük harflere dönüştür"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Küçük harflere dönüştür"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Çift satırları kaldır"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Çift satırları say"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Artan satır sıralaması"
 
 msgid "Sort Lines Descending"
+msgstr "Azalan satır sıralaması"
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
 msgstr ""
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Süzgeç komutunu uygula..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Kodla..."
 
 msgid "Trim Spaces"
+msgstr "Boşlukları sil"
+
+#| msgid "Select &Font..."
+msgid "Select Columns..."
+msgstr "Sütunları seçin..."
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Tarih ekle"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Saat ekle"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Yama uygula..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Sütunları yok say"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Yorumlar yok sayılsın (C ailesi dilleri)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "CSV alanları yok sayılsın"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "TSV alanları yok sayılsın"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Ön farklılaştırma değiştirme süzgeçlerini uygula"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "JSON sadeleştirme"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "XML sadeleştirme"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz görselleştirme"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "CSV verilerini sorgula..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "TSV verilerini sorgula..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "JSON verilerini sorgula..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Eklenti bağlantı yolunda eklenti adı eksik: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Eklenti değişkenlerini belirtin"

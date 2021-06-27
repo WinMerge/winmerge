@@ -640,14 +640,19 @@ static vector<String>& LoadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		String path = paths::ConcatPath(env::GetProgPath(), _T("MergePlugins"));
-
-		if (plugin::IsWindowsScriptThere())
-			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
-		else
+		bool enabledWSH = plugin::IsWindowsScriptThere();
+		if (!enabledWSH)
 			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
-		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
-		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
+
+		for (const auto path : {
+				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins")),
+				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins")) })
+		{
+			if (enabledWSH)
+				GetScriptletsAt(path, _T(".sct"), theScriptletList);		// VBS/JVS scriptlet
+			GetScriptletsAt(path, _T(".ocx"), theScriptletList);		// VB COM object
+			GetScriptletsAt(path, _T(".dll"), theScriptletList);		// VC++ COM object
+		}
 		scriptletsLoaded = true;
 
 		// lock the *.sct to avoid them being deleted/moved away

@@ -334,6 +334,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "q", "q", "{E4EF583F-653D-44
 		Plugins\Commands\q\q.bat = Plugins\Commands\q\q.bat
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginTests", "PluginTests", "{9738877F-0B01-4C37-855E-7465C5AB7B56}"
+	ProjectSection(SolutionItems) = preProject
+		Testing\PluginTests\PluginTests.vbs = Testing\PluginTests\PluginTests.vbs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Externals\gtest\gtest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
@@ -1042,6 +1047,7 @@ Global
 		{BB290B2D-F5B9-4552-AE32-9319C03E41C0} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{5DADCF29-6A44-4AD1-8E42-DCB162A1907D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{E4EF583F-653D-4445-A649-555C8AD730E7} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{9738877F-0B01-4C37-855E-7465C5AB7B56} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

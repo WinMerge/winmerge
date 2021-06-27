@@ -26,6 +26,7 @@
 #include "DirDoc.h"
 #include "files.h"
 #include "FileTransform.h"
+#include "Plugins.h"
 #include "unicoder.h"
 #include "UniFile.h"
 #include "OptionsDef.h"
@@ -88,6 +89,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
+	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
@@ -120,6 +125,7 @@ CMergeDoc::CMergeDoc()
 , m_nGroups(0)
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
+, m_CurrentPredifferID(0)
 {
 	DIFFOPTIONS options = {0};
 
@@ -3415,8 +3421,142 @@ void CMergeDoc::OnApplyPrediffer()
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());
 	SetPrediffer(&prediffer);
+	m_CurrentPredifferID = -1;
 	FlushAndRescan(true);
 	SetTitle(nullptr);
+}
+
+/**
+ * @brief Create the dynamic submenu for prediffers
+ *
+ * @note The plugins are grouped in (suggested) and (not suggested)
+ *       The IDs follow the order of GetAvailableScripts
+ *       For example :
+ *				suggested 0         ID_1ST + 0 
+ *				suggested 1         ID_1ST + 2 
+ *				suggested 2         ID_1ST + 5 
+ *				not suggested 0     ID_1ST + 1 
+ *				not suggested 1     ID_1ST + 3 
+ *				not suggested 2     ID_1ST + 4 
+ */
+HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
+{
+	// empty the menu
+	int j = GetMenuItemCount(hMenu);
+	while (j --)
+		DeleteMenu(hMenu, 0, MF_BYPOSITION);
+
+	// title
+	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
+	
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return hMenu;
+
+	m_CurrentPredifferID = -1;
+
+	// compute the m_CurrentPredifferID (to set the radio button)
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	if (prediffer.GetPluginPipeline().empty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+
+	// get the scriptlet files
+	const auto& [ suggestedPlugins, allPlugins ]= FileTransform::CreatePluginMenuInfos(
+		m_strBothFilenames, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+
+	// build the menu : first part, suggested plugins
+	// title
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
+	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+
+	for (const auto& [caption, name, id, plugin ] : suggestedPlugins)
+		AppendMenu(hMenu, MF_STRING, id, caption.c_str());
+
+	// build the menu : second part, others plugins
+	// title
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
+	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+
+	String lastPluginName;
+	String errorMessage;
+	auto result = prediffer.ParsePluginPipeline(errorMessage);
+	if (result.size() > 0)
+		lastPluginName = result.back().name;
+	
+	for (const auto& [processType, pluginAry] : allPlugins)
+	{
+		for (const auto& [caption, name, id, plugin] : pluginAry)
+		{
+			if (!name.empty())
+			{
+				AppendMenu(hMenu, MF_STRING, id, caption.c_str());
+				if (lastPluginName == plugin->m_name)
+					m_CurrentPredifferID = id;
+			}
+		}
+	}
+
+	return hMenu;
+}
+
+/**
+ * @brief Called when an editor script item is updated
+ */
+void CMergeDoc::OnUpdatePrediffer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+
+	if (prediffer.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
+	{
+		pCmdUI->SetRadio(false);
+		return;
+	}
+
+	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
+	if (prediffer.GetPluginPipeline().empty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+
+	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
+}
+
+/**
+ * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ */
+void CMergeDoc::OnPrediffer(UINT nID )
+{
+	SetPredifferByMenu(nID);
+	FlushAndRescan(true);
+	SetTitle(nullptr);
+}
+
+/**
+ * @brief Handler for all prediffer choices.
+ * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
+ * ID_NO_PREDIFFER, & specific prediffers.
+ */
+void CMergeDoc::SetPredifferByMenu(UINT nID)
+{
+	// update data for the radio button
+	m_CurrentPredifferID = nID;
+
+	if (nID == ID_NO_PREDIFFER)
+	{
+		// All flags are set correctly during the construction
+		PrediffingInfo infoPrediffer(false);
+		SetPrediffer(&infoPrediffer);
+		return;
+	}
+
+	String pluginName = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::PredifferEventNames, ID_PREDIFFERS_FIRST);
+
+	// build a PrediffingInfo structure fom the ID
+	PrediffingInfo prediffer(pluginName);
+	
+	// update the prediffer and rescan
+	SetPrediffer(&prediffer);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()

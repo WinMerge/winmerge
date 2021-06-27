@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
-"PO-Revision-Date: 2021-04-29 00:00+0000\n"
+"POT-Creation-Date: 2021-06-24 20:41+0000\n"
+"PO-Revision-Date: 2021-06-25 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgid "Copy Selected Line(s) from Right"
 msgstr "Копировать выбранные строки справа"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Выбрать отличие\tF4"
+msgstr "&Выбрать отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавить это изменение в &фильтры замены"
@@ -700,13 +700,13 @@ msgid "Clear Sync&hronization Points"
 msgstr "Очистить точки синхронизации"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Распаковщик"
 
 msgid "&Prediffer"
 msgstr "&Предсравнение"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Применить предсравнение..."
 
 msgid "Sp&lit"
 msgstr "Разделить"
@@ -870,7 +870,7 @@ msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Параметры распаковщика"
 
 msgid "<None>"
 msgstr "<Нет>"
@@ -1299,10 +1299,10 @@ msgid "Move &Down"
 msgstr "В&низ"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Выбрать плагин"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Имя плагина:"
 
 msgid "Extensions list:"
 msgstr "Список расширений:"
@@ -1311,19 +1311,19 @@ msgid "Description:"
 msgstr "Описание:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Аргументы по умолчанию:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Показывать все распаковщики, не проверять расширение."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "Открыть файлы в том же типе окна после распаковки."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Конвейер плагинов:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Добавить конвейер"
 
 msgid "Stop"
 msgstr "Остановить"
@@ -1785,10 +1785,10 @@ msgid "File filters:"
 msgstr "Фильтры файлов:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Аргументы плагина:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Включить авто распаковку/предсравнение для плагина"
 
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"
@@ -2728,10 +2728,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показать звездочку (*) если файл двоичный."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Имя плагина распаковщика или конвейера."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Имя плагина предсравнения или конвейера."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3264,99 +3264,114 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Все"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Приукрашивание"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Извлечение контента"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Визуализация"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Запрос данных"
 
 msgid "&Others"
-msgstr ""
+msgstr "Другое"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Сделать прописными"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Сделать строчными"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Удалить дубли строк"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Подсчитать дубли строк"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Сортировать строки по возрастанию"
 
 msgid "Sort Lines Descending"
+msgstr "Сортировать строки по убыванию"
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
 msgstr ""
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Применить фильтрацию..."
 
 msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Трим пробелов"
+
+msgid "Select Columns..."
+msgstr "Выбрать столбцы..."
+
+msgid "Select Lines..."
+msgstr "Выбрать строки..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Вставить дату"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Вставить время"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Применить патч..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Игнорировать столбцы"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Игнорировать комментарии (семейство C)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Игнорировать поля CSV"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Игнорировать поля TSV"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Применить фильтры замены предсравнения."
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Приукрасить JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Приукрасить XML"
 
 msgid "Visualize Graphviz"
 msgstr ""
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Запрос данных CSV..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Запрос данных TSV..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "Запрос данных JSON..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Отсутствует плагин в конвейере: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Отсутствует кавычка в конвейере плагинов: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Укажите аргументы плагина"

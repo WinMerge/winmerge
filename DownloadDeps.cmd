@@ -12,7 +12,7 @@ https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-ARM64.zip!Build\ARM64 ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.29/winimerge-1.0.29.0-exe.zip!Build ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
-https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-win32.zip!Build\tidy-html5 ^
+https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/stedolan/jq/releases/download/jq-1.4/jq-win32.exe!Build\jq ^
 https://github.com/stedolan/jq/archive/refs/tags/jq-1.4.zip!Build\jq ^
@@ -34,6 +34,8 @@ for %%p in (%urls_destdirs%) do (
     )
   )
 )
+
+for /d %%i in (build\tidy-html5\tidy-5.4.0-w32-mt-XP\*) do move %%i build\tidy-html5\
 
 for %%i in (Build Build\X64 Build\ARM64) do (
   for %%j in (Release Debug Test) do (

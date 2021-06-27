@@ -269,6 +269,8 @@ public:
 		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
 		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption))
 			+ (plugin.GetExtendedPropertyValue(funcname + _T(".ArgumentsRequired")).has_value() ? L";ArgumentsRequired" : L"");
+		StringView args = plugin.GetExtendedPropertyValue(funcname + _T(".Arguments")).value_or(_T(""));
+		m_sArguments = { args.data(), args.length() };
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()
@@ -573,15 +575,24 @@ struct Loader
 		parser.setContentHandler(&handler);
 		try
 		{
-			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"))));
+			for (const auto& path : {
+				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml")),
+				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"))
+				})
+			{
+				try
+				{
+					parser.parse(ucr::toUTF8(path));
+				}
+				catch (Poco::FileNotFoundException&)
+				{
+				}
+			}
 		}
 		catch (Poco::XML::SAXParseException& e)
 		{
 			errmsg = ucr::toTString(e.message());
 			return false;
-		}
-		catch (Poco::FileNotFoundException&)
-		{
 		}
 
 		for (auto& info : internalPlugins)

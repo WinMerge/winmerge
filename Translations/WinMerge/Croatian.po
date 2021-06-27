@@ -4256,6 +4256,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -4263,6 +4272,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-21 21:26+0000\n"
+"POT-Creation-Date: 2021-06-26 16:58+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3291,6 +3291,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -3298,6 +3307,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
