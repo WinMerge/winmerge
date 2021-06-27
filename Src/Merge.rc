@@ -3731,6 +3731,31 @@ BEGIN
     IDS_PLUGIN_TITLE1        "Specify plugin arguments"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION1  "Make characters uppercase"
+    IDS_PLUGIN_DESCRIPTION2  "Make characters lowercase"
+    IDS_PLUGIN_DESCRIPTION3  "Remove duplicate lines"
+    IDS_PLUGIN_DESCRIPTION4  "Count duplicate lines"
+    IDS_PLUGIN_DESCRIPTION5  "Sort lines ascending"
+    IDS_PLUGIN_DESCRIPTION6  "Sort lines descending"
+    IDS_PLUGIN_DESCRIPTION7  "Reverse columns"
+    IDS_PLUGIN_DESCRIPTION8  "Reverse lines"
+    IDS_PLUGIN_DESCRIPTION9  "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+    IDS_PLUGIN_DESCRIPTION10 "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+    IDS_PLUGIN_DESCRIPTION11 "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+    IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
+    IDS_PLUGIN_DESCRIPTION13 "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION14 "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION23 "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION24 "XML Prettier with tidy-html5. \r\nArguments: Command line arugments passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION25 "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+    IDS_PLUGIN_DESCRIPTION26 "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION27 "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION28 "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION29 "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
