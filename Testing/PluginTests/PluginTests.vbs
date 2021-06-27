@@ -112,6 +112,8 @@ Sub EditorAddinTest
     AssertEquals "abc" & vbCrLf & "def", p.SelectColumns("abc" & vbCrLf & "def")
     p.PluginArguments = "-e -i ""Ab|dE"""
     AssertEquals "ab" & vbCrLf & "de", p.SelectColumns("abc" & vbCrLf & "def")
+    p.PluginArguments = "-e -i -g ab"
+    AssertEquals "abAB" & vbCrLf & "", p.SelectColumns("abcABC" & vbCrLf & "def")
     p.PluginArguments = "-v -e ""ab|de"""
     AssertEquals "c" & vbCrLf & "f", p.SelectColumns("abc" & vbCrLf & "def")
 

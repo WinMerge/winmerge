@@ -269,6 +269,8 @@ public:
 		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
 		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption))
 			+ (plugin.GetExtendedPropertyValue(funcname + _T(".ArgumentsRequired")).has_value() ? L";ArgumentsRequired" : L"");
+		StringView args = plugin.GetExtendedPropertyValue(funcname + _T(".Arguments")).value_or(_T(""));
+		m_sArguments = { args.data(), args.length() };
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()

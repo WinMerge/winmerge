@@ -63,34 +63,50 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = _
 	"GenerateUnpacker;" & _
 	"MakeUpper.MenuCaption=Make Uppercase;" & _
-	"MakeUpper.Description=Make selection uppercase;" & _
+	"MakeUpper.Description=Make characters uppercase;" & _
 	"MakeLower.MenuCaption=Make Lowercase;" & _
-	"MakeLower.Description=Make selection lowercase;" & _
+	"MakeLower.Description=Make characters lowercase;" & _
 	"RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" & _
 	"RemoveDuplicates.Description=Remove duplicate lines;" & _
 	"CountDuplicates.MenuCaption=Count Duplicate Lines;" & _
 	"CountDuplicates.Description=Count duplicate lines;" & _
 	"SortAscending.MenuCaption=Sort Lines Ascending;" & _
-	"SortAscending.Description=Sort lines Ascending;" & _
+	"SortAscending.Description=Sort lines ascending;" & _
 	"SortDescending.MenuCaption=Sort Lines Descending;" & _
 	"SortDescending.Description=Sort lines descending;" & _
 	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
 	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & _
-		"Arguments: filter command. %1 is replaced with the file name.;" & _
+		"Usage: ExecFilterCommand COMMAND" & vbCrLf & _
+		"  COMMAND - command to execute. %1 in the command is replaced with the filename.;" & _
 	"ExecFilterCommand.ArgumentsRequired;" & _
 	"Tokenize.MenuCaption=Tokenize...;" & _
 	"Tokenize.Description=Tokenize selection. " & vbCrLf & _
-		"Arguments: a regular expression for tokenizing. (e.g. [^\w]+);" & _
+		"Usage: Tokenize PATTERNS" & vbCrLf & _
+		"  PATTERNS - regular expression for tokenizing. (e.g. [^\w]+);" & _
 	"Tokenize.ArgumentsRequired;" & _
+	"Tokenize.Arguments=[^\w]+;" & _
 	"Trim.MenuCaption=Trim Spaces;" & _
 	"Trim.Description=Trim spaces;" & _
 	"SelectColumns.MenuCaption=Select Columns...;" & _
 	"SelectColumns.Description=Select some columns." & vbCrLf & _
-		"Arguments: list of column ranges to select. (e.g. -3,5-10,30-) or regular expression;" & _
+		"Usage: SelectColumns RANGES" & vbCrLf & _
+		"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS" & vbCrLf & _
+		"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
+		"  PATTERNS - regular expression" & vbCrLf & _
+		"  -v - select non-matching columns" & vbCrLf & _
+		"  -i - ignore case" & vbCrLf & _
+		"  -g - enable global flag" & vbCrLf & _
+		"  -e - use PATTERNS for matching;" & _
 	"SelectColumns.ArgumentsRequired;" & _
 	"SelectLines.MenuCaption=Select Lines...;" & _
 	"SelectLines.Description=Select some lines." & vbCrLf & _
-		"Arguments: list of line ranges to select. (e.g. -3,5-10,30-) or regular expression;" & _
+		"Usage: SelectLines RANGES" & vbCrLf & _
+		"   or: SelectLines [-v] [-i] -e PATTERNS" & vbCrLf & _
+		"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
+		"  PATTERNS - regular expression" & vbCrLf & _
+		"  -v - select non-matching lines" & vbCrLf & _
+		"  -i - ignore case" & vbCrLf & _
+		"  -e - use PATTERNS for matching;" & _
 	"SelectLines.ArgumentsRequired;" & _
 	"ReverseColumns.MenuCaption=Reverse Columns;" & _
 	"ReverseColumns.Description=Reverse columns;" & _
@@ -98,7 +114,11 @@ Function get_PluginExtendedProperties()
 	"ReverseLines.Description=Reverse lines;" & _
 	"Replace.MenuCaption=Replace...;" & _
 	"Replace.Description=Replace text with another text." & vbCrLf & _
-		"Arguments: search text and replacement text;" & _
+		"Usage: Replace [-i] [-e] FIND REPLACE" & vbCrLf & _
+		"  FIND    - text to find" & vbCrLf & _
+		"  REPLACE - text to replace" & vbCrLf & _
+		"  -i - ignore case (only for -e)" & vbCrLf & _
+		"  -e - treat the specified text as a regular expression;" & _
 	"Replace.ArgumentsRequired;"
 End Function
 
@@ -427,7 +447,7 @@ Function SelectColumns(Text)
 	If IsFirstArgumentEmpty() Then
 		args = regRead(PluginRegKeyPath & "SelectColumns", "")
 		If IsLangJapanese() Then
-			args = InputBox("抽出する列番号の範囲または正規表現を指定してください (例: -3,5-10,30-)" & vbCrLf & "または抽出したい文字列にマッチする正規表現を指定してください:", "SelectColumns", ranges)
+			args = InputBox("抽出する列番号の範囲を指定してください (例: -3,5-10,30-)" & vbCrLf & "または抽出したい文字列にマッチする正規表現を指定してください:", "SelectColumns", ranges)
 		Else
 			args = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectColumns", args)
 		End If
@@ -552,7 +572,7 @@ Function ReplaceText(Text)
 	If IsFirstArgumentEmpty() Then
 		args = regRead(PluginRegKeyPath & "Replace", "")
 		If IsLangJapanese() Then
-			args = InputBox("検索する文字列と置換する文字列を指定してください:", "Replace", ranges)
+			args = InputBox("検索する文字列と置換する文字列を指定してください:", "Replace", args)
 		Else
 			args = InputBox("Enter the search text and replacement text:", "Replace", args)
 		End If

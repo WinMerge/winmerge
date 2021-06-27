@@ -3749,6 +3749,15 @@ msgstr "Artan satır sıralaması"
 msgid "Sort Lines Descending"
 msgstr "Azalan satır sıralaması"
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr "Süzgeç komutunu uygula..."
 
@@ -3761,6 +3770,9 @@ msgstr "Boşlukları sil"
 #| msgid "Select &Font..."
 msgid "Select Columns..."
 msgstr "Sütunları seçin..."
+
+msgid "Select Lines..."
+msgstr ""
 
 msgid "Insert Date"
 msgstr "Tarih ekle"
