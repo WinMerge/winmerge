@@ -1030,7 +1030,7 @@
           <primary>MakeLower plugin file</primary>
         </indexterm></filename></title>
 
-      <para>=Makes characters lowercase</para>
+      <para>Makes characters lowercase</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -1876,7 +1876,7 @@
           <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
+      <para>Adds some functions to the <menuchoice>
           <guimenu>Plugins</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
@@ -1914,27 +1914,27 @@
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Reverse Columns</guimenuitem> TBD
+          <simpara><guimenuitem>Reverse Columns</guimenuitem> reverse columns in the selection.
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Reverse Lines</guimenuitem> TBD 
+          <simpara><guimenuitem>Reverse Lines</guimenuitem> reverse lines in the selection. 
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Select Columns...</guimenuitem> TBD 
+          <simpara><guimenuitem>Select Columns...</guimenuitem> select some columns in the selection.
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Select Lines...</guimenuitem> TBD 
+          <simpara><guimenuitem>Select Lines...</guimenuitem> select some lines in the selection.
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Replace...</guimenuitem> TBD 
+          <simpara><guimenuitem>Replace...</guimenuitem> replace text in the selection with another text.
           </simpara>
         </listitem>
 
@@ -1945,12 +1945,12 @@
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Tokenize...</guimenuitem> TBD
+          <simpara><guimenuitem>Tokenize...</guimenuitem> replaces the token delimiter with a newline in the selection.
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Trim Spaces</guimenuitem> TBD
+          <simpara><guimenuitem>Trim Spaces</guimenuitem> remove spaces at the beginning and end of lines in the selection.
           </simpara>
         </listitem>
       </itemizedlist>
