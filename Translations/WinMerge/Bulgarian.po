@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-10-14 13:09+0000\n"
-"PO-Revision-Date: 2021-02-11 10:00+0200\n"
+"PO-Revision-Date: 2021-06-28 10:00+0300\n"
 "Last-Translator: Стоян <stoyan от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
@@ -36,22 +36,22 @@ msgid "Copy fro&m Right"
 msgstr "Копиране отд&ясно"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Копиране на избрани редове вдясно"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Копиране на избрани редове вляво"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Копиране на избрани редове от ляво"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Копиране на избрани редове от дясно"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Избиране &различията на реда\tF4"
+msgstr "&Избиране на различия на реда\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr "Добавяне на промяна към заместващи &филтри"
+msgstr "Нов заместващ &филтър от тази промяна"
 
 msgid "&Undo"
 msgstr "О&тменяне"
@@ -102,10 +102,10 @@ msgid "S&hell Menu"
 msgstr ""
 
 msgid "View &Differences"
-msgstr "Преглед на &разликите"
+msgstr "Преглед на &различия"
 
 msgid "Diff &Block Size"
-msgstr "Размер на &блока с разлики"
+msgstr "Размер на &блок за различия"
 
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
@@ -266,7 +266,7 @@ msgid "&Plugins"
 msgstr "&Добавки"
 
 msgid "P&lugin Settings..."
-msgstr "Настройки на &добавките…"
+msgstr "Настройки на &добавки…"
 
 msgid "Ma&nual Prediffer"
 msgstr ""
@@ -419,7 +419,7 @@ msgid "Com&pare Statistics..."
 msgstr "Статистика на &сравнение…"
 
 msgid "Refresh\tF5"
-msgstr "&Презареждане\tF5"
+msgstr "Презареждане\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "Презареждане на &избрани\tCtrl+F5"
@@ -461,7 +461,7 @@ msgid "Generate &Report..."
 msgstr "Изготвяне на &отчет…"
 
 msgid "&Edit with Unpacker..."
-msgstr "П&роменяне с Unpacker…"
+msgstr "П&роменяне с разопаковчик…"
 
 msgid "&Save\tCtrl+S"
 msgstr "&Запазване\tCtrl+S"
@@ -560,7 +560,7 @@ msgid "Syntax Highlight"
 msgstr "&Синтактично оцветяване"
 
 msgid "&Diff Context"
-msgstr "&Контекстуалност на различията"
+msgstr "&Контекстуалност на различия"
 
 msgid "&All Lines"
 msgstr "Всички &редове"
@@ -599,7 +599,7 @@ msgid "View E&OL"
 msgstr "Показване на знаци за нов &ред"
 
 msgid "Vie&w Line Differences"
-msgstr "Показване на &различията на реда"
+msgstr "Показване на &различия на реда"
 
 msgid "View Line &Numbers"
 msgstr "&Номериране на редовете"
@@ -614,7 +614,7 @@ msgid "Split V&ertically"
 msgstr "В&ертикално разделяне"
 
 msgid "Diff &Pane"
-msgstr "Панел с &различията"
+msgstr "Панел с &различия"
 
 msgid "Lo&cation Pane"
 msgstr "Миниатюрна &карта"
@@ -692,7 +692,7 @@ msgid "Clear Sync&hronization Points"
 msgstr "Изтриване точки за &синхронизация"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Ра&зопаковчик"
 
 msgid "&Prediffer"
 msgstr ""
@@ -791,7 +791,7 @@ msgid "&Open Left"
 msgstr "&Отвори в ляво"
 
 msgid "With &External Editor"
-msgstr "C &Външен Редактор"
+msgstr "С &външен редактор"
 
 msgid "Open Midd&le"
 msgstr "Отвори сре&ден"
@@ -841,7 +841,7 @@ msgstr "Всички към… (%1 от %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr "Разликите към… (%1 от %2)"
+msgstr "Различията към… (%1 от %2)"
 
 msgid "Left Shell menu"
 msgstr ""
@@ -862,7 +862,7 @@ msgid "Copy &Filename"
 msgstr "Копиране на &името"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Настройки на разопаковчик"
 
 msgid "<None>"
 msgstr "<Няма>"
@@ -907,13 +907,13 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Пренебрегване на &знаци за нов ред (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
-msgstr "Пренебрегване на &разлики в кодова страница"
+msgstr "Пропускане на &различия в кодова страница"
 
 msgid "Ignore c&omment differences"
-msgstr "Пренебрегване на разлики в &коментари"
+msgstr "Пропускане на различия в &коментари"
 
 msgid "&Include Subfolders"
-msgstr "&Включително подпапките"
+msgstr "&Включително подпапки"
 
 msgid "&Compare method:"
 msgstr "Метод за &сравняване:"
@@ -994,7 +994,7 @@ msgid " Folder: Filter"
 msgstr " Папка: Филтър"
 
 msgid " File: Unpacker Plugin"
-msgstr " Файл: Unpacker добавка"
+msgstr " Файл: добавка разопаковчик"
 
 msgid "Se&lect..."
 msgstr "Изби&ране…"
@@ -1297,19 +1297,19 @@ msgid "Move &Down"
 msgstr "На&долу"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Избиране на добавка"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Д&обавка:"
 
 msgid "Extensions list:"
-msgstr "Списък на разширенията:"
+msgstr "Разширения:"
 
 msgid "Description:"
 msgstr "Описание:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Aргументи:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr ""
@@ -1318,10 +1318,10 @@ msgid "&Open files in the same window type after unpacking."
 msgstr ""
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Кон&вейер:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Добавяне &тръба"
 
 msgid "Stop"
 msgstr "Спиране"
@@ -1390,7 +1390,7 @@ msgid "Enable indent &heuristic"
 msgstr "П&редполагане на отстъпа"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Премахване на оцветяването на пренебрегнатите различия"
+msgstr "Пропуснатите различия да не са синтактично оцветени"
 
 msgid "Editor"
 msgstr "Редактор"
@@ -1420,7 +1420,7 @@ msgid "Line Difference Coloring"
 msgstr "Оцветяване на редове с различия"
 
 msgid "View line differences"
-msgstr "Показване на различия в реда"
+msgstr "Показване на различия на реда"
 
 msgid "&Character level"
 msgstr "На ниво &символ"
@@ -1498,7 +1498,7 @@ msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
-"Разпознаване на кодовата страница за файлове: .html, .rc, .xml\n"
+"Разпознаване на кодовата страница за файлове от вида на: .html, .rc, .xml\n"
 "Изисква рестартиране."
 
 msgid ""
@@ -1828,7 +1828,7 @@ msgid "S&top after first difference"
 msgstr "&Спиране след първото различие"
 
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "Пренебрегване на времевите &разлики по-малки от 3 секунди"
+msgstr "Пропускане на &различия във времето по-малки от 3 секунди"
 
 msgid "Include &unique subfolders contents"
 msgstr "&Включи съдържанието на уникални подпапки"
@@ -1980,7 +1980,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FileCompare\n"
-"Сравняване файлове с WinMerge"
+"Сравняване на файлове с WinMerge"
 
 msgid ""
 "\n"
@@ -1997,7 +1997,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
-"Сравняване папки с WinMerge"
+"Сравняване на папки с WinMerge"
 
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
@@ -2137,7 +2137,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML файлове (*.xml)|*.xml|Всички файлове (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Вид на файл"
 
 msgid "Extension"
 msgstr "Разширение"
@@ -2263,7 +2263,7 @@ msgid "Mine File"
 msgstr "Мой файл"
 
 msgid "Original File"
-msgstr ""
+msgstr "Оригинален файл"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2391,8 +2391,8 @@ msgid ""
 "\n"
 msgstr ""
 "Предстои сравняване на много големи файлове.\n"
-"За да бъде показано тяхното съдържание се изисква огромно количество памет.\n"
-"Желаете ли вместо съдържание да видите само крайния резултат от сравнението?\n"
+"За да бъде показано съдържанието им се изисква огромно количество памет.\n"
+"Желаете ли вместо съдържанието да получите само резултата от сравнението?\n"
 "\n"
 
 msgid "Save As"
@@ -2544,7 +2544,7 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Не може да се сравнят разликите когато документите не са в синхронизация.\n"
+"Докато документите не са в синхрон, различия не могат да бъдат сливани.\n"
 "\n"
 "Презаредете документите преди да продължите."
 
@@ -2600,7 +2600,7 @@ msgstr "Всички към… (%1)"
 
 #, c-format
 msgid "Differences to... (%1)"
-msgstr "Разликите към… (%1)"
+msgstr "Различия към… (%1)"
 
 #, c-format
 msgid "Left (%1)"
@@ -2794,7 +2794,7 @@ msgid "Binary"
 msgstr "Двоичен"
 
 msgid "Unpacker"
-msgstr ""
+msgstr "Разопаковчик"
 
 msgid "Prediffer"
 msgstr ""
@@ -2986,8 +2986,8 @@ msgid ""
 "Number of ignored differences in file. These differences are ignored by "
 "WinMerge and cannot be merged."
 msgstr ""
-"Брой пренебрегнати различия във файла. Тези различия са прескочени от "
-"WinMerge и не могат да бъдат сливани."
+"Брой пропуснати различия във файла. Те са пренебрегнати от WinMerge и не "
+"могат да бъдат сливани."
 
 msgid ""
 "Number of differences in file. This number does not include ignored "
@@ -3028,7 +3028,7 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Грешка при създаване на отчета:\n"
+"Грешка при създаване на отчет:\n"
 "%1"
 
 msgid "The report has been created successfully."
@@ -3135,10 +3135,10 @@ msgid "Information lost due to encoding errors: third file"
 msgstr "Има загуба на информация, поради грешка в кодировката на: трети файл"
 
 msgid "No difference"
-msgstr "Без разлики"
+msgstr "Без различия"
 
 msgid "Line difference"
-msgstr "Разлики в редовете"
+msgstr "Различия в редовете"
 
 #, c-format
 msgid "Replaced %1 string(s)."
@@ -3175,7 +3175,7 @@ msgid "The changes of EOL are conflicting."
 msgstr "Промените в EOL са противоречиви."
 
 msgid "Location Pane"
-msgstr "Миникарта"
+msgstr "Kарта"
 
 msgid "Diff Pane"
 msgstr "Панел с различия"
@@ -3370,31 +3370,43 @@ msgid ""
 "\n"
 "Copy Right (Alt+Right)"
 msgstr ""
+"\n"
+"Копира вдясно (Alt+Right)"
 
 msgid ""
 "\n"
 "Copy Left (Alt+Left)"
 msgstr ""
+"\n"
+"Копира вляво (Alt+Left)"
 
 msgid ""
 "\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Копира вдясно и продължава (Ctrl+Alt+Right)"
 
 msgid ""
 "\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Копира вляво и продължава (Ctrl+Alt+Left)"
 
 msgid ""
 "\n"
 "All Right"
 msgstr ""
+"\n"
+"Всичко вдясно"
 
 msgid ""
 "\n"
 "All Left"
 msgstr ""
+"\n"
+"Всичко вляво"
 
 msgid ""
 "\n"
@@ -3466,7 +3478,7 @@ msgid "Failed to download latest version information"
 msgstr "Грешка при изтегляне на данните за ново издание"
 
 msgid "Plugin Settings"
-msgstr "Настройки на добавките"
+msgstr "Настройки на добавки"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не е намерен - скриптовете на .sct са забранени"
@@ -3673,7 +3685,7 @@ msgid "The pair is already present in the list of Substitution Filters"
 msgstr "Двойката вече съществува в заместващите филтри"
 
 msgid "Add this change to Substitution Filters?"
-msgstr "Добавяне на промяна към заместващи филтри?"
+msgstr "Нов заместващ филтър от тази промяна?"
 
 msgid "Text only"
 msgstr "Само текст"
@@ -3697,7 +3709,7 @@ msgid "Prettification"
 msgstr ""
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Извличане на съдържание"
 
 msgid "Visualization"
 msgstr ""
