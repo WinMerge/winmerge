@@ -566,7 +566,7 @@
           <primary>PrettifyXML plugin file</primary>
         </indexterm></filename></title>
 
-      <para>XML Prettier with tidy-html5</para>
+      <para>tidy-html5 を使用して XML ファイルを整形します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>PrettifyXML</command>
@@ -579,7 +579,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line arugments passed to the tidy command</para>
+            <para>tidy コマンドに渡すコマンドライン引数。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -619,7 +619,7 @@
           <primary>PrettifyJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>JSON Prettier with jq command</para>
+      <para>jq コマンドを使用してJSON ファイルを整形します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>PrettifyJSON</command>
@@ -632,7 +632,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Filter or command line options passed to the jq command</para>
+            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -672,7 +672,7 @@
           <primary>QueryCSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>CSV Querier with q command</para>
+      <para>q コマンドを使用して CSVファイルからデータを抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>QueryCSV</command>
@@ -685,7 +685,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>SQL statement or command line options passed to the q command</para>
+            <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -725,7 +725,7 @@
           <primary>QueryTSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TSV Querier with q command</para>
+      <para>q コマンドを使用して TSVファイルからデータを抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>QueryTSV</command>
@@ -738,7 +738,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>SQL statement or command line options passed to the q command</para>
+            <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -778,7 +778,7 @@
           <primary>QueryJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>JSON Querier with jq command</para>
+      <para>jq コマンドを使用して JSONファイルからデータを抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>QueryJSON</command>
@@ -791,7 +791,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para> Filter or command line options passed to the jq command</para>
+            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -831,7 +831,7 @@
           <primary>VisualizeGraphviz plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Graphviz Visualizer</para>
+      <para>Graphviz ファイルを画像化します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>VisualizeGraphviz</command>
@@ -844,7 +844,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the dot command</para>
+            <para>dot コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -885,7 +885,7 @@
           <primary>ApacheTika plugin file</primary>
         </indexterm></filename></title>
 
-      <para>General content extractor with Apache Tika</para>
+      <para>Apache Tika を使用してファイルからテキストを抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>ApacheTika</command>
@@ -898,7 +898,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line options passed to the tika-app.jar</para>
+            <para>tika-app.jar に渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -938,7 +938,7 @@
           <primary>ExecFilterCommand plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Applys filter command</para>
+      <para>フィルタコマンドを適用します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>ExecFilterCommand</command>
@@ -951,7 +951,7 @@
         <varlistentry>
           <term><option><replaceable>command</replaceable></option></term>
           <listitem>
-            <para>command to execute. %1 in the command is replaced with the filename</para>
+            <para>実行するコマンド。 コマンド内の %1 はファイル名に置き換わります。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -991,7 +991,7 @@
           <primary>MakeUpper plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Makes characters uppercase</para>
+      <para>テキストを大文字に変換します</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1028,7 +1028,7 @@
           <primary>MakeLower plugin file</primary>
         </indexterm></filename></title>
 
-      <para>=Makes characters lowercase</para>
+      <para>テキストを小文字に変換します</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1065,7 +1065,7 @@
           <primary>RemoveDuplicates plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Removes duplicate lines</para>
+      <para>重複行を削除します</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1102,7 +1102,7 @@
           <primary>CountDuplicates plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Counts duplicate lines</para>
+      <para>重複行をカウントします</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1139,7 +1139,7 @@
           <primary>SortAscending plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Sorts lines ascending</para>
+      <para>行を昇順にソートします</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1176,7 +1176,7 @@
           <primary>SortDescending plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Sorts lines descending</para>
+      <para>行を降順にソートします</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1213,7 +1213,7 @@
           <primary>ReverseColumns plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Reverses columns</para>
+      <para>列を逆順にします</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1250,7 +1250,7 @@
           <primary>ReverseLines plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Reverses lines</para>
+      <para>行を逆順にします</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1287,7 +1287,7 @@
           <primary>SelectColumns plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Selects some columns</para>
+      <para>指定した列を抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>SelectColumns</command>
@@ -1313,42 +1313,42 @@
         <varlistentry>
           <term><option><replaceable>ranges</replaceable></option></term>
           <listitem>
-            <para>list of column ranges to select. (e.g. -3,5-10,30-)</para>
+            <para>抽出する列範囲のリスト (例 -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option><replaceable>patterns</replaceable></option></term>
           <listitem>
-            <para>regular expression</para>
+            <para>正規表現</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-v</option></term>
           <listitem>
-            <para>select non-matching columns</para>
+            <para>マッチしない列を抽出します</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-i</option></term>
           <listitem>
-            <para>ignore case</para>
+            <para>大文字小文字を無視します</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-g</option></term>
           <listitem>
-            <para>enable global flag</para>
+            <para>グローバルフラグを有効にします</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-e</option></term>
           <listitem>
-            <para>use <replaceable>patterns</replaceable> for matching</para>
+            <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
           </listitem>
         </varlistentry>
 
@@ -1389,7 +1389,7 @@
           <primary>SelectLines plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Selects some lines</para>
+      <para>指定した行を抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>SelectLines</command>
@@ -1415,35 +1415,35 @@
         <varlistentry>
           <term><option><replaceable>ranges</replaceable></option></term>
           <listitem>
-            <para>list of line ranges to select. (e.g. -3,5-10,30-)</para>
+            <para>抽出する行範囲のリスト (例 -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option><replaceable>patterns</replaceable></option></term>
           <listitem>
-            <para>regular expression</para>
+            <para>正規表現</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-v</option></term>
           <listitem>
-            <para>select non-matching columns</para>
+            <para>マッチしない行を抽出します</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-i</option></term>
           <listitem>
-            <para>ignore case</para>
+            <para>大文字小文字を無視します</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-e</option></term>
           <listitem>
-            <para>use <replaceable>patterns</replaceable> for matching</para>
+            <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
           </listitem>
         </varlistentry>
 
@@ -1484,7 +1484,7 @@
           <primary>Replace plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Replaces text with another text</para>
+      <para>テキストを置換します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>Replace</command>
@@ -1504,28 +1504,28 @@
         <varlistentry>
           <term><option><replaceable>text_to_find</replaceable></option></term>
           <listitem>
-            <para>text to find</para>
+            <para>検索するテキスト</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option><replaceable>text_to_replace</replaceable></option></term>
           <listitem>
-            <para>text to replace</para>
+            <para>置換するテキスト</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-i</option></term>
           <listitem>
-            <para>ignore case (only for -e)</para>
+            <para>大文字小文字を無視します (-e指定時のみ有効)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term><option>-e</option></term>
           <listitem>
-            <para>treat the specified text as a regular expression</para>
+            <para>指定したテキストを正規表現として扱います</para>
           </listitem>
         </varlistentry>
 
@@ -1566,7 +1566,7 @@
           <primary>Tokenize plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Tokenizes selection</para>
+      <para>トークン分割を行います。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>Tokenize</command>
@@ -1579,7 +1579,7 @@
         <varlistentry>
           <term><option><replaceable>patterns</replaceable></option></term>
           <listitem>
-            <para>regular expression for tokenizing. (e.g. [^\w]+)</para>
+            <para>トークン分割に使用する正規表現 (例 [^\w]+)</para>
           </listitem>
         </varlistentry>
 
@@ -1620,7 +1620,7 @@
           <primary>Trim plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Trim spaces</para>
+      <para>行頭行末の空白を削除します</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -1875,81 +1875,80 @@
           <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
+      <para>いくつかの関数を<menuchoice>
           <guimenu>プラグイン</guimenu>
 
           <guisubmenu>スクリプト</guisubmenu>
-        </menuchoice> メニュー:</para>
+        </menuchoice> メニューに追加します:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>大文字に変換</guimenuitem> convert the selection to
-          UPPER CASE.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>小文字に変換</guimenuitem> convert the selection to
-          lower case.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>重複行を削除</guimenuitem> remove duplicate lines in the selection. 
+          <simpara><guimenuitem>大文字に変換</guimenuitem> 選択範囲を大文字に変換します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>重複行をカウント</guimenuitem> remove duplicate lines in the selection and insert the number of duplicate lines on the right. 
+          <simpara><guimenuitem>小文字に変換</guimenuitem> 選択範囲を小文字に変換します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>昇順にソート</guimenuitem> sort the selection 
-          in ascending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>降順にソート</guimenuitem> sort the selection 
-          in descending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>列を逆順</guimenuitem> TBD
+          <simpara><guimenuitem>重複行を削除</guimenuitem> 選択範囲内の重複した行を削除します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>行を逆順</guimenuitem> TBD 
+          <simpara><guimenuitem>重複行をカウント</guimenuitem> 選択範囲内の重複した行を削除し、重複行の数+1を行末に挿入します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>列を抽出...</guimenuitem> TBD 
+          <simpara><guimenuitem>昇順にソート</guimenuitem> 選択範囲の行を昇順にソートします。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>行を抽出...</guimenuitem> TBD 
+          <simpara><guimenuitem>降順にソート</guimenuitem> 選択範囲の行を降順にソートします。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>置換...</guimenuitem> TBD 
+          <simpara><guimenuitem>列を逆順</guimenuitem> 選択範囲内の列を逆順にします。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> replace the selection 
-          with the output of the specified filter command.
-          Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>トークン分割...</guimenuitem> TBD
+          <simpara><guimenuitem>行を逆順</guimenuitem> 選択範囲内の行を逆順にします。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> TBD
+          <simpara><guimenuitem>列を抽出...</guimenuitem> 選択範囲内の指定した列を抽出します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行を抽出...</guimenuitem> 選択範囲内の指定した行を抽出します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>置換...</guimenuitem> 選択範囲内の文字列を別の文字列に置換します。 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> 選択範囲を指定したフィルタコマンドの出力に置き換えます。
+          コマンド内の %1 は現在のペインのファイル名に置き換わります。</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>トークン分割...</guimenuitem> 選択範囲内でトークンの区切りを改行に置換します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> 選択範囲内の行頭と行末の空白を削除します。
           </simpara>
         </listitem>
       </itemizedlist>
