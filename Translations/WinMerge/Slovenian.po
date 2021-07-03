@@ -896,6 +896,9 @@ msgstr "Ra&zdeli"
 msgid "Comp&are"
 msgstr "P&rimerjaj"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Pr&imerjaj ne-vodoravno..."
 

@@ -710,6 +710,9 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compare in new &window"
+msgstr "新しいウインドウで比較(&W)"
+
 msgid "Compare Non-hor&izontally..."
 msgstr "非水平的に比較する(&I)..."
 

@@ -712,6 +712,9 @@ msgstr "Od&deliť"
 msgid "Comp&are"
 msgstr "Porovn&ať"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Porovnať ne&horizontálne..."
 

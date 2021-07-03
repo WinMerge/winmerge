@@ -709,6 +709,9 @@ msgstr "&Dividi"
 msgid "Comp&are"
 msgstr "&Confronta"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr ""
 

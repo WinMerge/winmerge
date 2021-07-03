@@ -903,6 +903,9 @@ msgstr "Scinder"
 msgid "Comp&are"
 msgstr "Co&mparer"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Comparer non-hor&izontalement..."
 

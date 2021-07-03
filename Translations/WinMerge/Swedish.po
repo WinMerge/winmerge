@@ -898,6 +898,9 @@ msgstr "Dela"
 msgid "Comp&are"
 msgstr "Jämför"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Jämför icke-Vågrätt ..."
 
