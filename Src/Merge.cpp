@@ -502,6 +502,19 @@ int CMergeApp::ExitInstance()
 
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
+	
+#ifndef _DEBUG
+	// There is a problem that OleUninitialize() in mfc/oleinit.cpp, which is called just before the process exits,
+	// hangs in rare cases.
+	// To deal with this problem, force the process to exit
+	// if the process does not exit within 2 seconds after the call to CMergeApp::ExitInstance().
+	_beginthreadex(0, 0,
+		[](void*) -> unsigned int {
+			Sleep(2000);
+			ExitProcess(0);
+		}, nullptr, 0, nullptr);
+#endif
+
 	return 0;
 }
 
