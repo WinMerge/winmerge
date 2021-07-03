@@ -349,7 +349,7 @@ msgstr "&Automatikus kicsomagolás"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Bővítmények betöltése"
+msgstr "&Bővítmények újratöltése"
 
 #, c-format
 msgid "&Window"
@@ -881,14 +881,14 @@ msgid "Clear Sync&hronization Points"
 msgstr "Szinkronizációs pontok törlése"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Kicsomagoló"
 
 #, c-format
 msgid "&Prediffer"
 msgstr "&Elővizsgáló"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Elővizsgáló alkalmazása..."
 
 #, c-format
 msgid "Sp&lit"
@@ -899,7 +899,7 @@ msgid "Comp&are"
 msgstr "&Összehasonlít"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Összehasonlítás új ablakban"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Nem vízszintes összehasonlítás..."
@@ -1085,7 +1085,7 @@ msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Kicsomagoló beállításai"
 
 #, c-format
 msgid "<None>"
@@ -1258,7 +1258,7 @@ msgstr " Mappa: Szűrő"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fájlkitömörítő"
+msgstr " Fájlkitömörítő bővítmény"
 
 #, c-format
 msgid "Se&lect..."
@@ -1635,10 +1635,10 @@ msgid "Move &Down"
 msgstr "Mozgatás le"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Bővítmény kiválasztása"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Bővítmény neve:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1649,19 +1649,19 @@ msgid "Description:"
 msgstr "Leírás:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Alapértelmezett argumentumok:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Bővítmény pipeline"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Pipe hozzáadása"
 
 #, c-format
 msgid "Stop"
@@ -2255,16 +2255,16 @@ msgstr "Bővítmények"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "Bővítmény&ek bekapcsolása"
+msgstr "Bővítmények bekapcsolása"
 
 msgid "File filters:"
 msgstr "Fájlszűrők:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Bővítmény argumentumok:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Automatikus kicsomagolás/elővizsgálat engedélyezése a bővítmény számára"
 
 #, c-format
 msgid "Shell Integration"
@@ -2814,7 +2814,7 @@ msgstr "Sor: %s  Oszlop: %d/%d  Karakter: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Kiv.: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -3625,10 +3625,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "(*) látható, ha a fájl bináris."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Kicsomagoló bővítmény név vagy pipeline"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Elővizsgáló bővítmény név vagy pipeline"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -4148,7 +4148,7 @@ msgstr "Nem sikerült ellenőrizni a verzióinformációkat"
 
 #, c-format
 msgid "Plugin Settings"
-msgstr "Beállítások"
+msgstr "Bővítmény beállítások"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
@@ -4421,16 +4421,16 @@ msgid "Sort Lines Ascending"
 msgstr "Sorok növekvő rendezése"
 
 msgid "Sort Lines Descending"
-msgstr "Sorok csökkenőő rendezése""
+msgstr "Sorok csökkenő rendezése"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Oszlopok megfordítása"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Sorok megfordítása"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Csere..."
 
 msgid "Apply Filter Command..."
 msgstr "Szűrőparancs alkalmazása..."
@@ -4491,11 +4491,11 @@ msgstr "JSON adatok lekérdezése..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Hiányzó bővítménynév a beépülő modulban: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Hiányzó idézőjel a beépülő modulban: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
 
 msgid "Specify plugin arguments"
-msgstr "Plugin argumentumok megadása"
+msgstr "Bővítmény argumentumok megadása"
