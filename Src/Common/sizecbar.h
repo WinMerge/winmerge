@@ -85,11 +85,11 @@ public:
 
 // Attributes
 public:
-    const bool IsFloating() const;
-    const bool IsHorzDocked() const;
-    const bool IsVertDocked() const;
-    const bool IsSideTracking() const;
-    const bool GetSCBStyle() const {return (m_dwSCBStyle != 0);}
+    bool IsFloating() const;
+    bool IsHorzDocked() const;
+    bool IsVertDocked() const;
+    bool IsSideTracking() const;
+    bool GetSCBStyle() const {return (m_dwSCBStyle != 0);}
 
 // Operations
 public:
