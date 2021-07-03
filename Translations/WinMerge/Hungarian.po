@@ -349,7 +349,7 @@ msgstr "&Automatikus kicsomagolás"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Bővítmények betöltése"
+msgstr "&Bővítmények újratöltése"
 
 #, c-format
 msgid "&Window"
@@ -1258,7 +1258,7 @@ msgstr " Mappa: Szűrő"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fájlkitömörítő"
+msgstr " Fájlkitömörítő bővítmény"
 
 #, c-format
 msgid "Se&lect..."
@@ -1658,10 +1658,10 @@ msgid "&Open files in the same window type after unpacking."
 msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Bővítmény pipeline"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Pipe hozzáadása"
 
 #, c-format
 msgid "Stop"
@@ -2255,7 +2255,7 @@ msgstr "Bővítmények"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "Bővítmény&ek bekapcsolása"
+msgstr "Bővítmények bekapcsolása"
 
 msgid "File filters:"
 msgstr "Fájlszűrők:"
@@ -2264,7 +2264,7 @@ msgid "&Plugin arguments:"
 msgstr "Bővítmény argumentumok:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "Automatikus kicsomagolás/előviszgálat engedélyezése a bővítmény számára"
+msgstr "Automatikus kicsomagolás/elővizsgálat engedélyezése a bővítmény számára"
 
 #, c-format
 msgid "Shell Integration"
@@ -3628,7 +3628,7 @@ msgid "Unpacker plugin name or pipeline."
 msgstr "Kicsomagoló bővítmény név vagy pipeline"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Előviszgáló bővítmény név vagy pipeline"
+msgstr "Elővizsgáló bővítmény név vagy pipeline"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -4148,7 +4148,7 @@ msgstr "Nem sikerült ellenőrizni a verzióinformációkat"
 
 #, c-format
 msgid "Plugin Settings"
-msgstr "Beállítások"
+msgstr "Bővítmény beállítások"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
@@ -4491,11 +4491,11 @@ msgstr "JSON adatok lekérdezése..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Hiányzó bővítménynév a beépülő modulban: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Hiányzó idézőjel a beépülő modulban: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
 
 msgid "Specify plugin arguments"
-msgstr "Plugin argumentumok megadása"
+msgstr "Bővítmény argumentumok megadása"
