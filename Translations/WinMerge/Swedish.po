@@ -1324,13 +1324,6 @@ msgstr "Öppna-dialog Auto-Fullända:"
 msgid "Language:"
 msgstr "Språk:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' för att göra samtliga synliga igen."
-
-#, c-format
-msgid "Reset"
-msgstr "Återställ"
-
 #, c-format
 msgid "Find"
 msgstr "Sök"
@@ -1802,6 +1795,13 @@ msgstr "Ordbrytningstecken:"
 
 msgid "&Rendering Mode:"
 msgstr "Alstringsläge:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' för att göra samtliga synliga igen."
+
+#, c-format
+msgid "Reset"
+msgstr "Återställ"
 
 msgid "File Filters"
 msgstr "Filfilter"
@@ -2563,6 +2563,9 @@ msgstr "MappJämförelse"
 #, c-format
 msgid "Differences"
 msgstr "Skillnader"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3848,10 +3851,6 @@ msgstr "Välj ett filnamn för resultatet."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan inte skapa en patchfil från binära filer."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kan inte skapa en patchfil från mappar."
 
 #, c-format
 msgid ""

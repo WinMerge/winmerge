@@ -1055,12 +1055,6 @@ msgstr "Автозавершение в диалоге открытия:"
 msgid "Language:"
 msgstr "Язык:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
-
-msgid "Reset"
-msgstr "Сброс"
-
 msgid "Find"
 msgstr "Найти"
 
@@ -1435,6 +1429,12 @@ msgstr "Символы разрыва слов:"
 
 msgid "&Rendering Mode:"
 msgstr "Режим отрисовки:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
+
+msgid "Reset"
+msgstr "Сброс"
 
 msgid "File Filters"
 msgstr "Фильтры файлов"
@@ -1992,6 +1992,9 @@ msgstr "Сравнение папок"
 
 msgid "Differences"
 msgstr "Отличия"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "На:"
@@ -2898,9 +2901,6 @@ msgstr "Указать выходной файл."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Не удается создать патч из двоичных файлов."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Не удается создать патч из папок."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Сначала сохраните все файлы.\n\nДля создания патча необходимо, чтобы в файлах не было несохраненных изменений."

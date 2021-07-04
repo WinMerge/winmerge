@@ -1054,12 +1054,6 @@ msgstr "[開く] ダイアログのオートコンプリート(&E):"
 msgid "Language:"
 msgstr "言語:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
-
-msgid "Reset"
-msgstr "リセット"
-
 msgid "Find"
 msgstr "検索"
 
@@ -1438,6 +1432,12 @@ msgstr "単語区切り文字(&O)"
 
 msgid "&Rendering Mode:"
 msgstr "レンダリングモード(&R):"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
+
+msgid "Reset"
+msgstr "リセット"
 
 msgid "File Filters"
 msgstr "ファイルフィルター"
@@ -2055,6 +2055,9 @@ msgstr "フォルダー比較"
 
 msgid "Differences"
 msgstr "差異"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "To:"
@@ -3170,9 +3173,6 @@ msgstr "出力パスを指定してください。"
 
 msgid "Cannot create a patch file from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
-
-msgid "Cannot create a patch file from directories."
-msgstr "フォルダーからパッチ ファイルは生成できません。"
 
 msgid ""
 "Please save all files first.\n"

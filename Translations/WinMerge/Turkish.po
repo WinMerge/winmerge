@@ -1054,16 +1054,6 @@ msgstr "Aç &penceresi otomatik olarak doldurulsun:"
 msgid "Language:"
 msgstr "Dil:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge sık karşılaşın iletilerin gizlenmesine izin verir. Tüm iletileri "
-"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
-
-msgid "Reset"
-msgstr "Sıfırla"
-
 msgid "Find"
 msgstr "Bul"
 
@@ -1442,6 +1432,16 @@ msgstr "&Sözcük kesme karakterleri:"
 
 msgid "&Rendering Mode:"
 msgstr "Gö&rüntüleme Kipi:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge sık karşılaşın iletilerin gizlenmesine izin verir. Tüm iletileri "
+"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
+
+msgid "Reset"
+msgstr "Sıfırla"
 
 msgid "File Filters"
 msgstr "Dosya süzgeçleri"
@@ -2072,6 +2072,9 @@ msgstr "Klasör karşılaştırma"
 
 msgid "Differences"
 msgstr "Farklar"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Kime:"
@@ -3231,9 +3234,6 @@ msgstr "Bir çıktı dosyası belirtin."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Binary dosyalarından, yama dosyası hazırlanamaz."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Klasörlerden yama dosyası hazırlanamaz."
 
 msgid ""
 "Please save all files first.\n"

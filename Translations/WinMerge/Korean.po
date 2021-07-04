@@ -1327,13 +1327,6 @@ msgstr "열기 대화 상자 자동 완성(&E):"
 msgid "Language:"
 msgstr "언어:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
-
-#, c-format
-msgid "Reset"
-msgstr "초기화"
-
 #, c-format
 msgid "Find"
 msgstr "찾기"
@@ -1805,6 +1798,13 @@ msgstr "단어 분리 문자(&O):"
 
 msgid "&Rendering Mode:"
 msgstr "렌더링 모드(&R)"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
+
+#, c-format
+msgid "Reset"
+msgstr "초기화"
 
 msgid "File Filters"
 msgstr "파일 필터"
@@ -2564,6 +2564,9 @@ msgstr "폴더 비교"
 #, c-format
 msgid "Differences"
 msgstr "차이점"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3817,10 +3820,6 @@ msgstr "출력 파일 지정."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "바이너리 파일에서는 패치 파일을 만들 수 없습니다."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "폴더에서는 패치 파일을 만들 수 없습니다."
 
 #, c-format
 msgid ""

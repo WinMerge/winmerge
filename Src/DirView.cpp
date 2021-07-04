@@ -1332,7 +1332,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 				strutils::format_string1( 
 					_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
 					path);
-			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CREATE_PAIR_FOLDER);
 			if (res == IDYES)
 				created = paths::CreateIfNeeded(path);
 		}

@@ -1058,16 +1058,6 @@ msgstr "Auto-completar Janela de Abertura:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge permite ocultar mensagens predefinidas. Prima o botão Repor para "
-"visualizar novamente todas as mensagens."
-
-msgid "Reset"
-msgstr "Repor"
-
 msgid "Find"
 msgstr "Localizar"
 
@@ -1446,6 +1436,16 @@ msgstr "Caracteres da palavra:"
 
 msgid "&Rendering Mode:"
 msgstr "Modo de &renderização:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge permite ocultar mensagens predefinidas. Prima o botão Repor para "
+"visualizar novamente todas as mensagens."
+
+msgid "Reset"
+msgstr "Repor"
 
 msgid "File Filters"
 msgstr "Filtros de ficheiro"
@@ -2078,6 +2078,9 @@ msgstr "Comparação de pastas"
 
 msgid "Differences"
 msgstr "Diferenças"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Para:"
@@ -3246,9 +3249,6 @@ msgstr "Especifique o ficheiro de destino."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Não é possível criar um ficheiro patch a partir de ficheiros binários."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Não é possível criar um ficheiro patch a partir de diretorias."
 
 msgid ""
 "Please save all files first.\n"

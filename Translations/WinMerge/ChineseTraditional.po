@@ -1332,13 +1332,6 @@ msgstr "「開啟」對話方塊之自動完成(&E)："
 msgid "Language:"
 msgstr "語言"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
-
-#, c-format
-msgid "Reset"
-msgstr "重設"
-
 #, c-format
 msgid "Find"
 msgstr "尋找"
@@ -1810,6 +1803,13 @@ msgstr "斷句字元(&O)："
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
+
+#, c-format
+msgid "Reset"
+msgstr "重設"
 
 msgid "File Filters"
 msgstr ""
@@ -2548,6 +2548,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "差異"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3796,10 +3799,6 @@ msgstr "指定一個輸出檔。"
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "無法從二進制檔建補綴檔。"
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "無法從目錄建補綴檔。"
 
 #, c-format
 msgid ""

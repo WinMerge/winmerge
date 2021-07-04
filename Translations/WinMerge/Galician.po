@@ -1323,13 +1323,6 @@ msgstr "A&utocompletar diálogo de apertura:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permite ocultar algunhas caixas de mensaxes de uso frecuente. Preme o botón Restaurar para facer visibles todas as mensaxes outra vez."
-
-#, c-format
-msgid "Reset"
-msgstr "Restaurar"
-
 #, c-format
 msgid "Find"
 msgstr "Buscar"
@@ -1801,6 +1794,13 @@ msgstr "Caracteres de separación de palabra:"
 
 msgid "&Rendering Mode:"
 msgstr "Modo de &renderizado:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permite ocultar algunhas caixas de mensaxes de uso frecuente. Preme o botón Restaurar para facer visibles todas as mensaxes outra vez."
+
+#, c-format
+msgid "Reset"
+msgstr "Restaurar"
 
 msgid "File Filters"
 msgstr "Filtros de arquivo"
@@ -2568,6 +2568,9 @@ msgstr "Comparar cartafoles"
 #, c-format
 msgid "Differences"
 msgstr "Diferenzas"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3858,10 +3861,6 @@ msgstr "Especifica un arquivo de saída."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Non se pode crear un arquivo Patch desde arquivos binarios."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Non se pode crear un arquivo Patch desde un cartafol."
 
 #, c-format
 msgid ""

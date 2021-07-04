@@ -1322,15 +1322,6 @@ msgstr "Automatické &dokončování:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"Některá obecná okna se zprávami je možno skrýt.\n"
-"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
-
-#, c-format
-msgid "Reset"
-msgstr "V&rátit"
-
 #, c-format
 msgid "Find"
 msgstr "Najít"
@@ -1802,6 +1793,15 @@ msgstr "Zn&aky oddělující slova:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"Některá obecná okna se zprávami je možno skrýt.\n"
+"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
+
+#, c-format
+msgid "Reset"
+msgstr "V&rátit"
 
 msgid "File Filters"
 msgstr ""
@@ -2509,6 +2509,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Rozdíly"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3720,10 +3723,6 @@ msgstr "Zadejte výstupní soubor."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Nelze vytvořit opravný soubor z binárních souborů."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nelze vytvořit opravný soubor ze složek."
 
 #, c-format
 msgid ""

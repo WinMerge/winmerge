@@ -1050,16 +1050,6 @@ msgstr "Автоматично &довършване в „Избиране на
 msgid "Language:"
 msgstr "Език:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge позволява скриване на някои съобщения. Натиснете бутона Отменяне за "
-"повторно показване на тези съобщения."
-
-msgid "Reset"
-msgstr "Отменяне"
-
 msgid "Find"
 msgstr "Търсене"
 
@@ -1436,6 +1426,16 @@ msgstr "Символ за пренасяне на &дума:"
 
 msgid "&Rendering Mode:"
 msgstr "&Режим на изчертаване:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge позволява скриване на някои съобщения. Натиснете бутона Отменяне за "
+"повторно показване на тези съобщения."
+
+msgid "Reset"
+msgstr "Отменяне"
 
 msgid "File Filters"
 msgstr "Филтри за файлове"
@@ -2065,6 +2065,9 @@ msgstr "Сравняване на папки"
 
 msgid "Differences"
 msgstr "Различия"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "В:"
@@ -3221,9 +3224,6 @@ msgstr "Задайте изходен файл."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Не може да се създаде пач от двоични файлове."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Не може да се създаде пач от директории."
 
 msgid ""
 "Please save all files first.\n"

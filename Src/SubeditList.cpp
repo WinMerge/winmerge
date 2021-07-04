@@ -184,6 +184,64 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
 	m_dropListFixedPattern[nItem][nSubItem] = fixedPattern;
 }
 
+/**
+ * @brief Get the dropdown list data for the specified cell.
+ * @param [in] nItem Th row index to get wildcard drop list fixed pattern
+ * @param [in] nSubItem The column to get wildcard drop list fixed pattern
+ * @return dropdown list data for the specified cell
+ */
+std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
+{
+	int nItemCount = GetItemCount();
+	if (nItem < 0 || nItem >= nItemCount)
+		return {};
+
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nSubItem < 0 || nSubItem >= nColumnCount)
+		return {};
+
+	// This setting is valid only for columns whose edit style is EditStyle::DROPDOWN_LIST.
+	if (GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
+		return {};
+
+	if (static_cast<size_t>(nItem) < m_dropList.size())
+		if (static_cast<size_t>(nSubItem) < m_dropList[nItem].size())
+			return m_dropList[nItem][nSubItem];
+
+	return {};
+}
+
+/**
+ * @brief Set the drop list data for the specified cell.
+ * @param [in] nItem The row index to set wildcard drop list fixed pattern
+ * @param [in] nSubItem The column to set wildcard drop list fixed pattern
+ * @param [in] fixedPattern Wildcard drop list fixed pattern to set
+ */
+void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<String>& list)
+{
+	int nItemCount = GetItemCount();
+	if (nItem < 0 || nItem >= nItemCount)
+		return;
+
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nSubItem < 0 || nSubItem >= nColumnCount)
+		return;
+
+	// This setting is valid only for columns whose edit style is EditStyle::DROPDOWN_LIST.
+	if (GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
+		return;
+
+	for (size_t i = m_dropList.size(); i <= static_cast<size_t>(nItem); i++)
+		m_dropList.push_back({});
+
+	for (size_t i = m_dropList[nItem].size(); i <= static_cast<size_t>(nSubItem); i++)
+		m_dropList[nItem].push_back({});
+
+	m_dropList[nItem][nSubItem] = list;
+}
+
 // HitTestEx	- Determine the row index and column index for a point
 // Returns	- the row index or -1 if point is not over a row
 // point	- point to be tested.
@@ -333,6 +391,27 @@ void CSubeditList::EditSubLabelWildcardDropList( int nItem, int nCol )
 	WildcardDropList::OnItemActivate(m_hWnd, nItem, nCol, 4, pattern, true, nLimitTextSize);
 }
 
+/**
+ * @brief Start edit of a sub item label with dropdown list.
+ * @param [in] nItem The row index of the item to edit
+ * @param [in] nCol The column of the sub item
+ */
+void CSubeditList::EditSubLabelDropdownList( int nItem, int nCol )
+{
+	// Make sure that the item is visible
+	if( !EnsureVisible( nItem, TRUE ) ) return;
+
+	// Make sure that nCol is valid
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
+		return;
+
+	if (GetEditStyle(nCol) != EditStyle::DROPDOWN_LIST)
+		return;
+
+}
+
 void CSubeditList::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	if( GetFocus() != this ) SetFocus();
@@ -408,6 +487,9 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 							break;
 						case EditStyle::WILDCARD_DROP_LIST:
 							EditSubLabelWildcardDropList(index, colnum);
+							break;
+						case EditStyle::DROPDOWN_LIST:
+							EditSubLabelDropdownList(index, colnum);
 							break;
 						default:
 							break;

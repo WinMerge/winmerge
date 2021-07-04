@@ -1056,14 +1056,6 @@ msgstr "فتح نافذة الإكمال التلقائي:"
 msgid "Language:"
 msgstr "اللغة:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"يقوم WinMerge بإخفاء بعض الرسائل العامة. إضغط على زر إعادة التعيين لجعل كافة "
-"الرسائل ظاهرة مجددا."
-
-msgid "Reset"
-msgstr "إعادة تعيين"
-
 msgid "Find"
 msgstr "البحث"
 
@@ -1438,6 +1430,14 @@ msgstr "رمو&ز الفصل للكلمات:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"يقوم WinMerge بإخفاء بعض الرسائل العامة. إضغط على زر إعادة التعيين لجعل كافة "
+"الرسائل ظاهرة مجددا."
+
+msgid "Reset"
+msgstr "إعادة تعيين"
 
 msgid "File Filters"
 msgstr ""
@@ -2056,6 +2056,9 @@ msgstr "مقارنة المجلد"
 
 msgid "Differences"
 msgstr "الاختلافات"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "إلى:"
@@ -3153,9 +3156,6 @@ msgstr "حدد مجلد للإخراج."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "لا يمكن إنشاء ملف تصحيح من ملفات ثنائية."
-
-msgid "Cannot create a patch file from directories."
-msgstr "لا يمكن إنشاء ملف تصحيح (patch) من المجلدات."
 
 msgid ""
 "Please save all files first.\n"

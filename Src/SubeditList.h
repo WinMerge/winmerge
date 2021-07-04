@@ -56,6 +56,7 @@ public:
 	{
 		EDIT_BOX,
 		WILDCARD_DROP_LIST,
+		DROPDOWN_LIST,
 	};
 
 // Construction
@@ -69,6 +70,7 @@ private:
 	std::vector<EditStyle> m_editStyle;							/**< Edit style for each column */
 	std::vector<int> m_limitTextSize;							/**< Character limit for each column */
 	std::vector<std::vector<String>> m_dropListFixedPattern;	/**< Wildcard drop list fixed pattern for each cell */
+	std::vector<std::vector<std::vector<String>>> m_dropList;	/**< dropdown list data for each cell */
 
 // Operations
 public:
@@ -82,6 +84,8 @@ public:
 	void SetLimitTextSize(int nCol, int nLimitTextSize);
 	String GetDropListFixedPattern(int nItem, int nSubItem) const;
 	void SetDropListFixedPattern(int nItem, int nSubItem, const String& fixedPattern);
+	std::vector<String> GetDropdownList(int nItem, int nSubItem) const;
+	void SetDropdownList(int nItem, int nSubItem, const std::vector<String>& list);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -94,6 +98,7 @@ public:
 
 	CInPlaceEdit *EditSubLabel(int nItem, int nCol);
 	void EditSubLabelWildcardDropList(int nItem, int nCol);
+	void EditSubLabelDropdownList(int nItem, int nCol);
 	// Generated message map functions
 //protected:
 	//{{AFX_MSG(CSubeditList)

@@ -1322,13 +1322,6 @@ msgstr "Auto-completare în dialogul de deschidere:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
-
-#, c-format
-msgid "Reset"
-msgstr "Revenire"
-
 #, c-format
 msgid "Find"
 msgstr "Găseşte"
@@ -1800,6 +1793,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
+
+#, c-format
+msgid "Reset"
+msgstr "Revenire"
 
 msgid "File Filters"
 msgstr ""
@@ -2535,6 +2535,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Diferenţe"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3767,10 +3770,6 @@ msgstr "Specificaţi un fişier destinaţie."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Nu s-a reuşit crearea unui fişier petic din fişiere binare."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nu s-a reuşit crearea unui fişier petic din directoare."
 
 #, fuzzy, c-format
 msgid ""

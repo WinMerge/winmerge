@@ -1322,13 +1322,6 @@ msgstr "Auto-fullførelse for Å&pne-dialog:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-knappen for å gjøre alle meldingsboksene synlige igjen."
-
-#, c-format
-msgid "Reset"
-msgstr "Tilbakestill"
-
 #, c-format
 msgid "Find"
 msgstr "Søk"
@@ -1800,6 +1793,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-knappen for å gjøre alle meldingsboksene synlige igjen."
+
+#, c-format
+msgid "Reset"
+msgstr "Tilbakestill"
 
 msgid "File Filters"
 msgstr ""
@@ -2537,6 +2537,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Forskjeller"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3788,10 +3791,6 @@ msgstr "Spesifiser en utdata-fil."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan ikke opprette en patch-fil fra binære filer."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kan ikke opprette en patch-fil fra mapper."
 
 #, c-format
 msgid ""

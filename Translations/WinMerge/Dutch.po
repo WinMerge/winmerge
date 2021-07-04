@@ -1054,17 +1054,6 @@ msgstr "Auto-aanvullen openen-venster:"
 msgid "Language:"
 msgstr "Language:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
-" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
-"maken."
-
-msgid "Reset"
-msgstr "Herstellen"
-
 msgid "Find"
 msgstr "Zoeken"
 
@@ -1444,6 +1433,17 @@ msgstr "Woordsplitsingstekens:"
 
 msgid "&Rendering Mode:"
 msgstr "Rendermodus:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
+" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
+"maken."
+
+msgid "Reset"
+msgstr "Herstellen"
 
 msgid "File Filters"
 msgstr "Bestandsfilters"
@@ -2073,6 +2073,9 @@ msgstr "Mapvergelijking"
 
 msgid "Differences"
 msgstr "Verschillen"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Naar:"
@@ -3217,9 +3220,6 @@ msgstr "Uitvoerbestand opgeven."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan geen patch-bestand aanmaken van binaire bestanden."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Kan geen patch-bestand maken van mappen."
 
 msgid ""
 "Please save all files first.\n"

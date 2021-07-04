@@ -1329,13 +1329,6 @@ msgstr "Remplissage de la boîte de dialogue d'ouverture :"
 msgid "Language:"
 msgstr "Langage :"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permet de masquer certaines boîtes de message. Appuyer sur ce bouton pour les rendre visibles à nouveau."
-
-#, c-format
-msgid "Reset"
-msgstr "Rétablir"
-
 #, c-format
 msgid "Find"
 msgstr "Rechercher"
@@ -1807,6 +1800,13 @@ msgstr "Caractères pour distinction de mot :"
 
 msgid "&Rendering Mode:"
 msgstr "Mode de &rendu :"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permet de masquer certaines boîtes de message. Appuyer sur ce bouton pour les rendre visibles à nouveau."
+
+#, c-format
+msgid "Reset"
+msgstr "Rétablir"
 
 msgid "File Filters"
 msgstr "Filtres de fichier"
@@ -2574,6 +2574,9 @@ msgstr "Comparaison de dossiers"
 #, c-format
 msgid "Differences"
 msgstr "Différences"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3866,10 +3869,6 @@ msgstr "Indiquez un fichier de sortie."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Ne peut créer un fichier de retouche depuis un fichier binaire."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Ne peut créer un fichier de retouche depuis des répertoires."
 
 #, c-format
 msgid ""

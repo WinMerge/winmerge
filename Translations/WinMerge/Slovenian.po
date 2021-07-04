@@ -1322,13 +1322,6 @@ msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 msgid "Language:"
 msgstr "Jezik:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
-
-#, c-format
-msgid "Reset"
-msgstr "Ponastavi"
-
 #, c-format
 msgid "Find"
 msgstr "Najdi"
@@ -1798,6 +1791,13 @@ msgstr "&Znaki za prelom besed:"
 
 msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
+
+#, c-format
+msgid "Reset"
+msgstr "Ponastavi"
 
 msgid "File Filters"
 msgstr "Filtri datotek"
@@ -2563,6 +2563,9 @@ msgstr "Primerjava map"
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3853,10 +3856,6 @@ msgstr "Določite izhodno datoteko."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Iz dvojiških datotek ni mogoče ustvariti datoteke s popravki."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Iz map ni mogoče ustvariti datoteke s popravki."
 
 #, c-format
 msgid ""

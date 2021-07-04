@@ -1151,8 +1151,6 @@ BEGIN
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,175,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,187,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,207,240,30
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 324, 96
@@ -1540,6 +1538,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "",IDC_SYNTAX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 215
     PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 161, 228, 88, 14
+END
+
+IDD_PROPPAGE_MESSAGEBOXES DIALOGEX 0, 0, 255, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MESSAGEBOX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 190
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,207,240,30
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -2649,6 +2656,14 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
 BEGIN
     0,
@@ -2805,6 +2820,7 @@ BEGIN
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
+    IDS_OPTIONSPG_MESSAGEBOXES "Message Boxes"
 END
 
 STRINGTABLE
@@ -3398,7 +3414,6 @@ BEGIN
     IDS_MUST_SPECIFY_OUTPUT "Specify an output file."
     IDS_CANNOT_CREATE_BINARYPATCH 
                             "Cannot create a patch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
     IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END

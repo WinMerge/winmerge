@@ -1322,13 +1322,6 @@ msgstr "Otvori dijalog &samodovršenja"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge omogućuje skrivanje uobičajenih poruka. Pritisnite 'Poništi' da poruke opet budu vidljive."
-
-#, c-format
-msgid "Reset"
-msgstr "Poništi"
-
 #, c-format
 msgid "Find"
 msgstr "Nađi"
@@ -1800,6 +1793,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge omogućuje skrivanje uobičajenih poruka. Pritisnite 'Poništi' da poruke opet budu vidljive."
+
+#, c-format
+msgid "Reset"
+msgstr "Poništi"
 
 msgid "File Filters"
 msgstr ""
@@ -2537,6 +2537,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3788,10 +3791,6 @@ msgstr "Odredite izlaznu datoteku."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Ne mogu stvoriti datoteku razlika iz binarnih datoteka"
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Ne mogu stvoriti datoteku razlika mapa."
 
 #, c-format
 msgid ""

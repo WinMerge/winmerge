@@ -66,6 +66,7 @@
 #define IDD_PROPPAGE_GENERAL            276
 #define IDD_PROPPAGE_SHELL              277
 #define IDD_PROPPAGE_SYSTEM             278
+#define IDD_PROPPAGE_MESSAGEBOXES       279
 #define IDD_EDIT_FIND                   280
 #define IDD_EDIT_MARKER                 281
 #define IDD_EDIT_REPLACE                282
@@ -555,6 +556,7 @@
 #define IDC_FLDCONFIRM_DONTASKAGAIN     1418
 #define IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES 1419
 #define IDC_LFILTER_CLEARBTN            1420
+#define IDC_MESSAGEBOX_LIST             1421
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
@@ -1005,6 +1007,7 @@
 #define IDS_OPTIONSPG_TABLECOMPARE      39061
 #define IDS_OPTIONSPG_GENEDITOR         39062
 #define IDS_OPTIONSPG_EDITOR_SYNTAX     39063
+#define IDS_OPTIONSPG_MESSAGEBOXES      39064
 #define IDS_TO                          40000
 #define IDS_FROM_LEFT                   40001
 #define IDS_TO_LEFT                     40002
@@ -1300,7 +1303,6 @@
 #define IDS_PATH_NOT_ABSOLUTE           42410
 #define IDS_MUST_SPECIFY_OUTPUT         42411
 #define IDS_CANNOT_CREATE_BINARYPATCH   42412
-#define IDS_CANNOT_CREATE_DIRPATCH      42413
 #define IDS_SAVEFILES_FORPATCH          42414
 #define IDS_FOLDER_NOTEXIST             42415
 #define IDS_NO_ZIP_SUPPORT              42449

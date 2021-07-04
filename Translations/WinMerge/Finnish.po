@@ -1322,13 +1322,6 @@ msgstr "Avaa valintaikkuna 'Automaattinen täydennys':"
 msgid "Language:"
 msgstr "Kieli:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
-
-#, c-format
-msgid "Reset"
-msgstr "Palauta"
-
 #, c-format
 msgid "Find"
 msgstr "Etsi"
@@ -1800,6 +1793,13 @@ msgstr "Sanakatk&on merkit:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
+
+#, c-format
+msgid "Reset"
+msgstr "Palauta"
 
 msgid "File Filters"
 msgstr ""
@@ -2562,6 +2562,9 @@ msgstr "Kansiovertailu"
 #, c-format
 msgid "Differences"
 msgstr "Erilaisuudet"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3810,10 +3813,6 @@ msgstr "Määrittele kohdetiedost."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Paikkaustiedostoa ei voi luoda binääritiedostoista."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Paikkaustiedostoa ei voi luoda kansioista."
 
 #, c-format
 msgid ""

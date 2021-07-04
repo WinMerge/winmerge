@@ -1319,13 +1319,6 @@ msgstr "Op&en-dialog Auto-Completion:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-
-#, c-format
-msgid "Reset"
-msgstr "යලි පිහිටුවීමට"
-
 #, c-format
 msgid "Find"
 msgstr "සොයන්න"
@@ -1797,6 +1790,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+
+#, c-format
+msgid "Reset"
+msgstr "යලි පිහිටුවීමට"
 
 msgid "File Filters"
 msgstr ""
@@ -2532,6 +2532,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "වෙනස්කම්"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3775,10 +3778,6 @@ msgstr ""
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Cannot create a patch file from binary files."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Cannot create a patch file from directories."
 
 #, c-format
 msgid ""

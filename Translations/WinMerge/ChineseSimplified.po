@@ -1056,15 +1056,6 @@ msgstr "“打开”对话框的自动完成(&E):"
 msgid "Language:"
 msgstr "语言:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
-
-msgid "Reset"
-msgstr "重置"
-
 msgid "Find"
 msgstr "查找"
 
@@ -1439,6 +1430,15 @@ msgstr "单词分隔字符:"
 
 msgid "&Rendering Mode:"
 msgstr "渲染模式(&R)"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
+
+msgid "Reset"
+msgstr "重置"
 
 msgid "File Filters"
 msgstr ""
@@ -2065,6 +2065,9 @@ msgstr "文件夹比较"
 
 msgid "Differences"
 msgstr "差异"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "到:"
@@ -3194,9 +3197,6 @@ msgstr "请指定输出文件。"
 
 msgid "Cannot create a patch file from binary files."
 msgstr "无法为二进制文件创建补丁。"
-
-msgid "Cannot create a patch file from directories."
-msgstr "无法为文件夹创建补丁。"
 
 msgid ""
 "Please save all files first.\n"

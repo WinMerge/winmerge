@@ -1323,15 +1323,6 @@ msgstr "Å&ben-dialog Auto-fuldførelse:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge kan gemme almene beskedvinduer. Brug Reset knappen for at vise "
-"disse vinduer igen."
-
-#, c-format
-msgid "Reset"
-msgstr "Nulstil"
-
 #, c-format
 msgid "Find"
 msgstr "Søg"
@@ -1803,6 +1794,15 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"WinMerge kan gemme almene beskedvinduer. Brug Reset knappen for at vise "
+"disse vinduer igen."
+
+#, c-format
+msgid "Reset"
+msgstr "Nulstil"
 
 msgid "File Filters"
 msgstr ""
@@ -2548,6 +2548,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Forskelle"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -3822,10 +3825,6 @@ msgstr "Angiv en output fil."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan ikke lave patch filer fra binære filer."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kan ikke lave patch filer fra mapper."
 
 #, c-format
 msgid ""
