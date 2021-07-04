@@ -491,7 +491,8 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			OpenSelection();
 		}
 	}
-	CListView::OnLButtonDblClk(nFlags, point);
+	if (GetFocus() == this)
+		CListView::OnLButtonDblClk(nFlags, point);
 }
 
 /**
