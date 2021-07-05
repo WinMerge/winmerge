@@ -899,6 +899,9 @@ msgstr "Di&vidir"
 msgid "Comp&are"
 msgstr "Comp&arar"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Comparação Não-hor&izontal..."
 

@@ -270,8 +270,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_COMMAND(ID_VIEW_SHOWHIDDENITEMS, OnViewShowHiddenItems)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
-	ON_COMMAND(ID_MERGE_COMPARE, OnMergeCompare)
-	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnMergeCompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnUpdateMergeCompare)
 	ON_COMMAND(ID_MERGE_COMPARE_LEFT1_LEFT2, OnMergeCompare2<SELECTIONTYPE_LEFT1LEFT2>)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT1_LEFT2, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT1LEFT2>)
 	ON_COMMAND(ID_MERGE_COMPARE_RIGHT1_RIGHT2, OnMergeCompare2<SELECTIONTYPE_RIGHT1RIGHT2>)
@@ -491,7 +491,8 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			OpenSelection();
 		}
 	}
-	CListView::OnLButtonDblClk(nFlags, point);
+	if (GetFocus() == this)
+		CListView::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -687,6 +688,12 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
 	ASSERT(pPopup != nullptr);
 
+	int sel = GetFocusedItem();
+	const DIFFITEM& di = GetDiffItem(sel);
+	if (GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
+		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
+	if (!di.diffcode.isDirectory())
+		pPopup->RemoveMenu(ID_MERGE_COMPARE_IN_NEW_WINDOW, MF_BYCOMMAND);
 	if (pDoc->m_nDirs < 3)
 	{
 		pPopup->RemoveMenu(ID_DIR_COPY_LEFT_TO_MIDDLE, MF_BYCOMMAND);
@@ -1239,7 +1246,7 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 /**
  * @brief Open parent folder if possible.
  */
-void CDirView::OpenParentDirectory()
+void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 {
 	CDirDoc *pDoc = GetDocument();
 	PathContext pathsParent;
@@ -1252,7 +1259,7 @@ void CDirView::OpenParentDirectory()
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen);
 		[[fallthrough]];
 	case AllowUpwardDirectory::No:
 		break;
@@ -1286,10 +1293,11 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2, int * sel3)
 
 /**
  * @brief Open special items (parent folders etc).
+ * @param [in] pDoc Pointer to CDirDoc object.
  * @param [in] pos1 First item position.
  * @param [in] pos2 Second item position.
  */
-void CDirView::OpenSpecialItems(DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3)
+void CDirView::OpenSpecialItems(CDirDoc *pDoc, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3)
 {
 	if (pos2==nullptr && pos3==nullptr)
 	{
@@ -1297,7 +1305,7 @@ void CDirView::OpenSpecialItems(DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3)
 		// SPECIAL_ITEM_POS is position for
 		// special items, but there is currenly
 		// only one (parent folder)
-		OpenParentDirectory();
+		OpenParentDirectory(pDoc);
 	}
 	else
 	{
@@ -1332,7 +1340,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 	return created;
 }
 
-void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker)
+void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker)
 {
 	bool isdir = false;
 	for (auto path : paths)
@@ -1340,7 +1348,6 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding
 		if (paths::DoesPathExist(path) == paths::IS_EXISTING_DIR)
 			isdir = true;
 	}
-	CDirDoc * pDoc = GetDocument();
 	if (isdir)
 	{
 		// Open subfolders
@@ -1388,7 +1395,7 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding
 			GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		}
 
-		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(GetDocument(), paths.GetSize(), fileloc,
 			dwFlags, strDesc, _T(""), infoUnpacker);
 	}
 }
@@ -1403,10 +1410,9 @@ void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding
  * This handles the case that one item is selected
  * and the case that two items are selected (one on each side)
  */
-void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
+void CDirView::OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
 {
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
-	CDirDoc * pDoc = GetDocument();
 	const CDiffContext& ctxt = GetDiffContext();
 
 	// First, figure out what was selected (store into pos1 & pos2)
@@ -1433,7 +1439,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 	if (IsDiffItemSpecial(pos1))
 	{
-		OpenSpecialItems(pos1, pos2, pos3);
+		OpenSpecialItems(pDoc, pos1, pos2, pos3);
 		return;
 	}
 
@@ -1471,9 +1477,14 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 	DWORD dwFlags[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
+		dwFlags[nIndex] = FFILEOPEN_NOMRU | (GetDocument()->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
 
-	Open(paths, dwFlags, encoding, infoUnpacker);
+	Open(pDoc, paths, dwFlags, encoding, infoUnpacker);
+}
+
+void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo* infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
+{
+	OpenSelection(GetDocument(), selectionType, infoUnpacker, openableForDir);
 }
 
 void CDirView::OpenSelectionAs(UINT id)
@@ -2358,7 +2369,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			{
 				if (!GetDiffContext().m_bRecursive)
 				{
-					OpenParentDirectory();
+					OpenParentDirectory(GetDocument());
 					return FALSE;
 				}
 				else if (m_bTreeMode && sel >= 0)
@@ -3723,10 +3734,10 @@ void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_dirfilter.show_missing_right_only);
 }
 
-void CDirView::OnMergeCompare()
+void CDirView::OnMergeCompare(UINT nID)
 {
 	CWaitCursor waitstatus;
-	OpenSelection();
+	OpenSelection(nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
 }
 
 template<SELECTIONTYPE seltype>
@@ -3766,7 +3777,7 @@ void CDirView::OnMergeCompareNonHorizontally()
 		}
 		if (paths.GetSize() == 1)
 			paths.SetRight(_T(""));
-		Open(paths, dwFlags, encoding);
+		Open(GetDocument(), paths, dwFlags, encoding);
 	}
 }
 

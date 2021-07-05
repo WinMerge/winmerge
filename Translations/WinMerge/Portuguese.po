@@ -715,6 +715,9 @@ msgstr "Di&vidir"
 msgid "Comp&are"
 msgstr "Comparar"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "Comparar não-hor&izontalmente..."
 

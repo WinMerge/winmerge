@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-04-24 21:30+0200\n"
+"PO-Revision-Date: 2021-07-04 15:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -882,14 +882,14 @@ msgid "Clear Sync&hronization Points"
 msgstr "S&ynchronisationspunkt entfernen"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Entpac&ker"
 
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Pre&differ anwenden..."
 
 #, c-format
 msgid "Sp&lit"
@@ -898,6 +898,9 @@ msgstr "&Teilen"
 #, c-format
 msgid "Comp&are"
 msgstr "Ver&gleichen"
+
+msgid "Compare in new &window"
+msgstr "In neuem Fenster vergleichen"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Nicht-hor&izontal vergleichen..."
@@ -1083,7 +1086,7 @@ msgid "Copy &Filename"
 msgstr "&Dateinamen kopieren"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Entpackereinstellungen"
 
 #, c-format
 msgid "<None>"
@@ -1633,10 +1636,10 @@ msgid "Move &Down"
 msgstr "Nach &unten"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Plugin auswählen"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Plugin-Name:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1647,19 +1650,19 @@ msgid "Description:"
 msgstr "Beschreibung:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Standardargumente:"
 
 msgid "Display all unpackers, don't check the extension."
 msgstr "Alle Entpacker anzeigen, die Erweiterung nicht überprüfen."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "&Plugin-Pipeline:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Pipe hinzufügen"
 
 #, c-format
 msgid "Stop"
@@ -2251,10 +2254,10 @@ msgid "File filters:"
 msgstr "Dateifilter:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "&Plugin-Argumente:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "&Automatisches Entpacken/Prediffing für das Plugin aktivieren"
 
 #, c-format
 msgid "Shell Integration"
@@ -3387,10 +3390,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Zeigt ein Asterisk (*), wenn die Datei binär ist."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Name des Entpacker-Plugins oder der Pipeline."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Name des Prediffer-Plugins oder der Pipeline."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -4005,117 +4008,117 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
 
 msgid "Al&l"
-msgstr ""
+msgstr "A&lle"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Verschönerung"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Extraktion des Inhalts"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Visualisierung"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Datenabfrage"
 
 msgid "&Others"
-msgstr ""
+msgstr "Andere"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Großbuchstaben erzeugen"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Kleinbuchstaben erzeugen"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Doppelte Zeilen entfernen"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Doppelte Zeilen zählen"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Zeilen aufsteigend sortieren"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "Zeilen absteigend sortieren"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Spalten umkehren"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Zeilen umkehren"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Ersetzen..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Filterbefehl anwenden..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenisieren..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Leerzeichen kürzen"
 
 msgid "Select Columns..."
-msgstr ""
+msgstr "Spalten auswählen..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "Zeilen auswählen..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Datum einfügen"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Zeit einfügen"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Patch anwenden..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Spalten ignorieren"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Kommentare ignorieren (C-Sprachfamilie)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "CSV-Felder ignorieren"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "TSV-Felder ignorieren"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Prediff-Substitutionsfilter anwenden"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "JSON verschönern"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "XML verschönern"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz visualisieren"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "CSV-Daten abfragen..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "TSV-Daten abfragen..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "JSON-Daten abfragen..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Plugin-Argumente angeben"
 
 msgid "Make characters uppercase"
 msgstr ""

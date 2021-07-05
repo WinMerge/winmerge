@@ -899,6 +899,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr ""
 

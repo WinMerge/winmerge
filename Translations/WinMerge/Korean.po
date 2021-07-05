@@ -904,6 +904,9 @@ msgstr "분할(&L)"
 msgid "Comp&are"
 msgstr "비교(&A)"
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr "수평이 아닌 방식으로 비교(&I)..."
 

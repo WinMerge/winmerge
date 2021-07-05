@@ -202,7 +202,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 
 	int argc = 0;
 	wchar_t** argv = CommandLineToArgvW(m_bstrArguments.m_str, &argc);
-	CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+	CString rangestr = (m_bstrArguments.Length() > 0 && argc > 0) ? argv[0] : GetColumnRangeString();
 	if (argv)
 		LocalFree(argv);
 

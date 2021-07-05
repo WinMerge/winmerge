@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-27 23:13+0000\n"
+"POT-Creation-Date: 2021-07-05 20:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -704,6 +704,9 @@ msgid "Sp&lit"
 msgstr ""
 
 msgid "Comp&are"
+msgstr ""
+
+msgid "Compare in new &window"
 msgstr ""
 
 msgid "Compare Non-hor&izontally..."

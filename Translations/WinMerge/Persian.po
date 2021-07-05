@@ -900,6 +900,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&a همسنجي "
 
+msgid "Compare in new &window"
+msgstr ""
+
 msgid "Compare Non-hor&izontally..."
 msgstr ""
 
