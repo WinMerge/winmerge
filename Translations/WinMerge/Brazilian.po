@@ -1322,13 +1322,6 @@ msgstr "A&uto-Conclusão do Diálogo-Abrir:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "O WinMerge permite esconder algumas caixas de mensagens comuns. Pressione o botão Resetar pra tornar todas as caixas de mensagens visíveis de novo."
-
-#, c-format
-msgid "Reset"
-msgstr "Resetar"
-
 #, c-format
 msgid "Find"
 msgstr "Achar"
@@ -1800,6 +1793,13 @@ msgstr "C&aracteres da quebra de linha:"
 
 msgid "&Rendering Mode:"
 msgstr "Modo de &Renderização:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "O WinMerge permite esconder algumas caixas de mensagens comuns. Pressione o botão Resetar pra tornar todas as caixas de mensagens visíveis de novo."
+
+#, c-format
+msgid "Reset"
+msgstr "Resetar"
 
 msgid "File Filters"
 msgstr "Filtros de Arquivo"
@@ -2551,8 +2551,8 @@ msgstr "Ignorar &tudo"
 msgid "Don't display this &message again."
 msgstr "Não exibir esta &mensagem de novo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Resetar na página Geral do diálogo das Opções."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2567,6 +2567,9 @@ msgstr "Comparar Pastas"
 #, c-format
 msgid "Differences"
 msgstr "Diferenças"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2658,6 +2661,12 @@ msgstr "Tipo de Arquivo"
 #, c-format
 msgid "Extension"
 msgstr "Extensão"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3857,10 +3866,6 @@ msgstr "Especificar um arquivo de saída."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Não pode criar um arquivo de patch a partir dos arquivos binários."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Não pode criar um arquivo de patch a partir dos diretórios."
 
 #, c-format
 msgid ""

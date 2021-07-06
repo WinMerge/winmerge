@@ -1054,16 +1054,6 @@ msgstr "Aç &penceresi otomatik olarak doldurulsun:"
 msgid "Language:"
 msgstr "Dil:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge sık karşılaşın iletilerin gizlenmesine izin verir. Tüm iletileri "
-"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
-
-msgid "Reset"
-msgstr "Sıfırla"
-
 msgid "Find"
 msgstr "Bul"
 
@@ -1442,6 +1432,16 @@ msgstr "&Sözcük kesme karakterleri:"
 
 msgid "&Rendering Mode:"
 msgstr "Gö&rüntüleme Kipi:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge sık karşılaşın iletilerin gizlenmesine izin verir. Tüm iletileri "
+"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
+
+msgid "Reset"
+msgstr "Sıfırla"
 
 msgid "File Filters"
 msgstr "Dosya süzgeçleri"
@@ -2054,12 +2054,8 @@ msgstr "&Tümünü atla"
 msgid "Don't display this &message again."
 msgstr "Bu ileti &yeniden görüntülenmesin."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümünde Genel grubu "
-"altındaki Sıfırla düğmesine tıklayın."
 
 msgid "Syntax"
 msgstr "Söz dizimi"
@@ -2072,6 +2068,9 @@ msgstr "Klasör karşılaştırma"
 
 msgid "Differences"
 msgstr "Farklar"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Kime:"
@@ -2151,6 +2150,12 @@ msgstr "Dosya türü"
 
 msgid "Extension"
 msgstr "Uzantı"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Ad"
@@ -3231,9 +3236,6 @@ msgstr "Bir çıktı dosyası belirtin."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Binary dosyalarından, yama dosyası hazırlanamaz."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Klasörlerden yama dosyası hazırlanamaz."
 
 msgid ""
 "Please save all files first.\n"

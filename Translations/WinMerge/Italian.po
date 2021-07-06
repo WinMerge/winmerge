@@ -1053,14 +1053,6 @@ msgstr "Com&pletamento automatico selezione file:"
 msgid "Language:"
 msgstr "Lingua:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge permette di nascondere alcuni messaggi comuni. Premere il pulsante "
-"Ripristina per rendere di nuovo visibili tutti i messaggi."
-
-msgid "Reset"
-msgstr "Ripristina"
-
 msgid "Find"
 msgstr "Trova"
 
@@ -1435,6 +1427,14 @@ msgstr "Caratteri terminatori &parola:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"WinMerge permette di nascondere alcuni messaggi comuni. Premere il pulsante "
+"Ripristina per rendere di nuovo visibili tutti i messaggi."
+
+msgid "Reset"
+msgstr "Ripristina"
 
 msgid "File Filters"
 msgstr ""
@@ -2040,10 +2040,8 @@ msgstr "S&alta tutto"
 msgid "Don't display this &message again."
 msgstr "Non visualizzare più questo &messaggio."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Per visualizzare nuovamente questa finestra di dialogo seleziona il pulsante "
-"'Ripristina' nella scheda Generale della finestra delle opzioni."
 
 msgid "Syntax"
 msgstr "Sintassi"
@@ -2056,6 +2054,9 @@ msgstr "Confronto cartelle"
 
 msgid "Differences"
 msgstr "Differenze"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "A:"
@@ -2135,6 +2136,12 @@ msgstr ""
 
 msgid "Extension"
 msgstr "Estensione"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"
@@ -3172,9 +3179,6 @@ msgstr "Specifica un file destinazione."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Impossibile creare un file di patch da file binari."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Impossibile creare un file di patch da cartelle."
 
 msgid ""
 "Please save all files first.\n"

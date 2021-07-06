@@ -1325,15 +1325,6 @@ msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
-"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
-
-#, c-format
-msgid "Reset"
-msgstr " بازنشاني "
-
 #, c-format
 msgid "Find"
 msgstr " يافتن "
@@ -1805,6 +1796,15 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
+"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
+
+#, c-format
+msgid "Reset"
+msgstr " بازنشاني "
 
 msgid "File Filters"
 msgstr ""
@@ -2534,7 +2534,7 @@ msgstr "&a پرش از همگي "
 msgid "Don't display this &message again."
 msgstr "&m دوباره اين پيام را نمايش نده "
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2550,6 +2550,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr " تفاوتها "
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2646,6 +2649,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr " توسعه "
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3828,10 +3837,6 @@ msgstr " يک پرونده خروجي را مشخص نماييد "
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr " نمي توان يک وصله پرونده از پرونده هاي دودويي تهيه نمود "
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr " نمي توان يک وصله  پرونده از فهرستهاي راهنما ايجاد نمود "
 
 #, c-format
 msgid ""

@@ -332,7 +332,7 @@ void CImgMergeFrame::CheckFileChanged(void)
 		if (IsFileChangedOnDisk(pane) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -1632,7 +1632,7 @@ void CImgMergeFrame::OnNextdiff()
 		m_pImgMergeWindow->NextDiff();
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != m_pImgMergeWindow->GetMaxPageCount() - 1)
 	{
-		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
 			UpdateLastCompareResult();
@@ -1669,7 +1669,7 @@ void CImgMergeFrame::OnPrevdiff()
 	}
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != 0)
 	{
-		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
 			UpdateLastCompareResult();

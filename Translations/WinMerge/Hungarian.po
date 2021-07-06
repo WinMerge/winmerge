@@ -1324,13 +1324,6 @@ msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 msgid "Language:"
 msgstr "Nyelv:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
-
-#, c-format
-msgid "Reset"
-msgstr "Visszaállítás"
-
 #, c-format
 msgid "Find"
 msgstr "Keresés"
@@ -1802,6 +1795,13 @@ msgstr "Szótörés karakterek:"
 
 msgid "&Rendering Mode:"
 msgstr "Renderelési mód:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
+
+#, c-format
+msgid "Reset"
+msgstr "Visszaállítás"
 
 msgid "File Filters"
 msgstr "Fájlszűrők"
@@ -2553,8 +2553,8 @@ msgstr "Összes kihagyása"
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomd meg a Visszaállítás gombot a Beállítások Általános aloldalán."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2569,6 +2569,9 @@ msgstr "Mappa összehasonlítás"
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2660,6 +2663,12 @@ msgstr "Fájltípus"
 #, c-format
 msgid "Extension"
 msgstr "Kiterjesztés"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3859,10 +3868,6 @@ msgstr "Adj meg egy kimeneti fájlt."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Nem lehet patch fájlt létrehozni bináris fájlokból."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nem lehet patch fájlt létrehozni könyvtárakból."
 
 #, c-format
 msgid ""

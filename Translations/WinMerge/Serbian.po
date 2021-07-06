@@ -1309,13 +1309,6 @@ msgstr "Отвори дијалог самодовршења"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
-
-#, c-format
-msgid "Reset"
-msgstr "Почетни"
-
 #, c-format
 msgid "Find"
 msgstr "Нађи"
@@ -1783,6 +1776,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
+
+#, c-format
+msgid "Reset"
+msgstr "Почетни"
 
 msgid "File Filters"
 msgstr ""
@@ -2504,7 +2504,7 @@ msgstr "Изост&ави све"
 msgid "Don't display this &message again."
 msgstr "Не приказуј ову поруку поново"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2520,6 +2520,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Разлике"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2611,6 +2614,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Наставак"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3760,10 +3769,6 @@ msgstr "Одредите излазну датотеку."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Не може створити датотеку разлика из бинарних датотека"
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Не може поправити датотеку из фасцикли"
 
 #, c-format
 msgid ""

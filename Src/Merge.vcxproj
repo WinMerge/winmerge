@@ -665,6 +665,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="PropMessageBoxes.cpp" />
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1156,6 +1157,7 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />

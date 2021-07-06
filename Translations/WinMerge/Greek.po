@@ -1321,13 +1321,6 @@ msgstr "Αυτόματη συμπλήρωση διαλόγου αν&οίγματ
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "Το WinMerge επιτρέπει την απόκρυψη ορισμένων κοινών πλαισίων μηνυμάτων. Πατήστε το κουμπί Επαναφορά για να ξανακάνετε όλα τα μηνύματα ορατά."
-
-#, c-format
-msgid "Reset"
-msgstr "Επαναφορά"
-
 #, c-format
 msgid "Find"
 msgstr "Αναζήτηση"
@@ -1799,6 +1792,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "Το WinMerge επιτρέπει την απόκρυψη ορισμένων κοινών πλαισίων μηνυμάτων. Πατήστε το κουμπί Επαναφορά για να ξανακάνετε όλα τα μηνύματα ορατά."
+
+#, c-format
+msgid "Reset"
+msgstr "Επαναφορά"
 
 msgid "File Filters"
 msgstr ""
@@ -2518,7 +2518,7 @@ msgstr "Παράλειψη Ό&λων"
 msgid "Don't display this &message again."
 msgstr "Να μην εμφανισθεί ξανά αυτό το &Μήνυμα."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2534,6 +2534,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Διαφορές"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2625,6 +2628,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Επέκταση"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3766,10 +3775,6 @@ msgstr "Ορίσατε ένα αρχείο εξόδου."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Η δημιουργία αρχείου patch από δυαδικά αρχεία δεν είναι δυνατή."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Η δημιουργία αρχείου patch από φακέλους δεν είναι δυνατή."
 
 #, c-format
 msgid ""

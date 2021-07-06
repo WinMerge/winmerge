@@ -1056,12 +1056,6 @@ msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 msgid "Language:"
 msgstr "Kalba:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
-
-msgid "Reset"
-msgstr "Atkurti"
-
 msgid "Find"
 msgstr "Rasti"
 
@@ -1436,6 +1430,12 @@ msgstr "Ž&odžių skirtukų simboliai:"
 
 msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
+
+msgid "Reset"
+msgstr "Atkurti"
 
 msgid "File Filters"
 msgstr "Failo filtrai"
@@ -1979,8 +1979,8 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -1993,6 +1993,9 @@ msgstr "Katalogų lyginimo"
 
 msgid "Differences"
 msgstr "Skirtumų"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Į:"
@@ -2062,6 +2065,12 @@ msgstr "Failo tipas"
 
 msgid "Extension"
 msgstr "Plėtinys"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2899,9 +2908,6 @@ msgstr "Nurodykite failą rezultatams."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Negalima kurti pataisų failo iš binarinių failų."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Negalima kurti pataisų failo iš katalogų."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad failuose nebūtų neišsaugotų pakeitimų."

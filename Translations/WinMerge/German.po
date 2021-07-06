@@ -1322,13 +1322,6 @@ msgstr "Öffnen-Dialog Auto&vervollständigung:"
 msgid "Language:"
 msgstr "&Sprache:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
-
-#, c-format
-msgid "Reset"
-msgstr "Zurücksetzen"
-
 #, c-format
 msgid "Find"
 msgstr "Suchen"
@@ -1800,6 +1793,13 @@ msgstr "W&ortumbruchzeichen:"
 
 msgid "&Rendering Mode:"
 msgstr "&Darstellungsmodus:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
+
+#, c-format
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 msgid "File Filters"
 msgstr "Dateifilter"
@@ -2491,8 +2491,8 @@ msgstr "&Alle überspringen"
 msgid "Don't display this &message again."
 msgstr "Diese &Meldung nicht erneut anzeigen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2507,6 +2507,9 @@ msgstr "Ordnervergleich"
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2592,6 +2595,12 @@ msgstr "Dateityp"
 #, c-format
 msgid "Extension"
 msgstr "Erweiterung"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3587,10 +3596,6 @@ msgstr "Geben Sie eine Ausgabedatei an."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kann keine Patchdatei von Binärdateien erzeugen."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kann keine Patchdatei von Ordnern erzeugen."
 
 #, c-format
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."

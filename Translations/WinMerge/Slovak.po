@@ -1058,14 +1058,6 @@ msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
 msgid "Language:"
 msgstr "Jazyk:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge umožňuje skryť niektoré bežné okienka so správami. Stlačením "
-"tlačidla Obnoviť znova zviditeľníte všetky okienka správ."
-
-msgid "Reset"
-msgstr "Vynulovať"
-
 msgid "Find"
 msgstr "Hľadať"
 
@@ -1440,6 +1432,14 @@ msgstr "Zalam&ovať slová:"
 
 msgid "&Rendering Mode:"
 msgstr "&Režim vytvárania prevodu:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"WinMerge umožňuje skryť niektoré bežné okienka so správami. Stlačením "
+"tlačidla Obnoviť znova zviditeľníte všetky okienka správ."
+
+msgid "Reset"
+msgstr "Vynulovať"
 
 msgid "File Filters"
 msgstr ""
@@ -2049,12 +2049,8 @@ msgstr "Preskočiť vš&etky"
 msgid "Don't display this &message again."
 msgstr "Už túto správu nezobrazovať."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Ak chcete, aby sa toto okno so správami znova zobrazilo, stlačte tlačidlo "
-"Reset na stránke Všeobecné v dialógovom okne Možnosti."
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -2067,6 +2063,9 @@ msgstr "Porovnávanie priečinkov"
 
 msgid "Differences"
 msgstr "Rozdiely"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Do:"
@@ -2146,6 +2145,12 @@ msgstr ""
 
 msgid "Extension"
 msgstr "Prípona"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Názov"
@@ -3213,9 +3218,6 @@ msgstr "Zadajte výstupný súbor."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Nemožno vytvoriť súbor so záplatou z binárnych súborov."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Nemožno vytvoriť súbor so záplatou z priečinkov."
 
 msgid ""
 "Please save all files first.\n"
