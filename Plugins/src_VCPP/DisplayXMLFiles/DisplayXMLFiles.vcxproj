@@ -153,7 +153,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\include\Poco\XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -198,7 +197,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\include\Poco\XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -241,7 +239,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\include\Poco\XML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
