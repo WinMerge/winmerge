@@ -2041,8 +2041,8 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般ページで [リセット] ボタンを押してください。"
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックスページで [リセット] ボタンを押してください。"
 
 msgid "Syntax"
 msgstr "シンタックス"

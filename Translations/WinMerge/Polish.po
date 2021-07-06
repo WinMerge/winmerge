@@ -1976,8 +1976,8 @@ msgstr "Pomiń wszystko"
 msgid "Don't display this &message again."
 msgstr "Nie wyświetlaj ponownie tego komunikatu."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Aby ponownie wyświetlić ten komunikat, naciśnij przycisk Resetuj na stronie Ogólne w oknie dialogowym Opcje."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 msgid "Syntax"
 msgstr "Składnia"

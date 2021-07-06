@@ -2553,8 +2553,8 @@ msgstr "Összes kihagyása"
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomd meg a Visszaállítás gombot a Beállítások Általános aloldalán."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"

@@ -1978,8 +1978,8 @@ msgstr "Проп&устить все"
 msgid "Don't display this &message again."
 msgstr "Не показывать &больше."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"

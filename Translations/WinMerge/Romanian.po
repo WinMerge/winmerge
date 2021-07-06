@@ -2519,7 +2519,7 @@ msgstr "Omite to&ate"
 msgid "Don't display this &message again."
 msgstr "Nu afişa acest &mesaj din nou."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format

@@ -2547,8 +2547,8 @@ msgstr "Preskoči &vse"
 msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Za ponovni prikaz tega sporočila, pritisnite 'Ponastavi' na strani 'Splošno' pogovornega okna 'Možnosti'."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"

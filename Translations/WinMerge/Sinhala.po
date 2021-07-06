@@ -2516,7 +2516,7 @@ msgstr "සමස්ථයම නොසලකා හරින්න"
 msgid "Don't display this &message again."
 msgstr "මෙම පණිවිඩය නැවත දර්ශනය නොකරන්න."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format

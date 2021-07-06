@@ -2547,8 +2547,8 @@ msgstr "Hoppa över allt"
 msgid "Don't display this &message again."
 msgstr "Visa inte detta meddelande igen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"

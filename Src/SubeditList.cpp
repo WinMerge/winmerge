@@ -163,8 +163,8 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
 
 /**
  * @brief Get the dropdown list data for the specified cell.
- * @param [in] nItem Th row index to get wildcard drop list fixed pattern
- * @param [in] nSubItem The column to get wildcard drop list fixed pattern
+ * @param [in] nItem The row index to get dropdown list data
+ * @param [in] nSubItem The column to get dropdown list data
  * @return dropdown list data for the specified cell
  */
 std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
@@ -182,8 +182,8 @@ std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
 
 /**
  * @brief Set the drop list data for the specified cell.
- * @param [in] nItem The row index to set dropdown list
- * @param [in] nSubItem The column to set dropdown list
+ * @param [in] nItem The row index to set dropdown list data
+ * @param [in] nSubItem The column to set dropdown list data
  * @param [in] list dropdown list data to set
  */
 void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<String>& list)

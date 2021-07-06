@@ -2060,12 +2060,8 @@ msgstr "Avançar todos"
 msgid "Don't display this &message again."
 msgstr "Não voltar a exibir esta mensagem."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Para tornar esta caixa de mensagem visível novamente, pressione o botão "
-"Redefinir na página Geral da caixa de diálogo Opções."
 
 msgid "Syntax"
 msgstr "Syntax"

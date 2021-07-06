@@ -63,6 +63,7 @@ PropMessageBoxes::PropMessageBoxes(COptionsMgr *optionsMgr)
 		_("Cancel"),
 		_("Abort"),
 		_("Retry"),
+		_("Ignore"),
 		_("Yes"),
 		_("No"),
 		_("Close"),
@@ -174,9 +175,9 @@ BOOL PropMessageBoxes::OnInitDialog()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Message");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(160));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(170));
 	title = _("Answer");
-	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(60));
+	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(70));
 
 	m_list.SetReadOnlyColumn(0);
 	m_list.SetEditStyle(1, CSubeditList::EditStyle::DROPDOWN_LIST);

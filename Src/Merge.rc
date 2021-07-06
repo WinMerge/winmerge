@@ -1544,9 +1544,9 @@ IDD_PROPPAGE_MESSAGEBOXES DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_MESSAGEBOX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 190
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,207,240,30
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,7,240,30
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,28,88,14,NOT WS_TABSTOP
+    CONTROL         "",IDC_MESSAGEBOX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 47, 241, 195
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -2660,8 +2660,8 @@ IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
     100, 0, 0, 0
+    0, 0, 100, 0,
 END
 
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
@@ -2796,7 +2796,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN 
                             "Don't ask this &question again."
     IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
-                            "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+                            "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 END
 
 // Options-dialog page captions

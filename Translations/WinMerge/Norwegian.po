@@ -2521,7 +2521,7 @@ msgstr "Hopp over &alle"
 msgid "Don't display this &message again."
 msgstr "Ikke vis denne &meldingen igjen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
