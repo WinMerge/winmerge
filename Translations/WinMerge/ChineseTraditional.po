@@ -2643,6 +2643,12 @@ msgstr ""
 msgid "Extension"
 msgstr "副檔名"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "名稱"

@@ -2065,6 +2065,12 @@ msgstr "Тип файла"
 msgid "Extension"
 msgstr "Расширение"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Имя"
 

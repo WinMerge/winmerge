@@ -2156,6 +2156,12 @@ msgstr "Bestandstype"
 msgid "Extension"
 msgstr "Extensie"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Naam"
 

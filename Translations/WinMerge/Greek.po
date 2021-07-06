@@ -2629,6 +2629,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Επέκταση"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Όνομα"

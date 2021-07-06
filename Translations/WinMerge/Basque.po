@@ -2633,6 +2633,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Luzapena"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Izena"

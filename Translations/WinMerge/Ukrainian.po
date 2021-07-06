@@ -2633,6 +2633,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Розширення"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Ім'я"

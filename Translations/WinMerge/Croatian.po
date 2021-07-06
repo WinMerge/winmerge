@@ -2632,6 +2632,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Tip"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Naziv"

@@ -2148,6 +2148,12 @@ msgstr ""
 msgid "Extension"
 msgstr "扩展名"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "名称"
 

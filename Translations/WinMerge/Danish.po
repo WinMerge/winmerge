@@ -2647,6 +2647,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Udvidelse"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Navn"

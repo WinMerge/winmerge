@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-26 17:03+0900\n"
+"PO-Revision-Date: 2021-07-06 23:16+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2057,7 +2057,7 @@ msgid "Differences"
 msgstr "差異"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "メッセージボックス"
 
 msgid "To:"
 msgstr "To:"
@@ -2133,6 +2133,12 @@ msgstr "ファイルタイプ"
 
 msgid "Extension"
 msgstr "拡張子"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Answer"
+msgstr "回答"
 
 msgid "Name"
 msgstr "名前"

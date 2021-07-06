@@ -2669,6 +2669,12 @@ msgstr "Type de fichier"
 msgid "Extension"
 msgstr "Extension"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nom"

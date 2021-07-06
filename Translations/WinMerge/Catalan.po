@@ -2601,6 +2601,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Extensió"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nom"

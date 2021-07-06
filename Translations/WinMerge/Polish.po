@@ -2063,6 +2063,12 @@ msgstr "Typ pliku"
 msgid "Extension"
 msgstr "Rozszerzenie"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Nazwa"
 

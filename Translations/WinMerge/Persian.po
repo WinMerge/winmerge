@@ -2650,6 +2650,12 @@ msgstr ""
 msgid "Extension"
 msgstr " توسعه "
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr " نام "

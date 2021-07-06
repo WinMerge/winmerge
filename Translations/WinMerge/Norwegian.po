@@ -2632,6 +2632,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Filtype"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Navn"

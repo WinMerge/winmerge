@@ -2615,6 +2615,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Наставак"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Име"

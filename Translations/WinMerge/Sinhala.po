@@ -2627,6 +2627,12 @@ msgstr ""
 msgid "Extension"
 msgstr "දිගුව"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "නම"

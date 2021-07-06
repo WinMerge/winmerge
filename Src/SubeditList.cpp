@@ -182,9 +182,9 @@ std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
 
 /**
  * @brief Set the drop list data for the specified cell.
- * @param [in] nItem The row index to set wildcard drop list fixed pattern
- * @param [in] nSubItem The column to set wildcard drop list fixed pattern
- * @param [in] fixedPattern Wildcard drop list fixed pattern to set
+ * @param [in] nItem The row index to set dropdown list
+ * @param [in] nSubItem The column to set dropdown list
+ * @param [in] list dropdown list data to set
  */
 void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<String>& list)
 {
@@ -320,10 +320,64 @@ CInPlaceEdit* CSubeditList::EditSubLabel( int nItem, int nCol )
 	if( rect.right > rcClient.right) rect.right = rcClient.right;
 
 	dwStyle |= WS_BORDER|WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL;
-	CInPlaceEdit *pEdit = new CInPlaceEdit(nItem, nCol, GetItemText( nItem, nCol ));
+	CInPlaceEdit *pEdit = new CInPlaceEdit(nItem, nCol, GetItemText(nItem, nCol));
 	pEdit->Create( dwStyle, rect, this, IDC_IPEDIT );
 
 	return pEdit;
+}
+
+/**
+ * @brief Start edit of a sub item label with dropdown list.
+ * @param [in] nItem The row index of the item to edit
+ * @param [in] nCol The column of the sub item
+ */
+void CSubeditList::EditSubLabelDropdownList( int nItem, int nCol )
+{
+	// Make sure that the item is visible
+	if( !EnsureVisible( nItem, TRUE ) ) return;
+
+	// Make sure that nCol is valid
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
+		return;
+
+	if (GetEditStyle(nCol) != EditStyle::DROPDOWN_LIST)
+		return;
+
+	// Get the column offset
+	int offset = 0;
+	for( int i = 0; i < nCol; i++ )
+		offset += GetColumnWidth( i );
+	 
+	CRect rect;
+	GetItemRect( nItem, &rect, LVIR_BOUNDS );
+	 
+	// Now scroll if we need to expose the column
+	CRect rcClient;
+	GetClientRect( &rcClient );
+	if( offset + rect.left < 0 || offset + rect.left > rcClient.right )
+	{
+		CSize size;
+		size.cx = offset + rect.left;
+		size.cy = 0;
+		Scroll( size );
+		rect.left -= size.cx;
+	}
+
+	// Get Column alignment
+	LV_COLUMN lvcol;
+	lvcol.mask = LVCF_FMT;
+	GetColumn( nCol, &lvcol );
+	DWORD dwStyle = 0;
+
+	rect.left += offset+4;
+	rect.right = rect.left + GetColumnWidth( nCol ) - 3 ;
+	if( rect.right > rcClient.right) rect.right = rcClient.right;
+
+	dwStyle |= WS_BORDER|WS_CHILD|WS_VISIBLE|CBS_DROPDOWNLIST|CBS_AUTOHSCROLL;
+	CInPlaceComboBox *pComboBox = new CInPlaceComboBox(nItem, nCol, GetItemText(nItem, nCol), GetDropdownList(nItem, nCol));
+	pComboBox->Create( dwStyle, rect, this, IDC_IPEDIT );
 }
 
 /**
@@ -348,27 +402,6 @@ void CSubeditList::EditSubLabelWildcardDropList( int nItem, int nCol )
 	CString pattern = GetDropListFixedPattern(nItem, nCol).c_str();
 	int nLimitTextSize = GetLimitTextSize(nCol);
 	WildcardDropList::OnItemActivate(m_hWnd, nItem, nCol, 4, pattern, true, nLimitTextSize);
-}
-
-/**
- * @brief Start edit of a sub item label with dropdown list.
- * @param [in] nItem The row index of the item to edit
- * @param [in] nCol The column of the sub item
- */
-void CSubeditList::EditSubLabelDropdownList( int nItem, int nCol )
-{
-	// Make sure that the item is visible
-	if( !EnsureVisible( nItem, TRUE ) ) return;
-
-	// Make sure that nCol is valid
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
-		return;
-
-	if (GetEditStyle(nCol) != EditStyle::DROPDOWN_LIST)
-		return;
-
 }
 
 void CSubeditList::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
@@ -444,11 +477,11 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 						case EditStyle::EDIT_BOX:
 							EditSubLabel(index, colnum);
 							break;
-						case EditStyle::WILDCARD_DROP_LIST:
-							EditSubLabelWildcardDropList(index, colnum);
-							break;
 						case EditStyle::DROPDOWN_LIST:
 							EditSubLabelDropdownList(index, colnum);
+							break;
+						case EditStyle::WILDCARD_DROP_LIST:
+							EditSubLabelWildcardDropList(index, colnum);
 							break;
 						default:
 							break;
@@ -611,8 +644,9 @@ int CInPlaceEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /////////////////////////////////////////////////////////////////////////////
 // CInPlaceComboBox
 
-CInPlaceComboBox::CInPlaceComboBox(int iItem, int iSubItem, CString sInitText)
-:m_sInitText( sInitText )
+CInPlaceComboBox::CInPlaceComboBox(int iItem, int iSubItem, CString sInitText, const std::vector<String>& list)
+: m_sInitText( sInitText )
+, m_list(list)
 {
 	m_iItem = iItem;
 	m_iSubItem = iSubItem;
@@ -628,10 +662,9 @@ BEGIN_MESSAGE_MAP(CInPlaceComboBox, CComboBox)
 	//{{AFX_MSG_MAP(CInPlaceComboBox)
 	ON_WM_KILLFOCUS()
 	ON_WM_NCDESTROY()
-	ON_WM_CHAR()
 	ON_WM_CREATE()
-	//}}AFX_MSG_MAP
 	ON_WM_LBUTTONDOWN()
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -656,28 +689,13 @@ BOOL CInPlaceComboBox::PreTranslateMessage(MSG* pMsg)
 	return CComboBox::PreTranslateMessage(pMsg);
 }
 
-
 void CInPlaceComboBox::OnKillFocus(CWnd* pNewWnd)
 {
 	CComboBox::OnKillFocus(pNewWnd);
 
 	CString str;
 	GetWindowText(str);
-
-	// Send Notification to parent of ListView ctrl
-	LV_DISPINFO dispinfo;
-	dispinfo.hdr.hwndFrom = GetParent()->m_hWnd;
-	dispinfo.hdr.idFrom = GetDlgCtrlID();
-	dispinfo.hdr.code = LVN_ENDLABELEDIT;
-
-	dispinfo.item.mask = LVIF_TEXT;
-	dispinfo.item.iItem = m_iItem;
-	dispinfo.item.iSubItem = m_iSubItem;
-	dispinfo.item.pszText = m_bESC ? NULL : LPTSTR((LPCTSTR)str);
-	dispinfo.item.cchTextMax = str.GetLength();
-
-	GetParent()->GetParent()->SendMessage( WM_NOTIFY, GetParent()->GetDlgCtrlID(), 
-					(LPARAM)&dispinfo );
+	static_cast<CListCtrl*>(GetParent())->SetItemText(m_iItem, m_iSubItem, str);
 
 	DestroyWindow();
 }
@@ -689,54 +707,6 @@ void CInPlaceComboBox::OnNcDestroy()
 	delete this;
 }
 
-
-void CInPlaceComboBox::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
-{
-	if( nChar == VK_ESCAPE || nChar == VK_RETURN)
-	{
-		if( nChar == VK_ESCAPE )
-			m_bESC = TRUE;
-		GetParent()->SetFocus();
-		return;
-	}
-
-
-	CComboBox::OnChar(nChar, nRepCnt, nFlags);
-
-	// Resize edit control if needed
-
-	// Get text extent
-	CString str;
-
-	GetWindowText( str );
-	CWindowDC dc(this);
-	CFont *pFont = GetParent()->GetFont();
-	CFont *pFontDC = dc.SelectObject( pFont );
-	CSize size = dc.GetTextExtent( str );
-	dc.SelectObject( pFontDC );
-	size.cx += 5;			   	// add some extra buffer
-
-	// Get client rect
-	CRect rect, parentrect;
-	GetClientRect( &rect );
-	GetParent()->GetClientRect( &parentrect );
-
-	// Transform rect to parent coordinates
-	ClientToScreen( &rect );
-	GetParent()->ScreenToClient( &rect );
-
-	// Check whether control needs to be resized
-	// and whether there is space to grow
-	if( size.cx > rect.Width() )
-	{
-		if( size.cx + rect.left < parentrect.right )
-			rect.right = rect.left + size.cx;
-		else
-			rect.right = parentrect.right;
-		MoveWindow( &rect );
-	}
-}
-
 int CInPlaceComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CComboBox::OnCreate(lpCreateStruct) == -1)
@@ -746,8 +716,15 @@ int CInPlaceComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CFont* font = GetParent()->GetFont();
 	SetFont(font);
 	 
-	SetWindowText( m_sInitText );
+	int sel = -1;
+	for (int i = 0; i < static_cast<int>(m_list.size()); ++i)
+	{
+		AddString(m_list[i].c_str());
+		if (m_sInitText == m_list[i].c_str())
+			sel = i;
+	}
+	if (sel >= 0)
+		SetCurSel(sel);
 	SetFocus();
-	//SetSel( 0, -1 );
 	return 0;
 }

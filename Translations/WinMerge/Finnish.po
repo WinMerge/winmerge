@@ -2657,6 +2657,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Pääte"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nimi"

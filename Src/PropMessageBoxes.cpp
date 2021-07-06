@@ -7,8 +7,6 @@
 #include "stdafx.h"
 #include "PropMessageBoxes.h"
 #include "MessageBoxDialog.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "OptionsPanel.h"
 
 #ifdef _DEBUG
@@ -20,7 +18,7 @@ static struct MessageBox
 	int nID;
 	int nHelpID;
 	int type;
-} m_MessageBoxes[] =
+} MessageBoxes[] =
 {
 	// folder compare window
 	{ IDS_CREATE_PAIR_FOLDER, IDS_CREATE_PAIR_FOLDER, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
@@ -49,98 +47,17 @@ static struct MessageBox
 	{ IDS_DIFF_SUCCEEDED, IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN },
 };
 
+static std::vector<String> Answers;
+static std::vector<std::vector<String>> DropdownList;
+
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager for handling options.
  */
 PropMessageBoxes::PropMessageBoxes(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropMessageBoxes::IDD)
-  , m_init(false)
 {
-}
-
-/** 
- * @brief Function handling dialog data exchange between GUI and variables.
- */
-void PropMessageBoxes::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-
-	//{{AFX_DATA_MAP(PropEditor)
-	DDX_Control(pDX, IDC_MESSAGEBOX_LIST, m_list);
-	//}}AFX_DATA_MAP
-}
-
-
-BEGIN_MESSAGE_MAP(PropMessageBoxes, OptionsPanel)
-	//{{AFX_MSG_MAP(PropEditor)
-	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/** 
- * @brief Reads options values from storage to UI.
- */
-void PropMessageBoxes::ReadOptions()
-{
-	m_answers.clear();
-	for (unsigned i = 0; i < static_cast<unsigned>(std::size(m_MessageBoxes)); i++)
-	{
-		CString key = CMessageBoxDialog::GenerateRegistryKey(
-			m_MessageBoxes[i].nID, m_MessageBoxes[i].nHelpID);
-		m_answers.push_back(AfxGetApp()->GetProfileInt(_T("MessageBoxes"), key, -1));
-	}
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- */
-void PropMessageBoxes::WriteOptions()
-{
-	if (m_init)
-	{
-		CMessageBoxDialog::ResetMessageBoxes();
-		for (unsigned i = 0; i < static_cast<unsigned>(std::size(m_MessageBoxes)); i++)
-		{
-			CString key = CMessageBoxDialog::GenerateRegistryKey(
-				m_MessageBoxes[i].nID, m_MessageBoxes[i].nHelpID);
-			if (m_list.GetCheck(i))
-				AfxGetApp()->WriteProfileInt(_T("MessageBoxes"), key, m_answers[i]);
-		}
-	}
-}
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropMessageBoxes::OnInitDialog()
-{
-	OptionsPanel::OnInitDialog();
-
-	InitList();
-	m_init = true;
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-				  // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-/**
- * @brief Initialize listcontrol containing file type extension settings.
- */
-void PropMessageBoxes::InitList()
-{
-	const std::vector<String> m_DropdownList[] =
-	{
-		{ _("OK") },
-		{ _("OK"), _("Cancel") },
-		{ _("Abort"), _("Retry"), _("Ignore") },
-		{ _("Yes"), _("No"), _("Cancel") },
-		{ _("Yes"), _("No") },
-		{ _("Retry"), _("Cancel") },
-		{ _("Cancel"), _("Try Again"), _("Continue") },
-	};
-
-	String m_Answers[] = {
+	Answers = {
 		_T(""),
 		_("OK"),
 		_("Cancel"),
@@ -154,8 +71,105 @@ void PropMessageBoxes::InitList()
 		_("Continue"),
 	};
 
-	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
+	DropdownList = {
+		{ _("OK") },
+		{ _("OK"), _("Cancel") },
+		{ _("Abort"), _("Retry"), _("Ignore") },
+		{ _("Yes"), _("No"), _("Cancel") },
+		{ _("Yes"), _("No") },
+		{ _("Retry"), _("Cancel") },
+		{ _("Cancel"), _("Try Again"), _("Continue") },
+	};
+}
 
+static int AnswerStringtoID(const String& text)
+{
+	auto it = std::find(Answers.begin(), Answers.end(), text);
+	return static_cast<int>(it - Answers.begin());
+}
+
+/** 
+ * @brief Function handling dialog data exchange between GUI and variables.
+ */
+void PropMessageBoxes::DoDataExchange(CDataExchange* pDX)
+{
+	CDialog::DoDataExchange(pDX);
+
+	//{{AFX_DATA_MAP(PropEditor)
+	DDX_Control(pDX, IDC_MESSAGEBOX_LIST, m_list);
+	//}}AFX_DATA_MAP
+	if (m_list.GetItemCount() > 0)
+	{
+		if (!pDX->m_bSaveAndValidate)
+		{
+			for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
+			{
+				int ans = m_answers[i];
+				m_list.SetCheck(i, ans != -1);
+				m_list.SetItemText(i, 1, (ans < 0 || ans >= Answers.size()) ? _T("") : Answers[ans].c_str());
+			}
+		}
+		else
+		{
+			for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
+			{
+				m_answers[i] = -1;
+				if (m_list.GetCheck(i))
+				{
+					int ans = AnswerStringtoID(String{ m_list.GetItemText(i, 1) });
+					if (ans >= IDOK && ans <= IDCONTINUE)
+						m_answers[i] = ans;
+				}
+			}
+		}
+	}
+}
+
+BEGIN_MESSAGE_MAP(PropMessageBoxes, OptionsPanel)
+	//{{AFX_MSG_MAP(PropEditor)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_MESSAGEBOX_LIST, OnLVNItemChanged)
+	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void PropMessageBoxes::ReadOptions()
+{
+	m_answers.clear();
+	for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
+	{
+		CString key = CMessageBoxDialog::GenerateRegistryKey(
+			MessageBoxes[i].nID, MessageBoxes[i].nHelpID);
+		m_answers.push_back(AfxGetApp()->GetProfileInt(_T("MessageBoxes"), key, -1));
+	}
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void PropMessageBoxes::WriteOptions()
+{
+	CMessageBoxDialog::ResetMessageBoxes();
+	for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
+	{
+		CString key = CMessageBoxDialog::GenerateRegistryKey(
+			MessageBoxes[i].nID, MessageBoxes[i].nHelpID);
+		int ans = m_answers[i];
+		if (ans >= IDOK && ans <= IDCONTINUE)
+			AfxGetApp()->WriteProfileInt(_T("MessageBoxes"), key, ans);
+	}
+}
+
+/** 
+ * @brief Called before propertysheet is drawn.
+ */
+BOOL PropMessageBoxes::OnInitDialog()
+{
+	OptionsPanel::OnInitDialog();
+
+	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
@@ -167,18 +181,33 @@ void PropMessageBoxes::InitList()
 	m_list.SetReadOnlyColumn(0);
 	m_list.SetEditStyle(1, CSubeditList::EditStyle::DROPDOWN_LIST);
 
-	for (unsigned i = 0; i < static_cast<unsigned>(std::size(m_MessageBoxes)); i++)
+	for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
 	{
-		String str = LoadResString(m_MessageBoxes[i].nID);
-		CString key = CMessageBoxDialog::GenerateRegistryKey(
-			m_MessageBoxes[i].nID, m_MessageBoxes[i].nHelpID);
-		int ans = AfxGetApp()->GetProfileInt(_T("MessageBoxes"), key, -1);
-		
+		String str = LoadResString(MessageBoxes[i].nID);
 		m_list.InsertItem(i, str.c_str());
-		m_list.SetCheck(i, ans != -1);
-		m_list.SetItemText(i, 1, (ans < 0 || ans >= std::size(m_Answers))? _T("") : m_Answers[ans].c_str());
-		unsigned type = m_MessageBoxes[i].type & 0xf;
-		m_list.SetDropdownList(i, 1, (type >= std::size(m_DropdownList)) ? std::vector<String>{} :  m_DropdownList[type]);
+		unsigned type = MessageBoxes[i].type & 0xf;
+		m_list.SetDropdownList(i, 1, (type >= DropdownList.size()) ? std::vector<String>{} : DropdownList[type]);
+	}
+
+	UpdateData(false);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void PropMessageBoxes::OnLVNItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMLISTVIEW* pnmv = reinterpret_cast<NMLISTVIEW *>(pNMHDR);
+	int iItem = pnmv->iItem;
+	if (m_list.GetCheck(iItem))
+	{
+		if (m_list.GetItemText(iItem, 1).IsEmpty())
+			m_list.SetItemText(iItem, 1, m_list.GetDropdownList(iItem, 1)[0].c_str());
+	}
+	else
+	{
+		if (!m_list.GetItemText(iItem, 1).IsEmpty())
+			m_list.SetItemText(iItem, 1, _T(""));
 	}
 }
 
@@ -189,7 +218,7 @@ void PropMessageBoxes::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
 	ReadOptions();
-	InitList();
+	UpdateData(false);
 	// The "don't show again" checkbox of the Confirm Copy dialog uses the same registry key
 	// as CMessageBoxDialog does, so its state will also be reset
 	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);

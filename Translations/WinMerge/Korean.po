@@ -2659,6 +2659,12 @@ msgstr "파일 종류"
 msgid "Extension"
 msgstr "확장자"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "이름"

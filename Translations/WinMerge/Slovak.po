@@ -2150,6 +2150,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Prípona"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Názov"
 

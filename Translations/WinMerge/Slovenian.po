@@ -2658,6 +2658,12 @@ msgstr "Vrsta datoteke"
 msgid "Extension"
 msgstr "Končnica"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Ime"

@@ -2139,6 +2139,12 @@ msgstr ""
 msgid "Extension"
 msgstr "الإمتداد"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "الاسم"
 

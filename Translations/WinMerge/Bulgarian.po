@@ -2148,6 +2148,12 @@ msgstr "Вид на файл"
 msgid "Extension"
 msgstr "Разширение"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Име"
 

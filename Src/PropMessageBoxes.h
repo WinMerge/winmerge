@@ -33,10 +33,8 @@ public:
 	//}}AFX_DATA
 
 private:
-	bool m_init;
 
 // Implementation methods
-	void InitList();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -51,6 +49,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog() override;
+	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnResetAllMessageBoxes();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

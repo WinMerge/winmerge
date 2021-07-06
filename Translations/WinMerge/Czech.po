@@ -2604,6 +2604,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Přípona"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Název"

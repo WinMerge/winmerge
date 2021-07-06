@@ -2155,6 +2155,12 @@ msgstr "Dosya türü"
 msgid "Extension"
 msgstr "Uzantı"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Ad"
 

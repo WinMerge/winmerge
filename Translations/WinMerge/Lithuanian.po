@@ -2066,6 +2066,12 @@ msgstr "Failo tipas"
 msgid "Extension"
 msgstr "Plėtinys"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Pavadinimas"
 

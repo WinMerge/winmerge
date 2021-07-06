@@ -2663,6 +2663,12 @@ msgstr "Tipo de arquivo"
 msgid "Extension"
 msgstr "Extensión"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nome"

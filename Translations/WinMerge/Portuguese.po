@@ -2163,6 +2163,12 @@ msgstr "Tipo de ficheiro"
 msgid "Extension"
 msgstr "Extensão"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 msgid "Name"
 msgstr "Nome"
 

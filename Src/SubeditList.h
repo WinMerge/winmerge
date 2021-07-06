@@ -53,7 +53,7 @@ class CInPlaceComboBox : public CComboBox
 {
 // Construction
 public:
-	CInPlaceComboBox(int iItem, int iSubItem, CString sInitText);
+	CInPlaceComboBox(int iItem, int iSubItem, CString sInitText, const std::vector<String>& list);
  
 // Attributes
 public:
@@ -77,7 +77,6 @@ protected:
 	//{{AFX_MSG(CInPlaceComboBox)
 	afx_msg void OnKillFocus(CWnd* pNewWnd);
 	afx_msg void OnNcDestroy();
-	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	//}}AFX_MSG
  
@@ -86,6 +85,7 @@ private:
 	int m_iItem;
 	int m_iSubItem;
 	CString m_sInitText;
+	std::vector<String> m_list;
 	BOOL	m_bESC;	 	// To indicate whether ESC key was pressed
 };
  
@@ -95,8 +95,8 @@ public:
 	enum class EditStyle
 	{
 		EDIT_BOX,
-		WILDCARD_DROP_LIST,
 		DROPDOWN_LIST,
+		WILDCARD_DROP_LIST,
 	};
 
 // Construction

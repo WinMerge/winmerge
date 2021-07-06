@@ -2630,6 +2630,12 @@ msgstr ""
 msgid "Extension"
 msgstr "Extensie"
 
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nume"
