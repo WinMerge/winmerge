@@ -129,6 +129,31 @@ BOOL PropMessageBoxes::OnInitDialog()
  */
 void PropMessageBoxes::InitList()
 {
+	const std::vector<String> m_DropdownList[] =
+	{
+		{ _("OK") },
+		{ _("OK"), _("Cancel") },
+		{ _("Abort"), _("Retry"), _("Ignore") },
+		{ _("Yes"), _("No"), _("Cancel") },
+		{ _("Yes"), _("No") },
+		{ _("Retry"), _("Cancel") },
+		{ _("Cancel"), _("Try Again"), _("Continue") },
+	};
+
+	String m_Answers[] = {
+		_T(""),
+		_("OK"),
+		_("Cancel"),
+		_("Abort"),
+		_("Retry"),
+		_("Yes"),
+		_("No"),
+		_("Close"),
+		_("Help"),
+		_("Try Again"),
+		_("Continue"),
+	};
+
 	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
@@ -151,16 +176,9 @@ void PropMessageBoxes::InitList()
 		
 		m_list.InsertItem(i, str.c_str());
 		m_list.SetCheck(i, ans != -1);
-		String ansstr;
-		switch (ans)
-		{
-		case IDYES: ansstr = _("Yes"); break;
-		case IDNO: ansstr = _("No"); break;
-		case IDCANCEL: ansstr = _("Cancel"); break;
-		case IDOK: ansstr = _("OK"); break;
-		default: ansstr = _T(""); break;
-		}
-		m_list.SetItemText(i, 1, ansstr.c_str());
+		m_list.SetItemText(i, 1, (ans < 0 || ans >= std::size(m_Answers))? _T("") : m_Answers[ans].c_str());
+		unsigned type = m_MessageBoxes[i].type & 0xf;
+		m_list.SetDropdownList(i, 1, (type >= std::size(m_DropdownList)) ? std::vector<String>{} :  m_DropdownList[type]);
 	}
 }
 

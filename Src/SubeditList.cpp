@@ -41,6 +41,24 @@ bool CSubeditList::GetItemBooleanValue(int nItem, int nSubItem) const
 	return (text.Compare(_T("true")) == 0 || text.Compare(_T("\u2611")) == 0);
 }
 
+bool CSubeditList::IsValidCol(int nSubItem) const
+{
+	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+	int nColumnCount = pHeader->GetItemCount();
+	if (nSubItem < 0 || nSubItem >= nColumnCount)
+		return false;
+	return true;
+}
+
+bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
+{
+	int nItemCount = GetItemCount();
+	if (nItem < 0 || nItem >= nItemCount)
+		return false;
+
+	return IsValidCol(nSubItem);
+}
+
 /**
  * @brief Get the edit style for the specified column.
  * @param [in] nCol Column to get edit style
@@ -49,13 +67,7 @@ bool CSubeditList::GetItemBooleanValue(int nItem, int nSubItem) const
  */
 CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
 {
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-
-	if (nCol < 0 || nCol >= nColumnCount)
-		return EditStyle::EDIT_BOX;
-
-	if (static_cast<size_t>(nCol) >= m_editStyle.size())
+	if (!IsValidCol(nCol) || static_cast<size_t>(nCol) >= m_editStyle.size())
 		return EditStyle::EDIT_BOX;
 
 	return m_editStyle.at(nCol);
@@ -68,9 +80,7 @@ CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
  */
 void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 {
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nCol < 0 || nCol >= nColumnCount)
+	if (!IsValidCol(nCol))
 		return;
 
 	for (size_t i = m_editStyle.size(); i <= static_cast<size_t>(nCol); i++)
@@ -87,17 +97,8 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
  */
 int CSubeditList::GetLimitTextSize(int nCol) const
 {
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-
-	if (nCol < 0 || nCol >= nColumnCount)
-		return 0;
-
 	// Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
-	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
-		return 0;
-
-	if (static_cast<size_t>(nCol) >= m_limitTextSize.size())
+	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return 0;
 
 	return m_limitTextSize.at(nCol);
@@ -111,13 +112,7 @@ int CSubeditList::GetLimitTextSize(int nCol) const
  */
 void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
 {
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nCol < 0 || nCol >= nColumnCount)
-		return;
-
-	// Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
-	if (GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
+	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
 	for (size_t i = m_limitTextSize.size(); i <= static_cast<size_t>(nCol); i++)
@@ -134,17 +129,8 @@ void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
  */
 String CSubeditList::GetDropListFixedPattern(int nItem, int nSubItem) const
 {
-	int nItemCount = GetItemCount();
-	if (nItem < 0 || nItem >= nItemCount)
-		return _T("");
-
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nSubItem < 0 || nSubItem >= nColumnCount)
-		return _T("");
-
 	// This setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
-	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
+	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
 		return _T("");
 
 	if (static_cast<size_t>(nItem) < m_dropListFixedPattern.size())
@@ -162,17 +148,8 @@ String CSubeditList::GetDropListFixedPattern(int nItem, int nSubItem) const
  */
 void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String& fixedPattern)
 {
-	int nItemCount = GetItemCount();
-	if (nItem < 0 || nItem >= nItemCount)
-		return;
-
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nSubItem < 0 || nSubItem >= nColumnCount)
-		return;
-
 	// This setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
-	if (GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
+	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
 	for (size_t i = m_dropListFixedPattern.size(); i <= static_cast<size_t>(nItem); i++)
@@ -192,17 +169,8 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
  */
 std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
 {
-	int nItemCount = GetItemCount();
-	if (nItem < 0 || nItem >= nItemCount)
-		return {};
-
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nSubItem < 0 || nSubItem >= nColumnCount)
-		return {};
-
 	// This setting is valid only for columns whose edit style is EditStyle::DROPDOWN_LIST.
-	if (GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
+	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
 		return {};
 
 	if (static_cast<size_t>(nItem) < m_dropList.size())
@@ -220,17 +188,8 @@ std::vector<String> CSubeditList::GetDropdownList(int nItem, int nSubItem) const
  */
 void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<String>& list)
 {
-	int nItemCount = GetItemCount();
-	if (nItem < 0 || nItem >= nItemCount)
-		return;
-
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nSubItem < 0 || nSubItem >= nColumnCount)
-		return;
-
 	// This setting is valid only for columns whose edit style is EditStyle::DROPDOWN_LIST.
-	if (GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
+	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
 		return;
 
 	for (size_t i = m_dropList.size(); i <= static_cast<size_t>(nItem); i++)
@@ -646,5 +605,149 @@ int CInPlaceEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetWindowText( m_sInitText );
 	SetFocus();
 	SetSel( 0, -1 );
+	return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// CInPlaceComboBox
+
+CInPlaceComboBox::CInPlaceComboBox(int iItem, int iSubItem, CString sInitText)
+:m_sInitText( sInitText )
+{
+	m_iItem = iItem;
+	m_iSubItem = iSubItem;
+	m_bESC = FALSE;
+}
+
+CInPlaceComboBox::~CInPlaceComboBox()
+{
+}
+
+
+BEGIN_MESSAGE_MAP(CInPlaceComboBox, CComboBox)
+	//{{AFX_MSG_MAP(CInPlaceComboBox)
+	ON_WM_KILLFOCUS()
+	ON_WM_NCDESTROY()
+	ON_WM_CHAR()
+	ON_WM_CREATE()
+	//}}AFX_MSG_MAP
+	ON_WM_LBUTTONDOWN()
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CInPlaceComboBox message handlers
+	 
+BOOL CInPlaceComboBox::PreTranslateMessage(MSG* pMsg)
+{
+	if( pMsg->message == WM_KEYDOWN )
+	{
+		if(pMsg->wParam == VK_RETURN
+				|| pMsg->wParam == VK_DELETE
+				|| pMsg->wParam == VK_ESCAPE
+				|| GetKeyState( VK_CONTROL)
+				)
+		{
+			::TranslateMessage(pMsg);
+			::DispatchMessage(pMsg);
+			return TRUE;				// DO NOT process further
+		}
+	}
+
+	return CComboBox::PreTranslateMessage(pMsg);
+}
+
+
+void CInPlaceComboBox::OnKillFocus(CWnd* pNewWnd)
+{
+	CComboBox::OnKillFocus(pNewWnd);
+
+	CString str;
+	GetWindowText(str);
+
+	// Send Notification to parent of ListView ctrl
+	LV_DISPINFO dispinfo;
+	dispinfo.hdr.hwndFrom = GetParent()->m_hWnd;
+	dispinfo.hdr.idFrom = GetDlgCtrlID();
+	dispinfo.hdr.code = LVN_ENDLABELEDIT;
+
+	dispinfo.item.mask = LVIF_TEXT;
+	dispinfo.item.iItem = m_iItem;
+	dispinfo.item.iSubItem = m_iSubItem;
+	dispinfo.item.pszText = m_bESC ? NULL : LPTSTR((LPCTSTR)str);
+	dispinfo.item.cchTextMax = str.GetLength();
+
+	GetParent()->GetParent()->SendMessage( WM_NOTIFY, GetParent()->GetDlgCtrlID(), 
+					(LPARAM)&dispinfo );
+
+	DestroyWindow();
+}
+	 
+void CInPlaceComboBox::OnNcDestroy()
+{
+	CComboBox::OnNcDestroy();
+
+	delete this;
+}
+
+
+void CInPlaceComboBox::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	if( nChar == VK_ESCAPE || nChar == VK_RETURN)
+	{
+		if( nChar == VK_ESCAPE )
+			m_bESC = TRUE;
+		GetParent()->SetFocus();
+		return;
+	}
+
+
+	CComboBox::OnChar(nChar, nRepCnt, nFlags);
+
+	// Resize edit control if needed
+
+	// Get text extent
+	CString str;
+
+	GetWindowText( str );
+	CWindowDC dc(this);
+	CFont *pFont = GetParent()->GetFont();
+	CFont *pFontDC = dc.SelectObject( pFont );
+	CSize size = dc.GetTextExtent( str );
+	dc.SelectObject( pFontDC );
+	size.cx += 5;			   	// add some extra buffer
+
+	// Get client rect
+	CRect rect, parentrect;
+	GetClientRect( &rect );
+	GetParent()->GetClientRect( &parentrect );
+
+	// Transform rect to parent coordinates
+	ClientToScreen( &rect );
+	GetParent()->ScreenToClient( &rect );
+
+	// Check whether control needs to be resized
+	// and whether there is space to grow
+	if( size.cx > rect.Width() )
+	{
+		if( size.cx + rect.left < parentrect.right )
+			rect.right = rect.left + size.cx;
+		else
+			rect.right = parentrect.right;
+		MoveWindow( &rect );
+	}
+}
+
+int CInPlaceComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CComboBox::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	// Set the proper font
+	CFont* font = GetParent()->GetFont();
+	SetFont(font);
+	 
+	SetWindowText( m_sInitText );
+	SetFocus();
+	//SetSel( 0, -1 );
 	return 0;
 }
