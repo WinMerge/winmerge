@@ -54,7 +54,6 @@ BEGIN_MESSAGE_MAP(SubstitutionFiltersDlg, CTrPropertyPage)
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_CLEARBTN, OnBnClickedClearBtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedRemovebtn)
-	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_SUBSTITUTION_FILTERS, OnEndLabelEdit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -215,12 +214,4 @@ void SubstitutionFiltersDlg::OnBnClickedRemovebtn()
 		bool bPartialOk = false;
 		m_listFilters.EnsureVisible(newSel, bPartialOk);
 	}
-}
-
-/**
- * @brief Called when in-place editing has finished.
- */
-void SubstitutionFiltersDlg::OnEndLabelEdit(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	m_listFilters.OnEndLabelEdit(pNMHDR, pResult);
 }

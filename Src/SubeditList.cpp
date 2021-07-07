@@ -251,12 +251,18 @@ int CSubeditList::HitTestEx(CPoint &point, int *col) const
 	return -1;
 }
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
 
 BEGIN_MESSAGE_MAP(CSubeditList, CListCtrl)
 	//{{AFX_MSG_MAP(CSubeditList)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
-	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_SUBSTITUTION_FILTERS, OnEndLabelEdit)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_VSCROLL()
+	ON_WM_HSCROLL()
+	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -416,29 +422,16 @@ void CSubeditList::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	CListCtrl::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
-void CSubeditList::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
+BOOL CSubeditList::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	LV_DISPINFO *plvDispInfo = (LV_DISPINFO *)pNMHDR;
-	LV_ITEM	*plvItem = &plvDispInfo->item;
-	 
-	if (plvItem->pszText != NULL)
-	{
-		SetItemText(plvItem->iItem, plvItem->iSubItem, plvItem->pszText);
-	}
-	*pResult = FALSE;
+	if( GetFocus() != this ) SetFocus();
+	return CListCtrl::OnMouseWheel(nFlags, zDelta, pt);
 }
 
-void CSubeditList::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
+void CSubeditList::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	LV_DISPINFO* plvDispInfo = (LV_DISPINFO*)pNMHDR;
-	LV_ITEM* plvItem = &plvDispInfo->item;
-	plvItem->iSubItem = 1;
-
-// 	if (plvItem->pszText != NULL)
-// 	{
-// 		SetItemText(plvItem->iItem, plvItem->iSubItem, plvItem->pszText);
-// 	}
-	*pResult = FALSE;
+	if( GetFocus() != this ) SetFocus();
+	CListCtrl::OnMouseHWheel(nFlags, zDelta, pt);
 }
 
 void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
@@ -452,41 +445,39 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 		//if ((GetItemState(index, flag) & flag) == flag && colnum > 0)
 		if ((GetItemState(index, flag) & flag) == flag)
 		{
-			// Add check for LVS_EDITLABELS
-			if (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS)
+			if (m_readOnlyColumns.find(colnum) == m_readOnlyColumns.end())
 			{
-				if (m_readOnlyColumns.find(colnum) == m_readOnlyColumns.end())
-					if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
+				if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
+				{
+					CString text = GetItemText(index, colnum);
+					if (IsWin7_OrGreater())
 					{
-						CString text = GetItemText(index, colnum);
-						if (IsWin7_OrGreater())
-						{
-							SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
-								_T("\u2610") : _T("\u2611"));
-						}
-						else
-						{
-							SetItemText(index, colnum, text.Compare(_T("true")) == 0 ?
-								_T("false") : _T("true"));
-						}
+						SetItemText(index, colnum, text.Compare(_T("\u2611")) == 0 ?
+							_T("\u2610") : _T("\u2611"));
 					}
 					else
 					{
-						switch (GetEditStyle(colnum))
-						{
-						case EditStyle::EDIT_BOX:
-							EditSubLabel(index, colnum);
-							break;
-						case EditStyle::DROPDOWN_LIST:
-							EditSubLabelDropdownList(index, colnum);
-							break;
-						case EditStyle::WILDCARD_DROP_LIST:
-							EditSubLabelWildcardDropList(index, colnum);
-							break;
-						default:
-							break;
-						}
+						SetItemText(index, colnum, text.Compare(_T("true")) == 0 ?
+							_T("false") : _T("true"));
 					}
+				}
+				else
+				{
+					switch (GetEditStyle(colnum))
+					{
+					case EditStyle::EDIT_BOX:
+						EditSubLabel(index, colnum);
+						break;
+					case EditStyle::DROPDOWN_LIST:
+						EditSubLabelDropdownList(index, colnum);
+						break;
+					case EditStyle::WILDCARD_DROP_LIST:
+						EditSubLabelWildcardDropList(index, colnum);
+						break;
+					default:
+						break;
+					}
+				}
 			}
 		}
 		else
@@ -501,11 +492,11 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 // CInPlaceEdit
 
 CInPlaceEdit::CInPlaceEdit(int iItem, int iSubItem, CString sInitText)
-:m_sInitText( sInitText )
+: m_sInitText( sInitText )
+, m_iItem(iItem)
+, m_iSubItem(iSubItem)
+, m_bESC(false)
 {
-	m_iItem = iItem;
-	m_iSubItem = iSubItem;
-	m_bESC = FALSE;
 }
 
 CInPlaceEdit::~CInPlaceEdit()
@@ -550,23 +541,12 @@ void CInPlaceEdit::OnKillFocus(CWnd* pNewWnd)
 {
 	CEdit::OnKillFocus(pNewWnd);
 
-	CString str;
-	GetWindowText(str);
-
-	// Send Notification to parent of ListView ctrl
-	LV_DISPINFO dispinfo;
-	dispinfo.hdr.hwndFrom = GetParent()->m_hWnd;
-	dispinfo.hdr.idFrom = GetDlgCtrlID();
-	dispinfo.hdr.code = LVN_ENDLABELEDIT;
-
-	dispinfo.item.mask = LVIF_TEXT;
-	dispinfo.item.iItem = m_iItem;
-	dispinfo.item.iSubItem = m_iSubItem;
-	dispinfo.item.pszText = m_bESC ? NULL : LPTSTR((LPCTSTR)str);
-	dispinfo.item.cchTextMax = str.GetLength();
-
-	GetParent()->GetParent()->SendMessage( WM_NOTIFY, GetParent()->GetDlgCtrlID(), 
-					(LPARAM)&dispinfo );
+	if (!m_bESC)
+	{
+		CString str;
+		GetWindowText(str);
+		static_cast<CListCtrl*>(GetParent())->SetItemText(m_iItem, m_iSubItem, str);
+	}
 
 	DestroyWindow();
 }
@@ -588,7 +568,6 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 		GetParent()->SetFocus();
 		return;
 	}
-
 
 	CEdit::OnChar(nChar, nRepCnt, nFlags);
 
@@ -647,10 +626,10 @@ int CInPlaceEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 CInPlaceComboBox::CInPlaceComboBox(int iItem, int iSubItem, CString sInitText, const std::vector<String>& list)
 : m_sInitText( sInitText )
 , m_list(list)
+, m_iItem(iItem)
+, m_iSubItem(iSubItem)
+, m_bESC(false)
 {
-	m_iItem = iItem;
-	m_iSubItem = iSubItem;
-	m_bESC = FALSE;
 }
 
 CInPlaceComboBox::~CInPlaceComboBox()
@@ -662,6 +641,7 @@ BEGIN_MESSAGE_MAP(CInPlaceComboBox, CComboBox)
 	//{{AFX_MSG_MAP(CInPlaceComboBox)
 	ON_WM_KILLFOCUS()
 	ON_WM_NCDESTROY()
+	ON_WM_CHAR()
 	ON_WM_CREATE()
 	ON_WM_LBUTTONDOWN()
 	//}}AFX_MSG_MAP
@@ -693,9 +673,12 @@ void CInPlaceComboBox::OnKillFocus(CWnd* pNewWnd)
 {
 	CComboBox::OnKillFocus(pNewWnd);
 
-	CString str;
-	GetWindowText(str);
-	static_cast<CListCtrl*>(GetParent())->SetItemText(m_iItem, m_iSubItem, str);
+	if (!m_bESC)
+	{
+		CString str;
+		GetWindowText(str);
+		static_cast<CListCtrl*>(GetParent())->SetItemText(m_iItem, m_iSubItem, str);
+	}
 
 	DestroyWindow();
 }
@@ -705,6 +688,19 @@ void CInPlaceComboBox::OnNcDestroy()
 	CComboBox::OnNcDestroy();
 
 	delete this;
+}
+
+void CInPlaceComboBox::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	if (nChar == VK_ESCAPE || nChar == VK_RETURN)
+	{
+		if (nChar == VK_ESCAPE)
+			m_bESC = TRUE;
+		GetParent()->SetFocus();
+		return;
+	}
+
+	CComboBox::OnChar(nChar, nRepCnt, nFlags);
 }
 
 int CInPlaceComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)

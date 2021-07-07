@@ -77,6 +77,7 @@ protected:
 	//{{AFX_MSG(CInPlaceComboBox)
 	afx_msg void OnKillFocus(CWnd* pNewWnd);
 	afx_msg void OnNcDestroy();
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	//}}AFX_MSG
  
@@ -150,8 +151,8 @@ public:
 	afx_msg int HitTestEx(CPoint& point, int* col) const;
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 
