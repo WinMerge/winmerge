@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-26 16:58+0000\n"
-"PO-Revision-Date: 2021-06-28 09:09+0200\n"
+"POT-Creation-Date: 2021-07-07 08:21+0000\n"
+"PO-Revision-Date: 2021-07-07 15:15+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -713,7 +713,7 @@ msgid "Comp&are"
 msgstr "Lyg&inti"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Lyginti naujame &lange"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Lyginti ne hor&izontaliai..."
@@ -1980,7 +1980,8 @@ msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
+msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
+
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -1995,7 +1996,7 @@ msgid "Differences"
 msgstr "Skirtumų"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Bendrų pranešimų"
 
 msgid "To:"
 msgstr "Į:"
@@ -2067,10 +2068,10 @@ msgid "Extension"
 msgstr "Plėtinys"
 
 msgid "Message"
-msgstr ""
+msgstr "Pranešimas"
 
 msgid "Answer"
-msgstr ""
+msgstr "Atsakymas"
 
 msgid "Name"
 msgstr "Pavadinimas"
