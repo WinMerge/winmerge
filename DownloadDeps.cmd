@@ -1,5 +1,13 @@
+@echo off
 setlocal
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
+7z > NUL
+if not %ERRORLEVEL% == 0 (
+  echo 7-Zip is not installed
+  goto :eof
+)
+@echo on
+
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
