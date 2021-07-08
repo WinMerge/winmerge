@@ -3809,6 +3809,9 @@ msgstr "JSON sadeleştirme"
 msgid "Prettify XML"
 msgstr "XML sadeleştirme"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz görselleştirme"
 
@@ -3820,6 +3823,9 @@ msgstr "TSV verilerini sorgula..."
 
 msgid "Query JSON Data..."
 msgstr "JSON verilerini sorgula..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

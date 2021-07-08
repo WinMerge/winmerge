@@ -4482,6 +4482,9 @@ msgstr "JSON formázása"
 msgid "Prettify XML"
 msgstr "XML formázása"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz vizualizálás"
 
@@ -4493,6 +4496,9 @@ msgstr "TSV adatok lekérdezése..."
 
 msgid "Query JSON Data..."
 msgstr "JSON adatok lekérdezése..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

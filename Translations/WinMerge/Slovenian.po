@@ -4476,6 +4476,9 @@ msgstr "Polepšaj JSON"
 msgid "Prettify XML"
 msgstr "Polepšaj XML"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Prikaži Graphviz"
 
@@ -4487,6 +4490,9 @@ msgstr "Poizveduj podatke TSV..."
 
 msgid "Query JSON Data..."
 msgstr "Poizveduj podatke JSON..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

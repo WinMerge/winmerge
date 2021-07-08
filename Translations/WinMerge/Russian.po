@@ -3359,6 +3359,9 @@ msgstr "Приукрасить JSON"
 msgid "Prettify XML"
 msgstr "Приукрасить XML"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3370,6 +3373,9 @@ msgstr "Запрос данных TSV..."
 
 msgid "Query JSON Data..."
 msgstr "Запрос данных JSON..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

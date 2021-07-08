@@ -1982,7 +1982,6 @@ msgstr "Daugiau nerodyti šio praneši&mo."
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
-
 msgid "Syntax"
 msgstr "Sintaksės"
 
@@ -3361,6 +3360,9 @@ msgstr "Sutvarkyti JSON"
 msgid "Prettify XML"
 msgstr "Sutvarkyti XML"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Vizualizuoti „Graphviz“"
 
@@ -3372,6 +3374,9 @@ msgstr "Pateikti TSV duomenų užklausą..."
 
 msgid "Query JSON Data..."
 msgstr "Pateikti JSON duomenų užklausą..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
