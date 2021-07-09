@@ -548,6 +548,8 @@ Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: rec
 Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
 ; q
 Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
+; yq
+Source: ..\..\Plugins\Commands\yq\*.bat; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Commands
 
 [Dirs]
 Name: "{app}\MergePlugins"

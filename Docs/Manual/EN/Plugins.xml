@@ -669,6 +669,60 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>PrettifyYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>YAML Prettier with yq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the yq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
@@ -824,6 +878,60 @@
             <seg>No</seg>
 
             <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>QueryYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>YAML Querier with yq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the yq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

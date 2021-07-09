@@ -667,6 +667,60 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>PrettifyYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>yq コマンドを使用してYAML ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
@@ -822,6 +876,60 @@
             <seg>No</seg>
 
             <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>QueryYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>yq コマンドを使用して YAMLファイルからデータを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
