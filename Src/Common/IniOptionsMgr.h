@@ -39,7 +39,7 @@ public:
 
 protected:
 	static std::map<String, String> Load(const String& iniFilePath);
-	int LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value);
+	int LoadValueFromBuf(const String& strName, const String& textValue, varprop::VariantValue& value);
 	const TCHAR *GetFilePath() const { return m_filePath.c_str(); }
 	int SaveValueToFile(const String& strValueName,
 		const varprop::VariantValue& value);

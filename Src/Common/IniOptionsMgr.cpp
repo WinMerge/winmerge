@@ -75,7 +75,7 @@ std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 	return iniFileKeyValues;
 }
 
-int CIniOptionsMgr::LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value)
+int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textValue, varprop::VariantValue& value)
 {
 	int retVal = COption::OPT_OK;
 	int valType = value.GetType();
