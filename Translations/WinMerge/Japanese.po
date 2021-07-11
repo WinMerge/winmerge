@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-07-08 22:32+0900\n"
+"PO-Revision-Date: 2021-07-11 12:59+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,18 @@ msgstr "次ページ(&N)"
 
 msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
+
+msgid "Rotate &Right 90deg"
+msgstr "右へ90度回転(&R)"
+
+msgid "Rotate &Left 90deg"
+msgstr "左へ90度回転(&L)"
+
+msgid "Flip &Vertically"
+msgstr "上下反転(&V)"
+
+msgid "Flip &Horizontally"
+msgstr "左右反転(&H)"
 
 msgid "&Zoom"
 msgstr "拡大(&Z)"
@@ -3616,12 +3628,20 @@ msgid "Dist: %g, %g  "
 msgstr "色距離: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "反転: %s  "
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr "回転: %s°  "
 
 msgid "<Edit here>"
 msgstr "<ここを編集>"

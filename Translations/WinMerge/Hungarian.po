@@ -158,6 +158,18 @@ msgstr "Következő oldal"
 msgid "&Active Pane"
 msgstr "AKtív panel"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "Nagyítás"
@@ -4355,12 +4367,20 @@ msgid "Dist: %g, %g  "
 msgstr "Táv: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Oldal: %d/%d  Nagyítás: %d%%  %dx%dképpont  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Oldal: %d/%d  Nagyítás: %d%%  %dx%dképpont  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Szerkesztés itt>"

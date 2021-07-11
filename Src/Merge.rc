@@ -141,6 +141,10 @@ BEGIN
         MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
         POPUP "&Active Pane"
         BEGIN
+            MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+            MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+            MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+            MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
             MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
             MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
@@ -962,6 +966,26 @@ BEGIN
         MENUITEM "&Windows (CRLF)",             ID_EOL_TO_DOS
         MENUITEM "&Unix (LF)",                  ID_EOL_TO_UNIX
         MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
+    END
+END
+
+IDR_POPUP_IMG_CTXT MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+        MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+        MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+        MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
+        MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
+        MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+        MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
+        MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
+        MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
     END
 END
 
@@ -3683,8 +3707,10 @@ BEGIN
     IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist: %g  "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
-    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
     IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
+    IDS_IMGCMP_STATUS_FLIPPED_FMT "Flipped: %s  "
+    IDS_IMGCMP_STATUS_ROTATED_FMT "Rotated: %s  "
 END
 
 STRINGTABLE
