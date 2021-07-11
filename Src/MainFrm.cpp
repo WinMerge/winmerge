@@ -2889,7 +2889,7 @@ void CMainFrame::ReloadMenu()
 }
 
 void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
-	const std::vector<std::wstring> events, bool addAllMenu, unsigned baseId)
+	const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId)
 {
 	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 		return;
@@ -2956,7 +2956,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	popupAll.Detach();
 }
 
-String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
+String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId)
 {
 	PluginInfo* pluginFound = nullptr;
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
