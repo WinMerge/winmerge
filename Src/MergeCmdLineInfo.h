@@ -80,6 +80,8 @@ public:
 	String m_sOutputpath;
 	String m_sReportFile;
 
+	String m_sIniFilepath;
+
 	PathContext m_Files; /**< Files (or directories) to compare. */
 
 	std::map<String, String> m_Options;

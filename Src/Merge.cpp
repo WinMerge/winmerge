@@ -100,7 +100,7 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
-, m_pOptions(CreateOptionManager())
+, m_pOptions(nullptr)
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
@@ -121,17 +121,18 @@ CMergeApp::CMergeApp() :
  * @return IniOptionsMgr if initial config file exists,
  *   CRegOptionsMgr otherwise.
  */
-COptionsMgr *CreateOptionManager()
+COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 {
-	String iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
+	String iniFilePath = cmdInfo.m_sIniFilepath;
+	if (!iniFilePath.empty())
+	{
+		if (paths::CreateIfNeeded(paths::GetParentPath(iniFilePath)))
+			return new CIniOptionsMgr(iniFilePath);
+	}
+	iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
 	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
-	{
 		return new CIniOptionsMgr(iniFilePath);
-	}
-	else
-	{
-		return new CRegOptionsMgr();
-	}
+	return new CRegOptionsMgr();
 }
 
 CMergeApp::~CMergeApp()
@@ -210,6 +211,7 @@ BOOL CMergeApp::InitInstance()
 #else
 	MergeCmdLineInfo cmdInfo(GetCommandLine());
 #endif
+	m_pOptions.reset(CreateOptionManager(cmdInfo));
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
