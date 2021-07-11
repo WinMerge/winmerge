@@ -62,7 +62,7 @@ bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
 /**
  * @brief Get the edit style for the specified column.
  * @param [in] nCol Column to get edit style
- * @returnÅ@Edit style for the specified column
+ * @returnÔøΩ@Edit style for the specified column
  * @remarks Returns EditStyle::EDIT_BOX; as default if a column with no edit style is specified.
  */
 CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
@@ -92,7 +92,7 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 /**
  * @brief Get the character limit for the specified column.
  * @param [in] nCol Column to get character limit
- * @returnÅ@Character limit for the specified column
+ * @returnÔøΩ@Character limit for the specified column
  * @remarks Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
  */
 int CSubeditList::GetLimitTextSize(int nCol) const
@@ -207,7 +207,6 @@ void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<St
 // col		- to hold the column index
 int CSubeditList::HitTestEx(CPoint &point, int *col) const
 {
-	int colnum = 0;
 	int row = HitTest( point, NULL );
 	
 	if( col ) *col = 0;
@@ -235,7 +234,7 @@ int CSubeditList::HitTestEx(CPoint &point, int *col) const
 		if( rect.PtInRect(point) )
 		{
 			// Now find the column
-			for( colnum = 0; colnum < nColumnCount; colnum++ )
+			for( int colnum = 0; colnum < nColumnCount; colnum++ )
 			{
 				int colwidth = GetColumnWidth(colnum);
 				if( point.x >= rect.left 
