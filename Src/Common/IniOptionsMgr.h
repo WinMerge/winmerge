@@ -17,7 +17,7 @@ class COptionsMgr;
 class CIniOptionsMgr : public COptionsMgr
 {
 public:
-	CIniOptionsMgr(const String& filePath);
+	explicit CIniOptionsMgr(const String& filePath);
 	virtual ~CIniOptionsMgr();
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
