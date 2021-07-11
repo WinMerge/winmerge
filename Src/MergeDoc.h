@@ -187,7 +187,7 @@ public:
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
-	void SetUnpacker(const PackingInfo * infoUnpacker);
+	void SetUnpacker(const PackingInfo * infoUnpacker) override;
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	const PrediffingInfo *GetPrediffer() const override;
