@@ -19,6 +19,8 @@ class CIniOptionsMgr : public COptionsMgr
 public:
 	explicit CIniOptionsMgr(const String& filePath);
 	virtual ~CIniOptionsMgr();
+	CIniOptionsMgr(const CIniOptionsMgr&) = delete;
+	CIniOptionsMgr& operator=(const CIniOptionsMgr&) = delete;
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
