@@ -61,8 +61,9 @@ msgstr "왼쪽에서 선택한 줄 복사"
 msgid "Copy Selected Line(s) from Right"
 msgstr "오른쪽에서 선택한 줄 복사"
 
-msgid "&Select Line Difference\tF4"
-msgstr "줄 차이점 선택(&S)\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "줄 차이점 선택(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -86,6 +87,14 @@ msgstr "복사(&C)"
 #, c-format
 msgid "&Paste"
 msgstr "붙여넣기(&P)"
+
+#, c-format
+msgid "&Scripts"
+msgstr "스크립트(&S)"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< 비어 있음 >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "이동(&G)\tCtrl+G"
@@ -151,6 +160,18 @@ msgstr "다음 페이지(&N)"
 #, c-format
 msgid "&Active Pane"
 msgstr "활성 창(&A)"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
 
 #, c-format
 msgid "&Zoom"
@@ -265,10 +286,6 @@ msgstr "최근 프로젝트"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "최근 파일/폴더(&I)"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< 비어 있음 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "종료(&X)\tCtrl+Q"
@@ -644,10 +661,6 @@ msgid "Reco&mpare As"
 msgstr "다시 비교(&M)"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "실행 취소(&U)\tCtrl+Z"
 
@@ -666,10 +679,6 @@ msgstr "복사(&C)\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "줄 차이점 선택(&D)\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -886,13 +895,15 @@ msgstr "동기화 지점 추가(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "동기화 지점 지우기(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#, c-format
-msgid "&Scripts"
-msgstr "스크립트(&S)"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -901,6 +912,9 @@ msgstr "분할(&L)"
 #, c-format
 msgid "Comp&are"
 msgstr "비교(&A)"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr "수평이 아닌 방식으로 비교(&I)..."
@@ -1085,17 +1099,24 @@ msgstr "전체 경로 복사(&C)"
 msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<없음>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<자동>"
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Prediffer 설정"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "prediffer 없음(&N)"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "자동 prediffer"
 
 msgid "G&o to Diff"
 msgstr "차이점으로 이동(&O)"
@@ -1251,10 +1272,6 @@ msgid " Folder: Filter"
 msgstr " 폴더: 필터"
 
 #, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr " 파일: 언패커 플러그인"
 
@@ -1321,13 +1338,6 @@ msgstr "열기 대화 상자 자동 완성(&E):"
 #, c-format
 msgid "Language:"
 msgstr "언어:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
-
-#, c-format
-msgid "Reset"
-msgstr "초기화"
 
 #, c-format
 msgid "Find"
@@ -1632,16 +1642,11 @@ msgstr "위로(&U)"
 msgid "Move &Down"
 msgstr "아래로(&D)"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "언패커 선택"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "파일 언패커:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1650,6 +1655,21 @@ msgstr "확장자 목록:"
 #, c-format
 msgid "Description:"
 msgstr "설명:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1790,6 +1810,13 @@ msgstr "단어 분리 문자(&O):"
 
 msgid "&Rendering Mode:"
 msgstr "렌더링 모드(&R)"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
+
+#, c-format
+msgid "Reset"
+msgstr "초기화"
 
 msgid "File Filters"
 msgstr "파일 필터"
@@ -2244,6 +2271,12 @@ msgstr "플러그인 사용"
 msgid "File filters:"
 msgstr "파일 필터:"
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "쉘 통합"
@@ -2527,8 +2560,8 @@ msgstr "전부 건너뛰기(&A)"
 msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 일반 페이지에서 초기화 버튼을 누르세요."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2543,6 +2576,9 @@ msgstr "폴더 비교"
 #, c-format
 msgid "Differences"
 msgstr "차이점"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2634,6 +2670,12 @@ msgstr "파일 종류"
 #, c-format
 msgid "Extension"
 msgstr "확장자"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3319,6 +3361,14 @@ msgid "Binary"
 msgstr "바이너리"
 
 #, c-format
+msgid "Unpacker"
+msgstr "언패커"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "파일을 비교할 수 없습니다"
 
@@ -3561,6 +3611,12 @@ msgstr "파일 내 차이점의 개수. 이 숫자는 무시된 차이점을 포
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "바이너리 파일이면 * 표시를 보입니다"
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1을 %2와 비교"
@@ -3784,10 +3840,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "바이너리 파일에서는 패치 파일을 만들 수 없습니다."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "폴더에서는 패치 파일을 만들 수 없습니다."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3864,14 +3916,6 @@ msgstr "새로운 패턴"
 #, c-format
 msgid "Type"
 msgstr "형식"
-
-#, c-format
-msgid "Unpacker"
-msgstr "언패커"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
 
 #, c-format
 msgid "Editor script"
@@ -4066,14 +4110,6 @@ msgstr "플러그인 설정"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH이 없습니다 - .sct 스크립트 비활성화"
-
-#, c-format
-msgid "<None>"
-msgstr "<없음>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<자동>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4271,11 +4307,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "페이지: %d/%d  확대/축소: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "페이지: %d/%d  확대/축소: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4308,3 +4352,122 @@ msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

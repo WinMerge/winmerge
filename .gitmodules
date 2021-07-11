@@ -13,3 +13,9 @@
 [submodule "Externals/freeimage"]
 	path = Externals/freeimage
 	url = https://github.com/WinMerge/freeimage.git
+[submodule "Externals/tidy-html5"]
+	path = Externals/tidy-html5
+	url = https://github.com/htacg/tidy-html5
+[submodule "Externals/jq"]
+	path = Externals/jq
+	url = https://github.com/stedolan/jq

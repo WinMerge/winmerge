@@ -56,8 +56,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Selectează diferenţele pe linie\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Selectează &diferenţele pe linie\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -81,6 +82,14 @@ msgstr "&Copie"
 #, c-format
 msgid "&Paste"
 msgstr "Li&peşte"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Script-uri"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Gol >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Mergi la...\tCtrl+G"
@@ -145,6 +154,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
 msgstr ""
 
 #, c-format
@@ -260,10 +281,6 @@ msgstr "Proiecte recente"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Gol >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Ieşir&e\tCtrl+Q"
@@ -639,10 +656,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "An&ulează\tCtrl+Z"
 
@@ -661,10 +674,6 @@ msgstr "&Copie\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Li&peşte\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Selectează &diferenţele pe linie\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -881,13 +890,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediferenţiator"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Script-uri"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -896,6 +907,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Comp&ară"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1080,17 +1094,24 @@ msgstr "&Copie calea întreagă"
 msgid "Copy &Filename"
 msgstr "Copie numele de &fişier"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "<None>"
+msgstr "<Deloc>"
+
+#, fuzzy, c-format
+msgid "<Automatic>"
+msgstr "<Automat>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Selectează..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Setări prediferenţiator"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Fără predifere&nţiator"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Auto prediferenţiator"
 
 msgid "G&o to Diff"
 msgstr "Mergi la difere&nţă"
@@ -1246,10 +1267,6 @@ msgid " Folder: Filter"
 msgstr ""
 
 #, c-format
-msgid "&Select..."
-msgstr "&Selectează..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1316,13 +1333,6 @@ msgstr "Auto-completare în dialogul de deschidere:"
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
-
-#, c-format
-msgid "Reset"
-msgstr "Revenire"
 
 #, c-format
 msgid "Find"
@@ -1627,16 +1637,11 @@ msgstr "Mută mai s&us"
 msgid "Move &Down"
 msgstr "Mută mai &jos"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Selectează dezarhivator"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Dezarhivator fişiere:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1650,21 @@ msgstr "Listă extensii:"
 #, c-format
 msgid "Description:"
 msgstr "Descriere:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1785,6 +1805,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
+
+#, c-format
+msgid "Reset"
+msgstr "Revenire"
 
 msgid "File Filters"
 msgstr ""
@@ -2235,6 +2262,12 @@ msgstr ""
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr ""
@@ -2498,7 +2531,7 @@ msgstr "Omite to&ate"
 msgid "Don't display this &message again."
 msgstr "Nu afişa acest &mesaj din nou."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2514,6 +2547,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Diferenţe"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2605,6 +2641,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Extensie"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3273,6 +3315,14 @@ msgid "Binary"
 msgstr "Binar"
 
 #, c-format
+msgid "Unpacker"
+msgstr ""
+
+#, c-format
+msgid "Prediffer"
+msgstr ""
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Imposibil de comparat fişierele"
 
@@ -3515,6 +3565,12 @@ msgstr "Număr de diferenţe în fişier. Acest număr nu include diferenţele i
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Arată un asterisc (*) dacă fişierul este binar."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Compară %1 cu %2"
@@ -3733,10 +3789,6 @@ msgstr "Specificaţi un fişier destinaţie."
 msgid "Cannot create a patch file from binary files."
 msgstr "Nu s-a reuşit crearea unui fişier petic din fişiere binare."
 
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nu s-a reuşit crearea unui fişier petic din directoare."
-
 #, fuzzy, c-format
 msgid ""
 "Please save all files first.\n"
@@ -3812,14 +3864,6 @@ msgstr ""
 
 #, c-format
 msgid "Type"
-msgstr ""
-
-#, c-format
-msgid "Unpacker"
-msgstr ""
-
-#, c-format
-msgid "Prediffer"
 msgstr ""
 
 #, c-format
@@ -3943,14 +3987,6 @@ msgstr "Setări pentru plug-in-uri"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nu s-a găsit WSH - scripurile .sct sunt dezactivate"
-
-#, fuzzy, c-format
-msgid "<None>"
-msgstr "<Deloc>"
-
-#, fuzzy, c-format
-msgid "<Automatic>"
-msgstr "<Automat>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4142,11 +4178,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4178,4 +4222,123 @@ msgid "Allow only one instance to run"
 msgstr "Permite rularea unei singure instanţe"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

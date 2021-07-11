@@ -31,6 +31,7 @@ bool EndsWithSlash(const String& s);
 PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = nullptr);
 String FindFileName(const String& path);
 String FindExtension(const String& path);
+String RemoveExtension(const String& path);
 void normalize(String & sPath);
 String GetLongPath(const String& szPath, bool bExpandEnvs = true);
 bool CreateIfNeeded(const String& szPath);

@@ -103,9 +103,9 @@ struct DrawGlyphRunParams
 
 	~DrawGlyphRunParams()
 	{
-		delete glyphRun.glyphAdvances;
-		delete glyphRun.glyphIndices;
-		delete glyphRun.glyphOffsets;
+		delete[] glyphRun.glyphAdvances;
+		delete[] glyphRun.glyphIndices;
+		delete[] glyphRun.glyphOffsets;
 		glyphRun.fontFace->Release();
 	}
 

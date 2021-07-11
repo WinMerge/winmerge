@@ -20,6 +20,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include <set>
 #include <Poco/Mutex.h>
 #include <Poco/ScopedLock.h>
 #include <Poco/RegularExpression.h>
@@ -37,9 +38,6 @@
 #include "coretools.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
-#include "codepage_detect.h"
-#include "UniFile.h"
-#include "WinMergePluginBase.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -69,7 +67,7 @@ static vector<String> theScriptletList;
 static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static FastMutex scriptletsSem;
-static std::unordered_map<String, String> customFiltersMap;
+static std::unordered_map<StringView, std::unordered_map<StringView, StringView>> customSettingsMap;
 
 template<class T> struct AutoReleaser
 {
@@ -166,46 +164,6 @@ int GetPropertyGetsFromScript(IDispatch *piDispatch, vector<String>& namesArray,
 	return GetFunctionsFromScript(piDispatch, namesArray, IdArray, INVOKE_PROPERTYGET);
 }
 
-
-// search a function name in a scriptlet or activeX dll
-bool SearchScriptForMethodName(LPDISPATCH piDispatch, const wchar_t *functionName)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	const int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-
-	const String tfuncname = ucr::toTString(functionName);
-	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
-	{
-		if (namesArray[iFnc] == tfuncname)
-			return true;
-	}
-	return false;
-}
-
-// search a property name (with get interface) in a scriptlet or activeX dll
-bool SearchScriptForDefinedProperties(IDispatch *piDispatch, const wchar_t *functionName)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	const int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
-
-	const String tfuncname = ucr::toTString(functionName);
-	for (int iFnc = 0 ; iFnc < nFnc ; iFnc++)
-	{
-		if (namesArray[iFnc] == tfuncname)
-			return true;
-	}
-	return false;
-}
-
-
-int CountMethodsInScript(LPDISPATCH piDispatch)
-{
-	vector<String> namesArray;
-	vector<int> IdArray;
-	return GetMethodsFromScript(piDispatch, namesArray, IdArray);
-}
 
 /** 
  * @return ID of the function or -1 if no function with this index
@@ -312,8 +270,6 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 		if (pos == String::npos)
 			pos = 0;
 		sLine = sLine.substr(0, pos);
-		if (sPiece.empty())
-			continue;
 		sPiece = strutils::makeupper(strutils::trim_ws_begin(sPiece));
 
 		if (::TestAgainstRegList(&m_filters, sPiece))
@@ -321,6 +277,22 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 	};
 
 	return false;
+}
+
+std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& name) const
+{
+	for (auto& item : strutils::split(m_extendedProperties, ';'))
+	{
+		auto keyvalue = strutils::split(item, '=');
+		if (keyvalue[0] == name)
+		{
+			if (keyvalue.size() > 1)
+				return keyvalue[1];
+			else
+				return _("");
+		}
+	}
+	return {};
 }
 
 /**
@@ -336,122 +308,40 @@ ScriptletError(const String & scriptletFilepath, const TCHAR *szError)
     LogErrorString(msg);
 }
 
-static std::unordered_set<String> GetDisabledPluginList()
+static std::unordered_map<StringView, std::unordered_map<StringView, StringView>> GetCustomSettingsMap()
 {
-	std::unordered_set<String> list;
-	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_DISABLED_LIST));
-	String name;
-	while (std::getline(ss, name, _T('|')))
-		list.insert(name);
-	return list;
-}
-
-static std::unordered_map<String, String> GetCustomFiltersMap()
-{
-	std::unordered_map<String, String> map;
-	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_CUSTOM_FILTERS_LIST));
-	String nameAndFiltersText;
-	while (std::getline(ss, nameAndFiltersText, _T('\t')))
+	std::unordered_map<StringView, std::unordered_map<StringView, StringView>> map;
+	const String& text = GetOptionsMgr()->GetString(OPT_PLUGINS_CUSTOM_SETTINGS_LIST);
+	for (const auto& nameAndKeyValues : strutils::split(text, '\t'))
 	{
-		size_t pos = nameAndFiltersText.find_first_of(':');
-		if (pos != String::npos)
+		auto nv = strutils::split(nameAndKeyValues, '=');
+		if (nv.size() == 2)
 		{
-			String name = nameAndFiltersText.substr(0, pos);
-			String filtersText = nameAndFiltersText.substr(pos + 1);
-			map.emplace(name, filtersText);
+			map.insert_or_assign(nv[0], std::unordered_map<StringView, StringView>{});
+			for (const auto& keyValue : strutils::split(nv[1], '|'))
+			{
+				const auto kv = strutils::split(keyValue, ':');
+				map[nv[0]].insert_or_assign(kv[0], kv.size() > 1 ? kv[1] : _T(""));
+			}
 		}
 	}
-	map.emplace(_T("||initialized||"), _T(""));
+	map.insert_or_assign(_T("||initialized||"), std::unordered_map<StringView, StringView>{});
 	return map;
 }
 
-static String GetCustomFilters(const String& name, const String& filtersTextDefault)
+static String GetCustomSetting(const String& name, const String& key, const String& default)
 {
 	FastMutex::ScopedLock lock(scriptletsSem);
-	if (customFiltersMap.empty())
-		customFiltersMap = GetCustomFiltersMap();
-	if (customFiltersMap.find(name) != customFiltersMap.end())
-		return customFiltersMap[name];
-	else
-		return filtersTextDefault;
+	if (customSettingsMap.empty())
+		customSettingsMap = GetCustomSettingsMap();
+	if (customSettingsMap.find(name) != customSettingsMap.end()
+		&& customSettingsMap[name].find(key) != customSettingsMap[name].end())
+	{
+		StringView value = customSettingsMap[name][key];
+		return { value.data(), value.length() };
+	}
+	return default;
 }
-
-class UnpackerGeneratedFromEditorScript: public WinMergePluginBase
-{
-public:
-	UnpackerGeneratedFromEditorScript(IDispatch *pDispatch, const std::wstring funcname, int id)
-		: WinMergePluginBase(
-			L"FILE_PACK_UNPACK",
-			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)") , funcname),
-			_T("\\.nomatch$"))
-		, m_pDispatch(pDispatch)
-		, m_funcid(id)
-	{
-		m_pDispatch->AddRef();
-	}
-
-	virtual ~UnpackerGeneratedFromEditorScript()
-	{
-		m_pDispatch->Release();
-	}
-
-	static HRESULT ReadFile(const String& path, String& text)
-	{
-		UniMemFile file;
-		if (!file.OpenReadOnly(path))
-			return E_ACCESSDENIED;
-		file.ReadBom();
-		if (!file.HasBom())
-		{
-			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-			int64_t fileSize = file.GetFileSize();
-			FileTextEncoding encoding = codepage_detect::Guess(
-				paths::FindExtension(path), file.GetBase(), static_cast<size_t>(
-					fileSize < static_cast<int64_t>(codepage_detect::BufSize) ?
-						fileSize : static_cast<int64_t>(codepage_detect::BufSize)),
-				iGuessEncodingType);
-			file.SetCodepage(encoding.m_codepage);
-		}
-		file.ReadStringAll(text);
-		file.Close();
-		return S_OK;
-	}
-
-	static HRESULT WriteFile(const String& path, const String& text)
-	{
-		UniStdioFile fileOut;
-		if (!fileOut.Open(path, _T("wb")))
-			return E_ACCESSDENIED;
-		fileOut.SetUnicoding(ucr::UNICODESET::UTF8);
-		fileOut.SetBom(true);
-		fileOut.WriteBom();
-		fileOut.WriteString(text);
-		fileOut.Close();
-		return S_OK;
-	}
-
-	HRESULT STDMETHODCALLTYPE UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
-	{
-		String text;
-		HRESULT hr = ReadFile(fileSrc, text);
-		if (FAILED(hr))
-			return hr;
-		int changed = 0;
-		if (!plugin::InvokeTransformText(text, changed, m_pDispatch, m_funcid))
-			return E_FAIL;
-		hr = WriteFile(fileDst, text);
-		if (FAILED(hr))
-			return hr;
-		*pSubcode = 0;
-		*pbChanged = VARIANT_TRUE;
-		*pbSuccess = VARIANT_TRUE;
-		return S_OK;
-	}
-
-private:
-	IDispatch *m_pDispatch;
-	int m_funcid;
-};
 
 /**
  * @brief Tiny structure that remembers current scriptlet & event info for calling Log
@@ -482,11 +372,23 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// Ensure that interface is released if any bad exit or exception
 	AutoReleaser<IDispatch> drv(lpDispatch);
 
+	std::vector<String> propNamesArray;
+	std::vector<String> methodNamesArray;
+	std::vector<int> IdArray;
+	const int nPropFnc = plugin::GetPropertyGetsFromScript(lpDispatch, propNamesArray, IdArray);
+	const int nMethodFnc = plugin::GetMethodsFromScript(lpDispatch, methodNamesArray, IdArray);
+	propNamesArray.resize(nPropFnc);
+	methodNamesArray.resize(nMethodFnc);
+	auto SearchScriptForDefinedProperties = [&propNamesArray](const TCHAR* name) -> bool
+	{ return std::find(propNamesArray.begin(), propNamesArray.end(), name) != propNamesArray.end(); };
+	auto SearchScriptForMethodName = [&methodNamesArray](const TCHAR* name) -> bool
+	{ return std::find(methodNamesArray.begin(), methodNamesArray.end(), name) != methodNamesArray.end(); };
+
 	// Is this plugin for this transformationEvent ?
 	VARIANT ret;
 	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
-	if (!plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
+	if (!SearchScriptForDefinedProperties(L"PluginEvent"))
 	{
 		scinfo.Log(_T("PluginEvent method missing"));
 		return -20; // error
@@ -507,29 +409,29 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	bool bFound = true;
 	if (m_event == _T("BUFFER_PREDIFF"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
+		bFound &= SearchScriptForMethodName(L"PrediffBufferW");
 	}
 	else if (m_event == _T("FILE_PREDIFF"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffFile");
+		bFound &= SearchScriptForMethodName(L"PrediffFile");
 	}
 	else if (m_event == _T("BUFFER_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackBufferA");
+		bFound &= SearchScriptForMethodName(L"UnpackBufferA");
+		bFound &= SearchScriptForMethodName(L"PackBufferA");
 	}
 	else if (m_event == _T("FILE_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= SearchScriptForMethodName(L"UnpackFile");
+		bFound &= SearchScriptForMethodName(L"PackFile");
 	}
 	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK"))
 	{
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"IsFolder");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
-		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFolder");
+		bFound &= SearchScriptForMethodName(L"IsFolder");
+		bFound &= SearchScriptForMethodName(L"UnpackFile");
+		bFound &= SearchScriptForMethodName(L"PackFile");
+		bFound &= SearchScriptForMethodName(L"UnpackFolder");
+		bFound &= SearchScriptForMethodName(L"PackFolder");
 	}
 	if (!bFound)
 	{
@@ -542,7 +444,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// there may be several functions inside one script, count the number of functions
 	if (m_event == _T("EDITOR_SCRIPT"))
 	{
-		m_nFreeFunctions = plugin::CountMethodsInScript(lpDispatch);
+		m_nFreeFunctions = static_cast<int>(methodNamesArray.size());
 		if (m_nFreeFunctions == 0)
 			// error (Plugin doesn't offer any method, what is this ?)
 			return -50;
@@ -550,7 +452,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 
 
 	// get optional property PluginDescription
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+	if (SearchScriptForDefinedProperties(L"PluginDescription"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -569,7 +471,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 
 	// get PluginFileFilters
 	bool hasPluginFileFilters = false;
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
+	if (SearchScriptForDefinedProperties(L"PluginFileFilters"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -588,7 +490,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	VariantClear(&ret);
 
 	// get optional property PluginIsAutomatic
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
+	if (SearchScriptForDefinedProperties(L"PluginIsAutomatic"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BOOL)
@@ -596,29 +498,29 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 			scinfo.Log(_T("Plugin had PluginIsAutomatic property, but error getting its value"));
 			return -80; // error (Plugin had PluginIsAutomatic property, but error getting its value)
 		}
-		m_bAutomatic = !!ret.boolVal;
+		m_bAutomaticDefault = !!ret.boolVal;
 	}
 	else
 	{
-		if (hasPluginFileFilters)
+		if (hasPluginFileFilters && m_event != _T("EDITOR_SCRIPT"))
 		{
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but lacked PluginIsAutomatic property"));
 			// PluginIsAutomatic property is mandatory for Plugins with PluginFileFilters property
 			return -90;
 		}
 		// default to false when Plugin doesn't have property
-		m_bAutomatic = false;
+		m_bAutomaticDefault = false;
 	}
 	VariantClear(&ret);
 
 	// get optional property PluginUnpackedFileExtenstion
-	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginUnpackedFileExtension"))
+	if (SearchScriptForDefinedProperties(L"PluginUnpackedFileExtension"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginUnpackedFileExtension", opGet[0], nullptr);
 		if (FAILED(h) || ret.vt != VT_BSTR)
 		{
 			scinfo.Log(_T("Plugin had PluginUnpackedFileExtension property, but error getting its value"));
-			return -100; // error (Plugin had PluginUnpackedFileExtenstion property, but error getting its value)
+			return -100; // error (Plugin had PluginUnpackedFileExtension property, but error getting its value)
 		}
 		m_ext = ucr::toTString(ret.bstrVal);
 	}
@@ -628,11 +530,49 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	VariantClear(&ret);
 
+	// get optional property PluginExtendedProperties
+	if (SearchScriptForDefinedProperties(_T("PluginExtendedProperties")))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginExtendedProperties", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginExtendedProperties property, but error getting its value"));
+			return -110; // error (Plugin had PluginExtendedProperties property, but error getting its value)
+		}
+		m_extendedProperties = ucr::toTString(ret.bstrVal);
+		m_argumentsRequired = GetExtendedPropertyValue(L"ArgumentsRequired").has_value();
+
+	}
+	else
+	{
+		m_extendedProperties.clear();
+		m_argumentsRequired = false;
+	}
+	VariantClear(&ret);
+
+	// get optional property PluginArguments
+	if (SearchScriptForDefinedProperties(L"PluginArguments"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginArguments", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginArguments property, but error getting its value"));
+			return -120; // error (Plugin had PluginArguments property, but error getting its value)
+		}
+		m_argumentsDefault = ucr::toTString(ret.bstrVal);
+		m_hasArgumentsProperty = true;
+	}
+	else
+	{
+		m_argumentsDefault.clear();
+		m_hasArgumentsProperty = false;
+	}
+
+	// get optional property PluginVariables
+	m_hasVariablesProperty = SearchScriptForDefinedProperties(L"PluginVariables");
+
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
-
-	m_filtersText = GetCustomFilters(m_name, m_filtersTextDefault);
-	LoadFilterString();
 
 	// Clear the autorelease holder
 	drv.p = nullptr;
@@ -700,14 +640,19 @@ static vector<String>& LoadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		String path = paths::ConcatPath(env::GetProgPath(), _T("MergePlugins"));
-
-		if (plugin::IsWindowsScriptThere())
-			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
-		else
+		bool enabledWSH = plugin::IsWindowsScriptThere();
+		if (!enabledWSH)
 			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
-		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
-		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
+
+		for (const auto path : {
+				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins")),
+				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins")) })
+		{
+			if (enabledWSH)
+				GetScriptletsAt(path, _T(".sct"), theScriptletList);		// VBS/JVS scriptlet
+			GetScriptletsAt(path, _T(".ocx"), theScriptletList);		// VB COM object
+			GetScriptletsAt(path, _T(".dll"), theScriptletList);		// VC++ COM object
+		}
 		scriptletsLoaded = true;
 
 		// lock the *.sct to avoid them being deleted/moved away
@@ -780,19 +725,79 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 	}
 }
 
+static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
+{
+	std::vector<std::vector<String>> eventsAry = 
+	{
+		{ L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
+		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
+		{ L"EDITOR_SCRIPT"},
+	};
+	for (const auto& events: eventsAry)
+	{
+		std::set<String> pluginNames;
+		for (const auto& event : events)
+		{
+			if (plugins.find(event) != plugins.end())
+			{
+				for (const auto& plugin : *plugins[event])
+				{
+					String name = paths::RemoveExtension(plugin->m_name);
+					if (pluginNames.find(name) != pluginNames.end())
+					{
+						if (pluginNames.find(plugin->m_name) != pluginNames.end())
+						{
+							for (int i = 0; ; i++)
+							{
+								String nameNew = name + strutils::format(_T("(%d)"), i + 2);
+								if (pluginNames.find(nameNew) == pluginNames.end())
+								{
+									name = nameNew;
+									break;
+								}
+							}
+						}
+						else
+						{
+							name = plugin->m_name;
+						}
+					}
+					plugin->m_name = name;
+					pluginNames.insert(name);
+				}
+			}
+		}
+	}
+}
+
+static void LoadCustomSettings(std::map<std::wstring, PluginArrayPtr> plugins)
+{
+	for (const auto& [event, pluginAry] : plugins)
+	{
+		for (const auto& plugin : *pluginAry)
+		{
+			String uniqueName = event + _T(".") + plugin->m_name;
+			plugin->m_disabled = (GetCustomSetting(uniqueName, _T("disabled"), _T("false"))[0] != 'f');
+			plugin->m_bAutomatic = GetCustomSetting(uniqueName, _T("automatic"), plugin->m_bAutomaticDefault ? _T("true") : _T("false"))[0] == 't';
+			plugin->m_arguments = GetCustomSetting(uniqueName, _T("arguments"), plugin->m_argumentsDefault);
+			plugin->m_filtersText = GetCustomSetting(uniqueName, _T("filters"), plugin->m_filtersTextDefault);
+			plugin->LoadFilterString();
+		}
+	}
+}
+
 /** 
  * @brief Get available scriptlets for an event
  *
  * @return Returns an array of valid LPDISPATCH
  */
-static std::map<String, PluginArrayPtr> GetAvailableScripts() 
+static std::map<String, PluginArrayPtr> GetAvailableScripts()
 {
 	vector<String>& scriptlets = LoadTheScriptletList();
-	std::unordered_set<String> disabled_plugin_list = GetDisabledPluginList();
 	std::map<std::wstring, PluginArrayPtr> plugins;
 
 	std::list<String> badScriptlets;
-	for (size_t i = 0 ; i < scriptlets.size() ; i++)
+	for (size_t i = 0; i < scriptlets.size(); i++)
 	{
 		// Note all the info about the plugin
 		PluginInfoPtr plugin(new PluginInfo);
@@ -802,7 +807,6 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		if (rtn == 1)
 		{
 			// Plugin has this event
-			plugin->m_disabled = (disabled_plugin_list.find(plugin->m_name) != disabled_plugin_list.end());
 			if (plugins.find(plugin->m_event) == plugins.end())
 				plugins[plugin->m_event].reset(new PluginArray);
 			plugins[plugin->m_event]->push_back(plugin);
@@ -814,24 +818,11 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		}
 	}
 
-	if (plugins.find(L"EDITOR_SCRIPT") != plugins.end())
+	if (CAllThreadsScripts::GetInternalPluginsLoader())
 	{
-		for (auto plugin : *plugins[L"EDITOR_SCRIPT"])
-		{
-			std::vector<String> namesArray;
-			std::vector<int> idArray;
-			int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
-			for (int i = 0; i < validFuncs; ++i)
-			{
-				if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
-					plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
-				PluginInfoPtr pluginNew(new PluginInfo());
-				IDispatch *pDispatch = new UnpackerGeneratedFromEditorScript(plugin->m_lpDispatch, namesArray[i], idArray[i]);
-				pDispatch->AddRef();
-				pluginNew->MakeInfo(plugin->m_filepath + _T(":") + namesArray[i], pDispatch);
-				plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
-			}
-		}
+		String errmsg;
+		if (!CAllThreadsScripts::GetInternalPluginsLoader()(plugins, errmsg))
+			AppErrorMessageBox(errmsg);
 	}
 
 	// Remove any bad plugins from the cache
@@ -841,6 +832,9 @@ static std::map<String, PluginArrayPtr> GetAvailableScripts()
 		RemoveScriptletCandidate(badScriptlets.front());
 		badScriptlets.pop_front();
 	}
+
+	ResolveNameConflict(plugins);
+	LoadCustomSettings(plugins);
 
 	return plugins;
 }
@@ -899,24 +893,27 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatio
 
 void CScriptsOfThread::SaveSettings()
 {
-	std::vector<String> listDisabled;
-	std::vector<String> listCustomFilters;
 	if (m_aPluginsByEvent.empty())
 		m_aPluginsByEvent = ::GetAvailableScripts();
+	std::vector<String> list;
 	for (auto [key, pArray] : m_aPluginsByEvent)
 	{
-		for (size_t j = 0; j < pArray->size(); ++j)
+		for (const auto& plugin: *pArray)
 		{
-			const PluginInfoPtr & plugin = pArray->at(j);
+			std::vector<String> ary;
 			if (plugin->m_disabled)
-				listDisabled.emplace_back(plugin->m_name);
+				ary.push_back(_T("disabled"));
 			if (plugin->m_filtersTextDefault != plugin->m_filtersText)
-				listCustomFilters.emplace_back(plugin->m_name + _T(":") + plugin->m_filtersText);
-			customFiltersMap.insert_or_assign(plugin->m_name, plugin->m_filtersText);
+				ary.push_back(_T("filters:") + plugin->m_filtersText);
+			if (plugin->m_argumentsDefault != plugin->m_arguments)
+				ary.push_back(_T("arguments:") + plugin->m_arguments);
+			if (plugin->m_bAutomaticDefault != plugin->m_bAutomatic)
+				ary.push_back(String(_T("automatic:")) + (plugin->m_bAutomatic ? _T("true") : _T("false")));
+			if (!ary.empty())
+				list.push_back(plugin->m_event + _T(".") + plugin->m_name + _T("=") + strutils::join(ary.begin(), ary.end(), _T("|")));
 		}
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, strutils::join(listDisabled.begin(), listDisabled.end(), _T("|")));
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, strutils::join(listCustomFilters.begin(), listCustomFilters.end(), _T("\t")));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_CUSTOM_SETTINGS_LIST, strutils::join(list.begin(), list.end(), _T("\t")));
 }
 
 void CScriptsOfThread::FreeAllScripts()
@@ -973,6 +970,10 @@ PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEven
 		{
 			for (size_t j = 0; j < pArray->size(); j++)
 				if (pArray->at(j)->m_name == name)
+					return pArray->at(j).get();
+			String name2 = paths::RemoveExtension(name);
+			for (size_t j = 0; j < pArray->size(); j++)
+				if (pArray->at(j)->m_name == name2)
 					return pArray->at(j).get();
 		}
 	}
@@ -1031,6 +1032,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 	assert(false);
 	return nullptr;
 }
+
 CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
@@ -1045,6 +1047,16 @@ bool CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	return (scripts == m_aAvailableThreads[0]);
+}
+
+void CAllThreadsScripts::ReloadCustomSettings()
+{
+	{
+		FastMutex::ScopedLock lock(scriptletsSem);
+		customSettingsMap.clear();
+	}
+	for (auto& thread : m_aAvailableThreads)
+		LoadCustomSettings(thread->m_aPluginsByEvent);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -1510,7 +1522,12 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	// argument text  
 	VARIANT pvPszBuf;
 	pvPszBuf.vt = VT_BSTR;
-	pvPszBuf.bstrVal = SysAllocString(ucr::toUTF16(text).c_str());
+#ifdef _UNICODE
+	pvPszBuf.bstrVal = SysAllocStringLen(text.data(), static_cast<unsigned>(text.length()));
+#else
+	std::wstring wtext = ucr::toUTF16(text);
+	pvPszBuf.bstrVal = SysAllocStringLen(wtext.data(), static_cast<unsigned>(wtext.length()));
+#endif
 	// argument transformed text 
 	VARIANT vTransformed;
 	vTransformed.vt = VT_BSTR;
@@ -1522,7 +1539,12 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 
 	if (! FAILED(h) && vTransformed.bstrVal)
 	{
-		text = ucr::toTString(vTransformed.bstrVal);
+#ifdef _UNICODE
+		text = String(vTransformed.bstrVal, SysStringLen(vTransformed.bstrVal));
+#else
+		std::wstring wtext2 = std::wstring(vTransformed.bstrVal, SysStringLen(vTransformed.bstrVal));
+		text = ucr::toTString(wtext2);
+#endif
 		changed = true;
 	}
 	else
@@ -1571,6 +1593,30 @@ bool InvokeShowSettingsDialog(IDispatch *piScript)
 	VariantClear(&vboolHandled);
 
 	return (bSuccess);
+}
+
+bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
+{
+	// argument text  
+	VARIANT vbstrArgs;
+	vbstrArgs.vt = VT_BSTR;
+	std::wstring wargs = ucr::toUTF16(args);
+	vbstrArgs.bstrVal = SysAllocStringLen(wargs.data(), static_cast<unsigned>(wargs.size()));
+
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginArguments", opPut[1], vbstrArgs);
+	return SUCCEEDED(h);
+}
+
+bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
+{
+	// argument text  
+	VARIANT vbstrVars;
+	vbstrVars.vt = VT_BSTR;
+	std::wstring wvars = ucr::toUTF16(vars);
+	vbstrVars.bstrVal = SysAllocStringLen(wvars.data(), static_cast<unsigned>(wvars.size()));
+
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginVariables", opPut[1], vbstrVars);
+	return SUCCEEDED(h);
 }
 
 }

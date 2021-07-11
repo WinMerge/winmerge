@@ -18,7 +18,7 @@ Frhed=Frhed(Editor hexadecimal gratuito)
 WinIMerge=WinIMerge(Diferenciar/Mezclar Imágenes)
 ArchiveSupport=Soporte de Archivado
 ShellExtension32bit=Extensión del Shell de 32-bit para WinMerge
-Patch=Parche GnuWin32 para Windows
+Commands=Parche GnuWin32 para Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Idiomas

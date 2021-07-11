@@ -182,7 +182,7 @@ void DirCmpReportDlg::OnOK()
 		{
 			int overWrite = LangMessageBox(IDS_REPORT_FILEOVERWRITE,
 					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
-					IDS_DIFF_FILEOVERWRITE);
+					IDS_REPORT_FILEOVERWRITE);
 			if (overWrite == IDNO)
 				return;
 		}

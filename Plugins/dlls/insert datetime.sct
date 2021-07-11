@@ -2,12 +2,15 @@
 
 <implements type="Automation" id="dispatcher">
 	<property name="PluginEvent">
-	          <get/>
-        </property>
+		<get/>
+	</property>
 	<property name="PluginDescription">
-	          <get/>
-        </property>
-      	<method name="InsertDate"/>
+		<get/>
+	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
+	<method name="InsertDate"/>
 	<method name="InsertTime"/>
 </implements>
 
@@ -15,13 +18,20 @@
 Option Explicit
 
 Function get_PluginEvent()
-         get_PluginEvent = "EDITOR_SCRIPT"
+	get_PluginEvent = "EDITOR_SCRIPT"
 End Function
 
 Function get_PluginDescription()
-         get_PluginDescription = "Basic text functions for the context menu"
+	get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
+Function get_PluginFileFilters()
+	get_PluginFileFilters= ".*"
+End Function
+
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "InsertDate.MenuCaption=Insert Date;InsertTime.MenuCaption=Insert Time"
+End Function
 
 ' transformation functions
 Function InsertDate(Text)

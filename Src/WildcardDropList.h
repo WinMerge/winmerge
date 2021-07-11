@@ -1,6 +1,7 @@
 // WildcardDropList.h
 // Copyright (c) datadiode
 // SPDX-License-Identifier: WTFPL
+#pragma once
 
 class WildcardDropList
 {

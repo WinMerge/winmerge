@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-04-24 21:30+0200\n"
+"PO-Revision-Date: 2021-07-04 15:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,8 @@ msgstr "Ausgewählte Zeile(n) von links kopieren"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Ausgewählte Zeile(n) von rechts kopieren"
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -81,6 +82,14 @@ msgstr "&Kopieren"
 #, c-format
 msgid "&Paste"
 msgstr "&Einfügen"
+
+#, c-format
+msgid "&Scripts"
+msgstr "&Skripte"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Leer >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "&Gehe zu...\tStrg+G"
@@ -146,6 +155,18 @@ msgstr "&Nächste Seite"
 #, c-format
 msgid "&Active Pane"
 msgstr "&Aktiver Ausschnitt"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
 
 #, c-format
 msgid "&Zoom"
@@ -260,10 +281,6 @@ msgstr "Kürzliche Projekte"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Kürzlich&e Dateien oder Ordner"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Leer >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Beenden\tStrg+Q"
@@ -639,10 +656,6 @@ msgid "Reco&mpare As"
 msgstr "Erneut ver&gleichen als"
 
 #, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Rückgängig\tStrg+Z"
 
@@ -661,10 +674,6 @@ msgstr "&Kopieren\tStrg+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Einfügen\tStrg+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Zeilen&unterschied markieren\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -881,13 +890,15 @@ msgstr "&Synchronisationspunkt hinzufügen\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "S&ynchronisationspunkt entfernen"
 
+msgid "Unpac&ker"
+msgstr "Entpac&ker"
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Skripte"
+msgid "Apply Pre&differ..."
+msgstr "Pre&differ anwenden..."
 
 #, c-format
 msgid "Sp&lit"
@@ -896,6 +907,9 @@ msgstr "&Teilen"
 #, c-format
 msgid "Comp&are"
 msgstr "Ver&gleichen"
+
+msgid "Compare in new &window"
+msgstr "In neuem Fenster vergleichen"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Nicht-hor&izontal vergleichen..."
@@ -1080,17 +1094,24 @@ msgstr "&Vollständigen Pfad kopieren"
 msgid "Copy &Filename"
 msgstr "&Dateinamen kopieren"
 
+msgid "Unpacker Settings"
+msgstr "Entpackereinstellungen"
+
+#, c-format
+msgid "<None>"
+msgstr "<Keine>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatisch>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "&Prediffer-Einstellungen"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Kein Prediffer"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "&Auto-Prediffer"
 
 msgid "G&o to Diff"
 msgstr "Zum Unterschied g&ehen"
@@ -1246,10 +1267,6 @@ msgid " Folder: Filter"
 msgstr " Ordner: Filter"
 
 #, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Datei: Entpacker-Plugin"
 
@@ -1316,13 +1333,6 @@ msgstr "Öffnen-Dialog Auto&vervollständigung:"
 #, c-format
 msgid "Language:"
 msgstr "&Sprache:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
-
-#, c-format
-msgid "Reset"
-msgstr "Zurücksetzen"
 
 #, c-format
 msgid "Find"
@@ -1627,16 +1637,11 @@ msgstr "Nach &oben"
 msgid "Move &Down"
 msgstr "Nach &unten"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Entpacker auswählen"
+msgid "Select Plugin"
+msgstr "Plugin auswählen"
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Datei-Entpacker:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle Entpacker anzeigen, die Erweiterung nicht überprüfen."
+msgid "Plugin &Name:"
+msgstr "Plugin-Name:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1650,21 @@ msgstr "Erweiterungsliste:"
 #, c-format
 msgid "Description:"
 msgstr "Beschreibung:"
+
+msgid "Default arguments:"
+msgstr "Standardargumente:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Alle Entpacker anzeigen, die Erweiterung nicht überprüfen."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen."
+
+msgid "&Plugin Pipeline:"
+msgstr "&Plugin-Pipeline:"
+
+msgid "&Add pipe"
+msgstr "Pipe hinzufügen"
 
 #, c-format
 msgid "Stop"
@@ -1785,6 +1805,13 @@ msgstr "W&ortumbruchzeichen:"
 
 msgid "&Rendering Mode:"
 msgstr "&Darstellungsmodus:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
+
+#, c-format
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 msgid "File Filters"
 msgstr "Dateifilter"
@@ -2235,6 +2262,12 @@ msgstr "&Plugins aktivieren"
 msgid "File filters:"
 msgstr "Dateifilter:"
 
+msgid "&Plugin arguments:"
+msgstr "&Plugin-Argumente:"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "&Automatisches Entpacken/Prediffing für das Plugin aktivieren"
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Shell-Integration"
@@ -2470,8 +2503,8 @@ msgstr "&Alle überspringen"
 msgid "Don't display this &message again."
 msgstr "Diese &Meldung nicht erneut anzeigen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2486,6 +2519,9 @@ msgstr "Ordnervergleich"
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2571,6 +2607,12 @@ msgstr "Dateityp"
 #, c-format
 msgid "Extension"
 msgstr "Erweiterung"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3115,6 +3157,14 @@ msgid "Binary"
 msgstr "Binär"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Entpacker"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Dateien können nicht verglichen werden"
 
@@ -3357,6 +3407,12 @@ msgstr "Anzahl der Unterschiede in der Datei. Die Zahl enthält nicht die ignori
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Zeigt ein Asterisk (*), wenn die Datei binär ist."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr "Name des Entpacker-Plugins oder der Pipeline."
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "Name des Prediffer-Plugins oder der Pipeline."
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 mit %2 vergleichen"
@@ -3554,10 +3610,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Kann keine Patchdatei von Binärdateien erzeugen."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kann keine Patchdatei von Ordnern erzeugen."
-
-#, c-format
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Bitte speichern Sie zuerst alle Dateien.\n\nDas Erzeugen eines Patches erfordert, dass es keine ungespeicherten Änderungen in den Dateien gibt."
 
@@ -3618,14 +3670,6 @@ msgstr "Neues Muster"
 #, c-format
 msgid "Type"
 msgstr "Typ"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Entpacker"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
 
 #, c-format
 msgid "Editor script"
@@ -3748,14 +3792,6 @@ msgstr "Plugin-Einstellungen"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH nicht gefunden - SCT-Skripte deaktiviert."
-
-#, c-format
-msgid "<None>"
-msgstr "<Keine>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatisch>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3947,12 +3983,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist.: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Re.: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Hier bearbeiten>"
@@ -3984,3 +4028,122 @@ msgstr "Nur eine Instanz zulassen"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
+
+msgid "Al&l"
+msgstr "A&lle"
+
+msgid "Prettification"
+msgstr "Verschönerung"
+
+msgid "Content Extraction"
+msgstr "Extraktion des Inhalts"
+
+msgid "Visualization"
+msgstr "Visualisierung"
+
+msgid "Data Query"
+msgstr "Datenabfrage"
+
+msgid "&Others"
+msgstr "Andere"
+
+msgid "Make Uppercase"
+msgstr "Großbuchstaben erzeugen"
+
+msgid "Make Lowercase"
+msgstr "Kleinbuchstaben erzeugen"
+
+msgid "Remove Duplicate Lines"
+msgstr "Doppelte Zeilen entfernen"
+
+msgid "Count Duplicate Lines"
+msgstr "Doppelte Zeilen zählen"
+
+msgid "Sort Lines Ascending"
+msgstr "Zeilen aufsteigend sortieren"
+
+msgid "Sort Lines Descending"
+msgstr "Zeilen absteigend sortieren"
+
+msgid "Reverse Columns"
+msgstr "Spalten umkehren"
+
+msgid "Reverse Lines"
+msgstr "Zeilen umkehren"
+
+msgid "Replace..."
+msgstr "Ersetzen..."
+
+msgid "Apply Filter Command..."
+msgstr "Filterbefehl anwenden..."
+
+msgid "Tokenize..."
+msgstr "Tokenisieren..."
+
+msgid "Trim Spaces"
+msgstr "Leerzeichen kürzen"
+
+msgid "Select Columns..."
+msgstr "Spalten auswählen..."
+
+msgid "Select Lines..."
+msgstr "Zeilen auswählen..."
+
+msgid "Insert Date"
+msgstr "Datum einfügen"
+
+msgid "Insert Time"
+msgstr "Zeit einfügen"
+
+msgid "Apply Patch..."
+msgstr "Patch anwenden..."
+
+msgid "Ignore Columns"
+msgstr "Spalten ignorieren"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Kommentare ignorieren (C-Sprachfamilie)"
+
+msgid "Ignore CSV Fields"
+msgstr "CSV-Felder ignorieren"
+
+msgid "Ignore TSV Fields"
+msgstr "TSV-Felder ignorieren"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Prediff-Substitutionsfilter anwenden"
+
+msgid "Prettify JSON"
+msgstr "JSON verschönern"
+
+msgid "Prettify XML"
+msgstr "XML verschönern"
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr "Graphviz visualisieren"
+
+msgid "Query CSV Data..."
+msgstr "CSV-Daten abfragen..."
+
+msgid "Query TSV Data..."
+msgstr "TSV-Daten abfragen..."
+
+msgid "Query JSON Data..."
+msgstr "JSON-Daten abfragen..."
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Plugin-Argumente angeben"

@@ -520,7 +520,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>leftpath</option></term>
+      <term><option><replaceable>leftpath</replaceable></option></term>
       <listitem>
         <para>Specifies the folder, file or project file to open on the left side.</para>
       </listitem>

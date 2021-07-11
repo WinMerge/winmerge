@@ -97,7 +97,6 @@ END_MESSAGE_MAP()
 CHexMergeView::CHexMergeView()
 : m_pif(nullptr)
 , m_nThisPane(0)
-, m_unpackerSubcode(0)
 {
 }
 
@@ -271,7 +270,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 {
 	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
 	String strTempFileName = path;
-	if (!FileTransform::Unpacking(pDoc->GetUnpacker(), &m_unpackerSubcode, strTempFileName, path))
+	if (!pDoc->GetUnpacker()->Unpacking(&m_unpackerSubcodes, strTempFileName, path, { strTempFileName }))
 		return E_FAIL;
 	HANDLE h = CreateFile(strTempFileName.c_str(), GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -345,11 +344,11 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 		return hr;
 
 	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
-	if (packing && !pDoc->GetUnpacker()->m_PluginName.empty())
+	if (packing && !pDoc->GetUnpacker()->GetPluginPipeline().empty())
 	{
-		if (!FileTransform::Packing(sIntermediateFilename, path, *pDoc->GetUnpacker(), m_unpackerSubcode))
+		if (!pDoc->GetUnpacker()->Packing(sIntermediateFilename, path, m_unpackerSubcodes, { path }))
 		{
-			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, pDoc->GetUnpacker()->m_PluginName);
+			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, *pDoc->GetUnpacker());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 			if (answer == IDOK)
 			{

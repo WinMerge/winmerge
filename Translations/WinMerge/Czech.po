@@ -56,7 +56,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Vybrat roz&díl v řádku\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -81,6 +82,14 @@ msgstr "&Kopírovat"
 #, c-format
 msgid "&Paste"
 msgstr "&Vložit"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Skrip&ty"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< žádné >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Př&ejít na...\tCtrl+G"
@@ -145,6 +154,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
 msgstr ""
 
 #, c-format
@@ -260,10 +281,6 @@ msgstr "Naposledy použité"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< žádné >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Konec\tCtrl+Q"
@@ -639,10 +656,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr ""
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Zpět\tCtrl+Z"
 
@@ -661,10 +674,6 @@ msgstr "&Kopírovat\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Vložit\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Vybrat roz&díl v řádku\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -881,13 +890,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr ""
 
-#, c-format
-msgid "&Scripts"
-msgstr "Skrip&ty"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -896,6 +907,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Porovnat"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1080,16 +1094,23 @@ msgstr "Kopírovat celé &umístění"
 msgid "Copy &Filename"
 msgstr "Kopírovat &název souboru"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<žádný>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<automaticky>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Vy&brat..."
+
 #, c-format
 msgid "Prediffer Settings"
-msgstr ""
-
-#, c-format
-msgid "&No prediffer"
-msgstr ""
-
-#, c-format
-msgid "Auto prediffer"
 msgstr ""
 
 msgid "G&o to Diff"
@@ -1246,10 +1267,6 @@ msgid " Folder: Filter"
 msgstr ""
 
 #, c-format
-msgid "&Select..."
-msgstr "Vy&brat..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1316,15 +1333,6 @@ msgstr "Automatické &dokončování:"
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"Některá obecná okna se zprávami je možno skrýt.\n"
-"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
-
-#, c-format
-msgid "Reset"
-msgstr "V&rátit"
 
 #, c-format
 msgid "Find"
@@ -1629,16 +1637,11 @@ msgstr "&Nahoru"
 msgid "Move &Down"
 msgstr "&Dolů"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Zvolit převaděč"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "&Převaděč souborů:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1647,6 +1650,21 @@ msgstr "Seznam přípon:"
 #, c-format
 msgid "Description:"
 msgstr "Popis:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1787,6 +1805,15 @@ msgstr "Zn&aky oddělující slova:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"Některá obecná okna se zprávami je možno skrýt.\n"
+"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
+
+#, c-format
+msgid "Reset"
+msgstr "V&rátit"
 
 msgid "File Filters"
 msgstr ""
@@ -2237,6 +2264,12 @@ msgstr "&Povolit pluginy"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Systémová integrace"
@@ -2472,7 +2505,7 @@ msgstr "Přes&kočit vše"
 msgid "Don't display this &message again."
 msgstr "T&uto zprávu již příště nezobrazovat."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2488,6 +2521,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Rozdíly"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2579,6 +2615,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Přípona"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3241,6 +3283,14 @@ msgid "Binary"
 msgstr "Binární"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Převaděč"
+
+#, c-format
+msgid "Prediffer"
+msgstr ""
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Soubory nelze porovnat"
 
@@ -3483,6 +3533,12 @@ msgstr "Počet rozdílů v souboru. Neobsahuje ignorované rozdíly."
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Ukáže hvězdičku (*), pokud je soubor binární"
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Porovnání %1 s %2"
@@ -3687,10 +3743,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nelze vytvořit opravný soubor z binárních souborů."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nelze vytvořit opravný soubor ze složek."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3767,14 +3819,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Typ"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Převaděč"
-
-#, c-format
-msgid "Prediffer"
-msgstr ""
 
 #, c-format
 msgid "Editor script"
@@ -3897,14 +3941,6 @@ msgstr "Nastavení pluginů"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Program Windows Script Host nebyl nalezen - skripty .sct jsou vypnuté"
-
-#, c-format
-msgid "<None>"
-msgstr "<žádný>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<automaticky>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4096,11 +4132,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4132,4 +4176,123 @@ msgid "Allow only one instance to run"
 msgstr "Povolit pouze jedno hlavní okno aplikace"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

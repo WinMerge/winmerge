@@ -55,8 +55,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "Επιλογή Δια&φοράς Γραμμής\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Επιλο&γή Διαφοράς Γραμμής\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -80,6 +81,14 @@ msgstr "Αντι&γραφή"
 #, c-format
 msgid "&Paste"
 msgstr "Προ&σάρτηση"
+
+#, c-format
+msgid "&Scripts"
+msgstr "Μακ&ροεντολές"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Άδειο >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Μετά&βαση...\tCtrl+G"
@@ -144,6 +153,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
 msgstr ""
 
 #, c-format
@@ -259,10 +280,6 @@ msgstr "Πρόσ&φατα Έργα"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Άδειο >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Έξοδο&ς\tCtrl+Q"
@@ -638,10 +655,6 @@ msgid "Reco&mpare As"
 msgstr ""
 
 #, c-format
-msgid "&XML"
-msgstr ""
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Α&ναίρεση\tCtrl+Z"
 
@@ -660,10 +673,6 @@ msgstr "Αντι&γραφή\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Επιλο&γή Διαφοράς Γραμμής\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -880,13 +889,15 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Προεπε&ξεργαστής Διαφορών"
 
-#, c-format
-msgid "&Scripts"
-msgstr "Μακ&ροεντολές"
+msgid "Apply Pre&differ..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -895,6 +906,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Σύγκριση"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1079,17 +1093,24 @@ msgstr "Αντιγραφή πλήρους Δια&δρομής"
 msgid "Copy &Filename"
 msgstr "Αντιγραφή Ο&νόματος"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ουδέν>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Αυτόματο>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Επιλογή..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Χωρίς προεπεξεργασία διαφορών"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Αυτόματη επιλογή προεπεξεργαστή διαφορών"
 
 msgid "G&o to Diff"
 msgstr "Μετά&βαση σε Διαφορά"
@@ -1245,10 +1266,6 @@ msgid " Folder: Filter"
 msgstr ""
 
 #, c-format
-msgid "&Select..."
-msgstr "&Επιλογή..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1315,13 +1332,6 @@ msgstr "Αυτόματη συμπλήρωση διαλόγου αν&οίγματ
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "Το WinMerge επιτρέπει την απόκρυψη ορισμένων κοινών πλαισίων μηνυμάτων. Πατήστε το κουμπί Επαναφορά για να ξανακάνετε όλα τα μηνύματα ορατά."
-
-#, c-format
-msgid "Reset"
-msgstr "Επαναφορά"
 
 #, c-format
 msgid "Find"
@@ -1626,16 +1636,11 @@ msgstr "Μετακίνηση προς τα &άνω"
 msgid "Move &Down"
 msgstr "Μετακίνηση προς τα &κάτω"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Επιλογή Αποσυμπιεστικού"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Αποσυμπιεστικό Αρχείων:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Εμφάνιση όλων των αποσυμπιεστικών, να μην ελέγχεται η επέκταση."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1644,6 +1649,21 @@ msgstr "Κατάλογος Επεκτάσεων:"
 #, c-format
 msgid "Description:"
 msgstr "Περιγραφή:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Εμφάνιση όλων των αποσυμπιεστικών, να μην ελέγχεται η επέκταση."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1784,6 +1804,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "Το WinMerge επιτρέπει την απόκρυψη ορισμένων κοινών πλαισίων μηνυμάτων. Πατήστε το κουμπί Επαναφορά για να ξανακάνετε όλα τα μηνύματα ορατά."
+
+#, c-format
+msgid "Reset"
+msgstr "Επαναφορά"
 
 msgid "File Filters"
 msgstr ""
@@ -2234,6 +2261,12 @@ msgstr "Ενεργοποίηση Αρθρωμάτων"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr ""
@@ -2497,7 +2530,7 @@ msgstr "Παράλειψη Ό&λων"
 msgid "Don't display this &message again."
 msgstr "Να μην εμφανισθεί ξανά αυτό το &Μήνυμα."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2513,6 +2546,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Διαφορές"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2604,6 +2640,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Επέκταση"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3272,6 +3314,14 @@ msgid "Binary"
 msgstr "Δυαδικό"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Αποσυμπιεστικό"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Προεπεξεργαστής Διαφορών"
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Η σύγκριση των αρχείων είναι αδύνατη"
 
@@ -3514,6 +3564,12 @@ msgstr "Αριθμός διαφορών στο αρχείο. Αυτός ο αρ�
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Εμφανίζει έναν αστερίσκο (*) εάν το αρχείο είναι δυαδικό."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Σύγκριση %1 με %2"
@@ -3733,10 +3789,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Η δημιουργία αρχείου patch από δυαδικά αρχεία δεν είναι δυνατή."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Η δημιουργία αρχείου patch από φακέλους δεν είναι δυνατή."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3812,14 +3864,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Τύπος"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Αποσυμπιεστικό"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Προεπεξεργαστής Διαφορών"
 
 #, c-format
 msgid "Editor script"
@@ -3942,14 +3986,6 @@ msgstr "Ρυθμίσεις Αρθρωμάτων"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Το Περιβάλλον Διερμηνείας Windows (WSH) δε βρέθηκε - η χρήση αρχείων δέσμης ενεργειών .sct είναι απενεργοποιημένη"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ουδέν>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Αυτόματο>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4141,11 +4177,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4177,4 +4221,123 @@ msgid "Allow only one instance to run"
 msgstr "Επιτρέπεται μόνο μία υπόσταση του WinMerge ανοικτή"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
 msgstr ""

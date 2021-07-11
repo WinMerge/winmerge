@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
-"PO-Revision-Date: 2021-04-29 00:00+0000\n"
+"POT-Creation-Date: 2021-06-24 20:41+0000\n"
+"PO-Revision-Date: 2021-06-25 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Копировать выбранные строки слева"
 msgid "Copy Selected Line(s) from Right"
 msgstr "Копировать выбранные строки справа"
 
-msgid "&Select Line Difference\tF4"
+msgid "Select Line &Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -72,6 +72,12 @@ msgstr "&Копировать"
 
 msgid "&Paste"
 msgstr "&Вставить"
+
+msgid "&Scripts"
+msgstr "&Скрипты"
+
+msgid "< Empty >"
+msgstr "< Нет >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
@@ -129,6 +135,18 @@ msgstr "Следующая страница"
 
 msgid "&Active Pane"
 msgstr "Активная панель"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
 
 msgid "&Zoom"
 msgstr "&Масштаб"
@@ -221,9 +239,6 @@ msgstr "Недавние проекты"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Недавние файлы и папки"
-
-msgid "< Empty >"
-msgstr "< Нет >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "В&ыход\tCtrl+Q"
@@ -513,9 +528,6 @@ msgstr "Обновить\tCtrl+F5"
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
 
-msgid "&XML"
-msgstr ""
-
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отменить\tCtrl+Z"
 
@@ -530,9 +542,6 @@ msgstr "&Копировать\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставить\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Выбрать отличие\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Найти...\tCtrl+F"
@@ -699,17 +708,23 @@ msgstr "Добавить точку синхронизации\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Очистить точки синхронизации"
 
+msgid "Unpac&ker"
+msgstr "Распаковщик"
+
 msgid "&Prediffer"
 msgstr "&Предсравнение"
 
-msgid "&Scripts"
-msgstr "&Скрипты"
+msgid "Apply Pre&differ..."
+msgstr "Применить предсравнение..."
 
 msgid "Sp&lit"
 msgstr "Разделить"
 
 msgid "Comp&are"
 msgstr "С&равнить"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Сравнить не по горизонтали..."
@@ -866,14 +881,20 @@ msgstr "Копировать полный путь"
 msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
+msgid "Unpacker Settings"
+msgstr "Параметры распаковщика"
+
+msgid "<None>"
+msgstr "<Нет>"
+
+msgid "<Automatic>"
+msgstr "<Автоматически>"
+
+msgid "&Select..."
+msgstr "Выбрать..."
+
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
-
-msgid "&No prediffer"
-msgstr "&Без предсравнения"
-
-msgid "Auto prediffer"
-msgstr "&Автопредсравнение"
 
 msgid "G&o to Diff"
 msgstr "Перейти к &отличию"
@@ -992,9 +1013,6 @@ msgstr "Обзор..."
 msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
 
-msgid "&Select..."
-msgstr "Выбрать..."
-
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
 
@@ -1048,12 +1066,6 @@ msgstr "Автозавершение в диалоге открытия:"
 
 msgid "Language:"
 msgstr "Язык:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
-
-msgid "Reset"
-msgstr "Сброс"
 
 msgid "Find"
 msgstr "Найти"
@@ -1292,20 +1304,32 @@ msgstr "&Вверх"
 msgid "Move &Down"
 msgstr "В&низ"
 
-msgid "Select Unpacker"
-msgstr "Выбор распаковщика"
+msgid "Select Plugin"
+msgstr "Выбрать плагин"
 
-msgid "File unpacker:"
-msgstr "Файл распаковщика:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показывать все распаковщики, не проверять расширение."
+msgid "Plugin &Name:"
+msgstr "Имя плагина:"
 
 msgid "Extensions list:"
 msgstr "Список расширений:"
 
 msgid "Description:"
 msgstr "Описание:"
+
+msgid "Default arguments:"
+msgstr "Аргументы по умолчанию:"
+
+msgid "Display all unpackers, don't check the extension."
+msgstr "Показывать все распаковщики, не проверять расширение."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "Открыть файлы в том же типе окна после распаковки."
+
+msgid "&Plugin Pipeline:"
+msgstr "Конвейер плагинов:"
+
+msgid "&Add pipe"
+msgstr "Добавить конвейер"
 
 msgid "Stop"
 msgstr "Остановить"
@@ -1417,6 +1441,12 @@ msgstr "Символы разрыва слов:"
 
 msgid "&Rendering Mode:"
 msgstr "Режим отрисовки:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
+
+msgid "Reset"
+msgstr "Сброс"
 
 msgid "File Filters"
 msgstr "Фильтры файлов"
@@ -1766,6 +1796,12 @@ msgstr "&Включить плагины"
 msgid "File filters:"
 msgstr "Фильтры файлов:"
 
+msgid "&Plugin arguments:"
+msgstr "Аргументы плагина:"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "Включить авто распаковку/предсравнение для плагина"
+
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"
 
@@ -1954,8 +1990,8 @@ msgstr "Проп&устить все"
 msgid "Don't display this &message again."
 msgstr "Не показывать &больше."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -1968,6 +2004,9 @@ msgstr "Сравнение папок"
 
 msgid "Differences"
 msgstr "Отличия"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "На:"
@@ -2037,6 +2076,12 @@ msgstr "Тип файла"
 
 msgid "Extension"
 msgstr "Расширение"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"
@@ -2505,6 +2550,12 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Двоичный"
 
+msgid "Unpacker"
+msgstr "Распаковщик"
+
+msgid "Prediffer"
+msgstr "Предсравнение"
+
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
 
@@ -2697,6 +2748,12 @@ msgstr "Количество отличий в файле. Это количес
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показать звездочку (*) если файл двоичный."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr "Имя плагина распаковщика или конвейера."
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "Имя плагина предсравнения или конвейера."
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Сравнение %1 с %2"
@@ -2863,9 +2920,6 @@ msgstr "Указать выходной файл."
 msgid "Cannot create a patch file from binary files."
 msgstr "Не удается создать патч из двоичных файлов."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Не удается создать патч из папок."
-
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Сначала сохраните все файлы.\n\nДля создания патча необходимо, чтобы в файлах не было несохраненных изменений."
 
@@ -2915,12 +2969,6 @@ msgstr "Новый шаблон"
 
 msgid "Type"
 msgstr "Тип"
-
-msgid "Unpacker"
-msgstr "Распаковщик"
-
-msgid "Prediffer"
-msgstr "Предсравнение"
 
 msgid "Editor script"
 msgstr "Редактор скриптов"
@@ -3019,12 +3067,6 @@ msgstr "Настройки плагина"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не найден - .sct скрипты отключены"
-
-msgid "<None>"
-msgstr "<Нет>"
-
-msgid "<Automatic>"
-msgstr "<Автоматически>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3202,11 +3244,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3238,3 +3288,122 @@ msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
+
+msgid "Al&l"
+msgstr "Все"
+
+msgid "Prettification"
+msgstr "Приукрашивание"
+
+msgid "Content Extraction"
+msgstr "Извлечение контента"
+
+msgid "Visualization"
+msgstr "Визуализация"
+
+msgid "Data Query"
+msgstr "Запрос данных"
+
+msgid "&Others"
+msgstr "Другое"
+
+msgid "Make Uppercase"
+msgstr "Сделать прописными"
+
+msgid "Make Lowercase"
+msgstr "Сделать строчными"
+
+msgid "Remove Duplicate Lines"
+msgstr "Удалить дубли строк"
+
+msgid "Count Duplicate Lines"
+msgstr "Подсчитать дубли строк"
+
+msgid "Sort Lines Ascending"
+msgstr "Сортировать строки по возрастанию"
+
+msgid "Sort Lines Descending"
+msgstr "Сортировать строки по убыванию"
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr "Применить фильтрацию..."
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr "Трим пробелов"
+
+msgid "Select Columns..."
+msgstr "Выбрать столбцы..."
+
+msgid "Select Lines..."
+msgstr "Выбрать строки..."
+
+msgid "Insert Date"
+msgstr "Вставить дату"
+
+msgid "Insert Time"
+msgstr "Вставить время"
+
+msgid "Apply Patch..."
+msgstr "Применить патч..."
+
+msgid "Ignore Columns"
+msgstr "Игнорировать столбцы"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Игнорировать комментарии (семейство C)"
+
+msgid "Ignore CSV Fields"
+msgstr "Игнорировать поля CSV"
+
+msgid "Ignore TSV Fields"
+msgstr "Игнорировать поля TSV"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Применить фильтры замены предсравнения."
+
+msgid "Prettify JSON"
+msgstr "Приукрасить JSON"
+
+msgid "Prettify XML"
+msgstr "Приукрасить XML"
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr "Запрос данных CSV..."
+
+msgid "Query TSV Data..."
+msgstr "Запрос данных TSV..."
+
+msgid "Query JSON Data..."
+msgstr "Запрос данных JSON..."
+
+msgid "Query YAML Data..."
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Отсутствует плагин в конвейере: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Отсутствует кавычка в конвейере плагинов: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Укажите аргументы плагина"

@@ -218,4 +218,20 @@ String format_string2(const String& fmt, const String& arg1, const String& arg2)
 	return format_strings(fmt, args, 2);
 }
 
+std::vector<StringView> split(StringView str, TCHAR delim)
+{
+	std::vector<StringView> result;
+	size_t start = 0;
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str[i] == delim)
+		{
+			result.emplace_back(str.data() + start, i - start);
+			start = i + 1;
+		}
+	}
+	result.emplace_back(str.data() + start, str.size() - start);
+	return result;
+}
+
 }

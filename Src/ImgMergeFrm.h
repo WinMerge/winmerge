@@ -58,7 +58,12 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
+	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; }
+	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
@@ -118,7 +123,7 @@ private:
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
-	int m_unpackerSubcode[3];
+	std::vector<int> m_unpackerSubcodes[3];
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -143,8 +148,9 @@ private:
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
-	afx_msg void OnFileRecompareAs(UINT nId);
+	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
+	afx_msg void OnOpenWithUnpacker();
 	afx_msg void OnWindowChangePane();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
@@ -212,6 +218,10 @@ private:
 	afx_msg void OnUpdateImgPrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgNextPage();
 	afx_msg void OnUpdateImgNextPage(CCmdUI* pCmdUI);
+	afx_msg void OnImgCurPaneRotateRight90();
+	afx_msg void OnImgCurPaneRotateLeft90();
+	afx_msg void OnImgCurPaneFlipVertically();
+	afx_msg void OnImgCurPaneFlipHorizontally();
 	afx_msg void OnImgCurPanePrevPage();
 	afx_msg void OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgCurPaneNextPage();

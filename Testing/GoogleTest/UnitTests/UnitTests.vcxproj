@@ -530,11 +530,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\UniMarkdownFile.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -719,7 +714,6 @@
     <ClInclude Include="..\..\..\Src\stringdiffsi.h" />
     <ClInclude Include="..\..\..\Src\Common\unicoder.h" />
     <ClInclude Include="..\..\..\Src\Common\UnicodeString.h" />
-    <ClInclude Include="..\..\..\Src\UniMarkdownFile.h" />
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

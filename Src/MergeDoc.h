@@ -178,7 +178,7 @@ public:
 	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
-		int nBuffer, PackingInfo * pInfoTempUnpacker);
+		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int pane, int line);
@@ -186,9 +186,11 @@ public:
 	void SetEditedAfterRescan(int nBuffer);
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
 	void SetUnpacker(const PackingInfo * infoUnpacker);
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
+	const PrediffingInfo *GetPrediffer() const override;
 	void AddMergeViews(CMergeEditView * pView[3]);
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
@@ -197,6 +199,9 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; } 
+	bool GetReadOnly(int pane) const override { return m_ptBuf[pane]->m_bReadOnly; }
 	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
@@ -292,7 +297,6 @@ public:
 	virtual ~CMergeDoc();
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
-	bool OpenWithUnpackerDialog();
 	bool GenerateReport(const String& sFileName) const override;
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
@@ -313,6 +317,8 @@ public:
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
+	// to customize the mergeview menu
+	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 // implementation methods
 private:
@@ -334,7 +340,7 @@ protected:
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
-	std::unique_ptr<PackingInfo> m_pInfoUnpacker;
+	PackingInfo m_infoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
@@ -353,6 +359,9 @@ protected:
 	 * certain time from previous rescan.
 	 */
 	bool m_bAutomaticRescan;
+	/// active prediffer ID : helper to check the radio button
+	int m_CurrentPredifferID;
+
 // friend access
 	friend class RescanSuppress;
 
@@ -369,26 +378,26 @@ protected:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileEncoding();
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnToolsGeneratePatch();
-	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnOpenWithUnpacker();
+	afx_msg void OnApplyPrediffer();
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();
-	afx_msg void OnFileRecompareAsXML();
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
+	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
+	afx_msg void OnPrediffer(UINT nID );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
@@ -401,6 +410,7 @@ private:
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
+	void SetPredifferByMenu(UINT nID);
 };
 
 /**

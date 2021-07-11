@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include "EncodingErrorBar.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "MergeApp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,6 +34,7 @@ void CEncodingErrorBar::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CEncodingErrorBar, CTrDialogBar)
 	//{{AFX_MSG_MAP(CEncodingErrorBar)
+	ON_UPDATE_COMMAND_UI(IDC_PLUGIN, OnUpdateBnClickedPlugin)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -45,6 +49,11 @@ BOOL CEncodingErrorBar::Create(CWnd *pParentWnd)
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CEncodingErrorBar::OnUpdateBnClickedPlugin(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 }
 
 void CEncodingErrorBar::SetText(const String& sText)
