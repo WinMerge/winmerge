@@ -126,6 +126,7 @@ COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 	String iniFilePath = cmdInfo.m_sIniFilepath;
 	if (!iniFilePath.empty())
 	{
+		iniFilePath = paths::GetLongPath(iniFilePath);
 		if (paths::CreateIfNeeded(paths::GetParentPath(iniFilePath)))
 			return new CIniOptionsMgr(iniFilePath);
 	}
