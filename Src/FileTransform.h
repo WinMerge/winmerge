@@ -178,7 +178,7 @@ public:
 	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
-	bool Transform(String & text, const std::vector<StringView>& variables);
+	bool TransformText(String & text, const std::vector<StringView>& variables);
 };
 
 namespace FileTransform
@@ -196,17 +196,6 @@ namespace FileTransform
  */
 bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
 
-/** 
- * @brief : Execute one free function from one script
- *
- * @param iFncChosen : index of the function in the list returned by GetFreeFunctionsInScripts
- *
- * @return Tells if the text has been changed 
- *
- * @note Event EDITOR_SCRIPT, ?
- */
-bool Interactive(String & text, const std::vector<String>& params, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables);
-
 std::pair<
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>>
@@ -215,5 +204,6 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 
 inline const std::vector<String> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" };
 inline const std::vector<String> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF" };
+inline const std::vector<String> EditorScriptEventNames = { L"EDITOR_SCRIPT" };
 
 }

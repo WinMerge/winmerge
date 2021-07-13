@@ -3362,9 +3362,10 @@ void CMergeEditView::OnScripts(UINT nID)
 	CString ctext = GetSelectedText();
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
+	EditorScriptInfo scriptInfo(
+		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = FileTransform::Interactive(text, {}, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST,
-		{ GetDocument()->m_filePaths[m_nThisPane] });
+	bool bChanged = scriptInfo.TransformText(text, { GetDocument()->m_filePaths[m_nThisPane] });
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);

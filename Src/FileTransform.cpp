@@ -625,7 +625,7 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 	for (auto& [pluginName, args, quoteChar] : result)
 	{
 		bool found = false;
-		PluginArray *pluginInfoArray = CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"EDTIOR_SCRIPT");
+		PluginArray *pluginInfoArray = CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"EDITOR_SCRIPT");
 		for (const auto& plugin : *pluginInfoArray)
 		{
 			std::vector<String> namesArray;
@@ -652,7 +652,7 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 	return true;
 }
 
-bool EditorScriptInfo::Transform(String & text, const std::vector<StringView>& variables)
+bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView>& variables)
 {
 	// no handler : return true
 	if (m_PluginPipeline.empty())
@@ -743,55 +743,6 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 	return bSuccess;
 }
 
-
-////////////////////////////////////////////////////////////////////////////////
-// transformation : TextTransform_Interactive (editor scripts)
-
-bool Interactive(String & text, const std::vector<String>& args, const wchar_t *TransformationEvent, int iFncChosen, const std::vector<StringView>& variables)
-{
-	if (iFncChosen < 0)
-		return false;
-
-	// get an array with the available scripts
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
-
-	size_t iScript;
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
-	{
-		if (iFncChosen < piScriptArray->at(iScript)->m_nFreeFunctions)
-			// we have found the script file
-			break;
-		iFncChosen -= piScriptArray->at(iScript)->m_nFreeFunctions;
-	}
-
-	if (iScript >= piScriptArray->size())
-		return false;
-
-	PluginInfo* plugin = piScriptArray->at(iScript).get();
-
-	// iFncChosen is the index of the function in the script file
-	// we must convert it to the function ID
-	int fncID = plugin::GetMethodIDInScript(plugin->m_lpDispatch, iFncChosen);
-
-	if (plugin->m_hasVariablesProperty)
-	{
-		if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), plugin->m_lpDispatch))
-			return false;
-	}
-	if (plugin->m_hasArgumentsProperty)
-	{
-		if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : PluginForFile::MakeArguments(args, variables), plugin->m_lpDispatch))
-			return false;
-	}
-
-	// execute the transform operation
-	int nChanged = 0;
-	plugin::InvokeTransformText(text, nChanged, plugin->m_lpDispatch, fncID);
-
-	return (nChanged != 0);
-}
-
 std::pair<
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>>
@@ -859,10 +810,10 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 						const String process = tr(ucr::toUTF8(processType.has_value() ?
 							String{ processType->data(), processType->size() } : _T("&Others")));
 						if (matched)
-							suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
+							suggestedPlugins.emplace_back(caption, scriptNamesArray[i], id, plugin.get());
 						if (allPlugins.find(process) == allPlugins.end())
 							allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
-						allPlugins[process].emplace_back(caption, plugin->m_name, id, plugin.get());
+						allPlugins[process].emplace_back(caption, scriptNamesArray[i], id, plugin.get());
 					}
 				}
 			}
