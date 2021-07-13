@@ -386,14 +386,6 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		return false;
 	}
 
-	for (auto& [plugin, args, bWithFile] : plugins)
-	{
-		if (plugin->m_argumentsRequired && args.empty())
-		{
-
-		}
-	}
-
 	if (handlerSubcodes)
 		handlerSubcodes->clear();
 
@@ -652,8 +644,9 @@ bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*,
 	return true;
 }
 
-bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView>& variables)
+bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView>& variables, bool& changed)
 {
+	changed = false;
 	// no handler : return true
 	if (m_PluginPipeline.empty())
 		return true;
@@ -688,6 +681,8 @@ bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView
 		int nChanged = 0;
 		if (!plugin::InvokeTransformText(text, nChanged, plugin->m_lpDispatch, fncID))
 			return false;
+		if (!changed)
+			changed = (nChanged != 0);
 	}
 	return true;
 }

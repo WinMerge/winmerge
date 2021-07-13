@@ -178,7 +178,7 @@ public:
 	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
-	bool TransformText(String & text, const std::vector<StringView>& variables);
+	bool TransformText(String & text, const std::vector<StringView>& variables, bool& changed);
 };
 
 namespace FileTransform

@@ -716,6 +716,9 @@ msgstr "比較前処理プラグイン(&P)"
 msgid "Apply Pre&differ..."
 msgstr "比較前処理プラグインを適用(&D)..."
 
+msgid "&Transform with editor script..."
+msgstr "エディタスクリプトで変換(&T)..."
+
 msgid "Sp&lit"
 msgstr "分割(&L)"
 
@@ -1322,8 +1325,8 @@ msgstr "説明:"
 msgid "Default arguments:"
 msgstr "デフォルト引数:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "拡張子を無視してすべての展開プラグインを表示する。"
+msgid "Display all plugins, don't check the extension."
+msgstr "拡張子を無視してすべてのプラグインを表示する。"
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "展開プラグイン適用後、ファイルを同じウインドウタイプで開く。(&O)"
