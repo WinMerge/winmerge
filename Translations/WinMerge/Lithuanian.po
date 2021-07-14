@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-07 08:21+0000\n"
-"PO-Revision-Date: 2021-07-07 15:15+0200\n"
+"POT-Creation-Date: 2021-07-11 11:37+0000\n"
+"PO-Revision-Date: 2021-07-14 14:14+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -138,16 +138,16 @@ msgid "&Active Pane"
 msgstr "&Aktyvus polangis"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Pasukti 90 l. &dešinėn"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Pasukti 90 l. &kairėn"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "Apversti &vertikaliai"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "Apversti &horizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
@@ -3257,11 +3257,11 @@ msgstr "St.: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Apversta: %s  "
 
 #, c-format
 msgid "Rotated: %s  "
-msgstr ""
+msgstr "Pasukta: %s  "
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"
@@ -3384,7 +3384,7 @@ msgid "Prettify XML"
 msgstr "Sutvarkyti XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Sutvarkyti YAML"
 
 msgid "Visualize Graphviz"
 msgstr "Vizualizuoti „Graphviz“"
@@ -3399,7 +3399,7 @@ msgid "Query JSON Data..."
 msgstr "Pateikti JSON duomenų užklausą..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "Pateikti YAML duomenų užklausą..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
