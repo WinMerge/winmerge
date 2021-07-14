@@ -126,9 +126,12 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	UpdateData(FALSE);
 
+	const std::vector<String> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
+	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
+
 	if (m_bArgumentsRequired)
 	{
-		SetWindowText(_("Specify plugin arguments").c_str());
+		SetWindowText((_("Specify plugin arguments") + _T(" [") + pluginTypeStr + _T("]")).c_str());
 		String args;
 		CString pipeline;
 		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, args);
@@ -138,6 +141,9 @@ BOOL CSelectPluginDlg::OnInitDialog()
 		m_ctlPluginPipeline.SetFocus();
 		return FALSE;
 	}
+	CString title;
+	GetWindowText(title);
+	SetWindowText(title + _T(" [") + pluginTypeStr.c_str() + _T("]"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
