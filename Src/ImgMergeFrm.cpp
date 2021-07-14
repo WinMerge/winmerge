@@ -976,7 +976,8 @@ void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Unpacker, false);
 	if (dlg.DoModal() == IDOK)
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());

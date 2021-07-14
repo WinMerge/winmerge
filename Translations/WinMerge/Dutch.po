@@ -716,6 +716,9 @@ msgstr "Voorvergelijking"
 msgid "Apply Pre&differ..."
 msgstr "Voorvergelijking toepassen."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Splitsen"
 
@@ -1323,8 +1326,8 @@ msgstr "Beschrijving:"
 msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken."

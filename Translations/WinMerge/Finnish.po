@@ -900,6 +900,9 @@ msgstr "Esivertailu"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "J&aa"
@@ -1654,8 +1657,8 @@ msgstr "Kuvaus:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""

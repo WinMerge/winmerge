@@ -83,7 +83,6 @@ public:
 	bool        m_disabled;
 	bool        m_hasArgumentsProperty;
 	bool        m_hasVariablesProperty;
-	bool        m_argumentsRequired;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;

@@ -24,13 +24,15 @@ class PluginInfo;
 
 class CSelectPluginDlg : public CTrDialog
 {
+public:
+	enum class PluginType { Unpacker, Prediffer, EditorScript };
 private:
 // Construction
-	void Initialize(bool unpacker);
+	void Initialize(PluginType pluginType);
 
 public:
 // Construction
-	CSelectPluginDlg(const String& pluginPipeline, const String& filename, bool unpacker = true, bool argumentRequired = false, CWnd* pParent = nullptr);
+	CSelectPluginDlg(const String& pluginPipeline, const String& filename, PluginType pluginType, bool argumentsRequired = false, CWnd* pParent = nullptr);
 	~CSelectPluginDlg();
 
 	const String& CSelectPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
@@ -66,8 +68,8 @@ protected:
 	std::unique_ptr<PluginInfo> noPlugin;
 	// const data "automatic plugin"
 	std::unique_ptr<PluginInfo> automaticPlugin;
-	bool m_bUnpacker;
-	bool m_bArgumentRequired;
+	PluginType m_pluginType;
+	bool m_bArgumentsRequired;
 
 	// input value
 	String m_filteredFilenames;

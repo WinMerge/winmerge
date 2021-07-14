@@ -900,6 +900,9 @@ msgstr "&Prediffer"
 msgid "Apply Pre&differ..."
 msgstr "Pre&differ anwenden..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "&Teilen"
@@ -1654,8 +1657,8 @@ msgstr "Beschreibung:"
 msgid "Default arguments:"
 msgstr "Standardargumente:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle Entpacker anzeigen, die Erweiterung nicht überprüfen."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen."

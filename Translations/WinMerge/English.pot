@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-11 11:37+0000\n"
+"POT-Creation-Date: 2021-07-13 22:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -709,6 +709,9 @@ msgstr ""
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr ""
 
@@ -1311,7 +1314,7 @@ msgstr ""
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
+msgid "Display all plugins, don't check the extension."
 msgstr ""
 
 msgid "&Open files in the same window type after unpacking."

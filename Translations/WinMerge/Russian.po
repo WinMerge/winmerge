@@ -717,6 +717,9 @@ msgstr "&Предсравнение"
 msgid "Apply Pre&differ..."
 msgstr "Применить предсравнение..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Разделить"
 
@@ -1319,8 +1322,8 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показывать все распаковщики, не проверять расширение."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Открыть файлы в том же типе окна после распаковки."

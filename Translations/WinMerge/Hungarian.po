@@ -902,6 +902,9 @@ msgstr "&Elővizsgáló"
 msgid "Apply Pre&differ..."
 msgstr "Elővizsgáló alkalmazása..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Felosztás"
@@ -1656,8 +1659,8 @@ msgstr "Leírás:"
 msgid "Default arguments:"
 msgstr "Alapértelmezett argumentumok:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"

@@ -716,6 +716,9 @@ msgstr "Ön &farklılaştırıcı"
 msgid "Apply Pre&differ..."
 msgstr "Ön &farklılaştırma uygula..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Bö&l"
 
@@ -1322,8 +1325,8 @@ msgstr "Açıklama:"
 msgid "Default arguments:"
 msgstr "Varsayılan değişkenler:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Uzantıya bakılmadan tüm ayıklayıcılar görüntülensin."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
