@@ -928,7 +928,12 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 			}
 		}
 	}
-	INT_PTR ans = AfxMessageBox(msg.c_str(), MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, IDS_COMPARE_LARGE_FILES);
+	CMessageBoxDialog dlg(
+		m_pDirView ? m_pDirView->GetParentFrame() : nullptr,
+		msg.c_str(), _T(""),
+		MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U,
+		_T("CompareLargeFiles"));
+	INT_PTR ans = dlg.DoModal();
 	if (ans == IDCANCEL)
 		return true;
 	else if (ans == IDNO)
