@@ -216,7 +216,9 @@ BOOL CMergeApp::InitInstance()
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
-	Options::CopyHKLMValues();
+	if (dynamic_cast<CRegOptionsMgr*>(m_pOptions.get()) != nullptr)
+		Options::CopyHKLMValues();
+
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
