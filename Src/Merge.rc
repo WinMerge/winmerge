@@ -692,6 +692,7 @@ BEGIN
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
+        MENUITEM "&Transform with editor script...",      ID_TRANSFORM_WITH_SCRIPT
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -1462,7 +1463,7 @@ BEGIN
     EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
     LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
     EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
-    CONTROL         "Display all unpackers, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
+    CONTROL         "Display all plugins, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
     CONTROL         "&Open files in the same window type after unpacking.",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12

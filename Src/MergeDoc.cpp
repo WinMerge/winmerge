@@ -3392,7 +3392,8 @@ void CMergeDoc::OnFileEncoding()
 void CMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Unpacker, false);
 	if (dlg.DoModal() != IDOK)
 		return;
 
@@ -3416,7 +3417,8 @@ void CMergeDoc::OnApplyPrediffer()
 	GetPrediffer(&prediffer);
 	// let the user choose a handler
 	CSelectPluginDlg dlg(prediffer.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Prediffer, false);
 	if (dlg.DoModal() != IDOK)
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());

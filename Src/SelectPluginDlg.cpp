@@ -25,7 +25,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlg dialog
 
-void CSelectPluginDlg::Initialize(bool unpacker)
+void CSelectPluginDlg::Initialize(PluginType pluginType)
 {
 	//{{AFX_DATA_INIT(CSelectPluginDlg)
 	m_bNoExtensionCheck = false;
@@ -44,20 +44,23 @@ void CSelectPluginDlg::Initialize(bool unpacker)
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _T("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	std::vector<std::wstring> events = unpacker ?  FileTransform::UnpackerEventNames : FileTransform::PredifferEventNames;
+	const std::vector<String> *eventNamesArray[] = {
+			&FileTransform::UnpackerEventNames,
+			&FileTransform::PredifferEventNames,
+			&FileTransform::EditorScriptEventNames };
+	const std::vector<std::wstring>& events = *eventNamesArray[static_cast<int>(pluginType)];
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
 }
 
-
 CSelectPluginDlg::CSelectPluginDlg(const String& pluginPipeline, const String& filename,
-	bool unpacker /*= true */, bool argumentRequired/*= false  */, CWnd* pParent /*= nullptr*/)
+	PluginType pluginType, bool argumentsRequired/*= false  */, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CSelectPluginDlg::IDD, pParent)
 	, m_strPluginPipeline(pluginPipeline)
 	, m_filteredFilenames(filename)
-	, m_bUnpacker(unpacker)
-	, m_bArgumentRequired(argumentRequired)
+	, m_pluginType(pluginType)
+	, m_bArgumentsRequired(argumentsRequired)
 {
-	Initialize(unpacker);
+	Initialize(pluginType);
 }
 
 CSelectPluginDlg::~CSelectPluginDlg()
@@ -93,13 +96,15 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlg message handlers
 
-void CSelectPluginDlg::OnOK() 
+void CSelectPluginDlg::OnOK()
 {
 	UpdateData(TRUE);
 
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
-	m_ctlPluginPipeline.SaveState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
+	m_ctlPluginPipeline.SaveState(
+		std::vector<const TCHAR *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+			[static_cast<int>(m_pluginType)]);
 
 	CTrDialog::OnOK();
 }
@@ -113,15 +118,20 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	prepareListbox();
 	m_ctlPluginPipeline.SetFileControlStates(true);
-	m_ctlPluginPipeline.LoadState(m_bUnpacker ? _T("Files\\Unpacker") : _T("Files\\Prediffer"));
+	m_ctlPluginPipeline.LoadState(
+		std::vector<const TCHAR *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+			[static_cast<int>(m_pluginType)]);
 
-	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_bUnpacker);
+	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_pluginType == PluginType::Unpacker);
 
 	UpdateData(FALSE);
 
-	if (m_bArgumentRequired)
+	const std::vector<String> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
+	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
+
+	if (m_bArgumentsRequired)
 	{
-		SetWindowText(_("Specify plugin arguments").c_str());
+		SetWindowText((_("Specify plugin arguments") + _T(" [") + pluginTypeStr + _T("]")).c_str());
 		String args;
 		CString pipeline;
 		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, args);
@@ -131,6 +141,9 @@ BOOL CSelectPluginDlg::OnInitDialog()
 		m_ctlPluginPipeline.SetFocus();
 		return FALSE;
 	}
+	CString title;
+	GetWindowText(title);
+	SetWindowText(title + _T(" [") + pluginTypeStr.c_str() + _T("]"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -139,12 +152,17 @@ BOOL CSelectPluginDlg::OnInitDialog()
 void CSelectPluginDlg::prepareListbox() 
 {
 	int sel = -1;
+	PluginInfo* pSelPlugin = nullptr;
 	int i = 0;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
-	m_cboPluginName.AddString(noPlugin->m_name.c_str());
-	m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
+
+	if (m_pluginType != PluginType::EditorScript)
+	{
+		m_cboPluginName.AddString(noPlugin->m_name.c_str());
+		m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
+	}
 
 	std::vector<String> processTypes;
 	for (const auto& [processType, pluginList] : m_Plugins)
@@ -171,11 +189,23 @@ void CSelectPluginDlg::prepareListbox()
 		{
 			if (!name.empty() && name != _T("<Automatic>"))
 			{
-				if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames) || lastPluginName == name)
+				bool match = plugin->TestAgainstRegList(m_filteredFilenames);
+				if (m_bNoExtensionCheck || match || lastPluginName == name)
 				{
 					m_cboPluginName.AddString(name.c_str());
-					if (lastPluginName == name)
+					if (lastPluginName.empty() && match)
+					{
+						if (sel == -1 || (!pSelPlugin->m_bAutomatic && plugin->m_bAutomatic))
+						{
+							sel = m_cboPluginName.GetCount() - 1;
+							pSelPlugin = plugin;
+						}
+					}
+					else if (lastPluginName == name)
+					{
 						sel = m_cboPluginName.GetCount() - 1;
+						pSelPlugin = plugin;
+					}
 				}
 			}
 		}
@@ -218,13 +248,14 @@ void CSelectPluginDlg::OnChangePipeline()
 void CSelectPluginDlg::OnSelchangeUnpackerName() 
 {
 	PluginInfo* pPlugin = nullptr;
+	String pluginName;
 	int i = m_cboPluginName.GetCurSel();
-	if (i == 0)
+	if (m_pluginType != PluginType::EditorScript && i == 0)
 	{
 		pPlugin = noPlugin.get();
 		m_strPluginPipeline.clear();
 	}
-	else if (i == 1)
+	else if (m_pluginType != PluginType::EditorScript && i == 1)
 	{
 		pPlugin = automaticPlugin.get();
 		m_strPluginPipeline = _T("<Automatic>");
@@ -234,7 +265,7 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 		// initialize with the default unpacker
 		CString cstrPluginName;
 		m_cboPluginName.GetWindowText(cstrPluginName);
-		String pluginName = cstrPluginName.Trim();
+		pluginName = cstrPluginName.Trim();
 		for (const auto& [processType, pluginList] : m_Plugins)
 		{
 			for (const auto& [caption, name, id, plugin] : pluginList)
@@ -260,8 +291,14 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	if (pPlugin)
 	{
 		m_strDescription = tr(ucr::toUTF8(pPlugin->m_description));
+		auto funcDescription = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Description"));
+		if (funcDescription.has_value())
+			m_strDescription = tr(ucr::toUTF8({ funcDescription.value().data(), funcDescription.value().length() }));
 		m_strExtensions = pPlugin->m_filtersText;
 		m_strArguments = pPlugin->m_arguments;
+		auto funcArguments = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Arguments"));
+		if (funcArguments.has_value())
+			m_strArguments = { funcArguments.value().data(), funcArguments.value().length() };
 	}
 
 	m_bOpenInSameFrameType = IsDlgButtonChecked(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE);

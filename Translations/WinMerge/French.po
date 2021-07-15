@@ -907,6 +907,9 @@ msgstr "&Pré-comparer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Scinder"
@@ -1661,8 +1664,8 @@ msgstr "Description :"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afficher tous les décompresseurs, ignorer les extensions."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""

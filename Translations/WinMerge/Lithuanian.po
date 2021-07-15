@@ -718,6 +718,9 @@ msgstr "&Parengėjas"
 msgid "Apply Pre&differ..."
 msgstr "Taikyti paren&gėją..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Pada&linti"
 
@@ -1320,8 +1323,8 @@ msgstr "Aprašas:"
 msgid "Default arguments:"
 msgstr "Numatytieji argumentai:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "P&o išpakavimo atidaryti failus to paties tipo lange."

@@ -901,6 +901,9 @@ msgstr "Prec&omparación"
 msgid "Apply Pre&differ..."
 msgstr "Aplicar pre&diferenza…"
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "&Separar"
@@ -1655,8 +1658,8 @@ msgstr "Descrición:"
 msgid "Default arguments:"
 msgstr "Argumentos por defecto:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Amosar todos os desempaquetadores, non verificar a extensión."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Abrir arquiv&os no mesmo tipo de ventá despois de desempaquetar."

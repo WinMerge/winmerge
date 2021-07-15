@@ -540,13 +540,11 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 			return -110; // error (Plugin had PluginExtendedProperties property, but error getting its value)
 		}
 		m_extendedProperties = ucr::toTString(ret.bstrVal);
-		m_argumentsRequired = GetExtendedPropertyValue(L"ArgumentsRequired").has_value();
 
 	}
 	else
 	{
 		m_extendedProperties.clear();
-		m_argumentsRequired = false;
 	}
 	VariantClear(&ret);
 

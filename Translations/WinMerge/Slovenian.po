@@ -900,6 +900,9 @@ msgstr "&Predpregled razlik"
 msgid "Apply Pre&differ..."
 msgstr "Uporabi Prediffer..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Ra&zdeli"
@@ -1653,8 +1656,8 @@ msgstr "Opis:"
 msgid "Default arguments:"
 msgstr "Privzeti argumenti:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži vse razpakovalce, ne glede na končnico."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna."

@@ -718,6 +718,9 @@ msgstr "Pré-diferenciar"
 msgid "Apply Pre&differ..."
 msgstr "Aplicar Pré&diferenciar..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Di&vidir"
 
@@ -1326,8 +1329,8 @@ msgstr "Descrição:"
 msgid "Default arguments:"
 msgstr "Argumentos padrão:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Mostrar todos os extratores, não verificar extensões."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "&Abrir ficheiros no mesmo tipo de janela após desempacotar."
