@@ -152,10 +152,12 @@ BOOL CSelectPluginDlg::OnInitDialog()
 void CSelectPluginDlg::prepareListbox() 
 {
 	int sel = -1;
+	PluginInfo* pSelPlugin = nullptr;
 	int i = 0;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
+
 	if (m_pluginType != PluginType::EditorScript)
 	{
 		m_cboPluginName.AddString(noPlugin->m_name.c_str());
@@ -187,11 +189,23 @@ void CSelectPluginDlg::prepareListbox()
 		{
 			if (!name.empty() && name != _T("<Automatic>"))
 			{
-				if (m_bNoExtensionCheck || plugin->TestAgainstRegList(m_filteredFilenames) || lastPluginName == name)
+				bool match = plugin->TestAgainstRegList(m_filteredFilenames);
+				if (m_bNoExtensionCheck || match || lastPluginName == name)
 				{
 					m_cboPluginName.AddString(name.c_str());
-					if (lastPluginName == name)
+					if (lastPluginName.empty() && match)
+					{
+						if (sel == -1 || (!pSelPlugin->m_bAutomatic && plugin->m_bAutomatic))
+						{
+							sel = m_cboPluginName.GetCount() - 1;
+							pSelPlugin = plugin;
+						}
+					}
+					else if (lastPluginName == name)
+					{
 						sel = m_cboPluginName.GetCount() - 1;
+						pSelPlugin = plugin;
+					}
 				}
 			}
 		}
@@ -236,12 +250,12 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	PluginInfo* pPlugin = nullptr;
 	String pluginName;
 	int i = m_cboPluginName.GetCurSel();
-	if (i == 0)
+	if (m_pluginType != PluginType::EditorScript && i == 0)
 	{
 		pPlugin = noPlugin.get();
 		m_strPluginPipeline.clear();
 	}
-	else if (i == 1)
+	else if (m_pluginType != PluginType::EditorScript && i == 1)
 	{
 		pPlugin = automaticPlugin.get();
 		m_strPluginPipeline = _T("<Automatic>");
