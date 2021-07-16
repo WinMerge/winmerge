@@ -357,7 +357,7 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt,
 
 	if
 	(
-		m_pSubstitutionList
+		   m_pSubstitutionList
 		&& m_pSubstitutionList->AreAllChangesTrivial(
 			LineDataLeft, LineDataRight, m_options.m_ignoreWhitespace, m_options.m_bIgnoreCase)
 	)
