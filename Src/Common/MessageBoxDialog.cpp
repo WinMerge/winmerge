@@ -338,6 +338,12 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
 	}
 }
 
+CString CMessageBoxDialog::GenerateRegistryKey(UINT nMessageID, UINT nHelpID)
+{
+	CMessageBoxDialog dlg{ nullptr, nMessageID, 0, 0, nHelpID };
+	return dlg.GenerateRegistryKey();
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Methods for handling common window functions.
 

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-04-24 22:03+0200\n"
+"PO-Revision-Date: 2021-07-04 12:38+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -156,6 +156,18 @@ msgstr "&Naslednja stran"
 #, c-format
 msgid "&Active Pane"
 msgstr "&Aktivno podokno"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
 
 #, c-format
 msgid "&Zoom"
@@ -879,13 +891,16 @@ msgid "Clear Sync&hronization Points"
 msgstr "Počisti sin&hronizacijske točke"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Razpako&valec"
 
 #, c-format
 msgid "&Prediffer"
 msgstr "&Predpregled razlik"
 
 msgid "Apply Pre&differ..."
+msgstr "Uporabi Prediffer..."
+
+msgid "&Transform with editor script..."
 msgstr ""
 
 #, c-format
@@ -895,6 +910,9 @@ msgstr "Ra&zdeli"
 #, c-format
 msgid "Comp&are"
 msgstr "P&rimerjaj"
+
+msgid "Compare in new &window"
+msgstr "Primerjaj v &novem oknu"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Pr&imerjaj ne-vodoravno..."
@@ -1080,7 +1098,7 @@ msgid "Copy &Filename"
 msgstr "Kopiraj &ime datoteke"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Nastavitve Razpakovalca"
 
 #, c-format
 msgid "<None>"
@@ -1318,13 +1336,6 @@ msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 #, c-format
 msgid "Language:"
 msgstr "Jezik:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
-
-#, c-format
-msgid "Reset"
-msgstr "Ponastavi"
 
 #, c-format
 msgid "Find"
@@ -1629,10 +1640,10 @@ msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Izberi vtičnik"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "I&me vtičnita:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1643,19 +1654,19 @@ msgid "Description:"
 msgstr "Opis:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Privzeti argumenti:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži vse razpakovalce, ne glede na končnico."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Cevovo&d vtičnika:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "&Dodaj cevovod"
 
 #, c-format
 msgid "Stop"
@@ -1795,6 +1806,13 @@ msgstr "&Znaki za prelom besed:"
 
 msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
+
+#, c-format
+msgid "Reset"
+msgstr "Ponastavi"
 
 msgid "File Filters"
 msgstr "Filtri datotek"
@@ -2252,10 +2270,10 @@ msgid "File filters:"
 msgstr "Filtri datotek:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Ar&gumenti vtičnika:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Omogočite samodejno razpakiranje/predrazlikovanje vtičnika"
 
 #, c-format
 msgid "Shell Integration"
@@ -2544,8 +2562,8 @@ msgstr "Preskoči &vse"
 msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Za ponovni prikaz tega sporočila, pritisnite 'Ponastavi' na strani 'Splošno' pogovornega okna 'Možnosti'."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2560,6 +2578,9 @@ msgstr "Primerjava map"
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2651,6 +2672,12 @@ msgstr "Vrsta datoteke"
 #, c-format
 msgid "Extension"
 msgstr "Končnica"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3616,10 +3643,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Prikaže zvezdico (*) če je datoteka dvojiška."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Ime vtičnika razpakovalca ali cevovod."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Ime vtičnika predrazlikovalca ali cevovod."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3850,10 +3877,6 @@ msgstr "Določite izhodno datoteko."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Iz dvojiških datotek ni mogoče ustvariti datoteke s popravki."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Iz map ni mogoče ustvariti datoteke s popravki."
 
 #, c-format
 msgid ""
@@ -4340,12 +4363,20 @@ msgid "Dist: %g, %g  "
 msgstr "Razdalja: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Uredi tukaj>"
@@ -4379,99 +4410,120 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Alnl"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Polepšanje"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Razširjanje vsebine"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Vidna predstavitev"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Podatkovna poizvedba"
 
 msgid "&Others"
-msgstr ""
+msgstr "&Drugo"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "VELIKE ČRKE"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "majhne črke"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Odstrani podvojene vrstice"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Preštej podvojene vrstice"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Razvrsti vrstice naraščajoče"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "Razvrsti vrstice padajoče"
+
+msgid "Reverse Columns"
+msgstr "Obrni stolpce"
+
+msgid "Reverse Lines"
+msgstr "Obrni vrstice"
+
+msgid "Replace..."
+msgstr "Zamenjaj..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Uporabi ukaz filtra..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Ustvari žetone"
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Odsekaj presledke"
+
+msgid "Select Columns..."
+msgstr "Izberi stolpce..."
+
+msgid "Select Lines..."
+msgstr "Izberi vrstice..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Vstavi datum"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Vstavi čas"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Uporabi popravek..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Prezri stolpce"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Prezri komentarje (C-družina jezikov)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Prezri polja CSV"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Prezri polja TSV"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Uporabite nadomestne filtre Prediff"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Polepšaj JSON"
 
 msgid "Prettify XML"
+msgstr "Polepšaj XML"
+
+msgid "Prettify YAML"
 msgstr ""
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Prikaži Graphviz"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Poizveduj podatke CSV..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Poizveduj podatke TSV..."
 
 msgid "Query JSON Data..."
+msgstr "Poizveduj podatke JSON..."
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Določi argumente vtičnika"

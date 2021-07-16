@@ -196,6 +196,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnUpdatePluginPrediffMode)
 	ON_UPDATE_COMMAND_UI(ID_OPEN_WITH_UNPACKER, OnUpdatePluginRelatedMenu)
 	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdatePluginRelatedMenu)
+	ON_UPDATE_COMMAND_UI(ID_TRANSFORM_WITH_SCRIPT, OnUpdatePluginRelatedMenu)
 	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdatePluginRelatedMenu)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
@@ -640,13 +641,13 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, false, ID_SCRIPT_FIRST);
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{
 				for (int j = 0; j < 2; j++)
 				{
-					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 3));
+					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 4));
 					ASSERT(pMenu != nullptr);
 
 					// empty the menu
@@ -657,7 +658,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 					if (j == 0)
 						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, false, ID_UNPACKERS_FIRST);
 					else
-						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, { L"EDITOR_SCRIPT" }, false, ID_SCRIPT_FIRST);
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
 				}
 			}
 		}
@@ -1636,7 +1637,10 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
+	bool enabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
+	if (enabled && (pCmdUI->m_nID == ID_APPLY_PREDIFFER || pCmdUI->m_nID == ID_TRANSFORM_WITH_SCRIPT))
+		enabled = GetFrameType(GetActiveFrame()) == FRAME_FILE;
+	pCmdUI->Enable(enabled);
 }
 
 void CMainFrame::OnReloadPlugins()
@@ -1678,7 +1682,7 @@ void CMainFrame::UpdatePrediffersMenu()
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();
 		if (pEditView != nullptr)
-			pEditView->createPrediffersSubmenu(prediffersSubmenu);
+			pEditView->GetDocument()->createPrediffersSubmenu(prediffersSubmenu);
 		else
 		{
 			// no view or dir view : display an empty submenu
@@ -2098,7 +2102,7 @@ void CMainFrame::OnSaveProject()
 	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	FRAMETYPE frame = GetFrameType(pFrame);
+	FRAMETYPE frame = pFrame ? GetFrameType(pFrame) : FRAME_OTHER;
 
 	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
 	{
@@ -2119,17 +2123,19 @@ void CMainFrame::OnSaveProject()
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
-		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
-		const CDiffContext& ctxt = pDoc->GetDiffContext();
-
-		// Set-up the dialog
-		for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+		if (const CDirDoc* pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument()))
 		{
-			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
-			pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+			const CDiffContext& ctxt = pDoc->GetDiffContext();
+
+			// Set-up the dialog
+			for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+			{
+				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+				pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+			}
+			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
+			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 		}
-		pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
-		pOpenDoc->m_strExt = static_cast<FileFilterHelper *>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 	}
 
 	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
@@ -2889,7 +2895,7 @@ void CMainFrame::ReloadMenu()
 }
 
 void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
-	const std::vector<std::wstring> events, bool addAllMenu, unsigned baseId)
+	const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId)
 {
 	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 		return;
@@ -2956,9 +2962,10 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	popupAll.Detach();
 }
 
-String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId)
+String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId)
 {
 	PluginInfo* pluginFound = nullptr;
+	String pluginName;
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
@@ -2966,6 +2973,7 @@ String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vecto
 		{
 			if (id == idSearch)
 			{
+				pluginName = name;
 				pluginFound = plugin;
 				break;
 			}
@@ -2973,9 +2981,13 @@ String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vecto
 	}
 	if (pluginFound)
 	{
-		if (!pluginFound->m_argumentsRequired)
-			return pluginFound->m_name;
-		CSelectPluginDlg dlg(pluginFound->m_name, _T(""), (baseId == ID_UNPACKERS_FIRST), true);
+		if (!pluginFound->GetExtendedPropertyValue(_T("ArgumentsRequired")).has_value() && 
+		    !pluginFound->GetExtendedPropertyValue(pluginName + _T(".ArgumentsRequired")).has_value())
+			return pluginName;
+		CSelectPluginDlg dlg(pluginName, _T(""), 
+			(baseId == ID_UNPACKERS_FIRST)  ? CSelectPluginDlg::PluginType::Unpacker    : (
+			(baseId == ID_PREDIFFERS_FIRST) ? CSelectPluginDlg::PluginType::Prediffer   : 
+			                                  CSelectPluginDlg::PluginType::EditorScript), true);
 		if (dlg.DoModal() != IDOK)
 			return {};
 		return dlg.GetPluginPipeline();

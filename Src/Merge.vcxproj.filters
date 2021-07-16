@@ -619,6 +619,9 @@
     <ClCompile Include="InternalPlugins.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropMessageBoxes.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1217,6 +1220,9 @@
     </ClInclude>
     <ClInclude Include="WinMergePluginBase.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMessageBoxes.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -187,7 +187,7 @@ protected:
 	int GetLastDifferentItem();
 	int AddSpecialItems();
 	std::vector<String>	GetCurrentColRegKeys();
-	void OpenSpecialItems(DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3);
+	void OpenSpecialItems(CDirDoc *pDoc, DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3);
 
 // Implementation data
 protected:
@@ -361,7 +361,7 @@ protected:
 	afx_msg void OnUpdateOptionsShowMissingLeftOnly(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowMissingMiddleOnly(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI);
-	afx_msg void OnMergeCompare();
+	afx_msg void OnMergeCompare(UINT nID);
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();
 	afx_msg void OnMergeCompareNonHorizontally();
@@ -393,11 +393,12 @@ protected:
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
-	void Open(const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
+	void Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
+	void OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
-	void OpenParentDirectory();
+	void OpenParentDirectory(CDirDoc *pDocOpen);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	void DoUpdateDirCopy(CCmdUI* pCmdUI, eMenuType menuType);
 	const DIFFITEM &GetDiffItem(int sel) const;

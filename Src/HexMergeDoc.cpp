@@ -547,7 +547,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -843,7 +843,7 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 void CHexMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), CSelectPluginDlg::PluginType::Unpacker, false);
 	if (dlg.DoModal() == IDOK)
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());

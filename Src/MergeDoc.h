@@ -187,7 +187,7 @@ public:
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
-	void SetUnpacker(const PackingInfo * infoUnpacker);
+	void SetUnpacker(const PackingInfo * infoUnpacker) override;
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	const PrediffingInfo *GetPrediffer() const override;
@@ -317,6 +317,8 @@ public:
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
+	// to customize the mergeview menu
+	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 // implementation methods
 private:
@@ -357,6 +359,9 @@ protected:
 	 * certain time from previous rescan.
 	 */
 	bool m_bAutomaticRescan;
+	/// active prediffer ID : helper to check the radio button
+	int m_CurrentPredifferID;
+
 // friend access
 	friend class RescanSuppress;
 
@@ -391,6 +396,8 @@ protected:
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
+	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
+	afx_msg void OnPrediffer(UINT nID );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
@@ -403,6 +410,7 @@ private:
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
+	void SetPredifferByMenu(UINT nID);
 };
 
 /**

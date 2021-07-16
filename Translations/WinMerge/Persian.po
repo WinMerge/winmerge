@@ -157,6 +157,18 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "&Z بزرگنمايي "
@@ -889,6 +901,9 @@ msgstr "&P پيش فرق گذار "
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr ""
@@ -896,6 +911,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&a همسنجي "
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1322,15 +1340,6 @@ msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
-"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
-
-#, c-format
-msgid "Reset"
-msgstr " بازنشاني "
-
 #, c-format
 msgid "Find"
 msgstr " يافتن "
@@ -1651,8 +1660,8 @@ msgstr " توصيف : "
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr " تمام بازکننده هاي بسته را نمايش بده، توسعه را بررسي نکن "
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1802,6 +1811,15 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
+"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
+
+#, c-format
+msgid "Reset"
+msgstr " بازنشاني "
 
 msgid "File Filters"
 msgstr ""
@@ -2531,7 +2549,7 @@ msgstr "&a پرش از همگي "
 msgid "Don't display this &message again."
 msgstr "&m دوباره اين پيام را نمايش نده "
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2547,6 +2565,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr " تفاوتها "
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2643,6 +2664,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr " توسعه "
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3827,10 +3854,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr " نمي توان يک وصله پرونده از پرونده هاي دودويي تهيه نمود "
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr " نمي توان يک وصله  پرونده از فهرستهاي راهنما ايجاد نمود "
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4222,11 +4245,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4296,6 +4327,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -4303,6 +4343,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
@@ -4335,6 +4381,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4345,6 +4394,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

@@ -158,6 +158,18 @@ msgstr "Nästa Sida"
 msgid "&Active Pane"
 msgstr "Gällande Ruta"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "Zoom"
@@ -890,6 +902,9 @@ msgstr "PreDiffer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Dela"
@@ -897,6 +912,9 @@ msgstr "Dela"
 #, c-format
 msgid "Comp&are"
 msgstr "Jämför"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Jämför icke-Vågrätt ..."
@@ -1321,13 +1339,6 @@ msgstr "Öppna-dialog Auto-Fullända:"
 msgid "Language:"
 msgstr "Språk:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' för att göra samtliga synliga igen."
-
-#, c-format
-msgid "Reset"
-msgstr "Återställ"
-
 #, c-format
 msgid "Find"
 msgstr "Sök"
@@ -1648,8 +1659,8 @@ msgstr "Beskrivning:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Visa alla uppackare, kontrollera inte filsuffixet."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1799,6 +1810,13 @@ msgstr "Ordbrytningstecken:"
 
 msgid "&Rendering Mode:"
 msgstr "Alstringsläge:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' för att göra samtliga synliga igen."
+
+#, c-format
+msgid "Reset"
+msgstr "Återställ"
 
 msgid "File Filters"
 msgstr "Filfilter"
@@ -2544,8 +2562,8 @@ msgstr "Hoppa över allt"
 msgid "Don't display this &message again."
 msgstr "Visa inte detta meddelande igen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2560,6 +2578,9 @@ msgstr "MappJämförelse"
 #, c-format
 msgid "Differences"
 msgstr "Skillnader"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2650,6 +2671,12 @@ msgstr "Filtyp"
 #, c-format
 msgid "Extension"
 msgstr "Filsuffix"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3847,10 +3874,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Kan inte skapa en patchfil från binära filer."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kan inte skapa en patchfil från mappar."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4318,12 +4341,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Sida: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Sida: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Redigera här>"
@@ -4392,6 +4423,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -4399,6 +4439,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
@@ -4431,6 +4477,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4441,6 +4490,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

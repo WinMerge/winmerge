@@ -424,6 +424,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			q = SetConfig(q);
 		}
+		else if (param == _T("inifile"))
+		{
+			q = EatParam(q, m_sIniFilepath);
+		}
 		else
 		{
 			m_sErrorMessages.push_back(_T("Unknown option '/") + param + _T("'"));

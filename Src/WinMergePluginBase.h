@@ -458,7 +458,7 @@ public:
 	
 	void STDMETHODCALLTYPE ReleaseFuncDesc(FUNCDESC *pFuncDesc) override
 	{
-		delete pFuncDesc->lprgelemdescParam;
+		delete[] pFuncDesc->lprgelemdescParam;
 		delete pFuncDesc;
 	}
 	

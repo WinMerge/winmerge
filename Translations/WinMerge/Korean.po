@@ -161,6 +161,18 @@ msgstr "다음 페이지(&N)"
 msgid "&Active Pane"
 msgstr "활성 창(&A)"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "확대/축소(&Z)"
@@ -893,6 +905,9 @@ msgstr "&Prediffer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "분할(&L)"
@@ -900,6 +915,9 @@ msgstr "분할(&L)"
 #, c-format
 msgid "Comp&are"
 msgstr "비교(&A)"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr "수평이 아닌 방식으로 비교(&I)..."
@@ -1324,13 +1342,6 @@ msgstr "열기 대화 상자 자동 완성(&E):"
 msgid "Language:"
 msgstr "언어:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
-
-#, c-format
-msgid "Reset"
-msgstr "초기화"
-
 #, c-format
 msgid "Find"
 msgstr "찾기"
@@ -1651,8 +1662,8 @@ msgstr "설명:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "모든 언패커를 표시하고, 확장자를 확인하지 않기."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1802,6 +1813,13 @@ msgstr "단어 분리 문자(&O):"
 
 msgid "&Rendering Mode:"
 msgstr "렌더링 모드(&R)"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge의 일부 메시지 상자는 감출 수 있습니다. 초기화 버튼을 눌러 전체 메시지 상자를 다시 볼 수 있습니다."
+
+#, c-format
+msgid "Reset"
+msgstr "초기화"
 
 msgid "File Filters"
 msgstr "파일 필터"
@@ -2545,8 +2563,8 @@ msgstr "전부 건너뛰기(&A)"
 msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 일반 페이지에서 초기화 버튼을 누르세요."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2561,6 +2579,9 @@ msgstr "폴더 비교"
 #, c-format
 msgid "Differences"
 msgstr "차이점"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2652,6 +2673,12 @@ msgstr "파일 종류"
 #, c-format
 msgid "Extension"
 msgstr "확장자"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3816,10 +3843,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "바이너리 파일에서는 패치 파일을 만들 수 없습니다."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "폴더에서는 패치 파일을 만들 수 없습니다."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4287,11 +4310,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "페이지: %d/%d  확대/축소: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "페이지: %d/%d  확대/축소: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4361,6 +4392,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -4368,6 +4408,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
@@ -4400,6 +4446,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4410,6 +4459,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

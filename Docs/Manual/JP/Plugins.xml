@@ -148,47 +148,67 @@
 
       <itemizedlist>
         <listitem>
-          <para><function>Make Uppercase</function></para>
+          <para><function>大文字に変換</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Make Lowercase</function></para>
+          <para><function>小文字に変換</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Remove Duplicate Lines</function></para>
+          <para><function>重複行を削除</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Count Duplicate Lines</function></para>
+          <para><function>重複行をカウント</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Sort Lines Ascending</function></para>
+          <para><function>昇順にソート</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Sort Lines Descending</function></para>
+          <para><function>降順にソート</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Apply Filter Command...</function></para>
+          <para><function>列を逆順</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Tokenize...</function></para>
+          <para><function>行を逆順</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Trim Spaces</function></para>
+          <para><function>列を抽出...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Insert Date</function></para>
+          <para><function>行を抽出...</function></para>
         </listitem>
 
         <listitem>
-          <para><function>Insert Time</function></para>
+          <para><function>置換...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>フィルタコマンドを適用...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>トークン分割...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>行頭行末の空白を削除</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>日付を挿入</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>時刻を挿入</function></para>
         </listitem>
       </itemizedlist>
 
@@ -541,33 +561,49 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_prettifyxml">
+    <section id="Plugins_PrettifyXML">
       <title><filename>PrettifyXML<indexterm>
           <primary>PrettifyXML plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>tidy-html5 を使用して XML ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyXML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>tidy コマンドに渡すコマンドライン引数。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.xml</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -578,33 +614,49 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_prettifyjson">
+    <section id="Plugins_PrettifyJSON">
       <title><filename>PrettifyJSON<indexterm>
           <primary>PrettifyJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>jq コマンドを使用してJSON ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.json</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -615,33 +667,103 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_querycsv">
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>PrettifyYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>yq コマンドを使用してYAML ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>q コマンドを使用して CSVファイルからデータを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryCSV</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.csv</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -652,33 +774,49 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_querycsv">
+    <section id="Plugins_QueryTSV">
       <title><filename>QueryTSV<indexterm>
           <primary>QueryTSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>q コマンドを使用して TSVファイルからデータを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryTSV</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.tsv</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -689,33 +827,49 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_queryjson">
+    <section id="Plugins_QueryJSON">
       <title><filename>QueryJSON<indexterm>
           <primary>QueryJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>jq コマンドを使用して JSONファイルからデータを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.json</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -726,34 +880,104 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_visualizegraphviz">
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>QueryYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>yq コマンドを使用して YAMLファイルからデータを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_VisualizeGraphviz">
       <title><filename>VisualizeGraphviz<indexterm>
           <primary>VisualizeGraphviz plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>Graphviz ファイルを画像化します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>VisualizeGraphviz</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>dot コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.gv</filename>,
               <filename class="extension">,*.dot</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -764,30 +988,136 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_apachetika">
+    <section id="Plugins_ApacheTika">
       <title><filename>ApacheTika<indexterm>
           <primary>ApacheTika plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>Apache Tika を使用してファイルからテキストを抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ApacheTika</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>tika-app.jar に渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Plugin arguments</segtitle>
+          <segtitle>プラグイン引数</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.*</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>, <ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>ExecFilterCommand plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>フィルタコマンドを適用します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ExecFilterCommand</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>command</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>command</replaceable></option></term>
+          <listitem>
+            <para>実行するコマンド。 コマンド内の %1 はファイル名に置き換わります。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>MakeUpper plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>テキストを大文字に変換します</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
             </seg>
 
             <seg>No</seg>
@@ -796,7 +1126,636 @@
 
             <seg>No</seg>
 
-            <seg><ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>MakeLower plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>テキストを小文字に変換します</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>RemoveDuplicates plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>重複行を削除します</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>CountDuplicates plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>重複行をカウントします</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>SortAscending plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>行を昇順にソートします</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>SortDescending plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>行を降順にソートします</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>ReverseColumns plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>列を逆順にします</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>ReverseLines plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>行を逆順にします</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>SelectColumns plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>指定した列を抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectColumns</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>ranges</replaceable></arg>
+      </cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectColumns</command>
+
+        <arg><option>-v</option></arg>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-g</option></arg>
+
+        <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>抽出する列範囲のリスト (例 -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>正規表現</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>マッチしない列を抽出します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>大文字小文字を無視します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>グローバルフラグを有効にします</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>SelectLines plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>指定した行を抽出します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectLines</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>ranges</replaceable></arg>
+      </cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectLines</command>
+
+        <arg><option>-v</option></arg>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-g</option></arg>
+
+        <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>抽出する行範囲のリスト (例 -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>正規表現</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>マッチしない行を抽出します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>大文字小文字を無視します</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>パターンマッチングに<replaceable>patterns</replaceable>を使用します</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>Replace plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>テキストを置換します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>Replace</command>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-e</option></arg>
+
+        <arg rep="norepeat"><replaceable>text_to_find</replaceable></arg>
+
+        <arg rep="norepeat"><replaceable>text_to_replace</replaceable></arg>
+
+      </cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>text_to_find</replaceable></option></term>
+          <listitem>
+            <para>検索するテキスト</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>text_to_replace</replaceable></option></term>
+          <listitem>
+            <para>置換するテキスト</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>大文字小文字を無視します (-e指定時のみ有効)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>指定したテキストを正規表現として扱います</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>Tokenize plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>トークン分割を行います。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>Tokenize</command>
+
+        <arg rep="norepeat"><replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>トークン分割に使用する正規表現 (例 [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>Trim plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>行頭行末の空白を削除します</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -1024,56 +1983,80 @@
           <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
+      <para>いくつかの関数を<menuchoice>
           <guimenu>プラグイン</guimenu>
 
           <guisubmenu>スクリプト</guisubmenu>
-        </menuchoice> メニュー:</para>
+        </menuchoice> メニューに追加します:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>大文字に変換</guimenuitem> convert the selection to
-          UPPER CASE.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>小文字に変換</guimenuitem> convert the selection to
-          lower case.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>重複行を削除</guimenuitem> remove duplicate lines in the selection. 
+          <simpara><guimenuitem>大文字に変換</guimenuitem> 選択範囲を大文字に変換します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>重複行をカウント</guimenuitem> remove duplicate lines in the selection and insert the number of duplicate lines on the right. 
+          <simpara><guimenuitem>小文字に変換</guimenuitem> 選択範囲を小文字に変換します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>昇順にソート</guimenuitem> sort the selection 
-          in ascending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>降順にソート</guimenuitem> sort the selection 
-          in descending order.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> replace the selection 
-          with the output of the specified filter command.
-          Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>トークン分割...</guimenuitem> TBD
+          <simpara><guimenuitem>重複行を削除</guimenuitem> 選択範囲内の重複した行を削除します。
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> TBD
+          <simpara><guimenuitem>重複行をカウント</guimenuitem> 選択範囲内の重複した行を削除し、重複行の数+1を行末に挿入します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>昇順にソート</guimenuitem> 選択範囲の行を昇順にソートします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>降順にソート</guimenuitem> 選択範囲の行を降順にソートします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>列を逆順</guimenuitem> 選択範囲内の列を逆順にします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行を逆順</guimenuitem> 選択範囲内の行を逆順にします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>列を抽出...</guimenuitem> 選択範囲内の指定した列を抽出します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行を抽出...</guimenuitem> 選択範囲内の指定した行を抽出します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>置換...</guimenuitem> 選択範囲内の文字列を別の文字列に置換します。 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> 選択範囲を指定したフィルタコマンドの出力に置き換えます。
+          コマンド内の %1 は現在のペインのファイル名に置き換わります。</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>トークン分割...</guimenuitem> 選択範囲内でトークンの区切りを改行に置換します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>行頭行末の空白を削除</guimenuitem> 選択範囲内の行頭と行末の空白を削除します。
           </simpara>
         </listitem>
       </itemizedlist>

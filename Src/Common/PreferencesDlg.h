@@ -12,6 +12,7 @@
 #include "TrDialogs.h"
 #include "PropGeneral.h"
 #include "PropCompare.h"
+#include "PropMessageBoxes.h"
 #include "PropEditor.h"
 #include "PropEditorSyntax.h"
 #include "PropRegistry.h"
@@ -58,6 +59,7 @@ protected:
 	
 	PropGeneral m_pageGeneral;
 	PropCompare m_pageCompare;
+	PropMessageBoxes m_pageMessageBoxes;
 	PropEditor m_pageEditor;
 	PropEditorSyntax m_pageEditorSyntax;
 	PropRegistry m_pageSystem;

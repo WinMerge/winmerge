@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-04-20 22:26+0000\n"
-"PO-Revision-Date: 2021-04-26 08:08+0200\n"
+"POT-Creation-Date: 2021-07-13 22:26+0000\n"
+"PO-Revision-Date: 2021-07-16 12:12+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -136,6 +136,18 @@ msgstr "&Kitas psl."
 
 msgid "&Active Pane"
 msgstr "&Aktyvus polangis"
+
+msgid "Rotate &Right 90deg"
+msgstr "Pasukti 90 l. &dešinėn"
+
+msgid "Rotate &Left 90deg"
+msgstr "Pasukti 90 l. &kairėn"
+
+msgid "Flip &Vertically"
+msgstr "Apversti &vertikaliai"
+
+msgid "Flip &Horizontally"
+msgstr "Apversti &horizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
@@ -698,19 +710,25 @@ msgid "Clear Sync&hronization Points"
 msgstr "Išvalyti sinc&hronizavino taškus"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Išpa&kuotojas"
 
 msgid "&Prediffer"
 msgstr "&Parengėjas"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Taikyti paren&gėją..."
+
+msgid "&Transform with editor script..."
+msgstr "&Transformuoti su redaktoriaus skriptu..."
 
 msgid "Sp&lit"
 msgstr "Pada&linti"
 
 msgid "Comp&are"
 msgstr "Lyg&inti"
+
+msgid "Compare in new &window"
+msgstr "Lyginti naujame &lange"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Lyginti ne hor&izontaliai..."
@@ -868,7 +886,7 @@ msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Išpakuotojo nuostatos"
 
 msgid "<None>"
 msgstr "<Nėra>"
@@ -1052,12 +1070,6 @@ msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 
 msgid "Language:"
 msgstr "Kalba:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
-
-msgid "Reset"
-msgstr "Atkurti"
 
 msgid "Find"
 msgstr "Rasti"
@@ -1297,10 +1309,10 @@ msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Pasirinkite papildinį"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Papildinio pavadini&mas:"
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
@@ -1309,19 +1321,19 @@ msgid "Description:"
 msgstr "Aprašas:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Numatytieji argumentai:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+msgid "Display all plugins, don't check the extension."
+msgstr "Rodyti visus papildinius netikrinant plėtinių."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "P&o išpakavimo atidaryti failus to paties tipo lange."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "&Papildinio komandų grandinė:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Pridėti k&analą"
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -1433,6 +1445,12 @@ msgstr "Ž&odžių skirtukų simboliai:"
 
 msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
+
+msgid "Reset"
+msgstr "Atkurti"
 
 msgid "File Filters"
 msgstr "Failo filtrai"
@@ -1783,10 +1801,10 @@ msgid "File filters:"
 msgstr "Failų filtrai:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "&Papildinio argumentai:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Papildiniui įjungti &automatinį išpakavimą/parengimą"
 
 msgid "Shell Integration"
 msgstr "Integr. Windows aplinkoje"
@@ -1976,8 +1994,8 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -1990,6 +2008,9 @@ msgstr "Katalogų lyginimo"
 
 msgid "Differences"
 msgstr "Skirtumų"
+
+msgid "Message Boxes"
+msgstr "Bendrų pranešimų"
 
 msgid "To:"
 msgstr "Į:"
@@ -2059,6 +2080,12 @@ msgstr "Failo tipas"
 
 msgid "Extension"
 msgstr "Plėtinys"
+
+msgid "Message"
+msgstr "Pranešimas"
+
+msgid "Answer"
+msgstr "Atsakymas"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2528,7 +2555,7 @@ msgid "Binary"
 msgstr "Binarinis"
 
 msgid "Unpacker"
-msgstr "Išpakavimo programa"
+msgstr "Išpakuotojas"
 
 msgid "Prediffer"
 msgstr "Parengėjas"
@@ -2726,10 +2753,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Rodyti žvaigždutę (*) jei failas yra binarinis."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Išpakuotojo papildinio pavadinimas arba komandų grandinė."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Paruošėjo papildinio pavadinimas arba komandų grandinė."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2896,9 +2923,6 @@ msgstr "Nurodykite failą rezultatams."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Negalima kurti pataisų failo iš binarinių failų."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Negalima kurti pataisų failo iš katalogų."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad failuose nebūtų neišsaugotų pakeitimų."
@@ -3224,12 +3248,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "Apversta: %s  "
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr "Pasukta: %s  "
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"
@@ -3262,99 +3294,120 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Visi"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Sutvarkymas"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Turinio ištraukimas"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Vizualizavimas"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Duomenų užklausa"
 
 msgid "&Others"
-msgstr ""
+msgstr "Kiti"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Pakeisti didžiosiomis raidėmis"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Pakeisti mažosiomis raidėmis"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Šalinti besidubliuojančias eilutes"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Skaičiuoti besidubliuojančias eilutes"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Rikiuoti eilutes didėjimo tvarka"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "Rikiuoti eilutes mažėjimo tvarka"
+
+msgid "Reverse Columns"
+msgstr "Sukeisti stulpelius"
+
+msgid "Reverse Lines"
+msgstr "Sukeisti eilutes"
+
+msgid "Replace..."
+msgstr "Pakeisti..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Pritaikyti filtro komandą..."
 
 msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Šalinti tarpus"
+
+msgid "Select Columns..."
+msgstr "Pažymėti stulpelius..."
+
+msgid "Select Lines..."
+msgstr "Pažymėti eilutes..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Įterpti datą"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Įterpti laiką"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Taikyti pataisą..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Ignoruoti stulpelius"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Ignoruoti komentarus (C šeimos kalbos)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Ignoruoti CSV laukus"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Ignoruoti TSV laukus"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Taikyti parengėjo keitinių filtrus"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Sutvarkyti JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Sutvarkyti XML"
+
+msgid "Prettify YAML"
+msgstr "Sutvarkyti YAML"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Vizualizuoti „Graphviz“"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Pateikti CSV duomenų užklausą..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Pateikti TSV duomenų užklausą..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "Pateikti JSON duomenų užklausą..."
+
+msgid "Query YAML Data..."
+msgstr "Pateikti YAML duomenų užklausą..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Nurodykite papildinio argumentus"

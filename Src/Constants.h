@@ -45,11 +45,6 @@ const TCHAR WinMergeDocumentsFolder[] = _T("WinMerge");
  */
 const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
 
-/** @brief Executable Filename for ANSI build. */
-const TCHAR ExecutableFilename[] = _T("WinMerge.exe");
-/** @brief Executable Filename for Unicode build. */
-const TCHAR ExecutableFilenameU[] = _T("WinMergeU.exe");
-
 /** @brief Temp folder name prefix for WinMerge temp folders. */
 const TCHAR TempFolderPrefix[] = _T("WinMerge_TEMP_");
 

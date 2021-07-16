@@ -161,6 +161,7 @@ public:
 
 	// Method for resetting the message boxes stored in the registry.
 	static void ResetMessageBoxes ( );
+	static CString GenerateRegistryKey (UINT nMessageID, UINT nHelpID);
 
 public:
 

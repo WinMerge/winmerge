@@ -25,6 +25,10 @@ Function get_PluginDescription()
 	get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
+Function get_PluginFileFilters()
+	get_PluginFileFilters= ".*"
+End Function
+
 Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "InsertDate.MenuCaption=Insert Date;InsertTime.MenuCaption=Insert Time"
 End Function

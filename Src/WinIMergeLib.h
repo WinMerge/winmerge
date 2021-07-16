@@ -171,6 +171,12 @@ struct IImgMergeWindow
 	virtual BSTR ExtractTextFromImage(int pane, int page, OCR_RESULT_TYPE resultType) = 0;
 	virtual int GetSavePoint(int pane) const = 0;
 	virtual void SetSavePoint(int pane, int pos) = 0;
+	virtual float GetRotation(int pane) const = 0;
+	virtual void SetRotation(int pane, float angle) = 0;
+	virtual bool GetHorizontalFlip(int pane) const = 0;
+	virtual void SetHorizontalFlip(int pane, bool flip) = 0;
+	virtual bool GetVerticalFlip(int pane) const = 0;
+	virtual void SetVerticalFlip(int pane, bool flip) = 0;
 };
 
 struct IImgToolWindow

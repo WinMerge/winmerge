@@ -143,7 +143,10 @@ void PropShell::ReadOptions()
  */
 void PropShell::WriteOptions()
 {
-	SaveMergePath(); // saves context menu settings as well
+	bool registered = IsShellExtensionRegistered(false);
+	bool registeredPerUser = IsShellExtensionRegistered(true);
+	if (registered || registeredPerUser)
+		SaveMergePath(); // saves context menu settings as well
 }
 
 /// Get registry values for ShellExtension
@@ -151,7 +154,7 @@ void PropShell::GetContextRegValues()
 {
 	CRegKeyEx reg;
 	LONG retVal = 0;
-	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
+	retVal = reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, RegDir, KEY_READ);
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),

@@ -45,7 +45,6 @@ protected:
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
 	afx_msg void OnBnClickedRemovebtn();
-	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

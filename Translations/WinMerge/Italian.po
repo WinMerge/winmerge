@@ -134,6 +134,18 @@ msgstr "Pagina &successiva"
 msgid "&Active Pane"
 msgstr "Pannello &attivo"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "&Zoom"
 
@@ -703,11 +715,17 @@ msgstr "&Prediffer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "&Dividi"
 
 msgid "Comp&are"
 msgstr "&Confronta"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1050,14 +1068,6 @@ msgstr "Com&pletamento automatico selezione file:"
 msgid "Language:"
 msgstr "Lingua:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge permette di nascondere alcuni messaggi comuni. Premere il pulsante "
-"Ripristina per rendere di nuovo visibili tutti i messaggi."
-
-msgid "Reset"
-msgstr "Ripristina"
-
 msgid "Find"
 msgstr "Trova"
 
@@ -1310,8 +1320,8 @@ msgstr "Descrizione:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Visualizza tutti i decompressori, non verificare l'estensione."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1432,6 +1442,14 @@ msgstr "Caratteri terminatori &parola:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"WinMerge permette di nascondere alcuni messaggi comuni. Premere il pulsante "
+"Ripristina per rendere di nuovo visibili tutti i messaggi."
+
+msgid "Reset"
+msgstr "Ripristina"
 
 msgid "File Filters"
 msgstr ""
@@ -2037,10 +2055,8 @@ msgstr "S&alta tutto"
 msgid "Don't display this &message again."
 msgstr "Non visualizzare più questo &messaggio."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Per visualizzare nuovamente questa finestra di dialogo seleziona il pulsante "
-"'Ripristina' nella scheda Generale della finestra delle opzioni."
 
 msgid "Syntax"
 msgstr "Sintassi"
@@ -2053,6 +2069,9 @@ msgstr "Confronto cartelle"
 
 msgid "Differences"
 msgstr "Differenze"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "A:"
@@ -2132,6 +2151,12 @@ msgstr ""
 
 msgid "Extension"
 msgstr "Estensione"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"
@@ -3170,9 +3195,6 @@ msgstr "Specifica un file destinazione."
 msgid "Cannot create a patch file from binary files."
 msgstr "Impossibile creare un file di patch da file binari."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Impossibile creare un file di patch da cartelle."
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3595,11 +3617,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3668,6 +3698,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -3675,6 +3714,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
@@ -3707,6 +3752,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3717,6 +3765,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

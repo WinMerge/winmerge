@@ -173,6 +173,26 @@
         </listitem>
 
         <listitem>
+          <para><function>Reverse Columns</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Reverse Lines</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Select Columns...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Select Lines...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Replace...</function></para>
+        </listitem>
+
+        <listitem>
           <para><function>Apply Filter Command...</function></para>
         </listitem>
 
@@ -543,12 +563,28 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_prettifyxml">
+    <section id="Plugins_PrettifyXML">
       <title><filename>PrettifyXML<indexterm>
           <primary>PrettifyXML plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>XML Prettier with tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyXML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line arugments passed to the tidy command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -569,7 +605,7 @@
             <seg><filename class="extension">*.xml</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -580,12 +616,28 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_prettifyjson">
+    <section id="Plugins_PrettifyJSON">
       <title><filename>PrettifyJSON<indexterm>
           <primary>PrettifyJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>JSON Prettier with jq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the jq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -606,7 +658,7 @@
             <seg><filename class="extension">*.json</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -617,12 +669,82 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_querycsv">
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>PrettifyYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>YAML Prettier with yq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyYAML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the yq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>CSV Querier with q command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryCSV</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>SQL statement or command line options passed to the q command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -643,7 +765,7 @@
             <seg><filename class="extension">*.csv</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -654,12 +776,28 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_querycsv">
+    <section id="Plugins_QueryTSV">
       <title><filename>QueryTSV<indexterm>
           <primary>QueryTSV plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>TSV Querier with q command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryTSV</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>SQL statement or command line options passed to the q command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -680,7 +818,7 @@
             <seg><filename class="extension">*.tsv</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -691,12 +829,28 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_queryjson">
+    <section id="Plugins_QueryJSON">
       <title><filename>QueryJSON<indexterm>
           <primary>QueryJSON plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>JSON Querier with jq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the jq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -717,7 +871,7 @@
             <seg><filename class="extension">*.json</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -728,12 +882,82 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_visualizegraphviz">
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>QueryYAML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>YAML Querier with yq command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>QueryJSON</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filter or command line options passed to the yq command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.yaml</filename>,
+              <filename class="extension">*.yml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_VisualizeGraphviz">
       <title><filename>VisualizeGraphviz<indexterm>
           <primary>VisualizeGraphviz plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>Graphviz Visualizer</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>VisualizeGraphviz</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the dot command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -755,7 +979,7 @@
               <filename class="extension">,*.dot</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
@@ -766,12 +990,28 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_apachetika">
+    <section id="Plugins_ApacheTika">
       <title><filename>ApacheTika<indexterm>
           <primary>ApacheTika plugin file</primary>
         </indexterm></filename></title>
 
-      <para>TBD</para>
+      <para>General content extractor with Apache Tika</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ApacheTika</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the tika-app.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -792,13 +1032,732 @@
             <seg><filename class="extension">*.*</filename>
             </seg>
 
-            <seg>No</seg>
+            <seg>Yes</seg>
 
             <seg>No</seg>
 
             <seg>No</seg>
 
-            <seg><ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>, <ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>ExecFilterCommand plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Applys filter command</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ExecFilterCommand</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>command</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>command</replaceable></option></term>
+          <listitem>
+            <para>command to execute. %1 in the command is replaced with the filename</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>MakeUpper plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Makes characters uppercase</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>MakeLower plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Makes characters lowercase</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>RemoveDuplicates plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Removes duplicate lines</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>CountDuplicates plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Counts duplicate lines</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>SortAscending plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Sorts lines ascending</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>SortDescending plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Sorts lines descending</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>ReverseColumns plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Reverses columns</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>ReverseLines plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Reverses lines</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>SelectColumns plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Selects some columns</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectColumns</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>ranges</replaceable></arg>
+      </cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectColumns</command>
+
+        <arg><option>-v</option></arg>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-g</option></arg>
+
+        <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>list of column ranges to select. (e.g. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>regular expression</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>select non-matching columns</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignore case</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>enable global flag</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>use <replaceable>patterns</replaceable> for matching</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>SelectLines plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Selects some lines</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectLines</command>
+
+        <arg choice="opt"
+         rep="norepeat"><replaceable>ranges</replaceable></arg>
+      </cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+        <command>SelectLines</command>
+
+        <arg><option>-v</option></arg>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-g</option></arg>
+
+        <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>list of line ranges to select. (e.g. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>regular expression</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>select non-matching columns</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignore case</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>use <replaceable>patterns</replaceable> for matching</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>Replace plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Replaces text with another text</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>Replace</command>
+
+        <arg><option>-i</option></arg>
+
+        <arg><option>-e</option></arg>
+
+        <arg rep="norepeat"><replaceable>text_to_find</replaceable></arg>
+
+        <arg rep="norepeat"><replaceable>text_to_replace</replaceable></arg>
+
+      </cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>text_to_find</replaceable></option></term>
+          <listitem>
+            <para>text to find</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>text_to_replace</replaceable></option></term>
+          <listitem>
+            <para>text to replace</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignore case (only for -e)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>treat the specified text as a regular expression</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>Tokenize plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Tokenizes selection</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>Tokenize</command>
+
+        <arg rep="norepeat"><replaceable>patterns</replaceable></arg>
+
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>regular expression for tokenizing. (e.g. [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>Trim plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Trim spaces</para>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.nomatch</filename>
+            </seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>Windows Script Host</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -1025,7 +1984,7 @@
           <primary>editor addin plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
+      <para>Adds some functions to the <menuchoice>
           <guimenu>Plugins</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
@@ -1063,18 +2022,43 @@
         </listitem>
 
         <listitem>
+          <simpara><guimenuitem>Reverse Columns</guimenuitem> reverse columns in the selection.
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Reverse Lines</guimenuitem> reverse lines in the selection. 
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Select Columns...</guimenuitem> select some columns in the selection.
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Select Lines...</guimenuitem> select some lines in the selection.
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Replace...</guimenuitem> replace text in the selection with another text.
+          </simpara>
+        </listitem>
+
+        <listitem>
           <simpara><guimenuitem>Apply Filter Command...</guimenuitem> replace the selection 
           with the output of the specified filter command.
           Specifying %1 in the argument of the filter command replaces it with the filename of the active pane.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Tokenize...</guimenuitem> TBD
+          <simpara><guimenuitem>Tokenize...</guimenuitem> replaces the token delimiter with a newline in the selection.
           </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>Trim Spaces</guimenuitem> TBD
+          <simpara><guimenuitem>Trim Spaces</guimenuitem> remove spaces at the beginning and end of lines in the selection.
           </simpara>
         </listitem>
       </itemizedlist>

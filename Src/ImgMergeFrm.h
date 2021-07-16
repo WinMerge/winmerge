@@ -218,6 +218,10 @@ private:
 	afx_msg void OnUpdateImgPrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgNextPage();
 	afx_msg void OnUpdateImgNextPage(CCmdUI* pCmdUI);
+	afx_msg void OnImgCurPaneRotateRight90();
+	afx_msg void OnImgCurPaneRotateLeft90();
+	afx_msg void OnImgCurPaneFlipVertically();
+	afx_msg void OnImgCurPaneFlipHorizontally();
 	afx_msg void OnImgCurPanePrevPage();
 	afx_msg void OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgCurPaneNextPage();

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-03-28 10:51+0000\n"
+"POT-Creation-Date: 2021-06-24 08:53+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -134,6 +134,18 @@ msgstr "Volgende pagina"
 
 msgid "&Active Pane"
 msgstr "Actief venster"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
 
 msgid "&Zoom"
 msgstr "Zoomen"
@@ -423,7 +435,7 @@ msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
 msgid "Refresh\tF5"
-msgstr "Verversen\tF5"
+msgstr "Vernieuwen\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "Selectie verversen\tCtrl+F5"
@@ -696,12 +708,15 @@ msgid "Clear Sync&hronization Points"
 msgstr "Synchronisatiepunten wissen"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Uitpakker"
 
 msgid "&Prediffer"
 msgstr "Voorvergelijking"
 
 msgid "Apply Pre&differ..."
+msgstr "Voorvergelijking toepassen."
+
+msgid "&Transform with editor script..."
 msgstr ""
 
 msgid "Sp&lit"
@@ -709,6 +724,9 @@ msgstr "Splitsen"
 
 msgid "Comp&are"
 msgstr "Vergelijken"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Niet-horizontaal vergelijken..."
@@ -866,7 +884,7 @@ msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Instellingen uitpakker"
 
 msgid "<None>"
 msgstr "<None>"
@@ -1050,17 +1068,6 @@ msgstr "Auto-aanvullen openen-venster:"
 
 msgid "Language:"
 msgstr "Language:"
-
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
-" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
-"maken."
-
-msgid "Reset"
-msgstr "Herstellen"
 
 msgid "Find"
 msgstr "Zoeken"
@@ -1305,10 +1312,10 @@ msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Plugin selecteren"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "Naam plugin:"
 
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
@@ -1317,19 +1324,19 @@ msgid "Description:"
 msgstr "Beschrijving:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Standaard argumenten:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "Bestanden openen in hetzelfde venstertype na uitpakken."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "Plugin pipeline:"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "Pipe toevoegen"
 
 msgid "Stop"
 msgstr "Stoppen"
@@ -1442,6 +1449,17 @@ msgstr "Woordsplitsingstekens:"
 msgid "&Rendering Mode:"
 msgstr "Rendermodus:"
 
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
+" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
+"maken."
+
+msgid "Reset"
+msgstr "Herstellen"
+
 msgid "File Filters"
 msgstr "Bestandsfilters"
 
@@ -1508,7 +1526,7 @@ msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
-"Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml\n"
+"Tekenset-info detecteren voor deze types bestanden: .html, .rc, .xml\n"
 "Herstarten sessie noodzakelijk."
 
 msgid ""
@@ -1801,10 +1819,10 @@ msgid "File filters:"
 msgstr "Bestandsfilters:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Plugin-argumenten:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "Automatisch uitpakken/voorvergelijken inschakelen voor de plugin"
 
 msgid "Shell Integration"
 msgstr "Shell-integratie"
@@ -2052,12 +2070,8 @@ msgstr "Alles overslaan"
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Druk op de herstellen-knop op de pagina \"algemeen\" van het venster "
-"\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -2070,6 +2084,9 @@ msgstr "Mapvergelijking"
 
 msgid "Differences"
 msgstr "Verschillen"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Naar:"
@@ -2149,6 +2166,12 @@ msgstr "Bestandstype"
 
 msgid "Extension"
 msgstr "Extensie"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Naam"
@@ -2284,7 +2307,7 @@ msgstr "Regel: %s  Kolom: %d/%d  Teken: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Sel: %d | %d"
 
 msgid "Merge"
 msgstr "Samenvoegen"
@@ -3000,10 +3023,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Geeft een asterisk (*) weer als het bestand binair is."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Uitpakker pluginnaam of pipeline"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Voorvergelijking pluginnaam of pipeline"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3102,10 +3125,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Wilt u naar de vorige pagina gaan?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Wilt u naar het eerste bestand gaan?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Wilt u naar het laatste bestand gaan?"
 
 #, c-format
 msgid ""
@@ -3214,9 +3237,6 @@ msgstr "Uitvoerbestand opgeven."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan geen patch-bestand aanmaken van binaire bestanden."
-
-msgid "Cannot create a patch file from directories."
-msgstr "Kan geen patch-bestand maken van mappen."
 
 msgid ""
 "Please save all files first.\n"
@@ -3658,12 +3678,20 @@ msgid "Dist: %g, %g  "
 msgstr "Afstand: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
@@ -3698,99 +3726,120 @@ msgstr ""
 "beëindigd is"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Alles"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Mooi maken"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Inhoud uitpakken"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Visualisatie"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Data-bevraging"
 
 msgid "&Others"
-msgstr ""
+msgstr "Andere"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Hoofdletters maken"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Kleine letters maken"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Dubbele regels verwijderen"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Dubbele regels tellen"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Regels oplopend sorteren"
 
 msgid "Sort Lines Descending"
+msgstr "Regels aflopend sorteren"
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
 msgstr ""
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Filteropdracht toepassen..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizeren..."
 
 msgid "Trim Spaces"
+msgstr "Spaties verwijderen"
+
+msgid "Select Columns..."
+msgstr "Kolommen selecteren..."
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Datum invoegen"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Tijd invoegen"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Patch toepassen..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Kolommen negeren"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Commentaar negeren (C-famlie talen)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "CSV-velden negeren"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "TSV-velden negeren"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Voorvergelijking-substitutiefilters toepassen"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "JSON mooi maken"
 
 msgid "Prettify XML"
+msgstr "XML mooi maken"
+
+msgid "Prettify YAML"
 msgstr ""
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz visualiseren"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "CSV-data bevragen..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "TSV-data bevragen..."
 
 msgid "Query JSON Data..."
+msgstr "JSON-data bevragen..."
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Ontbrekende pluginnaam of plugin-pipeline: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Ontbrekend aanhalingsteken in plugin-pipeline: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Plugin-argumenten opgeven"

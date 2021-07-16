@@ -269,6 +269,8 @@ public:
 		String caption = menuCaption.has_value() ? String{ menuCaption->data(), menuCaption->length() } : funcname;
 		m_sExtendedProperties = ucr::toUTF16(strutils::format(_T("ProcessType=Editor script;MenuCaption=%s"), caption))
 			+ (plugin.GetExtendedPropertyValue(funcname + _T(".ArgumentsRequired")).has_value() ? L";ArgumentsRequired" : L"");
+		StringView args = plugin.GetExtendedPropertyValue(funcname + _T(".Arguments")).value_or(_T(""));
+		m_sArguments = { args.data(), args.length() };
 	}
 
 	virtual ~UnpackerGeneratedFromEditorScript()
@@ -481,9 +483,16 @@ public:
 		: WinMergePluginBase(
 			L"EDITOR_SCRIPT",
 			plugin.m_description,
-			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties, plugin.m_arguments)
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties)
 		, m_pDispatch(plugin.m_lpDispatch)
 	{
+		auto menuCaption = plugin.GetExtendedPropertyValue(_T("MenuCaption"));
+		if (menuCaption.has_value())
+		{
+			String menuCaptionStr = { menuCaption.value().data(), menuCaption.value().length() };
+			m_sExtendedProperties = strutils::format(_T("%s;%s.MenuCaption=%s"),
+					plugin.m_extendedProperties, funcname, menuCaptionStr);
+		}
 		m_pDispatch->AddRef();
 		AddFunction(ucr::toUTF16(funcname), CallUnpackFile);
 	}
@@ -573,15 +582,24 @@ struct Loader
 		parser.setContentHandler(&handler);
 		try
 		{
-			parser.parse(ucr::toUTF8(paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"))));
+			for (const auto& path : {
+				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml")),
+				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"))
+				})
+			{
+				try
+				{
+					parser.parse(ucr::toUTF8(path));
+				}
+				catch (Poco::FileNotFoundException&)
+				{
+				}
+			}
 		}
 		catch (Poco::XML::SAXParseException& e)
 		{
 			errmsg = ucr::toTString(e.message());
 			return false;
-		}
-		catch (Poco::FileNotFoundException&)
-		{
 		}
 
 		for (auto& info : internalPlugins)
@@ -606,9 +624,7 @@ struct Loader
 					if (plugins.find(L"EDITOR_SCRIPT") == plugins.end())
 						plugins[L"EDITOR_SCRIPT"].reset(new PluginArray);
 					PluginInfoPtr pluginNew(new PluginInfo());
-					auto menuCaption =  plugin->GetExtendedPropertyValue(_T("MenuCaption"));
-					String funcname = menuCaption.has_value() ? String{menuCaption->data(), menuCaption->length() } : plugin->m_name;
-					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, funcname);
+					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name);
 					pDispatch->AddRef();
 					pluginNew->MakeInfo(plugin->m_name, pDispatch);
 					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);

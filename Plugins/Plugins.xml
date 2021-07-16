@@ -24,6 +24,18 @@
     <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${*} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
+  <plugin name="PrettifyYAML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="YAML Prettier with yq command. &#xD;&#xA;Arguments: Filter or command line options passed to the yq command." />
+    <file-filters value="\.yaml$;\.yml$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".yaml" />
+    <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify YAML;GenerateEditorScript" />
+    <arguments value="-P e" />
+    <unpack-file>
+    <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\yq\yq.bat" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
   <plugin name="QueryCSV">
     <event value="FILE_PACK_UNPACK" />
     <description value="CSV Querier with q command. &#xD;&#xA;Arguments: SQL statement or command line options passed to the q command." />
@@ -58,6 +70,18 @@
     <arguments value="&quot;.&quot;" />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\jq\jq.exe" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="QueryYAML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="YAML Querier with yq command. &#xD;&#xA;Arguments: Filter or command line options passed to the yq command." />
+    <file-filters value="\.yaml$;\.yml$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".yaml" />
+    <extended-properties value="ProcessType=Data Query;MenuCaption=Query YAML Data...;ArgumentsRequired" />
+    <arguments value="e &quot;.&quot; -" />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\yq\yq.bat" ${*} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="VisualizeGraphviz">

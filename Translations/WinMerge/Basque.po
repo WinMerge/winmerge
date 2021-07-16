@@ -159,6 +159,18 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "&Zooma"
@@ -891,6 +903,9 @@ msgstr "Au&rrezberdintasuna"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr ""
@@ -898,6 +913,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Alder&atu"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1321,13 +1339,6 @@ msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
-
-#, c-format
-msgid "Reset"
-msgstr "Birrezarri"
-
 #, c-format
 msgid "Find"
 msgstr "Bilatu"
@@ -1648,8 +1659,8 @@ msgstr "Azalpena:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Erakutsi despaketatzaile denak, ez egiaztatu luzapena."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1798,6 +1809,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
+
+#, c-format
+msgid "Reset"
+msgstr "Birrezarri"
 
 msgid "File Filters"
 msgstr ""
@@ -2519,7 +2537,7 @@ msgstr "Jauzi &guztiak"
 msgid "Don't display this &message again."
 msgstr "Ez erakutsi &mezu hau berriro."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2535,6 +2553,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Ezberdintasunak"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2626,6 +2647,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Luzapena"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3788,10 +3815,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Ezin da eranski agiria sortu agiri binarioetatik."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Ezin da eranskina agiria sortu zuzenbideetatik"
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4179,11 +4202,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4253,6 +4284,15 @@ msgstr ""
 msgid "Sort Lines Descending"
 msgstr ""
 
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
 msgid "Apply Filter Command..."
 msgstr ""
 
@@ -4260,6 +4300,12 @@ msgid "Tokenize..."
 msgstr ""
 
 msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
 msgstr ""
 
 msgid "Insert Date"
@@ -4292,6 +4338,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4302,6 +4351,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

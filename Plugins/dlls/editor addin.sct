@@ -21,13 +21,18 @@
 		<get/>
 		<put/>
 	</property>
+	<method name="ExecFilterCommand"/>
 	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
 	<method name="RemoveDuplicates"/>
 	<method name="CountDuplicates"/>
 	<method name="SortAscending"/>
 	<method name="SortDescending"/>
-	<method name="ExecFilterCommand"/>
+	<method name="ReverseColumns"/>
+	<method name="ReverseLines"/>
+	<method name="SelectColumns"/>
+	<method name="SelectLines"/>
+	<method name="Replace" internalName="ReplaceText"/>
 	<method name="Tokenize"/>
 	<method name="Trim"/>
 </implements>
@@ -58,25 +63,63 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = _
 	"GenerateUnpacker;" & _
 	"MakeUpper.MenuCaption=Make Uppercase;" & _
-	"MakeUpper.Description=Make selection uppercase;" & _
+	"MakeUpper.Description=Make characters uppercase;" & _
 	"MakeLower.MenuCaption=Make Lowercase;" & _
-	"MakeLower.Description=Make selection lowercase;" & _
+	"MakeLower.Description=Make characters lowercase;" & _
 	"RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" & _
 	"RemoveDuplicates.Description=Remove duplicate lines;" & _
 	"CountDuplicates.MenuCaption=Count Duplicate Lines;" & _
 	"CountDuplicates.Description=Count duplicate lines;" & _
 	"SortAscending.MenuCaption=Sort Lines Ascending;" & _
-	"SortAscending.Description=Sort lines Ascending;" & _
+	"SortAscending.Description=Sort lines ascending;" & _
 	"SortDescending.MenuCaption=Sort Lines Descending;" & _
 	"SortDescending.Description=Sort lines descending;" & _
 	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
-	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & "Arguments: filter command. %1 is replaced with the file name.;" & _
+	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & _
+		"Usage: ExecFilterCommand COMMAND" & vbCrLf & _
+		"  COMMAND - command to execute. %1 in the command is replaced with the filename.;" & _
 	"ExecFilterCommand.ArgumentsRequired;" & _
 	"Tokenize.MenuCaption=Tokenize...;" & _
-	"Tokenize.Description=Tokenize selection. " & vbCrLf & "Arguments: a regular expression for tokenizing. (e.g. [^\w]+);" & _
+	"Tokenize.Description=Tokenize selection. " & vbCrLf & _
+		"Usage: Tokenize PATTERNS" & vbCrLf & _
+		"  PATTERNS - regular expression for tokenizing. (e.g. [^\w]+);" & _
 	"Tokenize.ArgumentsRequired;" & _
+	"Tokenize.Arguments=[^\w]+;" & _
 	"Trim.MenuCaption=Trim Spaces;" & _
-	"Trim.Description=Trim spaces;"
+	"Trim.Description=Trim spaces;" & _
+	"SelectColumns.MenuCaption=Select Columns...;" & _
+	"SelectColumns.Description=Select some columns." & vbCrLf & _
+		"Usage: SelectColumns RANGES" & vbCrLf & _
+		"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS" & vbCrLf & _
+		"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
+		"  PATTERNS - regular expression" & vbCrLf & _
+		"  -v - select non-matching columns" & vbCrLf & _
+		"  -i - ignore case" & vbCrLf & _
+		"  -g - enable global flag" & vbCrLf & _
+		"  -e - use PATTERNS for matching;" & _
+	"SelectColumns.ArgumentsRequired;" & _
+	"SelectLines.MenuCaption=Select Lines...;" & _
+	"SelectLines.Description=Select some lines." & vbCrLf & _
+		"Usage: SelectLines RANGES" & vbCrLf & _
+		"   or: SelectLines [-v] [-i] -e PATTERNS" & vbCrLf & _
+		"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
+		"  PATTERNS - regular expression" & vbCrLf & _
+		"  -v - select non-matching lines" & vbCrLf & _
+		"  -i - ignore case" & vbCrLf & _
+		"  -e - use PATTERNS for matching;" & _
+	"SelectLines.ArgumentsRequired;" & _
+	"ReverseColumns.MenuCaption=Reverse Columns;" & _
+	"ReverseColumns.Description=Reverse columns;" & _
+	"ReverseLines.MenuCaption=Reverse Lines;" & _
+	"ReverseLines.Description=Reverse lines;" & _
+	"Replace.MenuCaption=Replace...;" & _
+	"Replace.Description=Replace text with another text." & vbCrLf & _
+		"Usage: Replace [-i] [-e] FIND REPLACE" & vbCrLf & _
+		"  FIND    - text to find" & vbCrLf & _
+		"  REPLACE - text to replace" & vbCrLf & _
+		"  -i - ignore case (only for -e)" & vbCrLf & _
+		"  -e - treat the specified text as a regular expression;" & _
+	"Replace.ArgumentsRequired;"
 End Function
 
 Function get_PluginArguments()
@@ -88,7 +131,7 @@ Sub put_PluginArguments(NewValue)
 End Sub
 
 Function get_PluginVariables()
-	get_PluginVariables = Join(ariables, Chr(0))
+	get_PluginVariables = Join(variables, Chr(0))
 End Function
 
 Sub put_PluginVariables(NewValue)
@@ -101,23 +144,7 @@ Function regRead(Key, DefaultValue)
 	regRead = wsh.RegRead(Key)
 End Function
 
-Function IsLangJapanese()
-	Dim languageId
-	On Error Resume Next
-	languageId = CLng(regRead(WinMergeRegKeyPath & "Locale\LanguageId", 1033))
-	IsLangJapanese = (languageId = 1041)
-End Function
-
-' transformation functions
-Function MakeUpper(Text)
-	MakeUpper = UCase(Text)
-End Function
-
-Function MakeLower(Text)
-	MakeLower = LCase(Text)
-End Function
-
-Function ReplaceVariables(ByVal str)
+Function ReplaceVariables(str)
 	Dim newstr
 	Dim pos
 	Dim foundpos
@@ -132,7 +159,7 @@ Function ReplaceVariables(ByVal str)
 				pos = foundpos + 2
 			ElseIf IsNumeric(ch) Then
 				newstr = newstr & Mid(str, pos, foundpos - pos)
-				If CLng(ch) <= UBound(variables) Then
+				If CLng(ch) <= SafeUBound(variables) Then
 					newstr = newstr & variables(CLng(ch))
 				End If
 				pos = foundpos + 2
@@ -152,15 +179,201 @@ Function IsFirstArgumentEmpty()
 	IsFirstArgumentEmpty = (Trim(arguments) = "")
 End Function
 
+Function SafeUBound(ary)
+	SafeUBound = -1
+	On Error Resume Next
+	SafeUBound = UBound(ary)
+End Function
+
+Function ParseArguments(args)
+	Dim ary()
+	Dim ch
+	Dim inQuotes
+	Dim token
+	Dim argsLen
+	Dim i, j
+	argsLen = Len(args)
+	For i = 1 To argsLen
+		ch = Mid(args, i, 1)
+		If Not inQuotes Then
+			If ch = " " Or ch = vbTab Then
+				If len(token) > 0 Then
+					ReDim Preserve ary(j)
+					ary(j) = token
+					j = j + 1
+					token = ""
+				End If
+			ElseIf ch = """" Then
+				inQuotes = True
+			Else
+				token = token & ch
+			End If
+		Else
+			If ch = """" Then
+				If i + 1 <= argsLen Then
+					If Mid(args, i + 1, 1) = """" Then
+						token = token & ch
+					End if
+				End If
+				inQuotes = False 
+			Else
+				token = token & ch
+			End If
+		End If
+	Next
+	If Len(token) > 0 Then
+		ReDim Preserve ary(j)
+		ary(j) = token
+		j = j + 1
+		token = ""
+	End If
+	ParseArguments = ary 
+End Function
+
+Function ParseRanges(rangeText)
+	Dim i, j
+	Dim ary, ary2, aryRanges()
+	Dim rangeFrom, rangeTo
+	ary = Split(rangeText, ",")
+	j = 0
+	For i = 0 To SafeUBound(ary)
+		ary2 = Split(ary(i), "-")
+		rangeFrom = ""
+		If SafeUBound(ary2) >= 0 Then
+			rangeFrom = Trim(ary2(0))
+		End If
+		rangeTo = rangeFrom
+		If SafeUBound(ary2) > 0 Then
+			rangeTo = Trim(ary2(1))
+		End If
+		If IsNumeric(rangeFrom) Or IsNumeric(rangeTo) Then
+			If Not IsNumeric(rangeFrom) Then rangeFrom = 1
+			If Not IsNumeric(rangeTo)   Then rangeTo   = 1000000000
+			If CDbl(rangeFrom) < 1 Or CDbl(rangeFrom) > 1000000000 Then rangeFrom = 1
+			If CDbl(rangeTo)   < 1 Or CDbl(rangeTo)   > 1000000000 Then rangeTo   = 1
+			If CDbl(rangeFrom) > CDbl(rangeTo) Then rangeTo = rangeFrom
+			Redim preserve aryRanges(j)
+			aryRanges(j) = Array(CLng(rangeFrom), CLng(rangeTo))
+			j = j + 1
+		End If
+	Next
+	ParseRanges = aryRanges
+End Function
+
+Function ParseSelectColumnsLinesArguments(args, invert)
+	Dim rangesOrRegExps()
+	Dim argAry
+	Dim i, j
+	Dim re
+	Dim isOption
+	Set re = Nothing
+	argAry = ParseArguments(args)
+	invert = False
+	For i = 0 To SafeUBound(argAry)
+		isOption = False
+		If Len(argAry(i)) >= 2 Then
+			Select Case Left(argAry(i), 1)
+			Case "-", "/"
+				Select Case Mid(argAry(i), 2, 1)
+				Case "e", "i", "g"
+					isOption = True
+					If re Is Nothing Then
+						Set re = New RegExp
+						Redim Preserve rangesOrRegExps(j)
+						Set rangesOrRegExps(j) = re
+						j = j + 1
+					End If
+					If InStr(argAry(i), "i") > 0 Then
+						re.IgnoreCase = True
+					End If
+					If InStr(argAry(i), "g") > 0 Then
+						re.Global  = True
+					End If
+				Case "v"
+					isOption = True
+					invert = True
+				End Select
+			End Select
+		End If
+		If Not isOption Then
+			If Not (re Is Nothing) Then
+				re.Pattern = argAry(i)
+				Set re = Nothing
+			Else
+				Redim Preserve rangesOrRegExps(j)
+				rangesOrRegExps(j) = ParseRanges(argAry(i))
+				If SafeUBound(rangesOrRegExps(j)) < 0 Then
+					Set rangesOrRegExps(j) = New RegExp
+					rangesOrRegExps(j).Pattern = argAry(i)
+				End If
+				j = j + 1
+			End If
+		End If
+	Next
+	ParseSelectColumnsLinesArguments = rangesOrRegExps
+End Function
+
+Function ParseReplaceArguments(args, regex, ignoreCase)
+	Dim patterns()
+	Dim argAry
+	Dim i, j
+	Dim re
+	Dim isOption
+	Set re = Nothing
+	argAry = ParseArguments(args)
+	regex = False
+	ignoreCase = False
+	For i = 0 To SafeUBound(argAry)
+		isOption = False
+		If Len(argAry(i)) >= 2 Then
+			Select Case Left(argAry(i), 1)
+			Case "-", "/"
+				Select Case Mid(argAry(i), 2, 1)
+				Case "e", "i"
+					isOption = True
+					regex = True
+					If InStr(argAry(i), "i") > 0 Then
+						ignoreCase = True
+					End If
+				End Select
+			End Select
+		End If
+		If Not isOption Then
+			Redim Preserve patterns(j)
+			patterns(j) = argAry(i)
+			j = j + 1
+		End If
+	Next
+	ParseReplaceArguments = patterns
+End Function
+
+Function SplitLines(text, eol)
+	Dim re, matches
+	Set re = New RegExp
+	re.Global = False
+	re.IgnoreCase = False
+	re.Pattern = "\r\n|\n|\r"
+	Set matches = re.Execute(text)
+	If matches.Count > 0 Then
+		eol = matches(0).Value
+	End If
+	SplitLines = Split(text, eol)
+End Function
+
+' transformation functions
+Function MakeUpper(Text)
+	MakeUpper = UCase(Text)
+End Function
+
+Function MakeLower(Text)
+	MakeLower = LCase(Text)
+End Function
+
 Function ExecFilterCommand(Text)
 	Dim cmd
 	If IsFirstArgumentEmpty() Then
 		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
-		If IsLangJapanese() Then
-			cmd = InputBox("フィルタコマンドを入力してください", "ExecFilterCommand", cmd)
-		Else
-			cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
-		End If
+		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
 		If cmd <> "" Then
 			wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
 		End If
@@ -169,11 +382,7 @@ Function ExecFilterCommand(Text)
 		cmd = arguments
 	End If
 	If cmd = "" Then
-		If IsLangJapanese() Then
-			Err.Raise 30001, , "キャンセルされました"
-		Else
-			Err.Raise 30001, , "Canceled"
-		End If
+		Err.Raise 30001, , "Canceled"
 		Exit Function
 	End If
 
@@ -193,13 +402,9 @@ Function ExecFilterCommand(Text)
 	ts.Close
 
 	Dim exe
-	Set exe = wsh.Exec("cmd /c type """ & path & """  | " & cmd & " 2>&1")
+	Set exe = wsh.Exec("cmd /c type """ & path & """ | " & cmd & " 2>&1")
 	If exe Is Nothing Then
-		If IsLangJapanese() Then
-			MsgBox "コマンド " & cmd & " の実行に失敗しました:" & Err.Description 
-		Else
-			MsgBox "Failed to execute the command '" & cmd & "':" & Err.Description 
-		End If
+		MsgBox "Failed to execute the command '" & cmd & "':" & Err.Description 
 		fso.DeleteFile path
 		Exit Function
 	End If
@@ -213,16 +418,166 @@ Function ExecFilterCommand(Text)
 
 End Function
 
+Function SelectColumns(Text)
+	Dim args, ranges, regexpStr
+	Dim matches, m
+	Dim lines, eol, line
+	Dim i, j, k
+	Dim rangesOrRegExps
+	Dim invert
+	If IsFirstArgumentEmpty() Then
+		args = regRead(PluginRegKeyPath & "SelectColumns", "")
+		args = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectColumns", args)
+		If args <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "SelectColumns", args
+		End If
+	Else
+		args = arguments
+	End If
+	If args = "" Then
+		Err.Raise 30001, , "Canceled"
+		Exit Function
+	End If
+	lines = SplitLines(Text, eol)
+	rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
+	For i = 0 To SafeUBound(lines)
+		line = ""
+		For j = 0 To SafeUBound(rangesOrRegExps)
+			If IsArray(rangesOrRegExps(j)) Then
+				For k = 0 To SafeUBound(rangesOrRegExps(j))
+					If rangesOrRegExps(j)(k)(0) <= Len(lines(i)) Then
+						line = line & Mid(lines(i), rangesOrRegExps(j)(k)(0), rangesOrRegExps(j)(k)(1) - rangesOrRegExps(j)(k)(0) + 1)
+					End If
+				Next
+			Else
+				If Not invert Then
+					Set matches = rangesOrRegExps(j).Execute(lines(i))
+					For Each m In matches
+						line = line & m.Value
+					Next
+				Else
+					line = line & rangesOrRegExps(j).Replace(lines(i), "")
+				End If
+			End If
+		Next
+		lines(i) = line
+	Next
+	SelectColumns = Join(lines, eol)
+End Function
+
+Function SelectLines(Text)
+	Dim args, ranges
+	Dim matches, rangesOrRegExps
+	Dim lines, newlines(), eol
+	Dim i, j, k, l
+	Dim max
+	Dim matched
+	Dim invert
+	If IsFirstArgumentEmpty() Then
+		args = regRead(PluginRegKeyPath & "SelectLines", "")
+		args = InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectLines", args)
+		If args <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "SelectLines", args
+		End If
+	Else
+		args = arguments
+	End If
+	If args = "" Then
+		Err.Raise 30001, , "Canceled"
+		Exit Function
+	End If
+	lines = SplitLines(Text, eol)
+	l = 0
+	rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
+	For i = 0 To SafeUBound(rangesOrRegExps)
+		If IsArray(rangesOrRegExps(i)) Then
+			For j = 0 To SafeUBound(rangesOrRegExps(i))
+				max =rangesOrRegExps(i)(j)(1) - 1 
+				If max > SafeUBound(lines) Then max = SafeUBound(lines)
+				For k = rangesOrRegExps(i)(j)(0) - 1 To max
+					If k <= SafeUBound(lines) Then
+						ReDim Preserve newlines(l)
+						newlines(l) = lines(k)
+						l = l + 1
+					End If
+				Next
+			Next
+		Else
+			For j = 0 To SafeUBound(lines)
+				matched = rangesOrRegExps(i).Test(lines(j))
+				If invert Then matched = Not matched
+				If matched Then
+					ReDim Preserve newlines(l)
+					newlines(l) = lines(j)
+					l = l + 1
+				End If
+			Next
+		End If
+	Next
+	If SafeUBound(lines) >= 0 Then
+		If lines(UBound(lines)) = "" Then
+			If SafeUBound(newlines) >= 0 Then
+				If newlines(UBound(newlines)) <> "" Then
+					ReDim Preserve newlines(l)
+					newlines(l) = ""
+					l = l + 1
+				End If
+			End If
+		End If
+	End If
+	SelectLines = Join(newlines, eol)
+End Function
+
+Function ReplaceText(Text)
+	Dim args, patterns
+	Dim i
+	Dim re, regex
+	Dim ignoreCase
+	ReplaceText = Text
+	If IsFirstArgumentEmpty() Then
+		args = regRead(PluginRegKeyPath & "Replace", "")
+		args = InputBox("Enter the search text and replacement text:", "Replace", args)
+		If args <> "" Then
+			wsh.RegWrite PluginRegKeyPath & "Replace", args
+		End If
+	Else
+		args = arguments
+	End If
+	If args = "" Then
+		Err.Raise 30001, , "Canceled"
+		Exit Function
+	End If
+	patterns = ParseReplaceArguments(args, regex, ignoreCase)
+	If regex Then
+		For i = 0 To SafeUBound(patterns) Step 2
+			Set re = New RegExp
+			re.IgnoreCase = ignoreCase
+			re.Global = True
+			re.Multiline = True
+			re.Pattern = patterns(i)
+			If i + 1 <= UBound(patterns) Then
+				ReplaceText = re.Replace(ReplaceText, patterns(i + 1))
+			Else
+				ReplaceText = re.Replace(ReplaceText, "")
+			End If
+		Next
+	Else
+		For i = 0 To SafeUBound(patterns) Step 2
+			If i + 1 <= UBound(patterns) Then
+				ReplaceText = Replace(ReplaceText, patterns(i), patterns(i + 1))
+			Else
+				ReplaceText = Replace(ReplaceText, patterns(i), "")
+			End If
+		Next
+	End If
+End Function
+
 ' port from WinMerge2011
 Function Tokenize(Text)
 	Dim pattern
 	If IsFirstArgumentEmpty() Then
 		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
-		If IsLangJapanese() Then
-			pattern = InputBox("トークン分割する区切りを正規表現で入力してください (例: [^\w]+):", "Tokenize", pattern)
-		Else
-			pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
-		End If
+		pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
 		If pattern <> "" Then
 			wsh.RegWrite PluginRegKeyPath & "Tokenize", pattern
 		End If
@@ -230,11 +585,7 @@ Function Tokenize(Text)
 		pattern = arguments
 	End If
 	If pattern = "" Then
-		If IsLangJapanese() Then
-			Err.Raise 30001, , "キャンセルされました"
-		Else
-			Err.Raise 30001, , "Canceled"
-		End If
+		Err.Raise 30001, , "Canceled"
 		Exit Function
 	End If
 	Dim re
@@ -269,7 +620,7 @@ function RemoveDuplicates(Text) {
 		}
 	}
 	if (lasteol)
-		newlines[j] = "";
+		newlines.push("");
 	return newlines.join(eol);
 }
 
@@ -298,8 +649,48 @@ function CountDuplicates(Text) {
 		newlines[j] = line + '\t' + dic[line];
 		j++;
 	}
-	newlines[j] = "";
+	if (eol)
+		newlines[j] = "";
 	return newlines.join(eol);
+}
+
+function ReverseColumns(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var lasteol = false;
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+		lasteol = true;
+	}
+	for (var i = 0; i < lines.length; i++) {
+		var line = lines[i];
+		var newline = "";
+		for (var j = 0; j < line.length; j++)
+			newline += line.substr(line.length - j - 1, 1);
+		lines[i] = newline;
+	}
+	if (lasteol)
+		lines.push("");
+	return lines.join(eol);
+}
+
+function ReverseLines(Text) {
+	var eol = Text.match(/\r\n|\n|\r/);
+	var lines = Text.split(eol);
+	var lasteol = false;
+	if (!lines[lines.length - 1]) {
+		lines.pop();
+		lasteol = true;
+	}
+	var m = parseInt(lines.length / 2);
+	for (var i = 0; i < m; i++) {
+		var line = lines[i];
+		lines[i] = lines[lines.length - i - 1]
+		lines[lines.length - i - 1] = line;
+	}
+	if (lasteol)
+		lines.push("");
+	return lines.join(eol);
 }
 
 function SortAscending(Text) {
