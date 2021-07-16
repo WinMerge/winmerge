@@ -3123,10 +3123,9 @@ void CMergeEditView::OnWMGoto()
 	if (dlg.DoModal() == IDOK)
 	{
 		CMergeDoc * pDoc1 = GetDocument();
-		CMergeEditView * pCurrentView = nullptr;
 
 		// Get views
-		pCurrentView = GetGroupView(m_nThisPane);
+		CMergeEditView * pCurrentView = GetGroupView(m_nThisPane);
 
 		int num = 0;
 		try { num = std::stoi(dlg.m_strParam) - 1; } catch(...) {}
@@ -3150,7 +3149,8 @@ void CMergeEditView::OnWMGoto()
 			if (diff >= pDoc1->m_diffList.GetSize())
 				diff = pDoc1->m_diffList.GetSize();
 
-			pCurrentView->SelectDiff(diff, true, false);
+			if (pCurrentView)
+				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
 }

@@ -2102,7 +2102,7 @@ void CMainFrame::OnSaveProject()
 	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	FRAMETYPE frame = GetFrameType(pFrame);
+	FRAMETYPE frame = pFrame ? GetFrameType(pFrame) : FRAME_OTHER;
 
 	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
 	{
@@ -2123,17 +2123,19 @@ void CMainFrame::OnSaveProject()
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
-		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
-		const CDiffContext& ctxt = pDoc->GetDiffContext();
-
-		// Set-up the dialog
-		for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+		if (const CDirDoc* pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument()))
 		{
-			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
-			pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+			const CDiffContext& ctxt = pDoc->GetDiffContext();
+
+			// Set-up the dialog
+			for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+			{
+				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+				pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+			}
+			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
+			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 		}
-		pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
-		pOpenDoc->m_strExt = static_cast<FileFilterHelper *>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 	}
 
 	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
