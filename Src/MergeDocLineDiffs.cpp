@@ -88,15 +88,20 @@ void CMergeDoc::AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed)
 	String selectedText[3];
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+		/// Use selection as the first option
+		/// If there is no user selection use the line difference
 		selectedText[nBuffer] = String(m_pView[pView->m_nThisGroup][nBuffer]->GetSelectedText());
+		if (selectedText[nBuffer].empty())
+		{
+			HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
+			selectedText[nBuffer] = String(m_pView[pView->m_nThisGroup][nBuffer]->GetSelectedText());
+		}
 	}
 
 	if (selectedText[0].empty())
 	{
 		return;
 	}
-
 
 	/// Check whether the pair is already registered with Substitution Filters
 	SubstitutionFiltersList &SubstitutionFiltersList = *theApp.m_pSubstitutionFiltersList.get();
@@ -291,10 +296,16 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 	}
 
 	m_CurWordDiff.nPane = nActivePane;
+
 	m_CurWordDiff.ptStart.x = rc[nActivePane].left;
 	m_CurWordDiff.ptStart.y = rc[nActivePane].top;
 	m_CurWordDiff.ptEnd.x = rc[nActivePane].right;
 	m_CurWordDiff.ptEnd.y = rc[nActivePane].bottom;
+// 	m_CurWordDiff.ptStart.x = ptStart.x;
+// 	m_CurWordDiff.ptStart.y = ptStart.x;
+// 	m_CurWordDiff.ptEnd.x = ptEnd.y;
+// 	m_CurWordDiff.ptEnd.y = ptEnd.y;
+
 	m_CurWordDiff.nDiff = nDiff;
 	m_CurWordDiff.nWordDiff = nWordDiff;
 }

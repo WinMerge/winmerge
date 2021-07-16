@@ -317,8 +317,10 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 @param [in]  QtyLinesRight		- Number of lines in the block for right file
 @param [in,out]  Op				- This variable is set to trivial if block should be ignored.
 */
-void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const
+void CDiffWrapper::PostFilter(PostFilterContext& ctxt,
+	int LineNumberLeft, int QtyLinesLeft,
+	int LineNumberRight,int QtyLinesRight,
+	OP_TYPE &Op, const file_data *file_data_ary) const
 {
 	if (Op == OP_TRIVIAL)
 		return;
@@ -342,19 +344,34 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	}
 	else
 	{
-		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
-			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
-			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
-		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
-			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
-			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+		LineDataLeft.assign(
+			  file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
+			  file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[LineNumberLeft +                file_data_ary[0].linbuf_base]);
+		LineDataRight.assign(
+			  file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
+			  file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[LineNumberRight +                 file_data_ary[1].linbuf_base]);
 	}
+
+
+	if
+	(
+		m_pSubstitutionList
+		&& m_pSubstitutionList->AreAllChangesTrivial(
+			LineDataLeft, LineDataRight, m_options.m_ignoreWhitespace, m_options.m_bIgnoreCase)
+	)
+	{
+		Op = OP_TRIVIAL;
+	}
+
 
 	if (m_pSubstitutionList)
 	{
 		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft);
 		LineDataRight = m_pSubstitutionList->Subst(LineDataRight);
 	}
+
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
