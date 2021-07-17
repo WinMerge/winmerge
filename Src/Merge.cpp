@@ -718,14 +718,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -734,7 +734,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
+				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc, nullptr, cmdInfo.m_nLineIndex);
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -753,7 +753,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					infoUnpacker.get(), infoPrediffer.get());
+					infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag

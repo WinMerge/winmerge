@@ -70,6 +70,9 @@
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/l</option>
+      <replaceable>linenumber</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
 
@@ -387,6 +390,13 @@
       <term><option>/fr</option></term>
       <listitem>
         <para>Sets focus to the right side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>Specifies a line number to jump to after loading the files.</para>
       </listitem>
     </varlistentry>
 

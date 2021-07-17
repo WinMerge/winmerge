@@ -3109,7 +3109,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	return true;
 }
 
-void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
+void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine)
 {
 	if (nPane < 0)
 	{
@@ -3130,7 +3130,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			return;
 		}
 	}
-	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
+	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane);
 }
 
 void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)

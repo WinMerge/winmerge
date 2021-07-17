@@ -126,7 +126,8 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_bSelfCompare(false),
 	m_dwLeftFlags(FFILEOPEN_NONE),
 	m_dwMiddleFlags(FFILEOPEN_NONE),
-	m_dwRightFlags(FFILEOPEN_NONE)
+	m_dwRightFlags(FFILEOPEN_NONE),
+	m_nLineIndex(-1)
 {
 	String exeName;
 	q = EatParam(q, exeName);
@@ -363,6 +364,22 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -fr to set focus to the right pane
 			m_dwRightFlags |= FFILEOPEN_SETFOCUS;
+		}
+		else if (param == _T("l"))
+		{
+			// -l to set the destination line nubmer
+			String line;
+			q = EatParam(q, line);
+			m_nLineIndex = _ttoi(line.c_str());
+			if (m_nLineIndex <= 0)
+			{
+				m_nLineIndex = -1;
+				m_sErrorMessages.push_back(_T("Invalid line number specified"));
+			}
+			else
+			{
+				m_nLineIndex--;
+			}
 		}
 		else if (param == _T("al"))
 		{
