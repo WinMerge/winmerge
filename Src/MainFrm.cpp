@@ -737,19 +737,19 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 	switch (nID)
 	{
 	case ID_MERGE_COMPARE_TEXT:
-		return GetMainFrame()->ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, line);
 	case ID_MERGE_COMPARE_TABLE:
-		return GetMainFrame()->ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, line);
 	case ID_MERGE_COMPARE_HEX:
-		return GetMainFrame()->ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	case ID_MERGE_COMPARE_IMAGE:
-		return GetMainFrame()->ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker);
 	default:
-		return GetMainFrame()->ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, line);
 	}
 }
@@ -1064,8 +1064,10 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
 bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
-	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
-	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/, int line /*= -1*/)
+	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
+	bool bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
+	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
+	UINT nID /*= 0*/, int line /*= -1*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
@@ -1133,7 +1135,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
-	if (pathsType == paths::IS_EXISTING_DIR)
+	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 	{
 		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
 		if (res.pTempPathContext)
@@ -1148,7 +1150,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	// an archive. Don't open a new dirview if we are comparing files.
 	if (pDirDoc == nullptr)
 	{
-		if (pathsType == paths::IS_EXISTING_DIR)
+		if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (m_pMenus[MENU_DIRVIEW] == nullptr)
@@ -1162,7 +1164,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	}
 
 	// open the diff
-	if (pathsType == paths::IS_EXISTING_DIR)
+	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 	{
 		if (pDirDoc != nullptr)
 		{
@@ -1192,7 +1194,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
 		}
 
-		ShowAutoMergeDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
+		ShowMergeDoc(nID, pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
 				infoUnpacker, line);
 	}
 

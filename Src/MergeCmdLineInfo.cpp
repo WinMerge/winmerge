@@ -115,6 +115,7 @@ const TCHAR *MergeCmdLineInfo::SetConfig(const TCHAR *q)
  */
 MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_nCmdShow(SHOWNORMAL),
+	m_nWindowType(AUTOMATIC),
 	m_bEscShutdown(false),
 	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
@@ -226,6 +227,24 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -f "mask" - file filter mask ("*.h *.cpp")
 			q = EatParam(q, m_sFileFilter);
+		}
+		else if (param == _T("t"))
+		{
+			// -t "type" - window type
+			q = EatParam(q, param);
+			param = strutils::makelower(param);
+			if (param == _T("automatic"))
+				m_nWindowType = WindowType::AUTOMATIC;
+			else if (param == _T("text"))
+				m_nWindowType = WindowType::TEXT;
+			else if (param == _T("table"))
+				m_nWindowType = WindowType::TABLE;
+			else if (param == _T("binary"))
+				m_nWindowType = WindowType::BINARY;
+			else if (param == _T("image"))
+				m_nWindowType = WindowType::IMAGE;
+			else
+				m_sErrorMessages.push_back(_T("Unknown window type '") + param + _T("' specified"));
 		}
 		else if (param == _T("m"))
 		{

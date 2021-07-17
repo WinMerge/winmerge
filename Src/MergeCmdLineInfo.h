@@ -52,7 +52,17 @@ public:
 		SIZE,
 	};
 
+	enum WindowType
+	{
+		AUTOMATIC,
+		TEXT,
+		TABLE,
+		BINARY,
+		IMAGE,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
+	WindowType m_nWindowType; /**< The type of window that displays the files to compare. */
 
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */

@@ -34,6 +34,9 @@
       <arg choice="opt" rep="norepeat"><option>/m</option>
       <replaceable>compare-method</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/t</option>
+      <replaceable>window-type</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
@@ -211,13 +214,28 @@
         <secondary>applying in command line</secondary>
       </indexterm>
 
-      <term><option>/m</option></term>
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
       <listitem>
         <para>Sets the compare method to use for the comparison.
         This can be one of the keywords <userinput>Full</userinput>,
         <userinput>Quick</userinput>, <userinput>Binary</userinput>,
-        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput> or 
         <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>window type</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>Specifies the type of window in which to display files.
+        This can be one of the keywords <userinput>Text</userinput>,
+        <userinput>Table</userinput>, <userinput>Binary</userinput> or
+        <userinput>Image</userinput>.</para>
       </listitem>
     </varlistentry>
 
