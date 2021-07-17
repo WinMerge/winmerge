@@ -766,6 +766,7 @@ void COpenView::OnLoadProject()
 		m_strUnpackerPipeline = projItem.GetUnpacker();
 
 	UpdateData(FALSE);
+	UpdateButtonStates();
 	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 }
 
