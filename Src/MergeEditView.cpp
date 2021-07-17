@@ -31,6 +31,7 @@
 #include "ShellContextMenu.h"
 #include "editcmd.h"
 #include "Shell.h"
+#include "SelectPluginDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -197,6 +198,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
+	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
 	ON_WM_VSCROLL ()
 	ON_WM_HSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
@@ -3121,10 +3123,9 @@ void CMergeEditView::OnWMGoto()
 	if (dlg.DoModal() == IDOK)
 	{
 		CMergeDoc * pDoc1 = GetDocument();
-		CMergeEditView * pCurrentView = nullptr;
 
 		// Get views
-		pCurrentView = GetGroupView(m_nThisPane);
+		CMergeEditView * pCurrentView = GetGroupView(m_nThisPane);
 
 		int num = 0;
 		try { num = std::stoi(dlg.m_strParam) - 1; } catch(...) {}
@@ -3148,7 +3149,8 @@ void CMergeEditView::OnWMGoto()
 			if (diff >= pDoc1->m_diffList.GetSize())
 				diff = pDoc1->m_diffList.GetSize();
 
-			pCurrentView->SelectDiff(diff, true, false);
+			if (pCurrentView)
+				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
 }
@@ -3362,9 +3364,29 @@ void CMergeEditView::OnScripts(UINT nID)
 	CString ctext = GetSelectedText();
 	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
+	EditorScriptInfo scriptInfo(
+		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = FileTransform::Interactive(text, {}, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST,
-		{ GetDocument()->m_filePaths[m_nThisPane] });
+	bool bChanged = false;
+	scriptInfo.TransformText(text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
+	if (bChanged)
+		// now replace the text
+		ReplaceSelection(text.c_str(), text.length(), 0);
+}
+
+void CMergeEditView::OnTransformWithScript() 
+{
+	// let the user choose a handler
+	CSelectPluginDlg dlg(_T(""),
+		strutils::join(GetDocument()->m_filePaths.begin(), GetDocument()->m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::EditorScript, false);
+	if (dlg.DoModal() != IDOK)
+		return;
+	EditorScriptInfo scriptInfo(dlg.GetPluginPipeline());
+	CString ctext = GetSelectedText();
+	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
+	bool bChanged = false;
+	scriptInfo.TransformText(text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);

@@ -136,6 +136,18 @@ msgstr "Следующая страница"
 msgid "&Active Pane"
 msgstr "Активная панель"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "&Масштаб"
 
@@ -708,6 +720,9 @@ msgstr "&Предсравнение"
 msgid "Apply Pre&differ..."
 msgstr "Применить предсравнение..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Разделить"
 
@@ -1058,12 +1073,6 @@ msgstr "Автозавершение в диалоге открытия:"
 msgid "Language:"
 msgstr "Язык:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
-
-msgid "Reset"
-msgstr "Сброс"
-
 msgid "Find"
 msgstr "Найти"
 
@@ -1316,8 +1325,8 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Показывать все распаковщики, не проверять расширение."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Открыть файлы в том же типе окна после распаковки."
@@ -1438,6 +1447,12 @@ msgstr "Символы разрыва слов:"
 
 msgid "&Rendering Mode:"
 msgstr "Режим отрисовки:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
+
+msgid "Reset"
+msgstr "Сброс"
 
 msgid "File Filters"
 msgstr "Фильтры файлов"
@@ -1981,8 +1996,8 @@ msgstr "Проп&устить все"
 msgid "Don't display this &message again."
 msgstr "Не показывать &больше."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Чтобы снова показывать это сообщение, нажмите кнопку Сброс на странице настроек Общие."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -1995,6 +2010,9 @@ msgstr "Сравнение папок"
 
 msgid "Differences"
 msgstr "Отличия"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "На:"
@@ -2064,6 +2082,12 @@ msgstr "Тип файла"
 
 msgid "Extension"
 msgstr "Расширение"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"
@@ -2902,9 +2926,6 @@ msgstr "Указать выходной файл."
 msgid "Cannot create a patch file from binary files."
 msgstr "Не удается создать патч из двоичных файлов."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Не удается создать патч из папок."
-
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Сначала сохраните все файлы.\n\nДля создания патча необходимо, чтобы в файлах не было несохраненных изменений."
 
@@ -3229,11 +3250,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3356,6 +3385,9 @@ msgstr "Приукрасить JSON"
 msgid "Prettify XML"
 msgstr "Приукрасить XML"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3367,6 +3399,9 @@ msgstr "Запрос данных TSV..."
 
 msgid "Query JSON Data..."
 msgstr "Запрос данных JSON..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

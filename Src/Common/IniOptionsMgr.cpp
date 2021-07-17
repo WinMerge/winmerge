@@ -75,7 +75,7 @@ std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 	return iniFileKeyValues;
 }
 
-int CIniOptionsMgr::LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value)
+int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textValue, varprop::VariantValue& value)
 {
 	int retVal = COption::OPT_OK;
 	int valType = value.GetType();
@@ -302,7 +302,10 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 		{
 			const String& key = it->first;
 			if (key.find(strPath) == 0 && key.length() > strPath.length() && key[strPath.length()] == '/')
+			{
+				m_iniFileKeyValues.erase(key);
 				it = m_optionsMap.erase(it);
+			}
 			else
 				++it;
 		}

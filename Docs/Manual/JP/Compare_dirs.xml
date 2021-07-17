@@ -272,8 +272,9 @@ I get the partial list, but no Abort indicator.--></para>
             <guimenuitem>同一項目の表示</guimenuitem>)。 フォルダ列は、常に空で、
             フォルダの中にあるファイルだけが表示されています。
             一つの項目のサブフォルダを見て、比較結果列の項目のパスを見てください。
-            <guimenu>表示</guimenu>メニューの、<guimenuitem>左のみに存在する項目の表示</guimenuitem>、
-            または、<guimenuitem>右のみに存在する項目の表示</guimenuitem>が有効になっている場合、
+            <guimenu>表示</guimenu>メニューの、<guimenuitem>左側のみに存在する項目の表示</guimenuitem>、
+            <guimenuitem>中央のみに存在する項目の表示</guimenuitem>、
+            または、<guimenuitem>右側のみに存在する項目の表示</guimenuitem>が有効になっている場合、
             片方だけに存在するフォルダが表示されます。
             <!-- XXX: 原文では、両方'Show Left Unique Files'となっているが間違いだろう --></para>
           </listitem>
@@ -368,6 +369,13 @@ I get the partial list, but no Abort indicator.--></para>
 
         <member><inlinemediaobject>
             <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> 中央のみに存在するフォルダ</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
                          format="PNG" />
             </imageobject>
@@ -379,6 +387,13 @@ I get the partial list, but no Abort indicator.--></para>
                          format="PNG" />
             </imageobject>
           </inlinemediaobject> 左のみに存在するファイル</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/mfile.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> 中央のみに存在するファイル</member>
 
         <member><inlinemediaobject>
             <imageobject>
@@ -533,6 +548,21 @@ I get the partial list, but no Abort indicator.--></para>
             <guibutton>OK</guibutton>をクリックしてください。</para>
           </listitem>
         </itemizedlist>
+        <para>In the Folder Compare window with three folders, the
+        <guimenuitem>Copy</guimenuitem> item has a submenu with nine
+        shortcuts:</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata contentwidth="410"
+                       fileref="screenshots/ctx_menu_copy2.png" format="PNG" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Folder Compare window Copy context menu</phrase>
+          </textobject>
+        </mediaobject>
+
       </section>
 
       <section>
@@ -585,7 +615,7 @@ I get the partial list, but no Abort indicator.--></para>
         </indexterm></title>
 
       <para>コンテキストメニューの<guimenuitem>削除</guimenuitem>を使って、どちらか一方、または、両側の選択されたアイテムを削除できます。その他のファイル操作と同様に、<guimenuitem>削除</guimenuitem>は、
-  <guimenuitem>左</guimenuitem>と<guimenuitem>右</guimenuitem>、そして
+  <guimenuitem>左側</guimenuitem>、<guimenuitem>中央</guimenuitem>と<guimenuitem>右</guimenuitem>、そして
       <guimenuitem>両側</guimenuitem>というサブメニューを持っています。</para>
 
       <warning>
@@ -618,8 +648,9 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>in Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>コンテキストメニューの、<guimenuitem>左を開く
-      </guimenuitem>と<guimenuitem>右を開く</guimenuitem>のどちらかを使用して、アイテムを操作することができます。
+      <para>コンテキストメニューの、<guimenuitem>左側を開く
+      </guimenuitem>、<guimenuitem>中央を開く
+      </guimenuitem>と<guimenuitem>右側を開く</guimenuitem>のどちらかを使用して、アイテムを操作することができます。
       それぞれの<guimenuitem>開く</guimenuitem>
       メニューは、いくつかのショートカットを含んだ、サブメニューを持っています。</para>
 
@@ -711,6 +742,10 @@ I get the partial list, but no Abort indicator.--></para>
 
           <!-- TODO: 日本語版では、ファイル - 読み取り専用 - 左側を? と一階層多い -->
 <guimenuitem>左側を読み取り専用</guimenuitem>
+        </menuchoice>, <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>中央を読み取り専用</guimenuitem>
         </menuchoice>、または、<menuchoice>
           <guimenu>ファイル</guimenu>
 
@@ -727,7 +762,7 @@ I get the partial list, but no Abort indicator.--></para>
       読み取り専用がセットされた側のファイルは書き込み保護されています。同じように、読み取り専用でない側から、
       読み取り専用側へのファイルコピーはできません。</para>
 
-      <para>左か右側のペインのステータスバー(ウィンドウの右下付近)の<guilabel>RO</guilabel>の記号は、
+      <para>左側、中央、右側のペインのステータスバー(ウィンドウの右下付近)の<guilabel>RO</guilabel>の記号は、
       そちら側が読み取り専用であることを表しています。
       </para>
     </section>
@@ -767,7 +802,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <variablelist>
         <varlistentry>
-          <term>左</term>
+          <term>左側</term>
 
           <listitem>
             <para>左側のファイルとフォルダを再帰的にアーカイブファイルに加えます
@@ -776,7 +811,16 @@ I get the partial list, but no Abort indicator.--></para>
         </varlistentry>
 
         <varlistentry>
-          <term>右</term>
+          <term>中央</term>
+
+          <listitem>
+            <para>中央のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>右側</term>
 
           <listitem>
             <para>右側のファイルとフォルダを再帰的にアーカイブファイルに加えます
@@ -1066,12 +1110,17 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guimenuitem>左のみに存在する項目の表示</guimenuitem>:
-          左側のみにに存在するファイルとディレクトリ</para>
+          <para><guimenuitem>左側のみに存在する項目の表示</guimenuitem>:
+          左側のみに存在するファイルとディレクトリ</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>右のみに存在する項目の表示</guimenuitem>: 
+          <para><guimenuitem>中央のみに存在する項目の表示</guimenuitem>:
+          中央のみに存在するファイルとディレクトリ</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>右側のみに存在する項目の表示</guimenuitem>: 
           右側のみに存在するファイルとディレクトリ</para>
         </listitem>
 
@@ -1182,7 +1231,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>左日付</guilabel>、<guilabel>右日付</guilabel>:
+          <para><guilabel>左日付</guilabel>、<guilabel>中日付</guilabel>、<guilabel>右日付</guilabel>:
           それぞれの側のアイテムの更新日2つの日付のうち新しい方
           (または、同一のアイテムの日付)の後ろには、アスタリスク( *
           )が付いています。</para>
@@ -1210,35 +1259,35 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>左属性</guilabel>、<guilabel>右属性</guilabel>:
+          <para><guilabel>左属性</guilabel>、<guilabel>中属性</guilabel>、<guilabel>右属性</guilabel>:
           ファイル属性を表示します。</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>左作成日時</guilabel>、<guilabel>右作成日時</guilabel>:
+          <para><guilabel>左作成日時</guilabel>、<guilabel>中作成日時</guilabel>、<guilabel>右作成日時</guilabel>:
           アイテム作成日時</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>左エンコーディング</guilabel>、<guilabel>右エンコーディング</guilabel>:
+          <para><guilabel>左エンコーディング</guilabel>、<guilabel>中エンコーディング</guilabel>、<guilabel>右エンコーディング</guilabel>:
           ファイルエンコーディング。ANSIファイルはコードページ番号を、UnicodeファイルはUnicodeエンコーディング名を表示します。
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>左ファイルバージョン</guilabel>、<guilabel>右ファイルバージョン</guilabel>:
+          <para><guilabel>左ファイルバージョン</guilabel>、<guilabel>中ファイルバージョン</guilabel>、<guilabel>右ファイルバージョン</guilabel>:
           存在する場合、ファイルのバージョン番号<!-- TODO: なんのことかよくわからない -->Note
           that the version is read only for some binary file types known to
           usually have a version resource.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>左サイズ</guilabel>, <guilabel>右サイズ</guilabel>:
+          <para><guilabel>左サイズ</guilabel>、<guilabel>中サイズ</guilabel>、<guilabel>右サイズ</guilabel>:
           ファイルサイズ(byte)</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>左サイズ(短縮)</guilabel>, <guilabel>右サイズ
+          <para><guilabel>左サイズ(短縮)</guilabel>、<guilabel>中サイズ(短縮)</guilabel>、<guilabel>右サイズ
           (短縮)</guilabel>: KB, MB, GBに丸められた短縮バージョンのファイルサイズ
           </para>
         </listitem>
@@ -1259,7 +1308,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>左EOL</guilabel>, <guilabel>右EOL</guilabel>:
+          <para><guilabel>左EOL</guilabel>、<guilabel>中EOL</guilabel>、<guilabel>右EOL</guilabel>:
           ファイルのEOL(改行)スタイルを表示</para>
         </listitem>
       </itemizedlist>
@@ -1294,7 +1343,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     コンテキストメニューから直接Windowsのシェルコマンドを起動することができます。
     </para>
 
-    <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>か
+    <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>、<guimenu>中央シェルメニュー</guimenu>か
     <guimenu>右側シェルメニュー</guimenu>のどちらかを選ぶことができます。
     アイテムが片側だけにある場合、そちら側のシェルメニューのみが有効です。
     </para>

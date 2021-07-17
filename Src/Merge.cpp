@@ -100,7 +100,7 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
-, m_pOptions(CreateOptionManager())
+, m_pOptions(nullptr)
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
@@ -121,17 +121,19 @@ CMergeApp::CMergeApp() :
  * @return IniOptionsMgr if initial config file exists,
  *   CRegOptionsMgr otherwise.
  */
-COptionsMgr *CreateOptionManager()
+COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 {
-	String iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
+	String iniFilePath = cmdInfo.m_sIniFilepath;
+	if (!iniFilePath.empty())
+	{
+		iniFilePath = paths::GetLongPath(iniFilePath);
+		if (paths::CreateIfNeeded(paths::GetParentPath(iniFilePath)))
+			return new CIniOptionsMgr(iniFilePath);
+	}
+	iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
 	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
-	{
 		return new CIniOptionsMgr(iniFilePath);
-	}
-	else
-	{
-		return new CRegOptionsMgr();
-	}
+	return new CRegOptionsMgr();
 }
 
 CMergeApp::~CMergeApp()
@@ -210,10 +212,13 @@ BOOL CMergeApp::InitInstance()
 #else
 	MergeCmdLineInfo cmdInfo(GetCommandLine());
 #endif
+	m_pOptions.reset(CreateOptionManager(cmdInfo));
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
-	Options::CopyHKLMValues();
+	if (dynamic_cast<CRegOptionsMgr*>(m_pOptions.get()) != nullptr)
+		Options::CopyHKLMValues();
+
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
@@ -713,14 +718,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -729,7 +734,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
+				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc, nullptr, cmdInfo.m_nLineIndex);
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -748,7 +753,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					infoUnpacker.get(), infoPrediffer.get());
+					infoUnpacker.get(), infoPrediffer.get(), cmdInfo.m_nLineIndex);
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -986,7 +991,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 			String msg = strutils::format_string1(
 				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
 				pszPath);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return false;
 		}
 		return true;
@@ -1361,7 +1366,7 @@ void CMergeApp::OnMergingMode()
 	bool bMergingMode = GetMergingMode();
 
 	if (!bMergingMode)
-		LangMessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+		LangMessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
 	SetMergingMode(!bMergingMode);
 }
 

@@ -19,6 +19,9 @@ class CRegOptionsMgr: public COptionsMgr
 public:
 	CRegOptionsMgr();
 	virtual ~CRegOptionsMgr();
+	CRegOptionsMgr(const CRegOptionsMgr&) = delete;
+	CRegOptionsMgr& operator=(const CRegOptionsMgr&) = delete;
+
 	int SetRegRootKey(const String& path);
 	void CloseKeys();
 

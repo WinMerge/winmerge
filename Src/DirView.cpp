@@ -1332,7 +1332,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 				strutils::format_string1( 
 					_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
 					path);
-			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CREATE_PAIR_FOLDER);
 			if (res == IDYES)
 				created = paths::CreateIfNeeded(path);
 		}
@@ -2738,7 +2738,8 @@ void CDirView::OnOpenWithUnpacker()
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		// let the user choose a handler
-		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, true, false, this);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames,
+			CSelectPluginDlg::PluginType::Unpacker, false, this);
 		if (dlg.DoModal() == IDOK)
 		{
 			PackingInfo infoUnpackerNew(dlg.GetPluginPipeline());
@@ -3098,7 +3099,8 @@ void CDirView::OnPluginSettings(UINT nID)
 		String filteredFilenames = ctxt.GetFilteredFilenames(GetDiffItem(sel));
 		ctxt.FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames, unpacker, false, this);
+		CSelectPluginDlg dlg(infoUnpacker->GetPluginPipeline(), filteredFilenames,
+			unpacker ? CSelectPluginDlg::PluginType::Unpacker : CSelectPluginDlg::PluginType::Prediffer, false, this);
 		if (dlg.DoModal() != IDOK)
 			return;
 		pluginPipeline = dlg.GetPluginPipeline();

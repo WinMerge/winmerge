@@ -135,6 +135,18 @@ msgstr "Volgende pagina"
 msgid "&Active Pane"
 msgstr "Actief venster"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "Zoomen"
 
@@ -707,6 +719,9 @@ msgstr "Voorvergelijking"
 msgid "Apply Pre&differ..."
 msgstr "Voorvergelijking toepassen."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Splitsen"
 
@@ -1057,17 +1072,6 @@ msgstr "Auto-aanvullen openen-venster:"
 msgid "Language:"
 msgstr "Language:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
-" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
-"maken."
-
-msgid "Reset"
-msgstr "Herstellen"
-
 msgid "Find"
 msgstr "Zoeken"
 
@@ -1325,8 +1329,8 @@ msgstr "Beschrijving:"
 msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle uitpakkers weergeven zonder extensie te controleren."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken."
@@ -1447,6 +1451,17 @@ msgstr "Woordsplitsingstekens:"
 
 msgid "&Rendering Mode:"
 msgstr "Rendermodus:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
+" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
+"maken."
+
+msgid "Reset"
+msgstr "Herstellen"
 
 msgid "File Filters"
 msgstr "Bestandsfilters"
@@ -2058,12 +2073,8 @@ msgstr "Alles overslaan"
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Druk op de herstellen-knop op de pagina \"algemeen\" van het venster "
-"\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -2076,6 +2087,9 @@ msgstr "Mapvergelijking"
 
 msgid "Differences"
 msgstr "Verschillen"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "Naar:"
@@ -2155,6 +2169,12 @@ msgstr "Bestandstype"
 
 msgid "Extension"
 msgstr "Extensie"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Naam"
@@ -3221,9 +3241,6 @@ msgstr "Uitvoerbestand opgeven."
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan geen patch-bestand aanmaken van binaire bestanden."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Kan geen patch-bestand maken van mappen."
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3664,12 +3681,20 @@ msgid "Dist: %g, %g  "
 msgstr "Afstand: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
@@ -3793,6 +3818,9 @@ msgstr "JSON mooi maken"
 msgid "Prettify XML"
 msgstr "XML mooi maken"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz visualiseren"
 
@@ -3804,6 +3832,9 @@ msgstr "TSV-data bevragen..."
 
 msgid "Query JSON Data..."
 msgstr "JSON-data bevragen..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

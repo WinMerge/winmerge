@@ -93,22 +93,27 @@ public:
 	bool DoFileOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr, int line = -1);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
-		const String& sReportFile = _T(""), const PackingInfo* infoUnpacker = nullptr);
+		const String& sReportFile = _T(""), const PackingInfo* infoUnpacker = nullptr, int line = -1);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, int line = -1);
 	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, int line = -1);
 	bool ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, int line = -1);
 	bool ShowTextMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, int line = -1);
 	bool ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
-		const String strDesc[], const String& strFileExt);
+		const String strDesc[], const String& strFileExt, int line = -1);
 	bool ShowTableMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, int line = -1);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -121,13 +126,13 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
-	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr, const PackingInfo* infoUnpacker = nullptr);
+	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr, const PackingInfo* infoUnpacker = nullptr, int line = -1);
 	static FRAMETYPE GetFrameType(const CFrameWnd * pFrame);
 	static void UpdateDocTitle();
 	static void ReloadMenu();
 	static void AppendPluginMenus(CMenu* pMenu, const String& filteredFilenames,
-		const std::vector<std::wstring> events, bool addAllMenu, unsigned baseId);
-	static String GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring> events, unsigned baseId);
+		const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId);
+	static String GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();

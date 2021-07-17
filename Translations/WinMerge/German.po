@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-04 15:30+0200\n"
+"PO-Revision-Date: 2021-07-11 15:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -156,13 +156,25 @@ msgstr "&Nächste Seite"
 msgid "&Active Pane"
 msgstr "&Aktiver Ausschnitt"
 
+msgid "Rotate &Right 90deg"
+msgstr "90° nach rechts drehen"
+
+msgid "Rotate &Left 90deg"
+msgstr "90° nach links drehen"
+
+msgid "Flip &Vertically"
+msgstr "&Vertikal spiegeln"
+
+msgid "Flip &Horizontally"
+msgstr "&Horizontal spiegeln"
+
 #, c-format
 msgid "&Zoom"
 msgstr "&Zoom"
 
 #, c-format
 msgid "25%"
-msgstr "25%"
+msgstr "25 %"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -891,6 +903,9 @@ msgstr "&Prediffer"
 msgid "Apply Pre&differ..."
 msgstr "Pre&differ anwenden..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "&Teilen"
@@ -1325,13 +1340,6 @@ msgstr "Öffnen-Dialog Auto&vervollständigung:"
 msgid "Language:"
 msgstr "&Sprache:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
-
-#, c-format
-msgid "Reset"
-msgstr "Zurücksetzen"
-
 #, c-format
 msgid "Find"
 msgstr "Suchen"
@@ -1652,8 +1660,8 @@ msgstr "Beschreibung:"
 msgid "Default arguments:"
 msgstr "Standardargumente:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Alle Entpacker anzeigen, die Erweiterung nicht überprüfen."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen."
@@ -1803,6 +1811,13 @@ msgstr "W&ortumbruchzeichen:"
 
 msgid "&Rendering Mode:"
 msgstr "&Darstellungsmodus:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
+
+#, c-format
+msgid "Reset"
+msgstr "Zurücksetzen"
 
 msgid "File Filters"
 msgstr "Dateifilter"
@@ -2494,8 +2509,8 @@ msgstr "&Alle überspringen"
 msgid "Don't display this &message again."
 msgstr "Diese &Meldung nicht erneut anzeigen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie 'Zurücksetzen' in Einstellungen/Allgemein."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie die Schaltfläche 'Zurücksetzen' unter Einstellungen/Meldungen."
 
 #, c-format
 msgid "Syntax"
@@ -2510,6 +2525,9 @@ msgstr "Ordnervergleich"
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
+
+msgid "Message Boxes"
+msgstr "Meldungen"
 
 #, c-format
 msgid "To:"
@@ -2595,6 +2613,12 @@ msgstr "Dateityp"
 #, c-format
 msgid "Extension"
 msgstr "Erweiterung"
+
+msgid "Message"
+msgstr "Meldung"
+
+msgid "Answer"
+msgstr "Antwort"
 
 #, c-format
 msgid "Name"
@@ -2813,7 +2837,7 @@ msgid "The file\n%1\nis not a conflict file."
 msgstr "Die Datei\n%1\nist keine Konfliktdatei."
 
 msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
-msgstr "Sie sind dabei, sehr große Dateien zu vergleichen.\nDas Anzeigen des Dateiinhalts erfordert sehr viel Speicherplatz.\nWollen Sie nur die Vergleichsergebnisse, aber nicht den Dateiinhalt anzeigen?"
+msgstr "Sie sind dabei, sehr große Dateien zu vergleichen. \nDas Anzeigen des Dateiinhalts erfordert sehr viel Speicherplatz. \nWollen Sie nur die Vergleichsergebnisse, aber nicht den Dateiinhalt anzeigen?"
 
 #, c-format
 msgid "Save As"
@@ -2833,7 +2857,7 @@ msgstr "Fehler beim Erstellen einer Sicherheitskopie"
 
 #, c-format
 msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
-msgstr "Sicherheitskopie kann nicht erstellt werden:\n%1\n\nTrotzdem fortfahren?"
+msgstr "Sicherheitskopie kann nicht erstellt werden: \n%1 \n\nTrotzdem fortfahren?"
 
 #, c-format
 msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
@@ -2853,15 +2877,15 @@ msgstr "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-msgstr "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie geladen hat.\n\nGeänderte Datei überschreiben?"
+msgstr "Eine andere Anwendung hat die Datei \n%1 \naktualisiert, seit WinMerge sie geladen hat. \n\nGeänderte Datei überschreiben?"
 
 #, c-format
 msgid "%1\nis marked read-only. Would you like to override the read-only item?"
-msgstr "%1\nist als schreibgeschützt markiert. Möchten Sie das schreibgeschützte Objekt überschreiben?"
+msgstr "%1 \nist als schreibgeschützt markiert. Möchten Sie das schreibgeschützte Objekt überschreiben?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie das letzte Mal geprüft hat.\n\nMöchten Sie die Datei neu laden?"
+msgstr "Eine andere Anwendung hat die Datei \n%1 \naktualisiert, seit WinMerge sie das letzte Mal geprüft hat. \n\nMöchten Sie die Datei neu laden?"
 
 #, c-format
 msgid "Save Left File As"
@@ -3447,7 +3471,7 @@ msgid "Temporary files could not be created. Check your temporary path settings.
 msgstr "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
 
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruchformat.\n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln?\n\nHinweis: Wenn Sie immer alle Zeilenumbruchformate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren' unter Einstellungen/Vergleichen/Allgemein."
+msgstr "Die Dateien haben ein unterschiedliches Zeilenumbruchformat. \n\nMöchten Sie alle Zeilenumbrüche für diesen Vergleich als gleichwertig behandeln? \n\nHinweis: Wenn Sie immer alle Zeilenumbruchformate als gleichwertig behandeln wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren' unter Einstellungen/Vergleichen/Allgemein."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3459,7 +3483,7 @@ msgstr "Kann keine Binärdatei im Editor öffnen."
 
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "Der Ordner existiert nur auf der anderen Seite und kann nicht geöffnet werden.\n\nMöchten Sie einen passenden Ordner:\n%1\nauf der anderen Seite erzeugen und die Ordner öffnen?"
+msgstr "Der Ordner existiert nur auf der anderen Seite und kann nicht geöffnet werden. \n\nMöchten Sie einen passenden Ordner: \n%1 \nauf der anderen Seite erzeugen und die Ordner öffnen?"
 
 #, c-format
 msgid "Do you want to move to the next file?"
@@ -3590,10 +3614,6 @@ msgstr "Geben Sie eine Ausgabedatei an."
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kann keine Patchdatei von Binärdateien erzeugen."
-
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kann keine Patchdatei von Ordnern erzeugen."
 
 #, c-format
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
@@ -3969,12 +3989,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist.: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Seite: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Re.: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "Umgedreht: %s  "
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr "Gedreht: %s  "
 
 msgid "<Edit here>"
 msgstr "<Hier bearbeiten>"
@@ -4097,6 +4125,9 @@ msgstr "JSON verschönern"
 msgid "Prettify XML"
 msgstr "XML verschönern"
 
+msgid "Prettify YAML"
+msgstr "YAML verschönern"
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz visualisieren"
 
@@ -4108,6 +4139,9 @@ msgstr "TSV-Daten abfragen..."
 
 msgid "Query JSON Data..."
 msgstr "JSON-Daten abfragen..."
+
+msgid "Query YAML Data..."
+msgstr "YAML-Daten abfragen..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

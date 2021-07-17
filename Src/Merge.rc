@@ -141,6 +141,10 @@ BEGIN
         MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
         POPUP "&Active Pane"
         BEGIN
+            MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+            MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+            MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+            MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
             MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
             MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
@@ -690,6 +694,7 @@ BEGIN
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
+        MENUITEM "&Transform with editor script...",      ID_TRANSFORM_WITH_SCRIPT
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -968,6 +973,26 @@ BEGIN
     END
 END
 
+IDR_POPUP_IMG_CTXT MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+        MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+        MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+        MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
+        MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
+        MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+        MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
+        MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
+        MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+    END
+END
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -1154,8 +1179,6 @@ BEGIN
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,175,240,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,187,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,207,240,30
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 324, 96
@@ -1443,7 +1466,7 @@ BEGIN
     EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
     LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
     EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
-    CONTROL         "Display all unpackers, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
+    CONTROL         "Display all plugins, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
     CONTROL         "&Open files in the same window type after unpacking.",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12
@@ -1541,8 +1564,17 @@ IDD_PROPPAGE_EDITOR_SYNTAX DIALOGEX 0, 0, 255, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_SYNTAX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 215
+    CONTROL         "",IDC_SYNTAX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 241, 215
     PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 161, 228, 88, 14
+END
+
+IDD_PROPPAGE_MESSAGEBOXES DIALOGEX 0, 0, 255, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,7,240,30
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,28,88,14,NOT WS_TABSTOP
+    CONTROL         "",IDC_MESSAGEBOX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 47, 241, 195
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -2652,6 +2684,14 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+    0, 0, 100, 0,
+END
+
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
 BEGIN
     0,
@@ -2784,7 +2824,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN 
                             "Don't ask this &question again."
     IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
-                            "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+                            "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 END
 
 // Options-dialog page captions
@@ -2808,6 +2848,7 @@ BEGIN
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
+    IDS_OPTIONSPG_MESSAGEBOXES "Message Boxes"
 END
 
 STRINGTABLE
@@ -2881,6 +2922,13 @@ STRINGTABLE
 BEGIN
     IDS_SYNTAXTABLE_FILETYPE "File Type"
     IDS_SYNTAXTABLE_EXTENSION "Extension"
+END
+
+// MESSAGEBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_MESSAGEBOX_MESSAGE "Message"
+    IDS_MESSAGEBOX_ANSWER  "Answer"
 END
 
 // FILTER OPTIONS
@@ -3401,7 +3449,6 @@ BEGIN
     IDS_MUST_SPECIFY_OUTPUT "Specify an output file."
     IDS_CANNOT_CREATE_BINARYPATCH 
                             "Cannot create a patch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
     IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
@@ -3664,8 +3711,10 @@ BEGIN
     IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist: %g  "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
-    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
     IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
+    IDS_IMGCMP_STATUS_FLIPPED_FMT "Flipped: %s  "
+    IDS_IMGCMP_STATUS_ROTATED_FMT "Rotated: %s  "
 END
 
 STRINGTABLE
@@ -3723,10 +3772,12 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION22 "Apply Prediff Substitution Filters"
     IDS_PLUGIN_MENU_CAPTION23 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION24 "Prettify XML"
-    IDS_PLUGIN_MENU_CAPTION25 "Visualize Graphviz"
-    IDS_PLUGIN_MENU_CAPTION26 "Query CSV Data..."
-    IDS_PLUGIN_MENU_CAPTION27 "Query TSV Data..."
-    IDS_PLUGIN_MENU_CAPTION28 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION25 "Prettify YAML"
+    IDS_PLUGIN_MENU_CAPTION26 "Visualize Graphviz"
+    IDS_PLUGIN_MENU_CAPTION27 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION28 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION29 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION30 "Query YAML Data..."
     IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
     IDS_PLUGIN_TITLE1        "Specify plugin arguments"

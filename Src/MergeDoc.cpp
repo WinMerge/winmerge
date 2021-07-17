@@ -3109,7 +3109,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	return true;
 }
 
-void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
+void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine)
 {
 	if (nPane < 0)
 	{
@@ -3130,7 +3130,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			return;
 		}
 	}
-	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
+	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane);
 }
 
 void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
@@ -3392,7 +3392,8 @@ void CMergeDoc::OnFileEncoding()
 void CMergeDoc::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Unpacker, false);
 	if (dlg.DoModal() != IDOK)
 		return;
 
@@ -3416,7 +3417,8 @@ void CMergeDoc::OnApplyPrediffer()
 	GetPrediffer(&prediffer);
 	// let the user choose a handler
 	CSelectPluginDlg dlg(prediffer.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), false, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Prediffer, false);
 	if (dlg.DoModal() != IDOK)
 		return;
 	prediffer.SetPluginPipeline(dlg.GetPluginPipeline());

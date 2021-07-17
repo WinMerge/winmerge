@@ -55,7 +55,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(PropGeneral)
-	afx_msg void OnResetAllMessageBoxes();
 	afx_msg LRESULT OnLoadLanguages(WPARAM, LPARAM);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

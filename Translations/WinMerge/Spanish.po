@@ -138,6 +138,18 @@ msgstr "Pági&na Siguiente"
 msgid "&Active Pane"
 msgstr "P&anel Activo"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "&Zoom"
 
@@ -710,6 +722,9 @@ msgstr "&Precomparación"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "&Dividir"
 
@@ -1060,14 +1075,6 @@ msgstr "A&uto-completar en diálogos de apertura:"
 msgid "Language:"
 msgstr "Idioma:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"WinMerge permite ocultar algunos mensajes comunes. Pulse Restablecer para "
-"hacer todos los mensajes visibles de nuevo."
-
-msgid "Reset"
-msgstr "Restablecer"
-
 msgid "Find"
 msgstr "Buscar"
 
@@ -1320,8 +1327,8 @@ msgstr "Descripción:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Mostrar todos los desempaquetadores, no comprobar exts."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1442,6 +1449,14 @@ msgstr "Caracteres de salt&o de palabra:"
 
 msgid "&Rendering Mode:"
 msgstr "Modo de &Renderizado:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"WinMerge permite ocultar algunos mensajes comunes. Pulse Restablecer para "
+"hacer todos los mensajes visibles de nuevo."
+
+msgid "Reset"
+msgstr "Restablecer"
 
 msgid "File Filters"
 msgstr ""
@@ -2048,10 +2063,8 @@ msgstr "O&mitir todos"
 msgid "Don't display this &message again."
 msgstr "No mostrar este &mensaje de nuevo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"Para volver a hacer visible este cuadro de dialogo, presione el botón "
-"Restablecer en la página General del cuadro de diálogo Opciones."
 
 msgid "Syntax"
 msgstr "Sintaxis"
@@ -2064,6 +2077,9 @@ msgstr "Comparar de carpetas"
 
 msgid "Differences"
 msgstr "Diferencias"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "A:"
@@ -2145,6 +2161,12 @@ msgstr ""
 
 msgid "Extension"
 msgstr "Extensión"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Nombre"
@@ -3195,9 +3217,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr ""
 "No se puede crear un archivo de corrección a partir de un archivo binario."
 
-msgid "Cannot create a patch file from directories."
-msgstr "No se puede crear un archivo de corrección a partir de una carpeta."
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3618,11 +3637,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3745,6 +3772,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3755,6 +3785,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

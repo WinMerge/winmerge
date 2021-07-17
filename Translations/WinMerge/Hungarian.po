@@ -158,6 +158,18 @@ msgstr "Következő oldal"
 msgid "&Active Pane"
 msgstr "AKtív panel"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "Nagyítás"
@@ -893,6 +905,9 @@ msgstr "&Elővizsgáló"
 msgid "Apply Pre&differ..."
 msgstr "Elővizsgáló alkalmazása..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Felosztás"
@@ -1327,13 +1342,6 @@ msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 msgid "Language:"
 msgstr "Nyelv:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
-
-#, c-format
-msgid "Reset"
-msgstr "Visszaállítás"
-
 #, c-format
 msgid "Find"
 msgstr "Keresés"
@@ -1654,8 +1662,8 @@ msgstr "Leírás:"
 msgid "Default arguments:"
 msgstr "Alapértelmezett argumentumok:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
@@ -1805,6 +1813,13 @@ msgstr "Szótörés karakterek:"
 
 msgid "&Rendering Mode:"
 msgstr "Renderelési mód:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
+
+#, c-format
+msgid "Reset"
+msgstr "Visszaállítás"
 
 msgid "File Filters"
 msgstr "Fájlszűrők"
@@ -2556,8 +2571,8 @@ msgstr "Összes kihagyása"
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomd meg a Visszaállítás gombot a Beállítások Általános aloldalán."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2572,6 +2587,9 @@ msgstr "Mappa összehasonlítás"
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2663,6 +2681,12 @@ msgstr "Fájltípus"
 #, c-format
 msgid "Extension"
 msgstr "Kiterjesztés"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3864,10 +3888,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nem lehet patch fájlt létrehozni bináris fájlokból."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nem lehet patch fájlt létrehozni könyvtárakból."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4353,12 +4373,20 @@ msgid "Dist: %g, %g  "
 msgstr "Táv: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Oldal: %d/%d  Nagyítás: %d%%  %dx%dképpont  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Oldal: %d/%d  Nagyítás: %d%%  %dx%dképpont  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Szerkesztés itt>"
@@ -4480,6 +4508,9 @@ msgstr "JSON formázása"
 msgid "Prettify XML"
 msgstr "XML formázása"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz vizualizálás"
 
@@ -4491,6 +4522,9 @@ msgstr "TSV adatok lekérdezése..."
 
 msgid "Query JSON Data..."
 msgstr "JSON adatok lekérdezése..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

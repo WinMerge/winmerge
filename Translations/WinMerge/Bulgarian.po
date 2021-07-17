@@ -131,6 +131,18 @@ msgstr "&Следваща страница"
 msgid "&Active Pane"
 msgstr "&Текущ панел"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "Маща&биране"
 
@@ -703,6 +715,9 @@ msgstr ""
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Ра&зделяне"
 
@@ -1053,16 +1068,6 @@ msgstr "Автоматично &довършване в „Избиране на
 msgid "Language:"
 msgstr "Език:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge позволява скриване на някои съобщения. Натиснете бутона Отменяне за "
-"повторно показване на тези съобщения."
-
-msgid "Reset"
-msgstr "Отменяне"
-
 msgid "Find"
 msgstr "Търсене"
 
@@ -1317,7 +1322,7 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Aргументи:"
 
-msgid "Display all unpackers, don't check the extension."
+msgid "Display all plugins, don't check the extension."
 msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
@@ -1439,6 +1444,16 @@ msgstr "Символ за пренасяне на &дума:"
 
 msgid "&Rendering Mode:"
 msgstr "&Режим на изчертаване:"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge позволява скриване на някои съобщения. Натиснете бутона Отменяне за "
+"повторно показване на тези съобщения."
+
+msgid "Reset"
+msgstr "Отменяне"
 
 msgid "File Filters"
 msgstr "Филтри за файлове"
@@ -2050,12 +2065,8 @@ msgstr "Прескачане на &всички"
 msgid "Don't display this &message again."
 msgstr "Без &повторно показване на това съобщение."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"За да видите отново това съобщение, натиснете бутона Отменяне на страницата "
-"„Общи“ в Настройки."
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -2068,6 +2079,9 @@ msgstr "Сравняване на папки"
 
 msgid "Differences"
 msgstr "Различия"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "В:"
@@ -2147,6 +2161,12 @@ msgstr "Вид на файл"
 
 msgid "Extension"
 msgstr "Разширение"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "Име"
@@ -3225,9 +3245,6 @@ msgstr "Задайте изходен файл."
 msgid "Cannot create a patch file from binary files."
 msgstr "Не може да се създаде пач от двоични файлове."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Не може да се създаде пач от директории."
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3671,11 +3688,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3798,6 +3823,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3808,6 +3836,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

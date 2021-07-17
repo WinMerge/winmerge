@@ -17,8 +17,10 @@ class COptionsMgr;
 class CIniOptionsMgr : public COptionsMgr
 {
 public:
-	CIniOptionsMgr(const String& filePath);
+	explicit CIniOptionsMgr(const String& filePath);
 	virtual ~CIniOptionsMgr();
+	CIniOptionsMgr(const CIniOptionsMgr&) = delete;
+	CIniOptionsMgr& operator=(const CIniOptionsMgr&) = delete;
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
@@ -39,7 +41,7 @@ public:
 
 protected:
 	static std::map<String, String> Load(const String& iniFilePath);
-	int LoadValueFromBuf(const String& strName, String& textValue, varprop::VariantValue& value);
+	int LoadValueFromBuf(const String& strName, const String& textValue, varprop::VariantValue& value);
 	const TCHAR *GetFilePath() const { return m_filePath.c_str(); }
 	int SaveValueToFile(const String& strValueName,
 		const varprop::VariantValue& value);

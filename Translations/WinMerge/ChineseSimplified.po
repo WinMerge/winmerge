@@ -137,6 +137,18 @@ msgstr "下一页(&N)"
 msgid "&Active Pane"
 msgstr "活动窗格(&A)"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 msgid "&Zoom"
 msgstr "缩放(&Z)"
 
@@ -709,6 +721,9 @@ msgstr "预处理(&P)"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "分隔(&L)"
 
@@ -1059,15 +1074,6 @@ msgstr "“打开”对话框的自动完成(&E):"
 msgid "Language:"
 msgstr "语言:"
 
-msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
-msgstr ""
-"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
-
-msgid "Reset"
-msgstr "重置"
-
 msgid "Find"
 msgstr "查找"
 
@@ -1320,8 +1326,8 @@ msgstr "描述:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "不检查扩展名，显示所有解包器。"
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1442,6 +1448,15 @@ msgstr "单词分隔字符:"
 
 msgid "&Rendering Mode:"
 msgstr "渲染模式(&R)"
+
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
+
+msgid "Reset"
+msgstr "重置"
 
 msgid "File Filters"
 msgstr ""
@@ -2051,11 +2066,8 @@ msgstr "全部跳过(&A)"
 msgid "Don't display this &message again."
 msgstr "不再显示此消息(&M)"
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
-"如需重新显示这些提示框，请在“选项”对话框的“常规”选项卡中点击“重置”按钮。"
 
 msgid "Syntax"
 msgstr "语法"
@@ -2068,6 +2080,9 @@ msgstr "文件夹比较"
 
 msgid "Differences"
 msgstr "差异"
+
+msgid "Message Boxes"
+msgstr ""
 
 msgid "To:"
 msgstr "到:"
@@ -2147,6 +2162,12 @@ msgstr ""
 
 msgid "Extension"
 msgstr "扩展名"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 msgid "Name"
 msgstr "名称"
@@ -3198,9 +3219,6 @@ msgstr "请指定输出文件。"
 msgid "Cannot create a patch file from binary files."
 msgstr "无法为二进制文件创建补丁。"
 
-msgid "Cannot create a patch file from directories."
-msgstr "无法为文件夹创建补丁。"
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3619,11 +3637,19 @@ msgid "Dist: %g, %g  "
 msgstr "色距: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3746,6 +3772,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -3756,6 +3785,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

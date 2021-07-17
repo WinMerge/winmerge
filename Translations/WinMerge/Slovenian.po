@@ -157,6 +157,18 @@ msgstr "&Naslednja stran"
 msgid "&Active Pane"
 msgstr "&Aktivno podokno"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "Po&večava"
@@ -891,6 +903,9 @@ msgstr "&Predpregled razlik"
 msgid "Apply Pre&differ..."
 msgstr "Uporabi Prediffer..."
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Ra&zdeli"
@@ -1325,13 +1340,6 @@ msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 msgid "Language:"
 msgstr "Jezik:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
-
-#, c-format
-msgid "Reset"
-msgstr "Ponastavi"
-
 #, c-format
 msgid "Find"
 msgstr "Najdi"
@@ -1651,8 +1659,8 @@ msgstr "Opis:"
 msgid "Default arguments:"
 msgstr "Privzeti argumenti:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži vse razpakovalce, ne glede na končnico."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna."
@@ -1801,6 +1809,13 @@ msgstr "&Znaki za prelom besed:"
 
 msgid "&Rendering Mode:"
 msgstr "Način upodab&ljanja:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
+
+#, c-format
+msgid "Reset"
+msgstr "Ponastavi"
 
 msgid "File Filters"
 msgstr "Filtri datotek"
@@ -2550,8 +2565,8 @@ msgstr "Preskoči &vse"
 msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Za ponovni prikaz tega sporočila, pritisnite 'Ponastavi' na strani 'Splošno' pogovornega okna 'Možnosti'."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2566,6 +2581,9 @@ msgstr "Primerjava map"
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2657,6 +2675,12 @@ msgstr "Vrsta datoteke"
 #, c-format
 msgid "Extension"
 msgstr "Končnica"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3858,10 +3882,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Iz dvojiških datotek ni mogoče ustvariti datoteke s popravki."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Iz map ni mogoče ustvariti datoteke s popravki."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4346,12 +4366,20 @@ msgid "Dist: %g, %g  "
 msgstr "Razdalja: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Stran: %d/%d  Povečava: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Zapis: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Uredi tukaj>"
@@ -4474,6 +4502,9 @@ msgstr "Polepšaj JSON"
 msgid "Prettify XML"
 msgstr "Polepšaj XML"
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr "Prikaži Graphviz"
 
@@ -4485,6 +4516,9 @@ msgstr "Poizveduj podatke TSV..."
 
 msgid "Query JSON Data..."
 msgstr "Poizveduj podatke JSON..."
+
+msgid "Query YAML Data..."
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

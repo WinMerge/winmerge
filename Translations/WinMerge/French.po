@@ -163,6 +163,18 @@ msgstr "Page &suivante"
 msgid "&Active Pane"
 msgstr "Volet &actif"
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "&Zoom"
@@ -898,6 +910,9 @@ msgstr "&Pré-comparer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Scinder"
@@ -1332,13 +1347,6 @@ msgstr "Remplissage de la boîte de dialogue d'ouverture :"
 msgid "Language:"
 msgstr "Langage :"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permet de masquer certaines boîtes de message. Appuyer sur ce bouton pour les rendre visibles à nouveau."
-
-#, c-format
-msgid "Reset"
-msgstr "Rétablir"
-
 #, c-format
 msgid "Find"
 msgstr "Rechercher"
@@ -1659,8 +1667,8 @@ msgstr "Description :"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afficher tous les décompresseurs, ignorer les extensions."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1810,6 +1818,13 @@ msgstr "Caractères pour distinction de mot :"
 
 msgid "&Rendering Mode:"
 msgstr "Mode de &rendu :"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permet de masquer certaines boîtes de message. Appuyer sur ce bouton pour les rendre visibles à nouveau."
+
+#, c-format
+msgid "Reset"
+msgstr "Rétablir"
 
 msgid "File Filters"
 msgstr "Filtres de fichier"
@@ -2561,8 +2576,8 @@ msgstr "Ignorer &tout"
 msgid "Don't display this &message again."
 msgstr "Ne plus afficher ce &message."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Pour que cette boîte de message soit à nouveau visible, appuyez sur le bouton Réinitialiser de la page Général de la boîte de dialogue Options."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2577,6 +2592,9 @@ msgstr "Comparaison de dossiers"
 #, c-format
 msgid "Differences"
 msgstr "Différences"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2668,6 +2686,12 @@ msgstr "Type de fichier"
 #, c-format
 msgid "Extension"
 msgstr "Extension"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3871,10 +3895,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Ne peut créer un fichier de retouche depuis un fichier binaire."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Ne peut créer un fichier de retouche depuis des répertoires."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4360,12 +4380,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist : %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Page : %d/%d  Zoom : %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Page : %d/%d  Zoom : %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "Rc : (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Modifier ici>"
@@ -4488,6 +4516,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4498,6 +4529,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

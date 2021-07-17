@@ -141,6 +141,10 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_PREVPAGE, OnUpdateImgPrevPage)
 	ON_COMMAND(ID_IMG_NEXTPAGE, OnImgNextPage)
 	ON_UPDATE_COMMAND_UI(ID_IMG_NEXTPAGE, OnUpdateImgNextPage)
+	ON_COMMAND(ID_IMG_CURPANE_ROTATE_RIGHT_90, OnImgCurPaneRotateRight90)
+	ON_COMMAND(ID_IMG_CURPANE_ROTATE_LEFT_90, OnImgCurPaneRotateLeft90)
+	ON_COMMAND(ID_IMG_CURPANE_FLIP_VERTICALLY, OnImgCurPaneFlipVertically)
+	ON_COMMAND(ID_IMG_CURPANE_FLIP_HORIZONTALLY, OnImgCurPaneFlipHorizontally)
 	ON_COMMAND(ID_IMG_CURPANE_PREVPAGE, OnImgCurPanePrevPage)
 	ON_UPDATE_COMMAND_UI(ID_IMG_CURPANE_PREVPAGE, OnUpdateImgCurPanePrevPage)
 	ON_COMMAND(ID_IMG_CURPANE_NEXTPAGE, OnImgCurPaneNextPage)
@@ -332,7 +336,7 @@ void CImgMergeFrame::CheckFileChanged(void)
 		if (IsFileChangedOnDisk(pane) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -379,17 +383,16 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 			break;
 		}
 	}
-
-/*	if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
+	else if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
 	{
 		CImgMergeFrame *pFrame = reinterpret_cast<CImgMergeFrame *>(evt.userdata);
-		BCMenu menu;
-		menu.LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		BCMenu* pPopup = (BCMenu *)menu.GetSubMenu(0);
+		BCMenu menuPopup;
+		menuPopup.LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMG_CTXT));
+		theApp.TranslateMenu(menuPopup.m_hMenu);
+		BCMenu* pPopup = (BCMenu *)menuPopup.GetSubMenu(0);
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 			evt.x, evt.y, AfxGetMainWnd());
 	}
-	*/
 }
 
 /**
@@ -973,7 +976,8 @@ void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnOpenWithUnpacker()
 {
 	CSelectPluginDlg dlg(m_infoUnpacker.GetPluginPipeline(),
-		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")), true, false);
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::Unpacker, false);
 	if (dlg.DoModal() == IDOK)
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
@@ -1394,7 +1398,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 				RECT rc = m_pImgMergeWindow->GetRectangleSelection(pane);
 				text += strutils::format(_("Rc: (%d, %d)  "), rc.right - rc.left, rc.bottom - rc.top);
 			}
-			text += strutils::format(_("Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"), 
+			text += strutils::format(_("Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),
 					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
@@ -1402,6 +1406,20 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 					m_pImgMergeWindow->GetImageHeight(pane),
 					m_pImgMergeWindow->GetImageBitsPerPixel(pane)
 					);
+			bool verticalFlip = m_pImgMergeWindow->GetVerticalFlip(pane);
+			bool horizontalFlip = m_pImgMergeWindow->GetHorizontalFlip(pane);
+			float angle = m_pImgMergeWindow->GetRotation(pane);
+			if (verticalFlip || horizontalFlip)
+			{
+				String flip;
+				if (verticalFlip)
+					flip += _T("V");
+				if (horizontalFlip)
+					flip += _T("H");
+				text += strutils::format(_("Flipped: %s  "), flip);
+			}
+			if (angle > 0)
+				text += strutils::format(_("Rotated: %d  "), static_cast<int>(angle));
 			m_wndStatusBar[pane].SetPaneText(0, text.c_str());
 		}
 		UpdateLastCompareResult();
@@ -1632,7 +1650,7 @@ void CImgMergeFrame::OnNextdiff()
 		m_pImgMergeWindow->NextDiff();
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != m_pImgMergeWindow->GetMaxPageCount() - 1)
 	{
-		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
 			UpdateLastCompareResult();
@@ -1669,7 +1687,7 @@ void CImgMergeFrame::OnPrevdiff()
 	}
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != 0)
 	{
-		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
 			UpdateLastCompareResult();
@@ -2046,6 +2064,34 @@ void CImgMergeFrame::OnUpdateImgNextPage(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(
 		m_pImgMergeWindow->GetCurrentMaxPage() < m_pImgMergeWindow->GetMaxPageCount() - 1);
+}
+
+void CImgMergeFrame::OnImgCurPaneRotateRight90()
+{
+	int curPane = m_pImgMergeWindow->GetActivePane();
+	m_pImgMergeWindow->SetRotation(curPane, m_pImgMergeWindow->GetRotation(curPane) - 90.f);
+	UpdateLastCompareResult();
+}
+
+void CImgMergeFrame::OnImgCurPaneRotateLeft90()
+{
+	int curPane = m_pImgMergeWindow->GetActivePane();
+	m_pImgMergeWindow->SetRotation(curPane, m_pImgMergeWindow->GetRotation(curPane) + 90.f);
+	UpdateLastCompareResult();
+}
+
+void CImgMergeFrame::OnImgCurPaneFlipVertically()
+{
+	int curPane = m_pImgMergeWindow->GetActivePane();
+	m_pImgMergeWindow->SetVerticalFlip(curPane, !m_pImgMergeWindow->GetVerticalFlip(curPane));
+	UpdateLastCompareResult();
+}
+
+void CImgMergeFrame::OnImgCurPaneFlipHorizontally()
+{
+	int curPane = m_pImgMergeWindow->GetActivePane();
+	m_pImgMergeWindow->SetHorizontalFlip(curPane, !m_pImgMergeWindow->GetHorizontalFlip(curPane));
+	UpdateLastCompareResult();
 }
 
 void CImgMergeFrame::OnImgCurPanePrevPage()

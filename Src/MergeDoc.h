@@ -161,7 +161,7 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[],
 		const bool bRO[], const String strDesc[]);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
-	void MoveOnLoad(int nPane = -1, int nLinIndex = -1);
+	void MoveOnLoad(int nPane = -1, int nLinIndex = -1, bool bRealLine = false);
 	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
@@ -187,7 +187,7 @@ public:
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
-	void SetUnpacker(const PackingInfo * infoUnpacker);
+	void SetUnpacker(const PackingInfo * infoUnpacker) override;
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	const PrediffingInfo *GetPrediffer() const override;

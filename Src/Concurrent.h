@@ -16,7 +16,7 @@ namespace Concurrent
 			bool m_completed;
 		};
 
-		Task(TaskParams *pParams) : m_pParams(pParams)
+		explicit Task(TaskParams *pParams) : m_pParams(pParams)
 		{
 		}
 

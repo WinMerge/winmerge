@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-26 16:58+0000\n"
-"PO-Revision-Date: 2021-06-28 09:09+0200\n"
+"POT-Creation-Date: 2021-07-13 22:26+0000\n"
+"PO-Revision-Date: 2021-07-16 12:12+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -136,6 +136,18 @@ msgstr "&Kitas psl."
 
 msgid "&Active Pane"
 msgstr "&Aktyvus polangis"
+
+msgid "Rotate &Right 90deg"
+msgstr "Pasukti 90 l. &dešinėn"
+
+msgid "Rotate &Left 90deg"
+msgstr "Pasukti 90 l. &kairėn"
+
+msgid "Flip &Vertically"
+msgstr "Apversti &vertikaliai"
+
+msgid "Flip &Horizontally"
+msgstr "Apversti &horizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
@@ -709,6 +721,9 @@ msgstr "&Parengėjas"
 msgid "Apply Pre&differ..."
 msgstr "Taikyti paren&gėją..."
 
+msgid "&Transform with editor script..."
+msgstr "&Transformuoti su redaktoriaus skriptu..."
+
 msgid "Sp&lit"
 msgstr "Pada&linti"
 
@@ -716,7 +731,7 @@ msgid "Comp&are"
 msgstr "Lyg&inti"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Lyginti naujame &lange"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Lyginti ne hor&izontaliai..."
@@ -1059,12 +1074,6 @@ msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 msgid "Language:"
 msgstr "Kalba:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
-
-msgid "Reset"
-msgstr "Atkurti"
-
 msgid "Find"
 msgstr "Rasti"
 
@@ -1317,8 +1326,8 @@ msgstr "Aprašas:"
 msgid "Default arguments:"
 msgstr "Numatytieji argumentai:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+msgid "Display all plugins, don't check the extension."
+msgstr "Rodyti visus papildinius netikrinant plėtinių."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "P&o išpakavimo atidaryti failus to paties tipo lange."
@@ -1439,6 +1448,12 @@ msgstr "Ž&odžių skirtukų simboliai:"
 
 msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
+
+msgid "Reset"
+msgstr "Atkurti"
 
 msgid "File Filters"
 msgstr "Failo filtrai"
@@ -1982,8 +1997,8 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -1996,6 +2011,9 @@ msgstr "Katalogų lyginimo"
 
 msgid "Differences"
 msgstr "Skirtumų"
+
+msgid "Message Boxes"
+msgstr "Bendrų pranešimų"
 
 msgid "To:"
 msgstr "Į:"
@@ -2065,6 +2083,12 @@ msgstr "Failo tipas"
 
 msgid "Extension"
 msgstr "Plėtinys"
+
+msgid "Message"
+msgstr "Pranešimas"
+
+msgid "Answer"
+msgstr "Atsakymas"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2903,9 +2927,6 @@ msgstr "Nurodykite failą rezultatams."
 msgid "Cannot create a patch file from binary files."
 msgstr "Negalima kurti pataisų failo iš binarinių failų."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Negalima kurti pataisų failo iš katalogų."
-
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad failuose nebūtų neišsaugotų pakeitimų."
 
@@ -3230,12 +3251,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "Apversta: %s  "
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr "Pasukta: %s  "
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"
@@ -3357,6 +3386,9 @@ msgstr "Sutvarkyti JSON"
 msgid "Prettify XML"
 msgstr "Sutvarkyti XML"
 
+msgid "Prettify YAML"
+msgstr "Sutvarkyti YAML"
+
 msgid "Visualize Graphviz"
 msgstr "Vizualizuoti „Graphviz“"
 
@@ -3368,6 +3400,9 @@ msgstr "Pateikti TSV duomenų užklausą..."
 
 msgid "Query JSON Data..."
 msgstr "Pateikti JSON duomenų užklausą..."
+
+msgid "Query YAML Data..."
+msgstr "Pateikti YAML duomenų užklausą..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

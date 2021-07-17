@@ -477,7 +477,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 	{
 		str.resize(wlen);
 	}
-	catch (std::bad_alloc)
+	catch (std::bad_alloc&)
 	{
 		// Not enough memory - exit
 		return false;
@@ -509,7 +509,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 			{
 				str.resize(n);
 			}
-			catch (std::bad_alloc)
+			catch (std::bad_alloc&)
 			{
 				// Not enough memory - exit
 				return false;
@@ -538,7 +538,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 					{
 						str.resize(n);
 					}
-					catch (std::bad_alloc)
+					catch (std::bad_alloc&)
 					{
 						// Not enough memory - exit
 						return false;
@@ -558,7 +558,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 					{
 						str.resize(n);
 					}
-					catch (std::bad_alloc)
+					catch (std::bad_alloc&)
 					{
 						// Not enough memory - exit
 						return false;
@@ -582,7 +582,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 				{
 					str.resize(n);
 				}
-				catch (std::bad_alloc)
+				catch (std::bad_alloc&)
 				{
 					// Not enough memory - exit
 					return false;
@@ -632,7 +632,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 			{
 				str.resize(n);
 			}
-			catch (std::bad_alloc)
+			catch (std::bad_alloc&)
 			{
 				// Not enough memory - exit
 				return false;
@@ -645,7 +645,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 				{
 					str.resize(n);
 				}
-				catch (std::bad_alloc)
+				catch (std::bad_alloc&)
 				{
 					// Not enough memory - exit
 					return false;

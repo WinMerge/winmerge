@@ -156,6 +156,18 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip &Vertically"
+msgstr ""
+
+msgid "Flip &Horizontally"
+msgstr ""
+
 #, c-format
 msgid "&Zoom"
 msgstr "&Velikost písma"
@@ -891,6 +903,9 @@ msgstr ""
 msgid "Apply Pre&differ..."
 msgstr ""
 
+msgid "&Transform with editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr ""
@@ -1325,15 +1340,6 @@ msgstr "Automatické &dokončování:"
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr ""
-"Některá obecná okna se zprávami je možno skrýt.\n"
-"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
-
-#, c-format
-msgid "Reset"
-msgstr "V&rátit"
-
 #, c-format
 msgid "Find"
 msgstr "Najít"
@@ -1654,8 +1660,8 @@ msgstr "Popis:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "&Zobrazit všechny převaděče (nekontrolovat podle přípony)."
+msgid "Display all plugins, don't check the extension."
+msgstr ""
 
 msgid "&Open files in the same window type after unpacking."
 msgstr ""
@@ -1805,6 +1811,15 @@ msgstr "Zn&aky oddělující slova:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr ""
+"Některá obecná okna se zprávami je možno skrýt.\n"
+"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
+
+#, c-format
+msgid "Reset"
+msgstr "V&rátit"
 
 msgid "File Filters"
 msgstr ""
@@ -2496,7 +2511,7 @@ msgstr "Přes&kočit vše"
 msgid "Don't display this &message again."
 msgstr "T&uto zprávu již příště nezobrazovat."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2512,6 +2527,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Rozdíly"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2603,6 +2621,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Přípona"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -3725,10 +3749,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nelze vytvořit opravný soubor z binárních souborů."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nelze vytvořit opravný soubor ze složek."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -4118,11 +4138,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %s  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4246,6 +4274,9 @@ msgstr ""
 msgid "Prettify XML"
 msgstr ""
 
+msgid "Prettify YAML"
+msgstr ""
+
 msgid "Visualize Graphviz"
 msgstr ""
 
@@ -4256,6 +4287,9 @@ msgid "Query TSV Data..."
 msgstr ""
 
 msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
 msgstr ""
 
 #, c-format

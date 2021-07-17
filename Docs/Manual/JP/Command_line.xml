@@ -70,6 +70,9 @@
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/l</option>
+      <replaceable>linenumber</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
 
@@ -112,6 +115,9 @@
 
       <arg choice="opt" rep="norepeat"><option>/cfg</option>
       <replaceable>name=value</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/inifile</option>
+      <replaceable>inifile</replaceable></arg>
 
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
@@ -387,6 +393,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>ファイルを読み込んだ後にジャンプする行番号を指定します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/dl</option></term>
       <listitem>
         <para>左側タイトルバーの説明を指定します。
@@ -398,7 +411,7 @@
     </varlistentry>
 
     <varlistentry>
-     <term><option>/dm</option></term>
+      <term><option>/dm</option></term>
       <listitem>
         <para><option>/dl</option>と同様に中央タイトルバーの説明を指定します。
        </para>
@@ -406,7 +419,7 @@
     </varlistentry>
 
     <varlistentry>
-     <term><option>/dr</option></term>
+      <term><option>/dr</option></term>
       <listitem>
         <para><option>/dl</option>と同様に右側タイトルバーの説明を指定します。
        </para>
@@ -617,6 +630,18 @@
         <xref
         linkend="ResolveConflictFiles" />で説明している様にマージやコンフリクトを解決することができます。
         コンフリクトファイルと共に他のパスは使用できないことに注意してください。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>ini ファイル</primary>
+        <secondary>コマンドラインでの指定</secondary>
+      </indexterm>
+
+      <term><option>/inifile <replaceable>inifile</replaceable></option></term>
+      <listitem>
+        <para>レジストリの代わりに設定の読み込みと保存に使用するINIファイルを指定します。</para>
       </listitem>
     </varlistentry>
 

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-06-27 23:09+0900\n"
+"PO-Revision-Date: 2021-07-11 12:59+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,18 @@ msgstr "次ページ(&N)"
 
 msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
+
+msgid "Rotate &Right 90deg"
+msgstr "右へ90度回転(&R)"
+
+msgid "Rotate &Left 90deg"
+msgstr "左へ90度回転(&L)"
+
+msgid "Flip &Vertically"
+msgstr "上下反転(&V)"
+
+msgid "Flip &Horizontally"
+msgstr "左右反転(&H)"
 
 msgid "&Zoom"
 msgstr "拡大(&Z)"
@@ -707,6 +719,9 @@ msgstr "比較前処理プラグイン(&P)"
 msgid "Apply Pre&differ..."
 msgstr "比較前処理プラグインを適用(&D)..."
 
+msgid "&Transform with editor script..."
+msgstr "エディタスクリプトで変換(&T)..."
+
 msgid "Sp&lit"
 msgstr "分割(&L)"
 
@@ -1057,12 +1072,6 @@ msgstr "[開く] ダイアログのオートコンプリート(&E):"
 msgid "Language:"
 msgstr "言語:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
-
-msgid "Reset"
-msgstr "リセット"
-
 msgid "Find"
 msgstr "検索"
 
@@ -1319,8 +1328,8 @@ msgstr "説明:"
 msgid "Default arguments:"
 msgstr "デフォルト引数:"
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "拡張子を無視してすべての展開プラグインを表示する。"
+msgid "Display all plugins, don't check the extension."
+msgstr "拡張子を無視してすべてのプラグインを表示する。"
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "展開プラグイン適用後、ファイルを同じウインドウタイプで開く。(&O)"
@@ -1441,6 +1450,12 @@ msgstr "単語区切り文字(&O)"
 
 msgid "&Rendering Mode:"
 msgstr "レンダリングモード(&R):"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
+
+msgid "Reset"
+msgstr "リセット"
 
 msgid "File Filters"
 msgstr "ファイルフィルター"
@@ -2044,8 +2059,8 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般ページで [リセット] ボタンを押してください。"
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックスページで [リセット] ボタンを押してください。"
 
 msgid "Syntax"
 msgstr "シンタックス"
@@ -2058,6 +2073,9 @@ msgstr "フォルダー比較"
 
 msgid "Differences"
 msgstr "差異"
+
+msgid "Message Boxes"
+msgstr "メッセージボックス"
 
 msgid "To:"
 msgstr "To:"
@@ -2133,6 +2151,12 @@ msgstr "ファイルタイプ"
 
 msgid "Extension"
 msgstr "拡張子"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Answer"
+msgstr "回答"
 
 msgid "Name"
 msgstr "名前"
@@ -3174,9 +3198,6 @@ msgstr "出力パスを指定してください。"
 msgid "Cannot create a patch file from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
 
-msgid "Cannot create a patch file from directories."
-msgstr "フォルダーからパッチ ファイルは生成できません。"
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3613,12 +3634,20 @@ msgid "Dist: %g, %g  "
 msgstr "色距離: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "反転: %s  "
+
+#, c-format
+msgid "Rotated: %s  "
+msgstr "回転: %s°  "
 
 msgid "<Edit here>"
 msgstr "<ここを編集>"
@@ -3740,6 +3769,9 @@ msgstr "JSON整形"
 msgid "Prettify XML"
 msgstr "XML整形"
 
+msgid "Prettify YAML"
+msgstr "YAML整形"
+
 msgid "Visualize Graphviz"
 msgstr "Graphviz視覚化"
 
@@ -3751,6 +3783,9 @@ msgstr "TSVデータの問い合わせ..."
 
 msgid "Query JSON Data..."
 msgstr "JSONデータの問い合わせ..."
+
+msgid "Query YAML Data..."
+msgstr "YAMLデータの問い合わせ..."
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

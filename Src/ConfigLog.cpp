@@ -111,24 +111,35 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
+		String sPluginText;
+		if (plugin->m_filepath.find(':') != String::npos)
+		{
+			String sFileName = paths::GetLongPath(plugin->m_filepath);
+			if (sFileName.length() > sEXEPath.length())
+				if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
+					sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
 
-		String sFileName = paths::GetLongPath(plugin->m_filepath);
-		if (sFileName.length() > sEXEPath.length())
-			if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
-				sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
-		
-		String sModifiedTime = _T("");
-		sModifiedTime = GetLastModified(plugin->m_filepath);
-		if (!sModifiedTime.empty())
-			sModifiedTime = _T("[") + sModifiedTime + _T("]");
-		
-		String sPluginText = strutils::format
+			String sModifiedTime = _T("");
+			sModifiedTime = GetLastModified(plugin->m_filepath);
+			if (!sModifiedTime.empty())
+				sModifiedTime = _T("[") + sModifiedTime + _T("]");
+
+			sPluginText = strutils::format
 			(_T("\r\n  %s%-36s path=%s  %s"),
-			plugin->m_disabled ? _T("!") : _T(" "),
-			plugin->m_name,
-			sFileName,
-			sModifiedTime
+				plugin->m_disabled ? _T("!") : _T(" "),
+				plugin->m_name,
+				sFileName,
+				sModifiedTime
 			);
+		}
+		else
+		{
+			sPluginText = strutils::format
+			(_T("\r\n  %s%-36s"),
+				plugin->m_disabled ? _T("!") : _T(" "),
+				plugin->m_name
+			);
+		}
 		m_pfile->WriteString(sPluginText);
 	}
 }
