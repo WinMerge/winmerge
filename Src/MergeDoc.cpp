@@ -103,6 +103,9 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
+	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
+	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -2152,18 +2155,20 @@ void CMergeDoc::OnDiffContext(UINT nID)
 }
 
 /**
+ * @brief Swap the positions of the two panes
+ */
+template<int srcPane, int dstPane>
+void CMergeDoc::OnViewSwapPanes()
+{
+	SwapFiles(srcPane, dstPane);
+}
+
+/**
  * @brief Swap context enable for 3 file compares 
  */
 void CMergeDoc::OnUpdateSwapContext(CCmdUI* pCmdUI)
 {
-	if (m_nBuffers > 2)
-	{
-		pCmdUI->Enable(true);
-	}
-	else
-	{
-		pCmdUI->Enable(false);
-	}
+	pCmdUI->Enable(m_nBuffers > 2);
 }
 
 /**

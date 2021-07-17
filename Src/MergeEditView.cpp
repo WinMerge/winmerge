@@ -217,9 +217,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_FILE_OPEN_PARENT_FOLDER, OnOpenParentFolder)
-	ON_COMMAND(ID_SWAPPANES_SWAP12, OnViewSwapPanes12)
-	ON_COMMAND(ID_SWAPPANES_SWAP23, OnViewSwapPanes23)
-	ON_COMMAND(ID_SWAPPANES_SWAP13, OnViewSwapPanes13)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -3910,30 +3907,6 @@ void CMergeEditView::SetWordWrapping( bool bWordWrap )
 	for (int pane = 0; pane < GetDocument()->m_nBuffers; pane++)
 		GetGroupView(pane)->m_bWordWrap = bWordWrap;
 	CCrystalTextView::SetWordWrapping(bWordWrap);
-}
-
-/**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes12()
-{
-	GetDocument()->SwapFiles(0, 1);
-}
-
-/**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes23()
-{
-	GetDocument()->SwapFiles(1, 2);
-}
-
-/**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes13()
-{
-	GetDocument()->SwapFiles(0, 2);
 }
 
 /**

@@ -327,9 +327,6 @@ protected:
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
 	afx_msg void OnOpenParentFolder();
-	afx_msg void OnViewSwapPanes12();
-	afx_msg void OnViewSwapPanes23();
-	afx_msg void OnViewSwapPanes13();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();
 	afx_msg void OnViewMargin();
