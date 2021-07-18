@@ -251,7 +251,7 @@ std::shared_ptr<SubstitutionList> SubstitutionFiltersList::MakeSubstitutionList(
 	std::shared_ptr<SubstitutionList> plist(new SubstitutionList);
 	for (auto& item : m_items)
 	{
-		if (item.enabled)
+		if (item.enabled&& !item.pattern.empty())
 		{
 			try
 			{
