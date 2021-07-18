@@ -2781,58 +2781,72 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	return loadSuccess;
 }
 
-void CMergeDoc::SetTableProperties()
+CMergeDoc::TableProps CMergeDoc::GetTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
 {
-	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
-	auto getTablePropsByFileName = [](const String& path, const std::optional<bool>& enableTableEditing)-> TableProps
+	const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
+	FileFilterHelper filterCSV, filterTSV, filterDSV;
+	bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
+	const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+	if (!csvFilePattern.empty())
 	{
-		const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
-		FileFilterHelper filterCSV, filterTSV, filterDSV;
-		bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
-		const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
-		if (!csvFilePattern.empty())
-		{
-			filterCSV.UseMask(true);
-			filterCSV.SetMask(csvFilePattern);
-			if (filterCSV.includeFile(path))
-				return { true, ',', quote, allowNewlineIQuotes };
-		}
-		const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
-		if (!tsvFilePattern.empty())
-		{
-			filterTSV.UseMask(true);
-			filterTSV.SetMask(tsvFilePattern);
-			if (filterTSV.includeFile(path))
-				return { true, '\t', quote, allowNewlineIQuotes };
-		}
-		const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
-		if (!dsvFilePattern.empty())
-		{
-			filterDSV.UseMask(true);
-			filterDSV.SetMask(dsvFilePattern);
-			if (filterDSV.includeFile(path))
-				return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
-		}
-		if (enableTableEditing.value_or(false))
+		filterCSV.UseMask(true);
+		filterCSV.SetMask(csvFilePattern);
+		if (filterCSV.includeFile(path))
+			return { true, ',', quote, allowNewlineIQuotes };
+	}
+	const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
+	if (!tsvFilePattern.empty())
+	{
+		filterTSV.UseMask(true);
+		filterTSV.SetMask(tsvFilePattern);
+		if (filterTSV.includeFile(path))
+			return { true, '\t', quote, allowNewlineIQuotes };
+	}
+	const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
+	if (!dsvFilePattern.empty())
+	{
+		filterDSV.UseMask(true);
+		filterDSV.SetMask(dsvFilePattern);
+		if (filterDSV.includeFile(path))
+			return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+	}
+	if (enableTableEditing.value_or(false))
+	{
+		if (showDialog)
 		{
 			COpenTableDlg dlg;
 			if (dlg.DoModal() == IDOK)
 				return { true, dlg.m_sDelimiterChar.c_str()[0], dlg.m_sQuoteChar.c_str()[0], dlg.m_bAllowNewlinesInQuotes };
 		}
-		return { false, 0, 0, false };
-	};
-
-	TableProps tableProps[3] = {};
-	int nTableFileIndex = -1;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (nBuffer == 0 ||
-			paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
-			tableProps[nBuffer] = getTablePropsByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
 		else
-			tableProps[nBuffer] = tableProps[nBuffer - 1];
-		if (tableProps[nBuffer].istable)
-			nTableFileIndex = nBuffer;
+		{
+			return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+		}
+	}
+	return { false, 0, 0, false };
+};
+
+void CMergeDoc::SetTableProperties()
+{
+	TableProps tableProps[3] = { };
+	int nTableFileIndex = -1;
+	if (m_pTablePropsCommandLine)
+	{
+		nTableFileIndex = 0;
+		tableProps[0] = *m_pTablePropsCommandLine;
+	}
+	else
+	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (nBuffer == 0 ||
+				paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
+				tableProps[nBuffer] = GetTablePropertiesByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
+			else
+				tableProps[nBuffer] = tableProps[nBuffer - 1];
+			if (tableProps[nBuffer].istable)
+				nTableFileIndex = nBuffer;
+		}
 	}
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{

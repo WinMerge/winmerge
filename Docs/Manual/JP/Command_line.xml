@@ -76,6 +76,9 @@
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+      <replaceable>delimiter</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
 
@@ -108,10 +111,10 @@
       <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/unpacker</option>
-      <replaceable>unpacker name</replaceable></arg>
+      <replaceable>unpacker-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/prediffer</option>
-      <replaceable>prediffer name</replaceable></arg>
+      <replaceable>prediffer-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cp</option>
       <replaceable>codepage</replaceable></arg>
@@ -414,6 +417,13 @@
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>ファイルを読み込んだ後にジャンプする行番号を指定します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>テーブル編集用の区切り文字を指定します。</para>
       </listitem>
     </varlistentry>
 

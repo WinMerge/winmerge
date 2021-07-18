@@ -76,6 +76,9 @@
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+      <replaceable>delimiter</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
 
@@ -108,10 +111,10 @@
       <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/unpacker</option>
-      <replaceable>unpacker name</replaceable></arg>
+      <replaceable>unpacker-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/prediffer</option>
-      <replaceable>prediffer name</replaceable></arg>
+      <replaceable>prediffer-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cp</option>
       <replaceable>codepage</replaceable></arg>
@@ -415,6 +418,13 @@
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>Specifies a line number to jump to after loading the files.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>Specifies a delimiter character for table editing.</para>
       </listitem>
     </varlistentry>
 
