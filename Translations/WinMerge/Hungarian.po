@@ -4430,6 +4430,9 @@ msgstr "Megjelenítés"
 msgid "Data Query"
 msgstr "Adatlekérdezés"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Egyéb"
 
@@ -4499,6 +4502,9 @@ msgstr "TSV mezők mellőzése"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "JSON formázása"
 
@@ -4521,6 +4527,9 @@ msgid "Query JSON Data..."
 msgstr "JSON adatok lekérdezése..."
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

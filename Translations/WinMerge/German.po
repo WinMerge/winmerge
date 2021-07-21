@@ -4047,6 +4047,9 @@ msgstr "Visualisierung"
 msgid "Data Query"
 msgstr "Datenabfrage"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Andere"
 
@@ -4116,6 +4119,9 @@ msgstr "TSV-Felder ignorieren"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Prediff-Substitutionsfilter anwenden"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "JSON verschönern"
 
@@ -4139,6 +4145,9 @@ msgstr "JSON-Daten abfragen..."
 
 msgid "Query YAML Data..."
 msgstr "YAML-Daten abfragen..."
+
+msgid "Validate HTML"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

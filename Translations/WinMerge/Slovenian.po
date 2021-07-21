@@ -4424,6 +4424,9 @@ msgstr "Vidna predstavitev"
 msgid "Data Query"
 msgstr "Podatkovna poizvedba"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "&Drugo"
 
@@ -4493,6 +4496,9 @@ msgstr "Prezri polja TSV"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Uporabite nadomestne filtre Prediff"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "Polepšaj JSON"
 
@@ -4515,6 +4521,9 @@ msgid "Query JSON Data..."
 msgstr "Poizveduj podatke JSON..."
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

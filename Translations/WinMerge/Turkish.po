@@ -3756,6 +3756,9 @@ msgstr "Görselleştirme"
 msgid "Data Query"
 msgstr "Veri sorgusu"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "&Diğerleri"
 
@@ -3826,6 +3829,9 @@ msgstr "TSV alanları yok sayılsın"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Ön farklılaştırma değiştirme süzgeçlerini uygula"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "JSON sadeleştirme"
 
@@ -3848,6 +3854,9 @@ msgid "Query JSON Data..."
 msgstr "JSON verilerini sorgula..."
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

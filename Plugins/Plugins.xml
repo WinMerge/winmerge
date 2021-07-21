@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <plugins>
+  <plugin name="PrettifyHTML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="HTML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
+    <file-filters value="\.html$;\.htm$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".html" />
+    <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify HTML;GenerateEditorScript" />
+    <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0"</command>
+    </unpack-file>
+  </plugin>
   <plugin name="PrettifyXML">
     <event value="FILE_PACK_UNPACK" />
     <description value="XML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
@@ -9,7 +21,7 @@
     <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify XML;GenerateEditorScript" />
     <arguments value="-xml -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
     <unpack-file>
-    <command>"${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0"</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyJSON">
@@ -82,6 +94,18 @@
     <arguments value="e &quot;.&quot; -" />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\yq\yq.bat" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="ValidateHTML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="HTML Validator with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
+    <file-filters value="\.html$;\.htm$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".html" />
+    <extended-properties value="ProcessType=Validation;MenuCaption=Validate HTML" />
+    <arguments value="-e" />
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} 2> "${DST_FILE}" | exit 0"</command>
     </unpack-file>
   </plugin>
   <plugin name="VisualizeGraphviz">

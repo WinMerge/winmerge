@@ -3740,6 +3740,9 @@ msgstr "Visualisatie"
 msgid "Data Query"
 msgstr "Data-bevraging"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Andere"
 
@@ -3809,6 +3812,9 @@ msgstr "TSV-velden negeren"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Voorvergelijking-substitutiefilters toepassen"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "JSON mooi maken"
 
@@ -3831,6 +3837,9 @@ msgid "Query JSON Data..."
 msgstr "JSON-data bevragen..."
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format
