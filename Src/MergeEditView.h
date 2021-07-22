@@ -87,11 +87,8 @@ private:
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
-	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
-
 // Attributes
 public:
-	void CopyProperties (CCrystalTextView* pSource) override;
 
 // Operations
 public:

@@ -328,15 +328,15 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -maximize means maximize the main window.
 			m_nCmdShow = MAXIMIZE;
 		}
-		else if (param == _T("prediffer"))
-		{
-			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
-			q = EatParam(q, m_sPreDiffer);
-		}
 		else if (param == _T("unpacker"))
 		{
 			// Get unpacker if specified (otherwise unpacker will be blank, which is default)
 			q = EatParam(q, m_sUnpacker);
+		}
+		else if (param == _T("prediffer"))
+		{
+			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
+			q = EatParam(q, m_sPreDiffer);
 		}
 		else if (param == _T("wl"))
 		{
@@ -462,6 +462,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			String codepage;
 			q = EatParam(q, codepage);
 			m_nCodepage = atoi(ucr::toUTF8(codepage).c_str());
+		}
+		else if (param == _T("fileext"))
+		{
+			q = EatParam(q, m_sFileExt);
+			if (!m_sFileExt.empty() && m_sFileExt[0] != '.')
+				m_sFileExt = _T(".") + m_sFileExt;
 		}
 		else if (param == _T("ignorews"))
 		{

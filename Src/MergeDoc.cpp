@@ -129,6 +129,7 @@ CMergeDoc::CMergeDoc()
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
 , m_CurrentPredifferID(0)
+, m_bChangedSchemeManually(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -2865,6 +2866,26 @@ void CMergeDoc::SetTableProperties()
 			m_ptBuf[nBuffer]->SetTableEditing(false);
 		}
 	}
+}
+
+void CMergeDoc::SetTextType(int textType)
+{
+	ForEachView([textType, this](auto& pView) {
+		pView->SetTextType(CrystalLineParser::TextType(textType));
+		pView->SetDisableBSAtSOL(false);
+		m_bChangedSchemeManually = true;
+	});
+}
+
+void CMergeDoc::SetTextType(const String& ext)
+{
+	String ext2 = ext;
+	strutils::replace(ext2, _T("."), _T(""));
+	ForEachView([&ext2, this](auto& pView) {
+		pView->SetTextType(ext2.c_str());
+		pView->SetDisableBSAtSOL(false);
+		m_bChangedSchemeManually = true;
+	});
 }
 
 /**

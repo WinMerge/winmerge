@@ -121,6 +121,9 @@
       <arg choice="opt" rep="norepeat"><option>/cp</option>
       <replaceable>codepage</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/fileext</option>
+      <replaceable>file-extension</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/cfg</option>
       <replaceable>name=value</replaceable></arg>
 
@@ -559,6 +562,13 @@
       <term><option>/cp</option></term>
       <listitem>
         <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>Specifies a file extension for determining syntax hightliting.</para>
       </listitem>
     </varlistentry>
 

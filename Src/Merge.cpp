@@ -714,6 +714,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 		CMainFrame::OpenTextFileParams openParams;
 		openParams.m_line = cmdInfo.m_nLineIndex;
+		openParams.m_fileExt = cmdInfo.m_sFileExt;
 		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
 		{
 			openParams.m_tableDelimiter = cmdInfo.m_cTableDelimiter;

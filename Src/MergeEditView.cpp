@@ -66,7 +66,6 @@ CMergeEditView::CMergeEditView()
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
-, m_bChangedSchemeManually(false)
 {
 	SetParser(&m_xParser);
 	
@@ -258,15 +257,6 @@ CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
 CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 {
 	return GetDocument()->m_ptBuf[m_nThisPane].get();
-}
-
-void CMergeEditView::CopyProperties(CCrystalTextView* pSource)
-{
-	__super::CopyProperties(pSource);
-	auto pSourceEditView = dynamic_cast<decltype(this)>(pSource);
-	if (!pSourceEditView)
-		return;
-	m_bChangedSchemeManually = pSourceEditView->m_bChangedSchemeManually;
 }
 
 /**
@@ -3330,7 +3320,7 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
-	else if (!m_bChangedSchemeManually)
+	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
 		String fileName = GetDocument()->m_filePaths[m_nThisPane];
@@ -4083,21 +4073,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 {
 	CMergeDoc *pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
-
-	for (int nGroup = 0; nGroup < pDoc->m_nGroups; nGroup++)
-		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-		{
-			CMergeEditView *pView = pDoc->GetView(nGroup, nPane);
-			ASSERT(pView != nullptr);
-
-			if (pView != nullptr)
-			{
-				pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
-				pView->SetDisableBSAtSOL(false);
-				pView->m_bChangedSchemeManually = true;
-			}
-		}
-
+	pDoc->SetTextType(nID - ID_COLORSCHEME_FIRST);
 	OnRefresh();
 }
 

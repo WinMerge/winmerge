@@ -824,7 +824,8 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
-		CMergeDoc::TableProps props = CMergeDoc::GetTablePropertiesByFileName(fileloc[0].filepath, true, false);
+		CMergeDoc::TableProps props = CMergeDoc::GetTablePropertiesByFileName(
+			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		props.delimiter = pOpenParams->m_tableDelimiter.value_or(props.delimiter);
 		props.quote = pOpenParams->m_tableQuote.value_or(props.quote);
 		props.allowNewlinesInQuotes = pOpenParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
@@ -843,6 +844,9 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	{
 		return false;
 	}
+
+	if (pOpenParams && !pOpenParams->m_fileExt.empty())
+		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{

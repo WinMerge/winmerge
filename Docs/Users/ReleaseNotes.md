@@ -53,7 +53,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
 
 ### Select Files or Folders dialog
 
-- BugFix: Fix the Select Files or Folders dialog. (PR #882)
+- BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)
 
 ### Plugins
 
@@ -86,7 +86,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
 ### Command line
 
 - Added /l command line option (osdn.net #41528)
-- Added /t, /table-delimiter, /new and /inifile command line option
+- Added /t, /table-delimiter, /new, /fileext and /inifile command line option
 
 ### Installer
 
@@ -97,7 +97,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
 
 - Translation updates:
   - Bulgarian (PR #850)
-  - Dutch (PR #842)
+  - Dutch (PR #842,#893)
   - Galician (PR #869)
   - German (PR #860,#870,#883,#890)
   - Hungarian (PR #845,#856)

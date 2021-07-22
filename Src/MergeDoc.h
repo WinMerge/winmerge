@@ -319,6 +319,9 @@ public:
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
 	void SetTableProperties(const TableProps& props) { m_pTablePropsCommandLine.reset(new TableProps(props)); }
+	void SetTextType(int textType);
+	void SetTextType(const String& ext);
+	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
@@ -365,6 +368,7 @@ protected:
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
+	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 
 // friend access
 	friend class RescanSuppress;

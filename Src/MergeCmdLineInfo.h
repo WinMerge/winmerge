@@ -91,6 +91,7 @@ public:
 	String m_sFileFilter; /**< File filter mask. */
 	String m_sPreDiffer; /**< Pre-differ name. */
 	String m_sUnpacker; /**< Unpacker name. */
+	String m_sFileExt; /**< File extension for determining syntax highliting */
 
 	String m_sOutputpath;
 	String m_sReportFile;

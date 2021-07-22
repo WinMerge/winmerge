@@ -75,6 +75,7 @@ public:
 		std::optional<TCHAR> m_tableDelimiter;
 		std::optional<TCHAR> m_tableQuote;
 		std::optional<bool> m_tableAllowNewlinesInQuotes;
+		String m_fileExt;
 	};
 
 	CMainFrame();
