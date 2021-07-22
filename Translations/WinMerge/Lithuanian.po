@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-13 22:26+0000\n"
-"PO-Revision-Date: 2021-07-16 12:12+0200\n"
+"POT-Creation-Date: 2021-07-21 22:10+0000\n"
+"PO-Revision-Date: 2021-07-22 16:16+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -3309,7 +3309,7 @@ msgid "Data Query"
 msgstr "Duomenų užklausa"
 
 msgid "Validation"
-msgstr ""
+msgstr "Patikra"
 
 msgid "&Others"
 msgstr "Kiti"
@@ -3381,7 +3381,7 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Taikyti parengėjo keitinių filtrus"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Sutvarkyti HTML"
 
 msgid "Prettify JSON"
 msgstr "Sutvarkyti JSON"
@@ -3408,7 +3408,7 @@ msgid "Query YAML Data..."
 msgstr "Pateikti YAML duomenų užklausą..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Patikrinti HTML"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
