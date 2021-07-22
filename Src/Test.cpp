@@ -51,7 +51,7 @@ TEST(CodepageTest, UCS2)
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")
 	};
-	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	ASSERT_NE(nullptr, pDoc);
@@ -69,7 +69,7 @@ TEST(CodepageTest, UTF8)
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8-NOBOM/DiffItem.h")
 	};
-	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -91,7 +91,7 @@ TEST(SyntaxHighlight, Verilog)
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILE_TO_ITSELF, 0U, 0U, IDS_FILE_TO_ITSELF);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -124,7 +124,7 @@ TEST(FileCompare, FindText)
 		paths::ConcatPath(projectRoot, _T("Testing/Data/FindText/test1.txt")),
 		paths::ConcatPath(projectRoot, _T("Testing/Data/FindText/test1.txt")),
 	};
-	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 	pFrame = GetMainFrame()->GetActiveFrame();
 	pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -230,7 +230,7 @@ TEST(FileCompare, LastLineEOL)
 					};
 					if (!pFrame)
 					{
-						EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+						EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 						pFrame = GetMainFrame()->GetActiveFrame();
 						pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 						EXPECT_NE(nullptr, pDoc);
@@ -312,7 +312,7 @@ TEST(FolderCompare, IgnoreEOL)
 	{
 		GetOptionsMgr()->Set(OPT_CMP_METHOD, 0/* Full Contents*/);
 		GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, true);
-		EXPECT_TRUE(GetMainFrame()->DoFileOpen(&dirs));
+		EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&dirs));
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
@@ -509,7 +509,7 @@ TEST(ImageCompareTest, Open)
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOrFolderOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CImgMergeFrame *pDoc = dynamic_cast<CImgMergeFrame *>(pFrame);
 	EXPECT_NE(nullptr, pDoc);
@@ -521,10 +521,10 @@ TEST(ImageCompareTest, Open)
 TEST(FileMenu, New)
 {
 	CFrameWnd *pFrame;
-	GetMainFrame()->FileNew(2, CMainFrame::FRAMETYPE::FRAME_FILE, false);
+	GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 2);
 	pFrame = GetMainFrame()->GetActiveFrame();
 	pFrame->PostMessage(WM_CLOSE);
-	GetMainFrame()->FileNew(3, CMainFrame::FRAMETYPE::FRAME_FILE, false);
+	GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 3);
 	pFrame = GetMainFrame()->GetActiveFrame();
 	pFrame->PostMessage(WM_CLOSE);
 }
