@@ -1,5 +1,112 @@
 # Change log
 
+## WinMerge 2.16.14 - 2021-07-2x
+
+### General
+
+- Fixed an issue where the WinMerge process might not terminate even though the
+    WinMerge window was closed.
+
+### File compare
+
+- BugFix: Fixed an infinite loop when "find what" in the substitution filters
+   is empty.
+
+### Folder compare
+
+- BugFix: Fix an issue where a file is deselected when returning to the folder
+    compare window after opening the file compare window by double-clicking
+    the file in the folder compare window. (PR #857)
+- Right click context menu - Compare files or folders in a new tab (#232,#277)
+
+### Binary compare
+
+- BugFix: Fixed an issue where window titles may not be updated
+
+### Image compare
+
+- winmerge shows (differences) rotated image (winmerge/winimerge #20)
+- Added following menu items to the context menu
+  - Rotate Right 90deg
+  - Rotate Left 90deg
+  - Flip Vertically
+  - Flip Horizontally
+
+### Options dialog
+
+- Add preference option to clear "Don't ask this question again"
+    CompareLargeFiles choice (#772, PR #859)
+
+### Select Files or Folders dialog
+
+- BugFix: Fix the Select Files or Folders dialog. (PR #882)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: "This picture only contains a bitmap" was
+    displayed when comparing Excel files that contain shapes.
+- BugFix: CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+    (#853)
+- Improve plugin system (editor script) (PR #871)
+- New unpacker plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - ValidateHTML
+  - QueryYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- New editor script plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- Updated Apache Tika to version 2.0.0
+- Updated yq to version 4.11.1
+
+### Command line
+
+- Added /l command line option (osdn.net #41528)
+- Added /t, /table-delimiter and /inifile command line option
+
+### Installer
+
+- Installer integrates with TortoiseGit and TortoiseSVN despite being told not
+    to (#878)
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #850)
+  - Dutch (PR #842)
+  - Galician (PR #869)
+  - German (PR #860,#870,#883,#890)
+  - Hungarian (PR #845,#856)
+  - Japanese
+  - Lithuanian (PR #840,#849,#866,#875,#879)
+  - Portuguese (PR #846,#872)
+  - Slovenian (#858)
+  - Russian (PR #847)
+  - Turkish (PR #848)
+
+### Internals
+
+- BugFix: WinMerge doesn't build under Visual Studio 16.10.2 (#841)
+- BugFix: x64: LINK : warning LNK4010: invalid subsystem version number 5.01;
+    default subsystem version assumed (#855)
+- BugFix: Project: heksedit cl : command line warning D9002: ignoring unknown
+    option '/arch:SSE' (#861)
+- BugFix:ALL.vs2019.sln cl : command line warning D9035: option 'Gm' has been
+    deprecated and will be removed in a future release (#862)
+- Resolves: Add continuous code security and quality analysis (PR #844, #843)
+- Improvement: Add check and error mesage in DownloadDeps.cmd that path to
+    7-zip exists (#864)
+
 ## WinMerge 2.16.13 - 2021-06-22
 
 ### General
@@ -400,7 +507,7 @@
   - BugFix: Fix the problem accessing the text buffer out of range if a sync
       point is added by selecting a ghost line that is after the last block.
       (GitHub PR #457)
-  - BugFix: Fix the problem that "Goto...", "Goto Line <line>" and moving by
+  - BugFix: Fix the problem that "Goto...", "Goto Line &lt;line&gt;" and moving by
       left click on the location pane do not work appropriately when the Diff
       pane is active in the file compare window. (GitHub PR #476)
   - BugFix: Reloading file does not refresh its encoding (GitHub #466)
