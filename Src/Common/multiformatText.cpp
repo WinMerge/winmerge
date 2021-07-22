@@ -435,6 +435,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 			GetDestFileName();
 			TFile fileOut(m_tempFilenameDst);
 			fileOut.setSize(textForeseenSize);
+			if (textForeseenSize > 0)
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 
