@@ -96,7 +96,7 @@ struct Comp02Functor
  * @brief Construct our worker object and tell it to do the work
  */
 std::vector<wdiff>
-ComputeWordDiffs(int nFiles, const String str[3],
+ComputeWordDiffs(int nFiles, const String *str,
 	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level)
 {
 	std::vector<wdiff> diffs;

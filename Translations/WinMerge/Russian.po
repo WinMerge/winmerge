@@ -3310,6 +3310,9 @@ msgstr "Визуализация"
 msgid "Data Query"
 msgstr "Запрос данных"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Другое"
 
@@ -3379,6 +3382,9 @@ msgstr "Игнорировать поля TSV"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Применить фильтры замены предсравнения."
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "Приукрасить JSON"
 
@@ -3401,6 +3407,9 @@ msgid "Query JSON Data..."
 msgstr "Запрос данных JSON..."
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

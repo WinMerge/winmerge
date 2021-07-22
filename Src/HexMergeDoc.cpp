@@ -647,6 +647,8 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
 	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
 	CDocument::SetTitle(sTitle.c_str());
+	if (auto* pParentFrame = GetParentFrame())
+		pParentFrame->SetWindowText(sTitle.c_str());
 }
 
 /**

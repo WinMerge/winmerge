@@ -561,6 +561,60 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>PrettifyHTML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>tidy-html5 を使用して HTML ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyHTML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>tidy コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.html</filename>,
+            <filename class="extension">*.htm</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_PrettifyXML">
       <title><filename>PrettifyXML<indexterm>
           <primary>PrettifyXML plugin file</primary>
@@ -579,7 +633,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>tidy コマンドに渡すコマンドライン引数。</para>
+            <para>tidy コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -930,6 +984,60 @@
             <seg>No</seg>
 
             <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>ValidateHTML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>tidy コマンドを使用して HTMLファイルを検査します。</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ValidateHTML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>tidy コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.html</filename>,
+            <filename class="extension">*.htm</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-13 22:26+0000\n"
+"POT-Creation-Date: 2021-07-21 22:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3302,6 +3302,9 @@ msgstr ""
 msgid "Data Query"
 msgstr ""
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr ""
 
@@ -3371,6 +3374,9 @@ msgstr ""
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr ""
 
@@ -3393,6 +3399,9 @@ msgid "Query JSON Data..."
 msgstr ""
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

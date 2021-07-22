@@ -34,6 +34,9 @@
       <arg choice="opt" rep="norepeat"><option>/m</option>
       <replaceable>compare-method</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/t</option>
+      <replaceable>window-type</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
@@ -58,6 +61,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/new</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
@@ -72,6 +77,9 @@
 
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+      <replaceable>delimiter</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
@@ -105,13 +113,16 @@
       <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/unpacker</option>
-      <replaceable>unpacker name</replaceable></arg>
+      <replaceable>unpacker-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/prediffer</option>
-      <replaceable>prediffer name</replaceable></arg>
+      <replaceable>prediffer-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cp</option>
       <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fileext</option>
+      <replaceable>file-extension</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cfg</option>
       <replaceable>name=value</replaceable></arg>
@@ -210,13 +221,28 @@
         <secondary>applying in command line</secondary>
       </indexterm>
 
-      <term><option>/m</option></term>
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
       <listitem>
         <para>フォルダ比較方法を指定します。
         次のキーワードが指定できます。<userinput>Full</userinput>,
         <userinput>Quick</userinput>, <userinput>Binary</userinput>,
-        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
-        <userinput>Size</userinput>.</para>
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput> 
+        <userinput>Size</userinput></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>window type</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>ファイルを表示するウインドウの種類を指定します。
+        次のキーワードが指定できます。 <userinput>Text</userinput>,
+        <userinput>Table</userinput>, <userinput>Binary</userinput>,
+        <userinput>Image</userinput></para>
       </listitem>
     </varlistentry>
 
@@ -344,6 +370,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>新規ブランクウインドウを開きます。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/self-compare</option></term>
       <listitem>
         <para>指定された１つのファイルとそのファイルのコピーを比較します。</para>
@@ -396,6 +429,13 @@
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>ファイルを読み込んだ後にジャンプする行番号を指定します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>テーブル編集用の区切り文字を指定します。</para>
       </listitem>
     </varlistentry>
 
@@ -521,6 +561,13 @@
       <term><option>/cp</option></term>
       <listitem>
         <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>シンタックスハイライトの種類を決定するため、ファイル拡張子を指定します。</para>
       </listitem>
     </varlistentry>
 

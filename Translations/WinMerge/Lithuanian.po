@@ -3311,6 +3311,9 @@ msgstr "Vizualizavimas"
 msgid "Data Query"
 msgstr "Duomenų užklausa"
 
+msgid "Validation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Kiti"
 
@@ -3380,6 +3383,9 @@ msgstr "Ignoruoti TSV laukus"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Taikyti parengėjo keitinių filtrus"
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr "Sutvarkyti JSON"
 
@@ -3403,6 +3409,9 @@ msgstr "Pateikti JSON duomenų užklausą..."
 
 msgid "Query YAML Data..."
 msgstr "Pateikti YAML duomenų užklausą..."
+
+msgid "Validate HTML"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

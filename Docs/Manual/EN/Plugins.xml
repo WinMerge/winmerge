@@ -563,6 +563,60 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>PrettifyHTML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>HTML Prettier with tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyHTML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the tidy command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.html</filename>,
+            <filename class="extension">*.htm</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_PrettifyXML">
       <title><filename>PrettifyXML<indexterm>
           <primary>PrettifyXML plugin file</primary>
@@ -581,7 +635,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>Command line arugments passed to the tidy command</para>
+            <para>Command line options passed to the tidy command</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -932,6 +986,60 @@
             <seg>No</seg>
 
             <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>ValidateHTML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>HTML Validator with tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ValidateHTML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the tidy command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.html</filename>,
+            <filename class="extension">*.htm</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

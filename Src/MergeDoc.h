@@ -128,6 +128,7 @@ class CLocationView;
 class CMergeDoc : public CDocument, public IMergeDoc
 {
 public:
+	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
 // Attributes
 public:
 	static int m_nBuffersTemp;
@@ -314,8 +315,13 @@ public:
 				return true;
 		return false;
 	}
+	static TableProps GetTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
+	void SetTableProperties(const TableProps& props) { m_pTablePropsCommandLine.reset(new TableProps(props)); }
+	void SetTextType(int textType);
+	void SetTextType(const String& ext);
+	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
@@ -352,6 +358,7 @@ protected:
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
+	std::unique_ptr<TableProps> m_pTablePropsCommandLine;
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit
@@ -361,6 +368,7 @@ protected:
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
+	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 
 // friend access
 	friend class RescanSuppress;
@@ -395,6 +403,8 @@ protected:
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
+	template<int srcPane, int dstPane>
+	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnPrediffer(UINT nID );

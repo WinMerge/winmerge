@@ -197,10 +197,7 @@ namespace codepage_detect
 FileTextEncoding Guess(const String& ext, const void * src, size_t len, int guessEncodingType)
 {
 	FileTextEncoding encoding;
-	int bomsize = 0;
 	encoding.SetUnicoding(ucr::DetermineEncoding(reinterpret_cast<const unsigned char *>(src), len, &encoding.m_bom));
-	if (bomsize > 0)
-		encoding.m_bom = true;
 	if (encoding.m_unicoding != ucr::NONE)
 		return encoding;
 	unsigned cp = ucr::getDefaultCodepage();

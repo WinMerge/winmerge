@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-11 15:30+0200\n"
+"PO-Revision-Date: 2021-07-21 20:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -904,7 +904,7 @@ msgid "Apply Pre&differ..."
 msgstr "Pre&differ anwenden..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "Mit Editor-Skript &transformieren..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1661,7 +1661,7 @@ msgid "Default arguments:"
 msgstr "Standardargumente:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Alle Plugins anzeigen, die Erweiterung nicht überprüfen."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen."
@@ -4050,6 +4050,9 @@ msgstr "Visualisierung"
 msgid "Data Query"
 msgstr "Datenabfrage"
 
+msgid "Validation"
+msgstr "Überprüfung"
+
 msgid "&Others"
 msgstr "Andere"
 
@@ -4119,6 +4122,9 @@ msgstr "TSV-Felder ignorieren"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Prediff-Substitutionsfilter anwenden"
 
+msgid "Prettify HTML"
+msgstr "HTML verschönern"
+
 msgid "Prettify JSON"
 msgstr "JSON verschönern"
 
@@ -4142,6 +4148,9 @@ msgstr "JSON-Daten abfragen..."
 
 msgid "Query YAML Data..."
 msgstr "YAML-Daten abfragen..."
+
+msgid "Validate HTML"
+msgstr "HTML überprüfen"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

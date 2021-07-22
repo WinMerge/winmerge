@@ -1,17 +1,125 @@
-# WinMerge 2.16.13 Beta Release Notes
+# WinMerge 2.16.14 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.14?](#what-is-new-in-21614)
 - [What Is New in 2.16.13 beta?](#what-is-new-in-21613-beta)
 - [Known issues](#known-issues)
 
-June 2021
+July 2021
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.14 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
+
+## What Is New in 2.16.14
+
+### General
+
+- Fixed an issue where the WinMerge process might not terminate even though the
+    WinMerge window was closed.
+
+### File compare
+
+- BugFix: Fixed an infinite loop when "find what" in the substitution filters
+   is empty.
+
+### Folder compare
+
+- BugFix: Fix an issue where a file is deselected when returning to the folder
+    compare window after opening the file compare window by double-clicking
+    the file in the folder compare window. (PR #857)
+- Right click context menu - Compare files or folders in a new tab (#232,#277)
+
+### Binary compare
+
+- BugFix: Fixed an issue where window titles may not be updated
+
+### Image compare
+
+- winmerge shows (differences) rotated image (winmerge/winimerge #20)
+- Added following menu items to the context menu
+  - Rotate Right 90deg
+  - Rotate Left 90deg
+  - Flip Vertically
+  - Flip Horizontally
+
+### Options dialog
+
+- Add preference option to clear "Don't ask this question again"
+    CompareLargeFiles choice (#772, PR #859)
+
+### Select Files or Folders dialog
+
+- BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: "This picture only contains a bitmap" was
+    displayed when comparing Excel files that contain shapes.
+- BugFix: CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+    (#853)
+- Improve plugin system (editor script) (PR #871)
+- New unpacker plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - ValidateHTML
+  - QueryYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- New editor script plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- Updated Apache Tika to version 2.0.0
+- Updated yq to version 4.11.1
+
+### Command line
+
+- Added /l command line option (osdn.net #41528)
+- Added /t, /table-delimiter, /new, /fileext and /inifile command line option
+
+### Installer
+
+- Installer integrates with TortoiseGit and TortoiseSVN despite being told not
+    to (#878)
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #850)
+  - Dutch (PR #842,#893)
+  - Galician (PR #869)
+  - German (PR #860,#870,#883,#890)
+  - Hungarian (PR #845,#856)
+  - Japanese
+  - Lithuanian (PR #840,#849,#866,#875,#879)
+  - Portuguese (PR #846,#872)
+  - Slovenian (#858)
+  - Russian (PR #847)
+  - Turkish (PR #848)
+
+### Internals
+
+- BugFix: WinMerge doesn't build under Visual Studio 16.10.2 (#841)
+- BugFix: x64: LINK : warning LNK4010: invalid subsystem version number 5.01;
+    default subsystem version assumed (#855)
+- BugFix: Project: heksedit cl : command line warning D9002: ignoring unknown
+    option '/arch:SSE' (#861)
+- BugFix:ALL.vs2019.sln cl : command line warning D9035: option 'Gm' has been
+    deprecated and will be removed in a future release (#862)
+- Resolves: Add continuous code security and quality analysis (PR #844, #843)
+- Improvement: Add check and error mesage in DownloadDeps.cmd that path to
+    7-zip exists (#864)
 
 ## What Is New in 2.16.13 Beta
 
