@@ -1,6 +1,6 @@
 @echo off
 
-set DOWNLOAD_URL=https://github.com/mikefarah/yq/releases/download/v4.9.7/yq_windows_386.exe
+set DOWNLOAD_URL=https://github.com/mikefarah/yq/releases/download/v4.11.1/yq_windows_386.exe
 set YQ_PATH=Commands\yq\yq_windows_386.exe
 set MESSAGE='yq command is not installed. Do you want to download it from %DOWNLOAD_URL%?'
 set TITLE='YAML Data Querier Plugin'

@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableDelayedExpansion
 set /a "ii=%RANDOM%*4/32678"
-set DOWNLOAD_URL0=https://ftp.jaist.ac.jp/pub/apache/tika/2.0.0-BETA/tika-app-2.0.0-BETA.jar
-set DOWNLOAD_URL1=https://ftp.riken.jp/net/apache/tika/2.0.0-BETA/tika-app-2.0.0-BETA.jar
-set DOWNLOAD_URL2=https://ftp.tsukuba.wide.ad.jp/software/apache/tika/2.0.0-BETA/tika-app-2.0.0-BETA.jar
-set DOWNLOAD_URL3=https://ftp.yz.yamagata-u.ac.jp/pub/network/apache/tika/2.0.0-BETA/tika-app-2.0.0-BETA.jar
+set DOWNLOAD_URL0=https://ftp.jaist.ac.jp/pub/apache/tika/2.0.0/tika-app-2.0.0.jar
+set DOWNLOAD_URL1=https://ftp.riken.jp/net/apache/tika/2.0.0/tika-app-2.0.0.jar
+set DOWNLOAD_URL2=https://ftp.tsukuba.wide.ad.jp/software/apache/tika/2.0.0/tika-app-2.0.0.jar
+set DOWNLOAD_URL3=https://ftp.yz.yamagata-u.ac.jp/pub/network/apache/tika/2.0.0/tika-app-2.0.0.jar
 set DOWNLOAD_URL=!DOWNLOAD_URL%ii%!
 set DOWNLOAD_URL_JPEG2000=https://github.com/jai-imageio/jai-imageio-jpeg2000/releases/download/jai-imageio-jpeg2000-1.4.0/jai-imageio-jpeg2000-1.4.0.jar
-set TIKA_PATH=Commands\Apache-Tika\tika-app-2.0.0-BETA.jar
+set TIKA_PATH=Commands\Apache-Tika\tika-app-2.0.0.jar
 set JAI_IMAGEIO_JPEG2000_PATH=WinMerge\Commands\Apache-Tika\jai-imageio-jpeg2000-1.4.0.jar
 set MESSAGE='Apache Tika is not installed. Do you want to download it and its dependences from %DOWNLOAD_URL% and %DOWNLOAD_URL_JPEG2000%?'
 set TITLE='Apache Tika Plugin'
