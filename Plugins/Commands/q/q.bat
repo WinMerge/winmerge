@@ -1,9 +1,14 @@
 @echo off
-if not "%PROCESSOR_ARCHITECTURE%" == "AMD64" (
-  echo QueryCSV and QueryTSV plugins are only supported on x64 systems
-  goto :eof
+if "%PROCESSOR_ARCHITECTURE%" == "AMD64" goto :next
+if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
+  rem Check if the OS is Windows 11
+  (ver | findstr /c:"Version 10.0.2") > NUL && goto :next
 )
+  
+echo QueryCSV and QueryTSV plugins are only supported on x64 systems
+goto :eof
 
+:next
 set DOWNLOAD_URL=https://github.com/harelba/q/releases/download/2.0.19/q-AMD64-Windows.exe
 set Q_PATH=Commands\q\q-AMD64-Windows.exe
 set MESSAGE='q command is not installed. Do you want to download it from %DOWNLOAD_URL%?'
