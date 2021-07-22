@@ -72,7 +72,7 @@
 ### Command line
 
 - Added /l command line option (osdn.net #41528)
-- Added /t, /table-delimiter and /inifile command line option
+- Added /t, /table-delimiter, /new and /inifile command line option
 
 ### Installer
 

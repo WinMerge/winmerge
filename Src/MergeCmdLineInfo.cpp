@@ -125,6 +125,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
 	, m_bNoPrefs(false)
 	, m_nCodepage(0)
 	, m_bSelfCompare(false)
+	, m_bNewCompare(false)
 	, m_dwLeftFlags(FFILEOPEN_NONE)
 	, m_dwMiddleFlags(FFILEOPEN_NONE)
 	, m_dwRightFlags(FFILEOPEN_NONE)
@@ -311,6 +312,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -self-compare means compare a specified file with a copy of the file
 			m_bSelfCompare = true;
+		}
+		else if (param == _T("new"))
+		{
+			// -new means to display a new blank window
+			m_bNewCompare = true;
 		}
 		else if (param == _T("minimize"))
 		{

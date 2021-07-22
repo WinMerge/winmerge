@@ -657,14 +657,14 @@ void COpenView::OnCompare(UINT nID)
 	bool recurse = pDoc->m_bRecurse;
 	if (nID == IDOK)
 	{
-		GetMainFrame()->DoFileOpen(
+		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 	}
 	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		GetMainFrame()->DoFileOpen(
+		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
 			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 	}
@@ -675,7 +675,7 @@ void COpenView::OnCompare(UINT nID)
 		if (dlg.DoModal() == IDOK)
 		{
 			tmpPackingInfo.SetPluginPipeline(dlg.GetPluginPipeline());
-			GetMainFrame()->DoFileOpen(
+			GetMainFrame()->DoFileOrFolderOpen(
 				&tmpPathContext, dwFlags.data(),
 				nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
 		}

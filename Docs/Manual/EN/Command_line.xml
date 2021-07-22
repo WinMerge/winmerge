@@ -61,6 +61,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/new</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
@@ -362,6 +364,13 @@
       <listitem>
         <para>Opens the right side as read-only. Use this
         when you don't want to change right side items in the compare.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>Opens a new blank window.</para>
       </listitem>
     </varlistentry>
 

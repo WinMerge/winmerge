@@ -74,6 +74,7 @@ public:
 	int  m_nCodepage;  /**< Codepage. */
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
 	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
+	bool m_bNewCompare; /**< Show a new blank window */
 	int m_nLineIndex; /**< Line number to jump after loading files */
 	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/
 	std::optional<TCHAR> m_cTableQuote; /* Quote character for table editing *< */

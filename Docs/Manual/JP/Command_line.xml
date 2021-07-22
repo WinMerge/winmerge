@@ -61,6 +61,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/new</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
@@ -361,6 +363,13 @@
       <listitem>
         <para>読み取り専用として右側を開きます。
         比較時、右側を変更したくない場合に使用してください。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>新規ブランクウインドウを開きます。</para>
       </listitem>
     </varlistentry>
 

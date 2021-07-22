@@ -97,16 +97,23 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	void FileNew(int nPanes, FRAMETYPE frameType, bool table);
-	bool DoFileOpen(const PathContext *pFiles = nullptr,
+	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
-		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr, UINT nID = 0, OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		UINT nID = 0, OpenTextFileParams *pOpenParams = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles = nullptr,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
-		const String& sReportFile = _T(""), const PackingInfo* infoUnpacker = nullptr, OpenTextFileParams *pOpenParams = nullptr);
+		const String& sReportFile = _T(""),
+		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		OpenTextFileParams *pOpenParams = nullptr);
+	bool DoFileNew(UINT nID, int nPanes, const String strDesc[] = nullptr,
+		const PrediffingInfo * infoPrediffer = nullptr,
+		OpenTextFileParams *pOpenParams = nullptr);
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
-	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr, const PackingInfo* infoUnpacker = nullptr, OpenTextFileParams* pOpenParams = nullptr);
+	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
+		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		OpenTextFileParams* pOpenParams = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, OpenTextFileParams *pOpenParams = nullptr);
@@ -125,9 +132,11 @@ public:
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr);
 
 	void UpdateResources();
 	void ClearStatusbarItemCount();
@@ -278,7 +287,7 @@ protected:
 	afx_msg void OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI);
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
-	template <int nFiles, FRAMETYPE frameType, bool table = false>
+	template <int nFiles, unsigned nID>
 	afx_msg void OnFileNew();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();

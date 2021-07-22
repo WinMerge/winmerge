@@ -727,14 +727,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			cmdInfo.m_dwMiddleFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
-			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 		}
@@ -745,7 +745,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc, nullptr, &openParams);
+				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc,
+					infoUnpacker.get(), infoPrediffer.get(), &openParams);
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -762,16 +763,23 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			else
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+				bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 					infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
 		{
-			bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
-			if (showFiles)
-				pMainFrame->DoFileOpen();
+			if (!cmdInfo.m_bNewCompare)
+			{
+				bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+				if (showFiles)
+					pMainFrame->DoFileOrFolderOpen();
+			}
+			else
+			{
+				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), &openParams);
+			}
 		}
 	}
 	return bCompared;
@@ -1254,7 +1262,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
-		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
+		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
 	}
 
