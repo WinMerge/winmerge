@@ -4401,10 +4401,16 @@ msgstr ""
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
 msgstr ""
 
+msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgstr ""
+
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
 msgstr ""
 
-msgid "XML Prettier with tidy-html5. \r\nArguments: Command line arugments passed to the tidy command."
+msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr ""
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
@@ -4417,6 +4423,12 @@ msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line 
 msgstr ""
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgstr ""
+
+msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgstr ""
+
+msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr ""
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
