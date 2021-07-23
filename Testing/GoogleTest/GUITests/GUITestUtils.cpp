@@ -115,6 +115,19 @@ void prevControl()
 	keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
 }
 
+void setFocusDlgItem(HWND hwnd, int id)
+{
+	HWND hwndControl = GetDlgItem(hwnd, id);
+	if (hwndControl)
+	{
+		DWORD dwProcessId;
+		DWORD dwThreadId = GetWindowThreadProcessId(hwndControl, &dwProcessId);
+		AttachThreadInput(GetCurrentThreadId(), dwThreadId, TRUE);
+		SetFocus(hwndControl);
+		AttachThreadInput(GetCurrentThreadId(), dwThreadId, FALSE);
+	}
+}
+
 std::filesystem::path getModuleFileName()
 {
 	wchar_t szPath[256];
