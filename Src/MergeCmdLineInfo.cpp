@@ -410,10 +410,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			String value;
 			q = EatParam(q, value);
-			value = strutils::makelower(value);
-			if (value == _T("\\t") || value == _T("tab"))
+			String value2 = strutils::makelower(value);
+			if (value2 == _T("\\t") || value2 == _T("tab"))
 				m_cTableDelimiter = '\t';
-			else if (value == _T("\\v") || value == _T("vtab"))
+			else if (value2 == _T("\\v") || value2 == _T("vtab"))
 				m_cTableDelimiter = '\v';
 			else
 				m_cTableDelimiter = value.c_str()[0];
@@ -422,7 +422,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			String value;
 			q = EatParam(q, value);
-			m_cTableQuote = value.c_str()[0];
+			String value2 = strutils::makelower(value);
+			strutils::replace(value2, _T("-"), _T(""));
+			if (value2 == _T("dq") || value2 == _T("doublequote"))
+				m_cTableQuote = '"';
+			else
+				m_cTableQuote = value.c_str()[0];
 		}
 		else if (param == _T("table-allownewlinesinquotes"))
 		{
