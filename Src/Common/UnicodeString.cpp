@@ -48,6 +48,17 @@ String makeupper(const String &str)
 	return ret;
 }
 
+
+String strip_hot_key(const String& str)
+{
+	String str2 = str;
+	auto it = str2.find(_T("(&"));
+	if (it != String::npos)
+		str2.erase(it, it + 2);
+	strutils::replace(str2, _T("&"), _T(""));
+	return str2;
+}
+
 /**
  * @brief Replace a string inside a string with another string.
  * This function searches for a string inside another string an if found,

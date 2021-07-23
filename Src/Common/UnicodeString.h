@@ -26,6 +26,8 @@ namespace strutils
 String makelower(const String &str);
 String makeupper(const String &str);
 
+String strip_hot_key(const String& str);
+
 void replace(String &target, const String &find, const String &replace);
 
 // Comparing
@@ -99,5 +101,6 @@ inline String to_str(long long val) { return strutils::format(_T("%I64d"), val);
 inline String to_str(unsigned long long val) { return strutils::format(_T("%I64u"), val); }
 inline String to_str(float val) { return strutils::format(_T("%f"), val); }
 inline String to_str(double val) { return strutils::format(_T("%f"), val); }
+inline String to_str(const StringView& val) { return { val.data(), val.size() }; }
 
 }
