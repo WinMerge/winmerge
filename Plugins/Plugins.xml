@@ -2,7 +2,7 @@
 <plugins>
   <plugin name="PrettifyHTML">
     <event value="FILE_PACK_UNPACK" />
-    <description value="HTML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
+    <description value="HTML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line options passed to the tidy command." />
     <file-filters value="\.html$;\.htm$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
@@ -14,7 +14,7 @@
   </plugin>
   <plugin name="PrettifyXML">
     <event value="FILE_PACK_UNPACK" />
-    <description value="XML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
+    <description value="XML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line options passed to the tidy command." />
     <file-filters value="\.xml$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".xml" />
@@ -98,7 +98,7 @@
   </plugin>
   <plugin name="ValidateHTML">
     <event value="FILE_PACK_UNPACK" />
-    <description value="HTML Validator with tidy-html5. &#xD;&#xA;Arguments: Command line arugments passed to the tidy command." />
+    <description value="HTML Validator with tidy-html5. &#xD;&#xA;Arguments: Command line options passed to the tidy command." />
     <file-filters value="\.html$;\.htm$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
