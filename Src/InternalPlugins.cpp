@@ -479,12 +479,14 @@ private:
 class EditorScriptGeneratedFromUnpacker: public WinMergePluginBase
 {
 public:
-	EditorScriptGeneratedFromUnpacker(const PluginInfo& plugin, const String& funcname)
+	EditorScriptGeneratedFromUnpacker(const PluginInfo& plugin, const String& funcname, bool hasArgumentProperty)
 		: WinMergePluginBase(
 			L"EDITOR_SCRIPT",
 			plugin.m_description,
-			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties)
+			plugin.m_filtersTextDefault, L"", plugin.m_extendedProperties,
+			plugin.m_argumentsDefault)
 		, m_pDispatch(plugin.m_lpDispatch)
+		, m_hasArgumentsProperty(hasArgumentProperty)
 	{
 		auto menuCaption = plugin.GetExtendedPropertyValue(_T("MenuCaption"));
 		if (menuCaption.has_value())
@@ -516,6 +518,8 @@ public:
 		auto* pInternalPlugin = dynamic_cast<InternalPlugin*>(thisObj->m_pDispatch);
 		if (pInternalPlugin)
 		{
+			BSTR bstrArguments = SysAllocString(thisObj->m_sArguments.c_str());
+			pInternalPlugin->put_PluginArguments(bstrArguments);
 			BSTR bstrFileSrc = SysAllocString(ucr::toUTF16(fileSrc).c_str());
 			BSTR bstrFileDst= SysAllocString(ucr::toUTF16(fileDst).c_str());
 			VARIANT_BOOL bChanged;
@@ -523,11 +527,17 @@ public:
 			hr = pInternalPlugin->UnpackFile(bstrFileSrc, bstrFileDst, &bChanged, &subcode, &bSuccess);
 			SysFreeString(bstrFileSrc);
 			SysFreeString(bstrFileDst);
+			SysFreeString(bstrArguments);
 			if (FAILED(hr))
 				return hr;
 		}
 		else
 		{
+			if (thisObj->m_hasArgumentsProperty)
+			{
+				if (!plugin::InvokePutPluginArguments(thisObj->m_sArguments, thisObj->m_pDispatch))
+					return false;
+			}
 			if (!plugin::InvokeUnpackFile(fileSrc, fileDst, changed, thisObj->m_pDispatch, subcode))
 				return E_FAIL;
 		}
@@ -541,6 +551,7 @@ public:
 	}
 
 private:
+	bool m_hasArgumentsProperty;
 	IDispatch* m_pDispatch;
 };
 
@@ -624,7 +635,7 @@ struct Loader
 					if (plugins.find(L"EDITOR_SCRIPT") == plugins.end())
 						plugins[L"EDITOR_SCRIPT"].reset(new PluginArray);
 					PluginInfoPtr pluginNew(new PluginInfo());
-					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name);
+					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name, plugin->m_hasArgumentsProperty);
 					pDispatch->AddRef();
 					pluginNew->MakeInfo(plugin->m_name, pDispatch);
 					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
