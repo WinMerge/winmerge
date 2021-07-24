@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.14 - 2021-07-2x
+## WinMerge 2.16.14 - 2021-07-25
 
 ### General
 
@@ -86,7 +86,7 @@
   - Dutch (PR #842,#893)
   - Galician (PR #869)
   - German (PR #860,#870,#883,#890)
-  - Hungarian (PR #845,#856)
+  - Hungarian (PR #845,#856,#897)
   - Japanese
   - Lithuanian (PR #840,#849,#866,#875,#879,#894)
   - Portuguese (PR #846,#872)

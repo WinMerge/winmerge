@@ -100,7 +100,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - Dutch (PR #842,#893)
   - Galician (PR #869)
   - German (PR #860,#870,#883,#890)
-  - Hungarian (PR #845,#856)
+  - Hungarian (PR #845,#856,#897)
   - Japanese
   - Lithuanian (PR #840,#849,#866,#875,#879,#894)
   - Portuguese (PR #846,#872)
