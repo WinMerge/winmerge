@@ -50,7 +50,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
+		Plugins\README.md = Plugins\README.md
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "Plugins\src_VCPP\DisplayBinaryFiles\DisplayBinaryFiles.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"
@@ -330,17 +332,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{BB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apache-Tika", "Apache-Tika", "{5DADCF29-6A44-4AD1-8E42-DCB162A1907D}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\Apache-Tika\LICENSE-2.0.txt = Plugins\Commands\Apache-Tika\LICENSE-2.0.txt
+		Plugins\Commands\Apache-Tika\LICENSE-JJ2000.txt = Plugins\Commands\Apache-Tika\LICENSE-JJ2000.txt
 		Plugins\Commands\Apache-Tika\tika.bat = Plugins\Commands\Apache-Tika\tika.bat
+		Plugins\Commands\Apache-Tika\URL.txt = Plugins\Commands\Apache-Tika\URL.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "q", "q", "{E4EF583F-653D-4445-A649-555C8AD730E7}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\q\LICENSE.txt = Plugins\Commands\q\LICENSE.txt
 		Plugins\Commands\q\q.bat = Plugins\Commands\q\q.bat
+		Plugins\Commands\q\URL.txt = Plugins\Commands\q\URL.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginTests", "PluginTests", "{9738877F-0B01-4C37-855E-7465C5AB7B56}"
 	ProjectSection(SolutionItems) = preProject
 		Testing\PluginTests\PluginTests.vbs = Testing\PluginTests\PluginTests.vbs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yq", "yq", "{9914C8A9-0DEA-4922-9065-57034EE5263D}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\yq\LICENSE.txt = Plugins\Commands\yq\LICENSE.txt
+		Plugins\Commands\yq\URL.txt = Plugins\Commands\yq\URL.txt
+		Plugins\Commands\yq\yq.bat = Plugins\Commands\yq\yq.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{48C9E053-F40B-4FB4-984C-C154810EFB54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{0D414491-BB15-470B-9A50-443BA252CCD4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\main.yml = .github\workflows\main.yml
 	EndProjectSection
 EndProject
 Global
@@ -1056,6 +1078,8 @@ Global
 		{5DADCF29-6A44-4AD1-8E42-DCB162A1907D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{E4EF583F-653D-4445-A649-555C8AD730E7} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{9738877F-0B01-4C37-855E-7465C5AB7B56} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
+		{9914C8A9-0DEA-4922-9065-57034EE5263D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{0D414491-BB15-470B-9A50-443BA252CCD4} = {48C9E053-F40B-4FB4-984C-C154810EFB54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
