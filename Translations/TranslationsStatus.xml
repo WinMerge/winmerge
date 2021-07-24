@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-07-21</update>
+  <update>2021-07-24</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>1089</count>
-        <translated>1067</translated>
+        <translated>1089</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>22</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -229,7 +229,7 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2021-07-21</update>
+      <update>2021-07-24</update>
       <strings>
         <count>1090</count>
         <translated>1090</translated>
@@ -308,12 +308,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-07-17</update>
+      <update>2021-07-21</update>
       <strings>
         <count>1089</count>
-        <translated>1086</translated>
+        <translated>1089</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -407,9 +407,9 @@
       <update>2021-07-11</update>
       <strings>
         <count>1089</count>
-        <translated>1086</translated>
+        <translated>1089</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>3</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -454,12 +454,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-07-16</update>
+      <update>2021-07-22</update>
       <strings>
         <count>1089</count>
-        <translated>1085</translated>
+        <translated>1088</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>1</untranslated>
       </strings>
       <translators>
         <translator>

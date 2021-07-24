@@ -3711,7 +3711,7 @@ BEGIN
     IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
     IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
     IDS_IMGCMP_STATUS_FLIPPED_FMT "Flipped: %s  "
-    IDS_IMGCMP_STATUS_ROTATED_FMT "Rotated: %s  "
+    IDS_IMGCMP_STATUS_ROTATED_FMT "Rotated: %d  "
 END
 
 STRINGTABLE

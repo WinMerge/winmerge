@@ -3643,8 +3643,8 @@ msgid "Flipped: %s  "
 msgstr "反転: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "回転: %s°  "
+msgid "Rotated: %d  "
+msgstr "回転: %d°  "
 
 msgid "<Edit here>"
 msgstr "<ここを編集>"
