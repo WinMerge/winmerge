@@ -745,6 +745,8 @@ bool CDirDoc::IsArchiveFolders() const
 
 void CDirDoc::Swap(int idx1, int idx2)
 {
+	if (m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
+		return;
 	std::swap(m_bRO[idx1], m_bRO[idx2]);
 	std::swap(m_strDesc[idx1], m_strDesc[idx2]);
 	if (m_pTempPathContext != nullptr)

@@ -3531,7 +3531,8 @@ void CDirView::OnViewSwapPanes()
 template <int pane1, int pane2>
 void CDirView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(pane2 < GetDocument()->m_nDirs);
+	pCmdUI->Enable(pane2 < GetDocument()->m_nDirs &&
+		GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED);
 }
 
 /**
