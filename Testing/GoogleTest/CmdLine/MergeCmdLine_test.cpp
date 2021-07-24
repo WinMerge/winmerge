@@ -58,8 +58,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -69,6 +76,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Empty command line containing space
@@ -83,8 +94,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -94,6 +112,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Empty command line containing tab
@@ -108,8 +130,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -119,6 +148,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Empty command line containing tab
@@ -133,8 +166,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -144,6 +184,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -159,8 +203,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -170,6 +221,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -185,8 +240,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -196,6 +258,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -211,8 +277,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -222,6 +295,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -237,8 +314,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -248,6 +332,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -263,8 +351,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -274,6 +369,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path
@@ -289,8 +388,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -300,6 +406,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths
@@ -316,8 +426,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -327,6 +444,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths
@@ -343,8 +464,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -354,6 +482,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with three paths
@@ -371,8 +503,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -382,6 +521,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with three paths
@@ -399,8 +542,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -410,6 +560,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, spaces between
@@ -426,8 +580,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -437,6 +598,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, spaces between
@@ -453,8 +618,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -464,6 +636,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, tab between
@@ -480,8 +656,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -491,6 +674,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, EOL between
@@ -507,8 +694,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -518,6 +712,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path, Linux separators
@@ -533,8 +731,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -544,6 +749,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left path, Linux separators
@@ -559,8 +768,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -570,6 +786,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, Linux separators
@@ -586,8 +806,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -597,6 +824,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right paths, Linux separators
@@ -613,8 +844,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -624,6 +862,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with three paths, Linux separators
@@ -641,8 +883,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -652,6 +901,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with three paths, Linux separators
@@ -669,8 +922,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -680,6 +940,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left quoted path
@@ -695,8 +959,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -706,6 +977,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left quoted path
@@ -721,8 +996,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -732,6 +1014,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left quoted and right non-quoted path
@@ -748,8 +1034,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -759,6 +1052,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left non-quoted and right quoted path
@@ -775,8 +1072,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -786,6 +1090,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with left and right quoted paths
@@ -802,8 +1110,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -813,6 +1128,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with third path quoted
@@ -830,8 +1149,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -841,6 +1167,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with three quoted paths
@@ -858,8 +1188,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
@@ -869,6 +1206,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with a correct codepage 
@@ -883,8 +1224,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(1251,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -894,6 +1242,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with a correct codepage and with '/'
@@ -908,8 +1260,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(1251,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -919,6 +1278,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with a wrong specified codepage
@@ -933,8 +1296,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -944,6 +1314,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with a missed codepage
@@ -958,8 +1332,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -969,6 +1350,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Command line with a missed codepage and with left path
@@ -983,8 +1368,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -994,6 +1386,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 	
 	// Missed codepage with both paths
@@ -1009,8 +1405,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1020,6 +1423,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Left description
@@ -1035,8 +1442,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1046,6 +1460,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Left description
@@ -1061,8 +1479,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1072,6 +1497,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Left description
@@ -1086,8 +1515,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1097,6 +1533,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Right description
@@ -1112,8 +1552,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1123,6 +1570,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Right description
@@ -1138,8 +1589,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1149,6 +1607,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Right description
@@ -1163,8 +1625,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1174,6 +1643,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Middle description
@@ -1189,8 +1662,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1200,6 +1680,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Middle description
@@ -1215,8 +1699,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1226,6 +1717,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Middle description
@@ -1240,8 +1735,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1251,6 +1753,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1266,8 +1772,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1277,6 +1790,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1292,8 +1809,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1303,6 +1827,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1317,8 +1845,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1328,6 +1863,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1342,8 +1881,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1353,6 +1899,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1367,8 +1917,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1378,6 +1935,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Both descriptions
@@ -1392,8 +1953,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1403,6 +1971,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Three descriptions
@@ -1417,8 +1989,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1428,6 +2007,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Unpacker
@@ -1442,8 +2025,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1453,6 +2043,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T("CompareMSExcelFiles.sct"), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 
 	// Prediffer
@@ -1467,8 +2061,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1478,6 +2079,139 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T("PrediffLineFilter.sct"), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
+	}
+
+	// Self Compare
+	TEST_F(MergeCmdLineInfoTest, SelfCompare)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /self-compare test.cpp"));
+			EXPECT_TRUE(cmdInfo.m_bSelfCompare);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test.cpp"));
+			EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		}
+	}
+
+	// New Compare
+	TEST_F(MergeCmdLineInfoTest, NewCompare)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /new"));
+			EXPECT_TRUE(cmdInfo.m_bNewCompare);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test.cpp"));
+			EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		}
+	}
+
+	// Table
+	TEST_F(MergeCmdLineInfoTest, Table)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter tab /table-quote dq /table-allownewlinesinquotes test1.tsv test2.tsv"));
+			EXPECT_EQ('\t', *cmdInfo.m_cTableDelimiter);
+			EXPECT_EQ('"', *cmdInfo.m_cTableQuote);
+			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter vtab /table-quote doublequote /table-allownewlinesinquotes test1.tsv test2.tsv"));
+			EXPECT_EQ('\v', *cmdInfo.m_cTableDelimiter);
+			EXPECT_EQ('"', *cmdInfo.m_cTableQuote);
+			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter \\t /table-quote sq /table-allownewlinesinquotes test1.tsv test2.tsv"));
+			EXPECT_EQ('\t', *cmdInfo.m_cTableDelimiter);
+			EXPECT_EQ('\'', *cmdInfo.m_cTableQuote);
+			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter \\v /table-quote singlequote /table-allownewlinesinquotes test1.tsv test2.tsv"));
+			EXPECT_EQ('\v', *cmdInfo.m_cTableDelimiter);
+			EXPECT_EQ('\'', *cmdInfo.m_cTableQuote);
+			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
+		}
+	}
+
+	// Line number
+	TEST_F(MergeCmdLineInfoTest, LineNumber)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /l 10000000 test1.cpp test2.cpp"));
+			EXPECT_EQ(9999999, cmdInfo.m_nLineIndex);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /l 1 test1.cpp test2.cpp"));
+			EXPECT_EQ(0, cmdInfo.m_nLineIndex);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /l 0 test1.cpp test2.cpp"));
+			EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
+			EXPECT_EQ(1, cmdInfo.m_sErrorMessages.size());
+		}
+	}
+
+	// Window Type
+	TEST_F(MergeCmdLineInfoTest, WindowType)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t Automatic"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::AUTOMATIC, cmdInfo.m_nWindowType);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t text"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::TEXT, cmdInfo.m_nWindowType);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t TABLE"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::TABLE, cmdInfo.m_nWindowType);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t binary"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::BINARY, cmdInfo.m_nWindowType);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t iMAGE"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::IMAGE, cmdInfo.m_nWindowType);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t unknown"));
+			EXPECT_EQ(MergeCmdLineInfo::WindowType::AUTOMATIC, cmdInfo.m_nWindowType);
+			EXPECT_EQ(1, cmdInfo.m_sErrorMessages.size());
+		}
+	}
+
+	// FileExt
+	TEST_F(MergeCmdLineInfoTest, FileExt)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test1.txt test2.txt /fileext json"));
+			EXPECT_EQ(_T(".json"), cmdInfo.m_sFileExt);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test1.txt test2.txt /fileext .yaml"));
+			EXPECT_EQ(_T(".yaml"), cmdInfo.m_sFileExt);
+		}
+	}
+
+	// ini file path
+	TEST_F(MergeCmdLineInfoTest, IniFilepath)
+	{
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test1.txt test2.txt /inifile c:\\tmp\\tmp.ini"));
+			EXPECT_EQ(_T("c:\\tmp\\tmp.ini"), cmdInfo.m_sIniFilepath);
+		}
+		{
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe test1.txt test2.txt  /inifile tmp.ini"));
+			EXPECT_EQ(_T("tmp.ini"), cmdInfo.m_sIniFilepath);
+		}
 	}
 
 	// Compare method
@@ -1570,8 +2304,15 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
 		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
 		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
@@ -1581,6 +2322,10 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 		EXPECT_EQ(_T(""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
 #endif
 

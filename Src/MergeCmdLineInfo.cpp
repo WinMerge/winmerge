@@ -426,6 +426,8 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			strutils::replace(value2, _T("-"), _T(""));
 			if (value2 == _T("dq") || value2 == _T("doublequote"))
 				m_cTableQuote = '"';
+			else if (value2 == _T("sq") || value2 == _T("singlequote"))
+				m_cTableQuote = '\'';
 			else
 				m_cTableQuote = value.c_str()[0];
 		}
