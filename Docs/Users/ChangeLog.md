@@ -89,7 +89,7 @@
   - Hungarian (PR #845,#856,#897)
   - Japanese
   - Lithuanian (PR #840,#849,#866,#875,#879,#894)
-  - Portuguese (PR #846,#872)
+  - Portuguese (PR #846,#872,#898)
   - Slovenian (#858)
   - Russian (PR #847)
   - Turkish (PR #848)
