@@ -48,7 +48,6 @@ String makeupper(const String &str)
 	return ret;
 }
 
-
 String strip_hot_key(const String& str)
 {
 	String str2 = str;
@@ -57,6 +56,46 @@ String strip_hot_key(const String& str)
 		str2.erase(it, it + 2);
 	strutils::replace(str2, _T("&"), _T(""));
 	return str2;
+}
+
+TCHAR from_charstr(const String& str)
+{
+	TCHAR ch = 0;
+	String str2 = strutils::makelower(str);
+	strutils::replace(str2, _T("-"), _T(""));
+	if (str2 == _T("\\a") || str2 == _T("bel"))
+		ch = '\a';
+	else if (str2 == _T("\\b") || str2 == _T("bs"))
+		ch = '\b';
+	else if (str2 == _T("\\f") || str2 == _T("ff"))
+		ch = '\f';
+	else if (str2 == _T("\\n") || str2 == _T("lf"))
+		ch = '\n';
+	else if (str2 == _T("\\r") || str2 == _T("cr"))
+		ch = '\r';
+	else if (str2 == _T("\\t") || str2 == _T("tab"))
+		ch = '\t';
+	else if (str2 == _T("\\v") || str2 == _T("vt"))
+		ch = '\v';
+	else if (str2 == _T("\\'") || str2 == _T("sq") || str2 == _T("singlequote"))
+		ch = '\'';
+	else if (str2 == _T("\\\"") || str2 == _T("dq") || str2 == _T("doublequote"))
+		ch = '"';
+	else if (str2.find(_T("\\x"), 0) == 0 || str2.find(_T("0x"), 0) == 0)
+	{
+		TCHAR *pend = nullptr;
+		ch = static_cast<TCHAR>(_tcstol(str2.substr(2).c_str(), &pend, 16));
+	}
+	else
+		ch = str.c_str()[0];
+	return ch;
+}
+
+String to_charstr(TCHAR ch)
+{
+	if (iscntrl(ch))
+		return strutils::format(_T("\\x%02x"), ch);
+	return String(1, ch);
 }
 
 /**

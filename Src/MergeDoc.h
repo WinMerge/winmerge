@@ -315,13 +315,16 @@ public:
 				return true;
 		return false;
 	}
-	static TableProps GetTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
+
 	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
 	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
-	void SetTableProperties(const TableProps& props) { m_pTablePropsCommandLine.reset(new TableProps(props)); }
+	static TableProps MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
+	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
+
 	void SetTextType(int textType);
 	void SetTextType(const String& ext);
 	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
+
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
@@ -358,7 +361,7 @@ protected:
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
-	std::unique_ptr<TableProps> m_pTablePropsCommandLine;
+	std::unique_ptr<TableProps> m_pTablePropsPrepared;
 	/**
 	 * Are automatic rescans enabled?
 	 * If automatic rescans are enabled then we rescan files after edit

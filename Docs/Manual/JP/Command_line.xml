@@ -435,7 +435,7 @@
     <varlistentry>
       <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
       <listitem>
-        <para>テーブル編集用の区切り文字を指定します。</para>
+        <para>テーブル編集用の区切り文字を指定します。タブ文字を指定する場合、「tab」または「\t」、「\x09」を指定してください。</para>
       </listitem>
     </varlistentry>
 

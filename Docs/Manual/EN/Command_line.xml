@@ -436,7 +436,7 @@
     <varlistentry>
       <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
       <listitem>
-        <para>Specifies a delimiter character for table editing.</para>
+        <para>Specifies a delimiter character for table editing. To specify a tab character, specify "tab", "\t", or "\x09".</para>
       </listitem>
     </varlistentry>
 

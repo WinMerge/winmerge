@@ -824,12 +824,12 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
-		CMergeDoc::TableProps props = CMergeDoc::GetTablePropertiesByFileName(
+		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		props.delimiter = pOpenParams->m_tableDelimiter.value_or(props.delimiter);
 		props.quote = pOpenParams->m_tableQuote.value_or(props.quote);
 		props.allowNewlinesInQuotes = pOpenParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
-		pMergeDoc->SetTableProperties(props);
+		pMergeDoc->SetPreparedTableProperties(props);
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
@@ -1077,16 +1077,20 @@ static bool AddToRecentDocs(const PathContext& paths,
 			params += _T("/fileext ") + pOpenParams->m_fileExt + _T(" ");
 		if (pOpenParams->m_tableDelimiter.has_value())
 		{
-			String delim(1, *pOpenParams->m_tableDelimiter);
-			if (*pOpenParams->m_tableDelimiter == '\t')
-				delim = _T("tab");
+			String delim = strutils::to_charstr(*pOpenParams->m_tableDelimiter);
+			if (*pOpenParams->m_tableDelimiter == '\'')
+				delim = _T("sq");
+			else if (*pOpenParams->m_tableDelimiter == '"')
+				delim = _T("dq");
 			params += strutils::format(_T("/table-delimiter %s "), delim);
 		}
 		if (pOpenParams->m_tableQuote.has_value())
 		{
-			String quote(1, *pOpenParams->m_tableQuote);
-			if (*pOpenParams->m_tableQuote == '"')
-				quote = _T("double-quote");
+			String quote = strutils::to_charstr(*pOpenParams->m_tableQuote);
+			if (*pOpenParams->m_tableDelimiter == '\'')
+				quote = _T("sq");
+			else if (*pOpenParams->m_tableDelimiter == '"')
+				quote = _T("dq");
 			params += strutils::format(_T("/table-quote %s "), quote);
 		}
 		if (pOpenParams->m_tableAllowNewlinesInQuotes.has_value())

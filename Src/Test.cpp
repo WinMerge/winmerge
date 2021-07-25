@@ -496,6 +496,74 @@ TEST(CommandLineTest, WindowType)
 	pFrame->PostMessage(WM_CLOSE);
 }
 
+TEST(CommandLineTest, New)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+
+	MergeCmdLineInfo cmdInfo((progpath + L" /t text /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	auto* pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_FALSE(pDoc->GetEnableTableEditing().value_or(true));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo2((progpath + L" /t Table /FileExt csv /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo2, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo3((progpath + L" /t Table /Table-Delimiter , /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo3, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo4((progpath + L" /t Table /FileExt tsv /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo4, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo5((progpath + L" /t Table /table-delimiter tab /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo6((progpath + L" /t BINARY /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo7((progpath + L" /t image /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo7, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo8((progpath + L" /t automatic /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo8, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
 TEST(ImageCompareTest, Open)
 {
 	EXPECT_TRUE(CImgMergeFrame::IsLoadable());

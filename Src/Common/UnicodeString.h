@@ -28,6 +28,9 @@ String makeupper(const String &str);
 
 String strip_hot_key(const String& str);
 
+TCHAR from_charstr(const String& str);
+String to_charstr(TCHAR ch);
+
 void replace(String &target, const String &find, const String &replace);
 
 // Comparing
