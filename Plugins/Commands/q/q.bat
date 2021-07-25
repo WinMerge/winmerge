@@ -1,5 +1,6 @@
 @echo off
 if "%PROCESSOR_ARCHITECTURE%" == "AMD64" goto :next
+if "%PROCESSOR_ARCHITEW6432%" == "AMD64" goto :next
 if "%PROCESSOR_ARCHITECTURE%" == "ARM64" (
   rem Check if the OS is Windows 11
   (ver | findstr /c:"Version 10.0.2") > NUL && goto :next
