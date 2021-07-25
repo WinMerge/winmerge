@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-24 08:53+0000\n"
-"PO-Revision-Date: 2021-06-25 19:47+0300\n"
+"POT-Creation-Date: 2021-07-24 15:08+0000\n"
+"PO-Revision-Date: 2021-07-25 19:06+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -135,16 +135,16 @@ msgid "&Active Pane"
 msgstr "Etkin s&ayfa"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "&Sağa 90 derece döndür"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "S&ola 90 derece döndür"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "&Dikey çevir"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "&Yatay çevir"
 
 msgid "&Zoom"
 msgstr "&Yakınlaştır"
@@ -301,7 +301,6 @@ msgstr "Eklentile&ri yeniden yükle"
 msgid "&Window"
 msgstr "&Pencere"
 
-#| msgid "&Paste\tCtrl+V"
 msgid "Cl&ose\tCtrl+W"
 msgstr "Ka&pat\tCtrl+W"
 
@@ -717,7 +716,7 @@ msgid "Apply Pre&differ..."
 msgstr "Ön &farklılaştırma uygula..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "&Düzenleyici betiği ile dönüştür..."
 
 msgid "Sp&lit"
 msgstr "Bö&l"
@@ -726,7 +725,7 @@ msgid "Comp&are"
 msgstr "K&arşılaştır"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Yeni &pencerede karşılaştır"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "&Yatay olmayan karşılaştırma..."
@@ -1326,7 +1325,7 @@ msgid "Default arguments:"
 msgstr "Varsayılan değişkenler:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Uzantıya bakılmadan tüm eklentiler görüntülensin."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
@@ -2069,8 +2068,12 @@ msgstr "&Tümünü atla"
 msgid "Don't display this &message again."
 msgstr "Bu ileti &yeniden görüntülenmesin."
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"Message Boxes page of the Options dialog."
 msgstr ""
+"Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümünde İleti "
+"kutuları grubu altındaki Sıfırla düğmesine tıklayın."
 
 msgid "Syntax"
 msgstr "Söz dizimi"
@@ -2085,7 +2088,7 @@ msgid "Differences"
 msgstr "Farklar"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "İleti kutuları"
 
 msgid "To:"
 msgstr "Kime:"
@@ -2167,10 +2170,10 @@ msgid "Extension"
 msgstr "Uzantı"
 
 msgid "Message"
-msgstr ""
+msgstr "İleti"
 
 msgid "Answer"
-msgstr ""
+msgstr "Yanıt"
 
 msgid "Name"
 msgstr "Ad"
@@ -3697,7 +3700,7 @@ msgstr "Uzaklık:%g,%g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr "Sayfa:%d/%d  Yakınlaştırma:%d%%  %dx%dpiksel  %dbpp  "
+msgstr "Sayfa:%d/%d  Yakınlaştırma:%d%%  %dx%dpiksel  %dbpp "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
@@ -3705,11 +3708,11 @@ msgstr "Al: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Çevrildi: %s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "Döndürüldü: %d  "
 
 msgid "<Edit here>"
 msgstr "<Burayı düzenleyin>"
@@ -3757,7 +3760,7 @@ msgid "Data Query"
 msgstr "Veri sorgusu"
 
 msgid "Validation"
-msgstr ""
+msgstr "Doğrulama"
 
 msgid "&Others"
 msgstr "&Diğerleri"
@@ -3781,13 +3784,14 @@ msgid "Sort Lines Descending"
 msgstr "Azalan satır sıralaması"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Sütunları tersine çevir"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Satırları tersine çevir"
 
+#| msgid "Replace"
 msgid "Replace..."
-msgstr ""
+msgstr "Değiştir..."
 
 msgid "Apply Filter Command..."
 msgstr "Süzgeç komutunu uygula..."
@@ -3798,12 +3802,11 @@ msgstr "Kodla..."
 msgid "Trim Spaces"
 msgstr "Boşlukları sil"
 
-#| msgid "Select &Font..."
 msgid "Select Columns..."
 msgstr "Sütunları seçin..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "Satırları seçin..."
 
 msgid "Insert Date"
 msgstr "Tarih ekle"
@@ -3830,7 +3833,7 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Ön farklılaştırma değiştirme süzgeçlerini uygula"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "HTML sadeleştirme"
 
 msgid "Prettify JSON"
 msgstr "JSON sadeleştirme"
@@ -3839,7 +3842,7 @@ msgid "Prettify XML"
 msgstr "XML sadeleştirme"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "YAML sadeleştirme"
 
 msgid "Visualize Graphviz"
 msgstr "Graphviz görselleştirme"
@@ -3854,10 +3857,10 @@ msgid "Query JSON Data..."
 msgstr "JSON verilerini sorgula..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "YAML verilerini sorgula..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "HTML kodunu doğrula"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
@@ -3869,3 +3872,75 @@ msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
 
 msgid "Specify plugin arguments"
 msgstr "Eklenti değişkenlerini belirtin"
+
+#~ msgid "Cannot create a patch file from directories."
+#~ msgstr "Klasörlerden yama dosyası hazırlanamaz."
+
+#~ msgid "&Select Line Difference\tF4"
+#~ msgstr "Satır &farkını seç\tF4"
+
+#~ msgid "&XML"
+#~ msgstr "&XML"
+
+#~ msgid "&No prediffer"
+#~ msgstr "Ö&n farklılaştırıcı yok"
+
+#~ msgid "Auto prediffer"
+#~ msgstr "Otomatik ön farklılaştırıcı"
+
+#~ msgid "Select Unpacker"
+#~ msgstr "Ayıklayıcı seçin"
+
+#~ msgid "File unpacker:"
+#~ msgstr "Dosya ayıklayıcı:"
+
+#~ msgid "&Goto..."
+#~ msgstr "&Git..."
+
+#~ msgid "&New\tCtrl+N"
+#~ msgstr "Ye&ni\tCtrl+N"
+
+#~ msgid "E&xit"
+#~ msgstr "Çı&kış"
+
+#~ msgid "Cl&ose"
+#~ msgstr "&Kapat"
+
+#~ msgid "File En&coding..."
+#~ msgstr "&Dosya Kodlaması..."
+
+#~ msgid "&Print..."
+#~ msgstr "&Yazdır..."
+
+#~ msgid "Moved Block for &Current Diff"
+#~ msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
+
+#~ msgid "Case sensi&tive"
+#~ msgstr "BÜYÜK-küçük &harf ayrımı yapılsın"
+
+#~ msgid "Go To"
+#~ msgstr "Git"
+
+#~ msgid "G&oto:"
+#~ msgstr "&Git:"
+
+#~ msgid "Comments"
+#~ msgstr "Açıklamalar"
+
+#~ msgid "Filefilters"
+#~ msgstr "Dosya Süzgeçleri"
+
+#~ msgid ""
+#~ "Developers:\n"
+#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
+#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+#~ msgstr ""
+#~ "Geliştiriciler:\n"
+#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
+#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+
+#~ msgid "Lua"
+#~ msgstr "Lua"
+
+#~ msgid "VHDL"
+#~ msgstr "VHDL"
