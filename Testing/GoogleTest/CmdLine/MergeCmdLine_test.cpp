@@ -2121,7 +2121,7 @@ namespace
 			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
 		}
 		{
-			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter vtab /table-quote doublequote /table-allownewlinesinquotes test1.tsv test2.tsv"));
+			MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /t table /table-delimiter vt /table-quote doublequote /table-allownewlinesinquotes test1.tsv test2.tsv"));
 			EXPECT_EQ('\v', *cmdInfo.m_cTableDelimiter);
 			EXPECT_EQ('"', *cmdInfo.m_cTableQuote);
 			EXPECT_TRUE( *cmdInfo.m_bTableAllowNewlinesInQuotes);
