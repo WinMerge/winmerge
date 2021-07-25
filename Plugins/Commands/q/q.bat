@@ -18,6 +18,7 @@ cd "%APPDATA%\WinMerge"
 if not exist %Q_PATH% (
   cd "%~dp0..\.."
   if not exist %Q_PATH% (
+    mkdir "%APPDATA%\WinMerge" 2> NUL
     cd "%APPDATA%\WinMerge"
     for %%i in (%Q_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL
