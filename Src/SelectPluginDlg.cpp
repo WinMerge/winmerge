@@ -178,11 +178,7 @@ void CSelectPluginDlg::prepareListbox()
 	for (const auto& processType : processTypes)
 	{
 		const auto& pluginList = m_Plugins[processType];
-		String processType2 = processType;
-		auto it = processType2.find(_("(&"));
-		if (it != String::npos)
-			processType2.erase(it, it + 2);
-		strutils::replace(processType2, _T("&"), _T(""));
+		String processType2 = strutils::strip_hot_key(processType);
 		if (!processType2.empty())
 			m_cboPluginName.AddString((_T("[") + processType2 + _T("]")).c_str());
 		for (const auto& [caption, name, id, plugin] : pluginList)
@@ -293,12 +289,12 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 		m_strDescription = tr(ucr::toUTF8(pPlugin->m_description));
 		auto funcDescription = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Description"));
 		if (funcDescription.has_value())
-			m_strDescription = tr(ucr::toUTF8({ funcDescription.value().data(), funcDescription.value().length() }));
+			m_strDescription = tr(ucr::toUTF8(strutils::to_str(*funcDescription)));
 		m_strExtensions = pPlugin->m_filtersText;
 		m_strArguments = pPlugin->m_arguments;
 		auto funcArguments = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Arguments"));
 		if (funcArguments.has_value())
-			m_strArguments = { funcArguments.value().data(), funcArguments.value().length() };
+			m_strArguments = strutils::to_str(*funcArguments);
 	}
 
 	m_bOpenInSameFrameType = IsDlgButtonChecked(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE);

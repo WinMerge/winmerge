@@ -3694,11 +3694,11 @@ msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr "Omgedraaid: %s"
+msgstr "Omgedraaid: %s "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "Geroteerd: %s"
+msgid "Rotated: %d  "
+msgstr "Geroteerd: %d "
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"

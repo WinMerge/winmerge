@@ -408,4 +408,39 @@ namespace
 			[](const auto& str) { return strutils::makeupper(str); }));
 	}
 
+	TEST_F(UnicodeStringTest, FromCharStr)
+	{
+		EXPECT_EQ('\a', strutils::from_charstr(_T("\\a")));
+		EXPECT_EQ('\b', strutils::from_charstr(_T("\\b")));
+		EXPECT_EQ('\f', strutils::from_charstr(_T("\\f")));
+		EXPECT_EQ('\n', strutils::from_charstr(_T("\\n")));
+		EXPECT_EQ('\r', strutils::from_charstr(_T("\\r")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("\\t")));
+		EXPECT_EQ('\v', strutils::from_charstr(_T("\\v")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("\\\"")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("\\'")));
+
+		EXPECT_EQ('\a', strutils::from_charstr(_T("Bel")));
+		EXPECT_EQ('\b', strutils::from_charstr(_T("bs")));
+		EXPECT_EQ('\f', strutils::from_charstr(_T("FF")));
+		EXPECT_EQ('\n', strutils::from_charstr(_T("LF")));
+		EXPECT_EQ('\r', strutils::from_charstr(_T("CR")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("TAB")));
+		EXPECT_EQ('\v', strutils::from_charstr(_T("VT")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("DQ")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("SQ")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("double-quote")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("singlequote")));
+
+		EXPECT_EQ(' ', strutils::from_charstr(_T("\x20")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("0x09")));
+		EXPECT_EQ(0x7f, strutils::from_charstr(_T("0x7F")));
+	}
+
+	TEST_F(UnicodeStringTest, ToCharStr)
+	{
+		EXPECT_EQ(_T(" "), strutils::to_charstr(' '));
+		EXPECT_EQ(_T("\\x09"), strutils::to_charstr('\t'));
+	}
+
 }  // namespace

@@ -3263,8 +3263,8 @@ msgid "Flipped: %s  "
 msgstr "Apversta: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "Pasukta: %s  "
+msgid "Rotated: %d  "
+msgstr "Pasukta: %d  "
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"

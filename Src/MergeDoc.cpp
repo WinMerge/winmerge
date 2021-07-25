@@ -2782,9 +2782,9 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	return loadSuccess;
 }
 
-CMergeDoc::TableProps CMergeDoc::GetTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
+CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
 {
-	const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
+	const TCHAR quote = strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR));
 	FileFilterHelper filterCSV, filterTSV, filterDSV;
 	bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
 	const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
@@ -2809,7 +2809,7 @@ CMergeDoc::TableProps CMergeDoc::GetTablePropertiesByFileName(const String& path
 		filterDSV.UseMask(true);
 		filterDSV.SetMask(dsvFilePattern);
 		if (filterDSV.includeFile(path))
-			return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
 	}
 	if (enableTableEditing.value_or(false))
 	{
@@ -2817,11 +2817,11 @@ CMergeDoc::TableProps CMergeDoc::GetTablePropertiesByFileName(const String& path
 		{
 			COpenTableDlg dlg;
 			if (dlg.DoModal() == IDOK)
-				return { true, dlg.m_sDelimiterChar.c_str()[0], dlg.m_sQuoteChar.c_str()[0], dlg.m_bAllowNewlinesInQuotes };
+				return { true, strutils::from_charstr(dlg.m_sDelimiterChar), strutils::from_charstr(dlg.m_sQuoteChar), dlg.m_bAllowNewlinesInQuotes };
 		}
 		else
 		{
-			return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
 		}
 	}
 	return { false, 0, 0, false };
@@ -2831,10 +2831,10 @@ void CMergeDoc::SetTableProperties()
 {
 	TableProps tableProps[3] = { };
 	int nTableFileIndex = -1;
-	if (m_pTablePropsCommandLine)
+	if (m_pTablePropsPrepared)
 	{
 		nTableFileIndex = 0;
-		tableProps[0] = *m_pTablePropsCommandLine;
+		tableProps[0] = *m_pTablePropsPrepared;
 	}
 	else
 	{
@@ -2842,7 +2842,7 @@ void CMergeDoc::SetTableProperties()
 		{
 			if (nBuffer == 0 ||
 				paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
-				tableProps[nBuffer] = GetTablePropertiesByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
+				tableProps[nBuffer] = MakeTablePropertiesByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
 			else
 				tableProps[nBuffer] = tableProps[nBuffer - 1];
 			if (tableProps[nBuffer].istable)

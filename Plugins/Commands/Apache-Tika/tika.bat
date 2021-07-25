@@ -16,6 +16,7 @@ cd "%APPDATA%\WinMerge"
 if not exist %TIKA_PATH% (
   cd "%~dp0..\.."
   if not exist %TIKA_PATH% (
+    mkdir "%APPDATA%\WinMerge" 2> NUL
     cd "%APPDATA%\WinMerge"
     for %%i in (%TIKA_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL

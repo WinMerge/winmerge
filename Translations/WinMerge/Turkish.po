@@ -3711,7 +3711,7 @@ msgid "Flipped: %s  "
 msgstr ""
 
 #, c-format
-msgid "Rotated: %s  "
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"

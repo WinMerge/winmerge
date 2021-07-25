@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-11 11:37+0000\n"
-"PO-Revision-Date: 2021-07-12 18:48+0100\n"
+"POT-Creation-Date: 2021-07-24 15:08+0000\n"
+"PO-Revision-Date: 2021-07-24 16:44+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -722,7 +722,7 @@ msgid "Apply Pre&differ..."
 msgstr "Aplicar Pré&diferenciar..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "&Transformar com script de editor..."
 
 msgid "Sp&lit"
 msgstr "Di&vidir"
@@ -1333,7 +1333,7 @@ msgid "Default arguments:"
 msgstr "Argumentos padrão:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Mostrar todos os plugins, não verifica a extensão."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "&Abrir ficheiros no mesmo tipo de janela após desempacotar."
@@ -3729,8 +3729,8 @@ msgid "Flipped: %s  "
 msgstr "Virada: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "Rodado: %s  "
+msgid "Rotated: %d  "
+msgstr "Rodado: %d  "
 
 msgid "<Edit here>"
 msgstr "<Edit here>"
@@ -3780,7 +3780,7 @@ msgid "Data Query"
 msgstr "Consulta de dados"
 
 msgid "Validation"
-msgstr ""
+msgstr "Validação"
 
 msgid "&Others"
 msgstr "&Outros"
@@ -3852,7 +3852,7 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Aplicar filtros de substituição pré-diferenciar"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Embelezar HTML"
 
 msgid "Prettify JSON"
 msgstr "Embelezar JSON"
@@ -3879,7 +3879,7 @@ msgid "Query YAML Data..."
 msgstr "Consultar dados YAML..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Validar HTML"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
@@ -3887,10 +3887,10 @@ msgstr "Nome de plugin ausente no pipeline plugin: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca de cotação ausente no pipeline plugin: %1"
+msgstr "Marca de cotação em falta no plugin pipeline: %1"
 
 msgid "Specify plugin arguments"
-msgstr "Especifique argumentos de plugin"
+msgstr "Especificar argumentos de plugin"
 
 msgid "Make characters uppercase"
 msgstr ""

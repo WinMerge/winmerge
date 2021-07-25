@@ -4001,8 +4001,8 @@ msgid "Flipped: %s  "
 msgstr "Umgedreht: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "Gedreht: %s  "
+msgid "Rotated: %d  "
+msgstr "Gedreht: %d  "
 
 msgid "<Edit here>"
 msgstr "<Hier bearbeiten>"
