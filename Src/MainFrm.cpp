@@ -2460,7 +2460,9 @@ bool CMainFrame::AskCloseConfirmation()
  */
 void CMainFrame::OnHelpReleasenotes()
 {
-	const String sPath = paths::ConcatPath(env::GetProgPath(), RelNotes);
+	String sPath = paths::ConcatPath(env::GetProgPath(),strutils::format(RelNotes, theApp.GetLangName()));
+	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
+		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(RelNotes, _T("")));
 	shell::Open(sPath.c_str());
 }
 

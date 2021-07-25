@@ -891,10 +891,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
  */
 void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 {
-	String name, ext;
-	LANGID LangId = GetLangId();
-	paths::SplitFilename(m_pLangDlg->GetFileName(LangId), nullptr, &name, &ext);
-	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, name.c_str()));
+	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, GetLangName()));
 	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
 		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, _T("")));
 	if (helpLocation == nullptr)
@@ -1277,6 +1274,13 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 WORD CMergeApp::GetLangId() const
 {
 	return m_pLangDlg->GetLangId();
+}
+
+String CMergeApp::GetLangName() const
+{
+	String name, ext;
+	paths::SplitFilename(theApp.m_pLangDlg->GetFileName(theApp.GetLangId()), nullptr, &name, &ext);
+	return name;
 }
 
 /**
