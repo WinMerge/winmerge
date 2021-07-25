@@ -70,6 +70,7 @@ public:
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
 
 	WORD GetLangId() const;
+	String GetLangName() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
