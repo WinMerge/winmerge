@@ -9,7 +9,7 @@
     <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify HTML;GenerateEditorScript" />
     <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
     <unpack-file>
-      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0"</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyXML">
@@ -21,7 +21,7 @@
     <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify XML;GenerateEditorScript" />
     <arguments value="-xml -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha" />
     <unpack-file>
-      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0"</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyJSON">
@@ -105,7 +105,7 @@
     <extended-properties value="ProcessType=Validation;MenuCaption=Validate HTML" />
     <arguments value="-e" />
     <unpack-file>
-      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} 2> "${DST_FILE}" | exit 0"</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} 2> "${DST_FILE}" | exit 0</command>
     </unpack-file>
   </plugin>
   <plugin name="VisualizeGraphviz">
