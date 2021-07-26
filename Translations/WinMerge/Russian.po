@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-24 20:41+0000\n"
-"PO-Revision-Date: 2021-06-25 00:00+0000\n"
+"POT-Creation-Date: 2021-07-24 15:08+0000\n"
+"PO-Revision-Date: 2021-07-26 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -137,16 +137,16 @@ msgid "&Active Pane"
 msgstr "Активная панель"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Повернуть вправо на 90°"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Повернуть влево на 90°"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "Отразить вертикально"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "Отразить горизонтально"
 
 msgid "&Zoom"
 msgstr "&Масштаб"
@@ -718,7 +718,7 @@ msgid "Apply Pre&differ..."
 msgstr "Применить предсравнение..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "Преобразовать скриптом редактора..."
 
 msgid "Sp&lit"
 msgstr "Разделить"
@@ -727,7 +727,7 @@ msgid "Comp&are"
 msgstr "С&равнить"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Сравнить в новом окне"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Сравнить не по горизонтали..."
@@ -1323,7 +1323,7 @@ msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Отображать все плагины, не проверяя расширение."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Открыть файлы в том же типе окна после распаковки."
@@ -1994,7 +1994,7 @@ msgid "Don't display this &message again."
 msgstr "Не показывать &больше."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
+msgstr "Чтобы снова сделать это сообщение видимым, нажмите «Сброс» на странице «Сообщения» в настройках."
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -2009,7 +2009,7 @@ msgid "Differences"
 msgstr "Отличия"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Сообщения"
 
 msgid "To:"
 msgstr "На:"
@@ -2081,10 +2081,10 @@ msgid "Extension"
 msgstr "Расширение"
 
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 msgid "Answer"
-msgstr ""
+msgstr "Ответ"
 
 msgid "Name"
 msgstr "Имя"
@@ -3256,11 +3256,11 @@ msgstr ""
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Отражен: %s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "Повернут: %d  "
 
 msgid "<Edit here>"
 msgstr "<Редактировать здесь>"
@@ -3308,7 +3308,7 @@ msgid "Data Query"
 msgstr "Запрос данных"
 
 msgid "Validation"
-msgstr ""
+msgstr "Валидация"
 
 msgid "&Others"
 msgstr "Другое"
@@ -3332,13 +3332,13 @@ msgid "Sort Lines Descending"
 msgstr "Сортировать строки по убыванию"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Реверс столбцов"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Реверс строк"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Замена..."
 
 msgid "Apply Filter Command..."
 msgstr "Применить фильтрацию..."
@@ -3380,7 +3380,7 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Применить фильтры замены предсравнения."
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Приукрасить HTML"
 
 msgid "Prettify JSON"
 msgstr "Приукрасить JSON"
@@ -3389,10 +3389,10 @@ msgid "Prettify XML"
 msgstr "Приукрасить XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Приукрасить YAML"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Визуализация Graphviz"
 
 msgid "Query CSV Data..."
 msgstr "Запрос данных CSV..."
@@ -3404,10 +3404,10 @@ msgid "Query JSON Data..."
 msgstr "Запрос данных JSON..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "Запрос данных YAML..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Валидация HTML"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
