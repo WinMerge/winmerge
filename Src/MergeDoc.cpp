@@ -103,6 +103,9 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
+	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
+	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -126,6 +129,7 @@ CMergeDoc::CMergeDoc()
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
 , m_CurrentPredifferID(0)
+, m_bChangedSchemeManually(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -2152,18 +2156,20 @@ void CMergeDoc::OnDiffContext(UINT nID)
 }
 
 /**
+ * @brief Swap the positions of the two panes
+ */
+template<int srcPane, int dstPane>
+void CMergeDoc::OnViewSwapPanes()
+{
+	SwapFiles(srcPane, dstPane);
+}
+
+/**
  * @brief Swap context enable for 3 file compares 
  */
 void CMergeDoc::OnUpdateSwapContext(CCmdUI* pCmdUI)
 {
-	if (m_nBuffers > 2)
-	{
-		pCmdUI->Enable(true);
-	}
-	else
-	{
-		pCmdUI->Enable(false);
-	}
+	pCmdUI->Enable(m_nBuffers > 2);
 }
 
 /**
@@ -2776,58 +2782,72 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 	return loadSuccess;
 }
 
-void CMergeDoc::SetTableProperties()
+CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog)
 {
-	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
-	auto getTablePropsByFileName = [](const String& path, const std::optional<bool>& enableTableEditing)-> TableProps
+	const TCHAR quote = strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR));
+	FileFilterHelper filterCSV, filterTSV, filterDSV;
+	bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
+	const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+	if (!csvFilePattern.empty())
 	{
-		const TCHAR quote = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).c_str()[0];
-		FileFilterHelper filterCSV, filterTSV, filterDSV;
-		bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
-		const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
-		if (!csvFilePattern.empty())
-		{
-			filterCSV.UseMask(true);
-			filterCSV.SetMask(csvFilePattern);
-			if (filterCSV.includeFile(path))
-				return { true, ',', quote, allowNewlineIQuotes };
-		}
-		const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
-		if (!tsvFilePattern.empty())
-		{
-			filterTSV.UseMask(true);
-			filterTSV.SetMask(tsvFilePattern);
-			if (filterTSV.includeFile(path))
-				return { true, '\t', quote, allowNewlineIQuotes };
-		}
-		const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
-		if (!dsvFilePattern.empty())
-		{
-			filterDSV.UseMask(true);
-			filterDSV.SetMask(dsvFilePattern);
-			if (filterDSV.includeFile(path))
-				return { true, GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).c_str()[0], quote };
-		}
-		if (enableTableEditing.value_or(false))
+		filterCSV.UseMask(true);
+		filterCSV.SetMask(csvFilePattern);
+		if (filterCSV.includeFile(path))
+			return { true, ',', quote, allowNewlineIQuotes };
+	}
+	const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
+	if (!tsvFilePattern.empty())
+	{
+		filterTSV.UseMask(true);
+		filterTSV.SetMask(tsvFilePattern);
+		if (filterTSV.includeFile(path))
+			return { true, '\t', quote, allowNewlineIQuotes };
+	}
+	const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
+	if (!dsvFilePattern.empty())
+	{
+		filterDSV.UseMask(true);
+		filterDSV.SetMask(dsvFilePattern);
+		if (filterDSV.includeFile(path))
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
+	}
+	if (enableTableEditing.value_or(false))
+	{
+		if (showDialog)
 		{
 			COpenTableDlg dlg;
 			if (dlg.DoModal() == IDOK)
-				return { true, dlg.m_sDelimiterChar.c_str()[0], dlg.m_sQuoteChar.c_str()[0], dlg.m_bAllowNewlinesInQuotes };
+				return { true, strutils::from_charstr(dlg.m_sDelimiterChar), strutils::from_charstr(dlg.m_sQuoteChar), dlg.m_bAllowNewlinesInQuotes };
 		}
-		return { false, 0, 0, false };
-	};
-
-	TableProps tableProps[3] = {};
-	int nTableFileIndex = -1;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (nBuffer == 0 ||
-			paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
-			tableProps[nBuffer] = getTablePropsByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
 		else
-			tableProps[nBuffer] = tableProps[nBuffer - 1];
-		if (tableProps[nBuffer].istable)
-			nTableFileIndex = nBuffer;
+		{
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
+		}
+	}
+	return { false, 0, 0, false };
+};
+
+void CMergeDoc::SetTableProperties()
+{
+	TableProps tableProps[3] = { };
+	int nTableFileIndex = -1;
+	if (m_pTablePropsPrepared)
+	{
+		nTableFileIndex = 0;
+		tableProps[0] = *m_pTablePropsPrepared;
+	}
+	else
+	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (nBuffer == 0 ||
+				paths::FindExtension(m_ptBuf[nBuffer - 1]->GetTempFileName()) != paths::FindExtension(m_ptBuf[nBuffer]->GetTempFileName()))
+				tableProps[nBuffer] = MakeTablePropertiesByFileName(m_ptBuf[nBuffer]->GetTempFileName(), m_bEnableTableEditing);
+			else
+				tableProps[nBuffer] = tableProps[nBuffer - 1];
+			if (tableProps[nBuffer].istable)
+				nTableFileIndex = nBuffer;
+		}
 	}
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -2846,6 +2866,26 @@ void CMergeDoc::SetTableProperties()
 			m_ptBuf[nBuffer]->SetTableEditing(false);
 		}
 	}
+}
+
+void CMergeDoc::SetTextType(int textType)
+{
+	ForEachView([textType, this](auto& pView) {
+		pView->SetTextType(CrystalLineParser::TextType(textType));
+		pView->SetDisableBSAtSOL(false);
+		m_bChangedSchemeManually = true;
+	});
+}
+
+void CMergeDoc::SetTextType(const String& ext)
+{
+	String ext2 = ext;
+	strutils::replace(ext2, _T("."), _T(""));
+	ForEachView([&ext2, this](auto& pView) {
+		pView->SetTextType(ext2.c_str());
+		pView->SetDisableBSAtSOL(false);
+		m_bChangedSchemeManually = true;
+	});
 }
 
 /**
@@ -3109,7 +3149,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	return true;
 }
 
-void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
+void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine)
 {
 	if (nPane < 0)
 	{
@@ -3130,7 +3170,7 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			return;
 		}
 	}
-	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, false, nPane);
+	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane);
 }
 
 void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)

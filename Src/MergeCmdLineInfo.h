@@ -52,7 +52,17 @@ public:
 		SIZE,
 	};
 
+	enum WindowType
+	{
+		AUTOMATIC,
+		TEXT,
+		TABLE,
+		BINARY,
+		IMAGE,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
+	WindowType m_nWindowType; /**< The type of window that displays the files to compare. */
 
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
@@ -64,6 +74,11 @@ public:
 	int  m_nCodepage;  /**< Codepage. */
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
 	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
+	bool m_bNewCompare; /**< Show a new blank window */
+	int m_nLineIndex; /**< Line number to jump after loading files */
+	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/
+	std::optional<TCHAR> m_cTableQuote; /* Quote character for table editing *< */
+	std::optional<bool> m_bTableAllowNewlinesInQuotes; /**< Allow newlines in quotes */
 
 	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
 	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */
@@ -76,6 +91,7 @@ public:
 	String m_sFileFilter; /**< File filter mask. */
 	String m_sPreDiffer; /**< Pre-differ name. */
 	String m_sUnpacker; /**< Unpacker name. */
+	String m_sFileExt; /**< File extension for determining syntax highliting */
 
 	String m_sOutputpath;
 	String m_sReportFile;

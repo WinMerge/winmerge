@@ -337,8 +337,7 @@ static String GetCustomSetting(const String& name, const String& key, const Stri
 	if (customSettingsMap.find(name) != customSettingsMap.end()
 		&& customSettingsMap[name].find(key) != customSettingsMap[name].end())
 	{
-		StringView value = customSettingsMap[name][key];
-		return { value.data(), value.length() };
+		return strutils::to_str(customSettingsMap[name][key]);
 	}
 	return default;
 }

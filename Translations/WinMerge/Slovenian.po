@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-07-04 12:38+0200\n"
+"PO-Revision-Date: 2021-07-25 21:55+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -158,16 +158,16 @@ msgid "&Active Pane"
 msgstr "&Aktivno podokno"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Obrni v &desno za 90 stopinj"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Obrni v &levo za 90 stopinj"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "Zasuči nav&pično"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "Zasuči &vodoravno"
 
 #, c-format
 msgid "&Zoom"
@@ -901,7 +901,7 @@ msgid "Apply Pre&differ..."
 msgstr "Uporabi Prediffer..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "P&reoblikuj z urejevalnikom skriptov..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1657,7 +1657,7 @@ msgid "Default arguments:"
 msgstr "Privzeti argumenti:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Prikaži vse vtičnike, ne preverjaj končnico."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna."
@@ -2563,7 +2563,7 @@ msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
+msgstr "Za ponovno vidnost tega sporočilnega okna pritisnite gumb 'Ponastavi' na strani 'Sporočilna okna' v pogovornem oknu 'Možnosti'."
 
 #, c-format
 msgid "Syntax"
@@ -2580,7 +2580,7 @@ msgid "Differences"
 msgstr "Razlike"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Sporočilna okna"
 
 #, c-format
 msgid "To:"
@@ -2674,10 +2674,10 @@ msgid "Extension"
 msgstr "Končnica"
 
 msgid "Message"
-msgstr ""
+msgstr "Sporočilo"
 
 msgid "Answer"
-msgstr ""
+msgstr "Odgovor"
 
 #, c-format
 msgid "Name"
@@ -4372,11 +4372,11 @@ msgstr "Zapis: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Zasukano: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr ""
+msgid "Rotated: %d  "
+msgstr "Obrnjeno: %d  "
 
 msgid "<Edit here>"
 msgstr "<Uredi tukaj>"
@@ -4424,6 +4424,9 @@ msgstr "Vidna predstavitev"
 msgid "Data Query"
 msgstr "Podatkovna poizvedba"
 
+msgid "Validation"
+msgstr "Preverjanje veljavnosti"
+
 msgid "&Others"
 msgstr "&Drugo"
 
@@ -4431,7 +4434,7 @@ msgid "Make Uppercase"
 msgstr "VELIKE ČRKE"
 
 msgid "Make Lowercase"
-msgstr "majhne črke"
+msgstr "Majhne črke"
 
 msgid "Remove Duplicate Lines"
 msgstr "Odstrani podvojene vrstice"
@@ -4458,7 +4461,7 @@ msgid "Apply Filter Command..."
 msgstr "Uporabi ukaz filtra..."
 
 msgid "Tokenize..."
-msgstr "Ustvari žetone"
+msgstr "Ustvari žetone..."
 
 msgid "Trim Spaces"
 msgstr "Odsekaj presledke"
@@ -4493,6 +4496,9 @@ msgstr "Prezri polja TSV"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Uporabite nadomestne filtre Prediff"
 
+msgid "Prettify HTML"
+msgstr "Polepšaj HTML"
+
 msgid "Prettify JSON"
 msgstr "Polepšaj JSON"
 
@@ -4500,7 +4506,7 @@ msgid "Prettify XML"
 msgstr "Polepšaj XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Polepšaj YAML"
 
 msgid "Visualize Graphviz"
 msgstr "Prikaži Graphviz"
@@ -4515,7 +4521,10 @@ msgid "Query JSON Data..."
 msgstr "Poizveduj podatke JSON..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "Poizvedba podatkov YAML..."
+
+msgid "Validate HTML"
+msgstr "Potrdi HTML"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

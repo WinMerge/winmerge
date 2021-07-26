@@ -86,9 +86,9 @@ void PluginsListDlg::InitList()
 	String title = _("Name");
 	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
 	title = _("Type");
-	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(75));
+	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
 	title = _("Description");
-	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(225));
+	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(300));
 }
 
 /**
@@ -120,8 +120,11 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
+		auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+		String processType2 = processType.has_value() ? strutils::to_str(*processType) : _T("&Others");
+		processType2 = strutils::strip_hot_key(tr(ucr::toUTF8(processType2)));
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
-		m_list.SetItemText(ind, 1, pluginType.c_str());
+		m_list.SetItemText(ind, 1, (pluginType + _T("/") + processType2).c_str());
 		m_list.SetItemText(ind, 2, tr(ucr::toUTF8(plugin->m_description)).c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
 		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));

@@ -3668,7 +3668,7 @@ msgid "Flipped: %s  "
 msgstr ""
 
 #, c-format
-msgid "Rotated: %s  "
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -3714,6 +3714,9 @@ msgid "Visualization"
 msgstr ""
 
 msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
 msgstr ""
 
 msgid "&Others"
@@ -3785,6 +3788,9 @@ msgstr ""
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
+msgid "Prettify HTML"
+msgstr ""
+
 msgid "Prettify JSON"
 msgstr ""
 
@@ -3807,6 +3813,9 @@ msgid "Query JSON Data..."
 msgstr ""
 
 msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
 msgstr ""
 
 #, c-format

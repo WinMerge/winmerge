@@ -182,7 +182,7 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 				else if (c >= '1' && c <= '9')
 				{
 					if ((c - '1') < variables.size())
-						newarg += String{ variables[(c - '1')].data(), variables[(c - '1')].length() };
+						newarg += strutils::to_str(variables[(c - '1')]);
 				}
 				else
 				{
@@ -305,7 +305,7 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 
 		if (plugin->m_hasVariablesProperty)
 		{
-			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
 				return false;
 		}
 		if (plugin->m_hasArgumentsProperty)
@@ -403,7 +403,7 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 
 		if (plugin->m_hasVariablesProperty)
 		{
-			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
 				return false;
 		}
 		if (plugin->m_hasArgumentsProperty)
@@ -558,7 +558,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 
 		if (plugin->m_hasVariablesProperty)
 		{
-			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
 				return false;
 		}
 		if (plugin->m_hasArgumentsProperty)
@@ -668,7 +668,7 @@ bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView
 
 		if (plugin->m_hasVariablesProperty)
 		{
-			if (!plugin::InvokePutPluginVariables(String(variables[0].data(), variables[0].length()), piScript))
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
 				return false;
 		}
 		if (plugin->m_hasArgumentsProperty)
@@ -774,9 +774,9 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
 					const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-						String{ menuCaption->data(), menuCaption->size() } : plugin->m_name));
+						strutils::to_str(*menuCaption) : plugin->m_name));
 					const String process = tr(ucr::toUTF8(processType.has_value() ?
-						String{ processType->data(), processType->size() } : _T("&Others")));
+						strutils::to_str(*processType) : _T("&Others")));
 
 					if (plugin->TestAgainstRegList(filteredFilenames))
 						suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
@@ -801,9 +801,9 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 						if (!processType.has_value())
 							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
 						const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-							String{ menuCaption->data(), menuCaption->size() } : scriptNamesArray[i]));
+							strutils::to_str(*menuCaption) : scriptNamesArray[i]));
 						const String process = tr(ucr::toUTF8(processType.has_value() ?
-							String{ processType->data(), processType->size() } : _T("&Others")));
+							strutils::to_str(*processType) : _T("&Others")));
 						if (matched)
 							suggestedPlugins.emplace_back(caption, scriptNamesArray[i], id, plugin.get());
 						if (allPlugins.find(process) == allPlugins.end())

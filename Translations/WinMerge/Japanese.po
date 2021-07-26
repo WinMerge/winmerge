@@ -3643,8 +3643,8 @@ msgid "Flipped: %s  "
 msgstr "反転: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr "回転: %s°  "
+msgid "Rotated: %d  "
+msgstr "回転: %d°  "
 
 msgid "<Edit here>"
 msgstr "<ここを編集>"
@@ -3690,6 +3690,9 @@ msgstr "視覚化"
 
 msgid "Data Query"
 msgstr "データ問い合わせ"
+
+msgid "Validation"
+msgstr "検証"
 
 msgid "&Others"
 msgstr "その他(&O)"
@@ -3760,6 +3763,9 @@ msgstr "TSVの指定列を無視"
 msgid "Apply Prediff Substitution Filters"
 msgstr "比較前処理置換フィルタ"
 
+msgid "Prettify HTML"
+msgstr "HTML整形"
+
 msgid "Prettify JSON"
 msgstr "JSON整形"
 
@@ -3783,6 +3789,9 @@ msgstr "JSONデータの問い合わせ..."
 
 msgid "Query YAML Data..."
 msgstr "YAMLデータの問い合わせ..."
+
+msgid "Validate HTML"
+msgstr "HTML検証"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

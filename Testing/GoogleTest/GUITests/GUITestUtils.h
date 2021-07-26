@@ -13,6 +13,7 @@ namespace GUITestUtils
 	void typeKey(unsigned char vk);
 	void nextControl();
 	void prevControl();
+	void setFocusDlgItem(HWND hwnd, int id);
 	std::filesystem::path getModuleFileName();
 	std::filesystem::path getModuleFolder();
 	bool isMenuItemChecked(HWND hwnd, int id);

@@ -20,24 +20,127 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21613-beta-release-notes">WinMerge 2.16.13 Beta Release Notes</h1>
+<h1 id="winmerge-21614-release-notes">WinMerge 2.16.14 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-21614">What Is New in 2.16.14?</a></li>
 <li><a href="#what-is-new-in-21613-beta">What Is New in 2.16.13 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>June 2021</p>
+<p>July 2021</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
+<p>This is a WinMerge 2.16.14 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-21613-beta">What Is New in 2.16.13 Beta</h2>
+<h2 id="what-is-new-in-21614">What Is New in 2.16.14</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>Fixed an issue where the WinMerge process might not terminate even though the WinMerge window was closed.</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: Fixed an infinite loop when &quot;find what&quot; in the substitution filters is empty.</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Fix an issue where a file is deselected when returning to the folder compare window after opening the file compare window by double-clicking the file in the folder compare window. (PR #857)</li>
+<li>Right click context menu - Compare files or folders in a new tab (#232,#277)</li>
+</ul>
+<h3 id="binary-compare">Binary compare</h3>
+<ul>
+<li>BugFix: Fixed an issue where window titles may not be updated</li>
+</ul>
+<h3 id="image-compare">Image compare</h3>
+<ul>
+<li>winmerge shows (differences) rotated image (winmerge/winimerge #20)</li>
+<li>Added following menu items to the context menu
+<ul>
+<li>Rotate Right 90deg</li>
+<li>Rotate Left 90deg</li>
+<li>Flip Vertically</li>
+<li>Flip Horizontally</li>
+</ul></li>
+</ul>
+<h3 id="options-dialog">Options dialog</h3>
+<ul>
+<li>Add preference option to clear &quot;Don&#39;t ask this question again&quot; CompareLargeFiles choice (#772, PR #859)</li>
+</ul>
+<h3 id="select-files-or-folders-dialog">Select Files or Folders dialog</h3>
+<ul>
+<li>BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>BugFix: CompareMSExcelFiles.sct: &quot;This picture only contains a bitmap&quot; was displayed when comparing Excel files that contain shapes.</li>
+<li>BugFix: CString rangestr = (argc &gt; 0) ? argv[0] : GetColumnRangeString(); (#853)</li>
+<li>Improve plugin system (editor script) (PR #871)</li>
+<li>New unpacker plugins:
+<ul>
+<li>PrettifyHTML</li>
+<li>PrettifyYAML</li>
+<li>ValidateHTML</li>
+<li>QueryYAML</li>
+<li>SelectColumns</li>
+<li>SelectLines</li>
+<li>ReverseColumns</li>
+<li>ReverseLines</li>
+<li>Replace</li>
+</ul></li>
+<li>New editor script plugins:
+<ul>
+<li>PrettifyHTML</li>
+<li>PrettifyYAML</li>
+<li>SelectColumns</li>
+<li>SelectLines</li>
+<li>ReverseColumns</li>
+<li>ReverseLines</li>
+<li>Replace</li>
+</ul></li>
+<li>Updated Apache Tika to version 2.0.0</li>
+<li>Updated yq to version 4.11.1</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>Added /l command line option (osdn.net #41528)</li>
+<li>Added /t, /table-delimiter, /new, /fileext and /inifile command line option</li>
+</ul>
+<h3 id="installer">Installer</h3>
+<ul>
+<li>Installer integrates with TortoiseGit and TortoiseSVN despite being told not to (#878)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Bulgarian (PR #850)</li>
+<li>Dutch (PR #842,#893)</li>
+<li>Galician (PR #869)</li>
+<li>German (PR #860,#870,#883,#890)</li>
+<li>Hungarian (PR #845,#856,#897)</li>
+<li>Japanese</li>
+<li>Lithuanian (PR #840,#849,#866,#875,#879,#894)</li>
+<li>Portuguese (PR #846,#872,#898)</li>
+<li>Slovenian (#858)</li>
+<li>Russian (PR #847)</li>
+<li>Turkish (PR #848)</li>
+</ul></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>BugFix: WinMerge doesn&#39;t build under Visual Studio 16.10.2 (#841)</li>
+<li>BugFix: x64: LINK : warning LNK4010: invalid subsystem version number 5.01; default subsystem version assumed (#855)</li>
+<li>BugFix: Project: heksedit cl : command line warning D9002: ignoring unknown option &#39;/arch:SSE&#39; (#861)</li>
+<li>BugFix:ALL.vs2019.sln cl : command line warning D9035: option &#39;Gm&#39; has been deprecated and will be removed in a future release (#862)</li>
+<li>Resolves: Add continuous code security and quality analysis (PR #844, #843)</li>
+<li>Improvement: Add check and error mesage in DownloadDeps.cmd that path to 7-zip exists (#864)</li>
+</ul>
+<h2 id="what-is-new-in-21613-beta">What Is New in 2.16.13 Beta</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>BugFix: Register.bat did not work properly on the Chinese version of Windows XP (#780)</li>
 <li>Possibility to store settings in INI file (#248) (PR #750)</li>
 <li>FeatureRequest - Ignoring options - lack in &quot;button menu&quot; (#804)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Fix PHP syntax highlighting. (PR #782, PR #802)</li>
 <li>BugFix: BS key did not work at the beginning of the line after splitting the pane or clicking the OK button in the Options dialog.</li>
@@ -46,22 +149,22 @@
 <li>Add Smarty syntax highlighting. (PR #821)</li>
 <li>Thicken the caret in overwrite mode (osdn.net #42179)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Different Files are Identical? (#768) (When comparing files with only BOM and no contents, the comparison result became unstable because it referred to the uninitialized memory.)</li>
 <li>BugFix: Fix a crash when re-comparing folders (osdn.net #42219)</li>
 </ul>
-<h3 id="binary-compare">Binary compare</h3>
+<h3 id="binary-compare-1">Binary compare</h3>
 <ul>
 <li>BugFix: The file could not be saved after creating a new one</li>
 <li>Made Unpacker plugins available for image compare and binary compare</li>
 </ul>
-<h3 id="image-compare">Image compare</h3>
+<h3 id="image-compare-1">Image compare</h3>
 <ul>
 <li>BugFix: Error on try to show differences between two different gif (#784)</li>
 <li>Made Unpacker plugins available for image compare and binary compare</li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li>Improve plugin system (PR #797)
 <ul>
@@ -102,7 +205,7 @@
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>BugFix: Fix an issue where a message is not translated.(PR #763)</li>
 <li>Translation updates:
@@ -114,7 +217,7 @@
 <li>Russian (PR #761)</li>
 </ul></li>
 </ul>
-<h3 id="internals">Internals</h3>
+<h3 id="internals-1">Internals</h3>
 <ul>
 <li>Update CWindowsManagerDialog (PR #811)</li>
 <li>Update CWindowsManagerDialog - check some pointers for null and made safe casts (PR #824)</li>

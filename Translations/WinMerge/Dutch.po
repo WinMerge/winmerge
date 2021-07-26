@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-06-24 08:53+0000\n"
+"POT-Creation-Date: 2021-07-21 22:10+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -136,16 +136,16 @@ msgid "&Active Pane"
 msgstr "Actief venster"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "90 graden rechtsom roteren"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "90 graden linksom roteren"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "Verticaal omdraaien"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "Horizontaal omdraaien"
 
 msgid "&Zoom"
 msgstr "Zoomen"
@@ -717,7 +717,7 @@ msgid "Apply Pre&differ..."
 msgstr "Voorvergelijking toepassen."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "Transformeren met editor-script..."
 
 msgid "Sp&lit"
 msgstr "Splitsen"
@@ -726,7 +726,7 @@ msgid "Comp&are"
 msgstr "Vergelijken"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "In nieuw venster vergelijken"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Niet-horizontaal vergelijken..."
@@ -1327,7 +1327,7 @@ msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Alle plug-ins weergeven zonder de extensie te controleren."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken."
@@ -2070,8 +2070,12 @@ msgstr "Alles overslaan"
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"Message Boxes page of the Options dialog."
 msgstr ""
+"Druk op de herstellen-knop op de pagina \"berichtvensters\" van het venster "
+"\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -2086,7 +2090,7 @@ msgid "Differences"
 msgstr "Verschillen"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Berichtvensters"
 
 msgid "To:"
 msgstr "Naar:"
@@ -2168,10 +2172,10 @@ msgid "Extension"
 msgstr "Extensie"
 
 msgid "Message"
-msgstr ""
+msgstr "Bericht"
 
 msgid "Answer"
-msgstr ""
+msgstr "Antwoord"
 
 msgid "Name"
 msgstr "Naam"
@@ -3679,7 +3683,7 @@ msgstr "Afstand: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr "Pagina: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Pagina: %d/%d  Zoom: %d %%  %dx%d px  %d bpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
@@ -3687,11 +3691,11 @@ msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Omgedraaid: %s "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr ""
+msgid "Rotated: %d  "
+msgstr "Geroteerd: %d "
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
@@ -3738,7 +3742,10 @@ msgid "Visualization"
 msgstr "Visualisatie"
 
 msgid "Data Query"
-msgstr "Data-bevraging"
+msgstr "Gegevensbevraging"
+
+msgid "Validation"
+msgstr "Validatie"
 
 msgid "&Others"
 msgstr "Andere"
@@ -3762,13 +3769,13 @@ msgid "Sort Lines Descending"
 msgstr "Regels aflopend sorteren"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Kolommen omkeren"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Regels omkeren"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Vervangen..."
 
 msgid "Apply Filter Command..."
 msgstr "Filteropdracht toepassen..."
@@ -3783,7 +3790,7 @@ msgid "Select Columns..."
 msgstr "Kolommen selecteren..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "Regels selecteren..."
 
 msgid "Insert Date"
 msgstr "Datum invoegen"
@@ -3809,6 +3816,9 @@ msgstr "TSV-velden negeren"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Voorvergelijking-substitutiefilters toepassen"
 
+msgid "Prettify HTML"
+msgstr "HTML mooi maken"
+
 msgid "Prettify JSON"
 msgstr "JSON mooi maken"
 
@@ -3816,22 +3826,25 @@ msgid "Prettify XML"
 msgstr "XML mooi maken"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "YAML mooi maken"
 
 msgid "Visualize Graphviz"
 msgstr "Graphviz visualiseren"
 
 msgid "Query CSV Data..."
-msgstr "CSV-data bevragen..."
+msgstr "CSV-gegevens bevragen..."
 
 msgid "Query TSV Data..."
-msgstr "TSV-data bevragen..."
+msgstr "TSV-gegevens bevragen..."
 
 msgid "Query JSON Data..."
-msgstr "JSON-data bevragen..."
+msgstr "JSON-gegevens bevragen..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "YAML-gegevens bevragen..."
+
+msgid "Validate HTML"
+msgstr "HTML valideren"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

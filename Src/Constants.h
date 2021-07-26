@@ -30,7 +30,7 @@ const TCHAR DocsPath[] = _T("Docs/WinMerge%s.chm");
 const TCHAR ContributorsPath[] = _T("contributors.txt");
 
 /** @brief Release notes in HTML format. */
-const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
+const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes%s.html");
 
 /** @brief GPL Licence local file name. */
 const TCHAR LicenseFile[] = _T("Copying");

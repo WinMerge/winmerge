@@ -659,6 +659,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	String strDesc[3];
 	std::unique_ptr<PackingInfo> infoUnpacker;
 	std::unique_ptr<PrediffingInfo> infoPrediffer;
+	unsigned nID = cmdInfo.m_nWindowType == MergeCmdLineInfo::AUTOMATIC ?
+		0 : static_cast<unsigned>(cmdInfo.m_nWindowType) + ID_MERGE_COMPARE_TEXT - 1;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
@@ -710,22 +712,32 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			strDesc[2] = cmdInfo.m_sRightDesc;
 		}
 
+		CMainFrame::OpenTextFileParams openParams;
+		openParams.m_line = cmdInfo.m_nLineIndex;
+		openParams.m_fileExt = cmdInfo.m_sFileExt;
+		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
+		{
+			openParams.m_tableDelimiter = cmdInfo.m_cTableDelimiter;
+			openParams.m_tableQuote = cmdInfo.m_cTableQuote;
+			openParams.m_tableAllowNewlinesInQuotes = cmdInfo.m_bTableAllowNewlinesInQuotes;
+		}
+
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwMiddleFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
-			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get());
+				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -734,7 +746,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
-				bCompared = pMainFrame->DoSelfCompare(IDOK, sFilepath, strDesc);
+				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc,
+					infoUnpacker.get(), infoPrediffer.get(), &openParams);
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -751,16 +764,23 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			else
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
-				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+				bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					infoUnpacker.get(), infoPrediffer.get());
+					infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
 		{
-			bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
-			if (showFiles)
-				pMainFrame->DoFileOpen();
+			if (!cmdInfo.m_bNewCompare)
+			{
+				bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+				if (showFiles)
+					pMainFrame->DoFileOrFolderOpen();
+			}
+			else
+			{
+				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), &openParams);
+			}
 		}
 	}
 	return bCompared;
@@ -871,10 +891,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
  */
 void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 {
-	String name, ext;
-	LANGID LangId = GetLangId();
-	paths::SplitFilename(m_pLangDlg->GetFileName(LangId), nullptr, &name, &ext);
-	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, name.c_str()));
+	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, GetLangName()));
 	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
 		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, _T("")));
 	if (helpLocation == nullptr)
@@ -1243,7 +1260,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
-		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
+		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
 	}
 
@@ -1257,6 +1274,13 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 WORD CMergeApp::GetLangId() const
 {
 	return m_pLangDlg->GetLangId();
+}
+
+String CMergeApp::GetLangName() const
+{
+	String name, ext;
+	paths::SplitFilename(theApp.m_pLangDlg->GetFileName(theApp.GetLangId()), nullptr, &name, &ext);
+	return name;
 }
 
 /**

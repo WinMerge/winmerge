@@ -34,6 +34,9 @@
       <arg choice="opt" rep="norepeat"><option>/m</option>
       <replaceable>compare-method</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/t</option>
+      <replaceable>window-type</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
@@ -58,6 +61,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/new</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
       <arg><option>/minimize</option></arg>
@@ -69,6 +74,12 @@
       <arg choice="opt" rep="norepeat"><option>/fm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/l</option>
+      <replaceable>linenumber</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+      <replaceable>delimiter</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
@@ -102,13 +113,16 @@
       <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/unpacker</option>
-      <replaceable>unpacker name</replaceable></arg>
+      <replaceable>unpacker-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/prediffer</option>
-      <replaceable>prediffer name</replaceable></arg>
+      <replaceable>prediffer-name</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cp</option>
       <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fileext</option>
+      <replaceable>file-extension</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/cfg</option>
       <replaceable>name=value</replaceable></arg>
@@ -208,13 +222,28 @@
         <secondary>applying in command line</secondary>
       </indexterm>
 
-      <term><option>/m</option></term>
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
       <listitem>
         <para>Sets the compare method to use for the comparison.
         This can be one of the keywords <userinput>Full</userinput>,
         <userinput>Quick</userinput>, <userinput>Binary</userinput>,
-        <userinput>Date</userinput>, <userinput>SizeDate</userinput>, 
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput> or 
         <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>window type</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>Specifies the type of window in which to display files.
+        This can be one of the keywords <userinput>Text</userinput>,
+        <userinput>Table</userinput>, <userinput>Binary</userinput> or
+        <userinput>Image</userinput>.</para>
       </listitem>
     </varlistentry>
 
@@ -342,6 +371,13 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>Opens a new blank window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/self-compare</option></term>
       <listitem>
         <para>Compares the specified file with a copy of the file.</para>
@@ -387,6 +423,20 @@
       <term><option>/fr</option></term>
       <listitem>
         <para>Sets focus to the right side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>Specifies a line number to jump to after loading the files.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>Specifies a delimiter character for table editing. To specify a tab character, specify "tab", "\t", or "\x09".</para>
       </listitem>
     </varlistentry>
 
@@ -512,6 +562,13 @@
       <term><option>/cp</option></term>
       <listitem>
         <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>Specifies a file extension for determining syntax hightliting.</para>
       </listitem>
     </varlistentry>
 

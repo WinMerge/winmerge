@@ -159,16 +159,16 @@ msgid "&Active Pane"
 msgstr "AKtív panel"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Forgatás jobbra 90 fokkal"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Forgatás balra 90 fokkal"
 
 msgid "Flip &Vertically"
-msgstr ""
+msgstr "Függőleges megfordítás"
 
 msgid "Flip &Horizontally"
-msgstr ""
+msgstr "Vízszintes megfordítás"
 
 #, c-format
 msgid "&Zoom"
@@ -903,7 +903,7 @@ msgid "Apply Pre&differ..."
 msgstr "Elővizsgáló alkalmazása..."
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "Átalakítás a szerkesztő szkriptjével ..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1660,7 +1660,7 @@ msgid "Default arguments:"
 msgstr "Alapértelmezett argumentumok:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztést."
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
@@ -2569,7 +2569,7 @@ msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
+msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomja meg a Beállítások Üzenetablakok oldalán a visszaállítás gombot."
 
 #, c-format
 msgid "Syntax"
@@ -2586,7 +2586,7 @@ msgid "Differences"
 msgstr "Eltérések"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Üzenetablakok"
 
 #, c-format
 msgid "To:"
@@ -2680,10 +2680,10 @@ msgid "Extension"
 msgstr "Kiterjesztés"
 
 msgid "Message"
-msgstr ""
+msgstr "Üzenet"
 
 msgid "Answer"
-msgstr ""
+msgstr "Válasz"
 
 #, c-format
 msgid "Name"
@@ -3761,10 +3761,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "Visszalépsz az előző oldalra?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "Átlépés az első fájlhoz?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "Átlépés az utolsó fájlhoz?"
 
 #, c-format
 msgid ""
@@ -4379,11 +4379,11 @@ msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Megfordítva: %s  "
 
 #, c-format
-msgid "Rotated: %s  "
-msgstr ""
+msgid "Rotated: %d  "
+msgstr "Elforgatva: %d  "
 
 msgid "<Edit here>"
 msgstr "<Szerkesztés itt>"
@@ -4429,6 +4429,9 @@ msgstr "Megjelenítés"
 
 msgid "Data Query"
 msgstr "Adatlekérdezés"
+
+msgid "Validation"
+msgstr "Érvényesítés"
 
 msgid "&Others"
 msgstr "Egyéb"
@@ -4499,6 +4502,9 @@ msgstr "TSV mezők mellőzése"
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
+msgid "Prettify HTML"
+msgstr "HTML formázása"
+
 msgid "Prettify JSON"
 msgstr "JSON formázása"
 
@@ -4506,7 +4512,7 @@ msgid "Prettify XML"
 msgstr "XML formázása"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "YAML formázása"
 
 msgid "Visualize Graphviz"
 msgstr "Graphviz vizualizálás"
@@ -4521,7 +4527,10 @@ msgid "Query JSON Data..."
 msgstr "JSON adatok lekérdezése..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "YAML adatok lekérdezése..."
+
+msgid "Validate HTML"
+msgstr "HTML érvényesítése"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

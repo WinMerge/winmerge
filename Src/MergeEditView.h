@@ -87,11 +87,8 @@ private:
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
-	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
-
 // Attributes
 public:
-	void CopyProperties (CCrystalTextView* pSource) override;
 
 // Operations
 public:
@@ -327,9 +324,6 @@ protected:
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
 	afx_msg void OnOpenParentFolder();
-	afx_msg void OnViewSwapPanes12();
-	afx_msg void OnViewSwapPanes23();
-	afx_msg void OnViewSwapPanes13();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();
 	afx_msg void OnViewMargin();

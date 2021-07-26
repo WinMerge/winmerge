@@ -113,20 +113,23 @@ const TCHAR *MergeCmdLineInfo::SetConfig(const TCHAR *q)
  * @brief MergeCmdLineParser's constructor.
  * @param [in] q Points to the beginning of the command line.
  */
-MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
-	m_nCmdShow(SHOWNORMAL),
-	m_bEscShutdown(false),
-	m_bExitIfNoDiff(Disabled),
-	m_bRecurse(false),
-	m_bNonInteractive(false),
-	m_nSingleInstance(),
-	m_bShowUsage(false),
-	m_bNoPrefs(false),
-	m_nCodepage(0),
-	m_bSelfCompare(false),
-	m_dwLeftFlags(FFILEOPEN_NONE),
-	m_dwMiddleFlags(FFILEOPEN_NONE),
-	m_dwRightFlags(FFILEOPEN_NONE)
+MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
+	: m_nCmdShow(SHOWNORMAL)
+	, m_nWindowType(AUTOMATIC)
+	, m_bEscShutdown(false)
+	, m_bExitIfNoDiff(Disabled)
+	, m_bRecurse(false)
+	, m_bNonInteractive(false)
+	, m_nSingleInstance()
+	, m_bShowUsage(false)
+	, m_bNoPrefs(false)
+	, m_nCodepage(0)
+	, m_bSelfCompare(false)
+	, m_bNewCompare(false)
+	, m_dwLeftFlags(FFILEOPEN_NONE)
+	, m_dwMiddleFlags(FFILEOPEN_NONE)
+	, m_dwRightFlags(FFILEOPEN_NONE)
+	, m_nLineIndex(-1)
 {
 	String exeName;
 	q = EatParam(q, exeName);
@@ -226,6 +229,24 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -f "mask" - file filter mask ("*.h *.cpp")
 			q = EatParam(q, m_sFileFilter);
 		}
+		else if (param == _T("t"))
+		{
+			// -t "type" - window type
+			q = EatParam(q, param);
+			param = strutils::makelower(param);
+			if (param == _T("automatic"))
+				m_nWindowType = WindowType::AUTOMATIC;
+			else if (param == _T("text"))
+				m_nWindowType = WindowType::TEXT;
+			else if (param == _T("table"))
+				m_nWindowType = WindowType::TABLE;
+			else if (param == _T("binary"))
+				m_nWindowType = WindowType::BINARY;
+			else if (param == _T("image"))
+				m_nWindowType = WindowType::IMAGE;
+			else
+				m_sErrorMessages.push_back(_T("Unknown window type '") + param + _T("' specified"));
+		}
 		else if (param == _T("m"))
 		{
 			// -m "method" - compare method
@@ -292,6 +313,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -self-compare means compare a specified file with a copy of the file
 			m_bSelfCompare = true;
 		}
+		else if (param == _T("new"))
+		{
+			// -new means to display a new blank window
+			m_bNewCompare = true;
+		}
 		else if (param == _T("minimize"))
 		{
 			// -minimize means minimize the main window.
@@ -302,15 +328,15 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -maximize means maximize the main window.
 			m_nCmdShow = MAXIMIZE;
 		}
-		else if (param == _T("prediffer"))
-		{
-			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
-			q = EatParam(q, m_sPreDiffer);
-		}
 		else if (param == _T("unpacker"))
 		{
 			// Get unpacker if specified (otherwise unpacker will be blank, which is default)
 			q = EatParam(q, m_sUnpacker);
+		}
+		else if (param == _T("prediffer"))
+		{
+			// Get prediffer if specified (otherwise prediffer will be blank, which is default)
+			q = EatParam(q, m_sPreDiffer);
 		}
 		else if (param == _T("wl"))
 		{
@@ -364,6 +390,41 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -fr to set focus to the right pane
 			m_dwRightFlags |= FFILEOPEN_SETFOCUS;
 		}
+		else if (param == _T("l"))
+		{
+			// -l to set the destination line nubmer
+			String line;
+			q = EatParam(q, line);
+			m_nLineIndex = _ttoi(line.c_str());
+			if (m_nLineIndex <= 0)
+			{
+				m_nLineIndex = -1;
+				m_sErrorMessages.push_back(_T("Invalid line number specified"));
+			}
+			else
+			{
+				m_nLineIndex--;
+			}
+		}
+		else if (param == _T("table-delimiter"))
+		{
+			String value;
+			q = EatParam(q, value);
+			m_cTableDelimiter = strutils::from_charstr(value);
+		}
+		else if (param == _T("table-quote"))
+		{
+			String value;
+			q = EatParam(q, value);
+			m_cTableQuote = strutils::from_charstr(value);
+		}
+		else if (param == _T("table-allownewlinesinquotes"))
+		{
+			String value;
+			q = EatParam(q, value);
+			TCHAR c = strutils::makelower(value).c_str()[0];
+			m_bTableAllowNewlinesInQuotes = (c == 0 || c == 'y' || c == 't' || c == '1');
+		}
 		else if (param == _T("al"))
 		{
 			// -al to auto-merge at the left pane
@@ -395,6 +456,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			String codepage;
 			q = EatParam(q, codepage);
 			m_nCodepage = atoi(ucr::toUTF8(codepage).c_str());
+		}
+		else if (param == _T("fileext"))
+		{
+			q = EatParam(q, m_sFileExt);
+			if (!m_sFileExt.empty() && m_sFileExt[0] != '.')
+				m_sFileExt = _T(".") + m_sFileExt;
 		}
 		else if (param == _T("ignorews"))
 		{

@@ -124,7 +124,8 @@ TEST_P(MainFrameTest, FileOpenConflict)
 	HWND hwndSave = selectOpenDialogMenuAndSaveDialogImage(ID_WINDOW_CLOSEALL);
 	if (hwndSave)
 	{
-		typeAltPlusKey('R');
+		setFocusDlgItem(findForegroundDialog(), IDC_SAVECLOSING_DISCARDALL);
+		typeKey(' ');
 		waitUntilClose(hwndSave);
 	}
 }

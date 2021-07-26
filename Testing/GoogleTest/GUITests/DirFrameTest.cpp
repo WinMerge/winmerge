@@ -180,6 +180,7 @@ TEST_P(DirFrameTest, ViewFont)
 
 TEST_P(DirFrameTest, ViewSwapPanes)
 {
+	Sleep(200);
 	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 }
