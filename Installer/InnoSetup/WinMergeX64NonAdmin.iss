@@ -55,12 +55,12 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion} x64 (Current user, 64-bit)
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=https://WinMerge.org/
-AppSupportURL=https://WinMerge.org/
-AppUpdatesURL=https://WinMerge.org/
+AppPublisherURL=https://winmergejp.bitbucket.io
+AppSupportURL=https://winmergejp.bitbucket.io
+AppUpdatesURL=https://winmergejp.bitbucket.io
 
 ; Installer executable's version resource info
-VersionInfoCompany=https://winmerge.org
+VersionInfoCompany=https://winmergejp.bitbucket.io
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
@@ -454,6 +454,8 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt; DestDir: {app}\Docs; 
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMergeJapanese.chm; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Docs\Users\ReleaseNotesJapanese.html; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Docs\Users\ChangeLogJapanese.html; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Lithuanian.po; DestDir: {app}\Languages; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt; DestDir: {app}\Docs; Components: Languages\Lithuanian
