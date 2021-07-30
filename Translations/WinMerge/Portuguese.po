@@ -190,8 +190,8 @@ msgstr "Limpeza &Vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &Horizontal"
 
-msgid "&Rectangle Select"
-msgstr "Seleção de &Retângulo"
+msgid "Rectangle &Select"
+msgstr "&Seleção de Retângulo"
 
 msgid "&Set Background Color"
 msgstr "Definir Cor de Fundo"

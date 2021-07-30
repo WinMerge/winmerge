@@ -221,7 +221,7 @@ msgstr "Függőleges tördelés"
 msgid "&Horizontal Wipe"
 msgstr "Vízszintes tördelés"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "Kijelölő téglalap"
 
 #, c-format

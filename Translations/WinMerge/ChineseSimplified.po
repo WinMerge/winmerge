@@ -190,7 +190,7 @@ msgstr "垂直擦拭(&V)"
 msgid "&Horizontal Wipe"
 msgstr "水平擦拭(&H)"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 msgid "&Set Background Color"

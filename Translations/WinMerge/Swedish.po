@@ -221,7 +221,7 @@ msgstr "Lodrät Wipe"
 msgid "&Horizontal Wipe"
 msgstr "Vågrät Wipe"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "Rektangel Välj"
 
 #, c-format

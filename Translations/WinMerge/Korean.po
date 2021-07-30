@@ -224,8 +224,8 @@ msgstr "수직 끌기(&V)"
 msgid "&Horizontal Wipe"
 msgstr "수평 끌기(&H)"
 
-msgid "&Rectangle Select"
-msgstr "직사각형 영역 선택(&R)"
+msgid "Rectangle &Select"
+msgstr "직사각형 영역 선택(&S)"
 
 #, c-format
 msgid "&Set Background Color"

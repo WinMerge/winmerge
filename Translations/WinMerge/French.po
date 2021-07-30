@@ -226,8 +226,8 @@ msgstr "Effacement &Vertical"
 msgid "&Horizontal Wipe"
 msgstr "Effacement &Horizontal"
 
-msgid "&Rectangle Select"
-msgstr "Sélection &Rectangle"
+msgid "Rectangle &Select"
+msgstr "&Sélection Rectangle"
 
 #, c-format
 msgid "&Set Background Color"

@@ -177,7 +177,7 @@ BEGIN
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
             MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
             MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-            MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+            MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -986,7 +986,7 @@ BEGIN
         MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
         MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
         MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-        MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+        MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
     END
 END
 

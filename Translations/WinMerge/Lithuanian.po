@@ -190,7 +190,7 @@ msgstr "&Vertikalus trinimas"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontalus trinimas"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "&Stačiakampis žymėjimas"
 
 msgid "&Set Background Color"

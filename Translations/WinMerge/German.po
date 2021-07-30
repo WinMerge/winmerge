@@ -219,7 +219,7 @@ msgstr "Ver&tikal wischen"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontal wischen"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "&Rechteck auswählen"
 
 #, c-format

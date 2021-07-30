@@ -220,7 +220,7 @@ msgstr "Obriši na&vpično"
 msgid "&Horizontal Wipe"
 msgstr "Obriši vodo&ravno"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "Izberi pra&vokotnik"
 
 #, c-format

@@ -188,7 +188,7 @@ msgstr "Verticaal uitvegen"
 msgid "&Horizontal Wipe"
 msgstr "Horizontaal uitvegen"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "Rechthoekige selectie"
 
 msgid "&Set Background Color"

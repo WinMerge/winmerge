@@ -220,8 +220,8 @@ msgstr "Limpeza &vertical"
 msgid "&Horizontal Wipe"
 msgstr "Limpeza &horizontal"
 
-msgid "&Rectangle Select"
-msgstr "Seleccionar &rectángulo"
+msgid "Rectangle &Select"
+msgstr "&Seleccionar rectángulo"
 
 #, c-format
 msgid "&Set Background Color"

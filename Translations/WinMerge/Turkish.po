@@ -187,7 +187,7 @@ msgstr "&Dikey temizlik"
 msgid "&Horizontal Wipe"
 msgstr "&Yatay temizlik"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "&Dikdörtgen seçim"
 
 msgid "&Set Background Color"

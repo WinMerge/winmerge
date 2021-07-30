@@ -190,7 +190,7 @@ msgstr "&Vertikálne stieranie"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontálne stieranie"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 msgid "&Set Background Color"
