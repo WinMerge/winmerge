@@ -2,13 +2,13 @@
 
 ## WinMerge 2.16.14 - 2021-07-25
 
-### 一般
+### 全般
 
 - WinMergeのウインドウを閉じたにもかかわらず、WinMergeのプロセスが終了しないことがある問題の対策。
 
 ### ファイル比較
 
-- 不具合修正: 「検索する文字列」を空にしたとき、ファイル比較時ハングする。
+- 不具合修正: 置換フィルター:「検索する文字列」を空にしたとき、ファイル比較時ハングする。
 
 ### フォルダ比較
 
@@ -101,7 +101,7 @@
 
 ## WinMerge 2.16.13 - 2021-06-22
 
-### 一般
+### 全般
 
 - 不具合修正: 中国語版 WindowsXP で Register.bat が正常に動作しない。 (#780)
 - WinMergeU.exe と同じフォルダに winmerge.ini を置いた場合、設定情報の読み込みと書き込みをそのファイルに対して行うようにした。 (#248) (PR #750)
@@ -184,7 +184,7 @@
 
 ## WinMerge 2.16.12 - 2021-04-29
 
-### 一般
+### 全般
 
 - GUI textstrings: grammatical corrections (PR #722)
 - Added ARM64 support
@@ -263,7 +263,7 @@
 
 ## WinMerge 2.16.11 - 2021-03-28
 
-### 一般
+### 全般
 
 - Make all OK strings same case (PR #593)
 - Tab bar: Added shadows to help distinguish between active and inactive tabs
@@ -363,7 +363,7 @@
 
 ## WinMerge 2.16.10 - 2021-01-30
 
-### 一般
+### 全般
 
 - 不具合修正: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)
 - 不具合修正: Fixed the problem that the language setting is not applied to the
@@ -465,7 +465,7 @@
 
 ## WinMerge 2.16.9 - 2020-11-29
 
-### 一般
+### 全般
 
   - 不具合修正: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)
   - 不具合修正: The icons on a 43" 4K screen are too small (GitHub #276)
@@ -548,7 +548,7 @@
 
 ## WinMerge 2.16.8 - 2020-08-28
 
-### 一般
+### 全般
   - 不具合修正: More space for some internationalized strings (GitHub #402)
   - 不具合修正: Some improvements (GitHub #405,#411)
 
@@ -614,7 +614,7 @@
   - Update Shortcut_keys.xml (GitHub PR #410)
 
 ## WinMerge 2.16.7 - 2020-07-26
-### 一般
+### 全般
   - 不具合修正: The icons on a 43" 4K screen are too small (GitHub #276)
   - 不具合修正: GUI glitches/bugs (GitHub #316)
   - 不具合修正: Several issues regarding i18n (GitHub #314)
@@ -715,7 +715,7 @@
 
 ## WinMerge 2.16.6 - 2020-02-23
 
-### 一般
+### 全般
   - Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab,
       now the application is behave just like professional editors
       (Visual Studio, Notepad++, etc.) to switch and activate the open tabs.
@@ -865,7 +865,7 @@
 
 ## WinMerge 2.16.3 - 2019-06-29
 
-### 一般
+### 全般
   - 不具合修正: Slow startup with documents folder redirected to high-latency
       network drive (Bitbucket #155)
   - Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)
@@ -963,7 +963,7 @@
 
 ## WinMerge 2.16.1 - 2019-02-24
 
-### 一般
+### 全般
   - Updated the copyright year to 2019, actually (GitHub #110)
   - Prevent splitter view from claiming input focus (GitHub #127)
   - Contributors.txt: Changed EOL from Unix (LF) to Windows (CR LF),
@@ -1039,7 +1039,7 @@
 
 ## WinMerge 2.16.0 - 2018-11-23
 
-### 一般
+### 全般
   - 不具合修正: Disabled icon on toolbar not gray out when running on XP
 
 ### ファイル比較
@@ -1061,7 +1061,7 @@
 
 ## WinMerge 2.15.5 - 2018-10-28
 
-### 一般
+### 全般
   - Add support for very long path and file names (GitHub #87,#95,#99)
   - Enable Ctrl+C shortcut key on the file path bar
   - Remove support for old version control system (GitHub #96)
