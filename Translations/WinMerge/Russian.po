@@ -142,10 +142,10 @@ msgstr "Повернуть вправо на 90°"
 msgid "Rotate &Left 90deg"
 msgstr "Повернуть влево на 90°"
 
-msgid "Flip &Vertically"
+msgid "Flip V&ertically"
 msgstr "Отразить вертикально"
 
-msgid "Flip &Horizontally"
+msgid "Flip H&orizontally"
 msgstr "Отразить горизонтально"
 
 msgid "&Zoom"

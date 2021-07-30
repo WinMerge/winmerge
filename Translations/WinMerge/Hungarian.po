@@ -164,10 +164,10 @@ msgstr "Forgatás jobbra 90 fokkal"
 msgid "Rotate &Left 90deg"
 msgstr "Forgatás balra 90 fokkal"
 
-msgid "Flip &Vertically"
+msgid "Flip V&ertically"
 msgstr "Függőleges megfordítás"
 
-msgid "Flip &Horizontally"
+msgid "Flip H&orizontally"
 msgstr "Vízszintes megfordítás"
 
 #, c-format

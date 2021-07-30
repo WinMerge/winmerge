@@ -163,11 +163,11 @@ msgstr "Rotar de&reita 90 graos"
 msgid "Rotate &Left 90deg"
 msgstr "Rotar es&querda 90 graos"
 
-msgid "Flip &Vertically"
-msgstr "Voltear &verticalmente"
+msgid "Flip V&ertically"
+msgstr "Voltear v&erticalmente"
 
-msgid "Flip &Horizontally"
-msgstr "Voltear &horizontalmente"
+msgid "Flip H&orizontally"
+msgstr "Voltear h&orizontalmente"
 
 #, c-format
 msgid "&Zoom"

@@ -143,11 +143,11 @@ msgstr "Pasukti 90 l. &dešinėn"
 msgid "Rotate &Left 90deg"
 msgstr "Pasukti 90 l. &kairėn"
 
-msgid "Flip &Vertically"
-msgstr "Apversti &vertikaliai"
+msgid "Flip V&ertically"
+msgstr "Apversti v&ertikaliai"
 
-msgid "Flip &Horizontally"
-msgstr "Apversti &horizontaliai"
+msgid "Flip H&orizontally"
+msgstr "Apversti h&orizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"

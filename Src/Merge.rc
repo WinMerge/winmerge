@@ -143,8 +143,8 @@ BEGIN
         BEGIN
             MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
             MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
-            MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
-            MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+            MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+            MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
             MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
             MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
@@ -976,8 +976,8 @@ BEGIN
     BEGIN
         MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
         MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
-        MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
-        MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+        MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+        MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
         MENUITEM SEPARATOR
         MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
         MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE

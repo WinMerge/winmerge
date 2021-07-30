@@ -163,10 +163,10 @@ msgstr "Obrni v &desno za 90 stopinj"
 msgid "Rotate &Left 90deg"
 msgstr "Obrni v &levo za 90 stopinj"
 
-msgid "Flip &Vertically"
+msgid "Flip V&ertically"
 msgstr "Zasuči nav&pično"
 
-msgid "Flip &Horizontally"
+msgid "Flip H&orizontally"
 msgstr "Zasuči &vodoravno"
 
 #, c-format

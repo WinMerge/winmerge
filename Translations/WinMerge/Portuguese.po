@@ -143,11 +143,11 @@ msgstr "Rodar 90° para a direita"
 msgid "Rotate &Left 90deg"
 msgstr "Rodar 90° para a esquerda"
 
-msgid "Flip &Vertically"
-msgstr "Rodar &Verticalmente"
+msgid "Flip V&ertically"
+msgstr "Rodar V&erticalmente"
 
-msgid "Flip &Horizontally"
-msgstr "Rodar &Horizontalmente"
+msgid "Flip H&orizontally"
+msgstr "Rodar H&orizontalmente"
 
 msgid "&Zoom"
 msgstr "&Zoom"

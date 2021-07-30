@@ -164,10 +164,10 @@ msgstr ""
 msgid "Rotate &Left 90deg"
 msgstr ""
 
-msgid "Flip &Vertically"
+msgid "Flip V&ertically"
 msgstr ""
 
-msgid "Flip &Horizontally"
+msgid "Flip H&orizontally"
 msgstr ""
 
 #, c-format
