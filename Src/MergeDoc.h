@@ -381,9 +381,13 @@ protected:
 protected:
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
+	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveLeft();
+	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveMiddle();
+	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveRight();
+	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsLeft();
 	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsMiddle();
@@ -391,6 +395,13 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileEncoding();
+	afx_msg void OnFileReadOnlyLeft();
+	afx_msg void OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyMiddle();
+	afx_msg void OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyRight();
+	afx_msg void OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
@@ -409,6 +420,7 @@ protected:
 	template<int srcPane, int dstPane>
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
+	afx_msg void OnRefresh();
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnPrediffer(UINT nID );
 	//}}AFX_MSG

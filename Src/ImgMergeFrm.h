@@ -140,12 +140,12 @@ private:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsRight();
-	afx_msg void OnLeftReadOnly();
-	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnMiddleReadOnly();
-	afx_msg void OnUpdateMiddleReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnRightReadOnly();
-	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyLeft();
+	afx_msg void OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyMiddle();
+	afx_msg void OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyRight();
+	afx_msg void OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
 	afx_msg void OnFileRecompareAs(UINT nID);

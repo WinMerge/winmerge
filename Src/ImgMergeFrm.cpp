@@ -53,9 +53,11 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
+	ON_WM_SETFOCUS ()	
+	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
+	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	// [File] menu
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
-	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
 	ON_COMMAND(ID_FILE_SAVE_MIDDLE, OnFileSaveMiddle)
@@ -66,21 +68,16 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_COMMAND(ID_FILE_CLOSE, OnFileClose)
-	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
-	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnMiddleReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateMiddleReadOnly)
-	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
+	ON_COMMAND(ID_FILE_LEFT_READONLY, OnFileReadOnlyLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateFileReadOnlyLeft)
+	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnFileReadOnlyMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateFileReadOnlyMiddle)
+	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnFileReadOnlyRight)
+	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateFileReadOnlyRight)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
-	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
-	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
-	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
-	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
-	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	// [Edit] menu
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
@@ -92,11 +89,16 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdateEditPaste)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
+	// [View] menu
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
+	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
+	ON_COMMAND(ID_REFRESH, OnRefresh)
+	// [Merge] menu
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -123,6 +125,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
 	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
 	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
+	// [Image] menu
 	ON_COMMAND(ID_IMG_VIEWDIFFERENCES, OnImgViewDifferences)
 	ON_UPDATE_COMMAND_UI(ID_IMG_VIEWDIFFERENCES, OnUpdateImgViewDifferences)
 	ON_COMMAND_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnImgZoom)
@@ -154,10 +157,17 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnImgVectorImageScaling)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnUpdateImgVectorImageScaling)
 	ON_COMMAND(ID_IMG_COMPARE_EXTRACTED_TEXT, OnImgCompareExtractedText)
+	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
-	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_WM_SETFOCUS ()
+	// [Plugins] menu
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	// [Window] menu
+	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
+	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
+	// Status bar
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -881,7 +891,7 @@ void CImgMergeFrame::OnFileClose()
 /**
  * @brief Enable/disable left buffer read-only
  */
-void CImgMergeFrame::OnLeftReadOnly()
+void CImgMergeFrame::OnFileReadOnlyLeft()
 {
 	m_bRO[0] = !m_bRO[0];
 	m_pImgMergeWindow->SetReadOnly(0, m_bRO[0]);
@@ -890,7 +900,7 @@ void CImgMergeFrame::OnLeftReadOnly()
 /**
  * @brief Called when "Left read-only" item is updated
  */
-void CImgMergeFrame::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
+void CImgMergeFrame::OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(m_bRO[0]);
@@ -899,7 +909,7 @@ void CImgMergeFrame::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
 /**
  * @brief Enable/disable middle buffer read-only
  */
-void CImgMergeFrame::OnMiddleReadOnly()
+void CImgMergeFrame::OnFileReadOnlyMiddle()
 {
 	if (m_pImgMergeWindow->GetPaneCount() == 3)
 	{
@@ -911,7 +921,7 @@ void CImgMergeFrame::OnMiddleReadOnly()
 /**
  * @brief Called when "Middle read-only" item is updated
  */
-void CImgMergeFrame::OnUpdateMiddleReadOnly(CCmdUI* pCmdUI)
+void CImgMergeFrame::OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI)
 {
 	if (m_pImgMergeWindow->GetPaneCount() < 3)
 	{
@@ -927,7 +937,7 @@ void CImgMergeFrame::OnUpdateMiddleReadOnly(CCmdUI* pCmdUI)
 /**
  * @brief Enable/disable right buffer read-only
  */
-void CImgMergeFrame::OnRightReadOnly()
+void CImgMergeFrame::OnFileReadOnlyRight()
 {
 	int pane = m_pImgMergeWindow->GetPaneCount() - 1;
 	m_bRO[pane] = !m_bRO[pane];
@@ -937,7 +947,7 @@ void CImgMergeFrame::OnRightReadOnly()
 /**
  * @brief Called when "Right read-only" item is updated
  */
-void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
+void CImgMergeFrame::OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));

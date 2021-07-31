@@ -72,41 +72,61 @@ IMPLEMENT_DYNCREATE(CMergeDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	//{{AFX_MSG_MAP(CMergeDoc)
+	// [File] menu
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
 	ON_COMMAND(ID_FILE_SAVE_MIDDLE, OnFileSaveMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
 	ON_COMMAND(ID_FILE_SAVE_RIGHT, OnFileSaveRight)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
-	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
-	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_COMMAND(ID_FILE_LEFT_READONLY, OnFileReadOnlyLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateFileReadOnlyLeft)
+	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnFileReadOnlyMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateFileReadOnlyMiddle)
+	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnFileReadOnlyRight)
+	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateFileReadOnlyRight)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
-	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
-	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
-	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
-	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
-	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
-	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
-	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
-	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
-	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_TEXT, OnFileRecompareAsText)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
 	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	// [View] menu
+	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnUpdateDiffContext)
 	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
 	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
 	ON_COMMAND(ID_SWAPPANES_SWAP13, (OnViewSwapPanes<0, 2>))
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SWAPPANES_SWAP23, ID_SWAPPANES_SWAP13, OnUpdateSwapContext)
+	ON_COMMAND(ID_REFRESH, OnRefresh)
+	// [Tools] menu
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	// [Plugins] menu
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	ON_COMMAND(ID_APPLY_PREDIFFER, OnApplyPrediffer)
+	ON_COMMAND_RANGE(ID_NO_PREDIFFER, ID_NO_PREDIFFER, OnPrediffer)
+	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
+	// Encoding Error dialog
+	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
+	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
+	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
+	ON_COMMAND(IDOK, OnOK)	
+	// Status bar
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_RO, OnUpdateStatusRO)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_RO, OnUpdateStatusRO)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_RO, OnUpdateStatusRO)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2045,6 +2065,44 @@ void CMergeDoc::OnFileSaveRight()
 }
 
 /**
+ * @brief Called when "Save" item is updated
+ */
+void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
+{
+	bool bModified = false;
+	for (int nPane = 0; nPane < m_nBuffers; nPane++)
+	{
+		if (m_ptBuf[nPane]->IsModified())
+			bModified = true;
+	}
+	pCmdUI->Enable(bModified);
+}
+
+/**
+ * @brief Called when "Save left (as...)" item is updated
+ */
+void CMergeDoc::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_ptBuf[0]->IsModified());
+}
+
+/**
+ * @brief Called when "Save middle (as...)" item is updated
+ */
+void CMergeDoc::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_nBuffers == 3 && m_ptBuf[1]->IsModified());
+}
+
+/**
+ * @brief Called when "Save right (as...)" item is updated
+ */
+void CMergeDoc::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_ptBuf[m_nBuffers - 1]->IsModified());
+}
+
+/**
  * @brief Saves left-side file with name asked
  */
 void CMergeDoc::OnFileSaveAsLeft()
@@ -2077,6 +2135,82 @@ void CMergeDoc::OnFileSaveAsRight()
 {
 	bool bSaveResult = false;
 	DoSaveAs(m_filePaths.GetRight().c_str(), bSaveResult, m_nBuffers - 1);
+}
+
+/**
+ * @brief Enable/disable left buffer read-only
+ */
+void CMergeDoc::OnFileReadOnlyLeft()
+{
+	bool bReadOnly = m_ptBuf[0]->GetReadOnly();
+	m_ptBuf[0]->SetReadOnly(!bReadOnly);
+}
+
+/**
+ * @brief Called when "Left read-only" item is updated
+ */
+void CMergeDoc::OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI)
+{
+	bool bReadOnly = m_ptBuf[0]->GetReadOnly();
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
+/**
+ * @brief Enable/disable middle buffer read-only
+ */
+void CMergeDoc::OnFileReadOnlyMiddle()
+{
+	if (m_nBuffers == 3)
+	{
+		bool bReadOnly = m_ptBuf[1]->GetReadOnly();
+		m_ptBuf[1]->SetReadOnly(!bReadOnly);
+	}
+}
+
+/**
+ * @brief Called when "Middle read-only" item is updated
+ */
+void CMergeDoc::OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI)
+{
+	if (m_nBuffers < 3)
+	{
+		pCmdUI->Enable(false);
+	}
+	else
+	{
+		bool bReadOnly = m_ptBuf[1]->GetReadOnly();
+		pCmdUI->Enable(true);
+		pCmdUI->SetCheck(bReadOnly);
+	}
+}
+
+/**
+ * @brief Enable/disable right buffer read-only
+ */
+void CMergeDoc::OnFileReadOnlyRight()
+{
+	bool bReadOnly = m_ptBuf[m_nBuffers - 1]->GetReadOnly();
+	m_ptBuf[m_nBuffers - 1]->SetReadOnly(!bReadOnly);
+}
+
+/**
+ * @brief Called when "Left read-only" item is updated
+ */
+void CMergeDoc::OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI)
+{
+	bool bReadOnly = m_ptBuf[m_nBuffers - 1]->GetReadOnly();
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
+/**
+ * @brief Update readonly statusbaritem
+ */
+void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
+{
+	bool bRO = m_ptBuf[pCmdUI->m_nID - ID_STATUS_PANE0FILE_RO]->GetReadOnly();
+	pCmdUI->Enable(bRO);
 }
 
 /**
@@ -2201,6 +2335,15 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 	}
 	pCmdUI->SetCheck(bCheck);
 	pCmdUI->Enable(!(pCmdUI->m_nID == ID_VIEW_DIFFCONTEXT_INVERT && (m_nDiffContext < 0)));
+}
+
+/**
+ * @brief Refresh display using text-buffers
+ * @note This DOES NOT reload files!
+ */
+void CMergeDoc::OnRefresh()
+{
+	FlushAndRescan(true);
 }
 
 /**

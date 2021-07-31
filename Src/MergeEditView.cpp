@@ -79,8 +79,21 @@ CMergeEditView::~CMergeEditView()
 
 BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	//{{AFX_MSG_MAP(CMergeEditView)
-	ON_COMMAND(ID_CURDIFF, OnCurdiff)
-	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
+	ON_WM_CONTEXTMENU()
+	ON_WM_TIMER()
+	ON_WM_LBUTTONDBLCLK()
+	ON_WM_LBUTTONUP()
+	ON_WM_RBUTTONDOWN()
+	ON_WM_VSCROLL ()
+	ON_WM_HSCROLL ()
+	ON_WM_SIZE()
+	ON_WM_MOVE()
+	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
+	// [File] menu
+	ON_COMMAND_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnConvertEolTo)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
+	// [Edit] menu
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY, OnUpdateEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -88,6 +101,39 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdateEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
+	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
+	// [View] menu
+	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
+	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
+	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
+	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
+	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
+	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
+	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	// [Merge] menu
+	ON_COMMAND(ID_CURDIFF, OnCurdiff)
+	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -124,9 +170,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NEXTDIFFRO, OnUpdateNextdiffRO)
 	ON_COMMAND(ID_PREVDIFFRO, OnPrevdiffRO)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFFRO, OnUpdatePrevdiffRO)
-	ON_WM_LBUTTONDBLCLK()
-	ON_WM_LBUTTONUP()
-	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
@@ -149,89 +192,41 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_COPY_LINES_FROM_RIGHT, OnCopyLinesFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_LINES_FROM_RIGHT, OnUpdateCopyLinesFromRight)
-	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
-	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
-	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
-	ON_WM_TIMER()
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
-	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
-	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
-	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
-	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
-	ON_WM_CONTEXTMENU()
-	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
-	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
-	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnMiddleReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateMiddleReadOnly)
-	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_RO, OnUpdateStatusRO)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_RO, OnUpdateStatusRO)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_RO, OnUpdateStatusRO)
-	ON_COMMAND_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnConvertEolTo)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_EOL, OnUpdateStatusEOL)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_EOL, OnUpdateStatusEOL)
 	ON_COMMAND(ID_L2RNEXT, OnL2RNext)
 	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
+	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
+	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
+	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
+	// [Plugins] menu
+	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
+	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
+	// [Window] menu
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
-	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	// [Help] menu
+	ON_COMMAND(ID_HELP, OnHelp)
+	// Context menu
+	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_MR, OnUpdateGotoMovedLineMR)
 	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
-	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
-	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
-	ON_WM_VSCROLL ()
-	ON_WM_HSCROLL ()
-	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
-	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
-	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
-	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
-	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
-	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_FILE_OPEN_PARENT_FOLDER, OnOpenParentFolder)
-	ON_WM_SIZE()
-	ON_WM_MOVE()
-	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
-	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
-	ON_WM_MOUSEWHEEL()
-	ON_WM_MOUSEHWHEEL()
-	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
-	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
-	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
-	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	// Status bar
 	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_EOL, OnUpdateStatusEOL)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_EOL, OnUpdateStatusEOL)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2546,44 +2541,6 @@ bool CMergeEditView::IsReadOnly(int pane) const
 }
 
 /**
- * @brief Called when "Save left (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!IsReadOnly(0) && pd->m_ptBuf[0]->IsModified());
-}
-
-/**
- * @brief Called when "Save middle (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_nBuffers == 3 && !IsReadOnly(1) && pd->m_ptBuf[1]->IsModified());
-}
-
-/**
- * @brief Called when "Save right (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!IsReadOnly(pd->m_nBuffers - 1) && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified());
-}
-
-/**
- * @brief Refresh display using text-buffers
- * @note This DOES NOT reload files!
- */
-void CMergeEditView::OnRefresh()
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-	pd->FlushAndRescan(true);
-}
-
-/**
  * @brief Handle some keys when in merging mode
  */
 bool CMergeEditView::MergeModeKeyDown(MSG* pMsg)
@@ -2656,95 +2613,6 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 	}
 
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
-}
-
-/**
- * @brief Called when "Save" item is updated
- */
-void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-
-	bool bModified = false;
-	for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
-	{
-		if (pd->m_ptBuf[nPane]->IsModified())
-			bModified = true;
-	}
-	pCmdUI->Enable(bModified);
-}
-
-/**
- * @brief Enable/disable left buffer read-only
- */
-void CMergeEditView::OnLeftReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[0]->GetReadOnly();
-	pd->m_ptBuf[0]->SetReadOnly(!bReadOnly);
-}
-
-/**
- * @brief Called when "Left read-only" item is updated
- */
-void CMergeEditView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[0]->GetReadOnly();
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(bReadOnly);
-}
-
-/**
- * @brief Enable/disable middle buffer read-only
- */
-void CMergeEditView::OnMiddleReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_nBuffers == 3)
-	{
-		bool bReadOnly = pd->m_ptBuf[1]->GetReadOnly();
-		pd->m_ptBuf[1]->SetReadOnly(!bReadOnly);
-	}
-}
-
-/**
- * @brief Called when "Middle read-only" item is updated
- */
-void CMergeEditView::OnUpdateMiddleReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_nBuffers < 3)
-	{
-		pCmdUI->Enable(false);
-	}
-	else
-	{
-		bool bReadOnly = pd->m_ptBuf[1]->GetReadOnly();
-		pCmdUI->Enable(true);
-		pCmdUI->SetCheck(bReadOnly);
-	}
-}
-
-/**
- * @brief Enable/disable right buffer read-only
- */
-void CMergeEditView::OnRightReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly();
-	pd->m_ptBuf[pd->m_nBuffers - 1]->SetReadOnly(!bReadOnly);
-}
-
-/**
- * @brief Called when "Left read-only" item is updated
- */
-void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly();
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(bReadOnly);
 }
 
 /// Store interface we use to display status line info
@@ -2863,15 +2731,6 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
 	bool bReadOnly = pd->m_ptBuf[m_nThisPane]->GetReadOnly();
 
 	pCmdUI->Enable(!bReadOnly);
-}
-
-/**
- * @brief Update readonly statusbaritem
- */
-void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
-{
-	bool bRO = GetDocument()->m_ptBuf[pCmdUI->m_nID - ID_STATUS_PANE0FILE_RO]->GetReadOnly();
-	pCmdUI->Enable(bRO);
 }
 
 /**
@@ -4074,7 +3933,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 	CMergeDoc *pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
 	pDoc->SetTextType(nID - ID_COLORSCHEME_FIRST);
-	OnRefresh();
+	pDoc->FlushAndRescan(true);
 }
 
 /**
