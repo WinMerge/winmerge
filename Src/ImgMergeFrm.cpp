@@ -207,6 +207,7 @@ CImgMergeFrame::~CImgMergeFrame()
 
 bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
 {
+	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
 	for (int pane = 0; pane < nFiles; ++pane)
 	{

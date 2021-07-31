@@ -2980,6 +2980,8 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 		return;
 
+	CWaitCursor waitstatus;
+
 	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
 
 	if (!addAllMenu)

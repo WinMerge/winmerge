@@ -491,6 +491,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
  */
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[])
 {
+	CWaitCursor waitstatus;
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
 	bool bSucceeded = true;

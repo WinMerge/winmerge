@@ -487,7 +487,6 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 		else
 		{
-			CWaitCursor waitstatus;
 			OpenSelection();
 		}
 	}
@@ -1158,7 +1157,6 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			else
 			{
-				CWaitCursor waitstatus;
 				OpenSelection();
 			}
 		}
@@ -3739,14 +3737,12 @@ void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI)
 
 void CDirView::OnMergeCompare(UINT nID)
 {
-	CWaitCursor waitstatus;
 	OpenSelection(nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
 }
 
 template<SELECTIONTYPE seltype>
 void CDirView::OnMergeCompare2()
 {
-	CWaitCursor waitstatus;
 	OpenSelection(seltype);
 }
 
@@ -3786,7 +3782,6 @@ void CDirView::OnMergeCompareNonHorizontally()
 
 void CDirView::OnMergeCompareAs(UINT nID)
 {
-	CWaitCursor waitstatus;
 	OpenSelectionAs(nID);
 }
 
