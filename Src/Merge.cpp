@@ -121,7 +121,7 @@ CMergeApp::CMergeApp() :
  * @return IniOptionsMgr if initial config file exists,
  *   CRegOptionsMgr otherwise.
  */
-COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
+static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 {
 	String iniFilePath = cmdInfo.m_sIniFilepath;
 	if (!iniFilePath.empty())

@@ -186,4 +186,3 @@ inline void CMergeApp::SetNeedIdleTimer()
 	m_bNeedIdleTimer = true;
 }
 
-COptionsMgr* CreateOptionManager();
