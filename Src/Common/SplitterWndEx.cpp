@@ -240,7 +240,7 @@ void CSplitterWndEx::EqualizeRows()
 		{
 			const int height = m_rowRatios[i] * sum / 10000;
 			SetRowInfo(i, height, hmin);
-			sum -= height;
+			remain -= height;
 		}
 		SetRowInfo(i, remain, hmin);
 		CSplitterWnd::RecalcLayout();
