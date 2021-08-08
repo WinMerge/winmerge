@@ -333,5 +333,118 @@ const char* languageIdToName(int id)
 	return "";
 }
 
+static std::pair<std::wstring, std::wstring> splitOptionName(const std::wstring& name)
+{
+	std::wstring key = L"Software\\Thingamahoochie\\WinMerge";
+	key += L"\\" + name.substr(0, name.find('/'));
+	std::wstring name2 = name.substr(name.find('/') + 1);
+	return { key, name2 };
+}
+
+std::optional<bool> regReadBool(const std::wstring& name)
+{
+	std::optional<bool> value;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegOpenKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		DWORD type = REG_DWORD, data = 0, size = 4;
+		if (ERROR_SUCCESS == RegQueryValueExW(hKey, valuename.c_str(), nullptr, &type, reinterpret_cast<BYTE*>(&data), &size))
+			value = data != 0;
+		RegCloseKey(hKey);
+	}
+	return value;
+}
+
+std::optional<int> regReadInt(const std::wstring& name)
+{
+	std::optional<int> value;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegOpenKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		DWORD type = REG_DWORD, data = 0, size = 4;
+		if (ERROR_SUCCESS == RegQueryValueExW(hKey, valuename.c_str(), nullptr, &type, reinterpret_cast<BYTE*>(&data), &size))
+			value = static_cast<int>(data);
+		RegCloseKey(hKey);
+	}
+	return value;
+}
+
+std::optional<std::wstring> regReadString(const std::wstring& name)
+{
+	std::optional<std::wstring> value;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegOpenKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		std::vector<wchar_t> data(65536);
+		DWORD type = REG_SZ, size = static_cast<DWORD>(data.size());
+		if (ERROR_SUCCESS == RegQueryValueExW(hKey, valuename.c_str(), nullptr, &type, reinterpret_cast<BYTE*>(data.data()), &size))
+			value = data.data();
+		RegCloseKey(hKey);
+	}
+	return value;
+}
+
+bool regWrite(const std::wstring& name, bool value)
+{
+	bool result = false;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegCreateKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		DWORD data = value;
+		if (ERROR_SUCCESS == RegSetValueExW(hKey, valuename.c_str(), 0, REG_DWORD, reinterpret_cast<BYTE*>(&data), sizeof(DWORD)))
+			result = true;
+		RegCloseKey(hKey);
+	}
+	return result;
+}
+
+bool regWrite(const std::wstring& name, int value)
+{
+	bool result = false;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegCreateKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		DWORD data = value;
+		if (ERROR_SUCCESS == RegSetValueExW(hKey, valuename.c_str(), 0, REG_DWORD, reinterpret_cast<BYTE*>(&data), sizeof(DWORD)))
+			result = true;
+		RegCloseKey(hKey);
+	}
+	return result;
+}
+
+bool regWrite(const std::wstring& name, const std::wstring& value)
+{
+	bool result = false;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegCreateKeyW(HKEY_CURRENT_USER, keyname.c_str(), &hKey))
+	{
+		if (ERROR_SUCCESS == RegSetValueExW(hKey, valuename.c_str(), 0, REG_SZ, reinterpret_cast<const BYTE*>(value.c_str()),
+			static_cast<DWORD>((value.length() + 1) * sizeof(wchar_t))))
+			result = true;
+		RegCloseKey(hKey);
+	}
+	return result;
+}
+
+bool regDelete(const std::wstring& name)
+{
+	bool result = false;
+	HKEY hKey = nullptr;
+	auto [keyname, valuename] = splitOptionName(name);
+	if (ERROR_SUCCESS == RegOpenKeyExW(HKEY_CURRENT_USER, keyname.c_str(), 0, KEY_ALL_ACCESS, &hKey))
+	{
+		if (ERROR_SUCCESS == RegDeleteValueW(hKey, valuename.c_str()))
+			result = true;
+		RegCloseKey(hKey);
+	}
+	return result;
+}
+
 }
 

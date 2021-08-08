@@ -1104,7 +1104,7 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 void CDirView::SortColumnsAppropriately()
 {
 	int sortCol = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
-	if (sortCol == -1 || sortCol >= m_pColItems->GetColCount())
+	if (sortCol < 0 || sortCol >= m_pColItems->GetColCount())
 		return;
 
 	bool bSortAscending = GetOptionsMgr()->GetBool(OPT_DIRVIEW_SORT_ASCENDING);

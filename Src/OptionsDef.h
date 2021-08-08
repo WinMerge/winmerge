@@ -218,7 +218,7 @@ extern const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES OP("Settings/Co
 // Image Compare options
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
 extern const String OPT_CMP_IMG_SHOWDIFFERENCES OP("Settings/ImageShowDifferences");
-extern const String OPT_CMP_IMG_OVERLAYMOVE OP("Settings/ImageOverlayMode");
+extern const String OPT_CMP_IMG_OVERLAYMODE OP("Settings/ImageOverlayMode");
 extern const String OPT_CMP_IMG_OVERLAYALPHA OP("Settings/ImageOverlayAlpha");
 extern const String OPT_CMP_IMG_DRAGGING_MODE OP("Settings/ImageDraggingMode");
 extern const String OPT_CMP_IMG_ZOOM OP("Settings/ImageZoom");

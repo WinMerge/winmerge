@@ -320,6 +320,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfigTest.cpp" />
     <ClCompile Include="DirFrameTest.cpp" />
     <ClCompile Include="FileTest.cpp" />
     <ClCompile Include="GUITestUtils.cpp" />

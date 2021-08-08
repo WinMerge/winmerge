@@ -96,7 +96,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 		String name = (i == 0 ? OPT_FONT_FILECMP : OPT_FONT_DIRCMP);
 
 		pOptionsMgr->InitOption(name + OPT_FONT_USECUSTOM, false);
-		pOptionsMgr->InitOption(name + OPT_FONT_POINTSIZE, ::MulDiv(abs(thisFont.lfHeight), 72, logPixelsY));
+		pOptionsMgr->InitOption(name + OPT_FONT_POINTSIZE, ::MulDiv(abs(thisFont.lfHeight), 72, logPixelsY), 1, 72);
 		pOptionsMgr->InitOption(name + OPT_FONT_HEIGHT, thisFont.lfHeight);
 		pOptionsMgr->InitOption(name + OPT_FONT_ESCAPEMENT, thisFont.lfEscapement);
 		pOptionsMgr->InitOption(name + OPT_FONT_ORIENTATION, thisFont.lfOrientation);
