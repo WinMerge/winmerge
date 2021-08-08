@@ -542,6 +542,6 @@ namespace
 	}
 }
 
-INSTANTIATE_TEST_CASE_P(ConfigTestInstance,
+INSTANTIATE_TEST_SUITE_P(ConfigTestInstance,
 	ConfigTest,
 	testing::ValuesIn(GUITestUtils::languages()));

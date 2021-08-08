@@ -326,8 +326,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompareEngines", "Src\Compa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "diffutils", "Src\diffutils\diffutils.vcxitems", "{FC3B9DF3-2854-4264-AB4B-EE8C43982513}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "Externals\gtest\gtest.vcxitems", "{9EE35458-B145-444F-92B7-27FF72112C42}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{BB290B2D-F5B9-4552-AE32-9319C03E41C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apache-Tika", "Apache-Tika", "{5DADCF29-6A44-4AD1-8E42-DCB162A1907D}"
@@ -365,14 +363,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\main.yml = .github\workflows\main.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "googletest", "googletest", "{EEFF904A-CA86-4FB8-BAC5-D508CBF586AA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "googletest", "Externals\googletest\googletest\googletest.vcxitems", "{9EE35458-B145-444F-92B7-27FF72112C42}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Externals\gtest\gtest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
 		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
-		Externals\gtest\gtest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
-		Externals\gtest\gtest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
+		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
@@ -1073,13 +1075,14 @@ Global
 		{7515AC3C-389A-44CD-B940-A59DDE5B8AE3} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
 		{68F1D3A1-9DCA-4B3D-B245-F4ACA5F16563} = {CE514278-A13F-4F6A-93EB-5653410AC214}
-		{9EE35458-B145-444F-92B7-27FF72112C42} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{BB290B2D-F5B9-4552-AE32-9319C03E41C0} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{5DADCF29-6A44-4AD1-8E42-DCB162A1907D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{E4EF583F-653D-4445-A649-555C8AD730E7} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{9738877F-0B01-4C37-855E-7465C5AB7B56} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
 		{9914C8A9-0DEA-4922-9065-57034EE5263D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{0D414491-BB15-470B-9A50-443BA252CCD4} = {48C9E053-F40B-4FB4-984C-C154810EFB54}
+		{EEFF904A-CA86-4FB8-BAC5-D508CBF586AA} = {CE514278-A13F-4F6A-93EB-5653410AC214}
+		{9EE35458-B145-444F-92B7-27FF72112C42} = {EEFF904A-CA86-4FB8-BAC5-D508CBF586AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

@@ -89,7 +89,7 @@ TEST_P(InstallerTest, Pages)
 
 }
 
-INSTANTIATE_TEST_CASE_P(InstallerTestInstance,
+INSTANTIATE_TEST_SUITE_P(InstallerTestInstance,
 	InstallerTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

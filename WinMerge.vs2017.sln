@@ -52,16 +52,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "diffutils", "Src\diffutils\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompareEngines", "Src\CompareEngines\CompareEngines.vcxitems", "{0F686AFA-D587-43C0-BADA-2BEDDC3FA758}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "Externals\gtest\gtest.vcxitems", "{9EE35458-B145-444F-92B7-27FF72112C42}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "googletest", "Externals\googletest\googletest\googletest.vcxitems", "{9EE35458-B145-444F-92B7-27FF72112C42}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Externals\gtest\gtest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
 		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
-		Externals\gtest\gtest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
-		Externals\gtest\gtest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
+		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4

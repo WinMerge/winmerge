@@ -236,7 +236,7 @@ TEST_P(DirFrameTest, ToolsGenerateReport)
 
 }
 
-INSTANTIATE_TEST_CASE_P(DirFrameTestInstance,
+INSTANTIATE_TEST_SUITE_P(DirFrameTestInstance,
 	DirFrameTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 
