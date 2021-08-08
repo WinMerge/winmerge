@@ -44,8 +44,7 @@ END_MESSAGE_MAP()
  */
 void PropArchive::ReadOptions()
 {
-	int enable = GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE);
-	m_bEnableSupport = enable > 0;
+	m_bEnableSupport = GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE);
 	m_bProbeType = GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE);
 }
 
