@@ -712,16 +712,25 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			strDesc[2] = cmdInfo.m_sRightDesc;
 		}
 
-		CMainFrame::OpenTextFileParams openParams;
-		openParams.m_line = cmdInfo.m_nLineIndex;
-		openParams.m_fileExt = cmdInfo.m_sFileExt;
-		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
+		std::unique_ptr<CMainFrame::OpenFileParams> pOpenParams;
+		if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TEXT)
+			pOpenParams.reset(new CMainFrame::OpenTextFileParams());
+		else if (cmdInfo.m_nWindowType == MergeCmdLineInfo::TABLE)
+			pOpenParams.reset(new CMainFrame::OpenTableFileParams());
+		else
+			pOpenParams.reset(static_cast<CMainFrame::OpenTableFileParams *>(new CMainFrame::OpenAutoFileParams()));
+		if (auto* pOpenTextFileParams = dynamic_cast<CMainFrame::OpenTextFileParams*>(pOpenParams.get()))
 		{
-			openParams.m_tableDelimiter = cmdInfo.m_cTableDelimiter;
-			openParams.m_tableQuote = cmdInfo.m_cTableQuote;
-			openParams.m_tableAllowNewlinesInQuotes = cmdInfo.m_bTableAllowNewlinesInQuotes;
+			pOpenTextFileParams->m_line = cmdInfo.m_nLineIndex;
+			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
+			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
 		}
-
+		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
+		{
+			pOpenTableFileParams->m_tableDelimiter = cmdInfo.m_cTableDelimiter;
+			pOpenTableFileParams->m_tableQuote = cmdInfo.m_cTableQuote;
+			pOpenTableFileParams->m_tableAllowNewlinesInQuotes = cmdInfo.m_bTableAllowNewlinesInQuotes;
+		}
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
@@ -730,14 +739,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
+				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-				infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
+				infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -747,7 +756,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				strDesc[0] = cmdInfo.m_sLeftDesc;
 				strDesc[1] = cmdInfo.m_sRightDesc;
 				bCompared = pMainFrame->DoSelfCompare(nID, sFilepath, strDesc,
-					infoUnpacker.get(), infoPrediffer.get(), &openParams);
+					infoUnpacker.get(), infoPrediffer.get(), pOpenParams.get());
 			}
 			else if (IsProjectFile(sFilepath))
 			{
@@ -766,7 +775,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOrFolderOpen(&cmdInfo.m_Files,
 					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
-					infoUnpacker.get(), infoPrediffer.get(), nID, &openParams);
+					infoUnpacker.get(), infoPrediffer.get(), nID, pOpenParams.get());
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
@@ -779,7 +788,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			}
 			else
 			{
-				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), &openParams);
+				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), pOpenParams.get());
 			}
 		}
 	}

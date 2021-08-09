@@ -708,7 +708,7 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
 {
 	ASSERT(pDirDoc != nullptr);
 
@@ -733,32 +733,32 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	{
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
 		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
-			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
 		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
-			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
-	return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams);
+	return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams *>(pOpenParams));
 }
 
 bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
 {
 	switch (nID)
 	{
 	case ID_MERGE_COMPARE_TEXT:
 		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, pOpenParams);
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_TABLE:
 		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, pOpenParams);
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_HEX:
 		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker);
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_IMAGE:
 		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker);
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
 	default:
 		return ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, pOpenParams);
@@ -837,9 +837,12 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	{
 		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
-		props.delimiter = pOpenParams->m_tableDelimiter.value_or(props.delimiter);
-		props.quote = pOpenParams->m_tableQuote.value_or(props.quote);
-		props.allowNewlinesInQuotes = pOpenParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
+		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
+		{
+			props.delimiter = pOpenTableFileParams->m_tableDelimiter.value_or(props.delimiter);
+			props.quote = pOpenTableFileParams->m_tableQuote.value_or(props.quote);
+			props.allowNewlinesInQuotes = pOpenTableFileParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
+		}
 		pMergeDoc->SetPreparedTableProperties(props);
 	}
 
@@ -876,7 +879,11 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		}
 	}
 
-	pMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags), pOpenParams ? pOpenParams->m_line : -1, true);
+	pMergeDoc->MoveOnLoad(
+		GetActivePaneFromFlags(nFiles, dwFlags),
+		pOpenParams ? pOpenParams->m_line : -1,
+		true,
+		pOpenParams ? pOpenParams->m_char: -1);
 
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
@@ -902,7 +909,7 @@ bool CMainFrame::ShowTableMergeDoc(CDirDoc* pDirDoc,
 
 bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenBinaryFileParams* pOpenParams /*= nullptr*/)
 {
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
@@ -925,7 +932,7 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 
 bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenImageFileParams* pOpenParams /*= nullptr*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
@@ -1043,7 +1050,7 @@ static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
 	bool recurse, const String& filter,
 	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
-	UINT nID, const CMainFrame::OpenTextFileParams *pOpenParams)
+	UINT nID, const CMainFrame::OpenFileParams *pOpenParams)
 {
 	ASSERT(paths.GetSize() <= 3);
 	const TCHAR *lmr= (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
@@ -1082,30 +1089,36 @@ static bool AddToRecentDocs(const PathContext& paths,
 	}
 	if (pOpenParams)
 	{
-		if (pOpenParams->m_line >= 0)
-			params += strutils::format(_T("/l %d "), pOpenParams->m_line + 1);
-		if (!pOpenParams->m_fileExt.empty())
-			params += _T("/fileext ") + pOpenParams->m_fileExt + _T(" ");
-		if (pOpenParams->m_tableDelimiter.has_value())
+		if (const auto* pOpenTextFileParams = dynamic_cast<const CMainFrame::OpenTextFileParams*>(pOpenParams))
 		{
-			String delim = strutils::to_charstr(*pOpenParams->m_tableDelimiter);
-			if (*pOpenParams->m_tableDelimiter == '\'')
-				delim = _T("sq");
-			else if (*pOpenParams->m_tableDelimiter == '"')
-				delim = _T("dq");
-			params += strutils::format(_T("/table-delimiter %s "), delim);
+			if (pOpenTextFileParams->m_line >= 0)
+				params += strutils::format(_T("/l %d "), pOpenTextFileParams->m_line + 1);
+			if (!pOpenTextFileParams->m_fileExt.empty())
+				params += _T("/fileext ") + pOpenTextFileParams->m_fileExt + _T(" ");
 		}
-		if (pOpenParams->m_tableQuote.has_value())
+		if (const auto* pOpenTableFileParams = dynamic_cast<const CMainFrame::OpenTableFileParams*>(pOpenParams))
 		{
-			String quote = strutils::to_charstr(*pOpenParams->m_tableQuote);
-			if (*pOpenParams->m_tableDelimiter == '\'')
-				quote = _T("sq");
-			else if (*pOpenParams->m_tableDelimiter == '"')
-				quote = _T("dq");
-			params += strutils::format(_T("/table-quote %s "), quote);
+			if (pOpenTableFileParams->m_tableDelimiter.has_value())
+			{
+				String delim = strutils::to_charstr(*pOpenTableFileParams->m_tableDelimiter);
+				if (*pOpenTableFileParams->m_tableDelimiter == '\'')
+					delim = _T("sq");
+				else if (*pOpenTableFileParams->m_tableDelimiter == '"')
+					delim = _T("dq");
+				params += strutils::format(_T("/table-delimiter %s "), delim);
+			}
+			if (pOpenTableFileParams->m_tableQuote.has_value())
+			{
+				String quote = strutils::to_charstr(*pOpenTableFileParams->m_tableQuote);
+				if (*pOpenTableFileParams->m_tableDelimiter == '\'')
+					quote = _T("sq");
+				else if (*pOpenTableFileParams->m_tableDelimiter == '"')
+					quote = _T("dq");
+				params += strutils::format(_T("/table-quote %s "), quote);
+			}
+			if (pOpenTableFileParams->m_tableAllowNewlinesInQuotes.has_value())
+				params += strutils::format(_T("/table-allownewlinesinquotes %d "), *pOpenTableFileParams->m_tableAllowNewlinesInQuotes);
 		}
-		if (pOpenParams->m_tableAllowNewlinesInQuotes.has_value())
-			params += strutils::format(_T("/table-allownewlinesinquotes %d "), *pOpenParams->m_tableAllowNewlinesInQuotes);
 	}
 	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
 	{
@@ -1144,7 +1157,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
 	bool bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	UINT nID /*= 0*/, const OpenTextFileParams *pOpenParams /*= nullptr*/)
+	UINT nID /*= 0*/, const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
@@ -1288,7 +1301,7 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/,
 	const String& sReportFile /*= _T("")*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenTextFileParams *pOpenParams /*= nullptr*/)
+	const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	ASSERT(pFiles != nullptr);
 	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
@@ -1817,7 +1830,7 @@ void CMainFrame::OnSaveConfigData()
  */
 bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
 	const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenTextFileParams *pOpenParams)
+	const OpenFileParams *pOpenParams)
 {
 	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	
@@ -2302,7 +2315,8 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * (1 + GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * 
+		(1 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 
@@ -2579,7 +2593,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDesc[] /*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
-	const OpenTextFileParams *pOpenParams /*= nullptr*/)
+	const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	String ext = paths::FindExtension(file);
 	TempFilePtr wTemp(new TempFile());

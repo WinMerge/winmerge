@@ -78,6 +78,9 @@
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/c</option>
+      <replaceable>charpos</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
       <replaceable>delimiter</replaceable></arg>
 
@@ -430,6 +433,13 @@
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>Specifies a line number to jump to after loading the files.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/c <replaceable>charpos</replaceable></option></term>
+      <listitem>
+        <para>Specifies a character position to jump to after loading the files.</para>
       </listitem>
     </varlistentry>
 

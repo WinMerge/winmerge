@@ -3245,8 +3245,9 @@ void CMergeEditView::OnTransformWithScript()
  * it is apparent line (including deleted lines)
  * @param [in] pane Pane index of goto target pane (0 = left, 1 = right).
  * @param [in] bMoveAnchor if true the anchor is moved to nLine
+ * @param [in] nChar Destination character position
  */
-void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor)
+void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor, int nChar)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
@@ -3267,7 +3268,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		nApparentLine = pDoc->m_ptBuf[pane]->ComputeApparentLine(nRealLine);
 	}
 	CPoint ptPos;
-	ptPos.x = 0;
+	ptPos.x = nChar == -1 ? 0 : nChar;
 	ptPos.y = nApparentLine;
 
 	// Scroll line to center of view
@@ -3281,21 +3282,13 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		int nGroup = m_bDetailView ? 0 : m_nThisGroup;
 		CMergeEditView* pView = GetDocument()->GetView(nGroup, nPane);
 		pView->ScrollToSubLine(nScrollLine);
-		if (ptPos.y < pView->GetLineCount())
-		{
-			pView->SetCursorPos(ptPos);
-			if (bMoveAnchor)
-				pView->SetAnchor(ptPos);
-			pView->SetSelection(pView->GetAnchor(), ptPos);
-		}
-		else
-		{
-			CPoint ptPos1(0, pView->GetLineCount() - 1);
-			pView->SetCursorPos(ptPos1);
-			if (bMoveAnchor)
-				pView->SetAnchor(ptPos1);
-			pView->SetSelection(pView->GetAnchor(), ptPos1);
-		}
+		CPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CPoint(ptPos.x, pView->GetLineCount() - 1);
+		pt.x = std::clamp(static_cast<int>(pt.x), 0, pView->GetLineLength(pt.y));
+		pView->SetCursorPos(pt);
+		if (bMoveAnchor)
+			pView->SetAnchor(pt);
+		pView->SetSelection(pView->GetAnchor(), pt);
+		pView->EnsureVisible(pt);
 	}
 
 	// If goto target is another view - activate another view.

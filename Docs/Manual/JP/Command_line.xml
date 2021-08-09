@@ -78,6 +78,9 @@
       <arg choice="opt" rep="norepeat"><option>/l</option>
       <replaceable>linenumber</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/c</option>
+      <replaceable>charpos</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
       <replaceable>delimiter</replaceable></arg>
 
@@ -429,6 +432,13 @@
       <term><option>/l <replaceable>linenumber</replaceable></option></term>
       <listitem>
         <para>ファイルを読み込んだ後にジャンプする行番号を指定します。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/c <replaceable>charpos</replaceable></option></term>
+      <listitem>
+        <para>ファイルを読み込んだ後にジャンプする文字位置を指定します。</para>
       </listitem>
     </varlistentry>
 

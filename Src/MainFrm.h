@@ -69,13 +69,43 @@ public:
 		FRAME_OTHER, /**< No frame? */
 	};
 
-	struct OpenTextFileParams
+	struct OpenFileParams
 	{
+		virtual ~OpenFileParams() {}
+	};
+
+	struct OpenTextFileParams : public OpenFileParams
+	{
+		virtual ~OpenTextFileParams() {}
 		int m_line = -1;
+		int m_char = -1;
+		String m_fileExt;
+	};
+
+	struct OpenTableFileParams : public OpenTextFileParams
+	{
+		virtual ~OpenTableFileParams() {}
 		std::optional<TCHAR> m_tableDelimiter;
 		std::optional<TCHAR> m_tableQuote;
 		std::optional<bool> m_tableAllowNewlinesInQuotes;
-		String m_fileExt;
+	};
+
+	struct OpenBinaryFileParams : public OpenFileParams
+	{
+		virtual ~OpenBinaryFileParams() {}
+		int m_address = -1;
+	};
+
+	struct OpenImageFileParams : public OpenFileParams
+	{
+		virtual ~OpenImageFileParams() {}
+		int m_x = -1;
+		int m_y = -1;
+	};
+
+	struct OpenAutoFileParams : public OpenTableFileParams, public OpenBinaryFileParams, public OpenImageFileParams
+	{
+		virtual ~OpenAutoFileParams() {}
 	};
 
 	CMainFrame();
@@ -102,25 +132,25 @@ public:
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		UINT nID = 0, const OpenTextFileParams *pOpenParams = nullptr);
+		UINT nID = 0, const OpenFileParams *pOpenParams = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles,
 		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr,
 		const String& sReportFile = _T(""),
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenTextFileParams *pOpenParams = nullptr);
+		const OpenFileParams *pOpenParams = nullptr);
 	bool DoFileNew(UINT nID, int nPanes, const String strDesc[] = nullptr,
 		const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenTextFileParams *pOpenParams = nullptr);
+		const OpenFileParams *pOpenParams = nullptr);
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
-		const OpenTextFileParams* pOpenParams = nullptr);
+		const OpenFileParams* pOpenParams = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const OpenFileParams *pOpenParams = nullptr);
 	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const OpenFileParams *pOpenParams = nullptr);
 	bool ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
@@ -134,10 +164,10 @@ public:
 		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const OpenBinaryFileParams *pOpenParams = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const OpenImageFileParams *pOpenParams = nullptr);
 
 	void UpdateResources();
 	void ClearStatusbarItemCount();

@@ -76,6 +76,7 @@ public:
 	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
 	bool m_bNewCompare; /**< Show a new blank window */
 	int m_nLineIndex; /**< Line number to jump after loading files */
+	int m_nCharIndex; /**< Character position to jump after loading files */
 	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/
 	std::optional<TCHAR> m_cTableQuote; /* Quote character for table editing *< */
 	std::optional<bool> m_bTableAllowNewlinesInQuotes; /**< Allow newlines in quotes */
