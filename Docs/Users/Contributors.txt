@@ -104,6 +104,7 @@ Localization:
   Michele Merega <michele.merega@ifminfomaster.com>
   Michele Locati <michele@locati.it>
   bovirus
+  Massimiliano Caniparoli
 
 * Korean:
   Sukjoon <bbcool@gmail.com>
