@@ -39,7 +39,7 @@ void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitc
  * @brief Initialize the in-memory Options::Font structure (and possibly the related Registry entries)
  * for both File-Contents and Directory-Tree windows.
  */
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	HDC hDC = GetDC(nullptr);
 	const int logPixelsY = GetDeviceCaps(hDC, LOGPIXELSY);

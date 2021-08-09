@@ -22,7 +22,7 @@ class COptionsMgr;
 
 namespace Options { namespace DirColors {
 
-void SetDefaults(COptionsMgr *pOptionsMgr);
+void Init(COptionsMgr *pOptionsMgr);
 void Load(const COptionsMgr *pOptionsMgr, DIRCOLORSETTINGS& colors);
 void Save(COptionsMgr *pOptionsMgr, const DIRCOLORSETTINGS& colors);
 

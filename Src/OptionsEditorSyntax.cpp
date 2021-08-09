@@ -37,7 +37,7 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension)
  * Register the settings read from the registry in CrystalLineParser.
  * @param [in] pOptionsMgr Pointer to OptionsMgr
  */
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	if (pOptionsMgr == nullptr)
 		return;

@@ -222,12 +222,12 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
 
-	Options::CustomColors::SetDefaults(pOptions);
-	Options::DiffOptions::SetDefaults(pOptions);
-	Options::DiffColors::SetDefaults(pOptions);
-	Options::DirColors::SetDefaults(pOptions);
-	Options::EditorSyntax::SetDefaults(pOptions);
-	Options::Font::SetDefaults(pOptions);
+	Options::CustomColors::Init(pOptions);
+	Options::DiffOptions::Init(pOptions);
+	Options::DiffColors::Init(pOptions);
+	Options::DirColors::Init(pOptions);
+	Options::EditorSyntax::Init(pOptions);
+	Options::Font::Init(pOptions);
 }
 
 /**

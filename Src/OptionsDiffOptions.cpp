@@ -14,7 +14,7 @@ namespace Options { namespace DiffOptions {
 /**
  * @brief Set default diff option values.
  */
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0, 0, 2);
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_BLANKLINES, false);
