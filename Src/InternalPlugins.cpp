@@ -536,7 +536,7 @@ public:
 			if (thisObj->m_hasArgumentsProperty)
 			{
 				if (!plugin::InvokePutPluginArguments(thisObj->m_sArguments, thisObj->m_pDispatch))
-					return false;
+					return E_FAIL;
 			}
 			if (!plugin::InvokeUnpackFile(fileSrc, fileDst, changed, thisObj->m_pDispatch, subcode))
 				return E_FAIL;
