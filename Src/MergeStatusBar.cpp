@@ -303,7 +303,6 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		m_nSelectedLines != nSelectedLines || m_nSelectedChars != nSelectedChars ||
 		m_sEol != szEol != 0 || m_nCodepage != nCodepage || m_bHasBom != bHasBom)
 	{
-		USES_CONVERSION;
 		m_sLine = szLine;
 		m_nColumn = nColumn;
 		m_nColumns = nColumns;
