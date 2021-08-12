@@ -961,10 +961,12 @@ OnTimer (UINT_PTR nIDEvent)
     }
   else if (nIDEvent == CRYSTAL_RECALC_VSCROLLBAR)
     {
+      KillTimer (CRYSTAL_RECALC_VSCROLLBAR);
       RecalcVertScrollBar ();
     }
   else if (nIDEvent == CRYSTAL_RECALC_HSCROLLBAR)
     {
+      KillTimer (CRYSTAL_RECALC_HSCROLLBAR);
       RecalcHorzScrollBar ();
     }
 }
