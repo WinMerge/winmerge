@@ -604,6 +604,8 @@ protected:
     virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
     virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
     void InvalidateScreenRect(bool bInvalidateView = true);
+    void InvalidateVertScrollBar();
+    void InvalidateHorzScrollBar();
     //END SW
 
     virtual HINSTANCE GetResourceHandle ();

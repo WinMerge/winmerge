@@ -157,7 +157,7 @@ void CGhostTextView::PopCursors ()
 	const int nMaxLineLength = GetMaxLineLength(m_nTopLine, GetScreenLines());
 	m_nOffsetChar = (m_nOffsetCharPushed < nMaxLineLength) ? m_nOffsetCharPushed : nMaxLineLength;
     RecalcVertScrollBar(true);
-    RecalcHorzScrollBar();
+    InvalidateHorzScrollBar();
 }
 
 void CGhostTextView::PushCursors ()

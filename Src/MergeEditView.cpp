@@ -976,7 +976,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToSubLine (pSrcView->m_nTopSubLine, true, false);
 				UpdateCaret ();
 				RecalcVertScrollBar(true);
-				RecalcHorzScrollBar();
+				InvalidateHorzScrollBar();
 			}
 		}
 		else
@@ -991,7 +991,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToChar (pSrcView->m_nOffsetChar, true, false);
 				UpdateCaret ();
 				RecalcHorzScrollBar(true);
-				RecalcHorzScrollBar();
+				InvalidateHorzScrollBar();
 			}
 		}
 	}
@@ -1040,7 +1040,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		EnsureVisible(pt);
 
 	// update the width of the horizontal scrollbar
-	RecalcHorzScrollBar();
+	InvalidateHorzScrollBar();
 }
 
 /**
@@ -3838,8 +3838,8 @@ void CMergeEditView::DocumentsLoaded()
 	// Sometimes WinMerge doesn't update scrollbars correctly (they remain
 	// disabled) after docs are open in screen. So lets make sure they are
 	// really updated, even though this is unnecessary in most cases.
-	RecalcHorzScrollBar();
-	RecalcVertScrollBar();
+	InvalidateHorzScrollBar();
+	InvalidateVertScrollBar();
 }
 
 /**
