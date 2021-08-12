@@ -244,8 +244,9 @@ void COpenView::OnInitialUpdate()
 	}
 	UpdateData(bDoUpdateData);
 
-	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	bool bMask = theApp.m_pGlobalFileFilter->IsUsingMask();
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
+	bool bMask = pGlobalFileFilter->IsUsingMask();
 
 	if (!bMask)
 	{
@@ -545,6 +546,7 @@ void COpenView::OnCompare(UINT nID)
 {
 	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
 	const String filterPrefix = _("[F] ");
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
 	UpdateData(TRUE);
 	TrimPaths();
@@ -616,19 +618,19 @@ void COpenView::OnCompare(UINT nID)
 	{
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
-		if (!theApp.m_pGlobalFileFilter->SetFilter(filter))
+		if (!pGlobalFileFilter->SetFilter(filter))
 		{
 			// If filtername is not found use default *.* mask
-			theApp.m_pGlobalFileFilter->SetFilter(_T("*.*"));
+			pGlobalFileFilter->SetFilter(_T("*.*"));
 			filter = _T("*.*");
 		}
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 	else
 	{
-		bool bFilterSet = theApp.m_pGlobalFileFilter->SetFilter(filter);
+		bool bFilterSet = pGlobalFileFilter->SetFilter(filter);
 		if (!bFilterSet)
-			m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			m_strExt = pGlobalFileFilter->GetFilterNameOrMask();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
@@ -1228,15 +1230,16 @@ void COpenView::OnSelectFilter()
 {
 	String filterPrefix = _("[F] ");
 	String curFilter;
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
-	const bool bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
+	const bool bUseMask = pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter = strutils::trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
-	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	if (theApp.m_pGlobalFileFilter->IsUsingMask())
+	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
+	if (pGlobalFileFilter->IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')

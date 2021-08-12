@@ -101,7 +101,7 @@ CMergeApp::CMergeApp() :
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
 , m_pOptions(nullptr)
-, m_pGlobalFileFilter(new FileFilterHelper())
+, m_pGlobalFileFilter(nullptr)
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(false)
@@ -291,18 +291,6 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	LoadStdProfileSettings(GetOptionsMgr()->GetInt(OPT_MRU_MAX));  // Load standard INI file options (including MRU)
-
-	InitializeFileFilters();
-
-	// Read last used filter from registry
-	// If filter fails to set, reset to default
-	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	bool bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
-	if (!bFilterSet)
-	{
-		String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
-		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-	}
 
 	charsets_init();
 	UpdateCodepageModule();
@@ -892,6 +880,29 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 		CloseHandle(processInfo.hThread);
 		CloseHandle(processInfo.hProcess);
 	}
+}
+
+/** @brief Returns pointer to global file filter */
+FileFilterHelper* CMergeApp::GetGlobalFileFilter()
+{
+	if (!m_pGlobalFileFilter)
+	{
+		m_pGlobalFileFilter.reset(new FileFilterHelper());
+
+		InitializeFileFilters();
+
+		// Read last used filter from registry
+		// If filter fails to set, reset to default
+		const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
+		bool bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
+		if (!bFilterSet)
+		{
+			String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
+			m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
+		}
+	}
+
+	return m_pGlobalFileFilter.get();
 }
 
 /**

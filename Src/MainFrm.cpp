@@ -1024,7 +1024,7 @@ void CMainFrame::OnOptions()
 
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(filterPath);
 
 		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 		CCrystalTextView::SetRenderingModeDefault(nRenderingMode);
@@ -1290,7 +1290,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
-		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
+		String filter = (nID == 0 && pathsType == paths::IS_EXISTING_DIR) ?
+			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
 
@@ -1506,10 +1507,6 @@ void CMainFrame::OnClose()
 		if (!quit)
 			return;
 	}
-
-	// Save last selected filter
-	String filter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	// save main window position
 	WINDOWPLACEMENT wp = {};
@@ -1890,16 +1887,17 @@ void CMainFrame::OnToolsFilters()
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	std::unique_ptr<SubstitutionFiltersList> SubstitutionFilters(new SubstitutionFiltersList());
 	String selectedFilter;
-	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.AddPage(&substitutionFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
-	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
+	pGlobalFileFilter->ReloadUpdatedFilters();
 
-	fileFiltersDlg.SetFilterArray(theApp.m_pGlobalFileFilter->GetFileFilters(selectedFilter));
+	fileFiltersDlg.SetFilterArray(pGlobalFileFilter->GetFileFilters(selectedFilter));
 	fileFiltersDlg.SetSelected(selectedFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
@@ -1919,18 +1917,18 @@ void CMainFrame::OnToolsFilters()
 		if (path.find(strNone) != String::npos)
 		{
 			// Don't overwrite mask we already have
-			if (!theApp.m_pGlobalFileFilter->IsUsingMask())
+			if (!pGlobalFileFilter->IsUsingMask())
 			{
 				String sFilter(_T("*.*"));
-				theApp.m_pGlobalFileFilter->SetFilter(sFilter);
+				pGlobalFileFilter->SetFilter(sFilter);
 				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
 		}
 		else
 		{
-			theApp.m_pGlobalFileFilter->SetFileFilterPath(path);
-			theApp.m_pGlobalFileFilter->UseMask(false);
-			String sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pGlobalFileFilter->SetFileFilterPath(path);
+			pGlobalFileFilter->UseMask(false);
+			String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
@@ -1955,7 +1953,7 @@ void CMainFrame::OnToolsFilters()
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const String newFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			const String newFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
@@ -2217,7 +2215,7 @@ void CMainFrame::OnSaveProject()
 			}
 			pOpenDoc->m_files = paths;
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-			pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
 			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker()->GetPluginPipeline();
 		}
 	}
