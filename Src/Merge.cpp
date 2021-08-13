@@ -1281,6 +1281,21 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
+		if (projItem.HasIgnoreWhite())
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, projItem.GetIgnoreWhite());
+		if (projItem.HasIgnoreBlankLines())
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, projItem.GetIgnoreBlankLines());
+		if (projItem.HasIgnoreCase())
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, projItem.GetIgnoreCase());
+		if (projItem.HasIgnoreEol())
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, projItem.GetIgnoreEol());
+		if (projItem.HasIgnoreCodepage())
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, projItem.GetIgnoreCodepage());
+		if (projItem.HasFilterCommentsLines())
+			GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, projItem.GetFilterCommentsLines());
+		if (projItem.HasCompareMethod())
+			GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, projItem.GetCompareMethod());
+
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
 	}

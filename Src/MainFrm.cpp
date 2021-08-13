@@ -1558,6 +1558,8 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
 	}
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
@@ -2763,6 +2765,8 @@ void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
 void CMainFrame::OnCompareMethod(UINT nID)
 { 
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS);
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)

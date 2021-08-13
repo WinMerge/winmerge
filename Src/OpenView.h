@@ -81,6 +81,13 @@ private:
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
 	int m_retryCount;
+	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
+	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
+	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
+	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
+	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
+	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -114,7 +121,6 @@ protected:
 	afx_msg void OnSaveProject();
 	template<UINT id, UINT popupid>
 	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
@@ -126,6 +132,20 @@ protected:
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnOptions();
+	afx_msg void OnDiffWhitespace(UINT nID);
+	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreBlankLines();
+	afx_msg void OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCase();
+	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreEOL();
+	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCP();
+	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreComments();
+	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
+	afx_msg void OnCompareMethod(UINT nID);
+	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnEditAction(int msg, WPARAM wParam, LPARAM LPARAM);
 	template <int MSG, int WPARAM = 0, int LPARAM = 0>
