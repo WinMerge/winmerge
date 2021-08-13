@@ -339,7 +339,7 @@ BOOL CMergeApp::InitInstance()
 		// No filter path, set it to default and make sure it exists.
 		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(pathMyFolders);
 	}
 	if (!paths::CreateIfNeeded(pathMyFolders))
 	{
@@ -601,6 +601,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
  */
 void CMergeApp::InitializeFileFilters()
 {
+	assert(m_pGlobalFileFilter != nullptr);
 	String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 
 	if (!filterPath.empty())
@@ -661,7 +662,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		m_pGlobalFileFilter->SetFilter(cmdInfo.m_sFileFilter);
+		GetGlobalFileFilter()->SetFilter(cmdInfo.m_sFileFilter);
 	}
 
 	// Set codepage.
@@ -1249,7 +1250,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		{
 			String filter = projItem.GetFilter();
 			filter = strutils::trim_ws(filter);
-			m_pGlobalFileFilter->SetFilter(filter);
+			GetGlobalFileFilter()->SetFilter(filter);
 		}
 		if (projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
