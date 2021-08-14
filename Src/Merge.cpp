@@ -98,7 +98,7 @@ CMergeApp::CMergeApp() :
 , m_pHexMergeTemplate(nullptr)
 , m_pDirTemplate(nullptr)
 , m_mainThreadScripts(nullptr)
-, m_nLastCompareResult(0)
+, m_nLastCompareResult(-1)
 , m_bNonInteractive(false)
 , m_pOptions(nullptr)
 , m_pGlobalFileFilter(nullptr)
@@ -134,6 +134,53 @@ static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
 		return new CIniOptionsMgr(iniFilePath);
 	return new CRegOptionsMgr();
+}
+
+static HANDLE CreateMutexHandle()
+{
+	// Create exclusion mutex name
+	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
+	DWORD dwLengthNeeded;
+	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
+		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
+	TCHAR szMutexName[MAX_PATH + 40];
+	// Combine window class name and desktop name to form a unique mutex name.
+	// As the window class name is decorated to distinguish between ANSI and
+	// UNICODE build, so will be the mutex name.
+	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
+	return CreateMutex(nullptr, FALSE, szMutexName);
+}
+
+static HWND ActivatePreviousInstanceAndSendCommandline(LPTSTR cmdLine)
+{
+	HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
+	if (hWnd == nullptr)
+		return nullptr;
+	if (IsIconic(hWnd))
+		ShowWindow(hWnd, SW_RESTORE);
+	SetForegroundWindow(GetLastActivePopup(hWnd));
+	COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine };
+	if (!SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
+		return nullptr;
+	return hWnd;
+}
+
+static void WaitForExitPreviousInstance(HWND hWnd)
+{
+	DWORD dwProcessId = 0;
+	GetWindowThreadProcessId(hWnd, &dwProcessId);
+	HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
+	if (hProcess)
+		WaitForSingleObject(hProcess, INFINITE);
+}
+
+static int ConvertLastCompareResultToExitCode(int nLastCompareResult)
+{
+	if (nLastCompareResult == 0)
+		return 0;
+	else if (nLastCompareResult > 0)
+		return 1;
+	return 2;
 }
 
 CMergeApp::~CMergeApp()
@@ -249,44 +296,20 @@ BOOL CMergeApp::InitInstance()
 	int nSingleInstance = cmdInfo.m_nSingleInstance.has_value() ?
 		*cmdInfo.m_nSingleInstance : GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 
-	// Create exclusion mutex name
-	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
-	DWORD dwLengthNeeded;
-	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
-		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
-	TCHAR szMutexName[MAX_PATH + 40];
-	// Combine window class name and desktop name to form a unique mutex name.
-	// As the window class name is decorated to distinguish between ANSI and
-	// UNICODE build, so will be the mutex name.
-	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
-	HANDLE hMutex = CreateMutex(nullptr, FALSE, szMutexName);
+	HANDLE hMutex = CreateMutexHandle();
 	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
 	if (nSingleInstance != 0 && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
-		HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
+		HWND hWnd = ActivatePreviousInstanceAndSendCommandline(GetCommandLine());
 		if (hWnd != nullptr)
 		{
-			if (IsIconic(hWnd))
-				ShowWindow(hWnd, SW_RESTORE);
-			SetForegroundWindow(GetLastActivePopup(hWnd));
-			LPTSTR cmdLine = GetCommandLine();
-			COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine};
-			if (::SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
-			{
-				ReleaseMutex(hMutex);
-				CloseHandle(hMutex);
-				if (nSingleInstance > 1)
-				{
-					DWORD dwProcessId = 0;
-					GetWindowThreadProcessId(hWnd, &dwProcessId);
-					HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
-					if (hProcess)
-						WaitForSingleObject(hProcess, INFINITE);
-				}
-				return FALSE;
-			}
+			ReleaseMutex(hMutex);
+			CloseHandle(hMutex);
+			if (nSingleInstance != 1)
+				WaitForExitPreviousInstance(hWnd);
+			return FALSE;
 		}
 	}
 
@@ -508,7 +531,7 @@ int CMergeApp::ExitInstance()
 		}, nullptr, 0, nullptr);
 #endif
 
-	return 0;
+	return ConvertLastCompareResultToExitCode(m_nLastCompareResult);
 }
 
 int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
