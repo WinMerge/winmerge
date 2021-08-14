@@ -22,6 +22,13 @@ public:
 	bool HasSubfolders() const;
 	bool HasUnpacker() const;
 	bool HasPrediffer() const;
+	bool HasIgnoreWhite() const;
+	bool HasIgnoreBlankLines() const;
+	bool HasIgnoreCase() const;
+	bool HasIgnoreEol() const;
+	bool HasIgnoreCodepage() const;
+	bool HasFilterCommentsLines() const;
+	bool HasCompareMethod() const;
 
 	String GetLeft(bool * pReadOnly = nullptr) const;
 	bool GetLeftReadOnly() const;
@@ -33,6 +40,13 @@ public:
 	int GetSubfolders() const;
 	String GetUnpacker() const;
 	String GetPrediffer() const;
+	int GetIgnoreWhite() const;
+	bool GetIgnoreBlankLines() const;
+	bool GetIgnoreCase() const;
+	bool GetIgnoreEol() const;
+	bool GetIgnoreCodepage() const;
+	bool GetFilterCommentsLines() const;
+	int GetCompareMethod() const;
 
 	void SetLeft(const String& sLeft, const bool * pReadOnly = nullptr);
 	void SetMiddle(const String& sMiddle, const bool * pReadOnly = nullptr);
@@ -41,6 +55,13 @@ public:
 	void SetSubfolders(bool bSubfolder);
 	void SetUnpacker(const String& sUnpacker);
 	void SetPrediffer(const String& sPrediffer);
+	void SetIgnoreWhite(int nIgnoreWhite);
+	void SetIgnoreBlankLines(bool bIgnoreBlankLines);
+	void SetIgnoreCase(bool bIgnoreCase);
+	void SetIgnoreEol(bool bIgnoreEol);
+	void SetIgnoreCodepage(bool bIgnoreCodepage);
+	void SetFilterCommentsLines(bool bFilterCommentsLines);
+	void SetCompareMethod(int nCompareMethod);
 
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
@@ -61,6 +82,20 @@ private:
 	String m_unpacker; /**< Unpacker name or pipeline */
 	bool m_bHasPrediffer; /**< Has prediffer? */
 	String m_prediffer; /**< Prediffer name or pipeline */
+	bool m_bHasIgnoreWhite; /**< Has "Whitespaces" setting? */
+	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
+	bool m_bHasIgnoreBlankLines; /**< Has "Ignore blank lines" setting? */
+	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
+	bool m_bHasIgnoreCase; /**< Has "Ignore case" setting? */
+	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
+	bool m_bHasIgnoreEol; /**< Has "Ignore carriage return differences" setting? */
+	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	bool m_bHasIgnoreCodepage; /**< Has "Ignore codepage differences" setting? */
+	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
+	bool m_bHasFilterCommentsLines; /**< Has "Ignore comment differences" setting? */
+	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
+	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
+	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 };
 
 /**
@@ -142,6 +177,69 @@ inline bool ProjectFileItem::HasUnpacker() const
 inline bool ProjectFileItem::HasPrediffer() const
 {
 	return m_bHasPrediffer;
+}
+
+/** 
+ * @brief Returns if "Whitespaces" setting is defined in projectfile.
+ * @return true if project file has "Whitespaces" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreWhite() const
+{
+	return m_bHasIgnoreWhite;
+}
+
+/** 
+ * @brief Returns if "Ignore blank lines" setting is defined in projectfile.
+ * @return true if project file has "Ignore blank lines" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreBlankLines() const
+{
+	return m_bHasIgnoreBlankLines;
+}
+
+/** 
+ * @brief Returns if "Ignore case" setting is defined in projectfile.
+ * @return true if project file has "Ignore case" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreCase() const
+{
+	return m_bHasIgnoreCase;
+}
+
+/** 
+ * @brief Returns if "Ignore carriage return differences" setting is defined in projectfile.
+ * @return true if project file has "Ignore carriage return differences" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreEol() const
+{
+	return m_bHasIgnoreEol;
+}
+
+/** 
+ * @brief Returns if "Ignore codepage differences" setting is defined in projectfile.
+ * @return true if project file has "Ignore codepage differences" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreCodepage() const
+{
+	return m_bHasIgnoreCodepage;
+}
+
+/** 
+ * @brief Returns if "Ignore comment differences" is defined in projectfile.
+ * @return true if project file has "Ignore comment differences" definition.
+ */
+inline bool ProjectFileItem::HasFilterCommentsLines() const
+{
+	return m_bHasFilterCommentsLines;
+}
+
+/** 
+ * @brief Returns if "Compare method" setting is defined in projectfile.
+ * @return true if project file has "Compare method" setting definition.
+ */
+inline bool ProjectFileItem::HasCompareMethod() const
+{
+	return m_bHasCompareMethod;
 }
 
 /** 
@@ -240,6 +338,132 @@ inline String ProjectFileItem::GetPrediffer() const
 inline void ProjectFileItem::SetPrediffer(const String& sPrediffer)
 {
 	m_prediffer = sPrediffer;
+}
+
+/** 
+ * @brief Returns the value of the "Whitespaces" setting.
+ * @return The value of the "Whitespaces" setting
+ */
+inline int ProjectFileItem::GetIgnoreWhite() const
+{
+	return m_nIgnoreWhite;
+}
+
+/** 
+ * @brief Set the value of the "Whitespaces" setting.
+ * @param [in] nIgnoreWhite New value of the "Whitespaces" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreWhite(int nIgnoreWhite)
+{
+	m_nIgnoreWhite = nIgnoreWhite;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore blank lines" setting.
+ * @return The value of the "Ignore blank lines" setting
+ */
+inline bool ProjectFileItem::GetIgnoreBlankLines() const
+{
+	return m_bIgnoreBlankLines;
+}
+
+/** 
+ * @brief Set the value of the "Ignore blank lines" setting.
+ * @param [in] bIgnoreBlankLines New value of the "Ignore blank lines" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreBlankLines(bool bIgnoreBlankLines)
+{
+	m_bIgnoreBlankLines = bIgnoreBlankLines;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore case" setting.
+ * @return Unpacker name or pipelineThe value of the "Ignore case" setting
+ */
+inline bool ProjectFileItem::GetIgnoreCase() const
+{
+	return m_bIgnoreCase;
+}
+
+/** 
+ * @brief Set the value of the "Ignore case" setting.
+ * @param [in] bIgnoreCase New value of the "Ignore case" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreCase(bool bIgnoreCase)
+{
+	m_bIgnoreCase = bIgnoreCase;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore carriage return differences" setting.
+ * @return The value of the "Ignore carriage return differences" setting
+ */
+inline bool ProjectFileItem::GetIgnoreEol() const
+{
+	return m_bIgnoreEol;
+}
+
+/** 
+ * @brief Set the value of the "Ignore carriage return differences" setting.
+ * @param [in] bIgnoreEol New value of the "Ignore carriage return differences" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreEol(bool bIgnoreEol)
+{
+	m_bIgnoreEol = bIgnoreEol;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore codepage differences" setting.
+ * @return The value of the "Ignore codepage differences" setting
+ */
+inline bool ProjectFileItem::GetIgnoreCodepage() const
+{
+	return m_bIgnoreCodepage;
+}
+
+/** 
+ * @brief Set the value of the "Ignore codepage differences" setting.
+ * @param [in] bIgnoreCodepage New value of the "Ignore codepage differences" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreCodepage(bool bIgnoreCodepage)
+{
+	m_bIgnoreCodepage = bIgnoreCodepage;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore comment differences" setting.
+ * @return The value of the "Ignore comment differences" setting
+ */
+inline bool ProjectFileItem::GetFilterCommentsLines() const
+{
+	return m_bFilterCommentsLines;
+}
+
+/** 
+ * @brief Set the value of the "Ignore comment differences" setting.
+ * @param [in] bFilterCommentsLines New value of the "Ignore comment differences" setting to set.
+ */
+inline void ProjectFileItem::SetFilterCommentsLines(bool bFilterCommentsLines)
+{
+	m_bFilterCommentsLines = bFilterCommentsLines;
+}
+
+/** 
+ * @brief Returns the value of the "Compare method" setting.
+ * @return The value of the "Compare method" setting
+ */
+inline int ProjectFileItem::GetCompareMethod() const
+{
+	return m_nCompareMethod;
+}
+
+/** 
+ * @brief Set the value of the "Compare method" setting.
+ * @param [in] nCompareMethod New value of the "Compare method" setting to set.
+ */
+inline void ProjectFileItem::SetCompareMethod(int nCompareMethod)
+{
+	m_nCompareMethod = nCompareMethod;
 }
 
 /** 

@@ -42,6 +42,13 @@ const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 const char Unpacker_element_name[] = "unpacker";
 const char Prediffer_element_name[] = "prediffer";
+const char White_spaces_element_name[] = "white-spaces";
+const char Ignore_blank_lines_element_name[] = "ignore-blank-lines";
+const char Ignore_case_element_name[] = "ignore-case";
+const char Ignore_cr_diff_element_name[] = "ignore-carriage-return-diff";
+const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
+const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
+const char Compare_method_element_name[] = "compare-method";
 
 namespace
 {
@@ -133,6 +140,41 @@ public:
 			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
 			currentItem.m_bHasPrediffer = true;
 		}
+		else if (nodename == White_spaces_element_name)
+		{
+			currentItem.m_nIgnoreWhite = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_bHasIgnoreWhite = true;
+		}
+		else if (nodename == Ignore_blank_lines_element_name)
+		{
+			currentItem.m_bIgnoreBlankLines = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasIgnoreBlankLines = true;
+		}
+		else if (nodename == Ignore_case_element_name)
+		{
+			currentItem.m_bIgnoreCase = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasIgnoreCase = true;
+		}
+		else if (nodename == Ignore_cr_diff_element_name)
+		{
+			currentItem.m_bIgnoreEol = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasIgnoreEol = true;
+		}
+		else if (nodename == Ignore_codepage_diff_element_name)
+		{
+			currentItem.m_bIgnoreCodepage = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasIgnoreCodepage = true;
+		}
+		else if (nodename == Ignore_comment_diff_element_name)
+		{
+			currentItem.m_bFilterCommentsLines = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasFilterCommentsLines = true;
+		}
+		else if (nodename == Compare_method_element_name)
+		{
+			currentItem.m_nCompareMethod = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_bHasCompareMethod = true;
+		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
 	void processingInstruction(const XMLString& target, const XMLString& data) {}
@@ -163,6 +205,20 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bLeftReadOnly(false)
 , m_bMiddleReadOnly(false)
 , m_bRightReadOnly(false)
+, m_bHasIgnoreWhite(false)
+, m_nIgnoreWhite(0)
+, m_bHasIgnoreBlankLines(false)
+, m_bIgnoreBlankLines(false)
+, m_bHasIgnoreCase(false)
+, m_bIgnoreCase(false)
+, m_bHasIgnoreEol(false)
+, m_bIgnoreEol(false)
+, m_bHasIgnoreCodepage(false)
+, m_bIgnoreCodepage(false)
+, m_bHasFilterCommentsLines(false)
+, m_bFilterCommentsLines(false)
+, m_bHasCompareMethod(false)
+, m_nCompareMethod(0)
 {
 }
 
@@ -301,6 +357,13 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
 				if (!item.m_prediffer.empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
+				writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
+				writeElement(writer, Ignore_blank_lines_element_name, item.m_bIgnoreBlankLines ? "1" : "0");
+				writeElement(writer, Ignore_case_element_name, item.m_bIgnoreCase ? "1" : "0");
+				writeElement(writer, Ignore_cr_diff_element_name, item.m_bIgnoreEol ? "1" : "0");
+				writeElement(writer, Ignore_codepage_diff_element_name, item.m_bIgnoreCodepage ? "1" : "0");
+				writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
+				writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
 			}
 			writer.endElement("", "", Paths_element_name);
 		}

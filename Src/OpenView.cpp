@@ -73,7 +73,21 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_BN_CLICKED(IDC_OPTIONS, OnOptions)
-	ON_NOTIFY(BCN_DROPDOWN, IDC_OPTIONS, OnDropDownOptions)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_OPTIONS, (OnDropDown<IDC_OPTIONS, IDR_POPUP_PROJECT_DIFF_OPTIONS>))
+	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnDiffWhitespace)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES, OnDiffIgnoreBlankLines)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES, OnUpdateDiffIgnoreBlankLines)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE, OnDiffIgnoreCase)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE, OnUpdateDiffIgnoreCase)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL, OnDiffIgnoreEOL)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE, OnDiffIgnoreCP)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
+	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
 	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
@@ -116,6 +130,13 @@ COpenView::COpenView()
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
 	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
 	, m_retryCount(0)
+	, m_nIgnoreWhite(0)
+	, m_bIgnoreBlankLines(false)
+	, m_bIgnoreCase(false)
+	, m_bIgnoreEol(false)
+	, m_bIgnoreCodepage(false)
+	, m_bFilterCommentsLines(false)
+	, m_nCompareMethod(0)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -283,6 +304,14 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
+	m_nIgnoreWhite = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
+
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 
@@ -293,6 +322,15 @@ void COpenView::OnInitialUpdate()
 void COpenView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	m_bRecurse = GetDocument()->m_bRecurse;
+
+	m_nIgnoreWhite = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
+
 	UpdateData(FALSE);
 }
 
@@ -638,6 +676,14 @@ void COpenView::OnCompare(UINT nID)
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bRecurse);
 	LoadComboboxStates();
 
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage);
+	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, m_nCompareMethod);
+
 	m_constraint.Persist(true, false);
 
 	COpenDoc *pDoc = GetDocument();
@@ -767,6 +813,21 @@ void COpenView::OnLoadProject()
 	if (projItem.HasUnpacker())
 		m_strUnpackerPipeline = projItem.GetUnpacker();
 
+	if (projItem.HasIgnoreWhite())
+		m_nIgnoreWhite = projItem.GetIgnoreWhite();
+	if (projItem.HasIgnoreBlankLines())
+		m_bIgnoreBlankLines = projItem.GetIgnoreBlankLines();
+	if (projItem.HasIgnoreCase())
+		m_bIgnoreCase = projItem.GetIgnoreCase();
+	if (projItem.HasIgnoreEol())
+		m_bIgnoreEol = projItem.GetIgnoreEol();
+	if (projItem.HasIgnoreCodepage())
+		m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
+	if (projItem.HasFilterCommentsLines())
+		m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
+	if (projItem.HasCompareMethod())
+		m_nCompareMethod = projItem.GetCompareMethod();
+
 	UpdateData(FALSE);
 	UpdateButtonStates();
 	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
@@ -816,6 +877,15 @@ void COpenView::OnSaveProject()
 	projItem.SetSubfolders(m_bRecurse);
 	if (!m_strUnpackerPipeline.empty())
 		projItem.SetUnpacker(m_strUnpackerPipeline);
+
+	projItem.SetIgnoreWhite(m_nIgnoreWhite);
+	projItem.SetIgnoreBlankLines(m_bIgnoreBlankLines);
+	projItem.SetIgnoreCase(m_bIgnoreCase);
+	projItem.SetIgnoreEol(m_bIgnoreEol);
+	projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
+	projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
+	projItem.SetCompareMethod(m_nCompareMethod);
+
 	project.Items().push_back(projItem);
 
 	if (!theApp.SaveProjectFile(fileName, project))
@@ -1259,16 +1329,129 @@ void COpenView::OnOptions()
 	GetMainFrame()->PostMessage(WM_COMMAND, ID_OPTIONS);
 }
 
-void COpenView::OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult)
+/**
+ * @brief Set "Whitespaces" setting.
+ * @param [in] nID Menu ID of the selected item
+ */
+void COpenView::OnDiffWhitespace(UINT nID)
 {
-	NMTOOLBAR dropDown = { 0 };
-	dropDown.hdr.code = TBN_DROPDOWN;
-	dropDown.hdr.hwndFrom = GetMainFrame()->GetDescendantWindow(AFX_IDW_TOOLBAR)->GetSafeHwnd();
-	dropDown.hdr.idFrom = AFX_IDW_TOOLBAR;
-	GetDlgItem(IDC_OPTIONS)->GetWindowRect(&dropDown.rcButton);
-	GetMainFrame()->ScreenToClient(&dropDown.rcButton);
-	GetMainFrame()->SendMessage(WM_NOTIFY, dropDown.hdr.idFrom, reinterpret_cast<LPARAM>(&dropDown));
-	*pResult = 0;
+	assert(nID >= ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE && nID <= ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL);
+
+	m_nIgnoreWhite = nID - ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE;
+}
+
+/**
+ * @brief Update "Whitespaces" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE) == static_cast<UINT>(m_nIgnoreWhite));
+}
+
+/**
+ * @brief Toggle "Ignore blank lines" setting.
+ */
+void COpenView::OnDiffIgnoreBlankLines()
+{
+	m_bIgnoreBlankLines = !m_bIgnoreBlankLines;
+}
+
+/**
+ * @brief Update "Ignore blank lines" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreBlankLines);
+}
+
+/**
+ * @brief Toggle "Ignore case" setting.
+ */
+void COpenView::OnDiffIgnoreCase()
+{
+	m_bIgnoreCase = !m_bIgnoreCase;
+}
+
+/**
+ * @brief Update "Ignore case" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreCase);
+}
+
+/**
+ * @brief Toggle "Ignore carriage return differences" setting.
+ */
+void COpenView::OnDiffIgnoreEOL()
+{
+	m_bIgnoreEol = !m_bIgnoreEol;
+}
+
+/**
+ * @brief Update "Ignore carriage return differences" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreEol);
+}
+
+/**
+ * @brief Toggle "Ignore codepage differences" setting.
+ */
+void COpenView::OnDiffIgnoreCP()
+{
+	m_bIgnoreCodepage = !m_bIgnoreCodepage;
+}
+
+/**
+ * @brief Update "Ignore codepage differences" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreCodepage);
+}
+
+/**
+ * @brief Toggle "Ignore comment differences" setting.
+ */
+void COpenView::OnDiffIgnoreComments()
+{
+	m_bFilterCommentsLines = !m_bFilterCommentsLines;
+}
+
+/**
+ * @brief Update "Ignore comment differences" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bFilterCommentsLines);
+}
+
+/**
+ * @brief Set "Compare method" setting.
+ * @param [in] nID Menu ID of the selected item
+ */
+void COpenView::OnCompareMethod(UINT nID)
+{
+	assert(nID >= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS && nID <= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE);
+
+	m_nCompareMethod = nID - ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS;
+}
+
+/**
+ * @brief Update "Compare method" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateCompareMethod(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(m_nCompareMethod));
 }
 
 /** 
