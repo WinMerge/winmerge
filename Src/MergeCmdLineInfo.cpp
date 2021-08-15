@@ -131,6 +131,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
 	, m_dwRightFlags(FFILEOPEN_NONE)
 	, m_nLineIndex(-1)
 	, m_nCharIndex(-1)
+	, m_bEnableExitCode(false)
 {
 	String exeName;
 	q = EatParam(q, exeName);
@@ -318,6 +319,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -new means to display a new blank window
 			m_bNewCompare = true;
+		}
+		else if (param == _T("enableexitcode"))
+		{
+			m_bEnableExitCode = true;
 		}
 		else if (param == _T("minimize"))
 		{

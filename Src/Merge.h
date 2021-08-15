@@ -171,6 +171,7 @@ private:
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
+	bool m_bEnableExitCode;
 	CFont m_fontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 };

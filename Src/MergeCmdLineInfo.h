@@ -75,6 +75,7 @@ public:
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
 	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
 	bool m_bNewCompare; /**< Show a new blank window */
+	bool m_bEnableExitCode; /**< Returns the comparison result as a process exit code */
 	int m_nLineIndex; /**< Line number to jump after loading files */
 	int m_nCharIndex; /**< Character position to jump after loading files */
 	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/

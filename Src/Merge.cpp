@@ -111,6 +111,7 @@ CMergeApp::CMergeApp() :
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
+, m_bEnableExitCode(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -531,7 +532,7 @@ int CMergeApp::ExitInstance()
 		}, nullptr, 0, nullptr);
 #endif
 
-	return ConvertLastCompareResultToExitCode(m_nLastCompareResult);
+	return m_bEnableExitCode ? ConvertLastCompareResultToExitCode(m_nLastCompareResult) : 0;
 }
 
 int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
@@ -675,6 +676,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		0 : static_cast<unsigned>(cmdInfo.m_nWindowType) + ID_MERGE_COMPARE_TEXT - 1;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
+	m_bEnableExitCode = cmdInfo.m_bEnableExitCode;
 
 	if (!cmdInfo.m_sUnpacker.empty())
 		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
