@@ -16,18 +16,8 @@
     <Filter Include="ChangeLogs">
       <UniqueIdentifier>{aefb7247-d6e5-411d-9cc5-4a12f5efda4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Compare Engines">
-      <UniqueIdentifier>{b889169f-de55-4db7-ad06-423f6438fa90}</UniqueIdentifier>
-      <Extensions>cpp;c;h</Extensions>
-    </Filter>
     <Filter Include="MFCGui">
       <UniqueIdentifier>{caf52667-921a-47aa-84a3-f277aac15107}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MFCGui\Source Files">
-      <UniqueIdentifier>{5dc3ba0d-6755-48f8-ad11-df56b167b514}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MFCGui\Header Files">
-      <UniqueIdentifier>{10ce7aff-bcfd-4ed0-98c3-766226c4c89e}</UniqueIdentifier>
     </Filter>
     <Filter Include="MFCGui\Dialogs">
       <UniqueIdentifier>{d520b3a7-c530-4053-8766-07c26ed85f85}</UniqueIdentifier>
@@ -79,6 +69,72 @@
     </Filter>
     <Filter Include="Common\Source Files">
       <UniqueIdentifier>{ae04066b-7462-4a9b-8120-6d72fa5fe73e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild">
+      <UniqueIdentifier>{1f2458e6-d5ad-4cb9-befd-f338acdff5ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\BinaryCompare">
+      <UniqueIdentifier>{072167b2-c1b4-4339-9492-6cfa6154aff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\BinaryCompare\Source Files">
+      <UniqueIdentifier>{ec3f094d-be90-415f-b761-e865b34e206c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\BinaryCompare\Header Files">
+      <UniqueIdentifier>{3397ca0f-4696-4b89-831d-bb65586db0ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\FolderCompare">
+      <UniqueIdentifier>{5da52cb1-3476-4e40-8cd7-1adda82b4245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\FolderCompare\Source Files">
+      <UniqueIdentifier>{bca05f76-2dcc-4aa8-a6f4-62009329c79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\FolderCompare\Header Files">
+      <UniqueIdentifier>{7a9fc16d-2b05-4264-b158-a691ff4b785f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\ImageCompare">
+      <UniqueIdentifier>{f9b51c1a-5423-4052-8aa7-d75247e0c7cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\ImageCompare\Source Files">
+      <UniqueIdentifier>{74ff89d4-a14f-4bc4-81be-dcaf1fbfacdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\ImageCompare\Header Files">
+      <UniqueIdentifier>{e93cdb71-1171-4312-8980-36cee9b8d721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\TextTableCompare">
+      <UniqueIdentifier>{862990a2-192f-47e9-b408-55de9000d3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\TextTableCompare\Source Files">
+      <UniqueIdentifier>{974619ee-b245-4048-aa9a-684d2d6bec2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\TextTableCompare\Header Files">
+      <UniqueIdentifier>{c0626ebd-4b06-4061-9538-3625a53a9ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\Common">
+      <UniqueIdentifier>{1e14cf2f-c8f6-4f83-9c1d-f96f57eb6193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\Common\Source Files">
+      <UniqueIdentifier>{60515146-a6af-45ae-9be9-ba926506098e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\Common\Header Files">
+      <UniqueIdentifier>{15c37d4b-df6a-45b3-b477-b87359f12823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Main">
+      <UniqueIdentifier>{f31d764e-516f-4bd2-b936-d4b8b8d0dea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Main\Source Files">
+      <UniqueIdentifier>{5dc3ba0d-6755-48f8-ad11-df56b167b514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Main\Header Files">
+      <UniqueIdentifier>{10ce7aff-bcfd-4ed0-98c3-766226c4c89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\SelectFilesOrFolders">
+      <UniqueIdentifier>{a7198765-ac65-4fbc-ac03-7ff708693586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\SelectFilesOrFolders\Source Files">
+      <UniqueIdentifier>{cc427f14-5308-4d99-9774-640158ade47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\SelectFilesOrFolders\Header Files">
+      <UniqueIdentifier>{4d3d0027-2f4c-4a04-b3ba-a168e25b28d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -214,95 +270,11 @@
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="7zCommon.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DiffTextBuffer.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DiffViewBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirDoc.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirFrame.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EditorFilepathBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EncodingErrorBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileActionScript.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileOrFolderSelect.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FilepathEdit.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GhostTextBuffer.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GhostTextView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HexMergeDoc.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HexMergeFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HexMergeView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocationBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocationView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Merge.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeDoc.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeDocDiffSync.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeDocEncoding.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeDocLineDiffs.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeEditView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenDoc.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
+      <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirCompProgressBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
+      <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsFont.cpp">
       <Filter>Source Files</Filter>
@@ -319,17 +291,11 @@
     <ClCompile Include="OptionsDirColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PatchTool.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="JumpList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImgMergeFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
       <Filter>Source Files</Filter>
@@ -343,20 +309,8 @@
     <ClCompile Include="DirActions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DropHandler.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsDef.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TrDialogs.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeStatusBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeEditSplitterView.cpp">
-      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
       <Filter>MergeTest</Filter>
@@ -373,12 +327,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsPanel.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeEditFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
@@ -394,13 +342,7 @@
     <ClCompile Include="Common\LanguageSelect.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\MDITabBar.cpp">
-      <Filter>MFCGui\Common\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\MessageBoxDialog.cpp">
-      <Filter>MFCGui\Common\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\PropertyPageHost.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\scbarcf.cpp">
@@ -568,14 +510,8 @@
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MergeFrameCommon.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowsManagerDialog.cpp">
-      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Concurrent.cpp">
       <Filter>Source Files</Filter>
@@ -621,6 +557,126 @@
     </ClCompile>
     <ClCompile Include="PropMessageBoxes.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirView.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirFrame.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirDoc.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCompProgressBar.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EncodingErrorBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostTextBuffer.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostTextView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexMergeView.cpp">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexMergeDoc.cpp">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexMergeFrm.cpp">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeDoc.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeDocDiffSync.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeDocEncoding.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeDocLineDiffs.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeEditFrm.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeEditSplitterView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeEditView.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeStatusBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffTextBuffer.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffViewBar.cpp">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImgMergeFrm.cpp">
+      <Filter>MFCGui\MDIChild\ImageCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenView.cpp">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenDoc.cpp">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenFrm.cpp">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="7zCommon.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DropHandler.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOrFolderSelect.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrDialogs.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsPanel.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PatchTool.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FilepathEdit.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeFrameCommon.cpp">
+      <Filter>MFCGui\MDIChild\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorFilepathBar.cpp">
+      <Filter>MFCGui\MDIChild\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PropertyPageHost.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsManagerDialog.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MDITabBar.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileActionScript.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -775,100 +831,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
-      <Filter>MFCGui\Header Files</Filter>
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenDoc.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeEditView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeEditStatus.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeDoc.h">
-      <Filter>MFCGui\Header Files</Filter>
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Merge.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocationView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocationBar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IOptionsPanel.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HexMergeFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="heksedit.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HexMergeDoc.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GhostTextView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GhostTextBuffer.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileOrFolderSelect.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiffViewBar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiffTextBuffer.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirDoc.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirFrame.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EditorFilepathBar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EncodingErrorBar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileActionScript.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilepathEdit.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IListCtrlImpl.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeLineFlags.h">
-      <Filter>MFCGui\Header Files</Filter>
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeApp.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirCompProgressBar.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Diff3.h">
       <Filter>Header Files</Filter>
@@ -888,20 +860,11 @@
     <ClInclude Include="OptionsDirColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PatchTool.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="JumpList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="7zCommon.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImgMergeFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IMergeDoc.h">
       <Filter>Header Files</Filter>
@@ -918,26 +881,11 @@
     <ClInclude Include="DirActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HexMergeView.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsPanel.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DropHandler.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsInit.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TrDialogs.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeStatusBar.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\boost\boost\config.hpp">
       <Filter>Boost</Filter>
@@ -950,9 +898,6 @@
     </ClInclude>
     <ClInclude Include="..\Version.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeEditSplitterView.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestMain.h">
       <Filter>MergeTest</Filter>
@@ -975,9 +920,6 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MergeEditFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\BCMenu.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
@@ -993,9 +935,6 @@
     <ClInclude Include="Common\LanguageSelect.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\MDITabBar.h">
-      <Filter>MFCGui\Common\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\memdc.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
@@ -1003,9 +942,6 @@
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\scbarcf.h">
-      <Filter>MFCGui\Common\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\PropertyPageHost.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\scbarg.h">
@@ -1167,14 +1103,8 @@
     <ClInclude Include="xdiff_gnudiff_compat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MergeFrameCommon.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DirSelectFilesDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsManagerDialog.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Concurrent.h">
       <Filter>Header Files</Filter>
@@ -1223,6 +1153,132 @@
     </ClInclude>
     <ClInclude Include="PropMessageBoxes.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexMergeDoc.h">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexMergeFrm.h">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexMergeView.h">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditView.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeDoc.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditFrm.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditSplitterView.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditStatus.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCompProgressBar.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirDoc.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirFrame.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirView.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenDoc.h">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenFrm.h">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenView.h">
+      <Filter>MFCGui\MDIChild\SelectFilesOrFolders\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="heksedit.h">
+      <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffTextBuffer.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffViewBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostTextBuffer.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostTextView.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeLineFlags.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeStatusBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationView.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="7zCommon.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DropHandler.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOrFolderSelect.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgMergeFrm.h">
+      <Filter>MFCGui\MDIChild\ImageCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EncodingErrorBar.h">
+      <Filter>MFCGui\MDIChild\TextTableCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilepathEdit.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IOptionsPanel.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsPanel.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PatchTool.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrDialogs.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeFrameCommon.h">
+      <Filter>MFCGui\MDIChild\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorFilepathBar.h">
+      <Filter>MFCGui\MDIChild\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PropertyPageHost.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IListCtrlImpl.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsManagerDialog.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MDITabBar.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileActionScript.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1325,7 +1381,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
-      <Filter>MFCGui\Source Files</Filter>
+      <Filter>MFCGui\Main\Source Files</Filter>
     </ResourceCompile>
     <ResourceCompile Include="Merge2.rc">
       <Filter>Resource Files</Filter>
