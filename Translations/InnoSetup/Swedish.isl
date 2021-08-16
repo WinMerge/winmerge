@@ -1,11 +1,11 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Optionella funktioner:
+OptionalFeatures=Valfria finesser:
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typisk Installation
+TypicalInstallation=Särlig Installation
 FullInstallation=Full Installation
 CompactInstallation=Kompakt Installation
 CustomInstallation=Anpassad Installation
@@ -13,17 +13,17 @@ CustomInstallation=Anpassad Installation
 ;Components
 AppCoreFiles=WinMerge Kärnfiler
 Filters=Filter
-Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
+Plugins=Insticksprogram
+Frhed=Frhed(Fri hex redigerare)
+WinIMerge=WinIMerge(Avbilds Skillnads/Enande)
+ArchiveSupport=Arkiv Stöd
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Språk
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
+ArabicLanguage=Arabiska menyer och dialoger
+BasqueLanguage=Baskiska menyer och dialoger
 BulgarianLanguage=Bulgariska menyer och dialoger
 CatalanLanguage=Katalanska menyer och dialoger
 ChineseSimplifiedLanguage=Kinesiska (Förenklad) menyer och dialoger
@@ -32,7 +32,7 @@ CroatianLanguage=Kroatiska menyer och dialoger
 CzechLanguage=Tjeckiska menyer och dialoger
 DanishLanguage=Danska menyer och dialoger
 DutchLanguage=Nederländska menyer och dialoger
-FinnishLanguage=Finnish menus and dialogs
+FinnishLanguage=Finnska menyer och dialoger
 FrenchLanguage=Franska menyer och dialoger
 GalicianLanguage=Galiciska menyer och dialoger
 GermanLanguage=Tyska menyer och dialoger
@@ -46,11 +46,11 @@ NorwegianLanguage=Norska menyer och dialoger
 PersianLanguage=Persiska menyer och dialoger
 PolishLanguage=Polska menyer och dialoger
 PortugueseBrazilLanguage=Portugisiska (Brasiliansk) menyer och dialoger
-PortugueseLanguage=Portugisiska menyer och dialoger
+PortugueseLanguage=Portugisiska (Iberisk) menyer och dialoger
 RomanianLanguage=Rumänska menyer och dialoger
 RussianLanguage=Ryska menyer och dialoger
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
+SerbianLanguage=Serbiska menyer och dialoger
+SinhalaLanguage=Sinhalska menyer och dialoger
 SlovakLanguage=Slovakiska menyer och dialoger
 SlovenianLanguage=Slovenska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger
@@ -59,7 +59,7 @@ TurkishLanguage=Turkiska menyer och dialoger
 UkrainianLanguage=Ukrainska menyer och dialoger
 
 ;Tasks
-ExplorerContextMenu=&Möjliggör integration med Explorers menyer
+ExplorerContextMenu=&Möjliggör samordning med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
 IntegrateTortoiseGit=Integrera med To&rtoiseGit
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
@@ -67,13 +67,13 @@ IntegrateClearCase=Integrera med Rational &ClearCase
 AddToPath=&Lägg till WinMerge-katalogen till Er systemsökväg
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=3-Vägs Enande
+ThreeWayMergeWizardPageDescription=Använder Ni WinMerge som ett 3-vägs eningsverktyg för TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Registera WinMerge som ett 3-vägs eningsverktyg
+MergeAtRightPane=Ena i höger ruta
+MergeAtCenterPane=Ena i den centrala rutan
+MergeAtLeftPane=Ena i vänster ruta
+AutoMergeAtStartup=Auto-ena vid uppkörningstid
 
 ;Icon Labels
 ReadMe=Läs Mig

@@ -1,79 +1,79 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Optional Features:
+OptionalFeatures=Opcionális lehetõségek:
 CompanyName=Thingamahoochie Software
 
 ;Types
 TypicalInstallation=Szokásos Telepítés
-FullInstallation=TeljesTelepítés
+FullInstallation=Teljes Telepítés
 CompactInstallation=Kompakt Telepítés
 CustomInstallation=Egyedi Telepítés
 
 ;Components
-AppCoreFiles=A WinMerge kéreg fájljai
+AppCoreFiles=A WinMerge törzsfájljok
 Filters=Szûrõk
 Plugins=Bõvítmények
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed(Ingyenes hexa editor)
+WinIMerge=WinIMerge(Kép Eltérés/Egyesítés)
+ArchiveSupport=Archivum támogatása
+ShellExtension32bit=32-bit WinMerge helyi menü kiterjesztés
+Commands=GnuWin32 Patch a Windowshoz/HTML Tidy/jq
 
 ;Localization Components
 Languages=Nyelvek
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
+ArabicLanguage=Arab menük és párbeszédablakok
+BasqueLanguage=Baszk menük és párbeszédablakok
 BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
-ChineseSimplifiedLanguage=Kínai (Egyszerûsített) menük és párbeszédablakok
+ChineseSimplifiedLanguage=Kínai (Egyszerûsítés) menük és párbeszédablakok
 ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
-CroatianLanguage=Croatian menus and dialogs
+CroatianLanguage=Horvát menük és párbeszédablakok
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok
 DutchLanguage=Holland menük és párbeszédablakok
-FinnishLanguage=Finnish menus and dialogs
+FinnishLanguage=Finn menük és párbeszédablakok
 FrenchLanguage=Francia menük és párbeszédablakok
-GalicianLanguage=Galician menus and dialogs
+GalicianLanguage=Galiciai menük és párbeszédablakok
 GermanLanguage=Német menük és párbeszédablakok
-GreekLanguage=Greek menus and dialogs
+GreekLanguage=Görög menük és párbeszédablakok
 HungarianLanguage=Magyar menük és párbeszédablakok
 ItalianLanguage=Olasz menük és párbeszédablakok
 JapaneseLanguage=Japán menük és párbeszédablakok
 KoreanLanguage=Koreai menük és párbeszédablakok
 LithuanianLanguage=Litván menük és párbeszédablakok
 NorwegianLanguage=Norvég menük és párbeszédablakok
-PersianLanguage=Persian menus and dialogs
+PersianLanguage=Perzsa mmenük és párbeszédablakok
 PolishLanguage=Lengyel menük és párbeszédablakok
 PortugueseBrazilLanguage=Portugál (Brazíliai) menük és párbeszédablakok
 PortugueseLanguage=Portugál menük és párbeszédablakok
-RomanianLanguage=Romanian menus and dialogs
+RomanianLanguage=Román menük és párbeszédablakok
 RussianLanguage=Orosz menük és párbeszédablakok
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
+SerbianLanguage=Szerb menük és párbeszédablakok
+SinhalaLanguage=Sinhala menük és párbeszédablakok
 SlovakLanguage=Szlovák menük és párbeszédablakok
-SlovenianLanguage=Slovenian menus and dialogs
+SlovenianLanguage=Szlovén menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
 SwedishLanguage=Svéd menük és párbeszédablakok
-TurkishLanguage=török menük és párbeszédablakok
-UkrainianLanguage=Ukrainian menus and dialogs
+TurkishLanguage=Török menük és párbeszédablakok
+UkrainianLanguage=Ukrán menük és párbeszédablakok
 
 ;Tasks
-ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez
+ExplorerContextMenu=Integrálás az Intézö &helyi-menüjébe
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
 IntegrateTortoiseGit=Integrálás a To&rtoiseGit programmal
 IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
 IntegrateClearCase=Integrálás a Rational &ClearCase programmal
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Adja hozzá a WinMerge mappát a rendszer elérési útjához
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=3-paneles összehasonlítás
+ThreeWayMergeWizardPageDescription=A WinMerge-t három paneles egyesítési eszközként használod a TortoiseSVN/Git programmal?
+RegisterWinMergeAs3WayMergeTool=Regisztráld a WinMerge programot háromirányú egyesítési eszközként
+MergeAtRightPane=Egyesítés a jobb panelen
+MergeAtCenterPane=Egyesítés a középsõ panelen
+MergeAtLeftPane=Egyesítés a bal panelen
+AutoMergeAtStartup=Automatikus egyesítés indításkor
 
 ;Icon Labels
 ReadMe=Olvass el
@@ -81,7 +81,7 @@ UsersGuide=Felhasználói kézikönyv
 ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
 
 ;Code Dialogs
-DeletePreviousStartMenu=A Telepítés észlelte, hogy megváltoztattad a Start Menü helyét errõl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
+DeletePreviousStartMenu=A Telepítõ észlelte, hogy megváltoztattad a Start Menü helyét erröl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge Projekt fájl

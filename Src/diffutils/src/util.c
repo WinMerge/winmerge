@@ -827,7 +827,7 @@ analyze_hunk (struct change *hunk,
             }
           else if (ignore_all_space_flag | ignore_space_change_flag)
             {
-              if (!is_blank_line(fd[0].linbuf[i], fd[1].linbuf[i + 1]))
+              if (!is_blank_line(fd[0].linbuf[i], fd[0].linbuf[i + 1]))
                 trivial = 0;
             }
           else if (!iseolch(fd[0].linbuf[i][0]) && fd[0].linbuf[i][0] != 0)

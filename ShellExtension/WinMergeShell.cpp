@@ -159,6 +159,17 @@ static String GetResourceString(UINT resourceID)
 	return strResource;
 }
 
+static BOOL InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewItem, UINT uStringId)
+{
+	String str = GetResourceString(uStringId);
+	MENUITEMINFO mii{sizeof mii};
+	mii.fMask = MIIM_ID | MIIM_STRING | MIIM_DATA;
+	mii.wID = uIDNewItem;
+	mii.dwTypeData = const_cast<LPTSTR>(str.c_str());
+	mii.dwItemData = uStringId;
+	return InsertMenuItem(hMenu, uPosition, TRUE, &mii);
+}
+
 HBITMAP ConvertHICONtoHBITMAP(HICON hIcon, int cx, int cy)
 {
 	LPVOID lpBits;
@@ -303,6 +314,21 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd, UINT uidLastCmd, UINT uFlags)
 {
+	// check whether menu items are already added
+	if (hmenu == s_hMenuLastAdded)
+	{
+		MENUITEMINFO mii{ sizeof mii };
+		mii.fMask = MIIM_DATA;
+		if (GetMenuItemInfo(hmenu, s_uidCmdLastAdded, FALSE, &mii))
+		{
+			if (mii.dwItemData >= IDS_COMPARE && mii.dwItemData <= IDS_RESELECT_FIRST)
+				return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
+		}
+	}
+
+	s_hMenuLastAdded = hmenu;
+	s_uidCmdLastAdded = uidFirstCmd;
+
 	int nItemsAdded = 0;
 
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
@@ -519,8 +545,7 @@ BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
 int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	String strMenu = GetResourceString(IDS_CONTEXT_MENU);
-	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
+	InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_CONTEXT_MENU);
 
 	// Add bitmap
 	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
@@ -538,10 +563,6 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	String strCompare = GetResourceString(IDS_COMPARE);
-	String strCompareEllipsis = GetResourceString(IDS_COMPARE_ELLIPSIS);
-	String strCompareTo = GetResourceString(IDS_COMPARE_TO);
-	String strReselect = GetResourceString(IDS_RESELECT_FIRST);
 	int nItemsAdded = 0;
 
 	switch (m_dwMenuState)
@@ -549,24 +570,20 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		// No items selected earlier
 		// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strCompareTo.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE_TO);
 		uMenuIndex++;
 		uidFirstCmd++;
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strCompareEllipsis.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE_ELLIPSIS);
 		nItemsAdded = 2;
 		break;
 
 		// One item selected earlier:
 		// Allow re-selecting first item or selecting second item
 	case MENU_ONESEL_PREV:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strCompare.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
 		uMenuIndex++;
 		uidFirstCmd++;
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strReselect.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_RESELECT_FIRST);
 		nItemsAdded = 2;
 		break;
 
@@ -574,14 +591,12 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		// Select both items for compare
 	case MENU_TWOSEL:
 	case MENU_THREESEL:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strCompare.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
 		nItemsAdded = 1;
 		break;
 
 	default:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-				strCompare.c_str());
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
 		nItemsAdded = 1;
 		break;
 	}

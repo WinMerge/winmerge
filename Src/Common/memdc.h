@@ -34,7 +34,7 @@ private:
 	bool		m_bMemDC;		// `true` if CDC really is a Memory DC.
 public:
 	
-	CMyMemDC(CDC* pDC, const CRect* pRect = nullptr) : CDC()
+	explicit CMyMemDC(CDC* pDC, const CRect* pRect = nullptr) : CDC()
 	{
 		ASSERT(pDC != nullptr); 
 

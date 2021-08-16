@@ -53,6 +53,7 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy) = 0;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
+	virtual bool ReadStringAll(String & line) = 0;
 	virtual int GetLineNumber() const = 0;
 	virtual int64_t GetPosition() const = 0;
 	virtual bool WriteString(const String & line) = 0;
@@ -138,6 +139,7 @@ public:
 
 	virtual int GetLineNumber() const override { return m_lineno; }
 	virtual const txtstats & GetTxtStats() const override { return m_txtstats; }
+	virtual int64_t GetFileSize() const{ return m_filesize; }
 
 	bool IsUnicode() override;
 
@@ -166,7 +168,6 @@ protected:
  */
 class UniMemFile : public UniLocalFile
 {
-	friend class UniMarkdownFile;
 public:
 	enum AccessMode
 	{
@@ -192,8 +193,10 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy) override;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual bool ReadStringAll(String & line) override;
 	virtual int64_t GetPosition() const override { return m_current - m_base; }
 	virtual bool WriteString(const String & line) override;
+	unsigned char* GetBase() const { return m_base; }
 
 // Implementation methods
 protected:
@@ -262,6 +265,7 @@ public:
 protected:
 	virtual bool ReadString(String & line, bool * lossy) override;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual bool ReadStringAll(String & line) override;
 
 public:
 	virtual int64_t GetPosition() const override;

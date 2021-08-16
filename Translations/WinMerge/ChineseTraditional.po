@@ -58,8 +58,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "選取行內差異(&S)\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "選取行內差異(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -84,6 +85,14 @@ msgstr "複製(&C)"
 msgid "&Paste"
 msgstr "貼上(&P)"
 
+#, c-format
+msgid "&Scripts"
+msgstr "隨譯即行碼(&S)"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< 無 >"
+
 msgid "&Go to...\tCtrl+G"
 msgstr "跳至(&G)...\tCtrl+G"
 
@@ -105,6 +114,9 @@ msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "用(&W)..."
+
+msgid "Open &Parent Folder..."
+msgstr ""
 
 msgid "S&hell Menu"
 msgstr ""
@@ -145,6 +157,18 @@ msgstr "後一頁(&N)"
 #, c-format
 msgid "&Active Pane"
 msgstr "啟動框(&A)"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip V&ertically"
+msgstr ""
+
+msgid "Flip H&orizontally"
+msgstr ""
 
 #, c-format
 msgid "&Zoom"
@@ -197,7 +221,7 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 #, c-format
@@ -259,10 +283,6 @@ msgstr "最近開啟的專案"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "最近開啟檔案或資料夾(&I)"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< 無 >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "結束(&X)\tCtrl+Q"
@@ -417,8 +437,8 @@ msgid "Ri&ght Read-only"
 msgstr "右邊唯讀(&G)"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "檔案編碼(&C)..."
+msgid "&File Encoding..."
+msgstr "檔案編碼(&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -519,8 +539,8 @@ msgid "Com&pare Statistics..."
 msgstr "統計比較結果(&P)"
 
 #, c-format
-msgid "Refre&sh\tF5"
-msgstr "重整(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "重整\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
@@ -636,16 +656,8 @@ msgid "Re&load\tCtrl+F5"
 msgstr "重新載入(&L)\tCtrl+F5"
 
 #, c-format
-msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
-
-#, c-format
 msgid "Reco&mpare As"
 msgstr "重新比較(&M)"
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -666,10 +678,6 @@ msgstr "複製(&C)\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼上(&P)\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "選取行內差異(&D)\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -890,13 +898,18 @@ msgstr "新增同步點(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "清除同步點(&H)"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "先行處理器(&P)"
 
-#, c-format
-msgid "&Scripts"
-msgstr "隨譯即行碼(&S)"
+msgid "Apply Pre&differ..."
+msgstr ""
+
+msgid "&Transform with editor script..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -905,6 +918,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "比較(&A)"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -1006,11 +1022,8 @@ msgid "&Open Left"
 msgstr "開啟左邊(&O)"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "用外在編輯器(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1092,17 +1105,24 @@ msgstr "複製完整路徑(&C)"
 msgid "Copy &Filename"
 msgstr "複製檔名(&F)"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<無>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<自動>"
+
+#, c-format
+msgid "&Select..."
+msgstr "選取(&S)..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "先行處理器設定"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "不要先行處理器(&N)"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "自動先行處理器"
 
 msgid "G&o to Diff"
 msgstr "至差異區塊(&O)"
@@ -1132,6 +1152,10 @@ msgid "Ig&nore all"
 msgstr "忽略全部(&N)"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "忽略空白行(&K)"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
 
@@ -1144,6 +1168,9 @@ msgid "Ignore codepage &differences"
 msgstr "忽略代碼頁不同(&D)"
 
 msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1254,10 +1281,6 @@ msgid " Folder: Filter"
 msgstr ""
 
 #, c-format
-msgid "&Select..."
-msgstr "選取(&S)..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1320,19 +1343,12 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "點擊確定按鈕關閉「選擇檔案或資料夾」對話方塊"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "「開啟」對話方塊之自動完成(&P)："
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "「開啟」對話方塊之自動完成(&E)："
 
 #, c-format
 msgid "Language:"
 msgstr "語言"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
-
-#, c-format
-msgid "Reset"
-msgstr "重設"
 
 #, c-format
 msgid "Find"
@@ -1637,16 +1653,11 @@ msgstr "上移(&U)"
 msgid "Move &Down"
 msgstr "下移(&D)"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "選取解壓縮程式"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "檔案解壓縮程式："
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "顯示所有解壓縮程式，不要檢查副檔名"
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1655,6 +1666,21 @@ msgstr "副檔名清單："
 #, c-format
 msgid "Description:"
 msgstr "描述："
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension."
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1723,13 +1749,6 @@ msgstr "忽略空白數量之變動而造成的差異(&H)"
 #, c-format
 msgid "I&gnore all"
 msgstr "忽略空白處之任何差異(&A)"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "忽略空白行(&K)"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1802,6 +1821,13 @@ msgstr "斷句字元(&O)："
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
+
+#, c-format
+msgid "Reset"
+msgstr "重設"
 
 msgid "File Filters"
 msgstr ""
@@ -1881,12 +1907,12 @@ msgstr "編碼頁"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
 "需要重新啟動程式。"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "偵測使用 mlang.dll 文字檔案的編碼頁資訊\n需要重新啟動程式。"
 
 #, c-format
@@ -2255,6 +2281,12 @@ msgstr "啟用外掛(&E)"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "併入檔案總管介面"
@@ -2287,7 +2319,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "資料夾"
 
 #, c-format
 msgid "S&top after first difference"
@@ -2298,8 +2330,8 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異(&O)"
 
 #, c-format
-msgid "&Include unique subfolders contents"
-msgstr "包括獨一子資料夾(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "包括獨一子資料夾(&U)"
 
 #, c-format
 msgid "&Automatically expand all subfolders"
@@ -2333,7 +2365,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "二進制"
 
 #, c-format
 msgid "Binary File &Patterns:"
@@ -2466,11 +2498,6 @@ msgstr ""
 "WinMerge.資料夾比較\n"
 "WinMerge 資料夾比較"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"研發者：\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下再散發它；細節見說明選單中的 GNU 公共授權證。"
@@ -2523,8 +2550,8 @@ msgstr "全部略過(&A)"
 msgid "Don't display this &message again."
 msgstr "不要再顯示這個訊息(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁面點擊重設按鈕"
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2539,6 +2566,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "差異"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2630,6 +2660,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "副檔名"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -2765,6 +2801,9 @@ msgstr "他們的(檔案)"
 msgid "Mine File"
 msgstr "我的(檔案)"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2776,6 +2815,10 @@ msgstr "行： %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -3190,7 +3233,7 @@ msgstr "檔案名稱"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "資料夾"
 
 #, c-format
 msgid "Comparison result"
@@ -3305,7 +3348,15 @@ msgstr "忽略的差異"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "二進制"
+
+#, c-format
+msgid "Unpacker"
+msgstr "解壓縮程式"
+
+#, c-format
+msgid "Prediffer"
+msgstr "先行處理器"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3550,6 +3601,12 @@ msgstr "檔案中的差異個數。此數不包括被忽略的差異。"
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "是二進制檔，就顯示星號 (*)"
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "比較 %1 和 %2"
@@ -3645,6 +3702,12 @@ msgstr "你想要移動到下一頁嗎？"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "你想要移動到上一頁嗎？"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
@@ -3762,10 +3825,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "無法從二進制檔建補綴檔。"
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "無法從目錄建補綴檔。"
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3825,7 +3884,7 @@ msgstr "混合"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "二進制"
 
 #, c-format
 msgid "None"
@@ -3841,14 +3900,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "類型"
-
-#, c-format
-msgid "Unpacker"
-msgstr "解壓縮程式"
-
-#, c-format
-msgid "Prediffer"
-msgstr "先行處理器"
 
 # What does "Editor script" mean? Perhaps "editing scripts" or "scripts to edit"?
 #, c-format
@@ -3926,13 +3977,13 @@ msgstr "\n自動合併 (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3972,14 +4023,6 @@ msgstr "外掛設定"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "找不到 WSH - 停用 .sct 指令碼"
-
-#, c-format
-msgid "<None>"
-msgstr "<無>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<自動>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4171,11 +4214,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4209,3 +4260,130 @@ msgstr "不能同時執行一個以上本程式"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

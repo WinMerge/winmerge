@@ -10,7 +10,7 @@
 
 namespace Options { namespace DirColors {
 
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	int defaultTextColor = static_cast<int>(GetSysColor(COLOR_WINDOWTEXT));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL, (int)GetSysColor(COLOR_WINDOW));

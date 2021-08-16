@@ -30,9 +30,10 @@ public:
 protected: // create from serialization only
 	CHexMergeView();
 	DECLARE_DYNCREATE(CHexMergeView)
+	std::vector<int> m_unpackerSubcodes;
 public:
 	HRESULT LoadFile(LPCTSTR);
-	HRESULT SaveFile(LPCTSTR);
+	HRESULT SaveFile(LPCTSTR, bool packing = true);
 	IHexEditorWindow *GetInterface() const { return m_pif; }
 	BYTE *GetBuffer(int);
 	int GetLength();
@@ -68,6 +69,7 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
+    afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
 	afx_msg void OnEditFind();
 	afx_msg void OnEditReplace();

@@ -40,7 +40,7 @@ class COptionsMgr;
 
 namespace Options { namespace DiffColors {
 
-void SetDefaults(COptionsMgr *pOptionsMgr);
+void Init(COptionsMgr *pOptionsMgr);
 void Load(const COptionsMgr *pOptionsMgr, COLORSETTINGS& colors);
 void Save(COptionsMgr *pOptionsMgr, const COLORSETTINGS& colors);
 

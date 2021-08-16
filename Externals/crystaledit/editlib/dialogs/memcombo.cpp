@@ -17,7 +17,6 @@
 #include "StdAfx.h"
 #include "editreg.h"
 #include "memcombo.h"
-#include "../utils/registry.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -139,37 +138,28 @@ Fill (LPCTSTR text)
 void CMemComboBox::
 LoadSettings ()
 {
-  CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
-    {
-      static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
-      CString value;
+  static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
 
-      for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
-        {
-          if (reg.LoadString (name[i], value))
-            {
-              groups.SetAt (name[i], value);
-            }
-        }
+  for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
+    {
+      auto value = AfxGetApp ()->GetProfileString (EDITPAD_SECTION, name[i], _T(""));
+      if (!value.IsEmpty ())
+        groups.SetAt (name[i], value);
     }
 }
 
 void CMemComboBox::
 SaveSettings ()
 {
-  CReg reg;
-  if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
-    {
-      POSITION pos = groups.GetStartPosition ();
-      CString name, value;
+  POSITION pos = groups.GetStartPosition ();
+  CString name, value;
 
-      while (pos)
-        {
-          groups.GetNextAssoc (pos, name, value);
-          VERIFY (reg.SaveString (name, value));
-        }
+  while (pos)
+    {
+      groups.GetNextAssoc (pos, name, value);
+      VERIFY (AfxGetApp ()->WriteProfileString (EDITPAD_SECTION, name, value));
     }
+  
 }
 
 void CMemComboBox::

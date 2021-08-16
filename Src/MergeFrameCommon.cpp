@@ -10,6 +10,7 @@
 #include "OptionsMgr.h"
 #include "paths.h"
 #include "Merge.h"
+#include "FileTransform.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -145,7 +146,8 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 	}
 }
 
-String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[])
+String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],
+	PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer)
 {
 	const int nBuffers = paths.GetSize();
 	String sFileName[3];
@@ -156,7 +158,12 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 		sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
 	else
 		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
-	return sTitle;
+	String plugin;
+	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
+		plugin += _T("U");
+	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())
+		plugin += _T("P");
+	return sTitle + (plugin.empty() ? _T("") : (_T(" (") + plugin + _T(")")));
 }
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

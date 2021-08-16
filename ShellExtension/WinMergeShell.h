@@ -66,6 +66,8 @@ protected:
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
+	inline static HMENU s_hMenuLastAdded = nullptr;
+	inline static UINT s_uidCmdLastAdded = 0;
 
 	BOOL GetWinMergeDir(String &strDir);
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);

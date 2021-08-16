@@ -18,7 +18,8 @@ public:
 	InstallerTest()
 	{
 		std::string lang = languageIdToName(GetParam());
-		m_hwndWinMerge = execInstaller(("/LANG=" + lang).c_str());
+		std::string path = (GUITestUtils::getModuleFolder() / "..\\..\\..\\Build\\GUITests\\InstallDir").string();
+		m_hwndWinMerge = execInstaller(("/LANG=" + lang + " /DIR=" + path + " /TASKS=\"TortoiseSVN,TortoiseGit\"").c_str());
 	}
 
 	virtual ~InstallerTest()
@@ -88,7 +89,7 @@ TEST_P(InstallerTest, Pages)
 
 }
 
-INSTANTIATE_TEST_CASE_P(InstallerTestInstance,
+INSTANTIATE_TEST_SUITE_P(InstallerTestInstance,
 	InstallerTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

@@ -128,6 +128,7 @@ class CLocationView;
 class CMergeDoc : public CDocument, public IMergeDoc
 {
 public:
+	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
 // Attributes
 public:
 	static int m_nBuffersTemp;
@@ -161,7 +162,7 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[],
 		const bool bRO[], const String strDesc[]);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
-	void MoveOnLoad(int nPane = -1, int nLinIndex = -1);
+	void MoveOnLoad(int nPane = -1, int nLinIndex = -1, bool bRealLine = false, int nCharIndex = -1);
 	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
@@ -178,7 +179,7 @@ public:
 	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
-		int nBuffer, PackingInfo * pInfoTempUnpacker);
+		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int pane, int line);
@@ -186,17 +187,22 @@ public:
 	void SetEditedAfterRescan(int nBuffer);
 	bool IsEditedAfterRescan(int nBuffer = -1) const;
 
-	void SetUnpacker(const PackingInfo * infoUnpacker);
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
+	void SetUnpacker(const PackingInfo * infoUnpacker) override;
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
+	const PrediffingInfo *GetPrediffer() const override;
 	void AddMergeViews(CMergeEditView * pView[3]);
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
+	CDirDoc * GetDirDoc() const override { return m_pDirDoc; }
 	void SetDirDoc(CDirDoc * pDirDoc) override;
-	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; } 
+	bool GetReadOnly(int pane) const override { return m_ptBuf[pane]->m_bReadOnly; }
 	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
@@ -292,7 +298,6 @@ public:
 	virtual ~CMergeDoc();
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
-	bool OpenWithUnpackerDialog();
 	bool GenerateReport(const String& sFileName) const override;
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
@@ -310,6 +315,19 @@ public:
 				return true;
 		return false;
 	}
+
+	std::optional<bool> GetEnableTableEditing() const { return m_bEnableTableEditing; }
+	void SetEnableTableEditing(std::optional<bool> bEnableTableEditing) { m_bEnableTableEditing = bEnableTableEditing; }
+	static TableProps MakeTablePropertiesByFileName(const String& path, const std::optional<bool>& enableTableEditing, bool showDialog = true);
+	void SetPreparedTableProperties(const TableProps& props) { m_pTablePropsPrepared.reset(new TableProps(props)); }
+
+	void SetTextType(int textType);
+	void SetTextType(const String& ext);
+	bool GetChangedSchemeManually() const { return m_bChangedSchemeManually; }
+
+	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
+	// to customize the mergeview menu
+	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 // implementation methods
 private:
@@ -331,7 +349,7 @@ protected:
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
-	std::unique_ptr<PackingInfo> m_pInfoUnpacker;
+	PackingInfo m_infoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
@@ -343,6 +361,18 @@ protected:
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 	std::optional<bool> m_bEnableTableEditing;
+	std::unique_ptr<TableProps> m_pTablePropsPrepared;
+	/**
+	 * Are automatic rescans enabled?
+	 * If automatic rescans are enabled then we rescan files after edit
+	 * events, unless timer suppresses rescan. We suppress rescans within
+	 * certain time from previous rescan.
+	 */
+	bool m_bAutomaticRescan;
+	/// active prediffer ID : helper to check the radio button
+	int m_CurrentPredifferID;
+	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
+
 // friend access
 	friend class RescanSuppress;
 
@@ -351,34 +381,48 @@ protected:
 protected:
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
+	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveLeft();
+	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveMiddle();
+	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveRight();
+	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsLeft();
 	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileEncoding();
+	afx_msg void OnFileReadOnlyLeft();
+	afx_msg void OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyMiddle();
+	afx_msg void OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyRight();
+	afx_msg void OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnToolsGeneratePatch();
-	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnOpenWithUnpacker();
+	afx_msg void OnApplyPrediffer();
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsText();
 	afx_msg void OnFileRecompareAsTable();
-	afx_msg void OnFileRecompareAsXML();
 	afx_msg void OnUpdateFileRecompareAsText(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileRecompareAsTable(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
+	template<int srcPane, int dstPane>
+	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
+	afx_msg void OnRefresh();
+	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
+	afx_msg void OnPrediffer(UINT nID );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
@@ -391,6 +435,7 @@ private:
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
+	void SetPredifferByMenu(UINT nID);
 };
 
 /**

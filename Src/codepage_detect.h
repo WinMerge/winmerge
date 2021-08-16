@@ -8,7 +8,11 @@
 #include "UnicodeString.h"
 #include "FileTextEncoding.h"
 
+namespace codepage_detect
+{
 /** @brief Buffer size used in this file. */
-static const int BufSize = 65536;
+constexpr int BufSize = 65536;
 
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen = BufSize);
+FileTextEncoding Guess(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen = BufSize);
+FileTextEncoding Guess(const String& ext, const void* src, size_t len, int guessEncodingType);
+}

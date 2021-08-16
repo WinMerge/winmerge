@@ -1,13 +1,14 @@
 pushd "%~dp0"
 
 setlocal
-set MERGE7z_VERSION=1900.2
+set MERGE7z_VERSION=1900.5
 set PATH="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%PATH%
 set DISTDIR=..\..\Build\Releases
 
 if "%1" == "" (
   call :BuildZip 
   call :BuildZip x64
+  call :BuildZip ARM64
 ) else (
   call :BuildZip %1 
 )
@@ -27,10 +28,14 @@ if "%PLATFORM%" == "" (
   set ZIP_FILENAME=Merge7z%MERGE7Z_VERSION%-win32.zip
 ) else (
   set ProgramFilesP=%ProgramFiles%
-  set ZIP_FILENAME=Merge7z%MERGE7Z_VERSION%-x64.zip
+  set ZIP_FILENAME=Merge7z%MERGE7Z_VERSION%-%PLATFORM%.zip
 )
 
-copy /y "%ProgramFilesP%\7-Zip\7z.dll" ..\..\Build\%PLATFORM%\Merge7z\
+if "%PLATFORM%" == "ARM64" (
+  copy /y "..\..\Externals\sevenzip\CPP\7zip\Bundles\Format7zF\arm64\7z.dll" ..\..\Build\%PLATFORM%\Merge7z\
+) else (
+  copy /y "%ProgramFilesP%\7-Zip\7z.dll" ..\..\Build\%PLATFORM%\Merge7z\
+)
 copy /y "%ProgramFilesP%\7-Zip\History.txt" ..\..\Build\%PLATFORM%\Merge7z\
 copy /y "%ProgramFilesP%\7-Zip\License.txt" ..\..\Build\%PLATFORM%\Merge7z\
 copy /y "%ProgramFilesP%\7-Zip\Lang\*.*" ..\..\Build\%PLATFORM%\Merge7z\Lang\

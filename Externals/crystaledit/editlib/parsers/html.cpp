@@ -23,11 +23,20 @@
 #define new DEBUG_NEW
 #endif
 
+static void AdjustCharPosInTextBlocks(CrystalLineParser::TEXTBLOCK* pBuf, int startBlock, int endBlock, int offset)
+{
+  for (int i = startBlock; i <= endBlock; ++i)
+    pBuf[i].m_nCharPos += offset;
+}
+
 unsigned
 CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
+    {
+      unsigned dwCookieStrChar = ((nEmbeddedLanguage == SRC_PHP || nEmbeddedLanguage == SRC_SMARTY) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & (COOKIE_STRING | COOKIE_CHAR)) : 0;
+      return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE|dwCookieStrChar);
+    }
 
   bool bRedefineBlock = true;
   if (!(dwCookie & COOKIE_ELEMENT))
@@ -92,7 +101,10 @@ out:
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</script>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf, nActualItems);
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_SCRIPT;
               else
@@ -106,7 +118,10 @@ out:
             {
               const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</style>"));
               int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf, nActualItems);
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
               if (!pszEnd)
                 dwCookie |= COOKIE_BLOCK_STYLE;
               else
@@ -118,26 +133,81 @@ out:
             }
           else if ((dwCookie & COOKIE_EXT_USER1))
             {
-              const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("?>"));
-              if (!pszEnd)
-                pszEnd = _tcsstr(pszChars + I, _T("%>"));
-              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
-              unsigned (*pParseLineFunc)(unsigned, const TCHAR *, int, TEXTBLOCK *, int &);
-              switch (nEmbeddedLanguage)
-              {
-              case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
-              case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
-              default: pParseLineFunc = ParseLineJavaScript; break;
-              }
-              dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf, nActualItems);
-              if (!pszEnd)
-                dwCookie |= COOKIE_EXT_USER1;
+              if (nEmbeddedLanguage != SRC_SMARTY)
+                {
+                  const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("?>"));
+                  if (!pszEnd)
+                    pszEnd = _tcsstr(pszChars + I, _T("%>"));
+                  int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+                  unsigned (*pParseLineFunc)(unsigned, const TCHAR *, int, TEXTBLOCK *, int &);
+                  switch (nEmbeddedLanguage)
+                  {
+                  case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
+                  case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
+                  default: pParseLineFunc = ParseLineJavaScript; break;
+                  }
+                  int nActualItemsEmbedded = 0;
+                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+                  nActualItems += nActualItemsEmbedded;
+                  if (!pszEnd)
+                    dwCookie |= COOKIE_EXT_USER1;
+                  else if ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR)))
+                    {
+                      // A closing tag in a comment or string.
+                      if (dwCookie & COOKIE_EXT_COMMENT)
+                        {
+                           DEFINE_BLOCK(I, COLORINDEX_COMMENT);
+                        }
+                      else if (dwCookie & (COOKIE_STRING | COOKIE_CHAR))
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_STRING);
+                        }
+                      nextI += 2;    // Length of "?>"
+                      dwCookie |= COOKIE_EXT_USER1;
+                      bRedefineBlock = true;
+                    }
+                  else
+                    {
+                      dwCookie = 0;
+                      bRedefineBlock = true;
+                    }
+                  I = nextI - 1;
+                }
               else
                 {
-                  dwCookie = 0;
-                  bRedefineBlock = true;
+                  const TCHAR* pszEnd = _tcsstr(pszChars + I, _T("}"));
+                  int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+                  int nActualItemsEmbedded = 0;
+                  int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
+                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, pBuf + nActualItems, nActualItemsEmbedded);
+                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, nOffset);
+                  nActualItems += nActualItemsEmbedded;
+                  if (!pszEnd)
+                      dwCookie |= COOKIE_EXT_USER1;
+                  else if (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING))
+                    {
+                      // A closing tag in a comment or string.
+                      if (dwCookie & COOKIE_EXT_COMMENT)
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_COMMENT);
+                        }
+                      else if (dwCookie & (COOKIE_STRING | COOKIE_CHAR))
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_STRING);
+                        }
+                      nextI += 1;    // Length of "}"
+                      dwCookie |= COOKIE_EXT_USER1;
+                      bRedefineBlock = true;
+                    }
+                  else
+                    {
+                      nextI += 1;    // Length of "}"
+                      dwCookie = 0;
+                      bRedefineBlock = true;
+                    }
+                  I = nextI - 1;
                 }
-              I = nextI - 1;
             }
           continue;
         }
@@ -212,6 +282,18 @@ out:
           continue;
         }
 
+      if (nEmbeddedLanguage == SRC_SMARTY)
+        {
+          // In Smarty templates, the { and } braces will be ignored so long as they are surrounded by white space.
+          bool bLeftDelim = ((I < nLength&& pszChars[I] == '{') && ((I > 0 && (!xisspace(pszChars[I - 1]))) || (I + 1 < nLength && (!xisspace(pszChars[I + 1])))));
+          if (bLeftDelim)
+            {
+              dwCookie |= COOKIE_EXT_USER1;
+              nIdentBegin = -1;
+              continue;
+            }
+        }
+
       if (pBuf == nullptr)
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
@@ -230,10 +312,13 @@ out:
                   if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                      if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
-                        dwCookie |= COOKIE_BLOCK_SCRIPT;
-                      else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
-                        dwCookie |= COOKIE_BLOCK_STYLE;
+                      if (nEmbeddedLanguage != SRC_SMARTY)
+                        {
+                          if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
+                            dwCookie |= COOKIE_BLOCK_SCRIPT;
+                          else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
+                            dwCookie |= COOKIE_BLOCK_STYLE;
+                        }
                     }
                   else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
@@ -315,10 +400,13 @@ next:
       if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-          if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
-            dwCookie |= COOKIE_BLOCK_SCRIPT;
-          else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
-            dwCookie |= COOKIE_BLOCK_STYLE;
+          if (nEmbeddedLanguage != SRC_SMARTY)
+            {
+              if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
+                dwCookie |= COOKIE_BLOCK_SCRIPT;
+              else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
+                dwCookie |= COOKIE_BLOCK_STYLE;
+            }
         }
       else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
@@ -334,7 +422,8 @@ next:
         }
     }
 
-  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE);
+  unsigned dwCookieChar = ((nEmbeddedLanguage == SRC_PHP || nEmbeddedLanguage == SRC_SMARTY) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & COOKIE_CHAR) : 0;
+  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE | dwCookieChar);
   return dwCookie;
 }
 

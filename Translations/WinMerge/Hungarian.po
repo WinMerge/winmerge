@@ -4,6 +4,7 @@
 # Translators:
 # * Márton Balázs <documan at users.sourceforge.net>
 # * Mihalicza József <jmihalicza at gmail.com>
+# * Egyed Ferenc <efi99 at freemail.hu>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Hungarian.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -13,15 +14,16 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2011-01-24 21:42+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-03-15 12:01+0100\n"
+"Last-Translator: Egyed Ferenc <efi99@freemail.hu>\n"
 "Language-Team: Hungarian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Hungarian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../Src/\n"
+"X-Poedit-Basepath: ../../Src\n"
+"Language: hu\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -30,37 +32,38 @@ msgstr "LANG_HUNGARIAN, SUBLANG_DEFAULT"
 
 #, c-format
 msgid "C&opy to Right"
-msgstr "Átmásol &Jobbra"
+msgstr "Másolás jobbra"
 
 #, c-format
 msgid "Cop&y to Left"
-msgstr "Átmásol &Balra"
+msgstr "Másolás balra"
 
 #, c-format
 msgid "Copy &from Left"
-msgstr ""
+msgstr "Másolás balról"
 
 #, c-format
 msgid "Copy fro&m Right"
-msgstr ""
+msgstr "Másolás jobbról"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "A kijelölt sor(ok) jobbra másolása"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "A kijelölt sor(ok) balra másolása"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "A kijelölt sor(ok) másolása balról"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "A kijelölt sor(ok) másolása jobbról"
 
-msgid "&Select Line Difference\tF4"
-msgstr ""
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Eltérés kijelölése\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
 
 #, c-format
 msgid "&Undo"
@@ -82,14 +85,22 @@ msgstr "&Másolás"
 msgid "&Paste"
 msgstr "&Beillesztés"
 
+#, c-format
+msgid "&Scripts"
+msgstr "&Szkriptek"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Üres >"
+
 msgid "&Go to...\tCtrl+G"
 msgstr "&Ugrás...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Ugrás a bal és a középső között áthelyezett sorhoz\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Ugrás a középső és a jobb között áthelyezett sorhoz\tCtrl+Shift+G"
 
 #, c-format
 msgid "Op&en"
@@ -99,50 +110,65 @@ msgid "With &Registered Application"
 msgstr "&Társított programmal"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Külső szerkesztővel\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Egyéb programmal..."
 
+msgid "Open &Parent Folder..."
+msgstr "Szölőkönyvtár megnyitása..."
+
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Intéző menü"
 
 #, c-format
 msgid "View &Differences"
-msgstr ""
+msgstr "Különbségek mutatása"
 
 #, c-format
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Különbség blokkméret"
 
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr ""
+msgstr "A színkülönbség (színtávolság-küszöb) mellőzése"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Védelem beszúrás/törlés ellen"
 
 #, c-format
 msgid "&None"
-msgstr "&Nincs"
+msgstr "Nincs"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "Függőleges"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "Vízszintes"
 
 #, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "Előző oldal"
 
 #, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "Következő oldal"
 
 #, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "AKtív panel"
+
+msgid "Rotate &Right 90deg"
+msgstr "Forgatás jobbra 90 fokkal"
+
+msgid "Rotate &Left 90deg"
+msgstr "Forgatás balra 90 fokkal"
+
+msgid "Flip V&ertically"
+msgstr "Függőleges megfordítás"
+
+msgid "Flip H&orizontally"
+msgstr "Vízszintes megfordítás"
 
 #, c-format
 msgid "&Zoom"
@@ -150,7 +176,7 @@ msgstr "Nagyítás"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -163,23 +189,23 @@ msgstr "Kicsinyítés\tCtrl+-"
 #. Zoom to normal
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "Normál\tCtrl+*"
 
 #, c-format
 msgid "&Overlay"
-msgstr ""
+msgstr "Átfedés"
 
 #, c-format
 msgid "&Alpha Blend"
-msgstr ""
+msgstr "Átláthatóság"
 
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Átláthatóság animáció"
 
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "Húzás mód"
 
 #, c-format
 msgid "&Move"
@@ -187,26 +213,26 @@ msgstr "&Áthelyezés"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "Eltolás beállítása"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "Függőleges tördelés"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "Vízszintes tördelés"
 
-msgid "&Rectangle Select"
-msgstr ""
+msgid "Rectangle &Select"
+msgstr "Kijelölő téglalap"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "Háttérszín beállítása"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "Vektor kép méretezése"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "Hasonlítsa össze a képből kinyert szöveget"
 
 #, c-format
 msgid "&File"
@@ -218,22 +244,22 @@ msgstr "&Új"
 
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "Szöveg"
 
 msgid "T&able"
-msgstr ""
+msgstr "Táblázat"
 
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "Bináris"
 
 #, c-format
 msgid "&Image"
-msgstr ""
+msgstr "Kép"
 
 #, c-format
 msgid "New (&3 panes)"
-msgstr ""
+msgstr "Új (3 paneles)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
@@ -256,11 +282,7 @@ msgstr "Legutóbbi projektek"
 
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Üres >"
+msgstr "Legutóbbi fájlok és mappák"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Kilépés\tCtrl+Q"
@@ -283,7 +305,7 @@ msgstr "Eszköztár"
 
 #, c-format
 msgid "&Small"
-msgstr "Kic&si"
+msgstr "Kicsi"
 
 #, c-format
 msgid "&Big"
@@ -291,7 +313,7 @@ msgstr "Nagy"
 
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "Hatalmas"
 
 #, c-format
 msgid "&Status Bar"
@@ -299,7 +321,7 @@ msgstr "&Állapotsor"
 
 #, c-format
 msgid "Ta&b Bar"
-msgstr ""
+msgstr "Fülsáv"
 
 #, c-format
 msgid "&Tools"
@@ -319,15 +341,15 @@ msgstr "&Bővítmények"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "Bővitmény beállítások..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "Kézi Elővizsgáló"
 
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "Automatikus Elővizsgáló"
 
 #, c-format
 msgid "&Manual Unpacking"
@@ -339,7 +361,7 @@ msgstr "&Automatikus kicsomagolás"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Bővítmények betöltése"
+msgstr "&Bővítmények újratöltése"
 
 #, c-format
 msgid "&Window"
@@ -354,7 +376,7 @@ msgstr "&Mindegyik bezárása"
 
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "&Panel váltása\tF6"
+msgstr "&Aktív panel váltása\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
@@ -366,7 +388,7 @@ msgstr "Elrendezés &függőlegesen"
 
 #, c-format
 msgid "&Cascade"
-msgstr "&Felosztás"
+msgstr "Egymás mögött"
 
 #, c-format
 msgid "&Help"
@@ -378,19 +400,19 @@ msgstr "&WinMerge Súgó\tF1"
 
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Változási jegyzék"
 
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "Fordítások"
 
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "Konfigurációs fájl"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "GNU Általános Nyilvános Licenc"
 
 #, c-format
 msgid "&About WinMerge..."
@@ -398,27 +420,27 @@ msgstr "&A Winmerge névjegye..."
 
 #, c-format
 msgid "&Read-only"
-msgstr ""
+msgstr "Csak olvasható"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Bal oldal csak &olvasható"
+msgstr "Bal oldal csak olvasható"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "A középső csak olvasható"
 
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Jobb oldal csak o&lvasható"
+msgstr "Jobb oldal csak olvasható"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "&Fájl kódolás..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "M&indent kijelöl\tCtrl+A"
+msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -430,15 +452,15 @@ msgstr "Különböző elemek mutatása"
 
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Csak bal oldali elemek mutatása"
+msgstr "Csak bal egyedi elemek mutatása"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr ""
+msgstr "Középső egyedi elemek megjelenítése"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Csak jobb oldali elemek mutatása"
+msgstr "Csak jobb egyedi elemek mutatása"
 
 #, c-format
 msgid "Show S&kipped Items"
@@ -450,28 +472,28 @@ msgstr "Bináris fájlok mutatása"
 
 #, c-format
 msgid "&3-way Compare"
-msgstr ""
+msgstr "3-utas összehasonlítás"
 
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "Csak a bal különböző elemeinek megjelenítése"
 
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "Csak a középső különböző elemeinek megjelenítése"
 
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "Csak a jobb különböző elemeinek megjelenítése"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Csak a bal hiányzó elemeinek megjelenítése"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Csak a középső hiányzó elemeinek megjelenítése"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Csak a jobb hiányzó elemeinek megjelenítése"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -502,20 +524,20 @@ msgid "Sw&ap Panes"
 msgstr "Panelek megcserélése"
 
 msgid "Swap &1st | 2nd"
-msgstr ""
+msgstr "Csere 1-2"
 
 msgid "Swap &2nd | 3rd"
-msgstr ""
+msgstr "Csere 2-3"
 
 msgid "Swap 1st | &3rd"
-msgstr ""
+msgstr "Csere 1-3"
 
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Frissítés\tF5"
 
 #, c-format
@@ -524,7 +546,7 @@ msgstr "Kijelöltek frissítése\tCtrl+F5"
 
 #, c-format
 msgid "&Merge"
-msgstr "&Olvasztás"
+msgstr "Egyesítés"
 
 #, c-format
 msgid "Co&mpare\tEnter"
@@ -532,11 +554,11 @@ msgstr "&Összehasonlítás\tEnter"
 
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "&Következő eltérés\tAlt+Down"
+msgstr "&Következő eltérés\tAlt+Le"
 
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "&Előző eltérés\tAlt+Up"
+msgstr "&Előző eltérés\tAlt+Fel"
 
 #, c-format
 msgid "&First Difference\tAlt+Home"
@@ -552,11 +574,11 @@ msgstr "&Utolsó eltérés\tAlt+End"
 
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Másolás &Jobbra\tAlt+Right"
+msgstr "Másolás jobbra\tAlt+Jobbra"
 
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Másolás &Balra\tAlt+Left"
+msgstr "Másolás balra\tAlt+Balra"
 
 #, c-format
 msgid "&Delete\tDel"
@@ -568,11 +590,11 @@ msgstr "&Oszlopok testreszabása..."
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "&Jelentés generálása..."
+msgstr "&Jelentés készítése..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr ""
+msgstr "Szerkesztés kicsomagolóval..."
 
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -580,7 +602,7 @@ msgstr "&Mentés\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "Mentés"
 
 #, c-format
 msgid "Save &Left"
@@ -588,7 +610,7 @@ msgstr "&Bal oldal mentése"
 
 #, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Középső mentése"
 
 #, c-format
 msgid "Save &Right"
@@ -596,19 +618,19 @@ msgstr "&Jobb oldal mentése"
 
 #, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Mentés másként"
 
 #, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Bal mentése mint..."
 
 #, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Középső mentése mint..."
 
 #, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Jobb mentése mint..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "Nyomtatás...\tCtrl+P"
@@ -621,27 +643,19 @@ msgstr "Nyomtatási kép..."
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "Sorvégek átalakítása"
+msgstr "Sorvégek átalakítása erre"
 
 #, c-format
 msgid "Mer&ge Mode\tF9"
-msgstr "&Olvasztási mód\tF9"
+msgstr "&Egyesítési mód\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "&Fájl kódolás..."
+msgstr "Újratöltés\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
+msgstr "Újra összehasonlítás mint"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -664,10 +678,6 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
-msgid "Select Line &Difference\tF4"
-msgstr ""
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Keresé&s...\tCtrl+F"
 
@@ -677,7 +687,7 @@ msgstr "&Csere...\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "Jelölő...\tCtrl+Shift+M"
 
 #, c-format
 msgid "Advanced"
@@ -709,46 +719,46 @@ msgstr "Összes könyvjelző törlése"
 
 #, c-format
 msgid "Syntax Highlight"
-msgstr ""
+msgstr "Szintaxis kiemelés"
 
 #, c-format
 msgid "&Diff Context"
-msgstr ""
+msgstr "Különbség összefüggés"
 
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "Minden sor"
 
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "0 sor"
 
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "1 sor"
 
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "3 sor"
 
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "5 sor"
 
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "7 sor"
 
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "9 sor"
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr ""
+msgstr "Váltás a minden és a 0-9 számú sorok között"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "Invertálás (a nem egyforma sorok rejtése)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -759,11 +769,11 @@ msgid "&View Whitespace"
 msgstr "&Szóközök mutatása"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Sorvég jel mutatása"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Sorok &eltérésének mutatása"
+msgstr "Eltérő sorok mutatása"
 
 #, c-format
 msgid "View Line &Numbers"
@@ -779,187 +789,195 @@ msgstr "Sortördelés"
 
 #, c-format
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Függőlegesen felosztva"
 
 #, c-format
 msgid "Diff &Pane"
-msgstr "Eltérés &panel"
+msgstr "Eltérés panel"
 
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "&Pozíció panel"
+msgstr "Eltérések helye"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Következő konfliktus\tAlt+Shift+Le"
 
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Előző konfliktus\tAlt+Shift+Fel"
 
 #, c-format
 msgid "A&dvanced"
-msgstr ""
+msgstr "Haladó"
 
 #, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr ""
+msgstr "Következő különbség a bal és a középső között\tAlt+1"
 
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr ""
+msgstr "Előző különbség a bal és a középső között\tAlt+Shift+1"
 
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr ""
+msgstr "Következő különbség a bal és a jobb között\tAlt+2"
 
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr ""
+msgstr "Előző különbség a bal és a jobb között\tAlt+Shift+2"
 
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr ""
+msgstr "Következő különbség a középső és a jobb között\tAlt+3"
 
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr ""
+msgstr "Előző különbség a középső és a jobb között\tAlt+Shift+3"
 
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
-msgstr ""
+msgstr "A következő csak bal oldali különbség\tAlt+7"
 
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr ""
+msgstr "Az előző csak bal oldali különbség\tAlt+Shift+7"
 
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr ""
+msgstr "A következő csak középső különbség\tAlt+8"
 
 #, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr ""
+msgstr "Az előző csak középső különbség\tAlt+Shift+8"
 
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
-msgstr ""
+msgstr "A következő csak jobb oldali különbség\tAlt+9"
 
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr ""
+msgstr "Az előző csak jobb oldali különbség\tAlt+Shift+9"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Másolás balról\tAlt+Shift+Jobbra"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Másolás jobbról\tAlt+Shift+Balra"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Másolás J&obbra és ugrás tovább\tCtrl+Alt+Right"
+msgstr "Másolás jobbra és továbblépés\tCtrl+Alt+Jobbra"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Másolás B&alra és ugrás tovább\tCtrl+Alt+Left"
+msgstr "Másolás balra és továbblépés\tCtrl+Alt+Balra"
 
 #, c-format
 msgid "Copy &All to Right"
-msgstr "M&inden Jobbra másolása"
+msgstr "Az összes másolása jobbra"
 
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Mi&nden Balra másolása"
+msgstr "Az összes másolása balra"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr ""
+msgstr "Automatikus egyesítés\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr ""
+msgstr "Hozzáadás és szinkronizációs pont\tAlt+S"
 
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr ""
+msgstr "Szinkronizációs pontok törlése"
+
+msgid "Unpac&ker"
+msgstr "Kicsomagoló"
 
 #, c-format
 msgid "&Prediffer"
 msgstr "&Elővizsgáló"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Szkriptek"
+msgid "Apply Pre&differ..."
+msgstr "Elővizsgáló alkalmazása..."
+
+msgid "&Transform with editor script..."
+msgstr "Átalakítás a szerkesztő szkriptjével ..."
 
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "Felosztás"
 
 #, c-format
 msgid "Comp&are"
-msgstr "&Összehasonlítás"
+msgstr "&Összehasonlít"
+
+msgid "Compare in new &window"
+msgstr "Összehasonlítás új ablakban"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Nem vízszintes összehasonlítás..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
-msgstr ""
+msgstr "Nem vízszintes összehasonlítás"
 
 #, c-format
 msgid "First &left item with second left item"
-msgstr ""
+msgstr "Első bal elem a második bal elemmel"
 
 #, c-format
 msgid "First &right item with second right item"
-msgstr ""
+msgstr "Első jobb elem a második jobb elemmel"
 
 #, c-format
 msgid "&First left item with second right item"
-msgstr ""
+msgstr "Első bal elem a második jobb elemmel"
 
 #, c-format
 msgid "&Second left item with first right item"
-msgstr ""
+msgstr "Második bal elem az első jobb elemmel"
 
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Összehasonlítás mint"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr ""
+msgstr "Bal a középsővel (%1 / %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Balról jobbra (%1 of %2)"
+msgstr "Balról a középsővel (%1 / %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Balról... (%1 of %2)"
+msgstr "Bal a... (%1 / %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr ""
+msgstr "Középső a ballal (%1 / %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr ""
+msgstr "Középső a jobbal (%1 / %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr ""
+msgstr "A középső a... (%1 / %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr ""
+msgstr "Jobb a középsővel (%1 / %2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Jobbról balra (%1 of %2)"
+msgstr "Jobb a ballal (%1 / %2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Jobbról... (%1 of %2)"
+msgstr "Jobb a... (%1 of %2)"
 
 #, c-format
 msgid "&Delete"
@@ -967,23 +985,23 @@ msgstr "&Törlés"
 
 #, c-format
 msgid "&Left"
-msgstr "&Bal oldal"
+msgstr "Bal"
 
 #, c-format
 msgid "&Middle"
-msgstr ""
+msgstr "Középső"
 
 #, c-format
 msgid "&Right"
-msgstr "&Jobb oldal"
+msgstr "Jobb"
 
 #, c-format
 msgid "&Both"
-msgstr "&Mindkettő"
+msgstr "Mindkettő"
 
 #, c-format
 msgid "&All"
-msgstr ""
+msgstr "Mind"
 
 #, c-format
 msgid "Re&name"
@@ -995,38 +1013,35 @@ msgstr "Elemek &rejtése"
 
 #, c-format
 msgid "&Open Left"
-msgstr "&Bal oldal megnyitása"
+msgstr "Bal megnyitása"
 
 #, c-format
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "&Külső szerkesztővel"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
-msgstr ""
+msgstr "Középső megnyitása"
 
 #, c-format
 msgid "O&pen Right"
-msgstr "&Jobb oldal megnyitása"
+msgstr "Jobb megnyitása"
 
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "&Útvonalak másolása"
+msgstr "Elérési utak másolása"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Bal (%1 ennyiből: %2)"
+msgstr "Bal (%1 / %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr ""
+msgstr "Középső (%1 / %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Jobb (%1 ennyiből: %2)"
+msgstr "Jobb (%1 / %2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
@@ -1034,7 +1049,7 @@ msgstr "Mindkettő (%1 ennyiből: %2)"
 
 #, c-format
 msgid "All (%1 of %2)"
-msgstr ""
+msgstr "Mind (%1 / %2)"
 
 #, c-format
 msgid "Copy &Filenames"
@@ -1042,7 +1057,7 @@ msgstr "&Fájlnevek másolása"
 
 #, c-format
 msgid "Copy Items To Clip&board"
-msgstr ""
+msgstr "Elemek másolása a vágólapra"
 
 #, c-format
 msgid "&Zip"
@@ -1050,31 +1065,31 @@ msgstr "&Zip"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
-msgstr ""
+msgstr "Mindkettő a... (%1 / %2)"
 
 #, c-format
 msgid "All to... (%1 of %2)"
-msgstr ""
+msgstr "Mind a... (%1 / %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr ""
+msgstr "Különbség ezzel... (%1 / %2)"
 
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Bal intéző menü"
 
 #, c-format
 msgid "Middle Shell menu"
-msgstr ""
+msgstr "Középső intéző menü"
 
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Jobb intéző menü"
 
 #, c-format
 msgid "Copy"
-msgstr ""
+msgstr "Másolás"
 
 #, c-format
 msgid "&Copy Full Path"
@@ -1084,17 +1099,24 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
+msgid "Unpacker Settings"
+msgstr "Kicsomagoló beállításai"
+
+#, c-format
+msgid "<None>"
+msgstr "<Nincs>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatikus>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
+
 #, c-format
 msgid "Prediffer Settings"
-msgstr "Elővizsgáló Beállítások"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Nincs elővizsgálat"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automatikus elővizsgálat"
+msgstr "Elővizsgáló beállítások"
 
 msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
@@ -1117,26 +1139,33 @@ msgstr "&Összehasonlít"
 
 #, c-format
 msgid "I&gnore changes"
-msgstr "&Változások kihagyása"
+msgstr "&Változások mellőzése"
 
 #, c-format
 msgid "Ig&nore all"
-msgstr "Minden kihagyása"
+msgstr "Összes mellőzése"
+
+#, c-format
+msgid "Ignore blan&k lines"
+msgstr "Üres sorok mellőzése"
 
 #, c-format
 msgid "Ignore &case"
-msgstr "&Kis-nagybetű különbségek kihagyása"
+msgstr "&Kis-nagybetű különbségek mellőzése"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Sorvég különbségek figyelmen kívül hagyása (Windows/Unix/Mac)"
+msgstr "Sorvég különbségek mellőzése"
 
 #, c-format
 msgid "Ignore codepage &differences"
-msgstr ""
+msgstr "Kódtábla különbségek mellőzése"
 
 msgid "Ignore num&bers"
 msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1144,19 +1173,19 @@ msgstr "&Alkönyvtárakkal együtt"
 
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "Összehasonlító módszer:"
 
 #, c-format
 msgid "Full Contents"
-msgstr "Teljes tartalmak"
+msgstr "Teljes tartalmi"
 
 #, c-format
 msgid "Quick Contents"
-msgstr "Átfutott tartalmak"
+msgstr "Gyors tartalmi"
 
 #, c-format
 msgid "Binary Contents"
-msgstr ""
+msgstr "Bináris tartalom"
 
 #, c-format
 msgid "Modified Date"
@@ -1164,7 +1193,7 @@ msgstr "Módosítási dátum"
 
 #, c-format
 msgid "Modified Date and Size"
-msgstr ""
+msgstr "Módosítási dátum és méret"
 
 #, c-format
 msgid "Size"
@@ -1172,18 +1201,18 @@ msgstr "Méret"
 
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "Projekt betöltése..."
 
 #, c-format
 msgid "About WinMerge"
 msgstr "A WinMerge névjegye"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr "Látogasd meg a WinMerge honlapját!"
+msgstr "Látogass el a WinMerge honlapjára!"
 
 #, c-format
 msgid "OK"
-msgstr "Vissza"
+msgstr "OK"
 
 #, c-format
 msgid "Contributors"
@@ -1191,11 +1220,11 @@ msgstr "Közreműködők"
 
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Válaszd ki a fájlokat vagy könyvtárakat..."
+msgstr "Fájlok vagy könyvtárak választása"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "1. fájl vagy mappa"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1203,7 +1232,7 @@ msgstr "Cs&ak olvasható"
 
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "1.-2. cseréje"
 
 #, c-format
 msgid "&Browse..."
@@ -1211,31 +1240,31 @@ msgstr "&Tallózás..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "2. fájl vagy mappa"
 
 #, c-format
 msgid "Rea&d-only"
-msgstr ""
+msgstr "Csak olvasható"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "2.-3. cseréje"
 
 #, c-format
 msgid "B&rowse..."
-msgstr "Tallóz..."
+msgstr "Tallózás..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "3. fájl vagy mappa (opcionális)"
 
 #, c-format
 msgid "Read-o&nly"
-msgstr ""
+msgstr "Csak olvasható"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "1.-3. cseréje"
 
 #, c-format
 msgid "Browse..."
@@ -1243,22 +1272,18 @@ msgstr "Tallózás..."
 
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
-
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
+msgstr " Mappa: Szűrő"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " Fájlkitömörítő bővítmény"
 
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Kiválasztás..."
 
 msgid "Co&mpare"
-msgstr ""
+msgstr "Összehasonlít"
 
 #, c-format
 msgid "Cancel"
@@ -1278,20 +1303,20 @@ msgstr "Általános"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "Automatikus &ugrás az első eltérésre"
+msgstr "Automatikus ugrás az első eltérésre"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Automatikus ugrás az első soron belüli különbséghez"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Ablakok bezárása az '&Esc' billentyűvel:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "Automatikus útvonalellenőrzés a &Megnyitás ablakban"
+msgstr "Automatikus elérési út ellenőrzés a Megnyitás ablakban"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Egypéldányos mód:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1303,26 +1328,19 @@ msgstr "Fájl idők megőrzése összehasonlításkor"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "\"Válaszd ki a fájlokat vagy könyvtárakat\" ablak induláskor"
+msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr ""
+msgstr "\"Fájlok vagy könyvtárak választása\" bezárása az OK-val"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
-msgstr ""
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 
 #, c-format
 msgid "Language:"
-msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállít gombbal minden üzenetablak újra láthatóvá tehető."
-
-#, c-format
-msgid "Reset"
-msgstr "Visszaállít"
+msgstr "Nyelv:"
 
 #, c-format
 msgid "Find"
@@ -1330,11 +1348,11 @@ msgstr "Keresés"
 
 #, c-format
 msgid "Fi&nd what:"
-msgstr "&Szöveg:"
+msgstr "Keresés erre:"
 
 #, c-format
 msgid "Match &whole word only"
-msgstr "Csak &teljes szavak mutatása"
+msgstr "Pontos egyezés"
 
 #, c-format
 msgid "Match &case"
@@ -1346,11 +1364,11 @@ msgstr "&Reguláris kifejezések"
 
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr ""
+msgstr "Álljon meg a fájl végénél"
 
 #, c-format
 msgid "&Don't close this dialog box"
-msgstr ""
+msgstr "Ne csukja be ezt az ablakot"
 
 #, c-format
 msgid "&Find Next"
@@ -1358,11 +1376,11 @@ msgstr "Kere&sés"
 
 #, c-format
 msgid "Find &Prev"
-msgstr ""
+msgstr "Következő"
 
 #, c-format
 msgid "&Ok"
-msgstr "&Rendben"
+msgstr "OK"
 
 #, c-format
 msgid "Replace"
@@ -1378,7 +1396,7 @@ msgstr "&Álljon meg a fájl végénél"
 
 #, c-format
 msgid "Replace in"
-msgstr "A csere tartománya"
+msgstr "Csere itt"
 
 #, c-format
 msgid "&Selection"
@@ -1389,23 +1407,23 @@ msgid "Wh&ole file"
 msgstr "Teljes &fájl"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Következő"
 
 #, c-format
 msgid "&Replace"
-msgstr "&Csere"
+msgstr "Csere"
 
 #, c-format
 msgid "Replace &All"
-msgstr "&Mindet"
+msgstr "Összes cseréje"
 
 #, c-format
 msgid "Markers"
-msgstr ""
+msgstr "Jelölők"
 
 #, c-format
 msgid "Enable &Markers"
-msgstr ""
+msgstr "Jelölők engedélyezése"
 
 #, c-format
 msgid "New"
@@ -1413,18 +1431,18 @@ msgstr "Új"
 
 #, c-format
 msgid "&Background color:"
-msgstr ""
+msgstr "Háttérszín:"
 
 #, c-format
 msgid "&Apply"
-msgstr "&Alkalmaz"
+msgstr "Alkalmaz"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Sorszűrők"
 
 #, c-format
 msgid "Enable Line Filters"
-msgstr ""
+msgstr "Sorszűrők engedélyezése"
 
 #, c-format
 msgid "Regular Expressions (one per line):"
@@ -1439,26 +1457,26 @@ msgid "Remove"
 msgstr "Eltávolítás"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Helyettesítő szűrők"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "Az alább felsorolt módosításpárok figyelmen kívül lesznek hagyva vagy jelentéktelennek lesznek megjelölve. A javítások nem érintettek."
 
 msgid "Enable"
-msgstr ""
+msgstr "Engedélyezés"
 
 msgid "Add"
-msgstr ""
+msgstr "Hozzáadás"
 
 msgid "Clear"
-msgstr ""
+msgstr "Törlés"
 
 #, c-format
 msgid "Colors"
 msgstr "Színek"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "Szín séma:"
 
 #, c-format
 msgid "Background"
@@ -1478,11 +1496,11 @@ msgstr "Eltérés:"
 
 #, c-format
 msgid "Selected Difference:"
-msgstr "Kijelölt Eltérés:"
+msgstr "Kijelölt eltérés:"
 
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Kihagyott Eltérés:"
+msgstr "Mellőzött eltérés:"
 
 #, c-format
 msgid "Moved:"
@@ -1494,11 +1512,11 @@ msgstr "Kijelölt áthelyezett:"
 
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "Ugyanaz, mint a következő (3 paneles)"
 
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "Ugyanaz, mint a következő (kijelölt)"
 
 #, c-format
 msgid "Word Difference:"
@@ -1509,23 +1527,23 @@ msgid "Selected Word Diff:"
 msgstr "Kijelölt szó eltérés:"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "Színek használata"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Egyforma elemek:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Különböző elemek:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "Hiányzó elemek:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Szűrt elemek:"
 
 #, c-format
 msgid "Margin:"
-msgstr ""
+msgstr "Margó:"
 
 #, c-format
 msgid "System"
@@ -1537,11 +1555,11 @@ msgstr "A törölt fájlok a &Lomtárba kerüljenek"
 
 #, c-format
 msgid "&External editor:"
-msgstr "&Belső szerkesztő:"
+msgstr "Külső szerkesztő:"
 
 #, c-format
 msgid "&Filter folder:"
-msgstr ""
+msgstr "Szűrők mappája:"
 
 #, c-format
 msgid "Temporary files folder"
@@ -1549,11 +1567,11 @@ msgstr "Átmeneti fájlok könyvtára"
 
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "A rendszer temp könyvtára"
+msgstr "A rendszer Temp könyvtára"
 
 #, c-format
 msgid "C&ustom folder:"
-msgstr "Egyedi könyvtár:"
+msgstr "Egyéni könyvtár:"
 
 #, c-format
 msgid "Br&owse..."
@@ -1565,15 +1583,15 @@ msgstr "Patch Generátor"
 
 #, c-format
 msgid "File&1:"
-msgstr "Fájl&1:"
+msgstr "1.fájl:"
 
 #, c-format
 msgid "File&2:"
-msgstr "Fájl&2:"
+msgstr "2.fájl:"
 
 #, c-format
 msgid "&Swap"
-msgstr "&Megfordítás"
+msgstr "Csere"
 
 #, c-format
 msgid "&Append to existing file"
@@ -1581,7 +1599,7 @@ msgstr "&Hozzáfűzés a létező fájlhoz"
 
 #, c-format
 msgid "&Result:"
-msgstr "&Eredmény:"
+msgstr "&Kimenet:"
 
 #, c-format
 msgid "Bro&wse..."
@@ -1601,19 +1619,19 @@ msgstr "&Környezet:"
 
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Üres sorok kihagyása"
+msgstr "Üres sorok mellőzése"
 
 #, c-format
 msgid "Inclu&de command line"
-msgstr "&Parancssor mellékelése"
+msgstr "&Parancssor is"
 
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "Megnyitás a &Belső Szerkesztővel"
+msgstr "Megnyitás a külső szerkesztővel"
 
 #, c-format
 msgid "Defaults"
-msgstr "Alapértékek"
+msgstr "Alaphelyzetbe"
 
 #, c-format
 msgid "Display Columns"
@@ -1627,16 +1645,11 @@ msgstr "Mozgatás fel"
 msgid "Move &Down"
 msgstr "Mozgatás le"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Kicsomagoló kiválasztása"
+msgid "Select Plugin"
+msgstr "Bővítmény kiválasztása"
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Fájl kicsomagoló:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Minden kicsomagoló mutatása kiterjesztéstől függetlenül."
+msgid "Plugin &Name:"
+msgstr "Bővítmény neve:"
 
 #, c-format
 msgid "Extensions list:"
@@ -1646,17 +1659,32 @@ msgstr "Kiterjesztések listája:"
 msgid "Description:"
 msgstr "Leírás:"
 
+msgid "Default arguments:"
+msgstr "Alapértelmezett argumentumok:"
+
+msgid "Display all plugins, don't check the extension."
+msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztést."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
+
+msgid "&Plugin Pipeline:"
+msgstr "Bővítmény pipeline"
+
+msgid "&Add pipe"
+msgstr "Pipe hozzáadása"
+
 #, c-format
 msgid "Stop"
 msgstr "Leállítás"
 
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "Szünet"
 
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "Folytatás"
 
 #, c-format
 msgid "Comparing items..."
@@ -1681,7 +1709,7 @@ msgid "File"
 msgstr "Fájl"
 
 msgid "Go to what"
-msgstr "Mire ugorjon:"
+msgstr "Mire ugorjon"
 
 #, c-format
 msgid "Li&ne"
@@ -1696,7 +1724,7 @@ msgstr "&Ugrás"
 
 #, c-format
 msgid "Compare"
-msgstr "Összehasonlítás"
+msgstr "Összehasonlít"
 
 #, c-format
 msgid "Whitespaces"
@@ -1704,22 +1732,15 @@ msgstr "Szóközök"
 
 #, c-format
 msgid "&Compare"
-msgstr "&Összehasonlítás"
+msgstr "&Összehasonlít"
 
 #, c-format
 msgid "&Ignore change"
-msgstr "&Változtatások kihagyása"
+msgstr "&Változtatás mellőzése"
 
 #, c-format
 msgid "I&gnore all"
-msgstr "&Minden kihagyása"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "&Üres sorok kihagyása"
-
-msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Összes mellőzése"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1727,16 +1748,16 @@ msgstr "Mozgatott &blokk észlelés bekapcsolása"
 
 #, c-format
 msgid "&Match similar lines"
-msgstr ""
+msgstr "Hasonló sorok egyezése"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "Különbségkereső algoritmus (kísérleti):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "Heurisztika engedélyezése"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Ne emelje ki a figyelmen kívül hagyott különbségeket"
 
 #, c-format
 msgid "Editor"
@@ -1752,7 +1773,7 @@ msgstr "&Automatikus újraolvasás"
 
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "&Eredeti újsor-karakterek megőrzése"
+msgstr "&Eredeti sorvég karakterek megőrzése"
 
 #, c-format
 msgid "Tabs"
@@ -1760,7 +1781,7 @@ msgstr "Tabulátorok"
 
 #, c-format
 msgid "&Tab size:"
-msgstr "Tab. &mérete:"
+msgstr "Tabulátor mérete:"
 
 #, c-format
 msgid "&Insert Tabs"
@@ -1772,7 +1793,7 @@ msgstr "&Szóközök használata"
 
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Sorok eltérésének színezése"
+msgstr "Eltérő sorok színezése"
 
 #, c-format
 msgid "View line differences"
@@ -1780,24 +1801,31 @@ msgstr "Sorok eltérésének mutatása"
 
 #, c-format
 msgid "&Character level"
-msgstr ""
+msgstr "Karakter szintű"
 
 #, c-format
 msgid "&Word-level:"
-msgstr ""
+msgstr "Szóköz, írásjel szintű:"
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "Szótörés karakterek:"
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "Renderelési mód:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
+
+#, c-format
+msgid "Reset"
+msgstr "Visszaállítás"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Fájlszűrők"
 
 msgid "Test..."
-msgstr ""
+msgstr "Teszt..."
 
 #, c-format
 msgid "Install..."
@@ -1809,7 +1837,7 @@ msgstr "Új..."
 
 #, c-format
 msgid "Edit..."
-msgstr "Szerkeszt..."
+msgstr "Szerkesztés"
 
 #, c-format
 msgid "Delete..."
@@ -1833,15 +1861,15 @@ msgstr "Változtatások &elvetése"
 
 #, c-format
 msgid "Middle side file"
-msgstr ""
+msgstr "Középső fájl"
 
 #, c-format
 msgid "Sa&ve changes"
-msgstr ""
+msgstr "Változások mentése"
 
 #, c-format
 msgid "Discard c&hanges"
-msgstr ""
+msgstr "Változások elvetése"
 
 #, c-format
 msgid "Right side file"
@@ -1857,7 +1885,7 @@ msgstr "Változtatások e&lvetése"
 
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "Összes elvetése"
 
 #, c-format
 msgid "Codepage"
@@ -1871,11 +1899,19 @@ msgstr "Alapértelmezett kódlap"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\nprogram újraindítás szükséges."
-
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
 msgstr ""
+"Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
+"A program újraindítása szükséges."
+
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
+msgstr ""
+"Kódlap detektálása mlang.dll-t használó szövegfájlnál\n"
+"A program újraindítása szükséges."
 
 #, c-format
 msgid "System codepage"
@@ -1887,7 +1923,7 @@ msgstr "A Winmerge felhasználói felületéhez igazodva"
 
 #, c-format
 msgid "Custom codepage:"
-msgstr "Egyedi kódlap:"
+msgstr "Egyéni kódlap:"
 
 #, c-format
 msgid "Options"
@@ -1895,15 +1931,15 @@ msgstr "Opciók"
 
 #, c-format
 msgid "Import..."
-msgstr "Importálás..."
+msgstr "Importálás"
 
 #, c-format
 msgid "Export..."
-msgstr "Exportálás..."
+msgstr "Exportálás"
 
 #, c-format
 msgid "Dialog"
-msgstr "Kérdés"
+msgstr "Párbeszédablak"
 
 #, c-format
 msgid "Keywords:"
@@ -1947,19 +1983,19 @@ msgstr "Félkövér"
 
 #, c-format
 msgid "Search Marker:"
-msgstr ""
+msgstr "Keresés jelölő:"
 
 #, c-format
 msgid "User Defined Marker1:"
-msgstr ""
+msgstr "Saját jelölő 1:"
 
 #, c-format
 msgid "User Defined Marker2:"
-msgstr ""
+msgstr "Saját jelölő 2:"
 
 #, c-format
 msgid "User Defined Marker3:"
-msgstr ""
+msgstr "Saját jelölő 3:"
 
 #, c-format
 msgid "Folder Compare Report"
@@ -1967,7 +2003,7 @@ msgstr "Könyvtár összehasonítási jelentés"
 
 #, c-format
 msgid "Report &File:"
-msgstr "Jelentés &fájl:"
+msgstr "Riportfájl:"
 
 #, c-format
 msgid "&Style:"
@@ -1975,7 +2011,7 @@ msgstr "&Stílus:"
 
 #, c-format
 msgid "&Include File Compare Report"
-msgstr ""
+msgstr "Fájl-összehasonlító jelentés hozzáadása"
 
 #, c-format
 msgid "&Copy to Clipboard"
@@ -2031,7 +2067,7 @@ msgstr "Bináris:"
 
 #, c-format
 msgid "Unique"
-msgstr ""
+msgstr "Egyedi"
 
 #, c-format
 msgid "Left:"
@@ -2055,27 +2091,27 @@ msgstr "Bezár"
 
 #, c-format
 msgid "Middle:"
-msgstr ""
+msgstr "Középső:"
 
 #, c-format
 msgid "Missing Left:"
-msgstr ""
+msgstr "Hiányzó bal:"
 
 #, c-format
 msgid "Missing Middle:"
-msgstr ""
+msgstr "Hiányzó középső:"
 
 #, c-format
 msgid "Missing Right:"
-msgstr ""
+msgstr "Hiányzó jobb:"
 
 #, c-format
 msgid "Affects"
-msgstr ""
+msgstr "Hatások"
 
 #, c-format
 msgid "(Affects)"
-msgstr ""
+msgstr "(Hatások)"
 
 #, c-format
 msgid "Select Codepage for"
@@ -2083,11 +2119,11 @@ msgstr "Kódlap kiválasztása"
 
 #, c-format
 msgid "&File Loading:"
-msgstr "Fájl töltése:"
+msgstr "Fájl betöltése:"
 
 #, c-format
 msgid "File &Saving:"
-msgstr "Fájl menté&se:"
+msgstr "Fájl mentése:"
 
 #, c-format
 msgid "&Use same codepage for both"
@@ -2099,14 +2135,14 @@ msgstr "&Mégsem"
 
 #, c-format
 msgid "Test Filter"
-msgstr ""
+msgstr "Szűrő tesztelése"
 
 msgid "Testing filter:"
-msgstr ""
+msgstr "Tesztelendő szűrő:"
 
 #, c-format
 msgid "&Enter text to test:"
-msgstr ""
+msgstr "Add meg a szöveget a teszteléshez:"
 
 #, c-format
 msgid "&Folder Name"
@@ -2114,39 +2150,39 @@ msgstr "Könyvtár neve"
 
 #, c-format
 msgid "Result:"
-msgstr "Eredmény:"
+msgstr "Kimenet:"
 
 #, c-format
 msgid "&Test"
-msgstr ""
+msgstr "Tesztelés"
 
 #, c-format
 msgid "&Close"
-msgstr "Bezár"
+msgstr "Bezárás"
 
 msgid "Table"
-msgstr ""
+msgstr "Táblázat"
 
 msgid "File type"
-msgstr ""
+msgstr "Fájltípus"
 
 msgid "&CSV"
-msgstr ""
+msgstr "CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Egyéni elválasztójelek"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Elválasztójel:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Idézőjelek használata"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Idézőjel:"
 
 #, c-format
 msgid "&Use customized text colors"
@@ -2154,7 +2190,7 @@ msgstr "Egyéni szövegszínek használata"
 
 #, c-format
 msgid "Whitespace:"
-msgstr "Szóköz, tab:"
+msgstr "Szóköz:"
 
 #, c-format
 msgid "Regular text:"
@@ -2186,11 +2222,11 @@ msgstr "Visszaállítási fájlok készítése ide:"
 
 #, c-format
 msgid "&Original file's folder"
-msgstr "Eredeti fájl könyvtára"
+msgstr "A fájl eredeti könyvtára"
 
 #, c-format
 msgid "&Global backup folder:"
-msgstr "Globális visszaállítási könyvtár:"
+msgstr "Általános archívum könyvtár:"
 
 #, c-format
 msgid "Backup filename:"
@@ -2209,7 +2245,7 @@ msgstr "Másolás megerősítése"
 
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Biztosan másolni szeretne XXX elemet?"
+msgstr "Biztosan másolni szeretnél XXX elemet?"
 
 #, c-format
 msgid "From left"
@@ -2237,14 +2273,20 @@ msgstr "Bővítmények"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "Bővítmény&ek bekapcsolása"
+msgstr "Bővítmények bekapcsolása"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Fájlszűrők:"
+
+msgid "&Plugin arguments:"
+msgstr "Bővítmény argumentumok:"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "Automatikus kicsomagolás/elővizsgálat engedélyezése a bővítmény számára"
 
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Integrálás az Intézőbe"
 
 #, c-format
 msgid "Explorer"
@@ -2256,25 +2298,25 @@ msgstr "&Bővített menü engedélyezése"
 
 #, c-format
 msgid "&Add to context menu"
-msgstr "Hozzáadás a helyi menühöz"
+msgstr "Hozzáadás a Windows helyi menühöz"
 
 #, c-format
 msgid "&Register shell extension"
-msgstr ""
+msgstr "Regisztrálás a helyi menübe"
 
 #, c-format
 msgid "&Unregister shell extension"
-msgstr ""
+msgstr "Eltávolítás a helyi menüből"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "Regisztrálás a helyi menübe (csak ez a felhasználó)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "Eltávolítás a helyi menüből (csak ez a felhasználó)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "Könyvtár"
 
 #, c-format
 msgid "S&top after first difference"
@@ -2285,95 +2327,99 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
 #, c-format
-msgid "&Include unique subfolders contents"
-msgstr ""
+msgid "Include &unique subfolders contents"
+msgstr "Egyedi almappák tartalmai is"
 
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr ""
+msgstr "Minden alkönyvtár automatikus kibontása"
 
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr ""
+msgstr "Elemzési pontok mellőzése"
 
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
+"\n"
+"Összehasonlító szálak száma (egy negatív érték a rendelkezésre álló CPU magok igénybevételét jelenti):"
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "CSV típusú fájlok kiterjesztése:"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "TSV típusú fájlok kiterjesztése:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Egyéni elválasztójelek"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Fájlfajták:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "Bináris"
 
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr ""
+msgstr "Bináris fájltípusok:"
 
 #, c-format
 msgid "Frhed settings"
-msgstr ""
+msgstr "Frhed hexa szerkesztő beállítások"
 
 #, c-format
 msgid "View &Settings..."
-msgstr ""
+msgstr "Nézet beállítások..."
 
 #, c-format
 msgid "&Binary Mode..."
-msgstr ""
+msgstr "Bináris mód..."
 
 #, c-format
 msgid "&Character Set..."
-msgstr ""
+msgstr "Karakterkészlet..."
 
 msgid "Image"
-msgstr ""
+msgstr "Kép"
 
 #, c-format
 msgid "Image File &Patterns:"
-msgstr ""
+msgstr "Képfájl típusok:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Képösszehasonlítás mappák összehasonlításakor is"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Karakterfelismerő találatai:"
 
 #, c-format
 msgid "&Hex View"
-msgstr ""
+msgstr "Hexadecimális nézet"
 
 #, c-format
 msgid "EXT"
-msgstr ""
+msgstr "EXT"
 
 #, c-format
 msgid "CAP"
-msgstr ""
+msgstr "NAGY"
 
 #, c-format
 msgid "NUM"
-msgstr ""
+msgstr "SZÁM"
 
 #, c-format
 msgid "SCRL"
-msgstr ""
+msgstr "GÖRGKI"
 
 #, c-format
 msgid "OVR"
@@ -2381,19 +2427,31 @@ msgstr "ÁTÍR"
 
 #, c-format
 msgid "REC"
-msgstr ""
+msgstr "REC"
 
 #, c-format
-msgid "\nNew Documents (Ctrl+N)"
+msgid ""
+"\n"
+"New Documents (Ctrl+N)"
 msgstr ""
+"\n"
+"Új dokumentum (Ctrl+N)"
 
 #, c-format
-msgid "\nOpen (Ctrl+O)"
+msgid ""
+"\n"
+"Open (Ctrl+O)"
 msgstr ""
+"\n"
+"Megnyitás (Ctrl+O)"
 
 #, c-format
-msgid "\nSave (Ctrl+S)"
+msgid ""
+"\n"
+"Save (Ctrl+S)"
 msgstr ""
+"\n"
+"Mentés (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file."
 msgstr "Ismeretlen hiba a projekt fájl megnyitásakor."
@@ -2410,27 +2468,60 @@ msgid "Project file successfully saved."
 msgstr "Projekt fájl sikeresen elmentve."
 
 #, c-format
-msgid "\nUndo (Ctrl+Z)"
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
 msgstr ""
+"\n"
+"Visszavonás (Ctrl+Z)"
 
 #, c-format
-msgid "\nRedo (Ctrl+Y)"
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
 msgstr ""
+"\n"
+"Mégis (Ctrl+Y)"
 
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 msgstr ""
+"\n"
+"Fájl összehasonlító\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.Fájl összehasonlító\n"
+"WinMerge Fájl összehasonlító"
 
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 msgstr ""
-
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
+"\n"
+"Mappa összehasonlító\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.Mappa összehasonlító\n"
+"WinMerge Mappa összehasonlító"
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr ""
+msgstr "A WinMerge TELJESEN GARANCIA NÉLKÜLI. Ez egy ingyenes szoftver, amelyet bizonyos feltételek mellett terjeszthetsz; a részletekért tekintsd meg a Súgó menü GNU Általános Nyilvános Licenszét."
 
 #, c-format
 msgid "&Abort"
@@ -2442,11 +2533,11 @@ msgstr "&Ismét"
 
 #, c-format
 msgid "&Ignore"
-msgstr "&Kihagy"
+msgstr "Mellőzés"
 
 #, c-format
 msgid "Ignore &all"
-msgstr "Kihagy M&indent"
+msgstr "Összes mellőzés"
 
 #, c-format
 msgid "&Yes"
@@ -2470,36 +2561,39 @@ msgstr "&Folytatás"
 
 #, c-format
 msgid "&Skip"
-msgstr "&Kihagy"
+msgstr "&Kihagyás"
 
 #, c-format
 msgid "Skip &all"
-msgstr "Kihagy &mindent"
+msgstr "Összes kihagyása"
 
 #, c-format
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomja meg a Beállítások Üzenetablakok oldalán a visszaállítás gombot."
 
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Kifejezéstípusok"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Színsémák"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "Mappa összehasonlítás"
 
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
 
+msgid "Message Boxes"
+msgstr "Üzenetablakok"
+
 #, c-format
 msgid "To:"
-msgstr ""
+msgstr "Ehhez:"
 
 #, c-format
 msgid "From left:"
@@ -2507,7 +2601,7 @@ msgstr "Balról:"
 
 #, c-format
 msgid "To left:"
-msgstr "Jobbra:"
+msgstr "Balra:"
 
 #, c-format
 msgid "From right:"
@@ -2518,14 +2612,14 @@ msgid "To right:"
 msgstr "Jobbra:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "A középsőből:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "A középsőbe:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Verzió %1"
+msgstr "%1 verzió"
 
 #, c-format
 msgid "X64"
@@ -2545,6 +2639,9 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
+"A tabulátorméret értéke nincs a megfelelő tartományban.\n"
+"\n"
+"1 és %1 közötti értéket használj."
 
 #, c-format
 msgid "Open"
@@ -2560,30 +2657,36 @@ msgstr "Minden fájl (*.*)|*.*||"
 
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "WinMerge Projekt Fájlok (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge Projekt fájlok (*.WinMerge)|*.WinMerge||"
 
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Ini fájlok (*.ini)|*.ini|Minden fájl (*.*)|*.*||"
 
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Szöveges fájlok (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Minden fájl (*.*)|*.*||"
 
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "HTML fájlok (*.htm,*.html)|*.htm;*.html|Minden fájl (*.*)|*.*||"
 
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "XML fájlok (*.xml)|*.xml|Minden fájl (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Fájltípus"
 
 #, c-format
 msgid "Extension"
 msgstr "Kiterjesztés"
+
+msgid "Message"
+msgstr "Üzenet"
+
+msgid "Answer"
+msgstr "Válasz"
 
 #, c-format
 msgid "Name"
@@ -2599,7 +2702,7 @@ msgstr "Szűrők"
 
 #, c-format
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 #, c-format
 msgid "Description"
@@ -2611,7 +2714,7 @@ msgstr "Válassz fájlnevet az új szűrőhöz"
 
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Fájl szűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
+msgstr "Fájlszűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 
 #, c-format
 msgid ""
@@ -2620,6 +2723,10 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
+"Nem található a fájlszűrő sablonfájl!\n"
+"\n"
+"Másold a(z) %1 fájlt a WinMerge/Filters mappába:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -2628,6 +2735,10 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
+"A szűrősablon-fájl nem másolható a szűrőmappába:\n"
+"%1\n"
+"\n"
+"Győzödj meg róla, hogy a mappa létezik és nem írásvédett."
 
 #, c-format
 msgid ""
@@ -2635,6 +2746,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
+"A felhasználói szűrőmappa nincs megadva!\n"
+"\n"
+"Válassz egy mappát a szűrőknek a Beállítások/Rendszer alatt."
 
 #, c-format
 msgid ""
@@ -2643,10 +2757,14 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
+"Nem sikerült törölni a szűrőfájlt:\n"
+"%1\n"
+"\n"
+"Lehet, hogy írásvédett?"
 
 #, c-format
 msgid "Locate filter file to install"
-msgstr ""
+msgstr "A telepítendő szűrőfájl megkeresése"
 
 #, c-format
 msgid ""
@@ -2654,17 +2772,26 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
+"A szűrőfájl telepítése nem sikerült.\n"
+"\n"
+"Nem sikerült az új szűrőfájlt bemásolni a szűrőmappába."
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr ""
+msgstr "A szűrőfájl már létezik. Felülírod?"
 
 #, c-format
 msgid "Regular expression"
 msgstr "Reguláris kifejezés"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
+"A szűrők frissítetve. Frissíted most az összes megnyitott mappa összehasonlítást?\n"
+"\n"
+"Ha most nem akarod, a későbbi frissítéshez válaszd a \"Nem\" lehetőséget."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -2680,26 +2807,29 @@ msgstr "Névtelen bal oldal"
 
 #, c-format
 msgid "Untitled middle"
-msgstr ""
+msgstr "Névtelen középső"
 
 #, c-format
 msgid "Untitled right"
 msgstr "Névtelen jobb oldal"
 
 msgid "Base File"
-msgstr ""
+msgstr "Forrásfájl"
 
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Mások fájlja"
 
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "Az én fájlom"
+
+msgid "Original File"
+msgstr "Eredeti fájl"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Sor: %s  Oszlop: %d/%d  Karakter: %d/%d  Sorvég: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -2707,32 +2837,36 @@ msgstr "Sor: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Sor: %s  Oszlop: %d/%d  Karakter: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  Kiv.: %d | %d"
 
 #, c-format
 msgid "Merge"
-msgstr "Olvasztás"
+msgstr "Egyesítés"
 
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "Ennyi különség: %1 ennyiből: %2"
+msgstr "Különbség: %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 különbséget találtam"
+msgstr "%1 különbség található"
 
 #, c-format
 msgid "1 Difference Found"
-msgstr "1 különbséget találtam"
+msgstr "1 különbség található"
 
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"
-msgstr ""
+msgstr "RO"
 
 #, c-format
 msgid "Item %1 of %2"
-msgstr "%1 elem ennyiből: %2"
+msgstr "elem: %1 / %2"
 
 #, c-format
 msgid "Items: %1"
@@ -2747,23 +2881,23 @@ msgstr "Könytár kiválasztás"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Válassz 2 (vagy 3) fájlt (vagy mappát) az összehasonlításhoz."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "A bal (1.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "A középső (2.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "A jobb (2.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "A jobb (3.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -2771,22 +2905,22 @@ msgstr "Mindkét elérési út érvénytelen!"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "A bal (1.) és a középső(2.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "A bal (1.) és a jobb(3.) elérési út érvénytelen!"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "A középső(2.) és a jobb(3.) elérési út érvénytelen!"
 
 #, c-format
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Mindigyik elérési út érvénytelen!"
 
 msgid "Only enabled for file comparisons"
-msgstr ""
+msgstr "Csak fájlok összahasonlításánál elérhető"
 
 #, c-format
 msgid "Cannot compare file and folder!"
@@ -2798,7 +2932,7 @@ msgstr "Ez a fájl nem található: %1"
 
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "A fájl nincs kicsomagolva: %1"
+msgstr "Ez a fájl nincs kicsomagolva: %1"
 
 #, c-format
 msgid ""
@@ -2814,14 +2948,28 @@ msgstr ""
 
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "Hiba a konfliktusfájl értelmezésekor."
+msgstr "Hiba a konfliktusfájl elemzésekor."
 
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
-msgstr "A fájl\n%1\nnem egy konfliktus fájl."
-
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"A fájl\n"
+"%1\n"
+"nem egy konfliktus fájl."
+
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
+msgstr ""
+"Nagyon nagy fájlok összehasonlítására készülsz.\n"
+"A fájlok tartalmának megjelenítése nagyon sok memóriát igényel.\n"
+"Csak az összehasonlítás eredményét szeretnéd megjeleníteni, a fájlok tartalmát nem?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2833,7 +2981,7 @@ msgstr "Mentsem a változtatásokat %1 néven?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "Ez a fájl: %1 csak olvasható. Szeretnéd ezt megváltoztatni? (Kattints a Nem gombra a fájl új néven való mentéséhez.)"
+msgstr "%1 csak olvasható. Szeretnéd felülírni a csak olvasható fájlt? (Kattints a Nem gombra a fájl új néven való mentéséhez.)"
 
 #, c-format
 msgid "Error backing up file"
@@ -2849,10 +2997,16 @@ msgstr ""
 "Nem lehetett a biztonsági másolatot létrehozni:\n"
 "%1\n"
 "\n"
-"Folytatni akarod?"
+"Folytatod mindenképp?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "A fájl mentése sikertelen volt.\n"
 "%1\n"
@@ -2869,15 +3023,25 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Ez a bővítmény '%2' nem tudja visszacsomagolni a bal oldalon megváltoztatott '%1' fájlt.\n"
+"A(z) %2 bővítmény nem tudja becsomagolni a bal fájlban végzett módosításokat itt: %1.\n"
 "\n"
-"Az eredeti fájl nem lett megváltoztatva.\n"
+"Az eredeti fájl nem változik.\n"
 "\n"
-"Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+"Elmented a be nem csomagolt verziót egy másik fájlba?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
+"A(z) %2 bővítmény nem tudja becsomagolni a középső fájlban végzett módosításokat itt: %1.\n"
+"\n"
+"Az eredeti fájl nem változik.\n"
+"\n"
+"Elmented a be nem csomagolt verziót egy másik fájlba?"
 
 #, c-format
 msgid ""
@@ -2887,11 +3051,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Ez a bővítmény '%2' nem tudja visszacsomagolni a jobb oldalon megváltoztatott '%1' fájlt.\n"
+"A(z) %2 bővítmény nem tudja becsomagolni a jobb fájlban végzett módosításokat itt: %1.\n"
 "\n"
-"Az eredeti fájl nem lett megváltoztatva.\n"
+"Az eredeti fájl nem változik.\n"
 "\n"
-"Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+"Elmented a be nem csomagolt verziót egy másik fájlba?"
 
 #, c-format
 msgid ""
@@ -2902,8 +3066,8 @@ msgid ""
 "Overwrite changed file?"
 msgstr ""
 "Egy másik alkalmazás megváltoztatta a(z)\n"
-"%1\n"
-"fájlt, mióta a WinMerge betöltötte.\n"
+"%1 fájlt,\n"
+"mióta a WinMerge betöltötte.\n"
 "\n"
 "Felülírjuk a megváltoztatott fájlt?"
 
@@ -2916,24 +3080,40 @@ msgstr ""
 "csak olvasható. Szeretnéd ezt megváltoztatni?"
 
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr "Egy másik alkalmazás módosította a fájlt\n%1\nmióta a WinMerge utoljára vizsgálta.\n\nSzeretné újra betölteni a fájlt?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
+msgstr ""
+"Egy másik alkalmazás módosította a(z)\n"
+"%1 fájlt,\n"
+"a WinMerge utoljára vizsgálta.\n"
+"\n"
+"Szeretnéd újra betölteni a fájlt?"
 
 #, c-format
 msgid "Save Left File As"
-msgstr "Bal oldali fájl mentése más néven"
+msgstr "Bal oldali fájl mentése mint"
 
 #, c-format
 msgid "Save Middle File As"
-msgstr ""
+msgstr "Középső fájl mentése mint"
 
 #, c-format
 msgid "Save Right File As"
-msgstr "Jobb oldali fájl mentése más néven"
+msgstr "Jobb oldali fájl mentése mint"
 
 #, c-format
-msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
-msgstr "A fájl\n%1\neltűnt. A folytatáshoz mentse el a fájlt."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
+msgstr ""
+"A(z) %1l\n"
+"fájl\n"
+"eltűnt. A folytatáshoz mentse el a fájlt."
 
 #, c-format
 msgid ""
@@ -2941,7 +3121,7 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Nem lehet az eltéréseket olvasztani, ha a dokumentumok nincsenek szinkronban.\n"
+"Nem lehet az eltéréseket egyesíteni, ha a dokumentumok nincsenek szinkronban.\n"
 "\n"
 "Frissítsd a dokumentumokat, mielőtt folytatnád."
 
@@ -2953,51 +3133,51 @@ msgstr "Megállás szóközöknél vagy írásjeleknél"
 
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Jobbról balra (%1)"
+msgstr "Jobbról a balba (%1)"
 
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr ""
+msgstr "Jobbról a középsőbe (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr ""
+msgstr "Középső a balba (%1)"
 
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr ""
+msgstr "Középső a jobba (%1)"
 
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Balról jobbra (%1)"
+msgstr "Bal a jobba (%1)"
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr ""
+msgstr "Bal a középsőbe(%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Balról... (%1)"
+msgstr "Balból a... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
-msgstr ""
+msgstr "A középsőből a...(%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Jobbról... (%1)"
+msgstr "Jobból a... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "Mindkettőből a...(%1)"
 
 #, c-format
 msgid "All to... (%1)"
-msgstr ""
+msgstr "Az összesből a...(%1)"
 
 #, c-format
 msgid "Differences to... (%1)"
-msgstr ""
+msgstr "Különbségek ehhez...(%1)"
 
 #, c-format
 msgid "Left (%1)"
@@ -3005,7 +3185,7 @@ msgstr "Bal (%1)"
 
 #, c-format
 msgid "Middle (%1)"
-msgstr ""
+msgstr "Középső (%1)"
 
 #, c-format
 msgid "Right (%1)"
@@ -3017,27 +3197,27 @@ msgstr "Mindkettő (%1)"
 
 #, c-format
 msgid "All (%1)"
-msgstr ""
+msgstr "Összes (%1)"
 
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Bal oldal - válassz úticél mappát:"
+msgstr "Bal oldal - célmappa választása:"
 
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr ""
+msgstr "Középső oldal - célmappa választása:"
 
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Jobb oldal - válassz úticél mappát:"
+msgstr "Jobb oldal - célmappa választása:"
 
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr ""
+msgstr "(%1 fájl érintve)"
 
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr ""
+msgstr "(%1 / %2 fájl érintve)"
 
 #, c-format
 msgid ""
@@ -3050,11 +3230,11 @@ msgstr ""
 "%1 ?"
 
 msgid "Are you sure you want to copy?"
-msgstr ""
+msgstr "Biztosan másolod?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr ""
+msgstr "Biztosan másolsz %d elemet?"
 
 #, c-format
 msgid ""
@@ -3066,13 +3246,20 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
+"A művelet megszakítva!\n"
+"\n"
+"A mappa tartalma a lemezen megváltozott, az elérési út\n"
+"%1\n"
+"nem található.\n"
+"\n"
+"Frissítsd az összehasonlítást."
 
 msgid "Are you sure you want to move?"
-msgstr ""
+msgstr "Biztosan áthelyezed?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr ""
+msgstr "Biztosan áthelyezel %d elemet?"
 
 #, c-format
 msgid "Confirm Move"
@@ -3080,7 +3267,7 @@ msgstr "Mozgatás megerősítése"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Bezárni készülsz a mappákat összehasonlító ablakot. Biztosan bezárod az ablakot?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3096,7 +3283,7 @@ msgstr "Fájlnév"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Mappa"
 
 #, c-format
 msgid "Comparison result"
@@ -3104,51 +3291,51 @@ msgstr "Összehasonlítási eredmények"
 
 #, c-format
 msgid "Left Date"
-msgstr "Bal oldali dátum"
+msgstr "Bal dátuma"
 
 #, c-format
 msgid "Right Date"
-msgstr "Jobb oldali dátum"
+msgstr "Jobb dátuma"
 
 #, c-format
 msgid "Middle Date"
-msgstr ""
+msgstr "Középső dátuma"
 
 #, c-format
 msgid "Left Size"
-msgstr "Bal oldali méret"
+msgstr "Bal mérete"
 
 #, c-format
 msgid "Right Size"
-msgstr "Jobb oldali méret"
+msgstr "Jobb mérete"
 
 #, c-format
 msgid "Middle Size"
-msgstr ""
+msgstr "Középső mérete"
 
 #, c-format
 msgid "Right Size (Short)"
-msgstr ""
+msgstr "Jobb mérete (rövid)"
 
 #, c-format
 msgid "Left Size (Short)"
-msgstr ""
+msgstr "Bal mérete (rövid)"
 
 #, c-format
 msgid "Middle Size (Short)"
-msgstr ""
+msgstr "Középső mérete (rövid)"
 
 #, c-format
 msgid "Left Creation Time"
-msgstr "Bal oldali létrehozási idő"
+msgstr "Bal létrehozási ideje"
 
 #, c-format
 msgid "Right Creation Time"
-msgstr "Jobb oldali létrehozási idő"
+msgstr "Jobb létrehozási ideje"
 
 #, c-format
 msgid "Middle Creation Time"
-msgstr ""
+msgstr "Középső létrehozási ideje"
 
 #, c-format
 msgid "Newer File"
@@ -3156,15 +3343,15 @@ msgstr "Újabb fájl"
 
 #, c-format
 msgid "Left File Version"
-msgstr "Bal oldali fájl verzió"
+msgstr "Bal fájlverziója"
 
 #, c-format
 msgid "Right File Version"
-msgstr "Jobb oldali fájl verzió"
+msgstr "Jobb fájlverziója"
 
 #, c-format
 msgid "Middle File Version"
-msgstr ""
+msgstr "Középső fájlverziója"
 
 #, c-format
 msgid "Short Result"
@@ -3172,54 +3359,62 @@ msgstr "Rövid eredmények"
 
 #, c-format
 msgid "Left Attributes"
-msgstr "Bal oldali attribútumok"
+msgstr "Bal attribútumai"
 
 #, c-format
 msgid "Right Attributes"
-msgstr "Jobb oldali attribútumok"
+msgstr "Jobb attribútumai"
 
 #, c-format
 msgid "Middle Attributes"
-msgstr ""
+msgstr "Középső attribúumai"
 
 #, c-format
 msgid "Left EOL"
-msgstr ""
+msgstr "Bal sorugrásai"
 
 #, c-format
 msgid "Middle EOL"
-msgstr ""
+msgstr "Középső sorugrásai"
 
 #, c-format
 msgid "Right EOL"
-msgstr ""
+msgstr "Jobb sorugrásai"
 
 #, c-format
 msgid "Left Encoding"
-msgstr "Bal oldali kódolás"
+msgstr "Bal kódolása"
 
 #, c-format
 msgid "Right Encoding"
-msgstr "Jobb oldali kódolás"
+msgstr "Jobb kódolása"
 
 #, c-format
 msgid "Middle Encoding"
-msgstr ""
+msgstr "Középső kódolása"
 
 msgid "Ignored Diff"
-msgstr ""
+msgstr "Eltérések mellőzése"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Bináris"
+
+#, c-format
+msgid "Unpacker"
+msgstr "Kitömörítő"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Elővizsgáló"
 
 #, c-format
 msgid "Unable to compare files"
-msgstr "Nem lehett összehasonlítani a fájlokat"
+msgstr "Nem lehet összehasonlítani a fájlokat"
 
 #, c-format
 msgid "Item aborted"
-msgstr ""
+msgstr "Elem leállítva"
 
 #, c-format
 msgid "File skipped"
@@ -3235,7 +3430,7 @@ msgstr "Csak bal: %1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr ""
+msgstr "Csak középső: %1"
 
 #, c-format
 msgid "Right only: %1"
@@ -3243,7 +3438,7 @@ msgstr "Csak jobb: %1"
 
 #, c-format
 msgid "Does not exist in %1"
-msgstr ""
+msgstr "Nincs benne ebben: %1"
 
 #, c-format
 msgid "Binary files are identical"
@@ -3263,27 +3458,27 @@ msgstr "A könyvtárak különböznek"
 
 #, c-format
 msgid "Left Only"
-msgstr "Csak bal oldal"
+msgstr "Csak a bal"
 
 #, c-format
 msgid "Right Only"
-msgstr "Csak jobb oldal"
+msgstr "Csak a jobb"
 
 #, c-format
 msgid "Middle Only"
-msgstr ""
+msgstr "Csak a középső"
 
 #, c-format
 msgid "No item in left"
-msgstr ""
+msgstr "Nincs elem a balban"
 
 #, c-format
 msgid "No item in right"
-msgstr ""
+msgstr "Nincs elem a jobban"
 
 #, c-format
 msgid "No item in middle"
-msgstr ""
+msgstr "Nincs elem a középsőben"
 
 #, c-format
 msgid "Error"
@@ -3295,25 +3490,25 @@ msgstr "A szövegfájlok megegyeznek"
 
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr ""
+msgstr "(Középső és jobb egyforma)"
 
 #, c-format
 msgid "(Left and right are identical)"
-msgstr ""
+msgstr "(Bal és jobb egyforma)"
 
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr ""
+msgstr "(Bal és középső egyforma)"
 
 #, c-format
 msgid "Text files are different"
 msgstr "A szövegfájlok különböznek"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "A képfájlok egyformák"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "A képfájlok különböznek"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3329,7 +3524,7 @@ msgstr "%1 elem kiválasztva"
 
 #, c-format
 msgid "Filename or folder name."
-msgstr "fájlnév vagy könyvtárnév."
+msgstr "Fájlnév vagy könyvtárnév."
 
 #, c-format
 msgid "Subfolder name when subfolders are included."
@@ -3341,15 +3536,15 @@ msgstr "Összehasonlítási eredmény bővebb formában."
 
 #, c-format
 msgid "Left side modification date."
-msgstr "Bal oldali módosítási dátum."
+msgstr "Bal módosítási ideje."
 
 #, c-format
 msgid "Right side modification date."
-msgstr "Jobb oldali módosítási dátum."
+msgstr "Jobb módosítási ideje."
 
 #, c-format
 msgid "Middle side modification date."
-msgstr ""
+msgstr "Középső módosítási ideje."
 
 #, c-format
 msgid "File's extension."
@@ -3357,39 +3552,39 @@ msgstr "Fájlok kiterjesztése."
 
 #, c-format
 msgid "Left file size in bytes."
-msgstr "Bal oldali fájl mérete bájtokban."
+msgstr "Bal fájlmérete bájtban."
 
 #, c-format
 msgid "Right file size in bytes."
-msgstr "Jobb oldali fájl mérete bájtokban."
+msgstr "Jobb fájlmérete bájtban."
 
 #, c-format
 msgid "Middle file size in bytes."
-msgstr ""
+msgstr "Középső fájlmérete bájtban."
 
 #, c-format
 msgid "Left file size abbreviated."
-msgstr ""
+msgstr "Bal fájlmérete rövidítve."
 
 #, c-format
 msgid "Right file size abbreviated."
-msgstr ""
+msgstr "Jobb fájlmérete rövidítve."
 
 #, c-format
 msgid "Middle file size abbreviated."
-msgstr ""
+msgstr "Középső fájlmérete rövidítve."
 
 #, c-format
 msgid "Left side creation time."
-msgstr "Bal oldal létrehozási ideje."
+msgstr "Bal létrehozási ideje."
 
 #, c-format
 msgid "Right side creation time."
-msgstr "Jobb oldal létrehozási ideje."
+msgstr "Jobb létrehozási ideje."
 
 #, c-format
 msgid "Middle side creation time."
-msgstr ""
+msgstr "A középső létrehozásának ideje."
 
 #, c-format
 msgid "Tells which side has newer modification date."
@@ -3397,15 +3592,15 @@ msgstr "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."
 
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "Bal oldali fájl verziója, csak bizonyos fájloknál."
+msgstr "Bal fájlverziója, csak egyes fájltípusoknál."
 
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "Jobb oldali fájl verziója, csak bizonyos fájloknál."
+msgstr "Jobb fájlverziója, csak egyes fájltípusoknál."
 
 #, c-format
 msgid "Middle side file version, only for some filetypes."
-msgstr ""
+msgstr "Középső fájlverziója, csak egyes fájltípusoknál."
 
 #, c-format
 msgid "Short comparison result."
@@ -3413,40 +3608,40 @@ msgstr "Rövid összehasonlítási eredmények."
 
 #, c-format
 msgid "Left side attributes."
-msgstr "Bal oldali attribútumok."
+msgstr "Bal attribútumai."
 
 #, c-format
 msgid "Right side attributes."
-msgstr "Jobb oldali attribútumok."
+msgstr "Jobb attribútumai."
 
 #, c-format
 msgid "Middle side attributes."
-msgstr ""
+msgstr "Középső attribútumai."
 
 msgid "Left side file EOL type."
-msgstr ""
+msgstr "Bal oldali fájl sorvég típus."
 
 msgid "Right side file EOL type."
-msgstr ""
+msgstr "Jobb oldali fájl sorvég típus."
 
 msgid "Middle side file EOL type."
-msgstr ""
+msgstr "Középső oldali fájl sorvég típus."
 
 #, c-format
 msgid "Left side encoding."
-msgstr "Bal oldali kódolás."
+msgstr "Bal kódolása."
 
 #, c-format
 msgid "Right side encoding."
-msgstr "Jobb oldali kódolás."
+msgstr "Jobb kódolása."
 
 #, c-format
 msgid "Middle side encoding."
-msgstr ""
+msgstr "Középső kódolása."
 
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Mellőzött különbségek száma a fájlban. Ezeket a különbségeket a WinMerge mellőzte és nem olvaszthatók."
+msgstr "Mellőzött különbségek száma a fájlban. Ezeket a különbségeket a WinMerge mellőzte és nem is egyesíthetőek."
 
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
@@ -3455,6 +3650,12 @@ msgstr "Különbségek száma a fájlban. Ez a szám nem tartalmazza a mellőzö
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "(*) látható, ha a fájl bináris."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr "Kicsomagoló bővítmény név vagy pipeline"
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "Elővizsgáló bővítmény név vagy pipeline"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3493,7 +3694,7 @@ msgid "The report has been created successfully."
 msgstr "A jelentés sikeresen elkészült."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Itt nem adható hozzá szinkronizálási pont ehhez a sorhoz."
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3501,7 +3702,7 @@ msgstr "Ugyanaz a fájl van megnyitva mindkét panelen."
 
 #, c-format
 msgid "The selected files are identical."
-msgstr "A kijelölt fájlok ugyanazok."
+msgstr "A kijelölt fájlok egyformák."
 
 #, c-format
 msgid "An error occurred while comparing the files."
@@ -3511,64 +3712,88 @@ msgstr "Hiba történt a fájlok összehasonlításakor."
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenőrizd az ideiglenes könyvtár beállításait."
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Ezek a fájlok eltérő sorvége-karaktereket tartalmaznak.\n"
 "\n"
-"Szeretnél minden sorvége karaktert egyezőként vizsgálni ebben az esetben?\n"
+"Szeretnél minden sorvége karaktert egyezőnek tekinteni ebben az esetben?\n"
 "\n"
-"Megjegyzés: Amennyiben minden esetben ezt az opciót szeretnéd használni, kapcsold be a 'Sorvég különbségek figyelmen kívül hagyása (Windows/Unix/Mac)' opciót az Összehasonlítás menüpontban (a Szerkesztés/Opciók menüpont alatt találod meg)."
+"Megjegyzés: Amennyiben minden esetben ezt az opciót szeretnéd használni, kapcsold be a 'Sorvég különbségek mellőzése' opciót az Összehasonlítás menüpontban (a Szerkesztés/Beállítások menüpont alatt találod meg)."
 
 #, c-format
 msgid "The selected folder is invalid."
-msgstr ""
+msgstr "A kiválasztott mappa érvénytelen."
 
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr ""
+msgstr "A bináris fájl nem volt megnyitható a szerkesztővel."
 
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
 msgstr ""
+"A mappa csak a másik oldalon létezik és nem nyitható meg.\n"
+"\n"
+"Létrehozol egy megfelelő mappát:\n"
+"%1\n"
+"a másik oldalhoz és megnyitod ezeket a mappákat?"
 
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr ""
+msgstr "Továbblépsz a következő fájlra?"
 
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr ""
+msgstr "Visszalépsz az előző fájlra?"
 
 #, c-format
 msgid "Do you want to move to the next page?"
-msgstr ""
+msgstr "Továbblépsz a következő oldalra?"
 
 #, c-format
 msgid "Do you want to move to the previous page?"
-msgstr ""
+msgstr "Visszalépsz az előző oldalra?"
+
+msgid "Do you want to move to the first file?"
+msgstr "Átlépés az első fájlhoz?"
+
+msgid "Do you want to move to the last file?"
+msgstr "Átlépés az utolsó fájlhoz?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "A bal (cp%d) és jobb (cp%d) oldali fájlok nem ugyanazt a kódolást használják.\n"
-"A különböző kódlapokkal történő kijelzés könnyebben áttekinthető de az olvasztás/törlés kockázatos lehet.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+"A különböző kódlapokkal történő kijelzés könnyebben áttekinthető de az egyesítés/törlés kockázatos lehet.\n"
+"Szeretnéd mindkét fájlt az alapértelmezett Windows kódlapként kezelni (ajánlott)?"
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr ""
+msgstr "Kódolási hibák miatt elveszett információk: mindkét fájl"
 
 #, c-format
 msgid "Information lost due to encoding errors: first file"
-msgstr ""
+msgstr "Kódolási hibák miatt elveszett információk: 1.fájl"
 
 #, c-format
 msgid "Information lost due to encoding errors: second file"
-msgstr ""
+msgstr "Kódolási hibák miatt elveszett információk: 2.fájl"
 
 #, c-format
 msgid "Information lost due to encoding errors: third file"
-msgstr ""
+msgstr "Kódolási hibák miatt elveszett információk: 3.fájl"
 
 #, c-format
 msgid "No difference"
@@ -3584,44 +3809,48 @@ msgstr "Cserélve lett %1 sztring."
 
 #, c-format
 msgid "Cannot find string \"%s\"."
-msgstr "Nem található ez: \"%s\"."
+msgstr "Nem található ez a sztring: \"%s\"."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr ""
+msgstr "Most belépsz az egyesítési módba. Ha ki akarod kapcsolni, nyomd meg az F9-et."
 
 #, c-format
-msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgid ""
+"The number of automatically merged changes: %1\n"
+"The number of unresolved conflicts: %2"
 msgstr ""
+"Az automatikusan egyesített változások száma: %1\n"
+"A megoldatlan konfliktusok száma: %2"
 
 msgid "The change of codepage has been merged."
-msgstr ""
+msgstr "A kódlap változása egyesítésre került."
 
 msgid "The changes of codepage are conflicting."
-msgstr ""
+msgstr "A kódlap változásai ellentmondásosak."
 
 msgid "The change of EOL has been merged."
-msgstr ""
+msgstr "A sorvég változás egyesítésre került."
 
 msgid "The changes of EOL are conflicting."
-msgstr ""
+msgstr "A sorvég változások ellentmondásosak."
 
 #, c-format
 msgid "Location Pane"
-msgstr ""
+msgstr "Eltérések helye"
 
 #, c-format
 msgid "Diff Pane"
-msgstr ""
+msgstr "Eltérés panel"
 
 #, c-format
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1.elem nem található!"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2.elem nem található!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3637,7 +3866,7 @@ msgstr "Normál"
 
 #, c-format
 msgid "Context"
-msgstr "Környezeti"
+msgstr "Szövegkörnyezet"
 
 #, c-format
 msgid "Unified"
@@ -3659,10 +3888,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nem lehet patch fájlt létrehozni bináris fájlokból."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nem lehet patch fájlt létrehozni könyvtárakból."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3670,13 +3895,16 @@ msgid ""
 msgstr ""
 "Először ments el minden fájlt.\n"
 "\n"
-"A patch létrehozásához elengedhetetlen, hogy ne legyenek el nem mentett változtatások a fájlokban."
+"A patch létrehozásához szükséges, hogy ne legyenek el nem mentett változtatások a fájlokban."
 
 #, c-format
 msgid "Folder does not exist."
 msgstr "A mappa nem létezik."
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "Az Archívum támogatás nem engedélyezett.\n"
 "Az ehhez szükséges összetevők (7-Zip és/vagy Merge7z*.dll) nem találhatóak.\n"
@@ -3684,27 +3912,27 @@ msgstr ""
 
 #, c-format
 msgid "Select file for export"
-msgstr ""
+msgstr "Fájl kiválasztása az exportáláshoz"
 
 #, c-format
 msgid "Select file for import"
-msgstr ""
+msgstr "Fájl kiválasztása az importáláshoz"
 
 #, c-format
 msgid "Options imported from the file."
-msgstr ""
+msgstr "Beállítások importálva a fájlból."
 
 #, c-format
 msgid "Options exported to the file."
-msgstr ""
+msgstr "Beállítások exportálva a fájlba."
 
 #, c-format
 msgid "Failed to import options from the file."
-msgstr ""
+msgstr "Beállítások importálása a fájlból sikertelen."
 
 #, c-format
 msgid "Failed to write options to the file."
-msgstr ""
+msgstr "Beállítások exportálása a fájlba sikertelen."
 
 #, c-format
 msgid ""
@@ -3714,129 +3942,205 @@ msgid ""
 msgstr ""
 "Több nyitott összehasonlító ablak bezárása következik.\n"
 "\n"
-"Biztosan folytatja?"
+"Biztosan folytatod?"
 
 #, c-format
 msgid "Mixed"
-msgstr ""
+msgstr "Vegyes"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Bináris"
 
 #, c-format
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Jelölőszín %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Új fajta"
 
 #, c-format
 msgid "Type"
-msgstr ""
-
-#, c-format
-msgid "Unpacker"
-msgstr ""
-
-#, c-format
-msgid "Prediffer"
-msgstr ""
+msgstr "Típus"
 
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "Szkript szerkesztő"
 
 #, c-format
-msgid "\nDifference in the Current Line"
+msgid ""
+"\n"
+"Difference in the Current Line"
 msgstr ""
+"\n"
+"Az eltérés az aktuális sorban"
 
 #, c-format
-msgid "\nOptions"
+msgid ""
+"\n"
+"Options"
 msgstr ""
+"\n"
+"Lehetőségek"
 
 #, c-format
-msgid "\nRefresh (F5)"
+msgid ""
+"\n"
+"Refresh (F5)"
 msgstr ""
+"\n"
+"Frissítés (F5)"
 
 #, c-format
-msgid "\nPrevious Difference (Alt+Up)"
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"\n"
+"Előző különbség (Alt+Fel)"
 
 #, c-format
-msgid "\nNext Difference (Alt+Down)"
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"\n"
+"Következő különbség (Alt+Le)"
 
 #, c-format
-msgid "\nPrevious Conflict (Alt+Shift+Up)"
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
 msgstr ""
+"\n"
+"Előző konfliktus (Alt+Shift+Fel)"
 
 #, c-format
-msgid "\nNext Conflict (Alt+Shift+Down)"
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
 msgstr ""
+"\n"
+"Következő konfliktus (Alt+Shift+Le)"
 
 #, c-format
-msgid "\nFirst Difference (Alt+Home)"
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"\n"
+"Első különbség (Alt+Home)"
 
 #, c-format
-msgid "\nCurrent Difference (Alt+Enter)"
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"\n"
+"Aktuális különbség (Alt+Enter)"
 
 #, c-format
-msgid "\nLast Difference (Alt+End)"
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"\n"
+"Utolsó különbség (Alt+End)"
 
 #, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid ""
+"\n"
+"Copy Right (Alt+Right)"
 msgstr ""
+"\n"
+"Másolás jobbra (Alt+Jobbra)"
 
 #, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid ""
+"\n"
+"Copy Left (Alt+Left)"
 msgstr ""
+"\n"
+"Másolás balra (Alt+Balra)"
 
 #, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid ""
+"\n"
+"Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Másolás jobbra, továbblépés (Ctrl+Alt+Jobbra)"
 
 #, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid ""
+"\n"
+"Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Másolás balra, továbblépés (Ctrl+Alt+Balra)"
 
 #, c-format
-msgid "\nAll Right"
+msgid ""
+"\n"
+"All Right"
 msgstr ""
+"\n"
+"Mindet jobbra"
 
 #, c-format
-msgid "\nAll Left"
+msgid ""
+"\n"
+"All Left"
 msgstr ""
+"\n"
+"Mindet balra"
 
 #, c-format
-msgid "\nAuto Merge (Ctrl+Alt+M)"
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
 msgstr ""
+"\n"
+"Automatikus egyesítés (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
+msgid ""
+"\n"
+"First File"
 msgstr ""
+"\n"
+"Első fájl"
 
-msgid "\nNext File"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
 msgstr ""
+"\n"
+"Következő fájl (Ctrl+F8)"
 
-msgid "\nLast File"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
+"\n"
+"Utolsó fájl"
 
-msgid "\nPrevious File"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Előző fájl (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "A választott kicsomagoló lesz használva mindkét fájlnál (az egyik fájlnak csak a kiterjesztése lényeges)."
 
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Nincs elővizsgálat (normális)"
+msgstr "Nincs elővizsgálat (normál)"
 
 #, c-format
 msgid "Suggested plugins"
@@ -3848,18 +4152,22 @@ msgstr "Egyéb bővítmények"
 
 #, c-format
 msgid "Private Build: %1"
-msgstr ""
+msgstr "Saját verzió: %1"
 
 msgid "Your software is up to date."
-msgstr ""
+msgstr "A program naprakész."
 
 #, c-format
-msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+msgid ""
+"A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
+"Új WinMerge verzió érhető el.\n"
+"Új: %1 (jelenlegi: %2). Letöltöd most?"
 
 #, c-format
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Nem sikerült ellenőrizni a verzióinformációkat"
 
 #, c-format
 msgid "Plugin Settings"
@@ -3870,238 +4178,370 @@ msgid "WSH not found - .sct scripts disabled"
 msgstr "A WSH nem található - Az .sct szkriptek le lesznek tiltva"
 
 #, c-format
-msgid "<None>"
-msgstr "<Nincs>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatikus>"
-
-#, c-format
 msgid "G&o to Line %1"
 msgstr "&Ugrás a(z) %1. sorra"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Ugrás az áthelyezett sorhoz\tCtrl+Shift+G"
 
 #, c-format
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 #, c-format
 msgid "From file system"
-msgstr ""
+msgstr "A fájlrendszerből"
 
 #, c-format
 msgid "From Most Recently Used list"
-msgstr ""
+msgstr "A legutóbb használtakból"
 
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Nincs kiemelés"
 
 #, c-format
 msgid "Batch"
-msgstr ""
+msgstr "Kötegelt"
 
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Hordozható objektum"
 
 #, c-format
 msgid "Resources"
-msgstr ""
+msgstr "Erőforrások"
 
 #, c-format
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #, c-format
 msgid "Close &Left Tabs"
-msgstr ""
+msgstr "Bal tabulátorok bezárása"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr ""
+msgstr "Jobb tabulátorok bezárása"
 
 #, c-format
 msgid "Close &Other Tabs"
-msgstr ""
+msgstr "Többi tabulátor bezárása"
 
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
+msgstr "Auto oszlopszélesség be"
 
 msgid "Frhed is not installed."
-msgstr ""
+msgstr "Az Frhed hexa szerkesztő nincs telepítve."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr ""
+msgstr "%1 nem létezik. Létrehozod?"
 
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
+msgstr "Nem sikerült a mappa létrehozása."
 
 #, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgid ""
+"You can specify the following parameters to the path:\n"
+"$file: Path name of the current file\n"
+"$linenum: Line number of the current cursor position"
 msgstr ""
+"Az elérési úthoz a következő paramétereket adhatod meg:\n"
+"$file: Az aktuális fájl elérési útjának neve\n"
+"$linenum: A kurzor aktuális pozíciója sorának száma"
 
 msgid "default"
-msgstr ""
+msgstr "alapbeállítás"
 
 msgid "minimal"
-msgstr ""
+msgstr "minimális"
 
 msgid "patience"
-msgstr ""
+msgstr "kitartó"
 
 msgid "histogram"
-msgstr ""
+msgstr "hisztogram"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite Default"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI gyermekablak vagy főablak"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Csak MDI gyermekablak"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Különbség"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Kiemelés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Villogás"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blokkméret"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Alfa blokk"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD küszöbérték"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Beszúrés/Törlés érzékelés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Függőleges"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Vízszintes"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Átfedés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Átláthatóság"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Átláthatóság animáció"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Nagyítás"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Oldal:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Pont: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Táv: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Táv: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr ""
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Oldal: %d/%d  Nagyítás: %d%%  %dx%dképpont  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
-
-msgid "<Edit here>"
-msgstr ""
-
-msgid "No differences to select found"
-msgstr ""
-
-msgid "No differences found to add as substitution filter"
-msgstr ""
-
-msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
-
-msgid "Add this change to Substitution Filters?"
-msgstr ""
-
-msgid "Text only"
-msgstr ""
-
-msgid "Line-by-line position and text"
-msgstr ""
-
-msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Rc: (%d, %d)  "
 
 #, c-format
+msgid "Flipped: %s  "
+msgstr "Megfordítva: %s  "
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr "Elforgatva: %d  "
+
+msgid "<Edit here>"
+msgstr "<Szerkesztés itt>"
+
+msgid "No differences to select found"
+msgstr "Nem található kijelölhető különbség"
+
+msgid "No differences found to add as substitution filter"
+msgstr "Nem található helyettesítő szűrőként megadható különbség"
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr "Ez a páros már szerepel a helyettesítő szűrők listáján"
+
+msgid "Add this change to Substitution Filters?"
+msgstr "Hozzáadod ezt a változást a helyettesítési szűrőkhöz?"
+
+msgid "Text only"
+msgstr "Csak szöveg"
+
+msgid "Line-by-line position and text"
+msgstr "Pozíció és szöveg sorról sorra"
+
+msgid "Word-by-word position and text"
+msgstr "Pozíció és szöveg szóról szóra"
+
 msgid "Allow only one instance to run"
-msgstr "Csak egy példány futásának engedélyezése"
+msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
+msgid "Al&l"
+msgstr "Minden"
+
+msgid "Prettification"
+msgstr "Megjelenés optimalizálás"
+
+msgid "Content Extraction"
+msgstr "Tartalom kibontás"
+
+msgid "Visualization"
+msgstr "Megjelenítés"
+
+msgid "Data Query"
+msgstr "Adatlekérdezés"
+
+msgid "Validation"
+msgstr "Érvényesítés"
+
+msgid "&Others"
+msgstr "Egyéb"
+
+msgid "Make Uppercase"
+msgstr "Nagybetűsítés"
+
+msgid "Make Lowercase"
+msgstr "Kisbetűsítés"
+
+msgid "Remove Duplicate Lines"
+msgstr "Duplikált sorok eltávolítása"
+
+msgid "Count Duplicate Lines"
+msgstr "Duplikált sorok megszámlálása"
+
+msgid "Sort Lines Ascending"
+msgstr "Sorok növekvő rendezése"
+
+msgid "Sort Lines Descending"
+msgstr "Sorok csökkenő rendezése"
+
+msgid "Reverse Columns"
+msgstr "Oszlopok megfordítása"
+
+msgid "Reverse Lines"
+msgstr "Sorok megfordítása"
+
+msgid "Replace..."
+msgstr "Csere..."
+
+msgid "Apply Filter Command..."
+msgstr "Szűrőparancs alkalmazása..."
+
+msgid "Tokenize..."
+msgstr "Tokenizálás..."
+
+msgid "Trim Spaces"
+msgstr "Szóközök ritkítása"
+
+msgid "Select Columns..."
+msgstr "Oszlopok választása..."
+
+msgid "Select Lines..."
+msgstr "Sorok választása..."
+
+msgid "Insert Date"
+msgstr "Dátum beszúrása"
+
+msgid "Insert Time"
+msgstr "Időpont beszúrása"
+
+msgid "Apply Patch..."
+msgstr "Patch alkalmazása..."
+
+msgid "Ignore Columns"
+msgstr "Oszlopok figyelmen kívül hagyása"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Megjegyzések figyelmen kívül hagyása (C-típusú programnyelvek)"
+
+msgid "Ignore CSV Fields"
+msgstr "CSV mezők mellőzése"
+
+msgid "Ignore TSV Fields"
+msgstr "TSV mezők mellőzése"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
+
+msgid "Prettify HTML"
+msgstr "HTML formázása"
+
+msgid "Prettify JSON"
+msgstr "JSON formázása"
+
+msgid "Prettify XML"
+msgstr "XML formázása"
+
+msgid "Prettify YAML"
+msgstr "YAML formázása"
+
+msgid "Visualize Graphviz"
+msgstr "Graphviz vizualizálás"
+
+msgid "Query CSV Data..."
+msgstr "CSV adatok lekérdezése..."
+
+msgid "Query TSV Data..."
+msgstr "TSV adatok lekérdezése..."
+
+msgid "Query JSON Data..."
+msgstr "JSON adatok lekérdezése..."
+
+msgid "Query YAML Data..."
+msgstr "YAML adatok lekérdezése..."
+
+msgid "Validate HTML"
+msgstr "HTML érvényesítése"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Bővítmény argumentumok megadása"

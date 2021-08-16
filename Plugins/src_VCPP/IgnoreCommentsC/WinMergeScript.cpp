@@ -32,6 +32,11 @@ STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
   return S_OK;
 }
 
+STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
+{
+	*pVal = SysAllocString(L"MenuCaption=Ignore Comments (C-Family Languages)");
+	return S_OK;
+}
 
 STDMETHODIMP CWinMergeScript::UnpackBufferA(SAFEARRAY **pBuffer, INT *pSize, VARIANT_BOOL *pbChanged, INT *pSubcode, VARIANT_BOOL *pbSuccess)
 {

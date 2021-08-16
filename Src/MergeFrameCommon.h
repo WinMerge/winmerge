@@ -9,6 +9,9 @@
 #include "UnicodeString.h"
 #include "PathContext.h"
 
+class PrediffingInfo;
+class PackingInfo;
+
 class CMergeFrameCommon: public CMDIChildWnd
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
@@ -18,7 +21,7 @@ public:
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
-	static String GetTitleString(const PathContext& paths, const String desc[]);
+	static String GetTitleString(const PathContext& paths, const String desc[], PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-02-13 21:43+0000\n"
-"PO-Revision-Date: 2021-02-15 08:08+0200\n"
+"POT-Creation-Date: 2021-07-21 22:10+0000\n"
+"PO-Revision-Date: 2021-07-22 16:16+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -42,19 +42,19 @@ msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) į dešinę"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) į kairę"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Pažymėti skirtumą\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "Pažymėti &skirtumą"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
@@ -73,6 +73,12 @@ msgstr "&Kopijuoti"
 
 msgid "&Paste"
 msgstr "Įter&pti"
+
+msgid "&Scripts"
+msgstr "&Skriptai"
+
+msgid "< Empty >"
+msgstr "< Tuščia >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Per&eiti į...\tCtrl+G"
@@ -94,6 +100,9 @@ msgstr "Su Išoriniu r&edaktoriumi\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Su..."
+
+msgid "Open &Parent Folder..."
+msgstr "Atverti &tėvinį katalogą..."
 
 msgid "S&hell Menu"
 msgstr "&Sistemos meniu"
@@ -127,6 +136,18 @@ msgstr "&Kitas psl."
 
 msgid "&Active Pane"
 msgstr "&Aktyvus polangis"
+
+msgid "Rotate &Right 90deg"
+msgstr "Pasukti 90 l. &dešinėn"
+
+msgid "Rotate &Left 90deg"
+msgstr "Pasukti 90 l. &kairėn"
+
+msgid "Flip V&ertically"
+msgstr "Apversti v&ertikaliai"
+
+msgid "Flip H&orizontally"
+msgstr "Apversti h&orizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
@@ -169,7 +190,7 @@ msgstr "&Vertikalus trinimas"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontalus trinimas"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "&Stačiakampis žymėjimas"
 
 msgid "&Set Background Color"
@@ -219,9 +240,6 @@ msgstr "Paskutinieji projektai"
 
 msgid "Recent F&iles Or Folders"
 msgstr "Paskiausiai naudoti fa&ilai ar katalogai"
-
-msgid "< Empty >"
-msgstr "< Tuščia >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "&Išeiti\tCtrl+Q"
@@ -337,8 +355,8 @@ msgstr "V&idurinis tik skaitymui"
 msgid "Ri&ght Read-only"
 msgstr "&Dešinysis tik skaitymui"
 
-msgid "File En&coding..."
-msgstr "Failo ko&duotė..."
+msgid "&File Encoding..."
+msgstr "&Failo koduotė..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "P&ažymėti viską\tCtrl+A"
@@ -418,8 +436,8 @@ msgstr "Sukeisti 1-ą | &3-ią"
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
-msgid "Refre&sh\tF5"
-msgstr "Atnaujin&ti\tF5"
+msgid "Refresh\tF5"
+msgstr "Atnaujinti\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "&Atnaujinti pažymėtą\tCtrl+F5"
@@ -508,14 +526,8 @@ msgstr "Sulieji&mo režimas\tF9"
 msgid "Re&load\tCtrl+F5"
 msgstr "&Atnaujinti\tCtrl+F5"
 
-msgid "&File Encoding..."
-msgstr "&Failo koduotė..."
-
 msgid "Reco&mpare As"
 msgstr "Paly&ginti iš naujo kaip"
-
-msgid "&XML"
-msgstr "&XML"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Atša&ukti\tCtrl+Z"
@@ -531,9 +543,6 @@ msgstr "&Kopijuoti\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "Pažymėti &skirtumą"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "R&asti...\tCtrl+F"
@@ -700,17 +709,26 @@ msgstr "Įdėti &sinchronizavimo tašką\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Išvalyti sinc&hronizavino taškus"
 
+msgid "Unpac&ker"
+msgstr "Išpa&kuotojas"
+
 msgid "&Prediffer"
 msgstr "&Parengėjas"
 
-msgid "&Scripts"
-msgstr "&Skriptai"
+msgid "Apply Pre&differ..."
+msgstr "Taikyti paren&gėją..."
+
+msgid "&Transform with editor script..."
+msgstr "&Transformuoti su redaktoriaus skriptu..."
 
 msgid "Sp&lit"
 msgstr "Pada&linti"
 
 msgid "Comp&are"
 msgstr "Lyg&inti"
+
+msgid "Compare in new &window"
+msgstr "Lyginti naujame &lange"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Lyginti ne hor&izontaliai..."
@@ -796,11 +814,8 @@ msgstr "&Slėpti elementus"
 msgid "&Open Left"
 msgstr "&Atverti kairįjį"
 
-msgid "with &External Editor"
-msgstr "su išoriniu r&edaktoriumi"
-
-msgid "Open &Parent Folder..."
-msgstr "Atverti &tėvinį katalogą..."
+msgid "With &External Editor"
+msgstr "Su išoriniu r&edaktoriumi"
 
 msgid "Open Midd&le"
 msgstr "Atverti &vidurinį"
@@ -870,14 +885,20 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
+msgid "Unpacker Settings"
+msgstr "Išpakuotojo nuostatos"
+
+msgid "<None>"
+msgstr "<Nėra>"
+
+msgid "<Automatic>"
+msgstr "<Automatinis>"
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
+
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"
-
-msgid "&No prediffer"
-msgstr "&Nėra parengėjo"
-
-msgid "Auto prediffer"
-msgstr "Automatinis parengėjas"
 
 msgid "G&o to Diff"
 msgstr "Pereiti prie skirtum&o"
@@ -900,17 +921,23 @@ msgstr "I&gnoruoti pokyčius"
 msgid "Ig&nore all"
 msgstr "Ig&noruoti visus"
 
+msgid "Ignore blan&k lines"
+msgstr "Nepaisyti &tuščių eilučių"
+
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
 
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
+msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
 
 msgid "Ignore num&bers"
 msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
@@ -993,9 +1020,6 @@ msgstr "Rasti..."
 msgid " Folder: Filter"
 msgstr " Katalogams: Filtras"
 
-msgid "&Select..."
-msgstr "Pa&rinkti..."
-
 msgid " File: Unpacker Plugin"
 msgstr " Failams: Išpakuotojas"
 
@@ -1044,17 +1068,11 @@ msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Gerai“ paspaudimo"
 
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "Lango „Atverti“ automatinis už&pildymas:"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 
 msgid "Language:"
 msgstr "Kalba:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
-
-msgid "Reset"
-msgstr "Atkurti"
 
 msgid "Find"
 msgstr "Rasti"
@@ -1293,20 +1311,32 @@ msgstr "Perkelti a&ukštyn"
 msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
-msgid "Select Unpacker"
-msgstr "Parinkti išpakuotoją"
+msgid "Select Plugin"
+msgstr "Pasirinkite papildinį"
 
-msgid "File unpacker:"
-msgstr "Failo išpakuotojas:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Rodyti visus išpakuotojus netikrinant plėtinių."
+msgid "Plugin &Name:"
+msgstr "Papildinio pavadini&mas:"
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
 
 msgid "Description:"
 msgstr "Aprašas:"
+
+msgid "Default arguments:"
+msgstr "Numatytieji argumentai:"
+
+msgid "Display all plugins, don't check the extension."
+msgstr "Rodyti visus papildinius netikrinant plėtinių."
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "P&o išpakavimo atidaryti failus to paties tipo lange."
+
+msgid "&Plugin Pipeline:"
+msgstr "&Papildinio komandų grandinė:"
+
+msgid "&Add pipe"
+msgstr "Pridėti k&analą"
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -1361,12 +1391,6 @@ msgstr "&Ignoruoti pokyčius"
 
 msgid "I&gnore all"
 msgstr "I&gnoruoti visus"
-
-msgid "Ignore blan&k lines"
-msgstr "Nepaisyti &tuščių eilučių"
-
-msgid "Ignore c&omment differences"
-msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -1424,6 +1448,12 @@ msgstr "Ž&odžių skirtukų simboliai:"
 
 msgid "&Rendering Mode:"
 msgstr "Atvaizdavimo &režimas:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
+
+msgid "Reset"
+msgstr "Atkurti"
 
 msgid "File Filters"
 msgstr "Failo filtrai"
@@ -1485,10 +1515,10 @@ msgstr "Numatytoji koduotė"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Parinkite numatytąją koduotę, kuri bus naudojama įkeliant ne Unicode failus:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Aptikti koduotę šiems failams: .html, .rc, .xml\nReikės restartuoti sesiją."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Aptikti šio tipo failų koduotę: .html, .rc, .xml\nReikės restartuoti sesiją."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
 
 msgid "System codepage"
@@ -1773,6 +1803,12 @@ msgstr "Įjungti &papildinius"
 msgid "File filters:"
 msgstr "Failų filtrai:"
 
+msgid "&Plugin arguments:"
+msgstr "&Papildinio argumentai:"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "Papildiniui įjungti &automatinį išpakavimą/parengimą"
+
 msgid "Shell Integration"
 msgstr "Integr. Windows aplinkoje"
 
@@ -1799,7 +1835,7 @@ msgstr "Išregistruoti aplinkos p&lėtinį tik šiam naudotojui"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "Katalogų"
 
 msgid "S&top after first difference"
 msgstr "Sus&toti radus pirmą skirtumą"
@@ -1807,8 +1843,8 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
-msgid "&Include unique subfolders contents"
-msgstr "Įtraukt&i unikalų pakatalogių turinį"
+msgid "Include &unique subfolders contents"
+msgstr "Įtraukti &unikalų pakatalogių turinį"
 
 msgid "&Automatically expand all subfolders"
 msgstr "&Automatiškai išskleisti visus pakatalogius"
@@ -1839,7 +1875,7 @@ msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "Binarinių"
 
 msgid "Binary File &Patterns:"
 msgstr "Binarinių failų š&ablonai:"
@@ -1922,9 +1958,6 @@ msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge failų lyginimas"
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge katalogų lyginimas"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr "Kūrėjai:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Žinyno“ meniu punkte „GNU Bendroji viešoji licencija“."
 
@@ -1964,8 +1997,8 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano dalyje „Bendros“ esantį mygtuką „Atkurti“."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -1978,6 +2011,9 @@ msgstr "Katalogų lyginimo"
 
 msgid "Differences"
 msgstr "Skirtumų"
+
+msgid "Message Boxes"
+msgstr "Bendrų pranešimų"
 
 msgid "To:"
 msgstr "Į:"
@@ -2047,6 +2083,12 @@ msgstr "Failo tipas"
 
 msgid "Extension"
 msgstr "Plėtinys"
+
+msgid "Message"
+msgstr "Pranešimas"
+
+msgid "Answer"
+msgstr "Atsakymas"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2123,6 +2165,9 @@ msgstr "Jų failas"
 msgid "Mine File"
 msgstr "Mano failas"
 
+msgid "Original File"
+msgstr "Pradinis failas"
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d  EPF: %s"
@@ -2134,6 +2179,10 @@ msgstr "Eilutė: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  Paž: %d | %d"
 
 msgid "Merge"
 msgstr "Sulieti"
@@ -2249,15 +2298,15 @@ msgstr "Failo įrašyti nepavyko.\n%1\n%2\rAr norite:\n\t- panaudoti kitą failo
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų kairiajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų viduriniame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Papildinys '%2' negali supakuoti pakeitimų dešiniajame faile atgal į '%1'.\n\nOriginalus failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
+msgstr "Papildinys '%2' negali supakuoti pakeitimų dešiniajame faile atgal į '%1'.\n\nPradinis failas nebus pakeistas.\n\nAr norite išpakuotą versiją išsaugoti kitame faile?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -2418,7 +2467,7 @@ msgstr "Failas"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Katalogas"
 
 msgid "Comparison result"
 msgstr "Lyginimo rezultatas"
@@ -2506,7 +2555,13 @@ msgstr "Ignoruoti skirtumai"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binarinis"
+
+msgid "Unpacker"
+msgstr "Išpakuotojas"
+
+msgid "Prediffer"
+msgstr "Parengėjas"
 
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
@@ -2700,6 +2755,12 @@ msgstr "Skirtumų skaičius faile. Šis skaičius neapima ignoruotų skirtumų."
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Rodyti žvaigždutę (*) jei failas yra binarinis."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr "Išpakuotojo papildinio pavadinimas arba komandų grandinė."
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "Paruošėjo papildinio pavadinimas arba komandų grandinė."
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Lyginti %1 su %2"
@@ -2765,6 +2826,12 @@ msgstr "Ar norite pereiti prie kito puslapio?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "Ar norite pereiti prie praeito puslapio?"
+
+msgid "Do you want to move to the first file?"
+msgstr "Ar norite pereiti prie pirmo failo?"
+
+msgid "Do you want to move to the last file?"
+msgstr "Ar norite pereiti prie paskutinio failo?"
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
@@ -2860,9 +2927,6 @@ msgstr "Nurodykite failą rezultatams."
 msgid "Cannot create a patch file from binary files."
 msgstr "Negalima kurti pataisų failo iš binarinių failų."
 
-msgid "Cannot create a patch file from directories."
-msgstr "Negalima kurti pataisų failo iš katalogų."
-
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr "Pirmiausia išsaugokite visus failus.\n\nPataisos kūrimui reikia, kad failuose nebūtų neišsaugotų pakeitimų."
 
@@ -2898,7 +2962,7 @@ msgstr "Mišrus"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binarinių"
 
 msgid "None"
 msgstr "Nėra"
@@ -2912,12 +2976,6 @@ msgstr "Naujas šablonas"
 
 msgid "Type"
 msgstr "Tipas"
-
-msgid "Unpacker"
-msgstr "Išpakavimo programa"
-
-msgid "Prediffer"
-msgstr "Parengėjas"
 
 msgid "Editor script"
 msgstr "Redaktoriaus skriptas"
@@ -2976,14 +3034,14 @@ msgstr "\nAutomatinis suliejimas (Ctrl+Alt+M)"
 msgid "\nFirst File"
 msgstr "\nPirmas failas"
 
-msgid "\nNext File"
-msgstr "\nKitas failas"
+msgid "\nNext File (Ctrl+F8)"
+msgstr "\nKitas failas (Ctrl+F8)"
 
 msgid "\nLast File"
 msgstr "\nPaskutinis failas"
 
-msgid "\nPrevious File"
-msgstr "\nPraeitas failas"
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
@@ -3016,12 +3074,6 @@ msgstr "Papildinio nuostatos"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nerastas WSH - .sct skriptai išjungti"
-
-msgid "<None>"
-msgstr "<Nėra>"
-
-msgid "<Automatic>"
-msgstr "<Automatinis>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3120,71 +3172,71 @@ msgstr "Tik MDI antrinį langą"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Skirtumai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Paryškinti"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Mirksi"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Bloko dydis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Bloko alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD slenkstis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Skirtumų aptikimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nėra"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikaliai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaliai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Perdengimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa sl. suliejimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa sl. animacija"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Mastelis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Psl.:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -3199,12 +3251,20 @@ msgid "Dist: %g, %g  "
 msgstr "Dist: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Psl.: %d/%d  Mastelis: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "St.: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "Apversta: %s  "
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr "Pasukta: %d  "
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"
@@ -3236,3 +3296,130 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
 
+msgid "Al&l"
+msgstr "Visi"
+
+msgid "Prettification"
+msgstr "Sutvarkymas"
+
+msgid "Content Extraction"
+msgstr "Turinio ištraukimas"
+
+msgid "Visualization"
+msgstr "Vizualizavimas"
+
+msgid "Data Query"
+msgstr "Duomenų užklausa"
+
+msgid "Validation"
+msgstr "Patikra"
+
+msgid "&Others"
+msgstr "Kiti"
+
+msgid "Make Uppercase"
+msgstr "Pakeisti didžiosiomis raidėmis"
+
+msgid "Make Lowercase"
+msgstr "Pakeisti mažosiomis raidėmis"
+
+msgid "Remove Duplicate Lines"
+msgstr "Šalinti besidubliuojančias eilutes"
+
+msgid "Count Duplicate Lines"
+msgstr "Skaičiuoti besidubliuojančias eilutes"
+
+msgid "Sort Lines Ascending"
+msgstr "Rikiuoti eilutes didėjimo tvarka"
+
+msgid "Sort Lines Descending"
+msgstr "Rikiuoti eilutes mažėjimo tvarka"
+
+msgid "Reverse Columns"
+msgstr "Sukeisti stulpelius"
+
+msgid "Reverse Lines"
+msgstr "Sukeisti eilutes"
+
+msgid "Replace..."
+msgstr "Pakeisti..."
+
+msgid "Apply Filter Command..."
+msgstr "Pritaikyti filtro komandą..."
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr "Šalinti tarpus"
+
+msgid "Select Columns..."
+msgstr "Pažymėti stulpelius..."
+
+msgid "Select Lines..."
+msgstr "Pažymėti eilutes..."
+
+msgid "Insert Date"
+msgstr "Įterpti datą"
+
+msgid "Insert Time"
+msgstr "Įterpti laiką"
+
+msgid "Apply Patch..."
+msgstr "Taikyti pataisą..."
+
+msgid "Ignore Columns"
+msgstr "Ignoruoti stulpelius"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Ignoruoti komentarus (C šeimos kalbos)"
+
+msgid "Ignore CSV Fields"
+msgstr "Ignoruoti CSV laukus"
+
+msgid "Ignore TSV Fields"
+msgstr "Ignoruoti TSV laukus"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Taikyti parengėjo keitinių filtrus"
+
+msgid "Prettify HTML"
+msgstr "Sutvarkyti HTML"
+
+msgid "Prettify JSON"
+msgstr "Sutvarkyti JSON"
+
+msgid "Prettify XML"
+msgstr "Sutvarkyti XML"
+
+msgid "Prettify YAML"
+msgstr "Sutvarkyti YAML"
+
+msgid "Visualize Graphviz"
+msgstr "Vizualizuoti „Graphviz“"
+
+msgid "Query CSV Data..."
+msgstr "Pateikti CSV duomenų užklausą..."
+
+msgid "Query TSV Data..."
+msgstr "Pateikti TSV duomenų užklausą..."
+
+msgid "Query JSON Data..."
+msgstr "Pateikti JSON duomenų užklausą..."
+
+msgid "Query YAML Data..."
+msgstr "Pateikti YAML duomenų užklausą..."
+
+msgid "Validate HTML"
+msgstr "Patikrinti HTML"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Nurodykite papildinio argumentus"

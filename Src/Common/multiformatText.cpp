@@ -85,7 +85,7 @@ void storageForPlugins::SetDataFileEncoding(const String& filename, FileTextEnco
 }
 void storageForPlugins::SetDataFileUnknown(const String& filename, bool bOverwrite /*= false*/) 
 {
-	FileTextEncoding encoding = GuessCodepageEncoding(filename, 1);
+	FileTextEncoding encoding = codepage_detect::Guess(filename, 1);
 	SetDataFileEncoding(filename, encoding, bOverwrite);
 }
 
@@ -435,6 +435,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 			GetDestFileName();
 			TFile fileOut(m_tempFilenameDst);
 			fileOut.setSize(textForeseenSize);
+			if (textForeseenSize > 0)
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 

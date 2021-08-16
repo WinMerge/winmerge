@@ -55,8 +55,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Изабери различите редове\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Истакни &разлику реда\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -81,6 +82,14 @@ msgstr "&Умножи"
 msgid "&Paste"
 msgstr "&Налепи"
 
+#, c-format
+msgid "&Scripts"
+msgstr "&Скрипте "
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Празан >"
+
 msgid "&Go to...\tCtrl+G"
 msgstr "&Иди на...\tCtrl+G"
 
@@ -102,6 +111,9 @@ msgstr ""
 
 msgid "&With..."
 msgstr "&Са"
+
+msgid "Open &Parent Folder..."
+msgstr ""
 
 msgid "S&hell Menu"
 msgstr ""
@@ -141,6 +153,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip V&ertically"
+msgstr ""
+
+msgid "Flip H&orizontally"
 msgstr ""
 
 #, c-format
@@ -194,7 +218,7 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 #, c-format
@@ -255,10 +279,6 @@ msgstr "Последње поређење"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Празан >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Изла&з\tCtrl+Q"
@@ -411,8 +431,8 @@ msgid "Ri&ght Read-only"
 msgstr "Само за читање - д&есна"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Де&кодирање датотеке..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -513,7 +533,7 @@ msgid "Com&pare Statistics..."
 msgstr "Упореди статистику..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "О&свежи\tF5"
 
 #, c-format
@@ -630,16 +650,8 @@ msgid "Re&load\tCtrl+F5"
 msgstr ""
 
 #, c-format
-msgid "&File Encoding..."
-msgstr "Де&кодирање датотеке..."
-
-#, c-format
 msgid "Reco&mpare As"
 msgstr ""
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -660,10 +672,6 @@ msgstr "Умно&жи\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Налепи\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Истакни &разлику реда\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -880,13 +888,18 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Дефинисано поређење"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Скрипте "
+msgid "Apply Pre&differ..."
+msgstr ""
+
+msgid "&Transform with editor script..."
+msgstr ""
 
 msgid "Sp&lit"
 msgstr ""
@@ -894,6 +907,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Упореди"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -995,11 +1011,8 @@ msgid "&Open Left"
 msgstr "&Отвори леву"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "са др&угим уређивачем"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Cа др&угим уређивачем"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1081,17 +1094,24 @@ msgstr "&Умножи путању"
 msgid "Copy &Filename"
 msgstr "Умножи на&зив датотеке"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ништа>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Аутоматски>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Изабери..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Својства дефинисаног поређења"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Нема дефинисаног поређења"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Аутоматски дефиниши поређење"
 
 msgid "G&o to Diff"
 msgstr "Иди &на разлику"
@@ -1121,6 +1141,10 @@ msgid "Ig&nore all"
 msgstr "За&немари све"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Занемари пра&зне редове"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Занемари под&ударност"
 
@@ -1133,6 +1157,9 @@ msgid "Ignore codepage &differences"
 msgstr ""
 
 msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1234,10 +1261,6 @@ msgstr "Преглед..."
 msgid " Folder: Filter"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&Изабери..."
-
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1297,19 +1320,12 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Отвори дијалог самодовршења"
 
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
-
-#, c-format
-msgid "Reset"
-msgstr "Почетни"
 
 #, c-format
 msgid "Find"
@@ -1612,15 +1628,10 @@ msgstr "Помери &горе"
 msgid "Move &Down"
 msgstr "Помери &доле"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Избор архивера"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Архивер датотека"
-
-msgid "Display all unpackers, don't check the extension."
+msgid "Plugin &Name:"
 msgstr ""
 
 #, c-format
@@ -1630,6 +1641,21 @@ msgstr "Попис наставака:"
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension."
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1696,13 +1722,6 @@ msgstr "Занемар&и промене"
 #, c-format
 msgid "I&gnore all"
 msgstr "Зане&мари све"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Занемари пра&зне редове"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1775,6 +1794,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
+
+#, c-format
+msgid "Reset"
+msgstr "Почетни"
 
 msgid "File Filters"
 msgstr ""
@@ -1854,12 +1880,12 @@ msgstr "Подразумевана кодна страница"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
 " Није потребно поново покретање сесије."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2227,6 +2253,12 @@ msgstr "Омогући додатк&е"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Интегриши у 'љуску'"
@@ -2259,7 +2291,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "Фасцикла"
 
 #, c-format
 msgid "S&top after first difference"
@@ -2270,7 +2302,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Занемари разлике времена мање &од 3 секунде"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2305,7 +2337,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "Бинарни"
 
 #, c-format
 msgid "Binary File &Patterns:"
@@ -2438,11 +2470,6 @@ msgstr ""
 "WinMerge.Упореди фасциклу\n"
 "WinMerge упореди фасциклу"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Програмери:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge је програм БЕЗ ГАРАНЦИЈЕ.Ово је бесплатан програм  који можете даље делити према GNU јавној лиценци коју погледајте у датотеци /Помоћ/"
@@ -2495,7 +2522,7 @@ msgstr "Изост&ави све"
 msgid "Don't display this &message again."
 msgstr "Не приказуј ову поруку поново"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2511,6 +2538,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Разлике"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2602,6 +2632,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Наставак"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -2736,6 +2772,9 @@ msgstr "Њихове датотеке"
 msgid "Mine File"
 msgstr "Моје датотеке"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
@@ -2746,6 +2785,10 @@ msgstr "Ред: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3156,7 +3199,7 @@ msgstr "Име датотеке"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Фасцикла"
 
 #, c-format
 msgid "Comparison result"
@@ -3271,7 +3314,15 @@ msgstr "Занемари разлике"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Бинарни"
+
+#, c-format
+msgid "Unpacker"
+msgstr "Распакивање"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Дефинисано поређење"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3516,6 +3567,12 @@ msgstr "Број разлика у датотеци.Овај број не ук�
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Приказује звездицу (*), ако је датотека бинарна"
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Упореди %1 са %2"
@@ -3615,6 +3672,12 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the previous page?"
+msgstr ""
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
 msgstr ""
 
 #, c-format
@@ -3726,10 +3789,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Не може створити датотеку разлика из бинарних датотека"
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Не може поправити датотеку из фасцикли"
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3789,7 +3848,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Бинарни"
 
 #, c-format
 msgid "None"
@@ -3805,14 +3864,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Врста"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Распакивање"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Дефинисано поређење"
 
 #, c-format
 msgid "Editor script"
@@ -3889,13 +3940,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3935,14 +3986,6 @@ msgstr "Подешавања додатака"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH није нађен - .sct скрипте су онемогућене"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ништа>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Аутоматски>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4134,11 +4177,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4172,3 +4223,130 @@ msgstr "Дозволи само једну покренуту надлежнос
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

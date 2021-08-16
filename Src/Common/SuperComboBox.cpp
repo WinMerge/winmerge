@@ -506,7 +506,13 @@ static DWORD WINAPI SHGetFileInfoThread(LPVOID pParam)
 	// If SHGetFileInfo() fails, intentionally leave sfi.iIcon as 0 (indicating
 	// a file of inspecific type) so as to not obstruct CBEIF_DI_SETITEM logic.
 	if (!sPath.IsEmpty())
-		SHGetFileInfo(sPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+	{
+		if (SUCCEEDED(CoInitialize(nullptr)))
+		{
+			SHGetFileInfo(sPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+			CoUninitialize();
+		}
+	}
 	sPath.~CString();
 	return sfi.iIcon;
 }

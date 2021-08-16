@@ -180,6 +180,7 @@ TEST_P(DirFrameTest, ViewFont)
 
 TEST_P(DirFrameTest, ViewSwapPanes)
 {
+	Sleep(200);
 	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 	selectMenuAndSaveWindowImage(ID_SWAPPANES_SWAP12);
 }
@@ -235,7 +236,7 @@ TEST_P(DirFrameTest, ToolsGenerateReport)
 
 }
 
-INSTANTIATE_TEST_CASE_P(DirFrameTestInstance,
+INSTANTIATE_TEST_SUITE_P(DirFrameTestInstance,
 	DirFrameTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

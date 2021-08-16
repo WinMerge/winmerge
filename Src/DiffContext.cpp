@@ -101,7 +101,7 @@ bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex)
 	if (!dfi.Update(filepath))
 		return false;
 	UpdateVersion(di, nIndex);
-	dfi.encoding = GuessCodepageEncoding(filepath, m_iGuessEncodingType);
+	dfi.encoding = codepage_detect::Guess(filepath, m_iGuessEncodingType);
 	return true;
 }
 
@@ -235,7 +235,8 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
-	assert(m_piPluginInfos != nullptr);
+	if (!m_piPluginInfos)
+		return;
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 
@@ -247,3 +248,39 @@ bool CDiffContext::ShouldAbort() const
 {
 	return m_piAbortable!=nullptr && m_piAbortable->ShouldAbort();
 }
+
+/**
+ * @brief Get actual compared paths from DIFFITEM.
+ * @param [in] pCtx Pointer to compare context.
+ * @param [in] di DiffItem from which the paths are created.
+ * @param [out] left Gets the left compare path.
+ * @param [out] right Gets the right compare path.
+ * @note If item is unique, same path is returned for both.
+ */
+void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) const
+{
+	int nDirs = GetCompareDirs();
+
+	tFiles.SetSize(nDirs);
+
+	for (int nIndex = 0; nIndex < nDirs; nIndex++)
+	{
+		if (di.diffcode.exists(nIndex))
+		{
+			tFiles.SetPath(nIndex,
+				paths::ConcatPath(GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
+		}
+		else
+		{
+			tFiles.SetPath(nIndex, _T("NUL"), false);
+		}
+	}
+}
+
+String CDiffContext::GetFilteredFilenames(const DIFFITEM& di) const
+{
+	PathContext paths;
+	GetComparePaths(di, paths);
+	return GetFilteredFilenames(paths);
+}
+

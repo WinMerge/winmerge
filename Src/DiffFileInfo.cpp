@@ -15,6 +15,7 @@
 void DiffFileInfo::ClearPartial()
 {
 	DirItem::ClearPartial();
+	version.Clear();
 	encoding.Clear();
 	m_textStats.clear();
 }

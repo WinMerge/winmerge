@@ -124,7 +124,8 @@ TEST_P(MainFrameTest, FileOpenConflict)
 	HWND hwndSave = selectOpenDialogMenuAndSaveDialogImage(ID_WINDOW_CLOSEALL);
 	if (hwndSave)
 	{
-		typeAltPlusKey('R');
+		setFocusDlgItem(findForegroundDialog(), IDC_SAVECLOSING_DISCARDALL);
+		typeKey(' ');
 		waitUntilClose(hwndSave);
 	}
 }
@@ -309,7 +310,7 @@ TEST_P(MainFrameTest, HelpAbout)
 
 }
 
-INSTANTIATE_TEST_CASE_P(MainFrameTestInstance,
+INSTANTIATE_TEST_SUITE_P(MainFrameTestInstance,
 	MainFrameTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

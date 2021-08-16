@@ -1,5 +1,387 @@
 # Change log
 
+## WinMerge 2.16.14 - 2021-07-25
+
+### General
+
+- Fixed an issue where the WinMerge process might not terminate even though the
+    WinMerge window was closed.
+
+### File compare
+
+- BugFix: Fixed an infinite loop when "find what" in the substitution filters
+   is empty.
+
+### Folder compare
+
+- BugFix: Fix an issue where a file is deselected when returning to the folder
+    compare window after opening the file compare window by double-clicking
+    the file in the folder compare window. (PR #857)
+- Right click context menu - Compare files or folders in a new tab (#232,#277)
+
+### Binary compare
+
+- BugFix: Fixed an issue where window titles may not be updated
+
+### Image compare
+
+- winmerge shows (differences) rotated image (winmerge/winimerge #20)
+- Added following menu items to the context menu
+  - Rotate Right 90deg
+  - Rotate Left 90deg
+  - Flip Vertically
+  - Flip Horizontally
+
+### Options dialog
+
+- Add preference option to clear "Don't ask this question again"
+    CompareLargeFiles choice (#772, PR #859)
+
+### Select Files or Folders dialog
+
+- BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: "This picture only contains a bitmap" was
+    displayed when comparing Excel files that contain shapes.
+- BugFix: CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+    (#853)
+- Improve plugin system (editor script) (PR #871)
+- New unpacker plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - ValidateHTML
+  - QueryYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- New editor script plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- Updated Apache Tika to version 2.0.0
+- Updated yq to version 4.11.1
+
+### Command line
+
+- Added /l command line option (osdn.net #41528)
+- Added /t, /table-delimiter, /new, /fileext and /inifile command line option
+
+### Installer
+
+- Installer integrates with TortoiseGit and TortoiseSVN despite being told not
+    to (#878)
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #850)
+  - Dutch (PR #842,#893)
+  - Galician (PR #869)
+  - German (PR #860,#870,#883,#890)
+  - Hungarian (PR #845,#856,#897)
+  - Japanese
+  - Lithuanian (PR #840,#849,#866,#875,#879,#894)
+  - Portuguese (PR #846,#872,#898)
+  - Slovenian (#858)
+  - Russian (PR #847)
+  - Turkish (PR #848)
+
+### Internals
+
+- BugFix: WinMerge doesn't build under Visual Studio 16.10.2 (#841)
+- BugFix: x64: LINK : warning LNK4010: invalid subsystem version number 5.01;
+    default subsystem version assumed (#855)
+- BugFix: Project: heksedit cl : command line warning D9002: ignoring unknown
+    option '/arch:SSE' (#861)
+- BugFix:ALL.vs2019.sln cl : command line warning D9035: option 'Gm' has been
+    deprecated and will be removed in a future release (#862)
+- Resolves: Add continuous code security and quality analysis (PR #844, #843)
+- Improvement: Add check and error mesage in DownloadDeps.cmd that path to
+    7-zip exists (#864)
+
+## WinMerge 2.16.13 - 2021-06-22
+
+### General
+
+- BugFix: Register.bat did not work properly on the Chinese version of
+    Windows XP (#780)
+- Possibility to store settings in INI file (#248) (PR #750)
+- FeatureRequest - Ignoring options - lack in "button menu" (#804)
+
+### File compare
+
+- BugFix: Fix PHP syntax highlighting. (PR #782, PR #802)
+- BugFix: BS key did not work at the beginning of the line after splitting
+    the pane or clicking the OK button in the Options dialog.
+- BugFix: The edited contents were discarded when the "Recompare As" menu item
+    was selected after editing the file
+- BugFix: Incorrect comparison (#834)
+    (This bug occured when enabling both the 'Ignore blank lines' option and
+     the 'Completely unhighlight the ignored differences' option.)
+- Add Smarty syntax highlighting. (PR #821)
+- Thicken the caret in overwrite mode (osdn.net #42179)
+
+### Folder compare
+
+- BugFix: Different Files are Identical? (#768)
+    (When comparing files with only BOM and no contents, the comparison result
+     became unstable because it referred to the uninitialized memory.)
+- BugFix: Fix a crash when re-comparing folders (osdn.net #42219)
+
+### Binary compare
+
+- BugFix: The file could not be saved after creating a new one
+- Made Unpacker plugins available for image compare and binary compare
+
+### Image compare
+
+- BugFix: Error on try to show differences between two different gif (#784)
+- Made Unpacker plugins available for image compare and binary compare
+
+### Plugins
+
+- Improve plugin system (PR #797)
+  - Added categorized Unpacker plugin menu items to various menus 
+  - Made it possible to specify multiple Unpacker/Prediffer plugins by
+      concatenating them with | and to specify arguments.
+  - Allowed Unpacker/Prediffer plugins to be specified for multiple files at
+      once in Folder Compare window. The specified plugin will be visible in
+      the Unpacker and Prediffer columns
+  - Add "(U)" or "(P)" to the tab title of the window opened by the
+      Unpacker/Prediffer plugin.
+  - Allowed the plugin settings dialog to specify default arguments that will
+      be used when no plugin arguments are specified
+  - Allowed plugins used by Automatic Unpacking/Prediffing to be excluded in
+      the plugin settings dialog
+  - New unpacker plugins:
+    - ApacheTika
+    - PrettifyJSON
+    - PrettifyXML
+    - QueryCSV
+    - QueryTSV
+    - QueryJSON
+    - MakeUpper
+    - MakeLower
+    - RemoveDuplicates
+    - CountDuplicates
+    - SortAscending
+    - SortDescending
+    - ExecFilterCommand
+    - Tokenize
+    - Trim
+    - VisualizeGraphviz
+  - New editor script plugins:
+    - RemoveDuplicates
+    - CountDuplicates
+    - Tokenize
+    - Trim
+    - ApacheTika
+    - PrettifyJSON
+    - PrettifyXML
+
+### Translations
+
+- BugFix: Fix an issue where a message is not translated.(PR #763)
+- Translation updates:
+  - French (PR #762)
+  - Japanese
+  - Polish (PR #769)
+  - Turkish (PR #803)
+  - Russian (PR #761)
+
+### Internals
+
+- Update CWindowsManagerDialog (PR #811)
+- Update CWindowsManagerDialog - check some pointers for null and made safe
+    casts (PR #824)
+
+## WinMerge 2.16.12 - 2021-04-29
+
+### General
+
+- GUI textstrings: grammatical corrections (PR #722)
+- Added ARM64 support
+
+### File compare
+
+- BugFix: Fix PHP syntax highlighting. (PR #751)
+- BugFix: Strings in a multi-line diff block were not be replaced correctly
+    when the substitution filters' regular expression contained ^
+- BugFix: Font size restoration with Ctrl+0 key did not work properly in
+    Hi-DPI environment
+- BugFix: Fixed a rare crash when enabling syntax highlight
+- BugFix: Fixed an issue where inline scripts in HTML files were not
+    highlighted correctly
+- Make the width of the 'Find what' label in Find dialog a little wider
+    (osdn.net #42063)
+- Fix conflicting accelerators (osdn.net #42064) 
+- [Feature Request] Selection Count on Status Bar (#135)
+- Add C# 6.0 reserved words to style list (PR #719)
+- FR: Add a shortcut key go to next file (#721)
+- Update PHP syntax highlighting keyword list. (PR #724)
+- autoit.cpp - Macros >> User 1 ..... Variable >> User 2 (PR #749)
+- autoit.cpp - #CS #CE support (PR #753)
+- Interrupt a inline diff process when it takes too long
+- Make the color of characters that represent spaces and tabs lighter than
+    other characters when the "View Whitespace" menu item is enabled
+- Added "Open Parent Folder" menu item to the context menu
+
+### Folder compare
+
+- BugFix: Copy confirmation dialog has overlapped Yes/No Button (#739)
+- BugFix: Comparison result was not updated by Swap operation in 3-way folder
+    comparison (osdn.net #41901)
+
+### Binary compare
+
+- BugFix: Next File or Previous File button on the toolbar did not work if the
+    active window was a binary compare window or an image compare window.
+- BugFix: Only one pane was zoomed in/out in Ctrl+Mouse Wheel
+
+### Image compare
+
+- BugFix: Next File or Previous File button on the toolbar did not work if the
+    active window was a binary compare window or an image compare window.
+- BugFix: The header bar widths were not calculated properly when the
+    'Split Vertically' menu item is unchecked.
+
+### Open dialog
+
+- Make archive files openable as binary files from the pull-down menu.
+
+### Archive support
+
+- BugFix: Fixed a rare crash when decompressing an archive file
+
+### Plugins
+
+- BugFix: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and
+    DisplayXMLFiles (#755)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #711,#728,#729)
+  - Dutch (PR #706)
+  - Galician (PR #737)
+  - German (PR #718,#752)
+  - Hungarian (PR #712)
+  - Japanese
+  - Korean (PR #709)
+  - Lithuanian (PR #708,#713,#738,#754)
+  - Portuguese (PR #725)
+  - Slovenian
+  - Swedish (PR #720,#723)
+  - Russian (PR #707)
+
+## WinMerge 2.16.11 - 2021-03-28
+
+### General
+
+- Make all OK strings same case (PR #593)
+- Tab bar: Added shadows to help distinguish between active and inactive tabs
+- Added drop-down menu to Open and Save icon on toolbar 
+
+### File compare
+
+- BugFix: Basic syntax highlighter is broken (osdn.net #41440)
+- BugFix: File is corrupted while saving differences in changed file (Ctrl+S)
+    (#607)
+- BugFix: Fix an issue where the syntax highlighting scheme is not applied to
+    the split second File pane and the Diff pane when changing it.
+    (PR #624)
+- BugFix: The position selected by clicking while holding down the shift key is
+    incorrect. (sf.net #2237)
+- BugFix: Fix an issue where the comment filter might not work properly if the
+    file is non-UTF-8 and the comment contains non-ascii characters.
+- Add a feature to set up default highlighting by a file extension
+    (PR #627)
+- Add "Copy Selected Line(s) to/from Left/Right" feature (#463)
+    (PR #642)
+- If -b or -w is also specified, -B now considers lines to be empty if they
+    contain only white space (osdn.net #41355)
+- Added BOM checkbox to the Codepage dialog.
+
+### Folder compare
+
+- BugFix: Program crash if you close a tab with the folder from where you
+    opened current file (#645)
+- BugFix: The title bar path was not updated when swapping files in a Zip file.
+- BugFix: The codepage specified in the Codepage dialog did not affect the
+    files to be opened.
+
+### Image compare
+
+- BugFix: The image on the right does not open if the file exists only on the
+    right (osdn.net #41721)
+
+### Open dialog
+
+- Added Text, Table, Binary and Image menu items to the Compare button in the
+    "Select Files or Folders" window
+
+### Archive support
+
+- Rar5 support (#644)
+
+### Options dialog
+
+- BugFix: Fix an issue where custom colors are not saved.
+    (PR #648)
+
+### Plugins
+
+- RCLocalizationHelper: Fix memory leaks (PR #596)
+
+### Installer
+
+- Installer issue with Polish diacritics characters (#589)
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #599,#625)
+  - Brazilian (PR #633)
+  - French (PR #637,#649,#658,#659)
+  - Galician (PR #587,#650,#677)
+  - German (PR #632,#651)
+  - Hungarian (PR #682,#683,#685)
+  - Japanese
+  - Lithuanian (PR #634,#653)
+  - Polish (PR #597,#673)
+  - Portuguese (PR #674)
+  - Slovenian
+  - Russian (PR #588)
+
+### Command line
+
+- Single instance mode does not work when launched from Visual Studio 2019
+    (#622)
+    (Added /sw command line option)
+
+### Internals
+
+- BugFix: Plugins\src_VCPP\VCPPPlugins.vs2017.sln can't open projects any
+    more because in revision 69455da the projects were renamed. (#598)
+- BugFix: OutputFile of plugin project DisplayXMLFiles is different that the
+    other projects (#600)
+- BugFix: WinMergeScript.rgs files in Plugins\src_VCPP projects are not found.
+    (#605)
+- BugFix: typeinfoex.h(189): warning C4701: potentially uninitialized local
+    variable 'pTypeLib' used (#605)
+- BugFix: Plugins project DisplayXMLFiles.vcxproj contains
+    "Unicode Release MinSize" configuration but was removed (#611)
+- Expression is always true (#612,PR #613)
+- Plugins.cpp function SearchScriptForMethodName can be improved (#690)
+
 ## WinMerge 2.16.10 - 2021-01-30
 
 ### General
@@ -56,6 +438,11 @@
 - Implement copy and paste images (GitHub PR #524)
 - Added File -> New -> Image menu item
 - Added Image -> Compare Extracted Text From Image menu item
+
+### Options dialog
+  
+  - Fix an issue where custom colors are not saved.
+    (GitHub PR #648)
 
 ### Filter dialog
 
@@ -120,7 +507,7 @@
   - BugFix: Fix the problem accessing the text buffer out of range if a sync
       point is added by selecting a ghost line that is after the last block.
       (GitHub PR #457)
-  - BugFix: Fix the problem that "Goto...", "Goto Line <line>" and moving by
+  - BugFix: Fix the problem that "Goto...", "Goto Line &lt;line&gt;" and moving by
       left click on the location pane do not work appropriately when the Diff
       pane is active in the file compare window. (GitHub PR #476)
   - BugFix: Reloading file does not refresh its encoding (GitHub #466)
@@ -952,7 +1339,7 @@
   - Make plugins configurable with settings dialog of each plugin
 
 ### Filters
-  - Update *.flt files for Visual Studio 2015 and 2017
+  - Update \*.flt files for Visual Studio 2015 and 2017
 
 ### Shell extension
   - Display another WinMerge icon in Explorer's context menu when a folder is

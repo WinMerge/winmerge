@@ -54,7 +54,8 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
 msgstr "Valitse riviero\tF4"
 
 msgid "Add this change to Substitution &Filters"
@@ -80,6 +81,14 @@ msgstr "&Kopioi"
 msgid "&Paste"
 msgstr "Lii&tä"
 
+#, c-format
+msgid "&Scripts"
+msgstr "Skriptit"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Tyhjä >"
+
 msgid "&Go to...\tCtrl+G"
 msgstr "&Siirry...\tCtrl+G"
 
@@ -101,6 +110,9 @@ msgstr "Ulkois&ella editorilla\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Ohjelmalla..."
+
+msgid "Open &Parent Folder..."
+msgstr ""
 
 msgid "S&hell Menu"
 msgstr "&Liittymävalikko"
@@ -141,6 +153,18 @@ msgstr "Seu&raava sivu"
 #, c-format
 msgid "&Active Pane"
 msgstr "&Aktiivinen ruutu"
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip V&ertically"
+msgstr ""
+
+msgid "Flip H&orizontally"
+msgstr ""
 
 #, c-format
 msgid "&Zoom"
@@ -193,7 +217,7 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 #, c-format
@@ -255,10 +279,6 @@ msgstr "Viimeiset projektit"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Viimeaikaiset t&iedostot tai kansiot"
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Tyhjä >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Poistu\tCtrl+Q"
@@ -411,8 +431,8 @@ msgid "Ri&ght Read-only"
 msgstr "Oikea vain luku"
 
 #, c-format
-msgid "File En&coding..."
-msgstr "Tiedoston &koodaus..."
+msgid "&File Encoding..."
+msgstr "Tiedoston koodaus..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -513,7 +533,7 @@ msgid "Com&pare Statistics..."
 msgstr "Vertaa tilastoja..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Päivitä\tF5"
 
 #, c-format
@@ -630,16 +650,8 @@ msgid "Re&load\tCtrl+F5"
 msgstr "&Lataa uudelleen\tCtrl+F5"
 
 #, c-format
-msgid "&File Encoding..."
-msgstr "Tiedoston koodaus..."
-
-#, c-format
 msgid "Reco&mpare As"
 msgstr "Vertaa uudelleen"
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -660,10 +672,6 @@ msgstr "Kopioi\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Valitse riviero\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -882,13 +890,18 @@ msgstr "Lisää &synkronointipiste\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "Poista syn&kronointipisteet"
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "Esivertailu"
 
-#, c-format
-msgid "&Scripts"
-msgstr "Skriptit"
+msgid "Apply Pre&differ..."
+msgstr ""
+
+msgid "&Transform with editor script..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -897,6 +910,9 @@ msgstr "J&aa"
 #, c-format
 msgid "Comp&are"
 msgstr "Vertaa"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -998,11 +1014,8 @@ msgid "&Open Left"
 msgstr "Avaa vasen"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "ulkoisella &editorilla"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Ulkoisella &editorilla"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1084,17 +1097,24 @@ msgstr "Kopioi täysi polku"
 msgid "Copy &Filename"
 msgstr "Kopioi tiedostonimi"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "<Ei mitään>"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automaattinen>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Valitse..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Ei esivertailua"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automaattinen esivertailu"
 
 msgid "G&o to Diff"
 msgstr "Siirry eroon"
@@ -1124,6 +1144,10 @@ msgid "Ig&nore all"
 msgstr "Hylkää kaikki"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ohita tyhjät rivit"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
 
@@ -1136,6 +1160,9 @@ msgid "Ignore codepage &differences"
 msgstr "Ohita koodisivuerot"
 
 msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1246,10 +1273,6 @@ msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
 
 #, c-format
-msgid "&Select..."
-msgstr "Valitse..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Tiedosto: Purkaja-lisäosa"
 
@@ -1310,19 +1333,12 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Sulje \"Valitse tiedostot tai kansiot\" dialogi klikkaamalla OK"
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Avaa valintaikkuna 'Automaattinen täydennys':"
 
 #, c-format
 msgid "Language:"
 msgstr "Kieli:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
-
-#, c-format
-msgid "Reset"
-msgstr "Palauta"
 
 #, c-format
 msgid "Find"
@@ -1627,16 +1643,11 @@ msgstr "Siirrä ylös"
 msgid "Move &Down"
 msgstr "Siirrä alas"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Valitse purkaja"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Tiedoston purkaja:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Näytä kaikki purkajat, älä tarkista tiedostopäätettä."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1656,21 @@ msgstr "Päätelista:"
 #, c-format
 msgid "Description:"
 msgstr "Kuvaus:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension."
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1713,13 +1739,6 @@ msgstr "Hylkää muutos"
 #, c-format
 msgid "I&gnore all"
 msgstr "Hylkää kaikki"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ohita tyhjät rivit"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1792,6 +1811,13 @@ msgstr "Sanakatk&on merkit:"
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
+
+#, c-format
+msgid "Reset"
+msgstr "Palauta"
 
 msgid "File Filters"
 msgstr ""
@@ -1872,12 +1898,12 @@ msgstr "Koodisivu (oletus)"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Tunnista koodisivutiedot näille tiedostoille: .html, .rc, .xml\n"
 "vaatii istunnon uudelleen käynnistyksen."
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Tunnista teksti tiedostojen koodisivu käyttämällä Mlang.dll-tiedostoa\n"
 "istunto on käynnistettävä uudelleen."
@@ -2248,6 +2274,12 @@ msgstr "Ota laajennukset käyttöön"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Shell integraatio"
@@ -2280,7 +2312,7 @@ msgstr "Poista &liittymälaajennuksen rekisteröinti vain nykyiseltä käyttäj�
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "Kansio"
 
 #, c-format
 msgid "S&top after first difference"
@@ -2291,7 +2323,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Jätä alle 3 sekunnin aikaerot huomiotta"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr "S&isällytä yksilölliset alikansioiden sisällöt"
 
 #, c-format
@@ -2327,7 +2359,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "Binääri"
 
 #, c-format
 msgid "Binary File &Patterns:"
@@ -2480,13 +2512,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Kehittäjät:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMergellä ei ole MITÄÄN TAKUUTA. Tämä on ilmainen ohjelmisto ja voit jakaa sen uudelleen tietyissä olosuhteissa; lisätietoja on Ohje-valikon GNU General Public License-osiossa."
@@ -2539,8 +2564,8 @@ msgstr "Ohita kaikki"
 msgid "Don't display this &message again."
 msgstr "Älä näytä tätä ilmoitusta uudestaan."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "Jos haluat, että tämä sanomaruutu on jälleen näkyvissä, paina Asetukset-ikkunan Yleiset-sivun Palauta-painiketta."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -2555,6 +2580,9 @@ msgstr "Kansiovertailu"
 #, c-format
 msgid "Differences"
 msgstr "Erilaisuudet"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2646,6 +2674,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Pääte"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -2780,6 +2814,9 @@ msgstr "Niiden tiedosto"
 msgid "Mine File"
 msgstr "Minun tiedosto"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2791,6 +2828,10 @@ msgstr "Rivi: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
 
 #, c-format
 msgid "Merge"
@@ -3202,7 +3243,7 @@ msgstr "Tiedostonimi"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Kansio"
 
 #, c-format
 msgid "Comparison result"
@@ -3317,7 +3358,15 @@ msgstr "Ohitetut erot"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binääri"
+
+#, c-format
+msgid "Unpacker"
+msgstr "Purkaja"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Esivertailu"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3562,6 +3611,12 @@ msgstr "Erojen määrä tiedostossa. Tämä luku ei sisällä ohitettuja eroja."
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Näyttää tähden(*), jos tiedosto on binäärinen."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Vertaa %1 -> %2"
@@ -3661,6 +3716,12 @@ msgstr "Haluatko siirtyä seuraavalle sivulle?"
 #, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "Haluatko siirtyä edelliselle sivulle?"
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
 msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
@@ -3778,10 +3839,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Paikkaustiedostoa ei voi luoda binääritiedostoista."
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Paikkaustiedostoa ei voi luoda kansioista."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3841,7 +3898,7 @@ msgstr "Sekoitettu"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binääri"
 
 #, c-format
 msgid "None"
@@ -3857,14 +3914,6 @@ msgstr ""
 #, c-format
 msgid "Type"
 msgstr "Tyyppi"
-
-#, c-format
-msgid "Unpacker"
-msgstr "Purkaja"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Esivertailu"
 
 #, c-format
 msgid "Editor script"
@@ -4009,13 +4058,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -4059,14 +4108,6 @@ msgstr "Lisäosien asetukset"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ei löytynyt - .sct skriptit poistettu käytöstä"
-
-#, c-format
-msgid "<None>"
-msgstr "<Ei mitään>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automaattinen>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4264,11 +4305,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4302,3 +4351,130 @@ msgstr "Vain yksi instanssi kerrallaan"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

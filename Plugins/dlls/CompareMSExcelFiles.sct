@@ -15,6 +15,9 @@
 	<property name="PluginUnpackedFileExtension">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -48,6 +51,7 @@
 Option Explicit
 
 Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSExcelFiles.sct\"
+Const pbGroup = 6
 Dim MsgCannotGetMacros
 MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
 	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
@@ -166,7 +170,7 @@ Sub ungroupShapes(sht)
     Do
         cnt = sht.Shapes.Count
         For Each shp In sht.Shapes
-            shp.ungroup
+            If shp.Type = pbGroup Then shp.ungroup
         Next
     Loop While cnt <> sht.Shapes.Count
 End Sub
@@ -390,6 +394,10 @@ Function get_PluginUnpackedFileExtension()
 	get_PluginUnpackedFileExtension = ".tsv"
 End Function
 
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
+End Function
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim xl
@@ -576,9 +584,14 @@ End Function
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim mshta
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	Run wsh, "mshta.exe """ & tname & """"
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	If Not fso.FileExists(mshta) Then
+		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+	End If
+	Run wsh, """" & mshta & """ """ & tname & """"
 	fso.DeleteFile tname 
 End Function
 

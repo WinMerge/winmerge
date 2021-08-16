@@ -28,6 +28,7 @@ InnoSetup
 InstallShield
 Java
 JavaScript
+JSON
 Lua
 AutoLISP
 NSIS
@@ -41,6 +42,7 @@ Ruby
 Rust
 SGML
 SIOD
+Smarty
 SQL
 TCL
 TEX
@@ -80,3 +82,4 @@ CRLF
 &XOR
 &1:
 &2:
+&BOM

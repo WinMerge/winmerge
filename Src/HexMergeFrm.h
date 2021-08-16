@@ -32,7 +32,6 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
 	CHexMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 

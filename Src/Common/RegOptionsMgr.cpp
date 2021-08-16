@@ -9,8 +9,6 @@
 #include "RegOptionsMgr.h"
 #include <windows.h>
 #include <Shlwapi.h>
-#include <tchar.h>
-#include <vector>
 #include "varprop.h"
 #include "OptionsMgr.h"
 
@@ -18,6 +16,7 @@
 
 struct AsyncWriterThreadParams
 {
+	AsyncWriterThreadParams(const String& name, const varprop::VariantValue& value) : name(name), value(value) {}
 	String name;
 	varprop::VariantValue value;
 };
@@ -41,34 +40,6 @@ CRegOptionsMgr::~CRegOptionsMgr()
 			break;
 	}
 	DeleteCriticalSection(&m_cs);
-}
-
-/**
- * @brief Split option name to path (in registry) and
- * valuename (in registry).
- *
- * Option names are given as "full path", e.g. "Settings/AutomaticRescan".
- * This function splits that to path "Settings/" and valuename
- * "AutomaticRescan".
- * @param [in] strName Option name
- * @param [out] srPath Path (key) in registry
- * @param [out] strValue Value in registry
- */
-void CRegOptionsMgr::SplitName(const String &strName, String &strPath,
-	String &strValue) const
-{
-	size_t pos = strName.rfind('/');
-	if (pos != String::npos)
-	{
-		size_t len = strName.length();
-		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
-		strPath = strName.substr(0, pos);  //Left(pos);
-	}
-	else
-	{
-		strValue = strName;
-		strPath.erase();
-	}
 }
 
 HKEY CRegOptionsMgr::OpenKey(const String& strPath, bool bAlwaysCreate)
@@ -129,10 +100,8 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	BOOL bRet;
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
-		AsyncWriterThreadParams *pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
-		String strPath;
-		String strValueName;
-		pThis->SplitName(pParam->name, strPath, strValueName);
+		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
+		auto [strPath, strValueName] = COptionsMgr::SplitName(pParam->name);
 		EnterCriticalSection(&pThis->m_cs);
 		HKEY hKey = pThis->OpenKey(strPath, true);
 		SaveValueToReg(hKey, strValueName, pParam->value);
@@ -142,6 +111,40 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 		InterlockedDecrement(&pThis->m_dwQueueCount);
 	}
 	return 0;
+}
+
+int CRegOptionsMgr::LoadValueFromBuf(const String& strName, DWORD type, const BYTE* data, varprop::VariantValue& value)
+{
+	int retVal = COption::OPT_OK;
+	int valType = value.GetType();
+	if (type == REG_SZ && valType == varprop::VT_STRING )
+	{
+		value.SetString((TCHAR *)&data[0]);
+		retVal = Set(strName, value);
+	}
+	else if (type == REG_DWORD)
+	{
+		if (valType == varprop::VT_INT)
+		{
+			DWORD dwordValue;
+			CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
+			value.SetInt(dwordValue);
+			retVal = Set(strName, value);
+		}
+		else if (valType == varprop::VT_BOOL)
+		{
+			DWORD dwordValue;
+			CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
+			value.SetBool(dwordValue > 0 ? true : false);
+			retVal = Set(strName, value);
+		}
+		else
+			retVal = COption::OPT_WRONG_TYPE;
+	}
+	else
+		retVal = COption::OPT_WRONG_TYPE;
+
+	return retVal;
 }
 
 /**
@@ -161,16 +164,12 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	varprop::VariantValue &value)
 {
-	String strPath;
-	String strValueName;
 	LONG retValReg = 0;
 	std::vector<BYTE> data;
 	DWORD type = 0;
 	DWORD size = 0;
-	int valType = value.GetType();
 	int retVal = COption::OPT_OK;
-
-	SplitName(strName, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(strName);
 
 	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,
@@ -186,34 +185,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	}
 	
 	if (retValReg == ERROR_SUCCESS)
-	{
-		if (type == REG_SZ && valType == varprop::VT_STRING )
-		{
-			value.SetString((TCHAR *)&data[0]);
-			retVal = Set(strName, value);
-		}
-		else if (type == REG_DWORD)
-		{
-			if (valType == varprop::VT_INT)
-			{
-				DWORD dwordValue;
-				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
-				value.SetInt(dwordValue);
-				retVal = Set(strName, value);
-			}
-			else if (valType == varprop::VT_BOOL)
-			{
-				DWORD dwordValue;
-				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
-				value.SetBool(dwordValue > 0 ? true : false);
-				retVal = Set(strName, value);
-			}
-			else
-				retVal = COption::OPT_WRONG_TYPE;
-		}
-		else
-			retVal = COption::OPT_WRONG_TYPE;
-	}
+		return LoadValueFromBuf(strName, type, data.data(), value);
 	else
 		retVal = COption::OPT_ERR;
 
@@ -294,9 +266,7 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		return AddOption(name, defaultValue);
 
 	// Figure out registry path, for saving value
-	String strPath;
-	String strValueName;
-	SplitName(name, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(name);
 
 	// Open key.
 	EnterCriticalSection(&m_cs);
@@ -306,11 +276,11 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	// This just checks if the value exists, LoadValueFromReg() below actually
 	// loads the value.
 	DWORD type = 0;
-	DWORD size = MAX_PATH_FULL;
+	BYTE dataBuf[MAX_PATH_FULL];
+	DWORD size = sizeof(dataBuf);
 	LONG retValReg;
 	if (hKey)
 	{
-		BYTE dataBuf[MAX_PATH_FULL];
 		dataBuf[0] = 0;
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 			0, &type, dataBuf, &size);
@@ -329,12 +299,15 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 		{
 		}
 		// Value already exists so read it.
-		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
+		else if (retValReg == ERROR_SUCCESS)
+		{
+			varprop::VariantValue value(defaultValue);
+			retVal = LoadValueFromBuf(name, type, dataBuf, value);
+		}
+		else if (retValReg == ERROR_MORE_DATA)
 		{
 			varprop::VariantValue value(defaultValue);
 			retVal = LoadValueFromReg(hKey, name, value);
-			if (retVal == COption::OPT_OK)
-				retVal = Set(name, value);
 		}
 	}
 
@@ -371,7 +344,7 @@ int CRegOptionsMgr::InitOption(const String& name, int defaultValue, bool serial
 {
 	varprop::VariantValue defValue;
 	int retVal = COption::OPT_OK;
-	
+
 	defValue.SetInt(defaultValue);
 	if (serializable)
 		retVal = InitOption(name, defValue);
@@ -408,12 +381,10 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	int valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = COption::OPT_NOTFOUND;
-	
+
 	if (retVal == COption::OPT_OK)
 	{
-		AsyncWriterThreadParams *pParam = new AsyncWriterThreadParams();
-		pParam->name = name;
-		pParam->value = value;
+		auto* pParam = new AsyncWriterThreadParams(name, value);
 		InterlockedIncrement(&m_dwQueueCount);
 		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
 	}
@@ -481,11 +452,7 @@ int CRegOptionsMgr::SaveOption(const String& name, bool value)
 int CRegOptionsMgr::RemoveOption(const String& name)
 {
 	int retVal = COption::OPT_OK;
-
-	String strPath;
-	String strValueName;
-
-	SplitName(name, strPath, strValueName);
+	auto [strPath, strValueName] = SplitName(name);
 
 	if (!strValueName.empty())
 	{
@@ -495,7 +462,8 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	{
 		for (auto it = m_optionsMap.begin(); it != m_optionsMap.end(); )
 		{
-			if (it->first.find(strPath) == 0)
+			const String& key = it->first;
+			if (key.find(strPath) == 0 && key.length() > strPath.length() && key[strPath.length()] == '/')
 				it = m_optionsMap.erase(it);
 			else 
 				++it;
@@ -558,114 +526,5 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
 		retVal = COption::OPT_ERR;
 	}
 
-	return retVal;
-}
-
-/**
- * @brief Export options to file.
- *
- * This function enumerates through our options storage and saves
- * every option name and value to file.
- *
- * @param [in] filename Filename where optios are written.
- * @return
- * - COption::OPT_OK when succeeds
- * - COption::OPT_ERR when writing to the file fails
- */
-int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
-{
-	int retVal = COption::OPT_OK;
-	OptionsMap::const_iterator optIter = m_optionsMap.begin();
-	while (optIter != m_optionsMap.end() && retVal == COption::OPT_OK)
-	{
-		const String name(optIter->first);
-		String strVal;
-		varprop::VariantValue value = optIter->second.Get();
-		if (value.GetType() == varprop::VT_BOOL)
-		{
-			if (value.GetBool())
-				strVal = _T("1");
-			else
-				strVal = _T("0");
-		}
-		else if (value.GetType() == varprop::VT_INT)
-		{
-			if ( bHexColor && (strutils::makelower(name).find(String(_T("color"))) != std::string::npos) )
-				strVal = strutils::format(_T("0x%06x"), value.GetInt());
-			else
-				strVal = strutils::to_str(value.GetInt());
-		}
-		else if (value.GetType() == varprop::VT_STRING)
-		{
-			strVal = value.GetString();
-		}
-
-		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
-				strVal.c_str(), filename.c_str());
-		if (!bRet)
-			retVal = COption::OPT_ERR;
-		++optIter;
-	}
-	return retVal;
-}
-
-/**
- * @brief Import options from file.
- *
- * This function reads options values and names from given file and
- * updates values to our options storage. If valuename does not exist
- * already in options storage its is not created.
- *
- * @param [in] filename Filename where optios are written.
- * @return
- * - COption::OPT_OK when succeeds
- * - COption::OPT_NOTFOUND if file wasn't found or didn't contain values
- */
-int CRegOptionsMgr::ImportOptions(const String& filename)
-{
-	int retVal = COption::OPT_OK;
-	const int BufSize = 20480; // This should be enough for a long time..
-	TCHAR buf[BufSize] = {0};
-	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
-
-	// Query keys - returns NUL separated strings
-	DWORD len = GetPrivateProfileString(_T("WinMerge"), nullptr, _T(""),buf, BufSize, filename.c_str());
-	if (len == 0)
-		return COption::OPT_NOTFOUND;
-
-	TCHAR *pKey = buf;
-	while (*pKey != '\0')
-	{
-		varprop::VariantValue value = Get(pKey);
-		if (value.GetType() == varprop::VT_BOOL)
-		{
-			bool boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str()) == 1;
-			value.SetBool(boolVal);
-			SaveOption(pKey, boolVal);
-		}
-		else if (value.GetType() == varprop::VT_INT)
-		{
-			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
-			if (strutils::makelower(pKey).find(String(_T("color"))) != std::string::npos)
-				intVal = static_cast<int>(oleTranslateColor(static_cast<unsigned>(intVal)));
-			value.SetInt(intVal);
-			SaveOption(pKey, intVal);
-		}
-		else if (value.GetType() == varprop::VT_STRING)
-		{
-			TCHAR strVal[MAX_PATH_FULL] = {0};
-			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
-			value.SetString(strVal);
-			SaveOption(pKey, strVal);
-		}
-		Set(pKey, value);
-
-		pKey += _tcslen(pKey);
-
-		// Check: pointer is not past string end, and next char is not null
-		// double NUL char ends the keynames string
-		if ((pKey < buf + len) && (*(pKey + 1) != '\0'))
-			pKey++;
-	}
 	return retVal;
 }

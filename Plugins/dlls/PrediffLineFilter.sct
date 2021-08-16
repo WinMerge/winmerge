@@ -12,6 +12,9 @@
   <property name="PluginIsAutomatic">
     <get/>
   </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
   <method name="PrediffBufferW"/>
   <method name="ShowSettingsDialog"/>
 </implements>
@@ -66,6 +69,10 @@ Function get_PluginIsAutomatic()
   get_PluginIsAutomatic = True
 End Function
 
+Function get_PluginExtendedProperties()
+  get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
+End Function
+
 Function SafeUBound(ary)
   On Error Resume Next
   SafeUBound = -1
@@ -118,9 +125,14 @@ End Function
 Function ShowSettingsDialog()
   Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
   Dim tfile: Set tfile = fso.CreateTextFile(tname)
+  Dim mshta
   tfile.Write getResource("dialog1")
   tfile.Close
-  Run wsh, "mshta.exe """ & tname & """"
+  mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+  If Not fso.FileExists(mshta) Then
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+  End If
+  Run wsh, """" & mshta & """ """ & tname & """"
   fso.DeleteFile tname 
 End Function
 

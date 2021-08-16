@@ -18,7 +18,7 @@ Frhed=Frhed(Özgür onaltýlýk düzenleyici)
 WinIMerge=WinIMerge(Görsel Fark/Birleþtirme)
 ArchiveSupport=Arþiv Desteði
 ShellExtension32bit=32-bit WinMerge Kabuk Eklentisi
-Patch=GnuWin32 Windows Yamasý
+Commands=GnuWin32 Windows Yamasý/HTML Tidy/jq
 
 ;Localization Components
 Languages=Diller

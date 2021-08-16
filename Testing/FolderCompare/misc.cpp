@@ -4,7 +4,6 @@
 #include "unicoder.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
-#include <Windows.h>
 
 CRegOptionsMgr m_optionsMgr;
 
@@ -61,4 +60,8 @@ void AppErrorMessageBox(const String& msg)
 String tr(const std::string& str)
 {
 	return ucr::toTString(str);
+}
+
+void NTAPI LangTranslateDialog(HWND h)
+{
 }

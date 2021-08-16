@@ -46,18 +46,18 @@ public:
 	enum { IDD = IDD_OPEN };
 	CSuperComboBox	m_ctlExt;
 	CSuperComboBox	m_ctlPath[3];
+	CSuperComboBox	m_ctlUnpackerPipeline;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpacker;
+	String	m_strUnpackerPipeline;
 	//}}AFX_DATA
 
 // other public data
 	/// unpacker info
 	std::array<DWORD, 3> m_dwFlags;
-	PackingInfo m_infoHandler;
 
 // Attributes
 public:
@@ -95,13 +95,12 @@ public:
 
 protected:
 	void SetStatus(UINT msgID);
-	void SetUnpackerStatus(UINT msgID);
-	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
 	void LoadComboboxStates();
 	void SaveComboboxStates();
 	String AskProjectFileName(bool bOpen);
+	void DropDown(NMHDR *pNMHDR, LRESULT *pResult, UINT nID, UINT nPopupID);
 
 // Generated message map functions
 protected:
@@ -109,9 +108,13 @@ protected:
 	afx_msg void OnPathButton(UINT nID);
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
+	afx_msg void OnCompare(UINT nID);
+	afx_msg void OnUpdateCompare(CCmdUI *pCmdUI);
 	afx_msg void OnLoadProject();
 	afx_msg void OnSaveProject();
-	afx_msg void OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult);
+	template<UINT id, UINT popupid>
+	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
@@ -123,7 +126,6 @@ protected:
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnOptions();
-	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnEditAction(int msg, WPARAM wParam, LPARAM LPARAM);
 	template <int MSG, int WPARAM = 0, int LPARAM = 0>

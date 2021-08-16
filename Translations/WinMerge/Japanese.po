@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-01-26 14:41+0900\n"
+"PO-Revision-Date: 2021-07-11 12:59+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -40,19 +40,19 @@ msgid "Copy fro&m Right"
 msgstr "右側からコピー(&M)"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "選択した行を右側にコピー"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "選択した行を左側にコピー"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "選択した行を左からコピー"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "選択した行を右からコピー"
 
-msgid "&Select Line Difference\tF4"
-msgstr "行内差異を選択(&S)\tF4"
+msgid "Select Line &Difference\tF4"
+msgstr "行内差異を選択(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "この差異を置換フィルターに追加する(&F)"
@@ -71,6 +71,12 @@ msgstr "コピー(&C)"
 
 msgid "&Paste"
 msgstr "貼り付け(&P)"
+
+msgid "&Scripts"
+msgstr "スクリプト(&S)"
+
+msgid "< Empty >"
+msgstr "< なし >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "移動(&G)...\tCtrl+G"
@@ -92,6 +98,9 @@ msgstr "外部エディターで(&E)\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "プログラムの選択(&W)..."
+
+msgid "Open &Parent Folder..."
+msgstr "親フォルダーを開く(&P)..."
 
 msgid "S&hell Menu"
 msgstr "シェルメニュー(&H)"
@@ -125,6 +134,18 @@ msgstr "次ページ(&N)"
 
 msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
+
+msgid "Rotate &Right 90deg"
+msgstr "右へ90度回転(&R)"
+
+msgid "Rotate &Left 90deg"
+msgstr "左へ90度回転(&L)"
+
+msgid "Flip V&ertically"
+msgstr "上下反転(&E)"
+
+msgid "Flip H&orizontally"
+msgstr "左右反転(&O)"
 
 msgid "&Zoom"
 msgstr "拡大(&Z)"
@@ -167,8 +188,8 @@ msgstr "垂直ワイプ(&V)"
 msgid "&Horizontal Wipe"
 msgstr "水平ワイプ(&H)"
 
-msgid "&Rectangle Select"
-msgstr "矩形選択(&R)"
+msgid "Rectangle &Select"
+msgstr "矩形選択(&S)"
 
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
@@ -217,9 +238,6 @@ msgstr "最近使用したプロジェクト"
 
 msgid "Recent F&iles Or Folders"
 msgstr "最近使用したファイルまたはフォルダー(&I)"
-
-msgid "< Empty >"
-msgstr "< なし >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "終了(&X)\tCtrl+Q"
@@ -335,8 +353,8 @@ msgstr "中央を読み取り専用(&I)"
 msgid "Ri&ght Read-only"
 msgstr "右側を読み取り専用(&G)"
 
-msgid "File En&coding..."
-msgstr "ファイル エンコーディング(&C)..."
+msgid "&File Encoding..."
+msgstr "ファイル エンコーディング(&F)..."
 
 msgid "Select &All\tCtrl+A"
 msgstr "すべて選択(&A)\tCtrl+A"
@@ -416,8 +434,8 @@ msgstr "1 番目と &3 番目を交換"
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
-msgid "Refre&sh\tF5"
-msgstr "最新の情報に更新(&S)\tF5"
+msgid "Refresh\tF5"
+msgstr "最新の情報に更新\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "選択項目を最新に更新(&R)\tCtrl+F5"
@@ -506,14 +524,8 @@ msgstr "マージモード(&G)\tF9"
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
 
-msgid "&File Encoding..."
-msgstr "ファイル エンコーディング(&F)..."
-
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
-
-msgid "&XML"
-msgstr "XML(&X)"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
@@ -529,9 +541,6 @@ msgstr "コピー(&C)\tCtrl+C"
 
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
-
-msgid "Select Line &Difference\tF4"
-msgstr "行内差異を選択(&D)\tF4"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"
@@ -698,17 +707,26 @@ msgstr "同期ポイントの追加(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "同期ポイントのクリア(&H)"
 
+msgid "Unpac&ker"
+msgstr "展開プラグイン(&K)"
+
 msgid "&Prediffer"
 msgstr "比較前処理プラグイン(&P)"
 
-msgid "&Scripts"
-msgstr "スクリプト(&S)"
+msgid "Apply Pre&differ..."
+msgstr "比較前処理プラグインを適用(&D)..."
+
+msgid "&Transform with editor script..."
+msgstr "エディタスクリプトで変換(&T)..."
 
 msgid "Sp&lit"
 msgstr "分割(&L)"
 
 msgid "Comp&are"
 msgstr "比較(&A)"
+
+msgid "Compare in new &window"
+msgstr "新しいウインドウで比較(&W)"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "非水平的に比較する(&I)..."
@@ -794,11 +812,8 @@ msgstr "選択項目を非表示(&H)"
 msgid "&Open Left"
 msgstr "左側を開く(&O)"
 
-msgid "with &External Editor"
+msgid "With &External Editor"
 msgstr "外部エディターで(&E)"
-
-msgid "Open &Parent Folder..."
-msgstr "親フォルダーを開く(&P)..."
 
 msgid "Open Midd&le"
 msgstr "中央を開く(&L)"
@@ -868,14 +883,20 @@ msgstr "フルパスをコピー(&C)"
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
+msgid "Unpacker Settings"
+msgstr "展開プラグイン設定"
+
+msgid "<None>"
+msgstr "<なし>"
+
+msgid "<Automatic>"
+msgstr "<自動>"
+
+msgid "&Select..."
+msgstr "選択(&S)..."
+
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
-
-msgid "&No prediffer"
-msgstr "使用しない(&N)"
-
-msgid "Auto prediffer"
-msgstr "自動"
 
 msgid "G&o to Diff"
 msgstr "差異へ移動(&O)"
@@ -898,6 +919,9 @@ msgstr "変更を無視(&G)"
 msgid "Ig&nore all"
 msgstr "すべて無視(&N)"
 
+msgid "Ignore blan&k lines"
+msgstr "空行を無視する(&K)"
+
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
@@ -909,6 +933,9 @@ msgstr "コードページの違いを無視する(&D)"
 
 msgid "Ignore num&bers"
 msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr "コメントの違いを無視する(&O)"
 
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
@@ -991,9 +1018,6 @@ msgstr "参照..."
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
 
-msgid "&Select..."
-msgstr "選択(&S)..."
-
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
 
@@ -1042,17 +1066,11 @@ msgstr "起動時に [ファイルまたはフォルダーの選択] ダイア�
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "[OK] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
-msgid "O&pen-dialog Auto-Completion:"
-msgstr "[開く] ダイアログのオートコンプリート(&P):"
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "[開く] ダイアログのオートコンプリート(&E):"
 
 msgid "Language:"
 msgstr "言語:"
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
-
-msgid "Reset"
-msgstr "リセット"
 
 msgid "Find"
 msgstr "検索"
@@ -1295,20 +1313,32 @@ msgstr "上へ(&U)"
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
-msgid "Select Unpacker"
-msgstr "展開プラグインの選択"
+msgid "Select Plugin"
+msgstr "プラグインの選択"
 
-msgid "File unpacker:"
-msgstr "ファイル展開プラグイン:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "拡張子を無視してすべての展開プラグインを表示する。"
+msgid "Plugin &Name:"
+msgstr "プラグイン名(&N):"
 
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
 
 msgid "Description:"
 msgstr "説明:"
+
+msgid "Default arguments:"
+msgstr "デフォルト引数:"
+
+msgid "Display all plugins, don't check the extension."
+msgstr "拡張子を無視してすべてのプラグインを表示する。"
+
+msgid "&Open files in the same window type after unpacking."
+msgstr "展開プラグイン適用後、ファイルを同じウインドウタイプで開く。(&O)"
+
+msgid "&Plugin Pipeline:"
+msgstr "プラグインパイプライン(&P):"
+
+msgid "&Add pipe"
+msgstr "パイプを追加(&A)"
 
 msgid "Stop"
 msgstr "停止"
@@ -1363,12 +1393,6 @@ msgstr "変更を無視(&I)"
 
 msgid "I&gnore all"
 msgstr "すべて無視(&G)"
-
-msgid "Ignore blan&k lines"
-msgstr "空行を無視する(&K)"
-
-msgid "Ignore c&omment differences"
-msgstr "コメントの違いを無視する(&O)"
 
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
@@ -1426,6 +1450,12 @@ msgstr "単語区切り文字(&O)"
 
 msgid "&Rendering Mode:"
 msgstr "レンダリングモード(&R):"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
+
+msgid "Reset"
+msgstr "リセット"
 
 msgid "File Filters"
 msgstr "ファイルフィルター"
@@ -1488,14 +1518,14 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 msgid ""
-"Detect codepage info for these files: .html, .rc, .xml\n"
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
 msgid ""
-"Detect codepage for text files using mlang.dll\n"
+"Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
@@ -1783,6 +1813,12 @@ msgstr "プラグインを有効にする(&E)"
 msgid "File filters:"
 msgstr "ファイルフィルター:"
 
+msgid "&Plugin arguments:"
+msgstr "プラグイン引数(&P):"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "自動展開/自動比較前処理をこのプラグインで有効にする"
+
 msgid "Shell Integration"
 msgstr "シェル統合"
 
@@ -1809,7 +1845,7 @@ msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "フォルダー"
 
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
@@ -1817,8 +1853,8 @@ msgstr "最初の差異で比較を終了する(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
-msgid "&Include unique subfolders contents"
-msgstr "片方にしか存在しないサブフォルダー内も含める(&I)"
+msgid "Include &unique subfolders contents"
+msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 
 msgid "&Automatically expand all subfolders"
 msgstr "自動的にサブフォルダーを展開する(&A)"
@@ -1853,7 +1889,7 @@ msgstr "ファイルパターン:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "バイナリ"
 
 msgid "Binary File &Patterns:"
 msgstr "バイナリ ファイルとして扱うパターン(&P):"
@@ -1984,13 +2020,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 
@@ -2030,8 +2059,8 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般ページで [リセット] ボタンを押してください。"
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックスページで [リセット] ボタンを押してください。"
 
 msgid "Syntax"
 msgstr "シンタックス"
@@ -2044,6 +2073,9 @@ msgstr "フォルダー比較"
 
 msgid "Differences"
 msgstr "差異"
+
+msgid "Message Boxes"
+msgstr "メッセージボックス"
 
 msgid "To:"
 msgstr "To:"
@@ -2119,6 +2151,12 @@ msgstr "ファイルタイプ"
 
 msgid "Extension"
 msgstr "拡張子"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Answer"
+msgstr "回答"
 
 msgid "Name"
 msgstr "名前"
@@ -2235,6 +2273,9 @@ msgstr "Theirs File"
 msgid "Mine File"
 msgstr "Mine File"
 
+msgid "Original File"
+msgstr "元のファイル"
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"
@@ -2246,6 +2287,10 @@ msgstr "行: %s"
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  選択: %d | %d"
 
 msgid "Merge"
 msgstr "マージ"
@@ -2417,7 +2462,12 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
 "プラグイン '%2' は、修正内容を中央のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2651,7 +2701,7 @@ msgstr "名前"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "フォルダー"
 
 msgid "Comparison result"
 msgstr "比較結果"
@@ -2739,7 +2789,13 @@ msgstr "無視した差異数"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "バイナリ"
+
+msgid "Unpacker"
+msgstr "展開プラグイン"
+
+msgid "Prediffer"
+msgstr "比較前処理プラグイン"
 
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"
@@ -2895,7 +2951,7 @@ msgid "Middle side file version, only for some filetypes."
 msgstr "中央ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 msgid "Short comparison result."
-msgstr "短い形式の比較結果を表示です。"
+msgstr "短い形式の比較結果を表示します。"
 
 msgid "Left side attributes."
 msgstr "左側の属性です。"
@@ -2933,6 +2989,12 @@ msgstr "ファイル内の差異の数です。この数値は無視した差異
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "バイナリ ファイルの場合にアスタリスク (*) を表示します。"
 
+msgid "Unpacker plugin name or pipeline."
+msgstr "展開プラグイン名またはパイプラインを表示します。"
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "比較前処理プラグイン名またはパイプラインを表示します。"
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 と %2 の比較"
@@ -2950,7 +3012,7 @@ msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますが?"
+msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #, c-format
 msgid ""
@@ -3023,6 +3085,12 @@ msgstr "次のページに移動しますか?"
 
 msgid "Do you want to move to the previous page?"
 msgstr "前のページに移動しますか?"
+
+msgid "Do you want to move to the first file?"
+msgstr "最初のファイルに移動しますか?"
+
+msgid "Do you want to move to the last file?"
+msgstr "最後のファイルに移動しますか?"
 
 #, c-format
 msgid ""
@@ -3130,9 +3198,6 @@ msgstr "出力パスを指定してください。"
 msgid "Cannot create a patch file from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
 
-msgid "Cannot create a patch file from directories."
-msgstr "フォルダーからパッチ ファイルは生成できません。"
-
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3145,7 +3210,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "アーカイブ サポートが有効になっていません。\n"
 "アーカイブ サポートの為に必要なコンポーネント (7-Zip と Merge7z*.dll) が見つかりません。\n"
@@ -3183,7 +3251,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "バイナリ"
 
 msgid "None"
 msgstr "なし"
@@ -3197,12 +3265,6 @@ msgstr "新しいパターン"
 
 msgid "Type"
 msgstr "タイプ"
-
-msgid "Unpacker"
-msgstr "展開プラグイン"
-
-msgid "Prediffer"
-msgstr "比較前処理プラグイン"
 
 msgid "Editor script"
 msgstr "エディター スクリプト"
@@ -3326,25 +3388,33 @@ msgstr ""
 "\n"
 "自動マージ (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
+msgid ""
+"\n"
+"First File"
 msgstr ""
 "\n"
 "最初のファイル"
 
-msgid "\nNext File"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"次のファイル"
+"次のファイル (Ctrl+F8)"
 
-msgid "\nLast File"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
 "\n"
 "最後のファイル"
 
-msgid "\nPrevious File"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"前のファイル"
+"前のファイル (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
@@ -3381,12 +3451,6 @@ msgstr "プラグイン設定"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH が見つかりません - .sct スクリプトは無効化されました"
-
-msgid "<None>"
-msgstr "<なし>"
-
-msgid "<Automatic>"
-msgstr "<自動>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -3491,71 +3555,71 @@ msgstr "MDI子ウインドウのみ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "差異"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "差異表示"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "点滅"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "ブロックサイズ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "ブロック透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "色距離閾値"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "挿入/削除検出"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "垂直方向"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "水平方向"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "重ね合わせ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "アルファブレンド"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "アニメ表示"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "拡大"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "ページ:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -3570,12 +3634,20 @@ msgid "Dist: %g, %g  "
 msgstr "色距離: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
-msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "ページ: %d/%d  拡大: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
 msgstr "範囲: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "反転: %s  "
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr "回転: %d°  "
 
 msgid "<Edit here>"
 msgstr "<ここを編集>"
@@ -3605,5 +3677,132 @@ msgid "Allow only one instance to run"
 msgstr "1つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "1つのインスタンスを起動し、インスタンスの終了を待つ"
+msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
 
+msgid "Al&l"
+msgstr "すべて(&L)"
+
+msgid "Prettification"
+msgstr "整形"
+
+msgid "Content Extraction"
+msgstr "内容抽出"
+
+msgid "Visualization"
+msgstr "視覚化"
+
+msgid "Data Query"
+msgstr "データ問い合わせ"
+
+msgid "Validation"
+msgstr "検証"
+
+msgid "&Others"
+msgstr "その他(&O)"
+
+msgid "Make Uppercase"
+msgstr "大文字に変換"
+
+msgid "Make Lowercase"
+msgstr "小文字に変換"
+
+msgid "Remove Duplicate Lines"
+msgstr "重複行を削除"
+
+msgid "Count Duplicate Lines"
+msgstr "重複行をカウント"
+
+msgid "Sort Lines Ascending"
+msgstr "昇順にソート"
+
+msgid "Sort Lines Descending"
+msgstr "降順にソート"
+
+msgid "Reverse Columns"
+msgstr "列を逆順"
+
+msgid "Reverse Lines"
+msgstr "行を逆順"
+
+msgid "Replace..."
+msgstr "置換..."
+
+msgid "Apply Filter Command..."
+msgstr "フィルタコマンドを適用..."
+
+msgid "Tokenize..."
+msgstr "トークン分割..."
+
+msgid "Trim Spaces"
+msgstr "行頭行末の空白を削除"
+
+msgid "Select Columns..."
+msgstr "列の抽出..."
+
+msgid "Select Lines..."
+msgstr "行の抽出..."
+
+msgid "Insert Date"
+msgstr "日付を挿入"
+
+msgid "Insert Time"
+msgstr "時刻を挿入"
+
+msgid "Apply Patch..."
+msgstr "パッチ適用..."
+
+msgid "Ignore Columns"
+msgstr "指定列を無視"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "コメントを無視(C系言語)"
+
+msgid "Ignore CSV Fields"
+msgstr "CSVの指定列を無視"
+
+msgid "Ignore TSV Fields"
+msgstr "TSVの指定列を無視"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "比較前処理置換フィルタ"
+
+msgid "Prettify HTML"
+msgstr "HTML整形"
+
+msgid "Prettify JSON"
+msgstr "JSON整形"
+
+msgid "Prettify XML"
+msgstr "XML整形"
+
+msgid "Prettify YAML"
+msgstr "YAML整形"
+
+msgid "Visualize Graphviz"
+msgstr "Graphviz視覚化"
+
+msgid "Query CSV Data..."
+msgstr "CSVデータの問い合わせ..."
+
+msgid "Query TSV Data..."
+msgstr "TSVデータの問い合わせ..."
+
+msgid "Query JSON Data..."
+msgstr "JSONデータの問い合わせ..."
+
+msgid "Query YAML Data..."
+msgstr "YAMLデータの問い合わせ..."
+
+msgid "Validate HTML"
+msgstr "HTML検証"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "プラグインパイプラインにプラグイン名が指定されていません: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "プラグインパイプラインが引用符で閉じていません: %1"
+
+msgid "Specify plugin arguments"
+msgstr "プラグイン引数を指定してください"

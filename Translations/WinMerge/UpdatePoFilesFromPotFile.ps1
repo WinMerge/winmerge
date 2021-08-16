@@ -191,6 +191,7 @@ public class PoFileUpdater
             oPoFile.Write(oLanguage.sMsgId2);
             oPoFile.Write(oLanguage.sMsgStr2);
             oPoFile.Write("\n");
+            var i = 0;
             foreach (var sKey in oEnglishPotContent.Keys) //For all English content...
             {
                 if (sKey != "__head__")
@@ -211,8 +212,10 @@ public class PoFileUpdater
                     oPoFile.Write(oLanguage.sMsgCtxt2);
                     oPoFile.Write(oLanguage.sMsgId2);
                     oPoFile.Write(oLanguage.sMsgStr2);
-                    oPoFile.Write("\n");
+                    if (i < oEnglishPotContent.Count - 1)
+                        oPoFile.Write("\n");
                 }
+                i++;
             }
         }
     }

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
+#include <filesystem>
+#include "Environment.h"
 #include "paths.h"
 
 // Expects that C:\Temp exists for creating temporary testing files.
@@ -92,9 +93,8 @@ namespace
 	}
 	TEST_F(PathTest, Exists_files)
 	{
-		TCHAR path[_MAX_PATH];
 		const TCHAR path2[] = _T("notfound.txt");
-		GetModuleFileName(NULL, path, sizeof(path));
+		String path = env::GetProgPath() + _T("../README.md");
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::DOES_NOT_EXIST, paths::DoesPathExist(path2));
 	}
@@ -174,8 +174,7 @@ namespace
 	}
 	TEST_F(PathTest, Normalize_abspath3)
 	{
-		TCHAR curdir[_MAX_PATH];
-		GetCurrentDirectory(sizeof(curdir), curdir);
+		String curdir = std::filesystem::current_path().native();
 		String path(curdir, 2);
 		String path_orig = curdir;
 		paths::normalize(path);

@@ -15,6 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#if !__has_include(<Poco/RegularExpression.h>)
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -1206,5 +1207,7 @@ int main() {
     }
     return 0;
 }
+
+#endif
 
 #endif

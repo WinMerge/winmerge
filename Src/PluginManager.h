@@ -29,9 +29,10 @@ public:
 	typedef std::map<String, PluginFileInfoPtr> PluginFileInfoMap;
 
 	~PluginManager();
-	void SetPrediffSetting(const String& filteredFilenames, PLUGIN_MODE newsetting);
-	void SetPrediffSettingAll(PLUGIN_MODE newsetting);
-	void SetPrediffer(const String& filteredFilenames, const String& prediffer);
+	void Clear() { m_pluginSettings.clear(); };
+	void SetUnpackerSettingAll(bool automatic);
+	void SetPrediffSettingAll(bool automatic);
+	void SetPrediffer(const String& filteredFilenames, const String& predifferPipeline);
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 

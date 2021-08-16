@@ -23,7 +23,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(SubstitutionFiltersDlg)
-	enum { IDD = IDD_IGNORED_SUSBSTITUTIONS_DLG };
+	enum { IDD = IDD_FILTERS_SUBSTITUTIONFILTERS };
 	bool m_bEnabled;
 	//}}AFX_DATA
 
@@ -45,7 +45,6 @@ protected:
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
 	afx_msg void OnBnClickedRemovebtn();
-	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

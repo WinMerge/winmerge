@@ -145,8 +145,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 	if (m_diffList.GetSize() == 0 || IsEditedAfterRescan())
 		return;
 
-	CPoint ptStart, ptEnd;
-	pView->GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = pView->GetSelection();
 
 	const int nLineCount = m_ptBuf[nActivePane]->GetLineCount();
 	size_t nWordDiff = 0;

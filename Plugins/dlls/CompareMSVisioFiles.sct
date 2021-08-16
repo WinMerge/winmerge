@@ -12,6 +12,9 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -117,6 +120,9 @@ Function get_PluginIsAutomatic()
 	get_PluginIsAutomatic = True
 End Function
 
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Visio;MenuCaption=MS-Visio"
+End Function
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim vs
@@ -239,9 +245,14 @@ End Function
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim mshta
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	Run wsh, "mshta.exe """ & tname & """"
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	If Not fso.FileExists(mshta) Then
+		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+	End If
+	Run wsh, """" & mshta & """ """ & tname & """"
 	fso.DeleteFile tname 
 End Function
 

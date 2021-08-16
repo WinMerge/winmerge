@@ -39,15 +39,16 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_TIMER()
+	ON_WM_SIZE()
+	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
+	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	// [View] menu
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
-	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
-	ON_WM_SIZE()
-	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -254,7 +255,11 @@ BOOL CMergeEditFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMergeFrameCommon::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 /**
@@ -407,15 +412,6 @@ void CMergeEditFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI)
 	auto& wndSplitter = GetMergeEditSplitterWnd(0);
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck((wndSplitter.GetColumnCount() != 1));
-}
-
-/// Document commanding us to close
-void CMergeEditFrame::CloseNow()
-{
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	MDIActivate();
-	MDIDestroy();
 }
 
 /**

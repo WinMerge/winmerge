@@ -17,6 +17,10 @@ static const TCHAR LeftPath[] = _T("C:\\Temp\\Left");
 static const TCHAR RightPath[] = _T("C:\\Temp\\Right");
 /** @brief Filter we should get from file. */
 static const TCHAR Filter[] = _T("Filter Name");
+/** @brief Prediffer we should get from file. */
+static const TCHAR Prediffer[] = _T("IgnoreColumns.dll");
+/** @brief Unpacker we should get from file. */
+static const TCHAR Unpacker[] = _T("CompareMSExcelFiles.sct");
 
 namespace
 {
@@ -143,6 +147,32 @@ TEST_F(PathAndFilterTest, GetFilter)
 
 	String filter = m_pProjectFileItem->GetFilter();
 	ASSERT_TRUE(filter.compare(Filter) == 0);
+}
+
+/**
+ * @brief Read prediffer.
+ */
+TEST_F(PathAndFilterTest, GetPrediffer)
+{
+	// Now we have a prediffer
+	bool bHasPrediffer = m_pProjectFileItem->HasPrediffer();
+	ASSERT_TRUE(bHasPrediffer == true);
+
+	String prediffer = m_pProjectFileItem->GetPrediffer();
+	ASSERT_TRUE(prediffer.compare(Prediffer) == 0);
+}
+
+/**
+ * @brief Read unpacker.
+ */
+TEST_F(PathAndFilterTest, GetUnpacker)
+{
+	// Now we have a unpacker
+	bool bHasUnpacker = m_pProjectFileItem->HasUnpacker();
+	ASSERT_TRUE(bHasUnpacker == true);
+
+	String unpacker = m_pProjectFileItem->GetUnpacker();
+	ASSERT_TRUE(unpacker.compare(Unpacker) == 0);
 }
 
 }

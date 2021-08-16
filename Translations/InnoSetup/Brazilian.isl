@@ -11,19 +11,19 @@ CompactInstallation=Instalação Compacta
 CustomInstallation=Instalação Personalizada
 
 ;Components
-AppCoreFiles=Arquivos do Core do WinMerge
+AppCoreFiles=Arquivos do Núcleo do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed (editor hex Grátis)
+WinIMerge=WinIMerge (Diferenciar/Unir Imagens)
+ArchiveSupport=Suporte pra Arquivos Compactados
+ShellExtension32bit=Extensão do Shell de 32 bits do WinMerge
+Commands=Patch do GnuWin32 pra Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Idiomas
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
+ArabicLanguage=Menus e diálogos árabes
+BasqueLanguage=Menus e diálogos bascos
 BulgarianLanguage=Menus e diálogos búlgaros
 CatalanLanguage=Menus e diálogos catalãos
 ChineseSimplifiedLanguage=Menus e diálogos chineses	(simplificados)
@@ -34,29 +34,29 @@ DanishLanguage=Menus e diálogos dinamarqueses
 DutchLanguage=Menus e diálogos holandeses
 FinnishLanguage=Menus e diálogos finlandês
 FrenchLanguage=Menus e diálogos franceses
-GalicianLanguage=Galician menus and dialogs
+GalicianLanguage=Menus e diálogos galegos
 GermanLanguage=Menus e diálogos alemães
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
+GreekLanguage=Menus e diálogos gregos
+HungarianLanguage=Menus e diálogos húngaros
 ItalianLanguage=Menus e diálogos italianos
 JapaneseLanguage=Menus e diálogos japoneses
 KoreanLanguage=Menus e diálogos coreanos
 LithuanianLanguage=Menus e diálogos lituanos
 NorwegianLanguage=Menus e diálogos noruegueses
-PersianLanguage=Persian menus and dialogs
+PersianLanguage=Menus e diálogos persas
 PolishLanguage=Menus e diálogos poloneses
 PortugueseBrazilLanguage=Menus e diálogos portugueses (brasileiros)
 PortugueseLanguage=Menus e diálogos portugueses
 RomanianLanguage=Menus e diálogos romenos
 RussianLanguage=Menus e diálogos russos
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Menus e diálogos sinalis
+SerbianLanguage=Menus e diálogos sérvios
+SinhalaLanguage=Menus e diálogos cingalês
 SlovakLanguage=Menus e diálogos eslovacos
-SlovenianLanguage=Slovenian menus and dialogs
+SlovenianLanguage=Menus e diálogos eslovenos
 SpanishLanguage=Menus e diálogos espanhóis
 SwedishLanguage=Menus e diálogos suecos
 TurkishLanguage=Menus e diálogos turcos
-UkrainianLanguage=Ukrainian menus and dialogs
+UkrainianLanguage=Menus e diálogos ucranianos
 
 ;Tasks
 ExplorerContextMenu=&Ativar a integração com o menu de contexto do explorer
@@ -64,19 +64,19 @@ IntegrateTortoiseCVS=Integrar com o &TortoiseCVS
 IntegrateTortoiseGit=Integrar com o To&rtoiseGit
 IntegrateTortoiseSVN=Integrar com o T&ortoiseSVN
 IntegrateClearCase=Integrar com o Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Adicionar a pasta do WinMerge no seu caminho do sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=União tripla
+ThreeWayMergeWizardPageDescription=Você usa o WinMerge como uma ferramenta de união tripla pro TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Registra o WinMerge como uma ferramenta de união tripla
+MergeAtRightPane=Unir no painel direito
+MergeAtCenterPane=Unir no painel do centro
+MergeAtLeftPane=Unir no painel esquerdo
+AutoMergeAtStartup=Auto-unir no tempo da inicialização
 
 ;Icon Labels
-ReadMe=Leia Me
+ReadMe=Leia-me
 UsersGuide=Guia do Usuário
 ViewStartMenuFolder=&Visualizar a Pasta do Menu Iniciar do WinMerge
 

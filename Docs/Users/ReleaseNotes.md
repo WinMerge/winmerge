@@ -1,198 +1,222 @@
-# WinMerge 2.16.10 Release Notes
+# WinMerge 2.16.14 Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.10?](#what-is-new-in-21610)
-- [What Is New in 2.16.9 beta?](#what-is-new-in-2169-beta)
+- [What Is New in 2.16.14?](#what-is-new-in-21614)
+- [What Is New in 2.16.13 beta?](#what-is-new-in-21613-beta)
 - [Known issues](#known-issues)
 
-January 2021
+July 2021
 
 ## About This Release
 
-This is a WinMerge 2.16.10 stable release.
+This is a WinMerge 2.16.14 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
 
-## What Is New in 2.16.10
+## What Is New in 2.16.14
 
 ### General
 
-- BugFix: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)
-- BugFix: Fixed the problem that the language setting is not applied to the
-    context menu of the MDI tab when the language setting is changed. 
-    (GitHub PR #523)
-- BugFix: command-line option /x did not work for binary and image comparison
-- BugFix: Substiturions vs. Substitutions (GitHub #551)
-- Swap Panes functionality for 3 way compares (Issue #507) (GitHub PR #533)
-- [feature request] Add options to command line to change "compare methods"  
-    (GitHub #530)
-- Added the command line option "/s-" to ensure that another instance is
-    always executed, ignoring the value of the 'Allow only one instance to 
-    run' option.
+- Fixed an issue where the WinMerge process might not terminate even though the
+    WinMerge window was closed.
 
 ### File compare
 
-- BugFix: WinMerge crashes with mouse double click (GitHub #531)
-- BugFix: Fixed an issue where the message box "The report has been created
-    successfully." was displayed even if the report creation failed.
-- BugFix: BUG: Doesn't respect "Don't ask this question again" checkbox when
-    comparing large files (GitHub #574)
-- The Location pane doesn't draw a line connecting moved differences by
-    default (GitHub #498)
-- Update crystallineparser.cpp - AutoIt (\*.au3) support as a "Basic"
-    (GitHub PR #543)
-- s\_apszAutoItKeywordList[] - actualization for AutoIt (GitHub PR #584)
-- Added JavaScript and JSON syntax highligher (osdn.net #41083)
-- Added View -> Diff Context -> Invert menu item
-- Feature Request: Move To Next File option while comparing files #475
-    (GitHub PR #561)
-- A new feature "Ignored Substutions" (GitHub PR #544,#549,#560)
-  ("Ignored Substitutions" was renamed to "Substitution Filters")
+- BugFix: Fixed an infinite loop when "find what" in the substitution filters
+   is empty.
 
 ### Folder compare
 
-- BugFix: Winmerge crashes consistently when deleting files
-    (GitHub #491)
-- BugFix: Copy Folder does not copy subfolders and I don't see any option for it
-    (GitHub #537)
-
-### Table compare
-
-- Added File -> New -> Table menu item
+- BugFix: Fix an issue where a file is deselected when returning to the folder
+    compare window after opening the file compare window by double-clicking
+    the file in the folder compare window. (PR #857)
+- Right click context menu - Compare files or folders in a new tab (#232,#277)
 
 ### Binary compare
 
-- Added File -> New -> Binary menu item
+- BugFix: Fixed an issue where window titles may not be updated
 
 ### Image compare
 
-- Implement copy and paste images (GitHub PR #524)
-- Added File -> New -> Image menu item
-- Added Image -> Compare Extracted Text From Image menu item
+- winmerge shows (differences) rotated image (winmerge/winimerge #20)
+- Added following menu items to the context menu
+  - Rotate Right 90deg
+  - Rotate Left 90deg
+  - Flip Vertically
+  - Flip Horizontally
 
-### Filter dialog
+### Options dialog
 
-- Making CPropertySheet resizable needs some re-work. (Issue #509)
-    (GitHub PR #535)
-  
-### Patch Generator dialog
+- Add preference option to clear "Don't ask this question again"
+    CompareLargeFiles choice (#772, PR #859)
 
-- BugFix: Crash when generating patch (GitHub #521)
+### Select Files or Folders dialog
+
+- BugFix: Fix the Select Files or Folders dialog. (PR #882,#892)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: "This picture only contains a bitmap" was
+    displayed when comparing Excel files that contain shapes.
+- BugFix: CString rangestr = (argc > 0) ? argv[0] : GetColumnRangeString();
+    (#853)
+- Improve plugin system (editor script) (PR #871)
+- New unpacker plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - ValidateHTML
+  - QueryYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- New editor script plugins:
+  - PrettifyHTML
+  - PrettifyYAML
+  - SelectColumns
+  - SelectLines
+  - ReverseColumns
+  - ReverseLines
+  - Replace
+- Updated Apache Tika to version 2.0.0
+- Updated yq to version 4.11.1
+
+### Command line
+
+- Added /l command line option (osdn.net #41528)
+- Added /t, /table-delimiter, /new, /fileext and /inifile command line option
+
+### Installer
+
+- Installer integrates with TortoiseGit and TortoiseSVN despite being told not
+    to (#878)
 
 ### Translations
 
 - Translation updates:
-  - Dutch (GitHub #578,#579,#580)
-  - Galician (GitHub PR #493,#538,#570)
-  - German (GitHub PR #532,#548,#563,#585)
+  - Bulgarian (PR #850)
+  - Dutch (PR #842,#893)
+  - Galician (PR #869)
+  - German (PR #860,#870,#883,#890)
+  - Hungarian (PR #845,#856,#897)
   - Japanese
-  - Lithuanian (GitHub PR #496,#528,#536,#562,#564)
-  - Portuguese (GitHub PR #495)
-  - Slovenian (GitHub #553,#565)
-  - Russian (GitHub PR #494)
-
-### Manual
-
-- Update manual (GitHub PR #497,#513,#546)
-- Small tweaks for the Manual (GitHub PR #508)
-- Windows XP Pro SP0 vs Requirements (GitHub #515)
+  - Lithuanian (PR #840,#849,#866,#875,#879,#894)
+  - Portuguese (PR #846,#872,#898)
+  - Slovenian (#858)
+  - Russian (PR #847)
+  - Turkish (PR #848)
 
 ### Internals
 
-- Fix Various Warnings (GitHub PR #539)
-- Various fixes to testing (GitHub PR #545)
-- Some tweaks for translations status (GitHub PR #556)
-- Link error when `building Plugins\src_VCPP\DisplayXMLFiles` with Visual
-    Studio 2019 16.7.7 (GitHub #554)
-- Link error when building VCPP plugin DisplayXMLFiles with Visual Studio
-    2019 16.7.7 (GitHub #555)
-- Link warnings when building VCPP plugin DisplayXMLFiles with Visual Studio
-    2019 16.7.7 (GitHub #558)
-- Some more files should be added to the .gitignore file (GitHub #559)
+- BugFix: WinMerge doesn't build under Visual Studio 16.10.2 (#841)
+- BugFix: x64: LINK : warning LNK4010: invalid subsystem version number 5.01;
+    default subsystem version assumed (#855)
+- BugFix: Project: heksedit cl : command line warning D9002: ignoring unknown
+    option '/arch:SSE' (#861)
+- BugFix:ALL.vs2019.sln cl : command line warning D9035: option 'Gm' has been
+    deprecated and will be removed in a future release (#862)
+- Resolves: Add continuous code security and quality analysis (PR #844, #843)
+- Improvement: Add check and error mesage in DownloadDeps.cmd that path to
+    7-zip exists (#864)
 
-## What Is New in 2.16.9 Beta?
+## What Is New in 2.16.13 Beta
 
 ### General
 
-  - BugFix: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)
-  - BugFix: The icons on a 43" 4K screen are too small (GitHub #276)
-  - Update English.pot (GitHub #440)
-  - Update Merge.rc (GitHub #487)
-  - Improved startup time
+- BugFix: Register.bat did not work properly on the Chinese version of
+    Windows XP (#780)
+- Possibility to store settings in INI file (#248) (PR #750)
+- FeatureRequest - Ignoring options - lack in "button menu" (#804)
 
 ### File compare
 
-  - BugFix: [UI] Pane enlargement was reset after changing tab (GitHub #403)
-  - BugFix: Non-comment differences were sometimes ignored when the comment
-      filter was enabled, (osdn.net #40488)
-  - BugFix: Line Filters aren't applied when using a 3rd file (GitHub #395)
-  - BugFix: "Ignore blank lines" does not work in 3-way compare (GitHub #450)
-  - BugFix: Fix the problem that the comparison result is displayed one line
-      off in the file compare window if a sync point is added with the first
-      line selected. (GitHub PR #435)
-  - BugFix: Fix the problem accessing the text buffer out of range if a sync
-      point is added by selecting a ghost line that is after the last block.
-      (GitHub PR #457)
-  - BugFix: Fix the problem that "Goto...", "Goto Line <line>" and moving by
-      left click on the location pane do not work appropriately when the Diff
-      pane is active in the file compare window. (GitHub PR #476)
-  - BugFix: Reloading file does not refresh its encoding (GitHub #466)
-  - BugFix: Editor text display is abnormal - character spacing problem
-      (GitHub #468)
-  - always copy "full line" instead of "selected text only" - option
-      CopyFullLine (GitHub PR #459)
-  - Add the feature "Go to Moved Line" requested by #278 (GitHub PR #484)
-  - how to show white space with linebreak hidden? (GitHub #265)
-    (Added View->View EOL menu item)
+- BugFix: Fix PHP syntax highlighting. (PR #782, PR #802)
+- BugFix: BS key did not work at the beginning of the line after splitting
+    the pane or clicking the OK button in the Options dialog.
+- BugFix: The edited contents were discarded when the "Recompare As" menu item
+    was selected after editing the file
+- BugFix: Incorrect comparison (#834)
+    (This bug occured when enabling both the 'Ignore blank lines' option and
+     the 'Completely unhighlight the ignored differences' option.)
+- Add Smarty syntax highlighting. (PR #821)
+- Thicken the caret in overwrite mode (osdn.net #42179)
 
 ### Folder compare
 
-  - BugFix: Pausing comparing doesn't pause immediately (GitHub #342)
-  - BugFix: Sorting on Comparison Result being done incorectly (GitHub #483)
-  - Commandline to display versions in the output report (GitHub #418)
-  - "Don't ask again" checkbox for the Confirm Copy dialog (GitHub PR #445)
+- BugFix: Different Files are Identical? (#768)
+    (When comparing files with only BOM and no contents, the comparison result
+     became unstable because it referred to the uninitialized memory.)
+- BugFix: Fix a crash when re-comparing folders (osdn.net #42219)
 
 ### Binary compare
 
-  - BugFix: Scrolling binary files (GitHub #456)
+- BugFix: The file could not be saved after creating a new one
+- Made Unpacker plugins available for image compare and binary compare
 
-### Options dialog
-  
-  - Added "Automatically scroll to first inline difference" option to Options
-    dialog
+### Image compare
 
-### Patch Generator dialog
+- BugFix: Error on try to show differences between two different gif (#784)
+- Made Unpacker plugins available for image compare and binary compare
 
-  - BugFix: Fixed the problem that the input to File1 or File2 comboboxes of
-      the Patch Generator dialog is not applied when the Patch Generator dialog
-      is opened by selecting multiple files. (GitHub PR #421)
+### Plugins
+
+- Improve plugin system (PR #797)
+  - Added categorized Unpacker plugin menu items to various menus 
+  - Made it possible to specify multiple Unpacker/Prediffer plugins by
+      concatenating them with | and to specify arguments.
+  - Allowed Unpacker/Prediffer plugins to be specified for multiple files at
+      once in Folder Compare window. The specified plugin will be visible in
+      the Unpacker and Prediffer columns
+  - Add "(U)" or "(P)" to the tab title of the window opened by the
+      Unpacker/Prediffer plugin.
+  - Allowed the plugin settings dialog to specify default arguments that will
+      be used when no plugin arguments are specified
+  - Allowed plugins used by Automatic Unpacking/Prediffing to be excluded in
+      the plugin settings dialog
+  - New unpacker plugins:
+    - ApacheTika
+    - PrettifyJSON
+    - PrettifyXML
+    - QueryCSV
+    - QueryTSV
+    - QueryJSON
+    - MakeUpper
+    - MakeLower
+    - RemoveDuplicates
+    - CountDuplicates
+    - SortAscending
+    - SortDescending
+    - ExecFilterCommand
+    - Tokenize
+    - Trim
+    - VisualizeGraphviz
+  - New editor script plugins:
+    - RemoveDuplicates
+    - CountDuplicates
+    - Tokenize
+    - Trim
+    - ApacheTika
+    - PrettifyJSON
+    - PrettifyXML
 
 ### Translations
 
-  - Translation updates:
-    - Chinese Simplified (GitHub PR #465)
-    - Dutch (GitHub PR #482)
-    - Galician (GitHub PR #419,#458,#493)
-    - German (GitHub PR #438,#448,#480,#490)
-    - Lithuanian (GitHub PR #417,#439,#443,#449,#481)
-    - Polish (GitHub PR #447)
-    - Portuguese (GitHub PR #429,#467)
-    - Slovak (GitHub PR #470)
-    - Slovenian (GitHub PR #486,#488)
-    - Spanish (GitHub PR #454)
-    - Turkish (GitHub PR #425)
-
-### Manual
-
-  - Update Shortcut_keys.xml (GitHub PR #430)
-  - Update manual (GitHub PR #485,#492)
+- BugFix: Fix an issue where a message is not translated.(PR #763)
+- Translation updates:
+  - French (PR #762)
+  - Japanese
+  - Polish (PR #769)
+  - Turkish (PR #803)
+  - Russian (PR #761)
 
 ### Internals
 
-  - Tweak output from BuildInstaller.cmd and BuildArc.cmd (GitHub PR #424)
-  - Fix typo in GhostTextBuffer.cpp (GitHub PR #472)
-  - Fix typo in memdc.h (GitHub PR #474)
+- Update CWindowsManagerDialog (PR #811)
+- Update CWindowsManagerDialog - check some pointers for null and made safe
+    casts (PR #824)
+
 
 ## Known issues
 

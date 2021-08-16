@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{7515ac3c-389a-44cd-b940-a59dde5b8ae3}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaleditview.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextbuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextmarkers.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextview.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ccrystaltextview2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)crystaleditviewex.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)crystalparser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)crystaltextblock.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\chcondlg.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ctextmarkerdlg.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\gotodlg.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\memcombo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\asp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\autoit.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\basic.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\batch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\cplusplus.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\crystallineparser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\csharp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\css.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\dcl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fortran.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\go.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\html.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ini.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\innosetup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\is.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\isx.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\java.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\javascript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lisp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lua.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\nsis.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\pascal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\perl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\php.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\plain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\po.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\powershell.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\python.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rexx.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rsrc.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ruby.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rust.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sgml.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\siod.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\smarty.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sql.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tcl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tex.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\verilog.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\vhdl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\xml.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)renderers\ccrystalrendererdirectwrite.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderergdi.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SyntaxColors.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UndoRecord.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp_poco.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\cs2cs.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\filesup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\fpattern.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\hqbitmap.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\icu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\registry.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\string_util.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\wcwidth.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ViewableWhitespace.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextbuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextmarkers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextview.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crystallineparser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crystaltextblock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\chcondlg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\ctextmarkerdlg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\gotodlg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\memcombo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)editcmd.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)editreg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)edtlib.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LineInfo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrendererdirectwrite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderergdi.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SyntaxColors.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UndoRecord.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\cregexp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\cs2cs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\filesup.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\fpattern.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\hqbitmap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\icu.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\registry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\string_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\wcwidth.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ViewableWhitespace.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)wispelld.h" />
+  </ItemGroup>
+</Project>

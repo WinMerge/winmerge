@@ -1,7 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
-#include <tchar.h>
 #include <vector>
 #include "UnicodeString.h"
 #include "RegOptionsMgr.h"

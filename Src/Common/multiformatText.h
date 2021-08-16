@@ -105,7 +105,7 @@ public:
 	/// return format of original data
 	bool GetOriginalMode() const { return m_bOriginalIsUnicode; }
 	const String GetDestFileExtension() const { return m_tempFileExtensionDst; }
-	const void SetDestFileExtension(const String& ext) { m_tempFileExtensionDst = ext; }
+	void SetDestFileExtension(const String& ext) { m_tempFileExtensionDst = ext; }
 
 private:
 	void Initialize();

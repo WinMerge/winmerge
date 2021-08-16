@@ -10,7 +10,7 @@
 
 namespace Options { namespace DiffColors {
 
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	pOptionsMgr->InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	pOptionsMgr->InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));

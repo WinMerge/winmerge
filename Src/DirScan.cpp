@@ -480,11 +480,8 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 	{
 		nworkers = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
 		if (nworkers <= 0)
-		{
 			nworkers += Environment::processorCount();
-			if (nworkers <= 0)
-				nworkers = 1;
-		}
+		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
 	}
 
 	ThreadPool threadPool(nworkers, nworkers);

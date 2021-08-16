@@ -176,6 +176,8 @@ AboutInfo::AboutInfo()
 #elif defined _M_X64
 	version += _T(" ");
 	version += _("X64");
+#elif defined _M_ARM64
+	version += _T(" ARM64");
 #endif
 
 #if defined _DEBUG

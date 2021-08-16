@@ -228,7 +228,7 @@ public :
 protected :
     CPoint WordToRight (CPoint pt);
     CPoint WordToLeft (CPoint pt);
-    bool           m_bOverrideCaret;
+    bool m_bOvrMode;
 
     bool m_bSingle;
     CCrystalTextBuffer *m_pTextBuffer;
@@ -296,7 +296,9 @@ protected :
     bool IsSelection () const;
     bool IsInsideSelection (const CPoint & ptTextPos);
     bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
-    void GetSelection (CPoint & ptStart, CPoint & ptEnd);
+    std::pair<CPoint, CPoint> GetSelection ();
+    void GetSelection (CPoint & ptStart, CPoint & ptEnd)
+      { std::tie(ptStart, ptEnd) = GetSelection(); }
     void GetFullySelectedLines(int & firstLine, int & lastLine);
     virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
 
@@ -479,7 +481,7 @@ protected:
     virtual void OnDropSource (DROPEFFECT de);
     bool IsDraggingText () const;
 
-    virtual COLORREF GetColor (int nColorIndex);
+    virtual COLORREF GetColor (int nColorIndex) const;
     virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, bool & bDrawWhitespace);
     virtual bool GetItalic (int nColorIndex);
@@ -618,6 +620,7 @@ protected:
     //END SW
 
     std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
+    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 

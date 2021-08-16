@@ -116,6 +116,7 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 					if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 					{
 						PROPVARIANT pv;
+						PropVariantInit(&pv);
 						if (SUCCEEDED(pPS->GetValue(PKEY_Title, &pv)))
 						{
 							list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));

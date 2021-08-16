@@ -17,7 +17,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "pch.h"
 #include "unicoder.h"
 #include <windows.h>
-#include <tchar.h>
 #include <cassert>
 #include <memory>
 #include <Poco/UnicodeConverter.h>
@@ -478,7 +477,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 	{
 		str.resize(wlen);
 	}
-	catch (std::bad_alloc)
+	catch (std::bad_alloc&)
 	{
 		// Not enough memory - exit
 		return false;
@@ -510,7 +509,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 			{
 				str.resize(n);
 			}
-			catch (std::bad_alloc)
+			catch (std::bad_alloc&)
 			{
 				// Not enough memory - exit
 				return false;
@@ -539,7 +538,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 					{
 						str.resize(n);
 					}
-					catch (std::bad_alloc)
+					catch (std::bad_alloc&)
 					{
 						// Not enough memory - exit
 						return false;
@@ -559,7 +558,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 					{
 						str.resize(n);
 					}
-					catch (std::bad_alloc)
+					catch (std::bad_alloc&)
 					{
 						// Not enough memory - exit
 						return false;
@@ -583,7 +582,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 				{
 					str.resize(n);
 				}
-				catch (std::bad_alloc)
+				catch (std::bad_alloc&)
 				{
 					// Not enough memory - exit
 					return false;
@@ -633,7 +632,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 			{
 				str.resize(n);
 			}
-			catch (std::bad_alloc)
+			catch (std::bad_alloc&)
 			{
 				// Not enough memory - exit
 				return false;
@@ -646,7 +645,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 				{
 					str.resize(n);
 				}
-				catch (std::bad_alloc)
+				catch (std::bad_alloc&)
 				{
 					// Not enough memory - exit
 					return false;
@@ -875,13 +874,6 @@ String toTString(const std::string& str)
 	dealloc((void *)p);
 	return astr;
 #endif
-}
-
-std::wstring toUTF16(const String& tstr)
-{
-	std::wstring wstr;
-	toUTF16(tstr, wstr);
-	return wstr;
 }
 
 void toUTF16(const String& tstr, std::wstring& wstr)

@@ -66,9 +66,9 @@ void PropCompareTable::ReadOptions()
 	m_sCSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
 	m_sTSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
 	m_sDSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
-	m_sDSVDelimiterChar = GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR).substr(0, 1);
+	m_sDSVDelimiterChar = GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR);
 	m_bAllowNewlinesInQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
-	m_sQuoteChar = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR).substr(0, 1);
+	m_sQuoteChar = GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR);
 }
 
 /** 
@@ -84,9 +84,9 @@ void PropCompareTable::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns);
 	WildcardRemoveDuplicatePatterns(m_sDSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_FILEPATTERNS, m_sDSVFilePatterns);
-	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_DELIM_CHAR, m_sDSVDelimiterChar.substr(0, 1));
+	GetOptionsMgr()->SaveOption(OPT_CMP_DSV_DELIM_CHAR, m_sDSVDelimiterChar);
 	GetOptionsMgr()->SaveOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, m_bAllowNewlinesInQuotes);
-	GetOptionsMgr()->SaveOption(OPT_CMP_TBL_QUOTE_CHAR, m_sQuoteChar.substr(0, 1));
+	GetOptionsMgr()->SaveOption(OPT_CMP_TBL_QUOTE_CHAR, m_sQuoteChar);
 }
 
 /** 

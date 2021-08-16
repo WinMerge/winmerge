@@ -34,11 +34,12 @@ BEGIN_MESSAGE_MAP(CHexMergeFrame, CMergeFrameCommon)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
-	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
-	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	// [View] menu
+	//ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
+	//ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
+	//ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
+	//ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -188,7 +189,11 @@ BOOL CHexMergeFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 /**
@@ -380,15 +385,6 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
-}
-
-/// Document commanding us to close
-void CHexMergeFrame::CloseNow()
-{
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	MDIActivate();
-	MDIDestroy();
 }
 
 /**

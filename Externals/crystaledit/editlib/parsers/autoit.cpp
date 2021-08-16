@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////
 //  File:    autoit.cpp
-//  Version: 1.1.0.4
-//  Updated: 19-Jul-1998
+//  Version: 1.1.0.6
+//  Updated: 26-Apr-2021
 //
 //  Copyright:  Ferdinand Prantl, portions by Stcherbatchenko Andrei
 //  E-mail:     prantl@ff.cuni.cz
@@ -553,7 +553,15 @@ CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const TCHAR *pszChars, in
             }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
-              DEFINE_BLOCK (nPos, COLORINDEX_STRING);
+              DEFINE_BLOCK(nPos, COLORINDEX_STRING);
+            }
+          else if (dwCookie & (COOKIE_USER1 ))
+            {
+              DEFINE_BLOCK(nPos, COLORINDEX_USER1);
+            }
+          else if (dwCookie & (COOKIE_VARIABLE))
+            {
+              DEFINE_BLOCK(nPos, COLORINDEX_USER2);
             }
           else if (dwCookie & COOKIE_PREPROCESSOR)
             {
@@ -617,12 +625,13 @@ out:
         {
           if (bFirstChar && pszChars[I] == '#' &&
               ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#ce"),            3 * sizeof(TCHAR)) == 0) ||
+               (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CE"),            3 * sizeof(TCHAR)) == 0) ||
                (I + 13 <= nLength && memcmp(&pszChars[I], _T("#comments-end"), 13 * sizeof(TCHAR)) == 0)))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
               bFirstChar = false;
-              I += pszChars[I + 2] == 'e' ? 2 : 12;
+              I += ((pszChars[I + 2] == 'e') || (pszChars[I + 2] == 'E')) ? 2 : 12;
             }
           if (!xisspace (pszChars[I]))
             bFirstChar = false;
@@ -639,6 +648,46 @@ out:
       //  Preprocessor directive #....
       if (dwCookie & COOKIE_PREPROCESSOR)
         {
+          continue;
+        }
+      // Variable begins
+      
+      // Variable begins
+      if (pszChars[I] == '@')
+        {
+          DEFINE_BLOCK(I, COLORINDEX_USER1);
+          dwCookie |= COOKIE_USER1;
+          continue;
+        }
+
+      // Variable ends
+      if (dwCookie & COOKIE_USER1)
+        {
+          if (!xisalnum(pszChars[I]))
+            {
+              dwCookie &= ~COOKIE_USER1;
+              bRedefineBlock = true;
+              bDecIndex = true;
+            }
+          continue;
+        }
+      
+      if (pszChars[I] == '$')
+        {
+          DEFINE_BLOCK(I, COLORINDEX_USER2);
+          dwCookie |= COOKIE_VARIABLE;
+          continue;
+        }
+
+      // Variable ends
+      if (dwCookie & COOKIE_VARIABLE)
+        {
+          if (!xisalnum(pszChars[I]))
+            {
+              dwCookie &= ~COOKIE_VARIABLE;
+              bRedefineBlock = true;
+              bDecIndex = true;
+            }
           continue;
         }
 
@@ -663,6 +712,7 @@ out:
           if (pszChars[I] == '#')
             {
               if ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#cs"),              3 * sizeof(TCHAR)) == 0) ||
+                  (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CS"),              3 * sizeof(TCHAR)) == 0) ||
                   (I + 15 <= nLength && memcmp(&pszChars[I], _T("#comments-start"), 15 * sizeof(TCHAR)) == 0))
                 {
                   DEFINE_BLOCK (I, COLORINDEX_COMMENT);

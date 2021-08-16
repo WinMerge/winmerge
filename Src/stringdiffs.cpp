@@ -8,9 +8,8 @@
 #include "pch.h"
 #include "stringdiffs.h"
 #define NOMINMAX
-#include <windows.h>
-#include <tchar.h>
 #include <cassert>
+#include <chrono>
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
 #include "Diff3.h"
@@ -24,6 +23,7 @@ static bool Initialized;
 static bool CustomChars;
 static TCHAR *BreakChars;
 static TCHAR BreakCharDefaults[] = _T(",.;:");
+static int TimeoutMilliSeconds = 500;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers);
@@ -96,7 +96,7 @@ struct Comp02Functor
  * @brief Construct our worker object and tell it to do the work
  */
 std::vector<wdiff>
-ComputeWordDiffs(int nFiles, const String str[3],
+ComputeWordDiffs(int nFiles, const String *str,
 	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level)
 {
 	std::vector<wdiff> diffs;
@@ -262,7 +262,8 @@ stringdiffs::BuildWordDiffList_DP()
 
 	//if (dp(edscript) <= 0)
 	//	return false;
-	onp(edscript);
+	if (onp(edscript) < 0)
+		return false;
 
 	int i = 1, j = 1;
 	for (size_t k = 0; k < edscript.size(); k++)
@@ -358,11 +359,16 @@ stringdiffs::BuildWordDiffList()
 	m_words1 = BuildWordsArray(m_str1);
 	m_words2 = BuildWordsArray(m_str2);
 
+	bool succeeded = false;
 #ifdef _WIN64
-	if (m_words1.size() > 20480 || m_words2.size() > 20480)
+	if (m_words1.size() < 20480 && m_words2.size() < 20480)
 #else
-	if (m_words1.size() > 2048 || m_words2.size() > 2048)
+	if (m_words1.size() < 2048 && m_words2.size() < 2048)
 #endif
+	{
+		succeeded = BuildWordDiffList_DP();
+	}
+	if (!succeeded)
 	{
 		int s1 = m_words1[0].start;
 		int e1 = m_words1[m_words1.size() - 1].end;
@@ -372,7 +378,6 @@ stringdiffs::BuildWordDiffList()
 		return;
 	}
 
-	BuildWordDiffList_DP();
 }
 
 /**
@@ -581,6 +586,8 @@ stringdiffs::caseMatch(TCHAR ch1, TCHAR ch2) const
 int
 stringdiffs::onp(std::vector<char> &edscript)
 {
+	auto start = std::chrono::system_clock::now();
+
 	int M = static_cast<int>(m_words1.size() - 1);
 	int N = static_cast<int>(m_words2.size() - 1);
 	bool exchanged = false;
@@ -613,6 +620,8 @@ stringdiffs::onp(std::vector<char> &edscript)
 		es[k].push_back(ese);
 	};
 
+	const int COUNTMAX = 100000;
+	int count = 0;
 	int k;
 	for (k = -(M+1); k <= (N+1); k++)
 		fp[k] = -1; 
@@ -624,15 +633,31 @@ stringdiffs::onp(std::vector<char> &edscript)
 		{
 			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 			addEditScriptElem(k);
+			count++;
 		}
 		for (k = DELTA + p; k >= DELTA+1; k--)
 		{
 			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 			addEditScriptElem(k);
+			count++;
 		}
 		k = DELTA;
 		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 		addEditScriptElem(k);
+		count++;
+
+		if (count > COUNTMAX)
+		{
+			count = 0;
+			auto end = std::chrono::system_clock::now();
+			auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+			if (msec > TimeoutMilliSeconds)
+			{
+				delete [] (es - (M+1));
+				delete [] (fp - (M+1));
+				return -1;
+			}
+		}
 	} while (fp[k] != N);
 
 	edscript.clear();
@@ -656,7 +681,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 		switch (ses[i])
 		{
 		case '+':
-			if (i + 1 < ses.size() && ses[i + 1] == '-')
+			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '-')
 			{
 				edscript.push_back('!');
 				i++;
@@ -669,7 +694,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 			}
 			break;
 		case '-':
-			if (i + 1 < ses.size() && ses[i + 1] == '+')
+			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '+')
 			{
 				edscript.push_back('!');
 				i++;

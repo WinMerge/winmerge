@@ -56,8 +56,9 @@ msgstr ""
 msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
-msgid "&Select Line Difference\tF4"
-msgstr "&Selectează diferenţele pe linie\tF4"
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Selectează &diferenţele pe linie\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr ""
@@ -82,6 +83,14 @@ msgstr "&Copie"
 msgid "&Paste"
 msgstr "Li&peşte"
 
+#, c-format
+msgid "&Scripts"
+msgstr "&Script-uri"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< Gol >"
+
 msgid "&Go to...\tCtrl+G"
 msgstr "&Mergi la...\tCtrl+G"
 
@@ -103,6 +112,9 @@ msgstr ""
 
 msgid "&With..."
 msgstr "&Cu..."
+
+msgid "Open &Parent Folder..."
+msgstr ""
 
 msgid "S&hell Menu"
 msgstr ""
@@ -142,6 +154,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip V&ertically"
+msgstr ""
+
+msgid "Flip H&orizontally"
 msgstr ""
 
 #, c-format
@@ -195,7 +219,7 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr ""
 
 #, c-format
@@ -257,10 +281,6 @@ msgstr "Proiecte recente"
 #, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
-
-#, c-format
-msgid "< Empty >"
-msgstr "< Gol >"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "Ieşir&e\tCtrl+Q"
@@ -413,8 +433,8 @@ msgid "Ri&ght Read-only"
 msgstr "Dreapta numa&i-citire"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Codar&e caractere fişiere..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -515,7 +535,7 @@ msgid "Com&pare Statistics..."
 msgstr "Statistici de compa&rare..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Reîmpro&spătare\tF5"
 
 #, c-format
@@ -632,16 +652,8 @@ msgid "Re&load\tCtrl+F5"
 msgstr ""
 
 #, c-format
-msgid "&File Encoding..."
-msgstr "Codar&e caractere fişiere..."
-
-#, c-format
 msgid "Reco&mpare As"
 msgstr ""
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -662,10 +674,6 @@ msgstr "&Copie\tCtrl+C"
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Li&peşte\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Selectează &diferenţele pe linie\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -882,13 +890,18 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediferenţiator"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Script-uri"
+msgid "Apply Pre&differ..."
+msgstr ""
+
+msgid "&Transform with editor script..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -897,6 +910,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "Comp&ară"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -998,11 +1014,8 @@ msgid "&Open Left"
 msgstr "Deschide stâ&nga"
 
 #, c-format
-msgid "with &External Editor"
-msgstr "cu editor &extern"
-
-msgid "Open &Parent Folder..."
-msgstr ""
+msgid "With &External Editor"
+msgstr "Cu editor &extern"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1084,17 +1097,24 @@ msgstr "&Copie calea întreagă"
 msgid "Copy &Filename"
 msgstr "Copie numele de &fişier"
 
+msgid "Unpacker Settings"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "<None>"
+msgstr "<Deloc>"
+
+#, fuzzy, c-format
+msgid "<Automatic>"
+msgstr "<Automat>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Selectează..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Setări prediferenţiator"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "Fără predifere&nţiator"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Auto prediferenţiator"
 
 msgid "G&o to Diff"
 msgstr "Mergi la difere&nţă"
@@ -1124,6 +1144,10 @@ msgid "Ig&nore all"
 msgstr "Ig&noră tot"
 
 #, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ignoră li&nii goale"
+
+#, c-format
 msgid "Ignore &case"
 msgstr "Ignoră minus&cule/majuscule"
 
@@ -1136,6 +1160,9 @@ msgid "Ignore codepage &differences"
 msgstr ""
 
 msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1246,10 +1273,6 @@ msgid " Folder: Filter"
 msgstr ""
 
 #, c-format
-msgid "&Select..."
-msgstr "&Selectează..."
-
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
@@ -1310,19 +1333,12 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-completare în dialogul de deschidere:"
 
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
-
-#, c-format
-msgid "Reset"
-msgstr "Revenire"
 
 #, c-format
 msgid "Find"
@@ -1627,16 +1643,11 @@ msgstr "Mută mai s&us"
 msgid "Move &Down"
 msgstr "Mută mai &jos"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Selectează dezarhivator"
+msgid "Select Plugin"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Dezarhivator fişiere:"
-
-msgid "Display all unpackers, don't check the extension."
-msgstr "Afişează toate dezarhivatoarele, fară a verifica extensia."
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1645,6 +1656,21 @@ msgstr "Listă extensii:"
 #, c-format
 msgid "Description:"
 msgstr "Descriere:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension."
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking."
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1713,13 +1739,6 @@ msgstr "&Ignoră schimbare"
 #, c-format
 msgid "I&gnore all"
 msgstr "I&gnoră tot"
-
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ignoră li&nii goale"
-
-msgid "Ignore c&omment differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -1792,6 +1811,13 @@ msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge permite ascunderea unor casete de mesaj. Apasă butonul Revenire pentru a face ca toate casetele de mesaj să apară din nou."
+
+#, c-format
+msgid "Reset"
+msgstr "Revenire"
 
 msgid "File Filters"
 msgstr ""
@@ -1871,10 +1897,10 @@ msgstr "Codare caractere implicită"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selectează codarea caracterelor folosită implicit la încărcarea fişierelor non-Unicode:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -2242,6 +2268,12 @@ msgstr ""
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr ""
@@ -2274,7 +2306,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr ""
+msgstr "Director"
 
 #, c-format
 msgid "S&top after first difference"
@@ -2285,7 +2317,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oră diferenţe de timp mai mici de 3 secunde"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2320,7 +2352,7 @@ msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr ""
+msgstr "Binar"
 
 #, c-format
 msgid "Binary File &Patterns:"
@@ -2453,11 +2485,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Comparare directoare"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Dezvoltatori:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge vine fără ABSOLUT NICIO GARANŢIE. Acesta este software liber şi sunteţi invitaţi să-l redistribuiţi sub anumite circumstanţe; vedeţi Licenţa Publică Generală GNU în meniul Ajutor pentru detalii."
@@ -2510,7 +2537,7 @@ msgstr "Omite to&ate"
 msgid "Don't display this &message again."
 msgstr "Nu afişa acest &mesaj din nou."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
@@ -2526,6 +2553,9 @@ msgstr ""
 #, c-format
 msgid "Differences"
 msgstr "Diferenţe"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2617,6 +2647,12 @@ msgstr ""
 #, c-format
 msgid "Extension"
 msgstr "Extensie"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
 
 #, c-format
 msgid "Name"
@@ -2748,6 +2784,9 @@ msgstr "Fişierul lor"
 msgid "Mine File"
 msgstr "Fişierul meu"
 
+msgid "Original File"
+msgstr ""
+
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
@@ -2758,6 +2797,10 @@ msgstr "Linie: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -3160,7 +3203,7 @@ msgstr "Nume fişier"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Director"
 
 #, c-format
 msgid "Comparison result"
@@ -3275,6 +3318,14 @@ msgstr "Diferenţe ignorate"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
+msgstr "Binar"
+
+#, c-format
+msgid "Unpacker"
+msgstr ""
+
+#, c-format
+msgid "Prediffer"
 msgstr ""
 
 #, c-format
@@ -3520,6 +3571,12 @@ msgstr "Număr de diferenţe în fişier. Acest număr nu include diferenţele i
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Arată un asterisc (*) dacă fişierul este binar."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Compară %1 cu %2"
@@ -3619,6 +3676,12 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the previous page?"
+msgstr ""
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
 msgstr ""
 
 #, c-format
@@ -3732,10 +3795,6 @@ msgstr "Specificaţi un fişier destinaţie."
 msgid "Cannot create a patch file from binary files."
 msgstr "Nu s-a reuşit crearea unui fişier petic din fişiere binare."
 
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Nu s-a reuşit crearea unui fişier petic din directoare."
-
 #, fuzzy, c-format
 msgid ""
 "Please save all files first.\n"
@@ -3796,7 +3855,7 @@ msgstr "Amestecat"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binar"
 
 #, c-format
 msgid "None"
@@ -3811,14 +3870,6 @@ msgstr ""
 
 #, c-format
 msgid "Type"
-msgstr ""
-
-#, c-format
-msgid "Unpacker"
-msgstr ""
-
-#, c-format
-msgid "Prediffer"
 msgstr ""
 
 #, c-format
@@ -3896,13 +3947,13 @@ msgstr ""
 msgid "\nFirst File"
 msgstr ""
 
-msgid "\nNext File"
+msgid "\nNext File (Ctrl+F8)"
 msgstr ""
 
 msgid "\nLast File"
 msgstr ""
 
-msgid "\nPrevious File"
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3942,14 +3993,6 @@ msgstr "Setări pentru plug-in-uri"
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Nu s-a găsit WSH - scripurile .sct sunt dezactivate"
-
-#, fuzzy, c-format
-msgid "<None>"
-msgstr "<Deloc>"
-
-#, fuzzy, c-format
-msgid "<Automatic>"
-msgstr "<Automat>"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4141,11 +4184,19 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
 msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
@@ -4179,3 +4230,130 @@ msgstr "Permite rularea unei singure instanţe"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""

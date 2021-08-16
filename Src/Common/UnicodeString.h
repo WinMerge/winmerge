@@ -8,6 +8,7 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 #include <tchar.h>
 
 #ifdef _UNICODE
@@ -17,12 +18,18 @@
 #endif // _UNICODE
 
 typedef std_tchar(string) String;
+typedef std_tchar(string_view) StringView;
 
 namespace strutils
 {
 
 String makelower(const String &str);
 String makeupper(const String &str);
+
+String strip_hot_key(const String& str);
+
+TCHAR from_charstr(const String& str);
+String to_charstr(TCHAR ch);
 
 void replace(String &target, const String &find, const String &replace);
 
@@ -69,7 +76,7 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	result.reserve(sum);
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += *it;
 	}
 	return result;
@@ -81,11 +88,13 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	String result;
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += func(*it);
 	}
 	return result;
 }
+
+std::vector<StringView> split(StringView str, TCHAR delim);
 
 inline String to_str(int val) { return strutils::format(_T("%d"), val); }
 inline String to_str(unsigned val) { return strutils::format(_T("%u"), val); }
@@ -95,5 +104,6 @@ inline String to_str(long long val) { return strutils::format(_T("%I64d"), val);
 inline String to_str(unsigned long long val) { return strutils::format(_T("%I64u"), val); }
 inline String to_str(float val) { return strutils::format(_T("%f"), val); }
 inline String to_str(double val) { return strutils::format(_T("%f"), val); }
+inline String to_str(const StringView& val) { return { val.data(), val.size() }; }
 
 }

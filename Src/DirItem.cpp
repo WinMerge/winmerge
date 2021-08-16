@@ -7,31 +7,10 @@
 
 #include "pch.h"
 #include "DirItem.h"
-#include <windows.h>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
 #include "DebugNew.h"
-
-/**
-	* @brief Convert file flags to string presentation.
-	* This function converts file flags to a string presentation that can be
-	* shown in the GUI.
-	* @return File flags as a string.
-	*/
-String FileFlags::ToString() const
-{
-	String sflags;
-	if (attributes & FILE_ATTRIBUTE_READONLY)
-		sflags += _T("R");
-	if (attributes & FILE_ATTRIBUTE_HIDDEN)
-		sflags += _T("H");
-	if (attributes & FILE_ATTRIBUTE_SYSTEM)
-		sflags += _T("S");
-	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
-		sflags += _T("A");
-	return sflags;
-}
 
 /**
  * @brief Set filename and path for the item.
@@ -117,6 +96,5 @@ void DirItem::ClearPartial()
 	ctime = 0;
 	mtime = 0;
 	size = DirItem::FILE_SIZE_NONE;
-	version.Clear();
 	flags.reset();
 }

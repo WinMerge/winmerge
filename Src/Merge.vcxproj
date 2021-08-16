@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test|ARM64">
+      <Configuration>Test</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Test|Win32">
       <Configuration>Test</Configuration>
       <Platform>Win32</Platform>
@@ -69,7 +81,23 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
@@ -86,8 +114,23 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <XPDeprecationWarning>false</XPDeprecationWarning>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WindowsTargetPlatformVersion Condition="'$(VisualStudioVersion)' == '15'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
+    <XPDeprecationWarning>false</XPDeprecationWarning>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\Externals\crystaledit\editlib\editlib.vcxitems" Label="Shared" />
+    <Import Project="..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
+    <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
+    <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -101,10 +144,19 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -114,9 +166,13 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\BuildTmp\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\Build\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">.\..\Build\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\BuildTmp\$(Configuration)\</IntDir>
@@ -124,13 +180,21 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Test|x64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">.\..\Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Test|x64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">.\..\BuildTmp\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">true</EmbedManifest>
     <TargetName>Win$(ProjectName)U</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -220,6 +284,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -235,6 +300,56 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
       <TargetMachine>MachineX64</TargetMachine>
+      <GenerateMapFile>true</GenerateMapFile>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0501;NDEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\Externals\poco\libARM64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
       <GenerateMapFile>true</GenerateMapFile>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -302,7 +417,7 @@
     <ClCompile>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Externals\googletest\googletest\;..\Externals\googletest\googletest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;__NT__;POCO_STATIC;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -386,6 +501,51 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\Externals\poco\libARM64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <GenerateMapFile>true</GenerateMapFile>
+      <Profile>false</Profile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -398,7 +558,7 @@
     <ClCompile>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\Externals\googletest\googletest\;..\Externals\googletest\googletest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -432,110 +592,63 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\Externals\googletest\googletest\;..\Externals\googletest\googletest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\Externals\poco\libARM64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <GenerateMapFile>true</GenerateMapFile>
+      <Profile>false</Profile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\asp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\autoit.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\basic.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\batch.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\crystallineparser.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\javascript.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderergdi.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\ceditreplacedlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\cplusplus.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\cregexp_poco.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\cs2cs.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\csharp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\css.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\ctextmarkerdlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\dcl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\filesup.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\fortran.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\fpattern.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\go.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\gotodlg.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\html.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\icu.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\ini.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\innosetup.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\is.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\isx.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\java.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\lisp.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\lua.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\dialogs\memcombo.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\nsis.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\pascal.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\perl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\php.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\plain.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\po.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\powershell.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\python.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\registry.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rexx.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rsrc.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\ruby.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\rust.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sgml.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sh.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\siod.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\sql.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\string_util.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\SyntaxColors.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\tcl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\tex.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\verilog.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\vhdl.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\utils\wcwidth.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\parsers\xml.cpp" />
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xdiffi.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xemit.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xhistogram.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xmerge.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xpatience.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xprepare.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Externals\xdiff\xutils.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="7zCommon.cpp">
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
-    <ClCompile Include="CompareEngines\ImageCompare.cpp">
+    <ClCompile Include="Common\IniOptionsMgr.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Common\Shell.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -548,6 +661,11 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirSelectFilesDlg.cpp" />
+    <ClCompile Include="InternalPlugins.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="PropMessageBoxes.cpp" />
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -567,11 +685,6 @@
     </ClCompile>
     <ClCompile Include="Common\ColorButton.cpp" />
     <ClCompile Include="Common\ExConverter.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -727,6 +840,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="FileFiltersDlg.cpp" />
+    <ClCompile Include="FileFlags.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="FileOrFolderSelect.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -946,7 +1064,7 @@
     <ClCompile Include="SaveClosingDlg.cpp" />
     <ClCompile Include="Common\scbarcf.cpp" />
     <ClCompile Include="Common\scbarg.cpp" />
-    <ClCompile Include="SelectUnpackerDlg.cpp" />
+    <ClCompile Include="SelectPluginDlg.cpp" />
     <ClCompile Include="SharedFilterDlg.cpp" />
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -998,11 +1116,6 @@
     </ClCompile>
     <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="TrDialogs.cpp" />
-    <ClCompile Include="UniMarkdownFile.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1016,66 +1129,6 @@
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
-    <ClCompile Include="diffutils\src\analyze.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\lib\cmpbuf.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\context.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\Diff.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ed.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\GnuVersion.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\ifdef.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\io.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\normal.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\side.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\util.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="diffutils\src\mystat.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteComparator.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1085,40 +1138,6 @@
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderer.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrendererdirectwrite.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\renderers\ccrystalrenderergdi.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\ceditreplacedlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\cfindtextdlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\chcondlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\cregexp.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\cs2cs.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\ctextmarkerdlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\filesup.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\fpattern.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\gotodlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\icu.hpp" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\dialogs\memcombo.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\registry.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\string_util.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\wcwidth.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
     <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
@@ -1128,23 +1147,17 @@
     <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\Externals\xdiff\xdiff.h" />
-    <ClInclude Include="..\Externals\xdiff\xdiffi.h" />
-    <ClInclude Include="..\Externals\xdiff\xemit.h" />
-    <ClInclude Include="..\Externals\xdiff\xinclude.h" />
-    <ClInclude Include="..\Externals\xdiff\xmacros.h" />
-    <ClInclude Include="..\Externals\xdiff\xprepare.h" />
-    <ClInclude Include="..\Externals\xdiff\xtypes.h" />
-    <ClInclude Include="..\Externals\xdiff\xutils.h" />
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
-    <ClInclude Include="CompareEngines\ImageCompare.h" />
+    <ClInclude Include="Common\IniOptionsMgr.h" />
+    <ClInclude Include="Common\Shell.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
@@ -1153,7 +1166,6 @@
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />
     <ClInclude Include="Common\ExConverter.h" />
-    <ClInclude Include="CompareEngines\BinaryCompare.h" />
     <ClInclude Include="CompareOptions.h" />
     <ClInclude Include="CompareStatisticsDlg.h" />
     <ClInclude Include="CompareStats.h" />
@@ -1207,6 +1219,7 @@
     <ClInclude Include="FileFilterHelper.h" />
     <ClInclude Include="FileFilterMgr.h" />
     <ClInclude Include="FileFiltersDlg.h" />
+    <ClInclude Include="FileFlags.h" />
     <ClInclude Include="FileLocation.h" />
     <ClInclude Include="FileOrFolderSelect.h" />
     <ClInclude Include="FilepathEdit.h" />
@@ -1302,7 +1315,7 @@
     <ClInclude Include="SaveClosingDlg.h" />
     <ClInclude Include="Common\scbarcf.h" />
     <ClInclude Include="Common\scbarg.h" />
-    <ClInclude Include="SelectUnpackerDlg.h" />
+    <ClInclude Include="SelectPluginDlg.h" />
     <ClInclude Include="SharedFilterDlg.h" />
     <ClInclude Include="Common\ShellContextMenu.h" />
     <ClInclude Include="Common\ShellFileOperations.h" />
@@ -1320,21 +1333,13 @@
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
     <ClInclude Include="TrDialogs.h" />
-    <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
+    <ClInclude Include="WinMergePluginBase.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
-    <ClInclude Include="diffutils\lib\cmpbuf.h" />
-    <ClInclude Include="diffutils\config.h" />
-    <ClInclude Include="diffutils\src\diff.h" />
-    <ClInclude Include="diffutils\src\system.h" />
-    <ClInclude Include="CompareEngines\ByteComparator.h" />
-    <ClInclude Include="CompareEngines\ByteCompare.h" />
-    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h" />
-    <ClInclude Include="CompareEngines\TimeSizeCompare.h" />
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1369,8 +1374,7 @@
     <None Include="res\right_to_browse.bmp" />
     <None Include="res\right_to_left.bmp" />
     <None Include="res\sigma.ico" />
-    <None Include="CHANGELO" />
-    <None Include="..\Docs\Users\ChangeLog.txt" />
+    <None Include="..\Docs\Users\ChangeLog.md" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc" />

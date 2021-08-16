@@ -20,8 +20,6 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
-#include "FileTransform.h"
-#include "Plugins.h"
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
@@ -32,6 +30,8 @@
 #include "DirDoc.h"
 #include "ShellContextMenu.h"
 #include "editcmd.h"
+#include "Shell.h"
+#include "SelectPluginDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -63,12 +63,9 @@ CMergeEditView::CMergeEditView()
 , m_nThisGroup(0)
 , m_bDetailView(false)
 , m_piMergeEditStatus(nullptr)
-, m_bAutomaticRescan(false)
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
-, m_CurrentPredifferID(0)
-, m_bChangedSchemeManually(false)
 {
 	SetParser(&m_xParser);
 	
@@ -82,8 +79,21 @@ CMergeEditView::~CMergeEditView()
 
 BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	//{{AFX_MSG_MAP(CMergeEditView)
-	ON_COMMAND(ID_CURDIFF, OnCurdiff)
-	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
+	ON_WM_CONTEXTMENU()
+	ON_WM_TIMER()
+	ON_WM_LBUTTONDBLCLK()
+	ON_WM_LBUTTONUP()
+	ON_WM_RBUTTONDOWN()
+	ON_WM_VSCROLL ()
+	ON_WM_HSCROLL ()
+	ON_WM_SIZE()
+	ON_WM_MOVE()
+	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEHWHEEL()
+	// [File] menu
+	ON_COMMAND_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnConvertEolTo)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
+	// [Edit] menu
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY, OnUpdateEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -91,6 +101,39 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdateEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
+	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
+	// [View] menu
+	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
+	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
+	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
+	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
+	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
+	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
+	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
+	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	// [Merge] menu
+	ON_COMMAND(ID_CURDIFF, OnCurdiff)
+	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -127,9 +170,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NEXTDIFFRO, OnUpdateNextdiffRO)
 	ON_COMMAND(ID_PREVDIFFRO, OnPrevdiffRO)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFFRO, OnUpdatePrevdiffRO)
-	ON_WM_LBUTTONDBLCLK()
-	ON_WM_LBUTTONUP()
-	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
@@ -152,103 +192,41 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_COPY_LINES_FROM_RIGHT, OnCopyLinesFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_LINES_FROM_RIGHT, OnUpdateCopyLinesFromRight)
-	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
-	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
-	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
-	ON_WM_TIMER()
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
-	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
-	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
-	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
-	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
-	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
-	ON_WM_CONTEXTMENU()
-	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
-	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
-	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnMiddleReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateMiddleReadOnly)
-	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_RO, OnUpdateStatusRO)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_RO, OnUpdateStatusRO)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_RO, OnUpdateStatusRO)
-	ON_COMMAND_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnConvertEolTo)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_EOL, OnUpdateStatusEOL)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_EOL, OnUpdateStatusEOL)
 	ON_COMMAND(ID_L2RNEXT, OnL2RNext)
 	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
+	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
+	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
+	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
+	// [Plugins] menu
+	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
+	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
+	// [Window] menu
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
-	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
+	// [Help] menu
+	ON_COMMAND(ID_HELP, OnHelp)
+	// Context menu
+	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_MR, OnUpdateGotoMovedLineMR)
 	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
-	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
-	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
-	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
-	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
-	ON_WM_VSCROLL ()
-	ON_WM_HSCROLL ()
-	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
-	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
-	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
-	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
-	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
-	ON_COMMAND(ID_VIEW_EOL, OnViewEOL)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
-	ON_COMMAND(ID_SWAPPANES_SWAP12, OnViewSwapPanes12)
-	ON_COMMAND(ID_SWAPPANES_SWAP23, OnViewSwapPanes23)
-	ON_COMMAND(ID_SWAPPANES_SWAP13, OnViewSwapPanes13)
-	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
-	ON_WM_SIZE()
-	ON_WM_MOVE()
-	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
-	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
-	ON_WM_MOUSEWHEEL()
-	ON_WM_MOUSEHWHEEL()
-	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
-	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
-	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
-	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
-	ON_COMMAND(ID_FIRSTFILE, OnFirstFile)
-	ON_UPDATE_COMMAND_UI(ID_FIRSTFILE, OnUpdateFirstFile)
-	ON_COMMAND(ID_PREVFILE, OnPrevFile)
-	ON_UPDATE_COMMAND_UI(ID_PREVFILE, OnUpdatePrevFile)
-	ON_COMMAND(ID_NEXTFILE, OnNextFile)
-	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
-	ON_COMMAND(ID_LASTFILE, OnLastFile)
-	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
+	ON_COMMAND(ID_FILE_OPEN_PARENT_FOLDER, OnOpenParentFolder)
+	// Status bar
 	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_EOL, OnUpdateStatusEOL)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_EOL, OnUpdateStatusEOL)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -308,12 +286,41 @@ CString CMergeEditView::GetLineText(int idx)
  */
 CString CMergeEditView::GetSelectedText()
 {
-	CPoint ptStart, ptEnd;
 	CString strText;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (ptStart != ptEnd)
 		GetTextWithoutEmptys(ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, strText);
 	return strText;
+}
+
+/**
+ * @brief Return number of selected characters
+ */
+std::pair<int, int> CMergeEditView::GetSelectedLineAndCharacterCount()
+{
+	auto [ptStart, ptEnd] = GetSelection();
+	int nCharsOrColumns =0;
+	int nSelectedLines = 0;
+	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
+	{
+		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
+		{
+			int nLineLength = GetLineLength(nLine) + (m_pTextBuffer->GetLineEol(nLine)[0] ? 1 : 0);
+			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
+			if (nLine == ptStart.y)
+				nCharsOrColumns -= ptStart.x;
+			if (nLine < ptEnd.y || (ptStart != ptEnd && ptEnd.x > 0))
+				++nSelectedLines;
+		}
+	}
+	if (m_bRectangularSelection)
+	{
+		int nStartLeft, nStartRight, nEndLeft, nEndRight;
+		GetColumnSelection(ptStart.y, nStartLeft, nStartRight);
+		GetColumnSelection(ptEnd.y, nEndLeft, nEndRight);
+		nCharsOrColumns = (std::max)(nStartRight, nEndRight) - (std::min)(nStartLeft, nEndLeft);
+	}
+	return { nSelectedLines, nCharsOrColumns };
 }
 
 /**
@@ -393,8 +400,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		return;
 
 	int firstLine, lastLine;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (pptStart != nullptr)
 		ptStart = *pptStart;
 	if (pptEnd != nullptr)
@@ -516,8 +522,7 @@ void CMergeEditView::GetSelectedDiffs(int & firstDiff, int & lastDiff)
 		return;
 
 	int firstLine, lastLine;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	firstLine = ptStart.y;
 	lastLine = ptEnd.y;
 
@@ -546,8 +551,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 	CMergeDoc *pDoc = GetDocument();
 	std::map<int, std::vector<int>> ret;
 	std::map<int, std::vector<int> *> list;
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
 	{
 		if (pDoc->m_diffList.LineToDiff(nLine) != -1)
@@ -706,9 +710,9 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	return blocks;
 }
 
-COLORREF CMergeEditView::GetColor(int nColorIndex)
+COLORREF CMergeEditView::GetColor(int nColorIndex) const
 {
-	switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
+	switch (nColorIndex & ~COLORINDEX_MASK)
 	{
 	case COLORINDEX_HIGHLIGHTBKGND1:
 		return m_cachedColors.clrSelWordDiff;
@@ -1141,8 +1145,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditCopy()
 {
 	CMergeDoc * pDoc = GetDocument();
-	CPoint ptSelStart, ptSelEnd;
-	GetSelection(ptSelStart, ptSelEnd);
+	auto [ptSelStart, ptSelEnd] = GetSelection();
 
 	// Nothing selected
 	if (ptSelStart == ptSelEnd)
@@ -1179,9 +1182,8 @@ void CMergeEditView::OnEditCut()
 	if (!QueryEditable())
 		return;
 
-	CPoint ptSelStart, ptSelEnd;
 	CMergeDoc * pDoc = GetDocument();
-	GetSelection(ptSelStart, ptSelEnd);
+	auto [ptSelStart, ptSelEnd] = GetSelection();
 
 	// Nothing selected
 	if (ptSelStart == ptSelEnd)
@@ -1928,8 +1930,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		}
 	}
 
-	CPoint ptStart, ptEnd;
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 	if (IsSelection() || pDoc->EqualCurrentWordDiff(srcPane, ptStart, ptEnd))
 	{
 		if (!m_bRectangularSelection)
@@ -2001,8 +2002,7 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		// If one or more diffs inside selection OR
 		// there is an active diff OR
 		// cursor is inside diff
-		CPoint ptStart, ptEnd;
-		GetSelection(ptStart, ptEnd);
+		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
 			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
@@ -2237,98 +2237,6 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Move to next file
- */
-void CMergeEditView::OnNextFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToNextFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to next file is updated
- */
-void CMergeEditView::OnUpdateNextFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();
-	bool enabled = !pd->GetDirDoc()->IsLastFile();
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to previous file
- */
-void CMergeEditView::OnPrevFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToPrevFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to previous file is updated
- */
-void CMergeEditView::OnUpdatePrevFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();	
-	bool enabled = !pd->GetDirDoc()->IsFirstFile();
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to first file
- */
-void CMergeEditView::OnFirstFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToFirstFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to first file is updated
- */
-void CMergeEditView::OnUpdateFirstFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();	
-	bool enabled = !pd->GetDirDoc()->IsFirstFile();
-	pCmdUI->Enable(enabled);
-}
-
-/**
- * @brief Move to last file
- */
-void CMergeEditView::OnLastFile()
-{
-	CMergeDoc* pd = GetDocument();
-	CDirDoc* pDirDoc = pd->GetDirDoc();
-	if (pDirDoc)
-	{
-		pDirDoc->MoveToLastFile(pd);
-	}
-}
-
-/**
- * @brief Called when Move to last file item is updated
- */
-void CMergeEditView::OnUpdateLastFile(CCmdUI* pCmdUI)
-{
-	CMergeDoc* pd = GetDocument();
-	bool enabled = !pd->GetDirDoc()->IsLastFile();
-	pCmdUI->Enable(enabled);
-}
-
-/**
  * @brief Do Auto merge
  */
 void CMergeEditView::OnAutoMerge()
@@ -2415,7 +2323,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 	pDoc->UpdateHeaderPath(m_nThisPane);
 
 	// If automatic rescan enabled, rescan after edit events
-	if (m_bAutomaticRescan)
+	if (pDoc->GetAutomaticRescan())
 	{
 		// keep document up to date	
 		// (Re)start timer to rescan only when user edits text
@@ -2633,44 +2541,6 @@ bool CMergeEditView::IsReadOnly(int pane) const
 }
 
 /**
- * @brief Called when "Save left (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!IsReadOnly(0) && pd->m_ptBuf[0]->IsModified());
-}
-
-/**
- * @brief Called when "Save middle (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_nBuffers == 3 && !IsReadOnly(1) && pd->m_ptBuf[1]->IsModified());
-}
-
-/**
- * @brief Called when "Save right (as...)" item is updated
- */
-void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!IsReadOnly(pd->m_nBuffers - 1) && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified());
-}
-
-/**
- * @brief Refresh display using text-buffers
- * @note This DOES NOT reload files!
- */
-void CMergeEditView::OnRefresh()
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-	pd->FlushAndRescan(true);
-}
-
-/**
  * @brief Handle some keys when in merging mode
  */
 bool CMergeEditView::MergeModeKeyDown(MSG* pMsg)
@@ -2745,95 +2615,6 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }
 
-/**
- * @brief Called when "Save" item is updated
- */
-void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-
-	bool bModified = false;
-	for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
-	{
-		if (pd->m_ptBuf[nPane]->IsModified())
-			bModified = true;
-	}
-	pCmdUI->Enable(bModified);
-}
-
-/**
- * @brief Enable/disable left buffer read-only
- */
-void CMergeEditView::OnLeftReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[0]->GetReadOnly();
-	pd->m_ptBuf[0]->SetReadOnly(!bReadOnly);
-}
-
-/**
- * @brief Called when "Left read-only" item is updated
- */
-void CMergeEditView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[0]->GetReadOnly();
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(bReadOnly);
-}
-
-/**
- * @brief Enable/disable middle buffer read-only
- */
-void CMergeEditView::OnMiddleReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_nBuffers == 3)
-	{
-		bool bReadOnly = pd->m_ptBuf[1]->GetReadOnly();
-		pd->m_ptBuf[1]->SetReadOnly(!bReadOnly);
-	}
-}
-
-/**
- * @brief Called when "Middle read-only" item is updated
- */
-void CMergeEditView::OnUpdateMiddleReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	if (pd->m_nBuffers < 3)
-	{
-		pCmdUI->Enable(false);
-	}
-	else
-	{
-		bool bReadOnly = pd->m_ptBuf[1]->GetReadOnly();
-		pCmdUI->Enable(true);
-		pCmdUI->SetCheck(bReadOnly);
-	}
-}
-
-/**
- * @brief Enable/disable right buffer read-only
- */
-void CMergeEditView::OnRightReadOnly()
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly();
-	pd->m_ptBuf[pd->m_nBuffers - 1]->SetReadOnly(!bReadOnly);
-}
-
-/**
- * @brief Called when "Left read-only" item is updated
- */
-void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	bool bReadOnly = pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly();
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(bReadOnly);
-}
-
 /// Store interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
@@ -2869,6 +2650,7 @@ void CMergeEditView::OnUpdateCaret()
 	int column = -1;
 	int columns = -1;
 	int curChar = -1;
+	auto [selectedLines, selectedChars] = GetSelectedLineAndCharacterCount();
 	DWORD dwLineFlags = 0;
 
 	dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
@@ -2897,7 +2679,8 @@ void CMergeEditView::OnUpdateCaret()
 			sEol = _T("hidden");
 	}
 	m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
-		curChar, chars, sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
+		curChar, chars, selectedLines, selectedChars,
+		sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
 
 	// Is cursor inside difference?
 	if (dwLineFlags & LF_NONTRIVIAL_DIFF)
@@ -2948,157 +2731,6 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
 	bool bReadOnly = pd->m_ptBuf[m_nThisPane]->GetReadOnly();
 
 	pCmdUI->Enable(!bReadOnly);
-}
-
-/**
- * @brief Update readonly statusbaritem
- */
-void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
-{
-	bool bRO = GetDocument()->m_ptBuf[pCmdUI->m_nID - ID_STATUS_PANE0FILE_RO]->GetReadOnly();
-	pCmdUI->Enable(bRO);
-}
-
-/**
- * @brief Create the dynamic submenu for scripts
- */
-HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
-{
-	// get scripts list
-	std::vector<String> functionNamesList = FileTransform::GetFreeFunctionsInScripts(L"EDITOR_SCRIPT");
-
-	// empty the menu
-	size_t i = GetMenuItemCount(hMenu);
-	while (i --)
-		DeleteMenu(hMenu, 0, MF_BYPOSITION);
-
-	if (functionNamesList.size() == 0)
-	{
-		// no script : create a <empty> entry
-		AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, _("< Empty >").c_str());
-	}
-	else
-	{
-		// or fill in the submenu with the scripts names
-		int ID = ID_SCRIPT_FIRST;	// first ID in menu
-		for (i = 0 ; i < functionNamesList.size() ; i++, ID++)
-			AppendMenu(hMenu, MF_STRING, ID, functionNamesList[i].c_str());
-
-		functionNamesList.clear();
-	}
-
-	if (!plugin::IsWindowsScriptThere())
-		AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
-
-	return hMenu;
-}
-
-/**
- * @brief Create the dynamic submenu for prediffers
- *
- * @note The plugins are grouped in (suggested) and (not suggested)
- *       The IDs follow the order of GetAvailableScripts
- *       For example :
- *				suggested 0         ID_1ST + 0 
- *				suggested 1         ID_1ST + 2 
- *				suggested 2         ID_1ST + 5 
- *				not suggested 0     ID_1ST + 1 
- *				not suggested 1     ID_1ST + 3 
- *				not suggested 2     ID_1ST + 4 
- */
-HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
-{
-	// empty the menu
-	int i = GetMenuItemCount(hMenu);
-	while (i --)
-		DeleteMenu(hMenu, 0, MF_BYPOSITION);
-
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	// title
-	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
-
-	// get the scriptlet files
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	PluginArray * piScriptArray2 = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-
-	// build the menu : first part, suggested plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
-
-	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	size_t iScript;
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
-			continue;
-
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
-			continue;
-
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-
-	// build the menu : second part, others plugins
-	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
-
-	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
-			continue;
-
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
-			continue;
-
-		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
-	}
-
-	// compute the m_CurrentPredifferID (to set the radio button)
-	PrediffingInfo prediffer;
-	pd->GetPrediffer(&prediffer);
-
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-		m_CurrentPredifferID = 0;
-	else if (prediffer.m_PluginName.empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-	else
-	{
-		ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-		for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
-		{
-			const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-			if (prediffer.m_PluginName == plugin->m_name)
-				m_CurrentPredifferID = ID;
-
-		}
-		for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
-		{
-			const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-			if (prediffer.m_PluginName == plugin->m_name)
-				m_CurrentPredifferID = ID;
-		}
-	}
-
-	return hMenu;
 }
 
 /**
@@ -3337,10 +2969,9 @@ void CMergeEditView::OnWMGoto()
 	if (dlg.DoModal() == IDOK)
 	{
 		CMergeDoc * pDoc1 = GetDocument();
-		CMergeEditView * pCurrentView = nullptr;
 
 		// Get views
-		pCurrentView = GetGroupView(m_nThisPane);
+		CMergeEditView * pCurrentView = GetGroupView(m_nThisPane);
 
 		int num = 0;
 		try { num = std::stoi(dlg.m_strParam) - 1; } catch(...) {}
@@ -3364,7 +2995,8 @@ void CMergeEditView::OnWMGoto()
 			if (diff >= pDoc1->m_diffList.GetSize())
 				diff = pDoc1->m_diffList.GetSize();
 
-			pCurrentView->SelectDiff(diff, true, false);
+			if (pCurrentView)
+				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
 }
@@ -3538,8 +3170,6 @@ void CMergeEditView::RefreshOptions()
 	RENDERING_MODE nRenderingMode = static_cast<RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 	SetRenderingMode(nRenderingMode);
 
-	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
-
 	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)
 		SetInsertTabs(true);
 	else
@@ -3549,7 +3179,7 @@ void CMergeEditView::RefreshOptions()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
-	else if (!m_bChangedSchemeManually)
+	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
 		String fileName = GetDocument()->m_filePaths[m_nThisPane];
@@ -3560,6 +3190,7 @@ void CMergeEditView::RefreshOptions()
 			SetTextType(def->type);
 		else
 			SetTextType(CrystalLineParser::SRC_PLAIN);
+		SetDisableBSAtSOL(false);
 	}
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
@@ -3573,176 +3204,38 @@ void CMergeEditView::RefreshOptions()
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
-void CMergeEditView::OnScripts(UINT nID )
+void CMergeEditView::OnScripts(UINT nID)
 {
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
-	String text = GetSelectedText();
+	CString ctext = GetSelectedText();
+	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
 
+	EditorScriptInfo scriptInfo(
+		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FIRST));
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = FileTransform::Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
+	bool bChanged = false;
+	scriptInfo.TransformText(text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
+void CMergeEditView::OnTransformWithScript() 
 {
-	// append the scripts submenu
-	HMENU scriptsSubmenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu->m_hMenu : nullptr;
-	if (scriptsSubmenu != nullptr)
-		createScriptsSubmenu(scriptsSubmenu);
-
-	pCmdUI->Enable(true);
-}
-
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-	PrediffingInfo prediffer;
-	pd->GetPrediffer(&prediffer);
-
-	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MODE::PLUGIN_MANUAL)
-	{
-		pCmdUI->SetRadio(false);
+	// let the user choose a handler
+	CSelectPluginDlg dlg(_T(""),
+		strutils::join(GetDocument()->m_filePaths.begin(), GetDocument()->m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::EditorScript, false);
+	if (dlg.DoModal() != IDOK)
 		return;
-	}
-
-	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.m_PluginName.empty())
-		m_CurrentPredifferID = ID_NO_PREDIFFER;
-
-	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
-}
-
-/**
- * @brief Update "Prediffer" menuitem
- */
-void CMergeEditView::OnUpdateNoPrediffer(CCmdUI* pCmdUI)
-{
-	// recreate the sub menu (to fill the "selected prediffers")
-	GetMainFrame()->UpdatePrediffersMenu();
-	pCmdUI->Enable();
-}
-
-void CMergeEditView::OnNoPrediffer()
-{
-	OnPrediffer(ID_NO_PREDIFFER);
-}
-/**
- * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
- */
-void CMergeEditView::OnPrediffer(UINT nID )
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	SetPredifferByMenu(nID);
-	pd->FlushAndRescan(true);
-}
-
-/**
- * @brief Handler for all prediffer choices.
- * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
- * ID_NO_PREDIFFER, & specific prediffers.
- */
-void CMergeEditView::SetPredifferByMenu(UINT nID )
-{
-	CMergeDoc *pd = GetDocument();
-	ASSERT(pd != nullptr);
-
-	if (nID == ID_NO_PREDIFFER)
-	{
-		m_CurrentPredifferID = nID;
-		// All flags are set correctly during the construction
-		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-		infoPrediffer->m_PluginName.clear();
-		pd->SetPrediffer(infoPrediffer);
-		pd->FlushAndRescan(true);
-		return;
-	}
-
-	// get the scriptlet files
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	PluginArray * piScriptArray2 = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-
-	// build a PrediffingInfo structure fom the ID
-	PrediffingInfo prediffer;
-	prediffer.m_PluginOrPredifferMode = PLUGIN_MODE::PLUGIN_MANUAL;
-
-	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
-	if (pluginNumber < piScriptArray->size())
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
-		prediffer.m_PluginName = plugin->m_name;
-	}
-	else
-	{
-		pluginNumber -= piScriptArray->size();
-		if (pluginNumber >= piScriptArray2->size())
-			return;
-		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
-		prediffer.m_PluginName = plugin->m_name;
-	}
-
-	// update data for the radio button
-	m_CurrentPredifferID = nID;
-
-	// update the prediffer and rescan
-	pd->SetPrediffer(&prediffer);
-}
-
-/**
- * @brief Look through available prediffers, and return ID of requested one, if found
- */
-int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
-{
-	size_t i;
-	int ID = ID_PREDIFFERS_FIRST;
-
-	// Search file prediffers
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	for (i=0; i<piScriptArray->size(); ++i, ++ID)
-	{
-		const PluginInfoPtr & plugin = piScriptArray->at(i);
-		if (plugin->m_name == prediffer)
-			return ID;
-	}
-
-	// Search buffer prediffers
-	PluginArray * piScriptArray2 = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-	for (i=0; i<piScriptArray2->size(); ++i, ++ID)
-	{
-		const PluginInfoPtr & plugin = piScriptArray2->at(i);
-		if (plugin->m_name == prediffer)
-			return ID;
-	}
-	return -1;
-}
-
-
-/**
- * @brief Look through available prediffers, and return ID of requested one, if found
- */
-bool CMergeEditView::SetPredifferByName(const CString & prediffer)
-{
-	int id = FindPrediffer(prediffer);
-	if (id<0) return false;
-	SetPredifferByMenu(id);
-	return true;
+	EditorScriptInfo scriptInfo(dlg.GetPluginPipeline());
+	CString ctext = GetSelectedText();
+	String text{ ctext, static_cast<unsigned>(ctext.GetLength()) };
+	bool bChanged = false;
+	scriptInfo.TransformText(text, { GetDocument()->m_filePaths[m_nThisPane] }, bChanged);
+	if (bChanged)
+		// now replace the text
+		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
 /** 
@@ -3752,8 +3245,9 @@ bool CMergeEditView::SetPredifferByName(const CString & prediffer)
  * it is apparent line (including deleted lines)
  * @param [in] pane Pane index of goto target pane (0 = left, 1 = right).
  * @param [in] bMoveAnchor if true the anchor is moved to nLine
+ * @param [in] nChar Destination character position
  */
-void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor)
+void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor, int nChar)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
@@ -3774,7 +3268,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		nApparentLine = pDoc->m_ptBuf[pane]->ComputeApparentLine(nRealLine);
 	}
 	CPoint ptPos;
-	ptPos.x = 0;
+	ptPos.x = nChar == -1 ? 0 : nChar;
 	ptPos.y = nApparentLine;
 
 	// Scroll line to center of view
@@ -3788,21 +3282,13 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		int nGroup = m_bDetailView ? 0 : m_nThisGroup;
 		CMergeEditView* pView = GetDocument()->GetView(nGroup, nPane);
 		pView->ScrollToSubLine(nScrollLine);
-		if (ptPos.y < pView->GetLineCount())
-		{
-			pView->SetCursorPos(ptPos);
-			if (bMoveAnchor)
-				pView->SetAnchor(ptPos);
-			pView->SetSelection(pView->GetAnchor(), ptPos);
-		}
-		else
-		{
-			CPoint ptPos1(0, pView->GetLineCount() - 1);
-			pView->SetCursorPos(ptPos1);
-			if (bMoveAnchor)
-				pView->SetAnchor(ptPos1);
-			pView->SetSelection(pView->GetAnchor(), ptPos1);
-		}
+		CPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CPoint(ptPos.x, pView->GetLineCount() - 1);
+		pt.x = std::clamp(static_cast<int>(pt.x), 0, pView->GetLineLength(pt.y));
+		pView->SetCursorPos(pt);
+		if (bMoveAnchor)
+			pView->SetAnchor(pt);
+		pView->SetSelection(pView->GetAnchor(), pt);
+		pView->EnsureVisible(pt);
 	}
 
 	// If goto target is another view - activate another view.
@@ -3876,14 +3362,12 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
  */
 void CMergeEditView::OnEditCopyLineNumbers()
 {
-	CPoint ptStart;
-	CPoint ptEnd;
 	CString strText;
 	CString strLine;
 	CString strNumLine;
 
 	CMergeDoc *pDoc = GetDocument();
-	GetSelection(ptStart, ptEnd);
+	auto [ptStart, ptEnd] = GetSelection();
 
 	// Get last selected line (having widest linenumber)
 	int line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
@@ -3928,13 +3412,7 @@ void CMergeEditView::OnOpenFile()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName.c_str(),
-			0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), sFileName.c_str(),
-			 0, 0, SW_SHOWNORMAL);
-	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
-		OnOpenFileWith();
+	shell::Edit(sFileName.c_str());
 }
 
 /**
@@ -3948,14 +3426,7 @@ void CMergeEditView::OnOpenFileWith()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-
-	CString sysdir;
-	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH))
-		return;
-	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + sFileName.c_str();
-	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg,
-			sysdir, SW_SHOWNORMAL);
+	shell::OpenWith(sFileName.c_str());
 }
 
 /**
@@ -3971,7 +3442,22 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
+	CMergeApp::OpenFileToExternalEditor(sFileName, nRealLine);
+}
+
+/**
+ * @brief Open parent folder of active file
+ */
+void CMergeEditView::OnOpenParentFolder()
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != nullptr);
+
+	String sFileName = pDoc->m_filePaths[m_nThisPane];
+	if (sFileName.empty())
+		return;
+
+	shell::OpenParentFolder(sFileName.c_str());
 }
 
 /**
@@ -4266,30 +3752,6 @@ void CMergeEditView::SetWordWrapping( bool bWordWrap )
 }
 
 /**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes12()
-{
-	GetDocument()->SwapFiles(0, 1);
-}
-
-/**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes23()
-{
-	GetDocument()->SwapFiles(1, 2);
-}
-
-/**
- * @brief Swap the positions of the two panes
- */
-void CMergeEditView::OnViewSwapPanes13()
-{
-	GetDocument()->SwapFiles(0, 2);
-}
-
-/**
 * @brief Determine if difference is visible on screen.
 * @param [in] nDiff Number of diff to check.
 * @return true if difference is visible.
@@ -4355,9 +3817,6 @@ void CMergeEditView::DocumentsLoaded()
 	{
 		SetTopMargin(false);
 	}
-
-	// Enable/disable automatic rescan (rescanning after edit)
-	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
 
 	// SetTextType will revert to language dependent defaults for tab
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
@@ -4466,22 +3925,8 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 {
 	CMergeDoc *pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
-
-	for (int nGroup = 0; nGroup < pDoc->m_nGroups; nGroup++)
-		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
-		{
-			CMergeEditView *pView = pDoc->GetView(nGroup, nPane);
-			ASSERT(pView != nullptr);
-
-			if (pView != nullptr)
-			{
-				pView->SetTextType(CrystalLineParser::TextType(nID - ID_COLORSCHEME_FIRST));
-				pView->SetDisableBSAtSOL(false);
-				pView->m_bChangedSchemeManually = true;
-			}
-		}
-
-	OnRefresh();
+	pDoc->SetTextType(nID - ID_COLORSCHEME_FIRST);
+	pDoc->FlushAndRescan(true);
 }
 
 /**
@@ -4572,7 +4017,9 @@ void CMergeEditView::ZoomText(short amount)
 
 	if ( amount == 0)
 	{
-		nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
+		nPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
+		if (nPointSize ==  0)
+			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
 	}
 
 	nPointSize += amount;
@@ -4705,8 +4152,7 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 		if (EnsureInDiff(pt))
 			SetCursorPos(pt);
 
-		CPoint ptSelStart, ptSelEnd;
-		GetSelection(ptSelStart, ptSelEnd);
+		auto [ptSelStart, ptSelEnd] = GetSelection();
 		if (EnsureInDiff(ptSelStart) || EnsureInDiff(ptSelEnd))
 			SetSelection(ptSelStart, ptSelEnd);
 	}
@@ -4821,4 +4267,3 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	}
 }
-
