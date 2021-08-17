@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2011-10-11 01:08+0000\n"
+"POT-Creation-Date: 2021-08-17 20:34+0000\n"
 "PO-Revision-Date: 2021-01-28 18:56+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -50,7 +50,7 @@ msgstr "Contextmenu"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "&WinMerge"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -60,27 +60,27 @@ msgstr "Openen met WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 3 items"
-msgstr ""
+msgstr "Selecteer niet meer dan 3 items"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "Vergelijken"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Vergelijken..."
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Links selecteren"
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Midden selecteren"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
@@ -96,4 +96,4 @@ msgstr "Vergelijken met opgeslagen pad (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Links opnieuw selecteren"
