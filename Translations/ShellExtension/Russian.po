@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -21,7 +21,7 @@ msgstr ""
 "Language: ru_RU\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#. AFX_TARG
+#. AFX_TARG_*
 #: ShellExtensionTemplate.rc:24
 #, c-format
 msgid "AFX_TARG_ENU"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
+msgid "&WinMerge"
 msgstr ""
 
 #: ShellExtensionTemplate.rc:43
@@ -56,35 +56,40 @@ msgstr "Открыть в WinMerge"
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Выберите не более 2 элементов"
+msgid "Please select no more than 3 items"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Compare"
-msgstr "Сравнение"
+msgid "&Compare"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare..."
-msgstr "Сравнить..."
+msgid "Compare&..."
+msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare To"
-msgstr "Сравнить с"
+msgid "Select &Left"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr "Сохранить путь и выбрать второй."
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr "Сравнить с (%1)"
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtensionTemplate.rc:51
 #, c-format
-msgid "Re-select First"
-msgstr "Выбрать заново"
+msgid "Re-select &Left"
+msgstr ""

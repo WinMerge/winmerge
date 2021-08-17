@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -20,58 +20,63 @@ msgstr ""
 "Language: da_DK\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_DAN"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtensionTemplate.rc:26
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DANISH, SUBLANG_DEFAULT"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
 msgstr "ShellExtension"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
 msgstr "Åben med WinMerge"
 
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Please select no more than 3 items"
+msgstr ""
+
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Du kan højst vælge 2 ting"
+msgid "&Compare"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare"
-msgstr "Sammenlign"
+msgid "Compare&..."
+msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare..."
-msgstr "Sammenlign..."
+msgid "Select &Left"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
-msgid "Compare To"
-msgstr "Sammenlign med"
+msgid "Select &Middle"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
@@ -85,5 +90,5 @@ msgstr "Sammenlign med den gemte sti (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
-msgid "Re-select First"
-msgstr "Genvælg første"
+msgid "Re-select &Left"
+msgstr ""

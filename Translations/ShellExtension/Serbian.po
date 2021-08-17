@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -45,8 +45,8 @@ msgstr "ShellExtension"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -55,35 +55,40 @@ msgstr ""
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
-msgid "Please select no more than 2 items"
+msgid "Please select no more than 3 items"
 msgstr ""
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Compare"
+msgid "&Compare"
 msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare..."
+msgid "Compare&..."
 msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare To"
+msgid "Select &Left"
 msgstr ""
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
-msgid "Save this path. Select another path to compare with this path."
+msgid "Select &Middle"
 msgstr ""
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
-msgid "Compare to saved path (%1)"
+msgid "Save this path. Select another path to compare with this path."
 msgstr ""
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
-msgid "Re-select First"
+msgid "Compare to saved path (%1)"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:51
+#, c-format
+msgid "Re-select &Left"
 msgstr ""

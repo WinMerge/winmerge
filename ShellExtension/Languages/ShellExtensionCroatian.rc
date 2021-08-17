@@ -39,15 +39,16 @@ LANGUAGE LANG_CROATIAN, SUBLANG_DEFAULT
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
-    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_MENU        "&WinMerge"
     IDS_CONTEXT_HELP        "Otvori s WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Molimo, odaberite više os 2 stavke"
-    IDS_COMPARE             "Usporedi"
-    IDS_COMPARE_ELLIPSIS    "Usporedi..."
-    IDS_COMPARE_TO          "Usporedi s"
+    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 3 items"
+    IDS_COMPARE             "&Compare"
+    IDS_COMPARE_ELLIPSIS    "Compare&..."
+    IDS_SELECT_LEFT         "Select &Left"
+    IDS_SELECT_MIDDLE       "Select &Middle"
     IDS_HELP_SAVETHIS       "Pohrani ovu stazu. Za usporedbu, odaberite drugu stazu."
     IDS_HELP_COMPARESAVED   "Staza pohrane usporedbe (%1)"
-    IDS_RESELECT_FIRST      "Ponovni odabir"
+    IDS_RESELECT_LEFT       "Re-select &Left"
 END
 
 #endif    // Resources

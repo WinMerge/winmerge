@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -19,58 +19,63 @@ msgstr ""
 "Language: it\n"
 "X-Generator: Poedit 2.2.3\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_ITA"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtensionTemplate.rc:26
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ITALIAN, SUBLANG_ITALIAN"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
 msgstr "Estensione shell"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
 msgstr "Apri con WinMerge"
 
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Please select no more than 3 items"
+msgstr ""
+
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Seleziona massimo 2 elementi"
+msgid "&Compare"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare"
-msgstr "Confronta"
+msgid "Compare&..."
+msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare..."
-msgstr "Confronta..."
+msgid "Select &Left"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
-msgid "Compare To"
-msgstr "Confronta con"
+msgid "Select &Middle"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
@@ -86,5 +91,5 @@ msgstr "Confronta con il percorso salvato (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
-msgid "Re-select First"
-msgstr "Riseleziona il primo percorso"
+msgid "Re-select &Left"
+msgstr ""

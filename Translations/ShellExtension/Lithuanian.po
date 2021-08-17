@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -48,8 +48,8 @@ msgstr "ShellExtension"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -58,35 +58,40 @@ msgstr "Atverti su WinMerge"
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Pasirinkite ne daugiau kaip 2 elementus"
+msgid "Please select no more than 3 items"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Compare"
-msgstr "Lyginti"
+msgid "&Compare"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare..."
-msgstr "Lyginti..."
+msgid "Compare&..."
+msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare To"
-msgstr "Palyginti su"
+msgid "Select &Left"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr "Išsaugoti šį kelią. Parinkti kitą kelią ir palyginti su šiuo keliu."
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr "Palyginti su išsaugotu keliu (%1)"
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtensionTemplate.rc:51
 #, c-format
-msgid "Re-select First"
-msgstr "Iš naujo parinkti pirmą"
+msgid "Re-select &Left"
+msgstr ""

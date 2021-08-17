@@ -39,15 +39,16 @@ LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
-    IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Open with WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 2 items"
-    IDS_COMPARE             "Compare"
-    IDS_COMPARE_ELLIPSIS    "Compare..."
-    IDS_COMPARE_TO          "Compare To"
-    IDS_HELP_SAVETHIS       "Save this path. Select another path to compare with this path."
-    IDS_HELP_COMPARESAVED   "Compare to saved path (%1)"
-    IDS_RESELECT_FIRST      "Re-select First"
+    IDS_CONTEXT_MENU        "&WinMerge"
+    IDS_CONTEXT_HELP        "Megnyitás WinMerge-dzsel"
+    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 3 items"
+    IDS_COMPARE             "&Compare"
+    IDS_COMPARE_ELLIPSIS    "Compare&..."
+    IDS_SELECT_LEFT         "Select &Left"
+    IDS_SELECT_MIDDLE       "Select &Middle"
+    IDS_HELP_SAVETHIS       "Mentsd el ezt az elérési utat. Válassz egy másik elérési utat az ezzel való összehasonlításhoz."
+    IDS_HELP_COMPARESAVED   "Összehasonlítás a mentett elérési úttal (%1)"
+    IDS_RESELECT_LEFT       "Re-select &Left"
 END
 
 #endif    // Resources

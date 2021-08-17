@@ -61,7 +61,7 @@ public:
 // IWinMergeShell
 protected:
 	String m_strPaths[3]; /**< Paths for selected items */
-	String m_strPreviousPath; /**< Previously selected path */
+	String m_strPreviousPath[2]; /**< Previously selected path */
 	HBITMAP m_MergeBmp, m_MergeDirBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */

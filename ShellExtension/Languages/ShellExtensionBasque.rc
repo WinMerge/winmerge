@@ -39,15 +39,16 @@ LANGUAGE LANG_BASQUE, SUBLANG_DEFAULT
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
-    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_MENU        "&WinMerge"
     IDS_CONTEXT_HELP        "Ireki WinMergerekin"
-    IDS_CONTEXT_HELP_MANYITEMS "Mesedez ez hautatu 2 gai baino gehiago"
-    IDS_COMPARE             "Alderatu"
-    IDS_COMPARE_ELLIPSIS    "Alderatu..."
-    IDS_COMPARE_TO          "Alderatu Honekin"
+    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 3 items"
+    IDS_COMPARE             "&Compare"
+    IDS_COMPARE_ELLIPSIS    "Compare&..."
+    IDS_SELECT_LEFT         "Select &Left"
+    IDS_SELECT_MIDDLE       "Select &Middle"
     IDS_HELP_SAVETHIS       "Gorde helburu hau. Hautatu beste helburu bat helburu honekin alderatzeko."
     IDS_HELP_COMPARESAVED   "Alderatu gordetako helburuarekin (%1)"
-    IDS_RESELECT_FIRST      "Bir-hautatu Lehenengoa"
+    IDS_RESELECT_LEFT       "Re-select &Left"
 END
 
 #endif    // Resources

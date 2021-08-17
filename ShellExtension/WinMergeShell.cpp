@@ -58,6 +58,16 @@ enum ExtensionFlags
 	EXT_ADVANCED = 0x02, /**< Advanced menuitems enabled/disabled. */
 };
 
+enum
+{
+	CMD_COMPARE = 0,
+	CMD_COMPARE_ELLIPSE,
+	CMD_SELECT_LEFT,
+	CMD_SELECT_MIDDLE,
+	CMD_RESELECT_LEFT,
+	CMD_LAST = CMD_RESELECT_LEFT,
+};
+
 /// Max. filecount to select
 static const int MaxFileCount = 3;
 /// Registry path to WinMerge
@@ -74,6 +84,8 @@ static const TCHAR f_RegSettingsDir[] = REGDIR _T("\\Settings");
 static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
 /** 'Saved' path in advanced mode */
 static const TCHAR f_FirstSelection[] = _T("FirstSelection");
+/** 'Saved' path in advanced mode */
+static const TCHAR f_SecondSelection[] = _T("SecondSelection");
 /** Path to WinMergeU.exe */
 static const TCHAR f_RegValuePath[] = _T("Executable");
 /** Path to WinMergeU.exe, overwrites f_RegValuePath if present. */
@@ -94,6 +106,7 @@ enum
 	MENU_SIMPLE = 0,  /**< Simple menu, only "Compare item" is shown. */
 	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
 	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */
+	MENU_ONESEL_TWO_PREV,  /**< One item selected, two previous selections exist. */
 	MENU_TWOSEL,  /**< Two items are selected. */
 	MENU_THREESEL
 };
@@ -321,7 +334,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		mii.fMask = MIIM_DATA;
 		if (GetMenuItemInfo(hmenu, s_uidCmdLastAdded, FALSE, &mii))
 		{
-			if (mii.dwItemData >= IDS_COMPARE && mii.dwItemData <= IDS_RESELECT_FIRST)
+			if (mii.dwItemData >= IDS_COMPARE && mii.dwItemData <= IDS_RESELECT_LEFT)
 				return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 		}
 	}
@@ -329,7 +342,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 	s_hMenuLastAdded = hmenu;
 	s_uidCmdLastAdded = uidFirstCmd;
 
-	int nItemsAdded = 0;
+	int uidUserLastCmd = 0;
 
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
@@ -341,7 +354,8 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
 	m_dwContextMenuEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-	m_strPreviousPath = reg.ReadString(f_FirstSelection, _T("")).c_str();
+	m_strPreviousPath[0] = reg.ReadString(f_FirstSelection, _T("")).c_str();
+	m_strPreviousPath[1] = reg.ReadString(f_SecondSelection, _T("")).c_str();
 
 	if (m_dwContextMenuEnabled & EXT_ENABLED) // Context menu enabled
 	{
@@ -349,23 +363,25 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		if ((m_dwContextMenuEnabled & EXT_ADVANCED) == 0)
 		{
 			m_dwMenuState = MENU_SIMPLE;
-			nItemsAdded = DrawSimpleMenu(hmenu, uMenuIndex, uidFirstCmd);
+			uidUserLastCmd = DrawSimpleMenu(hmenu, uMenuIndex, uidFirstCmd);
 		}
 		else
 		{
-			if (m_nSelectedItems == 1 && m_strPreviousPath.empty())
+			if (m_nSelectedItems == 1 && m_strPreviousPath[0].empty())
 				m_dwMenuState = MENU_ONESEL_NOPREV;
-			else if (m_nSelectedItems == 1 && !m_strPreviousPath.empty())
+			else if (m_nSelectedItems == 1 && !m_strPreviousPath[0].empty() && m_strPreviousPath[1].empty())
 				m_dwMenuState = MENU_ONESEL_PREV;
+			else if (m_nSelectedItems == 1 && !m_strPreviousPath[0].empty() && !m_strPreviousPath[1].empty())
+				m_dwMenuState = MENU_ONESEL_TWO_PREV;
 			else if (m_nSelectedItems == 2)
 				m_dwMenuState = MENU_TWOSEL;
 			else if (m_nSelectedItems == 3)
 				m_dwMenuState = MENU_THREESEL;
 
-			nItemsAdded = DrawAdvancedMenu(hmenu, uMenuIndex, uidFirstCmd);
+			uidUserLastCmd = DrawAdvancedMenu(hmenu, uMenuIndex, uidFirstCmd);
 		}
 
-		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, nItemsAdded);
+		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, (uidUserLastCmd - uidFirstCmd) + 1);
 	}
 	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 }
@@ -429,7 +445,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (!PathFileExists(strWinMergePath.c_str()))
 		return S_FALSE;
 
-	if (LOWORD(pCmdInfo->lpVerb) == 0)
+	if (LOWORD(pCmdInfo->lpVerb) == CMD_COMPARE)
 	{
 		switch (m_dwMenuState)
 		{
@@ -437,46 +453,72 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			bCompare = TRUE;
 			break;
 
-		case MENU_ONESEL_NOPREV:
-			m_strPreviousPath = m_strPaths[0];
-			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-				reg.WriteString(f_FirstSelection, m_strPreviousPath.c_str());
-			break;
-
 		case MENU_ONESEL_PREV:
 			m_strPaths[1] = m_strPaths[0];
-			m_strPaths[0] = m_strPreviousPath;
+			m_strPaths[0] = m_strPreviousPath[0];
 			bCompare = TRUE;
 
 			// Forget previous selection
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+			{
 				reg.WriteString(f_FirstSelection, _T(""));
+				reg.WriteString(f_SecondSelection, _T(""));
+			}
+			break;
+
+		case MENU_ONESEL_TWO_PREV:
+			m_strPaths[2] = m_strPaths[0];
+			m_strPaths[0] = m_strPreviousPath[0];
+			m_strPaths[1] = m_strPreviousPath[1];
+			bCompare = TRUE;
+
+			// Forget previous selection
+			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+			{
+				reg.WriteString(f_FirstSelection, _T(""));
+				reg.WriteString(f_SecondSelection, _T(""));
+			}
 			break;
 
 		case MENU_TWOSEL:
 		case MENU_THREESEL:
 			// "Compare" - compare paths
 			bCompare = TRUE;
-			m_strPreviousPath.erase();
+			m_strPreviousPath[0].erase();
+			m_strPreviousPath[1].erase();
 			break;
 		}
 	}
-	else if (LOWORD(pCmdInfo->lpVerb) == 1)
+	else if (LOWORD(pCmdInfo->lpVerb) == CMD_COMPARE_ELLIPSE)
 	{
-		switch (m_dwMenuState)
+		// "Compare..." - user wants to compare this single item and open WinMerge
+		m_strPaths[1].erase();
+		m_strPaths[2].erase();
+		bCompare = TRUE;
+	}
+	else if (LOWORD(pCmdInfo->lpVerb) == CMD_SELECT_LEFT)
+	{
+		// Select Left
+		m_strPreviousPath[0] = m_strPaths[0];
+		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+			reg.WriteString(f_FirstSelection, m_strPreviousPath[0].c_str());
+	}
+	else if (LOWORD(pCmdInfo->lpVerb) == CMD_SELECT_MIDDLE)
+	{
+		// Select Middle
+		m_strPreviousPath[1] = m_strPaths[0];
+		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+			reg.WriteString(f_SecondSelection, m_strPreviousPath[1].c_str());
+	}
+	else if (LOWORD(pCmdInfo->lpVerb) == CMD_RESELECT_LEFT)
+	{
+		// Re-select Left
+		m_strPreviousPath[0] = m_strPaths[0];
+		m_strPreviousPath[1].clear();
+		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
 		{
-		case MENU_ONESEL_PREV:
-			m_strPreviousPath = m_strPaths[0];
-			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-				reg.WriteString(f_FirstSelection, m_strPreviousPath.c_str());
-			bCompare = FALSE;
-			break;
-		default:
-			// "Compare..." - user wants to compare this single item and open WinMerge
-			m_strPaths[1].erase();
-			m_strPaths[2].erase();
-			bCompare = TRUE;
-			break;
+			reg.WriteString(f_FirstSelection, m_strPreviousPath[0].c_str());
+			reg.WriteString(f_SecondSelection, _T(""));
 		}
 	}
 	else
@@ -556,7 +598,7 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	if (m_nSelectedItems > MaxFileCount)
 		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
 
-	return 1;
+	return uidFirstCmd + CMD_LAST;
 }
 
 /// Create menu for advanced mode
@@ -570,20 +612,25 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		// No items selected earlier
 		// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE_TO);
-		uMenuIndex++;
-		uidFirstCmd++;
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE_ELLIPSIS);
+		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_SELECT_LEFT, IDS_SELECT_LEFT);
+		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_COMPARE_ELLIPSE, IDS_COMPARE_ELLIPSIS);
 		nItemsAdded = 2;
 		break;
 
 		// One item selected earlier:
 		// Allow re-selecting first item or selecting second item
 	case MENU_ONESEL_PREV:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
-		uMenuIndex++;
-		uidFirstCmd++;
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_RESELECT_FIRST);
+		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
+		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_SELECT_MIDDLE, IDS_SELECT_MIDDLE);
+		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_RESELECT_LEFT, IDS_RESELECT_LEFT);
+		nItemsAdded = 3;
+		break;
+
+		// Two items are selected earlier:
+		// Allow re-selecting first item or selecting second item
+	case MENU_ONESEL_TWO_PREV:
+		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
+		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_RESELECT_LEFT, IDS_RESELECT_LEFT);
 		nItemsAdded = 2;
 		break;
 
@@ -591,12 +638,12 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		// Select both items for compare
 	case MENU_TWOSEL:
 	case MENU_THREESEL:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
 		nItemsAdded = 1;
 		break;
 
 	default:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_COMPARE);
+		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
 		nItemsAdded = 1;
 		break;
 	}
@@ -605,20 +652,18 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
 	if (hBitmap != NULL)
 	{
-		if (nItemsAdded == 2)
-			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, hBitmap, NULL);
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, hBitmap, NULL);
+		for (int i = 0; i < nItemsAdded; i++)
+			SetMenuItemBitmaps(hmenu, uMenuIndex - (nItemsAdded - 1 - i), MF_BYPOSITION, hBitmap, NULL);
 	}
 
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
 	{
-		if (nItemsAdded == 2)
-			EnableMenuItem(hmenu, uMenuIndex - 1, MF_BYPOSITION | MF_GRAYED);
-		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
+		for (int i = 0; i < nItemsAdded; i++)
+			EnableMenuItem(hmenu, uMenuIndex - (nItemsAdded - 1 - i), MF_BYPOSITION | MF_GRAYED);
 	}
 
-	return nItemsAdded;
+	return uidFirstCmd + CMD_LAST;
 }
 
 /// Determine help text shown in explorer's statusbar
@@ -633,40 +678,39 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		return strHelp;
 	}
 
-	if (idCmd == 0)
+	if (idCmd == CMD_COMPARE)
 	{
 		switch (m_dwMenuState)
 		{
-		case MENU_SIMPLE:
-			strHelp = GetResourceString(IDS_CONTEXT_HELP);;
-			break;
-
-		case MENU_ONESEL_NOPREV:
-			strHelp = GetResourceString(IDS_HELP_SAVETHIS);
-			break;
-
 		case MENU_ONESEL_PREV:
 			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
-			strutils::replace(strHelp, _T("%1"), m_strPreviousPath);
+			strutils::replace(strHelp, _T("%1"), m_strPreviousPath[0]);
 			break;
 
-		case MENU_TWOSEL:
-		case MENU_THREESEL:
-			strHelp = GetResourceString(IDS_CONTEXT_HELP);
-			break;
-		}
-	}
-	else if (idCmd == 1)
-	{
-		switch (m_dwMenuState)
-		{
-		case MENU_ONESEL_PREV:
-			strHelp = GetResourceString(IDS_HELP_SAVETHIS);
+		case MENU_ONESEL_TWO_PREV:
+			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
+			strutils::replace(strHelp, _T("%1"), m_strPreviousPath[0] + _T(" - ") + m_strPreviousPath[1]);
 			break;
 		default:
 			strHelp = GetResourceString(IDS_CONTEXT_HELP);
 			break;
 		}
+	}
+	else if (idCmd == CMD_COMPARE_ELLIPSE)
+	{
+		strHelp = GetResourceString(IDS_CONTEXT_HELP);
+	}
+	else if (idCmd == CMD_SELECT_LEFT)
+	{
+		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
+	}
+	else if (idCmd == CMD_SELECT_MIDDLE)
+	{
+		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
+	}
+	else if (idCmd == CMD_RESELECT_LEFT)
+	{
+		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
 	}
 	return strHelp;
 }

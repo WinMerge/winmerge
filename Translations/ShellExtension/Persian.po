@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -48,8 +48,8 @@ msgstr " شل اکستنشن "
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
-msgid "WinMerge"
-msgstr " وينمرج "
+msgid "&WinMerge"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -58,35 +58,40 @@ msgstr " باز کردن با وينمرج "
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr " لطفا بيشتر از دو مورد را انتخاب ننماييد "
+msgid "Please select no more than 3 items"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
-msgid "Compare"
-msgstr " همسنجي / مقايسه "
+msgid "&Compare"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
-msgid "Compare..."
-msgstr " همسنجي ... "
+msgid "Compare&..."
+msgstr ""
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
-msgid "Compare To"
-msgstr " مقايسه با "
+msgid "Select &Left"
+msgstr ""
 
 #: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr " اين مسير را ذخيره کن. مسير ديگري را براي مقايسه با اين مسير انتخاب کن "
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr " همسنجي با مسير ذخيره شده %1 "
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtensionTemplate.rc:51
 #, c-format
-msgid "Re-select First"
-msgstr " در آغاز  دوباره انتخاب نماييد "
+msgid "Re-select &Left"
+msgstr ""

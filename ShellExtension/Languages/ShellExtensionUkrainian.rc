@@ -39,15 +39,16 @@ LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
-    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_MENU        "&WinMerge"
     IDS_CONTEXT_HELP        "Відкрити у WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Оберіть не більше двох елементів"
-    IDS_COMPARE             "Порівняти"
-    IDS_COMPARE_ELLIPSIS    "Порівняти..."
-    IDS_COMPARE_TO          "Порівняти з"
+    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 3 items"
+    IDS_COMPARE             "&Compare"
+    IDS_COMPARE_ELLIPSIS    "Compare&..."
+    IDS_SELECT_LEFT         "Select &Left"
+    IDS_SELECT_MIDDLE       "Select &Middle"
     IDS_HELP_SAVETHIS       "Зберегти цей шлях. Обрати інший шлях для порівняння з цим шляхом."
     IDS_HELP_COMPARESAVED   "Порівняти зі збереженим шляхом (%1)"
-    IDS_RESELECT_FIRST      "Переобрати перший"
+    IDS_RESELECT_LEFT       "Re-select &Left"
 END
 
 #endif    // Resources

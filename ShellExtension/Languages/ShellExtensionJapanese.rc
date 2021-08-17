@@ -39,15 +39,16 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
-    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_MENU        "&WinMerge"
     IDS_CONTEXT_HELP        "WinMerge で開く"
-    IDS_CONTEXT_HELP_MANYITEMS "2 項目以上は選択しないで下さい"
-    IDS_COMPARE             "比較"
-    IDS_COMPARE_ELLIPSIS    "比較..."
-    IDS_COMPARE_TO          "比較対象として選択"
+    IDS_CONTEXT_HELP_MANYITEMS "3 項目以上は選択しないで下さい"
+    IDS_COMPARE             "比較(&C)"
+    IDS_COMPARE_ELLIPSIS    "Compare&..."
+    IDS_SELECT_LEFT         "Select &Left"
+    IDS_SELECT_MIDDLE       "中央として選択(&M)"
     IDS_HELP_SAVETHIS       "このパスを保存します。このパスと比較するために別のパスを選択してください。"
     IDS_HELP_COMPARESAVED   "保存されたパス (%1) と比較します。"
-    IDS_RESELECT_FIRST      "1 番目のファイルを再選択"
+    IDS_RESELECT_LEFT       "Re-select &Left"
 END
 
 #endif    // Resources
