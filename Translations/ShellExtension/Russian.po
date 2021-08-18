@@ -57,27 +57,27 @@ msgstr "Открыть в WinMerge"
 #: ShellExtension.rc:114
 #, c-format
 msgid "Please select no more than 3 items"
-msgstr ""
+msgstr "Выберите не более 3 элементов"
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Сравнить"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Сравнить&..."
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "&Выбрать левый"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Выбр&ать средний"
 
 #: ShellExtension.rc:119
 #, c-format
@@ -92,4 +92,4 @@ msgstr "Сравнить с (%1)"
 #: ShellExtension.rc:121
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Перевыбрать &левый"
