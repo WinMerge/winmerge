@@ -36,7 +36,7 @@ Sub Main
   
   StartTime = Time
   
-  InfoBox "Creating POT file from ShellExtensionTemplate.rc...", 3
+  InfoBox "Creating POT file from ShellExtension.rc...", 3
   
   bNecessary = True
   If (oFSO.FileExists(PATH_ENGLISH_POT) = True) And (oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC) = True) Then 'If the POT and RC file exists...
