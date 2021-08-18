@@ -91,4 +91,4 @@ msgstr "保存されたパス (%1) と比較します。"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select &Left"
-msgstr "左側として再選択"
+msgstr "左側として再選択(&L)"

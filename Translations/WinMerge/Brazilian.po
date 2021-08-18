@@ -3888,30 +3888,3 @@ msgstr "Marca das aspas ausentes na tubulação do plugin: %1"
 
 msgid "Specify plugin arguments"
 msgstr "Especificar os argumentos do plugin"
-
-#~ msgid "&Select Line Difference\tF4"
-#~ msgstr "&Selecionar a Diferença da Linha\tF4"
-
-#, c-format
-#~ msgid "&XML"
-#~ msgstr "&XML"
-
-#, c-format
-#~ msgid "&No prediffer"
-#~ msgstr "&Sem prediffer"
-
-#, c-format
-#~ msgid "Auto prediffer"
-#~ msgstr "Auto prediffer"
-
-#, c-format
-#~ msgid "Select Unpacker"
-#~ msgstr "Selecionar o Desempacotador"
-
-#, c-format
-#~ msgid "File unpacker:"
-#~ msgstr "Desempacotador do arquivo:"
-
-#, c-format
-#~ msgid "Cannot create a patch file from directories."
-#~ msgstr "Não pode criar um arquivo de patch através dos diretórios."

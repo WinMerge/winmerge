@@ -111,8 +111,6 @@ enum
 	MENU_THREESEL
 };
 
-static String GetResourceString(UINT resourceID);
-
 // GreyMerlin (03 Sept 2017) - The following Version Info checking code is a 
 // short extract from the Microsoft <versionhelpers.h> file.  Unfortunatly, 
 // that file is not available for WinXP-compatible Platform Toolsets (e.g. 
@@ -158,46 +156,24 @@ IsWindows8OrGreater()
 }
 #endif // VERSIONHELPERAPI
 
-/**
- * @brief Load a string from resource.
- * @param [in] Resource string ID.
- * @return String loaded from resource.
- */
-static String GetResourceString(UINT resourceID)
-{
-	TCHAR resStr[1024] = {0};
-	int res = LoadString(_AtlComModule.m_hInstTypeLib, resourceID, resStr, 1024);
-	ATLASSERT(res != 0);
-	String strResource = resStr;
-	return strResource;
-}
-
-static BOOL InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewItem, UINT uStringId)
-{
-	String str = GetResourceString(uStringId);
-	MENUITEMINFO mii{sizeof mii};
-	mii.fMask = MIIM_ID | MIIM_STRING | MIIM_DATA;
-	mii.wID = uIDNewItem;
-	mii.dwTypeData = const_cast<LPTSTR>(str.c_str());
-	mii.dwItemData = uStringId;
-	return InsertMenuItem(hMenu, uPosition, TRUE, &mii);
-}
-
 HBITMAP ConvertHICONtoHBITMAP(HICON hIcon, int cx, int cy)
 {
 	LPVOID lpBits;
 	BITMAPINFO bmi = { { sizeof(BITMAPINFOHEADER), cx, cy, 1, IsWindows8OrGreater() ? 32u : 24u } };
-	HBITMAP hbmp = CreateDIBSection(NULL, (BITMAPINFO*)&bmi, DIB_RGB_COLORS, &lpBits, NULL, 0);
 	HDC hdcMem = CreateCompatibleDC(NULL);
-	HBITMAP hbmpPrev = (HBITMAP)SelectObject(hdcMem, hbmp);
-	RECT rc = { 0, 0, cx, cy };
-	if (bmi.bmiHeader.biBitCount <= 24)
+	HBITMAP hbmp = CreateDIBSection(NULL, (BITMAPINFO*)&bmi, DIB_RGB_COLORS, &lpBits, NULL, 0);
+	if (hbmp)
 	{
-		SetBkColor(hdcMem, GetSysColor(COLOR_MENU));
-		ExtTextOut(hdcMem, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+		HBITMAP hbmpPrev = (HBITMAP)SelectObject(hdcMem, hbmp);
+		RECT rc = { 0, 0, cx, cy };
+		if (bmi.bmiHeader.biBitCount <= 24)
+		{
+			SetBkColor(hdcMem, GetSysColor(COLOR_MENU));
+			ExtTextOut(hdcMem, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+		}
+		DrawIconEx(hdcMem, 0, 0, hIcon, cx, cy, 0, NULL, DI_NORMAL);
+		SelectObject(hdcMem, hbmpPrev);
 	}
-	DrawIconEx(hdcMem, 0, 0, hIcon, cx, cy, 0, NULL, DI_NORMAL);
-	SelectObject(hdcMem, hbmpPrev);
 	DeleteDC(hdcMem);
 	return hbmp;
 }
@@ -207,8 +183,11 @@ HBITMAP ConvertHICONtoHBITMAP(HICON hIcon, int cx, int cy)
 
 /// Default constructor, loads icon bitmap
 CWinMergeShell::CWinMergeShell()
+	: m_dwContextMenuEnabled(false)
+	, m_nSelectedItems(0)
+	, m_dwMenuState(0)
+	, m_langID(GetUserDefaultUILanguage())
 {
-	m_dwMenuState = 0;
 	int cx = GetSystemMetrics(SM_CXMENUCHECK);
 	int cy = GetSystemMetrics(SM_CYMENUCHECK);
 
@@ -223,6 +202,10 @@ CWinMergeShell::CWinMergeShell()
 
 	DestroyIcon(hMergeIcon);
 	DestroyIcon(hMergeDirIcon);
+
+	CRegKeyEx reg;
+	if (reg.Open(HKEY_CURRENT_USER, f_RegLocaleDir) == ERROR_SUCCESS)
+		m_langID = static_cast<LANGID>(reg.ReadDword(f_LanguageId, m_langID));
 
 }
 
@@ -408,9 +391,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 	// supplied buffer.
 	if (uFlags & GCS_HELPTEXT)
 	{
-		String strHelp;
-
-		strHelp = GetHelpText(idCmd);
+		String strHelp = GetHelpText(idCmd);
 
 		if (uFlags & GCS_UNICODE)
 			// We need to cast pszName to a Unicode string, and then use the
@@ -562,6 +543,42 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	}
 
 	return S_OK;
+}
+
+/**
+ * @brief Load a string from resource.
+ * @param [in] Resource string ID.
+ * @return String loaded from resource.
+ */
+String CWinMergeShell::GetResourceString(UINT resourceID)
+{
+	if (!s_pLang)
+		s_pLang = new CLanguageSelect();
+	if (s_pLang->GetLangId() != m_langID)
+	{
+		TCHAR szFileName[1024] = {0};
+		GetModuleFileName(_AtlComModule.m_hInstTypeLib, szFileName, sizeof(szFileName) / sizeof(TCHAR));
+		PathRemoveFileSpec(szFileName);
+		String languagesFolder = String(szFileName) + _T("\\Languages\\ShellExtension");
+		s_pLang->LoadLanguageFile(m_langID, languagesFolder);
+	}
+	TCHAR resStr[1024] = {0};
+	int res = LoadString(_AtlComModule.m_hInstTypeLib, resourceID, resStr, 1024);
+	ATLASSERT(res != 0);
+	String strResource;
+	s_pLang->TranslateString(resStr, strResource);
+	return strResource;
+}
+
+BOOL CWinMergeShell::InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewItem, UINT uStringId)
+{
+	String str = GetResourceString(uStringId);
+	MENUITEMINFO mii{sizeof mii};
+	mii.fMask = MIIM_ID | MIIM_STRING | MIIM_DATA;
+	mii.wID = uIDNewItem;
+	mii.dwTypeData = const_cast<LPTSTR>(str.c_str());
+	mii.dwItemData = uStringId;
+	return InsertMenuItem(hMenu, uPosition, TRUE, &mii);
 }
 
 /// Reads WinMerge path from registry
