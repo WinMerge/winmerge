@@ -560,6 +560,9 @@ static void unslash(std::wstring &s)
  */
 bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, const std::wstring& sLanguagesFolder)
 {
+	m_langId = wLangId;
+	m_map_msgid_to_msgstr.clear();
+
 	std::wstring strPath = GetFileName(wLangId, sLanguagesFolder);
 	if (strPath.empty())
 		return false;
@@ -638,8 +641,6 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, const std::wstring& sLang
 	if (ps != nullptr)
 		addToMap();
 	fclose(f);
-
-	m_langId = wLangId;
 
 	return true;
 }
