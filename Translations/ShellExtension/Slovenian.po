@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -25,74 +25,74 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 
 #. AFX_TARG_*
-#: ShellExtensionTemplate.rc:24
+#: ShellExtension.rc:19
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_SLV"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:26
+#: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SLOVENIAN, SUBLANG_DEFAULT"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:27
+#: ShellExtension.rc:21
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:41
+#: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
 msgstr "Razširitev integracije v lupino"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtension.rc:113
 #, c-format
 msgid "Open with WinMerge"
 msgstr "Odpri z WinMerge"
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtension.rc:114
 #, c-format
 msgid "Please select no more than 3 items"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtension.rc:115
 #, c-format
 msgid "&Compare"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtension.rc:116
 #, c-format
 msgid "Compare&..."
 msgstr ""
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtension.rc:117
 #, c-format
 msgid "Select &Left"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:48
+#: ShellExtension.rc:118
 #, c-format
 msgid "Select &Middle"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtension.rc:119
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr "Shrani to pot. Izberite še drugo pot za primerjavo s to potjo."
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtension.rc:120
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr "Primerjaj s shranjeno potjo (%1)"
 
-#: ShellExtensionTemplate.rc:51
+#: ShellExtension.rc:121
 #, c-format
 msgid "Re-select &Left"
 msgstr ""
