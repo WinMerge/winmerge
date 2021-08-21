@@ -734,11 +734,6 @@
     <ClCompile Include="MergeEditSplitterView.cpp" />
     <ClCompile Include="MergeStatusBar.cpp" />
     <ClCompile Include="OpenTableDlg.cpp" />
-    <ClCompile Include="OptionsDef.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>

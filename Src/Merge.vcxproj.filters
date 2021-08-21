@@ -309,9 +309,6 @@
     <ClCompile Include="DirActions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Test.cpp">
       <Filter>MergeTest</Filter>
     </ClCompile>

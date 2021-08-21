@@ -225,9 +225,6 @@
     <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\OptionsDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
