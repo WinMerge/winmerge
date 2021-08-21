@@ -123,13 +123,18 @@ public :
 IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 
 CCrystalEditView::CCrystalEditView ()
-: m_pEditReplaceDlg(nullptr)
+: m_nLastReplaceLen(0)
+, m_mapExpand(new CMap<CString, LPCTSTR, CString, LPCTSTR> (10))
+, m_bLastReplace(false)
+, m_dwLastReplaceFlags(0)
+, m_pEditReplaceDlg(nullptr)
+, m_bDropPosVisible(false)
+, m_bSelectionPushed(false)
+, m_bAutoIndent(true)
+, m_bDisableBSAtSOL(false)
+, m_pDropTarget(nullptr)
+, m_bMergeUndo(false)
 {
-  memset((static_cast<CCrystalTextView*>(this))+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
-  m_bAutoIndent = true;
-  m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
-  m_bMergeUndo = false;
-  m_bDisableBSAtSOL = false;
 }
 
 CCrystalEditView:: ~CCrystalEditView ()
