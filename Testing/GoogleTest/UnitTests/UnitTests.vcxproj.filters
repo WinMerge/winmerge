@@ -225,9 +225,6 @@
     <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\OptionsDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -251,6 +248,12 @@
     </ClCompile>
     <ClCompile Include="..\DiffCode\DiffCode_test.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DIffItemList\DiffItemList_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffItemList.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +384,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\DiffItemList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

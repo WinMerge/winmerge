@@ -143,8 +143,8 @@ BEGIN
         BEGIN
             MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
             MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
-            MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
-            MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+            MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+            MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
             MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
             MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
@@ -177,7 +177,7 @@ BEGIN
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
             MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
             MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-            MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+            MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -909,6 +909,34 @@ BEGIN
     END
 END
 
+IDR_POPUP_PROJECT_DIFF_OPTIONS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "W&hitespaces"
+        BEGIN
+            MENUITEM "Com&pare", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
+        END
+        MENUITEM "Ignore blan&k lines", ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case", ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM SEPARATOR
+        POPUP "&Compare method:"
+        BEGIN
+            MENUITEM "Full Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
+        END
+    END
+END
+
 IDR_POPUP_NEW MENU
 BEGIN
     POPUP "_POPUP_"
@@ -979,8 +1007,8 @@ BEGIN
     BEGIN
         MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
         MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
-        MENUITEM "Flip &Vertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
-        MENUITEM "Flip &Horizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+        MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+        MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
         MENUITEM SEPARATOR
         MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
         MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
@@ -989,7 +1017,7 @@ BEGIN
         MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
         MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
         MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-        MENUITEM "&Rectangle Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+        MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
     END
 END
 

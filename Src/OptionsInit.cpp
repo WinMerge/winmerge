@@ -65,7 +65,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	pOptions->InitOption(OPT_SHOW_TABBAR, true);
-	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0);
+	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0, 0, 2);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
@@ -76,12 +76,12 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	pOptions->InitOption(OPT_SCROLL_TO_FIRST_INLINE_DIFF, false);
 	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
-	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
+	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1, 0, 2);
 	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
 	pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
 	pOptions->InitOption(OPT_INVERT_DIFF_CONTEXT, false);
 	pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
-	pOptions->InitOption(OPT_RENDERING_MODE, -1);
+	pOptions->InitOption(OPT_RENDERING_MODE, -1, 0, 6);
 	pOptions->InitOption(OPT_FILE_SIZE_THRESHOLD, 64*1024*1024);
 
 	pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
@@ -89,13 +89,13 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
 	pOptions->InitOption(OPT_BACKUP_FILECMP, true);
-	pOptions->InitOption(OPT_BACKUP_LOCATION, (int)0);
+	pOptions->InitOption(OPT_BACKUP_LOCATION, (int)0, 0, 1);
 	pOptions->InitOption(OPT_BACKUP_GLOBALFOLDER, _T(""));
 	pOptions->InitOption(OPT_BACKUP_ADD_BAK, true);
 	pOptions->InitOption(OPT_BACKUP_ADD_TIME, false);
 
-	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
-	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1);
+	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1, -1, 128);
+	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1, -1, 128);
 	pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
 	pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
 	pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
@@ -104,38 +104,38 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_ORDERS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_WIDTHS, _T(""));
 
-	pOptions->InitOption(OPT_REPORTFILES_REPORTTYPE, 0);
+	pOptions->InitOption(OPT_REPORTFILES_REPORTTYPE, 0, 0, 3);
 	pOptions->InitOption(OPT_REPORTFILES_COPYTOCLIPBOARD, false);
 	pOptions->InitOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, false);
 
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
 	pOptions->InitOption(OPT_COPY_FULL_LINE, false);
-	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
-	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
+	pOptions->InitOption(OPT_TAB_SIZE, (int)4, 0, 64);
+	pOptions->InitOption(OPT_TAB_TYPE, (int)0, 0, 1);	// 0 means tabs inserted
 
 	pOptions->InitOption(OPT_EXT_EDITOR_CMD, _T("%windir%\\NOTEPAD.EXE"));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
-	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0);
+	pOptions->InitOption(OPT_SINGLE_INSTANCE, 0, 0, 2);
 	pOptions->InitOption(OPT_MERGE_MODE, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
 	pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
-	pOptions->InitOption(OPT_BREAK_TYPE, 1);
+	pOptions->InitOption(OPT_BREAK_TYPE, 1, 0, 1);
 
-	pOptions->InitOption(OPT_CLOSE_WITH_ESC, 1);
+	pOptions->InitOption(OPT_CLOSE_WITH_ESC, 1, 0, 2);
 	pOptions->InitOption(OPT_CLOSE_WITH_OK, false);
 	pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
 	pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);
 	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
 	pOptions->InitOption(OPT_TREE_MODE, true);
 
-	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
+	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_SIZE);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 	pOptions->InitOption(OPT_CMP_BINARY_LIMIT, 64 * 1024 * 1024); // 64 Megs
-	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1);
+	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1, -128, 128);
 	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
@@ -153,18 +153,18 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
 	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
-	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);
-	pOptions->InitOption(OPT_CMP_IMG_OVERLAYALPHA, 30);
-	pOptions->InitOption(OPT_CMP_IMG_DRAGGING_MODE, 1);
-	pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000);
+	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMODE, 0, 0, 3);
+	pOptions->InitOption(OPT_CMP_IMG_OVERLAYALPHA, 30, 0, 100);
+	pOptions->InitOption(OPT_CMP_IMG_DRAGGING_MODE, 1, 0, 5);
+	pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000, 1, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
 	pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
-	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
-	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70);
-	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
-	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0);
-	pOptions->InitOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, 1000);
-	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0);
+	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8, 0, 64);
+	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70, 0, 100);
+	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0, 0, 442);
+	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0, 0, 2);
+	pOptions->InitOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, 1000, 1, 8000);
+	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
@@ -194,7 +194,7 @@ void Init(COptionsMgr *pOptions)
 	else
 		pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 1);
 
-	pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
+	pOptions->InitOption(OPT_ARCHIVE_ENABLE, true); // Enable by default
 	pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
 	pOptions->InitOption(OPT_ARCHIVE_FILTER_INDEX, 1);
 
@@ -205,24 +205,23 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, true);
 	pOptions->InitOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, false);
 
-	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0);
+	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0, 0, 3);
 	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);
 	pOptions->InitOption(OPT_PATCHCREATOR_CASE_SENSITIVE, true);
 	pOptions->InitOption(OPT_PATCHCREATOR_EOL_SENSITIVE, true);
 	pOptions->InitOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, false);
-	pOptions->InitOption(OPT_PATCHCREATOR_WHITESPACE, WHITESPACE_COMPARE_ALL);
+	pOptions->InitOption(OPT_PATCHCREATOR_WHITESPACE, WHITESPACE_COMPARE_ALL, WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_ALL);
 	pOptions->InitOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, false);
 	pOptions->InitOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, false);
 
 	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 	pOptions->InitOption(OPT_ACTIVE_FRAME_MAX, true);
-	pOptions->InitOption(OPT_ACTIVE_PANE, 0);
+	pOptions->InitOption(OPT_ACTIVE_PANE, 0, 0, 2);
 
-	pOptions->InitOption(OPT_MRU_MAX, 9);
+	pOptions->InitOption(OPT_MRU_MAX, 9, 0, 128);
 
 	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
 
-	Options::CustomColors::SetDefaults(pOptions);
 	pOptions->InitOption(OPT_CURRENT_VERSION_URL, CurrentVersionURL);
 	if (pOptions->GetString(OPT_CURRENT_VERSION_URL) == CurrentVersionURLOld)
 		pOptions->SaveOption(OPT_CURRENT_VERSION_URL, CurrentVersionURL);
@@ -231,11 +230,12 @@ void Init(COptionsMgr *pOptions)
 	if (pOptions->GetString(OPT_DOWNLOAD_URL) == DownloadUrlOld)
 		pOptions->SaveOption(OPT_DOWNLOAD_URL, DownloadUrl);
 
-	Options::DiffOptions::SetDefaults(pOptions);
-	Options::DiffColors::SetDefaults(pOptions);
-	Options::DirColors::SetDefaults(pOptions);
-	Options::EditorSyntax::SetDefaults(pOptions);
-	Options::Font::SetDefaults(pOptions);
+	Options::CustomColors::Init(pOptions);
+	Options::DiffOptions::Init(pOptions);
+	Options::DiffColors::Init(pOptions);
+	Options::DirColors::Init(pOptions);
+	Options::EditorSyntax::Init(pOptions);
+	Options::Font::Init(pOptions);
 }
 
 /**

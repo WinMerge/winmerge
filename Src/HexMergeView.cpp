@@ -66,7 +66,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
 	ON_WM_NCCALCSIZE()
-	ON_COMMAND(ID_HELP, OnHelp)
+	// [Edit] menu
 	ON_COMMAND(ID_EDIT_FIND, OnEditFind)
 	ON_COMMAND(ID_EDIT_REPLACE, OnEditReplace)
 	ON_COMMAND(ID_EDIT_REPEAT, OnEditRepeat)
@@ -79,10 +79,13 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_CLEAR, OnEditClear)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
+	// [Merge] menu
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
 	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
 	ON_COMMAND(ID_PREVDIFF, OnPrevdiff)
+	// [Help] menu
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 	// Test case to verify WM_COMMAND won't accidentally go through Default()
 	//ON_COMMAND(ID_APP_ABOUT, Default)

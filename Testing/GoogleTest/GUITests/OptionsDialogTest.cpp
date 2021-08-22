@@ -118,7 +118,7 @@ TEST_P(OptionsDialogTest, Pages)
 
 }
 
-INSTANTIATE_TEST_CASE_P(OptionsDialogTestInstance,
+INSTANTIATE_TEST_SUITE_P(OptionsDialogTestInstance,
 	OptionsDialogTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

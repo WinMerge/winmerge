@@ -146,7 +146,7 @@ TEST_P(FileTest, ViewFileNavigation3Way)
 
 }
 
-INSTANTIATE_TEST_CASE_P(FileTestInstance,
+INSTANTIATE_TEST_SUITE_P(FileTestInstance,
 	FileTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

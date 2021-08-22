@@ -86,7 +86,16 @@ int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textVa
 	}
 	else if (valType == varprop::VT_INT)
 	{
-		value.SetInt(std::stoul(textValue));
+		try
+		{
+			value.SetInt(static_cast<int>(std::stoul(textValue)));
+		}
+		catch (std::invalid_argument&)
+		{
+		}
+		catch (std::out_of_range&)
+		{
+		}
 		retVal = Set(strName, value);
 	}
 	else if (valType == varprop::VT_BOOL)

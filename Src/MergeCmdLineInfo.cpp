@@ -130,6 +130,8 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
 	, m_dwMiddleFlags(FFILEOPEN_NONE)
 	, m_dwRightFlags(FFILEOPEN_NONE)
 	, m_nLineIndex(-1)
+	, m_nCharIndex(-1)
+	, m_bEnableExitCode(false)
 {
 	String exeName;
 	q = EatParam(q, exeName);
@@ -318,6 +320,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -new means to display a new blank window
 			m_bNewCompare = true;
 		}
+		else if (param == _T("enableexitcode"))
+		{
+			m_bEnableExitCode = true;
+		}
 		else if (param == _T("minimize"))
 		{
 			// -minimize means minimize the main window.
@@ -404,6 +410,22 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			else
 			{
 				m_nLineIndex--;
+			}
+		}
+		else if (param == _T("c"))
+		{
+			// -c to set the destination character position 
+			String charpos;
+			q = EatParam(q, charpos);
+			m_nCharIndex = _ttoi(charpos.c_str());
+			if (m_nCharIndex <= 0)
+			{
+				m_nCharIndex = -1;
+				m_sErrorMessages.push_back(_T("Invalid character position specified"));
+			}
+			else
+			{
+				m_nCharIndex--;
 			}
 		}
 		else if (param == _T("table-delimiter"))

@@ -9,11 +9,12 @@
 #define IDS_CONTEXT_HELP_MANYITEMS      103
 #define IDS_COMPARE                     104
 #define IDS_COMPARE_ELLIPSIS            105
-#define IDS_COMPARE_TO                  106
-#define IDS_HELP_SAVETHIS               107
-#define IDS_HELP_COMPARESTORED          108
-#define IDS_HELP_COMPARESAVED           109
-#define IDS_RESELECT_FIRST              110
+#define IDS_SELECT_LEFT                 106
+#define IDS_SELECT_MIDDLE               107
+#define IDS_RESELECT_LEFT               108
+#define IDS_HELP_SAVETHIS               120
+#define IDS_HELP_COMPARESTORED          121
+#define IDS_HELP_COMPARESAVED           122
 #define IDI_WINMERGE                    208
 #define IDI_WINMERGEDIR                 209
 

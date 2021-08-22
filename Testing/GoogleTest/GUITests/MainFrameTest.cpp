@@ -310,7 +310,7 @@ TEST_P(MainFrameTest, HelpAbout)
 
 }
 
-INSTANTIATE_TEST_CASE_P(MainFrameTestInstance,
+INSTANTIATE_TEST_SUITE_P(MainFrameTestInstance,
 	MainFrameTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

@@ -141,10 +141,10 @@ msgstr "90 graden rechtsom roteren"
 msgid "Rotate &Left 90deg"
 msgstr "90 graden linksom roteren"
 
-msgid "Flip &Vertically"
+msgid "Flip V&ertically"
 msgstr "Verticaal omdraaien"
 
-msgid "Flip &Horizontally"
+msgid "Flip H&orizontally"
 msgstr "Horizontaal omdraaien"
 
 msgid "&Zoom"
@@ -188,7 +188,7 @@ msgstr "Verticaal uitvegen"
 msgid "&Horizontal Wipe"
 msgstr "Horizontaal uitvegen"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "Rechthoekige selectie"
 
 msgid "&Set Background Color"

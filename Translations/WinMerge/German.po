@@ -162,11 +162,11 @@ msgstr "90° nach rechts drehen"
 msgid "Rotate &Left 90deg"
 msgstr "90° nach links drehen"
 
-msgid "Flip &Vertically"
-msgstr "&Vertikal spiegeln"
+msgid "Flip V&ertically"
+msgstr "V&ertikal spiegeln"
 
-msgid "Flip &Horizontally"
-msgstr "&Horizontal spiegeln"
+msgid "Flip H&orizontally"
+msgstr "H&orizontal spiegeln"
 
 #, c-format
 msgid "&Zoom"
@@ -219,7 +219,7 @@ msgstr "Ver&tikal wischen"
 msgid "&Horizontal Wipe"
 msgstr "&Horizontal wischen"
 
-msgid "&Rectangle Select"
+msgid "Rectangle &Select"
 msgstr "&Rechteck auswählen"
 
 #, c-format

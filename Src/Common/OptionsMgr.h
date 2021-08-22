@@ -134,6 +134,7 @@ public:
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;
 	virtual int InitOption(const String& name, const TCHAR *defaultValue) = 0;
 	virtual int InitOption(const String& name, int defaultValue, bool serializable = true) = 0;
+	virtual int InitOption(const String& name, int defaultValue, int minValue, int maxValue, bool serializable = true);
 	virtual int InitOption(const String& name, bool defaultValue) = 0;
 
 	virtual int SaveOption(const String& name) = 0;

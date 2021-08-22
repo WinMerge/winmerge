@@ -141,11 +141,11 @@ msgstr "右へ90度回転(&R)"
 msgid "Rotate &Left 90deg"
 msgstr "左へ90度回転(&L)"
 
-msgid "Flip &Vertically"
-msgstr "上下反転(&V)"
+msgid "Flip V&ertically"
+msgstr "上下反転(&E)"
 
-msgid "Flip &Horizontally"
-msgstr "左右反転(&H)"
+msgid "Flip H&orizontally"
+msgstr "左右反転(&O)"
 
 msgid "&Zoom"
 msgstr "拡大(&Z)"
@@ -188,8 +188,8 @@ msgstr "垂直ワイプ(&V)"
 msgid "&Horizontal Wipe"
 msgstr "水平ワイプ(&H)"
 
-msgid "&Rectangle Select"
-msgstr "矩形選択(&R)"
+msgid "Rectangle &Select"
+msgstr "矩形選択(&S)"
 
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"

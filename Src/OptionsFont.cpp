@@ -39,7 +39,7 @@ void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitc
  * @brief Initialize the in-memory Options::Font structure (and possibly the related Registry entries)
  * for both File-Contents and Directory-Tree windows.
  */
-void SetDefaults(COptionsMgr *pOptionsMgr)
+void Init(COptionsMgr *pOptionsMgr)
 {
 	HDC hDC = GetDC(nullptr);
 	const int logPixelsY = GetDeviceCaps(hDC, LOGPIXELSY);
@@ -96,7 +96,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 		String name = (i == 0 ? OPT_FONT_FILECMP : OPT_FONT_DIRCMP);
 
 		pOptionsMgr->InitOption(name + OPT_FONT_USECUSTOM, false);
-		pOptionsMgr->InitOption(name + OPT_FONT_POINTSIZE, ::MulDiv(abs(thisFont.lfHeight), 72, logPixelsY));
+		pOptionsMgr->InitOption(name + OPT_FONT_POINTSIZE, ::MulDiv(abs(thisFont.lfHeight), 72, logPixelsY), 1, 72);
 		pOptionsMgr->InitOption(name + OPT_FONT_HEIGHT, thisFont.lfHeight);
 		pOptionsMgr->InitOption(name + OPT_FONT_ESCAPEMENT, thisFont.lfEscapement);
 		pOptionsMgr->InitOption(name + OPT_FONT_ORIENTATION, thisFont.lfOrientation);

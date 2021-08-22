@@ -126,7 +126,7 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
-	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true);
+	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
 	using CCrystalTextView::GetScreenLines;
 	int GetTopSubLine() const { return m_nTopSubLine; }
@@ -270,11 +270,6 @@ protected:
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
-	afx_msg void OnRefresh();
-	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	template<bool reversed>
 	afx_msg void OnSelectLineDiff();
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
@@ -282,13 +277,6 @@ protected:
 	afx_msg void OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
-	afx_msg void OnLeftReadOnly();
-	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnMiddleReadOnly();
-	afx_msg void OnUpdateMiddleReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnRightReadOnly();
-	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnConvertEolTo(UINT nID );
 	afx_msg void OnUpdateConvertEolTo(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusEOL(CCmdUI* pCmdUI);

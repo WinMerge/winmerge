@@ -377,6 +377,18 @@ int COptionsMgr::AddOption(const String& name, const varprop::VariantValue& defa
 	return retVal;
 }
 
+int COptionsMgr::InitOption(const String& name, int defaultValue, int minValue, int maxValue, bool serializable)
+{
+	int retVal = InitOption(name, defaultValue, serializable);
+	if (retVal == COption::OPT_OK)
+	{
+		int ival = GetInt(name);
+		if (ival < minValue || ival > maxValue)
+			Reset(name);
+	}
+	return retVal;
+}
+
 /**
  * @brief Get option value from list by name.
  * @param [in] name Name of the option to get.

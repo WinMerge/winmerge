@@ -145,7 +145,7 @@ bool IsArchiveFile(const String& pszFile)
  */
 Merge7z::Format *ArchiveGuessFormat(const String& path)
 {
-	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
+	if (!GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE))
 		return nullptr;
 	if (paths::IsDirectory(path))
 		return nullptr;
@@ -271,7 +271,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 	{
 		// Merge7z has not yet been loaded
 
-		if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
+		if (!GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE))
 			throw new CResourceException();
 		if (DWORD ver = VersionOf7z())
 		{

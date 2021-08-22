@@ -147,9 +147,6 @@
     <ClCompile Include="..\..\Src\Common\RegOptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\OptionsDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\OptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
