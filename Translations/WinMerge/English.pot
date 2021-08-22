@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-30 21:57+0000\n"
+"POT-Creation-Date: 2021-08-22 10:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3489,5 +3489,35 @@ msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passe
 msgstr ""
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+msgstr ""
+
+msgid "Apply patch using GnuWin32 Patch for Windows"
+msgstr ""
+
+msgid "Display the text content of MS Excel files"
+msgstr ""
+
+msgid "Display the text content of MS PowerPoint files"
+msgstr ""
+
+msgid "Display the text content of MS Visio files"
+msgstr ""
+
+msgid "Display the text content of MS Word files"
+msgstr ""
+
+msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+msgstr ""
+
+msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "Prediff Line Filter"
+msgstr ""
+
+msgid "Basic text functions for the context menu"
 msgstr ""
 
