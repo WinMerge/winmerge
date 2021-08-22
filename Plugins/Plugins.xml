@@ -132,6 +132,42 @@
       <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
+  <plugin name="DecompileJVM">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="JVM bytecode decompiler with javap. &#xD;&#xA;Arguments: Command line options passed to the javap command." />
+    <file-filters value="\.class$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".txt" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Decompile JVM Bytecode" />
+    <arguments value="-c" />
+    <unpack-file>
+      <command>cmd /c javap ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="DecompileIL">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="IL decompiler with ildasm. &#xD;&#xA;Arguments: Command line options passed to the ildasm command." />
+    <file-filters value="\.obj$;\.lib$;\.winmd$;\.exe$;\.dll$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".asm" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Decompile IL Bytecode" />
+    <arguments value="/text" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\ildasm\ildasm.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="DisassembleNative">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="Native code disassembler with dumpbin. &#xD;&#xA;Arguments: Command line options passed to the dumpbin command." />
+    <file-filters value="\.obj$;\.lib$;\.exe$;\.dll$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".asm" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble Native Code" />
+    <arguments value="/disasm:nobytes" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\dumpbin\dumpbin.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
   <!--
   <plugin name="VBScript-test">
     <event value="FILE_PACK_UNPACK" />
