@@ -80,6 +80,20 @@ static void LoadToolbarImageList(int orgImageWidth, int newImageHeight, UINT nID
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
+static void LogWrite(const String& str)
+{
+	HANDLE hMutex = CreateMutex(nullptr, FALSE, _T("issue908_913"));
+	WaitForSingleObject(hMutex, INFINITE);
+	String path = env::ExpandEnvironmentVariables(_T("%TEMP%\\issue_908_913.log"));
+	FILE* fp = nullptr;
+	_tfopen_s(&fp, paths::ConcatPath(path, _T("")).c_str(), _T("at+"));
+	_ftprintf(fp, _T("%s\n"), str.c_str());
+	fflush(fp);
+	fclose(fp);
+	ReleaseMutex(hMutex);
+	CloseHandle(hMutex);
+}
+
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -802,10 +816,12 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
+	LogWrite(_T("ShowTextOrTableMergeDoc1"));
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
 	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles, false);
 
+	LogWrite(_T("ShowTextOrTableMergeDoc2"));
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
 	std::copy_n(ifileloc, nFiles, fileloc);
@@ -814,12 +830,14 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	if (pMergeDoc == nullptr)
 		return false; // when does this happen ?
 
+	LogWrite(_T("ShowTextOrTableMergeDoc3"));
 	// if an unpacker is selected, it must be used during LoadFromFile
 	// MergeDoc must memorize it for SaveToFile
 	// Warning : this unpacker may differ from the pDirDoc one
 	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
+	LogWrite(_T("ShowTextOrTableMergeDoc4"));
 	// detect codepage
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
 	for (int pane = 0; pane < nFiles; pane++)
@@ -832,24 +850,30 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		}
 	}
 
+	LogWrite(_T("ShowTextOrTableMergeDoc5"));
 	pMergeDoc->SetEnableTableEditing(table);
 	if (pOpenParams && table.value_or(false))
 	{
+		LogWrite(_T("ShowTextOrTableMergeDoc5.1"));
 		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
 			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
 		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
 		{
+			LogWrite(_T("ShowTextOrTableMergeDoc5.2"));
 			props.delimiter = pOpenTableFileParams->m_tableDelimiter.value_or(props.delimiter);
 			props.quote = pOpenTableFileParams->m_tableQuote.value_or(props.quote);
 			props.allowNewlinesInQuotes = pOpenTableFileParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
 		}
+		LogWrite(_T("ShowTextOrTableMergeDoc5.3"));
 		pMergeDoc->SetPreparedTableProperties(props);
 	}
+	LogWrite(_T("ShowTextOrTableMergeDoc6"));
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
 	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc);
 	if (bResult)
 	{
+		LogWrite(_T("ShowTextOrTableMergeDoc6.1"));
 		if (CMergeEditFrame *pFrame = pMergeDoc->GetParentFrame())
 			if (!pFrame->IsActivated())
 				pFrame->InitialUpdateFrame(pMergeDoc, true);
@@ -859,9 +883,11 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		return false;
 	}
 
+	LogWrite(_T("ShowTextOrTableMergeDoc7"));
 	if (pOpenParams && !pOpenParams->m_fileExt.empty())
 		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
+	LogWrite(_T("ShowTextOrTableMergeDoc8"));
 	for (int pane = 0; pane < nFiles; pane++)
 	{
 		if (dwFlags)
@@ -879,15 +905,18 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		}
 	}
 
+	LogWrite(_T("ShowTextOrTableMergeDoc8"));
 	pMergeDoc->MoveOnLoad(
 		GetActivePaneFromFlags(nFiles, dwFlags),
 		pOpenParams ? pOpenParams->m_line : -1,
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
 
+	LogWrite(_T("ShowTextOrTableMergeDoc10"));
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
 
+	LogWrite(_T("ShowTextOrTableMergeDoc11"));
 	return true;
 }
 
@@ -1133,10 +1162,15 @@ static bool AddToRecentDocs(const PathContext& paths,
 		params += _T("/prediffer \"") + pipeline + _T("\" ");
 	}
 
+	LogWrite(_T("CreateTask1"));
 	Concurrent::CreateTask([params, title](){
+			LogWrite(_T("CreateTask2"));
 			CoInitialize(nullptr);
+			LogWrite(_T("CreateTask3"));
 			JumpList::AddToRecentDocs(_T(""), params, title, params, 0);
+			LogWrite(_T("CreateTask4"));
 			CoUninitialize();
+			LogWrite(_T("CreateTask5"));
 			return 0;
 		});
 	return true;
@@ -1284,16 +1318,19 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
 		}
 
+		LogWrite(_T("DoFileOrFolderOpen1"));
 		ShowMergeDoc(nID, pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
 				infoUnpacker, pOpenParams);
 	}
 
+	LogWrite(_T("DoFileOrFolderOpen2"));
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
 		String filter = (nID == 0 && pathsType == paths::IS_EXISTING_DIR) ?
 			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
+	LogWrite(_T("DoFIleOrFolderOpen3"));
 
 	return true;
 }
