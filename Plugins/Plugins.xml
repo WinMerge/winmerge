@@ -132,25 +132,25 @@
       <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
-  <plugin name="DecompileJVM">
+  <plugin name="DisassembleJVM">
     <event value="FILE_PACK_UNPACK" />
-    <description value="JVM bytecode decompiler with javap. &#xD;&#xA;Arguments: Command line options passed to the javap command." />
+    <description value="JVM bytecode disassembler with javap. &#xD;&#xA;Arguments: Command line options passed to the javap command." />
     <file-filters value="\.class$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".txt" />
-    <extended-properties value="ProcessType=Decompilation;MenuCaption=Decompile JVM Bytecode" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble JVM Bytecode" />
     <arguments value="-c" />
     <unpack-file>
       <command>cmd /c javap ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="DecompileIL">
+  <plugin name="DisassembleIL">
     <event value="FILE_PACK_UNPACK" />
-    <description value="IL decompiler with ildasm. &#xD;&#xA;Arguments: Command line options passed to the ildasm command." />
+    <description value="IL disassembler with ildasm. &#xD;&#xA;Arguments: Command line options passed to the ildasm command." />
     <file-filters value="\.obj$;\.lib$;\.winmd$;\.exe$;\.dll$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".asm" />
-    <extended-properties value="ProcessType=Decompilation;MenuCaption=Decompile IL Bytecode" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble IL Bytecode" />
     <arguments value="/text" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Commands\ildasm\ildasm.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
