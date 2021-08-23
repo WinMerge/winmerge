@@ -65,6 +65,20 @@ int CMergeDoc::m_nBuffersTemp = 2;
 
 static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
+static void LogWrite(const String& str)
+{
+	HANDLE hMutex = CreateMutex(nullptr, FALSE, _T("issue908_913"));
+	WaitForSingleObject(hMutex, INFINITE);
+	String path = env::ExpandEnvironmentVariables(_T("%TEMP%\\issue_908_913.log"));
+	FILE* fp = nullptr;
+	_tfopen_s(&fp, paths::ConcatPath(path, _T("")).c_str(), _T("at+"));
+	_ftprintf(fp, _T("tid %d: %s\n"), GetCurrentThreadId(), str.c_str());
+	fflush(fp);
+	fclose(fp);
+	ReleaseMutex(hMutex);
+	CloseHandle(hMutex);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
 
@@ -3042,6 +3056,7 @@ void CMergeDoc::SetTextType(const String& ext)
 bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		const bool bRO[], const String strDesc[])
 {
+	LogWrite(_T("OpenDocs1"));
 	CWaitCursor waitstatus;
 	IDENTLEVEL identical = IDENTLEVEL::NONE;
 	int nRescanResult = RESCAN_OK;
@@ -3050,9 +3065,13 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 	std::copy_n(ifileloc, 3, fileloc);
 
+	LogWrite(_T("OpenDocs2"));
+
 	// Filter out invalid codepages, or editor will display all blank
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		SanityCheckCodepage(fileloc[nBuffer]);
+
+	LogWrite(_T("OpenDocs3"));
 
 	// clear undo stack
 	undoTgt.clear();
@@ -3062,10 +3081,16 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Note : attach buffer again only if both loads succeed
 	m_strBothFilenames.erase();
 
+	LogWrite(_T("OpenDocs4"));
+
 	ForEachView([](auto& pView) { pView->DetachFromBuffer(); });
+
+	LogWrite(_T("OpenDocs5"));
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
+		LogWrite(_T("OpenDocs5.1"));
+
 		// clear undo buffers
 		m_ptBuf[nBuffer]->m_aUndoBuf.clear();
 
@@ -3074,28 +3099,48 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		// build the text being filtered, "|" separates files as it is forbidden in filenames
 		m_strBothFilenames += fileloc[nBuffer].filepath + _T("|");
+
+		LogWrite(_T("OpenDocs5.2"));
+
 	}
 	m_strBothFilenames.erase(m_strBothFilenames.length() - 1);
+
+	LogWrite(_T("OpenDocs6"));
 
 	// Load files
 	DWORD nSuccess[3] = { FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR };
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
+		LogWrite(_T("OpenDocs6.1"));
+
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
+
+		LogWrite(_T("OpenDocs6.2"));
+
 		if (!FileLoadResult::IsOk(nSuccess[nBuffer]))
 		{
+			LogWrite(_T("OpenDocs6.2.1"));
+
 			CMergeEditFrame* pFrame = GetParentFrame();
 			if (pFrame != nullptr)
 			{
+				LogWrite(_T("OpenDocs6.2.1.1"));
+
 				// Use verify macro to trap possible error in debug.
 				VERIFY(pFrame->DestroyWindow());
 			}
+			LogWrite(_T("OpenDocs6.2.2"));
+
 			return false;
 		}
 	}
 
+	LogWrite(_T("OpenDocs7"));
+
 	SetTableProperties();
+
+	LogWrite(_T("OpenDocs8"));
 
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 
@@ -3103,65 +3148,102 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// we need to initialize the unpacker as a "do nothing" one
 	if (bFiltersEnabled)
 	{ 
+		LogWrite(_T("OpenDocs8.1"));
+
 		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
 		{
+			LogWrite(_T("OpenDocs8.2"));
+
 			m_infoUnpacker.Initialize(false);
 		}
 	}
+
+	LogWrite(_T("OpenDocs9"));
 
 	// Warn user if file load was lossy (bad encoding)
 	int idres=0;
 	int nLossyBuffers = 0;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
+		LogWrite(_T("OpenDocs9.1"));
+
 		if (FileLoadResult::IsLossy(nSuccess[nBuffer]))
 		{
+			LogWrite(_T("OpenDocs9.1.1"));
+
 			// TODO: It would be nice to report how many lines were lossy
 			// we did calculate those numbers when we loaded the files, in the text stats
 	
 			idres = IDS_LOSSY_TRANSCODING_FIRST + nBuffer;
 			nLossyBuffers++;
 		}
+		LogWrite(_T("OpenDocs9.2"));
 	}
+
+	LogWrite(_T("OpenDocs10"));
+
 	if (nLossyBuffers > 1)
 		idres = IDS_LOSSY_TRANSCODING_BOTH; /* FIXEME */
 	
+	LogWrite(_T("OpenDocs11"));
+
 	if (nLossyBuffers > 0)
 	{
+		LogWrite(_T("OpenDocs11.1"));
+
 		if (m_pEncodingErrorBar == nullptr)
 		{
+			LogWrite(_T("OpenDocs11.1.1"));
+
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
 			m_pEncodingErrorBar->Create(this->m_pView[0][0]->GetParentFrame());
 		}
+		LogWrite(_T("OpenDocs11.2"));
+
 		m_pEncodingErrorBar->SetText(LoadResString(idres));
 		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
 	}
 
+	LogWrite(_T("OpenDocs12"));
+
 	ForEachView([](auto& pView) {
+		LogWrite(_T("OpenDocs12.1"));
 		// Now buffers data are valid
 		pView->AttachToBuffer();
+		LogWrite(_T("OpenDocs12.2"));
 		// Currently there is only one set of syntax colors, which all documents & views share
 		pView->SetColorContext(theApp.GetMainSyntaxColors());
 		// Currently there is only one set of markers, which all documents & views share
 		pView->SetMarkersContext(theApp.GetMainMarkers());
+		LogWrite(_T("OpenDocs12.3"));
 	});
+	LogWrite(_T("OpenDocs13"));
+
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
+		LogWrite(_T("OpenDocs13.1"));
+
 		// Set read-only statuses
 		m_ptBuf[nBuffer]->SetReadOnly(bRO[nBuffer]);
 	}
+
+	LogWrite(_T("OpenDocs14"));
 
 	// Check the EOL sensitivity option (do it before Rescan)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	if (!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && !diffOptions.bIgnoreEol)
 	{
+		LogWrite(_T("OpenDocs14.1"));
+
 		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
 			if (m_ptBuf[0]->GetCRLFMode() != m_ptBuf[nBuffer]->GetCRLFMode())
 				break;
 
 		if (nBuffer < m_nBuffers)
 		{
+			LogWrite(_T("OpenDocs14.1.1"));
+
 			// Options and files not are not compatible :
 			// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
 			// All lines will differ, that is not very interesting and probably not wanted.
@@ -3169,6 +3251,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
 			if (ShowMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 			{
+				LogWrite(_T("OpenDocs14.1.1.1"));
+
 				diffOptions.bIgnoreEol = true;
 				m_diffWrapper.SetOptions(&diffOptions);
 
@@ -3176,6 +3260,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 				const int nFormerResult = dlg.GetFormerResult();
 				if (nFormerResult != -1)
 				{
+					LogWrite(_T("OpenDocs14.1.1.1.1"));
+
 					// "Don't ask this question again" checkbox is checked
 					GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, true);
 				}
@@ -3183,22 +3269,31 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		}
 	}
 
+	LogWrite(_T("OpenDocs15"));
+
 	// Define the prediffer
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
 	if (bFiltersEnabled && m_pDirDoc != nullptr)
 	{
+		LogWrite(_T("OpenDocs15.1"));
 		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
 
+	LogWrite(_T("OpenDocs16"));
+
 	bool bBinary = false;
 	nRescanResult = Rescan(bBinary, identical);
+
+	LogWrite(_T("OpenDocs17"));
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)
 	{
+		LogWrite(_T("OpenDocs17.1"));
+
 		// set the document types
 		// Warning : it is the first thing to do (must be done before UpdateView,
 		// or any function that calls UpdateView, like SelectDiff)
@@ -3210,13 +3305,18 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
+			LogWrite(_T("OpenDocs17.1.1"));
+
 			sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {
+				LogWrite(_T("OpenDocs17.1.1.1"));
 				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
 				if (bTyped[nBuffer])
 					paneTyped = nBuffer;
 			});
 		}
+
+		LogWrite(_T("OpenDocs17.2"));
 
 		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
 		{
@@ -3224,11 +3324,17 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 				break;
 		}
 
+		LogWrite(_T("OpenDocs17.3"));
+
 		bool syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
 		if (syntaxHLEnabled && nBuffer < m_nBuffers)
 		{
+			LogWrite(_T("OpenDocs17.3.1"));
+
 			if (std::count(bTyped, bTyped + m_nBuffers, false) == m_nBuffers)
 			{
+				LogWrite(_T("OpenDocs17.3.2"));
+
 				CString sFirstLine;
 				m_ptBuf[0]->GetLine(0, sFirstLine);
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3238,23 +3344,34 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			}
 		}
 
+		LogWrite(_T("OpenDocs17.4"));
+
 		if (syntaxHLEnabled)
 		{
+			LogWrite(_T("OpenDocs17.4.1"));
+
 			CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
 			ForEachView([&bTyped, enuType](auto& pView) {
+				LogWrite(_T("OpenDocs17.4.1.1"));
 				if (!bTyped[pView->m_nThisPane])
 					pView->SetTextType(enuType);
 			});
 		}
 
+		LogWrite(_T("OpenDocs17.5"));
+
 		int nNormalBuffer = 0;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
+			LogWrite(_T("OpenDocs17.5.1"));
+
 			// set the frame window header
 			UpdateHeaderPath(nBuffer);
 
 			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
 			
+			LogWrite(_T("OpenDocs17.5.2"));
+
 			if ((m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL) ||
 			    (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED))
 			{
@@ -3263,12 +3380,17 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			
 		}
 
+		LogWrite(_T("OpenDocs17.6"));
+
 		// Inform user that files are identical
 		// Don't show message if new buffers created
 		if (identical == IDENTLEVEL::ALL && nNormalBuffer > 0)
 		{
+			LogWrite(_T("OpenDocs17.6.1"));
 			ShowRescanError(nRescanResult, identical);
 		}
+
+		LogWrite(_T("OpenDocs17.7"));
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
@@ -3276,19 +3398,26 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 	else
 	{
+		LogWrite(_T("OpenDocs17.8"));
+
 		// CMergeDoc::Rescan fails if files do not exist on both sides 
 		// or the really arcane case that the temp files couldn't be created, 
 		// which is too obscure to bother reporting if you can't write to 
 		// your temp directory, doing nothing is graceful enough for that).
 		ShowRescanError(nRescanResult, identical);
 		GetParentFrame()->DestroyWindow();
+		LogWrite(_T("OpenDocs17.9"));
 		return false;
 	}
+
+	LogWrite(_T("OpenDocs18"));
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
 	if (m_pView[0][0] != nullptr)
 		m_pView[0][0]->RepaintLocationPane();
+
+	LogWrite(_T("OpenDocs19"));
 
 	return true;
 }
