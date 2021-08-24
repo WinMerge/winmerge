@@ -247,16 +247,6 @@ protected:
 		}
 	} m_wndMDIClient;
 
-	/** @brief Toolbar image table indexes. */
-	enum TOOLBAR_IMAGES
-	{
-		TOOLBAR_IMAGES_ENABLED,
-		TOOLBAR_IMAGES_DISABLED,
-		TOOLBAR_IMAGES_COUNT
-	};
-
-	CImageList m_ToolbarImages[TOOLBAR_IMAGES_COUNT]; /**< Images for toolbar */
-
 	enum
 	{
 		MENU_DEFAULT,
