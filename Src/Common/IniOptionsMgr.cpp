@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "IniOptionsMgr.h"
 #include <Windows.h>
+#include <process.h>
 #include "OptionsMgr.h"
 
 LPCWSTR lpAppName = TEXT("WinMerge");
@@ -26,7 +27,9 @@ CIniOptionsMgr::CIniOptionsMgr(const String& filePath)
 	, m_hThread(nullptr)
 {
 	m_iniFileKeyValues = Load(m_filePath);
-	m_hThread = CreateThread(nullptr, 0, AsyncWriterThreadProc, this, 0, &m_dwThreadId);
+	m_hThread = reinterpret_cast<HANDLE>(
+		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
+			reinterpret_cast<unsigned *>(&m_dwThreadId)));
 }
 
 CIniOptionsMgr::~CIniOptionsMgr()
@@ -38,7 +41,7 @@ CIniOptionsMgr::~CIniOptionsMgr()
 	}
 }
 
-DWORD WINAPI CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
+unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 {
 	CIniOptionsMgr *pThis = reinterpret_cast<CIniOptionsMgr *>(pvThis);
 	MSG msg;
@@ -46,8 +49,11 @@ DWORD WINAPI CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
-		pThis->SaveValueToFile(pParam->name, pParam->value);
-		delete pParam;
+		if (msg.message == WM_USER && pParam)
+		{
+			pThis->SaveValueToFile(pParam->name, pParam->value);
+			delete pParam;
+		}
 	}
 	return 0;
 }
