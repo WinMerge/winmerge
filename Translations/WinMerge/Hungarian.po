@@ -4436,6 +4436,9 @@ msgstr "Adatlekérdezés"
 msgid "Validation"
 msgstr "Érvényesítés"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Egyéb"
 
@@ -4534,6 +4537,15 @@ msgstr "YAML adatok lekérdezése..."
 
 msgid "Validate HTML"
 msgstr "HTML érvényesítése"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

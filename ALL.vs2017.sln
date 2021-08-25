@@ -367,6 +367,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "googletest", "googletest", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "googletest", "Externals\googletest\googletest\googletest.vcxitems", "{9EE35458-B145-444F-92B7-27FF72112C42}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dumpbin", "dumpbin", "{B22D4554-B639-44BA-BC70-9FD7CCC5B424}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\dumpbin\dumpbin.bat = Plugins\Commands\dumpbin\dumpbin.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ildasm", "ildasm", "{64739D83-1BDF-409F-81F3-9320494A199A}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\ildasm\ildasm.bat = Plugins\Commands\ildasm\ildasm.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
@@ -662,8 +672,8 @@ Global
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|ARM64.Build.0 = Release|ARM64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|Win32.ActiveCfg = Release|Win32
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|Win32.Build.0 = Release|Win32
-		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|x64.ActiveCfg = Debug|x64
-		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|x64.Build.0 = Debug|x64
+		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|x64.ActiveCfg = Release|x64
+		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Release|x64.Build.0 = Release|x64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Test|ARM64.ActiveCfg = Debug|ARM64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Test|Win32.ActiveCfg = Debug|Win32
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Test|x64.ActiveCfg = Debug|x64
@@ -1083,6 +1093,8 @@ Global
 		{0D414491-BB15-470B-9A50-443BA252CCD4} = {48C9E053-F40B-4FB4-984C-C154810EFB54}
 		{EEFF904A-CA86-4FB8-BAC5-D508CBF586AA} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{9EE35458-B145-444F-92B7-27FF72112C42} = {EEFF904A-CA86-4FB8-BAC5-D508CBF586AA}
+		{B22D4554-B639-44BA-BC70-9FD7CCC5B424} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{64739D83-1BDF-409F-81F3-9320494A199A} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

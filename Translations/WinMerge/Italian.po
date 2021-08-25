@@ -3706,6 +3706,9 @@ msgstr ""
 msgid "Validation"
 msgstr "Validazione"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr ""
 
@@ -3804,6 +3807,15 @@ msgstr ""
 
 msgid "Validate HTML"
 msgstr "Valida HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

@@ -4436,6 +4436,9 @@ msgstr "Consulta de datos"
 msgid "Validation"
 msgstr ""
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "&Outros"
 
@@ -4533,6 +4536,15 @@ msgid "Query YAML Data..."
 msgstr "Consultar datos YAML…"
 
 msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
 msgstr ""
 
 #, c-format
