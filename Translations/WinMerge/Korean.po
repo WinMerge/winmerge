@@ -4437,6 +4437,9 @@ msgstr "데이터 쿼리"
 msgid "Validation"
 msgstr ""
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "기타(&O)"
 
@@ -4534,6 +4537,15 @@ msgid "Query YAML Data..."
 msgstr ""
 
 msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
 msgstr ""
 
 #, c-format

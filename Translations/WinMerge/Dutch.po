@@ -3747,6 +3747,9 @@ msgstr "Gegevensbevraging"
 msgid "Validation"
 msgstr "Validatie"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Andere"
 
@@ -3845,6 +3848,15 @@ msgstr "YAML-gegevens bevragen..."
 
 msgid "Validate HTML"
 msgstr "HTML valideren"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

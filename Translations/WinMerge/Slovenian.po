@@ -4427,6 +4427,9 @@ msgstr "Podatkovna poizvedba"
 msgid "Validation"
 msgstr "Preverjanje veljavnosti"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "&Drugo"
 
@@ -4525,6 +4528,15 @@ msgstr "Poizvedba podatkov YAML..."
 
 msgid "Validate HTML"
 msgstr "Potrdi HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

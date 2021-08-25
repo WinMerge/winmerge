@@ -3762,6 +3762,9 @@ msgstr "Veri sorgusu"
 msgid "Validation"
 msgstr "Doğrulama"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "&Diğerleri"
 
@@ -3861,6 +3864,15 @@ msgstr "YAML verilerini sorgula..."
 
 msgid "Validate HTML"
 msgstr "HTML kodunu doğrula"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

@@ -45,7 +45,7 @@ protected:
 	const TCHAR *GetFilePath() const { return m_filePath.c_str(); }
 	int SaveValueToFile(const String& strValueName,
 		const varprop::VariantValue& value);
-	static DWORD WINAPI AsyncWriterThreadProc(void *pParam);
+	static unsigned __stdcall AsyncWriterThreadProc(void *pParam);
 
 private:
 	bool m_serializing;
