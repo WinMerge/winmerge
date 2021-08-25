@@ -3694,6 +3694,9 @@ msgstr "データ問い合わせ"
 msgid "Validation"
 msgstr "検証"
 
+msgid "Decompilation"
+msgstr "逆コンパイル"
+
 msgid "&Others"
 msgstr "その他(&O)"
 
@@ -3792,6 +3795,15 @@ msgstr "YAMLデータの問い合わせ..."
 
 msgid "Validate HTML"
 msgstr "HTML検証"
+
+msgid "Disassemble JVM Bytecode"
+msgstr "JVMバイトコード逆アセンブル"
+
+msgid "Disassemble IL Code"
+msgstr "ILコード逆アセンブル"
+
+msgid "Disassemble Native Code"
+msgstr "ネイティブコード逆アセンブル"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

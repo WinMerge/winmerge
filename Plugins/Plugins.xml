@@ -150,7 +150,7 @@
     <file-filters value="\.obj$;\.lib$;\.winmd$;\.exe$;\.dll$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".asm" />
-    <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble IL Bytecode" />
+    <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble IL Code" />
     <arguments value="/text" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Commands\ildasm\ildasm.bat" ${*} "${SRC_FILE}" > "${DST_FILE}"</command>

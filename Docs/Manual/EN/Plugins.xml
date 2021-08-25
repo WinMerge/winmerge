@@ -1151,6 +1151,171 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_DisassembleJVM">
+      <title><filename>DisassembleJVM<indexterm>
+          <primary>DisassembleJVM plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>JVM bytecode disassembler with javap</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>DisassembleJVM</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the javap command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.class</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleIL">
+      <title><filename>DisassembleIL<indexterm>
+          <primary>DisassembleIL plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>IL code disassembler with ildasm</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>DisassembleIL</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the ildasm command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.obj</filename>,
+            <filename class="extension">*.lib</filename>,
+            <filename class="extension">*.exe</filename>,
+            <filename class="extension">*.dll</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleNative">
+      <title><filename>DisassembleNative<indexterm>
+          <primary>DisassembleNative plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Native code disassembler with dumpbin</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>DisassembleNative</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the dumpbin command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.obj</filename>,
+            <filename class="extension">*.lib</filename>,
+            <filename class="extension">*.exe</filename>,
+            <filename class="extension">*.dll</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_Unpacker_ExecFilterCommand">
       <title><filename>ExecFilterCommand<indexterm>
           <primary>ExecFilterCommand plugin file</primary>
