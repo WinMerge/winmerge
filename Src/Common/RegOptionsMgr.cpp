@@ -12,8 +12,24 @@
 #include <Shlwapi.h>
 #include "varprop.h"
 #include "OptionsMgr.h"
+#include "paths.h"
+#include "Environment.h"
 
 #define MAX_PATH_FULL 32767
+
+static void LogWrite(const String& str)
+{
+	HANDLE hMutex = CreateMutex(nullptr, FALSE, _T("issue908_913"));
+	WaitForSingleObject(hMutex, INFINITE);
+	String path = env::ExpandEnvironmentVariables(_T("%TEMP%\\issue_908_913.log"));
+	FILE* fp = nullptr;
+	_tfopen_s(&fp, paths::ConcatPath(path, _T("")).c_str(), _T("at+"));
+	_ftprintf(fp, _T("%s\n"), str.c_str());
+	fflush(fp);
+	fclose(fp);
+	ReleaseMutex(hMutex);
+	CloseHandle(hMutex);
+}
 
 struct AsyncWriterThreadParams
 {
@@ -104,6 +120,7 @@ unsigned __stdcall CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
+		LogWrite(strutils::format(_T("AsyncWriterThreadProc(%d, %p)"), msg.message, pParam));
 		if (msg.message == WM_USER && pParam)
 		{
 			auto [strPath, strValueName] = COptionsMgr::SplitName(pParam->name);
