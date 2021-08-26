@@ -4442,6 +4442,15 @@ msgstr ""
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr ""
 
+msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+msgstr ""
+
+msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+msgstr ""
+
+msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+msgstr ""
+
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr ""
 
