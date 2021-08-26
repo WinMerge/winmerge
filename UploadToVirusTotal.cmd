@@ -5,8 +5,10 @@ set DISTDIR=.\Build\Releases
 call Tools\Scripts\URLFileSizeSHA256.cmd
 
 for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
-  timeout 30
+  echo %%f | findstr /v /c:"-pdb.7z" && (
+    "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
+    timeout 30
+  )
 )
 
 @echo off
