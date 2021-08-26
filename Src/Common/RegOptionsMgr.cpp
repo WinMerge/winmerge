@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "RegOptionsMgr.h"
 #include <windows.h>
+#include <process.h>
 #include <Shlwapi.h>
 #include "varprop.h"
 #include "OptionsMgr.h"
@@ -29,7 +30,9 @@ CRegOptionsMgr::CRegOptionsMgr()
 	, m_dwQueueCount(0)
 {
 	InitializeCriticalSection(&m_cs);
-	m_hThread = CreateThread(nullptr, 0, AsyncWriterThreadProc, this, 0, &m_dwThreadId);
+	m_hThread = reinterpret_cast<HANDLE>(
+		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
+			reinterpret_cast<unsigned *>(&m_dwThreadId)));
 }
 
 CRegOptionsMgr::~CRegOptionsMgr()
@@ -93,7 +96,7 @@ void CRegOptionsMgr::CloseKeys()
 	LeaveCriticalSection(&m_cs);
 }
 
-DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
+unsigned __stdcall CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 {
 	CRegOptionsMgr *pThis = reinterpret_cast<CRegOptionsMgr *>(pvThis);
 	MSG msg;
@@ -101,14 +104,17 @@ DWORD WINAPI CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
-		auto [strPath, strValueName] = COptionsMgr::SplitName(pParam->name);
-		EnterCriticalSection(&pThis->m_cs);
-		HKEY hKey = pThis->OpenKey(strPath, true);
-		SaveValueToReg(hKey, strValueName, pParam->value);
-		pThis->CloseKey(hKey, strPath);
-		LeaveCriticalSection(&pThis->m_cs);
-		delete pParam;
-		InterlockedDecrement(&pThis->m_dwQueueCount);
+		if (msg.message == WM_USER && pParam)
+		{
+			auto [strPath, strValueName] = COptionsMgr::SplitName(pParam->name);
+			EnterCriticalSection(&pThis->m_cs);
+			HKEY hKey = pThis->OpenKey(strPath, true);
+			SaveValueToReg(hKey, strValueName, pParam->value);
+			pThis->CloseKey(hKey, strPath);
+			LeaveCriticalSection(&pThis->m_cs);
+			delete pParam;
+			InterlockedDecrement(&pThis->m_dwQueueCount);
+		}
 	}
 	return 0;
 }
