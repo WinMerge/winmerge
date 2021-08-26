@@ -2,9 +2,7 @@ cd /d "%~dp0"
 
 call SetVersion.cmd
 set DISTDIR=.\build\Releases
-
-set GITHUB_USER=sdottaka
-set GITHUB_REPO=winmerge-v2-jp
+set GH_REPO=sdottaka/winmerge-v2-jp
 
 (
 @echo off
@@ -16,11 +14,11 @@ for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
 @echo on
 ) > _tmp_.txt
 
-type _tmp_.txt | c:\tools\github-release release --tag %APPVER% --name "WinMerge %MAJOR%.%MINOR%.%REVISION%+-jp-%PATCHLEVEL%" --description - --pre-release 
+gh release create %APPVER% -p -F _tmp_.txt -t "WinMerge %MAJOR%.%MINOR%.%REVISION%+-jp-%PATCHLEVEL%" 
 
 del _tmp_.txt
 
 for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  c:\tools\github-release upload -t %APPVER% -n %%~nxf -f %%f
+  gh release upload %APPVER% %%f
 )
 
