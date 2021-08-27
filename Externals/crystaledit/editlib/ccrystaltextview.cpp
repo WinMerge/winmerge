@@ -5509,7 +5509,7 @@ FindStringHelper (LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere
  */
 bool CCrystalTextView::
 HighlightText (const CPoint & ptStartPos, int nLength,
-    bool bCursorToLeft /*= false*/)
+    bool bCursorToLeft /*= false*/, bool bUpdateView /*= true*/)
 {
   ASSERT_VALIDTEXTPOS (ptStartPos);
   CPoint ptEndPos = ptStartPos;
@@ -5532,6 +5532,10 @@ HighlightText (const CPoint & ptStartPos, int nLength,
   m_ptCursorPos = bCursorToLeft ? ptStartPos : ptEndPos;
   m_ptAnchor = bCursorToLeft ? ptEndPos : ptStartPos;
   SetSelection (ptStartPos, ptEndPos);
+
+  if (!bUpdateView)
+      return true;
+
   UpdateCaret ();
   
   // Scrolls found text to middle of screen if out-of-screen

@@ -184,7 +184,7 @@ GetLastSearchInfos()
 }
 
 bool CEditReplaceDlg::
-DoHighlightText ( bool bNotifyIfNotFound )
+DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
 {
   ASSERT (m_pBuddy != nullptr);
   DWORD dwSearchFlags = 0;
@@ -231,7 +231,7 @@ DoHighlightText ( bool bNotifyIfNotFound )
       return false;
     }
 
-  m_pBuddy->HighlightText (m_ptFoundAt, m_pBuddy->m_nLastFindWhatLen);
+  m_pBuddy->HighlightText (m_ptFoundAt, m_pBuddy->m_nLastFindWhatLen, false, bUpdateView);
   return true;
 }
 
@@ -428,7 +428,7 @@ OnEditReplaceAll ()
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ( false );
+      m_bFound = DoHighlightText ( false, false );
     }
 
   CPoint m_ptFirstFound = m_ptFoundAt;
@@ -479,7 +479,7 @@ OnEditReplaceAll ()
       nNumReplaced++;
 
       // find the next instance
-      m_bFound = DoHighlightText ( false );
+      m_bFound = DoHighlightText ( false, false );
 
       // detect if we just wrapped at end of file
       if (m_ptFoundAt.y < m_ptCurrentReplacedEnd.y || (m_ptFoundAt.y == m_ptCurrentReplacedEnd.y && m_ptFoundAt.x < m_ptCurrentReplacedEnd.x))
@@ -494,6 +494,9 @@ OnEditReplaceAll ()
 
       bGroupWithPrevious = true;
     }
+
+  auto [ptSelStart, ptSelEnd ] = m_pBuddy->GetSelection();
+  m_pBuddy->EnsureVisible(ptSelStart, ptSelEnd);
 
   // Let user know how many strings were replaced
   CString strMessage;
