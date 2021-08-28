@@ -98,10 +98,9 @@ protected:
     LPTSTR m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
     CFindTextDlg *m_pFindTextDlg;
-
-private :
     bool m_bCursorHidden;
 
+private :
     //  Painting caching bitmap
     CBitmap *m_pCacheBitmap;
 

@@ -424,6 +424,7 @@ OnEditReplaceAll ()
   bool bWrapped = false;
   CWaitCursor waitCursor;
 
+  m_pBuddy->HideCursor();
 
   if (!m_bFound)
     {
@@ -494,6 +495,8 @@ OnEditReplaceAll ()
 
       bGroupWithPrevious = true;
     }
+
+  m_pBuddy->ShowCursor();
 
   auto [ptSelStart, ptSelEnd ] = m_pBuddy->GetSelection();
   m_pBuddy->EnsureVisible(ptSelStart, ptSelEnd);
