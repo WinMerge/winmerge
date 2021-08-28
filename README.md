@@ -1,7 +1,7 @@
 [![logo](Docs/Logos/WinMerge_logo_24bit.png)](https://github.com/WinMerge/winmerge)
 
 
-# WinMerge Source Code
+# WinMerge
 [![Build status](https://ci.appveyor.com/api/projects/status/h3v3ap1kswi1tyyt?svg=true)](https://ci.appveyor.com/project/sdottaka/winmerge/build/artifacts)
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
@@ -12,7 +12,7 @@
 for Windows. WinMerge can compare files and folders, presenting differences
 in a visual format that is easy to understand and manipulate.
 
-## Requirements
+## Build Requirements
 
 ### Visual Studio 2017
 
