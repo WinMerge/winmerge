@@ -31,6 +31,7 @@ in a visual format that is easy to understand and manipulate.
 
 ### Other utilities/programs
 
+ * git
  * Inno Setup 5.x and 6.x
  * 7-Zip
  * Python
