@@ -29,6 +29,24 @@ in a visual format that is easy to understand and manipulate.
  * C++ MFC for v142 Buildtools
  * Windows 10 SDK
 
+### Other utilities/programs
+
+ * Inno Setup 5.x and 6.x
+ * 7-Zip
+ * Python
+ * Pandoc
+
+## How to Build
+
+~~~
+git clone https://github.com/winmerge/winmerge
+cd winmerge
+git submodule init
+git submodule update
+DownloadDeps.cmd
+BuildAll.VS2019.cmd  or  BuildAll.VS2017.cmd
+~~~
+
 ## Folder Structure
 
 Source code for the WinMerge program, its plugins, filters, setup program,
@@ -87,3 +105,4 @@ Subfolders include:
    This folder gets created by the compiler when WinMerge is compiled.  
    It contains temporary files created during the compilation and can be 
    safely deleted. 
+
