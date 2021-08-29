@@ -44,7 +44,7 @@ cd winmerge
 git submodule init
 git submodule update
 DownloadDeps.cmd
-BuildAll.VS2019.cmd  or  BuildAll.VS2017.cmd
+BuildAll.vs2019.cmd  or  BuildAll.vs2017.cmd
 ~~~
 
 ## Folder Structure
