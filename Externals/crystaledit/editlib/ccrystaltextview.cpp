@@ -824,7 +824,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           if (bTrackScrollBar)
             {
               RecalcVertScrollBar(true);
-              RecalcHorzScrollBar();
+              InvalidateHorzScrollBar ();
             }
         }
       else
@@ -846,7 +846,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                   if (bTrackScrollBar)
                     {
                       RecalcVertScrollBar(true);
-                      RecalcHorzScrollBar();
+                      InvalidateHorzScrollBar ();
                     }
                 }
             }
@@ -865,7 +865,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                   if (bTrackScrollBar)
                     {
                       RecalcVertScrollBar(true);
-                      RecalcHorzScrollBar();
+                      InvalidateHorzScrollBar ();
                     }
                 }
             }
@@ -1639,8 +1639,8 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
     {
       Invalidate();
       m_nTopSubLine = GetSubLineIndex(m_nTopLine);
-      RecalcVertScrollBar ();
-      RecalcHorzScrollBar ();
+      InvalidateVertScrollBar ();
+      InvalidateHorzScrollBar ();
       UpdateCaret ();
     }
 }
@@ -2854,7 +2854,7 @@ SetTabSize (int nTabSize)
       m_pTextBuffer->SetTabSize( nTabSize );
 
       m_pnActualLineLength->clear();
-      RecalcHorzScrollBar ();
+      InvalidateHorzScrollBar ();
       Invalidate ();
       UpdateCaret ();
     }
@@ -3787,7 +3787,7 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
     pVertScrollBarCtrl->EnableScrollBar (GetScreenLines () >= GetLineCount ()?
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
   //  Update vertical scrollbar only
-  RecalcVertScrollBar ();
+  InvalidateVertScrollBar ();
 }
 
 /** 
@@ -3820,8 +3820,8 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
 
   //  Update scrollbars
-  RecalcVertScrollBar ();
-  RecalcHorzScrollBar ();
+  InvalidateVertScrollBar ();
+  InvalidateHorzScrollBar ();
 }
 
 void CCrystalTextView::
@@ -3931,8 +3931,8 @@ OnSize (UINT nType, int cx, int cy)
   UpdateCaret();
   //END SW
 
-  RecalcVertScrollBar (false, false);
-  RecalcHorzScrollBar (false, false);
+  InvalidateVertScrollBar ();
+  InvalidateHorzScrollBar ();
 }
 
 void CCrystalTextView::
@@ -4114,6 +4114,7 @@ RecalcHorzScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
 
       // Disable horizontal scroll bar
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
+      si.nPage = 1;
       SetScrollInfo (SB_HORZ, &si);
       return;
     }
@@ -4958,8 +4959,8 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
   if (dwFlags & UPDATE_RESET)
     {
       ResetView ();
-      RecalcVertScrollBar ();
-      RecalcHorzScrollBar ();
+      InvalidateVertScrollBar ();
+      InvalidateHorzScrollBar ();
       return;
     }
 
@@ -5070,14 +5071,14 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
   if ((dwFlags & UPDATE_VERTRANGE) != 0)
     {
       if (!m_bVertScrollBarLocked)
-        RecalcVertScrollBar ();
+        InvalidateVertScrollBar ();
     }
 
   //  Recalculate horizontal scrollbar, if needed
   if ((dwFlags & UPDATE_HORZRANGE) != 0)
     {
       if (!m_bHorzScrollBarLocked)
-        RecalcHorzScrollBar ();
+        InvalidateHorzScrollBar ();
     }
 }
 
@@ -5195,7 +5196,7 @@ SetTopMargin (bool bTopMargin)
         {
           Invalidate ();
           m_nScreenLines = -1;
-          RecalcVertScrollBar ();
+          InvalidateVertScrollBar ();
           UpdateCaret ();
         }
     }
@@ -5244,8 +5245,8 @@ SetFont (const LOGFONT & lf)
     {
       InvalidateScreenRect();
       m_nTopSubLine = GetSubLineIndex(m_nTopLine);
-      RecalcVertScrollBar ();
-      RecalcHorzScrollBar ();
+      InvalidateVertScrollBar ();
+      InvalidateHorzScrollBar ();
       UpdateCaret ();
     }
 #ifdef _UNICODE
@@ -5508,7 +5509,7 @@ FindStringHelper (LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere
  */
 bool CCrystalTextView::
 HighlightText (const CPoint & ptStartPos, int nLength,
-    bool bCursorToLeft /*= false*/)
+    bool bCursorToLeft /*= false*/, bool bUpdateView /*= true*/)
 {
   ASSERT_VALIDTEXTPOS (ptStartPos);
   CPoint ptEndPos = ptStartPos;
@@ -5531,6 +5532,10 @@ HighlightText (const CPoint & ptStartPos, int nLength,
   m_ptCursorPos = bCursorToLeft ? ptStartPos : ptEndPos;
   m_ptAnchor = bCursorToLeft ? ptEndPos : ptStartPos;
   SetSelection (ptStartPos, ptEndPos);
+
+  if (!bUpdateView)
+      return true;
+
   UpdateCaret ();
   
   // Scrolls found text to middle of screen if out-of-screen

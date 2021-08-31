@@ -1276,7 +1276,7 @@ msgstr " Mappa: Szűrő"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fájlkitömörítő bővítmény"
+msgstr " Fájl: Kitömörítő bővítmény"
 
 #, c-format
 msgid "Se&lect..."
@@ -1837,7 +1837,7 @@ msgstr "Új..."
 
 #, c-format
 msgid "Edit..."
-msgstr "Szerkesztés"
+msgstr "Szerkesztés..."
 
 #, c-format
 msgid "Delete..."
@@ -4436,6 +4436,9 @@ msgstr "Adatlekérdezés"
 msgid "Validation"
 msgstr "Érvényesítés"
 
+msgid "Decompilation"
+msgstr "Visszafejtés"
+
 msgid "&Others"
 msgstr "Egyéb"
 
@@ -4534,6 +4537,15 @@ msgstr "YAML adatok lekérdezése..."
 
 msgid "Validate HTML"
 msgstr "HTML érvényesítése"
+
+msgid "Disassemble JVM Bytecode"
+msgstr "JVM Bytekód kibontása"
+
+msgid "Disassemble IL Code"
+msgstr "IL kód Bytecode kibontása"
+
+msgid "Disassemble Native Code"
+msgstr "Natív kód kibontása"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

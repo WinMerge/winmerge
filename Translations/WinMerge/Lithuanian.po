@@ -3314,6 +3314,9 @@ msgstr "Duomenų užklausa"
 msgid "Validation"
 msgstr "Patikra"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Kiti"
 
@@ -3412,6 +3415,15 @@ msgstr "Pateikti YAML duomenų užklausą..."
 
 msgid "Validate HTML"
 msgstr "Patikrinti HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

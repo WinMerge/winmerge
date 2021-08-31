@@ -372,6 +372,7 @@ protected:
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
+	String m_sCurrentHeaderTitle[3];
 
 // friend access
 	friend class RescanSuppress;

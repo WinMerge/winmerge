@@ -907,6 +907,34 @@ BEGIN
     END
 END
 
+IDR_POPUP_PROJECT_DIFF_OPTIONS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "W&hitespaces"
+        BEGIN
+            MENUITEM "Com&pare", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
+        END
+        MENUITEM "Ignore blan&k lines", ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case", ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM SEPARATOR
+        POPUP "&Compare method:"
+        BEGIN
+            MENUITEM "Full Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
+        END
+    END
+END
+
 IDR_POPUP_NEW MENU
 BEGIN
     POPUP "_POPUP_"
@@ -3748,7 +3776,8 @@ BEGIN
     IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
     IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
     IDS_PLUGIN_PROCESS_TYPE6 "Validation"
-    IDS_PLUGIN_PROCESS_TYPE7 "&Others"
+    IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
+    IDS_PLUGIN_PROCESS_TYPE8 "&Others"
     IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
     IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
     IDS_PLUGIN_MENU_CAPTION3  "Remove Duplicate Lines"
@@ -3781,6 +3810,9 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION30 "Query JSON Data..."
     IDS_PLUGIN_MENU_CAPTION31 "Query YAML Data..."
     IDS_PLUGIN_MENU_CAPTION32 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION33 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION34 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION35 "Disassemble Native Code"
     IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
     IDS_PLUGIN_TITLE1        "Specify plugin arguments"

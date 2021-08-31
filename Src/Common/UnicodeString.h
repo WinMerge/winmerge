@@ -17,6 +17,8 @@
 #define std_tchar(type) std::type
 #endif // _UNICODE
 
+using namespace std::string_literals;
+
 typedef std_tchar(string) String;
 typedef std_tchar(string_view) StringView;
 

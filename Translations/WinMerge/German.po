@@ -4054,6 +4054,9 @@ msgstr "Datenabfrage"
 msgid "Validation"
 msgstr "Überprüfung"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Andere"
 
@@ -4152,6 +4155,15 @@ msgstr "YAML-Daten abfragen..."
 
 msgid "Validate HTML"
 msgstr "HTML überprüfen"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

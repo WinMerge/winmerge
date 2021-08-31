@@ -3700,6 +3700,9 @@ msgstr ""
 msgid "Validation"
 msgstr ""
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr ""
 
@@ -3797,6 +3800,15 @@ msgid "Query YAML Data..."
 msgstr ""
 
 msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
 msgstr ""
 
 #, c-format

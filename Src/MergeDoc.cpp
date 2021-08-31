@@ -3394,6 +3394,11 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	if (bChanges)
 		sText.insert(0, _T("* "));
 
+	if (m_sCurrentHeaderTitle[pane] == sText)
+		return;
+
+	m_sCurrentHeaderTitle[pane] = sText;
+
 	pf->GetHeaderInterface()->SetText(pane, sText);
 
 	SetTitle(nullptr);

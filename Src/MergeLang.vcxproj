@@ -127,7 +127,9 @@
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>mkdir $(OutDir)\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
+mkdir $(OutDir)\Languages\ShellExtension 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"
+copy /Y "$(ProjectDir)..\Translations\ShellExtension\*.po" "$(OutDir)\Languages\ShellExtension"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -166,6 +168,44 @@ popd
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Translations\ShellExtension\Arabic.po" />
+    <None Include="..\Translations\ShellExtension\Basque.po" />
+    <None Include="..\Translations\ShellExtension\Brazilian.po" />
+    <None Include="..\Translations\ShellExtension\Bulgarian.po" />
+    <None Include="..\Translations\ShellExtension\Catalan.po" />
+    <None Include="..\Translations\ShellExtension\ChineseSimplified.po" />
+    <None Include="..\Translations\ShellExtension\ChineseTraditional.po" />
+    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\ShellExtension\Croatian.po" />
+    <None Include="..\Translations\ShellExtension\Czech.po" />
+    <None Include="..\Translations\ShellExtension\Danish.po" />
+    <None Include="..\Translations\ShellExtension\Dutch.po" />
+    <None Include="..\Translations\ShellExtension\English.pot" />
+    <None Include="..\Translations\ShellExtension\Finnish.po" />
+    <None Include="..\Translations\ShellExtension\French.po" />
+    <None Include="..\Translations\ShellExtension\Galician.po" />
+    <None Include="..\Translations\ShellExtension\German.po" />
+    <None Include="..\Translations\ShellExtension\Greek.po" />
+    <None Include="..\Translations\ShellExtension\Hungarian.po" />
+    <None Include="..\Translations\ShellExtension\Italian.po" />
+    <None Include="..\Translations\ShellExtension\Japanese.po" />
+    <None Include="..\Translations\ShellExtension\Korean.po" />
+    <None Include="..\Translations\ShellExtension\Lithuanian.po" />
+    <None Include="..\Translations\ShellExtension\Norwegian.po" />
+    <None Include="..\Translations\ShellExtension\Persian.po" />
+    <None Include="..\Translations\ShellExtension\Polish.po" />
+    <None Include="..\Translations\ShellExtension\Portuguese.po" />
+    <None Include="..\Translations\ShellExtension\Romanian.po" />
+    <None Include="..\Translations\ShellExtension\Russian.po" />
+    <None Include="..\Translations\ShellExtension\Serbian.po" />
+    <None Include="..\Translations\ShellExtension\Sinhala.po" />
+    <None Include="..\Translations\ShellExtension\Slovak.po" />
+    <None Include="..\Translations\ShellExtension\Slovenian.po" />
+    <None Include="..\Translations\ShellExtension\Spanish.po" />
+    <None Include="..\Translations\ShellExtension\Swedish.po" />
+    <None Include="..\Translations\ShellExtension\Turkish.po" />
+    <None Include="..\Translations\ShellExtension\Ukrainian.po" />
+    <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
     <None Include="..\Translations\WinMerge\Arabic.po" />
     <None Include="..\Translations\WinMerge\Basque.po" />
     <None Include="..\Translations\WinMerge\Brazilian.po" />
@@ -204,6 +244,41 @@ popd
     <None Include="..\Translations\WinMerge\Turkish.po" />
     <None Include="..\Translations\WinMerge\Ukrainian.po" />
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\ShellExtension\ShellExtension.rc">
+      <Outputs>$(ProjectDir)..\Translations\ShellExtension\MergeLang.lastbuild</Outputs>
+      <Command>pushd ..\Translations\ShellExtension
+
+date /t &gt; MergeLang.lastbuild
+attrib -a English.pot
+del English.pot.prev English.pot.flt English.pot.prev.flt 2&gt; NUL
+move English.pot English.pot.prev 2&gt; NUL
+cscript CreateMasterPotFile.vbs
+attrib -a English.pot
+findstr /v POT-Creation-Date English.pot &gt; English.pot.flt
+findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
+fc English.pot.flt English.pot.prev.flt
+if not errorlevel 1 (
+  copy /y English.pot.prev English.pot
+) else (
+  set POT_UPDATED=true
+)
+del English.pot.prev English.pot.flt English.pot.prev.flt
+set LIB=
+powershell -ExecutionPolicy ByPass -File UpdatePoFilesFromPotFile.ps1
+if "%POT_UPDATED%" == "true" (
+  pushd ..
+  for %%i in ("%LOCALAPPDATA%\Programs\Python\Python39" "C:\Python39") do (
+    if exist "%%~i\python.exe" (
+      "%%~i\python.exe" GetTranslationsStatus.py
+    )
+  ) 
+  popd
+)
+popd
+</Command>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

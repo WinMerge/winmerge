@@ -251,8 +251,9 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_pCompareStats = m_pCompareStats.get();
 
 	// Make sure filters are up-to-date
-	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
-	pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+	pGlobalFileFilter->ReloadUpdatedFilters();
+	pCtxt->m_piFilterGlobal = pGlobalFileFilter;
 	
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
@@ -304,7 +305,7 @@ void CDirDoc::Rescan()
 	m_pDirView->SetActivePane((nPane >= 0 && nPane < m_nDirs) ? nPane : 0);
 
 	// Show current compare method name and active filter name in statusbar
-	pf->SetFilterStatusDisplay(theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str());
+	pf->SetFilterStatusDisplay(theApp.GetGlobalFileFilter()->GetFilterNameOrMask().c_str());
 	pf->SetCompareMethodStatusDisplay(m_pCtxt->GetCompareMethod());
 
 	// Folder names to compare are in the compare context

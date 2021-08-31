@@ -1,7 +1,7 @@
 [![logo](Docs/Logos/WinMerge_logo_24bit.png)](https://github.com/WinMerge/winmerge)
 
 
-# WinMerge Source Code
+# WinMerge
 [![Build status](https://ci.appveyor.com/api/projects/status/h3v3ap1kswi1tyyt?svg=true)](https://ci.appveyor.com/project/sdottaka/winmerge/build/artifacts)
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
@@ -12,7 +12,7 @@
 for Windows. WinMerge can compare files and folders, presenting differences
 in a visual format that is easy to understand and manipulate.
 
-## Requirements
+## Build Requirements
 
 ### Visual Studio 2017
 
@@ -28,6 +28,25 @@ in a visual format that is easy to understand and manipulate.
  * MSVC v142 Buildtools
  * C++ MFC for v142 Buildtools
  * Windows 10 SDK
+
+### Other utilities/programs
+
+ * git
+ * Inno Setup 5.x and 6.x
+ * 7-Zip
+ * Python
+ * Pandoc
+
+## How to Build
+
+~~~
+git clone https://github.com/winmerge/winmerge
+cd winmerge
+git submodule init
+git submodule update
+DownloadDeps.cmd
+BuildAll.vs2019.cmd  or  BuildAll.vs2017.cmd
+~~~
 
 ## Folder Structure
 
@@ -87,3 +106,4 @@ Subfolders include:
    This folder gets created by the compiler when WinMerge is compiled.  
    It contains temporary files created during the compilation and can be 
    safely deleted. 
+

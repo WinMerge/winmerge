@@ -103,6 +103,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/noprefs</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/enableexitcode</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/ignorews</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ignoreblanklines</option></arg>
@@ -506,6 +508,13 @@
 
     <varlistentry>
       <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/enableexitcode</option></term>
       <listitem>
         <para>TBD</para>
       </listitem>

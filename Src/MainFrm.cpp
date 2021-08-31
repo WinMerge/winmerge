@@ -1026,7 +1026,7 @@ void CMainFrame::OnOptions()
 
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(filterPath);
 
 		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 		CCrystalTextView::SetRenderingModeDefault(nRenderingMode);
@@ -1292,7 +1292,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
-		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
+		String filter = (nID == 0 && pathsType == paths::IS_EXISTING_DIR) ?
+			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
 
@@ -1509,10 +1510,6 @@ void CMainFrame::OnClose()
 			return;
 	}
 
-	// Save last selected filter
-	String filter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-
 	// save main window position
 	WINDOWPLACEMENT wp = {};
 	wp.length = sizeof(WINDOWPLACEMENT);
@@ -1563,6 +1560,8 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
 	}
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
@@ -1892,16 +1891,17 @@ void CMainFrame::OnToolsFilters()
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	std::unique_ptr<SubstitutionFiltersList> SubstitutionFilters(new SubstitutionFiltersList());
 	String selectedFilter;
-	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.AddPage(&substitutionFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
-	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
+	pGlobalFileFilter->ReloadUpdatedFilters();
 
-	fileFiltersDlg.SetFilterArray(theApp.m_pGlobalFileFilter->GetFileFilters(selectedFilter));
+	fileFiltersDlg.SetFilterArray(pGlobalFileFilter->GetFileFilters(selectedFilter));
 	fileFiltersDlg.SetSelected(selectedFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
@@ -1921,18 +1921,18 @@ void CMainFrame::OnToolsFilters()
 		if (path.find(strNone) != String::npos)
 		{
 			// Don't overwrite mask we already have
-			if (!theApp.m_pGlobalFileFilter->IsUsingMask())
+			if (!pGlobalFileFilter->IsUsingMask())
 			{
 				String sFilter(_T("*.*"));
-				theApp.m_pGlobalFileFilter->SetFilter(sFilter);
+				pGlobalFileFilter->SetFilter(sFilter);
 				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
 		}
 		else
 		{
-			theApp.m_pGlobalFileFilter->SetFileFilterPath(path);
-			theApp.m_pGlobalFileFilter->UseMask(false);
-			String sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pGlobalFileFilter->SetFileFilterPath(path);
+			pGlobalFileFilter->UseMask(false);
+			String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
@@ -1957,7 +1957,7 @@ void CMainFrame::OnToolsFilters()
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const String newFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			const String newFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
@@ -2219,7 +2219,7 @@ void CMainFrame::OnSaveProject()
 			}
 			pOpenDoc->m_files = paths;
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-			pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
 			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker()->GetPluginPipeline();
 		}
 	}
@@ -2321,25 +2321,25 @@ void CMainFrame::LoadToolbarImages()
 		(1 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
-
-	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].Detach();
-	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].Detach();
+	CImageList imgEnabled, imgDisabled;
 	CSize sizeButton(0, 0);
 
 	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+		false, imgEnabled);
 	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+		true, imgDisabled);
 
 	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
-	if (CImageList *pImgList = BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]))
+	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
-	if (CImageList *pImgList = BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]))
+	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
 		pImgList->DeleteImageList();
+	imgEnabled.Detach();
+	imgDisabled.Detach();
 
 	// resize the rebar.
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
@@ -2779,6 +2779,8 @@ void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
 void CMainFrame::OnCompareMethod(UINT nID)
 { 
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS);
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)

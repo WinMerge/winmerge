@@ -14,6 +14,7 @@ set DOWNLOAD_URL=https://github.com/harelba/q/releases/download/2.0.19/q-AMD64-W
 set Q_PATH=Commands\q\q-AMD64-Windows.exe
 set MESSAGE='q command is not installed. Do you want to download it from %DOWNLOAD_URL%?'
 set TITLE='CSV/TSV Data Querier Plugin'
+set SHA256=f534ab37868d4fd5a472f8be0936b42583bc08860f92fa8135ab16c0d80a03f1
 
 cd "%APPDATA%\WinMerge"
 if not exist %Q_PATH% (
@@ -27,6 +28,11 @@ if not exist %Q_PATH% (
       echo "download is canceled" 1>&2
     ) else (
       start "Downloading..." /WAIT powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %DOWNLOAD_URL% -Outfile %Q_PATH%"
+      powershell -command "$(CertUtil -hashfile %Q_PATH% SHA256)[1] -replace ' ','' -eq '%SHA256%'" | findstr True > NUL
+      if errorlevel 1 (
+        echo %Q_PATH%: download failed 1>&2
+        del %Q_PATH% 2> NUL
+      )
     )
   )
 )

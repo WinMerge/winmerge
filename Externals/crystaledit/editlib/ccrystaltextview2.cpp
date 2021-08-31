@@ -62,6 +62,8 @@
 #endif
 
 static const UINT_PTR CRYSTAL_TIMER_DRAGSEL = 1001;
+static const UINT_PTR CRYSTAL_RECALC_VSCROLLBAR = 1002;
+static const UINT_PTR CRYSTAL_RECALC_HSCROLLBAR = 1003;
 
 static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
 {
@@ -957,6 +959,16 @@ OnTimer (UINT_PTR nIDEvent)
           SetSelection (m_ptAnchor, m_ptCursorPos);
         }
     }
+  else if (nIDEvent == CRYSTAL_RECALC_VSCROLLBAR)
+    {
+      KillTimer (CRYSTAL_RECALC_VSCROLLBAR);
+      RecalcVertScrollBar ();
+    }
+  else if (nIDEvent == CRYSTAL_RECALC_HSCROLLBAR)
+    {
+      KillTimer (CRYSTAL_RECALC_HSCROLLBAR);
+      RecalcHorzScrollBar ();
+    }
 }
 
 /** 
@@ -1174,4 +1186,16 @@ GetFromClipboard (CString & text, bool & bColumnSelection)
       CloseClipboard ();
     }
   return bSuccess;
+}
+
+void CCrystalTextView::
+InvalidateVertScrollBar ()
+{
+  SetTimer(CRYSTAL_RECALC_VSCROLLBAR, 1, nullptr);
+}
+
+void CCrystalTextView::
+InvalidateHorzScrollBar ()
+{
+  SetTimer(CRYSTAL_RECALC_HSCROLLBAR, 1, nullptr);
 }

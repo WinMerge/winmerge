@@ -7,7 +7,6 @@
 #include "pch.h"
 #include "DiffItemList.h"
 #include <cassert>
-#include "DebugNew.h"
 
 /**
  * @brief Constructor

@@ -7,17 +7,18 @@
 # * Sushizang <sushizang at empal.com>
 # * sheppaul <sheppaul at gmail.com>
 # * teamzamong <teamzamong at gmail.com>
+# * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Korean.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge\n"
+"Project-Id-Version: WinMerge 2.16.14.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-03-30 16:46+0900\n"
-"Last-Translator: teamzamong <teamzamong at gmail.com>\n"
+"PO-Revision-Date: 2021-08-23 01:51+0900\n"
+"Last-Translator: BrainS <29201475+BraINstinct0 at users.noreply.github.com>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: ko\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -50,23 +51,23 @@ msgid "Copy fro&m Right"
 msgstr "오른쪽에서 복사(&M)"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr "오른쪽으로 선택한 줄 복사"
+msgstr "오른쪽으로 선택한 줄(들) 복사"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr "왼쪽으로 선택한 줄 복사"
+msgstr "왼쪽으로 선택한 줄(들) 복사"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "왼쪽에서 선택한 줄 복사"
+msgstr "왼쪽에서 선택한 줄(들) 복사"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "오른쪽에서 선택한 줄 복사"
+msgstr "오른쪽에서 선택한 줄(들) 복사"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "줄 차이점 선택(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "변경 사항을 치환 필터에 추가하기(&F)"
 
 #, c-format
 msgid "&Undo"
@@ -147,7 +148,7 @@ msgid "&Vertical"
 msgstr ""
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "수평적(&H)"
 
 #, c-format
 msgid "&Previous Page"
@@ -162,16 +163,16 @@ msgid "&Active Pane"
 msgstr "활성 창(&A)"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "오른쪽으로 90% 회전"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "왼쪽으로 90도 회전(&L)"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "수직으로 뒤집기(&e)"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "수평으로 뒤집기(&o)"
 
 #, c-format
 msgid "&Zoom"
@@ -646,7 +647,7 @@ msgstr "인쇄 미리보기(&R)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "줄 끝 변환(&C)"
+msgstr "줄끝 변환(&C)"
 
 #, c-format
 msgid "Mer&ge Mode\tF9"
@@ -761,7 +762,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "전체와 0-9 줄 토글\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "반전 (다른 줄 숨기기)(&I)"
 
 #, c-format
 msgid "&Lock Panes"
@@ -903,7 +904,7 @@ msgid "&Prediffer"
 msgstr "&Prediffer"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "Prediffer 적용(&d)..."
 
 msgid "&Transform with editor script..."
 msgstr ""
@@ -917,7 +918,7 @@ msgid "Comp&are"
 msgstr "비교(&A)"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "새 창에서 비교(&w)"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "수평이 아닌 방식으로 비교(&I)..."
@@ -1056,7 +1057,7 @@ msgstr "전체 (%1 / %2)"
 
 #, c-format
 msgid "Copy &Filenames"
-msgstr "파일 이름 복사(&F)"
+msgstr "파일 이름ㄷ 복사(&F)"
 
 #, c-format
 msgid "Copy Items To Clip&board"
@@ -1103,7 +1104,7 @@ msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "언패커 설ㅈ"
 
 #, c-format
 msgid "<None>"
@@ -1227,7 +1228,7 @@ msgstr "파일 또는 폴더 선택"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr "첫 번째 파일 또는 폴더"
+msgstr "첫 번째 파일 또는 폴더(&1)"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1243,7 +1244,7 @@ msgstr "찾아보기(&B)"
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr "두 번째 파일 또는 폴더"
+msgstr "두 번째 파일 또는 폴더(&2)"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1259,7 +1260,7 @@ msgstr "찾아보기(&R)"
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "세 번째 파일 또는 폴더 (선택)"
+msgstr "세 번째 파일 또는 폴더 (선택 사항)(&3)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1460,7 +1461,7 @@ msgid "Remove"
 msgstr "제거"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "치환 필터"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
@@ -1649,10 +1650,10 @@ msgid "Move &Down"
 msgstr "아래로(&D)"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "플러그인 선택"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "플러그인 이름(&N):"
 
 #, c-format
 msgid "Extensions list:"
@@ -1663,19 +1664,19 @@ msgid "Description:"
 msgstr "설명:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "기본 인자"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "모든 플러그인을 보이고, 확장 프로그램은 확인하지 않기."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "언패킹 이후 동일한 창 종류에서 파일 열기(&O)"
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "플러그인 파이프라인(&P):"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "파이프 추가(&A)"
 
 #, c-format
 msgid "Stop"
@@ -1902,12 +1903,16 @@ msgstr "기본 코드페이지"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "비유니코드 파일 열 때 사용할 기본 코드페이지:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
 msgstr ""
 "다음 파일의 코드페이지 정보 감지: .html, .rc, .xml\n"
 "세션을 재시작해야 함."
 
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
 msgstr ""
 "mlang.dll을 이용해 텍스트 파일의 코드페이지 감지\n"
 "세션을 재시작해야 함."
@@ -1922,7 +1927,7 @@ msgstr "WinMerge 사용자 인터페이스를 따름"
 
 #, c-format
 msgid "Custom codepage:"
-msgstr "사용자 코드페이지:"
+msgstr "사용자 지정 코드페이지:"
 
 #, c-format
 msgid "Options"
@@ -2205,7 +2210,7 @@ msgstr "파일 백업"
 
 #, c-format
 msgid "Create backup files in:"
-msgstr "백업 파일 만들기:"
+msgstr "다음 위치에 백업 파일 만들기:"
 
 #, c-format
 msgid "&Folder compare"
@@ -2217,7 +2222,7 @@ msgstr "파일 비교에서(&E)"
 
 #, c-format
 msgid "Create backup files into:"
-msgstr "백업 파일 만들기:"
+msgstr "다음 위치로 백업 파일 만들기:"
 
 #, c-format
 msgid "&Original file's folder"
@@ -2278,10 +2283,10 @@ msgid "File filters:"
 msgstr "파일 필터:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "플러그인 인자(&P):"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "플러그인의 자동 언패킹/Prediffing 사용(&a)"
 
 #, c-format
 msgid "Shell Integration"
@@ -2344,8 +2349,12 @@ msgstr "빠른 비교 제한 (MB):"
 msgid "&Binary compare limit (MB):"
 msgstr "바이너리 비교 제한 (MB)(&B)"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\n비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+"\n"
+"비교 쓰레드 개수(&N) (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV 파일 패턴(&C)"
@@ -2493,7 +2502,7 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"WinMerge.파일 비교\n"
+"WinMerge.FileCompare\n"
 "WinMerge 파일 비교"
 
 #, c-format
@@ -2511,7 +2520,7 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"WinMerge.폴더 비교\n"
+"WinMerge.FolderCompare\n"
 "WinMerge 폴더 비교"
 
 #, c-format
@@ -2721,7 +2730,7 @@ msgstr ""
 "필터 템플릿 파일을 찾을 수 없습니다!\n"
 "\n"
 "%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n"
-"%2"
+"%2."
 
 #, c-format
 msgid ""
@@ -2779,7 +2788,10 @@ msgstr "필터 파일이 이미 존재합니다. 기존의 필터를 덮어쓸�
 msgid "Regular expression"
 msgstr "정규식"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "필터를 업데이트했습니다. 열려 있는 모든 폴더 비교를 갱신할까요?\n"
 "\n"
@@ -2833,7 +2845,7 @@ msgstr "줄: %s  열: %d/%d  문자: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  선택됨: %d | %d"
 
 #, c-format
 msgid "Merge"
@@ -2939,7 +2951,7 @@ msgstr ""
 
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "불일치 파일 분석 실패"
+msgstr "불일치 파일 분석에 실패함."
 
 #, c-format
 msgid ""
@@ -2951,8 +2963,16 @@ msgstr ""
 "%1\n"
 "파일은 충돌 파일이 아닙니다."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
-msgstr "매우 큰 파일을 비교하려고 합니다.\n파일 내용을 표시하려면 매우 많은 메모리가 필요합니다.\n파일 내용이 아닌 비교 결과만 표시하시겠습니까?"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
+msgstr ""
+"매우 큰 파일(들)을 비교하려고 합니다.\n"
+"파일 내용을 표시하려면 매우 많은 메모리가 필요합니다.\n"
+"파일 내용이 아닌 비교 결과만 표시하시겠습니까?\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2983,7 +3003,13 @@ msgstr ""
 "계속 진행할까요?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "파일 저장에 실패했습니다.\n"
 "%1\n"
@@ -3007,8 +3033,18 @@ msgstr ""
 "자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "'%2' 플러그인은 가운데 파일에서 다시 '%1'으로 변경한 사항을 자료 변환할 수 없습니다.\n\n원본 파일은 변경되지 않을 것입니다.\n\n자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"'%2' 플러그인은 가운데 파일에서 다시 '%1'으로 변경한 사항을 자료 변환할 수 없습니다.\n"
+"\n"
+"원본 파일은 변경되지 않을 것입니다.\n"
+"\n"
+"자료 변환되지 않은 버전을 다른 파일에 저장할까요?"
 
 #, c-format
 msgid ""
@@ -3032,7 +3068,7 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"WinMerger에서 불러와서 사용 중인\n"
+"WinMerge에서 불러와서 사용 중인\n"
 "%1\n"
 "파일을 다른 프로그램에서 변경했습니다.\n"
 "\n"
@@ -3494,7 +3530,7 @@ msgstr "파일 이름 또는 폴더 이름."
 
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "하위 폴더를 포함할 때 하위 폴더 이름"
+msgstr "하위 폴더를 포함할 때 하위 폴더 이름."
 
 #, c-format
 msgid "Comparison result, long form."
@@ -3502,15 +3538,15 @@ msgstr "비교 결과 세부 내역."
 
 #, c-format
 msgid "Left side modification date."
-msgstr "왼쪽 수정 날짜"
+msgstr "왼쪽 변ㄱ 날짜."
 
 #, c-format
 msgid "Right side modification date."
-msgstr "오른쪽 변경 날짜"
+msgstr "오른쪽 변경 날짜."
 
 #, c-format
 msgid "Middle side modification date."
-msgstr "가운데 변경 날짜"
+msgstr "가운데 변경 날짜."
 
 #, c-format
 msgid "File's extension."
@@ -3518,39 +3554,39 @@ msgstr "파일 확장자."
 
 #, c-format
 msgid "Left file size in bytes."
-msgstr "왼쪽 파일 크기를 바이트로"
+msgstr "왼쪽 파일 크기를 바이트로."
 
 #, c-format
 msgid "Right file size in bytes."
-msgstr "오른쪽 파일 크기를 바이트로"
+msgstr "오른쪽 파일 크기를 바이트로."
 
 #, c-format
 msgid "Middle file size in bytes."
-msgstr "가운데 파일 크기를 바이트로"
+msgstr "가운데 파일 크기를 바이트로."
 
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "왼쪽 파일 크기를 축약됨"
+msgstr "축약된 왼쪽 파일 크기."
 
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "오른쪽 파일 크기 축약됨"
+msgstr "축약된 오른쪽 파일 크기."
 
 #, c-format
 msgid "Middle file size abbreviated."
-msgstr "가운데 파일 크기 축약됨"
+msgstr "축약된 가운데 파일 크기."
 
 #, c-format
 msgid "Left side creation time."
-msgstr "왼쪽 생성 시간"
+msgstr "왼쪽 파일 만든 날짜."
 
 #, c-format
 msgid "Right side creation time."
-msgstr "오른쪽 생성 시간"
+msgstr "오른쪽 파일 만든 날짜."
 
 #, c-format
 msgid "Middle side creation time."
-msgstr "가운데 생성 시간"
+msgstr "가운데 파일 만든 날짜."
 
 #, c-format
 msgid "Tells which side has newer modification date."
@@ -3558,11 +3594,11 @@ msgstr "어느 쪽이 더 최근에 수정되었는지 알려줍니다."
 
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "왼쪽 파일 버전, 몇몇 파일 형식만"
+msgstr "왼쪽 파일 버전, 몇몇 파일 형식만."
 
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "오른쪽 파일 버전, 몇몇 파일 형식만"
+msgstr "오른쪽 파일 버전, 몇몇 파일 형식만."
 
 #, c-format
 msgid "Middle side file version, only for some filetypes."
@@ -3570,40 +3606,40 @@ msgstr "가운데 파일 버전, 몇몇 파일 형식만."
 
 #, c-format
 msgid "Short comparison result."
-msgstr "짧은 비교 결과"
+msgstr "짧은 비교 결과."
 
 #, c-format
 msgid "Left side attributes."
-msgstr "왼쪽 속성"
+msgstr "왼쪽 속성."
 
 #, c-format
 msgid "Right side attributes."
-msgstr "오른쪽 속성"
+msgstr "오른쪽 속성."
 
 #, c-format
 msgid "Middle side attributes."
-msgstr "가운데 속성"
+msgstr "가운데 속성."
 
 msgid "Left side file EOL type."
-msgstr "왼쪽 파일 줄끝 형식"
+msgstr "왼쪽 파일 줄끝 형식."
 
 msgid "Right side file EOL type."
-msgstr "오른쪽 파일 줄끝 형식"
+msgstr "오른쪽 파일 줄끝 형식."
 
 msgid "Middle side file EOL type."
-msgstr "가운데 파일 줄끝 형식"
+msgstr "가운데 파일 줄끝 형식."
 
 #, c-format
 msgid "Left side encoding."
-msgstr "왼쪽 인코딩"
+msgstr "왼쪽 인코딩."
 
 #, c-format
 msgid "Right side encoding."
-msgstr "오른쪽 인코딩"
+msgstr "오른쪽 인코딩."
 
 #, c-format
 msgid "Middle side encoding."
-msgstr "가운데 인코딩"
+msgstr "가운데 인코딩."
 
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
@@ -3615,7 +3651,7 @@ msgstr "파일 내 차이점의 개수. 이 숫자는 무시된 차이점을 포
 
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "바이너리 파일이면 * 표시를 보입니다"
+msgstr "바이너리 파일이면 * 표시를 보입니다."
 
 msgid "Unpacker plugin name or pipeline."
 msgstr ""
@@ -3678,7 +3714,12 @@ msgstr "파일 비교 중 오류가 발생했습니다."
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "임시 파일을 만들 수 없습니다. 임시 경로 설정을 확인하세요."
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "이 파일들은 다른 캐리지 리턴 형식을 사용합니다.\n"
 "\n"
@@ -3725,13 +3766,16 @@ msgid "Do you want to move to the previous page?"
 msgstr "이전 페이지로 이동할까요?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "첫 파일로 이동할까요?"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "마지막 파일로 이동할까요?"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "왼쪽(cp%d)과 오른쪽(cp%d) 파일의 코드페이지가 서로 다릅니다.\n"
 "각 파일의 코드페이지로 출력하는 것이 보기는 좋으나 병합이나 복사할 때 문제가 생길 수 있습니다.\n"
@@ -3859,7 +3903,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "폴더가 존재하지 않습니다."
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "압축 지원이 꺼져 있습니다.\n"
 "\n"
@@ -3884,11 +3931,11 @@ msgstr "파일로 내보낸 옵션."
 
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "파일에서 설정 가져오기 실패"
+msgstr "파일에서 설정을 가져오지 못함."
 
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "파일에 옵션 쓰기 실패"
+msgstr "파일에 옵션을 쓰지 못함."
 
 #, c-format
 msgid ""
@@ -3989,7 +4036,7 @@ msgid ""
 "First Difference (Alt+Home)"
 msgstr ""
 "\n"
-"처음 차이점 (Alt+Home)"
+"첫 차이점 (Alt+Home)"
 
 #, c-format
 msgid ""
@@ -4063,24 +4110,40 @@ msgstr ""
 "\n"
 "자동 병합 (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
-msgstr "\n첫 파일"
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"첫 파일"
 
-msgid "\nNext File (Ctrl+F8)"
-msgstr "\n다음 파일 (Ctrl+F8)"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
+msgstr ""
+"\n"
+"다음 파일 (Ctrl+F8)"
 
-msgid "\nLast File"
-msgstr "\n 마지막 파일"
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+" 마지막 파일"
 
-msgid "\nPrevious File (Ctrl+F7)"
-msgstr "\n이전 파일 (Ctrl+F7)"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
+msgstr ""
+"\n"
+"이전 파일 (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "채택한 언패커를 양쪽 파일 모두에 적용합니니다 (한 파일만 확장자가 필요함)."
 
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "prediffer 없음 (보통)"
+msgstr "Prediffer 없음 (보통)"
 
 #, c-format
 msgid "Suggested plugins"
@@ -4103,7 +4166,7 @@ msgid ""
 "%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
 "새 버전의 WinMerge를 사용할 수 있습니다.\n"
-"%1 버전이 나왔습니다 (현재는 %2). 지금 다운로드할까요?"
+"%1 버전이 나왔습니다 (현재 설치된 버전은 %2입니다). 지금 다운로드할까요?"
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -4197,16 +4260,16 @@ msgid "default"
 msgstr "기본"
 
 msgid "minimal"
-msgstr ""
+msgstr "최소화"
 
 msgid "patience"
 msgstr ""
 
 msgid "histogram"
-msgstr ""
+msgstr "히스토그램"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
 msgstr ""
@@ -4270,7 +4333,7 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "수평적"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
@@ -4322,11 +4385,11 @@ msgstr ""
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "뒤집음: %s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "회전됨: %d"
 
 msgid "<Edit here>"
 msgstr "<수정>"
@@ -4341,7 +4404,7 @@ msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "변경 사항을 치환 필터에 추가하시겠습니까?"
 
 msgid "Text only"
 msgstr "텍스트만"
@@ -4360,37 +4423,40 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
 
 msgid "Al&l"
-msgstr ""
+msgstr "전체(&l)"
 
 msgid "Prettification"
 msgstr ""
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "추출 확인"
 
 msgid "Visualization"
 msgstr ""
 
 msgid "Data Query"
-msgstr ""
+msgstr "데이터 쿼리"
 
 msgid "Validation"
 msgstr ""
 
-msgid "&Others"
+msgid "Decompilation"
 msgstr ""
+
+msgid "&Others"
+msgstr "기타(&O)"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "대문자로 변환"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "소문자로 변환"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "중복된 라인 제거"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "중복된 줄 수 세기"
 
 msgid "Sort Lines Ascending"
 msgstr ""
@@ -4399,16 +4465,16 @@ msgid "Sort Lines Descending"
 msgstr ""
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "열 뒤집기"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "행 뒤집기"
 
 msgid "Replace..."
-msgstr ""
+msgstr "바꾸기..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "필터 명령 적용..."
 
 msgid "Tokenize..."
 msgstr ""
@@ -4420,22 +4486,22 @@ msgid "Select Columns..."
 msgstr ""
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "줄 선택..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "날짜 삽입하기"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "시간 삽입하기"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "패치 적용..."
 
 msgid "Ignore Columns"
 msgstr ""
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "주석 무시하기(C-계열 언어)"
 
 msgid "Ignore CSV Fields"
 msgstr ""
@@ -4444,7 +4510,7 @@ msgid "Ignore TSV Fields"
 msgstr ""
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Prediff 치환 필터 적ㅇ"
 
 msgid "Prettify HTML"
 msgstr ""
@@ -4474,6 +4540,15 @@ msgid "Query YAML Data..."
 msgstr ""
 
 msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
 msgstr ""
 
 #, c-format

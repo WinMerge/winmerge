@@ -85,11 +85,6 @@ namespace
 		EXPECT_EQ(28591, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
-
-		enc = codepage_detect::Guess(_T("../../../ShellExtension/Languages/ShellExtensionRussian.rc"), 1);
-		EXPECT_EQ(65001, enc.m_codepage);
-		EXPECT_EQ(true, enc.m_bom);
-		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
 	}
 
 

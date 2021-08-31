@@ -32,6 +32,7 @@
 #include <atlconv.h>	// for ATL string conversion macros
 #include "resource.h"   // main symbols
 #include "UnicodeString.h"
+#include "LanguageSelect.h"
 
 /**
  * @brief Class for handling shell extension tasks
@@ -61,13 +62,15 @@ public:
 // IWinMergeShell
 protected:
 	String m_strPaths[3]; /**< Paths for selected items */
-	String m_strPreviousPath; /**< Previously selected path */
+	String m_strPreviousPath[2]; /**< Previously selected path */
 	HBITMAP m_MergeBmp, m_MergeDirBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
+	LANGID m_langID; /**< Current Language Id */
 	inline static HMENU s_hMenuLastAdded = nullptr;
 	inline static UINT s_uidCmdLastAdded = 0;
+	inline static CLanguageSelect *s_pLang = nullptr;
 
 	BOOL GetWinMergeDir(String &strDir);
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
@@ -75,6 +78,8 @@ protected:
 	String GetHelpText(UINT_PTR idCmd);
 	String FormatCmdLine(const String &winmergePath,
 			const String &path1, const String &path2, const String &path3, BOOL bAlterSubFolders);
+	String GetResourceString(UINT resourceID);
+	BOOL InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewItem, UINT uStringId);
 
 public:
 	// IShellExtInit

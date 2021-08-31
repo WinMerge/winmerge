@@ -215,7 +215,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 			}
 			else
 			{
-				if (nWordDiff == 0)
+				if (nWordDiff == 0 || nWordDiff == static_cast<size_t>(-1))
 				{
 					m_diffList.GetDiff(nDiff, di);
 					ptStart.y = (di.dbegin - 1) % nLineCount;

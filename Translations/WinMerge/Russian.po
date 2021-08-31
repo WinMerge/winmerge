@@ -3313,6 +3313,9 @@ msgstr "Запрос данных"
 msgid "Validation"
 msgstr "Валидация"
 
+msgid "Decompilation"
+msgstr ""
+
 msgid "&Others"
 msgstr "Другое"
 
@@ -3411,6 +3414,15 @@ msgstr "Запрос данных YAML..."
 
 msgid "Validate HTML"
 msgstr "Валидация HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

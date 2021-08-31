@@ -19,72 +19,77 @@ msgstr ""
 "Language: it\n"
 "X-Generator: Poedit 2.2.3\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtension.rc:19
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_ITA"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ITALIAN, SUBLANG_ITALIAN"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtension.rc:21
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
 msgstr "Estensione shell"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtension.rc:112
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtension.rc:113
 #, c-format
 msgid "Open with WinMerge"
 msgstr "Apri con WinMerge"
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtension.rc:114
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Seleziona massimo 2 elementi"
+msgid "Please select no more than 3 items"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtension.rc:115
 #, c-format
-msgid "Compare"
-msgstr "Confronta"
+msgid "&Compare"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtension.rc:116
 #, c-format
-msgid "Compare..."
-msgstr "Confronta..."
+msgid "Compare&..."
+msgstr ""
 
-#: ShellExtensionTemplate.rc:48
+#: ShellExtension.rc:117
 #, c-format
-msgid "Compare To"
-msgstr "Confronta con"
+msgid "Select &Left"
+msgstr ""
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtension.rc:118
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtension.rc:119
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr ""
 "Salva questo percorso.\n"
 "Seleziona un altro da confrontare con questo."
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtension.rc:120
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr "Confronta con il percorso salvato (%1)"
 
-#: ShellExtensionTemplate.rc:51
+#: ShellExtension.rc:121
 #, c-format
-msgid "Re-select First"
-msgstr "Riseleziona il primo percorso"
+msgid "Re-select &Left"
+msgstr ""

@@ -58,7 +58,6 @@ public:
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
-	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
@@ -87,7 +86,7 @@ public:
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
-	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
+	FileFilterHelper* GetGlobalFileFilter();
 	void ShowHelp(LPCTSTR helpLocation = nullptr);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
@@ -166,11 +165,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	std::unique_ptr<COptionsMgr> m_pOptions;
+	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
+	bool m_bEnableExitCode;
 	CFont m_fontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 };

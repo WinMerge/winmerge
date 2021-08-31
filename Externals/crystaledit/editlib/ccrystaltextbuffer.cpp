@@ -1449,6 +1449,14 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   bool failed = false;
   int tmpPos = m_nUndoPosition;
 
+  // Hide caret to quickly undo changes made by Replace All operation
+  bool bCursorHiddenSaved = false;
+  if (pSource)
+    {
+      bCursorHiddenSaved = pSource->m_bCursorHidden;
+      pSource->m_bCursorHidden = true;
+    }
+
   while (!failed)
     {
       --tmpPos;
@@ -1501,6 +1509,13 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
     {
       m_nUndoPosition = tmpPos;
     }
+
+  if (pSource)
+    {
+      pSource->m_bCursorHidden = bCursorHiddenSaved;
+      pSource->UpdateCaret();
+    }
+
   return !failed;
 }
 
@@ -1510,6 +1525,14 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   ASSERT (CanRedo ());
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
   ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
+
+  // Hide caret to quickly redo changes made by Replace All operation
+  bool bCursorHiddenSaved = false;
+  if (pSource)
+    {
+      bCursorHiddenSaved = pSource->m_bCursorHidden;
+      pSource->m_bCursorHidden = true;
+    }
 
   for (;;)
     {
@@ -1550,6 +1573,13 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
     SetModified (false);
   if (!m_bModified && m_nSyncPosition != m_nUndoPosition)
     SetModified (true);
+
+  if (pSource)
+    {
+      pSource->m_bCursorHidden = bCursorHiddenSaved;
+      pSource->UpdateCaret();
+    }
+
   return true;
 }
 

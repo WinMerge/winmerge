@@ -98,10 +98,10 @@ CMergeApp::CMergeApp() :
 , m_pHexMergeTemplate(nullptr)
 , m_pDirTemplate(nullptr)
 , m_mainThreadScripts(nullptr)
-, m_nLastCompareResult(0)
+, m_nLastCompareResult(-1)
 , m_bNonInteractive(false)
 , m_pOptions(nullptr)
-, m_pGlobalFileFilter(new FileFilterHelper())
+, m_pGlobalFileFilter(nullptr)
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(false)
@@ -111,6 +111,7 @@ CMergeApp::CMergeApp() :
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
+, m_bEnableExitCode(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -134,6 +135,53 @@ static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
 		return new CIniOptionsMgr(iniFilePath);
 	return new CRegOptionsMgr();
+}
+
+static HANDLE CreateMutexHandle()
+{
+	// Create exclusion mutex name
+	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
+	DWORD dwLengthNeeded;
+	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
+		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
+	TCHAR szMutexName[MAX_PATH + 40];
+	// Combine window class name and desktop name to form a unique mutex name.
+	// As the window class name is decorated to distinguish between ANSI and
+	// UNICODE build, so will be the mutex name.
+	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
+	return CreateMutex(nullptr, FALSE, szMutexName);
+}
+
+static HWND ActivatePreviousInstanceAndSendCommandline(LPTSTR cmdLine)
+{
+	HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
+	if (hWnd == nullptr)
+		return nullptr;
+	if (IsIconic(hWnd))
+		ShowWindow(hWnd, SW_RESTORE);
+	SetForegroundWindow(GetLastActivePopup(hWnd));
+	COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine };
+	if (!SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
+		return nullptr;
+	return hWnd;
+}
+
+static void WaitForExitPreviousInstance(HWND hWnd)
+{
+	DWORD dwProcessId = 0;
+	GetWindowThreadProcessId(hWnd, &dwProcessId);
+	HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
+	if (hProcess)
+		WaitForSingleObject(hProcess, INFINITE);
+}
+
+static int ConvertLastCompareResultToExitCode(int nLastCompareResult)
+{
+	if (nLastCompareResult == 0)
+		return 0;
+	else if (nLastCompareResult > 0)
+		return 1;
+	return 2;
 }
 
 CMergeApp::~CMergeApp()
@@ -249,60 +297,24 @@ BOOL CMergeApp::InitInstance()
 	int nSingleInstance = cmdInfo.m_nSingleInstance.has_value() ?
 		*cmdInfo.m_nSingleInstance : GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 
-	// Create exclusion mutex name
-	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
-	DWORD dwLengthNeeded;
-	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
-		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
-	TCHAR szMutexName[MAX_PATH + 40];
-	// Combine window class name and desktop name to form a unique mutex name.
-	// As the window class name is decorated to distinguish between ANSI and
-	// UNICODE build, so will be the mutex name.
-	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
-	HANDLE hMutex = CreateMutex(nullptr, FALSE, szMutexName);
+	HANDLE hMutex = CreateMutexHandle();
 	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
 	if (nSingleInstance != 0 && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
-		HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
+		HWND hWnd = ActivatePreviousInstanceAndSendCommandline(GetCommandLine());
 		if (hWnd != nullptr)
 		{
-			if (IsIconic(hWnd))
-				ShowWindow(hWnd, SW_RESTORE);
-			SetForegroundWindow(GetLastActivePopup(hWnd));
-			LPTSTR cmdLine = GetCommandLine();
-			COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine};
-			if (::SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
-			{
-				ReleaseMutex(hMutex);
-				CloseHandle(hMutex);
-				if (nSingleInstance > 1)
-				{
-					DWORD dwProcessId = 0;
-					GetWindowThreadProcessId(hWnd, &dwProcessId);
-					HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
-					if (hProcess)
-						WaitForSingleObject(hProcess, INFINITE);
-				}
-				return FALSE;
-			}
+			ReleaseMutex(hMutex);
+			CloseHandle(hMutex);
+			if (nSingleInstance != 1)
+				WaitForExitPreviousInstance(hWnd);
+			return FALSE;
 		}
 	}
 
 	LoadStdProfileSettings(GetOptionsMgr()->GetInt(OPT_MRU_MAX));  // Load standard INI file options (including MRU)
-
-	InitializeFileFilters();
-
-	// Read last used filter from registry
-	// If filter fails to set, reset to default
-	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	bool bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
-	if (!bFilterSet)
-	{
-		String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
-		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-	}
 
 	charsets_init();
 	UpdateCodepageModule();
@@ -351,7 +363,7 @@ BOOL CMergeApp::InitInstance()
 		// No filter path, set it to default and make sure it exists.
 		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(pathMyFolders);
 	}
 	if (!paths::CreateIfNeeded(pathMyFolders))
 	{
@@ -520,7 +532,7 @@ int CMergeApp::ExitInstance()
 		}, nullptr, 0, nullptr);
 #endif
 
-	return 0;
+	return m_bEnableExitCode ? ConvertLastCompareResultToExitCode(m_nLastCompareResult) : 0;
 }
 
 int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
@@ -613,6 +625,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
  */
 void CMergeApp::InitializeFileFilters()
 {
+	assert(m_pGlobalFileFilter != nullptr);
 	String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 
 	if (!filterPath.empty())
@@ -663,6 +676,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		0 : static_cast<unsigned>(cmdInfo.m_nWindowType) + ID_MERGE_COMPARE_TEXT - 1;
 
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
+	m_bEnableExitCode = cmdInfo.m_bEnableExitCode;
 
 	if (!cmdInfo.m_sUnpacker.empty())
 		infoUnpacker.reset(new PackingInfo(cmdInfo.m_sUnpacker));
@@ -673,7 +687,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		m_pGlobalFileFilter->SetFilter(cmdInfo.m_sFileFilter);
+		GetGlobalFileFilter()->SetFilter(cmdInfo.m_sFileFilter);
 	}
 
 	// Set codepage.
@@ -892,6 +906,29 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 		CloseHandle(processInfo.hThread);
 		CloseHandle(processInfo.hProcess);
 	}
+}
+
+/** @brief Returns pointer to global file filter */
+FileFilterHelper* CMergeApp::GetGlobalFileFilter()
+{
+	if (!m_pGlobalFileFilter)
+	{
+		m_pGlobalFileFilter.reset(new FileFilterHelper());
+
+		InitializeFileFilters();
+
+		// Read last used filter from registry
+		// If filter fails to set, reset to default
+		const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
+		bool bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
+		if (!bFilterSet)
+		{
+			String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
+			m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
+		}
+	}
+
+	return m_pGlobalFileFilter.get();
 }
 
 /**
@@ -1238,7 +1275,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		{
 			String filter = projItem.GetFilter();
 			filter = strutils::trim_ws(filter);
-			m_pGlobalFileFilter->SetFilter(filter);
+			GetGlobalFileFilter()->SetFilter(filter);
 		}
 		if (projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
@@ -1267,7 +1304,22 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 				dwFlags[2] |= FFILEOPEN_READONLY;
 		}
 
-		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
+		GetOptionsMgr()->Set(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
+
+		if (projItem.HasIgnoreWhite())
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_WHITESPACE, projItem.GetIgnoreWhite());
+		if (projItem.HasIgnoreBlankLines())
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_BLANKLINES, projItem.GetIgnoreBlankLines());
+		if (projItem.HasIgnoreCase())
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_CASE, projItem.GetIgnoreCase());
+		if (projItem.HasIgnoreEol())
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, projItem.GetIgnoreEol());
+		if (projItem.HasIgnoreCodepage())
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_CODEPAGE, projItem.GetIgnoreCodepage());
+		if (projItem.HasFilterCommentsLines())
+			GetOptionsMgr()->Set(OPT_CMP_FILTER_COMMENTLINES, projItem.GetFilterCommentsLines());
+		if (projItem.HasCompareMethod())
+			GetOptionsMgr()->Set(OPT_CMP_METHOD, projItem.GetCompareMethod());
 
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
