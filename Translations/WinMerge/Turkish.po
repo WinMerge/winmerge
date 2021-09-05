@@ -1630,6 +1630,9 @@ msgstr "&Sıkıştırılmış dosya desteği kullanılsın"
 msgid "&Detect archive type from file signature"
 msgstr "&Arşiv türü dosya imzasından belirlensin"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Karşılaştırma istatistikleri"
 
@@ -2084,6 +2087,9 @@ msgstr "Renk temaları"
 msgid "Folder Compare"
 msgstr "Klasör karşılaştırma"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Farklar"
 
@@ -2174,6 +2180,21 @@ msgstr "İleti"
 
 msgid "Answer"
 msgstr "Yanıt"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Ad"

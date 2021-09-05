@@ -2031,6 +2031,9 @@ msgstr "&Ενεργοποίηση υποστηρίξεως συμπιεσμέν�
 msgid "&Detect archive type from file signature"
 msgstr "Ανί&χνευση τύπου συμπιεσμένου αρχείου από την υπογραφή του"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Στατιστικά Συγκρίσεων"
@@ -2546,6 +2549,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Διαφορές"
@@ -2648,6 +2654,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

@@ -2032,6 +2032,9 @@ msgstr "&Archivunterstützung aktivieren"
 msgid "&Detect archive type from file signature"
 msgstr "Archiv&typ aus der Dateisignatur ermitteln"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Vergleichsstatistik"
@@ -2519,6 +2522,9 @@ msgstr "Farbschemas"
 msgid "Folder Compare"
 msgstr "Ordnervergleich"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
@@ -2616,6 +2622,21 @@ msgstr "Meldung"
 
 msgid "Answer"
 msgstr "Antwort"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

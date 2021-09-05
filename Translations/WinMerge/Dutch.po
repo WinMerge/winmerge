@@ -1635,6 +1635,9 @@ msgstr "Archiefbestand-ondersteuning inschakelen"
 msgid "&Detect archive type from file signature"
 msgstr "Archieftype detecteren via bestandssignatuur"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Vergelijkingsstatistieken"
 
@@ -2086,6 +2089,9 @@ msgstr "Kleurenschema's"
 msgid "Folder Compare"
 msgstr "Mapvergelijking"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Verschillen"
 
@@ -2176,6 +2182,21 @@ msgstr "Bericht"
 
 msgid "Answer"
 msgstr "Antwoord"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Naam"

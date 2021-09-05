@@ -2046,6 +2046,9 @@ msgstr "압축 파일 지원 사용하기(&E)"
 msgid "&Detect archive type from file signature"
 msgstr "파일 서명에서 압축 형식 감지하기(&D)"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "통계 비교"
@@ -2585,6 +2588,9 @@ msgstr "색상 테마"
 msgid "Folder Compare"
 msgstr "폴더 비교"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "차이점"
@@ -2687,6 +2693,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

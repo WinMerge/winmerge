@@ -2042,6 +2042,9 @@ msgstr "Archív fájlok támogatásának &engedélyezése"
 msgid "&Detect archive type from file signature"
 msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Összehasonlítási statisztika"
@@ -2581,6 +2584,9 @@ msgstr "Színsémák"
 msgid "Folder Compare"
 msgstr "Mappa összehasonlítás"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
@@ -2684,6 +2690,21 @@ msgstr "Üzenet"
 
 msgid "Answer"
 msgstr "Válasz"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

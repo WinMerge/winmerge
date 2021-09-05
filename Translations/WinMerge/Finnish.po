@@ -2037,6 +2037,9 @@ msgstr "Käytä arkistotiedostojen tukea"
 msgid "&Detect archive type from file signature"
 msgstr "Tunnista arkistotyyppi tiedoston allekirjoituksesta"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Vertaa tilastoja"
@@ -2574,6 +2577,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr "Kansiovertailu"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Erilaisuudet"
@@ -2676,6 +2682,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

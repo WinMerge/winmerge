@@ -16,6 +16,7 @@
 #include "OptionsDirColors.h"
 #include "OptionsEditorSyntax.h"
 #include "OptionsFont.h"
+#include "OptionsProject.h"
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "paths.h"
 #include "Environment.h"
@@ -228,6 +229,7 @@ void Init(COptionsMgr *pOptions)
 	Options::DirColors::Init(pOptions);
 	Options::EditorSyntax::Init(pOptions);
 	Options::Font::Init(pOptions);
+	Options::Project::Init(pOptions);
 }
 
 /**

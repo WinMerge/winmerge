@@ -2041,6 +2041,9 @@ msgstr "&E فعال نمودن پشتيباني از پرونده بايگاني
 msgid "&Detect archive type from file signature"
 msgstr "&D شناسايي نوع بايگاني از روي امضاء پرونده  "
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr " آمار همسنجي / قياس "
@@ -2562,6 +2565,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr " تفاوتها "
@@ -2669,6 +2675,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format
