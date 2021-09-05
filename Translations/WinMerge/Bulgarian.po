@@ -1625,6 +1625,9 @@ msgstr "Включване на &поддръжката на архиви"
 msgid "&Detect archive type from file signature"
 msgstr "Откриване на вида на &архива от подписа на файла"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Статистика на сравнението"
 
@@ -2074,6 +2077,9 @@ msgstr "Теми"
 msgid "Folder Compare"
 msgstr "Сравняване на папки"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Различия"
 
@@ -2163,6 +2169,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

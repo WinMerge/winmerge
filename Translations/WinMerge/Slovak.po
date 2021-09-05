@@ -1627,6 +1627,9 @@ msgstr "&Zapnúť podporu archívov"
 msgid "&Detect archive type from file signature"
 msgstr "&Detekovať typ archívu z hlavičky súboru"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Štatistika porovnania"
 
@@ -2076,6 +2079,9 @@ msgstr "Farebné schémy"
 msgid "Folder Compare"
 msgstr "Porovnávanie priečinkov"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Rozdiely"
 
@@ -2165,6 +2171,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

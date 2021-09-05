@@ -66,6 +66,17 @@ public:
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
 
+	void SetSaveFilter(bool bSaveFilter);
+	void SetSaveSubfolders(bool bSaveSubfolders);
+	void SetSaveUnpacker(bool bSaveUnpacker);
+	void SetSaveIgnoreWhite(bool bSaveIgnoreWhite);
+	void SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines);
+	void SetSaveIgnoreCase(bool bSaveIgnoreCase);
+	void SetSaveIgnoreEol(bool bSaveIgnoreEol);
+	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
+	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
+	void SetSaveCompareMethod(bool bSaveCompareMethod);
+
 private:
 	PathContext m_paths;
 	bool m_bHasLeft; /**< Has left path? */
@@ -96,6 +107,16 @@ private:
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
+	bool m_bSaveFilter; /**< Save filter? */
+	bool m_bSaveSubfolders; /**< Save subfolders? */
+	bool m_bSaveUnpacker; /**< Save unpacker? */
+	bool m_bSaveIgnoreWhite; /**< Save "Whitespaces" setting? */
+	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
+	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
+	bool m_bSaveIgnoreEol; /**< Save "Ignore carriage return differences" setting? */
+	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
+	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
+	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
 };
 
 /**
@@ -478,3 +499,92 @@ inline void ProjectFileItem::SetPaths(const PathContext& paths, bool bSubfolders
 	m_subfolders = bSubfolders;
 }
 
+/** 
+ * @brief Set whether to save filter.
+ * @param [in] bSaveFilter Whether to save filter.
+ */
+inline void ProjectFileItem::SetSaveFilter(bool bSaveFilter)
+{
+	m_bSaveFilter = bSaveFilter;
+}
+
+/** 
+ * @brief Set whether to save subfolders.
+ * @param [in] bSaveSubfolders Whether to save subfolders.
+ */
+inline void ProjectFileItem::SetSaveSubfolders(bool bSaveSubfolders)
+{
+	m_bSaveSubfolders = bSaveSubfolders;
+}
+
+/** 
+ * @brief Set whether to save unpacker.
+ * @param [in] bSaveUnpacker Whether to save unpacker.
+ */
+inline void ProjectFileItem::SetSaveUnpacker(bool bSaveUnpacker)
+{
+	m_bSaveUnpacker = bSaveUnpacker;
+}
+
+/** 
+ * @brief Set whether to save "Whitespaces" setting.
+ * @param [in] bSaveIgnoreWhite Whether to save "Whitespaces" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreWhite(bool bSaveIgnoreWhite)
+{
+	m_bSaveIgnoreWhite = bSaveIgnoreWhite;
+}
+
+/** 
+ * @brief Set whether to save "Ignore blank lines" setting.
+ * @param [in] bSaveIgnoreBlankLines Whether to save "Ignore blank lines" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines)
+{
+	m_bSaveIgnoreBlankLines = bSaveIgnoreBlankLines;
+}
+
+/** 
+ * @brief Set whether to save "Ignore case" setting.
+ * @param [in] bSaveIgnoreCase Whether to save "Ignore case" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreCase(bool bSaveIgnoreCase)
+{
+	m_bSaveIgnoreCase = bSaveIgnoreCase;
+}
+
+/** 
+ * @brief Set whether to save "Ignore carriage return differences" setting.
+ * @param [in] bSaveIgnoreEol Whether to save "Ignore carriage return differences" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreEol(bool bSaveIgnoreEol)
+{
+	m_bSaveIgnoreEol = bSaveIgnoreEol;
+}
+
+/** 
+ * @brief Set whether to save "Ignore codepage differences" setting.
+ * @param [in] bSaveIgnoreCodepage Whether to save "Ignore codepage differences" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage)
+{
+	m_bSaveIgnoreCodepage = bSaveIgnoreCodepage;
+}
+
+/** 
+ * @brief Set whether to save "Ignore comment differences" setting.
+ * @param [in] bSaveFilterCommentsLines Whether to save "Ignore comment differences" setting.
+ */
+inline void ProjectFileItem::SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines)
+{
+	m_bSaveFilterCommentsLines = bSaveFilterCommentsLines;
+}
+
+/** 
+ * @brief Set whether to save "Compare method" setting.
+ * @param [in] bSaveCompareMethod Whether to save "Compare method" setting.
+ */
+inline void ProjectFileItem::SetSaveCompareMethod(bool bSaveCompareMethod)
+{
+	m_bSaveCompareMethod = bSaveCompareMethod;
+}

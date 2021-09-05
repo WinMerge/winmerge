@@ -1617,6 +1617,9 @@ msgstr "Į&jungti archyvo failų palaikymą"
 msgid "&Detect archive type from file signature"
 msgstr "&Nustatyti archyvo tipą iš failo parašo"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Lyginimo statistika"
 
@@ -2006,6 +2009,9 @@ msgstr "Schemų"
 msgid "Folder Compare"
 msgstr "Katalogų lyginimo"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Skirtumų"
 
@@ -2086,6 +2092,21 @@ msgstr "Pranešimas"
 
 msgid "Answer"
 msgstr "Atsakymas"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Pavadinimas"

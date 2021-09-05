@@ -2035,6 +2035,9 @@ msgstr "&Ввімкнути підтримку архівів"
 msgid "&Detect archive type from file signature"
 msgstr "&Визначати тип архіву за сигнатурою або заголовком файлу"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Порівняння статистики"
@@ -2550,6 +2553,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Відмінності"
@@ -2652,6 +2658,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format
