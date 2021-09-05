@@ -51,12 +51,12 @@ Docs/Manual/Tools/ReadMe_ENG.html
 Testing/Data/ShellFileOpTest/File1.txt
 Testing/result-*.txt
 Translations/WinMerge/MergeLang.lastbuild
-ShellExtension/*_i.c
-ShellExtension/*_p.c
-ShellExtension/dlldata.c
-ShellExtension/ShellExtension.h
-ShellExtension/ShellExtension_i.c
-ShellExtension/ShellExtension_p.c
+ShellExtension/src/*_i.c
+ShellExtension/src/*_p.c
+ShellExtension/src/dlldata.c
+ShellExtension/src/ShellExtension.h
+ShellExtension/src/ShellExtension_i.c
+ShellExtension/src/ShellExtension_p.c
 Plugins/**/dlldata.c
 Plugins/**/*_i.c
 Plugins/**/*_i.h
@@ -71,3 +71,4 @@ Plugins/src_VCPP/IgnoreFieldsComma/IgnoreFieldsComma.h
 Plugins/src_VCPP/IgnoreFieldsTab/IgnoreFieldsTab.h
 Plugins/src_VCPP/WatchBeginningOfLog/WatchBeginningOfLog.h
 Plugins/src_VCPP/WatchEndOfLog/WatchEndOfLog.h
+
