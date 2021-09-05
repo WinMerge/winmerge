@@ -4,10 +4,15 @@
 #include <wrl/implements.h>
 #include <wrl/client.h>
 #include <shobjidl_core.h>
-#include <wil\resource.h>
+#include <wil/resource.h>
+#include <wil/win32_helpers.h>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <Shlwapi.h>
+#include "resource.h"
+
+#pragma comment(lib, "shlwapi.lib")
 
 using namespace Microsoft::WRL;
 
@@ -33,6 +38,7 @@ public:
     virtual const wchar_t* Title() = 0;
     virtual const EXPCMDFLAGS Flags() { return ECF_DEFAULT; }
     virtual const EXPCMDSTATE State(_In_opt_ IShellItemArray* selection) { return ECS_ENABLED; }
+    virtual int IconId() { return 0; }
 
     // IExplorerCommand
     IFACEMETHODIMP GetTitle(_In_opt_ IShellItemArray* items, _Outptr_result_nullonfailure_ PWSTR* name)
@@ -43,7 +49,19 @@ public:
         *name = title.release();
         return S_OK;
     }
-    IFACEMETHODIMP GetIcon(_In_opt_ IShellItemArray*, _Outptr_result_nullonfailure_ PWSTR* icon) { *icon = nullptr; return E_NOTIMPL; }
+    IFACEMETHODIMP GetIcon(_In_opt_ IShellItemArray*, _Outptr_result_nullonfailure_ PWSTR* icon)
+    {
+        int id = IconId();
+        if (id == 0)
+        {
+            *icon = nullptr;
+            return E_NOTIMPL;
+        }
+        auto modulefilename = wil::GetModuleFileNameW(wil::GetModuleInstanceHandle());
+        std::wstring path = modulefilename.get() + std::wstring(L",-") + std::to_wstring(id);
+        SHStrDupW(path.c_str(), icon);
+        return S_OK;
+    }
     IFACEMETHODIMP GetToolTip(_In_opt_ IShellItemArray*, _Outptr_result_nullonfailure_ PWSTR* infoTip) { *infoTip = nullptr; return E_NOTIMPL; }
     IFACEMETHODIMP GetCanonicalName(_Out_ GUID* guidCommandName) { *guidCommandName = GUID_NULL;  return S_OK; }
     IFACEMETHODIMP GetState(_In_opt_ IShellItemArray* selection, _In_ BOOL okToBeSlow, _Out_ EXPCMDSTATE* cmdState)
@@ -140,6 +158,7 @@ class __declspec(uuid("90340779-F37E-468E-9728-A2593498ED32")) WinMergeExplorerC
 {
 public:
     const wchar_t* Title() override { return L"WinMerge"; }
+    int IconId() override { return IDI_WINMERGEDIR; }
     const EXPCMDFLAGS Flags() override
     {
         return ECF_DEFAULT;
@@ -154,9 +173,31 @@ public:
     }
 };
 
+class __declspec(uuid("B982639B-0934-4F73-A63B-2816880CF612")) WinMergeDirExplorerCommandHandler final : public WinMergeExplorerCommandBase
+{
+public:
+    const wchar_t* Title() override { return L"WinMerge"; }
+    int IconId() override { return IDI_WINMERGE; }
+    const EXPCMDFLAGS Flags() override
+    {
+        return ECF_DEFAULT;
+        //return ECF_HASSUBCOMMANDS;
+    }
+
+
+    IFACEMETHODIMP EnumSubCommands(_COM_Outptr_ IEnumExplorerCommand** enumCommands)
+    {
+        *enumCommands = nullptr;
+        auto e = Make<EnumCommands>();
+        return e->QueryInterface(IID_PPV_ARGS(enumCommands));
+    }
+};
+
 CoCreatableClass(WinMergeExplorerCommandHandler)
+CoCreatableClass(WinMergeDirExplorerCommandHandler)
 
 CoCreatableClassWrlCreatorMapInclude(WinMergeExplorerCommandHandler)
+CoCreatableClassWrlCreatorMapInclude(WinMergeDirExplorerCommandHandler)
 
 
 STDAPI DllGetActivationFactory(_In_ HSTRING activatableClassId, _COM_Outptr_ IActivationFactory** factory)

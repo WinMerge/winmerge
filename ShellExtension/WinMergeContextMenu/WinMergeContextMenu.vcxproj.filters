@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{de172a05-f54c-451d-853e-14a7a6cb7cd5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\ShellExtension\WinMerge.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\ShellExtension\WinMergeDir.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\WinMerge.ico" />
+    <Image Include="..\Resources\WinMergeDir.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinMergeContextMenu.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
