@@ -79,7 +79,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchBeginningOfLog", "Plug
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchEndOfLog", "Plugins\src_VCPP\WatchEndOfLog\WatchEndOfLog.vcxproj", "{4A3F0C35-6B6D-44B3-84FD-7E2168398361}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShellExtension", "ShellExtension\src\ShellExtension.vcxproj", "{76A538A1-9D2C-49CB-AE9F-72548CE37F88}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShellExtension", "ShellExtension\ShellExtension\ShellExtension.vcxproj", "{76A538A1-9D2C-49CB-AE9F-72548CE37F88}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMerge32BitPluginProxy", "Plugins\WinMerge32BitPluginProxy\WinMerge32BitPluginProxy.vcxproj", "{AF985E3F-14EE-420E-90FE-AAA844797D36}"
 EndProject

@@ -246,8 +246,8 @@ popd
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\ShellExtension\ShellExtension.rc">
-      <Outputs>$(ProjectDir)..\Translations\ShellExtension\MergeLang.lastbuild</Outputs>
+    <CustomBuild Include="..\ShellExtension\ShellExtension\ShellExtension.rc">
+      <Outputs>$(ProjectDir)..\..\Translations\ShellExtension\MergeLang.lastbuild</Outputs>
       <Command>pushd ..\Translations\ShellExtension
 
 date /t &gt; MergeLang.lastbuild

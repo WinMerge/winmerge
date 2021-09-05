@@ -257,7 +257,7 @@
     <CustomBuild Include="Merge.rc">
       <Filter>Resource FIles</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\ShellExtension\ShellExtension.rc">
+    <CustomBuild Include="..\ShellExtension\ShellExtension\ShellExtension.rc">
       <Filter>Resource FIles</Filter>
     </CustomBuild>
   </ItemGroup>

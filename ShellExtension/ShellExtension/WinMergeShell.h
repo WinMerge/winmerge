@@ -31,8 +31,8 @@
 #include <comdef.h>
 #include <atlconv.h>	// for ATL string conversion macros
 #include "resource.h"   // main symbols
-#include "UnicodeString.h"
-#include "LanguageSelect.h"
+#include "../Common/UnicodeString.h"
+#include "../Common/LanguageSelect.h"
 
 /**
  * @brief Class for handling shell extension tasks

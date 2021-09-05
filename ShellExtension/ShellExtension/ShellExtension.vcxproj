@@ -385,11 +385,11 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LanguageSelect.cpp" />
-    <ClCompile Include="RegKey.cpp" />
+    <ClCompile Include="..\Common\LanguageSelect.cpp" />
+    <ClCompile Include="..\Common\RegKey.cpp" />
+    <ClCompile Include="..\Common\UnicodeString.cpp" />
     <ClCompile Include="ShellExtension.cpp" />
     <ClCompile Include="StdAfx.cpp" />
-    <ClCompile Include="UnicodeString.cpp" />
     <ClCompile Include="WinMergeShell.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -433,11 +433,11 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LanguageSelect.h" />
-    <ClInclude Include="RegKey.h" />
+    <ClInclude Include="..\Common\LanguageSelect.h" />
+    <ClInclude Include="..\Common\RegKey.h" />
+    <ClInclude Include="..\Common\UnicodeString.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="UnicodeString.h" />
     <ClInclude Include="WinMergeShell.h" />
   </ItemGroup>
   <ItemGroup>

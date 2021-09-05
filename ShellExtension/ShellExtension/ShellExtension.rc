@@ -98,8 +98,8 @@ IDR_WINMERGESHELL       REGISTRY                "WinMergeShell.rgs"
 // Icon
 //
 
-IDI_WINMERGE            ICON                    "WinMerge.ico"
-IDI_WINMERGEDIR         ICON                    "WinMergeDir.ico"
+IDI_WINMERGE            ICON                    "..\Resources\WinMerge.ico"
+IDI_WINMERGEDIR         ICON                    "..\Resources\WinMergeDir.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

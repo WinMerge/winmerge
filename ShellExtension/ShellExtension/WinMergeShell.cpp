@@ -42,8 +42,8 @@
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
-#include "UnicodeString.h"
-#include "RegKey.h"
+#include "../Common/UnicodeString.h"
+#include "../Common/RegKey.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 
