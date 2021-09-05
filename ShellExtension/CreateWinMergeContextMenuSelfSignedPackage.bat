@@ -1,0 +1,2 @@
+powershell -executionpolicy remotesigned %~dp0CreateWinMergeContextMenuSelfSIgnedPackage.ps1
+pause
