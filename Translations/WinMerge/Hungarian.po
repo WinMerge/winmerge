@@ -2043,7 +2043,7 @@ msgid "&Detect archive type from file signature"
 msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "A projektfájlba mentett vagy onnan visszaállított elemek:"
 
 #, c-format
 msgid "Compare Statistics"
@@ -2585,7 +2585,7 @@ msgid "Folder Compare"
 msgstr "Mappa összehasonlítás"
 
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #, c-format
 msgid "Differences"
@@ -2692,19 +2692,19 @@ msgid "Answer"
 msgstr "Válasz"
 
 msgid "Item"
-msgstr ""
+msgstr "Elem"
 
 msgid "Load"
-msgstr ""
+msgstr "Betöltés"
 
 msgid "Save"
-msgstr ""
+msgstr "Mentés"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Almappák is"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Összehasonlító opciók"
 
 #, c-format
 msgid "Name"
@@ -3281,7 +3281,7 @@ msgstr "Biztosan áthelyezel %d elemet?"
 
 #, c-format
 msgid "Confirm Move"
-msgstr "Mozgatás megerősítése"
+msgstr "Áthelyezés megerősítése"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
@@ -4364,11 +4364,11 @@ msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Átláthatóság"
+msgstr "Átlátszóság"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Átláthatóság animáció"
+msgstr "Átlátszóság animáció"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
