@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-08-25 21:30+0000\n"
+"POT-Creation-Date: 2021-08-29 20:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1608,6 +1608,9 @@ msgstr ""
 msgid "&Detect archive type from file signature"
 msgstr ""
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr ""
 
@@ -1997,6 +2000,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr ""
 
@@ -2076,6 +2082,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

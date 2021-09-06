@@ -2041,6 +2041,9 @@ msgstr "&Activar o soporte de arquivos"
 msgid "&Detect archive type from file signature"
 msgstr "&Detectar o tipo de arquivo pola sinatura"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Estatísticas da comparación"
@@ -2580,6 +2583,9 @@ msgstr "Esquemas de cores"
 msgid "Folder Compare"
 msgstr "Comparar cartafoles"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Diferenzas"
@@ -2683,6 +2689,21 @@ msgstr "Mensaxe"
 
 msgid "Answer"
 msgstr "Resposta"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

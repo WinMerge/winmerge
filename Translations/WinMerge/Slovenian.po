@@ -2036,6 +2036,9 @@ msgstr "Omogoči podporo &arhivskih datotek"
 msgid "&Detect archive type from file signature"
 msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Statistika primerjave"
@@ -2575,6 +2578,9 @@ msgstr "Barvne sheme"
 msgid "Folder Compare"
 msgstr "Primerjava map"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
@@ -2678,6 +2684,21 @@ msgstr "Sporočilo"
 
 msgid "Answer"
 msgstr "Odgovor"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

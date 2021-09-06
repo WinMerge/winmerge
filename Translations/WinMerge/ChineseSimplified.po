@@ -1628,6 +1628,9 @@ msgstr "启用压缩文件支持(&E)"
 msgid "&Detect archive type from file signature"
 msgstr "根据文件头检测压缩文件类型(&D)"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "比较结果统计"
 
@@ -2075,6 +2078,9 @@ msgstr "配色方案"
 msgid "Folder Compare"
 msgstr "文件夹比较"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "差异"
 
@@ -2164,6 +2170,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

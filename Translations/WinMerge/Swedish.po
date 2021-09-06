@@ -2042,6 +2042,9 @@ msgstr "Möjliggör Arkivfilstöd"
 msgid "&Detect archive type from file signature"
 msgstr "Urskilj arkivtyp från filsignatur"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "JämförelseStatistik"
@@ -2575,6 +2578,9 @@ msgstr "Färgschema"
 msgid "Folder Compare"
 msgstr "MappJämförelse"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Skillnader"
@@ -2676,6 +2682,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

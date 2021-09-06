@@ -1623,6 +1623,9 @@ msgstr "ت&فعيل دعم ملفات الأرشفة"
 msgid "&Detect archive type from file signature"
 msgstr "الت&حقق مكن نوع الإرشيف عبر فحص التوقيع"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "إحصائيات المقارنة"
 
@@ -2067,6 +2070,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr "مقارنة المجلد"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "الاختلافات"
 
@@ -2156,6 +2162,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

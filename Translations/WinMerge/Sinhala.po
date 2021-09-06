@@ -2029,6 +2029,9 @@ msgstr "&Enable archive file support"
 msgid "&Detect archive type from file signature"
 msgstr "ගොනුවේ ලාංජනය අනුව ලේබණයේ වර්ගය හදුනාගන්න"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "සංඛ්‍යාලේබණ සසඳන්න"
@@ -2544,6 +2547,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "වෙනස්කම්"
@@ -2646,6 +2652,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format
