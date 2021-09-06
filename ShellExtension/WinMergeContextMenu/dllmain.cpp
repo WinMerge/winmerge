@@ -10,6 +10,8 @@
 #include <vector>
 #include <sstream>
 #include <Shlwapi.h>
+#include "../Common/RegKey.h"
+#include "../Common/Constants.h"
 #include "resource.h"
 
 #pragma comment(lib, "shlwapi.lib")
@@ -154,49 +156,59 @@ private:
     std::vector<ComPtr<IExplorerCommand>>::const_iterator m_current;
 };
 
-class __declspec(uuid("90340779-F37E-468E-9728-A2593498ED32")) WinMergeExplorerCommandHandler final : public WinMergeExplorerCommandBase
+class WinMergeFileDirExplorerCommandHandler : public WinMergeExplorerCommandBase
 {
 public:
+    WinMergeFileDirExplorerCommandHandler()
+    : m_dwContextMenuEnabled(0)
+    {
+        CRegKeyEx reg;
+        if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+            m_dwContextMenuEnabled = reg.ReadDword(f_RegValueEnabled, 0);
+    }
     const wchar_t* Title() override { return L"WinMerge"; }
+    const EXPCMDFLAGS Flags() override
+    {
+        if (m_dwContextMenuEnabled & EXT_ENABLED && m_dwContextMenuEnabled & EXT_ADVANCED)
+            return ECF_HASSUBCOMMANDS;
+        else
+            return ECF_DEFAULT;
+    }
+    const EXPCMDSTATE State(_In_opt_ IShellItemArray* selection) override
+    {
+        DWORD dwNumItems = 0;
+        if (!(m_dwContextMenuEnabled & EXT_ENABLED))
+            return ECS_HIDDEN;
+        else if (selection && SUCCEEDED(selection->GetCount(&dwNumItems)) && dwNumItems > MaxFileCount)
+            return ECS_DISABLED;
+        return ECS_ENABLED;
+    }
+    IFACEMETHODIMP EnumSubCommands(_COM_Outptr_ IEnumExplorerCommand** enumCommands)
+    {
+        *enumCommands = nullptr;
+        auto e = Make<EnumCommands>();
+        return e->QueryInterface(IID_PPV_ARGS(enumCommands));
+    }
+private:
+    DWORD m_dwContextMenuEnabled;
+};
+
+class __declspec(uuid("90340779-F37E-468E-9728-A2593498ED32")) WinMergeFileExplorerCommandHandler final : public WinMergeFileDirExplorerCommandHandler
+{
+public:
     int IconId() override { return IDI_WINMERGEDIR; }
-    const EXPCMDFLAGS Flags() override
-    {
-        return ECF_DEFAULT;
-        //return ECF_HASSUBCOMMANDS;
-    }
-
-    IFACEMETHODIMP EnumSubCommands(_COM_Outptr_ IEnumExplorerCommand** enumCommands)
-    {
-        *enumCommands = nullptr;
-        auto e = Make<EnumCommands>();
-        return e->QueryInterface(IID_PPV_ARGS(enumCommands));
-    }
 };
 
-class __declspec(uuid("B982639B-0934-4F73-A63B-2816880CF612")) WinMergeDirExplorerCommandHandler final : public WinMergeExplorerCommandBase
+class __declspec(uuid("B982639B-0934-4F73-A63B-2816880CF612")) WinMergeDirExplorerCommandHandler final : public WinMergeFileDirExplorerCommandHandler
 {
 public:
-    const wchar_t* Title() override { return L"WinMerge"; }
     int IconId() override { return IDI_WINMERGE; }
-    const EXPCMDFLAGS Flags() override
-    {
-        return ECF_DEFAULT;
-        //return ECF_HASSUBCOMMANDS;
-    }
-
-
-    IFACEMETHODIMP EnumSubCommands(_COM_Outptr_ IEnumExplorerCommand** enumCommands)
-    {
-        *enumCommands = nullptr;
-        auto e = Make<EnumCommands>();
-        return e->QueryInterface(IID_PPV_ARGS(enumCommands));
-    }
 };
 
-CoCreatableClass(WinMergeExplorerCommandHandler)
+CoCreatableClass(WinMergeFileExplorerCommandHandler)
 CoCreatableClass(WinMergeDirExplorerCommandHandler)
 
-CoCreatableClassWrlCreatorMapInclude(WinMergeExplorerCommandHandler)
+CoCreatableClassWrlCreatorMapInclude(WinMergeFileExplorerCommandHandler)
 CoCreatableClassWrlCreatorMapInclude(WinMergeDirExplorerCommandHandler)
 
 

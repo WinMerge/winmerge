@@ -388,6 +388,9 @@
     <ClCompile Include="..\Common\LanguageSelect.cpp" />
     <ClCompile Include="..\Common\RegKey.cpp" />
     <ClCompile Include="..\Common\UnicodeString.cpp" />
+    <ClCompile Include="..\Common\Utils.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="ShellExtension.cpp" />
     <ClCompile Include="StdAfx.cpp" />
     <ClCompile Include="WinMergeShell.cpp" />
@@ -433,9 +436,11 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\Constants.h" />
     <ClInclude Include="..\Common\LanguageSelect.h" />
     <ClInclude Include="..\Common\RegKey.h" />
     <ClInclude Include="..\Common\UnicodeString.h" />
+    <ClInclude Include="..\Common\Utils.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="WinMergeShell.h" />

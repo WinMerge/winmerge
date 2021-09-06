@@ -13,25 +13,31 @@
       <UniqueIdentifier>{39d571c9-dfaf-4994-a7f5-7f34c3d5d192}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{ed82f8a2-602b-4ce5-8653-f324b645f755}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RegKey.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShellExtension.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UnicodeString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WinMergeShell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LanguageSelect.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Common\LanguageSelect.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\RegKey.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\UnicodeString.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Utils.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,23 +51,29 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RegKey.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UnicodeString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WinMergeShell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LanguageSelect.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Common\LanguageSelect.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\RegKey.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\UnicodeString.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Constants.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Utils.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,9 @@
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
 
-#include "StdAfx.h"
+#include <Windows.h>
+#include <tchar.h>
+#include <atlbase.h>
 #include "LanguageSelect.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage

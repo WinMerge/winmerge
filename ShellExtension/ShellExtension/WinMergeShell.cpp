@@ -44,72 +44,12 @@
 #include "WinMergeShell.h"
 #include "../Common/UnicodeString.h"
 #include "../Common/RegKey.h"
+#include "../Common/Constants.h"
+#include "../Common/Utils.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 
 OBJECT_ENTRY_AUTO(CLSID_WinMergeShell, CWinMergeShell)
-
-/**
- * @brief Flags for enabling and other settings of context menu.
- */
-enum ExtensionFlags
-{
-	EXT_ENABLED = 0x01, /**< ShellExtension enabled/disabled. */
-	EXT_ADVANCED = 0x02, /**< Advanced menuitems enabled/disabled. */
-};
-
-enum
-{
-	CMD_COMPARE = 0,
-	CMD_COMPARE_ELLIPSE,
-	CMD_SELECT_LEFT,
-	CMD_SELECT_MIDDLE,
-	CMD_RESELECT_LEFT,
-	CMD_LAST = CMD_RESELECT_LEFT,
-};
-
-/// Max. filecount to select
-static const int MaxFileCount = 3;
-/// Registry path to WinMerge
-#define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
-static const TCHAR f_RegDir[] = REGDIR;
-static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
-static const TCHAR f_RegSettingsDir[] = REGDIR _T("\\Settings");
-
-/**
- * @name Registry valuenames.
- */
-/*@{*/
-/** Shell context menuitem enabled/disabled */
-static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
-/** 'Saved' path in advanced mode */
-static const TCHAR f_FirstSelection[] = _T("FirstSelection");
-/** 'Saved' path in advanced mode */
-static const TCHAR f_SecondSelection[] = _T("SecondSelection");
-/** Path to WinMergeU.exe */
-static const TCHAR f_RegValuePath[] = _T("Executable");
-/** Path to WinMergeU.exe, overwrites f_RegValuePath if present. */
-static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
-/** LanguageId */
-static const TCHAR f_LanguageId[] = _T("LanguageId");
-/** Recurse */
-static const TCHAR f_Recurse[] = _T("Recurse");
-/*@}*/
-
-/**
- * @brief The states in which the menu can be.
- * These states define what items are added to the menu and how those
- * items work.
- */
-enum
-{
-	MENU_SIMPLE = 0,  /**< Simple menu, only "Compare item" is shown. */
-	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
-	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */
-	MENU_ONESEL_TWO_PREV,  /**< One item selected, two previous selections exist. */
-	MENU_TWOSEL,  /**< Two items are selected. */
-	MENU_THREESEL
-};
 
 // GreyMerlin (03 Sept 2017) - The following Version Info checking code is a 
 // short extract from the Microsoft <versionhelpers.h> file.  Unfortunatly, 
@@ -409,140 +349,11 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 /// Runs WinMerge with given paths
 HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
-	CRegKeyEx reg;
-	String strWinMergePath;
-	BOOL bCompare = FALSE;
-	BOOL bAlterSubFolders = FALSE;
-
 	// If lpVerb really points to a string, ignore this function call and bail out.
 	if (HIWORD(pCmdInfo->lpVerb) != 0)
 		return E_INVALIDARG;
 
-	// Read WinMerge location from registry
-	if (!GetWinMergeDir(strWinMergePath))
-		return S_FALSE;
-
-	// Check that file we are trying to execute exists
-	if (!PathFileExists(strWinMergePath.c_str()))
-		return S_FALSE;
-
-	if (LOWORD(pCmdInfo->lpVerb) == CMD_COMPARE)
-	{
-		switch (m_dwMenuState)
-		{
-		case MENU_SIMPLE:
-			bCompare = TRUE;
-			break;
-
-		case MENU_ONESEL_PREV:
-			m_strPaths[1] = m_strPaths[0];
-			m_strPaths[0] = m_strPreviousPath[0];
-			bCompare = TRUE;
-
-			// Forget previous selection
-			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-			{
-				reg.WriteString(f_FirstSelection, _T(""));
-				reg.WriteString(f_SecondSelection, _T(""));
-			}
-			break;
-
-		case MENU_ONESEL_TWO_PREV:
-			m_strPaths[2] = m_strPaths[0];
-			m_strPaths[0] = m_strPreviousPath[0];
-			m_strPaths[1] = m_strPreviousPath[1];
-			bCompare = TRUE;
-
-			// Forget previous selection
-			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-			{
-				reg.WriteString(f_FirstSelection, _T(""));
-				reg.WriteString(f_SecondSelection, _T(""));
-			}
-			break;
-
-		case MENU_TWOSEL:
-		case MENU_THREESEL:
-			// "Compare" - compare paths
-			bCompare = TRUE;
-			m_strPreviousPath[0].erase();
-			m_strPreviousPath[1].erase();
-			break;
-		}
-	}
-	else if (LOWORD(pCmdInfo->lpVerb) == CMD_COMPARE_ELLIPSE)
-	{
-		// "Compare..." - user wants to compare this single item and open WinMerge
-		m_strPaths[1].erase();
-		m_strPaths[2].erase();
-		bCompare = TRUE;
-	}
-	else if (LOWORD(pCmdInfo->lpVerb) == CMD_SELECT_LEFT)
-	{
-		// Select Left
-		m_strPreviousPath[0] = m_strPaths[0];
-		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-			reg.WriteString(f_FirstSelection, m_strPreviousPath[0].c_str());
-	}
-	else if (LOWORD(pCmdInfo->lpVerb) == CMD_SELECT_MIDDLE)
-	{
-		// Select Middle
-		m_strPreviousPath[1] = m_strPaths[0];
-		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-			reg.WriteString(f_SecondSelection, m_strPreviousPath[1].c_str());
-	}
-	else if (LOWORD(pCmdInfo->lpVerb) == CMD_RESELECT_LEFT)
-	{
-		// Re-select Left
-		m_strPreviousPath[0] = m_strPaths[0];
-		m_strPreviousPath[1].clear();
-		if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-		{
-			reg.WriteString(f_FirstSelection, m_strPreviousPath[0].c_str());
-			reg.WriteString(f_SecondSelection, _T(""));
-		}
-	}
-	else
-		return E_INVALIDARG;
-
-	if (bCompare == FALSE)
-		return S_FALSE;
-
-	if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0)
-		bAlterSubFolders = TRUE;
-
-	String strCommandLine = FormatCmdLine(strWinMergePath,
-		m_strPaths[0], m_strPaths[1], m_strPaths[2], bAlterSubFolders);
-
-	// Finally start a new WinMerge process
-	BOOL retVal = FALSE;
-	STARTUPINFO stInfo = {0};
-	stInfo.cb = sizeof(STARTUPINFO);
-	PROCESS_INFORMATION processInfo = {0};
-
-	retVal = CreateProcess(NULL, (LPTSTR)strCommandLine.c_str(),
-			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-			&stInfo, &processInfo);
-
-	if (retVal)
-	{
-		CloseHandle(processInfo.hThread);
-		CloseHandle(processInfo.hProcess);
-	}
-	else if (GetLastError() == ERROR_ELEVATION_REQUIRED)
-	{
-		String strCommandLine = FormatCmdLine(_T(""),
-			m_strPaths[0], m_strPaths[1], m_strPaths[2], bAlterSubFolders);
-		HINSTANCE hInstance = ShellExecute(nullptr, _T("runas"), strWinMergePath.c_str(), strCommandLine.c_str(), 0, SW_SHOWNORMAL);
-		if (reinterpret_cast<intptr_t>(hInstance) < 32)
-			return S_FALSE;
-	}
-	else
-	{
-		return S_FALSE;
-	}
-
-	return S_OK;
+	return ::InvokeCommand(LOWORD(pCmdInfo->lpVerb), m_dwMenuState, m_strPaths, m_strPreviousPath);
 }
 
 /**
@@ -581,25 +392,6 @@ BOOL CWinMergeShell::InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewIt
 	return InsertMenuItem(hMenu, uPosition, TRUE, &mii);
 }
 
-/// Reads WinMerge path from registry
-BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
-{
-	CRegKeyEx reg;
-	if (!reg.QueryRegUser(f_RegDir))
-		return FALSE;
-
-	// Try first reading debug/test value
-	strDir = reg.ReadString(f_RegValuePriPath, _T(""));
-	if (strDir.empty())
-	{
-		strDir = reg.ReadString(f_RegValuePath, _T(""));
-		if (strDir.empty())
-			return FALSE;
-	}
-
-	return TRUE;
-}
-
 /// Create menu for simple mode
 int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
@@ -622,48 +414,10 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	int nItemsAdded = 0;
-
-	switch (m_dwMenuState)
-	{
-		// No items selected earlier
-		// Select item as first item to compare
-	case MENU_ONESEL_NOPREV:
-		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_SELECT_LEFT, IDS_SELECT_LEFT);
-		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_COMPARE_ELLIPSE, IDS_COMPARE_ELLIPSIS);
-		nItemsAdded = 2;
-		break;
-
-		// One item selected earlier:
-		// Allow re-selecting first item or selecting second item
-	case MENU_ONESEL_PREV:
-		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
-		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_SELECT_MIDDLE, IDS_SELECT_MIDDLE);
-		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_RESELECT_LEFT, IDS_RESELECT_LEFT);
-		nItemsAdded = 3;
-		break;
-
-		// Two items are selected earlier:
-		// Allow re-selecting first item or selecting second item
-	case MENU_ONESEL_TWO_PREV:
-		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
-		InsertMenuString(hmenu, uMenuIndex,   uidFirstCmd + CMD_RESELECT_LEFT, IDS_RESELECT_LEFT);
-		nItemsAdded = 2;
-		break;
-
-		// Two items selected
-		// Select both items for compare
-	case MENU_TWOSEL:
-	case MENU_THREESEL:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
-		nItemsAdded = 1;
-		break;
-
-	default:
-		InsertMenuString(hmenu, uMenuIndex, uidFirstCmd + CMD_COMPARE, IDS_COMPARE);
-		nItemsAdded = 1;
-		break;
-	}
+	auto menuList = GetMenuList(m_dwMenuState);
+	int nItemsAdded = static_cast<int>(menuList.size());
+	for (auto& pair : menuList)
+		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + pair.first, pair.second);
 
 	// Add bitmap
 	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
@@ -732,30 +486,3 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 	return strHelp;
 }
 
-/// Format commandline used to start WinMerge
-String CWinMergeShell::FormatCmdLine(const String &winmergePath,
-		const String &path1, const String &path2, const String &path3, BOOL bAlterSubFolders)
-{
-	String strCommandline = winmergePath.empty() ? _T("") : _T("\"") + winmergePath + _T("\"");
-
-	// Check if user wants to use context menu
-	BOOL bSubfoldersByDefault = FALSE;
-	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegSettingsDir) == ERROR_SUCCESS)
-		bSubfoldersByDefault = reg.ReadBool(f_Recurse, FALSE);
-
-	if (bAlterSubFolders && !bSubfoldersByDefault)
-		strCommandline += _T(" /r");
-	else if (!bAlterSubFolders && bSubfoldersByDefault)
-		strCommandline += _T(" /r");
-
-	strCommandline += _T(" \"") + path1 + _T("\"");
-
-	if (!m_strPaths[1].empty())
-		strCommandline += _T(" \"") + path2 + _T("\"");
-
-	if (!m_strPaths[2].empty())
-		strCommandline += _T(" \"") + path3 + _T("\"");
-
-	return strCommandline;
-}
