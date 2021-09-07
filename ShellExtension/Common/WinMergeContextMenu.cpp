@@ -158,7 +158,7 @@ std::vector<MenuItem> WinMergeContextMenu::GetMenuItemList() const
 		// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
 		list.push_back({ enabled, icon, CMD_SELECT_LEFT, IDS_SELECT_LEFT, GetResourceString(IDS_SELECT_LEFT) });
-		list.push_back({ enabled, icon, CMD_COMPARE_ELLIPSE, IDS_COMPARE_ELLIPSIS, GetResourceString(IDS_COMPARE_ELLIPSIS) });
+		list.push_back({ enabled, icon, CMD_COMPARE_ELLIPSIS, IDS_COMPARE_ELLIPSIS, GetResourceString(IDS_COMPARE_ELLIPSIS) });
 		break;
 
 		// One item selected earlier:
@@ -249,7 +249,7 @@ HRESULT WinMergeContextMenu::InvokeCommand(DWORD verb)
 			break;
 		}
 	}
-	else if (verb == CMD_COMPARE_ELLIPSE)
+	else if (verb == CMD_COMPARE_ELLIPSIS)
 	{
 		// "Compare..." - user wants to compare this single item and open WinMerge
 		m_strPaths.resize(1);
@@ -348,7 +348,7 @@ std::wstring WinMergeContextMenu::GetHelpText(DWORD verb) const
 			break;
 		}
 	}
-	else if (verb == CMD_COMPARE_ELLIPSE)
+	else if (verb == CMD_COMPARE_ELLIPSIS)
 	{
 		strHelp = GetResourceString(IDS_CONTEXT_HELP);
 	}
