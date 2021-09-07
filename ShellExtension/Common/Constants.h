@@ -28,6 +28,7 @@ enum
  */
 enum
 {
+	MENU_HIDDEN = -1,
 	MENU_SIMPLE = 0,  /**< Simple menu, only "Compare item" is shown. */
 	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
 	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */

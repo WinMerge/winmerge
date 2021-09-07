@@ -698,3 +698,12 @@ bool CLanguageSelect::TranslateString(const std::wstring& msgid, std::wstring &s
 	return false;
 }
 
+std::wstring CLanguageSelect::GetResourceString(HINSTANCE hInstance, UINT id) const
+{
+	TCHAR resStr[1024] = {0};
+	int res = LoadString(hInstance, id, resStr, 1024);
+	ATLASSERT(res != 0);
+	std::wstring strResource;
+	TranslateString(resStr, strResource);
+	return strResource;
+}

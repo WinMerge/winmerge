@@ -36,7 +36,7 @@
     <ClCompile Include="..\Common\UnicodeString.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Utils.cpp">
+    <ClCompile Include="..\Common\WinMergeContextMenu.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,7 +72,7 @@
     <ClInclude Include="..\Common\Constants.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Utils.h">
+    <ClInclude Include="..\Common\WinMergeContextMenu.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,10 +90,10 @@
     </CustomBuildStep>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="WinMerge.ico">
+    <Image Include="../Resrouces/WinMerge.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="WinMergeDir.ico">
+    <Image Include="../Resrouces/WinMergeDir.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

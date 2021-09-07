@@ -174,7 +174,7 @@
     <ClInclude Include="..\Common\LanguageSelect.h" />
     <ClInclude Include="..\Common\RegKey.h" />
     <ClInclude Include="..\Common\UnicodeString.h" />
-    <ClInclude Include="..\Common\Utils.h" />
+    <ClInclude Include="..\Common\WinMergeContextMenu.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
@@ -189,7 +189,7 @@
     <ClCompile Include="..\Common\UnicodeString.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\Common\Utils.cpp">
+    <ClCompile Include="..\Common\WinMergeContextMenu.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="dllmain.cpp" />
@@ -200,8 +200,6 @@
   <ItemGroup>
     <Image Include="..\Resources\WinMerge.ico" />
     <Image Include="..\Resources\WinMergeDir.ico" />
-    <Image Include="..\ShellExtension\WinMerge.ico" />
-    <Image Include="..\ShellExtension\WinMergeDir.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinMergeContextMenu.rc" />

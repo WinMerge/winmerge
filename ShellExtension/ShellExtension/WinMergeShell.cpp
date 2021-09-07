@@ -42,10 +42,8 @@
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
-#include "../Common/UnicodeString.h"
-#include "../Common/RegKey.h"
 #include "../Common/Constants.h"
-#include "../Common/Utils.h"
+#include "../Common/WinMergeContextMenu.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -123,10 +121,7 @@ HBITMAP ConvertHICONtoHBITMAP(HICON hIcon, int cx, int cy)
 
 /// Default constructor, loads icon bitmap
 CWinMergeShell::CWinMergeShell()
-	: m_dwContextMenuEnabled(false)
-	, m_nSelectedItems(0)
-	, m_dwMenuState(0)
-	, m_langID(GetUserDefaultUILanguage())
+	: m_contextMenu(_AtlComModule.m_hInstTypeLib)
 {
 	int cx = GetSystemMetrics(SM_CXMENUCHECK);
 	int cy = GetSystemMetrics(SM_CYMENUCHECK);
@@ -142,11 +137,6 @@ CWinMergeShell::CWinMergeShell()
 
 	DestroyIcon(hMergeIcon);
 	DestroyIcon(hMergeDirIcon);
-
-	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegLocaleDir) == ERROR_SUCCESS)
-		m_langID = static_cast<LANGID>(reg.ReadDword(f_LanguageId, m_langID));
-
 }
 
 /// Default destructor, unloads bitmap
@@ -162,8 +152,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 {
 	HRESULT hr = E_INVALIDARG;
 
-	for (auto& path: m_strPaths)
-		path.erase();
+	std::vector<std::wstring> paths;
 
 	// Files/folders selected normally from the explorer
 	if (pDataObj)
@@ -186,7 +175,6 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 
 		// Sanity check & make sure there is at least one filename.
 		UINT uNumFilesDropped = DragQueryFile(hDropInfo, 0xFFFFFFFF, NULL, 0);
-		m_nSelectedItems = uNumFilesDropped;
 
 		if (uNumFilesDropped == 0)
 		{
@@ -214,17 +202,12 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 			// Copy the pathname into the buffer
 			DragQueryFile(hDropInfo, x, npszFile, wPathnameSize);
 
-			if (x < MaxFileCount)
-				m_strPaths[x] = npszFile;
+			paths.push_back(npszFile);
 
 			delete[] npszFile;
 		}
 		GlobalUnlock(stg.hGlobal);
 		ReleaseStgMedium(&stg);
-	}
-	else
-	{
-		m_nSelectedItems = 0;
 	}
 
 		// No item selected - selection is the folder background
@@ -234,8 +217,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 
 		if (SHGetPathFromIDList(pidlFolder, szPath))
 		{
-			if (m_nSelectedItems < MaxFileCount)
-				m_strPaths[m_nSelectedItems++] = szPath;
+			paths.push_back(szPath);
 			hr = S_OK;
 		}
 		else
@@ -243,6 +225,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 			hr = E_INVALIDARG;
 		}
 	}
+	m_contextMenu.UpdateMenuState(paths);
 	return hr;
 }
 
@@ -265,48 +248,17 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 	s_hMenuLastAdded = hmenu;
 	s_uidCmdLastAdded = uidFirstCmd;
 
-	int uidUserLastCmd = 0;
-
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
-	// Check if user wants to use context menu
-	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
+	DWORD dwMenuState = m_contextMenu.GetMenuState();
+	if (dwMenuState == MENU_HIDDEN)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
-	m_dwContextMenuEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-	m_strPreviousPath[0] = reg.ReadString(f_FirstSelection, _T("")).c_str();
-	m_strPreviousPath[1] = reg.ReadString(f_SecondSelection, _T("")).c_str();
+	int uidUserLastCmd = DrawMenu(hmenu, uMenuIndex, uidFirstCmd);
 
-	if (m_dwContextMenuEnabled & EXT_ENABLED) // Context menu enabled
-	{
-		// Check if advanced menuitems enabled
-		if ((m_dwContextMenuEnabled & EXT_ADVANCED) == 0)
-		{
-			m_dwMenuState = MENU_SIMPLE;
-			uidUserLastCmd = DrawSimpleMenu(hmenu, uMenuIndex, uidFirstCmd);
-		}
-		else
-		{
-			if (m_nSelectedItems == 1 && m_strPreviousPath[0].empty())
-				m_dwMenuState = MENU_ONESEL_NOPREV;
-			else if (m_nSelectedItems == 1 && !m_strPreviousPath[0].empty() && m_strPreviousPath[1].empty())
-				m_dwMenuState = MENU_ONESEL_PREV;
-			else if (m_nSelectedItems == 1 && !m_strPreviousPath[0].empty() && !m_strPreviousPath[1].empty())
-				m_dwMenuState = MENU_ONESEL_TWO_PREV;
-			else if (m_nSelectedItems == 2)
-				m_dwMenuState = MENU_TWOSEL;
-			else if (m_nSelectedItems == 3)
-				m_dwMenuState = MENU_THREESEL;
-
-			uidUserLastCmd = DrawAdvancedMenu(hmenu, uMenuIndex, uidFirstCmd);
-		}
-
-		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, (uidUserLastCmd - uidFirstCmd) + 1);
-	}
-	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
+	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, (uidUserLastCmd - uidFirstCmd) + 1);
 }
 
 /// Gets string shown explorer's status bar when menuitem selected
@@ -315,23 +267,11 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 {
 	USES_CONVERSION;
 
-	// Check idCmd, it must be 0 in simple mode and 0 or 1 in advanced mode.
-	if ((m_dwMenuState & EXT_ADVANCED) == 0)
-	{
-		if (idCmd > 0)
-			return E_INVALIDARG;
-	}
-	else
-	{
-		if (idCmd > 2)
-			return E_INVALIDARG;
-	}
-
 	// If Explorer is asking for a help string, copy our string into the
 	// supplied buffer.
 	if (uFlags & GCS_HELPTEXT)
 	{
-		String strHelp = GetHelpText(idCmd);
+		String strHelp = m_contextMenu.GetHelpText(static_cast<DWORD>(idCmd));
 
 		if (uFlags & GCS_UNICODE)
 			// We need to cast pszName to a Unicode string, and then use the
@@ -353,136 +293,22 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (HIWORD(pCmdInfo->lpVerb) != 0)
 		return E_INVALIDARG;
 
-	return ::InvokeCommand(LOWORD(pCmdInfo->lpVerb), m_dwMenuState, m_strPaths, m_strPreviousPath);
+	return m_contextMenu.InvokeCommand(LOWORD(pCmdInfo->lpVerb));
 }
 
-/**
- * @brief Load a string from resource.
- * @param [in] Resource string ID.
- * @return String loaded from resource.
- */
-String CWinMergeShell::GetResourceString(UINT resourceID)
+/// Create menu
+int CWinMergeShell::DrawMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd)
 {
-	if (!s_pLang)
-		s_pLang = new CLanguageSelect();
-	if (s_pLang->GetLangId() != m_langID)
+	for (auto& menuItem : m_contextMenu.GetMenuItemList())
 	{
-		TCHAR szFileName[1024] = {0};
-		GetModuleFileName(_AtlComModule.m_hInstTypeLib, szFileName, sizeof(szFileName) / sizeof(TCHAR));
-		PathRemoveFileSpec(szFileName);
-		String languagesFolder = String(szFileName) + _T("\\Languages\\ShellExtension");
-		s_pLang->LoadLanguageFile(m_langID, languagesFolder);
+		MENUITEMINFO mii{ sizeof mii };
+		mii.fMask = MIIM_ID | MIIM_STRING | MIIM_DATA | MIIM_BITMAP | MIIM_STATE;
+		mii.wID = uidFirstCmd + menuItem.verb;
+		mii.dwTypeData = const_cast<LPTSTR>(menuItem.text.c_str());
+		mii.dwItemData = menuItem.strid;
+		mii.hbmpItem = menuItem.icon == IDI_WINMERGE ? m_MergeBmp : m_MergeDirBmp;
+		mii.fState = menuItem.enabled ? 0 : MFS_GRAYED;
+		InsertMenuItem(hmenu, uMenuIndex++, TRUE, &mii);
 	}
-	TCHAR resStr[1024] = {0};
-	int res = LoadString(_AtlComModule.m_hInstTypeLib, resourceID, resStr, 1024);
-	ATLASSERT(res != 0);
-	String strResource;
-	s_pLang->TranslateString(resStr, strResource);
-	return strResource;
-}
-
-BOOL CWinMergeShell::InsertMenuString(HMENU hMenu, UINT uPosition, UINT uIDNewItem, UINT uStringId)
-{
-	String str = GetResourceString(uStringId);
-	MENUITEMINFO mii{sizeof mii};
-	mii.fMask = MIIM_ID | MIIM_STRING | MIIM_DATA;
-	mii.wID = uIDNewItem;
-	mii.dwTypeData = const_cast<LPTSTR>(str.c_str());
-	mii.dwItemData = uStringId;
-	return InsertMenuItem(hMenu, uPosition, TRUE, &mii);
-}
-
-/// Create menu for simple mode
-int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
-		UINT uidFirstCmd)
-{
-	InsertMenuString(hmenu, uMenuIndex, uidFirstCmd, IDS_CONTEXT_MENU);
-
-	// Add bitmap
-	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
-	if (hBitmap != NULL)
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, hBitmap, NULL);
-
-	// Show menu item as grayed if more than two items selected
-	if (m_nSelectedItems > MaxFileCount)
-		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
-
 	return uidFirstCmd + CMD_LAST;
 }
-
-/// Create menu for advanced mode
-int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
-		UINT uidFirstCmd)
-{
-	auto menuList = GetMenuList(m_dwMenuState);
-	int nItemsAdded = static_cast<int>(menuList.size());
-	for (auto& pair : menuList)
-		InsertMenuString(hmenu, uMenuIndex++, uidFirstCmd + pair.first, pair.second);
-
-	// Add bitmap
-	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
-	if (hBitmap != NULL)
-	{
-		for (int i = 0; i < nItemsAdded; i++)
-			SetMenuItemBitmaps(hmenu, uMenuIndex - (nItemsAdded - 1 - i), MF_BYPOSITION, hBitmap, NULL);
-	}
-
-	// Show menu item as grayed if more than two items selected
-	if (m_nSelectedItems > MaxFileCount)
-	{
-		for (int i = 0; i < nItemsAdded; i++)
-			EnableMenuItem(hmenu, uMenuIndex - (nItemsAdded - 1 - i), MF_BYPOSITION | MF_GRAYED);
-	}
-
-	return uidFirstCmd + CMD_LAST;
-}
-
-/// Determine help text shown in explorer's statusbar
-String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
-{
-	String strHelp;
-
-	// More than two items selected, advice user
-	if (m_nSelectedItems > MaxFileCount)
-	{
-		strHelp = GetResourceString(IDS_CONTEXT_HELP_MANYITEMS);
-		return strHelp;
-	}
-
-	if (idCmd == CMD_COMPARE)
-	{
-		switch (m_dwMenuState)
-		{
-		case MENU_ONESEL_PREV:
-			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
-			strutils::replace(strHelp, _T("%1"), m_strPreviousPath[0]);
-			break;
-
-		case MENU_ONESEL_TWO_PREV:
-			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
-			strutils::replace(strHelp, _T("%1"), m_strPreviousPath[0] + _T(" - ") + m_strPreviousPath[1]);
-			break;
-		default:
-			strHelp = GetResourceString(IDS_CONTEXT_HELP);
-			break;
-		}
-	}
-	else if (idCmd == CMD_COMPARE_ELLIPSE)
-	{
-		strHelp = GetResourceString(IDS_CONTEXT_HELP);
-	}
-	else if (idCmd == CMD_SELECT_LEFT)
-	{
-		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
-	}
-	else if (idCmd == CMD_SELECT_MIDDLE)
-	{
-		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
-	}
-	else if (idCmd == CMD_RESELECT_LEFT)
-	{
-		strHelp = GetResourceString(IDS_HELP_SAVETHIS);
-	}
-	return strHelp;
-}
-

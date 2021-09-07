@@ -12,14 +12,13 @@
     <ClCompile Include="..\Common\UnicodeString.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Utils.cpp">
+    <ClCompile Include="..\Common\WinMergeContextMenu.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\Common\LanguageSelect.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -29,8 +28,11 @@
     <ClInclude Include="..\Common\UnicodeString.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Utils.h">
+    <ClInclude Include="..\Common\WinMergeContextMenu.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,14 +44,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\ShellExtension\WinMerge.ico">
+    <Image Include="..\Resources\WinMerge.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\ShellExtension\WinMergeDir.ico">
+    <Image Include="..\Resources\WinMergeDir.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Resources\WinMerge.ico" />
-    <Image Include="..\Resources\WinMergeDir.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinMergeContextMenu.rc">
