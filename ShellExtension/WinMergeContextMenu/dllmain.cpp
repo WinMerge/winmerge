@@ -1,3 +1,4 @@
+// Based on code from https://github.com/microsoft/AppModelSamples/tree/master/Samples/SparsePackages
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 #include <wrl/module.h>
