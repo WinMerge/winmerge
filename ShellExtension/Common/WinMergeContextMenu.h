@@ -24,7 +24,6 @@ public:
 	bool UpdateMenuState(const std::vector<std::wstring>& paths);
 	std::vector<MenuItem> GetMenuItemList() const;
 	HRESULT InvokeCommand(DWORD verb);
-	std::wstring GetHelpText(DWORD verb) const;
 	std::wstring GetResourceString(UINT id) const;
 	DWORD GetMenuState() const { return m_dwMenuState; }
 private:

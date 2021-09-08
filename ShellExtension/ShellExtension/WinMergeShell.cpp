@@ -245,9 +245,6 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		}
 	}
 
-	s_hMenuLastAdded = hmenu;
-	s_uidCmdLastAdded = uidFirstCmd;
-
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
@@ -265,25 +262,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 		UINT* pwReserved, LPSTR pszName, UINT  cchMax)
 {
-	USES_CONVERSION;
-
-	// If Explorer is asking for a help string, copy our string into the
-	// supplied buffer.
-	if (uFlags & GCS_HELPTEXT)
-	{
-		String strHelp = m_contextMenu.GetHelpText(static_cast<DWORD>(idCmd));
-
-		if (uFlags & GCS_UNICODE)
-			// We need to cast pszName to a Unicode string, and then use the
-			// Unicode string copy API.
-			lstrcpynW((LPWSTR) pszName, T2CW(strHelp.c_str()), cchMax);
-		else
-			// Use the ANSI string copy API to return the help string.
-			lstrcpynA(pszName, T2CA(strHelp.c_str()), cchMax);
-
-		return S_OK;
-	}
-	return E_INVALIDARG;
+	return S_FALSE;
 }
 
 /// Runs WinMerge with given paths
@@ -293,7 +272,8 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (HIWORD(pCmdInfo->lpVerb) != 0)
 		return E_INVALIDARG;
 
-	return m_contextMenu.InvokeCommand(LOWORD(pCmdInfo->lpVerb));
+	//auto menuList = m_contextMenu.GetMenuItemList();
+	return m_contextMenu.InvokeCommand(LOWORD(pCmdInfo->lpVerb));//menuList[LOWORD(pCmdInfo->lpVerb)].verb);
 }
 
 /// Create menu
@@ -309,6 +289,8 @@ int CWinMergeShell::DrawMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd)
 		mii.hbmpItem = menuItem.icon == IDI_WINMERGE ? m_MergeBmp : m_MergeDirBmp;
 		mii.fState = menuItem.enabled ? 0 : MFS_GRAYED;
 		InsertMenuItem(hmenu, uMenuIndex++, TRUE, &mii);
+		s_uidCmdLastAdded = mii.wID;
 	}
+	s_hMenuLastAdded = hmenu;
 	return uidFirstCmd + CMD_LAST;
 }

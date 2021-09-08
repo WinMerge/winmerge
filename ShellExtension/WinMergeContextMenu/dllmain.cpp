@@ -9,9 +9,11 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
 #include <Shlwapi.h>
 #include "../Common/RegKey.h"
 #include "../Common/Constants.h"
+#include "../Common/WinMergeContextMenu.h"
 #include "resource.h"
 
 #pragma comment(lib, "shlwapi.lib")
@@ -37,10 +39,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IExplorerCommand, IObjectWithSite>
 {
 public:
+    WinMergeExplorerCommandBase(WinMergeContextMenu* pContextMenu)
+        : m_pContextMenu(pContextMenu) {}
     virtual const wchar_t* Title() = 0;
     virtual const EXPCMDFLAGS Flags() { return ECF_DEFAULT; }
     virtual const EXPCMDSTATE State(_In_opt_ IShellItemArray* selection) { return ECS_ENABLED; }
     virtual int IconId() { return 0; }
+    virtual int Verb() { return 0; }
 
     // IExplorerCommand
     IFACEMETHODIMP GetTitle(_In_opt_ IShellItemArray* items, _Outptr_result_nullonfailure_ PWSTR* name)
@@ -81,21 +86,8 @@ public:
             RETURN_IF_FAILED(oleWindow->GetWindow(&parent));
         }
 
-        std::wostringstream title;
-        title << Title();
-
         if (selection)
-        {
-            DWORD count;
-            RETURN_IF_FAILED(selection->GetCount(&count));
-            title << L" (" << count << L" selected items)";
-        }
-        else
-        {
-            title << L"(no selected items)";
-        }
-
-        MessageBox(parent, title.str().c_str(), L"TestCommand", MB_OK);
+            m_pContextMenu->InvokeCommand(Verb());
         return S_OK;
     }
     CATCH_RETURN();
@@ -109,20 +101,31 @@ public:
 
 protected:
     ComPtr<IUnknown> m_site;
+    WinMergeContextMenu* m_pContextMenu;
 };
 
 class SubExplorerCommandHandler final : public WinMergeExplorerCommandBase
 {
 public:
-    const wchar_t* Title() override { return L"SubCommand"; }
+    SubExplorerCommandHandler(WinMergeContextMenu *pContextMenu, int verb, const std::wstring title)
+        : WinMergeExplorerCommandBase(pContextMenu)
+        , m_verb(verb)
+        , m_title(title) {}
+    const wchar_t* Title() override { return m_title.c_str(); }
+    int Verb() override { return m_verb; }
+private:
+    std::wstring m_title;
+    int m_verb;
 };
 
 class EnumCommands : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IEnumExplorerCommand>
 {
 public:
-    EnumCommands()
+    explicit EnumCommands(WinMergeContextMenu* pContextMenu)
+        : m_pContextMenu(pContextMenu)
     {
-        m_commands.push_back(Make<SubExplorerCommandHandler>());
+        for (auto& menuItem : pContextMenu->GetMenuItemList())
+            m_commands.push_back(Make<SubExplorerCommandHandler>(pContextMenu, menuItem.verb, menuItem.text));
         m_current = m_commands.cbegin();
     }
 
@@ -154,6 +157,7 @@ public:
 private:
     std::vector<ComPtr<IExplorerCommand>> m_commands;
     std::vector<ComPtr<IExplorerCommand>>::const_iterator m_current;
+    WinMergeContextMenu* m_pContextMenu;
 };
 
 class WinMergeFileDirExplorerCommandHandler : public WinMergeExplorerCommandBase
@@ -161,6 +165,8 @@ class WinMergeFileDirExplorerCommandHandler : public WinMergeExplorerCommandBase
 public:
     WinMergeFileDirExplorerCommandHandler()
     : m_dwContextMenuEnabled(0)
+    , m_contextMenu(wil::GetModuleInstanceHandle())
+    , WinMergeExplorerCommandBase(&m_contextMenu)
     {
         CRegKeyEx reg;
         if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
@@ -176,21 +182,36 @@ public:
     }
     const EXPCMDSTATE State(_In_opt_ IShellItemArray* selection) override
     {
+        std::vector<std::wstring> paths;
         DWORD dwNumItems = 0;
-        if (!(m_dwContextMenuEnabled & EXT_ENABLED))
+        selection->GetCount(&dwNumItems);
+        for (DWORD i = 0; i < dwNumItems; ++i)
+        {
+            ComPtr<IShellItem> psi;
+            wil::unique_cotaskmem_string pszFilePath;
+            if (selection &&
+                SUCCEEDED(selection->GetItemAt(i, &psi)) &&
+                SUCCEEDED(psi->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath)))
+            {
+                paths.push_back(pszFilePath.get());
+            }
+        }
+        m_contextMenu.UpdateMenuState(paths);
+        if (m_contextMenu.GetMenuState() == MENU_HIDDEN)
             return ECS_HIDDEN;
-        else if (selection && SUCCEEDED(selection->GetCount(&dwNumItems)) && dwNumItems > MaxFileCount)
+        else if (paths.size() > MaxFileCount)
             return ECS_DISABLED;
         return ECS_ENABLED;
     }
     IFACEMETHODIMP EnumSubCommands(_COM_Outptr_ IEnumExplorerCommand** enumCommands)
     {
         *enumCommands = nullptr;
-        auto e = Make<EnumCommands>();
+        auto e = Make<EnumCommands>(&m_contextMenu);
         return e->QueryInterface(IID_PPV_ARGS(enumCommands));
     }
 private:
     DWORD m_dwContextMenuEnabled;
+    WinMergeContextMenu m_contextMenu;
 };
 
 class __declspec(uuid("90340779-F37E-468E-9728-A2593498ED32")) WinMergeFileExplorerCommandHandler final : public WinMergeFileDirExplorerCommandHandler
