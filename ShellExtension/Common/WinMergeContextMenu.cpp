@@ -1,9 +1,38 @@
 #include "WinMergeContextMenu.h"
 #include "RegKey.h"
-#include "Constants.h"
 #include "LanguageSelect.h"
 #include "../ShellExtension/Resource.h"
 #include <Shlwapi.h>
+
+/// Max. filecount to select
+static const int MaxFileCount = 3;
+
+/// Registry path to WinMerge
+#define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
+static const TCHAR f_RegDir[] = REGDIR;
+static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
+static const TCHAR f_RegSettingsDir[] = REGDIR _T("\\Settings");
+
+/**
+ * @name Registry valuenames.
+ */
+ /*@{*/
+ /** Shell context menuitem enabled/disabled */
+static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
+/** 'Saved' path in advanced mode */
+static const TCHAR f_FirstSelection[] = _T("FirstSelection");
+/** 'Saved' path in advanced mode */
+static const TCHAR f_SecondSelection[] = _T("SecondSelection");
+/** Path to WinMergeU.exe */
+static const TCHAR f_RegValuePath[] = _T("Executable");
+/** Path to WinMergeU.exe, overwrites f_RegValuePath if present. */
+static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
+/** LanguageId */
+static const TCHAR f_LanguageId[] = _T("LanguageId");
+/** Recurse */
+static const TCHAR f_Recurse[] = _T("Recurse");
+/*@}*/
+
 
 /// Reads WinMerge path from registry
 static BOOL GetWinMergeDir(String &strDir)
@@ -90,8 +119,12 @@ static BOOL LaunchWinMerge(const String &winmergePath,
 WinMergeContextMenu::WinMergeContextMenu(HINSTANCE hInstance)
 	: m_hInstance(hInstance)
 	, m_dwMenuState(MENU_HIDDEN)
+	, m_dwContextMenuEnabled(0)
 	, m_langID(0)
 {
+	CRegKeyEx reg;
+	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+		m_dwContextMenuEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 }
 
 bool WinMergeContextMenu::UpdateMenuState(const std::vector<std::wstring>& paths)

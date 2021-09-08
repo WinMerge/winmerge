@@ -69,9 +69,6 @@
     <ClInclude Include="..\Common\UnicodeString.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Constants.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\WinMergeContextMenu.h">
       <Filter>Common</Filter>
     </ClInclude>

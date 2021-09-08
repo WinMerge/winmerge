@@ -436,7 +436,6 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Common\Constants.h" />
     <ClInclude Include="..\Common\LanguageSelect.h" />
     <ClInclude Include="..\Common\RegKey.h" />
     <ClInclude Include="..\Common\UnicodeString.h" />

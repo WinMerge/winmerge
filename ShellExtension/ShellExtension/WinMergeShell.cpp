@@ -42,7 +42,6 @@
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
-#include "../Common/Constants.h"
 #include "../Common/WinMergeContextMenu.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -250,7 +249,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
 	DWORD dwMenuState = m_contextMenu.GetMenuState();
-	if (dwMenuState == MENU_HIDDEN)
+	if (dwMenuState == WinMergeContextMenu::MENU_HIDDEN)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
 	int uidUserLastCmd = DrawMenu(hmenu, uMenuIndex, uidFirstCmd);
@@ -292,5 +291,5 @@ int CWinMergeShell::DrawMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd)
 		s_uidCmdLastAdded = mii.wID;
 	}
 	s_hMenuLastAdded = hmenu;
-	return uidFirstCmd + CMD_LAST;
+	return uidFirstCmd + WinMergeContextMenu::CMD_LAST;
 }
