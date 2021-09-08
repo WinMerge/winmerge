@@ -57,11 +57,12 @@ ShellExtension/ShellExtension/dlldata.c
 ShellExtension/ShellExtension/ShellExtension.h
 ShellExtension/ShellExtension/ShellExtension_i.c
 ShellExtension/ShellExtension/ShellExtension_p.c
-ShellExtension/packages
 ShellExtension/selfsigncert.cer
 ShellExtension/selfsigncert.pfx
 ShellExtension/WinMergeContextMenuPackage.msix
 ShellExtension/WinMergePkg/resources.pri
+ShellExtension/WinMergePkg/AppxManifest.xml
+packages/
 Plugins/**/dlldata.c
 Plugins/**/*_i.c
 Plugins/**/*_i.h
@@ -76,4 +77,3 @@ Plugins/src_VCPP/IgnoreFieldsComma/IgnoreFieldsComma.h
 Plugins/src_VCPP/IgnoreFieldsTab/IgnoreFieldsTab.h
 Plugins/src_VCPP/WatchBeginningOfLog/WatchBeginningOfLog.h
 Plugins/src_VCPP/WatchEndOfLog/WatchEndOfLog.h
-

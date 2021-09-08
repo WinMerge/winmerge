@@ -377,6 +377,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ildasm", "ildasm", "{64739D
 		Plugins\Commands\ildasm\ildasm.bat = Plugins\Commands\ildasm\ildasm.bat
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShellExtension", "ShellExtension", "{578C2837-33B3-4F33-ABDC-CA588BE05983}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMergeContextMenu", "ShellExtension\WinMergeContextMenu\WinMergeContextMenu.vcxproj", "{16746B0C-5840-4ED4-AEDF-1ABB617827FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinMergePkg", "WinMergePkg", "{F4ED7659-7C4E-4962-B83A-A1F3E1F7B8DE}"
+	ProjectSection(SolutionItems) = preProject
+		ShellExtension\WinMergePkg\AppxManifest.xml.in = ShellExtension\WinMergePkg\AppxManifest.xml.in
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{14C9D43A-1727-4BEE-B2A2-A6BAED7E7154}"
+	ProjectSection(SolutionItems) = preProject
+		ShellExtension\BuildArc.cmd = ShellExtension\BuildArc.cmd
+		ShellExtension\BuildBin.vs2017.cmd = ShellExtension\BuildBin.vs2017.cmd
+		ShellExtension\BuildBin.vs2019.cmd = ShellExtension\BuildBin.vs2019.cmd
+		ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat = ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat
+		ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.ps1 = ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.ps1
+		ShellExtension\Register.bat = ShellExtension\Register.bat
+		ShellExtension\RegisterPerUser.bat = ShellExtension\RegisterPerUser.bat
+		ShellExtension\RegisterWinMergeContextMenuPackage.bat = ShellExtension\RegisterWinMergeContextMenuPackage.bat
+		ShellExtension\RegisterWinMergeContextMenuX64DebugPackage.bat = ShellExtension\RegisterWinMergeContextMenuX64DebugPackage.bat
+		ShellExtension\SignShellExtension.bat = ShellExtension\SignShellExtension.bat
+		ShellExtension\UnRegister.bat = ShellExtension\UnRegister.bat
+		ShellExtension\UnRegisterPerUser.bat = ShellExtension\UnRegisterPerUser.bat
+		ShellExtension\UnregisterWinMergeContextMenuPackage.bat = ShellExtension\UnregisterWinMergeContextMenuPackage.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
@@ -1026,6 +1052,22 @@ Global
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|ARM64.ActiveCfg = Debug|ARM64
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|Win32.ActiveCfg = Release|Win32
 		{E11617CA-2D87-4571-B22A-48C922D9A0F9}.Test|x64.ActiveCfg = Release|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|ARM64.Build.0 = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|Win32.ActiveCfg = Debug|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|x64.ActiveCfg = Debug|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Debug|x64.Build.0 = Debug|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Release|ARM64.ActiveCfg = Release|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Release|ARM64.Build.0 = Release|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Release|Win32.ActiveCfg = Release|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Release|x64.ActiveCfg = Release|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Release|x64.Build.0 = Release|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|ARM64.ActiveCfg = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|ARM64.Build.0 = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|Win32.ActiveCfg = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|Win32.Build.0 = Debug|ARM64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|x64.ActiveCfg = Debug|x64
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD}.Test|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1046,6 +1088,7 @@ Global
 		{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{A948A08A-3AF4-4860-8D13-8C425E56806F} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
+		{76A538A1-9D2C-49CB-AE9F-72548CE37F88} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
 		{AF985E3F-14EE-420E-90FE-AAA844797D36} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{D490276C-363D-4996-B365-28A08877387C} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{36365C8C-04A0-4892-9B83-AD6E05D50D67} = {0B7E421E-A8CA-444C-B650-D1D7F1D55688}
@@ -1095,6 +1138,9 @@ Global
 		{9EE35458-B145-444F-92B7-27FF72112C42} = {EEFF904A-CA86-4FB8-BAC5-D508CBF586AA}
 		{B22D4554-B639-44BA-BC70-9FD7CCC5B424} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{64739D83-1BDF-409F-81F3-9320494A199A} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{16746B0C-5840-4ED4-AEDF-1ABB617827FD} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
+		{F4ED7659-7C4E-4962-B83A-A1F3E1F7B8DE} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
+		{14C9D43A-1727-4BEE-B2A2-A6BAED7E7154} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

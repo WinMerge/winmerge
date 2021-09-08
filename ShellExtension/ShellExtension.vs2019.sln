@@ -4,12 +4,29 @@ VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShellExtension", "ShellExtension\ShellExtension.vcxproj", "{76A538A1-9D2C-49CB-AE9F-72548CE37F88}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD7D9F86-6CF2-43BB-B3E4-0FC222AECBFE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinMergePkg", "WinMergePkg", "{AD7D9F86-6CF2-43BB-B3E4-0FC222AECBFE}"
 	ProjectSection(SolutionItems) = preProject
-		WinMergePkg\AppxManifest.xml = WinMergePkg\AppxManifest.xml
+		WinMergePkg\AppxManifest.xml.in = WinMergePkg\AppxManifest.xml.in
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMergeContextMenu", "WinMergeContextMenu\WinMergeContextMenu.vcxproj", "{16746B0C-5840-4ED4-AEDF-1ABB617827FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8C870F7A-C681-4D1A-9B4A-B0B7D4A5AE35}"
+	ProjectSection(SolutionItems) = preProject
+		BuildArc.cmd = BuildArc.cmd
+		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
+		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
+		CreateWinMergeContextMenuSelfSignedPackage.bat = CreateWinMergeContextMenuSelfSignedPackage.bat
+		CreateWinMergeContextMenuSelfSignedPackage.ps1 = CreateWinMergeContextMenuSelfSignedPackage.ps1
+		Register.bat = Register.bat
+		RegisterPerUser.bat = RegisterPerUser.bat
+		RegisterWinMergeContextMenuPackage.bat = RegisterWinMergeContextMenuPackage.bat
+		RegisterWinMergeContextMenuX64DebugPackage.bat = RegisterWinMergeContextMenuX64DebugPackage.bat
+		SignShellExtension.bat = SignShellExtension.bat
+		UnRegister.bat = UnRegister.bat
+		UnRegisterPerUser.bat = UnRegisterPerUser.bat
+		UnregisterWinMergeContextMenuPackage.bat = UnregisterWinMergeContextMenuPackage.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
