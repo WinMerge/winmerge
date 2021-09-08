@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-24 15:08+0000\n"
-"PO-Revision-Date: 2021-07-24 16:44+0100\n"
+"POT-Creation-Date: 2021-08-29 20:11+0000\n"
+"PO-Revision-Date: 2021-09-08 22:17+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -1639,7 +1639,7 @@ msgid "&Detect archive type from file signature"
 msgstr "Detetar tipo de ficheiro pela assinatura"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Itens guardados ou restaurados a partir do ficheiro do projecto:"
 
 msgid "Compare Statistics"
 msgstr "Comparar estatísticas"
@@ -2095,7 +2095,7 @@ msgid "Folder Compare"
 msgstr "Comparação de pastas"
 
 msgid "Project"
-msgstr ""
+msgstr "Projecto"
 
 msgid "Differences"
 msgstr "Diferenças"
@@ -2191,19 +2191,19 @@ msgid "Answer"
 msgstr "Resposta"
 
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
 msgid "Load"
-msgstr ""
+msgstr "Carregar"
 
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Incluir Subpastas"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Comparar Opções"
 
 msgid "Name"
 msgstr "Nome"
@@ -3801,7 +3801,7 @@ msgid "Validation"
 msgstr "Validação"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Descompilação"
 
 msgid "&Others"
 msgstr "&Outros"
@@ -3903,13 +3903,13 @@ msgid "Validate HTML"
 msgstr "Validar HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Desmontar Bytecode JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Desmontar Código IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Desmontar Código Nativo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
