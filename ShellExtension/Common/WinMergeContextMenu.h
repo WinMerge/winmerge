@@ -4,7 +4,6 @@
 #include <vector>
 #include <utility>
 #include <memory>
-#include <tuple>
 #include "UnicodeString.h"
 #include "LanguageSelect.h"
 
