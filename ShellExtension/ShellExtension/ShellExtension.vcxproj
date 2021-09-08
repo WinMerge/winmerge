@@ -388,6 +388,9 @@
     <ClCompile Include="..\Common\LanguageSelect.cpp" />
     <ClCompile Include="..\Common\RegKey.cpp" />
     <ClCompile Include="..\Common\UnicodeString.cpp" />
+    <ClCompile Include="..\Common\WinMergeContextMenu.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="ShellExtension.cpp" />
     <ClCompile Include="StdAfx.cpp" />
     <ClCompile Include="WinMergeShell.cpp" />
@@ -436,6 +439,7 @@
     <ClInclude Include="..\Common\LanguageSelect.h" />
     <ClInclude Include="..\Common\RegKey.h" />
     <ClInclude Include="..\Common\UnicodeString.h" />
+    <ClInclude Include="..\Common\WinMergeContextMenu.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="WinMergeShell.h" />
@@ -457,8 +461,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="WinMerge.ico" />
-    <Image Include="WinMergeDir.ico" />
+    <Image Include="../Resrouces/WinMerge.ico" />
+    <Image Include="../Resrouces/WinMergeDir.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
