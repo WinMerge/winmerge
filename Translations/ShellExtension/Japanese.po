@@ -50,45 +50,25 @@ msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "WinMerge で開く"
-
-#: ShellExtension.rc:114
-#, c-format
-msgid "Please select no more than 3 items"
-msgstr "3 項目以上は選択しないで下さい"
-
-#: ShellExtension.rc:115
-#, c-format
 msgid "&Compare"
 msgstr "比較(&C)"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
 msgstr "比較&..."
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
 msgstr "左側として選択(&L)"
 
-#: ShellExtension.rc:118
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
 msgstr "中央として選択(&M)"
 
-#: ShellExtension.rc:119
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "このパスを保存します。このパスと比較するために別のパスを選択してください。"
-
-#: ShellExtension.rc:120
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "保存されたパス (%1) と比較します。"
-
-#: ShellExtension.rc:121
+#: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
 msgstr "左側として再選択(&L)"

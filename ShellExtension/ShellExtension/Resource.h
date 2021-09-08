@@ -5,16 +5,11 @@
 #define IDS_PROJNAME                    100
 #define IDS_CONTEXT_MENU                101
 #define IDR_WINMERGESHELL               102
-#define IDS_CONTEXT_HELP                102
-#define IDS_CONTEXT_HELP_MANYITEMS      103
 #define IDS_COMPARE                     104
 #define IDS_COMPARE_ELLIPSIS            105
 #define IDS_SELECT_LEFT                 106
 #define IDS_SELECT_MIDDLE               107
 #define IDS_RESELECT_LEFT               108
-#define IDS_HELP_SAVETHIS               120
-#define IDS_HELP_COMPARESTORED          121
-#define IDS_HELP_COMPARESAVED           122
 #define IDI_WINMERGE                    208
 #define IDI_WINMERGEDIR                 209
 
