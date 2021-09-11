@@ -62,6 +62,7 @@ ShellExtension/selfsigncert.pfx
 ShellExtension/WinMergeContextMenuPackage.msix
 ShellExtension/WinMergePkg/resources.pri
 ShellExtension/WinMergePkg/AppxManifest.xml
+ShellExtension/publisher.txt
 packages/
 Plugins/**/dlldata.c
 Plugins/**/*_i.c
