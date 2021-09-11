@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-24 15:08+0000\n"
-"PO-Revision-Date: 2021-07-26 00:00+0000\n"
+"POT-Creation-Date: 2021-08-29 20:11+0000\n"
+"PO-Revision-Date: 2021-09-11 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -142,10 +142,10 @@ msgstr "Повернуть вправо на 90°"
 msgid "Rotate &Left 90deg"
 msgstr "Повернуть влево на 90°"
 
-msgid "Flip V&ertically"
+msgid "Flip &Vertically"
 msgstr "Отразить вертикально"
 
-msgid "Flip H&orizontally"
+msgid "Flip &Horizontally"
 msgstr "Отразить горизонтально"
 
 msgid "&Zoom"
@@ -189,7 +189,7 @@ msgstr "Вертикальное стирание"
 msgid "&Horizontal Wipe"
 msgstr "Горизонтальное стирание"
 
-msgid "Rectangle &Select"
+msgid "&Rectangle Select"
 msgstr "&Прямоугольный выбор"
 
 msgid "&Set Background Color"
@@ -634,7 +634,7 @@ msgid "Diff &Pane"
 msgstr "Пане&ль сравнения"
 
 msgid "Lo&cation Pane"
-msgstr "Панель положения"
+msgstr "Панель управления"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Следующий конфликт\tAlt+Shift+Down"
@@ -1617,7 +1617,7 @@ msgid "&Detect archive type from file signature"
 msgstr "&Определять тип архива по сигнатуре/заголовку файла"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Элементы, сохраненные или восстановленые из файла проекта:"
 
 msgid "Compare Statistics"
 msgstr "Статистика сравнения"
@@ -2009,7 +2009,7 @@ msgid "Folder Compare"
 msgstr "Сравнение папок"
 
 msgid "Project"
-msgstr ""
+msgstr "Проект"
 
 msgid "Differences"
 msgstr "Отличия"
@@ -2093,19 +2093,19 @@ msgid "Answer"
 msgstr "Ответ"
 
 msgid "Item"
-msgstr ""
+msgstr "Элемент"
 
 msgid "Load"
-msgstr ""
+msgstr "Загрузить"
 
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Включая подпапки"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Настройки сравнения"
 
 msgid "Name"
 msgstr "Имя"
@@ -2900,7 +2900,7 @@ msgid "The changes of EOL are conflicting."
 msgstr "Изменения EOL противоречат друг другу."
 
 msgid "Location Pane"
-msgstr "Панель положения"
+msgstr "Панель управления"
 
 msgid "Diff Pane"
 msgstr "Панель сравнения"
@@ -3332,7 +3332,7 @@ msgid "Validation"
 msgstr "Валидация"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Декомпиляция"
 
 msgid "&Others"
 msgstr "Другое"
@@ -3434,13 +3434,13 @@ msgid "Validate HTML"
 msgstr "Валидация HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Разбор байт-кода JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Разбор байт-кода IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Разбор нативного кода"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
