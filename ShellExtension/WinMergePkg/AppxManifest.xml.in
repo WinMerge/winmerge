@@ -43,17 +43,14 @@
               <desktop5:Verb Id="WinMergeDir" Clsid="90340779-F37E-468E-9728-A2593498ED32" />
             </desktop5:ItemType>
             <desktop5:ItemType Type="*">
-              <desktop5:Verb Id="WinMerge" Clsid="B982639B-0934-4F73-A63B-2816880CF612" />
+              <desktop5:Verb Id="WinMerge" Clsid="90340779-F37E-468E-9728-A2593498ED32" />
             </desktop5:ItemType>
           </desktop4:FileExplorerContextMenus>
         </desktop4:Extension>
         <com:Extension Category="windows.comServer">
           <com:ComServer>
-            <com:SurrogateServer  DisplayName="Context menu verb handler">
+            <com:SurrogateServer  DisplayName="WinMerge context menu verb handler">
               <com:Class Id="90340779-F37E-468E-9728-A2593498ED32" Path="WinMergeContextMenu.dll" ThreadingModel="STA"/>
-            </com:SurrogateServer>
-            <com:SurrogateServer  DisplayName="Context menu verb handler">
-              <com:Class Id="B982639B-0934-4F73-A63B-2816880CF612" Path="WinMergeContextMenu.dll" ThreadingModel="STA"/>
             </com:SurrogateServer>
           </com:ComServer>
         </com:Extension>

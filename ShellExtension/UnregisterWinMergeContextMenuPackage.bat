@@ -1,1 +1,1 @@
-powershell -c "get-appxpackage -name WinMerge | remove-appxpackage"
+powershell -c "Get-AppxPackage -name WinMerge | Remove-AppxPackage"
