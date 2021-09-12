@@ -49,6 +49,7 @@
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\ARM64\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ShellExtensionARM64.dll")
+#define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ARM64\WinMergeContextMenu.dll")
 
 [Setup]
 AppName=WinMerge
@@ -116,8 +117,10 @@ AlwaysShowComponentsList=true
 ArchitecturesInstallIn64BitMode=arm64
 ArchitecturesAllowed=arm64
 
-;SignTool=signbat $f
-;SignedUninstaller=yes
+#if GetEnv("SIGNBAT_PATH") != ""
+SignTool=signbat $f
+SignedUninstaller=yes
+#endif
 
 [Languages]
 ;Inno Setup's Native Language
@@ -420,8 +423,8 @@ Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.
 ;Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\ShellExtension\ShellExtensionARM64.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionARM64.dll'))
-Source: ..\..\Build\ShellExtension\ARM64\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\WinMergeContextMenu.dll'))
-Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
+Source: ..\..\Build\ShellExtension\ARM64\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage
+Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
@@ -732,22 +735,22 @@ Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters:
 
 Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
-;Filename: {syswow64}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode; Components: ShellExtension32bit
-;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode; Components: ShellExtension32bit
-Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode and not IsWindows11OrLater
-Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode and not IsWindows11OrLater
+;Filename: {syswow64}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Check: IsAdminInstallMode; Components: ShellExtension32bit
+;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Check: not IsAdminInstallMode; Components: ShellExtension32bit
+Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilterminated; Check: IsAdminInstallMode and not IsWindows11OrLater
+Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilterminated; Check: not IsAdminInstallMode and not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle; Check: IsAdminInstallMode
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
-Filename: powershell.exe; Parameters: "-c Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'"; Flags: waituntilidle; Check: IsWindows11OrLater
+Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
-;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode; Components: ShellExtension32bit
-;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode; Components: ShellExtension32bit
-Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode
-Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode
+;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Check: IsAdminInstallMode; Components: ShellExtension32bit
+;Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Check: not IsAdminInstallMode; Components: ShellExtension32bit
+Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilterminated; Check: IsAdminInstallMode
+Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionARM64.dll"""; Flags: waituntilterminated; Check: not IsAdminInstallMode
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServer"; Flags: waituntilidle; Check: IsAdminInstallMode
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
-Filename: powershell.exe; Parameters: "-c 'Get-AppxPackage -name WinMerge | Remove-AppxPackage'"; Flags: waituntilidle
+Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Unregistering WinMergeContextMenu package...'; Get-AppxPackage -name WinMerge | Remove-AppxPackage"""; Flags: waituntilterminated
 
 [UninstallDelete]
 ;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
@@ -978,6 +981,18 @@ begin
     Result := false;
 end;
 
+function AreSourceAndDestinationOfWinMergeContextMenuSame(Filename: String) : Boolean;
+var
+  ver: String;
+begin
+  ver := ''
+  GetVersionNumbersString(Filename, ver);
+  if ver = ExpandConstant('{#WinMergeContextMenuVersion}') then
+    Result := true
+  else
+    Result := false;
+end;
+
 procedure RegisterPreviousData(PreviousDataKey: Integer);
 begin
   SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
@@ -1021,4 +1036,12 @@ Begin
     Result := true
   else
     Result := false;
+End;
+
+Function UnregisterWinMergeContextMenuPackage: Boolean;
+var
+  ResultCode: Integer;
+Begin;
+  Exec('powershell.exe', '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
+  Result := true;
 End;
