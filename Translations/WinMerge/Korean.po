@@ -2318,6 +2318,12 @@ msgstr "현재 사용자만 쉘 확장자 등록(&O)"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "현재 사용자만 쉘 확장자 등록 해제(&L)"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "폴더"

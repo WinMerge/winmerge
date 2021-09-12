@@ -68,6 +68,7 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
     xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
+    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix %%i\%%j
     if "%%i" == "Build" (
       copy Build\WinIMerge\bin\WinIMergeLib.dll %%i\%%j\WinIMerge\
       copy Plugins\dlls\*.dll %%i\%%j\MergePlugins\

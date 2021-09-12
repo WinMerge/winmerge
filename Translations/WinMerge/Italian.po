@@ -1838,6 +1838,12 @@ msgstr "Registra estensione shell solo per l'&utente attuale"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "De-registra estensione shell solo per &l'utente attuale"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Cartella"

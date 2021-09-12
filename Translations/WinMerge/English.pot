@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-08-29 20:11+0000\n"
+"POT-Creation-Date: 2021-09-12 22:35+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1822,6 +1822,12 @@ msgid "Register shell extension for current user &only"
 msgstr ""
 
 msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
