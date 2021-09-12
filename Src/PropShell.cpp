@@ -77,6 +77,13 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		sei.lpVerb = _T("runas");
 	if (szSysWow64[0])
 	{
+#if defined _M_ARM64
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionARM64.dll")) + _T("\"");
+
+		sei.lpFile = regsvr32.c_str();
+		sei.lpParameters = args.c_str();
+		return !!ShellExecuteEx(&sei);
+#else
 		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
 
 		sei.lpFile = regsvr32.c_str();
@@ -88,6 +95,7 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
+#endif
 	}
 	else
 	{
