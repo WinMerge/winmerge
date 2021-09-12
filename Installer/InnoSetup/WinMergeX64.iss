@@ -112,8 +112,10 @@ AlwaysShowComponentsList=true
 
 ArchitecturesInstallIn64BitMode=x64
 
-;SignTool=signbat $f
-;SignedUninstaller=yes
+#if GetEnv("SIGNBAT_PATH") != ""
+SignTool=signbat $f
+SignedUninstaller=yes
+#endif
 
 [Languages]
 ;Inno Setup's Native Language
