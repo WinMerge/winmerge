@@ -67,7 +67,7 @@ private:
 	std::vector<std::wstring> m_strPaths; /**< Paths for selected items */
 	std::wstring m_strPreviousPaths[2]; /**< Previously selected path */
 	HINSTANCE m_hInstance;
-	inline static std::unique_ptr<CLanguageSelect> s_pLang;
+	inline static CLanguageSelect* s_pLang;
 	mutable LANGID m_langID; /**< Current Language Id */
 	DWORD m_dwContextMenuEnabled; /**< 0, 2: context menu disabled 1: context menu enabled 3: Advanced menu enabled */
 };

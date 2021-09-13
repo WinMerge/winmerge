@@ -333,7 +333,7 @@ HRESULT WinMergeContextMenu::InvokeCommand(DWORD verb)
 std::wstring WinMergeContextMenu::GetResourceString(UINT id) const
 {
 	if (!s_pLang)
-		s_pLang.reset(new CLanguageSelect());
+		s_pLang = new CLanguageSelect();
 	if (m_langID == 0)
 	{
 		CRegKeyEx reg;
