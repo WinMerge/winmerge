@@ -2304,6 +2304,12 @@ msgstr "Shell-Erweiterung nur für aktuellen Nutzer registrieren"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Shell-Erweiterung nur für aktuellen Nutzer nicht registrieren"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Ordner"

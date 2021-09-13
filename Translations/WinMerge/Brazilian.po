@@ -1854,6 +1854,12 @@ msgstr "Registrar a extensão do shell só pro usual &atual"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Remover a registro da extensão do shell só pra usual atu&al"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Pasta"

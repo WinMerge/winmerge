@@ -2308,6 +2308,12 @@ msgstr "Registriraj končnico lupine le za &trenutnega uporabnika"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Mapa"

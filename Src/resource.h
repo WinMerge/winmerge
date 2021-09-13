@@ -516,6 +516,8 @@
 #define IDC_PLUGIN_DEFAULTS             1366
 #define IDC_PLUGIN_AUTOMATIC            1367
 #define IDC_RENDERING_MODE              1368
+#define IDC_REGISTER_WINMERGECONTEXTMENU 1369
+#define IDC_UNREGISTER_WINMERGECONTEXTMENU 1370
 #define IDC_DIFF_IGNORECP               1377
 #define IDC_RESET                       1378
 #define IDC_LEFT1                       1379

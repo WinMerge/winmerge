@@ -31,7 +31,8 @@ MSBuild ShellExtension.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platf
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" "Build\%PLATFORM%\Release\%DLLFILENAME%"
+  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\%DLLFILENAME%"
+  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\WinMergeContextMenu.dll
 )
 
 goto :eof
