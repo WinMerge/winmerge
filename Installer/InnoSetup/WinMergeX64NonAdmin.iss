@@ -728,7 +728,6 @@ Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Regist
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Components: ShellExtension32bit
 Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionX64.dll"""; Flags: waituntilterminated
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServerPerUser"; Flags: waituntilidle
-Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Unregistering WinMergeContextMenu package...'; Get-AppxPackage -name WinMerge | Remove-AppxPackage"""; Flags: waituntilterminated
 
 [UninstallDelete]
 ;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
@@ -837,6 +836,15 @@ Begin
         End;
 End;
 
+Function UnregisterWinMergeContextMenuPackage: Boolean;
+var
+  ResultCode: Integer;
+Begin;
+  if RegKeyExists(HKCU, 'SOFTWARE\Classes\PackagedCom\ClassIndex\{90340779-F37E-468E-9728-A2593498ED32}') then
+    Exec('powershell.exe', '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
+  Result := true;
+End;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -927,7 +935,8 @@ Begin
 		if LoadStringFromFile(appdir + '\uninsTasks.txt', selectedTasks) then
 			if Pos('modifypath', selectedTasks) > 0 then
 				ModPath();
-		DeleteFile(appdir + '\uninsTasks.txt')
+		DeleteFile(appdir + '\uninsTasks.txt');
+		UnregisterWinMergeContextMenuPackage()
 	end;
 End;
 
@@ -1017,12 +1026,4 @@ Begin
     Result := true
   else
     Result := false;
-End;
-
-Function UnregisterWinMergeContextMenuPackage: Boolean;
-var
-  ResultCode: Integer;
-Begin;
-  Exec('powershell.exe', '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
-  Result := true;
 End;
