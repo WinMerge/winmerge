@@ -68,7 +68,7 @@ struct TEXTBLOCK
 
 typedef enum
 {
-	SRC_PLAIN,
+	SRC_PLAIN = 0,
 	SRC_ASP,
 	SRC_AUTOIT,
 	SRC_BASIC,
@@ -108,7 +108,8 @@ typedef enum
 	SRC_TEX,
 	SRC_VERILOG,
 	SRC_VHDL,
-	SRC_XML
+	SRC_XML,
+	SRC_MAX_ENTRY	/* always last entry, used for bound checking */
 }
 TextType;
 
@@ -129,7 +130,7 @@ struct TextDefinition
 	unsigned encoding;
 };
 
-extern TextDefinition m_SourceDefs[41];
+extern TextDefinition m_SourceDefs[SRC_MAX_ENTRY];
 
 bool IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t));
 bool IsXNumber(const TCHAR* pszChars, int nLength);
