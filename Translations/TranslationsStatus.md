@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-09-12**:
+Status from **2021-09-15**:
 
 ## WinMerge
 
@@ -16,7 +16,7 @@ Status from **2021-09-12**:
 | Croatian             |  1102 |        633 |     1 |          468 |     58 % |  2009-02-13 |
 | Czech                |  1102 |        608 |     0 |          494 |     55 % |             |
 | Danish               |  1102 |        642 |     0 |          460 |     58 % |  2013-01-13 |
-| Dutch                |  1102 |       1089 |     0 |           13 |     99 % |  2018-09-06 |
+| Dutch                |  1102 |       1102 |     0 |            0 |    100 % |  2018-09-06 |
 | English              |  1103 |       1103 |     0 |            0 |    100 % |  2021-09-12 |
 | Finnish              |  1102 |        905 |     0 |          197 |     82 % |             |
 | French               |  1102 |       1022 |     0 |           80 |     93 % |  2021-04-29 |
@@ -25,7 +25,7 @@ Status from **2021-09-12**:
 | Greek                |  1102 |        606 |     0 |          496 |     55 % |             |
 | Hungarian            |  1102 |       1100 |     0 |            2 |    100 % |  2021-03-15 |
 | Italian              |  1102 |        995 |     0 |          107 |     90 % |  2021-08-09 |
-| Japanese             |  1102 |       1100 |     0 |            2 |    100 % |  2021-07-11 |
+| Japanese             |  1102 |       1102 |     0 |            0 |    100 % |  2021-07-11 |
 | Korean               |  1102 |       1038 |     0 |           64 |     94 % |  2021-08-23 |
 | Lithuanian           |  1102 |       1088 |     0 |           14 |     99 % |  2021-07-22 |
 | Norwegian            |  1102 |        634 |     0 |          468 |     58 % |             |
@@ -39,7 +39,7 @@ Status from **2021-09-12**:
 | Slovak               |  1102 |        978 |     0 |          124 |     89 % |  2020-11-02 |
 | Slovenian            |  1102 |       1089 |     0 |           13 |     99 % |  2021-07-25 |
 | Spanish              |  1102 |        874 |     0 |          228 |     79 % |  2020-04-03 |
-| Swedish              |  1102 |       1021 |     0 |           81 |     93 % |  2021-04-10 |
+| Swedish              |  1102 |       1097 |     0 |            5 |    100 % |  2021-09-15 |
 | Turkish              |  1102 |       1089 |     0 |           13 |     99 % |  2021-07-25 |
 | Ukrainian            |  1102 |        639 |     0 |          463 |     58 % |  2009-06-13 |
 
@@ -299,6 +299,7 @@ Status from **2021-09-12**:
    - [Göran Håkansson](mailto:goran.x.hakansson%20at%20telia.com)
    - [Hans Eriksson](mailto:hans.ericson%20at%20bredband.net)
    - [pgert](mailto:pgert%20at%20yahoo.se)
+   - [Timmy Almroth](mailto:timmy.almroth%20at%20tim-international.net)
 
  * Turkish
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)

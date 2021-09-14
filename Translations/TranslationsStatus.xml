@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-09-12</update>
+  <update>2021-09-15</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -212,9 +212,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>1102</count>
-        <translated>1089</translated>
+        <translated>1102</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>13</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -407,9 +407,9 @@
       <update>2021-07-11</update>
       <strings>
         <count>1102</count>
-        <translated>1100</translated>
+        <translated>1102</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -726,12 +726,12 @@
     <translation>
       <language>Swedish</language>
       <file>Swedish.po</file>
-      <update>2021-04-10</update>
+      <update>2021-09-15</update>
       <strings>
         <count>1102</count>
-        <translated>1021</translated>
+        <translated>1097</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>81</untranslated>
+        <untranslated>5</untranslated>
       </strings>
       <translators>
         <translator>
@@ -745,6 +745,10 @@
         <translator>
           <name>pgert</name>
           <mail>pgert at yahoo.se</mail>
+        </translator>
+        <translator>
+          <name>Timmy Almroth</name>
+          <mail>timmy.almroth at tim-international.net</mail>
         </translator>
       </translators>
     </translation>
