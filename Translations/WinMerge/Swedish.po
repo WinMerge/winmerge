@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-08-29 20:11+0000\n"
-"PO-Revision-Date: 2021-09-14 15:57+0200\n"
+"PO-Revision-Date: 2021-09-15 00:11+0200\n"
 "Last-Translator: Timmy Almroth <timmy.almroth at tim-international.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -207,7 +207,7 @@ msgid "&Text"
 msgstr "Text"
 
 msgid "T&able"
-msgstr "Tabell"
+msgstr "Indragsstorlek"
 
 msgid "&Binary"
 msgstr "Binär"
@@ -339,16 +339,16 @@ msgid "&About WinMerge..."
 msgstr "Om WinMerge..."
 
 msgid "&Read-only"
-msgstr "Skrivskyddad"
+msgstr "Skrivskydd"
 
 msgid "L&eft Read-only"
-msgstr "Vänster skrivskyddad"
+msgstr "Skrivskydda vänster"
 
 msgid "M&iddle Read-only"
-msgstr "Mittre skrivskyddad"
+msgstr "Skrivskydda mitten"
 
 msgid "Ri&ght Read-only"
-msgstr "Höger skrivskyddad"
+msgstr "Skrivskydda höger"
 
 msgid "&File Encoding..."
 msgstr "Filkodning..."
@@ -420,13 +420,13 @@ msgid "Sw&ap Panes"
 msgstr "Växla rutor"
 
 msgid "Swap &1st | 2nd"
-msgstr "Byt &1:a | 2:a"
+msgstr "Växla första och andra"
 
 msgid "Swap &2nd | 3rd"
-msgstr "Byt &2:a | 3:e"
+msgstr "Växla andra och tredje"
 
 msgid "Swap 1st | &3rd"
-msgstr "Byt 1:a | &3:e"
+msgstr "Växla första och tredje"
 
 msgid "Com&pare Statistics..."
 msgstr "Jämförelsestatistik..."
@@ -465,7 +465,7 @@ msgid "Copy to L&eft\tAlt+Left"
 msgstr "Kopiera till vänster\tAlt+Vänster"
 
 msgid "&Delete\tDel"
-msgstr "Ta bort\tDelete"
+msgstr "Ta bort\tDel"
 
 msgid "&Customize Columns..."
 msgstr "Anpassa kolumner..."
@@ -498,7 +498,7 @@ msgid "Save &Left As..."
 msgstr "Spara vänster som..."
 
 msgid "Save &Middle As..."
-msgstr "Spara mittre som..."
+msgstr "Spara mitten som..."
 
 msgid "Save &Right As..."
 msgstr "Spara höger som..."
@@ -522,7 +522,7 @@ msgid "Re&load\tCtrl+F5"
 msgstr "Ladda om\tCtrl+F5"
 
 msgid "Reco&mpare As"
-msgstr "Återjämför som"
+msgstr "Jämför igen som"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Ångra\tCtrl+Z"
@@ -609,7 +609,7 @@ msgid "&View Whitespace"
 msgstr "Visa blankutrymme"
 
 msgid "View E&OL"
-msgstr "Visa E&OL"
+msgstr "Visa radslut/E&OL"
 
 msgid "Vie&w Line Differences"
 msgstr "Visa radskillnader"
@@ -827,7 +827,7 @@ msgstr "Vänster (%1 av %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "Mittre (%1 of %2)"
+msgstr "Mitten (%1 of %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
@@ -863,19 +863,19 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Skillnader till... (%1 of %2)"
 
 msgid "Left Shell menu"
-msgstr "Vänster gränssnittsmeny"
+msgstr "Gränssnittsmeny vänster"
 
 msgid "Middle Shell menu"
-msgstr "Mittre gränssnittsmeny"
+msgstr "Gränssnittsmeny mitten"
 
 msgid "Right Shell menu"
-msgstr "Höger gränssnittsmeny"
+msgstr "Gränssnittsmeny höger"
 
 msgid "Copy"
 msgstr "Kopiera"
 
 msgid "&Copy Full Path"
-msgstr "Kopiera hela aökvägen"
+msgstr "Kopiera hela sökvägen"
 
 msgid "Copy &Filename"
 msgstr "Kopiera filnamn"
@@ -1046,7 +1046,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verifiera sökvägar i Öppna-dialogen automatikt"
 
 msgid "Single instance mode:"
-msgstr "Enkel instans läge:"
+msgstr "Läge för instanser:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Fråga när flera fönster stängs"
@@ -1061,7 +1061,7 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "Stäng \"Välj filer eller kataloger\" dialogen då ''OK'' klickas"
 
 msgid "Op&en-dialog Auto-Completion:"
-msgstr "Öppna-dialog autokomplettering:"
+msgstr "Automatisk komplettering för Öppna-dialog:"
 
 msgid "Language:"
 msgstr "Språk:"
@@ -1211,7 +1211,7 @@ msgid "Selected Word Diff:"
 msgstr "Vald skillnad i ord:"
 
 msgid "&Use folder compare colors"
-msgstr "Använd mappjämförelsefärger"
+msgstr "Använd färger för mappjämförelse"
 
 msgid "Items equal:"
 msgstr "Objekt lika:"
@@ -1238,16 +1238,16 @@ msgid "&External editor:"
 msgstr "Externt program:"
 
 msgid "&Filter folder:"
-msgstr "Filtrera katalog:"
+msgstr "Filterkatalog:"
 
 msgid "Temporary files folder"
-msgstr "Mapp för tillfälliga filer"
+msgstr "Katalog för temporära filer"
 
 msgid "S&ystem's temp folder"
-msgstr "Systemets tillfälliga mapp"
+msgstr "Systemets katalog för temporära filer"
 
 msgid "C&ustom folder:"
-msgstr "Anpassad mapp:"
+msgstr "Egen katalog:"
 
 msgid "Br&owse..."
 msgstr "Bläddra..."
@@ -1325,7 +1325,7 @@ msgid "&Open files in the same window type after unpacking."
 msgstr "Öppna filer i samma fönstertyp efter extrahering."
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "&Plugin rörslinga:"
 
 msgid "&Add pipe"
 msgstr "Lägg till pipe"
@@ -1379,7 +1379,7 @@ msgid "&Compare"
 msgstr "Jämför"
 
 msgid "&Ignore change"
-msgstr "Ignorera skillnad"
+msgstr "Ignorera skillnader"
 
 msgid "I&gnore all"
 msgstr "Ignorera samtliga"
@@ -1409,7 +1409,7 @@ msgid "&Automatic rescan"
 msgstr "Automatisk återsökning"
 
 msgid "&Preserve original EOL chars"
-msgstr "Bevara ursprungliga radslutstecken"
+msgstr "Bevara ursprungliga radslutstecken (EOL)"
 
 msgid "Tabs"
 msgstr "Flikar"
@@ -1512,14 +1512,14 @@ msgid ""
 "Need to restart session."
 msgstr ""
 "Detektera teckentabell info för dessa slags filer: .html, .rc, .xml\n"
-"- behöver omstartning av sessionen."
+"(Sessionen kommer behöva läsas in på nytt)"
 
 msgid ""
 "Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Detektera teckentabell för textfiler med mlang.dll\n"
-"- behöver omstartning av sessionen."
+"(Sessionen kommer behöva läsas in på nytt)"
 
 msgid "System codepage"
 msgstr "Systemets teckentabell"
@@ -1612,13 +1612,13 @@ msgid "Private Filter (only for current user)"
 msgstr "Privat filter (bara för den aktuella användaren)"
 
 msgid "Archive Support"
-msgstr "Arkivstöd"
+msgstr "Komprimerade mappar"
 
 msgid "&Enable archive file support"
-msgstr "Aktivera stöd för arkivfil"
+msgstr "Aktivera stöd för komprimerade mappar"
 
 msgid "&Detect archive type from file signature"
-msgstr "Detektera arkivtyp från filsignatur"
+msgstr "Detektera filtyp från filsignatur"
 
 msgid "Items saved to or restored from the project file:"
 msgstr "Skillnader sparade till eller återskapade från projektfil:"
@@ -1762,7 +1762,7 @@ msgid "Create backup files into:"
 msgstr "Skapa säkerhetskopior i:"
 
 msgid "&Original file's folder"
-msgstr "Originalfilens katalog"
+msgstr "Ursprunngsfilens katalog"
 
 msgid "&Global backup folder:"
 msgstr "Global mapp för säkerhetskopior:"
@@ -1819,7 +1819,7 @@ msgid "Explorer"
 msgstr "Utforskaren"
 
 msgid "E&nable advanced menu"
-msgstr "Aktivera avancerad meny"
+msgstr "Visa avancerad meny"
 
 msgid "&Add to context menu"
 msgstr "Lägg till i innehållsmeny"
@@ -1866,7 +1866,7 @@ msgid ""
 "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 "\n"
-"Antal CPU-trådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
+"Antal CPU-trådar (ett negativt värde gör fler CPU-kärnor tillgängliga):"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV filnamn:"
@@ -2287,7 +2287,7 @@ msgid "Mine File"
 msgstr "Min fil"
 
 msgid "Original File"
-msgstr "Orginalfil"
+msgstr "Ursprungsfil"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2344,7 +2344,7 @@ msgid "Left (1st) path is invalid!"
 msgstr "Vänster (1:a) sökväg är ogiltlig!"
 
 msgid "Middle (2nd) path is invalid!"
-msgstr "Mittre (2:a) sökväg är ogiltlig!"
+msgstr "Mittens (2:a) sökväg är ogiltlig!"
 
 msgid "Right (2nd) path is invalid!"
 msgstr "Höger (2:a) sökväg är ogiltlig!"
@@ -2362,16 +2362,16 @@ msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Vänster (1:a) och höger (3:e) sökväg är ogiltlig!"
 
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Mittre (2:a) och höger (3:e) sökväg är ogiltlig!"
+msgstr "Mitten (2:a) och höger (3:e) sökväg är ogiltlig!"
 
 msgid "All paths are invalid!"
 msgstr "Samtliga sökvägar är ogiltliga!"
 
 msgid "Only enabled for file comparisons"
-msgstr "Endast möjligt för filjämförelse"
+msgstr "Endast möjligt vid filjämförelse"
 
 msgid "Cannot compare file and folder!"
-msgstr "Kan inte jämföra fil med en mapp!"
+msgstr "Kan inte jämföra fil med en katalog!"
 
 #, c-format
 msgid "File not found: %1"
@@ -2438,7 +2438,7 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Kan inte säkerhetskopiera originalfilen:\n"
+"Kan inte säkerhetskopiera ursprungsfilen:\n"
 "%1\n"
 "\n"
 "Vill du fortsätta ändå?"
@@ -2469,7 +2469,7 @@ msgid ""
 msgstr ""
 "Tillägget '%2' kan inte komprimera dina ändringar av den vänstra filen tillbaka till '%1'.\n"
 "\n"
-"Originalfilen blir inte ändrad.\n"
+"Ursprungsfilen kommer inte att skrivas över.\n"
 "\n"
 "Vill du spara den extraherade versionen till en annan fil?"
 
@@ -2483,7 +2483,7 @@ msgid ""
 msgstr ""
 "Tillägget '%2' kan inte komprimera dina ändringar i mittenfilen tillbaks in i '%1'.\n"
 "\n"
-"Orginalfilen blir inte ändrad.\n"
+"Ursprungsfilen kommer inte att skrivas över.\n"
 "\n"
 "Vill du spara den extraherade versionen till en annan fil?"
 
@@ -2497,7 +2497,7 @@ msgid ""
 msgstr ""
 "Tillägget '%2' kan inte komprimera dina ändringar i den högra filen tillbaka till '%1'.\n"
 "\n"
-"Originalfilen blir inte ändrad.\n"
+"Ursprungsfilen kommer inte att skrivas över.\n"
 "\n"
 "Vill du spara den extraherade versionen till en annan fil?"
 
@@ -2625,7 +2625,7 @@ msgstr "Vänster (%1)"
 
 #, c-format
 msgid "Middle (%1)"
-msgstr "Mittre (%1)"
+msgstr "Mitten (%1)"
 
 #, c-format
 msgid "Right (%1)"
@@ -2709,7 +2709,7 @@ msgid "Failed to execute external editor: %1"
 msgstr "Kunde inte starta den externa redigeraren: %1"
 
 msgid "Unknown archive format"
-msgstr "Okänt arkivformat"
+msgstr "Okänt format för komprimerade mappar"
 
 msgid "Filename"
 msgstr "Filnamn"
@@ -2755,7 +2755,7 @@ msgid "Right Creation Time"
 msgstr "Höger skapad den"
 
 msgid "Middle Creation Time"
-msgstr "Mittre skapad den"
+msgstr "Mitten skapad den"
 
 msgid "Newer File"
 msgstr "Nyare fil"
@@ -3005,10 +3005,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Visar en asterisk (*) om filen är binär."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "Namn eller pipeline för extraherare (tillägg)"
+msgstr "Namn eller rörslinga för extraherare (tillägg)"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Namn eller pipeline för PreDiffer (tillägg)"
+msgstr "Namn eller rörslinga för PreDiffer (tillägg)"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3053,7 +3053,7 @@ msgid "An error occurred while comparing the files."
 msgstr "Ett fel inträffade under jämförelsen av filerna."
 
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Tillfälliga filer kunde inte skapas. Kontrollera sökvägar för tillfälliga filer under inställningarna."
+msgstr "Temporära filer kunde inte skapas. Kontrollera sökvägar för temporära filer under inställningarna."
 
 msgid ""
 "These files use different carriage return types.\n"
@@ -3166,7 +3166,7 @@ msgid "The changes of EOL are conflicting."
 msgstr "Skillnader i radslutstecken är i konflikt."
 
 msgid "Location Pane"
-msgstr "Lägesruta"
+msgstr "Översikt"
 
 msgid "Diff Pane"
 msgstr "Skillnadsruta"
@@ -3227,9 +3227,9 @@ msgid ""
 "All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Arkivstöd är inte aktiverat.\n"
-"Alla komponenter som behövs för arkivstöd (7-Zip och/eller Merge7z*.dll) kan inte hittas.\n"
-"Se manualen för mer information om arkivstöd och hur man möjliggör det."
+"Stöd för komprimerade mappar är inte aktiverat.\n"
+"De komponenter som behövs för komprimerade mappar (7-Zip och/eller Merge7z*.dll) kunde inte hittas.\n"
+"Se manualen för mer information om hur man konfigurerar stöd för komprimerade mappar."
 
 msgid "Select file for export"
 msgstr "Välj fil för export"
@@ -3384,14 +3384,14 @@ msgid ""
 "All Right"
 msgstr ""
 "\n"
-"Allt höger"
+"Kopiera allt från vänster till höger"
 
 msgid ""
 "\n"
 "All Left"
 msgstr ""
 "\n"
-"Allt vänster"
+"Kopiera allt från höger till vänster"
 
 msgid ""
 "\n"
@@ -3527,16 +3527,16 @@ msgstr ""
 "$linenum: Radnumret för markörens nuvarande position"
 
 msgid "default"
-msgstr "standard"
+msgstr "Standard"
 
 msgid "minimal"
-msgstr "minimal"
+msgstr "Snabb"
 
 msgid "patience"
-msgstr "tålamod"
+msgstr "Långvarig"
 
 msgid "histogram"
-msgstr "histogram"
+msgstr "Histogram"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3692,7 +3692,7 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Tillåt endast att en instans körs och vänta på den att avsluta"
 
 msgid "Al&l"
-msgstr ""
+msgstr "AI&I"
 
 msgid "Prettification"
 msgstr "Försköning"
@@ -3822,11 +3822,11 @@ msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Saknar namn på plugin i plugin pipeline: %1"
+msgstr "Saknar plugin namn i rörslinga: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Saknar citationstecken i plugin pipeline: %1"
+msgstr "Saknar citationstecken i rörslinga: %1"
 
 msgid "Specify plugin arguments"
 msgstr "Specificera plugin argument"
