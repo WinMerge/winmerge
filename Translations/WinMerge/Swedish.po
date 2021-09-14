@@ -2,6 +2,9 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * Göran Håkansson <goran.x.hakansson at telia.com>
+# * Hans Eriksson <hans.ericson at bredband.net>
+# * pgert <pgert at yahoo.se>
 # * Timmy Almroth <timmy.almroth at tim-international.net>
 #
 msgid ""
