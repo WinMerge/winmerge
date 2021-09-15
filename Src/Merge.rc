@@ -2765,6 +2765,8 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0
+    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_FILTERS_FILEFILTERS AFX_DIALOG_LAYOUT

@@ -49,6 +49,7 @@
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ShellExtensionU.dll")
+#define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll")
 
 [Setup]
 AppName=WinMerge
@@ -433,7 +434,9 @@ Source: ..\..\Build\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionX64.dll'))
+Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionX64.dll'))
+Source: ..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage
+Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
@@ -742,6 +745,11 @@ Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters:
 
 Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
+Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionX64.dll"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
+Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+
+[UninstallRun]
+Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\ShellExtensionX64.dll"""; Flags: waituntilterminated
 
 [UninstallDelete]
 ;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
@@ -850,6 +858,15 @@ Begin
         End;
 End;
 
+Function UnregisterWinMergeContextMenuPackage: Boolean;
+var
+  ResultCode: Integer;
+Begin;
+  if RegKeyExists(HKCU, 'SOFTWARE\Classes\PackagedCom\ClassIndex\{90340779-F37E-468E-9728-A2593498ED32}') then
+    Exec('powershell.exe', '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
+  Result := true;
+End;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -940,7 +957,8 @@ Begin
 		if LoadStringFromFile(appdir + '\uninsTasks.txt', selectedTasks) then
 			if Pos('modifypath', selectedTasks) > 0 then
 				ModPath();
-		DeleteFile(appdir + '\uninsTasks.txt')
+		DeleteFile(appdir + '\uninsTasks.txt');
+		UnregisterWinMergeContextMenuPackage()
 	end;
 End;
 
@@ -967,6 +985,18 @@ begin
   ver := ''
   GetVersionNumbersString(Filename, ver);
   if ver = ExpandConstant('{#ShellExtensionVersion}') then
+    Result := true
+  else
+    Result := false;
+end;
+
+function AreSourceAndDestinationOfWinMergeContextMenuSame(Filename: String) : Boolean;
+var
+  ver: String;
+begin
+  ver := ''
+  GetVersionNumbersString(Filename, ver);
+  if ver = ExpandConstant('{#WinMergeContextMenuVersion}') then
     Result := true
   else
     Result := false;
@@ -1004,3 +1034,18 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
   g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
 end;
+
+Function IsWindows11OrLater(): Boolean;
+Var
+  OSVersion: TWindowsVersion;
+Begin
+  GetWindowsVersionEx(OSVersion);
+  if OSVersion.Major > 10 then
+    Result := true
+  else if (OSVersion.Major = 10) and (OSVersion.Minor > 0) then
+    Result := true
+  else if (OSVersion.Major = 10) and (OSVersion.Build >= 22000) then
+    Result := true
+  else
+    Result := false;
+End;
