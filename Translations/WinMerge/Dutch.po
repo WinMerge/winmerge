@@ -1,11 +1,11 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
-# 
+#
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
 # Thomas De Rocker, 2021
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

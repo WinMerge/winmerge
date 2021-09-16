@@ -13,6 +13,7 @@
 #include "Constants.h"
 #include "Environment.h"
 #include "paths.h"
+#include "Win_VersionHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -106,13 +107,6 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 	}
 }
 
-PropShell::PropShell(COptionsMgr *optionsMgr) 
-: OptionsPanel(optionsMgr, PropShell::IDD)
-, m_bContextAdded(false)
-, m_bContextAdvanced(false)
-{
-}
-
 static bool RegisterWinMergeContextMenu(bool unregister)
 {
 	String cmd;
@@ -135,6 +129,13 @@ static bool RegisterWinMergeContextMenu(bool unregister)
 	CloseHandle(processInfo.hThread);
 	CloseHandle(processInfo.hProcess);
 	return true;
+}
+
+PropShell::PropShell(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropShell::IDD)
+, m_bContextAdded(false)
+, m_bContextAdvanced(false)
+{
 }
 
 BOOL PropShell::OnInitDialog()
@@ -294,13 +295,14 @@ void PropShell::UpdateButtons()
 	bool registered = IsShellExtensionRegistered(false);
 	bool registeredPerUser = IsShellExtensionRegistered(true);
 	bool registerdWinMergeContextMenu = IsWinMergeContextMenuRegistered();
+	bool win11 = IsWin11_OrGreater();
 	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser || registerdWinMergeContextMenu);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION_PERUSER, !registeredPerUser);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, registeredPerUser);
-	EnableDlgItem(IDC_REGISTER_WINMERGECONTEXTMENU, !registerdWinMergeContextMenu);
-	EnableDlgItem(IDC_UNREGISTER_WINMERGECONTEXTMENU, registerdWinMergeContextMenu);
+	EnableDlgItem(IDC_REGISTER_WINMERGECONTEXTMENU, !registerdWinMergeContextMenu && win11);
+	EnableDlgItem(IDC_UNREGISTER_WINMERGECONTEXTMENU, registerdWinMergeContextMenu && win11);
 	EnableDlgItem(IDC_EXPLORER_ADVANCED, 
 		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 }

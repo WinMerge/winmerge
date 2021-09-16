@@ -14,23 +14,26 @@
 #include <windows.h>
 
 inline bool
-IsWinVer_OrGreater(WORD wVersion, WORD wServicePack = 0)
+IsWinVer_OrGreater(WORD wVersion, WORD wBuildNumber = 0)
 {
 	DWORDLONG dwlConditionMask = 0;	
 	VER_SET_CONDITION( dwlConditionMask, VER_MAJORVERSION, VER_GREATER_EQUAL );
 	VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, VER_GREATER_EQUAL );
-	VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, VER_GREATER_EQUAL );
+	VER_SET_CONDITION( dwlConditionMask, VER_BUILDNUMBER, VER_GREATER_EQUAL );
 
-	OSVERSIONINFOEXW osvi;
-	::ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	OSVERSIONINFOEXW osvi{ sizeof(OSVERSIONINFOEX) };
 	osvi.dwMajorVersion = HIBYTE(wVersion);
 	osvi.dwMinorVersion = LOBYTE(wVersion);
-	osvi.wServicePackMajor = wServicePack;
+	osvi.dwBuildNumber = wBuildNumber;
 
-	return !!VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask);
+	return !!VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_BUILDNUMBER, dwlConditionMask);
 }
 
+inline bool
+IsWin11_OrGreater()
+{
+	return IsWinVer_OrGreater( 0x0a00, 0 );
+}
 
 inline bool
 IsWin7_OrGreater()
