@@ -2287,6 +2287,7 @@ void CMergeDoc::OnDiffContext(UINT nID)
 	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
 	GetOptionsMgr()->SaveOption(OPT_INVERT_DIFF_CONTEXT, m_bInvertDiffContext);
 	FlushAndRescan(true);
+	ForEachView([](auto& pView) { if (pView->m_bDetailView) pView->EnsureVisible(pView->GetCursorPos()); });
 }
 
 /**
