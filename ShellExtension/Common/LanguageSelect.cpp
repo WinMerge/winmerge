@@ -4,7 +4,9 @@
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
 
-#include "StdAfx.h"
+#include <Windows.h>
+#include <tchar.h>
+#include <atlbase.h>
 #include "LanguageSelect.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -696,3 +698,12 @@ bool CLanguageSelect::TranslateString(const std::wstring& msgid, std::wstring &s
 	return false;
 }
 
+std::wstring CLanguageSelect::GetResourceString(HINSTANCE hInstance, UINT id) const
+{
+	TCHAR resStr[1024] = {0};
+	int res = LoadString(hInstance, id, resStr, 1024);
+	ATLASSERT(res != 0);
+	std::wstring strResource;
+	TranslateString(resStr, strResource);
+	return strResource;
+}

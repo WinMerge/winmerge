@@ -48,6 +48,7 @@ class SyntaxColors;
 class CFindTextDlg;
 struct LastSearchInfos;
 class CCrystalTextMarkers;
+class CEditReplaceDlg;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -88,6 +89,7 @@ class EDITPADC_CLASS CCrystalTextView : public CView
 
     friend CCrystalParser;
     friend CCrystalTextBuffer;
+    friend CEditReplaceDlg;
 
 protected:
     //  Search parameters
@@ -96,10 +98,9 @@ protected:
     LPTSTR m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
     CFindTextDlg *m_pFindTextDlg;
-
-private :
     bool m_bCursorHidden;
 
+private :
     //  Painting caching bitmap
     CBitmap *m_pCacheBitmap;
 
@@ -798,7 +799,7 @@ public :
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CPoint & ptStartPos, int nLength,
-      bool bCursorToLeft = false);
+      bool bCursorToLeft = false, bool bUpdateView = true);
 
     // IME (input method editor)
     void UpdateCompositionWindowPos();

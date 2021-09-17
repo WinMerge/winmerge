@@ -1628,6 +1628,9 @@ msgstr "Включване на &поддръжката на архиви"
 msgid "&Detect archive type from file signature"
 msgstr "Откриване на вида на &архива от подписа на файла"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Статистика на сравнението"
 
@@ -1840,6 +1843,12 @@ msgstr "Р&егистриране на разширение на обвивка�
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Пр&емахване на разширение на обвивката (текущ потребител)"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2077,6 +2086,9 @@ msgstr "Теми"
 msgid "Folder Compare"
 msgstr "Сравняване на папки"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Различия"
 
@@ -2166,6 +2178,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

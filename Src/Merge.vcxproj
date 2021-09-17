@@ -253,6 +253,9 @@
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
       <Profile>true</Profile>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -306,6 +309,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <Midl>
@@ -357,6 +363,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -407,6 +416,9 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
     <Midl>
@@ -456,6 +468,9 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -503,6 +518,9 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <Midl>
@@ -548,6 +566,9 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'">
     <Midl>
@@ -594,6 +615,9 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|ARM64'">
     <Midl>
@@ -638,6 +662,9 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
@@ -980,6 +1007,11 @@
     <ClCompile Include="OptionsPanel.cpp">
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="OptionsProject.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="OptionsSyntaxColors.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1045,6 +1077,7 @@
     <ClCompile Include="Common\PropertyPageHost.cpp" />
     <ClCompile Include="PropGeneral.cpp" />
     <ClCompile Include="PropMarkerColors.cpp" />
+    <ClCompile Include="PropProject.cpp" />
     <ClCompile Include="PropRegistry.cpp" />
     <ClCompile Include="PropShell.cpp" />
     <ClCompile Include="PropSyntaxColors.cpp" />
@@ -1274,6 +1307,7 @@
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsInit.h" />
     <ClInclude Include="OptionsPanel.h" />
+    <ClInclude Include="OptionsProject.h" />
     <ClInclude Include="OptionsSyntaxColors.h" />
     <ClInclude Include="PatchDlg.h" />
     <ClInclude Include="PatchHTML.h" />
@@ -1303,6 +1337,7 @@
     <ClInclude Include="Common\PropertyPageHost.h" />
     <ClInclude Include="PropGeneral.h" />
     <ClInclude Include="PropMarkerColors.h" />
+    <ClInclude Include="PropProject.h" />
     <ClInclude Include="PropRegistry.h" />
     <ClInclude Include="PropShell.h" />
     <ClInclude Include="PropSyntaxColors.h" />

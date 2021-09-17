@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-21 20:30+0200\n"
+"PO-Revision-Date: 2021-09-11 20:40+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2035,6 +2035,9 @@ msgstr "&Archivunterstützung aktivieren"
 msgid "&Detect archive type from file signature"
 msgstr "Archiv&typ aus der Dateisignatur ermitteln"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "In der Projektdatei gespeicherte oder aus ihr wiederhergestellte Elemente:"
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Vergleichsstatistik"
@@ -2304,6 +2307,12 @@ msgstr "Shell-Erweiterung nur für aktuellen Nutzer registrieren"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Shell-Erweiterung nur für aktuellen Nutzer nicht registrieren"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Ordner"
@@ -2522,6 +2531,9 @@ msgstr "Farbschemas"
 msgid "Folder Compare"
 msgstr "Ordnervergleich"
 
+msgid "Project"
+msgstr "Projekt"
+
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
@@ -2619,6 +2631,21 @@ msgstr "Meldung"
 
 msgid "Answer"
 msgstr "Antwort"
+
+msgid "Item"
+msgstr "Objekt"
+
+msgid "Load"
+msgstr "Laden"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Include Subfolders"
+msgstr "Unterordner einbeziehen"
+
+msgid "Compare Options"
+msgstr "Vergleichseinstellungen"
 
 #, c-format
 msgid "Name"
@@ -4054,7 +4081,7 @@ msgid "Validation"
 msgstr "Überprüfung"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Dekompilierung"
 
 msgid "&Others"
 msgstr "Andere"
@@ -4156,13 +4183,13 @@ msgid "Validate HTML"
 msgstr "HTML überprüfen"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "JVM-Bytecode disassemblieren"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "IL-Code disassemblieren"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Nativen Code disassemblieren"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

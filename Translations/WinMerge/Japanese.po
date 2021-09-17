@@ -1630,6 +1630,9 @@ msgstr "アーカイブ ファイル サポートを有効にする(&E)"
 msgid "&Detect archive type from file signature"
 msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "プロジェクトファイルに保存またはプロジェクトファイルから復元する項目:"
+
 msgid "Compare Statistics"
 msgstr "比較統計"
 
@@ -1842,6 +1845,12 @@ msgstr "現在のユーザーのみシェル拡張を登録(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Windows 11 以降用シェル拡張を登録(&W)"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Windows 11 以降用シェル拡張の登録を解除(&I)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2071,6 +2080,9 @@ msgstr "配色"
 msgid "Folder Compare"
 msgstr "フォルダー比較"
 
+msgid "Project"
+msgstr "プロジェクト"
+
 msgid "Differences"
 msgstr "差異"
 
@@ -2157,6 +2169,21 @@ msgstr "メッセージ"
 
 msgid "Answer"
 msgstr "回答"
+
+msgid "Item"
+msgstr "項目"
+
+msgid "Load"
+msgstr "読み込み"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Include Subfolders"
+msgstr "サブフォルダーを含める"
+
+msgid "Compare Options"
+msgstr "比較オプション"
 
 msgid "Name"
 msgstr "名前"

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-24 15:08+0000\n"
-"PO-Revision-Date: 2021-07-24 16:44+0100\n"
+"POT-Creation-Date: 2021-08-29 20:11+0000\n"
+"PO-Revision-Date: 2021-09-16 14:47+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -1641,6 +1641,9 @@ msgstr "Ativar suporte de ficheiros"
 msgid "&Detect archive type from file signature"
 msgstr "Detetar tipo de ficheiro pela assinatura"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "Itens guardados ou restaurados a partir do ficheiro do projecto:"
+
 msgid "Compare Statistics"
 msgstr "Comparar estatísticas"
 
@@ -1853,6 +1856,12 @@ msgstr "Extensão da shell de registo para o utilizador atual &apenas"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Anular o registo da extensão da shell para o utilizador actual ap&enas"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Registar extensão shell para &Windows 11 ou posterior"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Cancelar registo da extensão shell para W&indows 11 ou posterior"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2094,6 +2103,9 @@ msgstr "Esquema de cores"
 msgid "Folder Compare"
 msgstr "Comparação de pastas"
 
+msgid "Project"
+msgstr "Projecto"
+
 msgid "Differences"
 msgstr "Diferenças"
 
@@ -2186,6 +2198,21 @@ msgstr "Mensagem"
 
 msgid "Answer"
 msgstr "Resposta"
+
+msgid "Item"
+msgstr "Item"
+
+msgid "Load"
+msgstr "Carregar"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Include Subfolders"
+msgstr "Incluir Subpastas"
+
+msgid "Compare Options"
+msgstr "Comparar Opções"
 
 msgid "Name"
 msgstr "Nome"
@@ -3783,7 +3810,7 @@ msgid "Validation"
 msgstr "Validação"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Descompilação"
 
 msgid "&Others"
 msgstr "&Outros"
@@ -3885,13 +3912,13 @@ msgid "Validate HTML"
 msgstr "Validar HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Desmontar Bytecode JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Desmontar Código IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Desmontar Código Nativo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

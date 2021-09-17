@@ -31,7 +31,7 @@
 #include <initguid.h>
 #include "ShellExtension.h"
 #include "ShellExtension_i.c"
-#include "RegKey.h"
+#include "../Common/RegKey.h"
 
 class CWinMergeShellModule : public ATL::CAtlDllModuleT< CWinMergeShellModule >
 {

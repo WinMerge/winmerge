@@ -213,6 +213,18 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+BOOL CMergeEditFrame::OnBarCheck(UINT nID)
+{
+	BOOL result = __super::OnBarCheck(nID);
+	// Fix for osdn.net #42862
+	if (nID == ID_VIEW_DETAIL_BAR && m_wndDetailBar.IsWindowVisible())
+	{
+		int nDiff = m_pMergeDoc->GetCurrentDiff();
+		m_pMergeDoc->ForEachView ([nDiff](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+	}
+	return result;
+}
+
 /**
  * @brief We must use this function before a call to SetDockState
  *

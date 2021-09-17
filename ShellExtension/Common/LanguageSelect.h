@@ -25,6 +25,7 @@ public:
 	bool LoadLanguageFile(LANGID wLangId, const std::wstring& sLanguagesFolder);
 	bool TranslateString(const std::wstring&, std::wstring&) const;
 	LANGID GetLangId() const { return m_langId; }
+	std::wstring GetResourceString(HINSTANCE hModule, UINT id) const;
 
 // Implementation data
 private:

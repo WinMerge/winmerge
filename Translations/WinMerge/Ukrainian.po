@@ -2038,6 +2038,9 @@ msgstr "&Ввімкнути підтримку архівів"
 msgid "&Detect archive type from file signature"
 msgstr "&Визначати тип архіву за сигнатурою або заголовком файлу"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Порівняння статистики"
@@ -2307,6 +2310,12 @@ msgstr ""
 msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Тека"
@@ -2553,6 +2562,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Відмінності"
@@ -2655,6 +2667,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

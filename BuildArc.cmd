@@ -93,11 +93,19 @@ echo Copy ShellExtension...
 if not "%1" == "ARM64" (
   copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
   copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\x64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 if "%1" == "ARM64" (
   copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ARM64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
-copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\Register.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\RegisterPerUser.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\RegisterWinMergeContextMenuPackage.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\UnRegister.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\UnRegisterPerUser.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\UnregisterWinMergeContextMenuPackage.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy "Build\ShellExtension\WinMergeContextMenuPackage.msix" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 
 rem Translations
 echo Copy Translations...

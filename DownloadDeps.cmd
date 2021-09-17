@@ -11,14 +11,14 @@ if not %ERRORLEVEL% == 0 (
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
-https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.17.16.0/ShellExtension-1.17.16.0.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.0.0/ShellExtension-1.18.0.0.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-win32.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-x64.zip!Build\X64 ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-ARM64.zip!Build\ARM64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-win32.zip!Build ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-x64.zip!Build\X64 ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-ARM64.zip!Build\ARM64 ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.30/winimerge-1.0.30.0-exe.zip!Build ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.31/winimerge-1.0.31.0-exe.zip!Build ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
@@ -68,6 +68,7 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
     xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
+    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix %%i\%%j
     if "%%i" == "Build" (
       copy Build\WinIMerge\bin\WinIMergeLib.dll %%i\%%j\WinIMerge\
       copy Plugins\dlls\*.dll %%i\%%j\MergePlugins\

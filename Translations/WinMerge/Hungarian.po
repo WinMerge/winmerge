@@ -2045,6 +2045,9 @@ msgstr "Archív fájlok támogatásának &engedélyezése"
 msgid "&Detect archive type from file signature"
 msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "A projektfájlba mentett vagy onnan visszaállított elemek:"
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Összehasonlítási statisztika"
@@ -2313,6 +2316,12 @@ msgstr "Regisztrálás a helyi menübe (csak ez a felhasználó)"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Eltávolítás a helyi menüből (csak ez a felhasználó)"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2584,6 +2593,9 @@ msgstr "Színsémák"
 msgid "Folder Compare"
 msgstr "Mappa összehasonlítás"
 
+msgid "Project"
+msgstr "Projekt"
+
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
@@ -2687,6 +2699,21 @@ msgstr "Üzenet"
 
 msgid "Answer"
 msgstr "Válasz"
+
+msgid "Item"
+msgstr "Elem"
+
+msgid "Load"
+msgstr "Betöltés"
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Include Subfolders"
+msgstr "Almappák is"
+
+msgid "Compare Options"
+msgstr "Összehasonlító opciók"
 
 #, c-format
 msgid "Name"
@@ -3263,7 +3290,7 @@ msgstr "Biztosan áthelyezel %d elemet?"
 
 #, c-format
 msgid "Confirm Move"
-msgstr "Mozgatás megerősítése"
+msgstr "Áthelyezés megerősítése"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
@@ -4346,11 +4373,11 @@ msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Átláthatóság"
+msgstr "Átlátszóság"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Átláthatóság animáció"
+msgstr "Átlátszóság animáció"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"

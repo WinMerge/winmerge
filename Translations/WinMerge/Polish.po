@@ -1617,6 +1617,9 @@ msgstr "Włącz wsparcie dla archiwów"
 msgid "&Detect archive type from file signature"
 msgstr "Wykryj typ archiwum z sygnatury pliku"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Statystyki porównania"
 
@@ -1830,6 +1833,12 @@ msgstr "Zarejestruj rozszerzenie powłoki dla bieżącego użytkownika"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Wyrejestruj rozszerzenie powłoki z bieżącego użytkownika"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Folder"
@@ -2006,6 +2015,9 @@ msgstr "Schematy kolorów"
 msgid "Folder Compare"
 msgstr "Porównaj foldery"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Różnice"
 
@@ -2085,6 +2097,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

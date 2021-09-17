@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-21 22:10+0000\n"
+"POT-Creation-Date: 2021-09-12 22:35+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -938,7 +938,7 @@ msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
 msgid "&Include Subfolders"
-msgstr "Ook in submappen"
+msgstr "Submappen bijvoegen"
 
 msgid "&Compare method:"
 msgstr "Vergelijkingsmethode:"
@@ -1638,6 +1638,9 @@ msgstr "Archiefbestand-ondersteuning inschakelen"
 msgid "&Detect archive type from file signature"
 msgstr "Archieftype detecteren via bestandssignatuur"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "Items opgeslagen naar of hersteld uit het projectbestand:"
+
 msgid "Compare Statistics"
 msgstr "Vergelijkingsstatistieken"
 
@@ -1851,6 +1854,12 @@ msgstr "Shell-extensie alleen voor huidige gebruiker registreren"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Shell-extensie alleen voor huidige gebruiker de-registreren"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Shell-extensie registreren voor Windows 11 of later"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Shell-extensie voor Windows 11 of later de-registreren"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Map"
@@ -1862,7 +1871,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
 msgid "Include &unique subfolders contents"
-msgstr "Inhoud van unieke submappen insluiten"
+msgstr "Inhoud van unieke submappen bijvoegen"
 
 msgid "&Automatically expand all subfolders"
 msgstr "Alle submappen automatisch uitklappen"
@@ -2089,6 +2098,9 @@ msgstr "Kleurenschema's"
 msgid "Folder Compare"
 msgstr "Mapvergelijking"
 
+msgid "Project"
+msgstr "Project"
+
 msgid "Differences"
 msgstr "Verschillen"
 
@@ -2179,6 +2191,21 @@ msgstr "Bericht"
 
 msgid "Answer"
 msgstr "Antwoord"
+
+msgid "Item"
+msgstr "Item"
+
+msgid "Load"
+msgstr "Laden"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Include Subfolders"
+msgstr "Submappen bijvoegen"
+
+msgid "Compare Options"
+msgstr "Vergelijkingsopties"
 
 msgid "Name"
 msgstr "Naam"
@@ -2927,7 +2954,7 @@ msgid "Filename or folder name."
 msgstr "Bestandsnaam of mapnaam."
 
 msgid "Subfolder name when subfolders are included."
-msgstr "Naam van submap als submappen ingesloten zijn."
+msgstr "Naam van submap als submappen bijgevoegd zijn."
 
 msgid "Comparison result, long form."
 msgstr "Vergelijkingsresultaat, lange vorm."
@@ -3694,11 +3721,11 @@ msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr "Omgedraaid: %s "
+msgstr "Omgedraaid: %s"
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr "Geroteerd: %d "
+msgstr "Geroteerd: %d"
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
@@ -3751,7 +3778,7 @@ msgid "Validation"
 msgstr "Validatie"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Decompilatie"
 
 msgid "&Others"
 msgstr "Andere"
@@ -3853,13 +3880,13 @@ msgid "Validate HTML"
 msgstr "HTML valideren"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "JVM-bytecode ontleden"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "IL-code ontleden"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Native code ontleden"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

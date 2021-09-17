@@ -2039,6 +2039,9 @@ msgstr "Omogoči podporo &arhivskih datotek"
 msgid "&Detect archive type from file signature"
 msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Statistika primerjave"
@@ -2307,6 +2310,12 @@ msgstr "Registriraj končnico lupine le za &trenutnega uporabnika"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2578,6 +2587,9 @@ msgstr "Barvne sheme"
 msgid "Folder Compare"
 msgstr "Primerjava map"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
@@ -2681,6 +2693,21 @@ msgstr "Sporočilo"
 
 msgid "Answer"
 msgstr "Odgovor"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

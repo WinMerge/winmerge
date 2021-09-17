@@ -1629,6 +1629,9 @@ msgstr "Habilitar soport&e de archivos"
 msgid "&Detect archive type from file signature"
 msgstr "&Detectar tipo de archivo por su firma"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Estadísticas de comparación"
 
@@ -1841,6 +1844,12 @@ msgstr "Registrar extensión de Shell sólo para usuari&o actual"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Quitar extensión de Shell só&lo para usuario actual"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2075,6 +2084,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr "Comparar de carpetas"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Diferencias"
 
@@ -2166,6 +2178,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"

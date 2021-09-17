@@ -2044,6 +2044,9 @@ msgstr "&Activar o soporte de arquivos"
 msgid "&Detect archive type from file signature"
 msgstr "&Detectar o tipo de arquivo pola sinatura"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Estatísticas da comparación"
@@ -2312,6 +2315,12 @@ msgstr "Rexistrar a integración de shell só para o &usuario actual"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Desrexistrar a integración de shell só para o &usuario actual"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2583,6 +2592,9 @@ msgstr "Esquemas de cores"
 msgid "Folder Compare"
 msgstr "Comparar cartafoles"
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Diferenzas"
@@ -2686,6 +2698,21 @@ msgstr "Mensaxe"
 
 msgid "Answer"
 msgstr "Resposta"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 #, c-format
 msgid "Name"

@@ -134,7 +134,7 @@ copy /Y "$(ProjectDir)..\Translations\ShellExtension\*.po" "$(OutDir)\Languages\
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="Merge.rc">
-      <Command>pushd ..\Translations\WinMerge
+      <Command>pushd $(ProjectDir)..\Translations\WinMerge
 
 date /t &gt; MergeLang.lastbuild
 attrib -a English.pot
@@ -246,9 +246,9 @@ popd
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\ShellExtension\ShellExtension.rc">
+    <CustomBuild Include="..\ShellExtension\ShellExtension\ShellExtension.rc">
       <Outputs>$(ProjectDir)..\Translations\ShellExtension\MergeLang.lastbuild</Outputs>
-      <Command>pushd ..\Translations\ShellExtension
+      <Command>pushd $(ProjectDir)..\Translations\ShellExtension
 
 date /t &gt; MergeLang.lastbuild
 attrib -a English.pot

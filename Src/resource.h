@@ -69,9 +69,10 @@
 #define IDD_PROPPAGE_SHELL              277
 #define IDD_PROPPAGE_SYSTEM             278
 #define IDD_PROPPAGE_MESSAGEBOXES       279
-#define IDD_EDIT_FIND                   280
-#define IDD_EDIT_MARKER                 281
-#define IDD_EDIT_REPLACE                282
+#define IDD_PROPPAGE_PROJECT            280
+#define IDD_EDIT_FIND                   281
+#define IDD_EDIT_MARKER                 282
+#define IDD_EDIT_REPLACE                283
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -515,6 +516,8 @@
 #define IDC_PLUGIN_DEFAULTS             1366
 #define IDC_PLUGIN_AUTOMATIC            1367
 #define IDC_RENDERING_MODE              1368
+#define IDC_REGISTER_WINMERGECONTEXTMENU 1369
+#define IDC_UNREGISTER_WINMERGECONTEXTMENU 1370
 #define IDC_DIFF_IGNORECP               1377
 #define IDC_RESET                       1378
 #define IDC_LEFT1                       1379
@@ -560,6 +563,7 @@
 #define IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES 1419
 #define IDC_LFILTER_CLEARBTN            1420
 #define IDC_MESSAGEBOX_LIST             1421
+#define IDC_PROJECT_LIST                1422
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
@@ -1030,6 +1034,7 @@
 #define IDS_OPTIONSPG_GENEDITOR         39062
 #define IDS_OPTIONSPG_EDITOR_SYNTAX     39063
 #define IDS_OPTIONSPG_MESSAGEBOXES      39064
+#define IDS_OPTIONSPG_PROJECT           39065
 #define IDS_TO                          40000
 #define IDS_FROM_LEFT                   40001
 #define IDS_TO_LEFT                     40002
@@ -1388,6 +1393,14 @@
 #define IDS_SUGGESTED_PLUGINS           43502
 #define IDS_NOT_SUGGESTED_PLUGINS       43503
 #define IDS_PRIVATEBUILD_FMT            43504
+#define IDS_PROJECT_ITEM                43505
+#define IDS_PROJECT_OPEN                43506
+#define IDS_PROJECT_LOAD                43507
+#define IDS_PROJECT_SAVE                43508
+#define IDS_PROJECT_ITEM_FILE_FILTER    43509
+#define IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS 43510
+#define IDS_PROJECT_ITEM_PLUGIN         43511
+#define IDS_PROJECT_ITEM_COMPARE_OPTIONS 43512
 #define IDS_CHECKFORUPDATES_UPTODATE    43521
 #define IDS_CHECKFORUPDATES_NEWVERSION  43522
 #define IDS_CHECKFORUPDATES_FAILED      43523

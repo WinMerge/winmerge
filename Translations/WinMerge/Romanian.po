@@ -2035,6 +2035,9 @@ msgstr "Activ&ează suportul pentru fişierele arhivă"
 msgid "&Detect archive type from file signature"
 msgstr "&Detectează tipul arhivei după semnătura fişierului"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Statistici ale comparării"
@@ -2304,6 +2307,12 @@ msgstr ""
 msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Director"
@@ -2550,6 +2559,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Diferenţe"
@@ -2652,6 +2664,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format

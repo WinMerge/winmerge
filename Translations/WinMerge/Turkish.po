@@ -1633,6 +1633,9 @@ msgstr "&Sıkıştırılmış dosya desteği kullanılsın"
 msgid "&Detect archive type from file signature"
 msgstr "&Arşiv türü dosya imzasından belirlensin"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Karşılaştırma istatistikleri"
 
@@ -1845,6 +1848,12 @@ msgstr "&Yalnız geçerli kullanıcı için kabuk eklentisi kaydını ekle"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Yalnız geçerli kullanıcı için kabuk ek&lentisi kaydını sil"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2087,6 +2096,9 @@ msgstr "Renk temaları"
 msgid "Folder Compare"
 msgstr "Klasör karşılaştırma"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Farklar"
 
@@ -2177,6 +2189,21 @@ msgstr "İleti"
 
 msgid "Answer"
 msgstr "Yanıt"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Ad"

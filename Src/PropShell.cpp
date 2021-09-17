@@ -13,6 +13,7 @@
 #include "Constants.h"
 #include "Environment.h"
 #include "paths.h"
+#include "Win_VersionHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -43,6 +44,23 @@ static bool IsShellExtensionRegistered(bool peruser)
 	return false;
 }
 
+static bool IsWinMergeContextMenuRegistered()
+{
+	HKEY hKey;
+#ifdef _WIN64
+	DWORD ulOptions = KEY_QUERY_VALUE;
+#else
+	auto Is64BitWindows = []() { BOOL f64 = FALSE; return IsWow64Process(GetCurrentProcess(), &f64) && f64; };
+	DWORD ulOptions = KEY_QUERY_VALUE | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
+#endif
+	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Classes\\PackagedCom\\ClassIndex\\{90340779-F37E-468E-9728-A2593498ED32}"), 0, ulOptions, &hKey))
+	{
+		RegCloseKey(hKey);
+		return true;
+	}
+	return false;
+}
+
 static bool RegisterShellExtension(bool unregister, bool peruser)
 {
 	TCHAR szSystem32[260] = { 0 };
@@ -60,6 +78,13 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		sei.lpVerb = _T("runas");
 	if (szSysWow64[0])
 	{
+#if defined _M_ARM64
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionARM64.dll")) + _T("\"");
+
+		sei.lpFile = regsvr32.c_str();
+		sei.lpParameters = args.c_str();
+		return !!ShellExecuteEx(&sei);
+#else
 		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
 
 		sei.lpFile = regsvr32.c_str();
@@ -71,6 +96,7 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
+#endif
 	}
 	else
 	{
@@ -79,6 +105,30 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
 	}
+}
+
+static bool RegisterWinMergeContextMenu(bool unregister)
+{
+	String cmd;
+	String progpath = env::GetProgPath();
+	String packagepath = paths::ConcatPath(progpath, _T("WinMergeContextMenuPackage.msix"));
+	if (!unregister)
+		cmd = strutils::format(_T("powershell -c \"Add-AppxPackage '%s' -ExternalLocation '%s'\""), packagepath, progpath);
+	else
+		cmd = _T("powershell -c \"Get-AppxPackage -name WinMerge | Remove-AppxPackage\"");
+
+	STARTUPINFO stInfo = { sizeof(STARTUPINFO) };
+	stInfo.dwFlags = STARTF_USESHOWWINDOW;
+	stInfo.wShowWindow = SW_SHOW;
+	PROCESS_INFORMATION processInfo;
+	bool retVal = !!CreateProcess(nullptr, (LPTSTR)cmd.c_str(),
+		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
+		&stInfo, &processInfo);
+	if (!retVal)
+		return false;
+	CloseHandle(processInfo.hThread);
+	CloseHandle(processInfo.hProcess);
+	return true;
 }
 
 PropShell::PropShell(COptionsMgr *optionsMgr) 
@@ -126,6 +176,8 @@ BEGIN_MESSAGE_MAP(PropShell, OptionsPanel)
 	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION, OnUnregisterShellExtension)
 	ON_BN_CLICKED(IDC_REGISTER_SHELLEXTENSION_PERUSER, OnRegisterShellExtensionPerUser)
 	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, OnUnregisterShellExtensionPerUser)
+	ON_BN_CLICKED(IDC_REGISTER_WINMERGECONTEXTMENU, OnRegisterWinMergeContextMenu)
+	ON_BN_CLICKED(IDC_UNREGISTER_WINMERGECONTEXTMENU, OnUnregisterWinMergeContextMenu)
 	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -145,7 +197,8 @@ void PropShell::WriteOptions()
 {
 	bool registered = IsShellExtensionRegistered(false);
 	bool registeredPerUser = IsShellExtensionRegistered(true);
-	if (registered || registeredPerUser)
+	bool registeredWinMergeContextMenu = IsWinMergeContextMenuRegistered();
+	if (registered || registeredPerUser || registeredWinMergeContextMenu)
 		SaveMergePath(); // saves context menu settings as well
 }
 
@@ -241,13 +294,17 @@ void PropShell::UpdateButtons()
 {
 	bool registered = IsShellExtensionRegistered(false);
 	bool registeredPerUser = IsShellExtensionRegistered(true);
-	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser);
+	bool registerdWinMergeContextMenu = IsWinMergeContextMenuRegistered();
+	bool win11 = IsWin11_OrGreater();
+	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser || registerdWinMergeContextMenu);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION_PERUSER, !registeredPerUser);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, registeredPerUser);
+	EnableDlgItem(IDC_REGISTER_WINMERGECONTEXTMENU, !registerdWinMergeContextMenu && win11);
+	EnableDlgItem(IDC_UNREGISTER_WINMERGECONTEXTMENU, registerdWinMergeContextMenu && win11);
 	EnableDlgItem(IDC_EXPLORER_ADVANCED, 
-		(registered || registeredPerUser) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
+		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 }
 
 void PropShell::OnRegisterShellExtension()
@@ -268,6 +325,16 @@ void PropShell::OnRegisterShellExtensionPerUser()
 void PropShell::OnUnregisterShellExtensionPerUser()
 {
 	RegisterShellExtension(true, true);
+}
+
+void PropShell::OnRegisterWinMergeContextMenu()
+{
+	RegisterWinMergeContextMenu(false);
+}
+
+void PropShell::OnUnregisterWinMergeContextMenu()
+{
+	RegisterWinMergeContextMenu(true);
 }
 
 void PropShell::OnTimer(UINT_PTR nIDEvent)

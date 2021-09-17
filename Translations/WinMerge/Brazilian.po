@@ -1640,6 +1640,9 @@ msgstr "&Ativar o suporte pra arquivos dentro do arquivo compactado"
 msgid "&Detect archive type from file signature"
 msgstr "&Detectar o tipo de arquivo compactado pela assinatura do arquivo"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Comparar as Estatísticas"
 
@@ -1853,6 +1856,12 @@ msgstr "Registrar a extensão do shell só pro usual &atual"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Remover a registro da extensão do shell só pra usual atu&al"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2094,6 +2103,9 @@ msgstr "Esquemas das Cores"
 msgid "Folder Compare"
 msgstr "Comparar Pastas"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Diferenças"
 
@@ -2185,6 +2197,21 @@ msgstr "Mensagem"
 
 msgid "Answer"
 msgstr "Resposta"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"

@@ -14,7 +14,7 @@ Const NO_BLOCK = 0
 Const STRINGTABLE_BLOCK = 1
 
 Const PATH_ENGLISH_POT = "English.pot"
-Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension.rc"
+Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension/ShellExtension.rc"
 
 Dim oFSO, bRunFromCmd
 

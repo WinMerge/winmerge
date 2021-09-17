@@ -27,12 +27,17 @@ CRegOptionsMgr::CRegOptionsMgr()
 	, m_bCloseHandle(false)
 	, m_dwThreadId(0)
 	, m_hThread(nullptr)
+	, m_hEvent(nullptr)
 	, m_dwQueueCount(0)
 {
 	InitializeCriticalSection(&m_cs);
+	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
 	m_hThread = reinterpret_cast<HANDLE>(
 		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
 			reinterpret_cast<unsigned *>(&m_dwThreadId)));
+	WaitForSingleObject(m_hEvent, INFINITE);
+	CloseHandle(m_hEvent);
+	m_hEvent = nullptr;
 }
 
 CRegOptionsMgr::~CRegOptionsMgr()
@@ -101,6 +106,9 @@ unsigned __stdcall CRegOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	CRegOptionsMgr *pThis = reinterpret_cast<CRegOptionsMgr *>(pvThis);
 	MSG msg;
 	BOOL bRet;
+	// create message queue
+	PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE);
+	SetEvent(pThis->m_hEvent);
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);
@@ -392,7 +400,8 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	{
 		auto* pParam = new AsyncWriterThreadParams(name, value);
 		InterlockedIncrement(&m_dwQueueCount);
-		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
+		if (!PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0))
+			InterlockedDecrement(&m_dwQueueCount);
 	}
 	return retVal;
 }

@@ -25,11 +25,16 @@ CIniOptionsMgr::CIniOptionsMgr(const String& filePath)
 	, m_filePath{filePath}
 	, m_dwThreadId(0)
 	, m_hThread(nullptr)
+	, m_hEvent(nullptr)
 {
 	m_iniFileKeyValues = Load(m_filePath);
+	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
 	m_hThread = reinterpret_cast<HANDLE>(
 		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
 			reinterpret_cast<unsigned *>(&m_dwThreadId)));
+	WaitForSingleObject(m_hEvent, INFINITE);
+	CloseHandle(m_hEvent);
+	m_hEvent = nullptr;
 }
 
 CIniOptionsMgr::~CIniOptionsMgr()
@@ -46,6 +51,9 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 	CIniOptionsMgr *pThis = reinterpret_cast<CIniOptionsMgr *>(pvThis);
 	MSG msg;
 	BOOL bRet;
+	// create message queue
+	PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE);
+	SetEvent(pThis->m_hEvent);
 	while ((bRet = GetMessage(&msg, 0, 0, 0)) != 0)
 	{
 		auto* pParam = reinterpret_cast<AsyncWriterThreadParams *>(msg.wParam);

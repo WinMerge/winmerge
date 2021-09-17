@@ -2638,7 +2638,7 @@ void CMergeEditView::UpdateStatusbar()
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
+	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
 		return;
 
 	CPoint cursorPos = GetCursorPos();
@@ -3285,7 +3285,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		CPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CPoint(ptPos.x, pView->GetLineCount() - 1);
 		pt.x = std::clamp(static_cast<int>(pt.x), 0, pView->GetLineLength(pt.y));
 		pView->SetCursorPos(pt);
-		if (bMoveAnchor)
+		if (bMoveAnchor || nPane != pane)
 			pView->SetAnchor(pt);
 		pView->SetSelection(pView->GetAnchor(), pt);
 		pView->EnsureVisible(pt);
