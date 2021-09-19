@@ -657,7 +657,7 @@
       <term><option>/o <replaceable>outputpath</replaceable></option></term>
       <listitem>
         <para>
-        マージした結果のファイルを保存するオプションの出力パスを指定します。
+        マージした結果のファイルを保存するオプションの出力ファイルパスを指定します。
         </para>
 
         <para>出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。

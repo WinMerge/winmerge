@@ -654,7 +654,7 @@
 
       <term><option>/o <replaceable>outputpath</replaceable></option></term>
       <listitem>
-        <para>Specifies an optional output path where you want merged result files to be
+        <para>Specifies an optional output file path where you want merged result files to be
         saved.</para>
 
         <para>The output path is rarely needed when you start WinMerge from
