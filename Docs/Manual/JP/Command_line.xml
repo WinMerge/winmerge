@@ -516,7 +516,7 @@
     <varlistentry>
       <term><option>/enableexitcode</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>比較結果をプロセス終了コードに設定します。0: 同一, 1: 差異あり, 2: エラー</para>
       </listitem>
     </varlistentry>
 

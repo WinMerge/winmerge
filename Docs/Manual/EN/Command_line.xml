@@ -517,7 +517,7 @@
     <varlistentry>
       <term><option>/enableexitcode</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>Sets the comparison result to the process exit code. 0: identical, 1: different, 2: error</para>
       </listitem>
     </varlistentry>
 
