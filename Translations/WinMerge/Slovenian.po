@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-07-25 21:55+0200\n"
+"PO-Revision-Date: 2021-09-20 21:30+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -2037,7 +2037,7 @@ msgid "&Detect archive type from file signature"
 msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Vnosi, shranjeni v datoteko projekta ali obnovljeni iz nje:"
 
 #, c-format
 msgid "Compare Statistics"
@@ -2309,10 +2309,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "Registriraj razširitev lupine za &Windows 11 ali novejši"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Odstrani razširitev lupine za W&indows 11 ali novejši"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2585,7 +2585,7 @@ msgid "Folder Compare"
 msgstr "Primerjava map"
 
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #, c-format
 msgid "Differences"
@@ -2692,19 +2692,19 @@ msgid "Answer"
 msgstr "Odgovor"
 
 msgid "Item"
-msgstr ""
+msgstr "Vnos"
 
 msgid "Load"
-msgstr ""
+msgstr "Naloži"
 
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Vključi podmape"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Primerjaj možnosti"
 
 #, c-format
 msgid "Name"
@@ -4455,7 +4455,7 @@ msgid "Validation"
 msgstr "Preverjanje veljavnosti"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Decompilation"
 
 msgid "&Others"
 msgstr "&Drugo"
@@ -4557,13 +4557,13 @@ msgid "Validate HTML"
 msgstr "Potrdi HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Razstavi bajtkodo JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Razstavi kodo IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Razstavi naravno kodo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
