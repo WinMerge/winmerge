@@ -354,7 +354,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	if (GetView(0, 0)->m_CurSourceDef->type != 0)
 		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
 	else
-		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_filePaths[0].c_str(), m_strDesc[0].c_str()));
+		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
