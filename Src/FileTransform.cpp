@@ -366,7 +366,9 @@ bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, 
 	}
 	catch (Poco::Exception& e)
 	{
+		DWORD dwErrCode = GetLastError();
 		LogErrorStringUTF8(e.displayText());
+		SetLastError(dwErrCode);
 		return false;
 	}
 }

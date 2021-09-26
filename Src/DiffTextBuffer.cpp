@@ -540,6 +540,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// we need an unpacker/packer, at least a "do nothing" one
 		// repack the file here, overwrite the temporary file we did save in
 		bSaveSuccess = infoUnpacker.Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes, { pszFileName });
+		if (!bSaveSuccess)
+			sError = GetSysError();
 		try
 		{
 			TFile(sIntermediateFilename).remove();
@@ -551,7 +553,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		if (!bSaveSuccess)
 		{
 			// returns now, don't overwrite the original file
-			return SAVE_PACK_FAILED;
+			return infoUnpacker.GetPluginPipeline().empty() ? SAVE_FAILED : SAVE_PACK_FAILED;
 		}
 
 		if (bClearModifiedFlag)
