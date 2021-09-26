@@ -19,3 +19,6 @@
 [submodule "Externals/jq"]
 	path = Externals/jq
 	url = https://github.com/stedolan/jq
+[submodule "Externals/wil"]
+	path = Externals/wil
+	url = https://github.com/microsoft/wil

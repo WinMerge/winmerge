@@ -2049,6 +2049,12 @@ void CCrystalTextBuffer::SetColumnWidth (int nColumnIndex, int nColumnWidth)
   m_pSharedTableProps->m_aColumnWidths[nColumnIndex] = nColumnWidth;
 }
 
+void CCrystalTextBuffer::SetColumnWidths (const std::vector<int>& columnWidths)
+{
+  ASSERT( m_pSharedTableProps != nullptr );
+  m_pSharedTableProps->m_aColumnWidths = columnWidths;
+}
+
 int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
 {
   ASSERT( nLineIndex >= 0 );

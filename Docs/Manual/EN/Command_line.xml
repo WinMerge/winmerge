@@ -517,7 +517,7 @@
     <varlistentry>
       <term><option>/enableexitcode</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>Sets the comparison result to the process exit code. 0: identical, 1: different, 2: error</para>
       </listitem>
     </varlistentry>
 
@@ -654,7 +654,7 @@
 
       <term><option>/o <replaceable>outputpath</replaceable></option></term>
       <listitem>
-        <para>Specifies an optional output folder where you want merged result files to be
+        <para>Specifies an optional output file path where you want merged result files to be
         saved.</para>
 
         <para>The output path is rarely needed when you start WinMerge from

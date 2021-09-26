@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-24 15:08+0000\n"
-"PO-Revision-Date: 2021-07-25 19:06+0300\n"
+"POT-Creation-Date: 2021-09-12 22:35+0000\n"
+"PO-Revision-Date: 2021-09-21 19:11+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1331,7 +1331,7 @@ msgid "Display all plugins, don't check the extension."
 msgstr "Uzantıya bakılmadan tüm eklentiler görüntülensin."
 
 msgid "&Open files in the same window type after unpacking."
-msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
+msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın."
 
 msgid "&Plugin Pipeline:"
 msgstr "&Eklenti bağlantı yolu:"
@@ -1634,7 +1634,7 @@ msgid "&Detect archive type from file signature"
 msgstr "&Arşiv türü dosya imzasından belirlensin"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Bir proje dosyasındaki ögeler kaydedildi ya da geri yüklendi:"
 
 msgid "Compare Statistics"
 msgstr "Karşılaştırma istatistikleri"
@@ -1850,10 +1850,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Yalnız geçerli kullanıcı için kabuk ek&lentisi kaydını sil"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "&Windows 11 için kabuk eklentisi kaydını ekle"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Windows 11 için kabuk ek&lentisi kaydını sil"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2097,7 +2097,7 @@ msgid "Folder Compare"
 msgstr "Klasör karşılaştırma"
 
 msgid "Project"
-msgstr ""
+msgstr "Proje"
 
 msgid "Differences"
 msgstr "Farklar"
@@ -2191,19 +2191,19 @@ msgid "Answer"
 msgstr "Yanıt"
 
 msgid "Item"
-msgstr ""
+msgstr "Öge"
 
 msgid "Load"
-msgstr ""
+msgstr "Yükle"
 
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Alt klasörler katılsın"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Karşılaştırma seçenekleri"
 
 msgid "Name"
 msgstr "Ad"
@@ -3064,10 +3064,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Dosya binary ise yıldız (*) ile görüntülensin."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "Ayıklayıcı eklentisi adı ya da bağlantı yolu"
+msgstr "Ayıklayıcı eklentisi adı ya da bağlantı yolu."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Ön farklılaştırma eklentisi adı ya da bağlantı yolu"
+msgstr "Ön farklılaştırma eklentisi adı ya da bağlantı yolu."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3793,7 +3793,7 @@ msgid "Validation"
 msgstr "Doğrulama"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Kod çözme"
 
 msgid "&Others"
 msgstr "&Diğerleri"
@@ -3822,7 +3822,6 @@ msgstr "Sütunları tersine çevir"
 msgid "Reverse Lines"
 msgstr "Satırları tersine çevir"
 
-#| msgid "Replace"
 msgid "Replace..."
 msgstr "Değiştir..."
 
@@ -3896,13 +3895,13 @@ msgid "Validate HTML"
 msgstr "HTML kodunu doğrula"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "JVM baytkodunu çözümle"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "IL kodunu çözümle"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Doğal kodu çözümle"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

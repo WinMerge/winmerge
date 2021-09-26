@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-09-15</update>
+  <update>2021-09-22</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -308,12 +308,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-09-11</update>
+      <update>2021-09-17</update>
       <strings>
         <count>1102</count>
-        <translated>1100</translated>
+        <translated>1102</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -458,12 +458,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-07-22</update>
+      <update>2021-09-20</update>
       <strings>
         <count>1102</count>
-        <translated>1088</translated>
+        <translated>1098</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>14</untranslated>
+        <untranslated>4</untranslated>
       </strings>
       <translators>
         <translator>
@@ -541,12 +541,12 @@
     <translation>
       <language>Portuguese</language>
       <file>Portuguese.po</file>
-      <update>2021-09-08</update>
+      <update>2021-09-16</update>
       <strings>
         <count>1102</count>
-        <translated>1100</translated>
+        <translated>1102</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -672,12 +672,12 @@
     <translation>
       <language>Slovenian</language>
       <file>Slovenian.po</file>
-      <update>2021-07-25</update>
+      <update>2021-09-20</update>
       <strings>
         <count>1102</count>
-        <translated>1089</translated>
+        <translated>1102</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>13</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -755,12 +755,12 @@
     <translation>
       <language>Turkish</language>
       <file>Turkish.po</file>
-      <update>2021-07-25</update>
+      <update>2021-09-21</update>
       <strings>
-        <count>1102</count>
-        <translated>1089</translated>
+        <count>1103</count>
+        <translated>1103</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>13</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -1205,12 +1205,12 @@
     <translation>
       <language>Turkish</language>
       <file>Turkish.po</file>
-      <update>2019-02-01</update>
+      <update>2021-09-21</update>
       <strings>
         <count>9</count>
-        <translated>4</translated>
+        <translated>9</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>

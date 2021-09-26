@@ -354,7 +354,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	if (GetView(0, 0)->m_CurSourceDef->type != 0)
 		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
 	else
-		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_filePaths[0].c_str(), m_strDesc[0].c_str()));
+		m_diffWrapper.SetFilterCommentsSourceDef(GetFileExt(m_ptBuf[0]->m_strTempFileName.c_str(), m_strDesc[0].c_str()));
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -3338,9 +3338,16 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	strDesc[nBuffer] = _T("");
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
+
+	bool filenameChanged = path != m_filePaths[nBuffer];
+	auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
+	{
+		if (!filenameChanged)
+			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
 		MoveOnLoad(nBuffer, nLineIndex);
+	}
 }
 
 /**
@@ -3567,8 +3574,12 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
+	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
+	{
+		m_ptBuf[0]->SetColumnWidths(columnWidths);
 		MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
+	}
 }
 
 /**

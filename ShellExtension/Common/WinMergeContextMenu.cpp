@@ -238,17 +238,13 @@ HRESULT WinMergeContextMenu::InvokeCommand(DWORD verb)
 
 	if (verb == CMD_COMPARE)
 	{
+		bCompare = TRUE;
 		switch (m_dwMenuState)
 		{
-		case MENU_SIMPLE:
-			bCompare = TRUE;
-			break;
-
 		case MENU_ONESEL_PREV:
 			m_strPaths.resize(2);
 			m_strPaths[1] = m_strPaths[0];
 			m_strPaths[0] = m_strPreviousPaths[0];
-			bCompare = TRUE;
 
 			// Forget previous selection
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
@@ -263,7 +259,6 @@ HRESULT WinMergeContextMenu::InvokeCommand(DWORD verb)
 			m_strPaths[2] = m_strPaths[0];
 			m_strPaths[0] = m_strPreviousPaths[0];
 			m_strPaths[1] = m_strPreviousPaths[1];
-			bCompare = TRUE;
 
 			// Forget previous selection
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
@@ -276,7 +271,6 @@ HRESULT WinMergeContextMenu::InvokeCommand(DWORD verb)
 		case MENU_TWOSEL:
 		case MENU_THREESEL:
 			// "Compare" - compare m_strPaths
-			bCompare = TRUE;
 			m_strPreviousPaths[0].erase();
 			m_strPreviousPaths[1].erase();
 			break;
