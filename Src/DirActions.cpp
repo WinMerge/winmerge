@@ -253,7 +253,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_SYNC:
 		bUpdateSrc = true;
 		bUpdateDest = true;
-		CopyDiffSide(di, act.UIOrigin, act.UIDestination);
+		CopyDiffSideAndProperties(di, act.UIOrigin, act.UIDestination);
 		if (ctxt.GetCompareDirs() > 2)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 		else
@@ -274,11 +274,6 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		}
 		break;
 	}
-
-	if (bUpdateSrc)
-		UpdateStatusFromDisk(ctxt, di, act.UIOrigin);
-	if (bUpdateDest)
-		UpdateStatusFromDisk(ctxt, di, act.UIDestination);
 
 	if (bRemoveItem)
 		return UPDATEITEM_REMOVE;
@@ -1096,14 +1091,23 @@ int GetColImage(const DIFFITEM &di)
  * @note This does not update UI - ReloadItemStatus() does
  * @sa CDirDoc::ReloadItemStatus()
  */
-void CopyDiffSide(DIFFITEM& di, int src, int dst)
+void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
 {
 	if (di.diffcode.exists(src))
+	{
 		di.diffcode.diffcode |= (DIFFCODE::FIRST << dst);
+		// copy file properties other than ctime 
+		di.diffFileInfo[dst].encoding = di.diffFileInfo[src].encoding;
+		di.diffFileInfo[dst].m_textStats = di.diffFileInfo[src].m_textStats;
+		di.diffFileInfo[dst].version = di.diffFileInfo[src].version;
+		di.diffFileInfo[dst].size = di.diffFileInfo[src].size;
+		di.diffFileInfo[dst].mtime = di.diffFileInfo[src].mtime;
+		di.diffFileInfo[dst].flags = di.diffFileInfo[src].flags;
+	}
 	if (di.HasChildren())
 	{
 		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
-			CopyDiffSide(*pdic, src, dst);
+			CopyDiffSideAndProperties(*pdic, src, dst);
 	}
 }
 
