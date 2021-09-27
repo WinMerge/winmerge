@@ -185,7 +185,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		hr = S_OK;
 
 		// Get all file names.
-		for (WORD x = 0 ; x < uNumFilesDropped; x++)
+		for (UINT x = 0 ; x < uNumFilesDropped; x++)
 		{
 			// Get the number of bytes required by the file's full pathname
 			UINT wPathnameSize = DragQueryFile(hDropInfo, x, NULL, 0);
