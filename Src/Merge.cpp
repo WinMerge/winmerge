@@ -777,7 +777,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}
-			else if (IsConflictFile(sFilepath))
+			else if (ConflictFileParser::IsConflictFile(sFilepath))
 			{
 				//For a conflict file, load the descriptions in their respective positions:  (they will be reordered as needed)
 				strDesc[0] = cmdInfo.m_sLeftDesc;
