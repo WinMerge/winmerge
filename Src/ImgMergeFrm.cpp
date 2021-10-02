@@ -285,7 +285,12 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 
 	OpenImages();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
+
+		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
+			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
+	}
 
 	UpdateHeaderPath(nBuffer);
 	UpdateLastCompareResult();
