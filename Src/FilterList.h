@@ -20,7 +20,9 @@ struct filter_item
 {
 	std::string filterAsString; /** Original regular expression string */
 	Poco::RegularExpression regexp; /**< Compiled regular expression */
-	filter_item(const std::string &filter, int reOpts) : filterAsString(filter), regexp(filter, reOpts) {}
+	int _reOpts; /**< Options to set to Poco::RegularExpression */
+	filter_item(const std::string &filter, int reOpts) : filterAsString(filter), regexp(filter, reOpts), _reOpts(reOpts) {}
+	filter_item(const filter_item* item) : filterAsString(item->filterAsString), regexp(item->filterAsString, item->_reOpts), _reOpts(item->_reOpts) {}
 };
 
 typedef std::shared_ptr<filter_item> filter_item_ptr;
@@ -42,6 +44,7 @@ public:
 	bool HasRegExps() const;
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
 	const char * GetLastMatchExpression() const;
+	void CloneFrom(const FilterList* filterList);
 
 private:
 	std::vector <filter_item_ptr> m_list;

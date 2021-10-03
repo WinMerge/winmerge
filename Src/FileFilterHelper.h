@@ -131,6 +131,8 @@ public:
 	bool includeFile(const String& szFileName) const override;
 	bool includeDir(const String& szDirName) const override;
 
+	void CloneFrom(const FileFilterHelper* pHelper);
+
 protected:
 	String ParseExtensions(const String &extensions) const;
 
