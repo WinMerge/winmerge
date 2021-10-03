@@ -807,12 +807,6 @@
 #define ID_DIR_SHELL_CONTEXT_MENU_LEFT  33002
 #define ID_DIR_SHELL_CONTEXT_MENU_MIDDLE 33003
 #define ID_DIR_SHELL_CONTEXT_MENU_RIGHT 33004
-#define ID_SCRIPT_FIRST                 33010
-#define ID_SCRIPT_LAST                  33039
-#define ID_PREDIFFERS_FIRST             33040
-#define ID_PREDIFFERS_LAST              33069
-#define ID_UNPACKERS_FIRST              33070
-#define ID_UNPACKERS_LAST               33110
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
 #define ID_LOCBAR_GOTODIFF              33114
@@ -913,9 +907,6 @@
 #define ID_CLOSE_LEFT_TABS              33234
 #define ID_COPY_FROM_LEFT               33242
 #define ID_COPY_FROM_RIGHT              33243
-#define ID_NO_MRU                       33248
-#define ID_MRU_FIRST                    33249
-#define ID_MRU_LAST                     33350
 #define ID_TABBAR_AUTO_MAXWIDTH         33351
 #define ID_IMG_VIEWDIFFERENCES          33353
 #define ID_IMG_ZOOM_25                  33354
@@ -962,8 +953,6 @@
 #define ID_HELP_RELEASENOTES            33401
 #define ID_HELP_TRANSLATIONS            33402
 #define ID_HELP_CHECKFORUPDATES         33403
-#define ID_FILE_PROJECT_MRU_FIRST       33646
-#define ID_FILE_PROJECT_MRU_LAST        33656
 #define ID_FILE_SHELLMENU               33659
 #define ID_MERGE_COMPARE_NONHORIZONTALLY 33660
 #define ID_ACCEL_QUIT                   33661
@@ -992,6 +981,19 @@
 #define ID_LINES_L2R                    34191
 #define ID_COPY_LINES_FROM_LEFT         34192
 #define ID_COPY_LINES_FROM_RIGHT        34193
+// Plugin menus
+#define ID_UNPACKERS_FIRST              35001
+#define ID_UNPACKERS_LAST               35200
+#define ID_PREDIFFERS_FIRST             35201
+#define ID_PREDIFFERS_LAST              35300
+#define ID_SCRIPT_FIRST                 35301
+#define ID_SCRIPT_LAST                  35400
+// Recent files or folders
+#define ID_FILE_PROJECT_MRU_FIRST       35401
+#define ID_FILE_PROJECT_MRU_LAST        35450
+#define ID_NO_MRU                       35451
+#define ID_MRU_FIRST                    35452
+#define ID_MRU_LAST                     35500
 // String resources
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
