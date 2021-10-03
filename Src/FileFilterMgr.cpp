@@ -251,6 +251,20 @@ FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
 }
 
 /**
+ * @brief Give client back a pointer to the actual filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Pointer to filefilter in given index or `nullptr`.
+ */
+FileFilter * FileFilterMgr::GetFilterByIndex(int i)
+{
+	if (i < 0 || i >= m_filters.size())
+		return nullptr;
+
+	return m_filters[i].get();
+}
+
+/**
  * @brief Test given string against given regexp list.
  *
  * @param [in] filterList List of regexps to test against.
@@ -376,4 +390,26 @@ int FileFilterMgr::ReloadFilterFromDisk(const String& szFullPath)
 	else
 		errorcode = FILTER_NOTFOUND;
 	return errorcode;
+}
+
+/**
+ * @brief Clone file filter manager from another file filter Manager.
+ * This function clones file filter manager from another file filter manager.
+ * Current contents in the file filter manager are removed and new contents added from the given file filter manager.
+ * @param [in] fileFilterManager File filter manager to clone.
+ */
+void FileFilterMgr::CloneFrom(const FileFilterMgr* fileFilterMgr)
+{
+	if (!fileFilterMgr)
+		return;
+
+	m_filters.clear();
+
+	size_t count = fileFilterMgr->m_filters.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		FileFilterPtr ptr(new FileFilter());
+		ptr->CloneFrom(fileFilterMgr->m_filters[i].get());
+		m_filters.push_back(ptr);
+	}
 }

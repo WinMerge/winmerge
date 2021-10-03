@@ -253,7 +253,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	// Make sure filters are up-to-date
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	pGlobalFileFilter->ReloadUpdatedFilters();
-	pCtxt->m_piFilterGlobal = pGlobalFileFilter;
+	m_fileHelper.CloneFrom(pGlobalFileFilter);
+	pCtxt->m_piFilterGlobal = &m_fileHelper;
 	
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;

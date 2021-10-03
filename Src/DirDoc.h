@@ -145,6 +145,7 @@ private:
 	bool m_bMarkedRescan; /**< If `true` next rescan scans only marked items */
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;
+	FileFilterHelper m_fileHelper; /**< File filter helper */
 };
 
 /**
