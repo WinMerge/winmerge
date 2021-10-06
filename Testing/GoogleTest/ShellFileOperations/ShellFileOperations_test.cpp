@@ -3,6 +3,7 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "ShellFileOperations.h"
+#include "paths.h"
 
 namespace
 {
@@ -48,8 +49,8 @@ namespace
 		_tmkdir(_T("..\\..\\Data\\ShellFileOpTest"));
 
 		ShellFileOperations ops;
-		ops.AddSourceAndDestination(_T("..\\..\\Data\\File1.txt"),
-				_T("..\\..\\Data\\ShellFileOpTest\\File1.txt"));
+		ops.AddSourceAndDestination(paths::GetLongPath(_T("..\\..\\Data\\File1.txt")),
+				paths::GetLongPath(_T("..\\..\\Data\\ShellFileOpTest\\File1.txt")));
 		ops.SetOperation(FO_COPY, FOF_NOCONFIRMMKDIR | FOF_NOCONFIRMATION);
 		EXPECT_TRUE(ops.Run());
 		EXPECT_FALSE(ops.IsCanceled());
