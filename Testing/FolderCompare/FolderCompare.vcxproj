@@ -600,6 +600,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\PropertySystem.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\stringdiffs.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -706,6 +711,7 @@
     <ClInclude Include="..\..\Src\Common\unicoder.h" />
     <ClInclude Include="..\..\Src\Common\UnicodeString.h" />
     <ClInclude Include="..\..\Src\Common\UniFile.h" />
+    <ClInclude Include="..\..\Src\PropertySystem.h" />
     <ClInclude Include="..\..\Src\stringdiffs.h" />
     <ClInclude Include="..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\Src\UniMarkdownFile.h" />

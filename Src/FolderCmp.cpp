@@ -21,6 +21,7 @@
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 #include "FileFilterHelper.h"
+#include "PropertySystem.h"
 #include "MergeApp.h"
 #include "DebugNew.h"
 
@@ -464,6 +465,18 @@ exitPrepAndCompare:
 	{
 		// Print error since we should have handled by date compare earlier
 		throw "Invalid compare type, DiffFileData can't handle it";
+	}
+
+	if (m_pCtxt->m_pPropertySystem)
+	{
+		PathContext tFiles;
+		m_pCtxt->GetComparePaths(di, tFiles);
+		for (int i = 0; i < nDirs; ++i)
+		{
+			auto& properties = di.diffFileInfo[i].m_pProperties;
+			properties.reset(new std::vector<String>());
+			m_pCtxt->m_pPropertySystem->GetFormattedValues(tFiles[i], *properties);
+		}
 	}
 
 	return code;

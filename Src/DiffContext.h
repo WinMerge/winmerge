@@ -12,6 +12,7 @@
 #include "DiffItemList.h"
 #include "FilterList.h"
 #include "SubstitutionList.h"
+#include "PropertySystem.h"
 
 class PackingInfo;
 class PrediffingInfo;
@@ -200,6 +201,7 @@ public:
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
+	std::unique_ptr<PropertySystem> m_pPropertySystem; /**< pointer to Property System */
 
 private:
 	/**

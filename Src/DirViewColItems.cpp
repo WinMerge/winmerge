@@ -750,6 +750,15 @@ static String ColPredifferGet(const CDiffContext * pCtxt, const void *p)
 	return GetPluginPipeline(pCtxt, *static_cast<const DIFFITEM *>(p), false);
 }
 
+static String ColPropertyGet(const CDiffContext * pCtxt, const void *p, int index)
+{
+	DIFFITEM &di = *const_cast<DIFFITEM *>(static_cast<const DIFFITEM *>(p));
+	const auto& pProps = di.diffFileInfo[index].m_pProperties;
+	if (pProps && index < pProps->size())
+		return (*pProps)[index];
+	return _T("");
+}
+
 /**
  * @}
  */
