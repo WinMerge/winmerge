@@ -41,6 +41,9 @@ struct DirColInfo
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
+	bool additionalColumn;
+	String GetDisplayName() const;
+	String GetDescription() const;
 };
 
 extern const int g_ncols;
@@ -121,4 +124,5 @@ private:
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	std::vector<DirColInfo> m_cols;
+	std::list<String> m_strpool;
 };

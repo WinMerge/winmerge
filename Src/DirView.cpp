@@ -402,7 +402,7 @@ void CDirView::OnInitialUpdate()
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
 	CDirDoc* pDoc = GetDocument();
 	pDoc->SetDirView(this);
-	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, {}));
+	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, {_T("System.Image.Dimensions")}));
 
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
 
@@ -4228,7 +4228,7 @@ void CDirView::NameColumn(const DirColInfo *col, int subitem)
 	int phys = m_pColItems->ColLogToPhys(subitem);
 	if (phys>=0)
 	{
-		String s = tr(col->idNameContext, col->idName);
+		String s = col->GetDisplayName();
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = const_cast<LPTSTR>(s.c_str());

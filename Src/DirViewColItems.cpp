@@ -1066,6 +1066,26 @@ static DirColInfo f_cols3[] =
 	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPredifferGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
+String DirColInfo::GetDisplayName() const
+{
+	if (!additionalColumn)
+		return tr(idNameContext, idName);
+	PropertySystem propsys({ regName + 1 });
+	std::vector<String> names;
+	propsys.GetDisplayNames(names);
+	String name = regName[0] == 'L' ? _("Left") : (regName[0] == 'R' ? _("Right") : _("Middle"));
+	name += _T(" ");
+	name += names.empty() ? _T("") : names[0];
+	return name;
+}
+
+String DirColInfo::GetDescription() const
+{
+	if (!additionalColumn)
+		return tr(idDesc);
+	return regName;
+}
+
 DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
 	m_nDirs(nDirs), m_dispcols(-1)
 {
@@ -1078,7 +1098,15 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 	propsys.GetDisplayNames(displayNames);
 	for (size_t i = 0; i < propertyNames.size(); ++i)
 	{
-		++m_numcols;
+		for (auto c : (nDirs < 3) ? String(_T("LR")) : String(_T("LMR")))
+		{
+			m_cols.emplace_back(DirColInfo{});
+			m_strpool.push_back(c + propertyNames[i]);
+			auto& col = m_cols.back();
+			col.regName = m_strpool.back().c_str();
+			col.additionalColumn = true;
+			++m_numcols;
+		}
 	}
 }
 
@@ -1201,7 +1229,7 @@ String
 DirViewColItems::GetColDisplayName(int col) const
 {
 	const DirColInfo * colinfo = GetDirColInfo(col);
-	return tr(colinfo->idNameContext, colinfo->idName);
+	return colinfo->GetDisplayName();
 }
 
 /**
@@ -1211,7 +1239,7 @@ String
 DirViewColItems::GetColDescription(int col) const
 {
 	const DirColInfo * colinfo = GetDirColInfo(col);
-	return tr(colinfo->idDesc);
+	return colinfo->GetDescription();
 }
 
 /**
@@ -1234,9 +1262,13 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 		assert(false); // fix caller, should not ask for nonexistent columns
 		return _T("???");
 	}
-	ColGetFncPtrType fnc = pColInfo->getfnc;
-	size_t offset = pColInfo->offset;
-	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset);
+	String s;
+	if (!pColInfo->additionalColumn)
+	{
+		ColGetFncPtrType fnc = pColInfo->getfnc;
+		size_t offset = pColInfo->offset;
+		s = (*fnc)(pCtxt, reinterpret_cast<const char*>(&di) + offset);
+	}
 
 	// Add '*' to newer time field
 	if (IsColLmTime(col) || IsColMmTime(col) || IsColRmTime(col))
