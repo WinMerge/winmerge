@@ -17,6 +17,7 @@
 #include "paths.h"
 #include "MergeApp.h"
 #include "FileTransform.h"
+#include "PropertySystem.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -1065,11 +1066,21 @@ static DirColInfo f_cols3[] =
 	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPredifferGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
-/**
- * @brief Count of all known columns
- */
-const int g_ncols = static_cast<int>(std::size(f_cols));
-const int g_ncols3 = static_cast<int>(std::size(f_cols3));
+DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
+	m_nDirs(nDirs), m_dispcols(-1)
+{
+	m_numcols = static_cast<int>(nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
+	DirColInfo *pcol = nDirs < 3 ? f_cols : f_cols3;
+	for (size_t i = 0; i < m_numcols; ++i)
+		m_cols.push_back(pcol[i]);
+	PropertySystem propsys(propertyNames);
+	std::vector<String> displayNames;
+	propsys.GetDisplayNames(displayNames);
+	for (size_t i = 0; i < propertyNames.size(); ++i)
+	{
+		++m_numcols;
+	}
+}
 
 /**
  * @brief Registry base value name for saving/loading info for this column
@@ -1077,16 +1088,8 @@ const int g_ncols3 = static_cast<int>(std::size(f_cols3));
 String
 DirViewColItems::GetColRegValueNameBase(int col) const
 {
-	if (m_nDirs < 3)
-	{
-		assert(col>=0 && col<static_cast<int>(std::size(f_cols)));
-		return strutils::format(_T("WDirHdr_%s"), f_cols[col].regName);
-	}
-	else
-	{
-		assert(col>=0 && col<static_cast<int>(std::size(f_cols3)));
-		return strutils::format(_T("WDirHdr_%s"), f_cols3[col].regName);
-	}
+	assert(col>=0 && col<m_numcols);
+	return strutils::format(_T("WDirHdr_%s"), m_cols[col].regName);
 }
 
 /**
@@ -1095,16 +1098,8 @@ DirViewColItems::GetColRegValueNameBase(int col) const
 int
 DirViewColItems::GetColDefaultOrder(int col) const
 {
-	if (m_nDirs < 3)
-	{
-		assert(col>=0 && col<static_cast<int>(std::size(f_cols)));
-		return f_cols[col].physicalIndex;
-	}
-	else
-	{
-		assert(col>=0 && col<static_cast<int>(std::size(f_cols3)));
-		return f_cols3[col].physicalIndex;
-	}
+	assert(col>=0 && col<m_numcols);
+	return m_cols[col].physicalIndex;
 }
 
 /**
@@ -1113,24 +1108,12 @@ DirViewColItems::GetColDefaultOrder(int col) const
 const DirColInfo *
 DirViewColItems::GetDirColInfo(int col) const
 {
-	if (m_nDirs < 3)
+	if (col < 0 || col >= m_numcols)
 	{
-		if (col < 0 || col >= static_cast<int>(std::size(f_cols)))
-		{
-			assert(false); // fix caller, should not ask for nonexistent columns
-			return nullptr;
-		}
-		return &f_cols[col];
+		assert(false); // fix caller, should not ask for nonexistent columns
+		return nullptr;
 	}
-	else
-	{
-		if (col < 0 || col >= static_cast<int>(std::size(f_cols3)))
-		{
-			assert(false); // fix caller, should not ask for nonexistent columns
-			return nullptr;
-		}
-		return &f_cols3[col];
-	}
+	return &m_cols[col];
 }
 
 /**
@@ -1139,25 +1122,12 @@ DirViewColItems::GetDirColInfo(int col) const
 bool
 DirViewColItems::IsColById(int col, const char *idname) const
 {
-	int nDirs = m_nDirs;
-	if (nDirs < 3)
+	if (col < 0 || col >= m_numcols)
 	{
-		if (col < 0 || col >= static_cast<int>(std::size(f_cols)))
-		{
-			assert(false); // fix caller, should not ask for nonexistent columns
-			return false;
-		}
-		return f_cols[col].idName == idname;
+		assert(false); // fix caller, should not ask for nonexistent columns
+		return false;
 	}
-	else
-	{
-		if (col < 0 || col >= sizeof(f_cols3)/sizeof(f_cols3[0]))
-		{
-			assert(false); // fix caller, should not ask for nonexistent columns
-			return false;
-		}
-		return f_cols3[col].idName == idname;
-	}
+	return m_cols[col].idName == idname;
 }
 
 /**
@@ -1242,18 +1212,6 @@ DirViewColItems::GetColDescription(int col) const
 {
 	const DirColInfo * colinfo = GetDirColInfo(col);
 	return tr(colinfo->idDesc);
-}
-
-/**
- * @brief Return total number of known columns
- */
-int
-DirViewColItems::GetColCount() const
-{
-	if (m_nDirs < 3)
-		return g_ncols;
-	else
-		return g_ncols3;
 }
 
 /**
@@ -1486,13 +1444,11 @@ String DirViewColItems::ResetColumnWidths(int defcolwidth)
 /**
  * @brief Load column orders from registry
  */
-void DirViewColItems::LoadColumnOrders(String colorders)
+void DirViewColItems::LoadColumnOrders(const String& colOrders)
 {
-	assert(m_numcols == -1);
-	m_numcols = GetColCount();
 	ClearColumnOrders();
 	m_dispcols = 0;
-	std::basic_istringstream<TCHAR> ss(colorders);
+	std::basic_istringstream<TCHAR> ss(colOrders);
 
 	// Load column orders
 	// Break out if one is missing

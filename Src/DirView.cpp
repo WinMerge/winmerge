@@ -400,8 +400,9 @@ void CDirView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
-	GetDocument()->SetDirView(this);
-	m_pColItems.reset(new DirViewColItems(GetDocument()->m_nDirs));
+	CDirDoc* pDoc = GetDocument();
+	pDoc->SetDirView(this);
+	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, {}));
 
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
 
@@ -450,7 +451,7 @@ void CDirView::OnInitialUpdate()
 
 	// Restore column orders as they had them last time they ran
 	m_pColItems->LoadColumnOrders(
-		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
+		GetOptionsMgr()->GetString(pDoc->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();

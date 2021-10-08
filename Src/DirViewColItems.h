@@ -49,8 +49,7 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
-	explicit DirViewColItems(int nDirs):
-	  m_nDirs(nDirs), m_numcols(-1), m_dispcols(-1) {}
+	explicit DirViewColItems(int nDirs, const std::vector<String>& propertyNames);
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
 	const DirColInfo * GetDirColInfo(int col) const;
@@ -64,7 +63,7 @@ public:
 	bool IsDefaultSortAscending(int col) const;
 	String GetColDisplayName(int col) const;
 	String GetColDescription(int col) const;
-	int	GetColCount() const;
+	int	GetColCount() const { return m_numcols; };
 	int GetDispColCount() const { return m_dispcols; }
 	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM &di) const;
 	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi, const DIFFITEM &rdi, bool bTreeMode) const;
@@ -76,7 +75,7 @@ public:
 	void ResetColumnOrdering();
 	void SetColumnOrdering(const int colorder[]);
 	String ResetColumnWidths(int defcolwidth);
-	void LoadColumnOrders(String colorders);
+	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
 
 	/// Update all column widths (from registry to screen)
@@ -121,4 +120,5 @@ private:
 	int m_dispcols;
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
+	std::vector<DirColInfo> m_cols;
 };
