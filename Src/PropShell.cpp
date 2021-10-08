@@ -53,7 +53,7 @@ static bool IsWinMergeContextMenuRegistered()
 	auto Is64BitWindows = []() { BOOL f64 = FALSE; return IsWow64Process(GetCurrentProcess(), &f64) && f64; };
 	DWORD ulOptions = KEY_QUERY_VALUE | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
 #endif
-	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Classes\\PackagedCom\\ClassIndex\\{90340779-F37E-468E-9728-A2593498ED32}"), 0, ulOptions, &hKey))
+	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CURRENT_USER, _T("Software\\Microsoft\\Windows\\CurrentVersion\\AppHost\\IndexedDB\\WinMerge_83g614hpn1ttr"), 0, ulOptions, &hKey))
 	{
 		RegCloseKey(hKey);
 		return true;
