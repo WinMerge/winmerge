@@ -15,8 +15,8 @@ class DIFFITEM;
 class CDiffContext;
 
 // DirViewColItems typedefs
-typedef String (*ColGetFncPtrType)(const CDiffContext *, const void *);
-typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void *);
+typedef String (*ColGetFncPtrType)(const CDiffContext *, const void *, int);
+typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void *, int);
 
 
 /**
@@ -41,7 +41,7 @@ struct DirColInfo
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
-	bool additionalColumn;
+	int opt;
 	String GetDisplayName() const;
 	String GetDescription() const;
 };
@@ -80,6 +80,7 @@ public:
 	String ResetColumnWidths(int defcolwidth);
 	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
+	const std::vector<String>& GetPropertyNames() const { return m_propertyNames; }
 
 	/// Update all column widths (from registry to screen)
 	// Necessary when user reorders columns
@@ -124,5 +125,6 @@ private:
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	std::vector<DirColInfo> m_cols;
+	std::vector<String> m_propertyNames;
 	std::list<String> m_strpool;
 };

@@ -33,6 +33,7 @@ static String GetPropertyString(IPropertyStore* pps, REFPROPERTYKEY key)
 
 PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 {
+	m_canonicalNames = canonicalNames;
 	for (const auto& name : canonicalNames)
 	{
 		PROPERTYKEY key{};
@@ -73,6 +74,10 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 			{
 				names.push_back(pDisplayName);
 				CoTaskMemFree(pDisplayName);
+			}
+			else
+			{
+				names.push_back(_T(""));
 			}
 			ppd->Release();
 		}

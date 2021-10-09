@@ -474,8 +474,15 @@ exitPrepAndCompare:
 		for (int i = 0; i < nDirs; ++i)
 		{
 			auto& properties = di.diffFileInfo[i].m_pProperties;
-			properties.reset(new std::vector<String>());
-			m_pCtxt->m_pPropertySystem->GetFormattedValues(tFiles[i], *properties);
+			if (di.diffcode.exists(i))
+			{
+				properties.reset(new std::vector<String>());
+				m_pCtxt->m_pPropertySystem->GetFormattedValues(tFiles[i], *properties);
+			}
+			else
+			{
+				properties.reset(new std::vector<String>(m_pCtxt->m_pPropertySystem->GetCanonicalNames().size()));
+			}
 		}
 	}
 
