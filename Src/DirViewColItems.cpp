@@ -1020,7 +1020,7 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 	propsys.GetDisplayNames(displayNames);
 	for (size_t i = 0; i < propertyNames.size(); ++i)
 	{
-		char pane = 0;
+		int pane = 0;
 		for (auto c : (nDirs < 3) ? String(_T("LR")) : String(_T("LMR")))
 		{
 			m_cols.emplace_back(DirColInfo{});
@@ -1028,7 +1028,7 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 			auto& col = m_cols.back();
 			col.regName = m_strpool.back().c_str();
 			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
-			col.opt = static_cast<short>(i);
+			col.opt = static_cast<int>(i);
 			col.getfnc = ColPropertyGet;
 			++m_numcols;
 			++pane;
