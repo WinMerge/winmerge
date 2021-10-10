@@ -314,7 +314,7 @@ public :
     }
     int  GetColumnWidth (int nColumnIndex) const;
     void SetColumnWidth (int nColumnIndex, int nColumnWidth);
-    std::vector<int> GetColumnWidths () const { return m_pSharedTableProps->m_aColumnWidths; }
+    const std::vector<int>& GetColumnWidths () const { return m_pSharedTableProps->m_aColumnWidths; }
     void SetColumnWidths (const std::vector<int>& columnWidths);
     int  GetColumnCount (int nLineIndex) const;
     void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
