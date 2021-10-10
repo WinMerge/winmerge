@@ -402,7 +402,9 @@ void CDirView::OnInitialUpdate()
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
 	CDirDoc* pDoc = GetDocument();
 	pDoc->SetDirView(this);
-	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, {_T("System.Image.Dimensions"), _T("System.KindText") }));
+
+	String properties = GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES);
+	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, properties));
 
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
 

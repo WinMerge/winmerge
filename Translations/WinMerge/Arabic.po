@@ -1308,6 +1308,9 @@ msgstr "التحرك إلى الأ&على"
 msgid "Move &Down"
 msgstr "التحرك إلى الأ&سفل"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

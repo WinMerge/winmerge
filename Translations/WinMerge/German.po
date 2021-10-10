@@ -1640,6 +1640,9 @@ msgstr "Nach &oben"
 msgid "Move &Down"
 msgstr "Nach &unten"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
 

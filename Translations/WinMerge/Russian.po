@@ -1307,6 +1307,9 @@ msgstr "&Вверх"
 msgid "Move &Down"
 msgstr "В&низ"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Выбрать плагин"
 

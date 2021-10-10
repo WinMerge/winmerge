@@ -1650,6 +1650,9 @@ msgstr "上移(&U)"
 msgid "Move &Down"
 msgstr "下移(&D)"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

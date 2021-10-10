@@ -1640,6 +1640,9 @@ msgstr "Flytt &opp"
 msgid "Move &Down"
 msgstr "Flytt &ned"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

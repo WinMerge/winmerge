@@ -1305,6 +1305,9 @@ msgstr "W górę"
 msgid "Move &Down"
 msgstr "W dół"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

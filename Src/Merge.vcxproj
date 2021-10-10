@@ -690,6 +690,7 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DirAdditionalPropsDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1191,6 +1192,7 @@
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
+    <ClInclude Include="DirAdditionalPropsDlg.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />

@@ -469,6 +469,7 @@ exitPrepAndCompare:
 
 	if (m_pCtxt->m_pPropertySystem)
 	{
+		size_t numprops = m_pCtxt->m_pPropertySystem->GetCanonicalNames().size();
 		PathContext tFiles;
 		m_pCtxt->GetComparePaths(di, tFiles);
 		for (int i = 0; i < nDirs; ++i)
@@ -481,8 +482,14 @@ exitPrepAndCompare:
 			}
 			else
 			{
-				properties.reset(new std::vector<String>(m_pCtxt->m_pPropertySystem->GetCanonicalNames().size()));
+				properties.reset(new std::vector<String>(numprops));
 			}
+		}
+		for (int i = 1; i < nDirs; ++i)
+		{
+			if (!std::equal(di.diffFileInfo[0].m_pProperties->begin(), di.diffFileInfo[0].m_pProperties->end(),
+				di.diffFileInfo[i].m_pProperties->begin()))
+				code |= DIFFCODE::DIFFPROP;
 		}
 	}
 

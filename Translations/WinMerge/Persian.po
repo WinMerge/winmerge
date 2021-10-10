@@ -1643,6 +1643,9 @@ msgstr "&U جابجايي به بالا "
 msgid "Move &Down"
 msgstr " جابجايي به پايين "
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

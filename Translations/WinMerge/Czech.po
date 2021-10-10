@@ -1640,6 +1640,9 @@ msgstr "&Nahoru"
 msgid "Move &Down"
 msgstr "&Dolů"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

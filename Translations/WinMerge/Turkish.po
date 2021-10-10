@@ -1309,6 +1309,9 @@ msgstr "Y&ukarı taşı"
 msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Eklenti seçin"
 

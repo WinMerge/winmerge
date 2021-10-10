@@ -1305,6 +1305,9 @@ msgstr "Sposta &su"
 msgid "Move &Down"
 msgstr "Sposta &giù"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
+"POT-Creation-Date: 2021-10-10 21:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1297,6 +1297,9 @@ msgid "Move &Up"
 msgstr ""
 
 msgid "Move &Down"
+msgstr ""
+
+msgid "Additional Properties"
 msgstr ""
 
 msgid "Select Plugin"

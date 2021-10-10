@@ -1008,6 +1008,25 @@ String DirColInfo::GetDescription() const
 	return GetDisplayName();
 }
 
+static std::vector<String> split(const String& propertyNames)
+{
+	std::basic_istringstream<TCHAR> ss(propertyNames);
+	std::vector<String> properties;
+	while (!ss.eof())
+	{
+		String name;
+		ss >> name;
+		if (!name.empty())
+			properties.push_back(name);
+	}
+	return properties;
+}
+
+DirViewColItems::DirViewColItems(int nDirs, const String& propertyNames)
+	: DirViewColItems(nDirs, split(propertyNames))
+{
+}
+
 DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
 	m_nDirs(nDirs), m_dispcols(-1), m_propertyNames(propertyNames)
 {

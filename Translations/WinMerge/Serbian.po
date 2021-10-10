@@ -1625,6 +1625,9 @@ msgstr "Помери &горе"
 msgid "Move &Down"
 msgstr "Помери &доле"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

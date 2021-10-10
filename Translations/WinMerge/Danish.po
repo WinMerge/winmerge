@@ -1641,6 +1641,9 @@ msgstr "Flyt &op"
 msgid "Move &Down"
 msgstr "Flyt &ned"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

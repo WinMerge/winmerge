@@ -1311,6 +1311,9 @@ msgstr "Omhoog verplaatsen"
 msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Plugin selecteren"
 

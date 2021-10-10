@@ -28,6 +28,7 @@
 #define IDD_EDITOR_HEADERBAR            210
 #define IDD_GENERATE_PATCH              211
 #define IDD_DIRCOLS                     212
+#define IDD_DIRADDITIONALPROPS          213
 #define IDD_DIRCOMP_PROGRESS            214
 #define IDD_WMGOTO                      215
 #define IDD_MESSAGE_BOX                 219
@@ -581,6 +582,7 @@
 #define IDC_MARKER1_BKGD_COLOR          1616
 #define IDC_MARKER2_BKGD_COLOR          1617
 #define IDC_MARKER3_BKGD_COLOR          1618
+#define IDC_PROPS_TREEVIEW              1619
 // CrystalEdit dialog controls
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604

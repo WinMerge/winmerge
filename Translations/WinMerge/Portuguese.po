@@ -1314,6 +1314,9 @@ msgstr "Mover para &Cima"
 msgid "Move &Down"
 msgstr "Mover para &Baixo"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Selecionar plugin"
 

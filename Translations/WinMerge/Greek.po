@@ -1639,6 +1639,9 @@ msgstr "Μετακίνηση προς τα &άνω"
 msgid "Move &Down"
 msgstr "Μετακίνηση προς τα &κάτω"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

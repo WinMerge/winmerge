@@ -1642,6 +1642,9 @@ msgstr "Mugitu &Gora"
 msgid "Move &Down"
 msgstr "Mugitu &Behera"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

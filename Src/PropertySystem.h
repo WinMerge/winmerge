@@ -1,3 +1,8 @@
+/** 
+ * @file  PropertySystem.h
+ *
+ * @brief Declaration file for PropertySystem
+ */
 #pragma once
 
 #include "UnicodeString.h"
@@ -8,6 +13,16 @@
 class PropertySystem
 {
 public:
+	enum ENUMFILTER {
+		ALL,
+		SYSTEM,
+		NONSYSTEM,
+		VIEWABLE,
+		QUERYABLE,
+		INFULLTEXTQUERY,
+		COLUMN
+	};
+	explicit PropertySystem(ENUMFILTER filter);
 	explicit PropertySystem(const std::vector<String>& canonicalNames);
 	bool GetFormattedValues(const String& path, std::vector<String>& values);
 	bool GetDisplayNames(std::vector<String>& names);

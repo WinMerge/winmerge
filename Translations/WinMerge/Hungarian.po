@@ -1642,6 +1642,9 @@ msgstr "Mozgatás fel"
 msgid "Move &Down"
 msgstr "Mozgatás le"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
 

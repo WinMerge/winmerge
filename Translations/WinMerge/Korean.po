@@ -1646,6 +1646,9 @@ msgstr "위로(&U)"
 msgid "Move &Down"
 msgstr "아래로(&D)"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "플러그인 선택"
 

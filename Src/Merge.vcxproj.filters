@@ -684,6 +684,9 @@
     <ClCompile Include="PropertySystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DirAdditionalPropsDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1294,6 +1297,9 @@
     </ClInclude>
     <ClInclude Include="PropertySystem.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirAdditionalPropsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

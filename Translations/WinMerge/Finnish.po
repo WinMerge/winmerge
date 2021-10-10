@@ -1640,6 +1640,9 @@ msgstr "Siirrä ylös"
 msgid "Move &Down"
 msgstr "Siirrä alas"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

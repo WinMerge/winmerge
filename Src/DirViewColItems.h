@@ -52,6 +52,7 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
+	explicit DirViewColItems(int nDirs, const String& propertyNames);
 	explicit DirViewColItems(int nDirs, const std::vector<String>& propertyNames);
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;

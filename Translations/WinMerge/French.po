@@ -1647,6 +1647,9 @@ msgstr "&Monter"
 msgid "Move &Down"
 msgstr "&Descendre"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

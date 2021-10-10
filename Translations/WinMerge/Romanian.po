@@ -1640,6 +1640,9 @@ msgstr "Mută mai s&us"
 msgid "Move &Down"
 msgstr "Mută mai &jos"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

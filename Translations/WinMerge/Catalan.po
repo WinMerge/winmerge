@@ -1639,6 +1639,9 @@ msgstr ""
 msgid "Move &Down"
 msgstr ""
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 

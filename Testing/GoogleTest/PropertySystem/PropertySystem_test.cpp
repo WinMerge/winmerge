@@ -55,11 +55,19 @@ namespace
 
 	TEST_F(PropertySystemTest, GetDisplayNames)
 	{
-		PropertySystem ps({ _T("System.Image.Dimensions"), _T("System.Image.HorizontalSize")});
-		std::vector<String> names;
-		ASSERT_TRUE(ps.GetDisplayNames(names));
-		ASSERT_STREQ(_T("Dimensions"), names[0].c_str());
-		ASSERT_STREQ(_T("Width"), names[1].c_str());
+		{
+			PropertySystem ps({ _T("System.Image.Dimensions"), _T("System.Image.HorizontalSize") });
+			std::vector<String> names;
+			ASSERT_TRUE(ps.GetDisplayNames(names));
+			ASSERT_STREQ(_T("Dimensions"), names[0].c_str());
+			ASSERT_STREQ(_T("Width"), names[1].c_str());
+		}
+
+		{
+			PropertySystem ps2(PropertySystem::VIEWABLE);
+			std::vector<String> names2;
+			ASSERT_TRUE(ps2.GetDisplayNames(names2));
+		}
 	}
 
 	TEST_F(PropertySystemTest, GetFormattedValues)

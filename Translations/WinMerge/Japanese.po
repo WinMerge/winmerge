@@ -1310,6 +1310,9 @@ msgstr "上へ(&U)"
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 

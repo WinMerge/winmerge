@@ -1641,6 +1641,9 @@ msgstr "Mover E&nriba"
 msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Seleccionar complemento"
 

@@ -1639,6 +1639,9 @@ msgstr "Premakni navz&gor"
 msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
 

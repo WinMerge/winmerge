@@ -1,3 +1,8 @@
+/** 
+ * @file  PropertySystem.cpp
+ *
+ * @brief Implementation file for PropertySystem
+ */
 #include "pch.h"
 #include "PropertySystem.h"
 #ifdef _WIN64
@@ -29,6 +34,36 @@ static String GetPropertyString(IPropertyStore* pps, REFPROPERTYKEY key)
 		PropVariantClear(&propvarValue);
 	}
 	return val;
+}
+
+PropertySystem::PropertySystem(ENUMFILTER filter)
+{
+	IPropertyDescriptionList* ppdl = nullptr;
+	if (SUCCEEDED(PSEnumeratePropertyDescriptions(static_cast<PROPDESC_ENUMFILTER>(filter), IID_PPV_ARGS(&ppdl))))
+	{
+		unsigned uiCount = 0;
+		ppdl->GetCount(&uiCount);
+		for (unsigned i = 0; i < uiCount; ++i)
+		{
+			IPropertyDescription* ppd = nullptr;
+			if (SUCCEEDED(ppdl->GetAt(i, IID_PPV_ARGS(&ppd))))
+			{
+				PROPERTYKEY key{};
+				if (SUCCEEDED(ppd->GetPropertyKey(&key)))
+				{
+					wchar_t* pCanonicalName = nullptr;
+					if (SUCCEEDED(ppd->GetCanonicalName(&pCanonicalName)) && pCanonicalName)
+					{
+						m_canonicalNames.push_back(pCanonicalName);
+						m_keys.push_back(key);
+						CoTaskMemFree(pCanonicalName);
+					}
+				}
+				ppd->Release();
+			}
+		}
+		ppdl->Release();
+	}
 }
 
 PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
@@ -75,6 +110,11 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 				names.push_back(pDisplayName);
 				CoTaskMemFree(pDisplayName);
 			}
+			else if (SUCCEEDED(ppd->GetCanonicalName(&pDisplayName)) && pDisplayName != nullptr)
+			{
+				names.push_back(pDisplayName);
+				CoTaskMemFree(pDisplayName);
+			}
 			else
 			{
 				names.push_back(_T(""));
@@ -86,6 +126,10 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 }
 
 #else
+
+PropertySystem::PropertySystem(ENUMFILTER filter)
+{
+}
 
 PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 {

@@ -1308,6 +1308,9 @@ msgstr "Perkelti a&ukštyn"
 msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
 

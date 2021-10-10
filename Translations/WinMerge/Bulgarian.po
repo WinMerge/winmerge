@@ -1304,6 +1304,9 @@ msgstr "На&горе"
 msgid "Move &Down"
 msgstr "На&долу"
 
+msgid "Additional Properties"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Избиране на добавка"
 
