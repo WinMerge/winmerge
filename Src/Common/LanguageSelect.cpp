@@ -675,6 +675,9 @@ bool CLanguageSelect::SetLanguage(LANGID wLangId, bool bShowError /*= false*/)
 	}
 	m_wCurLanguage = wLangId;
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
+#ifdef _WIN64
+	SetThreadUILanguage(wLangId);
+#endif
 	return true;
 }
 
