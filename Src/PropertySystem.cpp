@@ -17,9 +17,13 @@
 
 #pragma comment(lib, "propsys.lib")
 
-static String GetPropertyString(IPropertyStore* pps, REFPROPERTYKEY key)
+static const PROPERTYKEY PKEY_WINMERGE_HASH_SHA256 = {};
+static const PROPERTYKEY PKEY_WINMERGE_HASH_SHA1 = {};
+static const PROPERTYKEY PKEY_WINMERGE_HASH_MD5 = {};
+static const PROPERTYKEY PKEY_WINMERGE_HASH_CRC32 = {};
+
+static bool GetPropertyString(IPropertyStore* pps, const PROPERTYKEY& key, String& value)
 {
-	String val;
 	PROPVARIANT propvarValue = { 0 };
 	HRESULT hr = pps->GetValue(key, &propvarValue);
 	if (SUCCEEDED(hr))
@@ -28,12 +32,12 @@ static String GetPropertyString(IPropertyStore* pps, REFPROPERTYKEY key)
 		hr = PSFormatForDisplayAlloc(key, propvarValue, PDFF_DEFAULT, &pszDisplayValue);
 		if (SUCCEEDED(hr))
 		{
-			val = pszDisplayValue;
+			value = pszDisplayValue;
 			CoTaskMemFree(pszDisplayValue);
 		}
 		PropVariantClear(&propvarValue);
 	}
-	return val;
+	return SUCCEEDED(hr);
 }
 
 PropertySystem::PropertySystem(ENUMFILTER filter)
@@ -64,16 +68,32 @@ PropertySystem::PropertySystem(ENUMFILTER filter)
 		}
 		ppdl->Release();
 	}
+	AddProperties({ _T("WinMerge.Hash.SHA1"), _T("WinMerge.Hash.SHA256"), _T("WinMerge.Hash.CRC32"), _T("WinMerge.Hash.MD5") });
 }
 
 PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 {
-	m_canonicalNames = canonicalNames;
+	AddProperties(canonicalNames);
+}
+
+void PropertySystem::AddProperties(const std::vector<String>& canonicalNames)
+{
 	for (const auto& name : canonicalNames)
 	{
 		PROPERTYKEY key{};
-		PSGetPropertyKeyFromName(name.c_str(), &key);
+		if (FAILED(PSGetPropertyKeyFromName(name.c_str(), &key)))
+		{
+			if (name == _T("WinMerge.Hash.SHA256"))
+				key = PKEY_WINMERGE_HASH_SHA256;
+			else if (name == _T("WinMerge.Hash.SHA1"))
+				key = PKEY_WINMERGE_HASH_SHA1;
+			else if (name == _T("WinMerge.Hash.MD5"))
+				key = PKEY_WINMERGE_HASH_MD5;
+			else if (name == _T("WinMerge.Hash.CRC32"))
+				key = PKEY_WINMERGE_HASH_CRC32;
+		}
 		m_keys.push_back(key);
+		m_canonicalNames.push_back(name);
 	}
 }
 
@@ -85,7 +105,25 @@ bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>&
 	{
 		values.reserve(m_keys.size());
 		for (const auto& key : m_keys)
-			values.push_back(GetPropertyString(pps, key));
+		{
+			String value;
+			if (!GetPropertyString(pps, key, value))
+			{
+				if (key == PKEY_WINMERGE_HASH_SHA256)
+				{
+				}
+				else if (key == PKEY_WINMERGE_HASH_SHA1)
+				{
+				}
+				else if (key == PKEY_WINMERGE_HASH_MD5)
+				{
+				}
+				else if (key == PKEY_WINMERGE_HASH_CRC32)
+				{
+				}
+			}
+			values.push_back(value);
+		}
 		pps->Release();
 		return true;
 	}
@@ -121,6 +159,14 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 			}
 			ppd->Release();
 		}
+		else if (key == PKEY_WINMERGE_HASH_SHA256)
+			names.push_back(_T("SHA-256"));
+		else if (key == PKEY_WINMERGE_HASH_SHA1)
+			names.push_back(_T("SHA-1"));
+		else if (key == PKEY_WINMERGE_HASH_MD5)
+			names.push_back(_T("MD5"));
+		else if (key == PKEY_WINMERGE_HASH_CRC32)
+			names.push_back(_T("CRC32"));
 	}
 	return true;
 }

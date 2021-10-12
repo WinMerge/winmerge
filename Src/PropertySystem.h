@@ -28,8 +28,7 @@ public:
 	bool GetDisplayNames(std::vector<String>& names);
 	const std::vector<String>& GetCanonicalNames() const { return m_canonicalNames; }
 private:
+	void AddProperties(const std::vector<String>& canonicalNames);
 	std::vector<String> m_canonicalNames;
-#ifdef _WIN64
 	std::vector<PROPERTYKEY> m_keys;
-#endif
 };
