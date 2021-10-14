@@ -16,6 +16,7 @@
 #ifdef _WIN64
 
 #pragma comment(lib, "propsys.lib")
+#pragma comment(lib, "bcrypt.lib")
  
  // {ECA2D096-7C87-4DFF-94E7-E7FE9BA34BE8} 100-102
 static const PROPERTYKEY PKEY_WINMERGE_HASH_SHA256 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 100 };
@@ -36,13 +37,107 @@ static const PROPERTYINFO g_HashProperties[] =
 	{ &PKEY_WINMERGE_HASH_MD5,    L"WinMerge.Hash.MD5",    L"MD5" },
 };
 
-static String CalculateHashValue(const String& path, const PROPERTYKEY& key)
+static int GetPropertyIndexFromKey(const PROPERTYKEY& key)
 {
-	return _T("TEST");
+	for (size_t i = 0; i < std::size(g_HashProperties); ++i)
+	{
+		if (key == *g_HashProperties[i].pKey)
+			return static_cast<int>(i);
+	}
+	return -1;
 }
 
-static bool GetPropertyString(IPropertyStore* pps, const PROPERTYKEY& key, String& value)
+static const PROPERTYKEY *GetPropertyKeyFromName(const String& canonicalName)
 {
+	for (const auto& prop : g_HashProperties)
+	{
+		if (canonicalName == prop.pszCanonicalName)
+			return prop.pKey;
+	}
+	return nullptr;
+}
+
+static NTSTATUS CalculateHashValue(HANDLE hFile, BCRYPT_HASH_HANDLE hHash, ULONG hashSize, std::vector<uint8_t>& hash)
+{
+	hash.resize(hashSize);
+	std::vector<uint8_t> buffer(769);
+	NTSTATUS status = 0;
+	while (status == 0)
+	{
+		DWORD dwRead = 0;
+		if (!ReadFile(hFile, buffer.data(), static_cast<DWORD>(buffer.size()), &dwRead, nullptr))
+		{
+			status = 1; // STATUS_UNSUCCESSFUL
+			break;
+		}
+		status = BCryptHashData(hHash, buffer.data(), dwRead, 0);
+		if (buffer.size() != dwRead)
+			break;
+	}
+	if (status == 0)
+	{
+		status = BCryptFinishHash(hHash, hash.data(), static_cast<ULONG>(hash.size()), 0);
+	}
+	return status;
+}
+
+static NTSTATUS CalculateHashValue(HANDLE hFile, const wchar_t *pAlgoId, std::vector<uint8_t>& hash)
+{
+	hash.clear();
+	BCRYPT_ALG_HANDLE hAlg = nullptr;
+	NTSTATUS status = BCryptOpenAlgorithmProvider(&hAlg, pAlgoId, nullptr, 0);
+	if (status == 0)
+	{
+		ULONG bytesWritten = 0;
+		ULONG objectSize = 0;
+		status = BCryptGetProperty(hAlg, BCRYPT_OBJECT_LENGTH, reinterpret_cast<PUCHAR>(&objectSize), sizeof(DWORD), &bytesWritten, 0);
+		if (status == 0)
+		{
+			std::vector<uint8_t> hashObject(objectSize);
+			BCRYPT_HASH_HANDLE hHash = nullptr;
+			status = BCryptCreateHash(hAlg, &hHash, hashObject.data(), static_cast<ULONG>(hashObject.size()), nullptr, 0, 0);
+			if (status == 0)
+			{
+				ULONG hashSize = 0;
+				status = BCryptGetProperty(hAlg, BCRYPT_HASH_LENGTH, reinterpret_cast<PUCHAR>(&hashSize), sizeof(DWORD), &bytesWritten, 0);
+				if (status == 0)
+				{
+					status = CalculateHashValue(hFile, hHash, hashSize, hash);
+				}
+				BCryptDestroyHash(hHash);
+			}
+		}
+		BCryptCloseAlgorithmProvider(hAlg, 0);
+	}
+	return status;
+}
+
+static String CalculateHashValue(const String& path, const PROPERTYKEY& key)
+{
+	int i = GetPropertyIndexFromKey(key);
+	if (i >= 0)
+	{
+		std::vector<uint8_t> hash;
+		HANDLE hFile = CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		if (hFile != INVALID_HANDLE_VALUE)
+		{
+			CalculateHashValue(hFile, g_HashProperties[i].pszDisplayName, hash);
+			CloseHandle(hFile);
+		}
+		String hashString;
+		for (auto c : hash)
+		{
+			hashString += L"0123456789abcdef"[c >> 4];
+			hashString += L"0123456789abcdef"[c & 0xf];
+		}
+		return hashString;
+	}
+	return _T("");
+}
+
+static String GetPropertyString(IPropertyStore* pps, const PROPERTYKEY& key)
+{
+	String value;
 	PROPVARIANT propvarValue = { 0 };
 	HRESULT hr = pps->GetValue(key, &propvarValue);
 	if (SUCCEEDED(hr))
@@ -56,7 +151,7 @@ static bool GetPropertyString(IPropertyStore* pps, const PROPERTYKEY& key, Strin
 		}
 		PropVariantClear(&propvarValue);
 	}
-	return SUCCEEDED(hr);
+	return value;
 }
 
 PropertySystem::PropertySystem(ENUMFILTER filter)
@@ -105,14 +200,9 @@ void PropertySystem::AddProperties(const std::vector<String>& canonicalNames)
 		PROPERTYKEY key{};
 		if (FAILED(PSGetPropertyKeyFromName(name.c_str(), &key)))
 		{
-			for (const auto& info : g_HashProperties)
-			{
-				if (info.pszCanonicalName == name)
-				{
-					key = *info.pKey;
-					break;
-				}
-			}
+			const PROPERTYKEY *pKey = GetPropertyKeyFromName(name);
+			if (pKey)
+				key = *pKey;
 		}
 		m_keys.push_back(key);
 		m_canonicalNames.push_back(name);
@@ -128,19 +218,8 @@ bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>&
 		values.reserve(m_keys.size());
 		for (const auto& key : m_keys)
 		{
-			bool found = false;
-			String value;
-			for (const auto& info : g_HashProperties)
-			{
-				if (*info.pKey == key)
-				{
-					value = CalculateHashValue(path, key);
-					found = true;
-					break;
-				}
-			}
-			if (!found)
-				GetPropertyString(pps, key, value);
+			String value = GetPropertyIndexFromKey(key) >= 0 ?
+				CalculateHashValue(path, key) : GetPropertyString(pps, key);
 			values.push_back(value);
 		}
 		pps->Release();
@@ -149,7 +228,7 @@ bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>&
 	else
 	{
 		for (const auto& key : m_keys)
-			values.push_back(_T("error"));
+			values.push_back(_T("Error"));
 	}
 	return false;
 }

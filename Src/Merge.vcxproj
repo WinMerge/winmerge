@@ -308,6 +308,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -362,6 +363,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -517,6 +519,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -565,6 +568,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -614,6 +618,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -661,6 +666,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
