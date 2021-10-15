@@ -73,11 +73,11 @@ namespace
 	TEST_F(PropertySystemTest, GetFormattedValues)
 	{
 		PropertySystem ps({ _T("System.MIMEType"), _T("System.KindText")});
-		std::vector<String> values;
+		PropertyValues values;
 		String path = paths::GetLongPath(paths::ConcatPath(env::GetProgPath(), _T("..\\..\\..\\Src\\res\\splash.jpg")));
-		ASSERT_TRUE(ps.GetFormattedValues(path, values));
-		ASSERT_STREQ(_T("image/jpeg"), values[0].c_str());
-		ASSERT_STREQ(_T("Picture"), values[1].c_str());
+		ASSERT_TRUE(ps.GetPropertyValues(path, values));
+		ASSERT_STREQ(_T("image/jpeg"), ps.FormatPropertyValue(values, 0).c_str());
+		ASSERT_STREQ(_T("Picture"), ps.FormatPropertyValue(values, 1).c_str());
 	}
 
 }

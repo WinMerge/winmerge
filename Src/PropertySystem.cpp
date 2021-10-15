@@ -60,7 +60,7 @@ static const PROPERTYKEY *GetPropertyKeyFromName(const String& canonicalName)
 static NTSTATUS CalculateHashValue(HANDLE hFile, BCRYPT_HASH_HANDLE hHash, ULONG hashSize, std::vector<uint8_t>& hash)
 {
 	hash.resize(hashSize);
-	std::vector<uint8_t> buffer(769);
+	std::vector<uint8_t> buffer(8196);
 	NTSTATUS status = 0;
 	while (status == 0)
 	{
@@ -68,6 +68,7 @@ static NTSTATUS CalculateHashValue(HANDLE hFile, BCRYPT_HASH_HANDLE hHash, ULONG
 		if (!ReadFile(hFile, buffer.data(), static_cast<DWORD>(buffer.size()), &dwRead, nullptr))
 		{
 			status = 1; // STATUS_UNSUCCESSFUL
+			hash.clear();
 			break;
 		}
 		status = BCryptHashData(hHash, buffer.data(), dwRead, 0);
@@ -112,7 +113,7 @@ static NTSTATUS CalculateHashValue(HANDLE hFile, const wchar_t *pAlgoId, std::ve
 	return status;
 }
 
-static String CalculateHashValue(const String& path, const PROPERTYKEY& key)
+static bool CalculateHashValue(const String& path, const PROPERTYKEY& key, PROPVARIANT& value)
 {
 	int i = GetPropertyIndexFromKey(key);
 	if (i >= 0)
@@ -130,28 +131,46 @@ static String CalculateHashValue(const String& path, const PROPERTYKEY& key)
 			hashString += L"0123456789abcdef"[c >> 4];
 			hashString += L"0123456789abcdef"[c & 0xf];
 		}
-		return hashString;
+		InitPropVariantFromString(hashString.c_str(), &value);
+		return true;
 	}
-	return _T("");
+	return false;
 }
 
-static String GetPropertyString(IPropertyStore* pps, const PROPERTYKEY& key)
+PropertyValues::PropertyValues()
 {
-	String value;
-	PROPVARIANT propvarValue = { 0 };
-	HRESULT hr = pps->GetValue(key, &propvarValue);
-	if (SUCCEEDED(hr))
+}
+
+PropertyValues::~PropertyValues()
+{
+	for (auto& value : m_values)
+		PropVariantClear(&value);
+}
+
+int PropertyValues::CompareValue(const PropertyValues& values1, const PropertyValues& values2, int index)
+{
+	if (index < 0)
+		return 0;
+	if (index >= values1.m_values.size())
+		return -1;
+	if (index >= values2.m_values.size())
+		return 1;
+	return PropVariantCompare(values1.m_values[index], values2.m_values[index]);
+}
+
+int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2)
+{
+	if (values1.m_values.size() < values2.m_values.size())
+		return -1;
+	if (values1.m_values.size() > values2.m_values.size())
+		return 1;
+	for (size_t i = 0; i < values1.m_values.size(); ++i)
 	{
-		PWSTR pszDisplayValue = NULL;
-		hr = PSFormatForDisplayAlloc(key, propvarValue, PDFF_DEFAULT, &pszDisplayValue);
-		if (SUCCEEDED(hr))
-		{
-			value = pszDisplayValue;
-			CoTaskMemFree(pszDisplayValue);
-		}
-		PropVariantClear(&propvarValue);
+		int result = PropVariantCompare(values1.m_values[i], values2.m_values[i]);
+		if (result != 0)
+			return result;
 	}
-	return value;
+	return 0;
 }
 
 PropertySystem::PropertySystem(ENUMFILTER filter)
@@ -209,18 +228,21 @@ void PropertySystem::AddProperties(const std::vector<String>& canonicalNames)
 	}
 }
 
-bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>& values)
+bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& values)
 {
 	IPropertyStore* pps = nullptr;
-	values.clear();
+	values.m_values.clear();
 	if (SUCCEEDED(SHGetPropertyStoreFromParsingName(path.c_str(), nullptr, GPS_DEFAULT, IID_PPV_ARGS(&pps))))
 	{
-		values.reserve(m_keys.size());
+		values.m_values.reserve(m_keys.size());
 		for (const auto& key : m_keys)
 		{
-			String value = GetPropertyIndexFromKey(key) >= 0 ?
-				CalculateHashValue(path, key) : GetPropertyString(pps, key);
-			values.push_back(value);
+			PROPVARIANT value{};
+			if (GetPropertyIndexFromKey(key) >= 0)
+				CalculateHashValue(path, key, value);
+			else
+				pps->GetValue(key, &value);
+			values.m_values.push_back(value);
 		}
 		pps->Release();
 		return true;
@@ -228,9 +250,28 @@ bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>&
 	else
 	{
 		for (const auto& key : m_keys)
-			values.push_back(_T("Error"));
+		{
+			PROPVARIANT value{};
+			InitPropVariantFromString(_T("Error"), &value);
+			values.m_values.push_back(value);
+		}
 	}
 	return false;
+}
+
+String PropertySystem::FormatPropertyValue(const PropertyValues& values, int index)
+{
+	if (values.m_values[index].vt == VT_LPWSTR)
+		return values.m_values[index].pwszVal;
+	String value;
+	PWSTR pszDisplayValue = NULL;
+	HRESULT hr = PSFormatForDisplayAlloc(m_keys[index], values.m_values[index], PDFF_DEFAULT, &pszDisplayValue);
+	if (SUCCEEDED(hr))
+	{
+		value = pszDisplayValue;
+		CoTaskMemFree(pszDisplayValue);
+	}
+	return value;
 }
 
 bool PropertySystem::GetDisplayNames(std::vector<String>& names)

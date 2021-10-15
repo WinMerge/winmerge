@@ -700,11 +700,11 @@ static String ColPluginPipelineGet(const CDiffContext* pCtxt, const void *p, int
 		return pInfoPrediffer ? pInfoPrediffer->GetPluginPipeline() : _T("");
 }
 
-static String ColPropertyGet(const CDiffContext *, const void *p, int opt)
+static String ColPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
-	std::vector<String>* pprops = dfi.m_pProperties.get();
-	return (pprops != nullptr && opt < pprops->size()) ? (*pprops)[opt] : _T("");
+	PropertyValues* pprops = dfi.m_pProperties.get();
+	return (pprops != nullptr && opt < pprops->m_values.size()) ? pCtxt->m_pPropertySystem->FormatPropertyValue(*pprops, opt) : _T("");
 }
 
 /**
@@ -899,6 +899,22 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q, i
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
 	return FileTextEncoding::Collate(r.encoding, s.encoding);
 }
+
+/**
+ * @brief Compare property values
+ * @param [in] p Pointer to first structure to compare.
+ * @param [in] q Pointer to second structure to compare.
+ * @return Compare result.
+ */
+static int ColPropertySort(const CDiffContext *, const void *p, const void *q, int opt)
+{
+	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
+	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
+	if (!r.m_pProperties || !s.m_pProperties)
+		return 0;
+	return PropertyValues::CompareValue(*r.m_pProperties, *s.m_pProperties, opt);
+}
+
 /* @} */
 
 #undef FIELD_OFFSET	// incorrect for Win32 as defined in WinNT.h
@@ -1049,6 +1065,7 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
 			col.opt = static_cast<int>(i);
 			col.getfnc = ColPropertyGet;
+			col.sortfnc = ColPropertySort;
 			++m_numcols;
 			++pane;
 		}

@@ -477,18 +477,18 @@ exitPrepAndCompare:
 			auto& properties = di.diffFileInfo[i].m_pProperties;
 			if (di.diffcode.exists(i))
 			{
-				properties.reset(new std::vector<String>());
-				m_pCtxt->m_pPropertySystem->GetFormattedValues(tFiles[i], *properties);
+				properties.reset(new PropertyValues());
+				m_pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
 			}
 			else
 			{
-				properties.reset(new std::vector<String>(numprops));
+				properties.reset(new PropertyValues());
+				properties->m_values.resize(numprops);
 			}
 		}
 		for (int i = 1; i < nDirs; ++i)
 		{
-			if (!std::equal(di.diffFileInfo[0].m_pProperties->begin(), di.diffFileInfo[0].m_pProperties->end(),
-				di.diffFileInfo[i].m_pProperties->begin()))
+			if (PropertyValues::CompareValues(*di.diffFileInfo[0].m_pProperties, *di.diffFileInfo[i].m_pProperties) != 0)
 				code |= DIFFCODE::DIFFPROP;
 		}
 	}
