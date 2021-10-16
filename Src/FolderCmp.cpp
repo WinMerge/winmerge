@@ -474,7 +474,7 @@ exitPrepAndCompare:
 		m_pCtxt->GetComparePaths(di, tFiles);
 		for (int i = 0; i < nDirs; ++i)
 		{
-			auto& properties = di.diffFileInfo[i].m_pProperties;
+			auto& properties = di.diffFileInfo[i].m_pAdditionalProperties;
 			if (di.diffcode.exists(i))
 			{
 				properties.reset(new PropertyValues());
@@ -488,7 +488,7 @@ exitPrepAndCompare:
 		}
 		for (int i = 1; i < nDirs; ++i)
 		{
-			if (PropertyValues::CompareValues(*di.diffFileInfo[0].m_pProperties, *di.diffFileInfo[i].m_pProperties) != 0)
+			if (PropertyValues::CompareAllValues(*di.diffFileInfo[0].m_pAdditionalProperties, *di.diffFileInfo[i].m_pAdditionalProperties) != 0)
 				code |= DIFFCODE::DIFFPROP;
 		}
 	}

@@ -50,12 +50,14 @@ public:
 	void AddDefColumn(const String & name, int log, int phy=-1)
 		{ column c(name, _T(""), log, phy); m_defCols.push_back(c); }
 	const ColumnArray & GetColumns() const { return m_cols; }
+	bool GetShowAdditionalProperties() const { return m_showAdditionalProperties; }
 
 // Dialog Data
 	//{{AFX_DATA(CDirColsDlg)
 	enum { IDD = IDD_DIRCOLS };
 	CListCtrl m_listColumns;
 	bool m_bReset;
+	bool m_showAdditionalProperties;
 	//}}AFX_DATA
 
 
@@ -88,6 +90,7 @@ private:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUp();
 	afx_msg void OnDown();
+	afx_msg void OnAdditionalProperties();
 	virtual void OnOK() override;
 	afx_msg void OnDefaults();
 	//}}AFX_MSG

@@ -2587,6 +2587,15 @@ msgstr "Program rozpakowujący"
 msgid "Prediffer"
 msgstr "Różnicowanie wstępne"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Nie można porównać plików"
 

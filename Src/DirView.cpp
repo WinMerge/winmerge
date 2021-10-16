@@ -37,6 +37,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
 #include "DirColsDlg.h"
+#include "DirAdditionalPropsDlg.h"
 #include "DirSelectFilesDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
@@ -403,7 +404,7 @@ void CDirView::OnInitialUpdate()
 	CDirDoc* pDoc = GetDocument();
 	pDoc->SetDirView(this);
 
-	String properties = GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES);
+	auto properties = strutils::split<std::vector<String>>(GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES), ' ');
 	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, properties));
 
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
@@ -4390,40 +4391,58 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
  */
 void CDirView::OnEditColumns()
 {
-	CDirColsDlg dlg;
-	// List all the currently displayed columns
-	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
+	bool bReset = false;
+	CDirColsDlg::ColumnArray cols;
+
+	for (;;)
 	{
-		int l = m_pColItems->ColPhysToLog(col);
-		dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
-	}
-	// Now add all the columns not currently displayed
-	int l=0;
-	for (l=0; l<m_pColItems->GetColCount(); ++l)
-	{
-		if (m_pColItems->ColLogToPhys(l)==-1)
+		CDirColsDlg dlg;
+
+		// List all the currently displayed columns
+		for (int col = 0; col < GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 		{
-			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
+			int l = m_pColItems->ColPhysToLog(col);
+			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
 		}
-	}
+		// Now add all the columns not currently displayed
+		int l = 0;
+		for (l = 0; l < m_pColItems->GetColCount(); ++l)
+		{
+			if (m_pColItems->ColLogToPhys(l) == -1)
+			{
+				dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
+			}
+		}
 
-	// Add default order of columns for resetting to defaults
-	for (l = 0; l < m_pColItems->GetColCount(); ++l)
-	{
-		int phy = m_pColItems->GetColDefaultOrder(l);
-		dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
-	}
+		// Add default order of columns for resetting to defaults
+		for (l = 0; l < m_pColItems->GetColCount(); ++l)
+		{
+			int phy = m_pColItems->GetColDefaultOrder(l);
+			dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
+		}
 
-	if (dlg.DoModal() != IDOK)
-		return;
+		if (dlg.DoModal() != IDOK)
+			return;
+
+		if (!dlg.GetShowAdditionalProperties())
+		{
+			bReset = dlg.m_bReset;
+			cols = dlg.GetColumns();
+			break;
+		}
+		
+		auto properties = strutils::split<std::vector<String>>(GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES), ' ');
+		CDirAdditionalPropsDlg dlgAdditionalProps(properties);
+		dlgAdditionalProps.DoModal();
+	} 
+
 
 	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
 	GetOptionsMgr()->SaveOption(keyname,
-		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
+		(bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
 		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
 
 	// Reset our data to reflect the new data from the dialog
-	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	m_pColItems->ClearColumnOrders();
 	const int sortColumn = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 	std::vector<int> colorder(m_pColItems->GetColCount(), -1);

@@ -3434,6 +3434,15 @@ msgstr "Desempaquetador"
 msgid "Prediffer"
 msgstr "Precomparación"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Non se puido comparar os arquivos"

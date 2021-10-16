@@ -3375,6 +3375,15 @@ msgstr "Розпакувальник"
 msgid "Prediffer"
 msgstr "Нехтувач"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Неможливо порівняти файли"

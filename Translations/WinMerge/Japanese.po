@@ -1311,7 +1311,7 @@ msgid "Move &Down"
 msgstr "下へ(&D)"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "追加プロパティ"
 
 msgid "Select Plugin"
 msgstr "プラグインの選択"
@@ -2823,6 +2823,15 @@ msgstr "展開プラグイン"
 
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
+
+msgid "Left"
+msgstr "左側"
+
+msgid "Middle"
+msgstr "中央"
+
+msgid "Right"
+msgstr "右側"
 
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"

@@ -3399,6 +3399,15 @@ msgstr " باز کننده بسته "
 msgid "Prediffer"
 msgstr " پيش فرق گذار "
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr " ناتوان از همسنجي پرونده هاست"

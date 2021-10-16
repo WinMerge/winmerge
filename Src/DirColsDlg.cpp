@@ -24,7 +24,7 @@
  */
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CDirColsDlg::IDD, pParent)
-	, m_bReset(false)
+	, m_showAdditionalProperties(false)
 {
 }
 
@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(CDirColsDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CDirColsDlg)
 	ON_BN_CLICKED(IDC_UP, OnUp)
 	ON_BN_CLICKED(IDC_DOWN, OnDown)
+	ON_BN_CLICKED(IDC_COLDLG_ADDITIONAL_PROPERTIES, OnAdditionalProperties)
 	ON_BN_CLICKED(IDC_COLDLG_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_COLDLG_LIST, OnLvnItemchangedColdlgList)
@@ -206,6 +207,15 @@ void CDirColsDlg::OnDown()
 }
 
 /**
+ * @brief Close this dialog and show Extended Properties dialog
+ */
+void CDirColsDlg::OnAdditionalProperties() 
+{
+	m_showAdditionalProperties = true;
+	OnOK();
+}
+
+/**
  * @brief Move hidden columns as last items in the list.
  */
 void CDirColsDlg::SanitizeOrder()
@@ -256,7 +266,6 @@ void CDirColsDlg::OnOK()
 void CDirColsDlg::OnDefaults()
 {
 	m_listColumns.DeleteAllItems();
-	m_bReset = true;
 	LoadDefLists();
 }
 

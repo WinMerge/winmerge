@@ -30,7 +30,8 @@ public:
 
 // Construction
 public:
-	explicit CDirAdditionalPropsDlg(CWnd* pParent = nullptr);   // standard constructor
+	explicit CDirAdditionalPropsDlg(const std::vector<String>& canonicalNames, CWnd* pParent = nullptr);   // standard constructor
+	const std::vector<String>& GetSelectedCanonicalNames() const { return m_canonicalNames; }
 
 // Dialog Data
 	//{{AFX_DATA(CDirAdditionalPropsDlg)
@@ -51,6 +52,7 @@ protected:
 
 // Implementation data
 private:
+	std::vector<String> m_canonicalNames;
 	// Generated message map functions
 	//{{AFX_MSG(CDirAdditionalPropsDlg)
 	virtual BOOL OnInitDialog() override;

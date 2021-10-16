@@ -3376,6 +3376,15 @@ msgstr "Raspakiravač"
 msgid "Prediffer"
 msgstr "Prediffer"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Ne mogu usporediti datoteke"

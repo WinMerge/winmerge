@@ -8,7 +8,6 @@
 #include "UnicodeString.h"
 #include <vector>
 #include <memory>
-#include <wtypes.h>
 #include <combaseapi.h>
 
 class PropertyValues
@@ -16,8 +15,8 @@ class PropertyValues
 public:
 	PropertyValues();
 	~PropertyValues();
-	static int CompareValue(const PropertyValues& values1, const PropertyValues& values2, int index);
-	static int CompareValues(const PropertyValues& values1, const PropertyValues& values2);
+	static int CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index);
+	static int CompareAllValues(const PropertyValues& values1, const PropertyValues& values2);
 	std::vector<PROPVARIANT> m_values;
 };
 

@@ -2834,6 +2834,15 @@ msgstr "解包器"
 msgid "Prediffer"
 msgstr "预处理器"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "无法比较文件"
 

@@ -3320,6 +3320,15 @@ msgstr ""
 msgid "Prediffer"
 msgstr ""
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "No es pot comparar els fitxers"

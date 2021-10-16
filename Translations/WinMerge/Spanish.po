@@ -2825,6 +2825,15 @@ msgstr "Descompactador"
 msgid "Prediffer"
 msgstr "Precomparación"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "No se pueden comparar los archivos"
 

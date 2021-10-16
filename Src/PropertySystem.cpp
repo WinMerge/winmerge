@@ -147,10 +147,8 @@ PropertyValues::~PropertyValues()
 		PropVariantClear(&value);
 }
 
-int PropertyValues::CompareValue(const PropertyValues& values1, const PropertyValues& values2, int index)
+int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index)
 {
-	if (index < 0)
-		return 0;
 	if (index >= values1.m_values.size())
 		return -1;
 	if (index >= values2.m_values.size())
@@ -158,7 +156,7 @@ int PropertyValues::CompareValue(const PropertyValues& values1, const PropertyVa
 	return PropVariantCompare(values1.m_values[index], values2.m_values[index]);
 }
 
-int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2)
+int PropertyValues::CompareAllValues(const PropertyValues& values1, const PropertyValues& values2)
 {
 	if (values1.m_values.size() < values2.m_values.size())
 		return -1;

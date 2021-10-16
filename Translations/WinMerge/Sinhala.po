@@ -3368,6 +3368,15 @@ msgstr "Unpacker"
 msgid "Prediffer"
 msgstr "Prediffer"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "ලිපිගොනු සංසන්දනය කිරීමට නොහැකිය"

@@ -703,8 +703,34 @@ static String ColPluginPipelineGet(const CDiffContext* pCtxt, const void *p, int
 static String ColPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
-	PropertyValues* pprops = dfi.m_pProperties.get();
+	PropertyValues* pprops = dfi.m_pAdditionalProperties.get();
 	return (pprops != nullptr && opt < pprops->m_values.size()) ? pCtxt->m_pPropertySystem->FormatPropertyValue(*pprops, opt) : _T("");
+}
+
+static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
+{
+	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
+	bool equal = true;
+	PropertyValues* pFirstProps = di.diffFileInfo[0].m_pAdditionalProperties.get();
+	for (int i = 1; i < pCtxt->GetCompareDirs(); ++i)
+	{
+		PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
+		if (pFirstProps && pprops)
+		{
+			if (PropertyValues::CompareValues(*pFirstProps, *pprops, opt) != 0)
+				equal = false;
+		}
+	}
+	if (equal)
+		return pFirstProps ? pCtxt->m_pPropertySystem->FormatPropertyValue(*pFirstProps, opt) : _T("");
+
+	std::vector<String> values;
+	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
+	{
+		PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
+		values.push_back(pprops ? pCtxt->m_pPropertySystem->FormatPropertyValue(*pprops, opt) : _T(""));
+	}
+	return strutils::join(values.begin(), values.end(), _T("|"));
 }
 
 /**
@@ -910,9 +936,31 @@ static int ColPropertySort(const CDiffContext *, const void *p, const void *q, i
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
-	if (!r.m_pProperties || !s.m_pProperties)
+	if (!r.m_pAdditionalProperties || !s.m_pAdditionalProperties)
 		return 0;
-	return PropertyValues::CompareValue(*r.m_pProperties, *s.m_pProperties, opt);
+	return PropertyValues::CompareValues(*r.m_pAdditionalProperties, *s.m_pAdditionalProperties, opt);
+}
+
+/**
+ * @brief Compare property values
+ * @param [in] p Pointer to first structure to compare.
+ * @param [in] q Pointer to second structure to compare.
+ * @return Compare result.
+ */
+static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const void *q, int opt)
+{
+	const DIFFITEM &r = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
+	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
+	{
+		if (r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[i].m_pAdditionalProperties)
+		{
+			int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[i].m_pAdditionalProperties, opt);
+			if (result != 0)
+				return result;
+		}
+	}
+	return 0;
 }
 
 /* @} */
@@ -1011,9 +1059,16 @@ String DirColInfo::GetDisplayName() const
 	PropertySystem propsys({ regName + 1 });
 	std::vector<String> names;
 	propsys.GetDisplayNames(names);
-	String name = regName[0] == 'L' ? _("Left") : (regName[0] == 'R' ? _("Right") : _("Middle"));
-	name += _T(" ");
-	name += names.empty() ? _T("") : names[0];
+	String name = names[0];
+	if (regName[0] != 'A')
+	{
+		name += _T(" (");
+		name +=
+			(regName[0] == 'L') ? _("Left") :
+			(regName[0] == 'R') ? _("Right") :
+			(regName[0] == 'M') ? _("Middle") : _("");
+		name += ')';
+	}
 	return name;
 }
 
@@ -1022,25 +1077,6 @@ String DirColInfo::GetDescription() const
 	if (idDesc)
 		return tr(idDesc);
 	return GetDisplayName();
-}
-
-static std::vector<String> split(const String& propertyNames)
-{
-	std::basic_istringstream<TCHAR> ss(propertyNames);
-	std::vector<String> properties;
-	while (!ss.eof())
-	{
-		String name;
-		ss >> name;
-		if (!name.empty())
-			properties.push_back(name);
-	}
-	return properties;
-}
-
-DirViewColItems::DirViewColItems(int nDirs, const String& propertyNames)
-	: DirViewColItems(nDirs, split(propertyNames))
-{
 }
 
 DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
@@ -1056,18 +1092,27 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 	for (size_t i = 0; i < propertyNames.size(); ++i)
 	{
 		int pane = 0;
-		for (auto c : (nDirs < 3) ? String(_T("LR")) : String(_T("LMR")))
+		for (auto c : (nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
 		{
 			m_cols.emplace_back(DirColInfo{});
 			m_strpool.push_back(c + propertyNames[i]);
 			auto& col = m_cols.back();
 			col.regName = m_strpool.back().c_str();
-			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
 			col.opt = static_cast<int>(i);
-			col.getfnc = ColPropertyGet;
-			col.sortfnc = ColPropertySort;
+			if (c!= 'A')
+			{
+				col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
+				col.getfnc = ColPropertyGet;
+				col.sortfnc = ColPropertySort;
+				++pane;
+			}
+			else
+			{
+				col.offset = 0;
+				col.getfnc = ColAllPropertyGet;
+				col.sortfnc = ColAllPropertySort;
+			}
 			++m_numcols;
-			++pane;
 		}
 	}
 }

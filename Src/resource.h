@@ -291,6 +291,7 @@
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
 #define IDC_COLDLG_DEFAULTS             1126
+#define IDC_COLDLG_ADDITIONAL_PROPERTIES 1127
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130
@@ -1220,6 +1221,9 @@
 #define IDS_COLHDR_BINARY               41816
 #define IDS_COLHDR_UNPACKER             41817
 #define IDS_COLHDR_PREDIFFER            41818
+#define IDS_COLHDR_LEFT                 41819
+#define IDS_COLHDR_MIDDLE               41820
+#define IDS_COLHDR_RIGHT                41821
 #define IDS_CANT_COMPARE_FILES          41831
 #define IDS_ABORTED_ITEM                41832
 #define IDS_FILE_SKIPPED                41833
