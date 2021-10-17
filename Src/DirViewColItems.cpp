@@ -1079,20 +1079,20 @@ String DirColInfo::GetDescription() const
 	return GetDisplayName();
 }
 
-DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
+DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& additionalPropertyNames) :
 	m_nDirs(nDirs), m_dispcols(-1)
 {
 	m_numcols = static_cast<int>(nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
 	DirColInfo *pcol = nDirs < 3 ? f_cols : f_cols3;
 	for (size_t i = 0; i < m_numcols; ++i)
 		m_cols.push_back(pcol[i]);
-	PropertySystem ps(propertyNames);
+	PropertySystem ps(additionalPropertyNames);
 	for (const auto& propertyName : ps.GetCanonicalNames())
-		AddPropertyName(propertyName);
+		AddAdditionalPropertyName(propertyName);
 }
 
 void
-DirViewColItems::AddPropertyName(const String& propertyName)
+DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 {
 	int pane = 0;
 	for (auto c : (m_nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
@@ -1101,7 +1101,7 @@ DirViewColItems::AddPropertyName(const String& propertyName)
 		m_strpool.push_back(c + propertyName);
 		auto& col = m_cols.back();
 		col.regName = m_strpool.back().c_str();
-		col.opt = static_cast<int>(m_propertyNames.size());
+		col.opt = static_cast<int>(m_additionalPropertyNames.size());
 		col.physicalIndex = -1;
 		if (c!= 'A')
 		{
@@ -1120,11 +1120,11 @@ DirViewColItems::AddPropertyName(const String& propertyName)
 		m_colorder.push_back(-1);
 		m_invcolorder.push_back(-1);
 	}
-	m_propertyNames.push_back(propertyName);
+	m_additionalPropertyNames.push_back(propertyName);
 }
 
 void
-DirViewColItems::RemovePropertyName(const String& propertyName)
+DirViewColItems::RemoveAdditionalPropertyName(const String& propertyName)
 {
 	int nfixedcols = static_cast<int>(m_nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
 	std::vector<int> deletedPhysicalIndexes;
@@ -1180,27 +1180,27 @@ DirViewColItems::RemovePropertyName(const String& propertyName)
 		if (deletedOpt < m_cols[i].opt)
 			--m_cols[i].opt;
 	}
-	for (size_t i = 0; i < m_propertyNames.size(); ++i)
+	for (size_t i = 0; i < m_additionalPropertyNames.size(); ++i)
 	{
-		if (m_propertyNames[i] == propertyName)
-			m_propertyNames.erase(m_propertyNames.begin() + i);
+		if (m_additionalPropertyNames[i] == propertyName)
+			m_additionalPropertyNames.erase(m_additionalPropertyNames.begin() + i);
 	}
 }
 
 void
-DirViewColItems::SetPropertyNames(const std::vector<String>& propertyNames)
+DirViewColItems::SetAdditionalPropertyNames(const std::vector<String>& propertyNames)
 {
-	for (int i = static_cast<int>(m_propertyNames.size()) - 1; i >= 0; i--)
+	for (int i = static_cast<int>(m_additionalPropertyNames.size()) - 1; i >= 0; i--)
 	{
-		auto it = std::find(propertyNames.begin(), propertyNames.end(), m_propertyNames[i]);
+		auto it = std::find(propertyNames.begin(), propertyNames.end(), m_additionalPropertyNames[i]);
 		if (it == propertyNames.end())
-			RemovePropertyName(m_propertyNames[i]);
+			RemoveAdditionalPropertyName(m_additionalPropertyNames[i]);
 	}
 	for (const auto& propertyName : propertyNames)
 	{
-		auto it = std::find(m_propertyNames.begin(), m_propertyNames.end(), propertyName);
-		if (it == m_propertyNames.end())
-			AddPropertyName(propertyName);
+		auto it = std::find(m_additionalPropertyNames.begin(), m_additionalPropertyNames.end(), propertyName);
+		if (it == m_additionalPropertyNames.end())
+			AddAdditionalPropertyName(propertyName);
 	}
 }
 
@@ -1356,10 +1356,9 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 		assert(false); // fix caller, should not ask for nonexistent columns
 		return _T("???");
 	}
-	String s;
 	ColGetFncPtrType fnc = pColInfo->getfnc;
 	size_t offset = pColInfo->offset;
-	s = (*fnc)(pCtxt, reinterpret_cast<const char*>(&di) + offset, pColInfo->opt);
+	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset, pColInfo->opt);
 
 	// Add '*' to newer time field
 	if (IsColLmTime(col) || IsColMmTime(col) || IsColRmTime(col))

@@ -4397,18 +4397,17 @@ void CDirView::OnEditColumns()
 	for (;;)
 	{
 		CDirColsDlg dlg;
-
 		// List all the currently displayed columns
-		for (int col = 0; col < GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
+		for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 		{
 			int l = m_pColItems->ColPhysToLog(col);
 			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
 		}
 		// Now add all the columns not currently displayed
-		int l = 0;
-		for (l = 0; l < m_pColItems->GetColCount(); ++l)
+		int l=0;
+		for (l=0; l<m_pColItems->GetColCount(); ++l)
 		{
-			if (m_pColItems->ColLogToPhys(l) == -1)
+			if (m_pColItems->ColLogToPhys(l)==-1)
 			{
 				dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
 			}
@@ -4431,20 +4430,19 @@ void CDirView::OnEditColumns()
 			break;
 		}
 		
-		CDirAdditionalPropertiesDlg dlgAdditionalProperties(m_pColItems->GetPropertyNames());
+		CDirAdditionalPropertiesDlg dlgAdditionalProperties(m_pColItems->GetAdditionalPropertyNames());
 		if (dlgAdditionalProperties.DoModal() == IDOK)
 		{
 			auto& selectedCanonicalNames = dlgAdditionalProperties.GetSelectedCanonicalNames();
 			GetOptionsMgr()->SaveOption(OPT_ADDITIONAL_PROPERTIES,
 				strutils::join(selectedCanonicalNames.begin(), selectedCanonicalNames.end(), _T(" ")));
-			m_pColItems->SetPropertyNames(selectedCanonicalNames);
-			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetPropertyNames()));
+			m_pColItems->SetAdditionalPropertyNames(selectedCanonicalNames);
+			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetAdditionalPropertyNames()));
 			GetDiffContext().ClearAllAdditionalProperties();
 			auto* pDoc = GetDocument();
 			ReloadColumns();
 		}
 	} 
-
 
 	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
 	GetOptionsMgr()->SaveOption(keyname,

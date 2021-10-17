@@ -52,7 +52,7 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
-	explicit DirViewColItems(int nDirs, const std::vector<String>& propertyNames);
+	explicit DirViewColItems(int nDirs, const std::vector<String>& additionalPropertyNames);
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
 	const DirColInfo * GetDirColInfo(int col) const;
@@ -80,8 +80,8 @@ public:
 	String ResetColumnWidths(int defcolwidth);
 	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
-	const std::vector<String>& GetPropertyNames() const { return m_propertyNames; }
-	void SetPropertyNames(const std::vector<String>& propertyNames);
+	const std::vector<String>& GetAdditionalPropertyNames() const { return m_additionalPropertyNames; }
+	void SetAdditionalPropertyNames(const std::vector<String>& propertyNames);
 
 	/// Update all column widths (from registry to screen)
 	// Necessary when user reorders columns
@@ -120,8 +120,8 @@ public:
 
 
 private:
-	void AddPropertyName(const String& propertyName);
-	void RemovePropertyName(const String& propertyName);
+	void AddAdditionalPropertyName(const String& propertyName);
+	void RemoveAdditionalPropertyName(const String& propertyName);
 
 	int m_nDirs;
 	int m_numcols;
@@ -129,6 +129,6 @@ private:
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	std::vector<DirColInfo> m_cols;
-	std::vector<String> m_propertyNames;
+	std::vector<String> m_additionalPropertyNames;
 	std::list<String> m_strpool;
 };
