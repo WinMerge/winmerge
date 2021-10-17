@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-07-11 12:59+0900\n"
+"PO-Revision-Date: 2021-10-17 19:51+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1310,8 +1310,17 @@ msgstr "上へ(&U)"
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
+msgid "&Additional Properties"
+msgstr "追加プロパティ(&A)"
+
 msgid "Additional Properties"
 msgstr "追加プロパティ"
+
+msgid "&>>"
+msgstr "&>>"
+
+msgid "&<<"
+msgstr "&<<"
 
 msgid "Select Plugin"
 msgstr "プラグインの選択"
@@ -2832,6 +2841,66 @@ msgstr "中央"
 
 msgid "Right"
 msgstr "右側"
+
+msgid "Audio"
+msgstr "音声"
+
+msgid "Calendar"
+msgstr "予定表"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Contact"
+msgstr "連絡先"
+
+msgid "Devices"
+msgstr "デバイス"
+
+msgid "Document"
+msgstr "ドキュメント"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Journal"
+msgstr "ジャーナル"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Media"
+msgstr "メディア"
+
+msgid "Music"
+msgstr "音楽"
+
+msgid "Note"
+msgstr "ノート"
+
+msgid "Photo"
+msgstr "写真"
+
+msgid "RecordedTV"
+msgstr "TV録画"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Security"
+msgstr "セキュリティ"
+
+msgid "Software"
+msgstr "ソフトウェア"
+
+msgid "Task"
+msgstr "タスク"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Hash"
+msgstr "ハッシュ"
 
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"

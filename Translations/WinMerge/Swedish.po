@@ -1306,7 +1306,16 @@ msgstr "Flytta upp"
 msgid "Move &Down"
 msgstr "Flytta ned"
 
+msgid "&Additional Properties"
+msgstr ""
+
 msgid "Additional Properties"
+msgstr ""
+
+msgid "&>>"
+msgstr ""
+
+msgid "&<<"
 msgstr ""
 
 msgid "Select Plugin"
@@ -2831,6 +2840,66 @@ msgid "Middle"
 msgstr ""
 
 msgid "Right"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
 msgstr ""
 
 msgid "Unable to compare files"

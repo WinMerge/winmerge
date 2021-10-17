@@ -37,7 +37,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
 #include "DirColsDlg.h"
-#include "DirAdditionalPropsDlg.h"
+#include "DirAdditionalPropertiesDlg.h"
 #include "DirSelectFilesDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
@@ -4431,9 +4431,19 @@ void CDirView::OnEditColumns()
 			break;
 		}
 		
-		auto properties = strutils::split<std::vector<String>>(GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES), ' ');
-		CDirAdditionalPropsDlg dlgAdditionalProps(properties);
-		dlgAdditionalProps.DoModal();
+		CDirAdditionalPropertiesDlg dlgAdditionalProperties(m_pColItems->GetPropertyNames());
+		if (dlgAdditionalProperties.DoModal() == IDOK)
+		{
+			auto& selectedCanonicalNames = dlgAdditionalProperties.GetSelectedCanonicalNames();
+			GetOptionsMgr()->SaveOption(OPT_ADDITIONAL_PROPERTIES,
+				strutils::join(selectedCanonicalNames.begin(), selectedCanonicalNames.end(), _T(" ")));
+			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(selectedCanonicalNames));
+			auto* pDoc = GetDocument();
+			m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, selectedCanonicalNames));
+			m_pColItems->LoadColumnOrders(
+				GetOptionsMgr()->GetString(pDoc->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
+			ReloadColumns();
+		}
 	} 
 
 

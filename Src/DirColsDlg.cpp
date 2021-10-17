@@ -74,6 +74,9 @@ BOOL CDirColsDlg::OnInitDialog()
 	CTrDialog::OnInitDialog();
 	InitList();
 	LoadLists();
+#ifndef _WIN64
+	EnableDlgItem(IDC_COLDLG_ADDITIONAL_PROPERTIES, false);
+#endif
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

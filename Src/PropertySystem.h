@@ -35,7 +35,7 @@ public:
 	explicit PropertySystem(ENUMFILTER filter);
 	explicit PropertySystem(const std::vector<String>& canonicalNames);
 	bool GetPropertyValues(const String& path, PropertyValues& values);
-	String FormatPropertyValue(const PropertyValues& values, int index);
+	String FormatPropertyValue(const PropertyValues& values, unsigned index);
 	bool GetDisplayNames(std::vector<String>& names);
 	const std::vector<String>& GetCanonicalNames() const { return m_canonicalNames; }
 private:

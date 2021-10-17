@@ -1056,9 +1056,9 @@ String DirColInfo::GetDisplayName() const
 {
 	if (idName)
 		return tr(idNameContext, idName);
-	PropertySystem propsys({ regName + 1 });
+	PropertySystem ps({ regName + 1 });
 	std::vector<String> names;
-	propsys.GetDisplayNames(names);
+	ps.GetDisplayNames(names);
 	String name = names[0];
 	if (regName[0] != 'A')
 	{
@@ -1086,19 +1086,21 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyN
 	DirColInfo *pcol = nDirs < 3 ? f_cols : f_cols3;
 	for (size_t i = 0; i < m_numcols; ++i)
 		m_cols.push_back(pcol[i]);
-	PropertySystem propsys(propertyNames);
+	PropertySystem ps(propertyNames);
+	std::vector<String> validPropertyNames = ps.GetCanonicalNames();
 	std::vector<String> displayNames;
-	propsys.GetDisplayNames(displayNames);
-	for (size_t i = 0; i < propertyNames.size(); ++i)
+	ps.GetDisplayNames(displayNames);
+	for (size_t i = 0; i < validPropertyNames.size(); ++i)
 	{
 		int pane = 0;
 		for (auto c : (nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
 		{
 			m_cols.emplace_back(DirColInfo{});
-			m_strpool.push_back(c + propertyNames[i]);
+			m_strpool.push_back(c + validPropertyNames[i]);
 			auto& col = m_cols.back();
 			col.regName = m_strpool.back().c_str();
 			col.opt = static_cast<int>(i);
+			col.physicalIndex = -1;
 			if (c!= 'A')
 			{
 				col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);

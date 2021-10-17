@@ -19,9 +19,9 @@
 #pragma comment(lib, "bcrypt.lib")
  
  // {ECA2D096-7C87-4DFF-94E7-E7FE9BA34BE8} 100-102
-static const PROPERTYKEY PKEY_WINMERGE_HASH_SHA256 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 100 };
-static const PROPERTYKEY PKEY_WINMERGE_HASH_SHA1 ={ {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 101 }; 
-static const PROPERTYKEY PKEY_WINMERGE_HASH_MD5 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 102 };
+static const PROPERTYKEY PKEY_HASH_SHA256 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 100 };
+static const PROPERTYKEY PKEY_HASH_SHA1 ={ {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 101 }; 
+static const PROPERTYKEY PKEY_HASH_MD5 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 102 };
 
 struct PROPERTYINFO
 {
@@ -32,9 +32,9 @@ struct PROPERTYINFO
 
 static const PROPERTYINFO g_HashProperties[] =
 {
-	{ &PKEY_WINMERGE_HASH_SHA256, L"WinMerge.Hash.SHA256", L"SHA256" },
-	{ &PKEY_WINMERGE_HASH_SHA1,   L"WinMerge.Hash.SHA1",   L"SHA1" },
-	{ &PKEY_WINMERGE_HASH_MD5,    L"WinMerge.Hash.MD5",    L"MD5" },
+	{ &PKEY_HASH_SHA256, L"Hash.SHA256", L"SHA256" },
+	{ &PKEY_HASH_SHA1,   L"Hash.SHA1",   L"SHA1" },
+	{ &PKEY_HASH_MD5,    L"Hash.MD5",    L"MD5" },
 };
 
 static int GetPropertyIndexFromKey(const PROPERTYKEY& key)
@@ -219,10 +219,17 @@ void PropertySystem::AddProperties(const std::vector<String>& canonicalNames)
 		{
 			const PROPERTYKEY *pKey = GetPropertyKeyFromName(name);
 			if (pKey)
+			{
 				key = *pKey;
+				m_keys.push_back(key);
+				m_canonicalNames.push_back(name);
+			}
 		}
-		m_keys.push_back(key);
-		m_canonicalNames.push_back(name);
+		else
+		{
+			m_keys.push_back(key);
+			m_canonicalNames.push_back(name);
+		}
 	}
 }
 
@@ -257,8 +264,10 @@ bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& value
 	return false;
 }
 
-String PropertySystem::FormatPropertyValue(const PropertyValues& values, int index)
+String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigned index)
 {
+	if (index >= values.m_values.size())
+		return _T("");
 	if (values.m_values[index].vt == VT_LPWSTR)
 		return values.m_values[index].pwszVal;
 	String value;
@@ -285,11 +294,6 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 				names.push_back(pDisplayName);
 				CoTaskMemFree(pDisplayName);
 			}
-			else if (SUCCEEDED(ppd->GetCanonicalName(&pDisplayName)) && pDisplayName != nullptr)
-			{
-				names.push_back(pDisplayName);
-				CoTaskMemFree(pDisplayName);
-			}
 			else
 			{
 				names.push_back(_T(""));
@@ -310,6 +314,24 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 
 #else
 
+PropertyValues::PropertyValues()
+{
+}
+
+PropertyValues::~PropertyValues()
+{
+}
+
+int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index)
+{
+	return 0;
+}
+
+int PropertyValues::CompareAllValues(const PropertyValues& values1, const PropertyValues& values2)
+{
+	return 0;
+}
+
 PropertySystem::PropertySystem(ENUMFILTER filter)
 {
 }
@@ -318,9 +340,14 @@ PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 {
 }
 
-bool PropertySystem::GetFormattedValues(const String& path, std::vector<String>& values)
+bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& values)
 {
 	return false;
+}
+
+String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigned index)
+{
+	return _T("");
 }
 
 bool PropertySystem::GetDisplayNames(std::vector<String>& names)
