@@ -1,5 +1,5 @@
 /** 
- * @file  DirAdditionalPropsDlg.cpp
+ * @file  DirAdditionalPropertiesDlg.cpp
  *
  * @brief Implementation file for CDirAdditionalPropertiesDlg
  */
@@ -60,8 +60,7 @@ Node& CDirAdditionalPropertiesDlg::MakeNode(Node& parentNode, const std::vector<
 			return node;
 		}
 	}
-	parentNode.childNodes.push_back({});
-	Node& node = parentNode.childNodes.back();
+	Node& node = parentNode.childNodes.emplace_back();
 	node.selected = false;
 	node.name = *it;
 	++it;
@@ -105,6 +104,8 @@ void CDirAdditionalPropertiesDlg::LoadList()
 			}
 		}
 	}
+	if (!m_root.childNodes.empty())
+		m_treeProps.SelectItem(m_root.childNodes.front().hItem);
 }
 
 /////////////////////////////////////////////////////////////////////////////

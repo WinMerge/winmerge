@@ -81,6 +81,7 @@ public:
 	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
 	const std::vector<String>& GetPropertyNames() const { return m_propertyNames; }
+	void SetPropertyNames(const std::vector<String>& propertyNames);
 
 	/// Update all column widths (from registry to screen)
 	// Necessary when user reorders columns
@@ -119,6 +120,9 @@ public:
 
 
 private:
+	void AddPropertyName(const String& propertyName);
+	void RemovePropertyName(const String& propertyName);
+
 	int m_nDirs;
 	int m_numcols;
 	int m_dispcols;

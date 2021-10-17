@@ -58,6 +58,17 @@ void DiffItemList::InitDiffItemList()
 	m_pRoot = new DIFFITEM;
 }
 
+void DiffItemList::ClearAllAdditionalProperties()
+{
+	assert(m_pRoot != nullptr);
+	for (DIFFITEM* p = GetFirstDiffPosition(); p != nullptr; p = p->GetFwdSiblingLink())
+	{
+		int n = ((p->diffcode.diffcode & DIFFCODE::THREEWAY) != 0) ? 3 : 2;
+		for (int i = 0; i < n; ++i)
+			p->diffFileInfo[i].m_pAdditionalProperties.reset();
+	}
+}
+
 /**
  * @brief Get position of first item in structured DIFFITEM tree
  */

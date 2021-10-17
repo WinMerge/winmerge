@@ -19,9 +19,9 @@
 #pragma comment(lib, "bcrypt.lib")
  
  // {ECA2D096-7C87-4DFF-94E7-E7FE9BA34BE8} 100-102
-static const PROPERTYKEY PKEY_HASH_SHA256 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 100 };
+static const PROPERTYKEY PKEY_HASH_MD5 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 100 };
 static const PROPERTYKEY PKEY_HASH_SHA1 ={ {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 101 }; 
-static const PROPERTYKEY PKEY_HASH_MD5 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 102 };
+static const PROPERTYKEY PKEY_HASH_SHA256 = { {0xeca2d096, 0x7c87, 0x4dff, 0x94, 0xe7, 0xe7, 0xfe, 0x9b, 0xa3, 0x4b, 0xe8}, 102 };
 
 struct PROPERTYINFO
 {
@@ -32,9 +32,9 @@ struct PROPERTYINFO
 
 static const PROPERTYINFO g_HashProperties[] =
 {
-	{ &PKEY_HASH_SHA256, L"Hash.SHA256", L"SHA256" },
-	{ &PKEY_HASH_SHA1,   L"Hash.SHA1",   L"SHA1" },
 	{ &PKEY_HASH_MD5,    L"Hash.MD5",    L"MD5" },
+	{ &PKEY_HASH_SHA1,   L"Hash.SHA1",   L"SHA1" },
+	{ &PKEY_HASH_SHA256, L"Hash.SHA256", L"SHA256" },
 };
 
 static int GetPropertyIndexFromKey(const PROPERTYKEY& key)

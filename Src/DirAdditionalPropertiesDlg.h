@@ -1,5 +1,5 @@
 /** 
- * @file  DirAdditionalPropsDlg.h
+ * @file  DirAdditionalPropertiesDlg.h
  *
  * @brief Declaration file for CDirAdditionalPropertiesDlg
  */

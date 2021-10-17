@@ -4437,11 +4437,10 @@ void CDirView::OnEditColumns()
 			auto& selectedCanonicalNames = dlgAdditionalProperties.GetSelectedCanonicalNames();
 			GetOptionsMgr()->SaveOption(OPT_ADDITIONAL_PROPERTIES,
 				strutils::join(selectedCanonicalNames.begin(), selectedCanonicalNames.end(), _T(" ")));
-			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(selectedCanonicalNames));
+			m_pColItems->SetPropertyNames(selectedCanonicalNames);
+			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetPropertyNames()));
+			GetDiffContext().ClearAllAdditionalProperties();
 			auto* pDoc = GetDocument();
-			m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, selectedCanonicalNames));
-			m_pColItems->LoadColumnOrders(
-				GetOptionsMgr()->GetString(pDoc->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
 			ReloadColumns();
 		}
 	} 

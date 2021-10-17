@@ -23,6 +23,7 @@ public:
 	DIFFITEM *AddNewDiff(DIFFITEM *parent);
 	void RemoveAll();
 	void InitDiffItemList();
+	void ClearAllAdditionalProperties();
 
 	// to iterate over all differences on list
 	DIFFITEM *GetFirstDiffPosition() const;

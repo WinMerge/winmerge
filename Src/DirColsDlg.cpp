@@ -24,6 +24,7 @@
  */
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CDirColsDlg::IDD, pParent)
+	, m_bReset(false)
 	, m_showAdditionalProperties(false)
 {
 }

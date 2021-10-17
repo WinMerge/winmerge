@@ -1080,42 +1080,127 @@ String DirColInfo::GetDescription() const
 }
 
 DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& propertyNames) :
-	m_nDirs(nDirs), m_dispcols(-1), m_propertyNames(propertyNames)
+	m_nDirs(nDirs), m_dispcols(-1)
 {
 	m_numcols = static_cast<int>(nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
 	DirColInfo *pcol = nDirs < 3 ? f_cols : f_cols3;
 	for (size_t i = 0; i < m_numcols; ++i)
 		m_cols.push_back(pcol[i]);
 	PropertySystem ps(propertyNames);
-	std::vector<String> validPropertyNames = ps.GetCanonicalNames();
-	std::vector<String> displayNames;
-	ps.GetDisplayNames(displayNames);
-	for (size_t i = 0; i < validPropertyNames.size(); ++i)
+	for (const auto& propertyName : ps.GetCanonicalNames())
+		AddPropertyName(propertyName);
+}
+
+void
+DirViewColItems::AddPropertyName(const String& propertyName)
+{
+	int pane = 0;
+	for (auto c : (m_nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
 	{
-		int pane = 0;
-		for (auto c : (nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
+		m_cols.emplace_back(DirColInfo{});
+		m_strpool.push_back(c + propertyName);
+		auto& col = m_cols.back();
+		col.regName = m_strpool.back().c_str();
+		col.opt = static_cast<int>(m_propertyNames.size());
+		col.physicalIndex = -1;
+		if (c!= 'A')
 		{
-			m_cols.emplace_back(DirColInfo{});
-			m_strpool.push_back(c + validPropertyNames[i]);
-			auto& col = m_cols.back();
-			col.regName = m_strpool.back().c_str();
-			col.opt = static_cast<int>(i);
-			col.physicalIndex = -1;
-			if (c!= 'A')
-			{
-				col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
-				col.getfnc = ColPropertyGet;
-				col.sortfnc = ColPropertySort;
-				++pane;
-			}
-			else
-			{
-				col.offset = 0;
-				col.getfnc = ColAllPropertyGet;
-				col.sortfnc = ColAllPropertySort;
-			}
-			++m_numcols;
+			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
+			col.getfnc = ColPropertyGet;
+			col.sortfnc = ColPropertySort;
+			++pane;
 		}
+		else
+		{
+			col.offset = 0;
+			col.getfnc = ColAllPropertyGet;
+			col.sortfnc = ColAllPropertySort;
+		}
+		++m_numcols;
+		m_colorder.push_back(-1);
+		m_invcolorder.push_back(-1);
+	}
+	m_propertyNames.push_back(propertyName);
+}
+
+void
+DirViewColItems::RemovePropertyName(const String& propertyName)
+{
+	int nfixedcols = static_cast<int>(m_nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
+	std::vector<int> deletedPhysicalIndexes;
+	std::vector<int> deletedLogicalIndexes;
+	int deletedOpt = -1;
+	for (int i = static_cast<int>(m_cols.size()) - 1; i >= nfixedcols; --i)
+	{
+		if (m_cols[i].regName + 1 == propertyName)
+		{
+			deletedLogicalIndexes.push_back(static_cast<int>(i));
+			if (m_colorder[i] >= 0)
+			{
+				deletedPhysicalIndexes.push_back(m_colorder[i]);
+				--m_dispcols;
+			}
+			deletedOpt = m_cols[i].opt;
+			m_cols.erase(m_cols.begin() + i);
+			--m_numcols;
+		}
+	}
+	for (int i = static_cast<int>(m_invcolorder.size()) - 1; i >= 0; --i)
+	{
+		auto it = std::find(deletedLogicalIndexes.begin(), deletedLogicalIndexes.end(), m_invcolorder[i]);
+		if (it != deletedLogicalIndexes.end())
+			m_invcolorder.erase(m_invcolorder.begin() + i);
+		else
+		{
+			int logicalIndex = m_invcolorder[i];
+			for (auto deletedLogicalIndex : deletedLogicalIndexes)
+			{
+				if (deletedLogicalIndex < logicalIndex)
+					--m_invcolorder[i];
+			}
+		}
+	}
+	for (int i = static_cast<int>(m_colorder.size()) - 1; i >= 0; --i)
+	{
+		auto it = std::find(deletedPhysicalIndexes.begin(), deletedPhysicalIndexes.end(), m_colorder[i]);
+		if (it != deletedPhysicalIndexes.end())
+			m_colorder.erase(m_colorder.begin() + i);
+		else
+		{
+			int physicalIndex = m_colorder[i];
+			for (auto deletedPhysicalIndex : deletedPhysicalIndexes)
+			{
+				if (deletedPhysicalIndex < physicalIndex)
+					--m_colorder[i];
+			}
+		}
+	}
+	for (int i = static_cast<int>(m_cols.size()) - 1; i >= nfixedcols; --i)
+	{
+		if (deletedOpt < m_cols[i].opt)
+			--m_cols[i].opt;
+	}
+	for (size_t i = 0; i < m_propertyNames.size(); ++i)
+	{
+		if (m_propertyNames[i] == propertyName)
+			m_propertyNames.erase(m_propertyNames.begin() + i);
+	}
+}
+
+void
+DirViewColItems::SetPropertyNames(const std::vector<String>& propertyNames)
+{
+	for (int i = static_cast<int>(m_propertyNames.size()) - 1; i >= 0; i--)
+	{
+		auto it = std::find(propertyNames.begin(), propertyNames.end(), m_propertyNames[i]);
+		if (it == propertyNames.end())
+			RemovePropertyName(m_propertyNames[i]);
+	}
+	for (const auto& propertyName : propertyNames)
+	{
+		auto it = std::find(m_propertyNames.begin(), m_propertyNames.end(), propertyName);
+		if (it == m_propertyNames.end())
+			AddPropertyName(propertyName);
 	}
 }
 
