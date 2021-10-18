@@ -16,6 +16,7 @@ public:
 	PropertyValues();
 	~PropertyValues();
 	static int CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index);
+	static int64_t DiffValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index, bool& numeric);
 	static int CompareAllValues(const PropertyValues& values1, const PropertyValues& values2);
 	std::vector<PROPVARIANT> m_values;
 };

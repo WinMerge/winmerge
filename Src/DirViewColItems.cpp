@@ -733,6 +733,34 @@ static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int op
 	return strutils::join(values.begin(), values.end(), _T("|"));
 }
 
+static String ColPropertyDiffGet(const CDiffContext *pCtxt, const void *p, int opt)
+{
+	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
+	if (di.diffcode.isDirectory())
+		return _T("");
+	PropertyValues* pFirstProps = di.diffFileInfo[0].m_pAdditionalProperties.get();
+	if (!pFirstProps)
+		return _T("");
+	int64_t diff = 0;
+	bool equal = true;
+	bool numeric = false;
+	for (int i = 1; i < pCtxt->GetCompareDirs(); ++i)
+	{
+		PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
+		if (pFirstProps && pprops)
+		{
+			diff = PropertyValues::DiffValues(*pFirstProps, *pprops, opt, numeric);
+			if (diff != 0)
+				equal = false;
+		}
+	}
+	String result = !equal ? _("Different") : 
+		   ((pFirstProps->m_values[opt].vt != VT_EMPTY) ? _("Identical") : _T(""));
+	if (pCtxt->GetCompareDirs() == 2 && numeric)
+		result += strutils::format(_T("(%ld)"), diff);
+	return result;
+}
+
 /**
  * @}
  */
@@ -942,7 +970,7 @@ static int ColPropertySort(const CDiffContext *, const void *p, const void *q, i
 }
 
 /**
- * @brief Compare property values
+ * @brief Compare all property values
  * @param [in] p Pointer to first structure to compare.
  * @param [in] q Pointer to second structure to compare.
  * @return Compare result.
@@ -959,6 +987,40 @@ static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const vo
 			if (result != 0)
 				return result;
 		}
+	}
+	return 0;
+}
+
+/**
+ * @brief Compare property diff
+ * @param [in] p Pointer to first structure to compare.
+ * @param [in] q Pointer to second structure to compare.
+ * @return Compare result.
+ */
+static int ColPropertyDiffSort(const CDiffContext *pCtxt, const void *p, const void *q, int opt)
+{
+	const DIFFITEM &r = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
+	if (pCtxt->GetCompareDirs() == 2)
+	{
+		if ((r.diffFileInfo[0].m_pAdditionalProperties && r.diffFileInfo[1].m_pAdditionalProperties) &&
+		    (s.diffFileInfo[0].m_pAdditionalProperties && s.diffFileInfo[1].m_pAdditionalProperties))
+		{
+			bool numeric;
+			int64_t rdiff = PropertyValues::DiffValues(*r.diffFileInfo[0].m_pAdditionalProperties, *r.diffFileInfo[1].m_pAdditionalProperties, opt, numeric);
+			int64_t sdiff = PropertyValues::DiffValues(*s.diffFileInfo[0].m_pAdditionalProperties, *s.diffFileInfo[1].m_pAdditionalProperties, opt, numeric);
+			if (rdiff < sdiff)
+				return -1;
+			else if (rdiff > sdiff)
+				return 1;
+			return 0;
+		}
+	}
+	else
+	{
+		String r2 = ColPropertyDiffGet(pCtxt, p, opt);
+		String s2 = ColPropertyDiffGet(pCtxt, q, opt);
+		return strutils::compare_nocase(r2, s2);
 	}
 	return 0;
 }
@@ -1066,7 +1128,8 @@ String DirColInfo::GetDisplayName() const
 		name +=
 			(regName[0] == 'L') ? _("Left") :
 			(regName[0] == 'R') ? _("Right") :
-			(regName[0] == 'M') ? _("Middle") : _("");
+			(regName[0] == 'M') ? _("Middle") :
+			(regName[0] == 'D') ? _("Diff") : _("");
 		name += ')';
 	}
 	return name;
@@ -1095,7 +1158,7 @@ void
 DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 {
 	int pane = 0;
-	for (auto c : (m_nDirs < 3) ? String(_T("ALR")) : String(_T("ALMR")))
+	for (auto c : (m_nDirs < 3) ? String(_T("ADLR")) : String(_T("ADLMR")))
 	{
 		m_cols.emplace_back(DirColInfo{});
 		m_strpool.push_back(c + propertyName);
@@ -1103,18 +1166,24 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 		col.regName = m_strpool.back().c_str();
 		col.opt = static_cast<int>(m_additionalPropertyNames.size());
 		col.physicalIndex = -1;
-		if (c!= 'A')
+		if (c == 'A')
+		{
+			col.offset = 0;
+			col.getfnc = ColAllPropertyGet;
+			col.sortfnc = ColAllPropertySort;
+		}
+		else if (c == 'D')
+		{
+			col.offset = 0;
+			col.getfnc = ColPropertyDiffGet;
+			col.sortfnc = ColPropertyDiffSort;
+		}
+		else
 		{
 			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
 			col.getfnc = ColPropertyGet;
 			col.sortfnc = ColPropertySort;
 			++pane;
-		}
-		else
-		{
-			col.offset = 0;
-			col.getfnc = ColAllPropertyGet;
-			col.sortfnc = ColAllPropertySort;
 		}
 		++m_numcols;
 		m_colorder.push_back(-1);
@@ -1188,15 +1257,15 @@ DirViewColItems::RemoveAdditionalPropertyName(const String& propertyName)
 }
 
 void
-DirViewColItems::SetAdditionalPropertyNames(const std::vector<String>& propertyNames)
+DirViewColItems::SetAdditionalPropertyNames(const std::vector<String>& additionalPropertyNames)
 {
 	for (int i = static_cast<int>(m_additionalPropertyNames.size()) - 1; i >= 0; i--)
 	{
-		auto it = std::find(propertyNames.begin(), propertyNames.end(), m_additionalPropertyNames[i]);
-		if (it == propertyNames.end())
+		auto it = std::find(additionalPropertyNames.begin(), additionalPropertyNames.end(), m_additionalPropertyNames[i]);
+		if (it == additionalPropertyNames.end())
 			RemoveAdditionalPropertyName(m_additionalPropertyNames[i]);
 	}
-	for (const auto& propertyName : propertyNames)
+	for (const auto& propertyName : additionalPropertyNames)
 	{
 		auto it = std::find(m_additionalPropertyNames.begin(), m_additionalPropertyNames.end(), propertyName);
 		if (it == m_additionalPropertyNames.end())

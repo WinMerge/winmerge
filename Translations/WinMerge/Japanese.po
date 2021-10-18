@@ -1316,11 +1316,14 @@ msgstr "追加プロパティ(&A)"
 msgid "Additional Properties"
 msgstr "追加プロパティ"
 
-msgid "&>>"
-msgstr "&>>"
+msgid "&>"
+msgstr "&>"
 
-msgid "&<<"
-msgstr "&<<"
+msgid "&<"
+msgstr "&<"
+
+msgid "<<"
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "プラグインの選択"

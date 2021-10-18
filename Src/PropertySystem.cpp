@@ -156,6 +156,28 @@ int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyV
 	return PropVariantCompare(values1.m_values[index], values2.m_values[index]);
 }
 
+int64_t PropertyValues::DiffValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index, bool& numeric)
+{
+	numeric = false;
+	if (index >= values1.m_values.size())
+		return -1;
+	if (index >= values2.m_values.size())
+		return 1;
+	short vt1 = values1.m_values[index].vt;
+	short vt2 = values2.m_values[index].vt;
+	if (vt1 == VT_I8 || vt1 == VT_UI8 || vt2 == VT_I8 || vt2 == VT_UI8)
+	{
+		numeric = true;
+		return values1.m_values[index].cyVal.int64 - values2.m_values[index].cyVal.int64;
+	}
+	else if (vt1 == VT_I4 || vt1 == VT_UI4 || vt2 == VT_I4 || vt2 == VT_UI4)
+	{
+		numeric = true;
+		return values1.m_values[index].intVal - values2.m_values[index].intVal;
+	}
+	return PropVariantCompare(values1.m_values[index], values2.m_values[index]);
+}
+
 int PropertyValues::CompareAllValues(const PropertyValues& values1, const PropertyValues& values2)
 {
 	if (values1.m_values.size() < values2.m_values.size())
@@ -323,6 +345,11 @@ PropertyValues::~PropertyValues()
 }
 
 int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index)
+{
+	return 0;
+}
+
+int64_t PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index)
 {
 	return 0;
 }

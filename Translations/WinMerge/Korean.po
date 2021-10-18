@@ -1652,10 +1652,13 @@ msgstr ""
 msgid "Additional Properties"
 msgstr ""
 
-msgid "&>>"
+msgid "&>"
 msgstr ""
 
-msgid "&<<"
+msgid "&<"
+msgstr ""
+
+msgid "<<"
 msgstr ""
 
 msgid "Select Plugin"

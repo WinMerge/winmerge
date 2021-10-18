@@ -72,8 +72,10 @@ private:
 	virtual BOOL OnInitDialog() override;
 	virtual void OnOK() override;
 	afx_msg void OnAdd();
-	afx_msg void OnDelete();
-	afx_msg void OnDblClk(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnDelete(UINT nId);
+	afx_msg void OnDblClkTreeView(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnKeyDownTreeView(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnKeyDownListView(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

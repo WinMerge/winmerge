@@ -586,7 +586,8 @@
 #define IDC_PROPS_TREEVIEW              1619
 #define IDC_PROPS_ADD                   1620
 #define IDC_PROPS_DEL                   1621
-#define IDC_PROPS_LISTVIEW              1622
+#define IDC_PROPS_DELALL                1622
+#define IDC_PROPS_LISTVIEW              1623
 // CrystalEdit dialog controls
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604

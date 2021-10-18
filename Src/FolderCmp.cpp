@@ -486,11 +486,6 @@ exitPrepAndCompare:
 				properties->m_values.resize(numprops);
 			}
 		}
-		for (int i = 1; i < nDirs; ++i)
-		{
-			if (PropertyValues::CompareAllValues(*di.diffFileInfo[0].m_pAdditionalProperties, *di.diffFileInfo[i].m_pAdditionalProperties) != 0)
-				code |= DIFFCODE::DIFFPROP;
-		}
 	}
 
 	return code;

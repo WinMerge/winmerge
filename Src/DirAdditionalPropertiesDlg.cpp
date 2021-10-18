@@ -43,8 +43,10 @@ void CDirAdditionalPropertiesDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CDirAdditionalPropertiesDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CDirAdditionalPropertiesDlg)
 	ON_BN_CLICKED(IDC_PROPS_ADD, OnAdd)
-	ON_BN_CLICKED(IDC_PROPS_DEL, OnDelete)
-	ON_NOTIFY(NM_DBLCLK, IDC_PROPS_TREEVIEW, OnDblClk)
+	ON_COMMAND_RANGE(IDC_PROPS_DEL, IDC_PROPS_DELALL, OnDelete)
+	ON_NOTIFY(NM_DBLCLK, IDC_PROPS_TREEVIEW, OnDblClkTreeView)
+	ON_NOTIFY(TVN_KEYDOWN, IDC_PROPS_TREEVIEW, OnKeyDownTreeView)
+	ON_NOTIFY(LVN_KEYDOWN, IDC_PROPS_LISTVIEW, OnKeyDownListView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -141,11 +143,11 @@ void CDirAdditionalPropertiesDlg::OnAdd()
 	}
 }
 
-void CDirAdditionalPropertiesDlg::OnDelete() 
+void CDirAdditionalPropertiesDlg::OnDelete(UINT nId) 
 {
 	for (int i = m_listProps.GetItemCount() - 1; i >= 0; --i)
 	{
-		if (m_listProps.GetItemState(i, LVIS_SELECTED) != 0)
+		if (nId == IDC_PROPS_DELALL || m_listProps.GetItemState(i, LVIS_SELECTED) != 0)
 		{
 			Node* pNode = reinterpret_cast<Node*>(m_listProps.GetItemData(i));
 			if (pNode)
@@ -158,7 +160,7 @@ void CDirAdditionalPropertiesDlg::OnDelete()
 	}
 }
 
-void CDirAdditionalPropertiesDlg::OnDblClk(NMHDR* pNMHDR, LRESULT* pResult)
+void CDirAdditionalPropertiesDlg::OnDblClkTreeView(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	HTREEITEM hItem = m_treeProps.GetSelectedItem();
 	if (hItem)
@@ -173,13 +175,42 @@ void CDirAdditionalPropertiesDlg::OnDblClk(NMHDR* pNMHDR, LRESULT* pResult)
 					bool selected = (pNode == reinterpret_cast<Node*>(m_listProps.GetItemData(i)));
 					m_listProps.SetItemState(i, selected ? LVIS_SELECTED : 0, LVIS_SELECTED);
 				}
-				OnDelete();
+				OnDelete(IDC_PROPS_DEL);
 			}
 			else
 			{
 				OnAdd();
 			}
 		}
+	}
+	*pResult = 0;
+}
+
+void CDirAdditionalPropertiesDlg::OnKeyDownTreeView(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMTVKEYDOWN* pNMKEY = reinterpret_cast<NMTVKEYDOWN*>(pNMHDR);
+	if (pNMKEY->wVKey == VK_SPACE)
+	{
+		OnDblClkTreeView(pNMHDR, pResult);
+		*pResult = 1;
+	}
+	else
+	{
+		*pResult = 0;
+	}
+}
+
+void CDirAdditionalPropertiesDlg::OnKeyDownListView(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMLVKEYDOWN* pNMKEY = reinterpret_cast<NMLVKEYDOWN*>(pNMHDR);
+	if (pNMKEY->wVKey == VK_DELETE)
+	{
+		OnDelete(IDC_PROPS_DEL);
+		*pResult = 1;
+	}
+	else
+	{
+		*pResult = 0;
 	}
 }
 
