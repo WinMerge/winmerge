@@ -1231,8 +1231,8 @@ DirViewColItems::RemoveAdditionalPropertyName(const String& propertyName)
 	}
 	for (int i = static_cast<int>(m_colorder.size()) - 1; i >= 0; --i)
 	{
-		auto it = std::find(deletedPhysicalIndexes.begin(), deletedPhysicalIndexes.end(), m_colorder[i]);
-		if (it != deletedPhysicalIndexes.end())
+		auto it = std::find(deletedLogicalIndexes.begin(), deletedLogicalIndexes.end(), i);
+		if (it != deletedLogicalIndexes.end())
 			m_colorder.erase(m_colorder.begin() + i);
 		else
 		{
@@ -1254,6 +1254,10 @@ DirViewColItems::RemoveAdditionalPropertyName(const String& propertyName)
 		if (m_additionalPropertyNames[i] == propertyName)
 			m_additionalPropertyNames.erase(m_additionalPropertyNames.begin() + i);
 	}
+	m_colorder.resize(m_numcols);
+	m_invcolorder.resize(m_numcols);
+	if (m_dispcols <= 0)
+		ResetColumnOrdering();
 }
 
 void

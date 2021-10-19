@@ -4437,6 +4437,7 @@ void CDirView::OnEditColumns()
 			GetOptionsMgr()->SaveOption(OPT_ADDITIONAL_PROPERTIES,
 				strutils::join(selectedCanonicalNames.begin(), selectedCanonicalNames.end(), _T(" ")));
 			m_pColItems->SetAdditionalPropertyNames(selectedCanonicalNames);
+			m_pColItems->SaveColumnOrders();
 			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetAdditionalPropertyNames()));
 			GetDiffContext().ClearAllAdditionalProperties();
 			auto* pDoc = GetDocument();

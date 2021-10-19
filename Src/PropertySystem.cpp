@@ -168,12 +168,12 @@ int64_t PropertyValues::DiffValues(const PropertyValues& values1, const Property
 	if (vt1 == VT_I8 || vt1 == VT_UI8 || vt2 == VT_I8 || vt2 == VT_UI8)
 	{
 		numeric = true;
-		return values1.m_values[index].cyVal.int64 - values2.m_values[index].cyVal.int64;
+		return values2.m_values[index].cyVal.int64 - values1.m_values[index].cyVal.int64;
 	}
 	else if (vt1 == VT_I4 || vt1 == VT_UI4 || vt2 == VT_I4 || vt2 == VT_UI4)
 	{
 		numeric = true;
-		return values1.m_values[index].intVal - values2.m_values[index].intVal;
+		return values2.m_values[index].intVal - values1.m_values[index].intVal;
 	}
 	return PropVariantCompare(values1.m_values[index], values2.m_values[index]);
 }
