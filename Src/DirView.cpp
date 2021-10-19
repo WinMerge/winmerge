@@ -2487,6 +2487,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
+		pDoc->GetDiffContext().CreateDuplicateValueMap();
+
 		// Close and destroy the dialog after compare
 		if (m_pCmpProgressBar != nullptr)
 			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);

@@ -284,3 +284,47 @@ String CDiffContext::GetFilteredFilenames(const DIFFITEM& di) const
 	return GetFilteredFilenames(paths);
 }
 
+void CDiffContext::CreateDuplicateValueMap()
+{
+	if (!m_pPropertySystem)
+		return;
+	int nDirs = GetCompareDirs();
+	m_duplicateValues.clear();
+	m_duplicateValues.resize(m_pPropertySystem->GetCanonicalNames().size());
+	DIFFITEM *pos = GetFirstDiffPosition();
+	std::vector<int> currentGroupId(m_duplicateValues.size());
+	while (pos != nullptr)
+	{
+		const DIFFITEM& di = GetNextDiffPosition(pos);
+		for (int pane = 0; pane < nDirs; ++pane)
+		{
+			const PropertyValues* pValues = di.diffFileInfo[pane].m_pAdditionalProperties.get();
+			if (pValues)
+			{
+				for (size_t j = 0; j < pValues->m_values.size(); ++j)
+				{
+					if (pValues->m_values[j].vt == VT_LPWSTR)
+					{
+						String value = pValues->m_values[j].pwszVal;
+						auto it = m_duplicateValues[j].find(value);
+						if (it == m_duplicateValues[j].end())
+						{
+							DuplicateInfo info{};
+							++info.count[pane];
+							m_duplicateValues[j].insert_or_assign(value, info);
+						}
+						else
+						{
+							if (it->second.groupid == 0 && it->second.count[pane] == 1)
+							{
+								++currentGroupId[j];
+								it->second.groupid = currentGroupId[j];
+							}
+							++it->second.count[pane];
+						}
+					}
+				}
+			}
+		}
+	}
+}

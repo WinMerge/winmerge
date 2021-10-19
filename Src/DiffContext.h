@@ -32,6 +32,12 @@ public:
                                       PrediffingInfo ** infoPrediffer) = 0;
 };
 
+struct DuplicateInfo
+{
+	int groupid;
+	int count[3];
+};
+
 /**
  * The folder compare context.
  * This class holds data of the current folder compare. There are paths
@@ -155,6 +161,7 @@ public:
 	void GetComparePaths(const DIFFITEM& di, PathContext& tFiles) const;
 	String GetFilteredFilenames(const DIFFITEM& di) const;
 	static String GetFilteredFilenames(const PathContext& paths) { return strutils::join(paths.begin(), paths.end(), _T("|")); }
+	void CreateDuplicateValueMap();
 
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IDiffFilter * m_pImgfileFilter; /**< Interface for image file filtering */
@@ -202,6 +209,7 @@ public:
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
 	std::unique_ptr<PropertySystem> m_pPropertySystem; /**< pointer to Property System */
+	std::vector<std::unordered_map<String, DuplicateInfo>> m_duplicateValues;
 
 private:
 	/**
