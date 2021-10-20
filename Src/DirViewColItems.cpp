@@ -725,7 +725,7 @@ static String ColPropertyDuplicateCountGet(const CDiffContext *pCtxt, const void
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
 	const DuplicateInfo *info = GetDuplicateInfo(pCtxt, dfi, index);
 	return (!info || info->count[pane] <= 1) ? _T("") :
-		strutils::format(_("Group%d: %d"), info->groupid, info->count[pane]);
+		strutils::format(_("Group%d: %d"), info->groupid, info->count[pane] - 1);
 }
 
 static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
@@ -757,8 +757,11 @@ static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int op
 static String ColPropertyDiffGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
-	if (di.diffcode.isDirectory())
-		return _T("");
+	String result = ColStatusAbbrGet(pCtxt, p, opt);
+	if (di.diffcode.isResultFiltered())
+		return result;
+	if (di.diffcode.isDirectory() && !di.diffcode.existAll())
+		return result;
 	PropertyValues* pFirstProps = di.diffFileInfo[0].m_pAdditionalProperties.get();
 	if (!pFirstProps)
 		return _T("");
@@ -775,8 +778,11 @@ static String ColPropertyDiffGet(const CDiffContext *pCtxt, const void *p, int o
 				equal = false;
 		}
 	}
-	String result = !equal ? _("Different") : 
-		   ((pFirstProps->m_values[opt].vt != VT_EMPTY) ? _("Identical") : _T(""));
+	if (result == _("Identical") && result == _("Diffrent"))
+	{
+		result = !equal ? _("Different") :
+			((pFirstProps->m_values[opt].vt != VT_EMPTY) ? _("Identical") : _T(""));
+	}
 	if (pCtxt->GetCompareDirs() == 2 && numeric)
 		result += strutils::format(_T("(%ld)"), diff);
 	return result;
@@ -1069,23 +1075,25 @@ static int ColPropertyDiffSort(const CDiffContext *pCtxt, const void *p, const v
 		if ((r.diffFileInfo[0].m_pAdditionalProperties && r.diffFileInfo[1].m_pAdditionalProperties) &&
 		    (s.diffFileInfo[0].m_pAdditionalProperties && s.diffFileInfo[1].m_pAdditionalProperties))
 		{
-			bool numeric;
-			int64_t rdiff = PropertyValues::DiffValues(*r.diffFileInfo[0].m_pAdditionalProperties, *r.diffFileInfo[1].m_pAdditionalProperties, opt, numeric);
-			int64_t sdiff = PropertyValues::DiffValues(*s.diffFileInfo[0].m_pAdditionalProperties, *s.diffFileInfo[1].m_pAdditionalProperties, opt, numeric);
-			if (rdiff < sdiff)
-				return -1;
-			else if (rdiff > sdiff)
-				return 1;
-			return 0;
+			bool rnumeric;
+			bool snumeric;
+			int64_t rdiff = PropertyValues::DiffValues(*r.diffFileInfo[0].m_pAdditionalProperties, *r.diffFileInfo[1].m_pAdditionalProperties, opt, rnumeric);
+			int64_t sdiff = PropertyValues::DiffValues(*s.diffFileInfo[0].m_pAdditionalProperties, *s.diffFileInfo[1].m_pAdditionalProperties, opt, snumeric);
+			String r2 = ColStatusAbbrGet(pCtxt, p, opt);
+			String s2 = ColStatusAbbrGet(pCtxt, q, opt);
+			if (r2 == s2 && rnumeric && snumeric)
+			{
+				if (rdiff < sdiff)
+					return -1;
+				else if (rdiff > sdiff)
+					return 1;
+				return 0;
+			}
 		}
 	}
-	else
-	{
-		String r2 = ColPropertyDiffGet(pCtxt, p, opt);
-		String s2 = ColPropertyDiffGet(pCtxt, q, opt);
-		return strutils::compare_nocase(r2, s2);
-	}
-	return 0;
+	String r2 = ColPropertyDiffGet(pCtxt, p, opt);
+	String s2 = ColPropertyDiffGet(pCtxt, q, opt);
+	return strutils::compare_nocase(r2, s2);
 }
 
 /* @} */
