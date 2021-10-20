@@ -278,9 +278,17 @@ bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& value
 	{
 		for (const auto& key : m_keys)
 		{
-			PROPVARIANT value{};
-			InitPropVariantFromString(_T("Error"), &value);
-			values.m_values.push_back(value);
+			PROPVARIANT value2{};
+			if (GetPropertyIndexFromKey(key) >= 0)
+			{
+				CalculateHashValue(path, key, value2);
+			}
+			else
+			{
+				PROPVARIANT value{};
+				InitPropVariantFromString(_T("Error"), &value);
+			}
+			values.m_values.push_back(value2);
 		}
 	}
 	return false;

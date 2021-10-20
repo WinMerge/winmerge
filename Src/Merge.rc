@@ -3308,6 +3308,11 @@ BEGIN
     IDS_COLHDR_LEFT         "Left"
     IDS_COLHDR_MIDDLE       "Middle"
     IDS_COLHDR_RIGHT        "Right"
+    IDS_COLHDR_DIFF         "Diff"
+    IDS_COLHDR_LEFT_DUPLICATE "Left Duplicate Count"
+    IDS_COLHDR_RIGHT_DUPLICATE "Right Duplicate Count"
+    IDS_COLHDR_MIDDLE_DUPLICATE "Middle Duplicate Count"
+    IDS_COLHDR_MOVE         "Move"
 END
 
 // DIRECTORY DIFFING : PROPERTY CATEGORIES
@@ -3373,6 +3378,7 @@ BEGIN
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
+    IDS_DUPLIATE_GROUP      "Group%d: %d"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

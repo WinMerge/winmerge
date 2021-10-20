@@ -3458,6 +3458,21 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
 msgid "Audio"
 msgstr ""
 
@@ -3619,6 +3634,10 @@ msgstr "이미지 파일이 동일합니다"
 
 msgid "Image files are different"
 msgstr "이미지 파일이 다릅니다"
+
+#, c-format
+msgid "Group%d: %d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -2896,6 +2896,21 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
 msgid "Audio"
 msgstr ""
 
@@ -3037,6 +3052,10 @@ msgstr "Os ficheiros de imagem são idênticos"
 
 msgid "Image files are different"
 msgstr "Os ficheiros de imagem são diferentes"
+
+#, c-format
+msgid "Group%d: %d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

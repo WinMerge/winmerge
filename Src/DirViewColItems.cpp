@@ -718,14 +718,14 @@ static const DuplicateInfo *GetDuplicateInfo(const CDiffContext* pCtxt, const Di
 	return &(it->second);
 }
 
-static String ColPropertyDuplicateGet(const CDiffContext *pCtxt, const void *p, int opt)
+static String ColPropertyDuplicateCountGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const int index = opt & 0xffff;
 	const int pane = opt >> 16;
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
 	const DuplicateInfo *info = GetDuplicateInfo(pCtxt, dfi, index);
 	return (!info || info->count[pane] <= 1) ? _T("") :
-		strutils::format(_T("Group%d(%d)"), info->groupid, info->count[pane]);
+		strutils::format(_("Group%d: %d"), info->groupid, info->count[pane]);
 }
 
 static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
@@ -995,19 +995,19 @@ static int ColPropertySort(const CDiffContext *, const void *p, const void *q, i
 }
 
 /**
- * @brief Compare duplicate values
+ * @brief Compare duplicate count
  * @param [in] p Pointer to first structure to compare.
  * @param [in] q Pointer to second structure to compare.
  * @return Compare result.
  */
-static int ColPropertyDuplicateSort(const CDiffContext*pCtxt, const void* p, const void* q, int opt)
+static int ColPropertyDuplicateCountSort(const CDiffContext* pCtxt, const void* p, const void* q, int opt)
 {
 	const int index = opt & 0xffff;
 	const int pane = opt >> 16;
-	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
-	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
-	const DuplicateInfo *rinfo = GetDuplicateInfo(pCtxt, r, index);
-	const DuplicateInfo *sinfo = GetDuplicateInfo(pCtxt, s, index);
+	const DiffFileInfo& r = *static_cast<const DiffFileInfo*>(p);
+	const DiffFileInfo& s = *static_cast<const DiffFileInfo*>(q);
+	const DuplicateInfo* rinfo = GetDuplicateInfo(pCtxt, r, index);
+	const DuplicateInfo* sinfo = GetDuplicateInfo(pCtxt, s, index);
 	if (!rinfo && !sinfo)
 		return 0;
 	if (!rinfo && sinfo)
@@ -1020,9 +1020,13 @@ static int ColPropertyDuplicateSort(const CDiffContext*pCtxt, const void* p, con
 		return -1;
 	if (rinfo->count[pane] > 1 && sinfo->count[pane] <= 1)
 		return 1;
-	if (rinfo->groupid == sinfo->groupid)
-		return 0;
-	return rinfo->groupid < sinfo->groupid ? -1 : 1;
+	if (rinfo->count[pane] == sinfo->count[pane])
+	{
+		if (rinfo->groupid == sinfo->groupid)
+			return 0;
+		return rinfo->groupid < sinfo->groupid ? -1 : 1;
+	}
+	return rinfo->count[pane] < sinfo->count[pane] ? -1 : 1;
 }
 
 /**
@@ -1189,9 +1193,9 @@ String DirColInfo::GetDisplayName() const
 			(regName[0] == 'R') ? _("Right") :
 			(regName[0] == 'M') ? _("Middle") :
 			(regName[0] == 'D') ? _("Diff") :
-			(regName[0] == 'l') ? _("Left Duplicates") :
-			(regName[0] == 'r') ? _("Right Duplicates") :
-			(regName[0] == 'm') ? _("Middle Duplicates") :
+			(regName[0] == 'l') ? _("Left Duplicate Count") :
+			(regName[0] == 'r') ? _("Right Duplicate Count") :
+			(regName[0] == 'm') ? _("Middle Duplicate Count") :
 			(regName[0] == 'N') ? _("Move") : _("");
 		name += ')';
 	}
@@ -1261,8 +1265,8 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 			else
 			{
 				col.opt |= pane << 16;
-				col.getfnc = ColPropertyDuplicateGet;
-				col.sortfnc = ColPropertyDuplicateSort;
+				col.getfnc = ColPropertyDuplicateCountGet;
+				col.sortfnc = ColPropertyDuplicateCountSort;
 			}
 			pane = (pane + 1) % m_nDirs;
 		}

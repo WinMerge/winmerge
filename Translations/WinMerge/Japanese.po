@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-10-17 19:51+0900\n"
+"PO-Revision-Date: 2021-10-20 08:26+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2845,6 +2845,21 @@ msgstr "中央"
 msgid "Right"
 msgstr "右側"
 
+msgid "Diff"
+msgstr "差異"
+
+msgid "Left Duplicate Count"
+msgstr "左側重複数"
+
+msgid "Right Duplicate Count"
+msgstr "右側重複数"
+
+msgid "Middle Duplicate Count"
+msgstr "中央重複数"
+
+msgid "Move"
+msgstr "移動"
+
 msgid "Audio"
 msgstr "音声"
 
@@ -2986,6 +3001,10 @@ msgstr "画像ファイルは同一です"
 
 msgid "Image files are different"
 msgstr "画像ファイルは異なります"
+
+#, c-format
+msgid "Group%d: %d"
+msgstr "グループ%d: %d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"

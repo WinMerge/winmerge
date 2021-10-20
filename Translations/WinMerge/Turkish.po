@@ -2886,6 +2886,21 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
 msgid "Audio"
 msgstr ""
 
@@ -3027,6 +3042,10 @@ msgstr "Görsel dosyaları aynı"
 
 msgid "Image files are different"
 msgstr "Görsel dosyaları farklı"
+
+#, c-format
+msgid "Group%d: %d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
