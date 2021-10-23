@@ -3641,7 +3641,7 @@ msgid "Image files are different"
 msgstr "Les fichiers image sont différents"
 
 #, c-format
-msgid "Group%d: %d"
+msgid "Group%d"
 msgstr ""
 
 #, c-format

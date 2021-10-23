@@ -3013,7 +3013,7 @@ msgid "Image files are different"
 msgstr "图像文件有差异"
 
 #, c-format
-msgid "Group%d: %d"
+msgid "Group%d"
 msgstr ""
 
 #, c-format

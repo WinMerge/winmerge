@@ -125,13 +125,7 @@ static bool CalculateHashValue(const String& path, const PROPERTYKEY& key, PROPV
 			CalculateHashValue(hFile, g_HashProperties[i].pszDisplayName, hash);
 			CloseHandle(hFile);
 		}
-		String hashString;
-		for (auto c : hash)
-		{
-			hashString += L"0123456789abcdef"[c >> 4];
-			hashString += L"0123456789abcdef"[c & 0xf];
-		}
-		InitPropVariantFromString(hashString.c_str(), &value);
+		InitPropVariantFromBuffer(hash.data(), static_cast<unsigned>(hash.size()), &value);
 		return true;
 	}
 	return false;
@@ -191,6 +185,23 @@ int PropertyValues::CompareAllValues(const PropertyValues& values1, const Proper
 			return result;
 	}
 	return 0;
+}
+
+bool PropertyValues::IsEmptyValue(size_t index) const
+{
+	return (index < m_values.size() && m_values[index].vt == VT_EMPTY);
+}
+
+bool PropertyValues::IsHashValue(size_t index) const
+{
+	return (index < m_values.size() && m_values[index].vt == (VT_VECTOR | VT_UI1));
+}
+
+std::vector<uint8_t> PropertyValues::GetHashValue(size_t index) const
+{
+	if (index >= m_values.size()|| m_values[index].vt != (VT_VECTOR | VT_UI1))
+		return {};
+	return { m_values[index].caub.pElems, m_values[index].caub.pElems + m_values[index].caub.cElems };
 }
 
 PropertySystem::PropertySystem(ENUMFILTER filter)
@@ -298,9 +309,18 @@ String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigne
 {
 	if (index >= values.m_values.size())
 		return _T("");
-	if (values.m_values[index].vt == VT_LPWSTR)
-		return values.m_values[index].pwszVal;
 	String value;
+	if (values.m_values[index].vt == (VT_VECTOR | VT_UI1))
+	{
+		const CAUB& buf = values.m_values[index].caub;
+		for (unsigned i = 0; i < buf.cElems; ++i)
+		{
+			BYTE c = buf.pElems[i];
+			value += "0123456789abcdef"[c >> 4];
+			value += "0123456789abcdef"[c & 0xf];
+		}
+		return value;
+	}
 	PWSTR pszDisplayValue = NULL;
 	HRESULT hr = PSFormatForDisplayAlloc(m_keys[index], values.m_values[index], PDFF_DEFAULT, &pszDisplayValue);
 	if (SUCCEEDED(hr))
@@ -342,6 +362,16 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 	return true;
 }
 
+bool PropertySystem::HasHashProperties() const
+{
+	for (const auto& key : m_keys)
+	{
+		if (GetPropertyIndexFromKey(key) >= 0)
+			return true;
+	}
+	return false;
+}
+
 #else
 
 PropertyValues::PropertyValues()
@@ -357,7 +387,7 @@ int PropertyValues::CompareValues(const PropertyValues& values1, const PropertyV
 	return 0;
 }
 
-int64_t PropertyValues::CompareValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index)
+int64_t PropertyValues::DiffValues(const PropertyValues& values1, const PropertyValues& values2, unsigned index, bool& numeric)
 {
 	return 0;
 }
@@ -390,5 +420,9 @@ bool PropertySystem::GetDisplayNames(std::vector<String>& names)
 	return false;
 }
 
+bool PropertySystem::HasHashProperties() const
+{
+	return false;
+}
 
 #endif

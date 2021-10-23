@@ -3003,8 +3003,8 @@ msgid "Image files are different"
 msgstr "画像ファイルは異なります"
 
 #, c-format
-msgid "Group%d: %d"
-msgstr "グループ%d: %d"
+msgid "Group%d"
+msgstr "グループ%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"

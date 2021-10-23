@@ -301,11 +301,11 @@ void CDiffContext::CreateDuplicateValueMap()
 			const PropertyValues* pValues = di.diffFileInfo[pane].m_pAdditionalProperties.get();
 			if (pValues)
 			{
-				for (size_t j = 0; j < pValues->m_values.size(); ++j)
+				for (size_t j = 0; j < pValues->GetSize(); ++j)
 				{
-					if (pValues->m_values[j].vt == VT_LPWSTR)
+					if (pValues->IsHashValue(j))
 					{
-						String value = pValues->m_values[j].pwszVal;
+						std::vector<uint8_t> value = pValues->GetHashValue(j);
 						auto it = m_duplicateValues[j].find(value);
 						if (it == m_duplicateValues[j].end())
 						{

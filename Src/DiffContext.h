@@ -209,7 +209,7 @@ public:
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
 	std::unique_ptr<PropertySystem> m_pPropertySystem; /**< pointer to Property System */
-	std::vector<std::unordered_map<String, DuplicateInfo>> m_duplicateValues;
+	std::vector<std::map<std::vector<uint8_t>, DuplicateInfo>> m_duplicateValues;
 
 private:
 	/**

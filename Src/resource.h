@@ -1233,7 +1233,7 @@
 #define IDS_COLHDR_RIGHT_DUPLICATE      41824
 #define IDS_COLHDR_MIDDLE_DUPLICATE     41825
 #define IDS_COLHDR_MOVE                 41826
-#define IDS_DUPLIATE_GROUP              41827
+#define IDS_HASH_GROUP                  41827
 #define IDS_CANT_COMPARE_FILES          41831
 #define IDS_ABORTED_ITEM                41832
 #define IDS_FILE_SKIPPED                41833

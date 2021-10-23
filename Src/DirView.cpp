@@ -2487,7 +2487,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
-		pDoc->GetDiffContext().CreateDuplicateValueMap();
+		if (pDoc->GetDiffContext().m_pPropertySystem && pDoc->GetDiffContext().m_pPropertySystem->HasHashProperties())
+			pDoc->GetDiffContext().CreateDuplicateValueMap();
 
 		// Close and destroy the dialog after compare
 		if (m_pCmpProgressBar != nullptr)

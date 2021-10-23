@@ -483,7 +483,7 @@ exitPrepAndCompare:
 			else
 			{
 				properties.reset(new PropertyValues());
-				properties->m_values.resize(numprops);
+				properties->Resize(numprops);
 			}
 		}
 	}
