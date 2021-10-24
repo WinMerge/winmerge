@@ -825,7 +825,7 @@ static String ColPropertyDiffGetEx(const CDiffContext *pCtxt, const void *p, int
 			(!pFirstProps->IsEmptyValue(opt) ? _("Identical") : _T(""));
 	}
 	if (nDirs == 2 && numeric && addNumDiff)
-		result += strutils::format(_T(" (%ld)"), diff);
+		result += strutils::format(_T(" (%+ld)"), diff);
 	return result;
 }
 
@@ -1328,27 +1328,30 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 		auto& col = m_cols.back();
 		col.regName = m_strpool.back().c_str();
 		col.opt = static_cast<int>(m_additionalPropertyNames.size());
-		col.physicalIndex = -1;
 		if (c == 'A')
 		{
+			col.physicalIndex = col.opt;
 			col.offset = 0;
 			col.getfnc = ColAllPropertyGet;
 			col.sortfnc = ColAllPropertySort;
 		}
 		else if (c == 'D')
 		{
+			col.physicalIndex = -1;
 			col.offset = 0;
 			col.getfnc = ColPropertyDiffGet;
 			col.sortfnc = ColPropertyDiffSort;
 		}
 		else if (c == 'N')
 		{
+			col.physicalIndex = -1;
 			col.offset = 0;
 			col.getfnc = ColPropertyMoveGet;
 			col.sortfnc = ColPropertyMoveSort;
 		}
 		else
 		{
+			col.physicalIndex = -1;
 			col.offset = FIELD_OFFSET(DIFFITEM, diffFileInfo[pane]);
 			if (c == 'L' || c == 'M' || c == 'R')
 			{

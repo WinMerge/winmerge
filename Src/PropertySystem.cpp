@@ -143,7 +143,7 @@ bool PropertyValues::IsHashValue(size_t index) const
 
 std::vector<uint8_t> PropertyValues::GetHashValue(size_t index) const
 {
-	if (index >= m_values.size()|| m_values[index].vt != (VT_VECTOR | VT_UI1))
+	if (index >= m_values.size() || m_values[index].vt != (VT_VECTOR | VT_UI1))
 		return {};
 	return { m_values[index].caub.pElems, m_values[index].caub.pElems + m_values[index].caub.cElems };
 }

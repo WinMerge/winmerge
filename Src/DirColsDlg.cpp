@@ -211,7 +211,7 @@ void CDirColsDlg::OnDown()
 }
 
 /**
- * @brief Close this dialog and show Extended Properties dialog
+ * @brief Close this dialog and show Additional Properties dialog
  */
 void CDirColsDlg::OnAdditionalProperties() 
 {
@@ -270,6 +270,7 @@ void CDirColsDlg::OnOK()
 void CDirColsDlg::OnDefaults()
 {
 	m_listColumns.DeleteAllItems();
+	m_bReset = true;
 	LoadDefLists();
 }
 

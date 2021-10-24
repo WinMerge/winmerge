@@ -288,7 +288,7 @@ void CDiffContext::CreateDuplicateValueMap()
 {
 	if (!m_pPropertySystem)
 		return;
-	int nDirs = GetCompareDirs();
+	const int nDirs = GetCompareDirs();
 	m_duplicateValues.clear();
 	m_duplicateValues.resize(m_pPropertySystem->GetCanonicalNames().size());
 	DIFFITEM *pos = GetFirstDiffPosition();

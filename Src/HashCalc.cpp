@@ -13,7 +13,7 @@
 static NTSTATUS CalculateHashValue(HANDLE hFile, BCRYPT_HASH_HANDLE hHash, ULONG hashSize, std::vector<uint8_t>& hash)
 {
 	hash.resize(hashSize);
-	std::vector<uint8_t> buffer(8196);
+	std::vector<uint8_t> buffer(64 * 1024);
 	NTSTATUS status = 0;
 	while (status == 0)
 	{

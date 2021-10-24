@@ -8,7 +8,7 @@
 #include "UnicodeString.h"
 #include <vector>
 #include <memory>
-#include <combaseapi.h>
+#include <PropIdl.h>
 
 class PropertyValues
 {

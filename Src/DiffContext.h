@@ -32,6 +32,7 @@ public:
                                       PrediffingInfo ** infoPrediffer) = 0;
 };
 
+/** Information on the number of duplicate hash values */
 struct DuplicateInfo
 {
 	int groupid;
@@ -210,7 +211,7 @@ public:
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
 	std::unique_ptr<PropertySystem> m_pPropertySystem; /**< pointer to Property System */
-	std::vector<std::map<std::vector<uint8_t>, DuplicateInfo>> m_duplicateValues;
+	std::vector<std::map<std::vector<uint8_t>, DuplicateInfo>> m_duplicateValues; /**< Number of duplicate hash values */
 
 private:
 	/**

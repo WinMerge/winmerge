@@ -80,7 +80,7 @@ void DIFFITEM::Swap(int idx1, int idx2)
 
 void DIFFITEM::ClearAllAdditionalProperties()
 {
-	int n = ((diffcode.diffcode & DIFFCODE::THREEWAY) != 0) ? 3 : 2;
+	const int n = ((diffcode.diffcode & DIFFCODE::THREEWAY) != 0) ? 3 : 2;
 	for (int i = 0; i < n; ++i)
 		diffFileInfo[i].m_pAdditionalProperties.reset();
 	if (HasChildren())

@@ -72,12 +72,16 @@ namespace
 
 	TEST_F(PropertySystemTest, GetFormattedValues)
 	{
-		PropertySystem ps({ _T("System.MIMEType"), _T("System.KindText")});
+		PropertySystem ps({ _T("System.MIMEType"), _T("System.KindText"), _T("Hash.MD5"), _T("Hash.SHA1"), _T("Hash.SHA256")});
 		PropertyValues values;
 		String path = paths::GetLongPath(paths::ConcatPath(env::GetProgPath(), _T("..\\..\\..\\Src\\res\\splash.jpg")));
 		ASSERT_TRUE(ps.GetPropertyValues(path, values));
 		ASSERT_STREQ(_T("image/jpeg"), ps.FormatPropertyValue(values, 0).c_str());
 		ASSERT_STREQ(_T("Picture"), ps.FormatPropertyValue(values, 1).c_str());
+		ASSERT_STREQ(_T("Picture"), ps.FormatPropertyValue(values, 1).c_str());
+		ASSERT_STREQ(_T("be6de253521960abc413bb0e2679bf6a"), ps.FormatPropertyValue(values, 2).c_str());;
+		ASSERT_STREQ(_T("4f71d70ea2adf81f590d51614d0fc5e26aa9da6d"), ps.FormatPropertyValue(values, 3).c_str());;
+		ASSERT_STREQ(_T("304596906e45fb5c90e4a5147350d513a091f2263ebb27247f0f968467008ac1"), ps.FormatPropertyValue(values, 4).c_str());;
 	}
 
 }
