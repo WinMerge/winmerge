@@ -105,6 +105,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_ORDERS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_WIDTHS, _T(""));
 
+	pOptions->InitOption(OPT_ADDITIONAL_PROPERTIES, _T(""));
+
 	pOptions->InitOption(OPT_REPORTFILES_REPORTTYPE, 0, 0, 3);
 	pOptions->InitOption(OPT_REPORTFILES_COPYTOCLIPBOARD, false);
 	pOptions->InitOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, false);

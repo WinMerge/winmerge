@@ -451,6 +451,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\HashCalc.cpp" />
+    <ClCompile Include="..\..\..\Src\PropertySystem.cpp" />
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -467,6 +469,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp" />
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -728,6 +731,8 @@
     <ClInclude Include="..\..\..\Src\ProjectFile.h" />
     <ClInclude Include="..\..\..\Src\Common\RegKey.h" />
     <ClInclude Include="..\..\..\Src\Common\RegOptionsMgr.h" />
+    <ClInclude Include="..\..\..\Src\HashCalc.h" />
+    <ClInclude Include="..\..\..\Src\PropertySystem.h" />
     <ClInclude Include="..\..\..\Src\stringdiffs.h" />
     <ClInclude Include="..\..\..\Src\stringdiffsi.h" />
     <ClInclude Include="..\..\..\Src\Common\unicoder.h" />

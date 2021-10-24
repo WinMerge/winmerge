@@ -308,6 +308,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -362,6 +363,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -517,6 +519,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -565,6 +568,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -614,6 +618,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -661,6 +666,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -690,8 +696,17 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="HashCalc.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="PropertySystem.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -1187,7 +1202,10 @@
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
+    <ClInclude Include="DirAdditionalPropertiesDlg.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="HashCalc.h" />
+    <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />

@@ -25,6 +25,7 @@
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CDirColsDlg::IDD, pParent)
 	, m_bReset(false)
+	, m_showAdditionalProperties(false)
 {
 }
 
@@ -43,6 +44,7 @@ BEGIN_MESSAGE_MAP(CDirColsDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CDirColsDlg)
 	ON_BN_CLICKED(IDC_UP, OnUp)
 	ON_BN_CLICKED(IDC_DOWN, OnDown)
+	ON_BN_CLICKED(IDC_COLDLG_ADDITIONAL_PROPERTIES, OnAdditionalProperties)
 	ON_BN_CLICKED(IDC_COLDLG_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_COLDLG_LIST, OnLvnItemchangedColdlgList)
@@ -73,6 +75,9 @@ BOOL CDirColsDlg::OnInitDialog()
 	CTrDialog::OnInitDialog();
 	InitList();
 	LoadLists();
+#ifndef _WIN64
+	EnableDlgItem(IDC_COLDLG_ADDITIONAL_PROPERTIES, false);
+#endif
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -203,6 +208,15 @@ void CDirColsDlg::OnUp()
 void CDirColsDlg::OnDown() 
 {
 	MoveSelectedItems(false);
+}
+
+/**
+ * @brief Close this dialog and show Additional Properties dialog
+ */
+void CDirColsDlg::OnAdditionalProperties() 
+{
+	m_showAdditionalProperties = true;
+	OnOK();
 }
 
 /**
