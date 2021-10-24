@@ -8,15 +8,18 @@
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
   xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
-  IgnorableNamespaces="uap uap2 uap3 rescap desktop desktop4 desktop5 uap10 com">
-  <Identity Name="WinMerge" ProcessorArchitecture="neutral" Publisher="${Publisher}" Version="1.0.1.0" />
+  IgnorableNamespaces="uap uap2 uap3 rescap desktop desktop4 desktop5 desktop6 uap10 com">
+  <Identity Name="WinMerge" ProcessorArchitecture="neutral" Publisher="${Publisher}" Version="1.0.3.0" />
   <Properties>
     <DisplayName>WinMerge</DisplayName>
     <PublisherDisplayName>winmerge.org</PublisherDisplayName>
     <Logo>Assets\storelogo.png</Logo>
     <uap10:AllowExternalContent>true</uap10:AllowExternalContent>
+    <desktop6:RegistryWriteVirtualization>disabled</desktop6:RegistryWriteVirtualization>
+    <desktop6:FileSystemWriteVirtualization>disabled</desktop6:FileSystemWriteVirtualization>
   </Properties>
   <Resources>
     <Resource Language="en-us" />

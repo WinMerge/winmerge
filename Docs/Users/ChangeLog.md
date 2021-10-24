@@ -1,5 +1,79 @@
 # Change log
 
+## WinMerge 2.16.16 - 2021-10-xx
+
+### General
+
+- Fix a problem where the string in the Windows common dialog would not 
+    change to the language when switching languages.
+
+### File compare
+
+- BugFix: Fix not getting the proper error message when saving failed 
+
+### Table compare
+
+- BugFix: Cannot resize last column with UI (#998)
+- Reloading a file that was changed by another application does not preserve
+    column widths (#951)
+
+### Image compare
+
+- BugFix: Fix an issue where drag-and-drop of file would only work once.
+
+### Folder compare
+
+- BugFix: Sync (Super Slow) (#771)
+- BugFix: Fix an issue where filters are not applied correctly when opening
+    a project file containing multiple items with different filters. (PR #995)
+- [Feature Request] New Display Columns: Dimensions + Size Difference (#131)
+- FolderCompare: Additional Properties (Windows Property System+Hash
+    (MD5, SHA-1, SHA-256))  (PR #996)
+
+### Options dialog
+
+- BugFix: Fix the problem that the "Register Shell Extension for Windows 11 or
+    later" button is not enabled when another user has registered
+    ShellExtension for Windows 11.
+
+### Plugins
+
+- BugFix: Plugin unpacked file extension problem 
+    (get_PluginUnpackedFileExtension) (#983)
+- BugFix: Comparing broken lnk-files (windows shortcuts) freezes WinMerge
+    (#1007)
+- Apache Tika plugin: Update Apache tika to 2.1.0 and change the
+    download URL
+
+### Shell extension
+
+- BugFix: ShellExtension for Windows 11 did not work on machines that did not
+    have MSVCP140.dll VCRUNTIME140*.dll installed.
+- BugFix: Loop counter should be the same type as the count type. (PR #987)
+- ShellExtension for Windows11: Disable Registry Write Virtualization
+
+### Manual
+
+- Where to report documentation/help errors? (#1004)
+
+### Translations
+
+- Translation updates:
+  - Galician (PR #1005)
+  - German (PR #986)
+  - Hungarian (PR #991,#1023)
+  - Japanese
+  - Lithuanian (PR #979)
+  - Portuguese (PR #1017)
+  - Slovenian
+  - Turkish (PR #980)
+
+### Internals
+
+- BugFix: Missing packages.config (also outdated) and wrong NuGet packages
+    path in the WinMergeContextMenu.vcxproj and .filters file (#985)
+- Fix typo in OpenView.cpp (PR #1000)
+
 ## WinMerge 2.16.15 - 2021-09-20
 
 ### General

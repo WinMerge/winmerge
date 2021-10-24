@@ -28,6 +28,9 @@ static const TCHAR MineBegin[] = _T("<<<<<<< ");
 /** @brief String starting Base block (and conflict). */
 static const TCHAR BaseBegin[] = _T("||||||| ");
 
+namespace ConflictFileParser
+{
+
 /**
  * @brief Check if the file is a conflict file.
  * This function checks if the conflict file marker is found from given file.
@@ -323,4 +326,6 @@ bool ParseConflictFile(const String& conflictFileName,
 	workingCopy.Close();
 	conflictFile.Close();
 	return bResult;
+}
+
 }

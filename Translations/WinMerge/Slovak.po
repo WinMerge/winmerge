@@ -1313,6 +1313,21 @@ msgstr "Posunúť &hore"
 msgid "Move &Down"
 msgstr "Posunúť &dole"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -2842,6 +2857,90 @@ msgstr "Archivačný program"
 msgid "Prediffer"
 msgstr "Predbežné spracovanie rozdielov"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Nemožno porovnať súbory"
 
@@ -2923,6 +3022,10 @@ msgstr "Súbory obrázkov sú identické"
 
 msgid "Image files are different"
 msgstr "Súbory obrázkov sú rozdielne"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-11 11:25+0200\n"
+"PO-Revision-Date: 2021-10-12 12:50+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: gl\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -905,7 +905,7 @@ msgid "Apply Pre&differ..."
 msgstr "Aplicar pre&diferenza…"
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "&Transformar co editor de scripts…"
 
 #, c-format
 msgid "Sp&lit"
@@ -1644,6 +1644,21 @@ msgstr "Mover E&nriba"
 msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Seleccionar complemento"
 
@@ -1662,7 +1677,7 @@ msgid "Default arguments:"
 msgstr "Argumentos por defecto:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "Amosar todos os complementos, non comprobar versión"
 
 msgid "&Open files in the same window type after unpacking."
 msgstr "Abrir arquiv&os no mesmo tipo de ventá despois de desempaquetar."
@@ -2045,7 +2060,7 @@ msgid "&Detect archive type from file signature"
 msgstr "&Detectar o tipo de arquivo pola sinatura"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Elementos gardados a ou restaurados desde o arquivo do proxecto:"
 
 #, c-format
 msgid "Compare Statistics"
@@ -2317,10 +2332,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Desrexistrar a integración de shell só para o &usuario actual"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "Rexistrar a extensión de escritorio para &Windows 11 ou posterior"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Desrrexistrar a extensión de escritorio para W&indows 11 ou posterior"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2593,7 +2608,7 @@ msgid "Folder Compare"
 msgstr "Comparar cartafoles"
 
 msgid "Project"
-msgstr ""
+msgstr "Proxecto"
 
 #, c-format
 msgid "Differences"
@@ -2700,19 +2715,19 @@ msgid "Answer"
 msgstr "Resposta"
 
 msgid "Item"
-msgstr ""
+msgstr "Elemento"
 
 msgid "Load"
-msgstr ""
+msgstr "Cargar"
 
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Incluír subcarpetas"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Opcións de comparación"
 
 #, c-format
 msgid "Name"
@@ -3434,6 +3449,90 @@ msgstr "Desempaquetador"
 msgid "Prediffer"
 msgstr "Precomparación"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Non se puido comparar os arquivos"
@@ -3535,6 +3634,10 @@ msgstr "Os arquivos de imaxe son iguais"
 
 msgid "Image files are different"
 msgstr "Os arquivos de imaxe son diferentes"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4461,10 +4564,10 @@ msgid "Data Query"
 msgstr "Consulta de datos"
 
 msgid "Validation"
-msgstr ""
+msgstr "Validación"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Descompilación"
 
 msgid "&Others"
 msgstr "&Outros"
@@ -4536,7 +4639,7 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Aplicar filtros de substitución de prediferenciación"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Embelecer HTML"
 
 msgid "Prettify JSON"
 msgstr "Embelecer JSON"
@@ -4563,16 +4666,16 @@ msgid "Query YAML Data..."
 msgstr "Consultar datos YAML…"
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Validar HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Desensamblar Bytecode JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Desensamblar Código IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Desensamblart Código nativo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

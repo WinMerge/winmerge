@@ -243,6 +243,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
+	pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
 	m_imgfileFilter.UseMask(true);
 	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
@@ -253,7 +254,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	// Make sure filters are up-to-date
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	pGlobalFileFilter->ReloadUpdatedFilters();
-	pCtxt->m_piFilterGlobal = pGlobalFileFilter;
+	m_fileHelper.CloneFrom(pGlobalFileFilter);
+	pCtxt->m_piFilterGlobal = &m_fileHelper;
 	
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
@@ -893,7 +895,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	for (int i = 0; i < nFiles; ++i)
 		paths.SetPath(i, ifileloc[i].filepath.empty() ? _T("NUL") : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
-	DirViewColItems ci(nFiles);
+	DirViewColItems ci(nFiles, std::vector<String>{});
 	String msg = LoadResString(IDS_COMPARE_LARGE_FILES);
 	if (nFiles < 3)
 	{

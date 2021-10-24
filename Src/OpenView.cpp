@@ -776,7 +776,7 @@ void COpenView::OnCancel()
 }
 
 /** 
- * @brief Callled when Open-button for project file is selected.
+ * @brief Called when Open-button for project file is selected.
  */
 void COpenView::OnLoadProject()
 {

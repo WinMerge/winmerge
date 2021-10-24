@@ -74,6 +74,7 @@ public:
 	const CDirDoc * GetDocument() const { return const_cast<CDirView *>(this)->GetDocument(); }
 	const CDiffContext& GetDiffContext() const;
 	CDiffContext& GetDiffContext();
+	const DirViewColItems* GetDirViewColItems() const { return m_pColItems.get(); };
 
 // Operations
 public:

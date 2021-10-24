@@ -63,6 +63,8 @@ inline const String OPT_DIRVIEW_COLUMN_WIDTHS {_T("DirView/ColumnWidths"s)};
 inline const String OPT_DIRVIEW3_COLUMN_ORDERS {_T("DirView3/ColumnOrders"s)};
 inline const String OPT_DIRVIEW3_COLUMN_WIDTHS {_T("DirView3/ColumnWidths"s)};
 
+inline const String OPT_ADDITIONAL_PROPERTIES {_T("Settings/AdditionalProperties"s)};
+
 // Window/Pane
 inline const String OPT_ACTIVE_FRAME_MAX {_T("Settings/ActiveFrameMax"s)};
 inline const String OPT_ACTIVE_PANE {_T("Settings/ActivePane"s)};

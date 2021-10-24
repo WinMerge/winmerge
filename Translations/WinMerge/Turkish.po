@@ -1312,6 +1312,21 @@ msgstr "Y&ukarı taşı"
 msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Eklenti seçin"
 
@@ -2865,6 +2880,90 @@ msgstr "Ayıklayıcı"
 msgid "Prediffer"
 msgstr "Ön farklılaştırıcı"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Dosyalar karşılaştırılamıyor"
 
@@ -2946,6 +3045,10 @@ msgstr "Görsel dosyaları aynı"
 
 msgid "Image files are different"
 msgstr "Görsel dosyaları farklı"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

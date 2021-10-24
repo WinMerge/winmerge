@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
+"POT-Creation-Date: 2021-10-23 10:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1302,6 +1302,21 @@ msgstr ""
 msgid "Move &Down"
 msgstr ""
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -2581,6 +2596,90 @@ msgstr ""
 msgid "Prediffer"
 msgstr ""
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr ""
 
@@ -2661,6 +2760,10 @@ msgid "Image files are identical"
 msgstr ""
 
 msgid "Image files are different"
+msgstr ""
+
+#, c-format
+msgid "Group%d"
 msgstr ""
 
 #, c-format

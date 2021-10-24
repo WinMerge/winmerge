@@ -3182,7 +3182,7 @@ void CMergeEditView::RefreshOptions()
 	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
-		String fileName = GetDocument()->m_filePaths[m_nThisPane];
+		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
 		String sExt;
 		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(sExt.c_str());

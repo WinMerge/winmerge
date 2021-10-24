@@ -246,6 +246,7 @@ public:
 
 	String getFilepath(int nIndex, const String &sRoot) const;
 	void Swap(int idx1, int idx2);
+	void ClearAllAdditionalProperties();
 
 //**** Child, Parent, Sibling linkage
 private:							// Don't allow direct external manipulation of link values

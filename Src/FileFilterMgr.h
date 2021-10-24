@@ -56,6 +56,7 @@ public:
 	String GetFilterDesc(int i) const;
 	String GetFilterDesc(const FileFilter *pFilter) const;
 	FileFilter * GetFilterByPath(const String& szFilterName);
+	FileFilter * GetFilterByIndex(int i);
 	String GetFullpath(FileFilter * pfilter) const;
 
 	// methods to actually use filter
@@ -63,6 +64,7 @@ public:
 	bool TestDirNameAgainstFilter(const FileFilter * pFilter, const String& szDirName) const;
 
 	void DeleteAllFilters();
+	void CloneFrom(const FileFilterMgr* fileFilterMgr);
 
 // Implementation methods
 protected:

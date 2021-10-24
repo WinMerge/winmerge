@@ -11,7 +11,7 @@ if not %ERRORLEVEL% == 0 (
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
-https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.1.0/ShellExtension-1.18.1.0.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.2.0/ShellExtension-1.18.2.0.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-win32.zip!Build ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-x64.zip!Build\X64 ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.5/Merge7z1900.5-ARM64.zip!Build\ARM64 ^

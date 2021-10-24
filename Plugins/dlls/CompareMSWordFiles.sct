@@ -141,13 +141,21 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim wd 
 	Dim doc
 	Dim cmp
+	Dim fileSrc2
 
 	Set fo = fso.CreateTextFile(fileDst, True, True)
 
 	Set wd = CreateObject("Word.Application")
 	wd.DisplayAlerts = False
 
-	Set doc = wd.Documents.Open(fileSrc)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSWordFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set doc = wd.Documents.Open(fileSrc2)
 
 	On Error Resume Next
 
@@ -217,13 +225,21 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim wd
 	Dim doc
 	Dim cmp
+	Dim fileSrc2
 
 	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
 	Set wd = CreateObject("Word.Application")
 	wd.DisplayAlerts = False
 
-	Set doc = wd.Documents.Open(fileSrc)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSWordFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set doc = wd.Documents.Open(fileSrc2)
 
 	On Error Resume Next
 

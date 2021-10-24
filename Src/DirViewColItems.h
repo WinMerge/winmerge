@@ -15,8 +15,8 @@ class DIFFITEM;
 class CDiffContext;
 
 // DirViewColItems typedefs
-typedef String (*ColGetFncPtrType)(const CDiffContext *, const void *);
-typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void *);
+typedef String (*ColGetFncPtrType)(const CDiffContext *, const void *, int);
+typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void *, int);
 
 
 /**
@@ -41,6 +41,9 @@ struct DirColInfo
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
+	int opt;
+	String GetDisplayName() const;
+	String GetDescription() const;
 };
 
 extern const int g_ncols;
@@ -49,8 +52,7 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
-	explicit DirViewColItems(int nDirs):
-	  m_nDirs(nDirs), m_numcols(-1), m_dispcols(-1) {}
+	explicit DirViewColItems(int nDirs, const std::vector<String>& additionalPropertyNames);
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
 	const DirColInfo * GetDirColInfo(int col) const;
@@ -64,7 +66,7 @@ public:
 	bool IsDefaultSortAscending(int col) const;
 	String GetColDisplayName(int col) const;
 	String GetColDescription(int col) const;
-	int	GetColCount() const;
+	int	GetColCount() const { return m_numcols; };
 	int GetDispColCount() const { return m_dispcols; }
 	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM &di) const;
 	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi, const DIFFITEM &rdi, bool bTreeMode) const;
@@ -76,8 +78,10 @@ public:
 	void ResetColumnOrdering();
 	void SetColumnOrdering(const int colorder[]);
 	String ResetColumnWidths(int defcolwidth);
-	void LoadColumnOrders(String colorders);
+	void LoadColumnOrders(const String& colOrders);
 	String SaveColumnOrders();
+	const std::vector<String>& GetAdditionalPropertyNames() const { return m_additionalPropertyNames; }
+	void SetAdditionalPropertyNames(const std::vector<String>& propertyNames);
 
 	/// Update all column widths (from registry to screen)
 	// Necessary when user reorders columns
@@ -116,9 +120,15 @@ public:
 
 
 private:
+	void AddAdditionalPropertyName(const String& propertyName);
+	void RemoveAdditionalPropertyName(const String& propertyName);
+
 	int m_nDirs;
 	int m_numcols;
 	int m_dispcols;
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
+	std::vector<DirColInfo> m_cols;
+	std::vector<String> m_additionalPropertyNames;
+	std::list<String> m_strpool;
 };

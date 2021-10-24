@@ -404,6 +404,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim wbk
 	Dim sht
 	Dim cmp
+	Dim fileSrc2
 
 	Set fo = fso.CreateTextFile(fileDst, True, True)
 
@@ -411,7 +412,14 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	xl.EnableEvents = False
 	xl.DisplayAlerts = False
 
-	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0))
 
 	On Error Resume Next
 
@@ -493,6 +501,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim sht
 	Dim cmp
 	Dim No
+	Dim fileSrc2
 
 	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
@@ -504,7 +513,14 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking
 	xl.ErrorCheckingOptions.BackgroundChecking = False
     
-	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0))
 
 	On Error Resume Next
 

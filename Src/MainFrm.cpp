@@ -1666,7 +1666,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 			theApp.LoadAndOpenProjectFile(tFiles[0]);
 			return;
 		}
-		if (IsConflictFile(tFiles[0]))
+		if (ConflictFileParser::IsConflictFile(tFiles[0]))
 		{
 			DoOpenConflict(tFiles[0], nullptr, true);
 			return;
@@ -2594,7 +2594,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 	if (!checked)
 	{
-		bool confFile = IsConflictFile(conflictFile);
+		bool confFile = ConflictFileParser::IsConflictFile(conflictFile);
 		if (!confFile)
 		{
 			String message = strutils::format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
@@ -2619,7 +2619,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	// Parse conflict file into two files.
 	bool inners, threeWay;
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-	bool success = ParseConflictFile(conflictFile, workFile, revFile, baseFile, iGuessEncodingType, inners, threeWay);
+	bool success = ConflictFileParser::ParseConflictFile(conflictFile, workFile, revFile, baseFile, iGuessEncodingType, inners, threeWay);
 
 	if (success)
 	{

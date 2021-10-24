@@ -129,6 +129,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim doc
 	Dim pge
 	Dim cmp
+	Dim fileSrc2
 
 	Set fo = fso.CreateTextFile(fileDst, True, True)
 
@@ -136,7 +137,14 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	vs.Visible = False
 	vs.AlertResponse = vbNo
 
-	Set doc = vs.Documents.OpenEx(fileSrc, &H80)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSVisioFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set doc = vs.Documents.OpenEx(fileSrc2, &H80)
 
 	On Error Resume Next
 
@@ -190,6 +198,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim doc
 	Dim pge
 	Dim cmp
+	Dim fileSrc2
 
 	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
@@ -197,7 +206,14 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	vs.Visible = False
 	vs.AlertResponse = vbNo
 
-	Set doc = vs.Documents.OpenEx(fileSrc, &H80)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSVisioFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set doc = vs.Documents.OpenEx(fileSrc2, &H80)
 
 	On Error Resume Next
 

@@ -1646,6 +1646,21 @@ msgstr "&U جابجايي به بالا "
 msgid "Move &Down"
 msgstr " جابجايي به پايين "
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -3399,6 +3414,90 @@ msgstr " باز کننده بسته "
 msgid "Prediffer"
 msgstr " پيش فرق گذار "
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr " ناتوان از همسنجي پرونده هاست"
@@ -3499,6 +3598,10 @@ msgid "Image files are identical"
 msgstr ""
 
 msgid "Image files are different"
+msgstr ""
+
+#, c-format
+msgid "Group%d"
 msgstr ""
 
 #, c-format
