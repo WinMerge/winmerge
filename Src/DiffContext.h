@@ -36,6 +36,7 @@ struct DuplicateInfo
 {
 	int groupid;
 	int count[3];
+	bool nonpaired;
 };
 
 /**

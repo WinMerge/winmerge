@@ -755,21 +755,25 @@ static String ColAllPropertyGet(const CDiffContext *pCtxt, const void *p, int op
 	return strutils::join(values.begin(), values.end(), _T("|"));
 }
 
-static String ColPropertyDiffGet(const CDiffContext *pCtxt, const void *p, int opt)
+static String ColPropertyDiffGetEx(const CDiffContext *pCtxt, const void *p, int opt, bool addNumDiff, bool& numeric, int64_t *pnumdiff)
 {
 	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
-	String result = ColStatusAbbrGet(pCtxt, p, opt);
+	if (di.diffcode.isDirectory())
+		return _T("");
+	if (di.diffcode.isResultError())
+		return _("Error");
+	if (di.diffcode.isResultAbort())
+		return _("Item aborted");
 	if (di.diffcode.isResultFiltered())
-		return result;
-	if (di.diffcode.isDirectory() && !di.diffcode.existAll())
-		return result;
+		return _("File skipped");
 	PropertyValues* pFirstProps = di.diffFileInfo[0].m_pAdditionalProperties.get();
 	if (!pFirstProps)
 		return _T("");
 	int64_t diff = 0;
 	bool equal = true;
-	bool numeric = false;
-	for (int i = 1; i < pCtxt->GetCompareDirs(); ++i)
+	numeric = false;
+	const int nDirs = pCtxt->GetCompareDirs();
+	for (int i = 1; i < nDirs; ++i)
 	{
 		PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
 		if (pFirstProps && pprops)
@@ -777,35 +781,83 @@ static String ColPropertyDiffGet(const CDiffContext *pCtxt, const void *p, int o
 			diff = PropertyValues::DiffValues(*pFirstProps, *pprops, opt, numeric);
 			if (diff != 0)
 				equal = false;
+			if (pnumdiff)
+				*pnumdiff = diff;
 		}
 	}
-	if (result == _("Identical") || result == _("Different"))
+	String result;
+	if (!di.diffcode.existAll())
+	{
+		bool allempty = true;
+		for (int i = 0; i < nDirs; ++i)
+		{
+			if (di.diffcode.exists(i))
+			{
+				PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
+				if (pprops && !pprops->IsEmptyValue(opt))
+					allempty = false;
+			}
+		}
+		if (!allempty)
+		{
+			if (di.diffcode.isSideFirstOnly())
+				result = _("Left Only");
+			else if (di.diffcode.isSideSecondOnly())
+			{
+				if (nDirs < 3)
+					result = _("Right Only");
+				else
+					result = _("Middle Only");
+			}
+			else if (di.diffcode.isSideThirdOnly())
+				result = _("Right Only");
+			else if (nDirs > 2 && !di.diffcode.existsFirst())
+				result = _("No item in left");
+			else if (nDirs > 2 && !di.diffcode.existsSecond())
+				result = _("No item in middle");
+			else if (nDirs > 2 && !di.diffcode.existsThird())
+				result = _("No item in right");
+		}
+	}
+	else
 	{
 		result = !equal ? _("Different") :
 			(!pFirstProps->IsEmptyValue(opt) ? _("Identical") : _T(""));
 	}
-	if (pCtxt->GetCompareDirs() == 2 && numeric)
-		result += strutils::format(_T("(%ld)"), diff);
+	if (nDirs == 2 && numeric && addNumDiff)
+		result += strutils::format(_T(" (%ld)"), diff);
 	return result;
+}
+
+static String ColPropertyDiffGet(const CDiffContext* pCtxt, const void* p, int opt)
+{
+	bool numeric = false;
+	return ColPropertyDiffGetEx(pCtxt, p, opt, true, numeric, nullptr);
 }
 
 static String ColPropertyMoveGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
-	if (di.diffcode.isDirectory() || di.diffcode.existAll())
+	if (di.diffcode.isDirectory())
 		return _T("");
-	int index = di.diffcode.existsFirst() ? 0 : 1;
-	PropertyValues* pprops = di.diffFileInfo[index].m_pAdditionalProperties.get();
-	if (pprops && !pCtxt->m_duplicateValues.empty())
+	std::vector<String> list;
+	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 	{
-		auto it = pCtxt->m_duplicateValues[opt].find(pprops->GetHashValue(opt));
-		if (it != pCtxt->m_duplicateValues[opt].end())
+		if (di.diffcode.exists(i))
 		{
-			if (it->second.count[1 - index] > 1)
-				return strutils::format(_("Group%d"), it->second.groupid);
+			PropertyValues* pprops = di.diffFileInfo[i].m_pAdditionalProperties.get();
+			if (pprops && !pCtxt->m_duplicateValues.empty())
+			{
+				auto it = pCtxt->m_duplicateValues[opt].find(pprops->GetHashValue(opt));
+				if (it != pCtxt->m_duplicateValues[opt].end())
+				{
+					if (it->second.groupid != 0 && it->second.nonpaired)
+						list.push_back(strutils::format(_("Group%d"), it->second.groupid));
+				}
+			}
 		}
 	}
-	return _T("");
+	return strutils::join(list.begin(), list.end(), _T("|"));
 }
 
 /**
@@ -1067,15 +1119,24 @@ static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const vo
 	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
 	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 	{
-		if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[i].m_pAdditionalProperties)
-			return -1;
-		if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
-			return 1;
-		if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
-			return 0;
-		int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[i].m_pAdditionalProperties, opt);
-		if (result != 0)
-			return result;
+		if (r.diffcode.exists(i))
+		{
+			for (int j = 0; j < pCtxt->GetCompareDirs(); ++j)
+			{
+				if (s.diffcode.exists(j))
+				{
+					if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[j].m_pAdditionalProperties)
+						return -1;
+					if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
+						return 1;
+					if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
+						return 0;
+					int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[j].m_pAdditionalProperties, opt);
+					if (result != 0)
+						return result;
+				}
+			}
+		}
 	}
 	return 0;
 }
@@ -1090,30 +1151,20 @@ static int ColPropertyDiffSort(const CDiffContext *pCtxt, const void *p, const v
 {
 	const DIFFITEM &r = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
-	if (pCtxt->GetCompareDirs() == 2)
+	int64_t rnumdiff = 0;
+	int64_t snumdiff = 0;
+	bool rnumeric = false;
+	bool snumeric = false;
+	String r2 = ColPropertyDiffGetEx(pCtxt, p, opt, false, rnumeric, &rnumdiff);
+	String s2 = ColPropertyDiffGetEx(pCtxt, q, opt, false, snumeric, &snumdiff);
+	int result = strutils::compare_nocase(r2, s2);
+	if (pCtxt->GetCompareDirs() == 2 && result == 0 && rnumeric && snumeric)
 	{
-		if ((r.diffFileInfo[0].m_pAdditionalProperties && r.diffFileInfo[1].m_pAdditionalProperties) &&
-		    (s.diffFileInfo[0].m_pAdditionalProperties && s.diffFileInfo[1].m_pAdditionalProperties))
-		{
-			bool rnumeric;
-			bool snumeric;
-			int64_t rdiff = PropertyValues::DiffValues(*r.diffFileInfo[0].m_pAdditionalProperties, *r.diffFileInfo[1].m_pAdditionalProperties, opt, rnumeric);
-			int64_t sdiff = PropertyValues::DiffValues(*s.diffFileInfo[0].m_pAdditionalProperties, *s.diffFileInfo[1].m_pAdditionalProperties, opt, snumeric);
-			String r2 = ColStatusAbbrGet(pCtxt, p, opt);
-			String s2 = ColStatusAbbrGet(pCtxt, q, opt);
-			if (r2 == s2 && rnumeric && snumeric)
-			{
-				if (rdiff < sdiff)
-					return -1;
-				else if (rdiff > sdiff)
-					return 1;
-				return 0;
-			}
-		}
+		if (rnumdiff == snumdiff)
+			return 0;
+		return rnumdiff < snumdiff ? -1 : 1;
 	}
-	String r2 = ColPropertyDiffGet(pCtxt, p, opt);
-	String s2 = ColPropertyDiffGet(pCtxt, q, opt);
-	return strutils::compare_nocase(r2, s2);
+	return result;
 }
 
 /**
@@ -1257,6 +1308,7 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& additiona
 	DirColInfo *pcol = nDirs < 3 ? f_cols : f_cols3;
 	for (size_t i = 0; i < m_numcols; ++i)
 		m_cols.push_back(pcol[i]);
+	ResetColumnOrdering();
 	PropertySystem ps(additionalPropertyNames);
 	for (const auto& propertyName : ps.GetCanonicalNames())
 		AddAdditionalPropertyName(propertyName);
@@ -1311,9 +1363,11 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 			}
 			pane = (pane + 1) % m_nDirs;
 		}
-		++m_numcols;
-		m_colorder.push_back(-1);
 		m_invcolorder.push_back(-1);
+		if (c == 'A')
+			m_invcolorder[m_dispcols] = m_numcols;
+		m_colorder.push_back(c == 'A' ? m_dispcols++ : -1);
+		++m_numcols;
 	}
 	m_additionalPropertyNames.push_back(propertyName);
 }

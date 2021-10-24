@@ -303,24 +303,30 @@ void CDiffContext::CreateDuplicateValueMap()
 			{
 				for (size_t j = 0; j < pValues->GetSize(); ++j)
 				{
-					if (pValues->IsHashValue(j))
+					if (pValues->IsHashValue(j) )
 					{
 						std::vector<uint8_t> value = pValues->GetHashValue(j);
-						auto it = m_duplicateValues[j].find(value);
-						if (it == m_duplicateValues[j].end())
+						if (!value.empty())
 						{
-							DuplicateInfo info{};
-							++info.count[pane];
-							m_duplicateValues[j].insert_or_assign(value, info);
-						}
-						else
-						{
-							if (it->second.groupid == 0 && it->second.count[pane] == 1)
+							auto it = m_duplicateValues[j].find(value);
+							if (it == m_duplicateValues[j].end())
 							{
-								++currentGroupId[j];
-								it->second.groupid = currentGroupId[j];
+								DuplicateInfo info{};
+								++info.count[pane];
+								info.nonpaired = !di.diffcode.existAll();
+								m_duplicateValues[j].insert_or_assign(value, info);
 							}
-							++it->second.count[pane];
+							else
+							{
+								if (it->second.groupid == 0 && it->second.count[pane] == 1)
+								{
+									++currentGroupId[j];
+									it->second.groupid = currentGroupId[j];
+								}
+								++it->second.count[pane];
+								if (!it->second.nonpaired && !di.diffcode.existAll())
+									it->second.nonpaired = true;
+							}
 						}
 					}
 				}

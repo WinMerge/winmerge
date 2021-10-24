@@ -51,4 +51,5 @@ private:
 	void AddProperties(const std::vector<String>& canonicalNames);
 	std::vector<String> m_canonicalNames;
 	std::vector<PROPERTYKEY> m_keys;
+	bool m_onlyHashProperties = true;
 };

@@ -702,6 +702,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="HashCalc.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="PropertySystem.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1200,6 +1204,7 @@
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirAdditionalPropertiesDlg.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="HashCalc.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
