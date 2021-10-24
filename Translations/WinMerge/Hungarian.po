@@ -1643,19 +1643,19 @@ msgid "Move &Down"
 msgstr "Mozgatás le"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "További tulajdonságok"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "További tulajdonságok"
 
 msgid "&>"
-msgstr ""
+msgstr ">"
 
 msgid "&<"
-msgstr ""
+msgstr "<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
@@ -2330,10 +2330,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Eltávolítás a helyi menüből (csak ez a felhasználó)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "Shellbővítmény regisztrálása Windows 11-hez"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Shellbővítmény regisztrálás törlése Windows 11-hez"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -3448,88 +3448,88 @@ msgid "Prediffer"
 msgstr "Elővizsgáló"
 
 msgid "Left"
-msgstr ""
+msgstr "Bal"
 
 msgid "Middle"
-msgstr ""
+msgstr "Középső"
 
 msgid "Right"
-msgstr ""
+msgstr "Jobb"
 
 msgid "Diff"
-msgstr ""
+msgstr "Különbség"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Bal duplikátum számláló"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Jöbb duplikátum számláló"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Középső duplikátum számláló"
 
 msgid "Move"
-msgstr ""
+msgstr "Áthelyezés"
 
 msgid "Audio"
-msgstr ""
+msgstr "Hang"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Naptár"
 
 msgid "Communication"
-msgstr ""
+msgstr "Kommunikáció"
 
 msgid "Contact"
-msgstr ""
+msgstr "Névjegy"
 
 msgid "Devices"
-msgstr ""
+msgstr "Eszközök"
 
 msgid "Document"
-msgstr ""
+msgstr "Dokumentum"
 
 msgid "Home"
-msgstr ""
+msgstr "Otthon"
 
 msgid "Journal"
-msgstr ""
+msgstr "Napló"
 
 msgid "Link"
-msgstr ""
+msgstr "Hivatkozás"
 
 msgid "Media"
-msgstr ""
+msgstr "Média"
 
 msgid "Music"
-msgstr ""
+msgstr "Zene"
 
 msgid "Note"
-msgstr ""
+msgstr "Megjegyzés"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fénykép"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "TV felvétel"
 
 msgid "Search"
-msgstr ""
+msgstr "Keresés"
 
 msgid "Security"
-msgstr ""
+msgstr "Biztonság"
 
 msgid "Software"
-msgstr ""
+msgstr "Szoftver"
 
 msgid "Task"
-msgstr ""
+msgstr "Feladat"
 
 msgid "Video"
-msgstr ""
+msgstr "Videó"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3635,7 +3635,7 @@ msgstr "A képfájlok különböznek"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Csoport%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4669,7 +4669,7 @@ msgid "Disassemble JVM Bytecode"
 msgstr "JVM Bytekód kibontása"
 
 msgid "Disassemble IL Code"
-msgstr "IL kód Bytecode kibontása"
+msgstr "IL kód kibontása"
 
 msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"
