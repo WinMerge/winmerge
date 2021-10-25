@@ -13,8 +13,11 @@
 
 #include "UnicodeString.h"
 
+namespace ConflictFileParser
+{
 bool IsConflictFile(const String& conflictFileName);
 
 bool ParseConflictFile(const String& conflictFileName,
 		const String& workingCopyFileName, const String& newRevisionFileName, const String& baseRevisionFileName,
 		int iGuessEncodingType, bool &nestedConflicts, bool &b3way);
+}

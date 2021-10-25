@@ -57,6 +57,7 @@
 #include "CompareStats.h"
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
+#include "OptionsProject.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -776,7 +777,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}
-			else if (IsConflictFile(sFilepath))
+			else if (ConflictFileParser::IsConflictFile(sFilepath))
 			{
 				//For a conflict file, load the descriptions in their respective positions:  (they will be reordered as needed)
 				strDesc[0] = cmdInfo.m_sLeftDesc;
@@ -1252,8 +1253,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		std::unique_ptr<PrediffingInfo> pInfoPrediffer;
 		std::unique_ptr<PackingInfo> pInfoUnpacker;
 		PathContext tFiles;
-		bool bRecursive = false;
-		projItem.GetPaths(tFiles, bRecursive);
+		bool bDummy = false;
+		projItem.GetPaths(tFiles, bDummy);
 		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
 			if (!paths::IsPathAbsolute(tFiles[i]))
@@ -1271,15 +1272,16 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		bool bLeftReadOnly = projItem.GetLeftReadOnly();
 		bool bMiddleReadOnly = projItem.GetMiddleReadOnly();
 		bool bRightReadOnly = projItem.GetRightReadOnly();
-		if (projItem.HasFilter())
+		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::FileFilter) && projItem.HasFilter())
 		{
 			String filter = projItem.GetFilter();
 			filter = strutils::trim_ws(filter);
 			GetGlobalFileFilter()->SetFilter(filter);
 		}
-		if (projItem.HasSubfolders())
+		bool bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::IncludeSubfolders) && projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
-		if (projItem.HasUnpacker())
+		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::UnpackerPlugin) && projItem.HasUnpacker())
 			pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
 		if (projItem.HasPrediffer())
 			pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
@@ -1306,20 +1308,23 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		GetOptionsMgr()->Set(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 
-		if (projItem.HasIgnoreWhite())
-			GetOptionsMgr()->Set(OPT_CMP_IGNORE_WHITESPACE, projItem.GetIgnoreWhite());
-		if (projItem.HasIgnoreBlankLines())
-			GetOptionsMgr()->Set(OPT_CMP_IGNORE_BLANKLINES, projItem.GetIgnoreBlankLines());
-		if (projItem.HasIgnoreCase())
-			GetOptionsMgr()->Set(OPT_CMP_IGNORE_CASE, projItem.GetIgnoreCase());
-		if (projItem.HasIgnoreEol())
-			GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, projItem.GetIgnoreEol());
-		if (projItem.HasIgnoreCodepage())
-			GetOptionsMgr()->Set(OPT_CMP_IGNORE_CODEPAGE, projItem.GetIgnoreCodepage());
-		if (projItem.HasFilterCommentsLines())
-			GetOptionsMgr()->Set(OPT_CMP_FILTER_COMMENTLINES, projItem.GetFilterCommentsLines());
-		if (projItem.HasCompareMethod())
-			GetOptionsMgr()->Set(OPT_CMP_METHOD, projItem.GetCompareMethod());
+		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::CompareOptions))
+		{
+			if (projItem.HasIgnoreWhite())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_WHITESPACE, projItem.GetIgnoreWhite());
+			if (projItem.HasIgnoreBlankLines())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_BLANKLINES, projItem.GetIgnoreBlankLines());
+			if (projItem.HasIgnoreCase())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_CASE, projItem.GetIgnoreCase());
+			if (projItem.HasIgnoreEol())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, projItem.GetIgnoreEol());
+			if (projItem.HasIgnoreCodepage())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_CODEPAGE, projItem.GetIgnoreCodepage());
+			if (projItem.HasFilterCommentsLines())
+				GetOptionsMgr()->Set(OPT_CMP_FILTER_COMMENTLINES, projItem.GetFilterCommentsLines());
+			if (projItem.HasCompareMethod())
+				GetOptionsMgr()->Set(OPT_CMP_METHOD, projItem.GetCompareMethod());
+		}
 
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
 			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());

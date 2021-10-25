@@ -33,6 +33,7 @@
 #include "BCMenu.h"
 #include "LanguageSelect.h"
 #include "Win_VersionHelper.h"
+#include "OptionsProject.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -775,10 +776,12 @@ void COpenView::OnCancel()
 }
 
 /** 
- * @brief Callled when Open-button for project file is selected.
+ * @brief Called when Open-button for project file is selected.
  */
 void COpenView::OnLoadProject()
 {
+	UpdateData(TRUE);
+
 	String fileName = AskProjectFileName(true);
 	if (fileName.empty())
 		return;
@@ -790,7 +793,10 @@ void COpenView::OnLoadProject()
 		return;
 	PathContext paths;
 	ProjectFileItem& projItem = *project.Items().begin();
-	projItem.GetPaths(paths, m_bRecurse);
+	bool bRecurse = m_bRecurse;
+	projItem.GetPaths(paths, bRecurse);
+	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::IncludeSubfolders))
+		m_bRecurse = bRecurse;
 	if (paths.GetSize() < 3)
 	{
 		m_strPath[0] = paths[0];
@@ -809,24 +815,28 @@ void COpenView::OnLoadProject()
 		m_bReadOnly[1] = projItem.GetMiddleReadOnly();
 		m_bReadOnly[2] = projItem.GetRightReadOnly();
 	}
-	m_strExt = projItem.GetFilter();
-	if (projItem.HasUnpacker())
+	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::FileFilter) && projItem.HasFilter())
+		m_strExt = projItem.GetFilter();
+	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::UnpackerPlugin) && projItem.HasUnpacker())
 		m_strUnpackerPipeline = projItem.GetUnpacker();
 
-	if (projItem.HasIgnoreWhite())
-		m_nIgnoreWhite = projItem.GetIgnoreWhite();
-	if (projItem.HasIgnoreBlankLines())
-		m_bIgnoreBlankLines = projItem.GetIgnoreBlankLines();
-	if (projItem.HasIgnoreCase())
-		m_bIgnoreCase = projItem.GetIgnoreCase();
-	if (projItem.HasIgnoreEol())
-		m_bIgnoreEol = projItem.GetIgnoreEol();
-	if (projItem.HasIgnoreCodepage())
-		m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
-	if (projItem.HasFilterCommentsLines())
-		m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
-	if (projItem.HasCompareMethod())
-		m_nCompareMethod = projItem.GetCompareMethod();
+	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::CompareOptions))
+	{
+		if (projItem.HasIgnoreWhite())
+			m_nIgnoreWhite = projItem.GetIgnoreWhite();
+		if (projItem.HasIgnoreBlankLines())
+			m_bIgnoreBlankLines = projItem.GetIgnoreBlankLines();
+		if (projItem.HasIgnoreCase())
+			m_bIgnoreCase = projItem.GetIgnoreCase();
+		if (projItem.HasIgnoreEol())
+			m_bIgnoreEol = projItem.GetIgnoreEol();
+		if (projItem.HasIgnoreCodepage())
+			m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
+		if (projItem.HasFilterCommentsLines())
+			m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
+		if (projItem.HasCompareMethod())
+			m_nCompareMethod = projItem.GetCompareMethod();
+	}
 
 	UpdateData(FALSE);
 	UpdateButtonStates();
@@ -847,6 +857,22 @@ void COpenView::OnSaveProject()
 	ProjectFile project;
 	ProjectFileItem projItem;
 
+	bool bSaveFileFilter = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::FileFilter);
+	bool bSaveIncludeSubfolders = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::IncludeSubfolders);
+	bool bSaveUnpackerPlugin = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::UnpackerPlugin);
+	bool bSaveCompareOptions = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::CompareOptions);
+
+	projItem.SetSaveFilter(bSaveFileFilter);
+	projItem.SetSaveSubfolders(bSaveIncludeSubfolders);
+	projItem.SetSaveUnpacker(bSaveUnpackerPlugin);
+	projItem.SetSaveIgnoreWhite(bSaveCompareOptions);
+	projItem.SetSaveIgnoreBlankLines(bSaveCompareOptions);
+	projItem.SetSaveIgnoreCase(bSaveCompareOptions);
+	projItem.SetSaveIgnoreEol(bSaveCompareOptions);
+	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
+	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
+	projItem.SetSaveCompareMethod(bSaveCompareOptions);
+
 	if (!m_strPath[0].empty())
 		projItem.SetLeft(m_strPath[0], &m_bReadOnly[0]);
 	if (m_strPath[2].empty())
@@ -861,7 +887,7 @@ void COpenView::OnSaveProject()
 		if (!m_strPath[2].empty())
 			projItem.SetRight(m_strPath[2], &m_bReadOnly[2]);
 	}
-	if (!m_strExt.empty())
+	if (bSaveFileFilter && !m_strExt.empty())
 	{
 		// Remove possbile prefix from the filter name
 		String prefix = _("[F] ");
@@ -874,17 +900,21 @@ void COpenView::OnSaveProject()
 		strExt = strutils::trim_ws_begin(strExt);
 		projItem.SetFilter(strExt);
 	}
-	projItem.SetSubfolders(m_bRecurse);
-	if (!m_strUnpackerPipeline.empty())
+	if (bSaveIncludeSubfolders)
+		projItem.SetSubfolders(m_bRecurse);
+	if (bSaveUnpackerPlugin && !m_strUnpackerPipeline.empty())
 		projItem.SetUnpacker(m_strUnpackerPipeline);
 
-	projItem.SetIgnoreWhite(m_nIgnoreWhite);
-	projItem.SetIgnoreBlankLines(m_bIgnoreBlankLines);
-	projItem.SetIgnoreCase(m_bIgnoreCase);
-	projItem.SetIgnoreEol(m_bIgnoreEol);
-	projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
-	projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
-	projItem.SetCompareMethod(m_nCompareMethod);
+	if (bSaveCompareOptions)
+	{
+		projItem.SetIgnoreWhite(m_nIgnoreWhite);
+		projItem.SetIgnoreBlankLines(m_bIgnoreBlankLines);
+		projItem.SetIgnoreCase(m_bIgnoreCase);
+		projItem.SetIgnoreEol(m_bIgnoreEol);
+		projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
+		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
+		projItem.SetCompareMethod(m_nCompareMethod);
+	}
 
 	project.Items().push_back(projItem);
 

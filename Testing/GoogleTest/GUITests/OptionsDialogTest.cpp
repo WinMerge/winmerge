@@ -104,12 +104,14 @@ TEST_P(OptionsDialogTest, Pages)
 		selectCategory(hwndDlg, 18);
 		saveForegroundDialogImage("Archive Support");
 		selectCategory(hwndDlg, 19);
-		saveForegroundDialogImage("System");
+		saveForegroundDialogImage("Project");
 		selectCategory(hwndDlg, 20);
-		saveForegroundDialogImage("Backup Files");
+		saveForegroundDialogImage("System");
 		selectCategory(hwndDlg, 21);
-		saveForegroundDialogImage("Codepage");
+		saveForegroundDialogImage("Backup Files");
 		selectCategory(hwndDlg, 22);
+		saveForegroundDialogImage("Codepage");
+		selectCategory(hwndDlg, 23);
 		saveForegroundDialogImage("Shell Integration");
 		typeText(L"\x1b");
 		waitUntilClose(hwndDlg);

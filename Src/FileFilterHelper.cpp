@@ -445,3 +445,46 @@ String FileFilterHelper::GetUserFilterPathWithCreate() const
 	return paths::EnsurePathExist(m_sUserSelFilterPath);
 }
 
+/**
+ * @brief Clone file filter helper from another file filter helper.
+ * This function clones file filter helper from another file filter helper.
+ * Current contents in the file filter helper are removed and new contents added from the given file filter helper.
+ * @param [in] pHelper File filter helper to clone.
+ */
+void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
+{
+	if (!pHelper)
+		return;
+
+	if (pHelper->m_pMaskFilter)
+	{
+		std::unique_ptr<FilterList> filterList(new FilterList());
+		m_pMaskFilter = std::move(filterList);
+		m_pMaskFilter->CloneFrom(pHelper->m_pMaskFilter.get());
+	}
+
+	if (pHelper->m_fileFilterMgr)
+	{
+		std::unique_ptr<FileFilterMgr> fileFilterMgr(new FileFilterMgr());
+		m_fileFilterMgr = std::move(fileFilterMgr);
+		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
+	}
+
+	m_currentFilter = nullptr;
+	if (pHelper->m_currentFilter && pHelper->m_fileFilterMgr)
+	{
+		int count = pHelper->m_fileFilterMgr->GetFilterCount();
+		for (int i = 0; i < count; i++)
+			if (pHelper->m_fileFilterMgr->GetFilterByIndex(i) == pHelper->m_currentFilter)
+			{
+				m_currentFilter = m_fileFilterMgr->GetFilterByIndex(i);
+				break;
+			}
+	}
+
+	m_sFileFilterPath = pHelper->m_sFileFilterPath;
+	m_sMask = pHelper->m_sMask;
+	m_bUseMask = pHelper->m_bUseMask;
+	m_sGlobalFilterPath = pHelper->m_sGlobalFilterPath;
+	m_sUserSelFilterPath = pHelper->m_sUserSelFilterPath;
+}

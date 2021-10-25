@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-07-21 20:30+0200\n"
+"PO-Revision-Date: 2021-09-17 20:50+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1644,6 +1644,21 @@ msgstr "Nach &oben"
 msgid "Move &Down"
 msgstr "Nach &unten"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
 
@@ -2036,6 +2051,9 @@ msgstr "&Archivunterstützung aktivieren"
 msgid "&Detect archive type from file signature"
 msgstr "Archiv&typ aus der Dateisignatur ermitteln"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "In der Projektdatei gespeicherte oder aus ihr wiederhergestellte Elemente:"
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Vergleichsstatistik"
@@ -2305,6 +2323,12 @@ msgstr "Shell-Erweiterung nur für aktuellen Nutzer registrieren"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Shell-Erweiterung nur für aktuellen Nutzer nicht registrieren"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Shell-Erweiterung für Windows 11 und höher registrieren"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Shell-Erweiterung für Windows 11 und höher nicht registrieren"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Ordner"
@@ -2523,6 +2547,9 @@ msgstr "Farbschemas"
 msgid "Folder Compare"
 msgstr "Ordnervergleich"
 
+msgid "Project"
+msgstr "Projekt"
+
 #, c-format
 msgid "Differences"
 msgstr "Unterschiede"
@@ -2620,6 +2647,21 @@ msgstr "Meldung"
 
 msgid "Answer"
 msgstr "Antwort"
+
+msgid "Item"
+msgstr "Objekt"
+
+msgid "Load"
+msgstr "Laden"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Include Subfolders"
+msgstr "Unterordner einbeziehen"
+
+msgid "Compare Options"
+msgstr "Vergleichseinstellungen"
 
 #, c-format
 msgid "Name"
@@ -3171,6 +3213,90 @@ msgstr "Entpacker"
 msgid "Prediffer"
 msgstr "Prediffer"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Dateien können nicht verglichen werden"
@@ -3272,6 +3398,10 @@ msgstr "Bilddateien sind identisch"
 
 msgid "Image files are different"
 msgstr "Bilddateien sind unterschiedlich"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4055,7 +4185,7 @@ msgid "Validation"
 msgstr "Überprüfung"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Dekompilierung"
 
 msgid "&Others"
 msgstr "Andere"
@@ -4157,13 +4287,13 @@ msgid "Validate HTML"
 msgstr "HTML überprüfen"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "JVM-Bytecode disassemblieren"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "IL-Code disassemblieren"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Nativen Code disassemblieren"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

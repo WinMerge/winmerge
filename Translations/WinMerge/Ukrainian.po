@@ -1644,6 +1644,21 @@ msgstr "&Вгору"
 msgid "Move &Down"
 msgstr "В&низ"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -2038,6 +2053,9 @@ msgstr "&Ввімкнути підтримку архівів"
 msgid "&Detect archive type from file signature"
 msgstr "&Визначати тип архіву за сигнатурою або заголовком файлу"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Порівняння статистики"
@@ -2307,6 +2325,12 @@ msgstr ""
 msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Тека"
@@ -2553,6 +2577,9 @@ msgstr ""
 msgid "Folder Compare"
 msgstr ""
 
+msgid "Project"
+msgstr ""
+
 #, c-format
 msgid "Differences"
 msgstr "Відмінності"
@@ -2655,6 +2682,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 #, c-format
@@ -3348,6 +3390,90 @@ msgstr "Розпакувальник"
 msgid "Prediffer"
 msgstr "Нехтувач"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Неможливо порівняти файли"
@@ -3448,6 +3574,10 @@ msgid "Image files are identical"
 msgstr ""
 
 msgid "Image files are different"
+msgstr ""
+
+#, c-format
+msgid "Group%d"
 msgstr ""
 
 #, c-format

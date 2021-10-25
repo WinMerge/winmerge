@@ -37,6 +37,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
 #include "DirColsDlg.h"
+#include "DirAdditionalPropertiesDlg.h"
 #include "DirSelectFilesDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
@@ -400,8 +401,11 @@ void CDirView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
-	GetDocument()->SetDirView(this);
-	m_pColItems.reset(new DirViewColItems(GetDocument()->m_nDirs));
+	CDirDoc* pDoc = GetDocument();
+	pDoc->SetDirView(this);
+
+	auto properties = strutils::split<std::vector<String>>(GetOptionsMgr()->GetString(OPT_ADDITIONAL_PROPERTIES), ' ');
+	m_pColItems.reset(new DirViewColItems(pDoc->m_nDirs, properties));
 
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
 
@@ -450,7 +454,7 @@ void CDirView::OnInitialUpdate()
 
 	// Restore column orders as they had them last time they ran
 	m_pColItems->LoadColumnOrders(
-		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
+		GetOptionsMgr()->GetString(pDoc->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_ORDERS : OPT_DIRVIEW3_COLUMN_ORDERS));
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();
@@ -2483,6 +2487,9 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
+		if (pDoc->GetDiffContext().m_pPropertySystem && pDoc->GetDiffContext().m_pPropertySystem->HasHashProperties())
+			pDoc->GetDiffContext().CreateDuplicateValueMap();
+
 		// Close and destroy the dialog after compare
 		if (m_pCmpProgressBar != nullptr)
 			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
@@ -4227,7 +4234,7 @@ void CDirView::NameColumn(const DirColInfo *col, int subitem)
 	int phys = m_pColItems->ColLogToPhys(subitem);
 	if (phys>=0)
 	{
-		String s = tr(col->idNameContext, col->idName);
+		String s = col->GetDisplayName();
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = const_cast<LPTSTR>(s.c_str());
@@ -4387,40 +4394,66 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
  */
 void CDirView::OnEditColumns()
 {
-	CDirColsDlg dlg;
-	// List all the currently displayed columns
-	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
+	bool bReset = false;
+	CDirColsDlg::ColumnArray cols;
+
+	for (;;)
 	{
-		int l = m_pColItems->ColPhysToLog(col);
-		dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
-	}
-	// Now add all the columns not currently displayed
-	int l=0;
-	for (l=0; l<m_pColItems->GetColCount(); ++l)
-	{
-		if (m_pColItems->ColLogToPhys(l)==-1)
+		CDirColsDlg dlg;
+		// List all the currently displayed columns
+		for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 		{
-			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
+			int l = m_pColItems->ColPhysToLog(col);
+			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
 		}
-	}
+		// Now add all the columns not currently displayed
+		int l=0;
+		for (l=0; l<m_pColItems->GetColCount(); ++l)
+		{
+			if (m_pColItems->ColLogToPhys(l)==-1)
+			{
+				dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
+			}
+		}
 
-	// Add default order of columns for resetting to defaults
-	for (l = 0; l < m_pColItems->GetColCount(); ++l)
-	{
-		int phy = m_pColItems->GetColDefaultOrder(l);
-		dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
-	}
+		// Add default order of columns for resetting to defaults
+		for (l = 0; l < m_pColItems->GetColCount(); ++l)
+		{
+			int phy = m_pColItems->GetColDefaultOrder(l);
+			dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
+		}
 
-	if (dlg.DoModal() != IDOK)
-		return;
+		if (dlg.DoModal() != IDOK)
+			return;
+
+		if (!dlg.GetShowAdditionalProperties())
+		{
+			bReset = dlg.m_bReset;
+			cols = dlg.GetColumns();
+			break;
+		}
+		
+		CDirAdditionalPropertiesDlg dlgAdditionalProperties(m_pColItems->GetAdditionalPropertyNames());
+		if (dlgAdditionalProperties.DoModal() == IDOK)
+		{
+			auto& selectedCanonicalNames = dlgAdditionalProperties.GetSelectedCanonicalNames();
+			GetOptionsMgr()->SaveOption(OPT_ADDITIONAL_PROPERTIES,
+				strutils::join(selectedCanonicalNames.begin(), selectedCanonicalNames.end(), _T(" ")));
+			m_pColItems->SetAdditionalPropertyNames(selectedCanonicalNames);
+			m_pColItems->SaveColumnOrders();
+			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetAdditionalPropertyNames()));
+			GetDiffContext().ClearAllAdditionalProperties();
+			auto* pDoc = GetDocument();
+			ReloadColumns();
+		}
+	} 
 
 	const String keyname = GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS;
 	GetOptionsMgr()->SaveOption(keyname,
-		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
+		(bReset ? m_pColItems->ResetColumnWidths(GetDefColumnWidth()) :
 		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))));
 
 	// Reset our data to reflect the new data from the dialog
-	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	m_pColItems->ClearColumnOrders();
 	const int sortColumn = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 	std::vector<int> colorder(m_pColItems->GetColCount(), -1);

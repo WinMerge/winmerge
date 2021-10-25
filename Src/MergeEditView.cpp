@@ -3182,7 +3182,7 @@ void CMergeEditView::RefreshOptions()
 	else if (!GetDocument()->GetChangedSchemeManually())
 	{
 		// The syntax highlighting scheme should only be applied if it has not been manually changed.
-		String fileName = GetDocument()->m_filePaths[m_nThisPane];
+		String fileName = GetDocument()->m_ptBuf[m_nThisPane]->GetTempFileName();
 		String sExt;
 		paths::SplitFilename(fileName, nullptr, nullptr, &sExt);
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(sExt.c_str());
@@ -3285,7 +3285,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		CPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CPoint(ptPos.x, pView->GetLineCount() - 1);
 		pt.x = std::clamp(static_cast<int>(pt.x), 0, pView->GetLineLength(pt.y));
 		pView->SetCursorPos(pt);
-		if (bMoveAnchor)
+		if (bMoveAnchor || nPane != pane)
 			pView->SetAnchor(pt);
 		pView->SetSelection(pView->GetAnchor(), pt);
 		pView->EnsureVisible(pt);

@@ -59,6 +59,7 @@ private:
 	bool m_bCloseHandle;
 	DWORD m_dwThreadId;
 	HANDLE m_hThread;
+	HANDLE m_hEvent;
 	CRITICAL_SECTION m_cs;
 	DWORD m_dwQueueCount;
 };

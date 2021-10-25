@@ -88,6 +88,7 @@
 #include "StdAfx.h"
 #include <vector>
 #include <algorithm>
+#include <numeric>
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include "editcmd.h"
@@ -4103,8 +4104,9 @@ RecalcHorzScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
   si.cbSize = sizeof (si);
 
   const int nScreenChars = GetScreenChars();
+  const TextLayoutMode layoutMode = GetTextLayoutMode ();
   
-  if (GetTextLayoutMode () == TEXTLAYOUT_WORDWRAP)
+  if (layoutMode == TEXTLAYOUT_WORDWRAP)
     {
       if (m_nOffsetChar > nScreenChars)
         {
@@ -4119,7 +4121,12 @@ RecalcHorzScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
       return;
     }
 
-  const int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
+  int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
+  if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP || layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
+    {
+      auto widths = m_pTextBuffer->GetColumnWidths ();
+      nMaxLineLen = (std::max)(nMaxLineLen, std::accumulate (widths.begin (), widths.end (), 0));
+    }
 
   if (bPositionOnly)
     {
@@ -5907,7 +5914,7 @@ OnEditFind ()
     }
   else
     {
-      DWORD dwFlags = AfxGetApp ()->GetProfileInt (EDITPAD_SECTION, _T("FindFlags"), 0);
+      DWORD dwFlags = AfxGetApp ()->GetProfileInt (EDITPAD_SECTION, _T("FindFlags"), FIND_NO_CLOSE);
       ConvertSearchFlagsToLastSearchInfos(lastSearch, dwFlags);
     }
   m_pFindTextDlg->UseLastSearch ();

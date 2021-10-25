@@ -177,6 +177,7 @@ Localization:
   Hans Eriksson <hans.ericson@bredband.net>
   Göran Håkansson <goran.x.hakansson@telia.com>
   pgert <pgert at yahoo.se>
+  Timmy Almroth <timmy.almroth at tim-international.net>
 
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>

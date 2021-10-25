@@ -219,6 +219,16 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bFilterCommentsLines(false)
 , m_bHasCompareMethod(false)
 , m_nCompareMethod(0)
+, m_bSaveFilter(true)
+, m_bSaveSubfolders(true)
+, m_bSaveUnpacker(true)
+, m_bSaveIgnoreWhite(true)
+, m_bSaveIgnoreBlankLines(true)
+, m_bSaveIgnoreCase(true)
+, m_bSaveIgnoreEol(true)
+, m_bSaveIgnoreCodepage(true)
+, m_bSaveFilterCommentsLines(true)
+, m_bSaveCompareMethod(true)
 {
 }
 
@@ -346,24 +356,32 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Middle_element_name, toUTF8(item.m_paths.GetMiddle()));
 				if (!item.m_paths.GetRight().empty())
 					writeElement(writer, Right_element_name, toUTF8(item.m_paths.GetRight()));
-				if (!item.m_filter.empty())
+				if (item.m_bSaveFilter && !item.m_filter.empty())
 					writeElement(writer, Filter_element_name, toUTF8(item.m_filter));
-				writeElement(writer, Subfolders_element_name, item.m_subfolders != 0 ? "1" : "0");
+				if (item.m_bSaveSubfolders)
+					writeElement(writer, Subfolders_element_name, item.m_subfolders != 0 ? "1" : "0");
 				writeElement(writer, Left_ro_element_name, item.m_bLeftReadOnly ? "1" : "0");
 				if (!item.m_paths.GetMiddle().empty())
 					writeElement(writer, Middle_ro_element_name, item.m_bMiddleReadOnly ? "1" : "0");
 				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
-				if (!item.m_unpacker.empty())
+				if (item.m_bSaveUnpacker && !item.m_unpacker.empty())
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
 				if (!item.m_prediffer.empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
-				writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
-				writeElement(writer, Ignore_blank_lines_element_name, item.m_bIgnoreBlankLines ? "1" : "0");
-				writeElement(writer, Ignore_case_element_name, item.m_bIgnoreCase ? "1" : "0");
-				writeElement(writer, Ignore_cr_diff_element_name, item.m_bIgnoreEol ? "1" : "0");
-				writeElement(writer, Ignore_codepage_diff_element_name, item.m_bIgnoreCodepage ? "1" : "0");
-				writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
-				writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
+				if (item.m_bSaveIgnoreWhite)
+					writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
+				if (item.m_bSaveIgnoreBlankLines)
+					writeElement(writer, Ignore_blank_lines_element_name, item.m_bIgnoreBlankLines ? "1" : "0");
+				if (item.m_bSaveIgnoreCase)
+					writeElement(writer, Ignore_case_element_name, item.m_bIgnoreCase ? "1" : "0");
+				if (item.m_bSaveIgnoreEol)
+					writeElement(writer, Ignore_cr_diff_element_name, item.m_bIgnoreEol ? "1" : "0");
+				if (item.m_bSaveIgnoreCodepage)
+					writeElement(writer, Ignore_codepage_diff_element_name, item.m_bIgnoreCodepage ? "1" : "0");
+				if (item.m_bSaveFilterCommentsLines)
+					writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
+				if (item.m_bSaveCompareMethod)
+					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
 			}
 			writer.endElement("", "", Paths_element_name);
 		}

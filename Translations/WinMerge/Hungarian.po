@@ -1645,6 +1645,21 @@ msgstr "Mozgatás fel"
 msgid "Move &Down"
 msgstr "Mozgatás le"
 
+msgid "&Additional Properties"
+msgstr "További tulajdonságok"
+
+msgid "Additional Properties"
+msgstr "További tulajdonságok"
+
+msgid "&>"
+msgstr ">"
+
+msgid "&<"
+msgstr "<"
+
+msgid "<<"
+msgstr "<<"
+
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
 
@@ -2045,6 +2060,9 @@ msgstr "Archív fájlok támogatásának &engedélyezése"
 msgid "&Detect archive type from file signature"
 msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "A projektfájlba mentett vagy onnan visszaállított elemek:"
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Összehasonlítási statisztika"
@@ -2313,6 +2331,12 @@ msgstr "Regisztrálás a helyi menübe (csak ez a felhasználó)"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Eltávolítás a helyi menüből (csak ez a felhasználó)"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Shellbővítmény regisztrálása Windows 11-hez"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Shellbővítmény regisztrálás törlése Windows 11-hez"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2584,6 +2608,9 @@ msgstr "Színsémák"
 msgid "Folder Compare"
 msgstr "Mappa összehasonlítás"
 
+msgid "Project"
+msgstr "Projekt"
+
 #, c-format
 msgid "Differences"
 msgstr "Eltérések"
@@ -2687,6 +2714,21 @@ msgstr "Üzenet"
 
 msgid "Answer"
 msgstr "Válasz"
+
+msgid "Item"
+msgstr "Elem"
+
+msgid "Load"
+msgstr "Betöltés"
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Include Subfolders"
+msgstr "Almappák is"
+
+msgid "Compare Options"
+msgstr "Összehasonlító opciók"
 
 #, c-format
 msgid "Name"
@@ -3263,7 +3305,7 @@ msgstr "Biztosan áthelyezel %d elemet?"
 
 #, c-format
 msgid "Confirm Move"
-msgstr "Mozgatás megerősítése"
+msgstr "Áthelyezés megerősítése"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
@@ -3408,6 +3450,90 @@ msgstr "Kitömörítő"
 msgid "Prediffer"
 msgstr "Elővizsgáló"
 
+msgid "Left"
+msgstr "Bal"
+
+msgid "Middle"
+msgstr "Középső"
+
+msgid "Right"
+msgstr "Jobb"
+
+msgid "Diff"
+msgstr "Különbség"
+
+msgid "Left Duplicate Count"
+msgstr "Bal duplikátum számláló"
+
+msgid "Right Duplicate Count"
+msgstr "Jöbb duplikátum számláló"
+
+msgid "Middle Duplicate Count"
+msgstr "Középső duplikátum számláló"
+
+msgid "Move"
+msgstr "Áthelyezés"
+
+msgid "Audio"
+msgstr "Hang"
+
+msgid "Calendar"
+msgstr "Naptár"
+
+msgid "Communication"
+msgstr "Kommunikáció"
+
+msgid "Contact"
+msgstr "Névjegy"
+
+msgid "Devices"
+msgstr "Eszközök"
+
+msgid "Document"
+msgstr "Dokumentum"
+
+msgid "Home"
+msgstr "Otthon"
+
+msgid "Journal"
+msgstr "Napló"
+
+msgid "Link"
+msgstr "Hivatkozás"
+
+msgid "Media"
+msgstr "Média"
+
+msgid "Music"
+msgstr "Zene"
+
+msgid "Note"
+msgstr "Megjegyzés"
+
+msgid "Photo"
+msgstr "Fénykép"
+
+msgid "RecordedTV"
+msgstr "TV felvétel"
+
+msgid "Search"
+msgstr "Keresés"
+
+msgid "Security"
+msgstr "Biztonság"
+
+msgid "Software"
+msgstr "Szoftver"
+
+msgid "Task"
+msgstr "Feladat"
+
+msgid "Video"
+msgstr "Videó"
+
+msgid "Hash"
+msgstr "Hash"
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Nem lehet összehasonlítani a fájlokat"
@@ -3509,6 +3635,10 @@ msgstr "A képfájlok egyformák"
 
 msgid "Image files are different"
 msgstr "A képfájlok különböznek"
+
+#, c-format
+msgid "Group%d"
+msgstr "Csoport%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4346,11 +4476,11 @@ msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Átláthatóság"
+msgstr "Átlátszóság"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Átláthatóság animáció"
+msgstr "Átlátszóság animáció"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
@@ -4542,7 +4672,7 @@ msgid "Disassemble JVM Bytecode"
 msgstr "JVM Bytekód kibontása"
 
 msgid "Disassemble IL Code"
-msgstr "IL kód Bytecode kibontása"
+msgstr "IL kód kibontása"
 
 msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"

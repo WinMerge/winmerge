@@ -555,6 +555,12 @@
     <ClCompile Include="PropMessageBoxes.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropProject.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsProject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DirView.cpp">
       <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
     </ClCompile>
@@ -674,6 +680,15 @@
     </ClCompile>
     <ClCompile Include="FileActionScript.cpp">
       <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HashCalc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertySystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirAdditionalPropertiesDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1151,6 +1166,12 @@
     <ClInclude Include="PropMessageBoxes.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PropProject.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsProject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="HexMergeDoc.h">
       <Filter>MFCGui\MDIChild\BinaryCompare\Header Files</Filter>
     </ClInclude>
@@ -1276,6 +1297,15 @@
     </ClInclude>
     <ClInclude Include="FileActionScript.h">
       <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HashCalc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertySystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirAdditionalPropertiesDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

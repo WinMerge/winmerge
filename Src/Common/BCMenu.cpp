@@ -602,18 +602,11 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		}
 		else leftStr=strText;
 		
-		int iOldMode = pDC->GetBkMode();
-		pDC->SetBkMode( TRANSPARENT);
-		
 		// Draw the text in the correct colour:
-		
-		UINT nFormat  = DT_LEFT|DT_SINGLELINE|DT_VCENTER;
-		UINT nFormatr = DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
-		pDC->SetTextColor(
-			((lpDIS->itemState & ODS_GRAYED)==0) ? GetSysColor(COLOR_MENUTEXT) : GetSysColor(COLOR_GRAYTEXT));
-		pDC->DrawText (leftStr,rectt,nFormat);
-		if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
-		pDC->SetBkMode( iOldMode );
+		DWORD nFormat  = DT_LEFT|DT_SINGLELINE|DT_VCENTER;
+		DWORD nFormatr = DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
+		DrawThemeText(m_hTheme, hDC, MENU_POPUPITEM, stateId, leftStr, leftStr.GetLength(), nFormat, 0, &rectt);
+		if(tablocr!=-1) DrawThemeText(m_hTheme, hDC, MENU_POPUPITEM, stateId, rightStr, rightStr.GetLength(), nFormatr, 0, &rectt);
 	}
 }
 
@@ -743,13 +736,21 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		// Set width and height:
 		
-		const int BCMENU_PAD=4;
-		if (m_hTheme == nullptr)
-			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
-		else
-			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
 		int temp = GetSystemMetrics(SM_CYMENU);
+		const int BCMENU_PAD=4;
 		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
+		if (m_hTheme == nullptr)
+		{
+			lpMIS->itemWidth = m_iconX + BCMENU_PAD + 8 + t.cx;
+		}
+		else
+		{
+			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
+			unsigned menuHeight = static_cast<unsigned>(
+				m_sizeCheck.cy + m_marginCheck.cyTopHeight + m_marginCheck.cyBottomHeight);
+			if (menuHeight > lpMIS->itemHeight)
+				lpMIS->itemHeight = menuHeight;
+		}
 	}
 }
 

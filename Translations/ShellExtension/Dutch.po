@@ -54,46 +54,25 @@ msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "Openen met WinMerge"
-
-#: ShellExtension.rc:114
-#, c-format
-msgid "Please select no more than 3 items"
-msgstr "Selecteer niet meer dan 3 items"
-
-#: ShellExtension.rc:115
-#, c-format
 msgid "&Compare"
 msgstr "Vergelijken"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
 msgstr "Vergelijken..."
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
 msgstr "Links selecteren"
 
-#: ShellExtension.rc:118
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
 msgstr "Midden selecteren"
 
-#: ShellExtension.rc:119
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr ""
-"Dit pad opslaan. Selecteer een ander pad om te vergelijken met dit pad."
-
-#: ShellExtension.rc:120
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Vergelijken met opgeslagen pad (%1)"
-
-#: ShellExtension.rc:121
+#: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
 msgstr "Links opnieuw selecteren"

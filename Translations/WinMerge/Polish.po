@@ -1308,6 +1308,21 @@ msgstr "W górę"
 msgid "Move &Down"
 msgstr "W dół"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -1617,6 +1632,9 @@ msgstr "Włącz wsparcie dla archiwów"
 msgid "&Detect archive type from file signature"
 msgstr "Wykryj typ archiwum z sygnatury pliku"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Statystyki porównania"
 
@@ -1830,6 +1848,12 @@ msgstr "Zarejestruj rozszerzenie powłoki dla bieżącego użytkownika"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Wyrejestruj rozszerzenie powłoki z bieżącego użytkownika"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Folder"
@@ -2006,6 +2030,9 @@ msgstr "Schematy kolorów"
 msgid "Folder Compare"
 msgstr "Porównaj foldery"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Różnice"
 
@@ -2085,6 +2112,21 @@ msgid "Message"
 msgstr ""
 
 msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
 msgstr ""
 
 msgid "Name"
@@ -2560,6 +2602,90 @@ msgstr "Program rozpakowujący"
 msgid "Prediffer"
 msgstr "Różnicowanie wstępne"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Nie można porównać plików"
 
@@ -2641,6 +2767,10 @@ msgstr "Pliki obrazów są identyczne"
 
 msgid "Image files are different"
 msgstr "Pliki obrazów są różne"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

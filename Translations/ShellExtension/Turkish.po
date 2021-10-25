@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-01 22:59+0900\n"
+"POT-Creation-Date: 2021-09-08 23:40+0000\n"
+"PO-Revision-Date: 2021-09-21 19:06+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: tr\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.0\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -46,52 +46,33 @@ msgstr "65001"
 msgid "ShellExtension"
 msgstr "KabukEklentisi"
 
+#| msgid "WinMerge"
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "WinMerge ile Aç"
+msgid "&Compare"
+msgstr "&Karşılaştır"
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "Please select no more than 3 items"
-msgstr ""
+msgid "Compare&..."
+msgstr "Karşılaştı&r..."
 
 #: ShellExtension.rc:115
 #, c-format
-msgid "&Compare"
-msgstr ""
+msgid "Select &Left"
+msgstr "So&lu seç"
 
 #: ShellExtension.rc:116
 #, c-format
-msgid "Compare&..."
-msgstr ""
+msgid "Select &Middle"
+msgstr "&Ortayı seç"
 
 #: ShellExtension.rc:117
 #, c-format
-msgid "Select &Left"
-msgstr ""
-
-#: ShellExtension.rc:118
-#, c-format
-msgid "Select &Middle"
-msgstr ""
-
-#: ShellExtension.rc:119
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "Bu yolu kaydet. Ardından bu yol ile karşılaştırılacak başka bir yol seçebilirsiniz."
-
-#: ShellExtension.rc:120
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Kaydedilen yol ile karşılaştır (%1)"
-
-#: ShellExtension.rc:121
-#, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "So&lu yeniden seç"

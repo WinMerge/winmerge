@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-07-11 12:59+0900\n"
+"PO-Revision-Date: 2021-10-20 08:26+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1313,6 +1313,21 @@ msgstr "上へ(&U)"
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
+msgid "&Additional Properties"
+msgstr "追加プロパティ(&A)"
+
+msgid "Additional Properties"
+msgstr "追加プロパティ"
+
+msgid "&>"
+msgstr "&>"
+
+msgid "&<"
+msgstr "&<"
+
+msgid "<<"
+msgstr "<<"
+
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
@@ -1630,6 +1645,9 @@ msgstr "アーカイブ ファイル サポートを有効にする(&E)"
 msgid "&Detect archive type from file signature"
 msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "プロジェクトファイルに保存またはプロジェクトファイルから復元する項目:"
+
 msgid "Compare Statistics"
 msgstr "比較統計"
 
@@ -1842,6 +1860,12 @@ msgstr "現在のユーザーのみシェル拡張を登録(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Windows 11 以降用シェル拡張を登録(&W)"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Windows 11 以降用シェル拡張の登録を解除(&I)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2071,6 +2095,9 @@ msgstr "配色"
 msgid "Folder Compare"
 msgstr "フォルダー比較"
 
+msgid "Project"
+msgstr "プロジェクト"
+
 msgid "Differences"
 msgstr "差異"
 
@@ -2157,6 +2184,21 @@ msgstr "メッセージ"
 
 msgid "Answer"
 msgstr "回答"
+
+msgid "Item"
+msgstr "項目"
+
+msgid "Load"
+msgstr "読み込み"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Include Subfolders"
+msgstr "サブフォルダーを含める"
+
+msgid "Compare Options"
+msgstr "比較オプション"
 
 msgid "Name"
 msgstr "名前"
@@ -2797,6 +2839,90 @@ msgstr "展開プラグイン"
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
+msgid "Left"
+msgstr "左側"
+
+msgid "Middle"
+msgstr "中央"
+
+msgid "Right"
+msgstr "右側"
+
+msgid "Diff"
+msgstr "差異"
+
+msgid "Left Duplicate Count"
+msgstr "左側重複数"
+
+msgid "Right Duplicate Count"
+msgstr "右側重複数"
+
+msgid "Middle Duplicate Count"
+msgstr "中央重複数"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "Audio"
+msgstr "音声"
+
+msgid "Calendar"
+msgstr "予定表"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Contact"
+msgstr "連絡先"
+
+msgid "Devices"
+msgstr "デバイス"
+
+msgid "Document"
+msgstr "ドキュメント"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Journal"
+msgstr "ジャーナル"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Media"
+msgstr "メディア"
+
+msgid "Music"
+msgstr "音楽"
+
+msgid "Note"
+msgstr "ノート"
+
+msgid "Photo"
+msgstr "写真"
+
+msgid "RecordedTV"
+msgstr "TV録画"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Security"
+msgstr "セキュリティ"
+
+msgid "Software"
+msgstr "ソフトウェア"
+
+msgid "Task"
+msgstr "タスク"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Hash"
+msgstr "ハッシュ"
+
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"
 
@@ -2878,6 +3004,10 @@ msgstr "画像ファイルは同一です"
 
 msgid "Image files are different"
 msgstr "画像ファイルは異なります"
+
+#, c-format
+msgid "Group%d"
+msgstr "グループ%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"

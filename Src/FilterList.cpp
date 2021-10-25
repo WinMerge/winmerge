@@ -97,3 +97,26 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 	return retval;
 }
 
+/**
+ * @brief Clone filter list from another list.
+ * This function clones filter list from another list. Current items in the
+ * list are removed and new items added from the given list.
+ * @param [in] filterList File list to clone.
+ */
+void FilterList::CloneFrom(const FilterList* filterList)
+{
+	if (!filterList)
+		return;
+
+	m_list.clear();
+
+	size_t count = filterList->m_list.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		filter_item_ptr ptr(new filter_item(filterList->m_list[i].get()));
+		m_list.push_back(ptr);
+
+		if (&filterList->m_list[i]->filterAsString == filterList->m_lastMatchExpression)
+			m_lastMatchExpression = &m_list[i]->filterAsString;
+	}
+}

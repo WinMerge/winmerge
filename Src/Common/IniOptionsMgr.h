@@ -53,4 +53,5 @@ private:
 	String m_filePath;
 	DWORD m_dwThreadId;
 	HANDLE m_hThread;
+	HANDLE m_hEvent;
 };

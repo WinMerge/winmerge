@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-21 22:10+0000\n"
-"PO-Revision-Date: 2021-07-22 16:16+0200\n"
+"POT-Creation-Date: 2021-09-12 22:35+0000\n"
+"PO-Revision-Date: 2021-09-20 17:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1311,6 +1311,21 @@ msgstr "Perkelti a&ukštyn"
 msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
 
@@ -1620,6 +1635,9 @@ msgstr "Į&jungti archyvo failų palaikymą"
 msgid "&Detect archive type from file signature"
 msgstr "&Nustatyti archyvo tipą iš failo parašo"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "Projekto faile išsaugoti ar iš jo atstatyti elementai:"
+
 msgid "Compare Statistics"
 msgstr "Lyginimo statistika"
 
@@ -1833,6 +1851,12 @@ msgstr "Registruoti aplinkos plėtinį tik šiam naud&otojui"
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Išregistruoti aplinkos p&lėtinį tik šiam naudotojui"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Registruoti aplinkos plėtinį &Windows 11 ar vėlesnei"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Išregistruoti aplinkos plėtinį W&indows 11 ar vėlesnei"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Katalogų"
@@ -2009,6 +2033,9 @@ msgstr "Schemų"
 msgid "Folder Compare"
 msgstr "Katalogų lyginimo"
 
+msgid "Project"
+msgstr "Projekto"
+
 msgid "Differences"
 msgstr "Skirtumų"
 
@@ -2089,6 +2116,21 @@ msgstr "Pranešimas"
 
 msgid "Answer"
 msgstr "Atsakymas"
+
+msgid "Item"
+msgstr "Elementas"
+
+msgid "Load"
+msgstr "Įkelti"
+
+msgid "Save"
+msgstr "Išsaugoti"
+
+msgid "Include Subfolders"
+msgstr "Su pakatalogiais"
+
+msgid "Compare Options"
+msgstr "Lyginimo nuostatos"
 
 msgid "Name"
 msgstr "Pavadinimas"
@@ -2563,6 +2605,90 @@ msgstr "Išpakuotojas"
 msgid "Prediffer"
 msgstr "Parengėjas"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
 
@@ -2644,6 +2770,10 @@ msgstr "Paveikslėliai yra vienodi"
 
 msgid "Image files are different"
 msgstr "Paveikslėliai skiriasi"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3315,7 +3445,7 @@ msgid "Validation"
 msgstr "Patikra"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Dekompiliavimas"
 
 msgid "&Others"
 msgstr "Kiti"

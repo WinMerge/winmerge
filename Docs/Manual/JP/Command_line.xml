@@ -516,7 +516,7 @@
     <varlistentry>
       <term><option>/enableexitcode</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>比較結果をプロセス終了コードに設定します。0: 同一, 1: 差異あり, 2: エラー</para>
       </listitem>
     </varlistentry>
 
@@ -657,7 +657,7 @@
       <term><option>/o <replaceable>outputpath</replaceable></option></term>
       <listitem>
         <para>
-        マージした結果のファイルを保存するオプションの出力フォルダを指定します。
+        マージした結果のファイルを保存するオプションの出力ファイルパスを指定します。
         </para>
 
         <para>出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。

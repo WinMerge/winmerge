@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-07-25 21:55+0200\n"
+"PO-Revision-Date: 2021-09-20 21:30+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -1642,6 +1642,21 @@ msgstr "Premakni navz&gor"
 msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
 
@@ -2039,6 +2054,9 @@ msgstr "Omogoči podporo &arhivskih datotek"
 msgid "&Detect archive type from file signature"
 msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "Vnosi, shranjeni v datoteko projekta ali obnovljeni iz nje:"
+
 #, c-format
 msgid "Compare Statistics"
 msgstr "Statistika primerjave"
@@ -2307,6 +2325,12 @@ msgstr "Registriraj končnico lupine le za &trenutnega uporabnika"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Odstrani registracijo končnice lupine &le za trenut. uporabnika"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "Registriraj razširitev lupine za &Windows 11 ali novejši"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "Odstrani razširitev lupine za W&indows 11 ali novejši"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2578,6 +2602,9 @@ msgstr "Barvne sheme"
 msgid "Folder Compare"
 msgstr "Primerjava map"
 
+msgid "Project"
+msgstr "Projekt"
+
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
@@ -2681,6 +2708,21 @@ msgstr "Sporočilo"
 
 msgid "Answer"
 msgstr "Odgovor"
+
+msgid "Item"
+msgstr "Vnos"
+
+msgid "Load"
+msgstr "Naloži"
+
+msgid "Save"
+msgstr "Shrani"
+
+msgid "Include Subfolders"
+msgstr "Vključi podmape"
+
+msgid "Compare Options"
+msgstr "Primerjaj možnosti"
 
 #, c-format
 msgid "Name"
@@ -3402,6 +3444,90 @@ msgstr "Razpakovalec"
 msgid "Prediffer"
 msgstr "Predpregled razlik"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 #, c-format
 msgid "Unable to compare files"
 msgstr "Datotek ni mogoče primerjati"
@@ -3503,6 +3629,10 @@ msgstr "Slikovne datoteke so enake"
 
 msgid "Image files are different"
 msgstr "Slikovne datoteke so različne"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4431,7 +4561,7 @@ msgid "Validation"
 msgstr "Preverjanje veljavnosti"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Decompilation"
 
 msgid "&Others"
 msgstr "&Drugo"
@@ -4533,13 +4663,13 @@ msgid "Validate HTML"
 msgstr "Potrdi HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Razstavi bajtkodo JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Razstavi kodo IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Razstavi naravno kodo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

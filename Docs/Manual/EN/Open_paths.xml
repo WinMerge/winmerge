@@ -383,8 +383,8 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
           <guimenuitem>Open Project</guimenuitem>
         </menuchoice>. WinMerge reads the paths from the project file. If the
-      project file has two or three paths, two respective three paths are
-      opened. If only one path is given or one of paths is invalid, WinMerge
+      project file has two or three paths, two or three paths are
+      opened. If only one path is given or one of the paths is invalid, WinMerge
       opens the Select Files or Folders dialog, where you can add or correct the
       path information. Here are a few things to consider:</para>
 

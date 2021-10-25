@@ -46,49 +46,29 @@ msgstr "ShellExtension"
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "Megnyitás WinMerge-dzsel"
+msgid "&Compare"
+msgstr "Összehasonlítás"
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "Please select no more than 3 items"
-msgstr ""
+msgid "Compare&..."
+msgstr "Összehasonlítás..."
 
 #: ShellExtension.rc:115
 #, c-format
-msgid "&Compare"
-msgstr ""
+msgid "Select &Left"
+msgstr "Bal választása"
 
 #: ShellExtension.rc:116
 #, c-format
-msgid "Compare&..."
-msgstr ""
+msgid "Select &Middle"
+msgstr "Középső választása"
 
 #: ShellExtension.rc:117
 #, c-format
-msgid "Select &Left"
-msgstr ""
-
-#: ShellExtension.rc:118
-#, c-format
-msgid "Select &Middle"
-msgstr ""
-
-#: ShellExtension.rc:119
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "Mentsd el ezt az elérési utat. Válassz egy másik elérési utat az ezzel való összehasonlításhoz."
-
-#: ShellExtension.rc:120
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Összehasonlítás a mentett elérési úttal (%1)"
-
-#: ShellExtension.rc:121
-#, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Bal újra választása"

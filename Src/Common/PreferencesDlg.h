@@ -24,6 +24,7 @@
 #include "PropDirColors.h"
 #include "PropCodepage.h"
 #include "PropArchive.h"
+#include "PropProject.h"
 #include "PropBackups.h"
 #include "PropShell.h"
 #include "PropCompareFolder.h"
@@ -71,6 +72,7 @@ protected:
 	PropMarkerColors m_pageMarkerColors;
 	PropDirColors m_pageDirColors;
 	PropArchive m_pageArchive;
+	PropProject m_pageProject;
 	PropBackups m_pageBackups;
 	PropShell m_pageShell;
 	PropCompareFolder m_pageCompareFolder;

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-24 15:08+0000\n"
-"PO-Revision-Date: 2021-07-26 00:00+0000\n"
+"POT-Creation-Date: 2021-08-29 20:11+0000\n"
+"PO-Revision-Date: 2021-09-11 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -634,7 +634,7 @@ msgid "Diff &Pane"
 msgstr "Пане&ль сравнения"
 
 msgid "Lo&cation Pane"
-msgstr "Панель положения"
+msgstr "Панель управления"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Следующий конфликт\tAlt+Shift+Down"
@@ -1310,6 +1310,21 @@ msgstr "&Вверх"
 msgid "Move &Down"
 msgstr "В&низ"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr "Выбрать плагин"
 
@@ -1619,6 +1634,9 @@ msgstr "&Включить поддержку архивов"
 msgid "&Detect archive type from file signature"
 msgstr "&Определять тип архива по сигнатуре/заголовку файла"
 
+msgid "Items saved to or restored from the project file:"
+msgstr "Элементы, сохраненные или восстановленые из файла проекта:"
+
 msgid "Compare Statistics"
 msgstr "Статистика сравнения"
 
@@ -1832,6 +1850,12 @@ msgstr "Зарегистрировать shell для текущего поль�
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Удалить shell для текущего пользователя"
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Папка"
@@ -2008,6 +2032,9 @@ msgstr "Цветовая схема"
 msgid "Folder Compare"
 msgstr "Сравнение папок"
 
+msgid "Project"
+msgstr "Проект"
+
 msgid "Differences"
 msgstr "Отличия"
 
@@ -2088,6 +2115,21 @@ msgstr "Сообщение"
 
 msgid "Answer"
 msgstr "Ответ"
+
+msgid "Item"
+msgstr "Элемент"
+
+msgid "Load"
+msgstr "Загрузить"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Include Subfolders"
+msgstr "Включая подпапки"
+
+msgid "Compare Options"
+msgstr "Настройки сравнения"
 
 msgid "Name"
 msgstr "Имя"
@@ -2562,6 +2604,90 @@ msgstr "Распаковщик"
 msgid "Prediffer"
 msgstr "Предсравнение"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
 
@@ -2643,6 +2769,10 @@ msgstr "Файлы изображений идентичны"
 
 msgid "Image files are different"
 msgstr "Файлы изображений разные"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -2882,7 +3012,7 @@ msgid "The changes of EOL are conflicting."
 msgstr "Изменения EOL противоречат друг другу."
 
 msgid "Location Pane"
-msgstr "Панель положения"
+msgstr "Панель управления"
 
 msgid "Diff Pane"
 msgstr "Панель сравнения"
@@ -3314,7 +3444,7 @@ msgid "Validation"
 msgstr "Валидация"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Декомпиляция"
 
 msgid "&Others"
 msgstr "Другое"
@@ -3416,13 +3546,13 @@ msgid "Validate HTML"
 msgstr "Валидация HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Разбор байт-кода JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Разбор байт-кода IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Разбор нативного кода"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

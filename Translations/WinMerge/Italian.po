@@ -1308,6 +1308,21 @@ msgstr "Sposta &su"
 msgid "Move &Down"
 msgstr "Sposta &giù"
 
+msgid "&Additional Properties"
+msgstr ""
+
+msgid "Additional Properties"
+msgstr ""
+
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
 msgid "Select Plugin"
 msgstr ""
 
@@ -1625,6 +1640,9 @@ msgstr "&Attiva il supporto per i file archivio"
 msgid "&Detect archive type from file signature"
 msgstr "&Rileva il tipo di archivio dalla firma dei file"
 
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Statistiche confronto"
 
@@ -1837,6 +1855,12 @@ msgstr "Registra estensione shell solo per l'&utente attuale"
 
 msgid "Unregister shell extension for current user on&ly"
 msgstr "De-registra estensione shell solo per &l'utente attuale"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2064,6 +2088,9 @@ msgstr "Schemi colore"
 msgid "Folder Compare"
 msgstr "Confronto cartelle"
 
+msgid "Project"
+msgstr ""
+
 msgid "Differences"
 msgstr "Differenze"
 
@@ -2150,6 +2177,21 @@ msgstr "Messaggio"
 
 msgid "Answer"
 msgstr "Risposta"
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"
@@ -2794,6 +2836,90 @@ msgstr "Decompressore"
 msgid "Prediffer"
 msgstr "Prediffer"
 
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Impossibile confrontare i file"
 
@@ -2875,6 +3001,10 @@ msgstr "Le immagini sono identiche"
 
 msgid "Image files are different"
 msgstr "Le immagini sono diverse"
+
+#, c-format
+msgid "Group%d"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
