@@ -61,6 +61,8 @@ WinMerge の 2.16.16 安定版リリースです。
     開くとエラーメッセージがWinMergeの後ろに隠れてしまう。 (#1007)
 - Apache Tika プラグイン: Apache tika を 2.1.0 に更新し、ダウンロード元URLを
     変更。
+- CompareMSExcelFiles.sct: [ワークブックの情報を複数ファイルに展開する]
+    が有効のとき、ファイル名に含まれるシート名の前の数値をゼロパッデングにした。
 
 ### シェルエクステンション
 
@@ -83,7 +85,7 @@ WinMerge の 2.16.16 安定版リリースです。
   - Japanese
   - Lithuanian (PR #979)
   - Portuguese (PR #1017)
-  - Slovenian
+  - Slovenian (#1026)
   - Turkish (PR #980)
 
 ### 内部変更
