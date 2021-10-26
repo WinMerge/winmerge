@@ -58,6 +58,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
     (#1007)
 - Apache Tika plugin: Update Apache tika to 2.1.0 and change the
     download URL
+- CompareMSExcelFiles.sct: Make the number before the sheet name zero-padded
 
 ### Shell extension
 
@@ -79,7 +80,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - Japanese
   - Lithuanian (PR #979)
   - Portuguese (PR #1017)
-  - Slovenian
+  - Slovenian (#1026)
   - Turkish (PR #980)
 
 ### Internals
