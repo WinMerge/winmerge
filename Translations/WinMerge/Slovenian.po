@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-01-19 21:36+0000\n"
-"PO-Revision-Date: 2021-09-20 21:30+0200\n"
+"PO-Revision-Date: 2021-10-26 10:07+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -1609,7 +1609,7 @@ msgstr "S&log:"
 
 #, c-format
 msgid "&Context:"
-msgstr "&Zveza:"
+msgstr "&Skladnost:"
 
 #, c-format
 msgid "Ignor&e blank lines"
@@ -1640,19 +1640,19 @@ msgid "Move &Down"
 msgstr "Premakni navz&dol"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "&Dodatne lastnosti"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Dodatne lastnosti"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
@@ -3442,88 +3442,88 @@ msgid "Prediffer"
 msgstr "Predpregled razlik"
 
 msgid "Left"
-msgstr ""
+msgstr "Levo"
 
 msgid "Middle"
-msgstr ""
+msgstr "Sredina"
 
 msgid "Right"
-msgstr ""
+msgstr "Desno"
 
 msgid "Diff"
-msgstr ""
+msgstr "Razlika"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Število levih dvojnikov"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Število desnih dvojnikov"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Število srednjih dvojnikov"
 
 msgid "Move"
-msgstr ""
+msgstr "Premakni"
 
 msgid "Audio"
-msgstr ""
+msgstr "Samodejno"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Koledar"
 
 msgid "Communication"
-msgstr ""
+msgstr "Komunikacija"
 
 msgid "Contact"
-msgstr ""
+msgstr "Stik"
 
 msgid "Devices"
-msgstr ""
+msgstr "Naprave"
 
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 msgid "Home"
-msgstr ""
+msgstr "Domov"
 
 msgid "Journal"
-msgstr ""
+msgstr "Žurnal"
 
 msgid "Link"
-msgstr ""
+msgstr "Poveži"
 
 msgid "Media"
-msgstr ""
+msgstr "Medij"
 
 msgid "Music"
-msgstr ""
+msgstr "Glasba"
 
 msgid "Note"
-msgstr ""
+msgstr "Opomba"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotografija"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Posneta TV"
 
 msgid "Search"
-msgstr ""
+msgstr "Poišči"
 
 msgid "Security"
-msgstr ""
+msgstr "Varnost"
 
 msgid "Software"
-msgstr ""
+msgstr "Program"
 
 msgid "Task"
-msgstr ""
+msgstr "Opravilo"
 
 msgid "Video"
-msgstr ""
+msgstr "Videoposnetek"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3629,7 +3629,7 @@ msgstr "Slikovne datoteke so različne"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Skupina %d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3987,7 +3987,7 @@ msgstr "Običajno"
 
 #, c-format
 msgid "Context"
-msgstr "Zveza"
+msgstr "Skladnost"
 
 #, c-format
 msgid "Unified"
@@ -4654,7 +4654,7 @@ msgid "Query JSON Data..."
 msgstr "Poizveduj podatke JSON..."
 
 msgid "Query YAML Data..."
-msgstr "Poizvedba podatkov YAML..."
+msgstr "Poizveduj podatke YAML..."
 
 msgid "Validate HTML"
 msgstr "Potrdi HTML"
