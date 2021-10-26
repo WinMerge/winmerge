@@ -1,5 +1,3 @@
-goto :eof
-
 cd /d "%~dp0"
 
 set DISTDIR=.\Build\Releases

@@ -3,9 +3,9 @@ call BuildManual.cmd || goto :eof
 setlocal
 call BuildBin.vs2017.cmd Win32 || goto :eof
 endlocal
-rem setlocal
-rem call BuildBin.vs2019.cmd ARM64 || goto :eof
-rem endlocal
+setlocal
+call BuildBin.vs2019.cmd ARM64 || goto :eof
+endlocal
 setlocal
 call BuildBin.vs2019.cmd x64 || goto :eof
 endlocal
