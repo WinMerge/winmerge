@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.16 - 2021-10-xx
+## WinMerge 2.16.16 - 2021-10-28
 
 ### General
 
