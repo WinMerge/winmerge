@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.16 - 2021-10-xx
+## WinMerge 2.16.16 - 2021-10-28
 
 ### General
 
@@ -44,6 +44,7 @@
     (#1007)
 - Apache Tika plugin: Update Apache tika to 2.1.0 and change the
     download URL
+- CompareMSExcelFiles.sct: Make the number before the sheet name zero-padded
 
 ### Shell extension
 
@@ -65,7 +66,7 @@
   - Japanese
   - Lithuanian (PR #979)
   - Portuguese (PR #1017)
-  - Slovenian
+  - Slovenian (#1026)
   - Turkish (PR #980)
 
 ### Internals

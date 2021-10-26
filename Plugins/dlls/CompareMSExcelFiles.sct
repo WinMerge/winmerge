@@ -500,6 +500,8 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim wbk
 	Dim sht
 	Dim cmp
+	Dim digit
+	Dim zf
 	Dim No
 	Dim fileSrc2
 
@@ -524,20 +526,25 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 
 	On Error Resume Next
 
+	digit = Len(CStr(wbk.Worksheets.Count))
+	If digit <= 0 Then digit = 1
+	zf = String(digit, "0")
+
 	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), True, True)
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")DocumentProperties.txt"), True, True)
 		writeObjectProperties fo, wbk.BuiltinDocumentProperties
 		fo.Close
 	End If
 
 	If regRead(RegKeyPath & "CompareNames", True) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)Names.txt"), True, True)
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")Names.txt"), True, True)
 		writeObjectProperties fo, wbk.Names
 		fo.Close
 	End If
 
 	No = 1
 	For Each sht In wbk.Worksheets
+		No = Right(zf & CInt(No), digit)
 		If regRead(RegKeyPath & "CompareCellValues", True) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".tsv"), True, True)
 			writeCellValues fo, sht
@@ -566,7 +573,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
 			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name))
 		End If
-		No = No + 1
+		No = CInt(No) + 1
 	Next
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(wbk) Then
