@@ -6,6 +6,7 @@
 
 - Fix a problem where the string in the Windows common dialog would not 
     change to the language when switching languages.
+- New Option to ignore numbers.
 
 ### File compare
 
