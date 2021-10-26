@@ -21,16 +21,158 @@
 </head>
 <body>
 <h1 id="変更履歴">変更履歴</h1>
-<h2 id="winmerge-21614---2021-07-25">WinMerge 2.16.14 - 2021-07-25</h2>
-<h3 id="一般">一般</h3>
+<h2 id="winmerge-21616---2021-10-xx">WinMerge 2.16.16 - 2021-10-xx</h2>
+<h3 id="全般">全般</h3>
 <ul>
-<li>WinMergeのウインドウを閉じたにもかかわらず、WinMergeのプロセスが終了しないことがある問題の対策。</li>
+<li>Windows コモンダイアログに表示されるテキストが、言語を切り替えたときに その言語に変更されない。</li>
 </ul>
 <h3 id="ファイル比較">ファイル比較</h3>
 <ul>
-<li>不具合修正: 「検索する文字列」を空にしたとき、ファイル比較時ハングする。</li>
+<li>不具合修正: 保存に失敗したときに適切なメッセージが表示されない。</li>
+</ul>
+<h3 id="テーブル比較">テーブル比較</h3>
+<ul>
+<li>不具合修正: 最後の列の幅を変更できないことがある。 (#998)</li>
+<li>外部のアプリケーション等が編集中のファイルを更新後、WinMergeが再読み込みした とき、列の幅を再計算しないように変更。 (#951)</li>
+</ul>
+<h3 id="画像比較">画像比較</h3>
+<ul>
+<li>不具合修正: 画像比較ウインドウへのファイルのドラッグ＆ドロップが2回目以降 受け付けられない。</li>
 </ul>
 <h3 id="フォルダ比較">フォルダ比較</h3>
+<ul>
+<li>不具合修正: ファイルを大量にコピー後、操作できなくなる時間が長い。 (#771)</li>
+<li>不具合修正: 1つのプロジェクトファイルに複数の比較設定がされ、それぞれ異なる ファイルフィルタが指定された場合、ファイルフィルタが正しく適用されない。 (PR #995)</li>
+<li>画像サイズとファイルサイズの差異を列に表示できるようにした。 (#131) (以下のPRで実現)</li>
+<li>Windowsプロパティシステムから取得したファイルの各プロパティ値と ハッシュ値(MD5, SHA-1, SHA-256)を列に表示できるようにした。 (PR #996)</li>
+</ul>
+<h3 id="オプションダイアログ">オプションダイアログ</h3>
+<ul>
+<li>不具合修正: [Windows 11 以降用シェル拡張を登録]ボタンを別ユーザが押した後、 このボタンが有効にならない。</li>
+</ul>
+<h3 id="プラグイン">プラグイン</h3>
+<ul>
+<li>不具合修正: get_PluginUnpackedFileExtension で指定した拡張子に対応する シンタックスハイライトがされない。 (#983)</li>
+<li>不具合修正: リンク先が存在しないショートカットのMS Officeドキュメントを 開くとエラーメッセージがWinMergeの後ろに隠れてしまう。 (#1007)</li>
+<li>Apache Tika プラグイン: Apache tika を 2.1.0 に更新し、ダウンロード元URLを 変更。</li>
+</ul>
+<h3 id="シェルエクステンション">シェルエクステンション</h3>
+<ul>
+<li>不具合修正: MSVCP140.dll VCRUNTIME140*.dll がインストールされていないPCで Windows 11 用のシェルエクステンションが動作しない。</li>
+<li>不具合修正: 65536以上ファイルを選択すると無限ループする。 (PR #987)</li>
+<li>Windows 11用シェルエクステンションから起動したWinMergeでおこなった設定変更が、 通常起動したWinMergeに反映されない。</li>
+</ul>
+<h3 id="マニュアル">マニュアル</h3>
+<ul>
+<li>4.1 Using profile file 修正 (#1004)</li>
+</ul>
+<h3 id="翻訳">翻訳</h3>
+<ul>
+<li>翻訳の更新:
+<ul>
+<li>Galician (PR #1005)</li>
+<li>German (PR #986)</li>
+<li>Hungarian (PR #991,#1023)</li>
+<li>Japanese</li>
+<li>Lithuanian (PR #979)</li>
+<li>Portuguese (PR #1017)</li>
+<li>Slovenian</li>
+<li>Turkish (PR #980)</li>
+</ul></li>
+</ul>
+<h3 id="内部変更">内部変更</h3>
+<ul>
+<li>不具合修正: ALL.sln のビルドでエラーが発生する。 (#985)</li>
+<li>OpenView.cpp ファイル内のタイポ修正 (PR #1000)</li>
+</ul>
+<h2 id="winmerge-21615---2021-09-20">WinMerge 2.16.15 - 2021-09-20</h2>
+<h3 id="全般-1">全般</h3>
+<ul>
+<li>不具合修正: INIファイルに不正な値が含まれているときにクラッシュする。</li>
+<li>不具合修正: 特定の環境でWinMergeが起動してすぐにクラッシュする。 (#808, #908, #913)</li>
+<li>不具合修正: Windows 11 で選択されたメニューの文字の色が標準の色(白色)に ならない</li>
+<li>不具合修正: WinMergeを閉じたのにプロセスが残ったままになるもう一つの問題を 修正 (#903)</li>
+<li>Windows11用のShellExtensionに必要なためコード署名をするようした (#152)</li>
+</ul>
+<h3 id="ファイル比較-1">ファイル比較</h3>
+<ul>
+<li>不具合修正: プラグインメニューの表示等で時間がかかっている場合にマウスカーソル が砂時計になっていなかった。</li>
+<li>不具合修正: 3ファイル比較時、[中央のファイルを保存]、 [名前をつけて中央のファイルを保存]メニューが有効にならなかった。</li>
+<li>不具合修正: [ファイル]→[新規(3ペイン)]→[テーブル]メニューを選択すると、 2ペインのウインドウが表示されてしまう。</li>
+<li>不具合修正: 3ペイン表示時、Diffペインの高さの計算が間違っていた。</li>
+<li>不具合修正: 一部のUnicode文字を含む文字列を正規表現で検索するとハイライトが 正しく行われない。 (#914)</li>
+<li>不具合修正: Shift+F4キー押下でクラッシュすることがあった。</li>
+<li>不具合修正: 大量の置換に時間がかかる。 (#940)</li>
+<li>不具合修正: 左側ペインをクリック後Shiftキーを押しながらロケーションペインの 左側バーをクリックしたとき、右側ペインも選択されてしまう。 (#970)</li>
+<li>不具合修正: Diffペインを再表示したときのスクロール位置が正しくない。 (osdn.net #42862)</li>
+<li>検索ウインドウの &quot;このダイアログ ボックスを閉じない&quot; チェックボックス のデフォルトをオンにする。 (#941)</li>
+</ul>
+<h3 id="画像比較-1">画像比較</h3>
+<ul>
+<li>不具合修正: コンテキストメニューのキーボードアクセラレーターが被っていた。 (#905)</li>
+<li>不具合修正: ロケーションペインのコントロールの配置、サイズ変更時の動作を 改善 (winimerge #24)</li>
+</ul>
+<h3 id="プロジェクトファイル">プロジェクトファイル</h3>
+<ul>
+<li>プロジェクトファイルに比較オプションを保存するようにした。(#498) (PR #915)</li>
+</ul>
+<h3 id="オプションダイアログ-1">オプションダイアログ</h3>
+<ul>
+<li>プロジェクトファイルに保存する項目や復元する項目の除外/包含を指定できる ようにした。(PR #953)</li>
+</ul>
+<h3 id="プラグイン-1">プラグイン</h3>
+<ul>
+<li>以下の展開プラグインを追加:
+<ul>
+<li>DecompileJVM</li>
+<li>DecompileIL</li>
+<li>DisassembleNative</li>
+</ul></li>
+</ul>
+<h3 id="コマンドライン">コマンドライン</h3>
+<ul>
+<li>/c 列位置を追加</li>
+<li>/EnableExitCode を追加(プロセスの終了コードに比較結果が格納されます。 (0:ファイルが一致している場合、1:差異がある場合、2:何らかのエラー)</li>
+</ul>
+<h3 id="シェルエクステンション-1">シェルエクステンション</h3>
+<ul>
+<li>不具合修正: ナビケーションペインでWinMergeの拡張メニューが二重に表示される。 (osdn.net #42702)</li>
+<li>不具合修正: 拡張メニューで中央として開くファイルを選択できるようにした。 (#249)</li>
+<li>Windows 11 のエクスプローラのコンテキストメニュー用 ShellExtension(WinMergeContextMenu.dll)を追加。 (PR #954)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>翻訳の更新:
+<ul>
+<li>Brazilian (PR #910)</li>
+<li>Dutch (PR #921,#969)</li>
+<li>German (PR #965,#977)</li>
+<li>Hungarian (PR #937,#955)</li>
+<li>Italian (PR #911)</li>
+<li>Japanese</li>
+<li>Korean (PR #932)</li>
+<li>Portuguese (PR #956,#964,#976)</li>
+<li>Russian (PR #901,#927,#963)</li>
+<li>Slovenian</li>
+<li>Swedish (PR #974)</li>
+<li>Turkish (PR #899)</li>
+</ul></li>
+</ul>
+<h3 id="内部変更-1">内部変更</h3>
+<ul>
+<li>README.md が アプリケーションの使用のためではなく、ビルド用の説明であることを 明確にする。 (PR #942)</li>
+<li><code>m_SourceDefs</code>配列の要素数をコンパイラに計算させる。 (PR #966)</li>
+</ul>
+<h2 id="winmerge-21614---2021-07-25">WinMerge 2.16.14 - 2021-07-25</h2>
+<h3 id="全般-2">全般</h3>
+<ul>
+<li>WinMergeのウインドウを閉じたにもかかわらず、WinMergeのプロセスが終了しないことがある問題の対策。</li>
+</ul>
+<h3 id="ファイル比較-2">ファイル比較</h3>
+<ul>
+<li>不具合修正: 置換フィルター:「検索する文字列」を空にしたとき、ファイル比較時ハングする。</li>
+</ul>
+<h3 id="フォルダ比較-1">フォルダ比較</h3>
 <ul>
 <li>不具合修正: フォルダ比較ウィンドウでファイルをダブルクリックしてファイル比較ウィンドウを開いた後、フォルダ比較ウィンドウに戻るとファイルの選択が解除される。 (PR #857)</li>
 <li>コンテキストメニューに「新しいウインドウで比較」メニューを追加。 (#232,#277)</li>
@@ -39,7 +181,7 @@
 <ul>
 <li>不具合修正: タイトルバーが更新されないことがある。</li>
 </ul>
-<h3 id="画像比較">画像比較</h3>
+<h3 id="画像比較-2">画像比較</h3>
 <ul>
 <li>EXIF情報で回転表示を指示している画像ファイルが回転して表示されない。 (winmerge/winimerge #20)</li>
 <li>コンテキストメニューに次のメニューを追加。
@@ -50,7 +192,7 @@
 <li>左右反転</li>
 </ul></li>
 </ul>
-<h3 id="オプションダイアログ">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-2">オプションダイアログ</h3>
 <ul>
 <li>「メッセージボックス」カテゴリを追加し、メッセージボックスの「再びこの質問をしない」チェックボックスにチェックして表示されなくなったメッセージボックスを再表示できるようにした。 (#772, PR #859)</li>
 </ul>
@@ -58,7 +200,7 @@
 <ul>
 <li>不具合修正: 「プロジェクトを保存」ボタンのドロップダウンメニューに不要なプラグインメニューが表示される。 (PR #882,#892)</li>
 </ul>
-<h3 id="プラグイン">プラグイン</h3>
+<h3 id="プラグイン-2">プラグイン</h3>
 <ul>
 <li>不具合修正: CompareMSExcelFiles.sct: 図形が含まれるExcelファイルを比較すると「この図にはビットマップしか含まれていません」メッセージが表示されることがある。</li>
 <li>不具合修正: IgnoreColumns、IgnoreFieldsComma, IgnoreFieldsTabプラグインが正常に動作しない。 (#853)</li>
@@ -88,7 +230,7 @@
 <li>Apache Tika をバージョン 2.0.0 に更新。</li>
 <li>yq コマンドをバージョン 4.11.1 に更新。</li>
 </ul>
-<h3 id="コマンドライン">コマンドライン</h3>
+<h3 id="コマンドライン-1">コマンドライン</h3>
 <ul>
 <li>/l コマンドラインオプション(行番号指定)を追加。 (osdn.net #41528)</li>
 <li>/t (ウインドウタイプ)、 /table-delimiter (テーブルファイルの区切り文字)、 /new(新規作成), /fileext(シンタックスハイライト用拡張子指定)、 /inifile(INIファイル指定) コマンドラインオプションを追加。</li>
@@ -97,7 +239,7 @@
 <ul>
 <li>「TortoiseGit との連携」や 「TortoiseSVN との連携」にチェックしていないにもかかわらず、WinMergeが3-wayマージツールとして登録されてしまう。 (#878)</li>
 </ul>
-<h3 id="翻訳">翻訳</h3>
+<h3 id="翻訳-1">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -114,7 +256,7 @@
 <li>Turkish (PR #848)</li>
 </ul></li>
 </ul>
-<h3 id="内部変更">内部変更</h3>
+<h3 id="内部変更-2">内部変更</h3>
 <ul>
 <li>不具合修正: WinMerge doesn&#39;t build under Visual Studio 16.10.2 (#841)</li>
 <li>不具合修正: x64: LINK : warning LNK4010: invalid subsystem version number 5.01; default subsystem version assumed (#855)</li>
@@ -124,13 +266,13 @@
 <li>Improvement: Add check and error mesage in DownloadDeps.cmd that path to 7-zip exists (#864)</li>
 </ul>
 <h2 id="winmerge-21613---2021-06-22">WinMerge 2.16.13 - 2021-06-22</h2>
-<h3 id="一般-1">一般</h3>
+<h3 id="全般-3">全般</h3>
 <ul>
 <li>不具合修正: 中国語版 WindowsXP で Register.bat が正常に動作しない。 (#780)</li>
 <li>WinMergeU.exe と同じフォルダに winmerge.ini を置いた場合、設定情報の読み込みと書き込みをそのファイルに対して行うようにした。 (#248) (PR #750)</li>
 <li>ツールバーの設定アイコンのドロップダウンメニューに「空行を無視する」「コメントの違いを無視する」を追加。 (#804)</li>
 </ul>
-<h3 id="ファイル比較-1">ファイル比較</h3>
+<h3 id="ファイル比較-3">ファイル比較</h3>
 <ul>
 <li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない。 (PR #782, PR #802)</li>
 <li>不具合修正: 設定ダイアログを閉じた後などに行頭でBSキーを押しても何も起こらなくなる。</li>
@@ -139,7 +281,7 @@
 <li>Smarty シンタックスハイライトを追加。 (PR #821)</li>
 <li>上書きモードでカレットの幅を太くするようにした。 (osdn.net #42179)</li>
 </ul>
-<h3 id="フォルダ比較-1">フォルダ比較</h3>
+<h3 id="フォルダ比較-2">フォルダ比較</h3>
 <ul>
 <li>不具合修正: BOMのみで中身がないファイルを比較すると比較結果が不安定になる。 (#768)</li>
 <li>不具合修正: フォルダの再比較でクラッシュすることがある。 (osdn.net #42219)</li>
@@ -149,12 +291,12 @@
 <li>不具合修正: 新規作成したあとファイルが保存できなかった。</li>
 <li>展開プラグインを使用できるようにした。</li>
 </ul>
-<h3 id="画像比較-1">画像比較</h3>
+<h3 id="画像比較-3">画像比較</h3>
 <ul>
 <li>不具合修正: Windows XP で画像を比較するとクラッシュすることがある。 (#784)</li>
 <li>展開プラグインを使用できるようにした。</li>
 </ul>
-<h3 id="プラグイン-1">プラグイン</h3>
+<h3 id="プラグイン-3">プラグイン</h3>
 <ul>
 <li>プラグイン機能の機能追加 (PR #797)
 <ul>
@@ -195,7 +337,7 @@
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="翻訳-1">翻訳</h3>
+<h3 id="翻訳-2">翻訳</h3>
 <ul>
 <li>不具合修正: &quot;The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2&quot;が翻訳されない。(PR #763)</li>
 <li>翻訳の更新:
@@ -207,18 +349,18 @@
 <li>Russian (PR #761)</li>
 </ul></li>
 </ul>
-<h3 id="内部変更-1">内部変更</h3>
+<h3 id="内部変更-3">内部変更</h3>
 <ul>
 <li>Update CWindowsManagerDialog (PR #811)</li>
 <li>Update CWindowsManagerDialog - check some pointers for null and made safe casts (PR #824)</li>
 </ul>
 <h2 id="winmerge-21612---2021-04-29">WinMerge 2.16.12 - 2021-04-29</h2>
-<h3 id="一般-2">一般</h3>
+<h3 id="全般-4">全般</h3>
 <ul>
 <li>GUI textstrings: grammatical corrections (PR #722)</li>
 <li>Added ARM64 support</li>
 </ul>
-<h3 id="ファイル比較-2">ファイル比較</h3>
+<h3 id="ファイル比較-4">ファイル比較</h3>
 <ul>
 <li>不具合修正: Fix PHP syntax highlighting. (PR #751)</li>
 <li>不具合修正: Strings in a multi-line diff block were not be replaced correctly when the substitution filters&#39; regular expression contained ^</li>
@@ -237,7 +379,7 @@
 <li>Make the color of characters that represent spaces and tabs lighter than other characters when the &quot;View Whitespace&quot; menu item is enabled</li>
 <li>Added &quot;Open Parent Folder&quot; menu item to the context menu</li>
 </ul>
-<h3 id="フォルダ比較-2">フォルダ比較</h3>
+<h3 id="フォルダ比較-3">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Copy confirmation dialog has overlapped Yes/No Button (#739)</li>
 <li>不具合修正: Comparison result was not updated by Swap operation in 3-way folder comparison (osdn.net #41901)</li>
@@ -247,7 +389,7 @@
 <li>不具合修正: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
 <li>不具合修正: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
 </ul>
-<h3 id="画像比較-2">画像比較</h3>
+<h3 id="画像比較-4">画像比較</h3>
 <ul>
 <li>不具合修正: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
 <li>不具合修正: The header bar widths were not calculated properly when the &#39;Split Vertically&#39; menu item is unchecked.</li>
@@ -260,11 +402,11 @@
 <ul>
 <li>不具合修正: Fixed a rare crash when decompressing an archive file</li>
 </ul>
-<h3 id="プラグイン-2">プラグイン</h3>
+<h3 id="プラグイン-4">プラグイン</h3>
 <ul>
 <li>不具合修正: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and DisplayXMLFiles (#755)</li>
 </ul>
-<h3 id="翻訳-2">翻訳</h3>
+<h3 id="翻訳-3">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -283,13 +425,13 @@
 </ul></li>
 </ul>
 <h2 id="winmerge-21611---2021-03-28">WinMerge 2.16.11 - 2021-03-28</h2>
-<h3 id="一般-3">一般</h3>
+<h3 id="全般-5">全般</h3>
 <ul>
 <li>Make all OK strings same case (PR #593)</li>
 <li>Tab bar: Added shadows to help distinguish between active and inactive tabs</li>
 <li>Added drop-down menu to Open and Save icon on toolbar</li>
 </ul>
-<h3 id="ファイル比較-3">ファイル比較</h3>
+<h3 id="ファイル比較-5">ファイル比較</h3>
 <ul>
 <li>不具合修正: Basic syntax highlighter is broken (osdn.net #41440)</li>
 <li>不具合修正: File is corrupted while saving differences in changed file (Ctrl+S) (#607)</li>
@@ -301,13 +443,13 @@
 <li>If -b or -w is also specified, -B now considers lines to be empty if they contain only white space (osdn.net #41355)</li>
 <li>Added BOM checkbox to the Codepage dialog.</li>
 </ul>
-<h3 id="フォルダ比較-3">フォルダ比較</h3>
+<h3 id="フォルダ比較-4">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Program crash if you close a tab with the folder from where you opened current file (#645)</li>
 <li>不具合修正: The title bar path was not updated when swapping files in a Zip file.</li>
 <li>不具合修正: The codepage specified in the Codepage dialog did not affect the files to be opened.</li>
 </ul>
-<h3 id="画像比較-3">画像比較</h3>
+<h3 id="画像比較-5">画像比較</h3>
 <ul>
 <li>不具合修正: The image on the right does not open if the file exists only on the right (osdn.net #41721)</li>
 </ul>
@@ -319,11 +461,11 @@
 <ul>
 <li>Rar5 support (#644)</li>
 </ul>
-<h3 id="オプションダイアログ-1">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-3">オプションダイアログ</h3>
 <ul>
 <li>不具合修正: Fix an issue where custom colors are not saved. (PR #648)</li>
 </ul>
-<h3 id="プラグイン-3">プラグイン</h3>
+<h3 id="プラグイン-5">プラグイン</h3>
 <ul>
 <li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
 </ul>
@@ -331,7 +473,7 @@
 <ul>
 <li>Installer issue with Polish diacritics characters (#589)</li>
 </ul>
-<h3 id="翻訳-3">翻訳</h3>
+<h3 id="翻訳-4">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -349,11 +491,11 @@
 <li>Russian (PR #588)</li>
 </ul></li>
 </ul>
-<h3 id="コマンドライン-1">コマンドライン</h3>
+<h3 id="コマンドライン-2">コマンドライン</h3>
 <ul>
 <li>Single instance mode does not work when launched from Visual Studio 2019 (#622) (Added /sw command line option)</li>
 </ul>
-<h3 id="内部変更-2">内部変更</h3>
+<h3 id="内部変更-4">内部変更</h3>
 <ul>
 <li>不具合修正: Plugins\src_VCPP\VCPPPlugins.vs2017.sln can&#39;t open projects any more because in revision 69455da the projects were renamed. (#598)</li>
 <li>不具合修正: OutputFile of plugin project DisplayXMLFiles is different that the other projects (#600)</li>
@@ -364,7 +506,7 @@
 <li>Plugins.cpp function SearchScriptForMethodName can be improved (#690)</li>
 </ul>
 <h2 id="winmerge-21610---2021-01-30">WinMerge 2.16.10 - 2021-01-30</h2>
-<h3 id="一般-4">一般</h3>
+<h3 id="全般-6">全般</h3>
 <ul>
 <li>不具合修正: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)</li>
 <li>不具合修正: Fixed the problem that the language setting is not applied to the context menu of the MDI tab when the language setting is changed. (GitHub PR #523)</li>
@@ -375,7 +517,7 @@
 (GitHub #530)</li>
 <li>Added the command line option &quot;/s-&quot; to ensure that another instance is always executed, ignoring the value of the &#39;Allow only one instance to run&#39; option.</li>
 </ul>
-<h3 id="ファイル比較-4">ファイル比較</h3>
+<h3 id="ファイル比較-6">ファイル比較</h3>
 <ul>
 <li>不具合修正: WinMerge crashes with mouse double click (GitHub #531)</li>
 <li>不具合修正: Fixed an issue where the message box &quot;The report has been created successfully.&quot; was displayed even if the report creation failed.</li>
@@ -388,7 +530,7 @@
 <li>Feature Request: Move To Next File option while comparing files #475 (GitHub PR #561)</li>
 <li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560) (&quot;Ignored Substitutions&quot; was renamed to &quot;Substitution Filters&quot;)</li>
 </ul>
-<h3 id="フォルダ比較-4">フォルダ比較</h3>
+<h3 id="フォルダ比較-5">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Winmerge crashes consistently when deleting files (GitHub #491)</li>
 <li>不具合修正: Copy Folder does not copy subfolders and I don&#39;t see any option for it (GitHub #537)</li>
@@ -401,13 +543,13 @@
 <ul>
 <li>Added File -&gt; New -&gt; Binary menu item</li>
 </ul>
-<h3 id="画像比較-4">画像比較</h3>
+<h3 id="画像比較-6">画像比較</h3>
 <ul>
 <li>Implement copy and paste images (GitHub PR #524)</li>
 <li>Added File -&gt; New -&gt; Image menu item</li>
 <li>Added Image -&gt; Compare Extracted Text From Image menu item</li>
 </ul>
-<h3 id="オプションダイアログ-2">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-4">オプションダイアログ</h3>
 <ul>
 <li>Fix an issue where custom colors are not saved. (GitHub PR #648)</li>
 </ul>
@@ -419,7 +561,7 @@
 <ul>
 <li>不具合修正: Crash when generating patch (GitHub #521)</li>
 </ul>
-<h3 id="翻訳-4">翻訳</h3>
+<h3 id="翻訳-5">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -433,13 +575,13 @@
 <li>Russian (GitHub PR #494)</li>
 </ul></li>
 </ul>
-<h3 id="manual">Manual</h3>
+<h3 id="マニュアル-1">マニュアル</h3>
 <ul>
 <li>Update manual (GitHub PR #497,#513,#546)</li>
 <li>Small tweaks for the Manual (GitHub PR #508)</li>
 <li>Windows XP Pro SP0 vs Requirements (GitHub #515)</li>
 </ul>
-<h3 id="内部変更-3">内部変更</h3>
+<h3 id="内部変更-5">内部変更</h3>
 <ul>
 <li>Fix Various Warnings (GitHub PR #539)</li>
 <li>Various fixes to testing (GitHub PR #545)</li>
@@ -450,7 +592,7 @@
 <li>Some more files should be added to the .gitignore file (GitHub #559)</li>
 </ul>
 <h2 id="winmerge-2169---2020-11-29">WinMerge 2.16.9 - 2020-11-29</h2>
-<h3 id="一般-5">一般</h3>
+<h3 id="全般-7">全般</h3>
 <ul>
 <li>不具合修正: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)</li>
 <li>不具合修正: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
@@ -458,7 +600,7 @@
 <li>Update Merge.rc (GitHub #487)</li>
 <li>Improved startup time</li>
 </ul>
-<h3 id="ファイル比較-5">ファイル比較</h3>
+<h3 id="ファイル比較-7">ファイル比較</h3>
 <ul>
 <li>不具合修正: [UI] Pane enlargement was reset after changing tab (GitHub #403)</li>
 <li>不具合修正: Non-comment differences were sometimes ignored when the comment filter was enabled, (osdn.net #40488)</li>
@@ -473,7 +615,7 @@
 <li>Add the feature &quot;Go to Moved Line&quot; requested by #278 (GitHub PR #484)</li>
 <li>how to show white space with linebreak hidden? (GitHub #265) (Added View-&gt;View EOL menu item)</li>
 </ul>
-<h3 id="フォルダ比較-5">フォルダ比較</h3>
+<h3 id="フォルダ比較-6">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Pausing comparing doesn&#39;t pause immediately (GitHub #342)</li>
 <li>不具合修正: Sorting on Comparison Result being done incorectly (GitHub #483)</li>
@@ -484,7 +626,7 @@
 <ul>
 <li>不具合修正: Scrolling binary files (GitHub #456)</li>
 </ul>
-<h3 id="オプションダイアログ-3">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-5">オプションダイアログ</h3>
 <ul>
 <li>Added &quot;Automatically scroll to first inline difference&quot; option to Options dialog</li>
 </ul>
@@ -492,7 +634,7 @@
 <ul>
 <li>不具合修正: Fixed the problem that the input to File1 or File2 comboboxes of the Patch Generator dialog is not applied when the Patch Generator dialog is opened by selecting multiple files. (GitHub PR #421)</li>
 </ul>
-<h3 id="翻訳-5">翻訳</h3>
+<h3 id="翻訳-6">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -509,24 +651,24 @@
 <li>Turkish (GitHub PR #425)</li>
 </ul></li>
 </ul>
-<h3 id="manual-1">Manual</h3>
+<h3 id="マニュアル-2">マニュアル</h3>
 <ul>
 <li>Update Shortcut_keys.xml (GitHub PR #430)</li>
 <li>Update manual (GitHub PR #485,#492)</li>
 </ul>
-<h3 id="内部変更-4">内部変更</h3>
+<h3 id="内部変更-6">内部変更</h3>
 <ul>
 <li>Tweak output from BuildInstaller.cmd and BuildArc.cmd (GitHub PR #424)</li>
 <li>Fix typo in GhostTextBuffer.cpp (GitHub PR #472)</li>
 <li>Fix typo in memdc.h (GitHub PR #474)</li>
 </ul>
 <h2 id="winmerge-2168---2020-08-28">WinMerge 2.16.8 - 2020-08-28</h2>
-<h3 id="一般-6">一般</h3>
+<h3 id="全般-8">全般</h3>
 <ul>
 <li>不具合修正: More space for some internationalized strings (GitHub #402)</li>
 <li>不具合修正: Some improvements (GitHub #405,#411)</li>
 </ul>
-<h3 id="ファイル比較-6">ファイル比較</h3>
+<h3 id="ファイル比較-8">ファイル比較</h3>
 <ul>
 <li>不具合修正: Ignore case option did not work when Diff algorithm was other than default</li>
 <li>不具合修正: A white vertical rectangle was sometimes drawn in the selected area</li>
@@ -535,18 +677,18 @@
 <li>Extended F4 key movement range to the whole file</li>
 <li>Don&#39;t treat UTF-8 and UTF-8 with BOM the same when the &quot;Ignore codepage differences&quot; option is disabled</li>
 </ul>
-<h3 id="フォルダ比較-6">フォルダ比較</h3>
+<h3 id="フォルダ比較-7">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Appropriate error messages were not displayed when the file to be deleted no longer existed</li>
 <li>不具合修正: &#39;Show Middle/Right Unique items&#39; menu item does not work properly in 3-way folder compare (osdn.net #40672)</li>
 <li>CTRL+Drag folders now has the opposite behavior of the current Include Subfolders option</li>
 </ul>
-<h3 id="画像比較-5">画像比較</h3>
+<h3 id="画像比較-7">画像比較</h3>
 <ul>
 <li>不具合修正: Fix scrolling glitches (GitHub WinMerge/winimerge PR #8)</li>
 <li>Reduce flicker on resize (GitHub WinMerge/winimerge PR #9)</li>
 </ul>
-<h3 id="オプションダイアログ-4">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-6">オプションダイアログ</h3>
 <ul>
 <li>Allow choosing image filename patterns from a multi-selection dropdown list (GitHub PR #391)</li>
 <li>WildcardDropList: Avoid the String instance as it could throw std::bad_alloc (GitHub PR #397)</li>
@@ -569,7 +711,7 @@
 <li>不具合修正: Lithuanian.po is missing (GitHub PR #415)</li>
 <li>New installer for per-user installation (WinMerge-2.16.8-x64-PerUser-Setup.exe)</li>
 </ul>
-<h3 id="翻訳-6">翻訳</h3>
+<h3 id="翻訳-7">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -581,13 +723,13 @@
 <li>Russian (GitHub PR #387)</li>
 </ul></li>
 </ul>
-<h3 id="manual-2">Manual</h3>
+<h3 id="マニュアル-3">マニュアル</h3>
 <ul>
 <li>Update manual for IgnoreCommentsC change (GitHub PR #384)</li>
 <li>Update Shortcut_keys.xml (GitHub PR #410)</li>
 </ul>
 <h2 id="winmerge-2167---2020-07-26">WinMerge 2.16.7 - 2020-07-26</h2>
-<h3 id="一般-7">一般</h3>
+<h3 id="全般-9">全般</h3>
 <ul>
 <li>不具合修正: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
 <li>不具合修正: GUI glitches/bugs (GitHub #316)</li>
@@ -595,7 +737,7 @@
 <li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
 <li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
 </ul>
-<h3 id="ファイル比較-7">ファイル比較</h3>
+<h3 id="ファイル比較-9">ファイル比較</h3>
 <ul>
 <li>不具合修正: Diff Pane issues (GitHub #307)</li>
 <li>不具合修正: Codepage not updated on refresh (GitHub #320)</li>
@@ -614,7 +756,7 @@
 <ul>
 <li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
 </ul>
-<h3 id="フォルダ比較-7">フォルダ比較</h3>
+<h3 id="フォルダ比較-8">フォルダ比較</h3>
 <ul>
 <li>不具合修正: DST causes incorrect dates shown in Date column (GitHub #299)</li>
 <li>不具合修正: Long filename issue (GitHub #339)</li>
@@ -627,7 +769,7 @@
 <li>Add a feature generating a patch from directories (#283) (GitHub PR #331)</li>
 <li>added bin and obj directories to C# filter (GitHub PR #365)</li>
 </ul>
-<h3 id="画像比較-6">画像比較</h3>
+<h3 id="画像比較-8">画像比較</h3>
 <ul>
 <li>不具合修正: Scrolling behavior when dragging images is wrong (osdn.net #40205)</li>
 </ul>
@@ -636,11 +778,11 @@
 <li>不具合修正: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
 <li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
 </ul>
-<h3 id="オプションダイアログ-5">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-7">オプションダイアログ</h3>
 <ul>
 <li>不具合修正: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
 </ul>
-<h3 id="プラグイン-4">プラグイン</h3>
+<h3 id="プラグイン-6">プラグイン</h3>
 <ul>
 <li>不具合修正: Fix handling of line breaks in SortAscending, SortDescending (osdn.net PR #40266)</li>
 <li>不具合修正: Error when comparing images in the CompareMSExcelFiles.sct plugin (osdn.net #40472)</li>
@@ -657,7 +799,7 @@
 <ul>
 <li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
 </ul>
-<h3 id="翻訳-7">翻訳</h3>
+<h3 id="翻訳-8">翻訳</h3>
 <ul>
 <li>翻訳の更新:
 <ul>
@@ -675,22 +817,22 @@
 <li>Turkish (GitHub PR #335,#336,#337,#338)</li>
 </ul></li>
 </ul>
-<h3 id="manual-3">Manual</h3>
+<h3 id="マニュアル-4">マニュアル</h3>
 <ul>
 <li>Minor changes to translations README.md file (GitHub #289)</li>
 <li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
 </ul>
-<h3 id="内部変更-5">内部変更</h3>
+<h3 id="内部変更-7">内部変更</h3>
 <ul>
 <li>不具合修正: Src\Common\MyCom.h unused? (GitHub #284)</li>
 <li>不具合修正: Error on git repository cloning (GitHub #288)</li>
 </ul>
 <h2 id="winmerge-2166---2020-02-23">WinMerge 2.16.6 - 2020-02-23</h2>
-<h3 id="一般-8">一般</h3>
+<h3 id="全般-10">全般</h3>
 <ul>
 <li>Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab, now the application is behave just like professional editors (Visual Studio, Notepad++, etc.) to switch and activate the open tabs. (GitHub #247)</li>
 </ul>
-<h3 id="ファイル比較-8">ファイル比較</h3>
+<h3 id="ファイル比較-10">ファイル比較</h3>
 <ul>
 <li>不具合修正: GhostTextBuffer: Don&#39;t unexpectedly bring back empty lines user wants to delete (GitHub #244)</li>
 <li>不具合修正: Prevent silent abort with File Comparison of files whose size is an exact multiple of 2^32 bytes (GitHub #257)</li>
@@ -700,7 +842,7 @@
 <li>不具合修正: Non-moved lines are treated as moved lines (osdn.net #39851)</li>
 <li>Add support for touchpad horizontal scroll (GitHub #254)</li>
 </ul>
-<h3 id="画像比較-7">画像比較</h3>
+<h3 id="画像比較-9">画像比較</h3>
 <ul>
 <li>不具合修正: Support 16-bit images (GitHub WinMerge/winimerge issue #6)</li>
 <li>Add support for SVG, PDF, WMF and EMF file types (Only available in WinMerge 64bit version on Windows 10)<br />
@@ -719,7 +861,7 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <ul>
 <li>不具合修正: Fix spelling of Git (GitHub #246)</li>
 </ul>
-<h3 id="翻訳-8">翻訳</h3>
+<h3 id="翻訳-9">翻訳</h3>
 <ul>
 <li>New translation: Arabic (sf.net #3038)</li>
 <li>翻訳の更新:
@@ -732,18 +874,18 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <li>Spanish (GitHub #266)</li>
 </ul></li>
 </ul>
-<h3 id="manual-4">Manual</h3>
+<h3 id="マニュアル-5">マニュアル</h3>
 <ul>
 <li>不具合修正: Fix spelling of Git (GitHub #246)</li>
 <li>Update Configuration.xml (GitHub #262)</li>
 </ul>
-<h3 id="内部変更-6">内部変更</h3>
+<h3 id="内部変更-8">内部変更</h3>
 <ul>
 <li>Consolidate FolderCmp (GitHub #240, #242)</li>
 <li>Avoid some back and forth file path transcoding between UTF16 and UTF8 (GitHub #243)</li>
 </ul>
 <h2 id="winmerge-2165---2019-12-09">WinMerge 2.16.5 - 2019-12-09</h2>
-<h3 id="ファイル比較-9">ファイル比較</h3>
+<h3 id="ファイル比較-11">ファイル比較</h3>
 <ul>
 <li>不具合修正: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)</li>
 <li>不具合修正: Performance using Unpacker (GitHub #180)</li>
@@ -756,19 +898,19 @@ Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyaz
 <li>Add support for color emoji (Only available in 64bit version) (To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog)<br />
 Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4</a></li>
 </ul>
-<h3 id="フォルダ比較-8">フォルダ比較</h3>
+<h3 id="フォルダ比較-9">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Crash when clicking Next Difference button after unchecking Show Different Items menu item</li>
 <li>Changed symbols in Newer/Older column for better visual clarity (GitHub #169)</li>
 <li>Add &quot;Ignore codepage differences&quot; to quick options (GitHub #197)</li>
 <li>Limit the window flashing count. (GitHub #206)</li>
 </ul>
-<h3 id="画像比較-8">画像比較</h3>
+<h3 id="画像比較-10">画像比較</h3>
 <ul>
 <li>不具合修正: Image compare breaks when zoomed too much with large pictures (GitHub #188)</li>
 <li>不具合修正: [Image compare] Zoom-in focuses on top-left corner instead of cursor position (GitHub #211)</li>
 </ul>
-<h3 id="シェルエクステンション">シェルエクステンション</h3>
+<h3 id="シェルエクステンション-2">シェルエクステンション</h3>
 <ul>
 <li>不具合修正: &quot;Run as Administrator&quot; incompatible with &quot;Shell integration&quot; (ver 2.16.4) (sf.net #2234)</li>
 </ul>
@@ -778,7 +920,7 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>不具合修正: Windows 10 shell integration not working (GitHub #176)</li>
 <li>Installer - Proposal - Separate Inno Setup strings from WinMerge installer strings (GitHub #167)</li>
 </ul>
-<h3 id="翻訳-9">翻訳</h3>
+<h3 id="翻訳-10">翻訳</h3>
 <ul>
 <li>Update Italian translation (GitHub #164, #165)</li>
 <li>Update Russian translation (GitHub #166)</li>
@@ -794,46 +936,46 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>Update English.pot (#216)</li>
 <li>Add Japanese manual (GitHub #183)</li>
 </ul>
-<h3 id="manual-5">Manual</h3>
+<h3 id="マニュアル-6">マニュアル</h3>
 <ul>
 <li>Small Manual tweaks (GitHub #190)</li>
 </ul>
 <h2 id="winmerge-2164---2019-07-28">WinMerge 2.16.4 - 2019-07-28</h2>
-<h3 id="ファイル比較-10">ファイル比較</h3>
+<h3 id="ファイル比較-12">ファイル比較</h3>
 <ul>
 <li>不具合修正: coretools.cpp: linelen() should not truncate lines with embedded NULs (GitHub #156)</li>
 <li>不具合修正: file compare : right-click doesn&#39;t select the diff under the mouse (GitHub #159)</li>
 <li>不具合修正: Avoid an exception in GuessCodepageEncoding() when filepath equals &quot;NUL&quot; (GitHub #162)</li>
 <li>不具合修正: Auto-indent did not work if the EOL-style was not CRLF</li>
 </ul>
-<h3 id="フォルダ比較-9">フォルダ比較</h3>
+<h3 id="フォルダ比較-10">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Generating HTML Folder Compare report including File Compare report did not complete (Bitbucket #15)</li>
 <li>不具合修正: Compare Statistics dialog: The number of diff folders was counted in the number of diff files</li>
 </ul>
-<h3 id="プラグイン-5">プラグイン</h3>
+<h3 id="プラグイン-7">プラグイン</h3>
 <ul>
 <li>不具合修正: PrediffLineFilter.sct: Wrong encoding for settings dialog (Bitbucket #16)</li>
 </ul>
-<h3 id="翻訳-10">翻訳</h3>
+<h3 id="翻訳-11">翻訳</h3>
 <ul>
 <li>Update Russian translation (Bitbucket PR #51)</li>
 <li>Update Italian translation (Bitbucket PR #52)</li>
 </ul>
-<h3 id="内部変更-7">内部変更</h3>
+<h3 id="内部変更-9">内部変更</h3>
 <ul>
 <li>Favor PathContext::GetSize() over PathContext::size() (GitHub #157)</li>
 <li>Consolidate FolderCmp (GitHub #158, #160, #161)</li>
 <li>Avoid some InnoSetup compiler warnings (Bitbucket PR #53)</li>
 </ul>
 <h2 id="winmerge-2163---2019-06-29">WinMerge 2.16.3 - 2019-06-29</h2>
-<h3 id="一般-9">一般</h3>
+<h3 id="全般-11">全般</h3>
 <ul>
 <li>不具合修正: Slow startup with documents folder redirected to high-latency network drive (Bitbucket #155)</li>
 <li>Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)</li>
 <li>Reduce the size of the executable file</li>
 </ul>
-<h3 id="ファイル比較-11">ファイル比較</h3>
+<h3 id="ファイル比較-13">ファイル比較</h3>
 <ul>
 <li>不具合修正: Location and Diff pane visibility broken in 2.16.1 (GitHub #138, Bitbucket #163, sf.net #2228)</li>
 <li>不具合修正: Temporary files could not be created (GitHub #143, sf.net #2220)</li>
@@ -845,26 +987,26 @@ Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="フォルダ比較-10">フォルダ比較</h3>
+<h3 id="フォルダ比較-11">フォルダ比較</h3>
 <ul>
 <li>不具合修正: WinMerge 3-Way Compare Bugs: Always Shows Unique Items. (GitHub #154)</li>
 <li>不具合修正: WinMerge could not compare files that are opened in other applications</li>
 <li>Show progress bar while generating Folder Compare Report</li>
 <li>Use own colors settings for folder compare (Bitbucket PR #49)</li>
 </ul>
-<h3 id="project-file">Project file</h3>
+<h3 id="プロジェクトファイル-1">プロジェクトファイル</h3>
 <ul>
 <li>不具合修正: Possible Bugs in 2.16.2 (sf.net #2221)</li>
 <li>Supporting relative path in project file (Bitbucket #158)</li>
 <li>Allow multiple &lt;paths&gt; in project file</li>
 </ul>
-<h3 id="画像比較-9">画像比較</h3>
+<h3 id="画像比較-11">画像比較</h3>
 <ul>
 <li>不具合修正: no message was displayed when file saving failed</li>
 <li>Implement Insertion/Deletion Detection<br />
 Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80</a></li>
 </ul>
-<h3 id="オプションダイアログ-6">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-8">オプションダイアログ</h3>
 <ul>
 <li>Tweak size of combobox &quot;codepage&quot; in options (GitHub #144)</li>
 <li>Sort combobox codepage and add manual codepage (GitHub #145)</li>
@@ -874,14 +1016,14 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Allow per-user installation (only x64 installer)</li>
 <li>Don&#39;t install Files.txt and don&#39;t add &quot;Uninstall WinMerge&quot; to the start menu (Bitbuket #38)</li>
 </ul>
-<h3 id="翻訳-11">翻訳</h3>
+<h3 id="翻訳-12">翻訳</h3>
 <ul>
 <li>Update French translation (GitHub #149, #150)</li>
 <li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)</li>
 <li>Update Russian translation (Bitbucket PR #41, #42)</li>
 </ul>
 <h2 id="winmerge-2162---2019-04-04">WinMerge 2.16.2 - 2019-04-04</h2>
-<h3 id="ファイル比較-12">ファイル比較</h3>
+<h3 id="ファイル比較-14">ファイル比較</h3>
 <ul>
 <li>不具合修正: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)</li>
 <li>不具合修正: Save As: default directory should be file&#39;s original directory (sf.net #2163)</li>
@@ -892,7 +1034,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>不具合修正: Crash when failed to load file</li>
 <li>Add syntax highlight for Lua (Bitbucket #114)</li>
 </ul>
-<h3 id="フォルダ比較-11">フォルダ比較</h3>
+<h3 id="フォルダ比較-12">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Compare results refresh incorrectly after deletions (sf.net #2217)</li>
 </ul>
@@ -904,7 +1046,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <ul>
 <li>Improve icon display at 120DPI</li>
 </ul>
-<h3 id="画像比較-10">画像比較</h3>
+<h3 id="画像比較-12">画像比較</h3>
 <ul>
 <li>不具合修正: Zoom In/Out shortcuts don&#39;t update zoom level in location pane (Bitbucket #149)</li>
 <li>Zoom In/Out menu items for image compare (Bitbucket #148)</li>
@@ -913,7 +1055,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <ul>
 <li>Allow quoted filenames in &quot;Select Files or Folders&quot; (sf.net #1240, GitHub #137)</li>
 </ul>
-<h3 id="manual-6">Manual</h3>
+<h3 id="マニュアル-7">マニュアル</h3>
 <ul>
 <li>Some tweaks for the manual (Bitbucket PR #35)</li>
 </ul>
@@ -921,7 +1063,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <ul>
 <li>不具合修正: Gibberish language during installation (Bitbucket #147)</li>
 </ul>
-<h3 id="翻訳-12">翻訳</h3>
+<h3 id="翻訳-13">翻訳</h3>
 <ul>
 <li>Update Catalan translation (Bitbucket PR #29)</li>
 <li>Update Italian translation (Bitbucket PR #32)</li>
@@ -929,7 +1071,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Update Simplified Chinese translation (Bitbucket PR #34)</li>
 </ul>
 <h2 id="winmerge-2161---2019-02-24">WinMerge 2.16.1 - 2019-02-24</h2>
-<h3 id="一般-10">一般</h3>
+<h3 id="全般-12">全般</h3>
 <ul>
 <li>Updated the copyright year to 2019, actually (GitHub #110)</li>
 <li>Prevent splitter view from claiming input focus (GitHub #127)</li>
@@ -941,7 +1083,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
 <li>Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
 </ul>
-<h3 id="ファイル比較-13">ファイル比較</h3>
+<h3 id="ファイル比較-15">ファイル比較</h3>
 <ul>
 <li>不具合修正: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
 <li>不具合修正: Click doesn&#39;t trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
@@ -955,7 +1097,7 @@ Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="フォルダ比較-12">フォルダ比較</h3>
+<h3 id="フォルダ比較-13">フォルダ比較</h3>
 <ul>
 <li>不具合修正: Unique files are not shown (Bitbucket #138)</li>
 <li>不具合修正: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
@@ -964,7 +1106,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
 </ul>
-<h3 id="オプションダイアログ-7">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-9">オプションダイアログ</h3>
 <ul>
 <li>不具合修正: Widen the width of labels in Options dialog (GitHub#108)</li>
 <li>不具合修正: view settings make winmerge crash (Bitbucket #109)</li>
@@ -972,11 +1114,11 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>不具合修正: Shell Integration &quot;Enable Advanced Menu&quot; disabled on new install (Bitbucket #137)</li>
 <li>不具合修正: Binary File options don&#39;t change from default (Bitbucket #135)</li>
 </ul>
-<h3 id="シェルエクステンション-1">シェルエクステンション</h3>
+<h3 id="シェルエクステンション-3">シェルエクステンション</h3>
 <ul>
 <li>不具合修正: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
 </ul>
-<h3 id="翻訳-13">翻訳</h3>
+<h3 id="翻訳-14">翻訳</h3>
 <ul>
 <li>Update Brazilian Portuguese translation (GitHub #108)</li>
 <li>Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
@@ -987,13 +1129,13 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Update Japanese translation</li>
 <li>Remove now unneeded MergeLang.dll</li>
 </ul>
-<h3 id="manual-7">Manual</h3>
+<h3 id="マニュアル-8">マニュアル</h3>
 <ul>
 <li>不具合修正: Some fixes in the manual (GitHub #116)</li>
 <li>Bugifx: end of line documentation (sf.net #2211)</li>
 <li>Clarification as per <a href="https://github.com/WinMerge/winmerge-v2/issues/41">https://github.com/WinMerge/winmerge-v2/issues/41</a> (GitHub #126)</li>
 </ul>
-<h3 id="内部変更-8">内部変更</h3>
+<h3 id="内部変更-10">内部変更</h3>
 <ul>
 <li>Remove <code>nFinalNullLines</code> checking, disabled by an earlier commit (GitHub #111)</li>
 <li>Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
@@ -1001,11 +1143,11 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Don&#39;t pass <code>DIFFITEM *</code> by casting to <code>uintptr_t</code> (GitHub #124, #125)</li>
 </ul>
 <h2 id="winmerge-2160---2018-11-23">WinMerge 2.16.0 - 2018-11-23</h2>
-<h3 id="一般-11">一般</h3>
+<h3 id="全般-13">全般</h3>
 <ul>
 <li>不具合修正: Disabled icon on toolbar not gray out when running on XP</li>
 </ul>
-<h3 id="ファイル比較-14">ファイル比較</h3>
+<h3 id="ファイル比較-16">ファイル比較</h3>
 <ul>
 <li>不具合修正: Copy to X and Advance&quot; not work in 3way-compare (Bitbucket #123)</li>
 <li>不具合修正: File compare always showing different ending (GitHub #106)</li>
@@ -1021,13 +1163,13 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Drop ClearCase integration (Bitbucket PR #6)</li>
 </ul>
-<h3 id="翻訳-14">翻訳</h3>
+<h3 id="翻訳-15">翻訳</h3>
 <ul>
 <li>Add Lithuanian translation (Bitbucket #124)</li>
 <li>Update Portuguese translation (GitHub #102,#103)</li>
 </ul>
 <h2 id="winmerge-2155---2018-10-28">WinMerge 2.15.5 - 2018-10-28</h2>
-<h3 id="一般-12">一般</h3>
+<h3 id="全般-14">全般</h3>
 <ul>
 <li>Add support for very long path and file names (GitHub #87,#95,#99)</li>
 <li>Enable Ctrl+C shortcut key on the file path bar</li>
@@ -1037,7 +1179,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Improve visual layout of Open dialog (GitHub #97)</li>
 <li>Add icon for &quot;New (3 panes)&quot; menu item (GitHub #97)</li>
 </ul>
-<h3 id="ファイル比較-15">ファイル比較</h3>
+<h3 id="ファイル比較-17">ファイル比較</h3>
 <ul>
 <li>Add Window/Split menu item</li>
 <li>Improve handling of last lines in files (GitHub #89,#90,#93)</li>
@@ -1048,7 +1190,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>不具合修正: Various problems reading of files &gt; 2GB (GitHub #81)</li>
 <li>不具合修正: Selecting files &quot;From MRU list&quot; again works correctly</li>
 </ul>
-<h3 id="翻訳-15">翻訳</h3>
+<h3 id="翻訳-16">翻訳</h3>
 <ul>
 <li>Update Italian translation (GitHub #86)</li>
 <li>Update Japanese translation (Bitbucket #3)</li>
@@ -1056,7 +1198,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Update German translation</li>
 <li>不具合修正: Spanish translation error (Bitbucket Issue #108)</li>
 </ul>
-<h3 id="内部変更-9">内部変更</h3>
+<h3 id="内部変更-11">内部変更</h3>
 <ul>
 <li>Various diffengine and compilation/build fixes (GitHub #89,#90,#91,#92,#94)</li>
 </ul>
@@ -1065,7 +1207,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>不具合修正: Dot icon in a drop-down menu is not drawn correctly</li>
 </ul>
-<h3 id="ファイル比較-16">ファイル比較</h3>
+<h3 id="ファイル比較-18">ファイル比較</h3>
 <ul>
 <li>不具合修正: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
 <li>不具合修正: Crash when removing ghost lines (GitHub #80)</li>
@@ -1073,7 +1215,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
 <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
 </ul>
-<h3 id="フォルダ比較-13">フォルダ比較</h3>
+<h3 id="フォルダ比較-14">フォルダ比較</h3>
 <ul>
 <li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
 <li>Re-detect the file encoding when opening files (sf.net#2131)</li>
@@ -1091,22 +1233,22 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>不具合修正: Garbled text was copied to the clipboard when generating a report on the clipboard (sf.net#2200)</li>
 </ul>
-<h3 id="プラグイン-6">プラグイン</h3>
+<h3 id="プラグイン-8">プラグイン</h3>
 <ul>
 <li>Add PrediffLineFilter.sct plugin</li>
 <li>Make ignored lines by Prediffer plugin colored</li>
 </ul>
-<h3 id="翻訳-16">翻訳</h3>
+<h3 id="翻訳-17">翻訳</h3>
 <ul>
 <li>Update Slovak translation (sf.net#2902)</li>
 <li>Update Portuguese translation (GitHub #84,#85)</li>
 </ul>
-<h3 id="内部変更-10">内部変更</h3>
+<h3 id="内部変更-12">内部変更</h3>
 <ul>
 <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
 </ul>
 <h2 id="winmerge-2153---2018-03-04">WinMerge 2.15.3 - 2018-03-04</h2>
-<h3 id="ファイル比較-17">ファイル比較</h3>
+<h3 id="ファイル比較-19">ファイル比較</h3>
 <ul>
 <li>Fix assertion error when started on Windows XP</li>
 <li>Fix a problem that moved blocks are sometimes shown as normal diff blocks</li>
@@ -1115,7 +1257,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Fix infinite loop when replacing ^ (sf.net#2094)</li>
 <li>Fix to show text that contains &amp; on message box, correctly (sf.net#2067)</li>
 </ul>
-<h3 id="フォルダ比較-14">フォルダ比較</h3>
+<h3 id="フォルダ比較-15">フォルダ比較</h3>
 <ul>
 <li>Fix a problem that unique files are invisible when comparing files using &#39;Date&#39; compare method</li>
 <li>Remove trailing garbage from a dragged text (Github#75)</li>
@@ -1132,7 +1274,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Add support for HiDPI screens (Github #54)</li>
 </ul>
-<h3 id="プラグイン-7">プラグイン</h3>
+<h3 id="プラグイン-9">プラグイン</h3>
 <ul>
 <li>CompareMSExcelFiles.sct: Add &quot;Compare headers and footers&quot; checkbox to settings dialog (sf.net#2102)</li>
 </ul>
@@ -1141,7 +1283,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Remove extra space in installer: &quot; Launch WinMerge&quot; (sf.net#2144)</li>
 <li>Add &quot;How to Apply These Terms to Your New Programs&quot; section into GPL.rtf (sf.net#2098)</li>
 </ul>
-<h3 id="翻訳-17">翻訳</h3>
+<h3 id="翻訳-18">翻訳</h3>
 <ul>
 <li>Add Finnish translation (sf.net#3031)</li>
 <li>Add Sinhala translation (sf.net#3032)</li>
@@ -1180,7 +1322,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Show close button when hovering over tabs</li>
 <li>Add icons to each tab</li>
 </ul>
-<h3 id="オプションダイアログ-8">オプションダイアログ</h3>
+<h3 id="オプションダイアログ-10">オプションダイアログ</h3>
 <ul>
 <li>Add &quot;Close Select Files or Folders Dialog on clicking OK button&quot; checkbox to &quot;General&quot; page</li>
 <li>Add &quot;Language&quot; combobox to &quot;General&quot; page and remove Language dialog</li>
@@ -1204,7 +1346,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Remove &quot;Add Shell menu to context menu&quot; from &quot;Shell Integration&quot; page (WinMerge now always adds shell menu to context menu in Folder window)</li>
 <li>Add &quot;Register shell extension&quot; button to &quot;Shell Integration&quot; page</li>
 </ul>
-<h3 id="フォルダ比較-15">フォルダ比較</h3>
+<h3 id="フォルダ比較-16">フォルダ比較</h3>
 <ul>
 <li>Add Multi-thread compare support for Full Contents or Quick Contents method</li>
 <li>Color the background of items in list view</li>
@@ -1225,7 +1367,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>不具合修正: Properly handle 3-way comparison of Binary files (Github #23)</li>
 <li>不具合修正: Use proper font for View&gt;Use Default Font menu item (GitHub #24)</li>
 </ul>
-<h3 id="ファイル比較-18">ファイル比較</h3>
+<h3 id="ファイル比較-20">ファイル比較</h3>
 <ul>
 <li>Add support for 3-way compare/merge</li>
 <li>Add &quot;Diff Context&quot; menu to View menu to adjust the number of displayed diff context lines</li>
@@ -1250,7 +1392,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>Install binary file editor (frhed) component again by default</li>
 <li>Make binary file editor undoable</li>
 </ul>
-<h3 id="画像比較-11">画像比較</h3>
+<h3 id="画像比較-13">画像比較</h3>
 <ul>
 <li>Add image file compare/merge support</li>
 </ul>
@@ -1269,7 +1411,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Accept drag&amp;droped files or folders from various places like: Zip folder, FTP folder, Recycle bin, images in Web browser</li>
 </ul>
-<h3 id="プラグイン-8">プラグイン</h3>
+<h3 id="プラグイン-10">プラグイン</h3>
 <ul>
 <li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER which allows unpacking data in a file to multiple files in a folder</li>
 <li>Use FILE_FOLDER_PACK_UNPACKER plugin for decompressing archives</li>
@@ -1285,7 +1427,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Update *.flt files for Visual Studio 2015 and 2017</li>
 </ul>
-<h3 id="シェルエクステンション-2">シェルエクステンション</h3>
+<h3 id="シェルエクステンション-4">シェルエクステンション</h3>
 <ul>
 <li>Display another WinMerge icon in Explorer&#39;s context menu when a folder is selected</li>
 </ul>
@@ -1294,14 +1436,14 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <li>64-bit version of WinMerge is available</li>
 <li>Install plugins by default</li>
 </ul>
-<h3 id="翻訳-18">翻訳</h3>
+<h3 id="翻訳-19">翻訳</h3>
 <ul>
 <li>Update Portuguese translation (GitHub #2-17)</li>
 <li>Update Korean translation (GitHub #45)</li>
 <li>Update Traditional Chinese translation (GitHub #53)</li>
 <li>Remove &quot;Language&quot; menu item from View menu (You can specify UI language at Options dialog)</li>
 </ul>
-<h3 id="コマンドライン-2">コマンドライン</h3>
+<h3 id="コマンドライン-3">コマンドライン</h3>
 <ul>
 <li>Incompatible change: The third file path is now treated as a right path for 3-way comparison, not output path Use /o option for ouput path instead</li>
 <li>Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison</li>
@@ -1310,7 +1452,7 @@ Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https:/
 <ul>
 <li>Add support for jump list introduced in Windows 7</li>
 </ul>
-<h3 id="内部変更-11">内部変更</h3>
+<h3 id="内部変更-13">内部変更</h3>
 <ul>
 <li>Use POCO C++ libraries instead of pcre, expat and scew. They use pcre, expat internally</li>
 <li>Link statically with MFC and VC runtime libraries</li>

@@ -1,5 +1,174 @@
 # 変更履歴
 
+## WinMerge 2.16.16 - 2021-10-xx
+
+### 全般
+
+- Windows コモンダイアログに表示されるテキストが、言語を切り替えたときに
+    その言語に変更されない。
+
+### ファイル比較
+
+- 不具合修正: 保存に失敗したときに適切なメッセージが表示されない。
+
+### テーブル比較
+
+- 不具合修正: 最後の列の幅を変更できないことがある。 (#998)
+- 外部のアプリケーション等が編集中のファイルを更新後、WinMergeが再読み込みした
+    とき、列の幅を再計算しないように変更。 (#951)
+
+### 画像比較
+
+- 不具合修正: 画像比較ウインドウへのファイルのドラッグ＆ドロップが2回目以降
+    受け付けられない。
+
+### フォルダ比較
+
+- 不具合修正: ファイルを大量にコピー後、操作できなくなる時間が長い。 (#771)
+- 不具合修正: 1つのプロジェクトファイルに複数の比較設定がされ、それぞれ異なる
+    ファイルフィルタが指定された場合、ファイルフィルタが正しく適用されない。
+    (PR #995)
+- 画像サイズとファイルサイズの差異を列に表示できるようにした。 (#131)
+    (以下のPRで実現)
+- Windowsプロパティシステムから取得したファイルの各プロパティ値と
+    ハッシュ値(MD5, SHA-1, SHA-256)を列に表示できるようにした。 (PR #996)
+
+### オプションダイアログ
+
+- 不具合修正: [Windows 11 以降用シェル拡張を登録]ボタンを別ユーザが押した後、
+    このボタンが有効にならない。
+
+### プラグイン
+
+- 不具合修正: get_PluginUnpackedFileExtension で指定した拡張子に対応する
+    シンタックスハイライトがされない。 (#983)
+- 不具合修正: リンク先が存在しないショートカットのMS Officeドキュメントを
+    開くとエラーメッセージがWinMergeの後ろに隠れてしまう。 (#1007)
+- Apache Tika プラグイン: Apache tika を 2.1.0 に更新し、ダウンロード元URLを
+    変更。
+
+### シェルエクステンション
+
+- 不具合修正: MSVCP140.dll VCRUNTIME140*.dll がインストールされていないPCで
+    Windows 11 用のシェルエクステンションが動作しない。
+- 不具合修正: 65536以上ファイルを選択すると無限ループする。 (PR #987)
+- Windows 11用シェルエクステンションから起動したWinMergeでおこなった設定変更が、
+    通常起動したWinMergeに反映されない。
+
+### マニュアル
+
+- 4.1 Using profile file 修正 (#1004)
+
+### 翻訳
+
+- 翻訳の更新:
+  - Galician (PR #1005)
+  - German (PR #986)
+  - Hungarian (PR #991,#1023)
+  - Japanese
+  - Lithuanian (PR #979)
+  - Portuguese (PR #1017)
+  - Slovenian
+  - Turkish (PR #980)
+
+### 内部変更
+
+- 不具合修正: ALL.sln のビルドでエラーが発生する。 (#985)
+- OpenView.cpp ファイル内のタイポ修正 (PR #1000)
+
+## WinMerge 2.16.15 - 2021-09-20
+
+### 全般
+
+- 不具合修正: INIファイルに不正な値が含まれているときにクラッシュする。
+- 不具合修正: 特定の環境でWinMergeが起動してすぐにクラッシュする。
+    (#808, #908, #913)
+- 不具合修正: Windows 11 で選択されたメニューの文字の色が標準の色(白色)に
+    ならない
+- 不具合修正: WinMergeを閉じたのにプロセスが残ったままになるもう一つの問題を
+    修正 (#903)
+- Windows11用のShellExtensionに必要なためコード署名をするようした (#152)
+
+### ファイル比較
+
+- 不具合修正: プラグインメニューの表示等で時間がかかっている場合にマウスカーソル
+    が砂時計になっていなかった。
+- 不具合修正: 3ファイル比較時、[中央のファイルを保存]、
+    [名前をつけて中央のファイルを保存]メニューが有効にならなかった。
+- 不具合修正: [ファイル]→[新規(3ペイン)]→[テーブル]メニューを選択すると、
+    2ペインのウインドウが表示されてしまう。
+- 不具合修正: 3ペイン表示時、Diffペインの高さの計算が間違っていた。
+- 不具合修正: 一部のUnicode文字を含む文字列を正規表現で検索するとハイライトが
+    正しく行われない。 (#914)
+- 不具合修正: Shift+F4キー押下でクラッシュすることがあった。
+- 不具合修正: 大量の置換に時間がかかる。 (#940)
+- 不具合修正: 左側ペインをクリック後Shiftキーを押しながらロケーションペインの
+    左側バーをクリックしたとき、右側ペインも選択されてしまう。 (#970)
+- 不具合修正: Diffペインを再表示したときのスクロール位置が正しくない。
+    (osdn.net #42862)
+- 検索ウインドウの "このダイアログ ボックスを閉じない" チェックボックス
+    のデフォルトをオンにする。 (#941)
+
+### 画像比較
+
+- 不具合修正: コンテキストメニューのキーボードアクセラレーターが被っていた。
+   (#905)
+- 不具合修正: ロケーションペインのコントロールの配置、サイズ変更時の動作を
+    改善 (winimerge #24)
+
+### プロジェクトファイル
+
+- プロジェクトファイルに比較オプションを保存するようにした。(#498) (PR #915)
+
+### オプションダイアログ
+
+- プロジェクトファイルに保存する項目や復元する項目の除外/包含を指定できる
+    ようにした。(PR #953)
+
+### プラグイン
+
+- 以下の展開プラグインを追加:
+  - DecompileJVM
+  - DecompileIL
+  - DisassembleNative
+
+### コマンドライン
+
+- /c 列位置を追加
+- /EnableExitCode を追加(プロセスの終了コードに比較結果が格納されます。
+    (0:ファイルが一致している場合、1:差異がある場合、2:何らかのエラー)
+
+### シェルエクステンション
+
+- 不具合修正:  ナビケーションペインでWinMergeの拡張メニューが二重に表示される。
+    (osdn.net #42702)
+- 不具合修正: 拡張メニューで中央として開くファイルを選択できるようにした。
+    (#249)
+- Windows 11 のエクスプローラのコンテキストメニュー用
+    ShellExtension(WinMergeContextMenu.dll)を追加。 (PR #954)
+
+### Translations
+
+- 翻訳の更新:
+  - Brazilian (PR #910)
+  - Dutch (PR #921,#969)
+  - German (PR #965,#977)
+  - Hungarian (PR #937,#955)
+  - Italian (PR #911)
+  - Japanese
+  - Korean (PR #932)
+  - Portuguese (PR #956,#964,#976)
+  - Russian (PR #901,#927,#963)
+  - Slovenian
+  - Swedish (PR #974)
+  - Turkish (PR #899)
+
+### 内部変更
+
+- README.md が アプリケーションの使用のためではなく、ビルド用の説明であることを
+    明確にする。 (PR #942)
+- `m_SourceDefs`配列の要素数をコンパイラに計算させる。 (PR #966)
+
 ## WinMerge 2.16.14 - 2021-07-25
 
 ### 全般
@@ -444,7 +613,7 @@
   - Slovenian (GitHub #553,#565)
   - Russian (GitHub PR #494)
 
-### Manual
+### マニュアル
 
 - Update manual (GitHub PR #497,#513,#546)
 - Small tweaks for the Manual (GitHub PR #508)
@@ -535,7 +704,7 @@
     - Spanish (GitHub PR #454)
     - Turkish (GitHub PR #425)
 
-### Manual
+### マニュアル
 
   - Update Shortcut_keys.xml (GitHub PR #430)
   - Update manual (GitHub PR #485,#492)
@@ -609,7 +778,7 @@
     - Turkish (GitHub PR #386)
     - Russian (GitHub PR #387)
 
-### Manual
+### マニュアル
   - Update manual for IgnoreCommentsC change (GitHub PR #384)
   - Update Shortcut_keys.xml (GitHub PR #410)
 
@@ -705,7 +874,7 @@
     - Spanish (GitHub PR #292,#293,#304,#308)
     - Turkish (GitHub PR #335,#336,#337,#338)
 
-### Manual
+### マニュアル
   - Minor changes to translations README.md file (GitHub #289)
   - Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)
 
@@ -761,7 +930,7 @@
     - Portuguese (GitHub #237)
     - Spanish (GitHub #266)
 
-### Manual
+### マニュアル
   - 不具合修正: Fix spelling of Git (GitHub #246)
   - Update Configuration.xml (GitHub #262)
 
@@ -830,7 +999,7 @@
   - Update English.pot (#216)
   - Add Japanese manual (GitHub #183)
 
-### Manual
+### マニュアル
   - Small Manual tweaks (GitHub #190)
 
 ## WinMerge 2.16.4 - 2019-07-28
@@ -893,7 +1062,7 @@
   - Show progress bar while generating Folder Compare Report
   - Use own colors settings for folder compare (Bitbucket PR #49)
 
-### Project file
+### プロジェクトファイル
   - 不具合修正: Possible Bugs in 2.16.2 (sf.net #2221)
   - Supporting relative path in project file (Bitbucket #158)
   - Allow multiple &lt;paths&gt; in project file
@@ -949,7 +1118,7 @@
   - Allow quoted filenames in "Select Files or Folders" (sf.net #1240,
     GitHub #137)
 
-### Manual
+### マニュアル
   - Some tweaks for the manual (Bitbucket PR #35)
 
 ### インストーラ
@@ -1023,7 +1192,7 @@
   - Update Japanese translation
   - Remove now unneeded MergeLang.dll
 
-### Manual
+### マニュアル
   - 不具合修正: Some fixes in the manual (GitHub #116)
   - Bugifx: end of line documentation (sf.net #2211)
   - Clarification as per
