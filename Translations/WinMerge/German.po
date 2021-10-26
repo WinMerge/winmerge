@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-09-17 20:50+0200\n"
+"PO-Revision-Date: 2021-10-26 21:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1644,19 +1644,19 @@ msgid "Move &Down"
 msgstr "Nach &unten"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "Zusätzliche Eigenschaften"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Zusätzliche Eigenschaften"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
@@ -3213,88 +3213,88 @@ msgid "Prediffer"
 msgstr "Prediffer"
 
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 msgid "Middle"
-msgstr ""
+msgstr "Mitte"
 
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 msgid "Diff"
-msgstr ""
+msgstr "Unterschied"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Linke Duplikatanzahl"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Mittlere Duplikatanzahl"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Rechte Duplikatanzahl"
 
 msgid "Move"
-msgstr ""
+msgstr "Verschieben"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 msgid "Communication"
-msgstr ""
+msgstr "Kommunikation"
 
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 msgid "Devices"
-msgstr ""
+msgstr "Geräte"
 
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 msgid "Media"
-msgstr ""
+msgstr "Medium"
 
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 msgid "Note"
-msgstr ""
+msgstr "Notiz"
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Aufgezeichnetes TV"
 
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 msgid "Security"
-msgstr ""
+msgstr "Sicherheit"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Aufgabe"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3400,7 +3400,7 @@ msgstr "Bilddateien sind unterschiedlich"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Gruppe%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
