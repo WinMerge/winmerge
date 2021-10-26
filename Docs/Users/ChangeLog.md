@@ -61,7 +61,7 @@
 
 - Translation updates:
   - Galician (PR #1005)
-  - German (PR #986)
+  - German (PR #986,#1027)
   - Hungarian (PR #991,#1023)
   - Japanese
   - Lithuanian (PR #979)
