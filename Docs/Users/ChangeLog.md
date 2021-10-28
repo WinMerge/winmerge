@@ -1,12 +1,17 @@
 # Change log
 
+## WinMerge 2.16.17 - 2021-12-xx
+
+### General
+
+- New Option to ignore numbers.
+
 ## WinMerge 2.16.16 - 2021-10-28
 
 ### General
 
 - Fix a problem where the string in the Windows common dialog would not 
     change to the language when switching languages.
-- New Option to ignore numbers.
 
 ### File compare
 

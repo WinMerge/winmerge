@@ -242,6 +242,7 @@ Other Contributors (code, ideas, testing..):
 * EugeneLaptev
 * ranjwarrior
 * elsonwei
+* evoc
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
