@@ -207,6 +207,7 @@
 #define IDC_IGNORED_SUSBSTITUTIONS_ENABLED 1030
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
+#define IDC_IGNORE_NUMBERS              1034
 #define IDC_DIFFERENCE_COLOR            1035
 #define IDC_SEL_DIFFERENCE_COLOR        1037
 #define IDC_PROP_INSERT_TABS            1038
@@ -566,6 +567,7 @@
 #define IDC_LFILTER_CLEARBTN            1420
 #define IDC_MESSAGEBOX_LIST             1421
 #define IDC_PROJECT_LIST                1422
+#define IDC_DIFF_IGNORENUMBERS          1423
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602

@@ -402,7 +402,7 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 	bool byteColoring = GetByteColoringOption();
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, eolSensitive, xwhite, breakType, byteColoring);
+	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, eolSensitive, xwhite, diffOptions.bIgnoreNumbers ,breakType, byteColoring);
 
 	int i;
 	std::vector<strdiff::wdiff>::iterator it;

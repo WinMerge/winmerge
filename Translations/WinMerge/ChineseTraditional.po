@@ -1167,6 +1167,9 @@ msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "忽略代碼頁不同(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

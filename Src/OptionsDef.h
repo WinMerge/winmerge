@@ -197,6 +197,7 @@ inline const String OPT_CMP_IGNORE_WHITESPACE {_T("Settings/IgnoreSpace"s)};
 inline const String OPT_CMP_IGNORE_BLANKLINES {_T("Settings/IgnoreBlankLines"s)};
 inline const String OPT_CMP_FILTER_COMMENTLINES {_T("Settings/FilterCommentsLines"s)};
 inline const String OPT_CMP_IGNORE_CASE {_T("Settings/IgnoreCase"s)};
+inline const String OPT_CMP_IGNORE_NUMBERS {_T("Settings/IgnoreNumbers"s)};
 inline const String OPT_CMP_IGNORE_EOL {_T("Settings/IgnoreEol"s)};
 inline const String OPT_CMP_IGNORE_CODEPAGE {_T("Settings/IgnoreCodepage"s)};
 inline const String OPT_CMP_METHOD {_T("Settings/CompMethod2"s)};

@@ -933,6 +933,9 @@ msgstr "Igno&rar as diferenças de retorno dos transportes (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar as diferenças do código da &página"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorar as d&iferenças dos comentários"
 

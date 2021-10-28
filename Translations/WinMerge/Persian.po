@@ -1160,6 +1160,9 @@ msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر س�
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

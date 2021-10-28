@@ -932,6 +932,9 @@ msgstr "Игнорировать концы строк (Win/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Игнорировать отличия кодовых страниц"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
 

@@ -1156,6 +1156,9 @@ msgstr "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

@@ -931,6 +931,9 @@ msgstr "Ignorera skillnader i radslut (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorera skillnader i teckentabeller (ANSI/Unicode)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorera kommentarskillnader"
 

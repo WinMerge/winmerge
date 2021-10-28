@@ -933,6 +933,9 @@ msgstr "Igno&rar diferentes tipos de ficheiros (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenças nas páginas de código"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"
 

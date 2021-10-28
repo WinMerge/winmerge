@@ -1159,6 +1159,10 @@ msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
 msgid "Ignore codepage &differences"
 msgstr "&Codeseiten-Unterschiede ignorieren"
 
+#, c-format
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
 msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"
 

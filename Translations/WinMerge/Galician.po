@@ -1160,6 +1160,9 @@ msgstr "Igno&rar diferenzas nos saltos de liña (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenzas de codificación"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
 

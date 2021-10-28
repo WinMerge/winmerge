@@ -1156,6 +1156,9 @@ msgstr "Занемари &разлике ознака завршетка ред�
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

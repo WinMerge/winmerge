@@ -933,6 +933,9 @@ msgstr ""
 msgid "Ignore codepage &differences"
 msgstr "تجاهل اختلافات ترميز الصفحة"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

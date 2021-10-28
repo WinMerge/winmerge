@@ -1166,6 +1166,9 @@ msgstr "Ignorer les différences de &fin de ligne (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorer les &différences de page de code"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorer les différences de c&ommentaire"
 

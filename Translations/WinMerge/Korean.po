@@ -1165,6 +1165,9 @@ msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "코드페이지 차이 무시하기(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시하기(&O)"
 

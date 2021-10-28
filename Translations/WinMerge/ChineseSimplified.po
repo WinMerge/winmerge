@@ -933,6 +933,9 @@ msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
 msgid "Ignore codepage &differences"
 msgstr "忽略代码页差异(&D)"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

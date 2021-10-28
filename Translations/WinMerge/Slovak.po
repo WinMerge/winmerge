@@ -933,6 +933,9 @@ msgstr "Igno&rovať rozdiely v zakončení riadkov (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorovať rozdiely kódových stránok"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

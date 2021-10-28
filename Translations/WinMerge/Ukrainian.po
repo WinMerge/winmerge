@@ -1160,6 +1160,9 @@ msgstr "Нехтувати різницею в кінцях рядків (Win/Un
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

@@ -1161,6 +1161,9 @@ msgstr "Ezikusi g&urdi itzulera ezberdintasunak (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 

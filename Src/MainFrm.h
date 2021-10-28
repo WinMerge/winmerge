@@ -342,6 +342,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCase();
 	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreNumbers();
+	afx_msg void OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCP();

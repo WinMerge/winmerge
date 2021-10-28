@@ -19,6 +19,7 @@ CompareOptions::CompareOptions()
 , m_bIgnoreBlankLines(false)
 , m_bIgnoreCase(false)
 , m_bIgnoreEOLDifference(false)
+, m_bIgnoreNumbers(false)
 {
 }
 
@@ -30,6 +31,7 @@ CompareOptions::CompareOptions(const CompareOptions & options)
 , m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
 , m_bIgnoreCase(options.m_bIgnoreCase)
 , m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
+, m_bIgnoreNumbers(options.m_bIgnoreNumbers)
 {
 }
 
@@ -72,6 +74,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
+	m_bIgnoreNumbers = options.bIgnoreNumbers;
 }
 
 /**
@@ -191,6 +194,8 @@ void DiffutilsOptions::SetToDiffUtils()
 	else
 		ignore_case_flag = 0;
 
+	ignore_numbers_flag = m_bIgnoreNumbers ? 1 : 0;
+
 	if (m_bIgnoreEOLDifference)
 		ignore_eol_diff = 1;
 	else
@@ -225,7 +230,8 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
 	options.bIgnoreCase = m_bIgnoreCase;
 	options.bIgnoreEol = m_bIgnoreEOLDifference;
-	
+	options.bIgnoreNumbers = m_bIgnoreNumbers;
+
 	switch (m_ignoreWhitespace)
 	{
 	case WHITESPACE_COMPARE_ALL:

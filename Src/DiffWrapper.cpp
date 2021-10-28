@@ -309,6 +309,27 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 		pos += replen;
 	}
 }
+
+/**
+ * @brief Replace spaces in a string
+ * @param [in] str - String to search
+ * @param [in] rep - String to replace
+ */
+static void ReplaceNumbers(std::string& str, const char* rep)
+{
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of("0123456789", pos)) != std::string::npos)
+	{
+		std::string::size_type posend = str.find_first_not_of("0123456789", pos);
+		if (posend != String::npos)
+			str.replace(pos, posend - pos, rep);
+		else
+			str.replace(pos, 1, rep);
+		pos += replen;
+	}
+}
+
 /**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
 @param [in]  LineNumberLeft		- First line number to read from left file
@@ -367,6 +388,13 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 		//Ignore change in whitespace char count
 		ReplaceSpaces(LineDataLeft, " ");
 		ReplaceSpaces(LineDataRight, " ");
+	}
+
+	if (m_options.m_bIgnoreNumbers )
+	{
+		//Ignore number character case
+		ReplaceNumbers(LineDataLeft, "");
+		ReplaceNumbers(LineDataRight, "");
 	}
 
 	if (m_options.m_bIgnoreCase)

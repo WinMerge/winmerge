@@ -1161,6 +1161,9 @@ msgstr "Sorvég különbségek mellőzése"
 msgid "Ignore codepage &differences"
 msgstr "Kódtábla különbségek mellőzése"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
 
