@@ -318,10 +318,16 @@ void CDiffContext::CreateDuplicateValueMap()
 							}
 							else
 							{
-								if (it->second.groupid == 0 && it->second.count[pane] == 1)
+								if (it->second.groupid == 0)
 								{
-									++currentGroupId[j];
-									it->second.groupid = currentGroupId[j];
+									int count = 0;
+									for (int k = 0; k < nDirs; ++k)
+										count += it->second.count[k];
+									if (count > 0)
+									{
+										++currentGroupId[j];
+										it->second.groupid = currentGroupId[j];
+									}
 								}
 								++it->second.count[pane];
 								if (!it->second.nonpaired && !di.diffcode.existAll())
