@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-08-29 20:11+0000\n"
-"PO-Revision-Date: 2021-09-11 00:00+0000\n"
+"POT-Creation-Date: 2021-10-23 10:36+0000\n"
+"PO-Revision-Date: 2021-10-28 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -933,7 +933,7 @@ msgid "Ignore codepage &differences"
 msgstr "Игнорировать отличия кодовых страниц"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Игнорировать числа"
 
 msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
@@ -1311,10 +1311,10 @@ msgid "Move &Down"
 msgstr "В&низ"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "Дополнительные свойства"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Дополнительные свойства"
 
 msgid "&>"
 msgstr ""
@@ -1851,10 +1851,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Удалить shell для текущего пользователя"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "Зарегистрировать shell для Windows 11"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Удалить shell для &Windows 11"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2223,7 +2223,7 @@ msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr " Выбр: %d | %d"
 
 msgid "Merge"
 msgstr "Объединение"
@@ -2605,25 +2605,25 @@ msgid "Prediffer"
 msgstr "Предсравнение"
 
 msgid "Left"
-msgstr ""
+msgstr "Слева"
 
 msgid "Middle"
-msgstr ""
+msgstr "Посередине"
 
 msgid "Right"
-msgstr ""
+msgstr "Справа"
 
 msgid "Diff"
-msgstr ""
+msgstr "Отличия"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Кол-во дубликатов слева"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Кол-во дубликатов справа"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Кол-во дубликатов посередине"
 
 msgid "Move"
 msgstr ""
@@ -2772,7 +2772,7 @@ msgstr "Файлы изображений разные"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Группа%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3549,7 +3549,7 @@ msgid "Disassemble JVM Bytecode"
 msgstr "Разбор байт-кода JVM"
 
 msgid "Disassemble IL Code"
-msgstr "Разбор байт-кода IL"
+msgstr "Разбор IL-кода"
 
 msgid "Disassemble Native Code"
 msgstr "Разбор нативного кода"
@@ -3564,3 +3564,4 @@ msgstr "Отсутствует кавычка в конвейере плагин
 
 msgid "Specify plugin arguments"
 msgstr "Укажите аргументы плагина"
+
