@@ -841,7 +841,8 @@ static String ColPropertyMoveGet(const CDiffContext *pCtxt, const void *p, int o
 	if (di.diffcode.isDirectory())
 		return _T("");
 	std::vector<String> list;
-	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
+	const int nDirs = pCtxt->GetCompareDirs();
+	for (int i = 0; i < nDirs; ++i)
 	{
 		if (di.diffcode.exists(i))
 		{
@@ -852,7 +853,16 @@ static String ColPropertyMoveGet(const CDiffContext *pCtxt, const void *p, int o
 				if (it != pCtxt->m_duplicateValues[opt].end())
 				{
 					if (it->second.groupid != 0 && it->second.nonpaired)
-						list.push_back(strutils::format(_("Group%d"), it->second.groupid));
+					{
+						int count = 0;
+						for (int j = 0; j < nDirs; ++j)
+						{
+							if (it->second.count[j] > 0)
+								++count;
+						}
+						if (count > 1)
+							list.push_back(strutils::format(_("Group%d"), it->second.groupid));
+					}
 				}
 			}
 		}
