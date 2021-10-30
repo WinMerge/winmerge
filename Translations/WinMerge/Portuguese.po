@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-08-29 20:11+0000\n"
-"PO-Revision-Date: 2021-09-16 14:47+0100\n"
+"POT-Creation-Date: 2021-10-23 10:36+0000\n"
+"PO-Revision-Date: 2021-10-29 13:33+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -934,7 +935,7 @@ msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenças nas páginas de código"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Ignorar números"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"
@@ -1318,19 +1319,19 @@ msgid "Move &Down"
 msgstr "Mover para &Baixo"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "&Propriedades adicionais"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Propriedades adicionais"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Selecionar plugin"
@@ -2891,88 +2892,88 @@ msgid "Prediffer"
 msgstr "Pré-diferenciar"
 
 msgid "Left"
-msgstr ""
+msgstr "Esquerda"
 
 msgid "Middle"
-msgstr ""
+msgstr "Meio"
 
 msgid "Right"
-msgstr ""
+msgstr "Direita"
 
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Contagem em duplicado à esquerda"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Contagem em duplicado à direita"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Contagem em duplicado ao meio"
 
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 msgid "Audio"
-msgstr ""
+msgstr "Áudio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Calendário"
 
 msgid "Communication"
-msgstr ""
+msgstr "Comunicação"
 
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Document"
-msgstr ""
+msgstr "Documento"
 
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 msgid "Journal"
-msgstr ""
+msgstr "Jornal"
 
 msgid "Link"
-msgstr ""
+msgstr "Ligação"
 
 msgid "Media"
-msgstr ""
+msgstr "Multimédia"
 
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "TV gravada"
 
 msgid "Search"
-msgstr ""
+msgstr "Pesquisa"
 
 msgid "Security"
-msgstr ""
+msgstr "Segurança"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Tarefa"
 
 msgid "Video"
-msgstr ""
+msgstr "Vídeo"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 msgid "Unable to compare files"
 msgstr "Não é possível comparar ficheiros"
@@ -3058,7 +3059,7 @@ msgstr "Os ficheiros de imagem são diferentes"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupo%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3363,7 +3364,7 @@ msgid "Location Pane"
 msgstr "Janela de Localização"
 
 msgid "Diff Pane"
-msgstr "Janela de Diferenças"
+msgstr "Janela de diferenças"
 
 msgid "Patch file successfully written."
 msgstr "Ficheiro patch escrito com sucesso."
@@ -3483,7 +3484,7 @@ msgid ""
 "Difference in the Current Line"
 msgstr ""
 "\n"
-"Diferenças na Linha Atual"
+"Diferenças na linha atual"
 
 msgid ""
 "\n"
@@ -3504,14 +3505,14 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "\n"
-"Diferença Anterior (Alt+Up)"
+"Diferença anterior (Alt+Up)"
 
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
 msgstr ""
 "\n"
-"Diferença Seguinte (Alt+Down)"
+"Diferença seguinte (Alt+Down)"
 
 msgid ""
 "\n"
@@ -3532,21 +3533,21 @@ msgid ""
 "First Difference (Alt+Home)"
 msgstr ""
 "\n"
-"Primeira Diferença (Alt+Home)"
+"Primeira diferença (Alt+Home)"
 
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
 msgstr ""
 "\n"
-"Diferença Atual (Alt+Enter)"
+"Diferença atual (Alt+Enter)"
 
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
 msgstr ""
 "\n"
-"Última Diferença (Alt+End)"
+"Última diferença (Alt+End)"
 
 msgid ""
 "\n"
@@ -3688,7 +3689,7 @@ msgid "Batch"
 msgstr "Quantidade"
 
 msgid "Portable Object"
-msgstr "Objeto Portátil"
+msgstr "Objeto portátil"
 
 msgid "Resources"
 msgstr "Recursos"
@@ -3697,16 +3698,16 @@ msgid "Shell"
 msgstr "Shell"
 
 msgid "Close &Left Tabs"
-msgstr "Fechar Separador E&squerdo"
+msgstr "Fechar separadores da e&squerda"
 
 msgid "Close R&ight Tabs"
-msgstr "Fechar Separador D&ireito"
+msgstr "Fechar separadores da d&ireita"
 
 msgid "Close &Other Tabs"
-msgstr "Fechar &Outros Separadores"
+msgstr "Fechar &outros separadores"
 
 msgid "Enable &Auto Max Width"
-msgstr "Ativar largura Máxima Automática"
+msgstr "Ativar largura máxima automática"
 
 msgid "Frhed is not installed."
 msgstr "O frhed não está instalado."
@@ -3755,10 +3756,10 @@ msgid "DirectWrite GDI Natural"
 msgstr "Gravação Direta GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr "Gravação Direta Natural"
+msgstr "Gravação direta natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr "Gravação Direta Natural Simétrica"
+msgstr "Gravação direta natural simétrica"
 
 msgid "MDI child window or main window"
 msgstr "Janela secundária MDI ou janela principal"
