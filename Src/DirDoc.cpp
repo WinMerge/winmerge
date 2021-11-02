@@ -243,7 +243,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
-	pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
+	if (m_pDirView)
+		pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
 	m_imgfileFilter.UseMask(true);
 	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
