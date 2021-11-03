@@ -55,9 +55,26 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	m_font.CreateFontIndirect(&ncm.lfMenuFont);
 	SetFont(&m_font);
 
+	m_tooltips.Create(m_pMainFrame);
+	m_tooltips.AddTool(this, _T(""));
+
 	return TRUE;
 }
 
+
+/**
+ * @brief Called before messages are translated.
+ * Passes a mouse message to the ToolTip control for processing.
+ * @param [in] pMsg Points to an MSG structure that contains the message to be chcecked
+ */
+BOOL CMDITabBar::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_MOUSEMOVE)
+		m_tooltips.RelayEvent(pMsg);
+
+	// Call the parent method.
+	return CControlBar::PreTranslateMessage(pMsg);
+}
 
 /** 
  * @brief This method calculates the horizontal size of a control bar.
@@ -327,6 +344,8 @@ void CMDITabBar::UpdateTabs()
 				m_pMainFrame->RecalcLayout();
 		}
 	}
+
+	m_nTooltipTabItemIndex = -1;
 }
 
 /**
@@ -438,6 +457,9 @@ void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 			Invalidate();
 		}
 	}
+
+	if (nTabItemIndex != m_nTooltipTabItemIndex)
+		UpdateToolTips(nTabItemIndex);
 }
 
 void CMDITabBar::OnMouseLeave()
@@ -528,4 +550,55 @@ void CMDITabBar::SwapTabs(int nIndexA, int nIndexB)
 		SetCurSel(nIndexB);
 	if (nCurSel == nIndexB)
 		SetCurSel(nIndexA);
+}
+
+/**
+ * @brief Get the maximum length of the title.
+ */
+int CMDITabBar::GetMaxTitleLength() const
+{
+	int nMaxTitleLength = m_bAutoMaxWidth ? static_cast<int>(MDITABBAR_MAXTITLELENGTH - (GetItemCount() - 1) * 6) : MDITABBAR_MAXTITLELENGTH;
+	if (nMaxTitleLength < MDITABBAR_MINTITLELENGTH)
+		nMaxTitleLength = MDITABBAR_MINTITLELENGTH;
+
+	return nMaxTitleLength;
+}
+
+/**
+ * @brief Update tooltip text.
+ * @param [in] nTabItemIndex Index of the tab displaying tooltip.
+ */
+void CMDITabBar::UpdateToolTips(int nTabItemIndex)
+{
+	TC_ITEM tci;
+	tci.mask = TCIF_PARAM;
+	GetItem(nTabItemIndex, &tci);
+
+	if (!m_pMainFrame)
+		return;
+	CMDIChildWnd* pActiveWnd = m_pMainFrame->MDIGetActive();
+	if (!pActiveWnd)
+		return;
+	CWnd* pParentWnd = pActiveWnd->GetParent();
+	if (!pParentWnd)
+		return;
+
+	for (CWnd* pFrame = pParentWnd->GetTopWindow(); pFrame; pFrame = pFrame->GetNextWindow())
+		if (reinterpret_cast<HWND>(tci.lParam) == pFrame->m_hWnd)
+		{
+			HWND hFrameWnd = pFrame->m_hWnd;
+			CString strTitle;
+			CDocument* pDoc = ((CFrameWnd*)FromHandle(hFrameWnd))->GetActiveDocument();
+			if (pDoc != nullptr)
+				strTitle = pDoc->GetTitle();
+			else
+				FromHandle(hFrameWnd)->GetWindowText(strTitle);
+
+			if (strTitle.GetLength() <= GetMaxTitleLength())
+				strTitle = "";
+
+			m_tooltips.UpdateTipText(strTitle, this);
+			m_nTooltipTabItemIndex = nTabItemIndex;
+			return;
+		}
 }
