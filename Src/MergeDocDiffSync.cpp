@@ -135,7 +135,7 @@ void CMergeDoc::AdjustDiffBlocks()
 int CMergeDoc::GetMatchCost(int line0, int line1, const std::vector<WordDiff>& worddiffs)
 {
 	int matchlen = 0;
-	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+	for (size_t i = 0; i < worddiffs.size(); ++i)
 	{
 		if (i == 0)
 		{
@@ -153,6 +153,12 @@ int CMergeDoc::GetMatchCost(int line0, int line1, const std::vector<WordDiff>& w
 					matchlen += worddiffs[i].begin[0];
 			}
 		}
+	}
+	if (!worddiffs.empty())
+	{
+		size_t last = worddiffs.size() - 1;
+		if (worddiffs[last].endline[0] == line0 && worddiffs[last].endline[1] == line1)
+			matchlen += m_ptBuf[0]->GetFullLineLength(line0) - worddiffs[last].end[0] - 1;
 	}
 	return -matchlen;
 }
