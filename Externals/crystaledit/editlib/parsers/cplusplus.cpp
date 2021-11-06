@@ -461,7 +461,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsCppKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+      if (IsKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
