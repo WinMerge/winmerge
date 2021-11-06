@@ -38,6 +38,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\csharp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\css.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\dcl.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\dlang.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fortran.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\go.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\html.cpp" />

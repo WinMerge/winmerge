@@ -77,6 +77,7 @@ typedef enum
 	SRC_CSHARP,
 	SRC_CSS,
 	SRC_DCL,
+	SRC_DLANG,
 	SRC_FORTRAN,
 	SRC_GO,
 	SRC_HTML,
@@ -152,6 +153,7 @@ unsigned ParseLineCJava(unsigned dwCookie, const TCHAR *pszChars, int nLength, T
 unsigned ParseLineCSharp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineCss(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineDcl(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineDlang(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineFortran(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineGo(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineHtml(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
