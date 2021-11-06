@@ -331,55 +331,17 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInDiffBlock(int nDiff)
 	return worddiffs;
 }
 
-/**
- * @brief Return array of differences in specified line
- * This is used by algorithm for line diff coloring
- * (Line diff coloring is distinct from the selection highlight code)
- */
-std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
+std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3])
 {
-	int file;
-	DIFFRANGE cd;
-	std::vector<WordDiff> worddiffs;
-
-	for (file = 0; file < m_nBuffers; file++)
-	{
-		if (nLineIndex >= m_ptBuf[file]->GetLineCount())
-			return worddiffs;
-	}
-
-	int nDiff = m_diffList.LineToDiff(nLineIndex);
-	if (nDiff == -1)
-		return worddiffs;
-	std::map<int, std::vector<WordDiff> >::iterator itmap = m_cacheWordDiffs.find(nDiff);
-	if (itmap != m_cacheWordDiffs.end())
-	{
-		worddiffs.resize((*itmap).second.size());
-		std::copy((*itmap).second.begin(), (*itmap).second.end(), worddiffs.begin());
-		return worddiffs;
-	}
-
-	m_diffList.GetDiff(nDiff, cd);
-
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
 	std::unique_ptr<int[]> nOffsets[3];
-	bool diffPerLine = IsDiffPerLine(m_ptBuf[0]->GetTableEditing(), cd);
-
-	int nLineBegin, nLineEnd;
-	if (!diffPerLine)
+	std::vector<WordDiff> worddiffs;
+	for (int file = 0; file < m_nBuffers; file++)
 	{
-		nLineBegin = cd.dbegin;
-		nLineEnd = cd.dend;
-	}
-	else
-	{
-		nLineBegin = nLineEnd = nLineIndex;
-	}
-
-	for (file = 0; file < m_nBuffers; file++)
-	{
+		int nLineBegin = begin[file];
+		int nLineEnd = end[file];
 		if (nLineEnd >= m_ptBuf[file]->GetLineCount())
 			return worddiffs;
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
@@ -409,8 +371,10 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 	for (i = 0, it = wdiffs.begin(); it != wdiffs.end(); ++i, ++it)
 	{
 		WordDiff wd;
-		for (file = 0; file < m_nBuffers; file++)
+		for (int file = 0; file < m_nBuffers; file++)
 		{
+			int nLineBegin = begin[file];
+			int nLineEnd = end[file];
 			int nLine;
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
@@ -456,6 +420,59 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 
 		worddiffs.push_back(wd);
 	}
+	return worddiffs;
+}
+
+/**
+ * @brief Return array of differences in specified line
+ * This is used by algorithm for line diff coloring
+ * (Line diff coloring is distinct from the selection highlight code)
+ */
+std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
+{
+	int file;
+	DIFFRANGE cd;
+	std::vector<WordDiff> worddiffs;
+
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		if (nLineIndex >= m_ptBuf[file]->GetLineCount())
+			return worddiffs;
+	}
+
+	int nDiff = m_diffList.LineToDiff(nLineIndex);
+	if (nDiff == -1)
+		return worddiffs;
+	std::map<int, std::vector<WordDiff> >::iterator itmap = m_cacheWordDiffs.find(nDiff);
+	if (itmap != m_cacheWordDiffs.end())
+	{
+		worddiffs.resize((*itmap).second.size());
+		std::copy((*itmap).second.begin(), (*itmap).second.end(), worddiffs.begin());
+		return worddiffs;
+	}
+
+	m_diffList.GetDiff(nDiff, cd);
+
+	bool diffPerLine = IsDiffPerLine(m_ptBuf[0]->GetTableEditing(), cd);
+
+	int nLineBegin[3]{}, nLineEnd[3]{};
+	if (!diffPerLine)
+	{
+		for (int pane = 0; pane < m_nBuffers; ++pane)
+		{
+			nLineBegin[pane] = cd.dbegin;
+			nLineEnd[pane] = cd.dend;
+		}
+	}
+	else
+	{
+		for (int pane = 0; pane < m_nBuffers; ++pane)
+		{
+			nLineBegin[pane] = nLineEnd[pane] = nLineIndex;
+		}
+	}
+
+	worddiffs = GetWordDiffArrayInRange(nLineBegin, nLineEnd);
 
 	if (!diffPerLine)
 	{

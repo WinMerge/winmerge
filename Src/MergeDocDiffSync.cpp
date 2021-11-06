@@ -42,9 +42,10 @@ void CMergeDoc::AdjustDiffBlocks()
 			// Call worker to do all lines in block
 			int lo0 = 0, hi0 = nlines0-1;
 			int lo1 = 0, hi1 = nlines1-1;
+			const std::vector<WordDiff> worddiffs = GetWordDiffArrayInRange(diffrange.begin, diffrange.end);
 			DiffMap diffmap;
 			diffmap.InitDiffMap(nlines0);
-			AdjustDiffBlock(diffmap, diffrange, lo0, hi0, lo1, hi1);
+			AdjustDiffBlock(diffmap, diffrange, worddiffs, lo0, hi0, lo1, hi1);
 
 			// divide diff blocks
 			DIFFRANGE dr;
@@ -131,31 +132,29 @@ void CMergeDoc::AdjustDiffBlocks()
  * The cost of making them equal is the measure of their dissimilarity
  * which is their Levenshtein distance.
  */
-int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
+int CMergeDoc::GetMatchCost(int line0, int line1, const std::vector<WordDiff>& worddiffs)
 {
-	DIFFOPTIONS diffOptions = {0};
-	m_diffWrapper.GetOptions(&diffOptions);
-
-	String str[2];
-	str[0] = sLine0;
-	str[1] = sLine1;
-
-	// Options that affect comparison
-	bool casitive = !diffOptions.bIgnoreCase;
-	bool eolSensitive = !diffOptions.bIgnoreEol;
-	int xwhite = diffOptions.nIgnoreWhitespace;
-	int breakType = GetBreakType(); // whitespace only or include punctuation
-	bool byteColoring = GetByteColoringOption();
-
-	std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(2, str, casitive, eolSensitive, xwhite, diffOptions.bIgnoreNumbers, breakType, byteColoring);
-
-	int nDiffLenSum = 0;
-	for (std::vector<strdiff::wdiff>::const_iterator it = worddiffs.begin(); it != worddiffs.end(); ++it)
+	int matchlen = 0;
+	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
 	{
-		nDiffLenSum += it->end[0] - it->begin[0] + 1;
+		if (i == 0)
+		{
+			if (line0 == worddiffs[i].beginline[0] && line1 == worddiffs[i].beginline[1])
+				matchlen += worddiffs[i].begin[0];
+		}
+		else
+		{
+			if (worddiffs[i - 1].endline[0] <= line0 && worddiffs[i - 1].endline[1] <= line1 &&
+			    line0 <= worddiffs[i].beginline[0] && line1 <= worddiffs[i].beginline[1])
+			{
+				if (worddiffs[i - 1].endline[0] == worddiffs[i].beginline[0])
+					matchlen += worddiffs[i].begin[0] - worddiffs[i - 1].end[0] - 1;
+				else
+					matchlen += worddiffs[i].begin[0];
+			}
+		}
 	}
-
-	return -static_cast<int>(sLine0.length() - nDiffLenSum);
+	return -matchlen;
 }
 
 /**
@@ -167,7 +166,7 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
  * Find best match, and use that to split problem into two parts (above & below match)
  * and call ourselves recursively to solve each smaller problem
  */
-void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1)
+void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, const std::vector<WordDiff>& worddiffs, int lo0, int hi0, int lo1, int hi1)
 {
 	// Map & lo & hi numbers are all relative to this block
 	// We need to know offsets to find actual line strings from buffer
@@ -189,7 +188,19 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	}
 
 	// Bail out if range is large
-	if (lines0 > 15 || lines1 > 15)
+	auto tooManyCharacters = [&](int pane, int start, int end)
+	{
+		size_t charCount = 0;
+		const int charCountMax = 4096;
+		for (int i = start; i <= end; ++i)
+		{
+			charCount += m_ptBuf[pane]->GetLineLength(i);
+			if (charCount > charCountMax)
+				return true;
+		}
+		return false;
+	};
+	if (tooManyCharacters(0, offset0 + lo0, offset0 + hi0) || tooManyCharacters(1, offset1 + lo1, offset1 + hi1))
 	{
 		// Do simple 1:1 mapping
 		// but try to stay within original block
@@ -221,14 +232,11 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 
 	// Find best fit
 	int ibest=-1, isavings=0x7fffffff, itarget=-1;
-	CString sLine0, sLine1;
 	for (int i=lo0; i<=hi0; ++i)
 	{
-		m_ptBuf[0]->GetLine(offset0 + i, sLine0);
 		for (int j=lo1; j<=hi1; ++j)
 		{
-			m_ptBuf[1]->GetLine(offset1 + j, sLine1);
-			int savings = GetMatchCost((LPCTSTR)sLine0, (LPCTSTR)sLine1);
+			int savings = GetMatchCost(offset0 + i, offset1 + j, worddiffs);
 			// TODO
 			// Need to penalize assignments that push us outside the box
 			// further than is required
@@ -254,7 +262,7 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	{
 		if (lo1 < itarget)
 		{
-			AdjustDiffBlock(diffMap, diffrange, lo0, ibest-1, lo1, itarget-1);
+			AdjustDiffBlock(diffMap, diffrange, worddiffs, lo0, ibest-1, lo1, itarget-1);
 		}
 		else
 		{
@@ -271,7 +279,7 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	{
 		if (itarget < hi1)
 		{
-			AdjustDiffBlock(diffMap, diffrange, ibest + 1, hi0,
+			AdjustDiffBlock(diffMap, diffrange, worddiffs, ibest + 1, hi0,
 					itarget + 1, hi1);
 		}
 		else

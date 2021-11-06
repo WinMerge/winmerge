@@ -459,7 +459,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 			// Correct the comparison results made by diffutils if the first file separated by the sync point is an empty file.
 			if (i == 0 && templist.GetSize() > 0)
+			{
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
 					if (nStartLine[nBuffer] == 0)
 					{
 						bool isEmptyFile = true;
@@ -482,6 +484,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 							}
 						}
 					}
+				}
+			}
 
 			m_diffList.AppendDiffList(templist, nRealLine);
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)

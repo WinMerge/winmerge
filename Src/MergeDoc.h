@@ -269,6 +269,7 @@ public:
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
+	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3]);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
 	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
@@ -430,8 +431,8 @@ private:
 	void PrimeTextBuffers();
 	void HideLines();
 	void AdjustDiffBlocks();
-	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
-	int GetMatchCost(const String &Line0, const String &Line1);
+	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, const std::vector<WordDiff>& worddiffs, int lo0, int hi0, int lo1, int hi1);
+	int GetMatchCost(int line0, int line1, const std::vector<WordDiff>& worddiffs);
 	void FlagTrivialLines();
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
