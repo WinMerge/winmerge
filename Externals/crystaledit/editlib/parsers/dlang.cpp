@@ -261,14 +261,36 @@ out:
           continue;
         }
 
-      //  Extended comment /*....*/
+      //  Extended comment /*....*/ or /+....+/(nested comments)
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+          unsigned depth = COOKIE_GET_EXT_COMMENT_DEPTH(dwCookie);
+          if (depth == 0)
             {
-              dwCookie &= ~COOKIE_EXT_COMMENT;
-              bRedefineBlock = true;
-              pszCommentEnd = pszChars + I + 1;
+              if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+                {
+                  dwCookie &= ~COOKIE_EXT_COMMENT;
+                  bRedefineBlock = true;
+                  pszCommentEnd = pszChars + I + 1;
+                }
+            }
+          else
+            {
+              if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '+' && pszChars[nPrevI] == '/'))
+                {
+                  COOKIE_SET_EXT_COMMENT_DEPTH(dwCookie, depth + 1);
+                  pszCommentBegin = pszChars + I + 1;
+                }
+              else if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '+'))
+                {
+                  COOKIE_SET_EXT_COMMENT_DEPTH(dwCookie, depth - 1);
+                  if (depth <= 1)
+                    {
+                      dwCookie &= ~COOKIE_EXT_COMMENT;
+                      bRedefineBlock = true;
+                    }
+                  pszCommentEnd = pszChars + I + 1;
+                }
             }
           continue;
         }
@@ -308,6 +330,15 @@ out:
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
+          continue;
+        }
+      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '+' && pszChars[nPrevI] == '/'))
+        {
+          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_EXT_COMMENT;
+          pszCommentBegin = pszChars + I + 1;
+          unsigned depth = 0;
+          COOKIE_SET_EXT_COMMENT_DEPTH(dwCookie, depth + 1);
           continue;
         }
 
@@ -399,6 +430,6 @@ out:
         }
     }
 
-  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING;
+  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000;
   return dwCookie;
 }
