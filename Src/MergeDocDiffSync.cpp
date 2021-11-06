@@ -153,12 +153,12 @@ int CMergeDoc::GetMatchCost(int line0, int line1, const std::vector<WordDiff>& w
 					matchlen += worddiffs[i].begin[0];
 			}
 		}
-	}
-	if (!worddiffs.empty())
-	{
-		size_t last = worddiffs.size() - 1;
-		if (worddiffs[last].endline[0] == line0 && worddiffs[last].endline[1] == line1)
-			matchlen += m_ptBuf[0]->GetFullLineLength(line0) - worddiffs[last].end[0] - 1;
+		if (i == worddiffs.size() - 1 ||
+			worddiffs[i + 1].beginline[0] != worddiffs[i].endline[0] && worddiffs[i + 1].beginline[1] != worddiffs[i].endline[1])
+		{
+			if (worddiffs[i].endline[0] == line0 && worddiffs[i].endline[1] == line1)
+				matchlen += m_ptBuf[0]->GetFullLineLength(line0) - worddiffs[i].end[0] - 1;
+		}
 	}
 	return -matchlen;
 }
