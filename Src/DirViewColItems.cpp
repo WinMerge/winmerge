@@ -1327,6 +1327,10 @@ DirViewColItems::DirViewColItems(int nDirs, const std::vector<String>& additiona
 void
 DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 {
+	const int nfixedcols = static_cast<int>(m_nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
+	int fixedColPhysicalIndexMax = 0;
+	for (int i = 0; i < nfixedcols; ++i)
+		fixedColPhysicalIndexMax = (std::max)(fixedColPhysicalIndexMax, m_cols[i].physicalIndex);
 	int pane = 0;
 	String cList = (m_nDirs < 3) ? String(_T("ADLR")) : String(_T("ADLMR"));
 	if (propertyName.substr(0, 5) == _T("Hash."))
@@ -1340,7 +1344,7 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 		col.opt = static_cast<int>(m_additionalPropertyNames.size());
 		if (c == 'A')
 		{
-			col.physicalIndex = col.opt;
+			col.physicalIndex = fixedColPhysicalIndexMax + 1 + col.opt;
 			col.offset = 0;
 			col.getfnc = ColAllPropertyGet;
 			col.sortfnc = ColAllPropertySort;
@@ -1388,7 +1392,7 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 void
 DirViewColItems::RemoveAdditionalPropertyName(const String& propertyName)
 {
-	int nfixedcols = static_cast<int>(m_nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
+	const int nfixedcols = static_cast<int>(m_nDirs < 3 ? std::size(f_cols) : std::size(f_cols3));
 	std::vector<int> deletedPhysicalIndexes;
 	std::vector<int> deletedLogicalIndexes;
 	int deletedOpt = -1;
@@ -1589,7 +1593,7 @@ String
 DirViewColItems::GetColDisplayName(int col) const
 {
 	const DirColInfo * colinfo = GetDirColInfo(col);
-	return colinfo->GetDisplayName();
+	return colinfo ? colinfo->GetDisplayName() : _T("");
 }
 
 /**
@@ -1599,7 +1603,7 @@ String
 DirViewColItems::GetColDescription(int col) const
 {
 	const DirColInfo * colinfo = GetDirColInfo(col);
-	return colinfo->GetDescription();
+	return colinfo ? colinfo->GetDescription() : _T("");
 }
 
 /**
