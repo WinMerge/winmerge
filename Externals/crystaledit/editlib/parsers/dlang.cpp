@@ -231,21 +231,78 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"')
             {
-              dwCookie &= ~COOKIE_STRING;
-              bRedefineBlock = true;
+              if (dwCookie & COOKIE_RAWSTRING)
+                {
+                  TCHAR tc = COOKIE_GET_RAWSTRING_DELIMITER(dwCookie);
+                  if (tc == '\0' || tc == pszChars[nPrevI])
+                    {
+                      dwCookie &= ~(COOKIE_STRING | COOKIE_RAWSTRING);
+                      bRedefineBlock = true;
+                    }
+                }
+              else
+                {
+                  bool bStringEnd = true;
+                  const TCHAR *pszString = pszChars + I;
+                  for (int nSize= 0; nSize < I; nSize += 2)
+                    {
+                      pszString = ::CharPrev(pszChars, pszString);
+                      if (*pszString != '\\')
+                        {
+                          break;
+                        }
+                      if (I == nSize + 1)
+                        {
+                          bStringEnd = false;
+                          break;
+                        }
+                      pszString = ::CharPrev(pszChars, pszString);
+                      if (*pszString != '\\')
+                        {
+                          bStringEnd = false;
+                          break;
+                        }
+                    }
+                  if (bStringEnd)
+                    {
+                      dwCookie &= ~COOKIE_STRING;
+                      bRedefineBlock = true;
+                    }
+                }
             }
           continue;
         }
 
       //  Raw string constant `....`
+      //  Token string q{....} (nested string)
       if (dwCookie & COOKIE_RAWSTRING)
         {
-          if (pszChars[I] == '`')
+          unsigned depth = COOKIE_GET_RAWSTRING_NUMBER_COUNT(dwCookie);
+          if (depth == 0)
             {
-              dwCookie &= ~COOKIE_RAWSTRING;
-              bRedefineBlock = true;
+              if (pszChars[I] == '`')
+                {
+                  dwCookie &= ~COOKIE_RAWSTRING;
+                  bRedefineBlock = true;
+                }
+            }
+          else
+            {
+              if (pszChars[I] == '{')
+                {
+                  COOKIE_SET_RAWSTRING_NUMBER_COUNT(dwCookie, depth + 1);
+                }
+              else if (pszChars[I] == '}')
+                {
+                  COOKIE_SET_RAWSTRING_NUMBER_COUNT(dwCookie, depth - 1);
+                  if (depth <= 1)
+                    {
+                      dwCookie &= ~COOKIE_RAWSTRING;
+                      bRedefineBlock = true;
+                    }
+                }
             }
           continue;
         }
@@ -305,19 +362,64 @@ out:
       //  Normal text
       if (pszChars[I] == '"')
         {
-          DEFINE_BLOCK (I, COLORINDEX_STRING);
+          if (I > 0 && (pszChars[nPrevI] == 'r' || pszChars[nPrevI] == 'q'))
+            { // String constant r"...." or q"...."
+              TCHAR tc = '\0';
+              if (pszChars[nPrevI] == 'q')
+                {
+                  tc = *::CharNext(pszChars + I);
+                  if ( tc == '(' )
+                    {
+                      tc = ')';
+                    }
+                  else if ( tc == '[' )
+                    {
+                      tc = ']';
+                    }
+                  else if ( tc == '{' )
+                    {
+                      tc = '}';
+                    }
+                  else if ( tc == '<' )
+                    {
+                      tc = '>';
+                    }
+                }
+              COOKIE_SET_RAWSTRING_DELIMITER(dwCookie, tc);
+              DEFINE_BLOCK (nPrevI, COLORINDEX_STRING);
+              dwCookie |= COOKIE_RAWSTRING;
+            }
+          else
+            { // String constant "...."
+              DEFINE_BLOCK (I, COLORINDEX_STRING);
+            }
           dwCookie |= COOKIE_STRING;
           continue;
         }
+      if (pszChars[I] == 'q' && *::CharNext(pszChars + I) == '{')
+        { //  Token string q{....}
+          DEFINE_BLOCK (I, COLORINDEX_STRING);
+          dwCookie |= COOKIE_RAWSTRING;
+          unsigned depth = 0;
+          COOKIE_SET_RAWSTRING_NUMBER_COUNT(dwCookie, depth + 1);
+          I++;
+          continue;
+        }
+      if ((pszChars[I] == 'c' || pszChars[I] == 'w' || pszChars[I] == 'd') && I > 0 && (pszChars[nPrevI] == '"' || pszChars[nPrevI] == '`'))
+        { //  String postfix
+          DEFINE_BLOCK (I, COLORINDEX_STRING);
+          dwCookie &= ~COOKIE_STRING;
+          bRedefineBlock = true;
+          continue;
+        }
       if (pszChars[I] == '`')
-        {
+        { //  Raw string constant `....`
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_RAWSTRING;
           continue;
         }
       if (pszChars[I] == '\'')
-        {
-          // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
+        { //  Char constant '..'
           if (!I || !xisalnum (pszChars[nPrevI]))
             {
               DEFINE_BLOCK (I, COLORINDEX_STRING);
@@ -326,14 +428,14 @@ out:
             }
         }
       if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
-        {
+        { //  Extended comment /*....*/
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
           continue;
         }
       if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '+' && pszChars[nPrevI] == '/'))
-        {
+        { //  Extended comment /+....+/(nested comments)
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
@@ -430,6 +532,6 @@ out:
         }
     }
 
-  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000;
+  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF000000;
   return dwCookie;
 }
