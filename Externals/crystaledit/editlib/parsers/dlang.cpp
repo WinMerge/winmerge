@@ -166,7 +166,7 @@ unsigned
 CrystalLineParser::ParseLineDlang (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF000000);
 
   const TCHAR *pszCommentBegin = nullptr;
   const TCHAR *pszCommentEnd = nullptr;
