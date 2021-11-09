@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -156,6 +156,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 	ProjectSection(SolutionItems) = preProject
 		Externals\winimerge\BuildArc.cmd = Externals\winimerge\BuildArc.cmd
 		Externals\winimerge\BuildBin.vs2019.cmd = Externals\winimerge\BuildBin.vs2019.cmd
+		Externals\winimerge\BuildBin.vs2022.cmd = Externals\winimerge\BuildBin.vs2022.cmd
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
@@ -393,6 +394,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{14C9
 		ShellExtension\BuildArc.cmd = ShellExtension\BuildArc.cmd
 		ShellExtension\BuildBin.vs2017.cmd = ShellExtension\BuildBin.vs2017.cmd
 		ShellExtension\BuildBin.vs2019.cmd = ShellExtension\BuildBin.vs2019.cmd
+		ShellExtension\BuildBin.vs2022.cmd = ShellExtension\BuildBin.vs2022.cmd
 		ShellExtension\CreateWinMergeContextMenuPackage.bat = ShellExtension\CreateWinMergeContextMenuPackage.bat
 		ShellExtension\CreateWinMergeContextMenuPackage.ps1 = ShellExtension\CreateWinMergeContextMenuPackage.ps1
 		ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat = ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat
