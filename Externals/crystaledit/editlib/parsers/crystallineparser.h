@@ -39,6 +39,8 @@ if (pBuf != nullptr)\
 #define COOKIE_SET_EXT_COMMENT_DEPTH(cookie, depth) (cookie) = (((cookie) & 0xF0FFFFFF) | ((depth) << 24))
 #define COOKIE_GET_RAWSTRING_NUMBER_COUNT(cookie) (((cookie) & 0xF0000000) >> 28)
 #define COOKIE_SET_RAWSTRING_NUMBER_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFFFFFF) | ((count) << 28))
+#define COOKIE_GET_RAWSTRING_DELIMITER(cookie) (((cookie) & 0xFF000000) >> 24)
+#define COOKIE_SET_RAWSTRING_DELIMITER(cookie, delimiter) (cookie) = (((cookie) & 0x00FFFFFF) | ((delimiter) << 24))
 #define COOKIE_GET_LUA_EQUALS_SIGN_COUNT(cookie) (((cookie) & 0xF0000000) >> 28)
 #define COOKIE_SET_LUA_EQUALS_SIGN_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFFFFFF) | ((count) << 28))
 
@@ -77,6 +79,7 @@ typedef enum
 	SRC_CSHARP,
 	SRC_CSS,
 	SRC_DCL,
+	SRC_DLANG,
 	SRC_FORTRAN,
 	SRC_GO,
 	SRC_HTML,
@@ -152,6 +155,7 @@ unsigned ParseLineCJava(unsigned dwCookie, const TCHAR *pszChars, int nLength, T
 unsigned ParseLineCSharp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineCss(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineDcl(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineDlang(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineFortran(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineGo(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineHtml(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
