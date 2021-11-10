@@ -20,6 +20,7 @@ C/C++
 C#
 CSS
 DCL
+D
 Fortran
 Go
 HTML
