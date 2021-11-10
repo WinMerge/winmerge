@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
-"PO-Revision-Date: 2021-09-20 17:00+0200\n"
+"POT-Creation-Date: 2021-10-23 10:36+0000\n"
+"PO-Revision-Date: 2021-11-10 10:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -934,7 +934,7 @@ msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Ignoruoti skai&čius"
 
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"
@@ -1312,19 +1312,19 @@ msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "P&apildomos savybės"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Papildomos savybės"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
@@ -2606,25 +2606,25 @@ msgid "Prediffer"
 msgstr "Parengėjas"
 
 msgid "Left"
-msgstr ""
+msgstr "Kairėje"
 
 msgid "Middle"
-msgstr ""
+msgstr "Viduryje"
 
 msgid "Right"
-msgstr ""
+msgstr "Dešinėje"
 
 msgid "Diff"
-msgstr ""
+msgstr "Skirtumai"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis kairėje"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis dešinėje"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis viduryje"
 
 msgid "Move"
 msgstr ""
@@ -2773,7 +2773,7 @@ msgstr "Paveikslėliai skiriasi"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupė%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3547,13 +3547,13 @@ msgid "Validate HTML"
 msgstr "Patikrinti HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Deaseblinti JVM baitinį kodą"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Deaseblinti IL kodą"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Deaseblinti savajį kodą"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
