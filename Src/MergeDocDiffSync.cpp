@@ -68,47 +68,88 @@ static std::vector<std::array<int, 3>> CreateVirtualLineMap3(
 	std::vector<std::array<int, 3>> vlines;
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
+	bool is_vlines20_usable = true;
 	for (line1 = 0; line1 < nlines1; ++line1)
 	{
+		size_t i01b = i01;
+		size_t i12b = i12;
+		size_t i20b = i20;
 		for (; i01 < vlines01.size(); ++i01)
 			if (vlines01[i01][1] == line1)
 				break;
 		for (; i12 < vlines12.size(); ++i12)
 			if (vlines12[i12][0] == line1)
 				break;
-		assert(i01 < vlines01.size() || i12 < vlines12.size());
-		line0 = vlines01[i01][0];
-		line2 = vlines12[i12][1];
-		if (line2 != DiffMap::GHOST_MAP_ENTRY)
+		assert(i01 < vlines01.size() && i12 < vlines12.size());
+		bool used_vlines20 = false;
+		if (is_vlines20_usable)
 		{
-			size_t i20b = i20;
-			for (; i20 < vlines20.size(); ++i20)
-				if (vlines20[i20][0] == line2)
-					break;
-			assert(i20 < vlines20.size());
-			for (size_t i20tmp = i20b; i20tmp < i20; ++i20tmp)
-				vlines.push_back({ vlines20[i20tmp][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20tmp][0] });
-			i20++;
+			if (vlines12[i12][1] != DiffMap::GHOST_MAP_ENTRY && vlines01[i01][0] != DiffMap::GHOST_MAP_ENTRY)
+			{
+				line2 = vlines12[i12][1];
+				line0 = vlines01[i01][0];
+				size_t i20tmp;
+				for (i20tmp = i20b; i20tmp < vlines20.size(); ++i20tmp)
+					if (vlines20[i20tmp][0] == line2 && vlines20[i20tmp][1] == line0)
+						break;
+				if (i20tmp < vlines20.size())
+				{
+					for (; i20 < i20tmp; ++i20)
+						vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
+					++i20;
+					used_vlines20 = true;
+				}
+				else
+				{
+					is_vlines20_usable = false;
+				}
+			}
+			else
+			{
+				is_vlines20_usable = false;
+			}
 		}
-		else if (line0 != DiffMap::GHOST_MAP_ENTRY)
+		if (!used_vlines20)
 		{
-			size_t i20b = i20;
-			for (; i20 < vlines20.size(); ++i20)
-				if (vlines20[i20][1] == line0)
-					break;
-			assert(i20 < vlines20.size());
-			for (size_t i20tmp = i20b; i20tmp < i20; ++i20tmp)
-				vlines.push_back({ vlines20[i20tmp][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20tmp][0] });
-			i20++;
-		}
-		else
-		{
-			assert(true);
+			size_t i01tmp, i12tmp;
+			for (i01tmp = i01b, i12tmp = i12b; i01tmp < i01 && i12tmp < i12; ++i01tmp, ++i12tmp)
+				vlines.push_back({ vlines01[i01tmp][0], DiffMap::GHOST_MAP_ENTRY, vlines12[i12tmp][1] });
+			if (i01 - i01b < i12 - i12b)
+			{
+				for (; i12tmp < i12; ++i12tmp)
+					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12tmp][1] });
+			}
+			else if (i01 - i01b > i12 - i12b)
+			{
+				for (; i01tmp < i01; ++i01tmp)
+					vlines.push_back({ vlines01[i01tmp][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
+			}
 		}
 		vlines.push_back({ vlines01[i01++][0], line1, vlines12[i12++][1]});
 	}
-	for (size_t i20tmp = i20; i20tmp < vlines20.size(); ++i20tmp)
-		vlines.push_back({ vlines20[i20tmp][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20tmp][0] });
+	if (i01 < vlines01.size() || i12 < vlines12.size())
+	{
+		if (is_vlines20_usable)
+		{
+			for (; i20 < vlines20.size(); ++i20)
+				vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
+		}
+		else
+		{
+			for (; i01 < vlines01.size() && i12 < vlines12.size(); ++i01, ++i12)
+				vlines.push_back({ vlines01[i01][0], DiffMap::GHOST_MAP_ENTRY, vlines12[i12][1] });
+			if (vlines01.size() - i01 < vlines12.size() - i12)
+			{
+				for (; i12 < vlines12.size(); ++i12)
+					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12][1] });
+			}
+			if (vlines01.size() - i01 > vlines12.size() - i12)
+			{
+				for (; i01 < vlines01.size(); ++i01)
+					vlines.push_back({ vlines01[i01][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
+			}
+		}
+	}
 	int i = 0, j = 0, k = 0;
 	for (const auto& v : vlines)
 	{
