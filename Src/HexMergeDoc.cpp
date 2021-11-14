@@ -724,9 +724,10 @@ void CHexMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 		bRO[pane] = m_pView[pane]->GetReadOnly();
 	}
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	if (!OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 		return;
-	MoveOnLoad(GetActiveMergeView()->m_nThisPane);
+	MoveOnLoad(nActivePane);
 }
 
 /**
