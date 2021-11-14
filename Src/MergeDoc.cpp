@@ -3351,12 +3351,13 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	bool filenameChanged = path != m_filePaths[nBuffer];
 	auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 	{
 		if (!filenameChanged)
 			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
-		MoveOnLoad(nBuffer, nLineIndex);
+		MoveOnLoad(nActivePane, nLineIndex);
 	}
 }
 
@@ -3583,12 +3584,13 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
 	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{
 		m_ptBuf[0]->SetColumnWidths(columnWidths);
-		MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
+		MoveOnLoad(nActivePane, pt.y);
 	}
 }
 
