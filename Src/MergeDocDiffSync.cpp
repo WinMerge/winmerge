@@ -242,7 +242,7 @@ void CMergeDoc::AdjustDiffBlocks()
 					dr.end[0]    = diffrange.begin[0] + line0 - 1;
 					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
 					dr.blank[0]  = dr.blank[1] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
@@ -344,7 +344,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
 					dr.end[2]    = diffrange.begin[2] + vlines[i - 1][2];
 					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
@@ -367,7 +367,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
 					dr.end[2]    = diffrange.begin[2] + vlines[i - 1][2];
 					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
@@ -390,7 +390,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.end[1]    = diffrange.begin[1] + line1 - 1;
 					dr.end[2]    = diffrange.begin[2] + vlines[i - 1][2];
 					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
@@ -399,54 +399,54 @@ void CMergeDoc::AdjustDiffBlocks3way()
 				{
 					while (i < vlines.size() &&
 					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
-					{
-						line0++;
-						line1++;
-						i++;
-					}
-					dr.begin[0]  = diffrange.begin[0] + vlines[ib][0];
-					dr.begin[1]  = diffrange.begin[1] + vlines[ib][1];
-					dr.begin[2]  = diffrange.begin[2] + line2;
-					dr.end[0]    = diffrange.begin[0] + vlines[i - 1][0];
-					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
-					dr.end[2]    = diffrange.begin[2] + line2 - 1;
-					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
-					newDiffList.AddDiff(dr);
-				}
-				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
-				{
-					while (i < vlines.size() &&
-					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
-					{
-						line0++;
-						i++;
-					}
-					dr.begin[0]  = diffrange.begin[0] + vlines[ib][0];
-					dr.begin[1]  = diffrange.begin[1] + line1;
-					dr.begin[2]  = diffrange.begin[2] + line2;
-					dr.end[0]    = diffrange.begin[0] + vlines[i - 1][0];
-					dr.end[1]    = diffrange.begin[1] + line1 - 1;
-					dr.end[2]    = diffrange.begin[2] + line2 - 1;
-					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
-					newDiffList.AddDiff(dr);
-				}
-				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
-				{
-					while (i < vlines.size() &&
-					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
 					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
 					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
 					{
+						line0++;
+						line1++;
+						i++;
+					}
+					dr.begin[0]  = diffrange.begin[0] + vlines[ib][0];
+					dr.begin[1]  = diffrange.begin[1] + vlines[ib][1];
+					dr.begin[2]  = diffrange.begin[2] + line2;
+					dr.end[0]    = diffrange.begin[0] + vlines[i - 1][0];
+					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
+					dr.end[2]    = diffrange.begin[2] + line2 - 1;
+					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
+					dr.op        = diffrange.op;
+					newDiffList.AddDiff(dr);
+				}
+				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
+				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+				{
+					while (i < vlines.size() &&
+					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+					{
+						line0++;
+						i++;
+					}
+					dr.begin[0]  = diffrange.begin[0] + vlines[ib][0];
+					dr.begin[1]  = diffrange.begin[1] + line1;
+					dr.begin[2]  = diffrange.begin[2] + line2;
+					dr.end[0]    = diffrange.begin[0] + vlines[i - 1][0];
+					dr.end[1]    = diffrange.begin[1] + line1 - 1;
+					dr.end[2]    = diffrange.begin[2] + line2 - 1;
+					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
+					dr.op        = diffrange.op;
+					newDiffList.AddDiff(dr);
+				}
+				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
+				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+				{
+					while (i < vlines.size() &&
+					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+					{
 						line1++;
 						i++;
 					}
@@ -457,7 +457,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.end[1]    = diffrange.begin[1] + vlines[i - 1][1];
 					dr.end[2]    = diffrange.begin[2] + line2 - 1;
 					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
@@ -479,7 +479,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.end[1]    = diffrange.begin[1] + line1 - 1;
 					dr.end[2]    = diffrange.begin[2] + vlines[i - 1][2];
 					dr.blank[0]  = dr.blank[1] = dr.blank[2] = -1;
-					dr.op        = OP_DIFF;
+					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
 				else
