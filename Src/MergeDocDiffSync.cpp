@@ -19,7 +19,31 @@
 
 using std::vector;
 
-static std::vector<std::array<int, 2>> CreateVirtualLineMap(
+template <int npanes>
+static void validateVirtualLineToRealLineMap(
+	const std::vector<std::array<int, npanes>>& vlines,
+	const std::array<int, npanes>& nlines)
+{
+	int line[npanes]{};
+	for (const auto& v : vlines)
+	{
+		for (int pane = 0; pane < npanes; ++pane)
+		{
+			if (v[pane] != DiffMap::GHOST_MAP_ENTRY)
+			{
+				assert(line[pane] == v[pane]);
+				++line[pane];
+			}
+		}
+	}
+	for (int pane = 0; pane < npanes; ++pane)
+		assert(line[pane] == nlines[pane]);
+}
+
+/**
+ * @brief Create map from virtual line to real line.
+ */
+static std::vector<std::array<int, 2>> CreateVirtualLineToRealLineMap(
 	const DiffMap& diffmap, int nlines0, int nlines1)
 {
 	std::vector<std::array<int, 2>> vlines;
@@ -40,31 +64,20 @@ static std::vector<std::array<int, 2>> CreateVirtualLineMap(
 	}
 	while (line1 < nlines1)
 		vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
-	int i = 0, j = 0;
-	for (const auto& v : vlines)
-	{
-		if (v[0] != DiffMap::GHOST_MAP_ENTRY)
-		{
-			assert(i == v[0]);
-			++i;
-		}
-		if (v[1] != DiffMap::GHOST_MAP_ENTRY)
-		{
-			assert(j == v[1]);
-			++j;
-		}
-	}
-	assert(i == nlines0 && j == nlines1);
+	validateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
 	return vlines;
 }
 
-static std::vector<std::array<int, 3>> CreateVirtualLineMap3(
+/**
+ * @brief Create map from virtual line to real line. (3-way)
+ */
+static std::vector<std::array<int, 3>> CreateVirtualLineToRealLineMap3way(
 	const DiffMap& diffmap01, const DiffMap& diffmap12, const DiffMap& diffmap20,
 	int nlines0, int nlines1, int nlines2)
 {
-	std::vector<std::array<int, 2>> vlines01 = CreateVirtualLineMap(diffmap01, nlines0, nlines1);
-	std::vector<std::array<int, 2>> vlines12 = CreateVirtualLineMap(diffmap12, nlines1, nlines2);
-	std::vector<std::array<int, 2>> vlines20 = CreateVirtualLineMap(diffmap20, nlines2, nlines0);
+	std::vector<std::array<int, 2>> vlines01 = CreateVirtualLineToRealLineMap(diffmap01, nlines0, nlines1);
+	std::vector<std::array<int, 2>> vlines12 = CreateVirtualLineToRealLineMap(diffmap12, nlines1, nlines2);
+	std::vector<std::array<int, 2>> vlines20 = CreateVirtualLineToRealLineMap(diffmap20, nlines2, nlines0);
 	std::vector<std::array<int, 3>> vlines;
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
@@ -150,26 +163,7 @@ static std::vector<std::array<int, 3>> CreateVirtualLineMap3(
 			}
 		}
 	}
-	int i = 0, j = 0, k = 0;
-	for (const auto& v : vlines)
-	{
-		if (v[0] != DiffMap::GHOST_MAP_ENTRY)
-		{
-			assert(i == v[0]);
-			++i;
-		}
-		if (v[1] != DiffMap::GHOST_MAP_ENTRY)
-		{
-			assert(j == v[1]);
-			++j;
-		}
-		if (v[2] != DiffMap::GHOST_MAP_ENTRY)
-		{
-			assert(k == v[2]);
-			++k;
-		}
-	}
-	assert(i == nlines0 && j == nlines1 && k == nlines2);
+	validateVirtualLineToRealLineMap(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
 	return vlines;
 }
 
@@ -200,7 +194,7 @@ void CMergeDoc::AdjustDiffBlocks()
 			DiffMap diffmap;
 			diffmap.InitDiffMap(nlines0);
 			AdjustDiffBlock(diffmap, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
-			std::vector<std::array<int, 2>> vlines = CreateVirtualLineMap(diffmap, nlines0, nlines1);
+			std::vector<std::array<int, 2>> vlines = CreateVirtualLineToRealLineMap(diffmap, nlines0, nlines1);
 
 			// divide diff blocks
 			int line0 = 0, line1 = 0;
@@ -301,7 +295,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 		int nlines0 = diffrange.end[0] - diffrange.begin[0] + 1;
 		int nlines1 = diffrange.end[1] - diffrange.begin[1] + 1;
 		int nlines2 = diffrange.end[2] - diffrange.begin[2] + 1;
-		if (nlines0 > 0 && nlines1 > 0 && nlines2 > 0)
+		if ((nlines0 > 0) + (nlines1 > 0) + (nlines2 > 0) > 1)
 		{
 			// Call worker to do all lines in block
 			int lo0 = 0, hi0 = nlines0 - 1;
@@ -315,7 +309,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			AdjustDiffBlock(diffmap01, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
 			AdjustDiffBlock(diffmap12, diffrange, worddiffs, 1, 2, lo1, hi1, lo2, hi2);
 			AdjustDiffBlock(diffmap20, diffrange, worddiffs, 2, 0, lo2, hi2, lo0, hi0);
-			std::vector<std::array<int, 3>> vlines = CreateVirtualLineMap3(diffmap01, diffmap12, diffmap20, nlines0, nlines1, nlines2);
+			std::vector<std::array<int, 3>> vlines = CreateVirtualLineToRealLineMap3way(diffmap01, diffmap12, diffmap20, nlines0, nlines1, nlines2);
 
 			// divide diff blocks
 			int line0 = 0, line1 = 0, line2 = 0;
@@ -558,10 +552,17 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	int lines0 = hi0 - lo0 + 1;
 	int lines1 = hi1 - lo1 + 1;
 
-
-	ASSERT(lines0 > 0 && lines1 > 0);
-
 	// shortcut special case
+	if (lines0 == 0)
+	{
+		return;
+	}
+	if (lines1 == 0)
+	{
+		for (int w=0; w<lines0; ++w)
+			diffMap.m_map[w] = DiffMap::GHOST_MAP_ENTRY;
+		return;
+	}
 	if (lines0 == 1 && lines1 == 1)
 	{
 		diffMap.m_map[lo0] = hi1;
