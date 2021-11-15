@@ -4249,7 +4249,8 @@ void CDirView::UpdateColumnNames()
 	for (int i=0; i<ncols; ++i)
 	{
 		const DirColInfo* col = m_pColItems->GetDirColInfo(i);
-		NameColumn(col, i);
+		if (col)
+			NameColumn(col, i);
 	}
 }
 
@@ -4262,10 +4263,13 @@ void CDirView::SetColAlignments()
 	for (int i=0; i<ncols; ++i)
 	{
 		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
-		LVCOLUMN lvc;
-		lvc.mask = LVCF_FMT;
-		lvc.fmt = col->alignment;
-		m_pList->SetColumn(m_pColItems->ColLogToPhys(i), &lvc);
+		if (col)
+		{
+			LVCOLUMN lvc;
+			lvc.mask = LVCF_FMT;
+			lvc.fmt = col->alignment;
+			m_pList->SetColumn(m_pColItems->ColLogToPhys(i), &lvc);
+		}
 	}
 }
 
