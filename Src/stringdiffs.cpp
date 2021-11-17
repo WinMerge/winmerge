@@ -195,6 +195,40 @@ ComputeWordDiffs(int nFiles, const String *str,
 	return diffs;
 }
 
+bool IsMatched(const String& str1, const String& str2,
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers)
+{
+	if (case_sensitive && eol_sensitive && whitespace == WHITESPACE_COMPARE_ALL && !ignore_numbers)
+		return str1 == str2;
+	String s1 = str1, s2 = str2;
+	if (!case_sensitive)
+	{
+		s1 = strutils::makelower(s1);
+		s2 = strutils::makelower(s2);
+	}
+	if (whitespace == WHITESPACE_IGNORE_CHANGE)
+	{
+		strutils::replace_chars(s1, _T(" \t"), _T(" "));
+		strutils::replace_chars(s2, _T(" \t"), _T(" "));
+	}
+	else if (whitespace == WHITESPACE_IGNORE_ALL)
+	{
+		strutils::replace_chars(s1, _T(" \t"), _T(""));
+		strutils::replace_chars(s2, _T(" \t"), _T(""));
+	}
+	if (!eol_sensitive)
+	{
+		strutils::replace_chars(s1, _T("\r\n"), _T("\n"));
+		strutils::replace_chars(s2, _T("\r\n"), _T("\n"));
+	}
+	if (ignore_numbers)
+	{
+		strutils::replace_chars(s1, _T("0123456789"), _T(""));
+		strutils::replace_chars(s2, _T("0123456789"), _T(""));
+	}
+	return s1 == s2;
+}
+
 /**
  * @brief stringdiffs constructor simply loads all members from arguments
  */

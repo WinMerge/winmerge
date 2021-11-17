@@ -344,17 +344,16 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInRange(const int begin[3], con
 		int nLineEnd = end[file];
 		if (nLineEnd >= m_ptBuf[file]->GetLineCount())
 			return worddiffs;
-		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1 + 1]);
+		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
 		if (nLineBegin <= nLineEnd)
 		{
 			if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
 				m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
 			strText += m_ptBuf[file]->GetLineEol(nLineEnd);
+			nOffsets[file][0] = 0;
 		}
 		str[file].assign(strText, strText.GetLength());
-
-		nOffsets[file][0] = 0;
 		for (int nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			nOffsets[file][nLine-nLineBegin+1] = nOffsets[file][nLine-nLineBegin] + m_ptBuf[file]->GetFullLineLength(nLine);
 	}

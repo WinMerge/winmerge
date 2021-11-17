@@ -432,8 +432,12 @@ private:
 	void HideLines();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlocks3way();
-	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, const std::vector<WordDiff>& worddiffs, int i0, int i1, int lo0, int hi0, int lo1, int hi1);
+	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange,
+		const std::vector<WordDiff>& worddiffs,
+		int i0, int i1, int lo0, int hi0, int lo1, int hi1);
 	int GetMatchCost(int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs);
+	OP_TYPE CalcOp3way(const std::vector<std::array<int, 3>>& vlines, size_t index,
+		const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions);
 	void FlagTrivialLines();
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
