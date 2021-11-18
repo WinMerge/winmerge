@@ -723,6 +723,21 @@ namespace
 
 	}
 
+	TEST_F(StringDiffsTest, CompareCase)
+	{
+		int result;
+		result = strdiff::Compare(_T("abc"), _T("abc"), false, true, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("ABC"), _T("abc"), false, true, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc"), _T("ABC"), false, true, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("aBC"), _T("Bcd"), false, true, 0, false);
+		EXPECT_EQ(1, result);
+		result = strdiff::Compare(_T("Bcd"), _T("aBC"), false, true, 0, false);
+		EXPECT_EQ(-1, result);
+	}
+
 	TEST_F(StringDiffsTest, CompareWhiltespaces1)
 	{
 		int result;
@@ -739,6 +754,33 @@ namespace
 		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, true, 1, false);
 		EXPECT_EQ(1, result);
 		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, true, 1, false);
+		EXPECT_EQ(-1, result);
+	}
+
+	TEST_F(StringDiffsTest, CompareWhiltespaces2)
+	{
+		int result;
+		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\tdef"), _T("abcdef"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abcdef"), _T("abc\tdef"), true, true, 2, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abcde"), _T("abcdef"), true, true, 2, false);
+		EXPECT_EQ(1, result);
+		result = strdiff::Compare(_T("abcdef"), _T("abcde"), true, true, 2, false);
 		EXPECT_EQ(-1, result);
 	}
 
@@ -763,6 +805,31 @@ namespace
 		EXPECT_EQ(-1, result);
 		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5), true, false, 0, false);
 		EXPECT_EQ(1, result);
+	}
+
+	TEST_F(StringDiffsTest, CompareNumbers)
+	{
+		int result;
+		result = strdiff::Compare(_T("1a"), _T("2a"), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("a123"), _T("a234"), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("a"), _T("123a"), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("123a"), _T("a"), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("123"), _T(""), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T(""), _T("123"), true, true, 0, true);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("123a"), _T("123b"), true, true, 0, true);
+		EXPECT_EQ(1, result);
+		result = strdiff::Compare(_T("123b"), _T("123a"), true, true, 0, true);
+		EXPECT_EQ(-1, result);
+		result = strdiff::Compare(_T("a123"), _T("b123"), true, true, 0, true);
+		EXPECT_EQ(1, result);
+		result = strdiff::Compare(_T("b123"), _T("a123"), true, true, 0, true);
+		EXPECT_EQ(-1, result);
 	}
 
 }  // namespace

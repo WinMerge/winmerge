@@ -193,12 +193,16 @@ OP_TYPE CMergeDoc::CalcOp3way(
 		return OP_3RDONLY;
 	}
 
+	int line0 = diffrange.begin[0] + vlines[index][0];
+	int line1 = diffrange.begin[1] + vlines[index][1];
+	int line2 = diffrange.begin[2] + vlines[index][2];
+
 	if (vlines[index][0] != DiffMap::GHOST_MAP_ENTRY &&
 	    vlines[index][1] != DiffMap::GHOST_MAP_ENTRY &&
 	    vlines[index][2] == DiffMap::GHOST_MAP_ENTRY)
 	{
-		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
-		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
+		String strLine0(m_ptBuf[0]->GetLineChars(line0), m_ptBuf[0]->GetFullLineLength(line0));
+		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
 		if (strdiff::Compare(strLine0, strLine1,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
@@ -209,8 +213,8 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	         vlines[index][1] == DiffMap::GHOST_MAP_ENTRY &&
 	         vlines[index][2] != DiffMap::GHOST_MAP_ENTRY)
 	{
-		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
-		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
+		String strLine0(m_ptBuf[0]->GetLineChars(line0), m_ptBuf[0]->GetFullLineLength(line0));
+		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine0, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
@@ -221,8 +225,8 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	         vlines[index][1] != DiffMap::GHOST_MAP_ENTRY &&
 	         vlines[index][2] != DiffMap::GHOST_MAP_ENTRY)
 	{
-		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
-		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
+		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
+		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine1, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
@@ -231,12 +235,12 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	}
 	else
 	{
-		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
-		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
-		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
+		String strLine0(m_ptBuf[0]->GetLineChars(line0), m_ptBuf[0]->GetFullLineLength(line0));
+		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
+		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine0, strLine1,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers == 0))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_3RDONLY;
 		if (strdiff::Compare(strLine0, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,

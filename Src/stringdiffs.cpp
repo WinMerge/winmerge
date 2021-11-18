@@ -198,9 +198,14 @@ ComputeWordDiffs(int nFiles, const String *str,
 int Compare(const String& str1, const String& str2,
 	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers)
 {
-	if (eol_sensitive && whitespace == WHITESPACE_COMPARE_ALL && !ignore_numbers)
-		return case_sensitive ? str2.compare(str1) : strutils::compare_nocase(str1, str2);
+	if (case_sensitive && eol_sensitive && whitespace == WHITESPACE_COMPARE_ALL && !ignore_numbers)
+		return str2.compare(str1);
 	String s1 = str1, s2 = str2;
+	if (!case_sensitive)
+	{
+		s1 = strutils::makelower(s1);
+		s2 = strutils::makelower(s2);
+	}
 	if (whitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		strutils::replace_chars(s1, _T(" \t"), _T(" "));
@@ -221,7 +226,7 @@ int Compare(const String& str1, const String& str2,
 		strutils::replace_chars(s1, _T("0123456789"), _T(""));
 		strutils::replace_chars(s2, _T("0123456789"), _T(""));
 	}
-	return case_sensitive ? s2.compare(s1) : strutils::compare_nocase(s1, s2);
+	return s2.compare(s1);
 }
 
 /**
