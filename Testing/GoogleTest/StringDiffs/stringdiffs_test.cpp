@@ -723,4 +723,46 @@ namespace
 
 	}
 
+	TEST_F(StringDiffsTest, CompareWhiltespaces1)
+	{
+		int result;
+		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, true, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, true, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, true, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, true, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, true, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, true, 1, false);
+		EXPECT_EQ(1, result);
+		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, true, 1, false);
+		EXPECT_EQ(-1, result);
+	}
+
+	TEST_F(StringDiffsTest, CompareEOL)
+	{
+		int result;
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r\n"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\r\n"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\n"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r\n"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\n"), true, false, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(String(_T("abc\r\0"), 5), _T("abc\r\n"), true, false, 0, false);
+		EXPECT_EQ(-1, result);
+		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5), true, false, 0, false);
+		EXPECT_EQ(1, result);
+	}
+
 }  // namespace

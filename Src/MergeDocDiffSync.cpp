@@ -199,9 +199,9 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	{
 		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
 		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
-		if (strdiff::IsMatched(strLine0, strLine1,
+		if (strdiff::Compare(strLine0, strLine1,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_3RDONLY;
 		return OP_DIFF;
 	}
@@ -211,9 +211,9 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	{
 		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
 		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
-		if (strdiff::IsMatched(strLine0, strLine2,
+		if (strdiff::Compare(strLine0, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_2NDONLY;
 		return OP_DIFF;
 	}
@@ -223,9 +223,9 @@ OP_TYPE CMergeDoc::CalcOp3way(
 	{
 		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
 		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
-		if (strdiff::IsMatched(strLine1, strLine2,
+		if (strdiff::Compare(strLine1, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_1STONLY;
 		return OP_DIFF;
 	}
@@ -234,17 +234,17 @@ OP_TYPE CMergeDoc::CalcOp3way(
 		String strLine0 = m_ptBuf[0]->GetLineChars(diffrange.begin[0] + vlines[index][0]);
 		String strLine1 = m_ptBuf[1]->GetLineChars(diffrange.begin[1] + vlines[index][1]);
 		String strLine2 = m_ptBuf[2]->GetLineChars(diffrange.begin[2] + vlines[index][2]);
-		if (strdiff::IsMatched(strLine0, strLine1,
+		if (strdiff::Compare(strLine0, strLine1,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers == 0))
 			return OP_3RDONLY;
-		if (strdiff::IsMatched(strLine0, strLine2,
+		if (strdiff::Compare(strLine0, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_2NDONLY;
-		if (strdiff::IsMatched(strLine1, strLine2,
+		if (strdiff::Compare(strLine1, strLine2,
 			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
-			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers))
+			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_1STONLY;
 		return OP_DIFF;
 	}
