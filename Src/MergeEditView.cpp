@@ -2570,12 +2570,12 @@ bool CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 		break;
 
 	case VK_UP:
-		OnPrevdiff();
+		PostMessage(WM_COMMAND, ID_PREVDIFF);
 		bHandled = true;
 		break;
 
 	case VK_DOWN:
-		OnNextdiff();
+		PostMessage(WM_COMMAND, ID_NEXTDIFF);
 		bHandled = true;
 		break;
 	}
