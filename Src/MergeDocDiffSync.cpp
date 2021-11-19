@@ -19,8 +19,16 @@
 
 using std::vector;
 
+static void
+ValidateDiffMap(const DiffMap& diffmap)
+{
+	for (const auto& line : diffmap.m_map)
+		assert(line != DiffMap::BAD_MAP_ENTRY);
+}
+
 template <int npanes>
-static void validateVirtualLineToRealLineMap(
+static void
+ValidateVirtualLineToRealLineMap(
 	const std::vector<std::array<int, npanes>>& vlines,
 	const std::array<int, npanes>& nlines)
 {
@@ -43,7 +51,8 @@ static void validateVirtualLineToRealLineMap(
 /**
  * @brief Create map from virtual line to real line.
  */
-static std::vector<std::array<int, 2>> CreateVirtualLineToRealLineMap(
+static std::vector<std::array<int, 2>>
+CreateVirtualLineToRealLineMap(
 	const DiffMap& diffmap, int nlines0, int nlines1)
 {
 	std::vector<std::array<int, 2>> vlines;
@@ -64,14 +73,15 @@ static std::vector<std::array<int, 2>> CreateVirtualLineToRealLineMap(
 	}
 	while (line1 < nlines1)
 		vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
-	validateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
+	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
 	return vlines;
 }
 
 /**
  * @brief Create map from virtual line to real line. (3-way)
  */
-static std::vector<std::array<int, 3>> CreateVirtualLineToRealLineMap3way(
+static std::vector<std::array<int, 3>>
+CreateVirtualLineToRealLineMap3way(
 	const DiffMap& diffmap01, const DiffMap& diffmap12, const DiffMap& diffmap20,
 	int nlines0, int nlines1, int nlines2)
 {
@@ -166,11 +176,11 @@ static std::vector<std::array<int, 3>> CreateVirtualLineToRealLineMap3way(
 			}
 		}
 	}
-	validateVirtualLineToRealLineMap(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
+	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
 	return vlines;
 }
 
-OP_TYPE CMergeDoc::CalcOp3way(
+OP_TYPE CMergeDoc::ComputeOp3way(
 	const std::vector<std::array<int, 3>>& vlines, size_t index,
 	const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions)
 {
@@ -281,6 +291,7 @@ void CMergeDoc::AdjustDiffBlocks()
 			DiffMap diffmap;
 			diffmap.InitDiffMap(nlines0);
 			AdjustDiffBlock(diffmap, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
+			ValidateDiffMap(diffmap);
 			std::vector<std::array<int, 2>> vlines = CreateVirtualLineToRealLineMap(diffmap, nlines0, nlines1);
 
 			// divide diff blocks
@@ -289,12 +300,12 @@ void CMergeDoc::AdjustDiffBlocks()
 			{
 				DIFFRANGE dr;
 				size_t ib = i;
-				if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY))
+				if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-						(vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-						(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY))
+						(vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+						(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY))
 					{
 						line0++;
 						line1++;
@@ -308,12 +319,12 @@ void CMergeDoc::AdjustDiffBlocks()
 					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY))
+					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY))
 					{
 						line1++;
 						i++;
@@ -326,12 +337,12 @@ void CMergeDoc::AdjustDiffBlocks()
 					dr.op        = diffrange.op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY))
+					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY))
 					{
 						line0++;
 						i++;
@@ -396,6 +407,9 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			AdjustDiffBlock(diffmap01, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
 			AdjustDiffBlock(diffmap12, diffrange, worddiffs, 1, 2, lo1, hi1, lo2, hi2);
 			AdjustDiffBlock(diffmap20, diffrange, worddiffs, 2, 0, lo2, hi2, lo0, hi0);
+			ValidateDiffMap(diffmap01);
+			ValidateDiffMap(diffmap12);
+			ValidateDiffMap(diffmap20);
 			std::vector<std::array<int, 3>> vlines = CreateVirtualLineToRealLineMap3way(diffmap01, diffmap12, diffmap20, nlines0, nlines1, nlines2);
 
 			DIFFOPTIONS diffOptions = {0};
@@ -404,7 +418,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			for (size_t i = 0; i < vlines.size(); ++i)
 				opary[i] = (diffrange.op == OP_TRIVIAL) ?
 					OP_TRIVIAL :
-					CalcOp3way(vlines, i, diffrange, diffOptions);
+					ComputeOp3way(vlines, i, diffrange, diffOptions);
 			// divide diff blocks
 			int line0 = 0, line1 = 0, line2 = 0;
 			for (size_t i = 0; i < vlines.size();)
@@ -412,14 +426,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 				DIFFRANGE dr;
 				size_t ib = i;
 				OP_TYPE op = opary[i];
-				if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-					(vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY))
+				if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+					(vlines[i][2] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-						(vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-						(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-						(vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY) &&
+						(vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+						(vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+						(vlines[i][2] != DiffMap::GHOST_MAP_ENTRY) &&
 						op == opary[i])
 					{
 						line0++;
@@ -437,14 +451,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line1++;
@@ -461,14 +475,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line0++;
@@ -485,14 +499,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line0++;
@@ -509,14 +523,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY && vlines[i][0] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line0++;
@@ -532,14 +546,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY && vlines[i][1] != DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY || vlines[i][2] == DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] != DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][2] == DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line1++;
@@ -555,14 +569,14 @@ void CMergeDoc::AdjustDiffBlocks3way()
 					dr.op        = op;
 					newDiffList.AddDiff(dr);
 				}
-				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY))
+				else if ((vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+				         (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY))
 				{
 					while (i < vlines.size() &&
-					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY || vlines[i][0] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY || vlines[i][1] == DiffMap::BAD_MAP_ENTRY) &&
-					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY && vlines[i][2] != DiffMap::BAD_MAP_ENTRY) &&
+					     (vlines[i][0] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][1] == DiffMap::GHOST_MAP_ENTRY) &&
+					     (vlines[i][2] != DiffMap::GHOST_MAP_ENTRY) &&
 						 op == opary[i])
 					{
 						line2++;
