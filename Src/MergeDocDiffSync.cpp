@@ -48,6 +48,24 @@ ValidateVirtualLineToRealLineMap(
 		assert(line[pane] == nlines[pane]);
 }
 
+template <int npanes>
+static void 
+PrintVirtualLineToRealLineMap(
+	const String& name,
+	const std::vector<std::array<int, npanes>>& vlines)
+{
+	OutputDebugString((_T("[") + name + _T("]\n")).c_str());
+	for (size_t i = 0; i < vlines.size(); ++i)
+	{
+		String str = strutils::format(_T("vline%d: "), static_cast<int>(i));
+		std::vector<String> ary;
+		for (int j = 0; j < npanes; ++j)
+			ary.push_back(vlines[i][j] == DiffMap::GHOST_MAP_ENTRY ? _T("-----") : strutils::format(_T("%5d"), vlines[i][j]));
+		str += strutils::join(ary.begin(), ary.end(), _T(",")) + _T("\n");
+		OutputDebugString(str.c_str());
+	}
+}
+
 /**
  * @brief Create map from virtual line to real line.
  */
@@ -177,6 +195,12 @@ CreateVirtualLineToRealLineMap3way(
 		}
 	}
 	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 3>{ nlines0, nlines1, nlines2 });
+#ifdef _DEBUG
+	PrintVirtualLineToRealLineMap(_T("vline01"), vlines01);
+	PrintVirtualLineToRealLineMap(_T("vline12"), vlines12);
+	PrintVirtualLineToRealLineMap(_T("vline20"), vlines20);
+	PrintVirtualLineToRealLineMap(_T("vline3way"), vlines);
+#endif
 	return vlines;
 }
 
@@ -399,14 +423,16 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			int lo0 = 0, hi0 = nlines0 - 1;
 			int lo1 = 0, hi1 = nlines1 - 1;
 			int lo2 = 0, hi2 = nlines2 - 1;
-			const std::vector<WordDiff> worddiffs = GetWordDiffArrayInRange(diffrange.begin, diffrange.end);
+			const std::vector<WordDiff> worddiffs01 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 0, 1);
+			const std::vector<WordDiff> worddiffs12 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 1, 2);
+			const std::vector<WordDiff> worddiffs20 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 2, 0);
 			DiffMap diffmap01, diffmap12, diffmap20;
 			diffmap01.InitDiffMap(nlines0);
 			diffmap12.InitDiffMap(nlines1);
 			diffmap20.InitDiffMap(nlines2);
-			AdjustDiffBlock(diffmap01, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
-			AdjustDiffBlock(diffmap12, diffrange, worddiffs, 1, 2, lo1, hi1, lo2, hi2);
-			AdjustDiffBlock(diffmap20, diffrange, worddiffs, 2, 0, lo2, hi2, lo0, hi0);
+			AdjustDiffBlock(diffmap01, diffrange, worddiffs01, 0, 1, lo0, hi0, lo1, hi1);
+			AdjustDiffBlock(diffmap12, diffrange, worddiffs12, 1, 2, lo1, hi1, lo2, hi2);
+			AdjustDiffBlock(diffmap20, diffrange, worddiffs20, 2, 0, lo2, hi2, lo0, hi0);
 			ValidateDiffMap(diffmap01);
 			ValidateDiffMap(diffmap12);
 			ValidateDiffMap(diffmap20);
@@ -624,25 +650,25 @@ int CMergeDoc::GetMatchCost(int i0, int i1, int line0, int line1, const std::vec
 	{
 		if (i == 0)
 		{
-			if (line0 == worddiffs[i].beginline[i0] && line1 == worddiffs[i].beginline[i1])
-				matchlen += worddiffs[i].begin[i0];
+			if (line0 == worddiffs[i].beginline[0] && line1 == worddiffs[i].beginline[1])
+				matchlen += worddiffs[i].begin[0];
 		}
 		else
 		{
-			if (worddiffs[i - 1].endline[i0] <= line0 && worddiffs[i - 1].endline[i1] <= line1 &&
-			    line0 <= worddiffs[i].beginline[i0] && line1 <= worddiffs[i].beginline[i1])
+			if (worddiffs[i - 1].endline[0] <= line0 && worddiffs[i - 1].endline[1] <= line1 &&
+			    line0 <= worddiffs[i].beginline[0] && line1 <= worddiffs[i].beginline[1])
 			{
-				if (worddiffs[i - 1].endline[i0] == worddiffs[i].beginline[i0])
-					matchlen += worddiffs[i].begin[i0] - worddiffs[i - 1].end[i0] - 1;
+				if (worddiffs[i - 1].endline[0] == worddiffs[i].beginline[0])
+					matchlen += worddiffs[i].begin[0] - worddiffs[i - 1].end[0] - 1;
 				else
-					matchlen += worddiffs[i].begin[i0];
+					matchlen += worddiffs[i].begin[0];
 			}
 		}
 		if (i == worddiffs.size() - 1 ||
-			worddiffs[i + 1].beginline[i0] != worddiffs[i].endline[i0] && worddiffs[i + 1].beginline[i1] != worddiffs[i].endline[i1])
+			worddiffs[i + 1].beginline[0] != worddiffs[i].endline[0] && worddiffs[i + 1].beginline[1] != worddiffs[i].endline[1])
 		{
-			if (worddiffs[i].endline[i0] == line0 && worddiffs[i].endline[i1] == line1)
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[i0] - 1;
+			if (worddiffs[i].endline[0] == line0 && worddiffs[i].endline[1] == line1)
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[0] - 1;
 		}
 	}
 	return -matchlen;

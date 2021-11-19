@@ -269,7 +269,7 @@ public:
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
-	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3]);
+	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
 	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
