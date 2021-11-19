@@ -263,7 +263,7 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 ---------------------------------------
 
   Called by the framework when a particular item needs to be drawn.  We
-  overide this to draw the menu item in a custom-fashion, including icons
+  override this to draw the menu item in a custom-fashion, including icons
   and the 3D rectangle bar.
   ==========================================================================
 */
