@@ -650,12 +650,23 @@ int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int 
 	{
 		if (i == 0)
 		{
-			if (line0 == worddiffs[i].beginline[0] && line1 == worddiffs[i].beginline[1])
-				matchlen += worddiffs[i].begin[0];
+			if (line0 < worddiffs[0].beginline[0] && line1 < worddiffs[0].beginline[1])
+			{
+				if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
+					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+			}
+			else if (line0 == worddiffs[0].beginline[0] && line1 == worddiffs[0].beginline[1])
+				matchlen += worddiffs[0].begin[0];
 		}
 		else
 		{
-			if (worddiffs[i - 1].endline[0] <= line0 && worddiffs[i - 1].endline[1] <= line1 &&
+			if (worddiffs[i - 1].endline[0] < line0 && worddiffs[i - 1].endline[1] < line1 &&
+			    line0 < worddiffs[i].beginline[0] && line1 < worddiffs[i].beginline[1])
+			{
+				if (line0 - worddiffs[i - 1].endline[0] == line1 - worddiffs[i - 1].endline[1])
+					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+			}
+			else if (worddiffs[i - 1].endline[0] <= line0 && worddiffs[i - 1].endline[1] <= line1 &&
 			    line0 <= worddiffs[i].beginline[0] && line1 <= worddiffs[i].beginline[1])
 			{
 				if (worddiffs[i - 1].endline[0] == worddiffs[i].beginline[0])
@@ -678,13 +689,7 @@ int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int 
 	}
 	else
 	{
-		auto firstWordDiff = worddiffs.front();
 		auto lastWordDiff = worddiffs.back();
-		if (line0 < firstWordDiff.beginline[0] && line1 < firstWordDiff.beginline[1])
-		{
-			if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
-		}
 		if (lastWordDiff.endline[0] < line0 && lastWordDiff.endline[1] < line1)
 		{
 			if (line0 - lastWordDiff.endline[0] == line1 - lastWordDiff.endline[1])
