@@ -643,7 +643,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
  * The cost of making them equal is the measure of their dissimilarity
  * which is their Levenshtein distance.
  */
-int CMergeDoc::GetMatchCost(int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs)
+int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs)
 {
 	int matchlen = 0;
 	for (size_t i = 0; i < worddiffs.size(); ++i)
@@ -671,6 +671,32 @@ int CMergeDoc::GetMatchCost(int i0, int i1, int line0, int line1, const std::vec
 				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[0] - 1;
 		}
 	}
+	if (worddiffs.empty())
+	{
+		if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
+			matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+	}
+	else
+	{
+		auto firstWordDiff = worddiffs.front();
+		auto lastWordDiff = worddiffs.back();
+		if (line0 < firstWordDiff.beginline[0] && line1 < firstWordDiff.beginline[1])
+		{
+			if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+		}
+		if (lastWordDiff.endline[0] < line0 && lastWordDiff.endline[1] < line1)
+		{
+			if (line0 - lastWordDiff.endline[0] == line1 - lastWordDiff.endline[1])
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+		}
+	}
+/*
+#ifdef _DEBUG
+	String str = strutils::format(_T("pane%d,%d line%5d,%5d match len: %d\n"), i0, i1, line0, line1, matchlen);
+	OutputDebugString(str.c_str());
+#endif
+*/
 	return -matchlen;
 }
 
@@ -760,7 +786,7 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	{
 		for (int j=lo1; j<=hi1; ++j)
 		{
-			int savings = GetMatchCost(i0, i1, offset0 + i, offset1 + j, worddiffs);
+			int savings = GetMatchCost(diffrange, i0, i1, offset0 + i, offset1 + j, worddiffs);
 			// TODO
 			// Need to penalize assignments that push us outside the box
 			// further than is required

@@ -435,7 +435,7 @@ private:
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange,
 		const std::vector<WordDiff>& worddiffs,
 		int i0, int i1, int lo0, int hi0, int lo1, int hi1);
-	int GetMatchCost(int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs);
+	int GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs);
 	OP_TYPE ComputeOp3way(const std::vector<std::array<int, 3>>& vlines, size_t index,
 		const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions);
 	void FlagTrivialLines();
