@@ -209,8 +209,7 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
     {
 		const size_t MenuSiz = wcslen(szWideString) + 1;
 		m_szMenuText = new wchar_t[MenuSiz];
-		if (m_szMenuText)
-			wcscpy_s(m_szMenuText, MenuSiz, szWideString);
+		wcscpy_s(m_szMenuText, MenuSiz, szWideString);
     }
 	else
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs

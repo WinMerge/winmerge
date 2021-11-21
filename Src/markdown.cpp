@@ -791,7 +791,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		case 2 + 1 + 8:
 			// big endian: swab first
 			cbImage &= ~1UL;
-			pCopy = new unsigned char[cbImage];
+			pCopy = new(std::nothrow) unsigned char[cbImage];
 			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
@@ -814,7 +814,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 					--cchImage;
 				}
 				cbImage = ucr::Utf8len_of_string(pchImage, cchImage);
-				pCopy = new unsigned char[cbImage];
+				pCopy = new(std::nothrow) unsigned char[cbImage];
 				if (pCopy != nullptr)
 				{
 					uint16_t *pu16;
@@ -833,7 +833,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		case 4 + 2 + 8:
 			// odd word endianness: swab first
 			cbImage &= ~3UL;
-			pCopy = new unsigned char[cbImage];
+			pCopy = new(std::nothrow) unsigned char[cbImage];
 			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
@@ -867,7 +867,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 						uch = ByteOrder::fromLittleEndian(uch);
 					cbImage += ucr::Utf8len_fromCodepoint(uch);
 				}
-				void *pCopy2 = new unsigned char[cbImage];
+				void *pCopy2 = new(std::nothrow) unsigned char[cbImage];
 				if (pCopy2 != nullptr)
 				{
 					cbImage = 0;
