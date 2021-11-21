@@ -1591,6 +1591,10 @@ msgid "&Swap"
 msgstr "Inter&canvia"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Copia al Porta-retalls"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "A&fegeix al final del fitxer existent"
 
@@ -1613,10 +1617,6 @@ msgstr "E&stil:"
 #, c-format
 msgid "&Context:"
 msgstr ""
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ign&ora les línies en blanc"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2016,10 +2016,6 @@ msgstr "&Estil:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Copia al Porta-retalls"
 
 #, c-format
 msgid "Shared or Private Filter"

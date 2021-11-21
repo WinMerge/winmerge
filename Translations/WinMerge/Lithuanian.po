@@ -1272,6 +1272,9 @@ msgstr "Failas&2:"
 msgid "&Swap"
 msgstr "&Sukeisti"
 
+msgid "&Copy to Clipboard"
+msgstr "&Kopijuoti į mainų sritį"
+
 msgid "&Append to existing file"
 msgstr "Pridėti prie es&amo failo"
 
@@ -1289,9 +1292,6 @@ msgstr "St&ilius:"
 
 msgid "&Context:"
 msgstr "&Kontekstas:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignoruoti tuščias &eilutes"
 
 msgid "Inclu&de command line"
 msgstr "Įterpti koman&dinę eilutę"
@@ -1610,9 +1610,6 @@ msgstr "&Stilius:"
 
 msgid "&Include File Compare Report"
 msgstr "Įtraukt&i failų palyginimo ataskaitą"
-
-msgid "&Copy to Clipboard"
-msgstr "&Kopijuoti į mainų sritį"
 
 msgid "Shared or Private Filter"
 msgstr "Bendro naudojimo ar asmeninis filtras"

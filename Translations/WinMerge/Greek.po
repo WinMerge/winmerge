@@ -1591,6 +1591,10 @@ msgid "&Swap"
 msgstr "Αντιμετά&θεση"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Αντι&γραφή στο Πρόχειρο"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Προσάρτηση σε υπάρχον αρχείο"
 
@@ -1613,10 +1617,6 @@ msgstr "Στ&υλ:"
 #, c-format
 msgid "&Context:"
 msgstr "&Περιβ. Κείμ.:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Οι κενές γραμμές να αγνοούνται"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2016,10 +2016,6 @@ msgstr "&Στυλ:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Αντι&γραφή στο Πρόχειρο"
 
 #, c-format
 msgid "Shared or Private Filter"

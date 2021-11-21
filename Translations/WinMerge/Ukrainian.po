@@ -1593,6 +1593,10 @@ msgid "&Swap"
 msgstr "Поміняти"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Копіювати в буфер обміну"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Додати в існуючий файл"
 
@@ -1615,10 +1619,6 @@ msgstr "Стиль:"
 #, c-format
 msgid "&Context:"
 msgstr "Контекст:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Пропускати порожні рядки"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2020,10 +2020,6 @@ msgstr "&Стиль:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Копіювати в буфер обміну"
 
 #, c-format
 msgid "Shared or Private Filter"

@@ -1273,6 +1273,9 @@ msgstr "Archivo &2:"
 msgid "&Swap"
 msgstr "&Intercambiar"
 
+msgid "&Copy to Clipboard"
+msgstr "&Copiar al Portapapeles"
+
 msgid "&Append to existing file"
 msgstr "&Anexar a archivo existente"
 
@@ -1290,9 +1293,6 @@ msgstr "Es&tilo:"
 
 msgid "&Context:"
 msgstr "&Contexto:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignorar lín&eas en blanco"
 
 msgid "Inclu&de command line"
 msgstr "Incluir línea de coman&do"
@@ -1619,9 +1619,6 @@ msgstr "E&stilo:"
 
 msgid "&Include File Compare Report"
 msgstr "&Incluir informe de comparación de archivos"
-
-msgid "&Copy to Clipboard"
-msgstr "&Copiar al Portapapeles"
 
 msgid "Shared or Private Filter"
 msgstr "Filtro Compartido o Privado"

@@ -1594,6 +1594,10 @@ msgid "&Swap"
 msgstr "Csere"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Másolás vágólapra"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Hozzáfűzés a létező fájlhoz"
 
@@ -1616,10 +1620,6 @@ msgstr "St&ílus:"
 #, c-format
 msgid "&Context:"
 msgstr "&Környezet:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Üres sorok mellőzése"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2027,10 +2027,6 @@ msgstr "&Stílus:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "Fájl-összehasonlító jelentés hozzáadása"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Másolás vágólapra"
 
 #, c-format
 msgid "Shared or Private Filter"

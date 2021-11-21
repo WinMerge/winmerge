@@ -1598,6 +1598,10 @@ msgid "&Swap"
 msgstr "맞바꾸기(&S)"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "클립보드로 복사(&C)"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "기존 파일에 덧붙이기(&A)"
 
@@ -1620,10 +1624,6 @@ msgstr "스타일(&Y):"
 #, c-format
 msgid "&Context:"
 msgstr "차이점전후:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "공백 줄 무시하기(&E)"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2031,10 +2031,6 @@ msgstr "스타일(&S):"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "파일 비교 보고서 포함(&I)"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "클립보드로 복사(&C)"
 
 #, c-format
 msgid "Shared or Private Filter"

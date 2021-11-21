@@ -1599,6 +1599,10 @@ msgid "&Swap"
 msgstr "&Intervertir"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Copier vers le presse-papiers"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "A&jouter au fichier existant"
 
@@ -1621,10 +1625,6 @@ msgstr "St&yle :"
 #, c-format
 msgid "&Context:"
 msgstr "&Contexte :"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignorer les lignes &vides"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2032,10 +2032,6 @@ msgstr "&Style :"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "&Inclure le rapport de comparaison de fichier"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Copier vers le presse-papiers"
 
 #, c-format
 msgid "Shared or Private Filter"

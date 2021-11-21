@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-10-20 08:26+0900\n"
+"PO-Revision-Date: 2021-11-21 21:41+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -932,7 +932,7 @@ msgid "Ignore codepage &differences"
 msgstr "コードページの違いを無視する(&D)"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "数字を無視する(&B)"
 
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"
@@ -1274,6 +1274,9 @@ msgstr "ファイル &2:"
 msgid "&Swap"
 msgstr "交換(&S)"
 
+msgid "&Copy to Clipboard"
+msgstr "クリップボードにコピー(&C)"
+
 msgid "&Append to existing file"
 msgstr "既存のファイルに追加する(&A)"
 
@@ -1291,9 +1294,6 @@ msgstr "スタイル(&Y):"
 
 msgid "&Context:"
 msgstr "コンテキスト(&C):"
-
-msgid "Ignor&e blank lines"
-msgstr "空白行を無視する(&E)"
 
 msgid "Inclu&de command line"
 msgstr "コマンド行を含める(&D)"
@@ -1620,9 +1620,6 @@ msgstr "スタイル(&S):"
 
 msgid "&Include File Compare Report"
 msgstr "ファイル比較レポートを含める(&I)"
-
-msgid "&Copy to Clipboard"
-msgstr "クリップボードにコピー(&C)"
 
 msgid "Shared or Private Filter"
 msgstr "共有/プライベート フィルター"

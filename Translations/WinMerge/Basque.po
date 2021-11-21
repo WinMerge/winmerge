@@ -1594,6 +1594,10 @@ msgid "&Swap"
 msgstr "A&ldaketa"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopiatu Gakoan"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "E&rantsi dagoen agirira"
 
@@ -1616,10 +1620,6 @@ msgstr "Estil&oa:"
 #, c-format
 msgid "&Context:"
 msgstr "Hitzi&ngurua:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ezi&kusi lerro zuriak"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2020,10 +2020,6 @@ msgstr "&Estiloa"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopiatu Gakoan"
 
 #, c-format
 msgid "Shared or Private Filter"

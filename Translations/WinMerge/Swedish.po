@@ -1270,6 +1270,9 @@ msgstr "Fil 2:"
 msgid "&Swap"
 msgstr "Skifta"
 
+msgid "&Copy to Clipboard"
+msgstr "Kopiera till urklipp"
+
 msgid "&Append to existing file"
 msgstr "Lägg till i befintlig fil"
 
@@ -1287,9 +1290,6 @@ msgstr "Stil:"
 
 msgid "&Context:"
 msgstr "Innehåll:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignorera blanka rader"
 
 msgid "Inclu&de command line"
 msgstr "Inkludera kommandorad"
@@ -1616,9 +1616,6 @@ msgstr "Stil:"
 
 msgid "&Include File Compare Report"
 msgstr "Inkludera rapport för katalogjämförelse"
-
-msgid "&Copy to Clipboard"
-msgstr "Kopiera till urklipp"
 
 msgid "Shared or Private Filter"
 msgstr "Delat eller privat filter"

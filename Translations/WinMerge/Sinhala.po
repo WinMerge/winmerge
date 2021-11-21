@@ -1588,6 +1588,10 @@ msgstr "ගොනුව 2:"
 msgid "&Swap"
 msgstr "&හුවමාරු කරන්න"
 
+#, fuzzy, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Copy to Clipboard"
+
 #, c-format
 msgid "&Append to existing file"
 msgstr "පවතින ගොනුවට එකතු කරන්න"
@@ -1611,10 +1615,6 @@ msgstr "විලාසය:"
 #, c-format
 msgid "&Context:"
 msgstr "&පෙළ යෙදුම:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "හිස් පේළි නොසලකා හරින්න"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2014,10 +2014,6 @@ msgstr "විලාසය"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Copy to Clipboard"
 
 #, c-format
 msgid "Shared or Private Filter"

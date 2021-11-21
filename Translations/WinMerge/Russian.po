@@ -1271,6 +1271,9 @@ msgstr "Файл&2:"
 msgid "&Swap"
 msgstr "Поменять"
 
+msgid "&Copy to Clipboard"
+msgstr "Копировать в буфер обмена"
+
 msgid "&Append to existing file"
 msgstr "Добавить в существующий файл"
 
@@ -1288,9 +1291,6 @@ msgstr "Стиль:"
 
 msgid "&Context:"
 msgstr "Контекст:"
-
-msgid "Ignor&e blank lines"
-msgstr "Игнорировать пустые строки"
 
 msgid "Inclu&de command line"
 msgstr "Вкл&ючать командную строку"
@@ -1609,9 +1609,6 @@ msgstr "&Стиль:"
 
 msgid "&Include File Compare Report"
 msgstr "Включить отчет сравнения файлов"
-
-msgid "&Copy to Clipboard"
-msgstr "Копировать в буфер обмена"
 
 msgid "Shared or Private Filter"
 msgstr "Общие и личные фильтры"

@@ -1595,6 +1595,10 @@ msgid "&Swap"
 msgstr "&S معاوضه "
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&C رونوشت برداري به حافظه يادداشت / کليپ بورد "
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&A پيوند زدن به پرونده موجود "
 
@@ -1617,10 +1621,6 @@ msgstr "&y سبک : "
 #, c-format
 msgid "&Context:"
 msgstr "&C متن : "
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "&e چشم پوشي از خطوط خالي "
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2026,10 +2026,6 @@ msgstr "&S سبک "
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&C رونوشت برداري به حافظه يادداشت / کليپ بورد "
 
 #, c-format
 msgid "Shared or Private Filter"

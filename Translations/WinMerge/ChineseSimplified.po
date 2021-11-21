@@ -1272,6 +1272,9 @@ msgstr "文件&2:"
 msgid "&Swap"
 msgstr "上下交换(&S)"
 
+msgid "&Copy to Clipboard"
+msgstr "复制到剪贴板(&C)"
+
 msgid "&Append to existing file"
 msgstr "追加到现有文件末尾(&A)"
 
@@ -1289,9 +1292,6 @@ msgstr "样式(&Y):"
 
 msgid "&Context:"
 msgstr "内容(&C):"
-
-msgid "Ignor&e blank lines"
-msgstr "忽略空行(&E)"
 
 msgid "Inclu&de command line"
 msgstr "包含命令行(&D)"
@@ -1621,9 +1621,6 @@ msgstr "样式(&S):"
 
 msgid "&Include File Compare Report"
 msgstr "包括文件比较报告(&I)"
-
-msgid "&Copy to Clipboard"
-msgstr "复制到剪贴板(&C)"
 
 msgid "Shared or Private Filter"
 msgstr "共享或私有过滤器"

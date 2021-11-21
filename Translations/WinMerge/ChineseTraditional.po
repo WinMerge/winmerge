@@ -1602,6 +1602,10 @@ msgid "&Swap"
 msgstr "對調(&S)"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "複製到剪貼簿(&C)"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "附加到現有檔案(&A)"
 
@@ -1624,10 +1628,6 @@ msgstr "樣式(&Y)："
 #, c-format
 msgid "&Context:"
 msgstr "上下文(&C)："
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "忽略空白行(&E)"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2030,10 +2030,6 @@ msgstr "樣式(&S)："
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "包括檔案比較報告(&I)"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "複製到剪貼簿(&C)"
 
 #, c-format
 msgid "Shared or Private Filter"

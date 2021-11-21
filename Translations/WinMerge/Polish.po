@@ -1270,6 +1270,9 @@ msgstr "Plik &2:"
 msgid "&Swap"
 msgstr "Zamień"
 
+msgid "&Copy to Clipboard"
+msgstr "Kopiuj do schowka"
+
 msgid "&Append to existing file"
 msgstr "Dod&aj do istniejącego pliku"
 
@@ -1287,9 +1290,6 @@ msgstr "St&yl:"
 
 msgid "&Context:"
 msgstr "Kontekst:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignoruj puste wiersze"
 
 msgid "Inclu&de command line"
 msgstr "Uwzględnij wiersz poleceń"
@@ -1608,9 +1608,6 @@ msgstr "Styl:"
 
 msgid "&Include File Compare Report"
 msgstr "Uwzględnij raport porównania plików"
-
-msgid "&Copy to Clipboard"
-msgstr "Kopiuj do schowka"
 
 msgid "Shared or Private Filter"
 msgstr "Filtr współdzielony lub prywatny"
