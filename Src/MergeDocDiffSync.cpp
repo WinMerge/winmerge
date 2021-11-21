@@ -110,12 +110,13 @@ CreateVirtualLineToRealLineMap3way(
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
 	bool is_vlines20_usable = true;
+	// 1.
 	for (line1 = 0; line1 < nlines1; ++line1)
 	{
 		size_t i01b = i01;
 		size_t i12b = i12;
 		size_t i20b = i20;
-		// 1. 
+		// 1.1
 		for (; i01 < vlines01.size(); ++i01)
 			if (vlines01[i01][1] == line1)
 				break;
@@ -123,12 +124,13 @@ CreateVirtualLineToRealLineMap3way(
 			if (vlines12[i12][0] == line1)
 				break;
 		assert(i01 < vlines01.size() && i12 < vlines12.size());
-		// 2. 
+		// 1.2 
 		bool used_vlines20 = false;
 		if (is_vlines20_usable)
 		{
 			if (vlines12[i12][1] != DiffMap::GHOST_MAP_ENTRY && vlines01[i01][0] != DiffMap::GHOST_MAP_ENTRY)
 			{
+				// 1.2.1
 				line2 = vlines12[i12][1];
 				line0 = vlines01[i01][0];
 				size_t i20tmp;
@@ -137,6 +139,7 @@ CreateVirtualLineToRealLineMap3way(
 						break;
 				if (i20tmp < vlines20.size())
 				{
+					// 1.2.1.1
 					for (; i20 < i20tmp; ++i20)
 						vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
 					++i20;
@@ -144,14 +147,17 @@ CreateVirtualLineToRealLineMap3way(
 				}
 				else
 				{
+					// 1.2.1.2
 					is_vlines20_usable = false;
 				}
 			}
 			else
 			{
+				// 1.2.2
 				is_vlines20_usable = false;
 			}
 		}
+		// 1.3
 		if (!used_vlines20)
 		{
 			size_t i01tmp, i12tmp;
@@ -159,36 +165,42 @@ CreateVirtualLineToRealLineMap3way(
 				vlines.push_back({ vlines01[i01tmp][0], DiffMap::GHOST_MAP_ENTRY, vlines12[i12tmp][1] });
 			if (i01 - i01b < i12 - i12b)
 			{
+				// 1.3.1
 				for (; i12tmp < i12; ++i12tmp)
 					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12tmp][1] });
 			}
 			else if (i01 - i01b > i12 - i12b)
 			{
+				// 1.3.2
 				for (; i01tmp < i01; ++i01tmp)
 					vlines.push_back({ vlines01[i01tmp][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
 			}
 		}
 		vlines.push_back({ vlines01[i01++][0], line1, vlines12[i12++][1]});
 	}
-	// 3. 
+	// 2. 
 	if (i01 < vlines01.size() || i12 < vlines12.size())
 	{
 		if (is_vlines20_usable)
 		{
+			// 2.1
 			for (; i20 < vlines20.size(); ++i20)
 				vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
 		}
 		else
 		{
+			// 2.2
 			for (; i01 < vlines01.size() && i12 < vlines12.size(); ++i01, ++i12)
 				vlines.push_back({ vlines01[i01][0], DiffMap::GHOST_MAP_ENTRY, vlines12[i12][1] });
 			if (vlines01.size() - i01 < vlines12.size() - i12)
 			{
+				// 2.2.1
 				for (; i12 < vlines12.size(); ++i12)
 					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12][1] });
 			}
-			if (vlines01.size() - i01 > vlines12.size() - i12)
+			else if (vlines01.size() - i01 > vlines12.size() - i12)
 			{
+				// 2.2.2
 				for (; i01 < vlines01.size(); ++i01)
 					vlines.push_back({ vlines01[i01][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
 			}
@@ -204,7 +216,7 @@ CreateVirtualLineToRealLineMap3way(
 	return vlines;
 }
 
-OP_TYPE CMergeDoc::ComputeOp3way(
+OP_TYPE CMergeDoc::ComputeOpType3way(
 	const std::vector<std::array<int, 3>>& vlines, size_t index,
 	const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions)
 {
@@ -444,7 +456,7 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			for (size_t i = 0; i < vlines.size(); ++i)
 				opary[i] = (diffrange.op == OP_TRIVIAL) ?
 					OP_TRIVIAL :
-					ComputeOp3way(vlines, i, diffrange, diffOptions);
+					ComputeOpType3way(vlines, i, diffrange, diffOptions);
 			// divide diff blocks
 			int line0 = 0, line1 = 0, line2 = 0;
 			for (size_t i = 0; i < vlines.size();)
