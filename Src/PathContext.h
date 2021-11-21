@@ -21,7 +21,6 @@ class PathInfo
 	friend class PathContext;
 public:
 	PathInfo() {}
-	PathInfo(const PathInfo &pi);
 
 	String GetPath(bool bNormalized = true) const;
 	String& GetRef() { return m_sPath; }
@@ -59,7 +58,6 @@ public:
 	explicit PathContext(const String& sLeft);
 	PathContext(const String& sLeft, const String& sRight);
 	PathContext(const String& sLeft, const String& sMiddle, const String& sRight);
-	PathContext(const PathContext &paths);
 	explicit PathContext(const std::vector<String>& paths);
 
 	String GetAt(int nIndex) const;

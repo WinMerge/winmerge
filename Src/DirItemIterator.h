@@ -134,6 +134,15 @@ public:
 
 	~DirItemIterator() {}
 
+	DirItemIterator::DirItemIterator(const DirItemIterator& it)
+	{
+		m_sel = it.m_sel;
+		m_pList = it.m_pList;
+		m_pdi = it.m_pdi;
+		m_selected = it.m_selected;
+		m_reverse = it.m_reverse;
+	}
+
 	DirItemIterator& operator=(const DirItemIterator& it)
 	{
 		m_sel = it.m_sel;

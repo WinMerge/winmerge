@@ -97,7 +97,6 @@ class CompareOptions
 {
 public:
 	CompareOptions();
-	CompareOptions(const CompareOptions & options);
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum WhitespaceIgnoreChoices m_ignoreWhitespace; /**< Ignore whitespace characters */
@@ -118,7 +117,6 @@ class DiffutilsOptions : public CompareOptions
 public:
 	DiffutilsOptions();
 	explicit DiffutilsOptions(const CompareOptions& options);
-	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options) const;
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options) override;

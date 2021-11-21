@@ -75,9 +75,7 @@ public:
 
 	std::vector<int> m_map;
 
-	// boilerplate ctr, copy ctr
 	DiffMap() { }
-	DiffMap(const DiffMap & src) : m_map(src.m_map) {}
 	void InitDiffMap(int nlines);
 };
 

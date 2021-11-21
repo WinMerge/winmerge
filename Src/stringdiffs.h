@@ -28,12 +28,6 @@ struct wdiff {
 		end[1] = e2;
 		end[2] = e3;
 	}
-	wdiff(const wdiff & src)
-		: begin{src.begin}
-		, end{src.end}
-		, op(src.op)
-	{
-	}
 };
 
 void Init();

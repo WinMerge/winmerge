@@ -94,14 +94,6 @@ struct WordDiff {
 		end[1] = e2;
 		end[2] = e3;
 	}
-	WordDiff(const WordDiff & src)
-		: begin{src.begin}
-		, end{src.end}
-		, beginline{src.beginline}
-		, endline{src.endline}
-		, op(src.op)
-	{
-	}
 };
 
 struct CurrentWordDiff

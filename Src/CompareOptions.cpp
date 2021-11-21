@@ -24,33 +24,6 @@ CompareOptions::CompareOptions()
 }
 
 /**
- * @brief Copy constructor.
- */
-CompareOptions::CompareOptions(const CompareOptions & options)
-: m_ignoreWhitespace(options.m_ignoreWhitespace)
-, m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
-, m_bIgnoreCase(options.m_bIgnoreCase)
-, m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
-, m_bIgnoreNumbers(options.m_bIgnoreNumbers)
-{
-}
-
-/**
- * @brief Sets options from DiffutilsOptions structure.
- * @param [in] options Diffutils options.
- */
-DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
-: CompareOptions(options)
-, m_contextLines(options.m_contextLines)
-, m_filterCommentsLines(options.m_filterCommentsLines)
-, m_diffAlgorithm(options.m_diffAlgorithm)
-, m_bIndentHeuristic(options.m_bIndentHeuristic)
-, m_bCompletelyBlankOutIgnoredDiffereneces(options.m_bCompletelyBlankOutIgnoredDiffereneces)
-, m_outputStyle(options.m_outputStyle)
-{
-}
-
-/**
  * @brief Sets options from DIFFOPTIONS structure.
  * @param [in] options Diffutils options.
  */

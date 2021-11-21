@@ -323,7 +323,7 @@ stringdiffs::BuildWordDiffList_DP()
 			e1 = m_words1[i].end;
 			s2 = m_words2[j-1].end+1;
 			e2 = s2-1;
-			m_wdiffs.push_back(wdiff(s1, e1, s2, e2));
+			m_wdiffs.emplace_back(s1, e1, s2, e2);
 			i++;
 		}
 		else if (edscript[k] == '+')
@@ -347,7 +347,7 @@ stringdiffs::BuildWordDiffList_DP()
 			e1 = s1-1;
 			s2 = m_words2[j].start;
 			e2 = m_words2[j].end;
-			m_wdiffs.push_back(wdiff(s1, e1, s2, e2));
+			m_wdiffs.emplace_back(s1, e1, s2, e2);
 			j++;
 		}
 		else if (edscript[k] == '!')
@@ -370,7 +370,7 @@ stringdiffs::BuildWordDiffList_DP()
 			e1 =  m_words1[i].end;
 			s2 =  m_words2[j].start;
 			e2 =  m_words2[j].end ;
-			m_wdiffs.push_back(wdiff(s1, e1, s2, e2));
+			m_wdiffs.emplace_back(s1, e1, s2, e2);
 			i++; j++;
 		}
 		else
@@ -408,7 +408,7 @@ stringdiffs::BuildWordDiffList()
 		int e1 = m_words1[m_words1.size() - 1].end;
 		int s2 = m_words2[0].start;
 		int e2 = m_words2[m_words2.size() - 1].end;
-		m_wdiffs.push_back(wdiff(s1, e1, s2, e2));		
+		m_wdiffs.emplace_back(s1, e1, s2, e2);
 		return;
 	}
 
@@ -537,7 +537,7 @@ stringdiffs::PopulateDiffs()
 			assert(m_wdiffs[i].begin[0]>=0 || m_wdiffs[i].begin[1]>=0);
 
 			// Store the diff[i] in the caller list (m_pDiffs)
-			m_pDiffs->push_back(wdiff(m_wdiffs[i]));
+			m_pDiffs->emplace_back(m_wdiffs[i]);
 		}
 	}
 }
