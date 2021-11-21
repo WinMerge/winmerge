@@ -103,7 +103,7 @@ String to_charstr(TCHAR ch)
  * This function searches for a string inside another string an if found,
  * replaces it with another string. Function can replace several instances
  * of the string inside one string.
- * @param [in] target A string containing another string to replace.
+ * @param [in,out] target A string containing another string to replace.
  * @param [in] find A string to search and replace with another (@p replace).
  * @param [in] replace A string used to replace original (@p find).
  */
@@ -116,6 +116,27 @@ void replace(String &target, const String &find, const String &replace)
 	{
 		target.replace(pos, find_len, replace);
 		pos += replace_len;
+	}
+}
+
+/**
+ * @brief Replace the characters that matche characters specified in its arguments
+ * @param [in,out] str - A string containing another string to replace.
+ * @param [in] chars - characters to search for
+ * @param [in] rep - String to replace
+ */
+void replace_chars(String& str, const TCHAR* chars, const TCHAR *rep)
+{
+	String::size_type pos = 0;
+	size_t replen = _tcslen(rep);
+	while ((pos = str.find_first_of(chars, pos)) != std::string::npos)
+	{
+		std::string::size_type posend = str.find_first_not_of(chars, pos);
+		if (posend != String::npos)
+			str.replace(pos, posend - pos, rep);
+		else
+			str.replace(pos, str.length() - pos, rep);
+		pos += replen;
 	}
 }
 

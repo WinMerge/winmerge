@@ -331,27 +331,36 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInDiffBlock(int nDiff)
 	return worddiffs;
 }
 
-std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3])
+std::vector<WordDiff>
+CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1/*=-1*/, int pane2/*=-1*/)
 {
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
 	std::unique_ptr<int[]> nOffsets[3];
 	std::vector<WordDiff> worddiffs;
-	for (int file = 0; file < m_nBuffers; file++)
+	std::vector<int> panes;
+	if (pane1 == -1 && pane2 == -1)
+		panes = (m_nBuffers == 2) ? std::vector<int>{0, 1} : std::vector<int>{ 0, 1, 2 };
+	else
+		panes = std::vector<int>{ pane1, pane2 };
+	for (size_t i = 0; i < panes.size(); ++i)
 	{
+		int file = panes[i];
 		int nLineBegin = begin[file];
 		int nLineEnd = end[file];
 		if (nLineEnd >= m_ptBuf[file]->GetLineCount())
 			return worddiffs;
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
-		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
-			m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
-		strText += m_ptBuf[file]->GetLineEol(nLineEnd);
-		str[file].assign(strText, strText.GetLength());
-
-		nOffsets[file][0] = 0;
+		if (nLineBegin <= nLineEnd)
+		{
+			if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
+				m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
+			strText += m_ptBuf[file]->GetLineEol(nLineEnd);
+			nOffsets[file][0] = 0;
+		}
+		str[i].assign(strText, strText.GetLength());
 		for (int nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			nOffsets[file][nLine-nLineBegin+1] = nOffsets[file][nLine-nLineBegin] + m_ptBuf[file]->GetFullLineLength(nLine);
 	}
@@ -364,55 +373,56 @@ std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInRange(const int begin[3], con
 	bool byteColoring = GetByteColoringOption();
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, eolSensitive, xwhite, diffOptions.bIgnoreNumbers ,breakType, byteColoring);
+	std::vector<strdiff::wdiff> wdiffs =
+		strdiff::ComputeWordDiffs(static_cast<int>(panes.size()), str, casitive, eolSensitive, xwhite, diffOptions.bIgnoreNumbers, breakType, byteColoring);
 
-	int i;
 	std::vector<strdiff::wdiff>::iterator it;
-	for (i = 0, it = wdiffs.begin(); it != wdiffs.end(); ++i, ++it)
+	for (it = wdiffs.begin(); it != wdiffs.end(); ++it)
 	{
 		WordDiff wd;
-		for (int file = 0; file < m_nBuffers; file++)
+		for (size_t i = 0; i < panes.size(); ++i)
 		{
+			int file = panes[i];
 			int nLineBegin = begin[file];
 			int nLineEnd = end[file];
 			int nLine;
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
-				if (it->begin[file] == nOffsets[file][nLine-nLineBegin] || it->begin[file] < nOffsets[file][nLine-nLineBegin+1])
+				if (it->begin[i] == nOffsets[file][nLine-nLineBegin] || it->begin[i] < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
-			wd.beginline[file] = nLine;
-			wd.begin[file] = it->begin[file] - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < wd.begin[file])
+			wd.beginline[i] = nLine;
+			wd.begin[i] = it->begin[i] - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < wd.begin[i])
 			{
-				if (wd.beginline[file] < m_ptBuf[file]->GetLineCount() - 1)
+				if (wd.beginline[i] < m_ptBuf[file]->GetLineCount() - 1)
 				{
-					wd.begin[file] = 0;
-					wd.beginline[file]++;
+					wd.begin[i] = 0;
+					wd.beginline[i]++;
 				}
 				else
 				{
-					wd.begin[file] = m_ptBuf[file]->GetLineLength(nLine);
+					wd.begin[i] = m_ptBuf[file]->GetLineLength(nLine);
 				}
 			}
 
 			for (; nLine < nLineEnd; nLine++)
 			{
-				if (it->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || it->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
+				if (it->end[i] + 1 == nOffsets[file][nLine-nLineBegin] || it->end[i] + 1 < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
-			wd.endline[file] = nLine;
-			wd.end[file] = it->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[file])
+			wd.endline[i] = nLine;
+			wd.end[i] = it->end[i]  + 1 - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[i])
 			{
-				if (wd.endline[file] < m_ptBuf[file]->GetLineCount() - 1)
+				if (wd.endline[i] < m_ptBuf[file]->GetLineCount() - 1)
 				{
-					wd.end[file] = 0;
-					wd.endline[file]++;
+					wd.end[i] = 0;
+					wd.endline[i]++;
 				}
 				else
 				{
-					wd.end[file] = m_ptBuf[file]->GetLineLength(nLine);
+					wd.end[i] = m_ptBuf[file]->GetLineLength(nLine);
 				}
 			}
 		}

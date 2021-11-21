@@ -305,7 +305,7 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
-			str.replace(pos, 1, rep);
+			str.replace(pos, str.length() - pos, rep);
 		pos += replen;
 	}
 }
@@ -325,7 +325,7 @@ static void ReplaceNumbers(std::string& str, const char* rep)
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
-			str.replace(pos, 1, rep);
+			str.replace(pos, str.length() - pos, rep);
 		pos += replen;
 	}
 }
