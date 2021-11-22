@@ -220,6 +220,12 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 				i1++;
 			while (i2 < s2 && XDL_ISSPACE(l2[i2]))
 				i2++;
+			if (flags & XDF_IGNORE_NUMBERS) {
+				while (i1 < s1 && XDL_ISDIGIT(l1[i1]))
+					i1++;
+				while (i2 < s2 && XDL_ISDIGIT(l2[i2]))
+					i2++;
+			}
 		}
 	} else if (flags & XDF_IGNORE_WHITESPACE_CHANGE) {
 		while (i1 < s1 && i2 < s2) {
@@ -230,20 +236,48 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 				while (i2 < s2 && XDL_ISSPACE(l2[i2]))
 					i2++;
 				continue;
+			} else if ((flags & XDF_IGNORE_NUMBERS) && (XDL_ISDIGIT(l1[i1]) || XDL_ISDIGIT(l2[i2]))) {
+				while (i1 < s1 && XDL_ISDIGIT(l1[i1]))
+					i1++;
+				while (i2 < s2 && XDL_ISDIGIT(l2[i2]))
+					i2++;
+				continue;
 			}
 			if (!match_a_byte(l1[i1++], l2[i2++], flags))
 				return 0;
 		}
 	} else if (flags & XDF_IGNORE_WHITESPACE_AT_EOL) {
-		while (i1 < s1 && i2 < s2 && match_a_byte(l1[i1], l2[i2], flags)) {
-			i1++;
-			i2++;
+		while (i1 < s1 && i2 < s2) {
+			if ((flags & XDF_IGNORE_NUMBERS) && (XDL_ISDIGIT(l1[i1]) || XDL_ISDIGIT(l2[i2]))) {
+				while (i1 < s1 && XDL_ISDIGIT(l1[i1]))
+					i1++;
+				while (i2 < s2 && XDL_ISDIGIT(l2[i2]))
+					i2++;
+				continue;
+			}
+			if (match_a_byte(l1[i1], l2[i2], flags)) {
+				i1++;
+				i2++;
+			} else {
+				break;
+			}
 		}
 	} else if (flags & XDF_IGNORE_CR_AT_EOL) {
 		/* Find the first difference and see how the line ends */
-		while (i1 < s1 && i2 < s2 && match_a_byte(l1[i1], l2[i2], flags)) {
-			i1++;
-			i2++;
+		while (i1 < s1 && i2 < s2) {
+			if ((flags & XDF_IGNORE_NUMBERS) && (XDL_ISDIGIT(l1[i1]) || XDL_ISDIGIT(l2[i2]))) {
+				while (i1 < s1 && XDL_ISDIGIT(l1[i1]))
+					i1++;
+				while (i2 < s2 && XDL_ISDIGIT(l2[i2]))
+					i2++;
+				continue;
+			}
+			if (match_a_byte(l1[i1], l2[i2], flags)) {
+				i1++;
+				i2++;
+			} else {
+				break;
+			}
 		}
 		int has_eol1 = s1 > 0 && is_eol(l1 + s1 - 1, l1 + s1);
 		int has_eol2 = s2 > 0 && is_eol(l2 + s2 - 1, l2 + s2);
@@ -252,6 +286,13 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 			((has_eol1 && has_eol2) || (!has_eol1 && !has_eol2));
 	} else {
 		while (i1 < s1 && i2 < s2) {
+			if ((flags & XDF_IGNORE_NUMBERS) && (XDL_ISDIGIT(l1[i1]) || XDL_ISDIGIT(l2[i2]))) {
+				while (i1 < s1 && XDL_ISDIGIT(l1[i1]))
+					i1++;
+				while (i2 < s2 && XDL_ISDIGIT(l2[i2]))
+					i2++;
+				continue;
+			}
 			if (!match_a_byte(l1[i1++], l2[i2++], flags))
 				return 0;
 		}
@@ -326,6 +367,8 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 			}
 			continue;
 		}
+		if ((flags & XDF_IGNORE_NUMBERS) && XDL_ISDIGIT(*ptr))
+			continue;
 		ha += (ha << 5);
 		ha ^= hash_a_byte(*ptr, flags);
 	}
