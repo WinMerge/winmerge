@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CSampleView, CCrystalEditView)
 	ON_COMMAND(ID_VIEW_TOPMARGIN, OnTopMargin)
 	ON_COMMAND(ID_VIEW_WORDWRAP, OnWordWrap)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_COMMAND(ID_VIEW_SELECT_FONT, OnViewSelectFont)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 END_MESSAGE_MAP()
 
@@ -139,3 +140,13 @@ void CSampleView::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(GetViewTabs());
 }
 
+void CSampleView::OnViewSelectFont()
+{
+	CFontDialog dlg;
+	dlg.m_cf.Flags |= CF_FIXEDPITCHONLY | CF_INITTOLOGFONTSTRUCT | CF_FORCEFONTEXIST | CF_SCREENFONTS;
+	GetFont(*dlg.m_cf.lpLogFont);
+	if (dlg.DoModal() == IDOK)
+	{
+		SetFont(dlg.m_lf);
+	}
+}
