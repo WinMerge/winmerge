@@ -476,6 +476,10 @@ out:
 
   if (nIdentBegin >= 0)
     {
+      if (dwCookie & COOKIE_USER2)
+        {
+          DEFINE_BLOCK(nIdentBegin, COLORINDEX_USER1);
+        }
       if (IsPhpKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
