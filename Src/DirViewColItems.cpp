@@ -1159,8 +1159,6 @@ static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const vo
  */
 static int ColPropertyDiffSort(const CDiffContext *pCtxt, const void *p, const void *q, int opt)
 {
-	const DIFFITEM &r = *static_cast<const DIFFITEM *>(p);
-	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
 	int64_t rnumdiff = 0;
 	int64_t snumdiff = 0;
 	bool rnumeric = false;
