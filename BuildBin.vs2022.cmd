@@ -33,7 +33,7 @@ if "%PLATFORM_VS%" == "Win32" (
 ) else (
   set PLATFORM_DIR=%PLATFORM_VS%
 )
-MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
+MSBuild WinMerge.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
