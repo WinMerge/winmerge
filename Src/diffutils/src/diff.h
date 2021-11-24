@@ -33,7 +33,11 @@ extern "C" {
 #endif
 
 #ifndef PR_FILE_NAME
+#if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
+#define PR_FILE_NAME "pr"
+#else
 #define PR_FILE_NAME "/bin/pr"
+#endif
 #endif
 
 #ifdef _MSC_VER
