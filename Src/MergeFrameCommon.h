@@ -21,7 +21,7 @@ public:
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
-	static String GetTitleString(const PathContext& paths, const String desc[], PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer);
+	static String GetTitleString(const PathContext& paths, const String desc[], PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();
