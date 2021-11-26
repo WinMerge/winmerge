@@ -92,6 +92,9 @@ CreateVirtualLineToRealLineMap(
 	while (line1 < nlines1)
 		vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
 	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
+#ifdef _DEBUG
+	PrintVirtualLineToRealLineMap(_T("vline"), vlines);
+#endif
 	return vlines;
 }
 
@@ -682,7 +685,7 @@ int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int 
 			    line0 <= worddiffs[i].beginline[0] && line1 <= worddiffs[i].beginline[1])
 			{
 				if (worddiffs[i - 1].endline[0] == worddiffs[i].beginline[0])
-					matchlen += worddiffs[i].begin[0] - worddiffs[i - 1].end[0] - 1;
+					matchlen += worddiffs[i].begin[0] - worddiffs[i - 1].end[0];
 				else
 					matchlen += worddiffs[i].begin[0];
 			}
@@ -691,7 +694,7 @@ int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int 
 			worddiffs[i + 1].beginline[0] != worddiffs[i].endline[0] && worddiffs[i + 1].beginline[1] != worddiffs[i].endline[1])
 		{
 			if (worddiffs[i].endline[0] == line0 && worddiffs[i].endline[1] == line1)
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[0] - 1;
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[0];
 		}
 	}
 	if (worddiffs.empty())
