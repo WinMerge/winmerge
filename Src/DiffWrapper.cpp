@@ -56,6 +56,8 @@ using Poco::Exception;
 
 extern int recursive;
 
+extern "C" int is_blank_line(char const* pch, char const* limit);
+
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
@@ -291,17 +293,39 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 }
 
 /**
- * @brief Replace spaces in a string
- * @param [in] str - String to search
+ * @brief Replace a string inside a string with another string.
+ * This function searches for a string inside another string an if found,
+ * replaces it with another string. Function can replace several instances
+ * of the string inside one string.
+ * @param [in,out] target A string containing another string to replace.
+ * @param [in] find A string to search and replace with another (@p replace).
+ * @param [in] replace A string used to replace original (@p find).
+ */
+void Replace(std::string &target, const std::string &find, const std::string &replace)
+{
+	const std::string::size_type find_len = find.length();
+	const std::string::size_type replace_len = replace.length();
+	std::string::size_type pos = 0;
+	while ((pos = target.find(find, pos)) != std::string::npos)
+	{
+		target.replace(pos, find_len, replace);
+		pos += replace_len;
+	}
+}
+
+/**
+ * @brief Replace the characters that matche characters specified in its arguments
+ * @param [in,out] str - A string containing another string to replace.
+ * @param [in] chars - characters to search for
  * @param [in] rep - String to replace
  */
-static void ReplaceSpaces(std::string & str, const char *rep)
+static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 {
 	std::string::size_type pos = 0;
 	size_t replen = strlen(rep);
-	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
+	while ((pos = str.find_first_of(chars, pos)) != std::string::npos)
 	{
-		std::string::size_type posend = str.find_first_not_of(" \t", pos);
+		std::string::size_type posend = str.find_first_not_of(chars, pos);
 		if (posend != String::npos)
 			str.replace(pos, posend - pos, rep);
 		else
@@ -311,22 +335,22 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 }
 
 /**
- * @brief Replace spaces in a string
- * @param [in] str - String to search
- * @param [in] rep - String to replace
+ * @brief Remove blank lines
  */
-static void ReplaceNumbers(std::string& str, const char* rep)
+void RemoveBlankLines(std::string &str)
 {
-	std::string::size_type pos = 0;
-	size_t replen = strlen(rep);
-	while ((pos = str.find_first_of("0123456789", pos)) != std::string::npos)
+	size_t pos = 0;
+	while (pos < str.length())
 	{
-		std::string::size_type posend = str.find_first_not_of("0123456789", pos);
-		if (posend != String::npos)
-			str.replace(pos, posend - pos, rep);
+		size_t posend = str.find_first_of("\r\n", pos);
+		if (posend != std::string::npos)
+			posend = str.find_first_not_of("\r\n", posend);
+		if (posend == std::string::npos)
+			posend = str.length();
+		if (is_blank_line(str.data() + pos, str.data() + posend))
+			str.erase(pos, posend - pos);
 		else
-			str.replace(pos, str.length() - pos, rep);
-		pos += replen;
+			pos = posend;
 	}
 }
 
@@ -380,23 +404,22 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
-		ReplaceSpaces(LineDataLeft, "");
-		ReplaceSpaces(LineDataRight, "");
+		ReplaceChars(LineDataLeft, " \t", "");
+		ReplaceChars(LineDataRight, " \t", "");
 	}
 	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		//Ignore change in whitespace char count
-		ReplaceSpaces(LineDataLeft, " ");
-		ReplaceSpaces(LineDataRight, " ");
+		ReplaceChars(LineDataLeft, " \t", " ");
+		ReplaceChars(LineDataRight, " \t", " ");
 	}
 
 	if (m_options.m_bIgnoreNumbers )
 	{
 		//Ignore number character case
-		ReplaceNumbers(LineDataLeft, "");
-		ReplaceNumbers(LineDataRight, "");
+		ReplaceChars(LineDataLeft, "0123456789", "");
+		ReplaceChars(LineDataRight, "0123456789", "");
 	}
-
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
@@ -406,6 +429,18 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
 		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
 			*pb = static_cast<char>(::toupper(*pb));
+	}
+	if (m_options.m_bIgnoreEOLDifference)
+	{
+		Replace(LineDataLeft, "\r\n", "\n");
+		Replace(LineDataLeft, "\r", "\n");
+		Replace(LineDataRight, "\r\n", "\n");
+		Replace(LineDataRight, "\r", "\n");
+	}
+	if (m_options.m_bIgnoreBlankLines)
+	{
+		RemoveBlankLines(LineDataLeft);
+		RemoveBlankLines(LineDataRight);
 	}
 	if (LineDataLeft != LineDataRight)
 		return;
