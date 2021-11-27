@@ -933,6 +933,9 @@ msgstr "I&gnora differenze nei fine riga (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignora differenze di codice di &pagina"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1269,6 +1272,9 @@ msgstr "File&2:"
 msgid "&Swap"
 msgstr "&Scambia"
 
+msgid "&Copy to Clipboard"
+msgstr "&Copia negli Appunti"
+
 msgid "&Append to existing file"
 msgstr "&Appendi a file esistente"
 
@@ -1286,9 +1292,6 @@ msgstr "Sti&le:"
 
 msgid "&Context:"
 msgstr "&Contesto:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignora lin&ee vuote"
 
 msgid "Inclu&de command line"
 msgstr "Includi &linea di comando"
@@ -1615,9 +1618,6 @@ msgstr "&Stile:"
 
 msgid "&Include File Compare Report"
 msgstr "&Includi il rapporto sul confronto tra file"
-
-msgid "&Copy to Clipboard"
-msgstr "&Copia negli Appunti"
 
 msgid "Shared or Private Filter"
 msgstr "Filtro condiviso o privato"

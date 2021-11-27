@@ -936,6 +936,9 @@ msgstr ""
 msgid "Ignore codepage &differences"
 msgstr "تجاهل اختلافات ترميز الصفحة"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1272,6 +1275,9 @@ msgstr "الملف &2:"
 msgid "&Swap"
 msgstr "&تبديل"
 
+msgid "&Copy to Clipboard"
+msgstr "ال&نسخ للحافظة"
+
 msgid "&Append to existing file"
 msgstr "إ&ضافة للملف الحالي"
 
@@ -1289,9 +1295,6 @@ msgstr "الأ&سلوب:"
 
 msgid "&Context:"
 msgstr "&الحالة:"
-
-msgid "Ignor&e blank lines"
-msgstr "تجاهل الأسطر الفارغة"
 
 msgid "Inclu&de command line"
 msgstr "دمج سطر الأوامر"
@@ -1616,9 +1619,6 @@ msgstr "الأسل&وب:"
 
 msgid "&Include File Compare Report"
 msgstr "ت&ضمين ملف التقرير الخاص بالمقارنة"
-
-msgid "&Copy to Clipboard"
-msgstr "ال&نسخ للحافظة"
 
 msgid "Shared or Private Filter"
 msgstr "مرشح مشترك أو خاص"

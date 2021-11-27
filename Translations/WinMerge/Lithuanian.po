@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
-"PO-Revision-Date: 2021-09-20 17:00+0200\n"
+"POT-Creation-Date: 2021-10-23 10:36+0000\n"
+"PO-Revision-Date: 2021-11-10 10:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -936,6 +936,9 @@ msgstr "Igno&ruoti eil. pabaigų formato skirtumus (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Nepaisyti ko&duočių skirtumų"
 
+msgid "Ignore num&bers"
+msgstr "Ignoruoti skai&čius"
+
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"
 
@@ -1272,6 +1275,9 @@ msgstr "Failas&2:"
 msgid "&Swap"
 msgstr "&Sukeisti"
 
+msgid "&Copy to Clipboard"
+msgstr "&Kopijuoti į mainų sritį"
+
 msgid "&Append to existing file"
 msgstr "Pridėti prie es&amo failo"
 
@@ -1289,9 +1295,6 @@ msgstr "St&ilius:"
 
 msgid "&Context:"
 msgstr "&Kontekstas:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignoruoti tuščias &eilutes"
 
 msgid "Inclu&de command line"
 msgstr "Įterpti koman&dinę eilutę"
@@ -1312,19 +1315,19 @@ msgid "Move &Down"
 msgstr "Perkelti ž&emyn"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "P&apildomos savybės"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Papildomos savybės"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
@@ -1610,9 +1613,6 @@ msgstr "&Stilius:"
 
 msgid "&Include File Compare Report"
 msgstr "Įtraukt&i failų palyginimo ataskaitą"
-
-msgid "&Copy to Clipboard"
-msgstr "&Kopijuoti į mainų sritį"
 
 msgid "Shared or Private Filter"
 msgstr "Bendro naudojimo ar asmeninis filtras"
@@ -2606,25 +2606,25 @@ msgid "Prediffer"
 msgstr "Parengėjas"
 
 msgid "Left"
-msgstr ""
+msgstr "Kairėje"
 
 msgid "Middle"
-msgstr ""
+msgstr "Viduryje"
 
 msgid "Right"
-msgstr ""
+msgstr "Dešinėje"
 
 msgid "Diff"
-msgstr ""
+msgstr "Skirtumai"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis kairėje"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis dešinėje"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Dublikatų kiekis viduryje"
 
 msgid "Move"
 msgstr ""
@@ -2773,7 +2773,7 @@ msgstr "Paveikslėliai skiriasi"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupė%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3547,13 +3547,13 @@ msgid "Validate HTML"
 msgstr "Patikrinti HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Deaseblinti JVM baitinį kodą"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Deaseblinti IL kodą"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Deaseblinti savajį kodą"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"

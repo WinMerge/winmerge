@@ -974,7 +974,7 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
                     }
                   else
                     {
-                      if (pszChars[i] == '\r' && i < nLength - 1 && pszChars[i+1] == '\n' && m_bDistinguishEols)
+                      if (i < nLength - 1 && pszChars[i] == '\r' && pszChars[i+1] == '\n' && m_bDistinguishEols)
                         {
                           AppendStringAdv(line, nCurPos, lpspc->c_eol);
                           i++;
@@ -1912,7 +1912,7 @@ CCrystalTextView::GetWhitespaceTextBlocks(int nLineIndex) const
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE | COLORINDEX_INTERMEDIATECOLOR;
               blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
               ++nBlocks;
-              while ((pszChars[i] == ' ' || pszChars[i] == '\t') && i < nLineLength)
+              while (i < nLineLength && (pszChars[i] == ' ' || pszChars[i] == '\t'))
                   ++i;
               if (i < nLineLength)
                 {

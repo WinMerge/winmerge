@@ -934,6 +934,9 @@ msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
@@ -1275,6 +1278,9 @@ msgstr "Bestand 2:"
 msgid "&Swap"
 msgstr "Wisselen"
 
+msgid "&Copy to Clipboard"
+msgstr "Naar klembord kopiëren"
+
 msgid "&Append to existing file"
 msgstr "Toevoegen aan bestaand bestand"
 
@@ -1292,9 +1298,6 @@ msgstr "Stijl:"
 
 msgid "&Context:"
 msgstr "Context:"
-
-msgid "Ignor&e blank lines"
-msgstr "Lege regels overslaan"
 
 msgid "Inclu&de command line"
 msgstr "Inclusief opdrachtregel"
@@ -1628,9 +1631,6 @@ msgstr "Stijl:"
 
 msgid "&Include File Compare Report"
 msgstr "Bestandsvergelijkingsrapport bijvoegen"
-
-msgid "&Copy to Clipboard"
-msgstr "Naar klembord kopiëren"
 
 msgid "Shared or Private Filter"
 msgstr "Gedeelde of persoonlijke filter"

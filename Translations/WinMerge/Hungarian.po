@@ -952,7 +952,7 @@ msgstr "Bal a középsővel (%1 / %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Balról a középsővel (%1 / %2)"
+msgstr "Bal a jobbal (%1 / %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
@@ -1163,6 +1163,9 @@ msgstr "Sorvég különbségek mellőzése"
 #, c-format
 msgid "Ignore codepage &differences"
 msgstr "Kódtábla különbségek mellőzése"
+
+msgid "Ignore num&bers"
+msgstr "Számok mellőzése"
 
 msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
@@ -1594,6 +1597,10 @@ msgid "&Swap"
 msgstr "Csere"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Másolás vágólapra"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Hozzáfűzés a létező fájlhoz"
 
@@ -1616,10 +1623,6 @@ msgstr "St&ílus:"
 #, c-format
 msgid "&Context:"
 msgstr "&Környezet:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Üres sorok mellőzése"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2029,10 +2032,6 @@ msgid "&Include File Compare Report"
 msgstr "Fájl-összehasonlító jelentés hozzáadása"
 
 #, c-format
-msgid "&Copy to Clipboard"
-msgstr "Másolás vágólapra"
-
-#, c-format
 msgid "Shared or Private Filter"
 msgstr "Megosztott vagy saját szűrő"
 
@@ -2197,7 +2196,7 @@ msgid "D&elimiter character:"
 msgstr "Elválasztójel:"
 
 msgid "&Allow newlines in quotes"
-msgstr "Idézőjelek használata"
+msgstr "Sorugrás idézőjelek között is lehet"
 
 msgid "&Quote character:"
 msgstr "Idézőjel:"

@@ -79,6 +79,7 @@ struct DIFFOPTIONS
 {
 	int nIgnoreWhitespace; /**< Ignore whitespace -option. */
 	bool bIgnoreCase; /**< Ignore case -option. */
+	bool bIgnoreNumbers; /**< Ignore numbers -option. */
 	bool bIgnoreBlankLines; /**< Ignore blank lines -option. */
 	bool bIgnoreEol; /**< Ignore EOL differences -option. */
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
@@ -96,12 +97,12 @@ class CompareOptions
 {
 public:
 	CompareOptions();
-	CompareOptions(const CompareOptions & options);
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum WhitespaceIgnoreChoices m_ignoreWhitespace; /**< Ignore whitespace characters */
 	bool m_bIgnoreBlankLines; /**< Ignore blank lines (both sides) */
 	bool m_bIgnoreCase; /**< Ignore case differences? */
+	bool m_bIgnoreNumbers; /**< Ignore number differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
 };
 
@@ -116,7 +117,6 @@ class DiffutilsOptions : public CompareOptions
 public:
 	DiffutilsOptions();
 	explicit DiffutilsOptions(const CompareOptions& options);
-	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options) const;
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options) override;

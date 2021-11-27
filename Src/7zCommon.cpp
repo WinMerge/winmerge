@@ -601,7 +601,6 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	try
 	{
 		String path;
-		USES_CONVERSION;
 		// Handle archives using 7-zip
 		Merge7z::Format *piHandler;
 		piHandler = ArchiveGuessFormat(res.files[0]);
@@ -622,7 +621,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[0])), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[0].c_str());
-				res.files[0] = OLE2T(pTmp);
+				res.files[0] = ucr::toTString(pTmp);
 				SysFreeString(pTmp);
 				res.files[0].insert(0, _T("\\"));
 				res.files[0].insert(0, path);

@@ -1163,6 +1163,9 @@ msgstr "Igno&rer returtegns forskelle (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1593,6 +1596,10 @@ msgid "&Swap"
 msgstr "&Byt"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopier til Udklipsholder"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Tilføj til eksisterende fil"
 
@@ -1615,10 +1622,6 @@ msgstr "Sti&l:"
 #, c-format
 msgid "&Context:"
 msgstr "&Sammenhæng:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Igno&rer blanke linjer"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2024,10 +2027,6 @@ msgstr "&Stil"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopier til Udklipsholder"
 
 #, c-format
 msgid "Shared or Private Filter"

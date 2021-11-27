@@ -147,7 +147,7 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],
-	PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer)
+	PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
 {
 	const int nBuffers = paths.GetSize();
 	String sFileName[3];
@@ -158,12 +158,14 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 		sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
 	else
 		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
-	String plugin;
+	String flags;
 	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
-		plugin += _T("U");
+		flags += _T("U");
 	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())
-		plugin += _T("P");
-	return sTitle + (plugin.empty() ? _T("") : (_T(" (") + plugin + _T(")")));
+		flags += _T("P");
+	if (hasTrivialDiffs)
+		flags += _T("F");
+	return sTitle + (flags.empty() ? _T("") : (_T(" (") + flags + _T(")")));
 }
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

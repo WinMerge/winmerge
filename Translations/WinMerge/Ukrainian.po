@@ -1163,6 +1163,9 @@ msgstr "Нехтувати різницею в кінцях рядків (Win/Un
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1593,6 +1596,10 @@ msgid "&Swap"
 msgstr "Поміняти"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Копіювати в буфер обміну"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Додати в існуючий файл"
 
@@ -1615,10 +1622,6 @@ msgstr "Стиль:"
 #, c-format
 msgid "&Context:"
 msgstr "Контекст:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Пропускати порожні рядки"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2020,10 +2023,6 @@ msgstr "&Стиль:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Копіювати в буфер обміну"
 
 #, c-format
 msgid "Shared or Private Filter"

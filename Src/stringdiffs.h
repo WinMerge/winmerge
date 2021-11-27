@@ -28,12 +28,6 @@ struct wdiff {
 		end[1] = e2;
 		end[2] = e3;
 	}
-	wdiff(const wdiff & src)
-		: begin{src.begin}
-		, end{src.end}
-		, op(src.op)
-	{
-	}
 };
 
 void Init();
@@ -42,8 +36,10 @@ void Close();
 void SetBreakChars(const TCHAR *breakChars);
 
 std::vector<wdiff> ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level);
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
 std::vector<wdiff> ComputeWordDiffs(int nStrings, const String *str, 
-                   bool case_sensitive, bool eol_sensitive, int whitespace, int breakType, bool byte_level);
+                   bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
+int Compare(const String& str1, const String& str2,
+	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers);
 
 }

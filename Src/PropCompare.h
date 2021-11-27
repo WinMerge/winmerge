@@ -33,6 +33,7 @@ public:
 	bool    m_bIgnoreCodepage;
 	bool    m_bIgnoreEol;
 	bool    m_bIgnoreCase;
+	bool    m_bIgnoreNumbers;
 	bool    m_bIgnoreBlankLines;
 	int     m_nIgnoreWhite;
 	bool    m_bMovedBlocks;

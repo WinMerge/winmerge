@@ -197,6 +197,7 @@ inline const String OPT_CMP_IGNORE_WHITESPACE {_T("Settings/IgnoreSpace"s)};
 inline const String OPT_CMP_IGNORE_BLANKLINES {_T("Settings/IgnoreBlankLines"s)};
 inline const String OPT_CMP_FILTER_COMMENTLINES {_T("Settings/FilterCommentsLines"s)};
 inline const String OPT_CMP_IGNORE_CASE {_T("Settings/IgnoreCase"s)};
+inline const String OPT_CMP_IGNORE_NUMBERS {_T("Settings/IgnoreNumbers"s)};
 inline const String OPT_CMP_IGNORE_EOL {_T("Settings/IgnoreEol"s)};
 inline const String OPT_CMP_IGNORE_CODEPAGE {_T("Settings/IgnoreCodepage"s)};
 inline const String OPT_CMP_METHOD {_T("Settings/CompMethod2"s)};
@@ -259,12 +260,9 @@ inline const String OPT_ARCHIVE_FILTER_INDEX {_T("Merge7z/FilterIndex"s)};
 // Patch Creator
 inline const String OPT_PATCHCREATOR_PATCH_STYLE {_T("PatchCreator/PatchStyle"s)};
 inline const String OPT_PATCHCREATOR_CONTEXT_LINES {_T("PatchCreator/ContextLines"s)};
-inline const String OPT_PATCHCREATOR_CASE_SENSITIVE {_T("PatchCreator/CaseSensitive"s)};
-inline const String OPT_PATCHCREATOR_EOL_SENSITIVE {_T("PatchCreator/EOLSensitive"s)};
-inline const String OPT_PATCHCREATOR_IGNORE_BLANK_LINES {_T("PatchCreator/IgnoreBlankLines"s)};
-inline const String OPT_PATCHCREATOR_WHITESPACE {_T("PatchCreator/Whitespace"s)};
 inline const String OPT_PATCHCREATOR_OPEN_TO_EDITOR {_T("PatchCreator/OpenToEditor"s)};
 inline const String OPT_PATCHCREATOR_INCLUDE_CMD_LINE {_T("PatchCreator/IncludeCmdLine"s)};
+inline const String OPT_PATCHCREATOR_COPY_TO_CLIPBOARD {_T("PatchCreator/CopyToClipboard"s)};
 
 // Plugins
 inline const String OPT_PLUGINS_ENABLED {_T("Settings/PluginsEnabled"s)};

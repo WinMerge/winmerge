@@ -1162,6 +1162,9 @@ msgstr "Ignorovat rozdíly v &koncích řádků (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1592,6 +1595,10 @@ msgid "&Swap"
 msgstr "Z&aměnit"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopírovat do schránky"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Př&ipojit ke stávajícímu souboru"
 
@@ -1614,10 +1621,6 @@ msgstr "Me&toda:"
 #, c-format
 msgid "&Context:"
 msgstr "O&bsah:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignorovat prázdné řá&dky"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2019,10 +2022,6 @@ msgstr "Uložit jako &typ:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopírovat do schránky"
 
 #, c-format
 msgid "Shared or Private Filter"

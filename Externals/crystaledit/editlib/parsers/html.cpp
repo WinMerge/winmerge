@@ -151,7 +151,10 @@ out:
                   AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
                   nActualItems += nActualItemsEmbedded;
                   if (!pszEnd)
-                    dwCookie |= COOKIE_EXT_USER1;
+                    {
+                      dwCookie |= COOKIE_EXT_USER1;
+                      nextI += 1;
+                    }
                   else if ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR)))
                     {
                       // A closing tag in a comment or string.
@@ -169,6 +172,8 @@ out:
                     }
                   else
                     {
+                      if (I > 0)
+                        nextI += 1;
                       dwCookie = 0;
                       bRedefineBlock = true;
                     }

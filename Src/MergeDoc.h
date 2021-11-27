@@ -94,14 +94,6 @@ struct WordDiff {
 		end[1] = e2;
 		end[2] = e3;
 	}
-	WordDiff(const WordDiff & src)
-		: begin{src.begin}
-		, end{src.end}
-		, beginline{src.beginline}
-		, endline{src.endline}
-		, op(src.op)
-	{
-	}
 };
 
 struct CurrentWordDiff
@@ -269,6 +261,7 @@ public:
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
+	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
 	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
@@ -430,8 +423,13 @@ private:
 	void PrimeTextBuffers();
 	void HideLines();
 	void AdjustDiffBlocks();
-	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
-	int GetMatchCost(const String &Line0, const String &Line1);
+	void AdjustDiffBlocks3way();
+	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange,
+		const std::vector<WordDiff>& worddiffs,
+		int i0, int i1, int lo0, int hi0, int lo1, int hi1);
+	int GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs);
+	OP_TYPE ComputeOpType3way(const std::vector<std::array<int, 3>>& vlines, size_t index,
+		const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions);
 	void FlagTrivialLines();
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;

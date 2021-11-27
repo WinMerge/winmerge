@@ -242,6 +242,9 @@ Other Contributors (code, ideas, testing..):
 * EugeneLaptev
 * ranjwarrior
 * elsonwei
+* evoc
+* devmynote
+* Michał Lipok
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

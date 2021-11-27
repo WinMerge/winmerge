@@ -25,6 +25,7 @@ enum
 	dlspace,
 	dlbreak, 
 	dlinsert,
+	dlnumber,
 };
 /**
  * @brief kind of synchronaction
@@ -46,7 +47,7 @@ class stringdiffs
 {
 public:
 	stringdiffs(const String & str1, const String & str2,
-		bool case_sensitive, bool eol_sensitive, int whitespace, int breakType,
+		bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType,
 		std::vector<wdiff> * pDiffs);
 
 	~stringdiffs();
@@ -84,6 +85,13 @@ private:
 		return (word1.bBreak == dlspace);
 	}
 	/**
+	 * @brief Is this block a number one?
+	 */
+	inline bool IsNumber(const word& word1) const
+	{
+		return (word1.bBreak == dlnumber);
+	}
+	/**
 	 * @brief Is this block a break?
 	 */
 	inline bool IsBreak(const word & word1) const
@@ -113,6 +121,7 @@ private:
 	bool m_case_sensitive;
 	bool m_eol_sensitive;
 	int m_whitespace;
+	bool m_ignore_numbers = false;
 	int m_breakType;
 	bool m_matchblock;
 	std::vector<wdiff> * m_pDiffs;

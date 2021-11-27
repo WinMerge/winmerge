@@ -1162,6 +1162,10 @@ msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
 msgid "Ignore codepage &differences"
 msgstr "&Codeseiten-Unterschiede ignorieren"
 
+#, c-format
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
 msgid "Ignore c&omment differences"
 msgstr "Kommentarunterschiede ignorieren"
 
@@ -1592,6 +1596,10 @@ msgid "&Swap"
 msgstr "Ver&tauschen"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "In die &Zwischenablage kopieren"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "A&n vorhandene Datei anfügen"
 
@@ -1614,10 +1622,6 @@ msgstr "Sti&l:"
 #, c-format
 msgid "&Context:"
 msgstr "&Kontext:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "&Leerzeilen ignorieren"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2017,10 +2021,6 @@ msgstr "&Stil:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "Dateivergleichsbericht einschließen"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "In die &Zwischenablage kopieren"
 
 #, c-format
 msgid "Shared or Private Filter"

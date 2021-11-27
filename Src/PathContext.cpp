@@ -11,14 +11,6 @@
 #include "paths.h"
 
 /**
- * @brief Copy constructor.
- */
-PathInfo::PathInfo(const PathInfo &pi)
-: m_sPath(pi.m_sPath)
-{
-}
-
-/**
  * @brief Get path.
  * @param [in] sbNormalized true if path is wanted in normalized format.
  */
@@ -62,12 +54,6 @@ PathContext::PathContext(const String& sLeft, const String& sMiddle, const Strin
 	m_path[0].SetPath(sLeft);
 	m_path[1].SetPath(sMiddle);
 	m_path[2].SetPath(sRight);
-}
-
-PathContext::PathContext(const PathContext &paths)
-{
-	m_nFiles = paths.m_nFiles;
-	std::copy_n(paths.m_path, m_nFiles, m_path);
 }
 
 PathContext::PathContext(const std::vector<String> &paths)

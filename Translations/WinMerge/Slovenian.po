@@ -1162,6 +1162,9 @@ msgstr "&Prezri različnost vrste znakov za konec vrstice (EOL)"
 msgid "Ignore codepage &differences"
 msgstr "P&rezri razlike kodnih strani"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"
 
@@ -1591,6 +1594,10 @@ msgid "&Swap"
 msgstr "&Zamenjaj"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopiraj v odložišče"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Dodaj v obstoječo datoteko"
 
@@ -1613,10 +1620,6 @@ msgstr "S&log:"
 #, c-format
 msgid "&Context:"
 msgstr "&Skladnost:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "P&rezri prazne vrstice"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2021,10 +2024,6 @@ msgstr "S&log:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "Vključi &poročilo o primerjavi datoteke"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopiraj v odložišče"
 
 #, c-format
 msgid "Shared or Private Filter"

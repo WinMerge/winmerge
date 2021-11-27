@@ -46,7 +46,7 @@ namespace
 		UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, nullptr, 0);
 
 		// get all file names. but we'll only need the first one.
-		for (WORD x = 0; x < wNumFilesDropped; x++)
+		for (UINT x = 0; x < wNumFilesDropped; x++)
 		{
 			// Get the number of bytes required by the file's full pathname
 			UINT wPathnameSize = DragQueryFile(dropInfo, x, nullptr, 0);

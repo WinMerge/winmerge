@@ -209,8 +209,7 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
     {
 		const size_t MenuSiz = wcslen(szWideString) + 1;
 		m_szMenuText = new wchar_t[MenuSiz];
-		if (m_szMenuText)
-			wcscpy_s(m_szMenuText, MenuSiz, szWideString);
+		wcscpy_s(m_szMenuText, MenuSiz, szWideString);
     }
 	else
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs
@@ -263,7 +262,7 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 ---------------------------------------
 
   Called by the framework when a particular item needs to be drawn.  We
-  overide this to draw the menu item in a custom-fashion, including icons
+  override this to draw the menu item in a custom-fashion, including icons
   and the 3D rectangle bar.
   ==========================================================================
 */

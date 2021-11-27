@@ -1163,6 +1163,9 @@ msgstr "Igno&rar diferenzas nos saltos de liña (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenzas de codificación"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
 
@@ -1593,6 +1596,10 @@ msgid "&Swap"
 msgstr "&Intercambiar"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Copiar ao portapapeis"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Anexar a arquivo existente"
 
@@ -1615,10 +1622,6 @@ msgstr "Est&ilo:"
 #, c-format
 msgid "&Context:"
 msgstr "&Contexto:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignor&ar liñas en branco"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2026,10 +2029,6 @@ msgstr "&Estilo:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "&Incluír informe de comparación de arquivos"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Copiar ao portapapeis"
 
 #, c-format
 msgid "Shared or Private Filter"

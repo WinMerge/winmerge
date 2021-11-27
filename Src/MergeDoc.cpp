@@ -459,7 +459,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 			// Correct the comparison results made by diffutils if the first file separated by the sync point is an empty file.
 			if (i == 0 && templist.GetSize() > 0)
+			{
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
 					if (nStartLine[nBuffer] == 0)
 					{
 						bool isEmptyFile = true;
@@ -482,6 +484,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 							}
 						}
 					}
+				}
+			}
 
 			m_diffList.AppendDiffList(templist, nRealLine);
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -534,8 +538,13 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			m_ptBuf[nBuffer]->prepareForRescan();
 
 		// Divide diff blocks to match lines.
-		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES) && m_nBuffers < 3)
-			AdjustDiffBlocks();
+		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES))
+		{
+			if (m_nBuffers < 3)
+				AdjustDiffBlocks();
+			else
+				AdjustDiffBlocks3way();
+		}
 
 		// Analyse diff-list (updating real line-numbers)
 		// this operation does not change the modified flag
@@ -633,7 +642,7 @@ void CMergeDoc::FlagTrivialLines(void)
 			for (int file = 0; file < m_nBuffers; ++file)
 			{
 				const TCHAR *p = m_ptBuf[file]->GetLineChars(i);
-				str[file] = p ? p : _T("");
+				str[file] = p ? String(p, m_ptBuf[file]->GetFullLineLength(i)) : _T("");
 			}
 
 			if (std::count(str + 1, str + m_nBuffers, str[0]) != m_nBuffers - 1)
@@ -642,16 +651,24 @@ void CMergeDoc::FlagTrivialLines(void)
 				m_diffWrapper.GetOptions(&diffOptions);
 
 				// Make the call to stringdiffs, which does all the hard & tedious computations
-				std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(m_nBuffers, str,
+				int result = strdiff::Compare(str[0], str[1],
 					!diffOptions.bIgnoreCase,
 					!diffOptions.bIgnoreEol,
 					diffOptions.nIgnoreWhitespace,
-					GetBreakType(), // whitespace only or include punctuation
-					GetByteColoringOption());
-				if (!worddiffs.empty())
+					diffOptions.bIgnoreNumbers);
+				if (m_nBuffers >= 2 && result == 0)
+				{
+					result = strdiff::Compare(str[1], str[2],
+						!diffOptions.bIgnoreCase,
+						!diffOptions.bIgnoreEol,
+						diffOptions.nIgnoreWhitespace,
+						diffOptions.bIgnoreNumbers);
+				}
+				if (result != 0)
 				{
 					for (int file = 0; file < m_nBuffers; ++file)
 						m_ptBuf[file]->SetLineFlag(i, LF_TRIVIAL, true, false, false);
+					++m_nTrivialDiffs;
 				}
 			}
 		}
@@ -1958,6 +1975,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	if (nRescanResult != RESCAN_SUPPRESSED)
 		ShowRescanError(nRescanResult, identical);
 	m_LastRescan = COleDateTime::GetCurrentTime();
+	SetTitle(nullptr);
 }
 
 /**
@@ -3341,12 +3359,13 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	bool filenameChanged = path != m_filePaths[nBuffer];
 	auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 	{
 		if (!filenameChanged)
 			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
-		MoveOnLoad(nBuffer, nLineIndex);
+		MoveOnLoad(nActivePane, nLineIndex);
 	}
 }
 
@@ -3471,7 +3490,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
 	PrediffingInfo infoPrediffer;
 	GetPrediffer(&infoPrediffer);
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer, m_nTrivialDiffs > 0);
 	CDocument::SetTitle(sTitle.c_str());
 }
 
@@ -3573,12 +3592,13 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
 	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{
 		m_ptBuf[0]->SetColumnWidths(columnWidths);
-		MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
+		MoveOnLoad(nActivePane, pt.y);
 	}
 }
 
@@ -3626,7 +3646,6 @@ void CMergeDoc::OnApplyPrediffer()
 	SetPrediffer(&prediffer);
 	m_CurrentPredifferID = -1;
 	FlushAndRescan(true);
-	SetTitle(nullptr);
 }
 
 /**
@@ -3732,7 +3751,6 @@ void CMergeDoc::OnPrediffer(UINT nID )
 {
 	SetPredifferByMenu(nID);
 	FlushAndRescan(true);
-	SetTitle(nullptr);
 }
 
 /**

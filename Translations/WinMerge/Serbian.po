@@ -1159,6 +1159,9 @@ msgstr "Занемари &разлике ознака завршетка ред�
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1577,6 +1580,10 @@ msgid "&Swap"
 msgstr "&Замени"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Сачувај у остави"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Прикључи постојећој датотеци"
 
@@ -1599,10 +1606,6 @@ msgstr "На&чин"
 #, c-format
 msgid "&Context:"
 msgstr "У &оквиру"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Зан&емари празне редове"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2002,10 +2005,6 @@ msgstr "&Начин"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Сачувај у остави"
 
 #, c-format
 msgid "Shared or Private Filter"

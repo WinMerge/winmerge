@@ -930,6 +930,9 @@ msgstr "Пренебрегване на &знаци за нов ред (Windows/
 msgid "Ignore codepage &differences"
 msgstr "Пропускане на &различия в кодова страница"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Пропускане на различия в &коментари"
 
@@ -1268,6 +1271,9 @@ msgstr "Файл&2:"
 msgid "&Swap"
 msgstr "&Разменяне"
 
+msgid "&Copy to Clipboard"
+msgstr "&Копиране в системния буфер"
+
 msgid "&Append to existing file"
 msgstr "&Прилагане към съществуващ файл"
 
@@ -1285,9 +1291,6 @@ msgstr "Сти&л:"
 
 msgid "&Context:"
 msgstr "&Контекст:"
-
-msgid "Ignor&e blank lines"
-msgstr "Пренебрегва&не на празни редове"
 
 msgid "Inclu&de command line"
 msgstr "Включително командния &ред"
@@ -1618,9 +1621,6 @@ msgstr "&Стил:"
 
 msgid "&Include File Compare Report"
 msgstr ""
-
-msgid "&Copy to Clipboard"
-msgstr "&Копиране в системния буфер"
 
 msgid "Shared or Private Filter"
 msgstr "Споделен или личен филтър"

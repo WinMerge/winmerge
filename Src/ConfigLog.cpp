@@ -56,8 +56,10 @@ static String GetCompilerVersion()
 	sVisualStudio = _T("VS.2017 (15.3) - "); 
 #elif	_MSC_VER >= 1912 && _MSC_VER <  1920
 	sVisualStudio = strutils::format(_T("VS.2017 (15.%d) - "), 5 + (_MSC_VER - 1912));
-#elif   _MSC_VER >= 1920 && _MSC_VER <  2000
+#elif   _MSC_VER >= 1920 && _MSC_VER <  1930
 	sVisualStudio = strutils::format(_T("VS.2019 (16.%d) - "), (_MSC_VER - 1920));
+#elif   _MSC_VER >= 1930 && _MSC_VER <  2000
+	sVisualStudio = strutils::format(_T("VS.2022 (17.%d) - "), (_MSC_VER - 1930));
 #elif	_MSC_VER >= 2000
 	# error "** Unknown NEW Version of Visual Studio **"
 #endif

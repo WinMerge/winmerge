@@ -206,7 +206,7 @@ int pclose(FILE *);
 #define FSIZE size_t
 #endif
 
-#ifdef __NT__
+#if defined(__NT__) || defined(WIN32)
 #ifndef _PID_T_
 typedef int pid_t;
 #endif

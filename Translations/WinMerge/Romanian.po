@@ -1162,6 +1162,9 @@ msgstr "Igno&ră diferenţele sfârşitului de linie (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1591,6 +1594,10 @@ msgstr "F&işier 2:"
 msgid "&Swap"
 msgstr "Interschim&bă"
 
+#, fuzzy, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Copie în memorie"
+
 #, c-format
 msgid "&Append to existing file"
 msgstr "&Adaugă la fişier existent"
@@ -1614,10 +1621,6 @@ msgstr "S&til:"
 #, c-format
 msgid "&Context:"
 msgstr "&Context:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignoră linii goal&e"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2017,10 +2020,6 @@ msgstr "&Stil:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Copie în memorie"
 
 #, c-format
 msgid "Shared or Private Filter"

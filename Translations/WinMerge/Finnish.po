@@ -1162,6 +1162,9 @@ msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ohita koodisivuerot"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1592,6 +1595,10 @@ msgid "&Swap"
 msgstr "Vaihda"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "Kopioi leikepöydälle"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "Lisää olem&assa olevaan tiedostoon"
 
@@ -1614,10 +1621,6 @@ msgstr "Ty&yli:"
 #, c-format
 msgid "&Context:"
 msgstr "Konteksti:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ohita tyhjät rivit"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2022,10 +2025,6 @@ msgstr "Tyyli:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr "S&isällytä tiedoston vertailuraportti"
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "Kopioi leikepöydälle"
 
 #, c-format
 msgid "Shared or Private Filter"

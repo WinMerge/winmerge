@@ -1307,6 +1307,9 @@
     <ClInclude Include="DirAdditionalPropertiesDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DirItemIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-10-23 10:36+0000\n"
+"POT-Creation-Date: 2021-11-21 20:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -927,6 +927,9 @@ msgstr ""
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1263,6 +1266,9 @@ msgstr ""
 msgid "&Swap"
 msgstr ""
 
+msgid "&Copy to Clipboard"
+msgstr ""
+
 msgid "&Append to existing file"
 msgstr ""
 
@@ -1279,9 +1285,6 @@ msgid "St&yle:"
 msgstr ""
 
 msgid "&Context:"
-msgstr ""
-
-msgid "Ignor&e blank lines"
 msgstr ""
 
 msgid "Inclu&de command line"
@@ -1600,9 +1603,6 @@ msgid "&Style:"
 msgstr ""
 
 msgid "&Include File Compare Report"
-msgstr ""
-
-msgid "&Copy to Clipboard"
 msgstr ""
 
 msgid "Shared or Private Filter"

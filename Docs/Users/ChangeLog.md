@@ -1,5 +1,11 @@
 # Change log
 
+## WinMerge 2.16.17 - 2021-12-xx
+
+### General
+
+- New Option to ignore numbers.
+
 ## WinMerge 2.16.16 - 2021-10-28
 
 ### General

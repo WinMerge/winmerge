@@ -110,6 +110,7 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
 		: m_ignore_case(options->m_bIgnoreCase)
 		, m_ignore_eol_diff(options->m_bIgnoreEOLDifference)
 		, m_ignore_blank_lines(options->m_bIgnoreBlankLines)
+		, m_ignore_numbers(options->m_bIgnoreNumbers)
 // state
 		, m_wsflag(false)
 		, m_eol0(false)

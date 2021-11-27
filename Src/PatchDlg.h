@@ -38,16 +38,13 @@ public:
 	enum { IDD = IDD_GENERATE_PATCH };
 	CComboBox m_comboStyle;
 	CSuperComboBox m_comboContext;
-	bool m_ignoreCase;
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
 	CSuperComboBox m_ctlResult;
 	String	m_file1;
 	String	m_file2;
 	String	m_fileResult;
-	bool m_ignoreBlanks;
-	bool m_ignoreEOLDifference;
-	int m_whitespaceCompare;
+	bool m_copyToClipboard;
 	bool m_appendFile;
 	bool m_openToEditor;
 	bool m_includeCmdLine;
@@ -55,8 +52,6 @@ public:
 
 	enum output_style m_outputStyle; /**< Patch style (context, unified etc.) */
 	int m_contextLines; /**< How many context lines are added. */
-	enum DiffAlgorithm m_diffAlgorithm;
-	bool m_indentHeuristic;
 
 // Overrides
 	// ClassWizard generated virtual function overrides

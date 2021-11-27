@@ -27,10 +27,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-4
 		appveyor.yml = appveyor.yml
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
 		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
-		BuildAll.vs2019x64_vs2017Win32.cmd = BuildAll.vs2019x64_vs2017Win32.cmd
+		BuildAll.vs2022.cmd = BuildAll.vs2022.cmd
+		BuildAll.vs2022x64_vs2017Win32.cmd = BuildAll.vs2022x64_vs2017Win32.cmd
 		BuildArc.cmd = BuildArc.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
 		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
+		BuildBin.vs2022.cmd = BuildBin.vs2022.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
 		CreateRelease.cmd = CreateRelease.cmd
@@ -154,6 +156,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 	ProjectSection(SolutionItems) = preProject
 		Externals\winimerge\BuildArc.cmd = Externals\winimerge\BuildArc.cmd
 		Externals\winimerge\BuildBin.vs2019.cmd = Externals\winimerge\BuildBin.vs2019.cmd
+		Externals\winimerge\BuildBin.vs2022.cmd = Externals\winimerge\BuildBin.vs2022.cmd
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
@@ -391,6 +394,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{14C9
 		ShellExtension\BuildArc.cmd = ShellExtension\BuildArc.cmd
 		ShellExtension\BuildBin.vs2017.cmd = ShellExtension\BuildBin.vs2017.cmd
 		ShellExtension\BuildBin.vs2019.cmd = ShellExtension\BuildBin.vs2019.cmd
+		ShellExtension\BuildBin.vs2022.cmd = ShellExtension\BuildBin.vs2022.cmd
 		ShellExtension\CreateWinMergeContextMenuPackage.bat = ShellExtension\CreateWinMergeContextMenuPackage.bat
 		ShellExtension\CreateWinMergeContextMenuPackage.ps1 = ShellExtension\CreateWinMergeContextMenuPackage.ps1
 		ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat = ShellExtension\CreateWinMergeContextMenuSelfSignedPackage.bat
@@ -410,6 +414,7 @@ Global
 		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
 		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
 		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4

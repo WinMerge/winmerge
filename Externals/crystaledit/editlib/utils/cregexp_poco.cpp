@@ -37,7 +37,7 @@ struct _RxNode {
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
     RxNode *n = nullptr;
     if (Regexp == nullptr) return nullptr;
-    n = new RxNode();
+    n = new(std::nothrow) RxNode();
     if (n == nullptr) return nullptr;
 
 	const char * errormsg = nullptr;

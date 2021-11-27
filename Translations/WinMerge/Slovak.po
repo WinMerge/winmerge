@@ -936,6 +936,9 @@ msgstr "Igno&rovať rozdiely v zakončení riadkov (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ignorovať rozdiely kódových stránok"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1274,6 +1277,9 @@ msgstr "Súbor&2:"
 msgid "&Swap"
 msgstr "&Prehodiť"
 
+msgid "&Copy to Clipboard"
+msgstr "&Kopírovať do schránky"
+
 msgid "&Append to existing file"
 msgstr "&Rozšíriť existujúci súbor"
 
@@ -1291,9 +1297,6 @@ msgstr "Š&týl:"
 
 msgid "&Context:"
 msgstr "&Kontext:"
-
-msgid "Ignor&e blank lines"
-msgstr "Ignor&ovať prázdne riadky"
 
 msgid "Inclu&de command line"
 msgstr "Zahrnúť príkazový ria&dok"
@@ -1620,9 +1623,6 @@ msgstr "&Štýl:"
 
 msgid "&Include File Compare Report"
 msgstr "&Zahrnúť správu o porovnaní súborov"
-
-msgid "&Copy to Clipboard"
-msgstr "&Kopírovať do schránky"
 
 msgid "Shared or Private Filter"
 msgstr "Zdieľaný alebo súkromný filter"

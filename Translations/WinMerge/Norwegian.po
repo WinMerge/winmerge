@@ -1162,6 +1162,9 @@ msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr ""
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr ""
 
@@ -1592,6 +1595,10 @@ msgid "&Swap"
 msgstr "B&ytt"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopier til utklippstavle"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Legg til i eksisterende fil"
 
@@ -1614,10 +1621,6 @@ msgstr "St&il:"
 #, c-format
 msgid "&Context:"
 msgstr "&Kontekst:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignor&er tomme linjer"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -2019,10 +2022,6 @@ msgstr "&Stil:"
 #, c-format
 msgid "&Include File Compare Report"
 msgstr ""
-
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopier til utklippstavle"
 
 #, c-format
 msgid "Shared or Private Filter"

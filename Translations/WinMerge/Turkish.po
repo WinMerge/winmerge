@@ -933,6 +933,9 @@ msgstr "Satı&r sonu farklılıkları yok sayılsın (Windows/Unix/Mac)"
 msgid "Ignore codepage &differences"
 msgstr "Ko&d sayfası farklılıkları yok sayılsın"
 
+msgid "Ignore num&bers"
+msgstr ""
+
 msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
 
@@ -1273,6 +1276,9 @@ msgstr "&2. dosya:"
 msgid "&Swap"
 msgstr "&Değiştir"
 
+msgid "&Copy to Clipboard"
+msgstr "Panoya &kopyala"
+
 msgid "&Append to existing file"
 msgstr "&Var olan bir dosyaya eklensin"
 
@@ -1290,9 +1296,6 @@ msgstr "Biç&em:"
 
 msgid "&Context:"
 msgstr "B&ağlam:"
-
-msgid "Ignor&e blank lines"
-msgstr "Boş satırlar yok sayılsı&n"
 
 msgid "Inclu&de command line"
 msgstr "Ko&mut satırı katılsın"
@@ -1623,9 +1626,6 @@ msgstr "&Biçem:"
 
 msgid "&Include File Compare Report"
 msgstr "K&lasör karşılaştırma raporu eklensin"
-
-msgid "&Copy to Clipboard"
-msgstr "Panoya &kopyala"
 
 msgid "Shared or Private Filter"
 msgstr "Ortak ya da özel süzgeç"

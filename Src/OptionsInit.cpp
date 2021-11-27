@@ -210,12 +210,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0, 0, 3);
 	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);
-	pOptions->InitOption(OPT_PATCHCREATOR_CASE_SENSITIVE, true);
-	pOptions->InitOption(OPT_PATCHCREATOR_EOL_SENSITIVE, true);
-	pOptions->InitOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, false);
-	pOptions->InitOption(OPT_PATCHCREATOR_WHITESPACE, WHITESPACE_COMPARE_ALL, WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_ALL);
 	pOptions->InitOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, false);
 	pOptions->InitOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, false);
+	pOptions->InitOption(OPT_PATCHCREATOR_COPY_TO_CLIPBOARD, false);
 
 	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 	pOptions->InitOption(OPT_ACTIVE_FRAME_MAX, true);

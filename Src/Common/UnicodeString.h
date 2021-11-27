@@ -34,6 +34,7 @@ TCHAR from_charstr(const String& str);
 String to_charstr(TCHAR ch);
 
 void replace(String &target, const String &find, const String &replace);
+void replace_chars(String& str, const TCHAR* chars, const TCHAR* rep);
 
 // Comparing
 int compare_nocase(const String &str1, const String &str2);
