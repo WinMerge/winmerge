@@ -3683,6 +3683,9 @@ msgstr "MDI 子窗口或主窗口"
 msgid "MDI child window only"
 msgstr "仅 MDI 子窗口"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "差异比较"

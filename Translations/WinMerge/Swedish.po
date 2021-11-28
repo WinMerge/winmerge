@@ -3677,6 +3677,9 @@ msgstr "MDI nedärvda fönster eller huvudfönster"
 msgid "MDI child window only"
 msgstr "MDI nedärvda endast"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Skillnad"

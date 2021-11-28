@@ -3296,6 +3296,9 @@ msgstr "MDI дочернее окно или главное окно"
 msgid "MDI child window only"
 msgstr "MDI дочернее окно только"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Отличия"

@@ -4421,6 +4421,9 @@ msgstr "MDI 자식 창 또는 주 프레임 창"
 msgid "MDI child window only"
 msgstr "MDI 자식 창만"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "차이점"

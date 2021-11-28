@@ -3705,6 +3705,9 @@ msgstr "MDI okno potomka alebo hlavné okno"
 msgid "MDI child window only"
 msgstr "Iba MDI okno potomka"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Rozdiel"

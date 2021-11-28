@@ -4417,6 +4417,9 @@ msgstr "Ventá filla ou principal MDI"
 msgid "MDI child window only"
 msgstr "Só a ventá filla MDI"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Diferenza"

@@ -3763,6 +3763,9 @@ msgstr "Janela filha ou janela principal do MDI"
 msgid "MDI child window only"
 msgstr "Só janela filha do MDI"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Diferenciamento"

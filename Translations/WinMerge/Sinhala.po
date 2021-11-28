@@ -4240,6 +4240,9 @@ msgstr ""
 msgid "MDI child window only"
 msgstr ""
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr ""

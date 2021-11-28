@@ -2008,12 +2008,13 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		if (theApp.m_bEscShutdown && m_wndTabBar.GetItemCount() <= 1)
+		int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
+		if ((theApp.m_bEscShutdown || nEscCloses == 3) && m_wndTabBar.GetItemCount() <= 1)
 		{
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-		else if (GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) == 1 && m_wndTabBar.GetItemCount() == 0)
+		else if (nEscCloses == 1 && m_wndTabBar.GetItemCount() == 0)
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;

@@ -3797,6 +3797,7 @@ STRINGTABLE
 BEGIN
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
+    IDS_CLOSE_WINDOWS_WITH_ESC_3 "Close main window if there is only one MDI child window"
 END
 
 STRINGTABLE

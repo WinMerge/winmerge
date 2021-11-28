@@ -64,6 +64,7 @@ BOOL PropGeneral::OnInitDialog()
 	pWnd->AddString(_("Disabled").c_str());
 	pWnd->AddString(_("MDI child window or main window").c_str());
 	pWnd->AddString(_("MDI child window only").c_str());
+	pWnd->AddString(_("Close main window if there is only one MDI child window").c_str());
 
 	pWnd->SetCurSel(m_nCloseWindowWithEsc);
 

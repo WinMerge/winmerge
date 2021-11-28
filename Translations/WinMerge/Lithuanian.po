@@ -3297,6 +3297,9 @@ msgstr "MDI antrinį arba pagrindinį langą"
 msgid "MDI child window only"
 msgstr "Tik MDI antrinį langą"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Skirtumai"

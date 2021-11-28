@@ -3680,6 +3680,9 @@ msgstr "MDI子ウインドウまたはメインウインドウ"
 msgid "MDI child window only"
 msgstr "MDI子ウインドウのみ"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr "MDI子ウィンドウが1つしかない場合、メインウィンドウを閉じる"
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "差異"
