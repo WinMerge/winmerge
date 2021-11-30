@@ -25,13 +25,13 @@ if "%1" == "" (
 ) else (
   set PLATFORM_VS=%1
 )
-MSBuild Merge7z.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
+MSBuild Merge7z.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\%PLATFORM%\Release\Merge7z\Merge7z.dll
+  call "%SIGNBAT_PATH%" ..\..\Build\%PLATFORM%\Release\Merge7z\Merge7z.dll
 )
 
-mkdir Build\%PLATFORM%\Release\%APPVER% 2> NUL
-copy Build\%PlATFORM%\Release\Merge7z\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
+mkdir ..\..\Build\%PLATFORM%\Release\%APPVER% 2> NUL
+copy ..\..\Build\%PlATFORM%\Release\Merge7z\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
 goto :eof
