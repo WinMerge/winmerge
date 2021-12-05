@@ -89,11 +89,11 @@ public:
 
 	int GetNextItem(int sel, bool selected = false, bool reverse = false) const override
 	{
-		//return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0) | (reverse ? LVNI_ABOVE : 0));		
 		if (!reverse)
 			return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0));		
 		if (!selected)
 			return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_ABOVE);
+		// It seems that when LVS_OWNERDATA is enabled and LVNI_SELECTED | LVNI_ABOVE is passed to ListView_GetNextItem(), the expected result is not obtained.
 		for (int i = sel - 1; i >= 0; --i)
 		{
 			if (ListView_GetItemState(m_hwndListCtrl, i, LVIS_SELECTED))

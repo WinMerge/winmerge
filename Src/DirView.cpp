@@ -1696,7 +1696,8 @@ void CDirView::OnUpdateCtxtDirCopyBoth2(CCmdUI* pCmdUI)
  */
 DIFFITEM *CDirView::GetItemKey(int idx) const
 {
-	return (DIFFITEM*)m_listViewItems[idx].lParam;
+	ASSERT(idx >= 0 && idx < static_cast<int>(m_listViewItems.size()));
+	return reinterpret_cast<DIFFITEM*>(m_listViewItems[idx].lParam);
 }
 
 // SetItemKey & GetItemKey encapsulate how the display list items
