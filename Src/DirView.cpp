@@ -107,7 +107,7 @@ CDirView::CDirView()
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
 	// focus is elsewhere (ie, on file edit window)
-	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS;
+	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_OWNERDATA;
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
@@ -140,6 +140,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
 	ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndLabelEdit)
+	ON_NOTIFY_REFLECT(LVN_ODFINDITEM, OnODFindItem)
 	ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
 	ON_NOTIFY_REFLECT(LVN_BEGINDRAG, OnBeginDrag)
  	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
@@ -400,7 +401,7 @@ void CDirView::OnInitialUpdate()
 	const int iconCY = iconCX;
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
-	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
+	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd, m_listViewItems));
 	CDirDoc* pDoc = GetDocument();
 	pDoc->SetDirView(this);
 
@@ -462,7 +463,7 @@ void CDirView::OnInitialUpdate()
 	// Show selection across entire row.u
 	// Also allow user to rearrange columns via drag&drop of headers.
 	// Also enable infotips.
-	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP;
+	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP | LVS_EX_DOUBLEBUFFER;
 	m_pList->SetExtendedStyle(exstyle);
 }
 
@@ -564,7 +565,6 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 				index++;
 				if (di.HasChildren())
 				{
-					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
 					if (di.customFlags & ViewCustomFlags::EXPANDED)
 						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
 				}
@@ -621,6 +621,8 @@ void CDirView::Redisplay()
 		GetParentFrame()->SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
+	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
+	m_pList->Invalidate();
 }
 
 /**
@@ -1140,10 +1142,13 @@ void CDirView::SortColumnsAppropriately()
 	m_ctlSortHeader.SetSortImage(m_pColItems->ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
 	CompareState cs(&GetDiffContext(), m_pColItems.get(), sortCol, bSortAscending, m_bTreeMode);
-	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD_PTR>(&cs));
+	std::stable_sort(m_listViewItems.begin(), m_listViewItems.end(), [&cs](const ListViewOwnerDataItem& a, const ListViewOwnerDataItem& b)
+		{ return CompareState::CompareFunc(a.lParam, b.lParam, reinterpret_cast<LPARAM>(&cs)) > 0; });
 
 	m_firstDiffItem.reset();
 	m_lastDiffItem.reset();
+	
+	m_pList->Invalidate();
 }
 
 /// Do any last minute work as view closes
@@ -1227,7 +1232,6 @@ void CDirView::CollapseSubdir(int sel)
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
 	dip.customFlags &= ~ViewCustomFlags::EXPANDED;
-	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK);
 
 	int count = m_pList->GetItemCount();
 	for (int i = sel + 1; i < count; i++)
@@ -1235,6 +1239,7 @@ void CDirView::CollapseSubdir(int sel)
 		const DIFFITEM& di = GetDiffItem(i);
 		if (!di.IsAncestor(&dip))
 			break;
+		m_listViewItems.erase(m_listViewItems.begin() + i);
 		m_pList->DeleteItem(i--);
 		count--;
 	}
@@ -1253,7 +1258,6 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 		return;
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
-	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(2), LVIS_STATEIMAGEMASK);
 
 	CDiffContext &ctxt = GetDiffContext();
 	dip.customFlags |= ViewCustomFlags::EXPANDED;
@@ -1268,6 +1272,8 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	SortColumnsAppropriately();
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
+	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
+	m_pList->Invalidate();
 }
 
 /**
@@ -1690,7 +1696,7 @@ void CDirView::OnUpdateCtxtDirCopyBoth2(CCmdUI* pCmdUI)
  */
 DIFFITEM *CDirView::GetItemKey(int idx) const
 {
-	return (DIFFITEM *) m_pList->GetItemData(idx);
+	return (DIFFITEM*)m_listViewItems[idx].lParam;
 }
 
 // SetItemKey & GetItemKey encapsulate how the display list items
@@ -1731,6 +1737,7 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 	if (m_bTreeMode)
 	{
 		CollapseSubdir(sel);
+		m_listViewItems.erase(m_listViewItems.begin() + sel);
 		m_pList->DeleteItem(sel);
 	}
 	else if (GetDiffContext().m_bRecursive || diffpos->HasChildren())
@@ -1742,11 +1749,15 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 			int cursel = it.m_sel;
 			++it;
 			if (di.IsAncestor(diffpos) || diffpos == &di)
+			{
+				m_listViewItems.erase(m_listViewItems.begin() + cursel);
 				m_pList->DeleteItem(cursel);
+			}
 		}
 	}
 	else
 	{
+		m_listViewItems.erase(m_listViewItems.begin() + sel);
 		m_pList->DeleteItem(sel);
 	}
 	if (removeDIFFITEM)
@@ -1766,6 +1777,7 @@ void CDirView::DeleteAllDisplayItems()
 	// item data are just positions (diffposes)
 	// that is, they contain no memory needing to be freed
 	m_pList->DeleteAllItems();
+	m_listViewItems.clear();
 
 	m_firstDiffItem.reset();
 	m_lastDiffItem.reset();
@@ -1777,11 +1789,12 @@ void CDirView::DeleteAllDisplayItems()
  */
 int CDirView::GetItemIndex(DIFFITEM *key)
 {
-	LVFINDINFO findInfo;
-
-	findInfo.flags = LVFI_PARAM;  // Search for itemdata
-	findInfo.lParam = (LPARAM)key;
-	return m_pList->FindItem(&findInfo);
+	for (size_t i = 0; i < m_listViewItems.size(); ++i)
+	{
+		if (m_listViewItems[i].lParam == reinterpret_cast<LPARAM>(key))
+			return static_cast<int>(i);
+	}
+	return 0;
 }
 
 /**
@@ -2544,7 +2557,6 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	return 0; // return value unused
 }
 
-
 BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
 	NMHDR * hdr = reinterpret_cast<NMHDR *>(lParam);
@@ -2914,7 +2926,7 @@ void CDirView::OnToolsGenerateReport()
 	pReport->SetRootPaths(paths);
 	pReport->SetColumns(m_pColItems->GetDispColCount());
 	pReport->SetFileCmpReport(new FileCmpReport(this));
-	pReport->SetList(new IListCtrlImpl(m_pList->m_hWnd));
+	pReport->SetList(new IListCtrlImpl(m_pList->m_hWnd, m_listViewItems));
 	pReport->SetReportType(dlg.m_nReportType);
 	pReport->SetReportFile(dlg.m_sReportFile);
 	pReport->SetCopyToClipboard(dlg.m_bCopyToClipboard);
@@ -3418,6 +3430,26 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 			}
 		}
 	}
+}
+
+void CDirView::OnODFindItem(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMLVFINDITEM* pFindItem = reinterpret_cast<NMLVFINDITEM*>(pNMHDR);
+	if (pFindItem->lvfi.flags & LVFI_STRING)
+	{
+		String text = strutils::makelower(pFindItem->lvfi.psz);
+		for (size_t i = pFindItem->iStart; i < m_listViewItems.size(); ++i)
+		{
+			DIFFITEM *di = GetItemKey(static_cast<int>(i));
+			String filename = strutils::makelower(di->diffFileInfo[0].filename);
+			if (di && _tcsncmp(text.c_str(), filename.c_str(), text.length()) == 0)
+			{
+				*pResult = i;
+				return;
+			}
+		}
+	}
+	*pResult = -1;
 }
 
 /**
@@ -4303,17 +4335,16 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent)
+void CDirView::AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent)
 {
-	LV_ITEM lvItem;
-	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
-	lvItem.iItem = i;
+	ListViewOwnerDataItem lvItem;
 	lvItem.iIndent = iIndent;
-	lvItem.iSubItem = 0;
-	lvItem.pszText = LPSTR_TEXTCALLBACK;
 	lvItem.lParam = (LPARAM)diffpos;
 	lvItem.iImage = iImage;
-	return GetListCtrl().InsertItem(&lvItem);
+	if (i == static_cast<int>(m_listViewItems.size()))
+		m_listViewItems.push_back(lvItem);
+	else
+		m_listViewItems.insert(m_listViewItems.begin() + i, lvItem);
 }
 
 /**
@@ -4368,8 +4399,10 @@ static LPTSTR NTAPI AllocDispinfoText(const String &s)
 void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 {
 	int nIdx = pParam->item.iItem;
+	if (nIdx >= static_cast<int>(m_listViewItems.size()))
+		return;
+	DIFFITEM *key = reinterpret_cast<DIFFITEM*>(m_listViewItems[nIdx].lParam);
 	int i = m_pColItems->ColPhysToLog(pParam->item.iSubItem);
-	DIFFITEM *key = GetItemKey(nIdx);
 	if (IsDiffItemSpecial(key))
 	{
 		if (m_pColItems->IsColName(i))
@@ -4382,6 +4415,14 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 		return;
 	const CDiffContext &ctxt = GetDiffContext();
 	const DIFFITEM &di = ctxt.GetDiffAt(key);
+	if (pParam->item.mask & LVIF_STATE)
+	{
+		pParam->item.stateMask = LVIS_STATEIMAGEMASK;
+		if (di.HasChildren())
+			pParam->item.state = INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1);
+		else
+			pParam->item.state = 0;
+	}
 	if (pParam->item.mask & LVIF_TEXT)
 	{
 		String s = m_pColItems->ColGetTextToDisplay(&ctxt, i, di);
@@ -4390,6 +4431,10 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	if (pParam->item.mask & LVIF_IMAGE)
 	{
 		pParam->item.iImage = GetColImage(di);
+	}
+	if (pParam->item.mask & LVIF_INDENT)
+	{
+		pParam->item.iIndent = m_listViewItems[nIdx].iIndent;
 	}
 }
 

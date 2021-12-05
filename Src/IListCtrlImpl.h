@@ -4,10 +4,19 @@
 #include <commctrl.h>
 #include <atlimage.h>
 
+struct ListViewOwnerDataItem
+{
+    LPARAM lParam;
+    int iIndent;
+    int iImage;
+};
+
 class IListCtrlImpl : public IListCtrl
 {
 public:
-	explicit IListCtrlImpl(HWND hwndListCtrl) : m_hwndListCtrl(hwndListCtrl)
+	explicit IListCtrlImpl(HWND hwndListCtrl, std::vector<ListViewOwnerDataItem>& listViewItems)
+		: m_hwndListCtrl(hwndListCtrl)
+		, m_listViewItems(listViewItems)
 	{
 	}
 
@@ -20,7 +29,7 @@ public:
 
 	int GetRowCount() const override
 	{
-		return ListView_GetItemCount(m_hwndListCtrl);
+		return static_cast<int>(m_listViewItems.size());
 	}
 
 	String GetColumnName(int col) const override
@@ -44,11 +53,9 @@ public:
 
 	void *GetItemData(int row) const override
 	{
-		LVITEM lvi = {0};
-		lvi.iItem = row;
-		lvi.mask = LVIF_PARAM;
-		::SendMessage(m_hwndListCtrl, LVM_GETITEM, 0, (LPARAM)&lvi);
-		return (void *)lvi.lParam;
+		if (row < 0 || row >= static_cast<int>(m_listViewItems.size()))
+			return nullptr;
+		return reinterpret_cast<void *>(m_listViewItems[row].lParam);
 	}
 
 	int GetTextColor(int row) const override
@@ -82,12 +89,22 @@ public:
 
 	int GetNextItem(int sel, bool selected = false, bool reverse = false) const override
 	{
-		return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0) | (reverse ? LVNI_ABOVE : 0));		
+		//return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0) | (reverse ? LVNI_ABOVE : 0));		
+		if (!reverse)
+			return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0));		
+		if (!selected)
+			return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_ABOVE);
+		for (int i = sel - 1; i >= 0; --i)
+		{
+			if (ListView_GetItemState(m_hwndListCtrl, i, LVIS_SELECTED))
+				return i;
+		}
+		return -1;
 	}
 
 	int GetNextSelectedItem(int sel, bool reverse = false) const override
 	{
-		return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_SELECTED | (reverse ? LVNI_ABOVE : 0));		
+		return GetNextItem(sel, true, reverse);
 	}
 
 	unsigned GetSelectedCount() const override
@@ -169,4 +186,5 @@ public:
 
 protected:
 	HWND m_hwndListCtrl;
+	std::vector<ListViewOwnerDataItem>& m_listViewItems;
 };
