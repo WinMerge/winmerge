@@ -1318,6 +1318,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 				GetOptionsMgr()->Set(OPT_CMP_IGNORE_CASE, projItem.GetIgnoreCase());
 			if (projItem.HasIgnoreEol())
 				GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, projItem.GetIgnoreEol());
+			if (projItem.HasIgnoreNumbers())
+				GetOptionsMgr()->Set(OPT_CMP_IGNORE_NUMBERS, projItem.GetIgnoreNumbers());
 			if (projItem.HasIgnoreCodepage())
 				GetOptionsMgr()->Set(OPT_CMP_IGNORE_CODEPAGE, projItem.GetIgnoreCodepage());
 			if (projItem.HasFilterCommentsLines())

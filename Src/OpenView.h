@@ -85,6 +85,7 @@ private:
 	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
 	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
 	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
@@ -140,6 +141,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreNumbers();
+	afx_msg void OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreCP();
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreComments();
