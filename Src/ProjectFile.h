@@ -26,6 +26,7 @@ public:
 	bool HasIgnoreBlankLines() const;
 	bool HasIgnoreCase() const;
 	bool HasIgnoreEol() const;
+	bool HasIgnoreNumbers() const;
 	bool HasIgnoreCodepage() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
@@ -44,6 +45,7 @@ public:
 	bool GetIgnoreBlankLines() const;
 	bool GetIgnoreCase() const;
 	bool GetIgnoreEol() const;
+	bool GetIgnoreNumbers() const;
 	bool GetIgnoreCodepage() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
@@ -59,6 +61,7 @@ public:
 	void SetIgnoreBlankLines(bool bIgnoreBlankLines);
 	void SetIgnoreCase(bool bIgnoreCase);
 	void SetIgnoreEol(bool bIgnoreEol);
+	void SetIgnoreNumbers(bool bIgnoreNumbers);
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
@@ -73,6 +76,7 @@ public:
 	void SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines);
 	void SetSaveIgnoreCase(bool bSaveIgnoreCase);
 	void SetSaveIgnoreEol(bool bSaveIgnoreEol);
+	void SetSaveIgnoreNumbers(bool bSaveIgnoreNumbers);
 	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
 	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
 	void SetSaveCompareMethod(bool bSaveCompareMethod);
@@ -101,6 +105,8 @@ private:
 	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
 	bool m_bHasIgnoreEol; /**< Has "Ignore carriage return differences" setting? */
 	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	bool m_bHasIgnoreNumbers; /**< Has "Ignore numbers" setting? */
+	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	bool m_bHasIgnoreCodepage; /**< Has "Ignore codepage differences" setting? */
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bHasFilterCommentsLines; /**< Has "Ignore comment differences" setting? */
@@ -114,6 +120,7 @@ private:
 	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
 	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
 	bool m_bSaveIgnoreEol; /**< Save "Ignore carriage return differences" setting? */
+	bool m_bSaveIgnoreNumbers; /**< Save "Ignore numbers" setting? */
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
@@ -234,6 +241,15 @@ inline bool ProjectFileItem::HasIgnoreCase() const
 inline bool ProjectFileItem::HasIgnoreEol() const
 {
 	return m_bHasIgnoreEol;
+}
+
+/**
+ * @brief Returns if "Ignore numbers" setting is defined in projectfile.
+ * @return true if project file has "Ignore numbers" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreNumbers() const
+{
+	return m_bHasIgnoreNumbers;
 }
 
 /** 
@@ -433,6 +449,24 @@ inline void ProjectFileItem::SetIgnoreEol(bool bIgnoreEol)
 	m_bIgnoreEol = bIgnoreEol;
 }
 
+/**
+ * @brief Returns the value of the "Ignore numbers" setting.
+ * @return The value of the "Ignore numbers" setting
+ */
+inline bool ProjectFileItem::GetIgnoreNumbers() const
+{
+	return m_bIgnoreNumbers;
+}
+
+/**
+ * @brief Set the value of the "Ignore numbers" setting.
+ * @param [in] bIgnoreNumbers New value of the "Ignore numbers" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreNumbers(bool bIgnoreNumbers)
+{
+	m_bIgnoreNumbers = bIgnoreNumbers;
+}
+
 /** 
  * @brief Returns the value of the "Ignore codepage differences" setting.
  * @return The value of the "Ignore codepage differences" setting
@@ -560,6 +594,15 @@ inline void ProjectFileItem::SetSaveIgnoreCase(bool bSaveIgnoreCase)
 inline void ProjectFileItem::SetSaveIgnoreEol(bool bSaveIgnoreEol)
 {
 	m_bSaveIgnoreEol = bSaveIgnoreEol;
+}
+
+/**
+ * @brief Set whether to save "Ignore numbers" setting.
+ * @param [in] bSaveIgnoreNumbers Whether to save "Ignore numbers" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreNumbers(bool bSaveIgnoreNumbers)
+{
+	m_bSaveIgnoreNumbers = bSaveIgnoreNumbers;
 }
 
 /** 

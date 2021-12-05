@@ -921,6 +921,7 @@ BEGIN
         MENUITEM "Ignore &case", ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
         MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore num&bers", ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
         MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
         POPUP "&Compare method:"
