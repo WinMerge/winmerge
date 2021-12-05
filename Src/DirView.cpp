@@ -4415,14 +4415,6 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 		return;
 	const CDiffContext &ctxt = GetDiffContext();
 	const DIFFITEM &di = ctxt.GetDiffAt(key);
-	if (pParam->item.mask & LVIF_STATE)
-	{
-		pParam->item.stateMask = LVIS_STATEIMAGEMASK;
-		if (di.HasChildren())
-			pParam->item.state = INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1);
-		else
-			pParam->item.state = 0;
-	}
 	if (pParam->item.mask & LVIF_TEXT)
 	{
 		String s = m_pColItems->ColGetTextToDisplay(&ctxt, i, di);
@@ -4431,10 +4423,18 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	if (pParam->item.mask & LVIF_IMAGE)
 	{
 		pParam->item.iImage = GetColImage(di);
+		pParam->item.mask |= LVIF_STATE; // for WinXP
 	}
 	if (pParam->item.mask & LVIF_INDENT)
 	{
 		pParam->item.iIndent = m_listViewItems[nIdx].iIndent;
+	}
+	if (pParam->item.mask & LVIF_STATE)
+	{
+		pParam->item.state &= ~LVIS_STATEIMAGEMASK;
+		pParam->item.stateMask |= LVIS_STATEIMAGEMASK;
+		if (di.HasChildren())
+			pParam->item.state |= INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1);
 	}
 }
 
