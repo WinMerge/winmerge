@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgariska menyer och dialoger
 CatalanLanguage=Katalanska menyer och dialoger
 ChineseSimplifiedLanguage=Kinesiska (Förenklad) menyer och dialoger
 ChineseTraditionalLanguage=Kinesiska (Traditionell) menyer och dialoger
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroatiska menyer och dialoger
 CzechLanguage=Tjeckiska menyer och dialoger
 DanishLanguage=Danska menyer och dialoger

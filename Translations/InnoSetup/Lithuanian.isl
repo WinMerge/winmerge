@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgarø meniu ir dialogai
 CatalanLanguage=Katalonø meniu ir dialogai
 ChineseSimplifiedLanguage=Kinø (supaprastinta) meniu ir dialogai
 ChineseTraditionalLanguage=Kinø (tradicinë) meniu ir dialogai
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroatø meniu ir dialogai
 CzechLanguage=Èekø meniu ir dialogai
 DanishLanguage=Danø meniu ir dialogai

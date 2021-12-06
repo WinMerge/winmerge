@@ -28,6 +28,7 @@ BulgarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÈáÛÇÑí
 CatalanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÇÊÇáÇä 
 ChineseSimplifiedLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓÇÏå ÔÏå  
 ChineseTraditionalLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓäÊí  
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÑæÇÊíä  
 CzechLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜æÓáæÇ˜í   
 DanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÏÇäãÇÑ˜í  

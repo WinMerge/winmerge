@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgaarse menu’s en vensters
 CatalanLanguage=Catalaanse menu’s en vensters
 ChineseSimplifiedLanguage=Chinese (versimpeld) menu’s en vensters
 ChineseTraditionalLanguage=Chinese (traditioneel) menu’s en vensters
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroatische menu’s en vensters
 CzechLanguage=Tsjechische menu’s en vensters
 DanishLanguage=Deense menu’s en vensters

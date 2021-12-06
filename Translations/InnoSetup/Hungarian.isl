@@ -28,6 +28,7 @@ BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
 ChineseSimplifiedLanguage=Kínai (Egyszerûsítés) menük és párbeszédablakok
 ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Horvát menük és párbeszédablakok
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok

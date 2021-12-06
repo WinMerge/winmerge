@@ -28,6 +28,7 @@ BulgarianLanguage=Bolgarski meniji in pogovorna okna
 CatalanLanguage=Katalonski meniji in pogovorna okna
 ChineseSimplifiedLanguage=Kitajski (poenostavljeni) meniji in pogovorna okna
 ChineseTraditionalLanguage=Kitajski (tradicionalni) meniji in pogovorna okna
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Hrvaški meniji in pogovorna okna
 CzechLanguage=Èeški meniji in pogovorna okna
 DanishLanguage=Danski meniji in pogovorna okna

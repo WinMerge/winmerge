@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgarca menü ve pencereler
 CatalanLanguage=Katalanca menü ve pencereler
 ChineseSimplifiedLanguage=Çince (Basitleþtirilmiþ) menü ve pencereler
 ChineseTraditionalLanguage=Çince (Geleneksel) menü ve pencereler
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Hýrvatça menü ve pencereler
 CzechLanguage=Çekce menü ve pencereler
 DanishLanguage=Danimarkaca menü ve pencereler

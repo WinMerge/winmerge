@@ -4056,6 +4056,3 @@ msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %
 
 msgid "Specify plugin arguments"
 msgstr "Indicate i parametri di u modulu d’estensione"
-
-#~ msgid "Ignor&e blank lines"
-#~ msgstr "Ignurà e linee &bianche"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-12-05</update>
+  <update>2021-12-07</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -144,6 +144,25 @@
         <translator>
           <name>Calvin Lin</name>
           <mail>ylin77 at gmail.com</mail>
+        </translator>
+      </translators>
+    </translation>
+    <translation>
+      <language>Corsican</language>
+      <file>Corsican.po</file>
+      <update></update>
+      <strings>
+        <count>1138</count>
+        <translated>1138</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+      <translators>
+        <translator maintainer="1">
+          <name>Patriccollu di Santa Maria è Sichè</name>
+        </translator>
+        <translator>
+          <name>Patriccollu di Santa Maria è Sichè</name>
         </translator>
       </translators>
     </translation>
@@ -881,6 +900,25 @@
       </strings>
     </translation>
     <translation>
+      <language>Corsican</language>
+      <file>Corsican.po</file>
+      <update></update>
+      <strings>
+        <count>9</count>
+        <translated>9</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+      <translators>
+        <translator maintainer="1">
+          <name>Patriccollu di Santa Maria è Sichè</name>
+        </translator>
+        <translator>
+          <name>Patriccollu di Santa Maria è Sichè</name>
+        </translator>
+      </translators>
+    </translation>
+    <translation>
       <language>Croatian</language>
       <file>Croatian.po</file>
       <update></update>
@@ -1313,6 +1351,17 @@
       </strings>
     </translation>
     <translation>
+      <language>Corsican</language>
+      <file>Corsican.isl</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Croatian</language>
       <file>Croatian.isl</file>
       <update></update>
@@ -1680,6 +1729,17 @@
     <translation>
       <language>ChineseTraditional</language>
       <file>ReadMe-ChineseTraditional.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Corsican</language>
+      <file>ReadMe-Corsican.txt</file>
       <update></update>
       <strings>
         <count>0</count>

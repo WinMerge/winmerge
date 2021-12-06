@@ -28,6 +28,7 @@ BulgarianLanguage=Bu³garski
 CatalanLanguage=Kataloñski
 ChineseSimplifiedLanguage=Chiñski (uproszczony)
 ChineseTraditionalLanguage=Chiñski (tradycyjny)
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Chorwacki
 CzechLanguage=Czeski
 DanishLanguage=Duñski

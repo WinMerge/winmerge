@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgariera menuak eta elkarrizketak
 CatalanLanguage=Kataluniera menuak eta elkarrizketak
 ChineseSimplifiedLanguage=Txinera (Arrunta) menuak eta elkarrizketak
 ChineseTraditionalLanguage=Txinera (Tradizionala) menuak eta elkarrizketak
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroaziera menuak eta elkarrizketak
 CzechLanguage=Txekiera menuak eta elkarrizketak
 DanishLanguage=Daniera menuak eta elkarrizketak

@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-12-05**:
+Status from **2021-12-07**:
 
 ## WinMerge
 
@@ -13,6 +13,7 @@ Status from **2021-12-05**:
 | Catalan              |  1137 |        567 |     0 |          570 |     50 % |             |
 | ChineseSimplified    |  1137 |        977 |     0 |          160 |     86 % |             |
 | ChineseTraditional   |  1137 |        857 |     0 |          280 |     75 % |  2010-02-19 |
+| Corsican             |  1138 |       1138 |     0 |            0 |    100 % |             |
 | Croatian             |  1137 |        632 |     1 |          504 |     56 % |  2009-02-13 |
 | Czech                |  1137 |        607 |     0 |          530 |     53 % |             |
 | Danish               |  1137 |        641 |     0 |          496 |     56 % |  2013-01-13 |
@@ -54,6 +55,7 @@ Status from **2021-12-05**:
 | Catalan              |     9 |          4 |     0 |            5 |     44 % |             |
 | ChineseSimplified    |     9 |          4 |     0 |            5 |     44 % |             |
 | ChineseTraditional   |     9 |          4 |     0 |            5 |     44 % |             |
+| Corsican             |     9 |          9 |     0 |            0 |    100 % |             |
 | Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
 | Czech                |     9 |          4 |     0 |            5 |     44 % |             |
 | Danish               |     9 |          4 |     0 |            5 |     44 % |             |
@@ -95,6 +97,7 @@ Status from **2021-12-05**:
 | Catalan              |     - |          - |     - |            - |        - |             |
 | ChineseSimplified    |     - |          - |     - |            - |        - |             |
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
+| Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
 | Czech                |     - |          - |     - |            - |        - |             |
 | Danish               |     - |          - |     - |            - |        - |             |
@@ -134,6 +137,7 @@ Status from **2021-12-05**:
 | Catalan              |     - |          - |     - |            - |        - |             |
 | ChineseSimplified    |     - |          - |     - |            - |        - |             |
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
+| Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
 | Dutch                |     - |          - |     - |            - |        - |             |
 | English              |     - |          - |     - |            - |        - |             |
@@ -184,6 +188,10 @@ Status from **2021-12-05**:
    - [Koko](mailto:kokokoko%20at%20giga.net.tw)
    - [wck3](mailto:wck3171%20at%20pchome.com.tw)
    - [Calvin Lin](mailto:ylin77%20at%20gmail.com)
+
+ * Corsican
+   - Patriccollu di Santa Maria è Sichè *Maintainer*
+   - Patriccollu di Santa Maria è Sichè
 
  * Croatian
    - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)
@@ -312,6 +320,10 @@ Status from **2021-12-05**:
    - [Vitaliy Stopchans'kyy](mailto:stopcha%20at%20gmail.com)
 
 ### ShellExtension
+
+ * Corsican
+   - Patriccollu di Santa Maria è Sichè *Maintainer*
+   - Patriccollu di Santa Maria è Sichè
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*

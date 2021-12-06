@@ -28,6 +28,7 @@ BulgarianLanguage=Βουλγαρικά επιλογές και διάλογοι
 CatalanLanguage=Καταλανικά επιλογές και διάλογοι
 ChineseSimplifiedLanguage=Κινεζικά (Απλοποιημένα) επιλογές και διάλογοι
 ChineseTraditionalLanguage=Κινεζικά (Παραδοσιακά) επιλογές και διάλογοι
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Κροατικά επιλογές και διάλογοι
 CzechLanguage=Τσεχικά επιλογές και διάλογοι
 DanishLanguage=Δανέζικα επιλογές και διάλογοι

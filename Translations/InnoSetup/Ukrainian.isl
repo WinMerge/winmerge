@@ -28,6 +28,7 @@ BulgarianLanguage=Меню і діалогові вікна болгарською мовою
 CatalanLanguage=Меню і діалогові вікна каталонською мовою
 ChineseSimplifiedLanguage=Меню і діалогові вікна звичайною китайською мовою
 ChineseTraditionalLanguage=Меню і діалогові вікна традиційною китайською мовою
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Меню і діалогові вікна хорватською мовою
 CzechLanguage=Меню і діалогові вікна чеською мовою
 DanishLanguage=Меню і діалогові вікна датською мовою

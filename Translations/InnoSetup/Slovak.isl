@@ -28,6 +28,7 @@ BulgarianLanguage=Bulharské ponuky a dialógy
 CatalanLanguage=Katalánske ponuky a dialógy
 ChineseSimplifiedLanguage=Èínske (zjednodušená) ponuky a dialógy
 ChineseTraditionalLanguage=Èínske (tradièná) ponuky a dialógy
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Èeské ponuky a dialógy
 DanishLanguage=Dánske ponuky a dialógy
