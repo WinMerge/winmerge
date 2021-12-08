@@ -1,57 +1,57 @@
 WINMERGE
 
-WinMerge hÃ¨ un attrezzu di paragone Ã¨ di fusione in fonte aperta per Windows.
-WinMerge pÃ² paragunÃ  cartulari Ã¨ schedarii Ã¨ affissÃ  e sfarenze in un furmatu
-di testu visuale chÃ¬ hÃ¨ capicitoghju Ã¨ faciule Ã  manighjÃ . WinMerge pÃ² esse
-impiegatu, sia cumâ€™Ã¨ un attrezzu di paragone o di fusione, sia cumâ€™Ã¨
-unâ€™appiecazione autonoma.
+WinMerge hè un attrezzu di paragone è di fusione in fonte aperta per Windows.
+WinMerge pò paragunà cartulari è schedarii è affissà e sfarenze in un furmatu
+di testu visuale chì hè capicitoghju è faciule à manighjà. WinMerge pò esse
+impiegatu, sia cum’è un attrezzu di paragone o di fusione, sia cum’è
+un’appiecazione autonoma.
 
-WinMerge cuntene tante funzioni per rende piÃ¹ faciule u paragone, a
-sincrunizazione Ã¨ a fusione. Parechji linguaghji di prugrammazione Ã¨ altri
+WinMerge cuntene tante funzioni per rende più faciule u paragone, a
+sincrunizazione è a fusione. Parechji linguaghji di prugrammazione è altri
 furmati di schedariu anu a so sintassa sopralineata.
 
-Lâ€™ultime versione Ã¨ infurmazione di WinMerge sÃ² dispunibule Ã  lâ€™indirizzuÂ :
+L’ultime versione è infurmazione di WinMerge sò dispunibule à l’indirizzu :
 	https://winmerge.org/
 
 Lanciu rapidu
 =============
-Per amparÃ  cumu fÃ  lâ€™operazioni basichi dopu Ã  lâ€™installazione di WinMerge,
-cliccu nantâ€™Ã  Aiutu > Aiutu WinMerge Ã¨ navigate Ã  u paragrafu di u lanciu
-rapidu. OsinnÃ², impiegate a versione web Ã  lâ€™indirizzuÂ :
+Per amparà cumu fà l’operazioni basichi dopu à l’installazione di WinMerge,
+cliccu nant’à Aiutu > Aiutu WinMerge è navigate à u paragrafu di u lanciu
+rapidu. Osinnò, impiegate a versione web à l’indirizzu :
 	https://manual.winmerge.org/QuickStart.html
 
 Aiutu WInMerge
 ============== 
-Lâ€™aiutu di WinMerge hÃ¨ installatu di lucale cumâ€™Ã¨ un schedariu dâ€™aiutu HTML
-Microsoft, WinMerge.chm, durante lâ€™installazione de WinMerge. Per apre
-lâ€™aiutu, cliccu nantâ€™Ã  Aiutu > Aiutu WinMerge o appughjate nantâ€™Ã  u tastu F1
-in a finestra di WinMerge. Nantâ€™Ã  a linea di cumanda, lanciate u schedariu
-dâ€™esecuzione WinMerge cÃ¹ u cumutatore dâ€™aiutu /?.
+L’aiutu di WinMerge hè installatu di lucale cum’è un schedariu d’aiutu HTML
+Microsoft, WinMerge.chm, durante l’installazione de WinMerge. Per apre
+l’aiutu, cliccu nant’à Aiutu > Aiutu WinMerge o appughjate nant’à u tastu F1
+in a finestra di WinMerge. Nant’à a linea di cumanda, lanciate u schedariu
+d’esecuzione WinMerge cù u cumutatore d’aiutu /?.
 
-Pudete dinÃ¹ sfugliÃ  a versione HTML di lâ€™aiutu di WinMerge Ã  lâ€™indirizzuÂ :
+Pudete dinù sfuglià a versione HTML di l’aiutu di WinMerge à l’indirizzu :
 	https://manual.winmerge.org/
 
 Assistenza WinMerge
 ===================
-Dumande o sugestioni apprupositu di WinMergeÂ ? Un bellu locu per principiÃ 
-sÃ² i fori di a cumunitÃ  WinMerge chÃ¬ si trovanu Ã  lâ€™indirizzu
-https://forums.winmerge.org/. Di manera regulare, i sviluppatori leghjenu Ã¨
-rispondenu Ã  e dumande nantâ€™Ã  sti dui fori. Impiegate i fori di chjachjarata
-generale per i penseri nantâ€™Ã  WinMerge, cumâ€™Ã¨ e dumande apprupositu di u so
-impiegu. Impiegate u foru di i sviluppatori per i penseri nantâ€™Ã  u sviluppu
+Dumande o sugestioni apprupositu di WinMerge ? Un bellu locu per principià
+sò i fori di a cumunità WinMerge chì si trovanu à l’indirizzu
+https://forums.winmerge.org/. Di manera regulare, i sviluppatori leghjenu è
+rispondenu à e dumande nant’à sti dui fori. Impiegate i fori di chjachjarata
+generale per i penseri nant’à WinMerge, cum’è e dumande apprupositu di u so
+impiegu. Impiegate u foru di i sviluppatori per i penseri nant’à u sviluppu
 di WinMerge.
 
-Riferimentu di prublemi Ã¨ dumande di funzioni
+Riferimentu di prublemi è dumande di funzioni
 =============================================
-Sâ€™Ã¨ un penseru Ã¹n hÃ¨ micca currettu in i fori di WinMerge, verificate u
-ghjestiunariu di prughjettu Ã  lâ€™indirizzu https://project.winmerge.org/
-induve si pÃ² cunsultÃ  lâ€™articuli dighjÃ  creati o mandÃ  e vostre dumande,
-secondu Ã  lâ€™unghjette cumâ€™Ã¨ Â«Â BugsÂ Â» o Â«Â Feature RequestsÂ Â».
+S’è un penseru ùn hè micca currettu in i fori di WinMerge, verificate u
+ghjestiunariu di prughjettu à l’indirizzu https://project.winmerge.org/
+induve si pò cunsultà l’articuli dighjà creati o mandà e vostre dumande,
+secondu à l’unghjette cum’è « Bugs » o « Feature Requests ».
 
-Sâ€™Ã¨ vo mandate un raportu di prublema, ci vole Ã  indicÃ  u numeru di versione
-di WinMerge in u vostru raportu. Pudete ingenerÃ  un ghjurnale di
-cunfigurazione grazia Ã  lâ€™azzione Aiutu > Cunfigurazione. Ci vole Ã 
-aghjunghje stu ghjurnale Ã  u vostru raportu di prublema perchÃ¨ ellu
+S’è vo mandate un raportu di prublema, ci vole à indicà u numeru di versione
+di WinMerge in u vostru raportu. Pudete ingenerà un ghjurnale di
+cunfigurazione grazia à l’azzione Aiutu > Cunfigurazione. Ci vole à
+aghjunghje stu ghjurnale à u vostru raportu di prublema perchè ellu
 cuntene parechje infurmazioni ghjuvevule per i sviluppatori.
 
 
