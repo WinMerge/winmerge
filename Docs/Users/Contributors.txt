@@ -116,6 +116,7 @@ Localization:
   sheppaul <sheppaul at gmail.com>
   teamzamong <teamzamong at gmail.com>
   BrainS <29201475+BraINstinct0 at users.noreply.github.com>
+  cynilyn <cynilyn at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>

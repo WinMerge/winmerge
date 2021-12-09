@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-12-07**:
+Status from **2021-12-10**:
 
 ## WinMerge
 
@@ -13,7 +13,7 @@ Status from **2021-12-07**:
 | Catalan              |  1137 |        567 |     0 |          570 |     50 % |             |
 | ChineseSimplified    |  1137 |        977 |     0 |          160 |     86 % |             |
 | ChineseTraditional   |  1137 |        857 |     0 |          280 |     75 % |  2010-02-19 |
-| Corsican             |  1138 |       1138 |     0 |            0 |    100 % |             |
+| Corsican             |  1137 |       1137 |     0 |            0 |    100 % |             |
 | Croatian             |  1137 |        632 |     1 |          504 |     56 % |  2009-02-13 |
 | Czech                |  1137 |        607 |     0 |          530 |     53 % |             |
 | Danish               |  1137 |        641 |     0 |          496 |     56 % |  2013-01-13 |
@@ -27,7 +27,7 @@ Status from **2021-12-07**:
 | Hungarian            |  1137 |       1136 |     0 |            1 |    100 % |  2021-03-15 |
 | Italian              |  1137 |        994 |     0 |          143 |     87 % |  2021-08-09 |
 | Japanese             |  1137 |       1137 |     0 |            0 |    100 % |  2021-11-21 |
-| Korean               |  1137 |       1037 |     0 |          100 |     91 % |  2021-08-23 |
+| Korean               |  1137 |       1037 |     0 |          100 |     91 % |  2021-12-10 |
 | Lithuanian           |  1137 |       1115 |     0 |           22 |     98 % |  2021-11-29 |
 | Norwegian            |  1137 |        633 |     0 |          504 |     56 % |             |
 | Persian              |  1137 |        644 |     0 |          493 |     57 % |  2013-08-15 |
@@ -249,6 +249,7 @@ Status from **2021-12-07**:
    - [sheppaul](mailto:sheppaul%20at%20gmail.com)
    - [teamzamong](mailto:teamzamong%20at%20gmail.com)
    - [BrainS](mailto:29201475+BraINstinct0%20at%20users.noreply.github.com)
+   - [cynilyn](mailto:cynilyn%20at%20gmail.com)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)

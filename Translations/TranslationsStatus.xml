@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-12-07</update>
+  <update>2021-12-10</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -152,8 +152,8 @@
       <file>Corsican.po</file>
       <update></update>
       <strings>
-        <count>1138</count>
-        <translated>1138</translated>
+        <count>1137</count>
+        <translated>1137</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>
@@ -440,7 +440,7 @@
     <translation>
       <language>Korean</language>
       <file>Korean.po</file>
-      <update>2021-08-23</update>
+      <update>2021-12-10</update>
       <strings>
         <count>1137</count>
         <translated>1037</translated>
@@ -471,6 +471,10 @@
         <translator>
           <name>BrainS</name>
           <mail>29201475+BraINstinct0 at users.noreply.github.com</mail>
+        </translator>
+        <translator>
+          <name>cynilyn</name>
+          <mail>cynilyn at gmail.com</mail>
         </translator>
       </translators>
     </translation>
