@@ -67,8 +67,7 @@ public:
         }
         auto modulefilename = wil::GetModuleFileNameW(wil::GetModuleInstanceHandle());
         std::wstring path = modulefilename.get() + std::wstring(L",-") + std::to_wstring(id);
-        SHStrDupW(path.c_str(), icon);
-        return S_OK;
+        return SHStrDupW(path.c_str(), icon);
     }
     IFACEMETHODIMP GetToolTip(_In_opt_ IShellItemArray*, _Outptr_result_nullonfailure_ PWSTR* infoTip)
     {
@@ -87,8 +86,7 @@ public:
     }
     IFACEMETHODIMP Invoke(_In_opt_ IShellItemArray* selection, _In_opt_ IBindCtx*) noexcept try
     {
-        m_pContextMenu->InvokeCommand(Verb());
-        return S_OK;
+        return SUCCEEDED(m_pContextMenu->InvokeCommand(Verb())) ? S_OK : E_FAIL;
     }
     CATCH_RETURN();
 
