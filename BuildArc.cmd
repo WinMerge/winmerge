@@ -90,10 +90,18 @@ if not "%1" == "" (
 
 rem ShellExtension
 echo Copy ShellExtension...
-if not "%1" == "ARM64" (
+if "%1" == "" (
   copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
   copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
   copy "Build\ShellExtension\x64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
+if "%1" == "x64" (
+  copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\x64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
+if "%1" == "ARM" (
+  copy "Build\ShellExtension\ShellExtensionARM.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 if "%1" == "ARM64" (
   copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
