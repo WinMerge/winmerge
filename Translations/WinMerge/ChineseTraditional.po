@@ -257,8 +257,7 @@ msgstr "二進制 (&B)"
 msgid "&Image"
 msgstr "圖片 (&I)"
 
-#, c-format
-msgid "New  (&3 panes)"
+msgid "New (&3 panes)"
 msgstr "新增三方比較 (&3)"
 
 #, c-format
