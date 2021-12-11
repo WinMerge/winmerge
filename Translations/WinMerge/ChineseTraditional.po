@@ -5,6 +5,7 @@
 # * Koko <kokokoko at giga.net.tw>
 # * wck3 <wck3171 at pchome.com.tw>
 # * Calvin Lin <ylin77 at gmail.com>
+# * Enfeng Tsao <admin at siderealart.me>
 #
 # ID line follows -- this is updated by SVN
 # $Id: ChineseTraditional.po 7123 2010-02-19 19:03:56Z gerundt $
@@ -14,16 +15,15 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-11-08 13:51+0000\n"
-"PO-Revision-Date: 2010-02-19 17:04+0800\n"
-"Last-Translator: Calvin Lin <ylin77 at gmail.com>\n"
+"PO-Revision-Date: 2021-12-11 16:11+0800\n"
+"Last-Translator: SiderealArt <admin@siderealart.me>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: ChineseTraditional\n"
-"X-Poedit-Basepath: ../../Src/\n"
-"X-Poedit-Country: TAIWAN\n"
+"X-Poedit-Basepath: ../../Src\n"
 "Language: zh_TW\n"
+"X-Generator: Poedit 3.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -32,69 +32,69 @@ msgstr "LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL"
 
 #, c-format
 msgid "C&opy to Right"
-msgstr "複製到右邊(&O)"
+msgstr "複製到右側  (&O)"
 
 #, c-format
 msgid "Cop&y to Left"
-msgstr "複製到左邊(&Y)"
+msgstr "複製到左側 (&Y)"
 
 #, c-format
 msgid "Copy &from Left"
-msgstr "從左邊複製(&F)"
+msgstr "從左側複製 (&F)"
 
 #, c-format
 msgid "Copy fro&m Right"
-msgstr "從右邊複製(&M)"
+msgstr "從右側複製 (&M)"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "將所選行複製到右側"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "將所選行複製到左側"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "從左側複製所選行"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "將右側複製所選行"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "選取行內差異(&D)\tF4"
+msgstr "選取行內差異 (&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "將此變動加入替代篩選器 (&F)"
 
 #, c-format
 msgid "&Undo"
-msgstr "復原(&U)"
+msgstr "復原 (&U)"
 
 #, c-format
 msgid "&Redo"
-msgstr "再做(&R)"
+msgstr "取消復原 (&R)"
 
 #, c-format
 msgid "Cu&t"
-msgstr "剪下(&T)"
+msgstr "剪下 (&T)"
 
 #, c-format
 msgid "&Copy"
-msgstr "複製(&C)"
+msgstr "複製 (&C)"
 
 #, c-format
 msgid "&Paste"
-msgstr "貼上(&P)"
+msgstr "貼上 (&P)"
 
 #, c-format
 msgid "&Scripts"
-msgstr "隨譯即行碼(&S)"
+msgstr "隨譯即行碼 (&S)"
 
 #, c-format
 msgid "< Empty >"
 msgstr "< 無 >"
 
 msgid "&Go to...\tCtrl+G"
-msgstr "跳至(&G)...\tCtrl+G"
+msgstr "跳至 (&G)...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -104,177 +104,177 @@ msgstr ""
 
 #, c-format
 msgid "Op&en"
-msgstr "開啟(&E)"
+msgstr "開啟 (&E)"
 
 msgid "With &Registered Application"
-msgstr "用登錄的應用程式(&R)"
+msgstr "用登錄的應用程式 (&R)"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
+msgstr "用外部編輯器 (&E) \tCtrl+Alt+E"
 
 msgid "&With..."
-msgstr "用(&W)..."
+msgstr "用 (&W)..."
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "開啟父資料夾... (&P)"
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "殼層選單 (&H)"
 
 #, c-format
 msgid "View &Differences"
-msgstr "檢視差異(&D)"
+msgstr "檢視差異 (&D)"
 
 #, c-format
 msgid "Diff &Block Size"
-msgstr "差異區塊大小(&B)"
+msgstr "差異區塊大小 (&B)"
 
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr "忽略顏色差異(Color Distance Threshold)(&I)"
+msgstr "忽略顏色差異 (顏色差異閥值) (&I)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "偵測插入/刪除 (&E)"
 
 #, c-format
 msgid "&None"
-msgstr "關閉(&N)"
+msgstr "關閉 (&N)"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "垂直 (&V)"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "水平 (&H)"
 
 #, c-format
 msgid "&Previous Page"
-msgstr "前一頁(&P)"
+msgstr "前一頁 (&P)"
 
 #, c-format
 msgid "&Next Page"
-msgstr "後一頁(&N)"
+msgstr "後一頁 (&N)"
 
 #, c-format
 msgid "&Active Pane"
-msgstr "啟動框(&A)"
+msgstr "啟動框 (&A)"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "向右旋轉 90 度 (&R)"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "向左旋轉 90 度 (&L)"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "垂直翻轉 (&E)"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "水平翻轉 (&O)"
 
 #, c-format
 msgid "&Zoom"
-msgstr "拉近推遠(&Z)"
+msgstr "縮放 (&Z)"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "拉近(&I)\tCtrl++"
+msgstr "放大 (&I)\tCtrl++"
 
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "推遠(&O)\tCtrl+-"
+msgstr "縮小 (&O)\tCtrl+-"
 
 #. Zoom to normal
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "恢復原始(&N)\tCtrl+*"
+msgstr "恢復原始 (&N)\tCtrl+*"
 
 #, c-format
 msgid "&Overlay"
-msgstr "覆蓋(&O)"
+msgstr "覆蓋 (&O)"
 
 #, c-format
 msgid "&Alpha Blend"
-msgstr "透明效果(&A)"
+msgstr "透明效果 (&A)"
 
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr "透明動畫(&B)"
+msgstr "透明動畫 (&B)"
 
 #, c-format
 msgid "Dragging &Mode"
-msgstr "拖動模式(&M)"
+msgstr "拖動模式 (&M)"
 
 #, c-format
 msgid "&Move"
-msgstr "移動(&M)"
+msgstr "移動 (&M)"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr "調整誤差(&A)"
+msgstr "調整誤差 (&A)"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "垂直抹除 (&V)"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "水平抹除 (&H)"
 
 msgid "Rectangle &Select"
-msgstr ""
+msgstr "矩形選取 (&S)"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr "設定背景顏色(&S)"
+msgstr "設定背景顏色 (&S)"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "向量圖縮放 (&V)"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "比較從圖片中擷取的文字 (&T)"
 
 #, c-format
 msgid "&File"
-msgstr "檔案(&F)"
+msgstr "檔案 (&F)"
 
 #, c-format
 msgid "&New"
-msgstr "新增(&N)"
+msgstr "新增 (&N)"
 
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "文字 (&T)"
 
 msgid "T&able"
-msgstr ""
+msgstr "表格 (&A)"
 
 #, c-format
 msgid "&Binary"
-msgstr "二進制(&B)"
+msgstr "二進制 (&B)"
 
 #, c-format
 msgid "&Image"
-msgstr "圖片(&I)"
+msgstr "圖片 (&I)"
 
 #, c-format
-msgid "New (&3 panes)"
-msgstr "新增三方比較(&3)"
+msgid "New  (&3 panes)"
+msgstr "新增三方比較 (&3)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "開啟(&O)...\tCtrl+O"
+msgstr "開啟 (&O)...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "開啟衝突檔(&T)..."
+msgstr "開啟衝突檔 (&T)..."
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "開啟專案(&J)...\tCtrl+J"
+msgstr "開啟專案 (&J)...\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "儲存專案(&V)..."
+msgstr "儲存專案 (&V)..."
 
 #, c-format
 msgid "Recent Projects"
@@ -282,240 +282,240 @@ msgstr "最近開啟的專案"
 
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr "最近開啟檔案或資料夾(&I)"
+msgstr "最近開啟檔案或資料夾 (&I)"
 
 msgid "E&xit\tCtrl+Q"
-msgstr "結束(&X)\tCtrl+Q"
+msgstr "結束 (&X)\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
-msgstr "編輯(&E)"
+msgstr "編輯 (&E)"
 
 #, c-format
 msgid "&Options..."
-msgstr "選項(&O)..."
+msgstr "選項 (&O)..."
 
 #, c-format
 msgid "&View"
-msgstr "檢視(&V)"
+msgstr "檢視 (&V)"
 
 #, c-format
 msgid "&Toolbar"
-msgstr "工具列(&T)"
+msgstr "工具列 (&T)"
 
 #, c-format
 msgid "&Small"
-msgstr "小圖示(&S)"
+msgstr "小圖示 (&S)"
 
 #, c-format
 msgid "&Big"
-msgstr "大圖示(&B)"
+msgstr "大圖示 (&B)"
 
 #, c-format
 msgid "&Huge"
-msgstr "超大圖示(&H)"
+msgstr "超大圖示 (&H)"
 
 #, c-format
 msgid "&Status Bar"
-msgstr "狀態列(&S)"
+msgstr "狀態列 (&S)"
 
 #, c-format
 msgid "Ta&b Bar"
-msgstr "頁籤列(&B)"
+msgstr "頁籤列 (&B)"
 
 #, c-format
 msgid "&Tools"
-msgstr "工具(&T)"
+msgstr "工具 (&T)"
 
 #, c-format
 msgid "&Filters..."
-msgstr "篩選器(&F)..."
+msgstr "篩選器 (&F)..."
 
 #, c-format
 msgid "&Generate Patch..."
-msgstr "產生補綴(&G)..."
+msgstr "產生補綴 (&G)..."
 
 #, c-format
 msgid "&Plugins"
-msgstr "外掛(&P)"
+msgstr "外掛 (&P)"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "外掛設定(&L)..."
+msgstr "外掛設定 (&L)..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr "手動先行處理器(&N)"
+msgstr "手動先行處理器 (&N)"
 
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr "自動先行處理器(&U)"
+msgstr "自動先行處理器 (&U)"
 
-# "手動解壓縮(&M)"
+# "手動解壓縮 (&M)"
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "手動解開非純文字檔(&M)"
+msgstr "手動解壓縮 (&M)"
 
-# "自動解壓縮(&A)"
+# "自動解壓縮 (&A)"
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "自動解開非純文字檔(&A)"
+msgstr "自動解開非純文字檔 (&A)"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "重新載入外掛(&R)"
+msgstr "重新載入外掛 (&R)"
 
 #, c-format
 msgid "&Window"
-msgstr "視窗(&W)"
+msgstr "視窗 (&W)"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr "關閉(&O)\tCtrl+W"
+msgstr "關閉 (&O)\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
-msgstr "關閉全部(&S)"
+msgstr "關閉全部 (&S)"
 
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "切換窗格(&P)\tF6"
+msgstr "切換窗格 (&P)\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "水平並排(&H)"
+msgstr "水平並排 (&H)"
 
 #, c-format
 msgid "Tile &Vertically"
-msgstr "垂直並排(&V)"
+msgstr "垂直並排 (&V)"
 
 #, c-format
 msgid "&Cascade"
-msgstr "前後疊放(&C)"
+msgstr "前後疊放 (&C)"
 
 #, c-format
 msgid "&Help"
-msgstr "說明(&H)"
+msgstr "說明 (&H)"
 
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "WinMerge 說明(&W)\tF1"
+msgstr "WinMerge 說明 (&W)\tF1"
 
 #, c-format
 msgid "R&elease Notes"
-msgstr "發行說明(&E)"
+msgstr "發行說明 (&E)"
 
 #, c-format
 msgid "&Translations"
-msgstr "翻譯(&T)"
+msgstr "翻譯 (&T)"
 
 #, c-format
 msgid "C&onfiguration"
-msgstr "組態(&O)"
+msgstr "組態 (&O)"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "GNU 公共授權證(&G)"
+msgstr "GNU 公共授權證 (&G)"
 
 #, c-format
 msgid "&About WinMerge..."
-msgstr "關於 WinMerge(&A)..."
+msgstr "關於 WinMerge (&A)..."
 
 #, c-format
 msgid "&Read-only"
-msgstr "唯讀(&R)"
+msgstr "唯讀 (&R)"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "左邊唯讀(&E)"
+msgstr "左側唯讀 (&E)"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr "中間唯讀(&I)"
+msgstr "中間唯讀 (&I)"
 
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "右邊唯讀(&G)"
+msgstr "右側唯讀 (&G)"
 
 #, c-format
 msgid "&File Encoding..."
-msgstr "檔案編碼(&F)..."
+msgstr "檔案編碼 (&F)..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "全選(&A)\tCtrl+A"
+msgstr "全選 (&A)\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
-msgstr "顯示相同項目(&I)"
+msgstr "顯示相同項目 (&I)"
 
 #, c-format
 msgid "Show &Different Items"
-msgstr "顯示差異項目(&D)"
+msgstr "顯示差異項目 (&D)"
 
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "顯示左邊獨有項目(&E)"
+msgstr "顯示左側獨有項目 (&E)"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr "顯示中間獨有項目(&L)"
+msgstr "顯示中間獨有項目 (&L)"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "顯示右邊獨有項目(&G)"
+msgstr "顯示右側獨有項目 (&G)"
 
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "顯示略過的項目(&K)"
+msgstr "顯示略過的項目 (&K)"
 
 #, c-format
 msgid "S&how Binary Files"
-msgstr "顯示二進制檔案(&H)"
+msgstr "顯示二進制檔案 (&H)"
 
 #, c-format
 msgid "&3-way Compare"
-msgstr ""
+msgstr "&3 向比較"
 
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "顯示僅在左側不同的項目 (&L)"
 
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "顯示僅在中間不同的項目 (&M)"
 
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "顯示僅在右側不同的項目 (&R)"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "顯示僅在左側缺少的項目 (&L)"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "顯示僅在左側缺少的項目 (&M)"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "顯示僅在右側缺少的項目 (&R)"
 
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "顯示隱藏項目(&E)"
+msgstr "顯示隱藏項目 (&E)"
 
 #, c-format
 msgid "Tree &Mode"
-msgstr "樹狀模式(&M)"
+msgstr "樹狀模式 (&M)"
 
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr "展開所有子資料夾(&X)"
+msgstr "展開所有子資料夾 (&X)"
 
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "收合所有子資料夾(&C)"
+msgstr "收合所有子資料夾 (&C)"
 
 #, c-format
 msgid "Select &Font..."
-msgstr "選取字型(&F)..."
+msgstr "選取字型 (&F)..."
 
 #, c-format
 msgid "Use Default Font"
@@ -523,20 +523,20 @@ msgstr "使用預設字型"
 
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "窗格交換(&A)"
+msgstr "窗格對調 (&A)"
 
 msgid "Swap &1st | 2nd"
-msgstr ""
+msgstr "將第 &1 和第 2 對調"
 
 msgid "Swap &2nd | 3rd"
-msgstr ""
+msgstr "將第 &2 和第 3 對調"
 
 msgid "Swap 1st | &3rd"
-msgstr ""
+msgstr "將第 1 和第 &3 對調"
 
 #, c-format
 msgid "Com&pare Statistics..."
-msgstr "統計比較結果(&P)"
+msgstr "統計比較結果 (&P)"
 
 #, c-format
 msgid "Refresh\tF5"
@@ -544,152 +544,152 @@ msgstr "重整\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "重整標示區(&R)\tCtrl+F5"
+msgstr "重整標示區 (&R)\tCtrl+F5"
 
 #, c-format
 msgid "&Merge"
-msgstr "合併(&M)"
+msgstr "合併 (&M)"
 
 #, c-format
 msgid "Co&mpare\tEnter"
-msgstr "比較(&M)\tEnter"
+msgstr "比較 (&M)\tEnter"
 
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "下一個差異(&N)\tAlt+Down"
+msgstr "下一個差異 (&N)\tAlt+Down"
 
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "上一個差異(&P)\tAlt+Up"
+msgstr "上一個差異 (&P)\tAlt+Up"
 
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "第一個差異(&F)\tAlt+Home"
+msgstr "首個差異 (&F)\tAlt+Home"
 
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "目前差異(&C)\tAlt+Enter"
+msgstr "目前差異 (&C)\tAlt+Enter"
 
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "最後一個差異(&L)\tAlt+End"
+msgstr "最後一個差異 (&L)\tAlt+End"
 
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "複製到右邊(&R)\tAlt+Right"
+msgstr "複製到右側 (&R)\tAlt+Right"
 
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "複製到左邊(&E)\tAlt+Left"
+msgstr "複製到左側 (&E)\tAlt+Left"
 
 #, c-format
 msgid "&Delete\tDel"
-msgstr "刪除(&D)\tDel"
+msgstr "刪除 (&D)\tDel"
 
 #, c-format
 msgid "&Customize Columns..."
-msgstr "自訂欄位(&C)..."
+msgstr "自訂欄位 (&C)..."
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "產生報告(&R)..."
+msgstr "產生報告 (&R)..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr "解壓縮編輯(&E)"
+msgstr "解壓縮編輯 (&E)"
 
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "儲存(&S)\tCtrl+S"
+msgstr "儲存 (&S)\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr "儲存(&E)"
+msgstr "儲存 (&E)"
 
 #, c-format
 msgid "Save &Left"
-msgstr "儲存左邊(&L)"
+msgstr "儲存左側 (&L)"
 
 #, c-format
 msgid "Save &Middle"
-msgstr "儲存中間(&M)"
+msgstr "儲存中間 (&M)"
 
 #, c-format
 msgid "Save &Right"
-msgstr "儲存右邊(&R)"
+msgstr "儲存右側 (&R)"
 
 #, c-format
 msgid "Save &As"
-msgstr "儲存為(&A)"
+msgstr "儲存為 (&A)"
 
 #, c-format
 msgid "Save &Left As..."
-msgstr "儲存左邊為(&L)..."
+msgstr "儲存左側為 (&L)..."
 
 #, c-format
 msgid "Save &Middle As..."
-msgstr "儲存中間為(&M)..."
+msgstr "儲存中間為 (&M)..."
 
 #, c-format
 msgid "Save &Right As..."
-msgstr "儲存右邊為(&R)..."
+msgstr "儲存右側為 (&R)..."
 
 msgid "&Print...\tCtrl+P"
-msgstr "列印(&P)...\tCtrl+P"
+msgstr "列印 (&P)...\tCtrl+P"
 
 msgid "Page Set&up..."
-msgstr "設定列印格式(&U)..."
+msgstr "設定列印格式 (&U)..."
 
 msgid "Print Previe&w..."
-msgstr "預覽列印(&R)..."
+msgstr "預覽列印 (&R)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "轉換換行字元(&C)"
+msgstr "轉換換行字元 (&C)"
 
 #, c-format
 msgid "Mer&ge Mode\tF9"
-msgstr "開/關合併模式(&G)\tF9"
+msgstr "開/關合併模式 (&G)\tF9"
 
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr "重新載入(&L)\tCtrl+F5"
+msgstr "重新載入 (&L)\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr "重新比較(&M)"
+msgstr "重新比較 (&M)"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "復原(&U)\tCtrl+Z"
+msgstr "復原 (&U)\tCtrl+Z"
 
 #, c-format
 msgid "&Redo\tCtrl+Y"
-msgstr "再做(&R)\tCtrl+Y"
+msgstr "取消復原 (&R)\tCtrl+Y"
 
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "剪下(&U)\tCtrl+X"
+msgstr "剪下 (&U)\tCtrl+X"
 
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "複製(&C)\tCtrl+C"
+msgstr "複製 (&C)\tCtrl+C"
 
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "貼上(&P)\tCtrl+V"
+msgstr "貼上 (&P)\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "尋找(&I)...\tCtrl+F"
+msgstr "尋找 (&I)...\tCtrl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "取代(&C)...\tCtrl+H"
+msgstr "取代 (&C)...\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr "標記(&M)...\tCtrl+Shift+M"
+msgstr "標記 (&M)...\tCtrl+Shift+M"
 
 #, c-format
 msgid "Advanced"
@@ -697,27 +697,27 @@ msgstr "進階"
 
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "連同行號複製(&C)\tCtrl+Shift+C"
+msgstr "連同行號複製 (&C)\tCtrl+Shift+C"
 
 #, c-format
 msgid "&Bookmarks"
-msgstr "書籤(&B)"
+msgstr "書籤 (&B)"
 
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "放置/清除書籤(&T)\tCtrl+F2"
+msgstr "放置/清除書籤 (&T)\tCtrl+F2"
 
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "下一書籤(&N)\tF2"
+msgstr "下一書籤 (&N)\tF2"
 
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "上一書籤(&P)\tShift+F2"
+msgstr "上一書籤 (&P)\tShift+F2"
 
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "清除全部書籤(&C)"
+msgstr "清除全部書籤 (&C)"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -725,129 +725,129 @@ msgstr "語法高亮度顯示"
 
 #, c-format
 msgid "&Diff Context"
-msgstr "差異上下文(&D)"
+msgstr "差異上下文 (&D)"
 
 #, c-format
 msgid "&All Lines"
-msgstr "全部行(&A)"
+msgstr "全部行 (&A)"
 
 #, c-format
 msgid "&0 Lines"
-msgstr "0行(&0)"
+msgstr "0行 (&0)"
 
 #, c-format
 msgid "&1 Line"
-msgstr "1行(&1)"
+msgstr "1行 (&1)"
 
 #, c-format
 msgid "&3 Lines"
-msgstr "3行(&3)"
+msgstr "3行 (&3)"
 
 #, c-format
 msgid "&5 Lines"
-msgstr "5行(&5)"
+msgstr "5行 (&5)"
 
 #, c-format
 msgid "&7 Lines"
-msgstr "7行(&7)"
+msgstr "7行 (&7)"
 
 #, c-format
 msgid "&9 Lines"
-msgstr "9行(&9)"
+msgstr "9行 (&9)"
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr "切換全部行和 0-9 行(&T)\tCtrl+D"
+msgstr "切換全部行和 0-9 行 (&T)\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "隱藏相異行 (&I)"
 
 #, c-format
 msgid "&Lock Panes"
-msgstr "鎖住窗格(&L)"
+msgstr "鎖住窗格 (&L)"
 
 #, c-format
 msgid "&View Whitespace"
-msgstr "檢視空白和跳格(&V)"
+msgstr "檢視空白和跳格 (&V)"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "檢視 E&OL"
 
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "檢視行內差異(&W)"
+msgstr "檢視行內差異 (&W)"
 
 #, c-format
 msgid "View Line &Numbers"
-msgstr "檢視行號(&N)"
+msgstr "檢視行號 (&N)"
 
 #, c-format
 msgid "View &Margins"
-msgstr "檢視頁邊(&M)"
+msgstr "檢視頁邊 (&M)"
 
 #, c-format
 msgid "W&rap Lines"
-msgstr "自動換行(&R)"
+msgstr "自動換行 (&R)"
 
 #, c-format
 msgid "Split V&ertically"
-msgstr "垂直切割(&E)"
+msgstr "垂直切割 (&E)"
 
 # I would suggest "Microview Pane"
-# 差異窗格(&P)
+# 差異窗格 (&P)
 #, c-format
 msgid "Diff &Pane"
-msgstr "近察窗格(&P)"
+msgstr "差異窗格 (&P)"
 
 # I would suggest "Macroview Pane".
 # 位置窗格
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "遠望窗格(&P)"
+msgstr "位置窗格 (&P)"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr "下一個衝突(&X)\tAlt+Shift+Down"
+msgstr "下一個衝突 (&X)\tAlt+Shift+Down"
 
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr "上一個衝突(&V)\tAlt+Shift+Up"
+msgstr "上一個衝突 (&V)\tAlt+Shift+Up"
 
 #, c-format
 msgid "A&dvanced"
-msgstr "進階(&D)"
+msgstr "進階 (&D)"
 
 #, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr "下一個左邊和中間的差異\tAlt+1"
+msgstr "下一個左側和中間的差異\tAlt+1"
 
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "上一個左邊和中間的差異\tAlt+Shift+1"
+msgstr "上一個左側和中間的差異\tAlt+Shift+1"
 
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr "下一個左邊和右邊的差異\tAlt+2"
+msgstr "下一個左側和右側的差異\tAlt+2"
 
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr "上一個左邊和右邊的差異\tAlt+Shift+2"
+msgstr "上一個左側和右側的差異\tAlt+Shift+2"
 
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr "下一個中間和右邊的差異\tAlt+3"
+msgstr "下一個中間和右側的差異\tAlt+3"
 
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr "上一個中間和右邊的差異\tAlt+Shift+3"
+msgstr "上一個中間和右側的差異\tAlt+Shift+3"
 
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
-msgstr "下一個只存在左邊的差異\tAlt+7"
+msgstr "下一個只存在左側的差異\tAlt+7"
 
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "上一個只存在左邊的差異\tAlt+Shift+7"
+msgstr "上一個只存在左側的差異\tAlt+Shift+7"
 
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
@@ -859,51 +859,51 @@ msgstr "上一個只存在中間的差異\tAlt+Shift+8"
 
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
-msgstr "下一個只存在右邊的差異\tAlt+9"
+msgstr "下一個只存在右側的差異\tAlt+9"
 
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr "上一個只存在右邊的差異\tAlt+Shift+9"
+msgstr "上一個只存在右側的差異\tAlt+Shift+9"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "從左邊複製\tAlt+Shift+Right"
+msgstr "從左側複製\tAlt+Shift+Right"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "從右邊複製\tAlt+Shift+Right"
+msgstr "從右側複製\tAlt+Shift+Right"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "複製到右邊後到下一個(&O)\tCtrl+Alt+Right"
+msgstr "複製到右側後到下一個 (&O)\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "複製到左邊後到下一個(&T)\tCtrl+Alt+Left"
+msgstr "複製到左側後到下一個 (&T)\tCtrl+Alt+Left"
 
 #, c-format
 msgid "Copy &All to Right"
-msgstr "全部複製到右邊(&A)"
+msgstr "全部複製到右側 (&A)"
 
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "全部複製到左邊(&Y)"
+msgstr "全部複製到左側 (&Y)"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "自動合併(&U)\tCtrl+Alt+M"
+msgstr "自動合併 (&U)\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr "新增同步點(&S)\tAlt+S"
+msgstr "新增同步點 (&S)\tAlt+S"
 
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr "清除同步點(&H)"
+msgstr "清除同步點 (&H)"
 
 msgid "Unpac&ker"
 msgstr ""
 
 #, c-format
 msgid "&Prediffer"
-msgstr "先行處理器(&P)"
+msgstr "先行處理器 (&P)"
 
 msgid "Apply Pre&differ..."
 msgstr ""
@@ -913,61 +913,61 @@ msgstr ""
 
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "分割 (&L)"
 
 #, c-format
 msgid "Comp&are"
-msgstr "比較(&A)"
+msgstr "比較 (&A)"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "在新視窗中比較 (&W)"
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
 
 #, c-format
 msgid "Compare Non-hor&izontally"
-msgstr "非同步比較(&I)"
+msgstr "非同步比較 (&I)"
 
 #, c-format
 msgid "First &left item with second left item"
-msgstr "第一個左邊項目和第二個左邊項目(&L)"
+msgstr "第一個左側項目和第二個左側項目 (&L)"
 
 #, c-format
 msgid "First &right item with second right item"
-msgstr "第一個右邊項目和第二個右邊項目(&R)"
+msgstr "第一個右側項目和第二個右側項目 (&R)"
 
 #, c-format
 msgid "&First left item with second right item"
-msgstr "第一個左邊項目和第二個右邊項目(&F)"
+msgstr "第一個左側項目和第二個右側項目 (&F)"
 
 #, c-format
 msgid "&Second left item with first right item"
-msgstr "第二個左邊項目和第一個右邊項目(&S)"
+msgstr "第二個左側項目和第一個右側項目 (&S)"
 
 #, c-format
 msgid "Co&mpare As"
-msgstr "比較為(&M)"
+msgstr "比較為 (&M)"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr "左邊到中間 (%2 之 %1)"
+msgstr "左側到中間 (%2 之 %1)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "左邊到右邊 (%2 之 %1)"
+msgstr "左側到右側 (%2 之 %1)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "左邊到... (%2 之 %1)"
+msgstr "左側到... (%2 之 %1)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "中間到左邊 (%2 之 %1)"
+msgstr "中間到左側 (%2 之 %1)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "中間到右邊 (%2 之 %1)"
+msgstr "中間到右側 (%2 之 %1)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
@@ -975,71 +975,71 @@ msgstr "中間到... (%2 之 %1)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "右邊到中間 (%2 之 %1)"
+msgstr "右側到中間 (%2 之 %1)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "右邊到左邊 (%2 之 %1)"
+msgstr "右側到左側 (%2 之 %1)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "右邊到... (%2 之 %1)"
+msgstr "右側到... (%2 之 %1)"
 
 #, c-format
 msgid "&Delete"
-msgstr "刪除(&D)"
+msgstr "刪除 (&D)"
 
 #, c-format
 msgid "&Left"
-msgstr "左邊(&L)"
+msgstr "左側 (&L)"
 
 #, c-format
 msgid "&Middle"
-msgstr "中間(&M)"
+msgstr "中間 (&M)"
 
 #, c-format
 msgid "&Right"
-msgstr "右邊(&R)"
+msgstr "右側 (&R)"
 
 #, c-format
 msgid "&Both"
-msgstr "兩邊(&B)"
+msgstr "兩邊 (&B)"
 
 #, c-format
 msgid "&All"
-msgstr "全部(&A)"
+msgstr "全部 (&A)"
 
 #, c-format
 msgid "Re&name"
-msgstr "重新命名(&N)"
+msgstr "重新命名 (&N)"
 
 #, c-format
 msgid "&Hide Items"
-msgstr "隱藏檔案(&H)"
+msgstr "隱藏檔案 (&H)"
 
 #, c-format
 msgid "&Open Left"
-msgstr "開啟左邊(&O)"
+msgstr "開啟左側 (&O)"
 
 #, c-format
 msgid "With &External Editor"
-msgstr "用外在編輯器(&E)"
+msgstr "用外部編輯器 (&E)"
 
 #, c-format
 msgid "Open Midd&le"
-msgstr "開啟中間(&L)"
+msgstr "開啟中間 (&L)"
 
 #, c-format
 msgid "O&pen Right"
-msgstr "開啟右邊(&P)"
+msgstr "開啟右側 (&P)"
 
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "複製徑名(&Y)"
+msgstr "複製徑名 (&Y)"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "左邊 (%2 之 %1)"
+msgstr "左側 (%2 之 %1)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
@@ -1047,7 +1047,7 @@ msgstr "中間 (%2 之 %1)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "右邊 (%2 之 %1)"
+msgstr "右側 (%2 之 %1)"
 
 #, c-format
 msgid "Both (%1 of %2)"
@@ -1059,15 +1059,15 @@ msgstr "全部 (%2 之 %1)"
 
 #, c-format
 msgid "Copy &Filenames"
-msgstr "複製檔名(&F)"
+msgstr "複製檔名 (&F)"
 
 #, c-format
 msgid "Copy Items To Clip&board"
-msgstr "複製項目到剪貼簿(&B)"
+msgstr "複製項目到剪貼簿 (&B)"
 
 #, c-format
 msgid "&Zip"
-msgstr "Zip(&Z)"
+msgstr "Zip (&Z)"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
@@ -1083,7 +1083,7 @@ msgstr "差異到... (%2 之 %1)"
 
 #, c-format
 msgid "Left Shell menu"
-msgstr "左邊介面選單"
+msgstr "左側介面選單"
 
 #, c-format
 msgid "Middle Shell menu"
@@ -1091,7 +1091,7 @@ msgstr "中間介面選單"
 
 #, c-format
 msgid "Right Shell menu"
-msgstr "右邊介面選單"
+msgstr "右側介面選單"
 
 #, c-format
 msgid "Copy"
@@ -1099,14 +1099,14 @@ msgstr "複製"
 
 #, c-format
 msgid "&Copy Full Path"
-msgstr "複製完整路徑(&C)"
+msgstr "複製完整路徑 (&C)"
 
 #, c-format
 msgid "Copy &Filename"
-msgstr "複製檔名(&F)"
+msgstr "複製檔名 (&F)"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "解壓縮程式設定"
 
 #, c-format
 msgid "<None>"
@@ -1118,68 +1118,68 @@ msgstr "<自動>"
 
 #, c-format
 msgid "&Select..."
-msgstr "選取(&S)..."
+msgstr "選取 (&S)..."
 
 #, c-format
 msgid "Prediffer Settings"
 msgstr "先行處理器設定"
 
 msgid "G&o to Diff"
-msgstr "至差異區塊(&O)"
+msgstr "至差異區塊 (&O)"
 
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "不顯示移位區塊(&N)"
+msgstr "不顯示移位區塊 (&N)"
 
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "顯示移位區塊(&A)"
+msgstr "顯示移位區塊 (&A)"
 
 #, c-format
 msgid "W&hitespaces"
-msgstr "空格(&H)"
+msgstr "空格 (&H)"
 
 #, c-format
 msgid "Com&pare"
-msgstr "比較之(&P)"
+msgstr "比較之 (&P)"
 
 #, c-format
 msgid "I&gnore changes"
-msgstr "忽略其變更(&G)"
+msgstr "忽略其變更 (&G)"
 
 #, c-format
 msgid "Ig&nore all"
-msgstr "忽略全部(&N)"
+msgstr "忽略全部 (&N)"
 
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "忽略空白行(&K)"
+msgstr "忽略空白行 (&K)"
 
 #, c-format
 msgid "Ignore &case"
-msgstr "忽略大小寫(&C)"
+msgstr "忽略大小寫 (&C)"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
+msgstr "忽略歸位字元之差異 (Windows/Unix/Mac) (&R)"
 
 #, c-format
 msgid "Ignore codepage &differences"
-msgstr "忽略代碼頁不同(&D)"
+msgstr "忽略代碼頁不同 (&D)"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "忽略數字 (&B)"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "忽略註解差異 (&O)"
 
 #, c-format
 msgid "&Include Subfolders"
-msgstr "包括子資料夾(&I)"
+msgstr "包括子資料夾 (&I)"
 
 #, c-format
 msgid "&Compare method:"
-msgstr "檔案比較方式(&C)："
+msgstr "檔案比較方式 (&C)："
 
 #, c-format
 msgid "Full Contents"
@@ -1207,7 +1207,7 @@ msgstr "大小"
 
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "載入專案... (&L)"
 
 #, c-format
 msgid "About WinMerge"
@@ -1230,47 +1230,47 @@ msgstr "選取檔案或資料夾"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "第 &1 檔案或資料夾"
 
 #, c-format
 msgid "Re&ad-only"
-msgstr "唯讀(&A)"
+msgstr "唯讀 (&A)"
 
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "將第一和第二對調"
 
 #, c-format
 msgid "&Browse..."
-msgstr "瀏覽(&B)..."
+msgstr "瀏覽 (&B)..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "第 &2 檔案或資料夾"
 
 #, c-format
 msgid "Rea&d-only"
-msgstr "唯讀(&D)"
+msgstr "唯讀 (&D)"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "將第二和第三對調"
 
 #, c-format
 msgid "B&rowse..."
-msgstr "瀏覽(&R)..."
+msgstr "瀏覽 (&R)..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "第 &3 檔案或資料夾 (可選)"
 
 #, c-format
 msgid "Read-o&nly"
-msgstr "唯讀(&N)"
+msgstr "唯讀 (&N)"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "將第一和第三對調"
 
 #, c-format
 msgid "Browse..."
@@ -1286,10 +1286,10 @@ msgstr ""
 
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "選擇... (&L)"
 
 msgid "Co&mpare"
-msgstr ""
+msgstr "比較 (&M)"
 
 #, c-format
 msgid "Cancel"
@@ -1309,30 +1309,30 @@ msgstr "一般"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "自動捲至最初差異(&S)"
+msgstr "自動捲至首個差異 (&S)"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "自動捲至首個行內差異 (&C)"
 
 msgid "Cl&ose windows with 'Esc':"
-msgstr "按 'Esc' 關閉視窗(&O):"
+msgstr "按 'Esc' 關閉視窗 (&O):"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "於「開啟」對話方塊自動檢驗路徑(&A)"
+msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
 
 msgid "Single instance mode:"
 msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "關閉多重視窗時先詢問(&K)"
+msgstr "關閉多重視窗時先詢問 (&K)"
 
-# "比較時計入檔案時間(&P)"
+# "比較時計入檔案時間 (&P)"
 # Do you want with it to say "Include file time difference in comparing" or "Do not change file time in comparing"?
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "比較檔案時保留檔案時間(&P)"
+msgstr "比較檔案時保留檔案時間 (&P)"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
@@ -1344,11 +1344,11 @@ msgstr "點擊確定按鈕關閉「選擇檔案或資料夾」對話方塊"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
-msgstr "「開啟」對話方塊之自動完成(&E)："
+msgstr "「開啟」對話方塊之自動完成 (&E)："
 
 #, c-format
 msgid "Language:"
-msgstr "語言"
+msgstr "語言："
 
 #, c-format
 msgid "Find"
@@ -1356,39 +1356,39 @@ msgstr "尋找"
 
 #, c-format
 msgid "Fi&nd what:"
-msgstr "尋找(&N)："
+msgstr "尋找 (&N)："
 
 #, c-format
 msgid "Match &whole word only"
-msgstr "獨立完整字(&W)"
+msgstr "獨立完整字 (&W)"
 
 #, c-format
 msgid "Match &case"
-msgstr "區分大小寫(&C)"
+msgstr "區分大小寫 (&C)"
 
 #, c-format
 msgid "Regular &expression"
-msgstr "用類型表式(&E)"
+msgstr "用類型表式 (&E)"
 
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "至檔尾不折返(&O)"
+msgstr "至檔尾不折返 (&O)"
 
 #, c-format
 msgid "&Don't close this dialog box"
-msgstr "不要關閉此對話盒"
+msgstr "不要關閉此對話盒 (&D)"
 
 #, c-format
 msgid "&Find Next"
-msgstr "找下一個(&F)"
+msgstr "找下一個 (&F)"
 
 #, c-format
 msgid "Find &Prev"
-msgstr "找上一個(&P)"
+msgstr "找上一個 (&P)"
 
 #, c-format
 msgid "&Ok"
-msgstr "確定(&O)"
+msgstr "確定 (&O)"
 
 #, c-format
 msgid "Replace"
@@ -1396,11 +1396,11 @@ msgstr "取代"
 
 #, c-format
 msgid "Re&place with:"
-msgstr "取代為(&P)："
+msgstr "取代為 (&P)："
 
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "至檔尾不折返(&D)"
+msgstr "至檔尾不折返 (&D)"
 
 #, c-format
 msgid "Replace in"
@@ -1408,22 +1408,22 @@ msgstr "於"
 
 #, c-format
 msgid "&Selection"
-msgstr "選取區(&S)"
+msgstr "選取區 (&S)"
 
 #, c-format
 msgid "Wh&ole file"
-msgstr "整個檔案(&O)"
+msgstr "整個檔案 (&O)"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "找下一個 (&V)"
 
 #, c-format
 msgid "&Replace"
-msgstr "取代(&R)"
+msgstr "取代 (&R)"
 
 #, c-format
 msgid "Replace &All"
-msgstr "全部取代(&A)"
+msgstr "全部取代 (&A)"
 
 #, c-format
 msgid "Markers"
@@ -1431,7 +1431,7 @@ msgstr "標記"
 
 #, c-format
 msgid "Enable &Markers"
-msgstr "開啟標記(&M)"
+msgstr "開啟標記 (&M)"
 
 #, c-format
 msgid "New"
@@ -1439,18 +1439,18 @@ msgstr "新增"
 
 #, c-format
 msgid "&Background color:"
-msgstr "背景顏色(&B)"
+msgstr "背景顏色 (&B)"
 
 #, c-format
 msgid "&Apply"
-msgstr "套用(&A)"
+msgstr "套用 (&A)"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "行篩選器"
 
 #, c-format
 msgid "Enable Line Filters"
-msgstr "啟用行篩除器"
+msgstr "啟用行篩選器"
 
 #, c-format
 msgid "Regular Expressions (one per line):"
@@ -1465,26 +1465,26 @@ msgid "Remove"
 msgstr "移除"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "替代篩選器"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "啟用"
 
 msgid "Add"
-msgstr ""
+msgstr "新增"
 
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #, c-format
 msgid "Colors"
 msgstr "色彩"
 
 msgid "Color Scheme:"
-msgstr ""
+msgstr "色彩配置："
 
 #, c-format
 msgid "Background"
@@ -1538,10 +1538,10 @@ msgid "&Use folder compare colors"
 msgstr ""
 
 msgid "Items equal:"
-msgstr ""
+msgstr "相同項目："
 
 msgid "Items different:"
-msgstr ""
+msgstr "相異項目："
 
 msgid "Items not exists all:"
 msgstr ""
@@ -1559,15 +1559,15 @@ msgstr "系統"
 
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "刪除檔送到資源回收筒(&S)"
+msgstr "刪除檔送到資源回收筒 (&S)"
 
 #, c-format
 msgid "&External editor:"
-msgstr "外部編輯器(&E)："
+msgstr "外部編輯器 (&E)："
 
 #, c-format
 msgid "&Filter folder:"
-msgstr "資料夾篩選器(&F)："
+msgstr "資料夾篩選器 (&F)："
 
 #, c-format
 msgid "Temporary files folder"
@@ -1575,15 +1575,15 @@ msgstr "暫存檔資料夾"
 
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "系統的暫存資料夾(&Y)"
+msgstr "系統的暫存資料夾 (&Y)"
 
 #, c-format
 msgid "C&ustom folder:"
-msgstr "自訂資料夾(&U)："
+msgstr "自訂資料夾 (&U)："
 
 #, c-format
 msgid "Br&owse..."
-msgstr "瀏覽(&O)..."
+msgstr "瀏覽 (&O)..."
 
 #, c-format
 msgid "Patch Generator"
@@ -1591,51 +1591,51 @@ msgstr "補綴產生器"
 
 #, c-format
 msgid "File&1:"
-msgstr "檔案1(&1)："
+msgstr "檔案1 (&1)："
 
 #, c-format
 msgid "File&2:"
-msgstr "檔案2(&2)："
+msgstr "檔案2 (&2)："
 
 #, c-format
 msgid "&Swap"
-msgstr "對調(&S)"
+msgstr "對調 (&S)"
 
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "複製到剪貼簿(&C)"
+msgstr "複製到剪貼簿 (&C)"
 
 #, c-format
 msgid "&Append to existing file"
-msgstr "附加到現有檔案(&A)"
+msgstr "附加到現有檔案 (&A)"
 
 #, c-format
 msgid "&Result:"
-msgstr "結果(&R)："
+msgstr "結果 (&R)："
 
 #, c-format
 msgid "Bro&wse..."
-msgstr "瀏覽(&W)..."
+msgstr "瀏覽 (&W)..."
 
 #, c-format
 msgid "&Format"
-msgstr "格式(&F)"
+msgstr "格式 (&F)"
 
 #, c-format
 msgid "St&yle:"
-msgstr "樣式(&Y)："
+msgstr "樣式 (&Y)："
 
 #, c-format
 msgid "&Context:"
-msgstr "上下文(&C)："
+msgstr "上下文 (&C)："
 
 #, c-format
 msgid "Inclu&de command line"
-msgstr "附加 diff 命令於檔首(&P)"
+msgstr "附加 diff 命令於檔首 (&P)"
 
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "開啟外部編輯器(&X)"
+msgstr "開啟外部編輯器 (&X)"
 
 #, c-format
 msgid "Defaults"
@@ -1647,32 +1647,32 @@ msgstr "顯示欄位"
 
 #, c-format
 msgid "Move &Up"
-msgstr "上移(&U)"
+msgstr "上移 (&U)"
 
 #, c-format
 msgid "Move &Down"
-msgstr "下移(&D)"
+msgstr "下移 (&D)"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "額外屬性 (&A)"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "額外屬性"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "選擇外掛程式"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "外掛程式名稱 (&N)："
 
 #, c-format
 msgid "Extensions list:"
@@ -1683,7 +1683,7 @@ msgid "Description:"
 msgstr "描述："
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "預設參數："
 
 msgid "Display all plugins, don't check the extension."
 msgstr ""
@@ -1692,10 +1692,10 @@ msgid "&Open files in the same window type after unpacking."
 msgstr ""
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "外掛程式管線 (&P)："
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "新增管道 (&A)"
 
 #, c-format
 msgid "Stop"
@@ -1703,11 +1703,11 @@ msgstr "停止"
 
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "暫停"
 
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #, c-format
 msgid "Comparing items..."
@@ -1725,7 +1725,7 @@ msgid "Go to"
 msgstr "移至"
 
 msgid "G&o to:"
-msgstr "移至(&O)："
+msgstr "移至 (&O)："
 
 #, c-format
 msgid "File"
@@ -1736,14 +1736,14 @@ msgstr "移至"
 
 #, c-format
 msgid "Li&ne"
-msgstr "行(&N)"
+msgstr "行 (&N)"
 
 #, c-format
 msgid "&Difference"
-msgstr "差異區塊(&D)"
+msgstr "差異區塊 (&D)"
 
 msgid "&Go to"
-msgstr "移至(&G)"
+msgstr "移至 (&G)"
 
 #, c-format
 msgid "Compare"
@@ -1755,29 +1755,29 @@ msgstr "空白處"
 
 #, c-format
 msgid "&Compare"
-msgstr "比對空白處(&W)"
+msgstr "比對空白處 (&W)"
 
 #, c-format
 msgid "&Ignore change"
-msgstr "忽略空白數量之變動而造成的差異(&H)"
+msgstr "忽略空白數量之變動而造成的差異 (&H)"
 
 #, c-format
 msgid "I&gnore all"
-msgstr "忽略空白處之任何差異(&A)"
+msgstr "忽略空白處之任何差異 (&A)"
 
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "偵測移位的區塊(&N)"
+msgstr "偵測移位的區塊 (&N)"
 
 #, c-format
 msgid "&Match similar lines"
-msgstr "找出相似行(&M)"
+msgstr "找出相似行 (&M)"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "實驗性差異演算法 (&A)："
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "啟用縮排啟發式演算法 (&H)"
 
 msgid "Completely unhighlight the ignored differences"
 msgstr ""
@@ -1788,15 +1788,15 @@ msgstr "編輯器"
 
 #, c-format
 msgid "&Highlight syntax"
-msgstr "高亮度語法(&H)"
+msgstr "高亮度語法 (&H)"
 
 #, c-format
 msgid "&Automatic rescan"
-msgstr "自動重新掃描(&A)"
+msgstr "自動重新掃描 (&A)"
 
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "保留原始 EOL 字元(&P)"
+msgstr "保留原始 EOL 字元 (&P)"
 
 #, c-format
 msgid "Tabs"
@@ -1804,15 +1804,15 @@ msgstr "跳格"
 
 #, c-format
 msgid "&Tab size:"
-msgstr "跳格大小(&T)："
+msgstr "跳格大小 (&T)："
 
 #, c-format
 msgid "&Insert Tabs"
-msgstr "插入跳格字元(&I)"
+msgstr "插入跳格字元 (&I)"
 
 #, c-format
 msgid "Insert &Spaces"
-msgstr "插入空白(&S)"
+msgstr "插入空白 (&S)"
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -1824,15 +1824,15 @@ msgstr "檢視行內差異"
 
 #, c-format
 msgid "&Character level"
-msgstr "字元階層(&C)"
+msgstr "字元階層 (&C)"
 
 #, c-format
 msgid "&Word-level:"
-msgstr "字階層(&W)："
+msgstr "字階層 (&W)："
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr "斷句字元(&O)："
+msgstr "斷句字元 (&O)："
 
 msgid "&Rendering Mode:"
 msgstr ""
@@ -1845,7 +1845,7 @@ msgid "Reset"
 msgstr "重設"
 
 msgid "File Filters"
-msgstr ""
+msgstr "檔案篩選器"
 
 msgid "Test..."
 msgstr "測試..."
@@ -1872,15 +1872,15 @@ msgstr "儲存修改的檔案？"
 
 #, c-format
 msgid "Left side file"
-msgstr "左邊檔案"
+msgstr "左側檔案"
 
 #, c-format
 msgid "&Save changes"
-msgstr "儲存變更(&S)"
+msgstr "儲存變更 (&S)"
 
 #, c-format
 msgid "&Discard changes"
-msgstr "放棄變更(&D)"
+msgstr "放棄變更 (&D)"
 
 #, c-format
 msgid "Middle side file"
@@ -1888,27 +1888,27 @@ msgstr "中間檔案"
 
 #, c-format
 msgid "Sa&ve changes"
-msgstr "儲存變更(&V)"
+msgstr "儲存變更 (&V)"
 
 #, c-format
 msgid "Discard c&hanges"
-msgstr "放棄變更(&H)"
+msgstr "放棄變更 (&H)"
 
 #, c-format
 msgid "Right side file"
-msgstr "右邊檔案"
+msgstr "右側檔案"
 
 #, c-format
 msgid "S&ave changes"
-msgstr "儲存變更(&A)"
+msgstr "儲存變更 (&A)"
 
 #, c-format
 msgid "Dis&card changes"
-msgstr "放棄變更(&C)"
+msgstr "放棄變更 (&C)"
 
 #, c-format
 msgid "Disca&rd All"
-msgstr "放棄全部(&R)"
+msgstr "放棄全部 (&R)"
 
 #, c-format
 msgid "Codepage"
@@ -1922,13 +1922,19 @@ msgstr "編碼頁"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
 msgstr ""
 "偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
 "需要重新啟動程式。"
 
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "偵測使用 mlang.dll 文字檔案的編碼頁資訊\n需要重新啟動程式。"
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
+msgstr ""
+"偵測使用 mlang.dll 文字檔案的編碼頁資訊\n"
+"需要重新啟動程式。"
 
 #, c-format
 msgid "System codepage"
@@ -2001,19 +2007,19 @@ msgstr "粗體"
 
 #, c-format
 msgid "Search Marker:"
-msgstr "搜尋標記"
+msgstr "搜尋標記："
 
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "使用定義標記1"
+msgstr "使用者自定義標記1："
 
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "使用定義標記2"
+msgstr "使用者自定義標記2："
 
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "使用定義標記3"
+msgstr "使用者自定義標記3："
 
 #, c-format
 msgid "Folder Compare Report"
@@ -2021,15 +2027,15 @@ msgstr "比較目錄後的報告"
 
 #, c-format
 msgid "Report &File:"
-msgstr "報告檔(&F)："
+msgstr "報告檔 (&F)："
 
 #, c-format
 msgid "&Style:"
-msgstr "樣式(&S)："
+msgstr "樣式 (&S)："
 
 #, c-format
 msgid "&Include File Compare Report"
-msgstr "包括檔案比較報告(&I)"
+msgstr "包括檔案比較報告 (&I)"
 
 #, c-format
 msgid "Shared or Private Filter"
@@ -2037,11 +2043,11 @@ msgstr "共用或個人篩選器"
 
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "你要建立哪種篩選器？"
+msgstr "您要建立哪種篩選器？"
 
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "共用篩選器(適用所有使用者)"
+msgstr "共用篩選器 (適用所有使用者)"
 
 #, c-format
 msgid "Private Filter (only for current user)"
@@ -2053,11 +2059,11 @@ msgstr "支援壓縮"
 
 #, c-format
 msgid "&Enable archive file support"
-msgstr "壓縮檔支援(&E)"
+msgstr "壓縮檔支援 (&E)"
 
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "偵測檔首資訊以決定壓縮檔類型(&D)"
+msgstr "偵測檔首資訊以決定壓縮檔類型 (&D)"
 
 msgid "Items saved to or restored from the project file:"
 msgstr ""
@@ -2088,11 +2094,11 @@ msgstr "獨有"
 
 #, c-format
 msgid "Left:"
-msgstr "左邊："
+msgstr "左側："
 
 #, c-format
 msgid "Right:"
-msgstr "右邊："
+msgstr "右側："
 
 #, c-format
 msgid "Identical"
@@ -2112,7 +2118,7 @@ msgstr "中間："
 
 #, c-format
 msgid "Missing Left:"
-msgstr "遺失左邊："
+msgstr "遺失左側："
 
 #, c-format
 msgid "Missing Middle:"
@@ -2120,7 +2126,7 @@ msgstr "遺失中間："
 
 #, c-format
 msgid "Missing Right:"
-msgstr "遺失右邊："
+msgstr "遺失右側："
 
 #, c-format
 msgid "Affects"
@@ -2136,34 +2142,34 @@ msgstr "選定編碼頁給"
 
 #, c-format
 msgid "&File Loading:"
-msgstr "要載入的檔案(&F)："
+msgstr "要載入的檔案 (&F)："
 
 #, c-format
 msgid "File &Saving:"
-msgstr "要儲存的檔案(&S)："
+msgstr "要儲存的檔案 (&S)："
 
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "兩檔都用相同的編碼頁(&U)"
+msgstr "兩檔都用相同的編碼頁 (&U)"
 
 #, c-format
 msgid "&Cancel"
-msgstr "取消(&C)"
+msgstr "取消 (&C)"
 
 #, c-format
 msgid "Test Filter"
 msgstr "測試篩選器"
 
 msgid "Testing filter:"
-msgstr "測試篩選器:"
+msgstr "測試篩選器："
 
 #, c-format
 msgid "&Enter text to test:"
-msgstr "輸入文字以做測試(&E)："
+msgstr "輸入文字以做測試 (&E)："
 
 #, c-format
 msgid "&Folder Name"
-msgstr "資料夾名稱(&F)"
+msgstr "資料夾名稱 (&F)"
 
 #, c-format
 msgid "Result:"
@@ -2171,39 +2177,39 @@ msgstr "結果："
 
 #, c-format
 msgid "&Test"
-msgstr "測試(&T)"
+msgstr "測試 (&T)"
 
 #, c-format
 msgid "&Close"
-msgstr "關閉(&C)"
+msgstr "關閉 (&C)"
 
 msgid "Table"
-msgstr ""
+msgstr "表格"
 
 msgid "File type"
-msgstr ""
+msgstr "檔案類型"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "被分隔符號分隔的自訂數值 (&E)"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "分隔字元 (&E)："
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "允許引號中的新行字元 (&A)"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "引號字元 (&Q)："
 
 #, c-format
 msgid "&Use customized text colors"
-msgstr "使用自訂文字色彩(&U)"
+msgstr "使用自訂文字色彩 (&U)"
 
 #, c-format
 msgid "Whitespace:"
@@ -2227,11 +2233,11 @@ msgstr "產生備份檔於："
 
 #, c-format
 msgid "&Folder compare"
-msgstr "比較資料夾時(&F)"
+msgstr "比較資料夾時 (&F)"
 
 #, c-format
 msgid "Fil&e compare"
-msgstr "比較檔案時(&E)"
+msgstr "比較檔案時 (&E)"
 
 #, c-format
 msgid "Create backup files into:"
@@ -2239,22 +2245,22 @@ msgstr "產生備份檔至："
 
 #, c-format
 msgid "&Original file's folder"
-msgstr "原始檔的資料夾(&O)"
+msgstr "原始檔的資料夾 (&O)"
 
 #, c-format
 msgid "&Global backup folder:"
-msgstr "總的備份資料夾(&G)："
+msgstr "總的備份資料夾 (&G)："
 
 #, c-format
 msgid "Backup filename:"
 msgstr "備份檔檔名："
 
 msgid "&Append .bak extension"
-msgstr "附上 .bak 副檔名(&A)"
+msgstr "附上 .bak 副檔名 (&A)"
 
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "附上時間戳記(&P)"
+msgstr "附上時間戳記 (&P)"
 
 #, c-format
 msgid "Confirm Copy"
@@ -2266,15 +2272,15 @@ msgstr "確定要複製 XXX 項目？"
 
 #, c-format
 msgid "From left"
-msgstr "從左邊"
+msgstr "從左側"
 
 #, c-format
 msgid "To right"
-msgstr "到右邊"
+msgstr "到右側"
 
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "不要再提示這個問題(&Q)"
+msgstr "不要再詢問此問題 (&Q)"
 
 #, c-format
 msgid "Yes"
@@ -2286,17 +2292,17 @@ msgstr "否"
 
 #, c-format
 msgid "Plugins"
-msgstr "外掛"
+msgstr "外掛程式"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "啟用外掛(&E)"
+msgstr "啟用外掛程式 (&E)"
 
 msgid "File filters:"
-msgstr ""
+msgstr "檔案篩選器："
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "外掛程式參數 (&P)："
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
@@ -2311,31 +2317,31 @@ msgstr "檔案總管"
 
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "啟用進階選單(&N)"
+msgstr "啟用進階選單 (&N)"
 
 #, c-format
 msgid "&Add to context menu"
-msgstr "加到右鍵選單(&A)"
+msgstr "加到右鍵選單 (&A)"
 
 #, c-format
 msgid "&Register shell extension"
-msgstr "註冊右鍵快顯功能表(&R)"
+msgstr "註冊右鍵快顯功能表 (&R)"
 
 #, c-format
 msgid "&Unregister shell extension"
-msgstr "註銷右鍵快顯功能表(&U)"
+msgstr "註銷右鍵快顯功能表 (&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "僅為目前使用者註冊殼層延伸 (&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "僅為目前使用者取消註冊殼層延伸 (&L)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "為 &Windows 11 及以上版本註冊殼層延伸"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "為 &Windows 11 及以上版本取消註冊殼層延伸"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2343,45 +2349,49 @@ msgstr "資料夾"
 
 #, c-format
 msgid "S&top after first difference"
-msgstr "第一個差異就停(&T)"
+msgstr "在首個差異停止 (&T)"
 
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異(&O)"
+msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異 (&O)"
 
 #, c-format
 msgid "Include &unique subfolders contents"
-msgstr "包括獨一子資料夾(&U)"
+msgstr "包括獨一子資料夾 (&U)"
 
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr "自動擴展到所有子資料夾(&A)"
+msgstr "自動擴展到所有子資料夾 (&A)"
 
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr "忽略重新分析點(&R)"
+msgstr "忽略重新分析點 (&R)"
 
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr "快速比較之檔案大小上限 (MB)(&Q)："
+msgstr "快速比較之檔案大小上限 (MB) (&Q)："
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "二進位比較限制 (MB) (&B)："
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\n比較進程數(&N)(負數表示附加可用的CPU內核數量)："
+msgid ""
+"\n"
+"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+"\n"
+"比較進程數 (&N)(負數表示附加可用的CPU內核數量)："
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "&CSV 檔案模式："
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "&TSV 檔案模式："
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "被分隔符號分隔的自訂數值"
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "檔案模式："
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2389,7 +2399,7 @@ msgstr "二進制"
 
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr "二進制檔案副檔名(&P)"
+msgstr "二進制檔案副檔名 (&P)"
 
 #, c-format
 msgid "Frhed settings"
@@ -2397,32 +2407,32 @@ msgstr "Frhed 設定"
 
 #, c-format
 msgid "View &Settings..."
-msgstr "顯示設定(&S)..."
+msgstr "顯示設定 (&S)..."
 
 #, c-format
 msgid "&Binary Mode..."
-msgstr "二進制模式(&B)..."
+msgstr "二進制模式 (&B)..."
 
 #, c-format
 msgid "&Character Set..."
-msgstr "字元設定(&C)..."
+msgstr "字元設定 (&C)..."
 
 msgid "Image"
 msgstr "圖片"
 
 #, c-format
 msgid "Image File &Patterns:"
-msgstr "圖片檔案副檔名(&P)"
+msgstr "圖片檔案副檔名 (&P)"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "在資料夾比較中啟用圖片比較 (&E)"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "OCR 結果："
 
 #, c-format
 msgid "&Hex View"
-msgstr "二進制顯示(&H)"
+msgstr "二進制顯示 (&H)"
 
 #, c-format
 msgid "EXT"
@@ -2449,16 +2459,28 @@ msgid "REC"
 msgstr "REC"
 
 #, c-format
-msgid "\nNew Documents (Ctrl+N)"
-msgstr "\n新增 (Ctrl+N)"
+msgid ""
+"\n"
+"New Documents (Ctrl+N)"
+msgstr ""
+"\n"
+"新增 (Ctrl+N)"
 
 #, c-format
-msgid "\nOpen (Ctrl+O)"
-msgstr "\n開啟 (Ctrl+O)"
+msgid ""
+"\n"
+"Open (Ctrl+O)"
+msgstr ""
+"\n"
+"開啟 (Ctrl+O)"
 
 #, c-format
-msgid "\nSave (Ctrl+S)"
-msgstr "\n儲存 (Ctrl+S)"
+msgid ""
+"\n"
+"Save (Ctrl+S)"
+msgstr ""
+"\n"
+"儲存 (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file."
 msgstr "開啟專案檔時發生不明錯誤。"
@@ -2475,12 +2497,20 @@ msgid "Project file successfully saved."
 msgstr "專案檔成功儲存。"
 
 #, c-format
-msgid "\nUndo (Ctrl+Z)"
-msgstr "\n復原 (Ctrl+Z)"
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
+msgstr ""
+"\n"
+"復原 (Ctrl+Z)"
 
 #, c-format
-msgid "\nRedo (Ctrl+Y)"
-msgstr "\n再做 (Ctrl+Y)"
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
+msgstr ""
+"\n"
+"取消復原 (Ctrl+Y)"
 
 #, c-format
 msgid ""
@@ -2524,51 +2554,51 @@ msgstr "絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下�
 
 #, c-format
 msgid "&Abort"
-msgstr "放棄(&A)"
+msgstr "放棄 (&A)"
 
 #, c-format
 msgid "&Retry"
-msgstr "重試(&R)"
+msgstr "重試 (&R)"
 
 #, c-format
 msgid "&Ignore"
-msgstr "忽略(&I)"
+msgstr "忽略 (&I)"
 
 #, c-format
 msgid "Ignore &all"
-msgstr "全部忽略(&A)"
+msgstr "全部忽略 (&A)"
 
 #, c-format
 msgid "&Yes"
-msgstr "是(&Y)"
+msgstr "是 (&Y)"
 
 #, c-format
 msgid "Yes to &all"
-msgstr "全部皆是(&A)"
+msgstr "全部皆是 (&A)"
 
 #, c-format
 msgid "&No"
-msgstr "否(&N)"
+msgstr "否 (&N)"
 
 #, c-format
 msgid "No to a&ll"
-msgstr "全部皆否(&L)"
+msgstr "全部皆否 (&L)"
 
 #, c-format
 msgid "&Continue"
-msgstr "繼續(&C)"
+msgstr "繼續 (&C)"
 
 #, c-format
 msgid "&Skip"
-msgstr "略過(&S)"
+msgstr "略過 (&S)"
 
 #, c-format
 msgid "Skip &all"
-msgstr "全部略過(&A)"
+msgstr "全部略過 (&A)"
 
 #, c-format
 msgid "Don't display this &message again."
-msgstr "不要再顯示這個訊息(&M)"
+msgstr "不要再顯示此訊息 (&M)"
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
@@ -2578,20 +2608,20 @@ msgid "Syntax"
 msgstr "語法"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "色彩配置"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "資料夾比較"
 
 msgid "Project"
-msgstr ""
+msgstr "專案"
 
 #, c-format
 msgid "Differences"
 msgstr "差異"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "訊息對話框"
 
 #, c-format
 msgid "To:"
@@ -2599,25 +2629,25 @@ msgstr "到："
 
 #, c-format
 msgid "From left:"
-msgstr "從左邊："
+msgstr "從左側："
 
 #, c-format
 msgid "To left:"
-msgstr "到左邊："
+msgstr "到左側："
 
 #, c-format
 msgid "From right:"
-msgstr "從右邊："
+msgstr "從右側："
 
 #, c-format
 msgid "To right:"
-msgstr "到右邊："
+msgstr "到右側："
 
 msgid "From middle:"
-msgstr ""
+msgstr "從中間："
 
 msgid "To middle:"
-msgstr ""
+msgstr "至中間："
 
 #, c-format
 msgid "Version %1"
@@ -2678,32 +2708,32 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 檔 (*.xml)|*.xml|All Files (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "檔案類型"
 
 #, c-format
 msgid "Extension"
 msgstr "副檔名"
 
 msgid "Message"
-msgstr ""
+msgstr "訊息"
 
 msgid "Answer"
-msgstr ""
+msgstr "回答"
 
 msgid "Item"
-msgstr ""
+msgstr "項目"
 
 msgid "Load"
-msgstr ""
+msgstr "載入"
 
 msgid "Save"
-msgstr ""
+msgstr "儲存"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "包括子資料夾"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "比較選項"
 
 #, c-format
 msgid "Name"
@@ -2796,13 +2826,16 @@ msgstr ""
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "檔案篩選器檔已存在。覆蓋之？"
+msgstr "檔案篩選器檔已存在。要覆蓋現有篩選器嗎？"
 
 #, c-format
 msgid "Regular expression"
 msgstr "正規表示法"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "篩選器更新過。想重整所有進行中的資料夾比較嗎？\n"
 "\n"
@@ -2818,7 +2851,7 @@ msgstr "檔案比對中"
 
 #, c-format
 msgid "Untitled left"
-msgstr "未設標題的左邊"
+msgstr "未設標題的左側"
 
 #, c-format
 msgid "Untitled middle"
@@ -2826,21 +2859,21 @@ msgstr "未設標題的中間"
 
 #, c-format
 msgid "Untitled right"
-msgstr "未設標題的右邊"
+msgstr "未設標題的右側"
 
 msgid "Base File"
-msgstr ""
+msgstr "基礎檔案"
 
 #, c-format
 msgid "Theirs File"
-msgstr "他們的(檔案)"
+msgstr "他們的檔案"
 
 #, c-format
 msgid "Mine File"
-msgstr "我的(檔案)"
+msgstr "我的檔案"
 
 msgid "Original File"
-msgstr ""
+msgstr "原始檔案"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2896,23 +2929,23 @@ msgstr "資料夾選取"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "選取兩個 (或三個) 檔案或資料夾做比較。"
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "左側 (第一) 路徑無效！"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "中間 (第二) 路徑無效！"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "右側 (第二) 路徑無效！"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "右側 (第三) 路徑無效！"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -2920,22 +2953,22 @@ msgstr "兩邊路徑無效！"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "左側 (第一) 及中間 (第二) 路徑無效！"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "左側 (第一) 及右側 (第三) 路徑無效！"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "中間 (第二) 及右側 (第三) 路徑無效！"
 
 #, c-format
 msgid "All paths are invalid!"
 msgstr "所有路徑無效！"
 
 msgid "Only enabled for file comparisons"
-msgstr ""
+msgstr "僅為檔案比較啟用"
 
 #, c-format
 msgid "Cannot compare file and folder!"
@@ -2947,7 +2980,7 @@ msgstr "找不到檔案：%1"
 
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "未解壓縮的檔案：%1"
+msgstr "檔案為封裝檔：%1"
 
 #, c-format
 msgid ""
@@ -2975,8 +3008,16 @@ msgstr ""
 "%1\n"
 "不是衝突檔。"
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
 msgstr ""
+"您將要比較非常大的檔案。\n"
+"顯示檔案的內容會需要大量的記憶體。\n"
+"您要僅顯示比較結果，並隱藏檔案內容嗎？\n"
+"\n"
 
 #, c-format
 msgid "Save As"
@@ -2988,7 +3029,7 @@ msgstr "儲存更改到 %1？"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "%1 已標記成唯讀。你要覆寫唯讀檔嗎？ (否，則以新檔名儲存)"
+msgstr "%1 已標記成唯讀。您要覆寫唯讀檔嗎？ (選擇否將以新檔名儲存)"
 
 #, c-format
 msgid "Error backing up file"
@@ -3007,14 +3048,20 @@ msgstr ""
 "仍舊繼續嗎？"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "無法儲存檔案。\n"
 "%1\n"
 "%2\n"
-"要：\n"
+"您要：\n"
 "\t- 以不同名稱儲存檔案 (按「確定」)\n"
-"\t- 放棄目前操作(按「取消」)？"
+"\t- 放棄目前操作 (按「取消」)？"
 
 #, c-format
 msgid ""
@@ -3024,15 +3071,25 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"外掛 '%2' 無法將你對左邊檔案的變更包裝回到 '%1'。\n"
+"外掛程式 '%2' 無法將您對左側檔案的變更包裝回 '%1'。\n"
 "\n"
 "將不變更原始檔。\n"
 "\n"
-"要儲存解壓縮版成另一檔案嗎？"
+"您要將未封裝版本儲存成為另一檔案嗎？"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
 msgstr ""
+"外掛程式 '%2' 無法將您對中間檔案的變更包裝回到 '%1'。\n"
+"\n"
+"將不變更原始檔。\n"
+"\n"
+"您要將未封裝版本儲存成為另一檔案嗎？"
 
 #, c-format
 msgid ""
@@ -3042,11 +3099,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"外掛 '%2' 無法將你對右邊檔案的變更包裝回到 '%1'.\n"
+"外掛程式 '%2' 無法將您對右側檔案的變更包裝回 '%1'。\n"
 "\n"
 "將不變更原始檔。\n"
 "\n"
-"你要儲存解封包版本為另一檔案嗎？"
+"您要將未封裝版本儲存成為另一檔案嗎？"
 
 #, c-format
 msgid ""
@@ -3060,7 +3117,7 @@ msgstr ""
 "%1\n"
 "程式已更新過它。\n"
 "\n"
-"要覆寫那更新過的檔案嗎？"
+"要覆寫更新過的檔案嗎？"
 
 #, c-format
 msgid ""
@@ -3086,7 +3143,7 @@ msgstr ""
 
 #, c-format
 msgid "Save Left File As"
-msgstr "儲存左邊檔案為"
+msgstr "儲存左側檔案為"
 
 #, c-format
 msgid "Save Middle File As"
@@ -3094,7 +3151,7 @@ msgstr "儲存中間檔案為"
 
 #, c-format
 msgid "Save Right File As"
-msgstr "儲存右邊檔案為"
+msgstr "儲存右側檔案為"
 
 #, c-format
 msgid ""
@@ -3121,31 +3178,31 @@ msgstr "空白處或標點處中斷"
 
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "右邊到左邊 (%1)"
+msgstr "右側到左側 (%1)"
 
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr "右邊到中間 (%1)"
+msgstr "右側到中間 (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr "中間到左邊 (%1)"
+msgstr "中間到左側 (%1)"
 
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr "中間到右邊 (%1)"
+msgstr "中間到右側 (%1)"
 
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "左邊到右邊 (%1)"
+msgstr "左側到右側 (%1)"
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr "左邊到中間 (%1)"
+msgstr "左側到中間 (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "左邊到... (%1)"
+msgstr "左側到... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -3153,7 +3210,7 @@ msgstr "中間到... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "右邊到... (%1)"
+msgstr "右側到... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
@@ -3169,7 +3226,7 @@ msgstr "差異到... (%1)"
 
 #, c-format
 msgid "Left (%1)"
-msgstr "左邊 (%1)"
+msgstr "左側 (%1)"
 
 #, c-format
 msgid "Middle (%1)"
@@ -3177,7 +3234,7 @@ msgstr "中間 (%1)"
 
 #, c-format
 msgid "Right (%1)"
-msgstr "右邊 (%1)"
+msgstr "右側 (%1)"
 
 #, c-format
 msgid "Both (%1)"
@@ -3189,7 +3246,7 @@ msgstr "全部 (%1)"
 
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "左邊 - 選取目標資料夾："
+msgstr "左側 - 選取目標資料夾："
 
 #, c-format
 msgid "Middle side - select destination folder:"
@@ -3197,7 +3254,7 @@ msgstr "中間 - 選取目標資料夾："
 
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "右邊 - 選取目標資料夾："
+msgstr "右側 - 選取目標資料夾："
 
 #, c-format
 msgid "(%1 Files Affected)"
@@ -3255,7 +3312,7 @@ msgstr "確認移除"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "你要關閉一個正在比較資料夾的視窗，你確定要關閉視窗嗎？"
+msgstr "您要關閉一個正在比較資料夾的視窗，您確定要關閉視窗嗎？"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3279,11 +3336,11 @@ msgstr "比對結果"
 
 #, c-format
 msgid "Left Date"
-msgstr "左邊日期"
+msgstr "左側日期"
 
 #, c-format
 msgid "Right Date"
-msgstr "右邊日期"
+msgstr "右側日期"
 
 #, c-format
 msgid "Middle Date"
@@ -3291,11 +3348,11 @@ msgstr "中間日期"
 
 #, c-format
 msgid "Left Size"
-msgstr "左邊大小"
+msgstr "左側大小"
 
 #, c-format
 msgid "Right Size"
-msgstr "右邊大小"
+msgstr "右側大小"
 
 #, c-format
 msgid "Middle Size"
@@ -3303,11 +3360,11 @@ msgstr "中間大小"
 
 #, c-format
 msgid "Right Size (Short)"
-msgstr "右邊大小 (簡式)"
+msgstr "右側大小 (簡式)"
 
 #, c-format
 msgid "Left Size (Short)"
-msgstr "左邊大小 (簡式)"
+msgstr "左側大小 (簡式)"
 
 #, c-format
 msgid "Middle Size (Short)"
@@ -3315,11 +3372,11 @@ msgstr "中間大小 (簡式)"
 
 #, c-format
 msgid "Left Creation Time"
-msgstr "左邊建立時間"
+msgstr "左側建立時間"
 
 #, c-format
 msgid "Right Creation Time"
-msgstr "右邊建立時間"
+msgstr "右側建立時間"
 
 #, c-format
 msgid "Middle Creation Time"
@@ -3331,11 +3388,11 @@ msgstr "較新檔案"
 
 #, c-format
 msgid "Left File Version"
-msgstr "左邊檔案版本"
+msgstr "左側檔案版本"
 
 #, c-format
 msgid "Right File Version"
-msgstr "右邊檔案版本"
+msgstr "右側檔案版本"
 
 #, c-format
 msgid "Middle File Version"
@@ -3347,11 +3404,11 @@ msgstr "簡式結果"
 
 #, c-format
 msgid "Left Attributes"
-msgstr "左邊屬性"
+msgstr "左側屬性"
 
 #, c-format
 msgid "Right Attributes"
-msgstr "右邊屬性"
+msgstr "右側屬性"
 
 #, c-format
 msgid "Middle Attributes"
@@ -3359,7 +3416,7 @@ msgstr "中間屬性"
 
 #, c-format
 msgid "Left EOL"
-msgstr "左邊 EOL"
+msgstr "左側 EOL"
 
 #, c-format
 msgid "Middle EOL"
@@ -3367,15 +3424,15 @@ msgstr "中間 EOL"
 
 #, c-format
 msgid "Right EOL"
-msgstr "右邊 EOL"
+msgstr "右側 EOL"
 
 #, c-format
 msgid "Left Encoding"
-msgstr "左邊編碼"
+msgstr "左側編碼"
 
 #, c-format
 msgid "Right Encoding"
-msgstr "右邊編碼"
+msgstr "右側編碼"
 
 #, c-format
 msgid "Middle Encoding"
@@ -3397,88 +3454,88 @@ msgid "Prediffer"
 msgstr "先行處理器"
 
 msgid "Left"
-msgstr ""
+msgstr "左側"
 
 msgid "Middle"
-msgstr ""
+msgstr "中間"
 
 msgid "Right"
-msgstr ""
+msgstr "右側"
 
 msgid "Diff"
-msgstr ""
+msgstr "差異"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "左側重複數"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "右側重複數"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "中間重複數"
 
 msgid "Move"
-msgstr ""
+msgstr "移動"
 
 msgid "Audio"
-msgstr ""
+msgstr "音訊"
 
 msgid "Calendar"
-msgstr ""
+msgstr "日曆"
 
 msgid "Communication"
 msgstr ""
 
 msgid "Contact"
-msgstr ""
+msgstr "聯絡人"
 
 msgid "Devices"
-msgstr ""
+msgstr "裝置"
 
 msgid "Document"
-msgstr ""
+msgstr "文件"
 
 msgid "Home"
-msgstr ""
+msgstr "主頁"
 
 msgid "Journal"
 msgstr ""
 
 msgid "Link"
-msgstr ""
+msgstr "連結"
 
 msgid "Media"
-msgstr ""
+msgstr "媒體"
 
 msgid "Music"
-msgstr ""
+msgstr "音樂"
 
 msgid "Note"
-msgstr ""
+msgstr "筆記"
 
 msgid "Photo"
-msgstr ""
+msgstr "照片"
 
 msgid "RecordedTV"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "搜尋"
 
 msgid "Security"
-msgstr ""
+msgstr "安全性"
 
 msgid "Software"
-msgstr ""
+msgstr "軟體"
 
 msgid "Task"
-msgstr ""
+msgstr "工作"
 
 msgid "Video"
-msgstr ""
+msgstr "影片"
 
 msgid "Hash"
-msgstr ""
+msgstr "雜湊"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3498,7 +3555,7 @@ msgstr "略過的資料夾"
 
 #, c-format
 msgid "Left only: %1"
-msgstr "僅左邊：%1"
+msgstr "僅左側：%1"
 
 #, c-format
 msgid "Middle only: %1"
@@ -3506,7 +3563,7 @@ msgstr "僅中間：%1"
 
 #, c-format
 msgid "Right only: %1"
-msgstr "僅右邊：%1"
+msgstr "僅右側：%1"
 
 #, c-format
 msgid "Does not exist in %1"
@@ -3530,11 +3587,11 @@ msgstr "兩資料夾不同"
 
 #, c-format
 msgid "Left Only"
-msgstr "僅左邊"
+msgstr "僅左側"
 
 #, c-format
 msgid "Right Only"
-msgstr "僅右邊"
+msgstr "僅右側"
 
 #, c-format
 msgid "Middle Only"
@@ -3542,11 +3599,11 @@ msgstr "僅中間"
 
 #, c-format
 msgid "No item in left"
-msgstr "左邊無項目"
+msgstr "左側無項目"
 
 #, c-format
 msgid "No item in right"
-msgstr "右邊無項目"
+msgstr "右側無項目"
 
 #, c-format
 msgid "No item in middle"
@@ -3562,29 +3619,29 @@ msgstr "文字檔內容相同"
 
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr "(中間和右邊內容相同)"
+msgstr "(中間和右側內容相同)"
 
 #, c-format
 msgid "(Left and right are identical)"
-msgstr "(左邊和右邊內容相同)"
+msgstr "(左側和右側內容相同)"
 
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr "(左邊和中間內容相同)"
+msgstr "(左側和中間內容相同)"
 
 #, c-format
 msgid "Text files are different"
 msgstr "文字檔內容不同"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "圖片檔相同"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "圖片檔不同"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "群組%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3612,11 +3669,11 @@ msgstr "比較結果，長式表單。"
 
 #, c-format
 msgid "Left side modification date."
-msgstr "左邊修改日期。"
+msgstr "左側修改日期。"
 
 #, c-format
 msgid "Right side modification date."
-msgstr "左邊修改日期。"
+msgstr "左側修改日期。"
 
 #, c-format
 msgid "Middle side modification date."
@@ -3628,11 +3685,11 @@ msgstr "副檔名。"
 
 #, c-format
 msgid "Left file size in bytes."
-msgstr "左邊檔案位元組大小。"
+msgstr "左側檔案位元組大小。"
 
 #, c-format
 msgid "Right file size in bytes."
-msgstr "右邊檔案位元組大小。"
+msgstr "右側檔案位元組大小。"
 
 #, c-format
 msgid "Middle file size in bytes."
@@ -3640,11 +3697,11 @@ msgstr "中間檔案位元組大小。"
 
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "左邊檔案簡式大小。"
+msgstr "左側檔案簡式大小。"
 
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "右邊檔案簡式大小。"
+msgstr "右側檔案簡式大小。"
 
 #, c-format
 msgid "Middle file size abbreviated."
@@ -3652,11 +3709,11 @@ msgstr "中間檔案簡式大小。"
 
 #, c-format
 msgid "Left side creation time."
-msgstr "左邊建立時間。"
+msgstr "左側建立時間。"
 
 #, c-format
 msgid "Right side creation time."
-msgstr "右邊建立時間。"
+msgstr "右側建立時間。"
 
 #, c-format
 msgid "Middle side creation time."
@@ -3664,15 +3721,15 @@ msgstr "中間建立時間。"
 
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "告知那邊有較新的修改日期。"
+msgstr "告知哪邊有較新的修改日期。"
 
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "左邊檔案版本，只某些檔案類型。"
+msgstr "左側檔案版本，只某些檔案類型。"
 
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "右邊檔案版本，只某些檔案類型。"
+msgstr "右側檔案版本，只某些檔案類型。"
 
 #, c-format
 msgid "Middle side file version, only for some filetypes."
@@ -3684,32 +3741,32 @@ msgstr "短式比較結果。"
 
 #, c-format
 msgid "Left side attributes."
-msgstr "左邊屬性。"
+msgstr "左側屬性。"
 
 #, c-format
 msgid "Right side attributes."
-msgstr "右邊屬性。"
+msgstr "右側屬性。"
 
 #, c-format
 msgid "Middle side attributes."
 msgstr "中間屬性。"
 
 msgid "Left side file EOL type."
-msgstr "左邊檔案 EOL 類型."
+msgstr "左側檔案 EOL 類型."
 
 msgid "Right side file EOL type."
-msgstr "右邊檔案 EOL 類型."
+msgstr "右側檔案 EOL 類型."
 
 msgid "Middle side file EOL type."
-msgstr "中間檔案 EOL 類型."
+msgstr "中間檔案 EOL 類型。"
 
 #, c-format
 msgid "Left side encoding."
-msgstr "左邊編碼。"
+msgstr "左側編碼。"
 
 #, c-format
 msgid "Right side encoding."
-msgstr "右邊編碼。"
+msgstr "右側編碼。"
 
 #, c-format
 msgid "Middle side encoding."
@@ -3755,7 +3812,7 @@ msgstr "單純 XML"
 
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "報告檔已經存在。覆蓋之？"
+msgstr "報告檔已經存在。要覆蓋現有檔案嗎？"
 
 #, c-format
 msgid ""
@@ -3770,7 +3827,7 @@ msgid "The report has been created successfully."
 msgstr "成功產生報告。"
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "無法在此行新增同步點。"
 
 #, c-format
 msgid "The same file is opened in both panels."
@@ -3788,8 +3845,18 @@ msgstr "比對檔案時發生錯誤。"
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "無法建立暫存檔案。請檢查暫存路徑之設定。"
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
+"這些檔案使用的歸位字元類型不同。\n"
+"\n"
+"在此比較中，您要將所有歸位字元類型視為相同嗎？\n"
+"\n"
+"提示：如果您想要將所有檔案的歸位字元類型都視為相同，請點擊左上角的編輯，按下選項，並在比較分頁中啟用「忽略歸位字元差異 (Windows/Unix/Mac)」。"
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3815,30 +3882,33 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr "你想要移動到下一個檔案嗎？"
+msgstr "您要移動到下一個檔案嗎？"
 
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr "你想要移動到上一個檔案嗎？"
+msgstr "您要移動到上一個檔案嗎？"
 
 #, c-format
 msgid "Do you want to move to the next page?"
-msgstr "你想要移動到下一頁嗎？"
+msgstr "您要移動到下一頁嗎？"
 
 #, c-format
 msgid "Do you want to move to the previous page?"
-msgstr "你想要移動到上一頁嗎？"
+msgstr "您要移動到上一頁嗎？"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "您要移動到首個檔案嗎？"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "您要移動到最後一個檔案嗎？"
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"左邊 (cp%d) 和右邊 (cp%d) 檔案所用的編碼頁不同。\n"
+"左側 (cp%d) 和右側 (cp%d) 檔案所用的編碼頁不同。\n"
 "即使維持各別碼頁會分別看到文字，但合併/複製會有危險。\n"
 "要使用相同的預設 windows 編碼頁去看兩邊嗎？(建議)"
 
@@ -3875,11 +3945,15 @@ msgid "Cannot find string \"%s\"."
 msgstr "找不到 \"%s\" 字串。"
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr "你已經進入合併模式。如果你想要關閉合併模式，請按 F9。"
+msgstr "您已經進入合併模式。如果您想要關閉合併模式，請按 F9。"
 
 #, c-format
-msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
-msgstr "自動合併差異數目： %1\n未解決衝突數目： %2"
+msgid ""
+"The number of automatically merged changes: %1\n"
+"The number of unresolved conflicts: %2"
+msgstr ""
+"自動合併差異數目： %1\n"
+"未解決衝突數目： %2"
 
 msgid "The change of codepage has been merged."
 msgstr "已合併編碼頁的改變。"
@@ -3897,7 +3971,7 @@ msgstr "正衝突 EOL 的改變。"
 # 位置窗格
 #, c-format
 msgid "Location Pane"
-msgstr "遠望窗格"
+msgstr "位置窗格"
 
 # also refer to line 5578
 # 差異窗格
@@ -3907,17 +3981,17 @@ msgstr "近察窗格"
 
 #, c-format
 msgid "Patch file successfully written."
-msgstr "補綴檔成功寫入。"
+msgstr "修補檔案成功寫入。"
 
 msgid "1. item is not found!"
-msgstr ""
+msgstr "1. 找不到項目！"
 
 msgid "2. item is not found!"
-msgstr ""
+msgstr "2. 找不到項目！"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "補綴檔已存在。要覆寫它嗎？"
+msgstr "修補檔案已存在。要覆寫它嗎？"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3964,7 +4038,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "資料夾不存在。"
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "未啟用壓縮支援。\n"
 "找不到支援壓縮的所有必要元件 (7-Zip 和/或 Merge7z*.dll)。\n"
@@ -4000,7 +4077,7 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"將關閉許多比較視窗。\n"
+"將關閉多個比較視窗。\n"
 "\n"
 "要繼續嗎？"
 
@@ -4018,7 +4095,7 @@ msgstr "無"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "標記顏色 %d"
 
 msgid "New Pattern"
 msgstr ""
@@ -4033,84 +4110,168 @@ msgid "Editor script"
 msgstr "編輯器隨譯即行碼"
 
 #, c-format
-msgid "\nDifference in the Current Line"
-msgstr "\n選取行內差異"
-
-#, c-format
-msgid "\nOptions"
-msgstr "\n選項"
-
-#, c-format
-msgid "\nRefresh (F5)"
-msgstr "\n重整 (F5)"
-
-#, c-format
-msgid "\nPrevious Difference (Alt+Up)"
-msgstr "\n上一個差異 (Alt+Up)"
-
-#, c-format
-msgid "\nNext Difference (Alt+Down)"
-msgstr "\n下一個差異 (Alt+Down)"
-
-#, c-format
-msgid "\nPrevious Conflict (Alt+Shift+Up)"
-msgstr "\n上一個衝突 (Alt+Shift+Up)"
-
-#, c-format
-msgid "\nNext Conflict (Alt+Shift+Down)"
-msgstr "\n下一個衝突 (Alt+Shift+Down)"
-
-#, c-format
-msgid "\nFirst Difference (Alt+Home)"
-msgstr "\n第一個差異 (Alt+Home)"
-
-#, c-format
-msgid "\nCurrent Difference (Alt+Enter)"
-msgstr "\n目前差異 (Alt+Enter)"
-
-#, c-format
-msgid "\nLast Difference (Alt+End)"
-msgstr "\n最後一個差異 (Alt+End)"
-
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
-msgstr "\n複製到右邊 (Alt+Right)"
-
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
-msgstr "\n複製到左邊 (Alt+Left)"
-
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
-msgstr "\n複製到右邊後到下一個 (Ctrl+Alt+Right)"
-
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
-msgstr "\n複製到左邊後到下一個 (Ctrl+Alt+Left)"
-
-#, c-format
-msgid "\nAll Right"
-msgstr "\n全部複製到右邊"
-
-#, c-format
-msgid "\nAll Left"
-msgstr "\n全部複製到左邊"
-
-#, c-format
-msgid "\nAuto Merge (Ctrl+Alt+M)"
-msgstr "\n自動合併 (Ctrl+Alt+M)"
-
-msgid "\nFirst File"
+msgid ""
+"\n"
+"Difference in the Current Line"
 msgstr ""
+"\n"
+"選取行內差異"
 
-msgid "\nNext File (Ctrl+F8)"
+#, c-format
+msgid ""
+"\n"
+"Options"
 msgstr ""
+"\n"
+"選項"
 
-msgid "\nLast File"
+#, c-format
+msgid ""
+"\n"
+"Refresh (F5)"
 msgstr ""
+"\n"
+"重整 (F5)"
 
-msgid "\nPrevious File (Ctrl+F7)"
+#, c-format
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"\n"
+"上一個差異 (Alt+Up)"
+
+#, c-format
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"\n"
+"下一個差異 (Alt+Down)"
+
+#, c-format
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
+msgstr ""
+"\n"
+"上一個衝突 (Alt+Shift+Up)"
+
+#, c-format
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
+msgstr ""
+"\n"
+"下一個衝突 (Alt+Shift+Down)"
+
+#, c-format
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"\n"
+"首個差異 (Alt+Home)"
+
+#, c-format
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"\n"
+"目前差異 (Alt+Enter)"
+
+#, c-format
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"\n"
+"最後一個差異 (Alt+End)"
+
+#, c-format
+msgid ""
+"\n"
+"Copy Right (Alt+Right)"
+msgstr ""
+"\n"
+"複製到右側 (Alt+Right)"
+
+#, c-format
+msgid ""
+"\n"
+"Copy Left (Alt+Left)"
+msgstr ""
+"\n"
+"複製到左側 (Alt+Left)"
+
+#, c-format
+msgid ""
+"\n"
+"Copy Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"\n"
+"複製到右側後到下一個 (Ctrl+Alt+Right)"
+
+#, c-format
+msgid ""
+"\n"
+"Copy Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"\n"
+"複製到左側後到下一個 (Ctrl+Alt+Left)"
+
+#, c-format
+msgid ""
+"\n"
+"All Right"
+msgstr ""
+"\n"
+"全部複製到右側"
+
+#, c-format
+msgid ""
+"\n"
+"All Left"
+msgstr ""
+"\n"
+"全部複製到左側"
+
+#, c-format
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
+msgstr ""
+"\n"
+"自動合併 (Ctrl+Alt+M)"
+
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"首個檔案"
+
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
+msgstr ""
+"\n"
+"下個檔案 (Ctrl+F8)"
+
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"最後一個檔案"
+
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
+msgstr ""
+"\n"
+"上個檔案 (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "以選用的解壓縮程式用到兩個檔 (至少一個檔案需副檔名)。"
@@ -4121,22 +4282,26 @@ msgstr "不要先行處理器 (常態)"
 
 #, c-format
 msgid "Suggested plugins"
-msgstr "建議的外掛"
+msgstr "建議的外掛程式"
 
 #, c-format
 msgid "Other plugins"
-msgstr "其他外掛"
+msgstr "其他外掛程式"
 
 #, c-format
 msgid "Private Build: %1"
 msgstr "私人編譯：%1"
 
 msgid "Your software is up to date."
-msgstr "你的程式已經是最新版。"
+msgstr "您的程式已經是最新版。"
 
 #, c-format
-msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
-msgstr "新版本的 WinMerge 已準備就緒。\n已可以更新到 %1 (現在是 %2)。你想要現在下載嗎？"
+msgid ""
+"A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
+msgstr ""
+"新版本的 WinMerge 已準備就緒。\n"
+"已可以更新到 %1 (現在是 %2)。您想要現在下載嗎？"
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -4144,7 +4309,7 @@ msgstr "下載最新版本資訊失敗"
 
 #, c-format
 msgid "Plugin Settings"
-msgstr "外掛設定"
+msgstr "外掛程式設定"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
@@ -4152,7 +4317,7 @@ msgstr "找不到 WSH - 停用 .sct 指令碼"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr "至第 %1 行(&O)"
+msgstr "至第 %1 行 (&O)"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
@@ -4191,160 +4356,166 @@ msgstr "Shell"
 
 #, c-format
 msgid "Close &Left Tabs"
-msgstr "關閉左邊分頁(&L)"
+msgstr "關閉左側分頁 (&L)"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "關閉右邊分頁(&I)"
+msgstr "關閉右側分頁 (&I)"
 
 #, c-format
 msgid "Close &Other Tabs"
-msgstr "關閉其他分頁(&O)"
+msgstr "關閉其他分頁 (&O)"
 
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr "開啟自動最大寬度(&A)"
+msgstr "開啟自動最大寬度 (&A)"
 
 msgid "Frhed is not installed."
-msgstr "Frhed 未安裝"
+msgstr "Frhed 未安裝。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr "%1不存在，你想要建立它嗎？"
+msgstr "%1不存在，您想要建立它嗎？"
 
 #, c-format
 msgid "Failed to create folder."
-msgstr "建立資料夾失敗"
+msgstr "建立資料夾失敗。"
 
 #, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr "你可以指定下列參數到路徑：\n$file: 現在檔案路徑\n$linenum: 現在游標行號"
+msgid ""
+"You can specify the following parameters to the path:\n"
+"$file: Path name of the current file\n"
+"$linenum: Line number of the current cursor position"
+msgstr ""
+"您可以指定下列參數到路徑：\n"
+"$file: 現在檔案路徑\n"
+"$linenum: 現在游標行號"
 
 msgid "default"
-msgstr ""
+msgstr "預設"
 
 msgid "minimal"
-msgstr ""
+msgstr "最小"
 
 msgid "patience"
-msgstr ""
+msgstr "耐心"
 
 msgid "histogram"
-msgstr ""
+msgstr "長條圖"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite 預設"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite 鋸齒"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI 傳統"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI 自然"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite 自然"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite 自然對稱"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "MDI 子視窗或主視窗"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "僅 MDI 子視窗"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "如果只有一個 MDI 子視窗的話關閉主視窗"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "差異"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "醒目提示"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "閃爍"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "區塊大小"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "區塊透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "顏色差異閾值"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "插入/刪除偵測"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "無"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "垂直"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "水平"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "重疊"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "透明合成"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "透明動畫"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "縮放"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "頁面："
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "距離：%g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "距離：%g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr ""
+msgstr "頁面：%d/%d  縮放：%d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
@@ -4359,7 +4530,7 @@ msgid "Rotated: %d  "
 msgstr ""
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<在此編輯>"
 
 msgid "No differences to select found"
 msgstr ""
@@ -4371,10 +4542,10 @@ msgid "The pair is already present in the list of Substitution Filters"
 msgstr ""
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "要將將此變動加入替代篩選器嗎？"
 
 msgid "Text only"
-msgstr ""
+msgstr "僅文字"
 
 msgid "Line-by-line position and text"
 msgstr ""
@@ -4390,37 +4561,37 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 
 msgid "Al&l"
-msgstr ""
+msgstr "全部 (&L)"
 
 msgid "Prettification"
 msgstr ""
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "擷取內容"
 
 msgid "Visualization"
-msgstr ""
+msgstr "視覺化"
 
 msgid "Data Query"
-msgstr ""
+msgstr "資料查詢"
 
 msgid "Validation"
-msgstr ""
+msgstr "驗證"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "反編譯"
 
 msgid "&Others"
-msgstr ""
+msgstr "其他 (&O)"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "轉換成大寫"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "轉換成小寫"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "移除重複行"
 
 msgid "Count Duplicate Lines"
 msgstr ""
@@ -4438,93 +4609,93 @@ msgid "Reverse Lines"
 msgstr ""
 
 msgid "Replace..."
-msgstr ""
+msgstr "取代..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "套用篩選器命令..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "標記化..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "刪減空白"
 
 msgid "Select Columns..."
-msgstr ""
+msgstr "選取欄..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "選取行..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "插入日期"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "插入時間"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "套用修補檔案..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "忽略欄"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "忽略註解 (C語言家族)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "忽略 CSV 欄位"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "忽略 TSV 欄位"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "美化 HTML"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "美化 JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "美化 XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "美化 YAML"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "Graphviz 視覺化"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "查詢 CSV 資料..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "查詢 TSV 資料..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "查詢 JSON 資料..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "查詢 YAML 資料..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "驗證 HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "反組譯 JVM 位元組碼"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "反組譯中間語言"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "反組譯機器碼"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "外掛程式管線缺少外掛程式名稱：%1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "外掛程式管線缺少引號：%1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "指定外掛程式參數"

@@ -1,88 +1,88 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Optional Features:
+OptionalFeatures=可選功能：
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=一般安裝
+FullInstallation=完整安裝
+CompactInstallation=精簡安裝
+CustomInstallation=自訂安裝
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
-Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
+AppCoreFiles=WinMerge 核心檔案
+Filters=篩選器
+Plugins=擴充功能
+Frhed=Frhed (免費的十六進位編輯器)
+WinIMerge=WinIMerge (偵測圖片差異/合併)
 ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
+ShellExtension32bit=32 位元 WinMerge ShellExtension
+Commands=Windows/HTML Tidy/jq 的 GnuWin32 修補程式
 
 ;Localization Components
-Languages=Languages
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CorsicanLanguage=Corsican menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FinnishLanguage=Finnish menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-LithuanianLanguage=Lithuanian menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages=語言
+ArabicLanguage=阿拉伯語
+BasqueLanguage=巴斯克語
+BulgarianLanguage=保加利亞語
+CatalanLanguage=嘉泰羅尼亞語
+ChineseSimplifiedLanguage=簡體中文
+ChineseTraditionalLanguage=繁體中文
+CorsicanLanguage=科西嘉語
+CroatianLanguage=克羅埃西亞語
+CzechLanguage=捷克語
+DanishLanguage=丹麥語
+DutchLanguage=荷蘭語
+FinnishLanguage=芬蘭語
+FrenchLanguage=法語
+GalicianLanguage=加里西亞語
+GermanLanguage=德語
+GreekLanguage=希臘語
+HungarianLanguage=匈牙利語
+ItalianLanguage=義大利語
+JapaneseLanguage=日語
+KoreanLanguage=韓語
+LithuanianLanguage=立陶宛語
+NorwegianLanguage=挪威語
+PersianLanguage=波斯語
+PolishLanguage=波蘭語
+PortugueseBrazilLanguage=葡萄牙語 (巴西)
+PortugueseLanguage=葡萄牙語
+RomanianLanguage=羅馬尼亞語
+RussianLanguage=俄語
+SerbianLanguage=塞爾維亞語
+SinhalaLanguage=僧伽羅語
+SlovakLanguage=斯洛伐克語
+SlovenianLanguage=斯洛維尼亞語
+SpanishLanguage=西班牙語
+SwedishLanguage=瑞典語
+TurkishLanguage=土耳其語
+UkrainianLanguage=烏克蘭語
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseGit=Integrate with To&rtoiseGit
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+ExplorerContextMenu=啟用檔案總管右鍵選單整合 (&E)
+IntegrateTortoiseCVS=與 &TortoiseCVS 整合
+IntegrateTortoiseGit=與 To&rtoiseGit 整合
+IntegrateTortoiseSVN=與 T&ortoiseSVN 整合 
+IntegrateClearCase=與 Rational &ClearCase 整合
+AddToPath=將 WinMerge 資料夾加入您的系統路徑 (&A)
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=三向合併
+ThreeWayMergeWizardPageDescription=您是否將 WinMerge 作為 TortoiseSVN/Git 的三向合併工具？
+RegisterWinMergeAs3WayMergeTool=將 WinMerge 註冊為三向合併工具
+MergeAtRightPane=在右側窗格中合併
+MergeAtCenterPane=在中間窗格中合併
+MergeAtLeftPane=在左側窗格中合併
+AutoMergeAtStartup=啟動時自動合併
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=讀我檔案
+UsersGuide=使用指南
+ViewStartMenuFolder=檢視 WinMerge 開始選單資料夾 (&V)
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=安裝程式偵測到您將開始選單的位置從 "%s" 改為 "%s"。您要刪除舊的開始選單資料夾嗎？
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge 專案檔
