@@ -309,14 +309,11 @@ public:
     const int Verb() override { return WinMergeContextMenu::CMD_COMPARE; }
     const EXPCMDFLAGS Flags() override
     {
-        // Due to stability issues, the advanced menu is currently disabled.
-        return ECF_DEFAULT;
-        /*
-        if ((m_contextMenu.GetContextMenuEnabled() & (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED)) == (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED))
+        if ((m_contextMenu.GetContextMenuEnabled() & (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED))
+            == (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED) && m_contextMenu.GetMenuItemList().size() > 1)
             return ECF_HASSUBCOMMANDS;
         else
             return ECF_DEFAULT;
-         */
     }
     const EXPCMDSTATE State(_In_opt_ IShellItemArray* selection) override
     {
