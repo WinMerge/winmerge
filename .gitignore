@@ -28,9 +28,11 @@
 **/BuildTmp
 **/Build
 **/objARM64
+**/objARM
 **/obj64
 **/obj
 **/libARM64
+**/libARM
 **/lib64
 **/lib
 **/Release
@@ -44,6 +46,8 @@
 **/Unicode Release*MinSize
 **/ARM64Release
 **/ARM64Debug
+**/ARMRelease
+**/ARMDebug
 **/x64Release
 **/x64Debug
 winmerge-cppcheck-build-dir/

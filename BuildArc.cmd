@@ -150,7 +150,6 @@ copy Build\%PLATFORM%\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMe
 rem Frhed
 echo Copy Frhed...
 copy Build\%PLATFORM%\Frhed\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
-rem copy Build\%PLATFORM%\Frhed\frhed.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
 copy Build\%PLATFORM%\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
 copy Build\%PLATFORM%\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
 copy Build\%PLATFORM%\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
@@ -162,13 +161,18 @@ echo Copy WinIMerge...
 copy Build\WinIMerge\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
 copy Build\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
 if "%1" == "" (
-  rem copy Build\WinIMerge\bin\WinIMerge.exe "%DISTDIR%\zip-version\WinMerge\WinIMerge\" > NUL
   copy Build\WinIMerge\bin\WinIMergeLib.dll "%DISTDIR%\zip-version\WinMerge\WinIMerge\" > NUL
   copy Build\WinIMerge\bin\vcomp*.dll "%DISTDIR%\zip-version\WinMerge\" > NUL
-) else (
-  rem copy Build\WinIMerge\bin64\WinIMerge.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+)
+if "%1" == "x64" (
   copy Build\WinIMerge\bin64\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
   copy Build\WinIMerge\bin64\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+)
+if "%1" == "ARM" (
+  copy Build\WinIMerge\bin%PLATFORM%\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+)
+if "%1" == "ARM64" (
+  copy Build\WinIMerge\bin%PLATFORM%\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
 )
 
 rem Commands
