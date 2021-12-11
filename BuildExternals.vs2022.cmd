@@ -2,7 +2,7 @@ cd /d "%~dp0"
 
 for %%i in (Externals\sevenzip Externals\winimerge Externals\frhed ArchiveSupport\Merge7z ShellExtension Plugins) do (
   pushd %%i
-  rem call BuildBin.vs2022.cmd %*
+  call BuildBin.vs2022.cmd %*
   popd
 )
 
