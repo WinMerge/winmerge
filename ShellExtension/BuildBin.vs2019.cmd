@@ -11,6 +11,7 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 if "%1" == "" (
   call :BuildBin
   call :BuildBin x64
+  call :BuildBin ARM
   call :BuildBin ARM64
 ) else (
   call :BuildBin %1 
@@ -31,8 +32,8 @@ MSBuild ShellExtension.vs2019.sln /t:Rebuild /p:Configuration="Release" /p:Platf
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" "Build\%PLATFORM%\Release\%DLLFILENAME%"
-  call "%SIGNBAT_PATH%" "Build\%PLATFORM%\Release\WinMergeContextMenu.dll
+  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\%DLLFILENAME%"
+  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\WinMergeContextMenu.dll
 )
 
 goto :eof
