@@ -1,88 +1,88 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=å¯é¸åŠŸèƒ½ï¼š
+OptionalFeatures=¥i¿ï¥\¯à¡G
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=ä¸€èˆ¬å®‰è£
-FullInstallation=å®Œæ•´å®‰è£
-CompactInstallation=ç²¾ç°¡å®‰è£
-CustomInstallation=è‡ªè¨‚å®‰è£
+TypicalInstallation=¤@¯ë¦w¸Ë
+FullInstallation=§¹¾ã¦w¸Ë
+CompactInstallation=ºëÂ²¦w¸Ë
+CustomInstallation=¦Û­q¦w¸Ë
 
 ;Components
-AppCoreFiles=WinMerge æ ¸å¿ƒæª”æ¡ˆ
-Filters=ç¯©é¸å™¨
-Plugins=æ“´å……åŠŸèƒ½
-Frhed=Frhed (å…è²»çš„åå…­é€²ä½ç·¨è¼¯å™¨)
-WinIMerge=WinIMerge (åµæ¸¬åœ–ç‰‡å·®ç•°/åˆä½µ)
+AppCoreFiles=WinMerge ®Ö¤ßÀÉ®×
+Filters=¿z¿ï¾¹
+Plugins=ÂX¥R¥\¯à
+Frhed=Frhed (§K¶Oªº¤Q¤»¶i¦ì½s¿è¾¹)
+WinIMerge=WinIMerge (°»´ú¹Ï¤ù®t²§/¦X¨Ö)
 ArchiveSupport=Archive Support
-ShellExtension32bit=32 ä½å…ƒ WinMerge ShellExtension
-Commands=Windows/HTML Tidy/jq çš„ GnuWin32 ä¿®è£œç¨‹å¼
+ShellExtension32bit=32 ¦ì¤¸ WinMerge ShellExtension
+Commands=Windows/HTML Tidy/jq ªº GnuWin32 ­×¸Éµ{¦¡
 
 ;Localization Components
-Languages=èªè¨€
-ArabicLanguage=é˜¿æ‹‰ä¼¯èª
-BasqueLanguage=å·´æ–¯å…‹èª
-BulgarianLanguage=ä¿åŠ åˆ©äºèª
-CatalanLanguage=å˜‰æ³°ç¾…å°¼äºèª
-ChineseSimplifiedLanguage=ç°¡é«”ä¸­æ–‡
-ChineseTraditionalLanguage=ç¹é«”ä¸­æ–‡
-CorsicanLanguage=ç§‘è¥¿å˜‰èª
-CroatianLanguage=å…‹ç¾…åŸƒè¥¿äºèª
-CzechLanguage=æ·å…‹èª
-DanishLanguage=ä¸¹éº¥èª
-DutchLanguage=è·è˜­èª
-FinnishLanguage=èŠ¬è˜­èª
-FrenchLanguage=æ³•èª
-GalicianLanguage=åŠ é‡Œè¥¿äºèª
-GermanLanguage=å¾·èª
-GreekLanguage=å¸Œè‡˜èª
-HungarianLanguage=åŒˆç‰™åˆ©èª
-ItalianLanguage=ç¾©å¤§åˆ©èª
-JapaneseLanguage=æ—¥èª
-KoreanLanguage=éŸ“èª
-LithuanianLanguage=ç«‹é™¶å®›èª
-NorwegianLanguage=æŒªå¨èª
-PersianLanguage=æ³¢æ–¯èª
-PolishLanguage=æ³¢è˜­èª
-PortugueseBrazilLanguage=è‘¡è„ç‰™èª (å·´è¥¿)
-PortugueseLanguage=è‘¡è„ç‰™èª
-RomanianLanguage=ç¾…é¦¬å°¼äºèª
-RussianLanguage=ä¿„èª
-SerbianLanguage=å¡çˆ¾ç¶­äºèª
-SinhalaLanguage=åƒ§ä¼½ç¾…èª
-SlovakLanguage=æ–¯æ´›ä¼å…‹èª
-SlovenianLanguage=æ–¯æ´›ç¶­å°¼äºèª
-SpanishLanguage=è¥¿ç­ç‰™èª
-SwedishLanguage=ç‘å…¸èª
-TurkishLanguage=åœŸè€³å…¶èª
-UkrainianLanguage=çƒå…‹è˜­èª
+Languages=»y¨¥
+ArabicLanguage=ªü©Ô§B»y
+BasqueLanguage=¤Ú´µ§J»y
+BulgarianLanguage=«O¥[§Q¨È»y
+CatalanLanguage=¹Å®õÃ¹¥§¨È»y
+ChineseSimplifiedLanguage=Â²Åé¤¤¤å
+ChineseTraditionalLanguage=ÁcÅé¤¤¤å
+CorsicanLanguage=¬ì¦è¹Å»y
+CroatianLanguage=§JÃ¹®J¦è¨È»y
+CzechLanguage=±¶§J»y
+DanishLanguage=¤¦³Á»y
+DutchLanguage=²üÄõ»y
+FinnishLanguage=ªâÄõ»y
+FrenchLanguage=ªk»y
+GalicianLanguage=¥[¨½¦è¨È»y
+GermanLanguage=¼w»y
+GreekLanguage=§ÆÃ¾»y
+HungarianLanguage=¦I¤ú§Q»y
+ItalianLanguage=¸q¤j§Q»y
+JapaneseLanguage=¤é»y
+KoreanLanguage=Áú»y
+LithuanianLanguage=¥ß³³©{»y
+NorwegianLanguage=®¿«Â»y
+PersianLanguage=ªi´µ»y
+PolishLanguage=ªiÄõ»y
+PortugueseBrazilLanguage=¸²µå¤ú»y (¤Ú¦è)
+PortugueseLanguage=¸²µå¤ú»y
+RomanianLanguage=Ã¹°¨¥§¨È»y
+RussianLanguage=«X»y
+SerbianLanguage=¶ëº¸ºû¨È»y
+SinhalaLanguage=¹¬¦÷Ã¹»y
+SlovakLanguage=´µ¬¥¥ï§J»y
+SlovenianLanguage=´µ¬¥ºû¥§¨È»y
+SpanishLanguage=¦è¯Z¤ú»y
+SwedishLanguage=·ç¨å»y
+TurkishLanguage=¤g¦Õ¨ä»y
+UkrainianLanguage=¯Q§JÄõ»y
 
 ;Tasks
-ExplorerContextMenu=å•Ÿç”¨æª”æ¡ˆç¸½ç®¡å³éµé¸å–®æ•´åˆ (&E)
-IntegrateTortoiseCVS=èˆ‡ &TortoiseCVS æ•´åˆ
-IntegrateTortoiseGit=èˆ‡ To&rtoiseGit æ•´åˆ
-IntegrateTortoiseSVN=èˆ‡ T&ortoiseSVN æ•´åˆ 
-IntegrateClearCase=èˆ‡ Rational &ClearCase æ•´åˆ
-AddToPath=å°‡ WinMerge è³‡æ–™å¤¾åŠ å…¥æ‚¨çš„ç³»çµ±è·¯å¾‘ (&A)
+ExplorerContextMenu=±Ò¥ÎÀÉ®×Á`ºŞ¥kÁä¿ï³æ¾ã¦X (&E)
+IntegrateTortoiseCVS=»P &TortoiseCVS ¾ã¦X
+IntegrateTortoiseGit=»P To&rtoiseGit ¾ã¦X
+IntegrateTortoiseSVN=»P T&ortoiseSVN ¾ã¦X 
+IntegrateClearCase=»P Rational &ClearCase ¾ã¦X
+AddToPath=±N WinMerge ¸ê®Æ§¨¥[¤J±zªº¨t²Î¸ô®| (&A)
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=ä¸‰å‘åˆä½µ
-ThreeWayMergeWizardPageDescription=æ‚¨æ˜¯å¦å°‡ WinMerge ä½œç‚º TortoiseSVN/Git çš„ä¸‰å‘åˆä½µå·¥å…·ï¼Ÿ
-RegisterWinMergeAs3WayMergeTool=å°‡ WinMerge è¨»å†Šç‚ºä¸‰å‘åˆä½µå·¥å…·
-MergeAtRightPane=åœ¨å³å´çª—æ ¼ä¸­åˆä½µ
-MergeAtCenterPane=åœ¨ä¸­é–“çª—æ ¼ä¸­åˆä½µ
-MergeAtLeftPane=åœ¨å·¦å´çª—æ ¼ä¸­åˆä½µ
-AutoMergeAtStartup=å•Ÿå‹•æ™‚è‡ªå‹•åˆä½µ
+ThreeWayMergeWizardPageCaption=¤T¦V¦X¨Ö
+ThreeWayMergeWizardPageDescription=±z¬O§_±N WinMerge §@¬° TortoiseSVN/Git ªº¤T¦V¦X¨Ö¤u¨ã¡H
+RegisterWinMergeAs3WayMergeTool=±N WinMerge µù¥U¬°¤T¦V¦X¨Ö¤u¨ã
+MergeAtRightPane=¦b¥k°¼µ¡®æ¤¤¦X¨Ö
+MergeAtCenterPane=¦b¤¤¶¡µ¡®æ¤¤¦X¨Ö
+MergeAtLeftPane=¦b¥ª°¼µ¡®æ¤¤¦X¨Ö
+AutoMergeAtStartup=±Ò°Ê®É¦Û°Ê¦X¨Ö
 
 ;Icon Labels
-ReadMe=è®€æˆ‘æª”æ¡ˆ
-UsersGuide=ä½¿ç”¨æŒ‡å—
-ViewStartMenuFolder=æª¢è¦– WinMerge é–‹å§‹é¸å–®è³‡æ–™å¤¾ (&V)
+ReadMe=Åª§ÚÀÉ®×
+UsersGuide=¨Ï¥Î«ü«n
+ViewStartMenuFolder=ÀËµø WinMerge ¶}©l¿ï³æ¸ê®Æ§¨ (&V)
 
 ;Code Dialogs
-DeletePreviousStartMenu=å®‰è£ç¨‹å¼åµæ¸¬åˆ°æ‚¨å°‡é–‹å§‹é¸å–®çš„ä½ç½®å¾ "%s" æ”¹ç‚º "%s"ã€‚æ‚¨è¦åˆªé™¤èˆŠçš„é–‹å§‹é¸å–®è³‡æ–™å¤¾å—ï¼Ÿ
+DeletePreviousStartMenu=¦w¸Ëµ{¦¡°»´ú¨ì±z±N¶}©l¿ï³æªº¦ì¸m±q "%s" §ï¬° "%s"¡C±z­n§R°£ÂÂªº¶}©l¿ï³æ¸ê®Æ§¨¶Ü¡H
 
 ; Project file description
-ProjectFileDesc=WinMerge å°ˆæ¡ˆæª”
+ProjectFileDesc=WinMerge ±M®×ÀÉ
