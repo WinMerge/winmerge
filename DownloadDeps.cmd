@@ -50,32 +50,32 @@ for %%p in (%urls_destdirs%) do (
 
 for /d %%i in (build\tidy-html5\tidy-5.4.0-w32-mt-XP\*) do move %%i build\tidy-html5\
 
-for %%i in (Build\x86 Build\x64 Build\ARM Build\ARM64) do (
+for %%i in (x86 x64 ARM ARM64) do (
   for %%j in (Release Debug Test) do (
-    mkdir %%i\%%j\Merge7z 2> NUL
-    mkdir %%i\%%j\WinIMerge 2> NUL
-    mkdir %%i\%%j\Frhed 2> NUL
-    mkdir %%i\%%j\Filters 2> NUL
-    mkdir %%i\%%j\ColorSchemes 2> NUL
-    mkdir %%i\%%j\MergePlugins 2> NUL
-    mkdir %%i\%%j\Commands\jq 2> NUL
-    mkdir %%i\%%j\Commands\tidy-html5 2> NUL
-    mkdir %%i\%%j\Commands\GnuWin32 2> NUL
-    xcopy /s/y %%i\Release\Merge7z %%i\%%j\Merge7z\
-    xcopy /s/y %%i\Release\Frhed %%i\%%j\Frhed\
-    copy %%i\Release\WinIMerge\WinIMergeLib.dll %%i\%%j\WinIMerge\
-    xcopy /s/y Build\GnuWin32 %%i\%%j\Commands\GnuWin32\
-    copy Build\jq\jq-win32.exe %%i\%%j\Commands\jq\jq.exe
-    copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Commands\jq\
-    copy Build\tidy-html5\bin\tidy.* %%i\%%j\Commands\tidy-html5\
-    copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md %%i\%%j\Commands\tidy-html5\
-    xcopy /s/y Plugins\Commands %%i\%%j\Commands
-    xcopy /s/y Filters %%i\%%j\Filters\
-    xcopy /s/y ColorSchemes %%i\%%j\ColorSchemes\
-    xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
-    xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
-    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix %%i\%%j
-    copy Plugins\dlls\%%i\*.dll %%i\%%j\MergePlugins\
+    mkdir Build\%%i\%%j\Merge7z 2> NUL
+    mkdir Build\%%i\%%j\WinIMerge 2> NUL
+    mkdir Build\%%i\%%j\Frhed 2> NUL
+    mkdir Build\%%i\%%j\Filters 2> NUL
+    mkdir Build\%%i\%%j\ColorSchemes 2> NUL
+    mkdir Build\%%i\%%j\MergePlugins 2> NUL
+    mkdir Build\%%i\%%j\Commands\jq 2> NUL
+    mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
+    mkdir Build\%%i\%%j\Commands\GnuWin32 2> NUL
+    xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
+    xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
+    copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
+    xcopy /s/y Build\GnuWin32 Build\%%i\%%j\Commands\GnuWin32\
+    copy Build\jq\jq-win32.exe Build\%%i\%%j\Commands\jq\jq.exe
+    copy Build\jq\jq-jq-1.4\COPYING Build\%%i\%%j\Commands\jq\
+    copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
+    copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
+    xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
+    xcopy /s/y Filters Build\%%i\%%j\Filters\
+    xcopy /s/y ColorSchemes Build\%%i\%%j\ColorSchemes\
+    xcopy /s/y Plugins\dlls\*.sct Build\%%i\%%j\MergePlugins\
+    xcopy /s/y Plugins\Plugins.xml Build\%%i\%%j\MergePlugins\
+    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix Build\%%i\%%j
+    copy Plugins\dlls\%%i\*.dll Build\%%i\%%j\MergePlugins\
   )
 )
 
