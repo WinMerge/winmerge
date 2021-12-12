@@ -12,13 +12,18 @@ set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.4.0/ShellExtension-1.18.4.0.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.0-win32.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.0-x64.zip!Build\X64 ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.0-ARM64.zip!Build\ARM64 ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-win32.zip!Build ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-x64.zip!Build\X64 ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.7-ARM64.zip!Build\ARM64 ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.31/winimerge-1.0.31.0-exe.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.1-win32.zip!Build\x86\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.1-x64.zip!Build\X64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.1-ARM.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2106.0/Merge7z2106.1-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.8-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.8-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.8-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.8-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.32/winimerge-1.0.32.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.32/winimerge-1.0.32.0-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.32/winimerge-1.0.32.0-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.32/winimerge-1.0.32.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
@@ -45,7 +50,7 @@ for %%p in (%urls_destdirs%) do (
 
 for /d %%i in (build\tidy-html5\tidy-5.4.0-w32-mt-XP\*) do move %%i build\tidy-html5\
 
-for %%i in (Build Build\X64 Build\ARM64) do (
+for %%i in (Build\x86 Build\x64 Build\ARM Build\ARM64) do (
   for %%j in (Release Debug Test) do (
     mkdir %%i\%%j\Merge7z 2> NUL
     mkdir %%i\%%j\WinIMerge 2> NUL
@@ -56,8 +61,9 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     mkdir %%i\%%j\Commands\jq 2> NUL
     mkdir %%i\%%j\Commands\tidy-html5 2> NUL
     mkdir %%i\%%j\Commands\GnuWin32 2> NUL
-    xcopy /s/y %%i\Merge7z %%i\%%j\Merge7z\
-    xcopy /s/y %%i\Frhed %%i\%%j\Frhed\
+    xcopy /s/y %%i\Release\Merge7z %%i\%%j\Merge7z\
+    xcopy /s/y %%i\Release\Frhed %%i\%%j\Frhed\
+    copy %%i\Release\WinIMerge\WinIMergeLib.dll %%i\%%j\WinIMerge\
     xcopy /s/y Build\GnuWin32 %%i\%%j\Commands\GnuWin32\
     copy Build\jq\jq-win32.exe %%i\%%j\Commands\jq\jq.exe
     copy Build\jq\jq-jq-1.4\COPYING %%i\%%j\Commands\jq\
@@ -69,16 +75,7 @@ for %%i in (Build Build\X64 Build\ARM64) do (
     xcopy /s/y Plugins\dlls\*.sct %%i\%%j\MergePlugins\
     xcopy /s/y Plugins\Plugins.xml %%i\%%j\MergePlugins\
     xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix %%i\%%j
-    if "%%i" == "Build" (
-      copy Build\WinIMerge\bin\WinIMergeLib.dll %%i\%%j\WinIMerge\
-      copy Plugins\dlls\*.dll %%i\%%j\MergePlugins\
-    ) else if "%%i" == "Build\X64" (
-      copy Build\WinIMerge\bin64\WinIMergeLib.dll %%i\%%j\WinIMerge\
-      copy Plugins\dlls\X64\*.dll %%i\%%j\MergePlugins\
-    ) else if "%%i" == "Build\ARM64" (
-      copy Build\WinIMerge\binARM64\WinIMergeLib.dll %%i\%%j\WinIMerge\
-      copy Plugins\dlls\ARM64\*.dll %%i\%%j\MergePlugins\
-    )
+    copy Plugins\dlls\%%i\*.dll %%i\%%j\MergePlugins\
   )
 )
 

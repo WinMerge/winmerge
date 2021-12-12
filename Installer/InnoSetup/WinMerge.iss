@@ -47,7 +47,7 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\Release\WinMergeU.exe")
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\x86\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ShellExtensionU.dll")
 #define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll")
 
@@ -430,10 +430,10 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ; WinMerge itself
-Source: ..\..\Build\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\x86\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; Visual Elements
-Source: ..\..\Build\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
-Source: ..\..\Build\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
+Source: ..\..\Build\x86\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\x86\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
@@ -444,10 +444,10 @@ Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {ap
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\x86\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\x86\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\x86\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\x86\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
 ; Language files
 Source: ..\..\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
@@ -576,34 +576,34 @@ Source: ..\..\Plugins\dlls\CompareMSPowerPointFiles.sct; DestDir: {app}\MergePlu
 Source: ..\..\Plugins\dlls\CompareMSVisioFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\PrediffLineFilter.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\x86\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\x86\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\x86\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\x86\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\x86\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
-Source: ..\..\Build\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-;Source: ..\..\Build\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Build\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
-Source: ..\..\Build\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
+;Source: ..\..\Build\x86\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\x86\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge
-Source: ..\..\Build\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-;Source: ..\..\Build\WinIMerge\bin\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\bin\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\bin\vcomp140.dll; DestDir: {app}; Components: WinIMerge
+Source: ..\..\Build\x86\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Build\x86\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+;Source: ..\..\Build\x86\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Build\x86\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
+Source: ..\..\Build\x86\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows
 Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands

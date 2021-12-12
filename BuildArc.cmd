@@ -15,8 +15,9 @@ set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
 if "%1" == "" (
-  call :BuildZip 
+  call :BuildZip x86
   call :BuildZip x64
+  call :BuildZip ARM
   call :BuildZip ARM64
 ) else (
   call :BuildZip %1 
@@ -33,9 +34,11 @@ echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-PerUser-Setup.exe"
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-ARM64-Setup.exe"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-pdb.7z"
+echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM-pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-ARM64-pdb.7z"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\files.txt"
@@ -47,8 +50,8 @@ goto :eof
 :BuildZip
 
 set PLATFORM=%1
-if "%1" == "" (
-  set PLATFORMH=%1
+if "%1" == "x86" (
+  set PLATFORMH=
 ) else (
   set PLATFORMH=%1-
 )
@@ -62,8 +65,10 @@ rmdir /q /s "%DISTDIR%\%PLATFORMH%zip-version" > NUL 2> NUL
 mkdir "%DISTDIR%" 2> NUL
 
 rem Copy platform setups
-copy "Build\WinMerge-%RCVER%-%PLATFORMH%Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe" > NUL
-if not "%1" == "" (
+if not "%1" == "ARM" (
+  copy "Build\WinMerge-%RCVER%-%PLATFORMH%Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%Setup.exe" > NUL
+)
+if "%1" == "x64" (
   copy "Build\WinMerge-%RCVER%-%PLATFORMH%PerUser-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-%PLATFORMH%PerUser-Setup.exe" > NUL
 )
 
@@ -84,13 +89,13 @@ for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
 rem Excecutables
 echo Copy Excecutables...
 copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-if not "%1" == "" (
+if "%1" == "x64" (
   copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 
 rem ShellExtension
 echo Copy ShellExtension...
-if "%1" == "" (
+if "%1" == "x86" (
   copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
   copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
   copy "Build\ShellExtension\x64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
@@ -102,6 +107,8 @@ if "%1" == "x64" (
 )
 if "%1" == "ARM" (
   copy "Build\ShellExtension\ShellExtensionARM.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+  copy "Build\ShellExtension\ARM64\WinMergeContextMenu.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 if "%1" == "ARM64" (
   copy "Build\ShellExtension\ShellExtensionARM64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
@@ -142,38 +149,26 @@ del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll"
 
 rem 7zPlugins
 echo Copy 7zPlugins...
-copy Build\%PLATFORM%\Merge7z\Merge7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
-copy Build\%PLATFORM%\Merge7z\7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
-copy Build\%PLATFORM%\Merge7z\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
-copy Build\%PLATFORM%\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\Lang\" > NUL
+copy Build\%PLATFORM%\Release\Merge7z\Merge7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Release\Merge7z\7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Release\Merge7z\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Release\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\Lang\" > NUL
 
 rem Frhed
 echo Copy Frhed...
-copy Build\%PLATFORM%\Frhed\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
-copy Build\%PLATFORM%\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
-copy Build\%PLATFORM%\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
-copy Build\%PLATFORM%\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
-copy Build\%PLATFORM%\Frhed\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
-copy Build\%PLATFORM%\Frhed\Languages\heksedit.lng "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
+copy Build\%PLATFORM%\Release\Frhed\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
+copy Build\%PLATFORM%\Release\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
+copy Build\%PLATFORM%\Release\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
+copy Build\%PLATFORM%\Release\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
+copy Build\%PLATFORM%\Release\Frhed\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
+copy Build\%PLATFORM%\Release\Frhed\Languages\heksedit.lng "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
 
 rem WinIMerge
 echo Copy WinIMerge...
-copy Build\WinIMerge\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
-copy Build\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
-if "%1" == "" (
-  copy Build\WinIMerge\bin\WinIMergeLib.dll "%DISTDIR%\zip-version\WinMerge\WinIMerge\" > NUL
-  copy Build\WinIMerge\bin\vcomp*.dll "%DISTDIR%\zip-version\WinMerge\" > NUL
-)
-if "%1" == "x64" (
-  copy Build\WinIMerge\bin64\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
-  copy Build\WinIMerge\bin64\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
-)
-if "%1" == "ARM" (
-  copy Build\WinIMerge\bin%PLATFORM%\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
-)
-if "%1" == "ARM64" (
-  copy Build\WinIMerge\bin%PLATFORM%\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
-)
+copy Build\%PLATFORM%\Release\WinIMerge\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+copy Build\%PLATFORM%\Release\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+copy Build\%PLATFORM%\Release\WinIMerge\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+copy Build\%PLATFORM%\Release\WinIMerge\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 
 rem Commands
 echo Copy Commands...

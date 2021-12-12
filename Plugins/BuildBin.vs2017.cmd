@@ -9,15 +9,16 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 )
 
 if "%1" == "" (
-  call :BuildBin || goto :eof
-  call :BuildBin ARM64 || goto :eof
+  call :BuildBin x86 || goto :eof
   call :BuildBin x64 || goto :eof
+  call :BuildBin ARM || goto :eof
+  call :BuildBin ARM64 || goto :eof
 ) else (
   call :BuildBin %1 || goto :eof
 )
 
 pushd WinMerge32BitPluginProxy
-MSBuild WinMerge32BitPluginProxy.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="Win32" || goto :eof
+MSBuild WinMerge32BitPluginProxy.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="x86" || goto :eof
 popd
 
 endlocal
@@ -25,29 +26,16 @@ endlocal
 goto :eof
 
 :BuildBin
-set PLATFORM=%1
-if "%1" == "" (
-  set PLATFORM_VS=Win32
-) else (
-  set PLATFORM_VS=%1
-)
-if "%PLATFORM_VS%" == "Win32" (
-  set PLATFORM_DIR=
-) else (
-  set PLATFORM_DIR=%PLATFORM_VS%
-)
 
 pushd src_VCPP
-MSBuild VCPPPlugins.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
+MSBuild VCPPPlugins.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
 popd
 
-mkdir dlls\%PLATFORM_DIR% 2> NUL
-for /d %%d in (src_VCPP\*) do (
-  copy %%d\%PLATFORM_DIR%\Release\*.dll dlls\%PLATFORM_DIR%
-)
+mkdir dlls\%1 2> NUL
+copy src_VCPP\Build\%1\Release\MergePlugins\*.dll dlls\%1\
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" %~dp0dlls\%PLATFORM_DIR%\*.dll
+  call "%SIGNBAT_PATH%" %~dp0dlls\%1\*.dll
 )
 
 goto :eof

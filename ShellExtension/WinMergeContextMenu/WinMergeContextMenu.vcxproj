@@ -81,23 +81,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Build\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\BuildTmp\WinMergeContextMenu\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\..\Build\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\..\BuildTmp\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Build\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\BuildTmp\WinMergeContextMenu\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\..\Build\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\..\BuildTmp\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Build\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\BuildTmp\WinMergeContextMenu\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\..\Build\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\..\BuildTmp\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Build\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\BuildTmp\WinMergeContextMenu\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>..\..\Build\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>..\..\BuildTmp\$(ProjectName)\$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
