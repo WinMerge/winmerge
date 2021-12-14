@@ -4516,6 +4516,9 @@ msgstr "Volteado: %s "
 msgid "Rotated: %d  "
 msgstr "Rotado: %d "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Editar aquí>"
 

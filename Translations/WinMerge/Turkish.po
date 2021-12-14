@@ -3847,6 +3847,9 @@ msgstr "Çevrildi: %s  "
 msgid "Rotated: %d  "
 msgstr "Döndürüldü: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Burayı düzenleyin>"
 

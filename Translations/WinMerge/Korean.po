@@ -4521,6 +4521,9 @@ msgstr "뒤집음: %s  "
 msgid "Rotated: %d  "
 msgstr "회전됨: %d"
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<수정>"
 

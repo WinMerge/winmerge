@@ -4339,6 +4339,9 @@ msgstr ""
 msgid "Rotated: %d  "
 msgstr ""
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr ""
 

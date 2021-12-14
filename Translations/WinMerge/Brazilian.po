@@ -3862,6 +3862,9 @@ msgstr "Invertido: %s "
 msgid "Rotated: %d  "
 msgstr "Rotacionado: %d "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Edite aqui>"
 

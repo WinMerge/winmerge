@@ -3830,6 +3830,9 @@ msgstr "Omgedraaid: %s"
 msgid "Rotated: %d  "
 msgstr "Geroteerd: %d"
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
 

@@ -4134,6 +4134,9 @@ msgstr "Umgedreht: %s  "
 msgid "Rotated: %d  "
 msgstr "Gedreht: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Hier bearbeiten>"
 

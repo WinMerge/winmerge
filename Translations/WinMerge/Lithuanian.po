@@ -3396,6 +3396,9 @@ msgstr "Apversta: %s  "
 msgid "Rotated: %d  "
 msgstr "Pasukta: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"
 

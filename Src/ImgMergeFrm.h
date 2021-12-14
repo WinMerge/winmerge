@@ -58,6 +58,7 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	bool GenerateReport(const String& sFileName, bool allPages) const;
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	const PrediffingInfo* GetPrediffer() const override { return nullptr; };

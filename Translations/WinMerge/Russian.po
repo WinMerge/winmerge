@@ -3395,6 +3395,9 @@ msgstr "Отражен: %s  "
 msgid "Rotated: %d  "
 msgstr "Повернут: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Редактировать здесь>"
 

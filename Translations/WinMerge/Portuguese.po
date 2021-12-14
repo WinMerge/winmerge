@@ -3864,6 +3864,9 @@ msgstr "Virada: %s  "
 msgid "Rotated: %d  "
 msgstr "Rodado: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Edit here>"
 

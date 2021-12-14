@@ -3779,6 +3779,9 @@ msgstr "反転: %s  "
 msgid "Rotated: %d  "
 msgstr "回転: %d°  "
 
+msgid "All pages"
+msgstr "全ページ"
+
 msgid "<Edit here>"
 msgstr "<ここを編集>"
 

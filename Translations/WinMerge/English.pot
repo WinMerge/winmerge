@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-11-28 21:50+0000\n"
+"POT-Creation-Date: 2021-12-14 22:23+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3385,6 +3385,9 @@ msgstr ""
 
 #, c-format
 msgid "Rotated: %d  "
+msgstr ""
+
+msgid "All pages"
 msgstr ""
 
 msgid "<Edit here>"

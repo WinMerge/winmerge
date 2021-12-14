@@ -3394,6 +3394,9 @@ msgstr "Odbicie: %s  "
 msgid "Rotated: %d  "
 msgstr "Obrót: %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<Edytuj tutaj>"
 

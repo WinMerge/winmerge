@@ -3884,6 +3884,9 @@ msgstr "Rivultatu : %s  "
 msgid "Rotated: %d  "
 msgstr "Giratu : %d  "
 
+msgid "All pages"
+msgstr ""
+
 msgid "<Edit here>"
 msgstr "<mudificate quì>"
 
