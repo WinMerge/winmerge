@@ -10,8 +10,10 @@ if "%1" == "" (
   call :BuildInstaller x86
 ) else if "%1" == "ARM64" (
   call :BuildInstaller ARM64
-) else (
+) else if "%1" == "ARM" (
   echo platform %1 is not supported
+) else (
+  call :BuildInstaller %1
 )
 goto :eof
 
