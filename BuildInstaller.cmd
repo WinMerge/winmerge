@@ -1,15 +1,17 @@
 if "%1" == "" (
-  call :BuildInstaller
+  call :BuildInstaller x86
   call :BuildInstaller x64
   call :BuildInstaller x64NonAdmin
   call :BuildInstaller ARM64
 ) else if "%1" == "x64" (
   call :BuildInstaller x64
   call :BuildInstaller x64NonAdmin
+) else if "%1" == "x86" (
+  call :BuildInstaller x86
 ) else if "%1" == "ARM64" (
   call :BuildInstaller ARM64
 ) else (
-  call :BuildInstaller %1 
+  echo platform %1 is not supported
 )
 goto :eof
 
