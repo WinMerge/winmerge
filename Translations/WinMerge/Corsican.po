@@ -3885,7 +3885,7 @@ msgid "Rotated: %d  "
 msgstr "Giratu : %d  "
 
 msgid "All pages"
-msgstr ""
+msgstr "Tutte e pagine"
 
 msgid "<Edit here>"
 msgstr "<mudificate quì>"
