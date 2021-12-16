@@ -64,7 +64,6 @@ ExplorerContextMenu=Habilitar la integración con menú de contexto de &Explorer
 IntegrateTortoiseCVS=Integrar con &TortoiseCVS
 IntegrateTortoiseGit=Integrar con To&rtoiseGit
 IntegrateTortoiseSVN=Integrar con T&ortoiseSVN
-IntegrateClearCase=Integrar con Rational &ClearCase
 AddToPath=&Añadir la carpeta de WinMerge a tu ruta de sistema
 
 ; 3-way merge wizard page

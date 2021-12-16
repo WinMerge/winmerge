@@ -64,7 +64,6 @@ ExplorerContextMenu=啟用檔案總管右鍵選單整合 (&E)
 IntegrateTortoiseCVS=與 &TortoiseCVS 整合
 IntegrateTortoiseGit=與 To&rtoiseGit 整合
 IntegrateTortoiseSVN=與 T&ortoiseSVN 整合 
-IntegrateClearCase=與 Rational &ClearCase 整合
 AddToPath=將 WinMerge 資料夾加入您的系統路徑 (&A)
 
 ; 3-way merge wizard page

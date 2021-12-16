@@ -70,7 +70,6 @@ ExplorerContextMenu=&Permette l’integrazione di u listinu cuntestuale in l’esplu
 IntegrateTortoiseCVS=Integrà cù &TortoiseCVS
 IntegrateTortoiseGit=Integrà cù To&rtoiseGit
 IntegrateTortoiseSVN=Integrà cù T&ortoiseSVN
-IntegrateClearCase=Integrà cù Rational &ClearCase
 AddToPath=&Aghjunghje u cartulare WinMerge à u vostru chjassu di u sistema
 
 ; 3-way merge wizard page

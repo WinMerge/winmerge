@@ -64,7 +64,6 @@ ExplorerContextMenu=&Möjliggör samordning med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
 IntegrateTortoiseGit=Integrera med To&rtoiseGit
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
-IntegrateClearCase=Integrera med Rational &ClearCase
 AddToPath=&Lägg till WinMerge-katalogen till Er systemsökväg
 
 ; 3-way merge wizard page

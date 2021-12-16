@@ -1,6 +1,6 @@
 ; *** Inno Setup version 6.0.0+ Korean messages ***
 ;
-; ▒ 6.0.0+ Translator: SungDong Kim (acroedit@gmail.com)
+; ▒ 6.0.3+ Translator: SungDong Kim (acroedit@gmail.com)
 ; ▒ 5.5.3+ Translator: Domddol (domddol@gmail.com)
 ; ▒ Translation date: MAR 04, 2014
 ; ▒ Contributors: Hansoo KIM (iryna7@gmail.com), Woong-Jae An (a183393@hanmail.net)
@@ -154,6 +154,7 @@ WizardSelectDir=설치 위치 선택
 SelectDirDesc=[name]의 설치 위치를 선택하십시오.
 SelectDirLabel3=다음 폴더에 [name]을(를) 설치합니다.
 SelectDirBrowseLabel=계속하려면 "다음"을, 다른 폴더를 선택하려면 "찾아보기"를 클릭하십시오.
+DiskSpaceGBLabel=이 프로그램은 최소 [gb] GB의 디스크 여유 공간이 필요합니다.
 DiskSpaceMBLabel=이 프로그램은 최소 [mb] MB의 디스크 여유 공간이 필요합니다.
 CannotInstallToNetworkDrive=네트워크 드라이브에 설치할 수 없습니다.
 CannotInstallToUNCPath=UNC 경로에 설치할 수 없습니다.
@@ -181,6 +182,7 @@ NoUninstallWarningTitle=구성 요소가 존재합니다
 NoUninstallWarning=다음 구성 요소가 이미 설치되어 있습니다:%n%n%1%n%n위 구성 요소을 선택하지 않으면, 프로그램 제거시 이 구성 요소들은 제거되지 않을 겁니다.%n%n그래도 계속하시겠습니까?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=현재 선택은 최소 [gb] GB의 디스크 여유 공간이 필요합니다.
 ComponentsDiskSpaceMBLabel=현재 선택은 최소 [mb] MB의 디스크 여유 공간이 필요합니다.
 
 ; *** "Select Additional Tasks" wizard page
@@ -221,6 +223,7 @@ ApplicationsFound2=다음 응용프로그램이 설치 업데이트가 필요한 파일을 사용하고 있
 CloseApplications=자동으로 응용프로그램을 종료함(&A)
 DontCloseApplications=응용프로그램을 종료하지 않음(&D)
 ErrorCloseApplications=설치 마법사가 응용프로그램을 자동으로 종료할 수 없습니다, 계속하기 전에 설치 업데이트가 필요한 파일을 사용하고 있는 응용프로그램을 모두 종료하시기 바랍니다.
+PrepareToInstallNeedsRestart=설치 마법사는 귀하의 컴퓨터를 재시작해야 합니다. [name] 설치를 완료하기 위해 컴퓨터를 다시 시작한 후에 설치 마법사를 다시 실행해 주십시오.%n%n지금 다시 시작하시겠습니까?
 
 ; *** "Installing" wizard page
 WizardInstalling=설치 중

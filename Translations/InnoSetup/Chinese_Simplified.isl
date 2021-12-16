@@ -64,7 +64,6 @@ ExplorerContextMenu=集成到资源管理器右键菜单(&E)
 IntegrateTortoiseCVS=集成到 &TortoiseCVS
 IntegrateTortoiseGit=集成到 To&rtoiseGit
 IntegrateTortoiseSVN=集成到 T&ortoiseSVN
-IntegrateClearCase=集成到 Rational &ClearCase
 AddToPath=添加 WinMerge 文件夹到系统路径（P&ATH）
 
 ; 3-way merge wizard page

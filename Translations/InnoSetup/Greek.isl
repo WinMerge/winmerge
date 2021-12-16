@@ -64,7 +64,6 @@ ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευν
 IntegrateTortoiseCVS=Ενσωμάτωση του &TortoiseCVS
 IntegrateTortoiseGit=Ενσωμάτωση του To&rtoiseGit
 IntegrateTortoiseSVN=Ενσωμάτωση του T&ortoiseSVN
-IntegrateClearCase=Ενσωμάτωση του Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page

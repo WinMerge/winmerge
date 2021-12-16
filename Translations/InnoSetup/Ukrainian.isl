@@ -64,7 +64,6 @@ ExplorerContextMenu=&Інтегруватися в контекстне меню оболонки ОС
 IntegrateTortoiseCVS=Інтегруватися в &TortoiseCVS
 IntegrateTortoiseGit=Інтегруватися в To&rtoiseGit
 IntegrateTortoiseSVN=Інтегруватися в T&ortoiseSVN
-IntegrateClearCase=Інтегруватися в Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page

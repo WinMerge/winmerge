@@ -1,9 +1,9 @@
-; *** Inno Setup version 5.5.3+ Serbian (Cyrillic) messages ***
+; *** Inno Setup version 6.1.0+ Serbian (Cyrillic) messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/files/istrans/
 ;
-; Translated by Rancher (theranchcowboy@gmail.com).
+; Translated by Rancher (theranchcowboy@gmail.com) and Davor (davornik@yahoo.com).
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -44,6 +44,7 @@ ErrorTitle=Грешка
 SetupLdrStartupMessage=Инсталираћете %1. Желите ли да наставите?
 LdrCannotCreateTemp=Не могу да направим привремену датотеку. Инсталација је прекинута.
 LdrCannotExecTemp=Не могу да покренем датотеку у привременој фасцикли. Инсталација је прекинута.
+HelpTextNote=
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nГрешка %2: %3
@@ -57,13 +58,21 @@ WindowsServicePackRequired=Програм захтева %1 сервисни пакет %2 или новији.
 NotOnThisPlatform=Програм неће радити на %1.
 OnlyOnThisPlatform=Програм ће радити на %1.
 OnlyOnTheseArchitectures=Програм се може инсталирати само на издањима виндоуса који раде на следећим архитектурама процесора:%n%n%1
-MissingWOW64APIs=Издање виндоуса које користите не садржи функционалност потребну за извршавање 64-битних инсталација. Инсталирајте сервисни пакет %1 да бисте решили овај проблем.
 WinVersionTooLowError=Програм захтева %1, издање %2 или новије.
 WinVersionTooHighError=Програм не можете инсталирати на %1 издању %2 или новијем.
 AdminPrivilegesRequired=Морате бити пријављени као администратор да бисте инсталирали програм.
 PowerUserPrivilegesRequired=Морате бити пријављени као администратор или овлашћени корисник да бисте инсталирали програм.
 SetupAppRunningError=Програм %1 је тренутно покренут.%n%nЗатворите га и кликните на дугме „У реду“ да наставите или „Откажи“ да напустите инсталацију.
 UninstallAppRunningError=Програм %1 је тренутно покренут.%n%nЗатворите га и кликните на дугме „У реду“ да наставите или „Откажи“ да напустите инсталацију.
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Одаберите начин инсталације
+PrivilegesRequiredOverrideInstruction=Одаберите начин инсталације
+PrivilegesRequiredOverrideText1=%1 може бити инсталиран за све кориснике (захтева административне привилегије) или само за вас.
+PrivilegesRequiredOverrideText2=%1 може да се инсталира само за вас или за све кориснике (захтева административне привилегије).
+PrivilegesRequiredOverrideAllUsers=Инсталирај за &све кориснике
+PrivilegesRequiredOverrideAllUsersRecommended=Инсталирај за &све кориснике (препоручено)
+PrivilegesRequiredOverrideCurrentUser=Инсталирај само за &мене
+PrivilegesRequiredOverrideCurrentUserRecommended=Инсталирај само за &мене (препоручено)
 
 ; *** Misc. errors
 ErrorCreatingDir=Не могу да направим фасциклу „%1“.
@@ -76,7 +85,7 @@ AboutSetupMenuItem=&О програму
 AboutSetupTitle=Подаци о програму
 AboutSetupMessage=%1 верзија %2%n%3%n%n%1 матична страница:%n%4
 AboutSetupNote=
-TranslatorNote=Serbian translation by Rancher.
+TranslatorNote=
 
 ; *** Buttons
 ButtonBack=< &Назад
@@ -143,6 +152,7 @@ WizardSelectDir=Одабир одредишне фасцикле
 SelectDirDesc=Изаберите место на ком желите да инсталирате [name].
 SelectDirLabel3=Програм ће инсталирати [name] у следећу фасциклу.
 SelectDirBrowseLabel=Кликните на „Даље“ да наставите. Ако желите да изаберете другу фасциклу, кликните на „Потражи…“.
+DiskSpaceGBLabel=Потребно је најмање [gb] GB слободног простора на диску.
 DiskSpaceMBLabel=Потребно је најмање [mb] MB слободног простора на диску.
 CannotInstallToNetworkDrive=Не могу да инсталирам на мрежну јединицу.
 CannotInstallToUNCPath=Не могу да инсталирам на UNC путању.
@@ -170,6 +180,7 @@ NoUninstallWarningTitle=Компоненте већ постоје
 NoUninstallWarning=Следеће компоненте већ постоје на рачунару:%n%n%1%n%nДештриклирање ових компоненти их неће уклонити.%n%nЖелите ли да наставите?
 ComponentSize1=%1 kB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Изабране ставке захтевају најмање [gb] GB слободног простора.
 ComponentsDiskSpaceMBLabel=Изабране ставке захтевају најмање [mb] MB слободног простора.
 
 ; *** "Select Additional Tasks" wizard page
@@ -200,6 +211,18 @@ ReadyMemoComponents=Изабране компоненте:
 ReadyMemoGroup=Фасцикла у менију „Старт“:
 ReadyMemoTasks=Додатни задаци:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Преузимање додатних датотека...
+ButtonStopDownload=&Заустави преузимање
+StopDownload=Да ли сте сигурни да желите да зауставите преузимање?
+ErrorDownloadAborted=Преузимање је прекинуто
+ErrorDownloadFailed=Преузимање није успело: %1 %2
+ErrorDownloadSizeFailed=Добијање величине није успело: %1 %2
+ErrorFileHash1=Хеш датотеке није успео: %1
+ErrorFileHash2=Неисправан хеш датотеке: очекиван %1, пронађен %2
+ErrorProgress=Неисправан напредак: %1 од %2
+ErrorFileSize=Неисправна величина датотеке: очекиван %1, пронађен %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Припрема за инсталацију
 PreparingDesc=Програм се припрема да инсталира [name] на рачунар.
@@ -210,6 +233,7 @@ ApplicationsFound2=Следећи програми користе датотеке које треба да ажурира инста
 CloseApplications=&Затвори програме
 DontCloseApplications=&Не затварај програме
 ErrorCloseApplications=Не могу да затворим све програме. Пре него што наставите, препоручујемо вам да затворите све програме који користе датотеке које треба да ажурира инсталациони програм.
+PrepareToInstallNeedsRestart=Инсталација мора да поново покрене рачунар. Након поновног покретања рачунара, поново покрените инсталацију да бисте довршили инсталацију [name].%n%nЖелите ли поново покренути рачунар сада?
 
 ; *** "Installing" wizard page
 WizardInstalling=Инсталирање
@@ -239,7 +263,10 @@ SelectDirectoryLabel=Изаберите место следећег диска.
 
 ; *** Installation phase messages
 SetupAborted=Инсталација није завршена.%n%nИсправите проблем и покрените је поново.
-EntryAbortRetryIgnore=Кликните на „Покушај опет“ да поновите радњу, „Занемари“ да наставите у сваком случају или „Прекини“ да обуставите инсталацију.
+AbortRetryIgnoreSelectAction=Изаберите радњу
+AbortRetryIgnoreRetry=&Покушај опет
+AbortRetryIgnoreIgnore=&Занемари грешку и наставу
+AbortRetryIgnoreCancel=Прекини инсталацију
 
 ; *** Installation status messages
 StatusClosingApplications=Затварам програме…
@@ -270,14 +297,24 @@ ErrorRegWriteKey=Грешка при уписивању уноса у регистар:%n%1\%2
 ErrorIniEntry=Грешка при стварању INI уноса у датотеци „%1“.
 
 ; *** File copying errors
-FileAbortRetryIgnore=Кликните на „Покушај опет“ да поновите радњу, „Занемари“ да прескочите датотеку (не препоручује се) или „Прекини“ да обуставите инсталацију.
-FileAbortRetryIgnore2=Кликните на „Покушај опет“ да поновите радњу, „Занемари“ да наставите у сваком случају (не препоручује се) или „Прекини“ да обуставите инсталацију.
+FileAbortRetryIgnoreSkipNotRecommended=&Прескочите ову датотеку (не препоручује се)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Занемари грешку и настави (не препоручује се)
 SourceIsCorrupted=Изворна датотека је оштећена
 SourceDoesntExist=Изворна датотека „%1“ не постоји
-ExistingFileReadOnly=Постојећа датотека је само за читање.%n%nКликните на „Покушај опет“ да уклоните особину „само за читање“ и поновите радњу, „Занемари“ да прескочите датотеку или „Прекини“ да обуставите инсталацију.
+ExistingFileReadOnly2=Постојећа датотека не може да се замени јер је само за читање.
+ExistingFileReadOnlyRetry=&Уклоните атрибут само за читање и покушајте поново
+ExistingFileReadOnlyKeepExisting=&Задржите постојећу датотеку
 ErrorReadingExistingDest=Дошло је до грешке при покушају читања постојеће датотеке:
-FileExists=Датотека већ постоји.%n%nЖелите ли да је замените?
-ExistingFileNewer=Постојећа датотека је новија од оне коју треба поставити. Препоручујемо вам да задржите постојећу датотеку.%n%nЖелите ли то да урадите?
+FileExistsSelectAction=Одабери акцију
+FileExists2=Датотека већ постоји.
+FileExistsOverwriteExisting=&Замени постојећу датотеку
+FileExistsKeepExisting=&Задржи постојећу датотеку
+FileExistsOverwriteOrKeepAll=&Уради ово и убудуће
+ExistingFileNewerSelectAction=Одабери акцију
+ExistingFileNewer2=Постојећа датотека је новија од оне коју треба инсталирати.
+ExistingFileNewerOverwriteExisting=&Замени постојећу датотеку
+ExistingFileNewerKeepExisting=&Задржи постојећу датотеку (препоручено)
+ExistingFileNewerOverwriteOrKeepAll=&Уради ово и убудуће
 ErrorChangingAttr=Дошло је до грешке при измени особине следеће датотеке:
 ErrorCreatingTemp=Дошло је до грешке при стварању датотеке у одредишној фасцикли:
 ErrorReadingSource=Дошло је до грешке при читању изворне датотеке:
@@ -288,6 +325,16 @@ ErrorRenamingTemp=Дошло је до грешке при преименовању датотеке у одредишној фасц
 ErrorRegisterServer=Не могу да упишем DLL/OCX: %1
 ErrorRegSvr32Failed=RegSvr32 није успео. Грешка %1
 ErrorRegisterTypeLib=Не могу да упишем библиотеку типова: %1
+
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=Сви корисници
+UninstallDisplayNameMarkCurrentUser=Тренутни корисник
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Дошло је до грешке при отварању текстуалне датотеке.

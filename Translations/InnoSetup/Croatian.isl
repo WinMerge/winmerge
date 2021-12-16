@@ -64,7 +64,6 @@ ExplorerContextMenu=&Integracija u Explorer kontekst izbornik
 IntegrateTortoiseCVS=Integracija s &TortoiseCVS
 IntegrateTortoiseGit=Integracija s To&rtoiseGit
 IntegrateTortoiseSVN=Integracija s T&ortoiseSVN
-IntegrateClearCase=Integracija s Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page

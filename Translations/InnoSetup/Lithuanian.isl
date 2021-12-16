@@ -64,7 +64,6 @@ ExplorerContextMenu=L&eisti „Explorer“ kontekstinio meniu integracijà
 IntegrateTortoiseCVS=Integruoti su „&TortoiseCVS“
 IntegrateTortoiseGit=Integruoti su „To&rtoiseGit“
 IntegrateTortoiseSVN=Integruoti su „T&ortoiseSVN“
-IntegrateClearCase=Integruoti su „Rational &ClearCase“
 AddToPath=Átr&aukti „WinMerge“ katalogà á sistemos %PATH% kintamajá
 
 ; 3-way merge wizard page

@@ -64,7 +64,6 @@ ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseGit=TortoiseGitとの連携(&R)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
-IntegrateClearCase=Rational ClearCaseとの連携(&C)
 AddToPath=システム環境変数PATHへWinMergeのフォルダを追加する(&A)
 
 ; 3-way merge wizard page

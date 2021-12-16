@@ -1,7 +1,7 @@
-﻿; *** Inno Setup version 6.0.0+ Greek messages ***
+﻿; *** Inno Setup version 6.1.0+ Greek messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/files/istrans/
+;   https://jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -10,7 +10,7 @@
 ;
 ; Originally translated by Anastasis Chatzioglou, baldycom@hotmail.com
 ; Updated by XhmikosR [XhmikosR, my_nickname at yahoo dot com]
-; Updated to version 6.0.0+ by V. Karamichail, v.karamichail@outlook.com
+; Updated to version 6.1.0+ by Vasileios Karamichail, v.karamichail@outlook.com
 ;
 
 [LangOptions]
@@ -156,6 +156,7 @@ WizardSelectDir=Επιλογή Φακέλου Εγκατάστασης
 SelectDirDesc=Πού θέλετε να εγκατασταθεί το [name];
 SelectDirLabel3=Ο Οδηγός Εγκατάστασης θα εγκαταστήσει το [name] στον ακόλουθο φάκελο.
 SelectDirBrowseLabel=Για να συνεχίσετε, πατήστε Επόμενο. Εάν θέλετε να επιλέξετε διαφορετικό φάκελο, πατήστε Αναζήτηση.
+DiskSpaceGBLabel=Απαιτούνται τουλάχιστον [gb] GB ελεύθερου χώρου στο δίσκο.
 DiskSpaceMBLabel=Απαιτούνται τουλάχιστον [mb] MB ελεύθερου χώρου στο δίσκο.
 CannotInstallToNetworkDrive=Η εγκατάσταση δεν μπορεί να γίνει σε δίσκο δικτύου.
 CannotInstallToUNCPath=Η εγκατάσταση δεν μπορεί να γίνει σε διαδρομή UNC.
@@ -183,6 +184,7 @@ NoUninstallWarningTitle=Οι Λειτουργικές Μονάδες Υπάρχ�
 NoUninstallWarning=Ο Οδηγός Εγκατάστασης εντόπισε ότι τα ακόλουθα στοιχεία είναι ήδη εγκατεστημένα στον υπολογιστή σας:%n%n%1%n%nΑποεπιλέγοντας αυτά τα στοιχεία δεν θα απεγκατασταθούν.%n%nΘέλετε να συνεχίσετε παρόλα αυτά;
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Η τρέχουσα επιλογή απαιτεί τουλάχιστον [gb] GB χώρου στο δίσκο.
 ComponentsDiskSpaceMBLabel=Η τρέχουσα επιλογή απαιτεί τουλάχιστον [mb] MB χώρου στο δίσκο.
 
 ; *** "Select Additional Tasks" wizard page
@@ -213,6 +215,18 @@ ReadyMemoComponents=Επιλεγμένες λειτουργικές μονάδε
 ReadyMemoGroup=Φάκελος στο μενού Έναρξη:
 ReadyMemoTasks=Επιπλέον ενέργειες:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Λήψη πρόσθετων αρχείων...
+ButtonStopDownload=&Διακοπή λήψης
+StopDownload=Είστε βέβαιοι ότι θέλετε να διακόψετε τη λήψη;
+ErrorDownloadAborted=Η λήψη ακυρώθηκε
+ErrorDownloadFailed=Η λήψη απέτυχε: %1 %2
+ErrorDownloadSizeFailed=Η λήψη του μεγέθους απέτυχε: %1 %2
+ErrorFileHash1=Αποτυχία υπολογισμού hash: %1
+ErrorFileHash2=Μη έγκυρο hash: αναμενόμενο %1, βρέθηκε %2
+ErrorProgress=Μη έγκυρη πρόοδος: %1 από %2
+ErrorFileSize=Μη έγκυρο μέγεθος αρχείου: αναμενόμενο %1, βρέθηκε %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Προετοιμασία Εγκατάστασης
 PreparingDesc=Ο Οδηγός Εγκατάστασης προετοιμάζεται για την εγκατάσταση του [name] στον υπολογιστή σας.
@@ -222,7 +236,8 @@ ApplicationsFound=Οι ακόλουθες εφαρμογές χρησιμοπο�
 ApplicationsFound2=Οι ακόλουθες εφαρμογές χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης. Συνιστάται να επιτρέψετε στον Οδηγό Εγκατάστασης να κλείσει αυτόματα αυτές τις εφαρμογές. Μετά την ολοκλήρωση της εγκατάστασης, ο Οδηγός Εγκατάστασης θα επιχειρήσει να κάνει επανεκκίνηση των εφαρμογών.
 CloseApplications=&Αυτόματο κλείσιμο των εφαρμογών
 DontCloseApplications=&Χωρίς κλείσιμο των εφαρμογών
-ErrorCloseApplications=Η εγκατάσταση δεν μπόρεσε να κλείσει αυτόματα όλες τις εφαρμογές. Συνιστάται να κλείσετε όλες τις εφαρμογές που χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης προτού συνεχίσετε.
+ErrorCloseApplications=Ο Οδηγός Εγκατάστασης δεν μπόρεσε να κλείσει αυτόματα όλες τις εφαρμογές. Συνιστάται να κλείσετε όλες τις εφαρμογές που χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης προτού συνεχίσετε.
+PrepareToInstallNeedsRestart=Ο Οδηγός Εγκατάστασης πρέπει να κάνει επανεκκίνηση του υπολογιστή σας. Μετά την επανεκκίνηση του υπολογιστή σας, εκτελέστε ξανά τον Οδηγό Εγκατάστασης για να ολοκληρώσετε την εγκατάσταση του [name].%n%nΘα θέλατε να κάνετε επανεκκίνηση τώρα;
 
 ; *** "Installing" wizard page
 WizardInstalling=Εγκατάσταση
@@ -294,8 +309,16 @@ ExistingFileReadOnly2=Το υπάρχον αρχείο δεν μπόρεσε ν�
 ExistingFileReadOnlyRetry=&Καταργήστε το χαρακτηριστικό μόνο για ανάγνωση και δοκιμάστε ξανά
 ExistingFileReadOnlyKeepExisting=&Διατηρήστε το υπάρχον αρχείο
 ErrorReadingExistingDest=Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του υπάρχοντος αρχείου:
-FileExists=Το αρχείο υπάρχει ήδη.%n%nΘα θέλατε ο Οδηγός Εγκατάστασης να το αντικαταστήσει;
-ExistingFileNewer=Το υπάρχον αρχείο είναι νεότερο από αυτό που ο Οδηγός Εγκατάστασης που προσπαθεί να εγκαταστήσει. Συνιστάται να διατηρείτε το υπάρχον αρχείο.%n%nΘέλετε να διατηρήσετε το υπάρχον αρχείο;
+FileExistsSelectAction=Επιλέξτε ενέργεια
+FileExists2=Το αρχείο υπάρχει ήδη.
+FileExistsOverwriteExisting=&Αντικατάσταση υπάρχοντος αρχείου
+FileExistsKeepExisting=&Διατήρηση υπάρχοντος αρχείου
+FileExistsOverwriteOrKeepAll=&Να γίνει το ίδιο για τις επόμενες διενέξεις
+ExistingFileNewerSelectAction=Επιλέξτε ενέργεια
+ExistingFileNewer2=Το υπάρχον αρχείο είναι νεότερο από αυτό που προσπαθεί να εγκαταστήσει ο Οδηγός Εγκατάστασης.
+ExistingFileNewerOverwriteExisting=&Αντικατάσταση υπάρχοντος αρχείου
+ExistingFileNewerKeepExisting=&Διατήρηση υπάρχοντος αρχείου (συνιστάται)
+ExistingFileNewerOverwriteOrKeepAll=&Να γίνει το ίδιο για τις επόμενες διενέξεις
 ErrorChangingAttr=Παρουσιάστηκε σφάλμα κατά την προσπάθεια αλλαγής των χαρακτηριστικών του υπάρχοντος αρχείου:
 ErrorCreatingTemp=Παρουσιάστηκε σφάλμα κατά την προσπάθεια δημιουργίας ενός αρχείου στον φακέλο προορισμού:
 ErrorReadingSource=Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου προέλευσης:
@@ -364,3 +387,4 @@ AssocingFileExtension=Γίνεται συσχέτιση του %1 με την ε
 AutoStartProgramGroupDescription=Εκκίνηση:
 AutoStartProgram=Αυτόματη εκκίνηση του %1
 AddonHostProgramNotFound=Το %1 δε βρέθηκε στο φάκελο που επιλέξατε.%n%nΘέλετε να συνεχίσετε παρόλα αυτά;
+

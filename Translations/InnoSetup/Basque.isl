@@ -64,7 +64,6 @@ ExplorerContextMenu=&Gaitu Explorer hitzinguru menu baterapena
 IntegrateTortoiseCVS=Bateratu &TortoiseCVS-rekin
 IntegrateTortoiseGit=Bateratu To&rtoiseGit-rekin
 IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
-IntegrateClearCase=Bateratu Rational &ClearCase-rekin
 AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura
 
 ; 3-way merge wizard page

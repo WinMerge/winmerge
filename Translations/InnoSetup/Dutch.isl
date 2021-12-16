@@ -64,7 +64,6 @@ ExplorerContextMenu=&Contextmenu-integratie in Verkenner inschakelen
 IntegrateTortoiseCVS=Integreren met &TortoiseCVS
 IntegrateTortoiseGit=Integreren met To&rtoiseGit
 IntegrateTortoiseSVN= Integreren met T&ortoiseSVN
-IntegrateClearCase= Integreren met Rational &ClearCase
 AddToPath=&WinMerge-map aan uw systeempad toevoegen
 
 ; 3-way merge wizard page

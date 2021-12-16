@@ -64,7 +64,6 @@ ExplorerContextMenu=&Windows gezgini sað týk menü bütünleþtirmesi kullanýlsýn
 IntegrateTortoiseCVS=&TortoiseCVS ile bütünleþtir
 IntegrateTortoiseGit=To&rtoiseGit ile bütünleþtir
 IntegrateTortoiseSVN=T&ortoiseSVN ile bütünleþtir
-IntegrateClearCase=Rational &ClearCase ile bütünleþtir
 AddToPath=Win&Merge klasörü sistem yoluna eklensin
 
 ; 3-way merge wizard page

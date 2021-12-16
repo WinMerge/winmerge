@@ -128,7 +128,7 @@ begin
 		end;
 
 		// Write file to flag modifypath was selected
-		//   Workaround since IsTaskSelected() cannot be called at uninstall and AppName and AppId cannot be "read" in Code section
+		//   Workaround since WizardIsTaskSelected() cannot be called at uninstall and AppName and AppId cannot be "read" in Code section
 		if IsUninstaller() = false then
 			SaveStringToFile(ExpandConstant('{app}') + '\uninsTasks.txt', WizardSelectedTasks(False), False);
 	end;
@@ -138,7 +138,7 @@ end;
 // procedure CurStepChanged(CurStep: TSetupStep);
 // begin
 //	if CurStep = ssPostInstall then
-//		if IsTaskSelected('modifypath') then
+//		if WizardIsTaskSelected('modifypath') then
 //			ModPath();
 // end;
 
@@ -159,7 +159,7 @@ end;
 
 function NeedRestart(): Boolean;
 begin
-	if IsTaskSelected('modifypath') and not UsingWinNT() then begin
+	if WizardIsTaskSelected('modifypath') and not UsingWinNT() then begin
 		Result := True;
 	end else begin
 		Result := False;

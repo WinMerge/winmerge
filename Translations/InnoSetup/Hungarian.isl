@@ -64,7 +64,6 @@ ExplorerContextMenu=Integrálás az Intézö &helyi-menüjébe
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
 IntegrateTortoiseGit=Integrálás a To&rtoiseGit programmal
 IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
-IntegrateClearCase=Integrálás a Rational &ClearCase programmal
 AddToPath=&Adja hozzá a WinMerge mappát a rendszer elérési útjához
 
 ; 3-way merge wizard page
