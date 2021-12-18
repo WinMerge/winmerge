@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-10-12 12:50+0200\n"
+"PO-Revision-Date: 2021-12-18 16:05+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -1161,7 +1161,7 @@ msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenzas de codificación"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Ignorar nú&meros"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
@@ -1645,19 +1645,19 @@ msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "Propiedades &adicionais"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Propiedades adicionais"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Seleccionar complemento"
@@ -3446,88 +3446,88 @@ msgid "Prediffer"
 msgstr "Precomparación"
 
 msgid "Left"
-msgstr ""
+msgstr "Esquerda"
 
 msgid "Middle"
-msgstr ""
+msgstr "Centro"
 
 msgid "Right"
-msgstr ""
+msgstr "Dereita"
 
 msgid "Diff"
-msgstr ""
+msgstr "Dif."
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados na esquerda"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados na dereita"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados no centro"
 
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 msgid "Communication"
-msgstr ""
+msgstr "Comunicación"
 
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Document"
-msgstr ""
+msgstr "Documento"
 
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 msgid "Journal"
-msgstr ""
+msgstr "Xornal"
 
 msgid "Link"
-msgstr ""
+msgstr "Ligazón"
 
 msgid "Media"
-msgstr ""
+msgstr "Medio"
 
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotografía"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Gravación de TV"
 
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 msgid "Security"
-msgstr ""
+msgstr "Seguridade"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Tarefa"
 
 msgid "Video"
-msgstr ""
+msgstr "Vídeo"
 
 msgid "Hash"
-msgstr ""
+msgstr "Suma de verificación"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3633,7 +3633,7 @@ msgstr "Os arquivos de imaxe son diferentes"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupo%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4418,7 +4418,7 @@ msgid "MDI child window only"
 msgstr "Só a ventá filla MDI"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Pechar a ventá principal se só hai unha ventá MDI filla"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4517,7 +4517,7 @@ msgid "Rotated: %d  "
 msgstr "Rotado: %d "
 
 msgid "All pages"
-msgstr ""
+msgstr "Todas as páxinas"
 
 msgid "<Edit here>"
 msgstr "<Editar aquí>"
