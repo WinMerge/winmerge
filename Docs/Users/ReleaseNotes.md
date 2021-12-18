@@ -77,6 +77,7 @@ Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/is
   - Corsican (PR #1072,#1085)
 - Translation updates:
   - Chinese Traditional (PR #1079)
+  - Galician (PR #1089)
   - German (PR #1062,#1086,#1088) 
   - Hungarian (PR #1032)
   - Japanese
