@@ -3906,12 +3906,11 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
-	AppendMenu(hSubMenu, MF_SEPARATOR, 0, nullptr);
 
-	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
+	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING, i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING | ((j % 21) == 20) ? MF_MENUBREAK : 0, i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);
