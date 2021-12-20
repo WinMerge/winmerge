@@ -487,6 +487,8 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	switch (view)
 	{
 	case MENU_MERGEVIEW:
+	case MENU_HEXMERGEVIEW:
+	case MENU_IMGMERGEVIEW:
 		menu_view = MENU_FILECMP;
 		break;
 	case MENU_DIRVIEW:
