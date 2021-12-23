@@ -27,8 +27,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr "中央にコピー"
+
 msgid "C&opy to Right"
 msgstr "右側にコピー(&O)"
+
+msgid "Copy from Middle"
+msgstr "中央からコピー"
+
+msgid "Copy fro&m Right"
+msgstr "右側からコピー(&M)"
 
 msgid "Cop&y to Left"
 msgstr "左側にコピー(&Y)"
@@ -36,20 +45,23 @@ msgstr "左側にコピー(&Y)"
 msgid "Copy &from Left"
 msgstr "左側からコピー(&F)"
 
-msgid "Copy fro&m Right"
-msgstr "右側からコピー(&M)"
+msgid "Copy Selected Line(s) to Middle"
+msgstr "選択した行を中央にコピー"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "選択した行を右側にコピー"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr "選択した行を中央からコピー"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "選択した行を右からコピー"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "選択した行を左側にコピー"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "選択した行を左からコピー"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "選択した行を右からコピー"
 
 msgid "Select Line &Difference\tF4"
 msgstr "行内差異を選択(&D)\tF4"
@@ -680,6 +692,33 @@ msgstr "次の右側のみの差異\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "前の右側のみの差異\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr "左側からコピー(&L)"
+
+msgid "&Middle"
+msgstr "中央(&M)"
+
+msgid "&Right"
+msgstr "右側(&R)"
+
+msgid "Copy from &Middle to"
+msgstr "中央からコピー(&M)"
+
+msgid "&Left"
+msgstr "左側(&L)"
+
+msgid "Copy from &Right to"
+msgstr "右側からコピー(&R)"
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr "選択した行を左側からコピー(&F)"
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr "選択した行を中央からコピー(&D)"
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr "選択した行を右側からコピー(&G)"
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "左側からコピー\tAlt+Shift+Right"
 
@@ -787,15 +826,6 @@ msgstr "右側を... (%1 / %2)"
 
 msgid "&Delete"
 msgstr "削除(&D)"
-
-msgid "&Left"
-msgstr "左側(&L)"
-
-msgid "&Middle"
-msgstr "中央(&M)"
-
-msgid "&Right"
-msgstr "右側(&R)"
 
 msgid "&Both"
 msgstr "両側(&B)"
@@ -2593,6 +2623,27 @@ msgstr "空白で区切る"
 
 msgid "Break at whitespace or punctuation"
 msgstr "空白か句読点で区切る"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr "中央にコピー(&M)\tAlt+Right"
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr "中央にコピー(&M)\tAlt+Left"
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr "中央からコピー\tAlt+Shift+Right"
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr "中央からコピー\tAlt+Shift+Left"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr "中央にコピーして次に進む\tCtrl+Alt+Right"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr "中央にコピーして次に進む\tCtrl+Alt+Left"
+
+msgid "Copy All to Middle"
+msgstr "すべてを中央にコピー"
 
 #, c-format
 msgid "Right to Left (%1)"

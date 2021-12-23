@@ -35,9 +35,19 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_FRENCH, SUBLANG_FRENCH"
 
+msgid "Copy to Middle"
+msgstr ""
+
 #, c-format
 msgid "C&opy to Right"
 msgstr "Copier vers la &Droite"
+
+msgid "Copy from Middle"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr "Copier depuis la Droite"
 
 #, c-format
 msgid "Cop&y to Left"
@@ -47,21 +57,23 @@ msgstr "Copier vers la &Gauche"
 msgid "Copy &from Left"
 msgstr "Copier depuis la Gauche"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Copier depuis la Droite"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Copier les lignes sélectionnées vers la droite"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Copier les lignes sélectionnées depuis la droite"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Copier les lignes sélectionnées vers la gauche"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copier les lignes sélectionnées depuis la gauche"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Copier les lignes sélectionnées depuis la droite"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -864,6 +876,36 @@ msgstr "Différence suivante Droite seulement\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Différence précédente Droite seulement\tAlt+Maj+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr "&Milieu"
+
+#, c-format
+msgid "&Right"
+msgstr "&Droite"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "&Gauche"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Copier depuis la Gauche\tALT+MAJ+Droite"
@@ -987,18 +1029,6 @@ msgstr "Droite vers... (%1 de %2)"
 #, c-format
 msgid "&Delete"
 msgstr "&Supprimer"
-
-#, c-format
-msgid "&Left"
-msgstr "&Gauche"
-
-#, c-format
-msgid "&Middle"
-msgstr "&Milieu"
-
-#, c-format
-msgid "&Right"
-msgstr "&Droite"
 
 #, c-format
 msgid "&Both"
@@ -3175,6 +3205,27 @@ msgstr "Distinguer sur espacement"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Distinguer sur espacement ou ponctuation"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

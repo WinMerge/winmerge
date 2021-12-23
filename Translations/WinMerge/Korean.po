@@ -35,9 +35,19 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 #, c-format
 msgid "C&opy to Right"
 msgstr "오른쪽으로 복사(&O)"
+
+msgid "Copy from Middle"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr "오른쪽에서 복사(&M)"
 
 #, c-format
 msgid "Cop&y to Left"
@@ -47,21 +57,23 @@ msgstr "왼쪽으로 복사(&Y)"
 msgid "Copy &from Left"
 msgstr "왼쪽에서 복사(&F)"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "오른쪽에서 복사(&M)"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "오른쪽으로 선택한 줄(들) 복사"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "오른쪽에서 선택한 줄(들) 복사"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "왼쪽으로 선택한 줄(들) 복사"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "왼쪽에서 선택한 줄(들) 복사"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "오른쪽에서 선택한 줄(들) 복사"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -864,6 +876,36 @@ msgstr "다음 차이점: 오른쪽만\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "이전 차이점: 오른쪽만\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr "가운데(&M)"
+
+#, c-format
+msgid "&Right"
+msgstr "오른쪽(&R)"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "왼쪽(&L)"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "왼쪽에서 복사\tAlt+Shift+Right"
@@ -987,18 +1029,6 @@ msgstr "오른쪽에서... (%1 / %2)"
 #, c-format
 msgid "&Delete"
 msgstr "삭제(&D)"
-
-#, c-format
-msgid "&Left"
-msgstr "왼쪽(&L)"
-
-#, c-format
-msgid "&Middle"
-msgstr "가운데(&M)"
-
-#, c-format
-msgid "&Right"
-msgstr "오른쪽(&R)"
 
 #, c-format
 msgid "&Both"
@@ -3172,6 +3202,27 @@ msgstr "공백에서 멈춤"
 
 msgid "Break at whitespace or punctuation"
 msgstr "공백 또는 구두점에서 멈춤"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

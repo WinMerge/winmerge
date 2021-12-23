@@ -28,8 +28,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Копировать направо"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Копировать справа"
 
 msgid "Cop&y to Left"
 msgstr "Копировать налево"
@@ -37,20 +46,23 @@ msgstr "Копировать налево"
 msgid "Copy &from Left"
 msgstr "Копировать слева"
 
-msgid "Copy fro&m Right"
-msgstr "Копировать справа"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Копировать выбранные строки вправо"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Копировать выбранные строки справа"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Копировать выбранные строки влево"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копировать выбранные строки слева"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Копировать выбранные строки справа"
 
 msgid "Select Line &Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
@@ -681,6 +693,33 @@ msgstr "Следующее только справа\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Предыдущее только справа\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "Середина"
+
+msgid "&Right"
+msgstr "Справа"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "Слева"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Копировать слева\tAlt+Shift+Right"
 
@@ -788,15 +827,6 @@ msgstr "Справа на... (%1 из %2)"
 
 msgid "&Delete"
 msgstr "Удалить"
-
-msgid "&Left"
-msgstr "Слева"
-
-msgid "&Middle"
-msgstr "Середина"
-
-msgid "&Right"
-msgstr "Справа"
 
 msgid "&Both"
 msgstr "Оба"
@@ -2379,6 +2409,27 @@ msgstr "Разбивать по пробельным"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Разбивать по пробельным и знакам пунктуации"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

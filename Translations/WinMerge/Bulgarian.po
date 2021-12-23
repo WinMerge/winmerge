@@ -23,8 +23,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_BULGARIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Копиране в&дясно"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Копиране отд&ясно"
 
 msgid "Cop&y to Left"
 msgstr "Копиране в&ляво"
@@ -32,20 +41,23 @@ msgstr "Копиране в&ляво"
 msgid "Copy &from Left"
 msgstr "Копиране &отляво"
 
-msgid "Copy fro&m Right"
-msgstr "Копиране отд&ясно"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Копиране на избрани редове вдясно"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Копиране на избрани редове от дясно"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Копиране на избрани редове вляво"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копиране на избрани редове от ляво"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Копиране на избрани редове от дясно"
 
 msgid "Select Line &Difference\tF4"
 msgstr "&Избиране на различия на реда\tF4"
@@ -676,6 +688,33 @@ msgstr "Следващо различие само от Дясно\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Предишно различие само от Дясно\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "В&средата"
+
+msgid "&Right"
+msgstr "Отд&ясно"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "От&ляво"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Корирай от ляво\tAlt+Shift+Right"
 
@@ -783,15 +822,6 @@ msgstr "Десен с… (%1 от %2)"
 
 msgid "&Delete"
 msgstr "&Изтриване"
-
-msgid "&Left"
-msgstr "От&ляво"
-
-msgid "&Middle"
-msgstr "В&средата"
-
-msgid "&Right"
-msgstr "Отд&ясно"
 
 msgid "&Both"
 msgstr "&Двете"
@@ -2618,6 +2648,27 @@ msgstr "Пренасяне при интервали"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Пренасяне при интервали или пунктуация"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

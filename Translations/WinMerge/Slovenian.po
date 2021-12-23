@@ -28,8 +28,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Kopiraj v &desno"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Kopiraj iz de&sne"
 
 msgid "Cop&y to Left"
 msgstr "Kopiraj v &levo"
@@ -37,20 +46,23 @@ msgstr "Kopiraj v &levo"
 msgid "Copy &from Left"
 msgstr "Kopiraj iz l&eve"
 
-msgid "Copy fro&m Right"
-msgstr "Kopiraj iz de&sne"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiraj izbrane vrstice na desno"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Kopiraj izbrane vrstice z desne"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Kopiraj izbrane vrstice na levo"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiraj izbrane vrstice z leve"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Kopiraj izbrane vrstice z desne"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Izberi &razliko vrstice\tF4"
@@ -681,6 +693,33 @@ msgstr "Samo naslednja desna razlika\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Samo prejšnja desna razlika\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "Sre&dnjo"
+
+msgid "&Right"
+msgstr "&Desno"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "&Levo"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiraj iz leve\tAlt+Shift+Desno"
 
@@ -788,15 +827,6 @@ msgstr "Desno v... (%1 od%2)"
 
 msgid "&Delete"
 msgstr "&Izbriši"
-
-msgid "&Left"
-msgstr "&Levo"
-
-msgid "&Middle"
-msgstr "Sre&dnjo"
-
-msgid "&Right"
-msgstr "&Desno"
 
 msgid "&Both"
 msgstr "&Oboje"
@@ -2630,6 +2660,27 @@ msgstr "Prelom na praznem znaku"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Prelom na praznem znaku ali ločilu"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

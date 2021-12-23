@@ -186,11 +186,13 @@ private:
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
 	afx_msg void OnX2Y(int srcPane, int dstPane);
-	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI, int srcPane, int dstPane);
+	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
@@ -199,6 +201,8 @@ private:
 	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
 	afx_msg void OnAllRight();
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
+	afx_msg void OnCopyX2Y(UINT nID);
+	afx_msg void OnUpdateCopyFromXToY(CCmdUI *pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	afx_msg void OnImgViewDifferences();

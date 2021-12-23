@@ -27,8 +27,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SWEDISH, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Kopiera till höger"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Kopiera från höger"
 
 msgid "Cop&y to Left"
 msgstr "Kopiera till vänster"
@@ -36,20 +45,23 @@ msgstr "Kopiera till vänster"
 msgid "Copy &from Left"
 msgstr "Kopiera från vänster"
 
-msgid "Copy fro&m Right"
-msgstr "Kopiera från höger"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiera valda rader till höger"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Kopiera valda rader från höger"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Kopiera valda rader till vänster"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiera valda rader från vänster"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Kopiera valda rader från höger"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Markera radskillnad\tF4"
@@ -680,6 +692,33 @@ msgstr "Nästa skillnad endast höger\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Föregående skillnad endast höger\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "Mitten"
+
+msgid "&Right"
+msgstr "Höger"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "Vänster"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiera från vänster\tAlt+Shift+Right"
 
@@ -787,15 +826,6 @@ msgstr "Höger till... (%1 av %2)"
 
 msgid "&Delete"
 msgstr "Ta bort"
-
-msgid "&Left"
-msgstr "Vänster"
-
-msgid "&Middle"
-msgstr "Mitten"
-
-msgid "&Right"
-msgstr "Höger"
 
 msgid "&Both"
 msgstr "Båda"
@@ -2594,6 +2624,27 @@ msgstr "Bryt vid blankutrymme"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Bryt vid blankutrymme eller punkt"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"

@@ -66,15 +66,31 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
-        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
-        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_L
+        MENUITEM "C&opy to Right",              ID_COPY_TO_RIGHT_L
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_L
+        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT_L
+        MENUITEM "Cop&y to Left",               ID_COPY_TO_LEFT_M
+        MENUITEM "C&opy to Right",              ID_COPY_TO_RIGHT_M
+        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT_M
+        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT_M
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_R
+        MENUITEM "Cop&y to Left",               ID_COPY_TO_LEFT_R
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_R
+        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "Copy Selected Line(s) to Right", ID_LINES_L2R
-        MENUITEM "Copy Selected Line(s) to Left", ID_LINES_R2L
-        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT
-        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT
+        MENUITEM "Copy Selected Line(s) to Middle",   ID_COPY_LINES_TO_MIDDLE_L
+        MENUITEM "Copy Selected Line(s) to Right",    ID_COPY_LINES_TO_RIGHT_L
+        MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_L
+        MENUITEM "Copy Selected Line(s) from Right",  ID_COPY_LINES_FROM_RIGHT_L
+        MENUITEM "Copy Selected Line(s) to Left",     ID_COPY_LINES_TO_LEFT_M
+        MENUITEM "Copy Selected Line(s) to Right",    ID_COPY_LINES_TO_RIGHT_M
+        MENUITEM "Copy Selected Line(s) from Left",   ID_COPY_LINES_FROM_LEFT_M
+        MENUITEM "Copy Selected Line(s) from Right",  ID_COPY_LINES_FROM_RIGHT_M
+        MENUITEM "Copy Selected Line(s) to Middle",   ID_COPY_LINES_TO_MIDDLE_R
+        MENUITEM "Copy Selected Line(s) to Left",     ID_COPY_LINES_TO_LEFT_R
+        MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
+        MENUITEM "Copy Selected Line(s) from Left",   ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
@@ -618,6 +634,10 @@ BEGIN
         MENUITEM "Ne&xt Conflict\tAlt+Shift+Down", ID_NEXTCONFLICT
         MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
         MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
         POPUP "A&dvanced"
         BEGIN
             MENUITEM "Next Difference Between Left and Middle\tAlt+1", ID_NEXTDIFFLM
@@ -637,11 +657,39 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Next Right Only Difference\tAlt+9", ID_NEXTDIFFRO
             MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
+            MENUITEM SEPARATOR
+			POPUP "Copy from &Left to"
+			BEGIN
+				MENUITEM "&Middle", ID_COPY_TO_MIDDLE_L
+				MENUITEM "&Right", ID_COPY_TO_RIGHT_L
+			END
+			POPUP "Copy from &Middle to"
+			BEGIN
+				MENUITEM "&Left", ID_COPY_TO_LEFT_M
+				MENUITEM "&Right", ID_COPY_TO_RIGHT_M
+			END
+			POPUP "Copy from &Right to"
+			BEGIN
+				MENUITEM "&Left", ID_COPY_TO_LEFT_R
+				MENUITEM "&Middle", ID_COPY_TO_MIDDLE_R
+			END
+            MENUITEM SEPARATOR
+			POPUP "Copy Selected Line(s) from Le&ft to"
+			BEGIN
+				MENUITEM "&Middle", ID_COPY_LINES_TO_MIDDLE_L
+				MENUITEM "&Right", ID_COPY_LINES_TO_RIGHT_L
+			END
+			POPUP "Copy Selected Line(s) from Mi&ddle to"
+			BEGIN
+				MENUITEM "&Left", ID_COPY_LINES_TO_LEFT_M
+				MENUITEM "&Right", ID_COPY_LINES_TO_RIGHT_M
+			END
+			POPUP "Copy Selected Line(s) from Ri&ght to"
+			BEGIN
+				MENUITEM "&Left", ID_COPY_LINES_TO_LEFT_R
+				MENUITEM "&Middle", ID_COPY_LINES_TO_MIDDLE_R
+			END
         END
-        MENUITEM SEPARATOR
-        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
-        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
         MENUITEM "Copy to L&eft\tAlt+Left",     ID_R2L
@@ -3150,6 +3198,18 @@ STRINGTABLE
 BEGIN
     IDS_BREAK_ON_WHITESPACE "Break at whitespace"
     IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
+END
+
+// Merge menu for 3-way compare
+STRINGTABLE
+BEGIN
+    IDS_L2M "Copy to &Middle\tAlt+Right"
+    IDS_R2M "Copy to &Middle\tAlt+Left"
+    IDS_COPY_FROM_MIDDLE_R "Copy from Middle\tAlt+Shift+Right"
+    IDS_COPY_FROM_MIDDLE_L "Copy from Middle\tAlt+Shift+Left"
+    IDS_L2MNEXT "Copy to Middle and Advance\tCtrl+Alt+Right"
+    IDS_R2MNEXT "Copy to Middle and Advance\tCtrl+Alt+Left"
+    IDS_ALL_MIDDLE "Copy All to Middle"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

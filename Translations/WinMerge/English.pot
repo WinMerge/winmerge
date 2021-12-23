@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-12-14 22:23+0000\n"
+"POT-Creation-Date: 2021-12-22 08:43+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -20,7 +20,16 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr ""
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
+msgstr ""
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
 msgstr ""
 
 msgid "Cop&y to Left"
@@ -29,19 +38,22 @@ msgstr ""
 msgid "Copy &from Left"
 msgstr ""
 
-msgid "Copy fro&m Right"
+msgid "Copy Selected Line(s) to Middle"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Left"
 msgstr ""
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
-
-msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -673,6 +685,33 @@ msgstr ""
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr ""
+
+msgid "&Right"
+msgstr ""
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr ""
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr ""
 
@@ -779,15 +818,6 @@ msgid "Right to... (%1 of %2)"
 msgstr ""
 
 msgid "&Delete"
-msgstr ""
-
-msgid "&Left"
-msgstr ""
-
-msgid "&Middle"
-msgstr ""
-
-msgid "&Right"
 msgstr ""
 
 msgid "&Both"
@@ -2370,6 +2400,27 @@ msgid "Break at whitespace"
 msgstr ""
 
 msgid "Break at whitespace or punctuation"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
 msgstr ""
 
 #, c-format

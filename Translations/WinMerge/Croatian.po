@@ -28,9 +28,19 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CROATIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 #, c-format
 msgid "C&opy to Right"
 msgstr "Kopiraj u &desno"
+
+msgid "Copy from Middle"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr ""
 
 #, c-format
 msgid "Cop&y to Left"
@@ -40,20 +50,22 @@ msgstr "Kopiraj u &lijevo"
 msgid "Copy &from Left"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy Selected Line(s) to Middle"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Left"
 msgstr ""
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
-
-msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 #, c-format
@@ -857,6 +869,36 @@ msgstr ""
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr ""
+
+#, c-format
+msgid "&Right"
+msgstr "&desnu datoteku"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "&lijevu datoteku"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr ""
@@ -980,18 +1022,6 @@ msgstr "Desno do... (%1 od %2)"
 #, c-format
 msgid "&Delete"
 msgstr "&Obriši"
-
-#, c-format
-msgid "&Left"
-msgstr "&lijevu datoteku"
-
-#, c-format
-msgid "&Middle"
-msgstr ""
-
-#, c-format
-msgid "&Right"
-msgstr "&desnu datoteku"
 
 #, c-format
 msgid "&Both"
@@ -3109,6 +3139,27 @@ msgstr "Stani na razmaku"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Stani na razmaku ili interpunkciji"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
