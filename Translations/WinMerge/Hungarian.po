@@ -2388,12 +2388,11 @@ msgstr "Minden alkönyvtár automatikus kibontása"
 msgid "Ignore &Reparse Points"
 msgstr "Elemzési pontok mellőzése"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "A gyors összehasonlítás méretkorlátja (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "A bináris összehasonlítás méretkorlátja (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

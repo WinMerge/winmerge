@@ -1909,11 +1909,11 @@ msgstr "Öppna automatiskt alla undermappar"
 msgid "Ignore &Reparse Points"
 msgstr "Ignorera återtolkningsmarkörer"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Högsta filstorlek för snabb jämförelse (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Högsta filstorlek för binär jämförelse (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

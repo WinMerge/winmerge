@@ -1909,11 +1909,11 @@ msgstr "&فتح المجلدات الفرعية تلقائيا"
 msgid "Ignore &Reparse Points"
 msgstr "تجا&هل إعادة توزيع النقاط"
 
-msgid "&Quick compare limit (MB):"
-msgstr "ال&حد الأقصى للمقارنة السريعة (ميجابايت):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "الح&د الأقصى للمقارنة الثنائية (ميجابايت):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""

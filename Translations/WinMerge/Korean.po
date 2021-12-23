@@ -2393,12 +2393,11 @@ msgstr "전체 하위 폴더 자동 확장하기(&A)"
 msgid "Ignore &Reparse Points"
 msgstr "재분석 지점 무시하기(&R)"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "빠른 비교 제한 (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "바이너리 비교 제한 (MB)(&B)"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

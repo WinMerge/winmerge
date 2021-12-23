@@ -1911,11 +1911,11 @@ msgstr "&Автоматично разтвори всички подпапки"
 msgid "Ignore &Reparse Points"
 msgstr ""
 
-msgid "&Quick compare limit (MB):"
-msgstr "Ограничение на &бързото сравняване (МБ):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Ограничение на &двоичното сравняване (МБ):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

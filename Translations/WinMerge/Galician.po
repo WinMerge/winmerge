@@ -2387,12 +2387,11 @@ msgstr "Expandir &automaticamente todos os subcartafoles"
 msgid "Ignore &Reparse Points"
 msgstr "Ignorar os &puntos de unión do sistema de arquivo"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "Límite de comparación &rápida (MB)"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Límite de comparación &binaria (MB)"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

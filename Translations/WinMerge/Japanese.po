@@ -1913,10 +1913,10 @@ msgstr "自動的にサブフォルダーを展開する(&A)"
 msgid "Ignore &Reparse Points"
 msgstr "再解析ポイントを無視する(&R)"
 
-msgid "&Quick compare limit (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
 msgstr "クイック比較切替閾値 (MB)(&Q):"
 
-msgid "&Binary compare limit (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 msgid ""

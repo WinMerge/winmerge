@@ -2105,9 +2105,9 @@ BEGIN
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,239,10
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,239,10
-    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,6,108,239,10
+    LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,108,239,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
-    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,6,138,239,10
+    LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,239,10
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
     LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,6,166,239,30
     EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,198,30,14,ES_AUTOHSCROLL

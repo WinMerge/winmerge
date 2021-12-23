@@ -1916,11 +1916,11 @@ msgstr "Tüm alt klasörler genişletilsin"
 msgid "Ignore &Reparse Points"
 msgstr "Yeniden işleme noktala&rı yok sayılsın"
 
-msgid "&Quick compare limit (MB):"
-msgstr "&Hızlı karşılaştırma sınırı (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "&Binary karşılaştırma sınırı (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

@@ -1914,11 +1914,11 @@ msgstr "自动展开所有子文件夹(&A)"
 msgid "Ignore &Reparse Points"
 msgstr "忽略重新解析点(&R)"
 
-msgid "&Quick compare limit (MB):"
-msgstr "快速比较限制 (MB) (&Q):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "二进制比较限制 (MB) (&B):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

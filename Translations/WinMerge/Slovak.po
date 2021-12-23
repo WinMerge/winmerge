@@ -1913,11 +1913,11 @@ msgstr "&Automaticky rozbaliť všetky podpriečinky"
 msgid "Ignore &Reparse Points"
 msgstr "Ignorovať &opravné body"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limit &rýchleho porovnania (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Limit &binárneho porovnania (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

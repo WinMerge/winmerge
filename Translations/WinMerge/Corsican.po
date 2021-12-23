@@ -1931,11 +1931,11 @@ msgstr "&Allargà autumaticamente tutti i sottucartulari"
 msgid "Ignore &Reparse Points"
 msgstr "Ignurà i punti di &ri-analisa"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limitu di paragone &rapidu (Mo) :"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Limitu di paragone &binariu (Mo) :"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

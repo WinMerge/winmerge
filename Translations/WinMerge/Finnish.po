@@ -2384,12 +2384,11 @@ msgstr "L&aajenna kaikki alikansiot automaattisesti"
 msgid "Ignore &Reparse Points"
 msgstr "Ohita &uudelleenjäsennyskohdat"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "Pikavertailun raja (Mt):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "&Binäärivertailuraja (Mt):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 #, c-format
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"

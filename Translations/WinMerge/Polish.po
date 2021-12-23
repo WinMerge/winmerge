@@ -1901,11 +1901,11 @@ msgstr "Automatycznie rozwiń wszystkie podfoldery"
 msgid "Ignore &Reparse Points"
 msgstr "Ignoruj punkty ponownej analizy składniowej"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limit szybkiego porównania (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Limit porównywania binarnego (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "Liczba porównywanych wątków (wartość ujemna oznacza dodanie liczby dostępnych rdzeni procesora):"

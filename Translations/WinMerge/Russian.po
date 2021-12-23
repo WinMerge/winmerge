@@ -1902,11 +1902,11 @@ msgstr "Автоматически развернуть все подпапки"
 msgid "Ignore &Reparse Points"
 msgstr "Игнорировать точки повторной обработки"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Ограничение быстрого сравнения (МБ):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Ограничение двоичного сравнения (МБ):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"

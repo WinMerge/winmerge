@@ -1903,11 +1903,11 @@ msgstr "&Automatiškai išskleisti visus pakatalogius"
 msgid "Ignore &Reparse Points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
-msgid "&Quick compare limit (MB):"
-msgstr "&Greitojo palyginimo limitas (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Binarinio palyginimo limitas (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"

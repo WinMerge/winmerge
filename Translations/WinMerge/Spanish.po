@@ -1912,11 +1912,11 @@ msgstr "Expandir &automáticamente todas las subcarpetas"
 msgid "Ignore &Reparse Points"
 msgstr "Ignora&r y volver a analizar puntos"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Límite de comparación rá&pida (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Límite de comparación &binaria (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

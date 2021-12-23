@@ -1919,11 +1919,11 @@ msgstr "S&amodejno razširi vse podmape"
 msgid "Ignore &Reparse Points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Omejitev &hitre primerjave (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Omejitev d&vojiške primerjave (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

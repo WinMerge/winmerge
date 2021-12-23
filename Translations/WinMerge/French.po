@@ -2393,12 +2393,11 @@ msgstr "Développer &automatiquement tous les sous-dossiers"
 msgid "Ignore &Reparse Points"
 msgstr "Igno&rer les points d'analyse"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "&Limite de comparaison rapide (Mo) :"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "&Limite de comparaison des fichiers &binaire (Mo) :"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

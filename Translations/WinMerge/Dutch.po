@@ -1921,11 +1921,11 @@ msgstr "Alle submappen automatisch uitklappen"
 msgid "Ignore &Reparse Points"
 msgstr "Punten voor opnieuw verwerken negeren"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limiet snelvergelijking (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Binaire vergelijkingslimiet (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

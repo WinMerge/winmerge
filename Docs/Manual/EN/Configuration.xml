@@ -972,7 +972,7 @@
     </section>
 	
     <section>
-      <title>Quick compare limit (MB)<indexterm>
+      <title>Threshold for switching to quick compare (MB)<indexterm>
           <primary>Quick compare</primary>
 
           <secondary>limit</secondary>
@@ -997,7 +997,7 @@
     </section>
 
     <section>
-      <title>Binary compare limit (MB)<indexterm>
+      <title>Threshold for switching to binary compare (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>

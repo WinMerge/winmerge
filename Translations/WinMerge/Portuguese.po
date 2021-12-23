@@ -1925,11 +1925,11 @@ msgstr "Expandir &automaticamente todas as subpastas"
 msgid "Ignore &Reparse Points"
 msgstr "Ignorar pontos de &análise"
 
-msgid "&Quick compare limit (MB):"
-msgstr "&Limite da comparação rápida (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Limite da comparação binária (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"

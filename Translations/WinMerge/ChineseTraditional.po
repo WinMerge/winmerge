@@ -2396,12 +2396,11 @@ msgstr "自動擴展到所有子資料夾 (&A)"
 msgid "Ignore &Reparse Points"
 msgstr "忽略重新分析點 (&R)"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "快速比較之檔案大小上限 (MB) (&Q)："
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "二進位比較限制 (MB) (&B)："
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"
