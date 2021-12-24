@@ -113,6 +113,7 @@ class CMergeEditFrame;
 class CDirDoc;
 class CEncodingErrorBar;
 class CLocationView;
+class CMergeEditSplitterView;
 
 /**
  * @brief Document class for merging two files
@@ -184,8 +185,8 @@ public:
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	const PrediffingInfo *GetPrediffer() const override;
-	void AddMergeViews(CMergeEditView * pView[3]);
-	void RemoveMergeViews(int nGroup);
+	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
+	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
 	CDirDoc * GetDirDoc() const override { return m_pDirDoc; }
@@ -336,6 +337,7 @@ protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
 	CurrentWordDiff m_CurWordDiff;
 	CMergeEditView * m_pView[3][3]; /**< Pointer to left/middle/right view */
+	CMergeEditSplitterView * m_pMergeEditSplitterView[3];
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
 	CDirDoc * m_pDirDoc;
 	bool m_bEnableRescan; /**< Automatic rescan enabled/disabled */
