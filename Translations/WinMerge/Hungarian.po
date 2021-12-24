@@ -3214,7 +3214,7 @@ msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "Másolás a középsőbe, majd tovább\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr "Másolás a középsőbe, majd továbbtCtrl+Alt+Left"
+msgstr "Másolás a középsőbe, majd tovább\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
 msgstr "Az összes másolása a középsőbe"
