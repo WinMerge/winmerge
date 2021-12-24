@@ -31,14 +31,14 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_HUNGARIAN, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Másolás középre"
 
 #, c-format
 msgid "C&opy to Right"
 msgstr "Másolás jobbra"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Másolás középről"
 
 #, c-format
 msgid "Copy fro&m Right"
@@ -53,13 +53,13 @@ msgid "Copy &from Left"
 msgstr "Másolás balról"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "A kijelölt sor(ok) középre másolása"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "A kijelölt sor(ok) jobbra másolása"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "A kijelölt sor(ok) másolása középről"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "A kijelölt sor(ok) másolása jobbról"
@@ -872,7 +872,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Az előző csak jobb oldali különbség\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Másolás balról ide:"
 
 #, c-format
 msgid "&Middle"
@@ -883,23 +883,23 @@ msgid "&Right"
 msgstr "Jobb"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Másolás középről ide:"
 
 #, c-format
 msgid "&Left"
 msgstr "Bal"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Másolás jobbról ide:"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "A kijelölt sor(ok)másolása balról ide:"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "A kijelölt sor(ok)másolása középről ide:"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "A kijelölt sor(ok)másolása jobbról ide:"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -2389,10 +2389,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Elemzési pontok mellőzése"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
 msgid ""
 "\n"
@@ -3199,25 +3199,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Megállás szóközöknél vagy írásjeleknél"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Másolás a középsőbe\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Másolás a középsőbe\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Másolás a középsőből\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Másolás a középsőből\Alt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Másolás a középsőbe, majd tovább\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Másolás a középsőbe, majd tovább\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Az összes másolása a középsőbe"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -4469,7 +4469,7 @@ msgid "MDI child window only"
 msgstr "Csak MDI gyermekablak"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "A főablak bezárása, ha csak 1 MDI gyermekablak van?"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4568,7 +4568,7 @@ msgid "Rotated: %d  "
 msgstr "Elforgatva: %d  "
 
 msgid "All pages"
-msgstr ""
+msgstr "Minden oldal"
 
 msgid "<Edit here>"
 msgstr "<Szerkesztés itt>"
