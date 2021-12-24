@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-11-28 21:50+0000\n"
+"POT-Creation-Date: 2021-12-23 22:02+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/"
 "Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
@@ -30,13 +30,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CORSICAN, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Cupià ver di u centru"
 
 msgid "C&opy to Right"
 msgstr "Cupià ver di a &diritta"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Cupià da u centru"
 
 msgid "Copy fro&m Right"
 msgstr "Cupià da a d&iritta"
@@ -48,13 +48,13 @@ msgid "Copy &from Left"
 msgstr "Cupià da a m&anca"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Cupià a(e) linea(e) selezziunata(e) ver di u centru"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Cupià a(e) linea(e) selezziunata(e) ver di a diritta"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Cupià a(e) linea(e) selezziunata(e) da u centru"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Cupià a(e) linea(e) selezziunata(e) da a diritta"
@@ -695,7 +695,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Sfarenza precedente solu à diritta\tAlt+Maius+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Cupià da a &manca ver di"
 
 msgid "&Middle"
 msgstr "&Centru"
@@ -704,22 +704,22 @@ msgid "&Right"
 msgstr "&Diritta"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Cupià da u &centru ver di"
 
 msgid "&Left"
 msgstr "&Manca"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Cupià da a &diritta ver di"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Cupià a(e) linea(e) selezziunata(e) da a m&anca ver di"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Cupià a(e) linea(e) selezziunata(e) da u c&entru ver di"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Cupià a(e) linea(e) selezziunata(e) da a d&iritta ver di"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Cupià da a manca\tAlt+Maius+Diritta"
@@ -1932,10 +1932,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignurà i punti di &ri-analisa"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Sogliu per passà à u paragone &rapidu (Mo) :"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 
 msgid ""
 "\n"
@@ -2683,25 +2683,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Interrompe à i spazii bianchi o à a puntuazione"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Cupià ver di u &centru\tAlt+Diritta"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Cupià ver di u &centru\tAlt+Manca"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Cupià da u centru\tAlt+Maius+Diritta"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Cupià da u centru\tAlt+Maius+Manca"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Cupià ver di u centru è avanzà (Ctrl+Alt+Diritta)"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Cupià ver di u centru è avanzà\tCtrl+Alt+Manca"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Tuttu cupià ver di u centru"
 
 #, c-format
 msgid "Right to Left (%1)"
