@@ -972,7 +972,7 @@
     </section>
 	
     <section>
-      <title>Quick compare limit (MB)<indexterm>
+      <title>Threshold for switching to quick compare (MB)<indexterm>
           <primary>Quick compare</primary>
 
           <secondary>limit</secondary>
@@ -981,30 +981,23 @@
       <itemizedlist>
         <listitem>
           <para><option>Disabled</option>: Is not active unless the Compare method 
-		  is set to <guilabel>Quick Contents</guilabel>.</para>
+		  is set to other than <guilabel>Full Contents</guilabel> compare method.</para>
         </listitem>
 
         <listitem>
           <para><option>Enabled</option>: Is active when the Compare method 
-		  is set to <guilabel>Quick Contents</guilabel>.</para>
+		  is set to <guilabel>Full Contents</guilabel> compare method.</para>
 
-          <para>This option sets the limit when WinMerge should stop comparing.
-		  If the limit is set to for instance 4 MB, then WinMerge will only read 
-		  the first 4 MB of a file. If no differences are found before the 
-		  Quick Compare limit is reached, then the files will be marked as identical.
+          <para>Threshold size for switching to <guilabel>Quick Contents</guilabel> compare method. 
+ 	          When <guilabel>Full Contents</guilabel> compare method is selected, files bigger (in mega bytes) than this 
+ 	          value are compared using <guilabel>Quick Contents</guilabel> compare method.
 		  </para>
-
-          <warning>
-            <para>This option should be enabled only when you are sure any differences 
-			are in the first part of the file.
-            Otherwise, it can cause incorrect compare results.</para>
-          </warning>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Binary compare limit (MB)<indexterm>
+      <title>Threshold for switching to binary compare (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>
@@ -1013,12 +1006,17 @@
       <itemizedlist>
         <listitem>
           <para><option>Disabled</option>: Is not active unless the Compare method 
-          is set to <guilabel>Binary Contents</guilabel>.</para>
+          is set to other than <guilabel>Full Contents</guilabel> and <guilabel>Quick Contents</guilabel> compare method.</para>
         </listitem>
 
         <listitem>
           <para><option>Enabled</option>: Is active when the Compare method 
-          is set to <guilabel>Binary Contents</guilabel>.</para>
+          is set to <guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> compare method.</para>
+
+          <para>Threshold size for switching to Binary Contents compare method. 
+ 	          When <guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> compare method is selected, files bigger (in mega bytes) than this 
+ 	          value are compared using <guilabel>Binary Contents</guilabel> compare method.
+		  </para>
         </listitem>
       </itemizedlist>
     </section>

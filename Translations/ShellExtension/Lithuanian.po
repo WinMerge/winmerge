@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2011-10-11 01:08+0000\n"
-"PO-Revision-Date: 2019-05-13 07:45+0200\n"
+"POT-Creation-Date: 2021-09-08 23:40+0000\n"
+"PO-Revision-Date: 2021-12-17 07:45+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -49,29 +49,29 @@ msgstr "ShellExtension"
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Lyginti"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Lyginti&..."
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Parinkti &Kairįjį"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Parinkti &Vidurinį"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Iš naujo parinkti &Kairįjį"

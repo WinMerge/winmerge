@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgaarse menu’s en vensters
 CatalanLanguage=Catalaanse menu’s en vensters
 ChineseSimplifiedLanguage=Chinese (versimpeld) menu’s en vensters
 ChineseTraditionalLanguage=Chinese (traditioneel) menu’s en vensters
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroatische menu’s en vensters
 CzechLanguage=Tsjechische menu’s en vensters
 DanishLanguage=Deense menu’s en vensters
@@ -63,7 +64,6 @@ ExplorerContextMenu=&Contextmenu-integratie in Verkenner inschakelen
 IntegrateTortoiseCVS=Integreren met &TortoiseCVS
 IntegrateTortoiseGit=Integreren met To&rtoiseGit
 IntegrateTortoiseSVN= Integreren met T&ortoiseSVN
-IntegrateClearCase= Integreren met Rational &ClearCase
 AddToPath=&WinMerge-map aan uw systeempad toevoegen
 
 ; 3-way merge wizard page

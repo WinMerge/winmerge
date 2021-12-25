@@ -29,6 +29,7 @@ BulgarianLanguage=Menús i diàlegs en Búlgar
 CatalanLanguage=Menús i diàlegs en Català
 ChineseSimplifiedLanguage=Menús i diàlegs en Xinès (Simplificat)
 ChineseTraditionalLanguage=Menús i diàlegs en Xinès (Tradicional)
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Menús i diàlegs en Txec
 DanishLanguage=Menús i diàlegs en Danès
@@ -64,7 +65,6 @@ ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
 IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
 IntegrateTortoiseGit=Integra amb el To&rtoiseGit
 IntegrateTortoiseSVN=Integra amb el T&ortoiseSVN
-IntegrateClearCase=Integra amb el Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page

@@ -26,7 +26,6 @@ public:
 public:
 	CSplitterWndEx m_wndSplitter;
 	bool m_bDetailView;
-	int m_nThisGroup;
 
 protected:
 

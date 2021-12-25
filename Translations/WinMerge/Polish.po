@@ -27,8 +27,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_POLISH, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Kopiuj do prawej"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Kopiuj z prawej"
 
 msgid "Cop&y to Left"
 msgstr "Kopiuj do lewej"
@@ -36,20 +45,23 @@ msgstr "Kopiuj do lewej"
 msgid "Copy &from Left"
 msgstr "Kopiuj z lewej"
 
-msgid "Copy fro&m Right"
-msgstr "Kopiuj z prawej"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiuj zaznaczone wiersze do prawej"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Kopiuj zaznaczone wiersze z prawej"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Kopiuj zaznaczone wiersze do lewej"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiuj zaznaczone wiersze z lewej"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Kopiuj zaznaczone wiersze z prawej"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Zaznacz różniące się wiersze\tF4"
@@ -683,6 +695,33 @@ msgstr "Następna różnica tylko w prawej\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Poprzednia różnica tylko w prawej\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "Środkowy"
+
+msgid "&Right"
+msgstr "P&rawy"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "&Lewy"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiuj z lewej\tAlt+Shift+Right"
 
@@ -790,15 +829,6 @@ msgstr "Prawy do... (%1 z %2)"
 
 msgid "&Delete"
 msgstr "Usuń"
-
-msgid "&Left"
-msgstr "&Lewy"
-
-msgid "&Middle"
-msgstr "Środkowy"
-
-msgid "&Right"
-msgstr "P&rawy"
 
 msgid "&Both"
 msgstr "O&ba"
@@ -1874,11 +1904,11 @@ msgstr "Automatycznie rozwiń wszystkie podfoldery"
 msgid "Ignore &Reparse Points"
 msgstr "Ignoruj punkty ponownej analizy składniowej"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limit szybkiego porównania (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Limit porównywania binarnego (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "Liczba porównywanych wątków (wartość ujemna oznacza dodanie liczby dostępnych rdzeni procesora):"
@@ -2381,6 +2411,27 @@ msgstr "Zatrzymaj na białym znaku"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Zatrzymaj na białym znaku lub interpunkcji"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3298,6 +3349,9 @@ msgstr "Okno podrzędne lub okno główne"
 msgid "MDI child window only"
 msgstr "Tylko okno podrzędne"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Różnica"
@@ -3393,6 +3447,9 @@ msgstr "Odbicie: %s  "
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Obrót: %d  "
+
+msgid "All pages"
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<Edytuj tutaj>"

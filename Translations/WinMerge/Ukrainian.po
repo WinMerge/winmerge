@@ -29,9 +29,19 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_UKRAINIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 #, c-format
 msgid "C&opy to Right"
 msgstr "Скопіювати на &праву панель"
+
+msgid "Copy from Middle"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr ""
 
 #, c-format
 msgid "Cop&y to Left"
@@ -41,20 +51,22 @@ msgstr "Скопіювати на &ліву панель"
 msgid "Copy &from Left"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy Selected Line(s) to Middle"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Left"
 msgstr ""
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
-
-msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 #, c-format
@@ -861,6 +873,36 @@ msgstr ""
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr ""
+
+#, c-format
+msgid "&Right"
+msgstr "&Праворуч"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "&Ліворуч"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr ""
@@ -984,18 +1026,6 @@ msgstr "Справа... (%1 з %2)"
 #, c-format
 msgid "&Delete"
 msgstr "&Вилучити"
-
-#, c-format
-msgid "&Left"
-msgstr "&Ліворуч"
-
-#, c-format
-msgid "&Middle"
-msgstr ""
-
-#, c-format
-msgid "&Right"
-msgstr "&Праворуч"
 
 #, c-format
 msgid "&Both"
@@ -2354,11 +2384,10 @@ msgstr ""
 msgid "Ignore &Reparse Points"
 msgstr ""
 
-#, c-format
-msgid "&Quick compare limit (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
 msgstr ""
 
-msgid "&Binary compare limit (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -3111,6 +3140,27 @@ msgstr "Розбивати за пропусками"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Розбивати за пропусками і символами пунктуації"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -4253,6 +4303,9 @@ msgstr ""
 msgid "MDI child window only"
 msgstr ""
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr ""
@@ -4347,6 +4400,9 @@ msgstr ""
 
 #, c-format
 msgid "Rotated: %d  "
+msgstr ""
+
+msgid "All pages"
 msgstr ""
 
 msgid "<Edit here>"

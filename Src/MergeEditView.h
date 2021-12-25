@@ -245,8 +245,10 @@ protected:
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
+	afx_msg void OnCopyX2Y(UINT nID);
+	afx_msg void OnCopyLinesX2Y(UINT nID);
 	afx_msg void OnX2Y(int srcPane, int dstPane, bool selectedLineOnly = false);
-	afx_msg void OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI);
+	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnLinesL2r();

@@ -5,27 +5,39 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderCompare", "FolderCompare.vcxproj", "{AB827C6B-5116-408F-B453-E2075E9B73B4}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\Externals\crystaledit\editlib\editlib.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		..\..\Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		..\..\Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		..\..\Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
 		Debug|ARM64 = Debug|ARM64
-		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
 		Release|ARM64 = Release|ARM64
-		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|ARM.ActiveCfg = Debug|ARM
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|ARM.Build.0 = Debug|ARM
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|ARM64.ActiveCfg = Debug|ARM64
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|ARM64.Build.0 = Debug|ARM64
-		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|Win32.Build.0 = Debug|Win32
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|x64.ActiveCfg = Debug|x64
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|x64.Build.0 = Debug|x64
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|x86.ActiveCfg = Debug|Win32
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Debug|x86.Build.0 = Debug|Win32
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|ARM.ActiveCfg = Release|ARM
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|ARM.Build.0 = Release|ARM
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|ARM64.ActiveCfg = Release|ARM64
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|ARM64.Build.0 = Release|ARM64
-		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|Win32.ActiveCfg = Release|Win32
-		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|Win32.Build.0 = Release|Win32
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|x64.ActiveCfg = Release|x64
 		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|x64.Build.0 = Release|x64
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|x86.ActiveCfg = Release|Win32
+		{AB827C6B-5116-408F-B453-E2075E9B73B4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

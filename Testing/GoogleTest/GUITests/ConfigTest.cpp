@@ -170,7 +170,7 @@ namespace
 		{ OPT_USE_RECYCLE_BIN, varprop::VT_BOOL, {}, {} },
 		{ OPT_SINGLE_INSTANCE, varprop::VT_INT, {0, 1, 2}, {} },
 		{ OPT_MERGE_MODE, varprop::VT_BOOL, {}, {} },
-		{ OPT_CLOSE_WITH_ESC, varprop::VT_INT, {0, 1, 2}, {} },
+		{ OPT_CLOSE_WITH_ESC, varprop::VT_INT, {0, 1, 2, 3}, {} },
 		{ OPT_CLOSE_WITH_OK, varprop::VT_BOOL, {}, {} },
 		{ OPT_VERIFY_OPEN_PATHS, varprop::VT_BOOL, {}, {} },
 		{ OPT_AUTO_COMPLETE_SOURCE, varprop::VT_INT, {0, 1, 2}, {} },

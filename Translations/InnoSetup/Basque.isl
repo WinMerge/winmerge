@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgariera menuak eta elkarrizketak
 CatalanLanguage=Kataluniera menuak eta elkarrizketak
 ChineseSimplifiedLanguage=Txinera (Arrunta) menuak eta elkarrizketak
 ChineseTraditionalLanguage=Txinera (Tradizionala) menuak eta elkarrizketak
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroaziera menuak eta elkarrizketak
 CzechLanguage=Txekiera menuak eta elkarrizketak
 DanishLanguage=Daniera menuak eta elkarrizketak
@@ -63,7 +64,6 @@ ExplorerContextMenu=&Gaitu Explorer hitzinguru menu baterapena
 IntegrateTortoiseCVS=Bateratu &TortoiseCVS-rekin
 IntegrateTortoiseGit=Bateratu To&rtoiseGit-rekin
 IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
-IntegrateClearCase=Bateratu Rational &ClearCase-rekin
 AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura
 
 ; 3-way merge wizard page

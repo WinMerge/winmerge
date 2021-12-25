@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-10-23 10:36+0000\n"
-"PO-Revision-Date: 2021-11-10 10:00+0200\n"
+"POT-Creation-Date: 2021-12-14 22:23+0000\n"
+"PO-Revision-Date: 2021-12-15 11:26+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,14 +23,23 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "K&opijuoti į dešinę"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Kopijuoti iš &dešinės"
 
 msgid "Cop&y to Left"
 msgstr "Kop&ijuoti į kairę"
@@ -38,20 +47,23 @@ msgstr "Kop&ijuoti į kairę"
 msgid "Copy &from Left"
 msgstr "Kopijuoti iš &kairės"
 
-msgid "Copy fro&m Right"
-msgstr "Kopijuoti iš &dešinės"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopijuoti pažymėtą eilutę (-es) į dešinę"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Kopijuoti pažymėtą eilutę (-es) į kairę"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Pažymėti &skirtumą"
@@ -685,6 +697,33 @@ msgstr "Kitas skirtumas Tik dešinėje\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Praeitas skirtumas Tik dešinėje\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "&Vidurinį"
+
+msgid "&Right"
+msgstr "&Dešinį"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "&Kairį"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopijuoti iš kairės\tAlt+Shift+Right"
 
@@ -792,15 +831,6 @@ msgstr "Dešinįjį į... (%1 iš %2)"
 
 msgid "&Delete"
 msgstr "&Trinti"
-
-msgid "&Left"
-msgstr "&Kairį"
-
-msgid "&Middle"
-msgstr "&Vidurinį"
-
-msgid "&Right"
-msgstr "&Dešinį"
 
 msgid "&Both"
 msgstr "A&bu"
@@ -1876,11 +1906,11 @@ msgstr "&Automatiškai išskleisti visus pakatalogius"
 msgid "Ignore &Reparse Points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
-msgid "&Quick compare limit (MB):"
-msgstr "&Greitojo palyginimo limitas (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Binarinio palyginimo limitas (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
@@ -2383,6 +2413,27 @@ msgstr "Skaidyti per tarpą"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Skaidyti per tarpą ar skirtuką"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3300,6 +3351,9 @@ msgstr "MDI antrinį arba pagrindinį langą"
 msgid "MDI child window only"
 msgstr "Tik MDI antrinį langą"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr "Užverti pagrindinį langą, jei yra tik vienas MDI antrinis langas"
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Skirtumai"
@@ -3395,6 +3449,9 @@ msgstr "Apversta: %s  "
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Pasukta: %d  "
+
+msgid "All pages"
+msgstr "Visi psl."
 
 msgid "<Edit here>"
 msgstr "<Redaguoti čia>"

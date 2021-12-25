@@ -116,6 +116,9 @@ const struct LangFileInfo::rg LangFileInfo::rg[] =
 															"MACAU\0"
 	},
 	{
+		LANG_CORSICAN,		"CORSICAN\0"
+	},
+	{
 		LANG_CROATIAN,		"CROATIAN\0"
 	},
 	{

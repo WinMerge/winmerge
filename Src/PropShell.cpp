@@ -100,7 +100,11 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 	}
 	else
 	{
+#if defined _M_ARM
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionARM.dll")) + _T("\"");
+#else
 		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+#endif
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);

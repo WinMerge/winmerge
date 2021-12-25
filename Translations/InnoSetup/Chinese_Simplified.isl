@@ -28,6 +28,7 @@ BulgarianLanguage=保加利亚语
 CatalanLanguage=加泰罗尼亚语
 ChineseSimplifiedLanguage=简体中文
 ChineseTraditionalLanguage=繁体中文
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=克罗地亚语
 CzechLanguage=捷克语
 DanishLanguage=丹麦语
@@ -63,7 +64,6 @@ ExplorerContextMenu=集成到资源管理器右键菜单(&E)
 IntegrateTortoiseCVS=集成到 &TortoiseCVS
 IntegrateTortoiseGit=集成到 To&rtoiseGit
 IntegrateTortoiseSVN=集成到 T&ortoiseSVN
-IntegrateClearCase=集成到 Rational &ClearCase
 AddToPath=添加 WinMerge 文件夹到系统路径（P&ATH）
 
 ; 3-way merge wizard page

@@ -921,15 +921,14 @@ void CScriptsOfThread::FreeAllScripts()
 
 	// force to reload the scriptlet list
 	UnloadTheScriptletList();
+
+	m_aPluginsByEvent.clear();
 }
 
-void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
+void CScriptsOfThread::ReloadAllScripts()
 {
-	if (auto it = m_aPluginsByEvent.find(transformationEvent); it != m_aPluginsByEvent.end())
-	{
-		if (it->second != nullptr)
-			::FreeAllScripts(it->second);
-	}
+	FreeAllScripts();
+	m_aPluginsByEvent = ::GetAvailableScripts();
 }
 
 PluginInfo* CScriptsOfThread::GetUnpackerPluginByFilter(const String& filteredText)
@@ -1054,6 +1053,12 @@ void CAllThreadsScripts::ReloadCustomSettings()
 	}
 	for (auto& thread : m_aAvailableThreads)
 		LoadCustomSettings(thread->m_aPluginsByEvent);
+}
+
+void CAllThreadsScripts::ReloadAllScripts()
+{
+	for (auto& thread : m_aAvailableThreads)
+		thread->ReloadAllScripts();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

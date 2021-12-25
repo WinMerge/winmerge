@@ -20,6 +20,7 @@
 #include "UnicodeString.h"
 #include "DirItemIterator.h"
 #include "DirActions.h"
+#include "IListCtrlImpl.h"
 
 class FileActionScript;
 
@@ -162,7 +163,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(const DirColInfo *col, int subitem);
-	int AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent);
+	void AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent);
 // End DirViewCols.cpp
 
 private:
@@ -208,6 +209,7 @@ protected:
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
+	std::vector<ListViewOwnerDataItem> m_listViewItems;
 	std::optional<int> m_firstDiffItem;
 	std::optional<int> m_lastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
@@ -382,6 +384,7 @@ protected:
 	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnODFindItem(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSearch();
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);

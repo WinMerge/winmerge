@@ -168,6 +168,168 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 	return sTitle + (flags.empty() ? _T("") : (_T(" (") + flags + _T(")")));
 }
 
+void CMergeFrameCommon::ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI)
+{
+	String text;
+	switch (pCmdUI->m_nID)
+	{
+	case ID_L2R:
+		text = (srcPane == 0 && dstPane == 1) ?
+			_("Copy to &Middle\tAlt+Right") : _("Copy to &Right\tAlt+Right");
+		break;
+	case ID_R2L:
+		text = (srcPane == 2 && dstPane == 1) ?
+			_("Copy to &Middle\tAlt+Left") : _("Copy to L&eft\tAlt+Left");
+		break;
+	case ID_COPY_FROM_LEFT:
+		text = (srcPane == 1 && dstPane == 2) ?
+			_("Copy from Middle\tAlt+Shift+Right") : _("Copy from Left\tAlt+Shift+Right");
+		break;
+	case ID_COPY_FROM_RIGHT:
+		text = (srcPane == 1 && dstPane == 0) ?
+			_("Copy from Middle\tAlt+Shift+Left") : _("Copy from Right\tAlt+Shift+Left");
+		break;
+	case ID_L2RNEXT:
+		text = (srcPane == 0 && dstPane == 1) ?
+			_("Copy to Middle and Advance\tCtrl+Alt+Right") : _("C&opy to Right and Advance\tCtrl+Alt+Right");
+		break;
+	case ID_R2LNEXT:
+		text = (srcPane == 2 && dstPane == 1) ?
+			_("Copy to Middle and Advance\tCtrl+Alt+Left") : _("Copy &to Left and Advance\tCtrl+Alt+Left");
+		break;
+	case ID_ALL_RIGHT:
+		text = (srcPane == 0 && dstPane == 1) ?
+			_("Copy All to Middle") : _("Copy &All to Right");
+		break;
+	case ID_ALL_LEFT:
+		text = (srcPane == 2 && dstPane == 1) ?
+			_("Copy All to Middle") : _("Cop&y All to Left");
+		break;
+	}
+	if (!text.empty())
+		pCmdUI->SetText(text.c_str());
+}
+
+std::pair<int, int> CMergeFrameCommon::MenuIDtoXY(UINT nID, int nActivePane, int nBuffers)
+{
+	if (nActivePane < 0 || nActivePane >= nBuffers)
+		return { -1, -1 };
+
+	int srcPane = -1, dstPane = -1;
+	switch (nID)
+	{
+	case ID_L2R:
+	case ID_L2RNEXT:
+	case ID_ALL_RIGHT:
+	case ID_LINES_L2R:
+		dstPane = (nActivePane < nBuffers - 1) ? nActivePane + 1 : nBuffers - 1;
+		srcPane = dstPane - 1;
+		break;
+	case ID_R2L:
+	case ID_R2LNEXT:
+	case ID_ALL_LEFT:
+	case ID_LINES_R2L:
+		dstPane = (nActivePane > 0) ? nActivePane - 1 : 0;
+		srcPane = dstPane + 1;
+		break;
+	case ID_COPY_FROM_LEFT:
+	case ID_COPY_LINES_FROM_LEFT:
+		if (nActivePane > 0)
+		{
+			dstPane = nActivePane;
+			srcPane = nActivePane - 1;
+		}
+		break;
+	case ID_COPY_FROM_RIGHT:
+	case ID_COPY_LINES_FROM_RIGHT:
+		if (nActivePane < nBuffers - 1)
+		{
+			dstPane = nActivePane;
+			srcPane = nActivePane + 1;
+		}
+		break;
+	case ID_COPY_TO_MIDDLE_L:
+	case ID_COPY_LINES_TO_MIDDLE_L:
+		if (nBuffers > 2)
+		{
+			srcPane = 0;
+			dstPane = 1;
+		}
+		break;
+	case ID_COPY_TO_RIGHT_L:
+	case ID_COPY_LINES_TO_RIGHT_L:
+		srcPane = 0; dstPane = nBuffers - 1; break;
+	case ID_COPY_FROM_MIDDLE_L:
+	case ID_COPY_LINES_FROM_MIDDLE_L:
+		if (nBuffers > 2)
+		{
+			srcPane = 1;
+			dstPane = 0;
+		}
+		break;
+	case ID_COPY_FROM_RIGHT_L:
+	case ID_COPY_LINES_FROM_RIGHT_L:
+		srcPane = nBuffers - 1; dstPane = 0; break;
+	case ID_COPY_TO_LEFT_M:
+	case ID_COPY_LINES_TO_LEFT_M:
+		if (nBuffers > 2)
+		{
+			srcPane = 1;
+			dstPane = 0;
+		}
+		break;
+	case ID_COPY_TO_RIGHT_M:
+	case ID_COPY_LINES_TO_RIGHT_M:
+		if (nBuffers > 2)
+		{
+			srcPane = 1;
+			dstPane = nBuffers - 1;
+		}
+		break;
+	case ID_COPY_FROM_LEFT_M:
+	case ID_COPY_LINES_FROM_LEFT_M:
+		if (nBuffers > 2)
+		{
+			srcPane = 0;
+			dstPane = 1;
+		}
+		break;
+	case ID_COPY_FROM_RIGHT_M:
+	case ID_COPY_LINES_FROM_RIGHT_M:
+		if (nBuffers > 2)
+		{
+			srcPane = nBuffers - 1;
+			dstPane = 1;
+		}
+		break;
+	case ID_COPY_TO_MIDDLE_R:
+	case ID_COPY_LINES_TO_MIDDLE_R:
+		if (nBuffers > 2)
+		{
+			srcPane = nBuffers - 1;
+			dstPane = 1;
+		}
+		break;
+	case ID_COPY_TO_LEFT_R:
+	case ID_COPY_LINES_TO_LEFT_R:
+		srcPane = nBuffers - 1; dstPane = 0; break;
+	case ID_COPY_FROM_MIDDLE_R:
+	case ID_COPY_LINES_FROM_MIDDLE_R:
+		if (nBuffers > 2)
+		{
+			srcPane = 1;
+			dstPane = nBuffers - 1;
+		}
+		break;
+	case ID_COPY_FROM_LEFT_R:
+	case ID_COPY_LINES_FROM_LEFT_R:
+		srcPane = 0; dstPane = nBuffers - 1; break;
+	default:
+		return { -1, -1 };
+	}
+	return { srcPane, dstPane };
+}
+
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
-"PO-Revision-Date: 2021-09-21 19:11+0300\n"
+"POT-Creation-Date: 2021-12-14 22:23+0000\n"
+"PO-Revision-Date: 2021-12-21 21:01+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -20,14 +20,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_TURKISH, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Sağa k&opyala"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Sağ&dan kopyala"
 
 msgid "Cop&y to Left"
 msgstr "Sola kop&yala"
@@ -35,20 +44,23 @@ msgstr "Sola kop&yala"
 msgid "Copy &from Left"
 msgstr "So&ldan kopyala"
 
-msgid "Copy fro&m Right"
-msgstr "Sağ&dan kopyala"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Seçilmiş satır(lar)ı sağa kopyala"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Seçilmiş satır(lar)ı sağdan kopyala"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Seçilmiş satır(lar)ı sola kopyala"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Seçilmiş satır(lar)ı soldan kopyala"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Seçilmiş satır(lar)ı sağdan kopyala"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
@@ -682,6 +694,33 @@ msgstr "Sonraki yalnız sağda farkı\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Önceki yalnız sağda farkı\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "&Orta"
+
+msgid "&Right"
+msgstr "&Sağ"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "So&l"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Sol&dan kopyala\tAlt+Shift+Sağ"
 
@@ -789,15 +828,6 @@ msgstr "Sağdakini şuraya... (%1 / %2)"
 
 msgid "&Delete"
 msgstr "&Sil"
-
-msgid "&Left"
-msgstr "So&l"
-
-msgid "&Middle"
-msgstr "&Orta"
-
-msgid "&Right"
-msgstr "&Sağ"
 
 msgid "&Both"
 msgstr "İ&kisi de"
@@ -934,7 +964,7 @@ msgid "Ignore codepage &differences"
 msgstr "Ko&d sayfası farklılıkları yok sayılsın"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "&Sayıları yok say"
 
 msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
@@ -1316,19 +1346,19 @@ msgid "Move &Down"
 msgstr "Aşağı &taşı"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "&Ek özellikler"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Ek özellikler"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Eklenti seçin"
@@ -1889,11 +1919,11 @@ msgstr "Tüm alt klasörler genişletilsin"
 msgid "Ignore &Reparse Points"
 msgstr "Yeniden işleme noktala&rı yok sayılsın"
 
-msgid "&Quick compare limit (MB):"
-msgstr "&Hızlı karşılaştırma sınırı (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "&Binary karşılaştırma sınırı (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"
@@ -2635,6 +2665,27 @@ msgstr "Beyaz boşlukta kesilsin"
 msgid "Break at whitespace or punctuation"
 msgstr "Beyaz boşlukta ya da noktalamada kesilsin"
 
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
+
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Sağdakini sola (%1)"
@@ -2881,88 +2932,88 @@ msgid "Prediffer"
 msgstr "Ön farklılaştırıcı"
 
 msgid "Left"
-msgstr ""
+msgstr "Sol"
 
 msgid "Middle"
-msgstr ""
+msgstr "Orta"
 
 msgid "Right"
-msgstr ""
+msgstr "Sağ"
 
 msgid "Diff"
-msgstr ""
+msgstr "Fark"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Soldaki çift satır sayısı"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Sağdaki çift satır sayısı"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Ortadaki çift satır sayısı"
 
 msgid "Move"
-msgstr ""
+msgstr "Taşı"
 
 msgid "Audio"
-msgstr ""
+msgstr "Ses"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Takvim"
 
 msgid "Communication"
-msgstr ""
+msgstr "İletişim"
 
 msgid "Contact"
-msgstr ""
+msgstr "İlgili"
 
 msgid "Devices"
-msgstr ""
+msgstr "Aygıtlar"
 
 msgid "Document"
-msgstr ""
+msgstr "Belge"
 
 msgid "Home"
-msgstr ""
+msgstr "Giriş"
 
 msgid "Journal"
-msgstr ""
+msgstr "Günlük"
 
 msgid "Link"
-msgstr ""
+msgstr "Bağlantı"
 
 msgid "Media"
-msgstr ""
+msgstr "Ortam"
 
 msgid "Music"
-msgstr ""
+msgstr "Müzik"
 
 msgid "Note"
-msgstr ""
+msgstr "Not"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotoğraf"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "TV kaydı"
 
 msgid "Search"
-msgstr ""
+msgstr "Arama"
 
 msgid "Security"
-msgstr ""
+msgstr "Güvenlik"
 
 msgid "Software"
-msgstr ""
+msgstr "Yazılım"
 
 msgid "Task"
-msgstr ""
+msgstr "Görev"
 
 msgid "Video"
-msgstr ""
+msgstr "Görüntü"
 
 msgid "Hash"
-msgstr ""
+msgstr "Karma"
 
 msgid "Unable to compare files"
 msgstr "Dosyalar karşılaştırılamıyor"
@@ -3048,7 +3099,7 @@ msgstr "Görsel dosyaları farklı"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grup%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3751,6 +3802,9 @@ msgstr "MDI alt penceresini ya da ana pencereyi"
 msgid "MDI child window only"
 msgstr "Yalnız MDI alt penceresini"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr "Yalnız bir MDI alt penceresi varsa ana pencere kapatılsın"
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Fark"
@@ -3846,6 +3900,9 @@ msgstr "Çevrildi: %s  "
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Döndürüldü: %d  "
+
+msgid "All pages"
+msgstr "Tüm sayfalar"
 
 msgid "<Edit here>"
 msgstr "<Burayı düzenleyin>"

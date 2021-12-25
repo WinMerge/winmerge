@@ -28,6 +28,7 @@ BulgarianLanguage=Bulgarca menü ve pencereler
 CatalanLanguage=Katalanca menü ve pencereler
 ChineseSimplifiedLanguage=Çince (Basitleþtirilmiþ) menü ve pencereler
 ChineseTraditionalLanguage=Çince (Geleneksel) menü ve pencereler
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Hýrvatça menü ve pencereler
 CzechLanguage=Çekce menü ve pencereler
 DanishLanguage=Danimarkaca menü ve pencereler
@@ -63,7 +64,6 @@ ExplorerContextMenu=&Windows gezgini sað týk menü bütünleþtirmesi kullanýlsýn
 IntegrateTortoiseCVS=&TortoiseCVS ile bütünleþtir
 IntegrateTortoiseGit=To&rtoiseGit ile bütünleþtir
 IntegrateTortoiseSVN=T&ortoiseSVN ile bütünleþtir
-IntegrateClearCase=Rational &ClearCase ile bütünleþtir
 AddToPath=Win&Merge klasörü sistem yoluna eklensin
 
 ; 3-way merge wizard page

@@ -83,6 +83,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE, OnUpdateDiffIgnoreCase)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS, OnDiffIgnoreNumbers)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS, OnUpdateDiffIgnoreNumbers)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE, OnDiffIgnoreCP)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
@@ -135,6 +137,7 @@ COpenView::COpenView()
 	, m_bIgnoreBlankLines(false)
 	, m_bIgnoreCase(false)
 	, m_bIgnoreEol(false)
+	, m_bIgnoreNumbers(false)
 	, m_bIgnoreCodepage(false)
 	, m_bFilterCommentsLines(false)
 	, m_nCompareMethod(0)
@@ -309,6 +312,7 @@ void COpenView::OnInitialUpdate()
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
@@ -328,6 +332,7 @@ void COpenView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
@@ -681,6 +686,7 @@ void COpenView::OnCompare(UINT nID)
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage);
 	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, m_nCompareMethod);
@@ -830,6 +836,8 @@ void COpenView::OnLoadProject()
 			m_bIgnoreCase = projItem.GetIgnoreCase();
 		if (projItem.HasIgnoreEol())
 			m_bIgnoreEol = projItem.GetIgnoreEol();
+		if (projItem.HasIgnoreNumbers())
+			m_bIgnoreNumbers = projItem.GetIgnoreNumbers();
 		if (projItem.HasIgnoreCodepage())
 			m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
 		if (projItem.HasFilterCommentsLines())
@@ -869,6 +877,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreBlankLines(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCase(bSaveCompareOptions);
 	projItem.SetSaveIgnoreEol(bSaveCompareOptions);
+	projItem.SetSaveIgnoreNumbers(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
@@ -911,6 +920,7 @@ void COpenView::OnSaveProject()
 		projItem.SetIgnoreBlankLines(m_bIgnoreBlankLines);
 		projItem.SetIgnoreCase(m_bIgnoreCase);
 		projItem.SetIgnoreEol(m_bIgnoreEol);
+		projItem.SetIgnoreNumbers(m_bIgnoreNumbers);
 		projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
@@ -1428,6 +1438,23 @@ void COpenView::OnDiffIgnoreEOL()
 void COpenView::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_bIgnoreEol);
+}
+
+/**
+ * @brief Toggle "Ignore numbers" setting.
+ */
+void COpenView::OnDiffIgnoreNumbers()
+{
+	m_bIgnoreNumbers = !m_bIgnoreNumbers;
+}
+
+/**
+ * @brief Update "Ignore numbers" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreNumbers);
 }
 
 /**

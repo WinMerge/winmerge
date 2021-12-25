@@ -12,6 +12,7 @@
 #include "OptionsMgr.h"
 
 LPCWSTR lpAppName = TEXT("WinMerge");
+LPCWSTR lpDefaultSection = TEXT("Defaults");
 
 struct AsyncWriterThreadParams
 {
@@ -86,6 +87,25 @@ std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 			p = v + vlen + 1;
 		}
 	}
+	
+	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
+	if (GetPrivateProfileSection(lpDefaultSection, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
+	{
+		TCHAR* p = str.data();
+		while (*p)
+		{
+			TCHAR* v = _tcschr(p, '=');
+			if (!v)
+				break;
+			++v;
+			size_t vlen = _tcslen(v);
+			String value{ v, v + vlen };
+			String key{ p, v - 1 };
+			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
+			p = v + vlen + 1;
+		}
+	}
+
 	return iniFileKeyValues;
 }
 

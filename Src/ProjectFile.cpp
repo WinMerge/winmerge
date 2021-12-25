@@ -46,6 +46,7 @@ const char White_spaces_element_name[] = "white-spaces";
 const char Ignore_blank_lines_element_name[] = "ignore-blank-lines";
 const char Ignore_case_element_name[] = "ignore-case";
 const char Ignore_cr_diff_element_name[] = "ignore-carriage-return-diff";
+const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Compare_method_element_name[] = "compare-method";
@@ -160,6 +161,11 @@ public:
 			currentItem.m_bIgnoreEol = atoi(std::string(ch + start, length).c_str()) != 0;
 			currentItem.m_bHasIgnoreEol = true;
 		}
+		else if (nodename == Ignore_numbers_element_name)
+		{
+			currentItem.m_bIgnoreNumbers = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bHasIgnoreNumbers = true;
+		}
 		else if (nodename == Ignore_codepage_diff_element_name)
 		{
 			currentItem.m_bIgnoreCodepage = atoi(std::string(ch + start, length).c_str()) != 0;
@@ -213,6 +219,8 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bIgnoreCase(false)
 , m_bHasIgnoreEol(false)
 , m_bIgnoreEol(false)
+, m_bHasIgnoreNumbers(false)
+, m_bIgnoreNumbers(false)
 , m_bHasIgnoreCodepage(false)
 , m_bIgnoreCodepage(false)
 , m_bHasFilterCommentsLines(false)
@@ -226,6 +234,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveIgnoreBlankLines(true)
 , m_bSaveIgnoreCase(true)
 , m_bSaveIgnoreEol(true)
+, m_bSaveIgnoreNumbers(true)
 , m_bSaveIgnoreCodepage(true)
 , m_bSaveFilterCommentsLines(true)
 , m_bSaveCompareMethod(true)
@@ -376,6 +385,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_case_element_name, item.m_bIgnoreCase ? "1" : "0");
 				if (item.m_bSaveIgnoreEol)
 					writeElement(writer, Ignore_cr_diff_element_name, item.m_bIgnoreEol ? "1" : "0");
+				if (item.m_bSaveIgnoreNumbers)
+					writeElement(writer, Ignore_numbers_element_name, item.m_bIgnoreNumbers ? "1" : "0");
 				if (item.m_bSaveIgnoreCodepage)
 					writeElement(writer, Ignore_codepage_diff_element_name, item.m_bIgnoreCodepage ? "1" : "0");
 				if (item.m_bSaveFilterCommentsLines)

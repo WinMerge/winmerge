@@ -27,8 +27,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "نسخ إلى ال&يمين"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "نسخ م&ن اليمين"
 
 msgid "Cop&y to Left"
 msgstr "نسخ إلى الي&سار"
@@ -36,19 +45,22 @@ msgstr "نسخ إلى الي&سار"
 msgid "Copy &from Left"
 msgstr "نسخ &من اليسار"
 
-msgid "Copy fro&m Right"
-msgstr "نسخ م&ن اليمين"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Left"
 msgstr ""
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
-
-msgid "Copy Selected Line(s) from Right"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -683,6 +695,33 @@ msgstr "الاختلاف التالي في الجزء الأيمن فقط\tAlt+9
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "الاختلاف السابق في الجزء الأيمن فقط\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "&وسط"
+
+msgid "&Right"
+msgstr "ي&مين"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "&يسار"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "النسخ من الجزء الأيسر\tAlt+Shift+Right"
 
@@ -790,15 +829,6 @@ msgstr "من اليمين إلى... (%1 من %2)"
 
 msgid "&Delete"
 msgstr "&حذف"
-
-msgid "&Left"
-msgstr "&يسار"
-
-msgid "&Middle"
-msgstr "&وسط"
-
-msgid "&Right"
-msgstr "ي&مين"
 
 msgid "&Both"
 msgstr "&كلاهما"
@@ -1882,11 +1912,11 @@ msgstr "&فتح المجلدات الفرعية تلقائيا"
 msgid "Ignore &Reparse Points"
 msgstr "تجا&هل إعادة توزيع النقاط"
 
-msgid "&Quick compare limit (MB):"
-msgstr "ال&حد الأقصى للمقارنة السريعة (ميجابايت):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "الح&د الأقصى للمقارنة الثنائية (ميجابايت):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
@@ -2579,6 +2609,27 @@ msgstr "فصل بين العبارات باستخدام المسافات الخ�
 
 msgid "Break at whitespace or punctuation"
 msgstr "فصل بين العبارات باستخدام المسافات الخالية أو علامات الترقيم"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3648,6 +3699,9 @@ msgstr ""
 msgid "MDI child window only"
 msgstr ""
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr ""
@@ -3742,6 +3796,9 @@ msgstr ""
 
 #, c-format
 msgid "Rotated: %d  "
+msgstr ""
+
+msgid "All pages"
 msgstr ""
 
 msgid "<Edit here>"

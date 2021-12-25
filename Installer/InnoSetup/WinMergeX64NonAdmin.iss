@@ -47,14 +47,17 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\Release\WinMergeU.exe")
-#define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ShellExtensionX64.dll")
-#define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll")
+#define ARCH "x64"
+#define ShellExtension32bit "ShellExtensionU.dll"
+#define ShellExtension64bit "ShellExtensionX64.dll"
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\" + ARCH + "\Release\WinMergeU.exe")
+#define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ShellExtension64bit)
+#define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ARCH + "\WinMergeContextMenu.dll")
 
 [Setup]
 AppName=WinMerge
 AppVersion={#AppVersion}
-AppVerName=WinMerge {#AppVersion} x64 (Current user, 64-bit)
+AppVerName=WinMerge {#AppVersion} {#ARCH} (Current user, 64-bit)
 AppPublisher=Thingamahoochie Software
 AppPublisherURL=https://winmergejp.bitbucket.io
 AppSupportURL=https://winmergejp.bitbucket.io
@@ -78,7 +81,7 @@ AllowNoIcons=true
 InfoBeforeFile=..\..\Docs\users\GPL.rtf
 InfoAfterFile=..\..\Docs\users\ReadMe.txt
 
-OutputBaseFilename=WinMerge-{#AppVersion}-x64-PerUser-Setup
+OutputBaseFilename=WinMerge-{#AppVersion}-{#ARCH}-PerUser-Setup
 
 PrivilegesRequired=lowest
 
@@ -110,7 +113,7 @@ ChangesEnvironment=true
 OutputDir=..\..\Build
 AlwaysShowComponentsList=true
 
-ArchitecturesInstallIn64BitMode=x64
+ArchitecturesInstallIn64BitMode={#ARCH}
 
 #if GetEnv("SIGNBAT_PATH") != ""
 SignTool=signbat $f
@@ -128,6 +131,7 @@ Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Bulgar
 Name: Catalan; MessagesFile: compiler:Languages\Catalan.isl,..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
 Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\ChineseSimplified.isl,..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt
 Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\ChineseTraditional.isl,..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt
+Name: Corsican; MessagesFile: compiler:Languages\Corsican.isl,..\..\Translations\InnoSetup\Corsican.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Corsican.txt
 Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Croatian.isl,..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt
 Name: Czech; MessagesFile: compiler:Languages\Czech.isl,..\..\Translations\InnoSetup\Czech.isl
 Name: Danish; MessagesFile: compiler:Languages\Danish.isl,..\..\Translations\InnoSetup\Danish.isl
@@ -204,6 +208,9 @@ Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage};
 
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Chinese_Traditional
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Traditional
+
+Name: Languages\Corsican; Description: {cm:CorsicanLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Corsican
+Name: Languages\Corsican; Description: {cm:CorsicanLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Corsican
 
 Name: Languages\Croatian; Description: {cm:CroatianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Croatian
 Name: Languages\Croatian; Description: {cm:CroatianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Croatian
@@ -402,26 +409,26 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ; WinMerge itself
-Source: ..\..\Build\X64\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; Visual Elements
-Source: ..\..\Build\X64\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
-Source: ..\..\Build\X64\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 ; 32Bit Plugin Proxy
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
+Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionX64.dll'))
-Source: ..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage
+Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}'))
+Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage
 Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\X64\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\X64\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\X64\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\X64\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
 ; Language files
 Source: ..\..\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
@@ -444,6 +451,9 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt; DestDir: {a
 Source: ..\..\Translations\WinMerge\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\ShellExtension\ChineseTraditional.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Traditional
+Source: ..\..\Translations\WinMerge\Corsican.po; DestDir: {app}\Languages; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\ShellExtension\Corsican.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Corsican.txt; DestDir: {app}\Docs; Components: Languages\Corsican
 Source: ..\..\Translations\WinMerge\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\ShellExtension\Croatian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt; DestDir: {app}\Docs; Components: Languages\Croatian
@@ -549,33 +559,33 @@ Source: ..\..\Plugins\dlls\CompareMSPowerPointFiles.sct; DestDir: {app}\MergePlu
 Source: ..\..\Plugins\dlls\CompareMSVisioFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\PrediffLineFilter.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\..\Plugins\dlls\X64\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\X64\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\X64\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\X64\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
-Source: ..\..\Build\x64\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-;Source: ..\..\Build\x64\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Build\x64\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\x64\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
+;Source: ..\..\Build\{#ARCH}\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge
-Source: ..\..\Build\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-;Source: ..\..\Build\WinIMerge\bin64\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\bin64\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\bin64\vcomp140.dll; DestDir: {app}; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows
 Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands
@@ -683,6 +693,7 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Simplified
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000404; Flags: deletevalue; Languages: Chinese_Traditional
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000483; Flags: deletevalue; Languages: Corsican
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041a; Flags: deletevalue; Languages: Croatian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000405; Flags: deletevalue; Languages: Czech
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000406; Flags: deletevalue; Languages: Danish
@@ -721,14 +732,14 @@ Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters:
 
 Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
-Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Components: ShellExtension32bit
-Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionX64.dll"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
+Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit
+Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle
 Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
-Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilterminated; Components: ShellExtension32bit
-Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\ShellExtensionX64.dll"""; Flags: waituntilterminated
+Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit
+Filename: {sys}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServerPerUser"; Flags: waituntilidle
 
 [UninstallDelete]
@@ -1016,8 +1027,8 @@ begin
 end;
 
 Function IsWindows11OrLater(): Boolean;
-Var
-  OSVersion: TWindowsVersion;
+//Var
+  // OSVersion: TWindowsVersion;
 Begin
   // Currently, WinMergeContextMenu.dll does not work in some environments on Windows 11 preview version, and I cannot determine at the moment whether the problem is in the OS or in WinMergeContextMenu.dll.
   // For now, I have decided to give up on registering WinMergeContextMenu.dll as the default.

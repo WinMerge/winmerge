@@ -199,6 +199,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
+	ON_COMMAND_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnCopyX2Y)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnUpdateX2Y)
+	ON_COMMAND_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnCopyLinesX2Y)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnUpdateX2Y)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
@@ -1994,8 +1998,16 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 	}
 }
 
-void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 {
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
+	if (GetDocument()->m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
+	if (srcPane < 0 || dstPane < 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
 	// Check that right side is not readonly
 	if (!IsReadOnly(dstPane))
 	{
@@ -2027,6 +2039,20 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 		pCmdUI->Enable(false);
 }
 
+void CMergeEditView::OnCopyX2Y(UINT nID)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(nID, m_nThisPane, GetDocument()->m_nBuffers);
+	if (srcPane >= 0 && dstPane >= 0)
+		OnX2Y(srcPane, dstPane);
+}
+
+void CMergeEditView::OnCopyLinesX2Y(UINT nID)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(nID, m_nThisPane, GetDocument()->m_nBuffers);
+	if (srcPane >= 0 && dstPane >= 0)
+		OnX2Y(srcPane, dstPane, true);
+}
+
 /**
  * @brief Copy diff from left pane to right pane
  *
@@ -2040,29 +2066,25 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnL2r()
 {
-	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
-	int srcPane = dstPane - 1;
-	OnX2Y(srcPane, dstPane);
+	OnCopyX2Y(ID_L2R);
 }
 
 /**
- * @brief Called when "Copy to left" item is updated
+ * @brief Called when "Copy to Right" item is updated
  */
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 {
-	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnLinesL2r()
 {
-	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
-	int srcPane = dstPane - 1;
-	OnX2Y(srcPane, dstPane, true);
+	OnCopyLinesX2Y(ID_LINES_L2R);
 }
 
 void CMergeEditView::OnUpdateLinesL2r(CCmdUI* pCmdUI)
 {
-	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 /**
@@ -2078,105 +2100,65 @@ void CMergeEditView::OnUpdateLinesL2r(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnR2l()
 {
-	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
-	int srcPane = dstPane + 1;
-	OnX2Y(srcPane, dstPane);
+	OnCopyX2Y(ID_R2L);
 }
 
 /**
- * @brief Called when "Copy to right" item is updated
+ * @brief Called when "Copy to Left" item is updated
  */
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
-	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnLinesR2l()
 {
-	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
-	int srcPane = dstPane + 1;
-	OnX2Y(srcPane, dstPane, true);
+	OnCopyLinesX2Y(ID_LINES_R2L);
 }
 
 void CMergeEditView::OnUpdateLinesR2l(CCmdUI* pCmdUI)
 {
-	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnCopyFromLeft()
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane - 1;
-	if (srcPane < 0)
-		return;
-	OnX2Y(srcPane, dstPane);
+	OnCopyX2Y(ID_COPY_FROM_LEFT);
 }
 
 void CMergeEditView::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane - 1;
-	if (srcPane < 0)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(dstPane, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnCopyLinesFromLeft()
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane - 1;
-	if (srcPane < 0)
-		return;
-	OnX2Y(srcPane, dstPane, true);
+	OnCopyLinesX2Y(ID_COPY_LINES_FROM_LEFT);
 }
 
 void CMergeEditView::OnUpdateCopyLinesFromLeft(CCmdUI* pCmdUI)
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane - 1;
-	if (srcPane < 0)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(dstPane, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnCopyFromRight()
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane + 1;
-	if (srcPane >= GetDocument()->m_nBuffers)
-		return;
-	OnX2Y(srcPane, dstPane);
+	OnCopyX2Y(ID_COPY_FROM_RIGHT);
 }
 
 void CMergeEditView::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane + 1;
-	if (srcPane >= GetDocument()->m_nBuffers)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(dstPane, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 void CMergeEditView::OnCopyLinesFromRight()
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane + 1;
-	if (srcPane >= GetDocument()->m_nBuffers)
-		return;
-	OnX2Y(srcPane, dstPane, true);
+	OnCopyLinesX2Y(ID_COPY_LINES_FROM_RIGHT);
 }
 
 void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
 {
-	int dstPane = m_nThisPane;
-	int srcPane = dstPane + 1;
-	if (srcPane >= GetDocument()->m_nBuffers)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(dstPane, pCmdUI);
+	OnUpdateX2Y(pCmdUI);
 }
 
 /**
@@ -2185,8 +2167,7 @@ void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnAllLeft()
 {
 	// Check that left side is not readonly
-	int srcPane = m_nThisPane > 0 ? m_nThisPane : 1;
-	int dstPane = m_nThisPane > 0 ? m_nThisPane - 1 : 0;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
 		return;
 	CWaitCursor waitstatus;
@@ -2200,11 +2181,13 @@ void CMergeEditView::OnAllLeft()
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
-	int dstPane = m_nThisPane > 0 ? m_nThisPane - 1 : 0;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(false);
+	if (GetDocument()->m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(m_nThisPane, dstPane, pCmdUI);
 }
 
 /**
@@ -2213,8 +2196,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 void CMergeEditView::OnAllRight()
 {
 	// Check that right side is not readonly
-	int srcPane = m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane : m_nThisPane - 1;
-	int dstPane = m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
 		return;
 
@@ -2229,11 +2211,13 @@ void CMergeEditView::OnAllRight()
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
-	int dstPane = m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(false);
+	if (GetDocument()->m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(m_nThisPane, dstPane, pCmdUI);
 }
 
 /**
@@ -2745,17 +2729,42 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
 	{
-		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_LINES_FROM_RIGHT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_LINES_FROM_LEFT, MF_BYCOMMAND);
+		if (GetDocument()->m_nBuffers < 3)
+		{
+			menu.RemoveMenu(ID_COPY_TO_MIDDLE_L, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_FROM_MIDDLE_L, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_L, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_L, MF_BYCOMMAND);
+		}
+		for (UINT id = ID_COPY_TO_LEFT_M; id <= ID_COPY_FROM_LEFT_R; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+		for (UINT id = ID_COPY_LINES_TO_LEFT_M; id <= ID_COPY_LINES_FROM_LEFT_R; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+	}
+	if (m_nThisPane == 1 && GetDocument()->m_nBuffers == 3)
+	{
+		for (UINT id = ID_COPY_TO_MIDDLE_L; id <= ID_COPY_FROM_RIGHT_L; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+		for (UINT id = ID_COPY_TO_MIDDLE_R; id <= ID_COPY_FROM_LEFT_R; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+		for (UINT id = ID_COPY_LINES_TO_MIDDLE_L; id <= ID_COPY_LINES_FROM_RIGHT_L; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+		for (UINT id = ID_COPY_LINES_TO_MIDDLE_R; id <= ID_COPY_LINES_FROM_LEFT_R; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
 	}
 	if (m_nThisPane == GetDocument()->m_nBuffers - 1)
 	{
-		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_LINES_FROM_RIGHT, MF_BYCOMMAND);
-		menu.RemoveMenu(ID_COPY_LINES_FROM_LEFT, MF_BYCOMMAND);
+		if (GetDocument()->m_nBuffers < 3)
+		{
+			menu.RemoveMenu(ID_COPY_TO_MIDDLE_R, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_FROM_MIDDLE_R, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_R, MF_BYCOMMAND);
+			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_R, MF_BYCOMMAND);
+		}
+		for (UINT id = ID_COPY_TO_MIDDLE_L; id <= ID_COPY_FROM_RIGHT_M; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
+		for (UINT id = ID_COPY_LINES_TO_MIDDLE_L; id <= ID_COPY_LINES_FROM_RIGHT_M; ++id)
+			menu.RemoveMenu(id, MF_BYCOMMAND);
 	}
 
 	// Remove "Go to Moved Line Between Middle and Right" if in 2-way file comparison.
@@ -3906,12 +3915,11 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
-	AppendMenu(hSubMenu, MF_SEPARATOR, 0, nullptr);
 
-	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
+	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING, i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING | ((j % 21) == 20) ? MF_MENUBREAK : 0, i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);

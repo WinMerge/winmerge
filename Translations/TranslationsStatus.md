@@ -1,47 +1,48 @@
 # Translations Status
 
-Status from **2021-11-21**:
+Status from **2021-12-23**:
 
 ## WinMerge
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |  1136 |        904 |     0 |          232 |     80 % |  2019-12-30 |
-| Basque               |  1136 |        641 |     0 |          495 |     56 % |  2013-02-03 |
-| Brazilian            |  1136 |       1088 |     0 |           48 |     96 % |  2021-08-09 |
-| Bulgarian            |  1136 |        969 |     0 |          167 |     85 % |  2021-06-28 |
-| Catalan              |  1136 |        567 |     0 |          569 |     50 % |             |
-| ChineseSimplified    |  1136 |        977 |     0 |          159 |     86 % |             |
-| ChineseTraditional   |  1136 |        857 |     0 |          279 |     75 % |  2010-02-19 |
-| Croatian             |  1136 |        632 |     1 |          503 |     56 % |  2009-02-13 |
-| Czech                |  1136 |        607 |     0 |          529 |     53 % |             |
-| Danish               |  1136 |        641 |     0 |          495 |     56 % |  2013-01-13 |
-| Dutch                |  1136 |       1101 |     0 |           35 |     97 % |  2018-09-06 |
-| English              |  1137 |       1137 |     0 |            0 |    100 % |  2021-11-21 |
-| Finnish              |  1136 |        904 |     0 |          232 |     80 % |             |
-| French               |  1136 |       1021 |     0 |          115 |     90 % |  2021-04-29 |
-| Galician             |  1136 |       1101 |     0 |           35 |     97 % |  2021-10-12 |
-| German               |  1136 |       1136 |     0 |            0 |    100 % |  2021-10-26 |
-| Greek                |  1136 |        605 |     0 |          531 |     53 % |             |
-| Hungarian            |  1136 |       1136 |     0 |            0 |    100 % |  2021-03-15 |
-| Italian              |  1136 |        994 |     0 |          142 |     88 % |  2021-08-09 |
-| Japanese             |  1136 |       1135 |     0 |            1 |    100 % |  2021-10-20 |
-| Korean               |  1136 |       1037 |     0 |           99 |     91 % |  2021-08-23 |
-| Lithuanian           |  1136 |       1114 |     0 |           22 |     98 % |  2021-11-10 |
-| Norwegian            |  1136 |        633 |     0 |          503 |     56 % |             |
-| Persian              |  1136 |        644 |     0 |          492 |     57 % |  2013-08-15 |
-| Polish               |  1136 |       1112 |     0 |           24 |     98 % |             |
-| Portuguese           |  1136 |       1136 |     0 |            0 |    100 % |  2021-11-05 |
-| Romanian             |  1136 |        562 |    44 |          530 |     53 % |             |
-| Russian              |  1136 |       1094 |     0 |           42 |     96 % |  2021-10-28 |
-| Serbian              |  1136 |        633 |     0 |          503 |     56 % |             |
-| Sinhala              |  1136 |        567 |    59 |          510 |     55 % |  2010-12-12 |
-| Slovak               |  1136 |        977 |     0 |          159 |     86 % |  2020-11-02 |
-| Slovenian            |  1136 |       1135 |     0 |            1 |    100 % |  2021-10-26 |
-| Spanish              |  1136 |        873 |     0 |          263 |     77 % |  2020-04-03 |
-| Swedish              |  1136 |       1096 |     0 |           40 |     96 % |  2021-09-15 |
-| Turkish              |  1136 |       1101 |     0 |           35 |     97 % |  2021-09-21 |
-| Ukrainian            |  1136 |        638 |     0 |          498 |     56 % |  2009-06-13 |
+| Arabic               |  1155 |        902 |     0 |          253 |     78 % |  2019-12-30 |
+| Basque               |  1155 |        640 |     0 |          515 |     55 % |  2013-02-03 |
+| Brazilian            |  1155 |       1086 |     0 |           69 |     94 % |  2021-08-09 |
+| Bulgarian            |  1155 |        967 |     0 |          188 |     84 % |  2021-06-28 |
+| Catalan              |  1155 |        567 |     0 |          588 |     49 % |             |
+| ChineseSimplified    |  1155 |        975 |     0 |          180 |     84 % |             |
+| ChineseTraditional   |  1155 |       1091 |     0 |           64 |     94 % |  2021-12-11 |
+| Corsican             |  1155 |       1136 |     0 |           19 |     98 % |             |
+| Croatian             |  1155 |        632 |     1 |          522 |     55 % |  2009-02-13 |
+| Czech                |  1155 |        606 |     0 |          549 |     52 % |             |
+| Danish               |  1155 |        640 |     0 |          515 |     55 % |  2013-01-13 |
+| Dutch                |  1155 |       1099 |     0 |           56 |     95 % |  2018-09-06 |
+| English              |  1156 |       1156 |     0 |            0 |    100 % |  2021-12-23 |
+| Finnish              |  1155 |        902 |     0 |          253 |     78 % |             |
+| French               |  1155 |       1019 |     0 |          136 |     88 % |  2021-04-29 |
+| Galician             |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-18 |
+| German               |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-16 |
+| Greek                |  1155 |        605 |     0 |          550 |     52 % |             |
+| Hungarian            |  1155 |       1134 |     0 |           21 |     98 % |  2021-03-15 |
+| Italian              |  1155 |        992 |     0 |          163 |     86 % |  2021-08-09 |
+| Japanese             |  1155 |       1153 |     0 |            2 |    100 % |  2021-11-21 |
+| Korean               |  1155 |       1035 |     0 |          120 |     90 % |  2021-12-10 |
+| Lithuanian           |  1155 |       1114 |     0 |           41 |     96 % |  2021-12-15 |
+| Norwegian            |  1155 |        633 |     0 |          522 |     55 % |             |
+| Persian              |  1155 |        643 |     0 |          512 |     56 % |  2013-08-15 |
+| Polish               |  1155 |       1110 |     0 |           45 |     96 % |             |
+| Portuguese           |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-20 |
+| Romanian             |  1155 |        562 |    44 |          549 |     52 % |             |
+| Russian              |  1155 |       1092 |     0 |           63 |     95 % |  2021-10-28 |
+| Serbian              |  1155 |        633 |     0 |          522 |     55 % |             |
+| Sinhala              |  1155 |        567 |    59 |          529 |     54 % |  2010-12-12 |
+| Slovak               |  1155 |        975 |     0 |          180 |     84 % |  2020-11-02 |
+| Slovenian            |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-16 |
+| Spanish              |  1155 |        871 |     0 |          284 |     75 % |  2020-04-03 |
+| Swedish              |  1155 |       1094 |     0 |           61 |     95 % |  2021-09-15 |
+| Turkish              |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-21 |
+| Ukrainian            |  1155 |        638 |     0 |          517 |     55 % |  2009-06-13 |
 
 ## ShellExtension
 
@@ -53,7 +54,8 @@ Status from **2021-11-21**:
 | Bulgarian            |     9 |          4 |     0 |            5 |     44 % |             |
 | Catalan              |     9 |          4 |     0 |            5 |     44 % |             |
 | ChineseSimplified    |     9 |          4 |     0 |            5 |     44 % |             |
-| ChineseTraditional   |     9 |          4 |     0 |            5 |     44 % |             |
+| ChineseTraditional   |     9 |          9 |     0 |            0 |    100 % |             |
+| Corsican             |     9 |          9 |     0 |            0 |    100 % |             |
 | Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
 | Czech                |     9 |          4 |     0 |            5 |     44 % |             |
 | Danish               |     9 |          4 |     0 |            5 |     44 % |             |
@@ -68,17 +70,17 @@ Status from **2021-11-21**:
 | Italian              |     9 |          4 |     0 |            5 |     44 % |             |
 | Japanese             |     9 |          9 |     0 |            0 |    100 % |             |
 | Korean               |     9 |          3 |     0 |            6 |     33 % |             |
-| Lithuanian           |     9 |          4 |     0 |            5 |     44 % |  2019-05-13 |
+| Lithuanian           |     9 |          9 |     0 |            0 |    100 % |  2021-12-17 |
 | Norwegian            |     9 |          3 |     0 |            6 |     33 % |             |
 | Persian              |     9 |          4 |     0 |            5 |     44 % |             |
 | Polish               |     9 |          4 |     0 |            5 |     44 % |             |
-| Portuguese           |     9 |          9 |     0 |            0 |    100 % |  2021-09-11 |
+| Portuguese           |     9 |          9 |     0 |            0 |    100 % |  2021-12-20 |
 | Romanian             |     9 |          4 |     0 |            5 |     44 % |             |
 | Russian              |     9 |          6 |     0 |            3 |     67 % |   20-02-25  |
 | Serbian              |     9 |          4 |     0 |            5 |     44 % |             |
 | Sinhala              |     9 |          3 |     0 |            6 |     33 % |             |
 | Slovak               |     9 |          4 |     0 |            5 |     44 % |             |
-| Slovenian            |     9 |          4 |     0 |            5 |     44 % |  2020-12-29 |
+| Slovenian            |     9 |          9 |     0 |            0 |    100 % |  2021-12-16 |
 | Spanish              |     9 |          4 |     0 |            5 |     44 % |             |
 | Swedish              |     9 |          4 |     0 |            5 |     44 % |             |
 | Turkish              |     9 |          9 |     0 |            0 |    100 % |  2021-09-21 |
@@ -95,6 +97,7 @@ Status from **2021-11-21**:
 | Catalan              |     - |          - |     - |            - |        - |             |
 | ChineseSimplified    |     - |          - |     - |            - |        - |             |
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
+| Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
 | Czech                |     - |          - |     - |            - |        - |             |
 | Danish               |     - |          - |     - |            - |        - |             |
@@ -134,6 +137,7 @@ Status from **2021-11-21**:
 | Catalan              |     - |          - |     - |            - |        - |             |
 | ChineseSimplified    |     - |          - |     - |            - |        - |             |
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
+| Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
 | Dutch                |     - |          - |     - |            - |        - |             |
 | English              |     - |          - |     - |            - |        - |             |
@@ -184,6 +188,11 @@ Status from **2021-11-21**:
    - [Koko](mailto:kokokoko%20at%20giga.net.tw)
    - [wck3](mailto:wck3171%20at%20pchome.com.tw)
    - [Calvin Lin](mailto:ylin77%20at%20gmail.com)
+   - [Enfeng Tsao](mailto:admin%20at%20siderealart.me)
+
+ * Corsican
+   - Patriccollu di Santa Maria è Sichè *Maintainer*
+   - Patriccollu di Santa Maria è Sichè
 
  * Croatian
    - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)
@@ -241,6 +250,7 @@ Status from **2021-11-21**:
    - [sheppaul](mailto:sheppaul%20at%20gmail.com)
    - [teamzamong](mailto:teamzamong%20at%20gmail.com)
    - [BrainS](mailto:29201475+BraINstinct0%20at%20users.noreply.github.com)
+   - [cynilyn](mailto:cynilyn%20at%20gmail.com)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)
@@ -312,6 +322,10 @@ Status from **2021-11-21**:
    - [Vitaliy Stopchans'kyy](mailto:stopcha%20at%20gmail.com)
 
 ### ShellExtension
+
+ * Corsican
+   - Patriccollu di Santa Maria è Sichè *Maintainer*
+   - Patriccollu di Santa Maria è Sichè
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*

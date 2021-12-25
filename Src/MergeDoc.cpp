@@ -2752,17 +2752,24 @@ void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
  * @brief We have two child views (left & right), so we keep pointers directly
  * at them (the MFC view list doesn't have them both)
  */
-void CMergeDoc::AddMergeViews(CMergeEditView *pView[3])
+void CMergeDoc::AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView *pView[3])
 {
-
+	m_pMergeEditSplitterView[m_nGroups] = pMergeEditSplitterView;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		m_pView[m_nGroups][nBuffer] = pView[nBuffer];
 	++m_nGroups;
 }
 
-void CMergeDoc::RemoveMergeViews(int nGroup)
+void CMergeDoc::RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView)
 {
-
+	ASSERT(m_nGroups > 0);
+	int nGroup;
+	for (nGroup = 0; nGroup < m_nGroups; ++nGroup)
+	{
+		if (m_pMergeEditSplitterView[nGroup] == pMergeEditSplitterView)
+			break;
+	}
+	ASSERT(nGroup < m_nGroups);
 	for (; nGroup < m_nGroups - 1; nGroup++)
 	{
 		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -2770,7 +2777,11 @@ void CMergeDoc::RemoveMergeViews(int nGroup)
 			m_pView[nGroup][nBuffer] = m_pView[nGroup + 1][nBuffer];
 			m_pView[nGroup][nBuffer]->m_nThisGroup = nGroup;
 		}
+		m_pMergeEditSplitterView[nGroup] = m_pMergeEditSplitterView[nGroup + 1];
 	}
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		m_pView[m_nGroups - 1][nBuffer] = nullptr;
+	m_pMergeEditSplitterView[m_nGroups - 1] = nullptr;
 	--m_nGroups;
 }
 

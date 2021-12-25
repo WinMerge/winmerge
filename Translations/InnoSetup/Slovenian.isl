@@ -28,6 +28,7 @@ BulgarianLanguage=Bolgarski meniji in pogovorna okna
 CatalanLanguage=Katalonski meniji in pogovorna okna
 ChineseSimplifiedLanguage=Kitajski (poenostavljeni) meniji in pogovorna okna
 ChineseTraditionalLanguage=Kitajski (tradicionalni) meniji in pogovorna okna
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Hrvaški meniji in pogovorna okna
 CzechLanguage=Èeški meniji in pogovorna okna
 DanishLanguage=Danski meniji in pogovorna okna
@@ -63,7 +64,6 @@ ExplorerContextMenu=&Omogoèi integracijo v priroèni meni Raziskovalca
 IntegrateTortoiseCVS=Integracija s &TortoiseCVS
 IntegrateTortoiseGit=Integracija s To&rtoiseGit
 IntegrateTortoiseSVN=Integracija s T&ortoiseSVN
-IntegrateClearCase=Integracija z Rational &ClearCase
 AddToPath=&Dodaj v sistemsko pot mapo WinMerge
 
 ; 3-way merge wizard page

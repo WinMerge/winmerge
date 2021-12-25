@@ -51,6 +51,10 @@ Localization:
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>
   Calvin Lin <ylin77 at gmail.com>
+  SiderealArt <admin at siderealart.me>
+
+* Corsican:
+  Patriccollu di Santa Maria è Sichè
 
 * Croatian:
   Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>
@@ -113,6 +117,7 @@ Localization:
   sheppaul <sheppaul at gmail.com>
   teamzamong <teamzamong at gmail.com>
   BrainS <29201475+BraINstinct0 at users.noreply.github.com>
+  cynilyn <cynilyn at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
@@ -245,6 +250,7 @@ Other Contributors (code, ideas, testing..):
 * evoc
 * devmynote
 * Michał Lipok
+* Samuel Plentz
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

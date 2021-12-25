@@ -32,6 +32,7 @@ public:
 	virtual void RecalcLayout() override;
 	virtual void TrackRowSize(int y, int row) override;
 	virtual void TrackColumnSize(int x, int col) override;
+	virtual CWnd* GetActivePane(int* pRow = NULL, int* pCol = NULL) override;
 
 	CScrollBar* GetScrollBarCtrl(CWnd* pWnd, int nBar) const;
 

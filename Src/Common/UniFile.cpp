@@ -530,7 +530,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			++m_lineno;
 			if (*eolptr == '\r')
 			{
-				if (eolptr - m_base + (m_charsize - 1) < m_filesize && eolptr[1] == '\n')
+				if (eolptr - m_base + m_charsize + (m_charsize - 1) < m_filesize && eolptr[1] == '\n')
 				{
 					eol += '\n';
 					++m_txtstats.ncrlfs;

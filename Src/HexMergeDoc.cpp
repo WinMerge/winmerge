@@ -102,10 +102,20 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	// [Merge] menu
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
+	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
+	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
+	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
+	ON_COMMAND_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnCopyX2Y)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnUpdateX2Y)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
@@ -730,14 +740,38 @@ void CHexMergeDoc::OnFileReload()
 	MoveOnLoad(nActivePane);
 }
 
+void CHexMergeDoc::OnCopyX2Y(UINT nID)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(nID, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	if (srcPane >= 0 && dstPane >= 0)
+		CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
+}
+
+void CHexMergeDoc::OnUpdateX2Y(CCmdUI* pCmdUI)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	if (srcPane < 0 || dstPane < 0)
+		pCmdUI->Enable(false);
+	else
+		pCmdUI->Enable(!GetReadOnly(dstPane));
+	if (m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
+}
+
 /**
  * @brief Copy selected bytes from left to right
  */
 void CHexMergeDoc::OnL2r()
 {
-	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
-	int srcPane = dstPane - 1;
-	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
+	OnCopyX2Y(ID_L2R);
+}
+
+/**
+ * @brief Called when "Copy to Right" item is updated
+ */
+void CHexMergeDoc::OnUpdateL2r(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(pCmdUI);
 }
 
 /**
@@ -745,9 +779,35 @@ void CHexMergeDoc::OnL2r()
  */
 void CHexMergeDoc::OnR2l()
 {
-	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
-	int srcPane = dstPane + 1;
-	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
+	OnCopyX2Y(ID_R2L);
+}
+
+/**
+ * @brief Called when "Copy to Left" item is updated
+ */
+void CHexMergeDoc::OnUpdateR2l(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(pCmdUI);
+}
+
+/**
+ * @brief Update "Copy right and advance" UI item
+ */
+void CHexMergeDoc::OnUpdateL2RNext(CCmdUI* pCmdUI)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_L2RNEXT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	pCmdUI->Enable(false);
+	CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
+}
+
+/**
+ * @brief Update "Copy left and advance" UI item
+ */
+void CHexMergeDoc::OnUpdateR2LNext(CCmdUI* pCmdUI)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_R2LNEXT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	pCmdUI->Enable(false);
+	CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
 }
 
 /**
@@ -755,9 +815,15 @@ void CHexMergeDoc::OnR2l()
  */
 void CHexMergeDoc::OnCopyFromLeft()
 {
-	int dstPane = GetActiveMergeView()->m_nThisPane;
-	int srcPane = (dstPane - 1 < 0) ? 0 : dstPane - 1;
-	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
+	OnCopyX2Y(ID_COPY_FROM_LEFT);
+}
+
+/**
+ * @brief Called when "Copy from left" item is updated
+ */
+void CHexMergeDoc::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(pCmdUI);
 }
 
 /**
@@ -765,9 +831,15 @@ void CHexMergeDoc::OnCopyFromLeft()
  */
 void CHexMergeDoc::OnCopyFromRight()
 {
-	int dstPane = GetActiveMergeView()->m_nThisPane;
-	int srcPane = (dstPane + 1 > m_nBuffers - 1) ? m_nBuffers - 1 : dstPane + 1;
-	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
+	OnCopyX2Y(ID_COPY_FROM_RIGHT);
+}
+
+/**
+ * @brief Called when "Copy from right" item is updated
+ */
+void CHexMergeDoc::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
+{
+	OnUpdateX2Y(pCmdUI);
 }
 
 /**
@@ -775,9 +847,19 @@ void CHexMergeDoc::OnCopyFromRight()
  */
 void CHexMergeDoc::OnAllRight()
 {
-	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
-	int srcPane = dstPane - 1;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
 	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
+}
+
+/**
+ * @brief Called when "Copy all to right" item is updated
+ */
+void CHexMergeDoc::OnUpdateAllRight(CCmdUI* pCmdUI)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	pCmdUI->Enable(!GetReadOnly(dstPane));
+	if (m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
 }
 
 /**
@@ -785,9 +867,19 @@ void CHexMergeDoc::OnAllRight()
  */
 void CHexMergeDoc::OnAllLeft()
 {
-	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
-	int srcPane = dstPane + 1;
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
 	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
+}
+
+/**
+ * @brief Called when "Copy all to left" item is updated
+ */
+void CHexMergeDoc::OnUpdateAllLeft(CCmdUI* pCmdUI)
+{
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, GetActiveMergeView()->m_nThisPane, m_nBuffers);
+	pCmdUI->Enable(!GetReadOnly(dstPane));
+	if (m_nBuffers > 2)
+		CMergeFrameCommon::ChangeMergeMenuText(srcPane, dstPane, pCmdUI);
 }
 
 /**

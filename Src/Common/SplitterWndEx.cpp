@@ -334,6 +334,34 @@ void CSplitterWndEx::TrackColumnSize(int x, int col)
 	updateRatios(*this, col, x, m_colRatios, true);
 }
 
+// Override GetActivePane() because CSplitterWnd::GetActivePane() does not take into account the case of nested Splitter Windows.
+CWnd* CSplitterWndEx::GetActivePane(int* pRow, int* pCol)
+{
+	ASSERT_VALID(this);
+
+	// attempt to use active view of frame window
+	CWnd* pView = NULL;
+	CFrameWnd* pFrameWnd = EnsureParentFrame();
+	pView = pFrameWnd->GetActiveView();
+
+	// failing that, use the current focus
+	if (pView == NULL)
+		pView = GetFocus();
+
+	CWnd* pActiveView = pView;
+	if (pView)
+	{
+		while (pView && pView->GetParent() != this)
+			pView = pView->GetParent();
+	}
+
+	// make sure the pane is a child pane of the splitter
+	if (pView != NULL && !IsChildPane(pView, pRow, pCol))
+		pActiveView = NULL;
+
+	return pActiveView;
+}
+
 void CSplitterWndEx::OnSize(UINT nType, int cx, int cy) 
 {
 	CSplitterWnd::OnSize(nType, cx, cy);

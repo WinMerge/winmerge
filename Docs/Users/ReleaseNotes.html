@@ -20,159 +20,92 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21616-release-notes">WinMerge 2.16.16 Release Notes</h1>
+<h1 id="winmerge-21617-beta-release-notes">WinMerge 2.16.17 Beta Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21616">What Is New in 2.16.16?</a></li>
-<li><a href="#what-is-new-in-21615-beta">What Is New in 2.16.15 beta?</a></li>
+<li><a href="#what-is-new-in-21617-beta">What Is New in 2.16.17 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>October 2021</p>
+<p>December 2021</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.16 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
 <p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-21616">What Is New in 2.16.16</h2>
+<h2 id="what-is-new-in-21617-beta">What Is New in 2.16.17 Beta</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>Fix a problem where the string in the Windows common dialog would not change to the language when switching languages.</li>
+<li>New Option to ignore numbers. (PR #1025,#923)</li>
+<li>Add the feature to display tooltips on the MDI tab. (PR #1038)</li>
+<li>Issue with closing WinMerge with Esc keyboard key (#1052)</li>
+<li>Add an &quot;Defaults&quot; section to the ini file (PR #1071)</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>BugFix: Fix not getting the proper error message when saving failed</li>
-</ul>
-<h3 id="table-compare">Table compare</h3>
-<ul>
-<li>BugFix: Cannot resize last column with UI (#998)</li>
-<li>Reloading a file that was changed by another application does not preserve column widths (#951)</li>
+<li>BugFix: Release 2.16.16 crashes when comparing large files - likely a regression (#1036)</li>
+<li>BugFix: Fixed C#(Java, JavaScript) keyword highlighting. (#1040)</li>
+<li>BugFix: The current pane switches without me asking it to. (#1050)</li>
+<li>BugFix: Fix PHP syntax highlighting. (PR #1055)</li>
+<li>BugFix: Source Files Comparison doesn&#39;t seem to Work properly (#1057)</li>
+<li>Add D syntax highlighting. (PR #1042)</li>
+<li>Improved &#39;Match similar lines&#39; option (#1013)</li>
+<li>Make the &#39;Match similar lines&#39; option work for 3-way comparisons (PR #1051,#510)</li>
+<li>Please add a huge icon for &quot;Filter is active&quot; (#1056)</li>
 </ul>
 <h3 id="image-compare">Image compare</h3>
 <ul>
-<li>BugFix: Fix an issue where drag-and-drop of file would only work once.</li>
+<li>Added support for creating multi-page image compare report (osdn.net #43374)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Sync (Super Slow) (#771)</li>
-<li>BugFix: Fix an issue where filters are not applied correctly when opening a project file containing multiple items with different filters. (PR #995)</li>
-<li>[Feature Request] New Display Columns: Dimensions + Size Difference (#131)</li>
-<li>FolderCompare: Additional Properties (Windows Property System+Hash (MD5, SHA-1, SHA-256)) (PR #996)</li>
+<li>BugFix: Fixed a problem where Duplicate Group Numbers were not assigned to files with the same content but different file names.</li>
+<li>BugFix: Fix crash when comparing 3 folders if additional properties were added</li>
+<li>FolderCompare: Improve performance when tree mode is disabled (#PR #1069)</li>
 </ul>
-<h3 id="options-dialog">Options dialog</h3>
+<h3 id="project-file">Project file</h3>
 <ul>
-<li>BugFix: Fix the problem that the &quot;Register Shell Extension for Windows 11 or later&quot; button is not enabled when another user has registered ShellExtension for Windows 11.</li>
+<li>Add a feature to save/restore the &quot;Ignore numbers&quot; setting to/from a project file. (PR #1068)</li>
+</ul>
+<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
+<ul>
+<li>Put the diff patch to the clipboard rather than to files (#923)</li>
 </ul>
 <h3 id="plugins">Plugins</h3>
 <ul>
-<li>BugFix: Plugin unpacked file extension problem (get_PluginUnpackedFileExtension) (#983)</li>
-<li>BugFix: Comparing broken lnk-files (windows shortcuts) freezes WinMerge (#1007)</li>
-<li>Apache Tika plugin: Update Apache tika to 2.1.0 and change the download URL</li>
-<li>CompareMSExcelFiles.sct: Make the number before the sheet name zero-padded</li>
+<li>BugFix: Fixed the problem that Plugins-&gt;Reload Plugins menu item does not work.</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>Update 7-Zip to 21.06</li>
 </ul>
 <h3 id="shell-extension">Shell extension</h3>
 <ul>
-<li>BugFix: ShellExtension for Windows 11 did not work on machines that did not have MSVCP140.dll VCRUNTIME140*.dll installed.</li>
-<li>BugFix: Loop counter should be the same type as the count type. (PR #987)</li>
-<li>ShellExtension for Windows11: Disable Registry Write Virtualization</li>
-</ul>
-<h3 id="manual">Manual</h3>
-<ul>
-<li>Where to report documentation/help errors? (#1004)</li>
+<li>ShellExtension for Windows 11: Implemented advanced menu</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
+<li>New translation:
+<ul>
+<li>Corsican (PR #1072,#1085)</li>
+</ul></li>
 <li>Translation updates:
 <ul>
-<li>Galician (PR #1005)</li>
-<li>German (PR #986,#1027)</li>
-<li>Hungarian (PR #991,#1023)</li>
+<li>Chinese Traditional (PR #1079)</li>
+<li>Galician (PR #1089)</li>
+<li>German (PR #1062,#1086,#1088)</li>
+<li>Hungarian (PR #1032)</li>
 <li>Japanese</li>
-<li>Lithuanian (PR #979)</li>
-<li>Portuguese (PR #1017)</li>
-<li>Slovenian (#1026)</li>
-<li>Turkish (PR #980)</li>
+<li>Korean (PR #1078)</li>
+<li>Lithuanian (PR #1043,#1061,#1082,#1087)</li>
+<li>Polish (PR #1049)</li>
+<li>Portuguese (PR #1034,#1039,#1060,#1065)</li>
+<li>Russian (PR #1031)</li>
+<li>Slovenian</li>
 </ul></li>
 </ul>
 <h3 id="internals">Internals</h3>
 <ul>
-<li>BugFix: Missing packages.config (also outdated) and wrong NuGet packages path in the WinMergeContextMenu.vcxproj and .filters file (#985)</li>
-<li>Fix typo in OpenView.cpp (PR #1000)</li>
-</ul>
-<h2 id="what-is-new-in-21615-beta">What Is New in 2.16.15 Beta</h2>
-<h3 id="general-1">General</h3>
-<ul>
-<li>BugFix: WinMerge would crash when launched if the registry or INI file contained invalid values.</li>
-<li>BugFix: Winmerge Crash when comparing 2 files from Windows Explorer context menu (#808, #908, #913)</li>
-<li>BugFix: Incorrect text color for selected menu item on Windows 11</li>
-<li>BugFix: 50% cpu use by winmergeu.exe after program closed (#903)</li>
-<li>Digitally sign packages (#152)</li>
-</ul>
-<h3 id="file-compare-1">File compare</h3>
-<ul>
-<li>BugFix: The mouse cursor did not change to an hourglass when the files or plugins were taking a long time to load.</li>
-<li>BugFix: Save Middle and Save Middle As menu items were not enabled when comparing three files.</li>
-<li>BugFix: A two-pane window was displayed even though New (3panes) → Table menu item was selected.</li>
-<li>BugFix: The height of each pane in the Diff pane was calculated incorrectly when comparing three files.</li>
-<li>BugFix: Unicode SMP chars misrendered after performing a find (#914)</li>
-<li>BugFix: Crash when pressing Shift+F4 key</li>
-<li>BugFix: Replace slow (#940)</li>
-<li>BugFix: When moving in the scroll pane, the selected position is incorrect (#970)</li>
-<li>BugFix: When the Diff pane was redisplayed, the scroll position of the Diff pane was not appropriate. (osdn.net #42862)</li>
-<li>Make &quot;Do not close this box&quot; checkbox in search window On by default (#941)</li>
-</ul>
-<h3 id="image-compare-1">Image compare</h3>
-<ul>
-<li>BugFix: Duplicate menu shortcut in translations (#905)</li>
-<li>BugFix: Image comparison (winimerge #24)</li>
-</ul>
-<h3 id="project-file">Project file</h3>
-<ul>
-<li>Add a feature to save/restore compare options to/from a project file.(#498) (PR #915)</li>
-</ul>
-<h3 id="options-dialog-1">Options dialog</h3>
-<ul>
-<li>Add a feature to set items saved to or restored from the project file. (PR #953)</li>
-</ul>
-<h3 id="plugins-1">Plugins</h3>
-<ul>
-<li>New unpacker plugins:
-<ul>
-<li>DecompileJVM</li>
-<li>DecompileIL</li>
-<li>DisassembleNative</li>
-</ul></li>
-</ul>
-<h3 id="command-line">Command line</h3>
-<ul>
-<li>Added /c <code>column number</code> command line option</li>
-<li>Added /EnableExitCode command line option</li>
-</ul>
-<h3 id="shell-extension-1">Shell extension</h3>
-<ul>
-<li>BugFix: WinMerge&#39;s extended menu items were doubly inserted into the context menu of Explorer&#39;s navigation pane. (osdn.net #42702)</li>
-<li>BugFix: Right click - compare - is unclear (#249)</li>
-<li>Added a new DLL (WinMergeContextMenu.dll) for the Windows 11 Explorer context menu (currently unstable and not registered by default) (PR #954)</li>
-</ul>
-<h3 id="translations-1">Translations</h3>
-<ul>
-<li>Translation updates:
-<ul>
-<li>Brazilian (PR #910)</li>
-<li>Dutch (PR #921,#969)</li>
-<li>German (PR #965,#977)</li>
-<li>Hungarian (PR #937,#955)</li>
-<li>Italian (PR #911)</li>
-<li>Japanese</li>
-<li>Korean (PR #932)</li>
-<li>Portuguese (PR #956,#964,#976)</li>
-<li>Russian (PR #901,#927,#963)</li>
-<li>Slovenian</li>
-<li>Swedish (PR #974)</li>
-<li>Turkish (PR #899)</li>
-</ul></li>
-</ul>
-<h3 id="internals-1">Internals</h3>
-<ul>
-<li>README.md: Make it clear that requirements are to build, not use the application (PR #942)</li>
-<li>compiler-calculated maximum value for <code>m_SourceDefs</code> (PR #966)</li>
+<li>BugFix: Fix typo in BCMenu.cpp (PR #1054)</li>
+<li>BugFix: Return better HRESULTs (PR #1077)</li>
+<li>Make it buildable for ARM32 architecture</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>

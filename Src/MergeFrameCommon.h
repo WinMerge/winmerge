@@ -22,6 +22,8 @@ public:
 	void SetLastCompareResult(int nResult);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
 	static String GetTitleString(const PathContext& paths, const String desc[], PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
+	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
+	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();

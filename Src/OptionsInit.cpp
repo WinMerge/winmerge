@@ -125,7 +125,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
 	pOptions->InitOption(OPT_BREAK_TYPE, 1, 0, 1);
 
-	pOptions->InitOption(OPT_CLOSE_WITH_ESC, 1, 0, 2);
+	pOptions->InitOption(OPT_CLOSE_WITH_ESC, 1, 0, 3);
 	pOptions->InitOption(OPT_CLOSE_WITH_OK, false);
 	pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
 	pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);

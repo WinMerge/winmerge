@@ -225,6 +225,18 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Clipboard.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\MemoryGlobal.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.h">
+      <Filter>7zip Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Merge7z907.cpp">
@@ -420,6 +432,18 @@
       <Filter>C</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.cpp">
+      <Filter>7zip Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Clipboard.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\MemoryGlobal.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
   </ItemGroup>

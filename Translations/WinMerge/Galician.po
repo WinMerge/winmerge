@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-10-12 12:50+0200\n"
+"PO-Revision-Date: 2021-12-18 16:05+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +29,19 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_GALICIAN, SUBLANG_DEFAULT"
 
+msgid "Copy to Middle"
+msgstr ""
+
 #, c-format
 msgid "C&opy to Right"
 msgstr "C&opiar para a dereita"
+
+msgid "Copy from Middle"
+msgstr ""
+
+#, c-format
+msgid "Copy fro&m Right"
+msgstr "Copiar da &dereita"
 
 #, c-format
 msgid "Cop&y to Left"
@@ -41,21 +51,23 @@ msgstr "Cop&iar para a esquerda"
 msgid "Copy &from Left"
 msgstr "Copiar da &esquerda"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Copiar da &dereita"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Copiar liñas seleccionadas para a dereita"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Copiar liñas seleccionadas da dereita"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Copiar liñas seleccionadas para a esquerda"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar liñas seleccionadas da esquerda"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Copiar liñas seleccionadas da dereita"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -861,6 +873,36 @@ msgstr "Seguinte diferenza só na dereita\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Anterior diferenza só na dereita\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr "&Centro"
+
+#, c-format
+msgid "&Right"
+msgstr "&Dereita"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "&Esquerda"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Copiar da esquerda\tAlt+Shift+Right"
@@ -984,18 +1026,6 @@ msgstr "Da dereita para… (%1 de %2)"
 #, c-format
 msgid "&Delete"
 msgstr "&Borrar"
-
-#, c-format
-msgid "&Left"
-msgstr "&Esquerda"
-
-#, c-format
-msgid "&Middle"
-msgstr "&Centro"
-
-#, c-format
-msgid "&Right"
-msgstr "&Dereita"
 
 #, c-format
 msgid "&Both"
@@ -1164,7 +1194,7 @@ msgid "Ignore codepage &differences"
 msgstr "Ignorar &diferenzas de codificación"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Ignorar nú&meros"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
@@ -1648,19 +1678,19 @@ msgid "Move &Down"
 msgstr "Mover E&mbaixo"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "Propiedades &adicionais"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Propiedades adicionais"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Seleccionar complemento"
@@ -2360,12 +2390,11 @@ msgstr "Expandir &automaticamente todos os subcartafoles"
 msgid "Ignore &Reparse Points"
 msgstr "Ignorar os &puntos de unión do sistema de arquivo"
 
-#, c-format
-msgid "&Quick compare limit (MB):"
-msgstr "Límite de comparación &rápida (MB)"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Límite de comparación &binaria (MB)"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"
@@ -3171,6 +3200,27 @@ msgstr "Parar en espazo en branco"
 msgid "Break at whitespace or punctuation"
 msgstr "Parar en espazo en branco ou puntuación"
 
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
+
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Da dereita para a esquerda (%1)"
@@ -3449,88 +3499,88 @@ msgid "Prediffer"
 msgstr "Precomparación"
 
 msgid "Left"
-msgstr ""
+msgstr "Esquerda"
 
 msgid "Middle"
-msgstr ""
+msgstr "Centro"
 
 msgid "Right"
-msgstr ""
+msgstr "Dereita"
 
 msgid "Diff"
-msgstr ""
+msgstr "Dif."
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados na esquerda"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados na dereita"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Número de duplicados no centro"
 
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 msgid "Communication"
-msgstr ""
+msgstr "Comunicación"
 
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Document"
-msgstr ""
+msgstr "Documento"
 
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 msgid "Journal"
-msgstr ""
+msgstr "Xornal"
 
 msgid "Link"
-msgstr ""
+msgstr "Ligazón"
 
 msgid "Media"
-msgstr ""
+msgstr "Medio"
 
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotografía"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Gravación de TV"
 
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 msgid "Security"
-msgstr ""
+msgstr "Seguridade"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Tarefa"
 
 msgid "Video"
-msgstr ""
+msgstr "Vídeo"
 
 msgid "Hash"
-msgstr ""
+msgstr "Suma de verificación"
 
 #, c-format
 msgid "Unable to compare files"
@@ -3636,7 +3686,7 @@ msgstr "Os arquivos de imaxe son diferentes"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupo%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4420,6 +4470,9 @@ msgstr "Ventá filla ou principal MDI"
 msgid "MDI child window only"
 msgstr "Só a ventá filla MDI"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr "Pechar a ventá principal se só hai unha ventá MDI filla"
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Diferenza"
@@ -4515,6 +4568,9 @@ msgstr "Volteado: %s "
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Rotado: %d "
+
+msgid "All pages"
+msgstr "Todas as páxinas"
 
 msgid "<Edit here>"
 msgstr "<Editar aquí>"

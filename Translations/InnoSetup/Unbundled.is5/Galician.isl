@@ -317,3 +317,6 @@ UninstallProgram=Desinstalar %1
 LaunchProgram=Iniciar %1
 AssocFileExtension=&Asociar %1 coa extensión de arquivo %2
 AssocingFileExtension=Asociando %1 coa extensión de arquivo %2...
+AutoStartProgramGroupDescription=Inicio:
+AutoStartProgram=Iniciar %1 automaticamente
+AddonHostProgramNotFound=Non se puido localizar %1 no cartafol que seleccionou.%n%nDesexa continuar de todas formas?

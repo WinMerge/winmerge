@@ -28,6 +28,7 @@ BulgarianLanguage=Bu³garski
 CatalanLanguage=Kataloñski
 ChineseSimplifiedLanguage=Chiñski (uproszczony)
 ChineseTraditionalLanguage=Chiñski (tradycyjny)
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Chorwacki
 CzechLanguage=Czeski
 DanishLanguage=Duñski
@@ -63,7 +64,6 @@ ExplorerContextMenu=&W³¹cz integracjê z menu kontekstowym Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
 IntegrateTortoiseGit=Integracja z To&rtoiseGit
 IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
-IntegrateClearCase=Integracja z Rational &ClearCase
 AddToPath=&Dodaj folder WinMerge do œcie¿ki systemowej
 
 ; 3-way merge wizard page

@@ -27,8 +27,17 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 
+msgid "Copy to Middle"
+msgstr ""
+
 msgid "C&opy to Right"
 msgstr "Naar rechts kopiëren"
+
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right"
+msgstr "Van rechts kopiëren"
 
 msgid "Cop&y to Left"
 msgstr "Naar links kopiëren"
@@ -36,20 +45,23 @@ msgstr "Naar links kopiëren"
 msgid "Copy &from Left"
 msgstr "Van links kopiëren"
 
-msgid "Copy fro&m Right"
-msgstr "Van rechts kopiëren"
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Geselecteerde regel(s) naar rechts kopiëren"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Geselecteerde regel(s) naar links kopiëren"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Geselecteerde regel(s) vanaf links kopiëren"
-
-msgid "Copy Selected Line(s) from Right"
-msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
@@ -683,6 +695,33 @@ msgstr "Volgend alleen rechts verschil\tAlt+9"
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Vorig alleen rechts verschil\tAlt+Shift+9"
 
+msgid "Copy from &Left to"
+msgstr ""
+
+msgid "&Middle"
+msgstr "Midden"
+
+msgid "&Right"
+msgstr "Rechts"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+msgid "&Left"
+msgstr "Links"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiëren van links\tAlt+Shift+Rechts"
 
@@ -790,15 +829,6 @@ msgstr "Rechts naar... (%1 van %2)"
 
 msgid "&Delete"
 msgstr "Verwijderen"
-
-msgid "&Left"
-msgstr "Links"
-
-msgid "&Middle"
-msgstr "Midden"
-
-msgid "&Right"
-msgstr "Rechts"
 
 msgid "&Both"
 msgstr "Beide"
@@ -1894,11 +1924,11 @@ msgstr "Alle submappen automatisch uitklappen"
 msgid "Ignore &Reparse Points"
 msgstr "Punten voor opnieuw verwerken negeren"
 
-msgid "&Quick compare limit (MB):"
-msgstr "Limiet snelvergelijking (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr ""
 
-msgid "&Binary compare limit (MB):"
-msgstr "Binaire vergelijkingslimiet (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr ""
 
 msgid ""
 "\n"
@@ -2629,6 +2659,27 @@ msgstr "Afbreken bij witruimte"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Afbreken bij witruimte of interpunctie"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3734,6 +3785,9 @@ msgstr "MDI-dochtervenster of hoofdvenster"
 msgid "MDI child window only"
 msgstr "Alleen MDI-dochtervenster"
 
+msgid "Close main window if there is only one MDI child window"
+msgstr ""
+
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
 msgstr "Verschil"
@@ -3829,6 +3883,9 @@ msgstr "Omgedraaid: %s"
 #, c-format
 msgid "Rotated: %d  "
 msgstr "Geroteerd: %d"
+
+msgid "All pages"
+msgstr ""
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"

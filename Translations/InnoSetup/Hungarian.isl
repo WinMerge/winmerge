@@ -28,6 +28,7 @@ BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
 ChineseSimplifiedLanguage=Kínai (Egyszerûsítés) menük és párbeszédablakok
 ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Horvát menük és párbeszédablakok
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok
@@ -63,7 +64,6 @@ ExplorerContextMenu=Integrálás az Intézö &helyi-menüjébe
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
 IntegrateTortoiseGit=Integrálás a To&rtoiseGit programmal
 IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
-IntegrateClearCase=Integrálás a Rational &ClearCase programmal
 AddToPath=&Adja hozzá a WinMerge mappát a rendszer elérési útjához
 
 ; 3-way merge wizard page

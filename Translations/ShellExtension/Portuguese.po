@@ -1,6 +1,9 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translator:
+# Hugo Carvalho <hugokarvalho@hotmail.com>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -9,16 +12,17 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-09-11 16:34+0100\n"
+"PO-Revision-Date: 2021-12-20 18:02+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: pt\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -61,14 +65,14 @@ msgstr "Comparar&..."
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr "Selecionar &Esquerda"
+msgstr "Selecionar à &esquerda"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
-msgstr "Selecionar &Meio"
+msgstr "Selecionar o do &meio"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
-msgstr "Re-selecionar &Esquerda"
+msgstr "Selecionar novamente à &esquerda"

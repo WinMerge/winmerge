@@ -6,7 +6,7 @@
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
 [![Github Releases All](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
-[![Translation status](https://img.shields.io/badge/translations-35-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
+[![Translation status](https://img.shields.io/badge/translations-36-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
 
 [WinMerge](https://winmerge.org/) is an open source differencing and merging tool
 for Windows. WinMerge can compare files and folders, presenting differences
@@ -17,18 +17,29 @@ in a visual format that is easy to understand and manipulate.
 ### Visual Studio 2017
 
  * *Community*, *Professional* or *Enterprise* Edition
- * VC++ 2017 v141 toolset
+ * VC++ 2017 latest v141 tools
+ * Visual C++ compilers and libraries for (ARM, ARM64)
  * Windows XP support for C++
- * MFC and ATL support
+ * Visual C++ MFC for (x86 and x64, ARM, ARM64)
+ * Visual C++ ATL for (x86 and x64, ARM, ARM64)
  * Windows 10 SDK
 
 ### Visual Studio 2019
 
  * *Community*, *Professional* or *Enterprise* Edition
- * MSVC v142 Buildtools
- * C++ MFC for v142 Buildtools
+ * MSVC v142 - VS 2019 C++ (x64/x86, ARM, ARM64) build tools (Latest)
+ * C++ MFC for latest v142 build tools (x86 & x64, ARM, ARM64)
+ * C++ ATL for latest v142 build tools (x86 & x64, ARM, ARM64)
  * Windows 10 SDK
 
+### Visual Studio 2022
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * MSVC v143 Buildtools (x64/x86, ARM, ARM64)
+ * C++ MFC for latest v143 build tools (x64/x86, ARM, ARM64)
+ * C++ ATL for latest v143 build tools (x64/x86, ARM, ARM64)
+ * Windows 10 SDK
+ 
 ### Other utilities/programs
 
  * git
@@ -45,7 +56,7 @@ cd winmerge
 git submodule init
 git submodule update
 DownloadDeps.cmd
-BuildAll.vs2019.cmd  or  BuildAll.vs2017.cmd
+BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ~~~
 
 ## Folder Structure

@@ -12,8 +12,9 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 )
 
 if "%1" == "" (
-  call :BuildBin || goto :eof
+  call :BuildBin ARM || goto :eof
   call :BuildBin ARM64 || goto :eof
+  call :BuildBin x86|| goto :eof
   call :BuildBin x64 || goto :eof
 ) else (
   call :BuildBin %1 || goto :eof
@@ -22,24 +23,13 @@ if "%1" == "" (
 goto :eof
 
 :BuildBin
-set PLATFORM=%1
-if "%1" == "" (
-  set PLATFORM_VS=Win32
-) else (
-  set PLATFORM_VS=%1
-)
-if "%PLATFORM_VS%" == "Win32" (
-  set PLATFORM_DIR=
-) else (
-  set PLATFORM_DIR=%PLATFORM_VS%
-)
-MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || goto :eof
+MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\%PLATFORM_DIR%\Release\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\%1\Release\WinMergeU.exe
 )
 
-mkdir Build\%PLATFORM_DIR%\Release\%APPVER% 2> NUL
-copy Build\%PlATFORM_DIR%\Release\*.pdb "Build\%PLATFORM_DIR%\Release\%APPVER%\"
+mkdir Build\%1\Release\%APPVER% 2> NUL
+copy Build\%1\Release\*.pdb "Build\%1\Release\%APPVER%\"
 goto :eof
